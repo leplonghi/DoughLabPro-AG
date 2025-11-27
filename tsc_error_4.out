@@ -1,0 +1,18 @@
+src/components/CalculatorForm.tsx(81,38): error TS2551: Property 'listCustomPresets' does not exist on type 'typeof import("C:/Users/eduar/OneDrive/Desktop/Antigravity/doughlabpro/src/logic/customPresets")'. Did you mean 'customPresets'?
+src/components/CalculatorForm.tsx(99,21): error TS2551: Property 'saveCustomPreset' does not exist on type 'typeof import("C:/Users/eduar/OneDrive/Desktop/Antigravity/doughlabpro/src/logic/customPresets")'. Did you mean 'customPresets'?
+src/components/CalculatorForm.tsx(108,40): error TS2551: Property 'loadCustomPreset' does not exist on type 'typeof import("C:/Users/eduar/OneDrive/Desktop/Antigravity/doughlabpro/src/logic/customPresets")'. Did you mean 'customPresets'?
+src/components/CalculatorForm.tsx(118,21): error TS2551: Property 'deleteCustomPreset' does not exist on type 'typeof import("C:/Users/eduar/OneDrive/Desktop/Antigravity/doughlabpro/src/logic/customPresets")'. Did you mean 'customPresets'?
+src/components/CalculatorForm.tsx(120,37): error TS2551: Property 'listCustomPresets' does not exist on type 'typeof import("C:/Users/eduar/OneDrive/Desktop/Antigravity/doughlabpro/src/logic/customPresets")'. Did you mean 'customPresets'?
+src/components/ui/ErrorBoundary.tsx(15,10): error TS2339: Property 'state' does not exist on type 'ErrorBoundary'.
+src/components/ui/ErrorBoundary.tsx(27,10): error TS2339: Property 'setState' does not exist on type 'ErrorBoundary'.
+src/components/ui/ErrorBoundary.tsx(31,14): error TS2339: Property 'state' does not exist on type 'ErrorBoundary'.
+src/components/ui/ErrorBoundary.tsx(57,17): error TS2339: Property 'props' does not exist on type 'ErrorBoundary'.
+src/pages/BatchDetailPage.tsx(22,10): error TS2305: Module '"@/data/communityStore"' has no exported member 'saveCommunityBatch'.
+src/pages/CommunityBatchDetailPage.tsx(4,10): error TS2305: Module '"@/data/communityStore"' has no exported member 'getCommunityBatchById'.
+src/pages/CommunityPage.tsx(8,10): error TS2305: Module '"@/data/communityStore"' has no exported member 'getAllCommunityBatches'.
+src/pages/learn/TechnicalPageLayout.tsx(4,10): error TS2305: Module '"@/logic/affiliateSuggestions"' has no exported member 'getAffiliateSuggestionsForTopic'.
+src/pages/mylab/levain/LevainListPage.tsx(9,10): error TS2305: Module '"@/services/levainDataService"' has no exported member 'exportLevainData'.
+src/pages/mylab/levain/LevainListPage.tsx(9,28): error TS2305: Module '"@/services/levainDataService"' has no exported member 'importLevainData'.
+src/pages/ShopPage.tsx(3,10): error TS2724: '"@/data/affiliateLinks"' has no exported member named 'AFFILIATE_LINKS'. Did you mean 'affiliateLinks'?
+src/pages/ShopPage.tsx(3,27): error TS2305: Module '"@/data/affiliateLinks"' has no exported member 'AffiliateProduct'.
+src/pages/styles/StyleDetailPage.tsx(13,10): error TS2724: '"@/data/affiliateLinks"' has no exported member named 'AFFILIATE_LINKS'. Did you mean 'affiliateLinks'?

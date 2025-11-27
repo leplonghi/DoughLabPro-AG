@@ -1,0 +1,96 @@
+ai/assistantClient.ts(3,129): error TS2307: Cannot find module '../types' or its corresponding type declarations.
+src/App.tsx(11,20): error TS2307: Cannot find module '@/components/layout/Footer' or its corresponding type declarations.
+src/App.tsx(12,28): error TS2307: Cannot find module '@/components/ui/LoadingSpinner' or its corresponding type declarations.
+src/App.tsx(13,25): error TS2307: Cannot find module '@/components/RequireAuth' or its corresponding type declarations.
+src/App.tsx(14,24): error TS2307: Cannot find module '@/components/RequirePro' or its corresponding type declarations.
+src/App.tsx(16,34): error TS2307: Cannot find module '@/components/ui/FloatingActionButton' or its corresponding type declarations.
+src/App.tsx(41,26): error TS2307: Cannot find module '@/services/analytics' or its corresponding type declarations.
+src/App.tsx(44,41): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/App.tsx(46,30): error TS2307: Cannot find module '@/contexts/AuthContext' or its corresponding type declarations.
+src/App.tsx(50,30): error TS2307: Cannot find module '@/components/PaywallModal' or its corresponding type declarations.
+src/App.tsx(51,23): error TS2307: Cannot find module '@/components/AuthModal' or its corresponding type declarations.
+src/App.tsx(52,35): error TS2307: Cannot find module '@/components/onboarding/LevainOnboardingModal' or its corresponding type declarations.
+src/App.tsx(58,43): error TS2307: Cannot find module '@/components/PlansPage' or its corresponding type declarations.
+src/App.tsx(61,43): error TS2307: Cannot find module '@/pages/MyLabPage' or its corresponding type declarations.
+src/App.tsx(67,46): error TS2307: Cannot find module '@/pages/settings/LanguagePage' or its corresponding type declarations.
+src/App.tsx(139,52): error TS2307: Cannot find module '@/pages/mylab/MeuLabReceitasPage' or its corresponding type declarations.
+src/App.tsx(140,53): error TS2307: Cannot find module '@/pages/mylab/MeuLabLevainPetPage' or its corresponding type declarations.
+src/App.tsx(142,52): error TS2307: Cannot find module '@/pages/mylab/MeuLabFarinhasPage' or its corresponding type declarations.
+src/App.tsx(143,50): error TS2307: Cannot find module '@/pages/mylab/MeuLabMassasPage' or its corresponding type declarations.
+src/App.tsx(144,59): error TS2307: Cannot find module '@/pages/mylab/MeuLabDiarioSensorialPage' or its corresponding type declarations.
+src/App.tsx(145,55): error TS2307: Cannot find module '@/pages/mylab/MeuLabComparacoesPage' or its corresponding type declarations.
+src/App.tsx(159,50): error TS2307: Cannot find module '@/pages/pro/ProActivatedPage' or its corresponding type declarations.
+src/components/calculator/sections/FermentationSection.tsx(4,26): error TS2307: Cannot find module '@/components/ui/ChoiceButton' or its corresponding type declarations.
+src/components/calculator/sections/FermentationSection.tsx(5,25): error TS2307: Cannot find module '@/components/calculator/AccordionSection' or its corresponding type declarations.
+src/components/calculator/sections/FermentationSection.tsx(7,10): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FermentationIcon'.
+src/components/calculator/sections/IngredientsSection.tsx(12,35): error TS2307: Cannot find module '@/components/calculator/IngredientTableEditor' or its corresponding type declarations.
+src/components/calculator/TechnicalMethodPanel.tsx(11,5): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'LightBulbIcon'.
+src/components/CalculatorForm.tsx(13,32): error TS2307: Cannot find module '@/logic/customPresets' or its corresponding type declarations.
+src/components/CalculatorForm.tsx(23,25): error TS2307: Cannot find module '@/components/calculator/AccordionSection' or its corresponding type declarations.
+src/components/CalculatorForm.tsx(24,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/components/CalculatorForm.tsx(26,26): error TS2307: Cannot find module '@/components/calculator/sections/StyleSection' or its corresponding type declarations.
+src/components/CalculatorForm.tsx(28,29): error TS2307: Cannot find module '@/components/calculator/sections/QuantitySection' or its corresponding type declarations.
+src/components/CalculatorForm.tsx(29,32): error TS2307: Cannot find module '@/components/calculator/sections/EnvironmentSection' or its corresponding type declarations.
+src/components/ErrorBoundary.tsx(15,10): error TS2339: Property 'state' does not exist on type 'ErrorBoundary'.
+src/components/ErrorBoundary.tsx(27,10): error TS2339: Property 'setState' does not exist on type 'ErrorBoundary'.
+src/components/ErrorBoundary.tsx(31,14): error TS2339: Property 'state' does not exist on type 'ErrorBoundary'.
+src/components/ErrorBoundary.tsx(57,17): error TS2339: Property 'props' does not exist on type 'ErrorBoundary'.
+src/components/layout/Navigation.tsx(3,22): error TS2307: Cannot find module '@/components/layout/UserMenu' or its corresponding type declarations.
+src/components/ResultsDisplay.tsx(19,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/components/styles/AiStyleBuilderModal.tsx(6,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/components/ui/ErrorBoundary.tsx(15,10): error TS2339: Property 'state' does not exist on type 'ErrorBoundary'.
+src/components/ui/ErrorBoundary.tsx(27,10): error TS2339: Property 'setState' does not exist on type 'ErrorBoundary'.
+src/components/ui/ErrorBoundary.tsx(31,14): error TS2339: Property 'state' does not exist on type 'ErrorBoundary'.
+src/components/ui/ErrorBoundary.tsx(57,17): error TS2339: Property 'props' does not exist on type 'ErrorBoundary'.
+src/contexts/UserProvider.tsx(15,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/contexts/UserProvider.tsx(17,26): error TS2307: Cannot find module '@/services/analytics' or its corresponding type declarations.
+src/contexts/UserProvider.tsx(18,25): error TS2307: Cannot find module '@/contexts/AuthContext' or its corresponding type declarations.
+src/logic/mylabSelectors.ts(1,61): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+src/logic/smartAdjustments.ts(13,52): error TS2307: Cannot find module './constants' or its corresponding type declarations.
+src/pages/BatchDetailPage.tsx(6,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/pages/BatchDetailPage.tsx(22,36): error TS2307: Cannot find module '@/data/communityStore' or its corresponding type declarations.
+src/pages/CalculatorPage.tsx(18,26): error TS2307: Cannot find module '@/components/calculator/UiModeToggle' or its corresponding type declarations.
+src/pages/CalculatorPage.tsx(22,31): error TS2307: Cannot find module '@/components/onboarding/OnboardingTooltip' or its corresponding type declarations.
+src/pages/CommunityBatchDetailPage.tsx(4,39): error TS2307: Cannot find module '@/data/communityStore' or its corresponding type declarations.
+src/pages/CommunityPage.tsx(3,27): error TS2307: Cannot find module '@/components/community/CommunityFeed' or its corresponding type declarations.
+src/pages/CommunityPage.tsx(4,37): error TS2307: Cannot find module '@/components/community/CommunityProfileSidebar' or its corresponding type declarations.
+src/pages/CommunityPage.tsx(6,33): error TS2307: Cannot find module '@/components/community/CommunityCreatePost' or its corresponding type declarations.
+src/pages/CommunityPage.tsx(7,10): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FeedIcon'.
+src/pages/CommunityPage.tsx(8,40): error TS2307: Cannot find module '@/data/communityStore' or its corresponding type declarations.
+src/pages/DoughbotPage.tsx(3,22): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'LightBulbIcon'.
+src/pages/learn/AutolysePage.tsx(4,24): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'LightBulbIcon'.
+src/pages/learn/FundamentalsPage.tsx(6,46): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FermentationIcon'.
+src/pages/learn/LearnPage.tsx(9,5): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FermentationIcon'.
+src/pages/learn/LearnPage.tsx(13,5): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FlaskIcon'.
+src/pages/learn/OvenSciencePage.tsx(4,46): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'LightBulbIcon'.
+src/pages/learn/TechnicalPageLayout.tsx(4,49): error TS2307: Cannot find module '@/logic/affiliateSuggestions' or its corresponding type declarations.
+src/pages/learn/TroubleshootingPage.tsx(4,36): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'LightBulbIcon'.
+src/pages/mylab/CompareReceitasPage.tsx(8,28): error TS2307: Cannot find module '../../components/ui/ProFeatureLock' or its corresponding type declarations.
+src/pages/mylab/ConsistencyDetailPage.tsx(6,10): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FlaskIcon'.
+src/pages/mylab/ConsistencyListPage.tsx(6,10): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FlaskIcon'.
+src/pages/mylab/ConsistencyListPage.tsx(7,36): error TS2307: Cannot find module '@/components/mylab/ConsistencySeriesModal' or its corresponding type declarations.
+src/pages/mylab/levain/components/LevainFeedingForm.tsx(4,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/pages/mylab/levain/components/LevainFeedingForm.tsx(5,53): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'WeightIcon'.
+src/pages/mylab/levain/components/LevainInsights.tsx(4,45): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'ChartBarIcon'.
+src/pages/mylab/levain/LevainDetailPage.tsx(8,27): error TS2307: Cannot find module './components/LevainProfile' or its corresponding type declarations.
+src/pages/mylab/levain/LevainDetailPage.tsx(10,28): error TS2307: Cannot find module '@/components/ui/ProFeatureLock' or its corresponding type declarations.
+src/pages/mylab/levain/LevainDetailPage.tsx(11,29): error TS2307: Cannot find module './components/LevainAssistant' or its corresponding type declarations.
+src/pages/mylab/levain/LevainLayout.tsx(4,36): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'ChartBarIcon'.
+src/pages/mylab/levain/LevainListPage.tsx(7,25): error TS2307: Cannot find module '@/components/LevainModal' or its corresponding type declarations.
+src/pages/mylab/levain/LevainListPage.tsx(8,26): error TS2307: Cannot find module '@/services/analytics' or its corresponding type declarations.
+src/pages/mylab/levain/LevainListPage.tsx(9,52): error TS2307: Cannot find module '@/services/levainDataService' or its corresponding type declarations.
+src/pages/mylab/levain/LevainListPage.tsx(10,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/pages/mylab/MeuLabFornadasPage.tsx(8,26): error TS2307: Cannot find module '@/components/ToastProvider' or its corresponding type declarations.
+src/pages/mylab/MeuLabInsightsPage.tsx(5,28): error TS2307: Cannot find module '../../components/ui/ProFeatureLock' or its corresponding type declarations.
+src/pages/mylab/MeuLabInsightsPage.tsx(6,10): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'ChartBarIcon'.
+src/pages/mylab/MyLabLayout.tsx(5,36): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'ChartBarIcon'.
+src/pages/mylab/MyLabLayout.tsx(5,109): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'FlaskIcon'.
+src/pages/mylab/ObjectivesPage.tsx(7,23): error TS2307: Cannot find module '../../components/mylab/GoalModal' or its corresponding type declarations.
+src/pages/mylab/TimelinePage.tsx(7,28): error TS2307: Cannot find module '../../components/ui/ProFeatureLock' or its corresponding type declarations.
+src/pages/OvenAnalysisPage.tsx(4,20): error TS2305: Module '"@/components/ui/Icons"' has no exported member 'LightBulbIcon'.
+src/pages/ProfilePage.tsx(18,23): error TS2307: Cannot find module '@/components/OvenModal' or its corresponding type declarations.
+src/pages/ProfilePage.tsx(19,25): error TS2307: Cannot find module '@/components/LevainModal' or its corresponding type declarations.
+src/pages/ShopPage.tsx(3,51): error TS2307: Cannot find module '@/data/affiliateLinks' or its corresponding type declarations.
+src/pages/styles/DoughStylesPage.tsx(27,28): error TS2307: Cannot find module '@/components/ui/ProFeatureLock' or its corresponding type declarations.
+src/pages/styles/StyleDetailPage.tsx(13,33): error TS2307: Cannot find module '@/data/affiliateLinks' or its corresponding type declarations.
+src/pages/styles/StyleDetailPage.tsx(14,28): error TS2307: Cannot find module '@/components/ui/ProFeatureLock' or its corresponding type declarations.
