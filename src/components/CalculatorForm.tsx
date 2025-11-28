@@ -29,6 +29,7 @@ import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
 import StyleContextBar from '@/components/calculator/StyleContextBar';
 import { useUser } from '@/contexts/UserProvider';
+import { ProFeatureLock } from '@/components/ProFeatureLock';
 
 interface CalculatorFormProps {
   config: DoughConfig;
@@ -307,63 +308,50 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       </FormSection>
 
       {!isBasic && (
-        <EnvironmentSection
-          config={config}
-          onConfigChange={onConfigChange}
-          getSelectClasses={getSelectClasses}
-          errors={errors}
-        />
+        <ProFeatureLock origin="calculator" featureKey="calculator_advanced" contextLabel="Advanced Environment Controls">
+          <EnvironmentSection
+            config={config}
+            onConfigChange={onConfigChange}
+            getSelectClasses={getSelectClasses}
+            errors={errors}
+          />
+        </ProFeatureLock>
       )}
 
       {!isBasic && (
         <>
-          <FormSection
-            title="Notes"
-            description="Log observations about this formula."
-            icon={<PencilIcon className="h-6 w-6" />}
-          >
-            <div className="relative">
+          <ProFeatureLock origin="calculator" featureKey="calculator_advanced" contextLabel="Recipe Notes">
+            <FormSection
+              title="Notes"
+              description="Log observations about this formula."
+              icon={<PencilIcon className="h-6 w-6" />}
+            >
               <textarea
                 id="notes"
                 name="notes"
                 rows={4}
                 value={config.notes || ''}
                 onChange={handleTextareaChange}
-                placeholder={
-                  hasProAccess
-                    ? 'E.g., Fermented for 24h in the fridge...'
-                    : 'This is a Pro feature.'
-                }
-                className="w-full rounded-lg border-slate-300 bg-slate-50 p-2 text-slate-900 focus:border-lime-500 focus:ring-lime-500 disabled:bg-slate-100"
-                disabled={!hasProAccess}
+                placeholder="E.g., Fermented for 24h in the fridge..."
+                className="w-full rounded-lg border-slate-300 bg-slate-50 p-2 text-slate-900 focus:border-lime-500 focus:ring-lime-500"
               />
-              {!hasProAccess && (
-                <div
-                  className="absolute inset-0 z-10 flex cursor-pointer items-center justify-center rounded-lg bg-white/50 backdrop-blur-sm"
-                  onClick={onOpenPaywall}
-                  title="Pro Feature"
-                >
-                  <div className="flex items-center gap-2 rounded-full bg-lime-500 px-3 py-1 text-xs font-semibold text-white shadow-md">
-                    <LockClosedIcon className="h-4 w-4" />
-                    Go Pro
-                  </div>
-                </div>
-              )}
-            </div>
-          </FormSection>
+            </FormSection>
+          </ProFeatureLock>
 
-          <FormSection
-            title="Save Custom Preset"
-            description="Save the current configuration for future use."
-            icon={<BookmarkSquareIcon className="h-6 w-6" />}
-          >
-            <button
-              onClick={handleSavePreset}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-lime-500 py-2 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-lime-600"
+          <ProFeatureLock origin="calculator" featureKey="calculator_advanced" contextLabel="Custom Presets">
+            <FormSection
+              title="Save Custom Preset"
+              description="Save the current configuration for future use."
+              icon={<BookmarkSquareIcon className="h-6 w-6" />}
             >
-              Save as Custom Style
-            </button>
-          </FormSection>
+              <button
+                onClick={handleSavePreset}
+                className="w-full flex items-center justify-center gap-2 rounded-md bg-lime-500 py-2 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-lime-600"
+              >
+                Save as Custom Style
+              </button>
+            </FormSection>
+          </ProFeatureLock>
         </>
       )}
 
@@ -378,12 +366,12 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       </div>
 
       {!hasProAccess && (
-        <div className="mt-8 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 p-6 text-center text-white shadow-lg">
-          <p className="text-lg font-bold">Stop guessing. Start mastering your dough.</p>
-          <p className="mt-1 text-sm text-slate-400">Costs less than 25¢ a day. Cheaper than a coffee.</p>
+        <div className="mt-8 rounded-xl bg-lime-50 border border-lime-100 p-6 text-center shadow-sm">
+          <p className="text-lg font-bold text-lime-900">Stop guessing. Start mastering your dough.</p>
+          <p className="mt-1 text-sm text-lime-700">Costs less than 25¢ a day. Cheaper than a coffee.</p>
           <button
             onClick={onOpenPaywall}
-            className="mt-4 rounded-full bg-lime-500 px-6 py-2 text-sm font-bold text-white transition-transform hover:scale-105 hover:bg-lime-400"
+            className="mt-4 rounded-full bg-lime-600 px-6 py-2 text-sm font-bold text-white transition-transform hover:scale-105 hover:bg-lime-700 shadow-md shadow-lime-200"
           >
             Upgrade to Pro
           </button>

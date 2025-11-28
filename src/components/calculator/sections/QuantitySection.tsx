@@ -1,6 +1,6 @@
 import React from 'react';
 import { DoughConfig, CalculationMode, FormErrors } from '@/types';
-import { ListBulletIcon } from '@/components/ui/Icons';
+import { ListBulletIcon, InfoIcon } from '@/components/ui/Icons';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import AccordionSection from '@/components/calculator/AccordionSection';
 
@@ -26,7 +26,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
     return (
         <AccordionSection
             title="Quantity"
-            description="Define how many dough balls or the total flour weight."
+            description="Define how many pieces or the total flour weight."
             icon={<ListBulletIcon className="h-6 w-6" />}
         >
             {/* Calculation Mode Toggle */}
@@ -46,9 +46,18 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {/* Number of Balls */}
                 <div>
-                    <label htmlFor="numPizzas" className="mb-1 block text-xs font-bold text-slate-700">
-                        Number of {config.bakeType === 'pizzas' ? 'Pizzas' : 'Loaves/Pieces'}
-                    </label>
+                    <div className="flex items-center gap-2 mb-1">
+                        <label htmlFor="numPizzas" className="block text-xs font-bold text-slate-700">
+                            Number of {config.bakeType === 'pizzas' ? 'Pizzas' : 'Loaves/Pieces'}
+                        </label>
+                        <div className="group relative flex items-center">
+                            <InfoIcon className="h-3.5 w-3.5 cursor-help text-slate-400" />
+                            <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2 rounded-md bg-slate-800 p-2 text-xs font-normal text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
+                                Total number of pieces or loaves you want to make.
+                                <svg className="absolute left-0 top-full h-2 w-full text-slate-800" x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
+                            </div>
+                        </div>
+                    </div>
                     <input
                         ref={numPizzasRef}
                         type="number"
@@ -65,9 +74,18 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
 
                 {/* Weight per Ball */}
                 <div>
-                    <label htmlFor="doughBallWeight" className="mb-1 block text-xs font-bold text-slate-700">
-                        Weight per Ball (g)
-                    </label>
+                    <div className="flex items-center gap-2 mb-1">
+                        <label htmlFor="doughBallWeight" className="block text-xs font-bold text-slate-700">
+                            Weight per Piece (g)
+                        </label>
+                        <div className="group relative flex items-center">
+                            <InfoIcon className="h-3.5 w-3.5 cursor-help text-slate-400" />
+                            <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-56 -translate-x-1/2 rounded-md bg-slate-800 p-2 text-xs font-normal text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
+                                Target weight for each piece. ~250g for pizza, ~800g for bread loaves.
+                                <svg className="absolute left-0 top-full h-2 w-full text-slate-800" x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
+                            </div>
+                        </div>
+                    </div>
                     <input
                         type="number"
                         id="doughBallWeight"

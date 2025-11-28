@@ -11,21 +11,21 @@ interface ReferenceItemProps {
 
 const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <div className="mt-12 first:mt-0">
-    <h2 className="mb-4 text-2xl font-bold text-slate-800">{title}</h2>
+    <h2 className="mb-4 text-2xl font-bold text-slate-800 ">{title}</h2>
     <div className="space-y-6">{children}</div>
   </div>
 );
 
 const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description, link }) => (
-  <div className="rounded-lg bg-slate-50 p-4">
+  <div className="rounded-xl bg-slate-50  p-4 border border-slate-100 ">
     <div className="flex items-center justify-between">
-      <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+      <h3 className="text-lg font-semibold text-slate-900 ">{title}</h3>
       {link && (
         <a
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 text-sm font-medium text-lime-600 hover:underline"
+          className="flex items-center gap-1 text-sm font-bold text-lime-600  hover:underline"
           aria-label={`Visit ${title}`}
         >
           <span>Visit</span>
@@ -33,28 +33,28 @@ const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description,
         </a>
       )}
     </div>
-    <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">{type}</p>
-    <p className="mt-2 text-slate-600">{description}</p>
+    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-500 ">{type}</p>
+    <p className="mt-2 text-slate-600 ">{description}</p>
   </div>
 );
 
 const ReferencesPage: React.FC = () => {
   return (
-    <div className="mx-auto max-w-4xl animate-[fadeIn_0.5s_ease-in_out]">
-      <button 
-        onClick={() => window.history.back()} 
-        className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors"
+    <div className="mx-auto max-w-4xl animate-fade-in">
+      <button
+        onClick={() => window.history.back()}
+        className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-500  hover:text-slate-800 transition-colors"
       >
         &larr; Back
       </button>
 
-      <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-10">
+      <div className="rounded-2xl bg-white  p-6 shadow-lg border border-slate-200  sm:p-10">
         <div className="text-center">
           <BookOpenIcon className="mx-auto h-12 w-12 text-lime-500" />
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl">
             Technical References
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 ">
             A curated collection of books, standards, and resources to deepen your knowledge.
           </p>
         </div>
@@ -98,22 +98,22 @@ const ReferencesPage: React.FC = () => {
               type="Technical Concept"
               description="Explanation of the equipment used to measure flour strength (W), tenacity (P), and extensibility (L), crucial parameters for baking."
             />
-             <ReferenceItem
+            <ReferenceItem
               title="Caputo Mill"
               type="Website / Manufacturer"
               description="The website of Mulino Caputo, one of the most famous in Italy, offers detailed technical sheets for their various flours, helping to understand the use of each."
               link="https://www.mulinocaputo.it/"
             />
           </Section>
-          
+
           <Section title="Terminology and Concepts">
-             <ReferenceItem
+            <ReferenceItem
               title="The Fresh Loaf"
               type="Community / Website"
               description="One of the largest and oldest baking forums on the internet. An invaluable resource for learning, asking questions, and seeing experiments from other bakers."
               link="http://www.thefreshloaf.com/"
             />
-             <ReferenceItem
+            <ReferenceItem
               title="Autolyse, Fermentolyse, and Maturation"
               type="Concepts"
               description="Definition and application of fundamental techniques for gluten development, flavor, and dough structure."

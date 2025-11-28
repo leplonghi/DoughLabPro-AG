@@ -8,17 +8,29 @@ import { FeedIcon } from '@/components/ui/Icons';
 import { getAllCommunityBatches } from '@/data/communityStore';
 
 interface CommunityPageProps {
-  onLoadInspiration: (config: Partial<DoughConfig>) => void;
-  onNavigate: (page: Page, params?: string) => void;
+    onLoadInspiration: (config: Partial<DoughConfig>) => void;
+    onNavigate: (page: Page, params?: string) => void;
 }
 
 const CommunityPage: React.FC<CommunityPageProps> = ({ onLoadInspiration, onNavigate }) => {
     const { t } = useTranslation();
     const [communityBatches, setCommunityBatches] = useState<CommunityBatch[]>([]);
 
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
-        const batches = getAllCommunityBatches();
-        setCommunityBatches(batches.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
+        const fetchBatches = async () => {
+            setIsLoading(true);
+            try {
+                const batches = await getAllCommunityBatches();
+                setCommunityBatches(batches);
+            } catch (error) {
+                console.error("Failed to load community feed", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchBatches();
     }, []);
 
     // Adapt CommunityBatch[] to Batch[] to fit the existing CommunityFeed and CommunityPostCard components
@@ -41,13 +53,13 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onLoadInspiration, onNavi
     }, [communityBatches]);
 
     return (
-        <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in_out]">
+        <div className="mx-auto max-w-7xl animate-fade-in">
             <div className="text-center mb-12">
                 <FeedIcon className="mx-auto h-12 w-12 text-lime-500" />
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl">
                     {t('community_page.title')}
                 </h1>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-600 dark:text-slate-300">
+                <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-600 ">
                     {t('community_page.subtitle')}
                 </p>
             </div>
@@ -59,11 +71,17 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onLoadInspiration, onNavi
 
                 {/* Main Feed (Center) */}
                 <div className="col-span-1 lg:col-span-6 lg:order-2">
-                    <CommunityFeed
-                        batches={adaptedBatches}
-                        onLoadInspiration={onLoadInspiration}
-                        onNavigate={onNavigate}
-                    />
+                    {isLoading ? (
+                        <div className="flex justify-center py-12">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lime-500"></div>
+                        </div>
+                    ) : (
+                        <CommunityFeed
+                            batches={adaptedBatches}
+                            isLoading={isLoading}
+                            onCloneBatch={(batch) => onLoadInspiration(batch.doughConfig)}
+                        />
+                    )}
                 </div>
 
                 {/* Profile Sidebar (Left) - visible on large screens */}

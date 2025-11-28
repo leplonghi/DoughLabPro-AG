@@ -271,6 +271,8 @@ export interface User {
   gender?: Gender;
   isPro?: boolean;
   plan?: 'free' | 'pro';
+  proSince?: string;
+  proExpiresAt?: string;
   trialEndsAt?: string | null;
   stripeCustomerId?: string | null;
   stripeSubscriptionId?: string | null;
@@ -362,7 +364,7 @@ export interface TestSeries {
   relatedBakes: string[];
 }
 
-export type PaywallOrigin = 'levain' | 'mylab' | 'calculator' | 'styles' | 'learn' | 'general' | 'plans_page';
+export type PaywallOrigin = 'levain' | 'mylab' | 'calculator' | 'styles' | 'learn' | 'general' | 'plans_page' | 'tools' | 'exports_pdf';
 
 // --- Styles System Extensions ---
 
@@ -448,6 +450,14 @@ export interface DoughStyleDefinition {
 
 export type DoughStylePreset = any; // Legacy alias
 
+export interface FavoriteItem {
+  id: string;
+  type: 'learn' | 'batch' | 'style' | 'other';
+  title: string;
+  createdAt: string;
+  metadata?: any;
+}
+
 export interface UserContextType {
   isAuthenticated: boolean;
   user: User | null;
@@ -484,6 +494,11 @@ export interface UserContextType {
   userStyles: DoughStyleDefinition[];
   addUserStyle: (style: Omit<DoughStyleDefinition, 'id' | 'createdAt'>) => Promise<DoughStyleDefinition>;
   deleteUserStyle: (id: string) => Promise<void>;
+
+  // Favorites
+  favorites: FavoriteItem[];
+  toggleFavorite: (item: Omit<FavoriteItem, 'createdAt'>) => Promise<void>;
+  isFavorite: (id: string) => boolean;
 
   preferredFlourId: string | null;
   setPreferredFlour: (id: string | null) => void;

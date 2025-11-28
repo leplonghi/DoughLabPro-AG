@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { useTranslation } from '../i18n';
-import { PizzaSliceIcon } from './IconComponents';
+import { PizzaSliceIcon } from './ui/Icons';
 import { TOPPING_COMBINATIONS } from '../toppings-constants';
 import { RecipeStyle } from '../types';
+import { ProFeatureLock } from './ProFeatureLock';
 
 const ToppingsPage: React.FC = () => {
     const { t } = useTranslation();
@@ -34,7 +35,8 @@ const ToppingsPage: React.FC = () => {
             <div className="mt-12 space-y-12">
                 {categoryOrder.map(category => {
                     if (!groupedToppings[category]) return null;
-                    return (
+
+                    const content = (
                         <div key={category}>
                             <h2 className="text-2xl font-bold capitalize text-slate-800 border-b-2 border-lime-500 pb-2 mb-6">
                                 {category}
@@ -82,7 +84,22 @@ const ToppingsPage: React.FC = () => {
                                 ))}
                             </div>
                         </div>
-                    )
+                    );
+
+                    if (category === 'classic') {
+                        return content;
+                    }
+
+                    return (
+                        <ProFeatureLock
+                            key={category}
+                            featureKey="tools_topping_planner_advanced"
+                            contextLabel={`Unlock ${category} topping combinations`}
+                            origin="tools"
+                        >
+                            {content}
+                        </ProFeatureLock>
+                    );
                 })}
             </div>
         </div>

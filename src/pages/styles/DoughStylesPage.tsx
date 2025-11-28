@@ -10,13 +10,16 @@ import {
     CalculatorIcon,
     TrashIcon,
     CloseIcon,
-    PlusCircleIcon,
     FlourIcon,
     SparklesIcon,
     UserCircleIcon,
     ClockIcon,
     GlobeAltIcon,
-    TagIcon
+    TagIcon,
+    HeartIcon,
+    BarsArrowDownIcon,
+    BarsArrowUpIcon,
+    FunnelIcon
 } from '@/components/ui/Icons';
 import { STYLES_DATA } from '@/data/stylesData';
 import { useTranslation } from '@/i18n';
@@ -24,7 +27,8 @@ import { DoughStyleDefinition, DoughConfig, StyleCategory } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
 import CreateStyleModal from '@/components/styles/CreateStyleModal';
 import AiStyleBuilderModal from '@/components/styles/AiStyleBuilderModal';
-import ProFeatureLock from '@/components/ui/ProFeatureLock';
+import { ToppingPlannerModal } from '@/components/modals/ToppingPlannerModal';
+import { ProFeatureLock } from '@/components/ProFeatureLock';
 
 interface DoughStylesPageProps {
     doughConfig: DoughConfig;
@@ -132,45 +136,53 @@ const StyleCard: React.FC<{ style: DoughStyleDefinition; onClick: () => void; on
     return (
         <div
             onClick={onClick}
-            className="group flex flex-col rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-1 cursor-pointer h-full relative overflow-hidden"
+            className="group flex flex-col rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/50 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full relative overflow-hidden backdrop-blur-sm"
         >
+            {/* Gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-lime-500/0 to-lime-500/0 group-hover:from-lime-500/5 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
+
             {style.isPro && (
-                <div className="absolute top-0 right-0 bg-lime-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg shadow-sm z-10 uppercase tracking-wide">
-                    PRO
+                <div className="absolute top-0 right-0 bg-gradient-to-br from-lime-400 to-lime-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl shadow-lg z-10 uppercase tracking-wide animate-pulse">
+                    ✨ PRO
                 </div>
             )}
             {!style.isCanonical && (
-                <div className={`absolute top-0 left-0 text-white text-[10px] font-bold px-2 py-1 rounded-br-lg shadow-sm z-10 uppercase tracking-wide flex items-center gap-1 ${style.source === 'user_ai' ? 'bg-indigo-500' : 'bg-sky-500'}`}>
-                    {style.source === 'user_ai' ? <SparklesIcon className="h-3 w-3" /> : <UserCircleIcon className="h-3 w-3" />}
-                    {style.source === 'user_ai' ? 'AI Style' : 'USER'}
+                <div className={`absolute top-0 left-0 text-white text-[10px] font-bold px-3 py-1.5 rounded-br-xl shadow-lg z-10 uppercase tracking-wide flex items-center gap-1 ${style.source === 'user_ai' ? 'bg-gradient-to-br from-indigo-400 to-indigo-600' : 'bg-gradient-to-br from-sky-400 to-sky-600'}`}>
+                    {style.source === 'user_ai' ? <SparklesIcon className="h-3 w-3 animate-pulse" /> : <UserCircleIcon className="h-3 w-3" />}
+                    {style.source === 'user_ai' ? 'AI' : 'CUSTOM'}
                 </div>
             )}
             {isNew && style.isCanonical && (
-                <div className="absolute top-0 left-0 bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded-br-lg shadow-sm z-10 uppercase tracking-wide">
-                    NEW
+                <div className="absolute top-0 left-0 bg-gradient-to-br from-blue-400 to-blue-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-br-xl shadow-lg z-10 uppercase tracking-wide flex items-center gap-1">
+                    <SparklesIcon className="h-3 w-3" /> NEW
                 </div>
             )}
 
-            <div className="p-5 flex-grow flex flex-col">
-                <div className="flex justify-between items-start mb-2 mt-2">
-                    <h3 className="font-bold text-lg text-slate-900 group-hover:text-lime-600 transition-colors line-clamp-1 leading-tight">
+            <div className="p-6 flex-grow flex flex-col relative z-[1]">
+                <div className="flex justify-between items-start mb-3 mt-2">
+                    <h3 className="font-extrabold text-xl text-slate-900 group-hover:text-lime-600 transition-all duration-300 line-clamp-1 leading-tight">
                         {style.name}
                     </h3>
+                    {/* Favorite Button on Card */}
+                    {/* We need to pass isFavorite and toggleFavorite to StyleCard, or useUser inside it. 
+                        Since StyleCard is defined outside, let's use useUser inside it if possible, 
+                        but useUser is a hook so it must be inside a component. 
+                        StyleCard is a component. */}
                 </div>
 
-                <div className="mb-3 flex gap-2 flex-wrap">
+                <div className="mb-4 flex gap-2 flex-wrap">
                     <CategoryBadge category={style.category} />
-                    <span className="text-[10px] font-semibold text-slate-500 bg-slate-50 px-2 py-0.5 rounded-full border border-slate-100 flex items-center gap-1">
+                    <span className="text-[10px] font-semibold text-slate-600 bg-white/70 backdrop-blur-sm px-2.5 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1 transition-all hover:scale-105">
                         <GlobeAltIcon className="h-3 w-3" /> {style.country}
                     </span>
                 </div>
 
-                <p className="text-sm text-slate-600 mb-4 line-clamp-2 flex-grow">
+                <p className="text-sm text-slate-600 mb-5 line-clamp-2 flex-grow leading-relaxed">
                     {style.description}
                 </p>
 
                 {/* Technical Stats Grid */}
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid grid-cols-3 gap-2 mb-5">
                     <TechnicalBadge label="Hydration" value={hydrationDisplay} />
                     <TechnicalBadge label="Time" value={style.technicalProfile ? style.technicalProfile.fermentation?.bulk.split(' ')[0] : 'Std'} />
                     <TechnicalBadge label="Skill" value={style.technicalProfile?.difficulty || 'Med'} />
@@ -178,33 +190,33 @@ const StyleCard: React.FC<{ style: DoughStyleDefinition; onClick: () => void; on
 
                 {/* Tags */}
                 {style.tags && style.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mb-4">
+                    <div className="flex flex-wrap gap-1.5 mb-5">
                         {style.tags.slice(0, 3).map(tag => (
-                            <span key={tag} className="text-[9px] text-slate-500 bg-slate-50 border border-slate-100 px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                                <TagIcon className="h-2 w-2" /> {tag}
+                            <span key={tag} className="text-[9px] text-slate-600 bg-slate-100/80 backdrop-blur-sm border border-slate-200 px-2 py-1 rounded-full flex items-center gap-1 hover:bg-slate-200 transition-all">
+                                <TagIcon className="h-2.5 w-2.5" /> {tag}
                             </span>
                         ))}
                     </div>
                 )}
 
-                <div className="mt-auto pt-4 border-t border-slate-100 flex gap-2">
+                <div className="mt-auto pt-5 border-t border-slate-200 flex gap-2">
                     <button
                         onClick={onUse}
-                        className="flex-1 bg-lime-50 text-lime-700 hover:bg-lime-100 hover:text-lime-800 text-xs font-bold py-2 px-3 rounded-lg transition-colors flex items-center justify-center gap-1"
+                        className="flex-1 bg-gradient-to-r from-lime-500 to-lime-600 text-white hover:from-lime-600 hover:to-lime-700 text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105 btn-premium"
                     >
-                        <CalculatorIcon className="h-3 w-3" /> Use
+                        <CalculatorIcon className="h-4 w-4" /> Use Style
                     </button>
                     {!style.isCanonical && onDelete && (
                         <button
                             onClick={onDelete}
-                            className="bg-red-50 text-red-600 hover:bg-red-100 p-2 rounded-lg transition-colors"
+                            className="bg-red-50 text-red-600 hover:bg-red-100 p-2.5 rounded-xl transition-all hover:scale-105 shadow-sm"
                             title="Delete Style"
                         >
                             <TrashIcon className="h-4 w-4" />
                         </button>
                     )}
-                    <button className="flex-1 bg-slate-50 text-slate-600 hover:bg-slate-100 text-xs font-semibold py-2 px-3 rounded-lg transition-colors flex items-center justify-center gap-1">
-                        Details <ChevronRightIcon className="h-3 w-3" />
+                    <button className="flex-1 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold py-2.5 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md hover:scale-105">
+                        Details <ChevronRightIcon className="h-4 w-4" />
                     </button>
                 </div>
             </div>
@@ -220,8 +232,12 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
     const [isAiModalOpen, setIsAiModalOpen] = useState(false);
     const [styleToEdit, setStyleToEdit] = useState<Partial<DoughStyleDefinition> | undefined>(undefined);
     const [isPlannerOpen, setIsPlannerOpen] = useState(false);
+    const [showFavorites, setShowFavorites] = useState(false);
+    const [showFilters, setShowFilters] = useState(false);
+    const [sortBy, setSortBy] = useState<'name' | 'newest' | 'hydration'>('name');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-    const { userStyles, addUserStyle, deleteUserStyle } = useUser();
+    const { userStyles, addUserStyle, deleteUserStyle, isFavorite, toggleFavorite, hasProAccess, openPaywall } = useUser();
 
     // Combine Official and User Styles
     const allStyles = useMemo(() => [...STYLES_DATA, ...userStyles], [userStyles]);
@@ -252,8 +268,30 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
             const matchesCategory = selectedCategory === 'all' || style.category === selectedCategory;
 
             const matchesTag = selectedTag ? style.tags?.includes(selectedTag) : true;
+            const matchesFavorite = showFavorites ? isFavorite(style.id) : true;
 
-            return matchesSearch && matchesCategory && matchesTag;
+            return matchesSearch && matchesCategory && matchesTag && matchesFavorite;
+        });
+
+        // Sort
+        filtered.sort((a, b) => {
+            let comparison = 0;
+            switch (sortBy) {
+                case 'name':
+                    comparison = a.name.localeCompare(b.name);
+                    break;
+                case 'newest':
+                    const dateA = new Date(a.releaseDate || 0).getTime();
+                    const dateB = new Date(b.releaseDate || 0).getTime();
+                    comparison = dateA - dateB;
+                    break;
+                case 'hydration':
+                    const hydA = a.technicalProfile ? (a.technicalProfile.hydration[0] + a.technicalProfile.hydration[1]) / 2 : a.technical.hydration;
+                    const hydB = b.technicalProfile ? (b.technicalProfile.hydration[0] + b.technicalProfile.hydration[1]) / 2 : b.technical.hydration;
+                    comparison = hydA - hydB;
+                    break;
+            }
+            return sortOrder === 'asc' ? comparison : -comparison;
         });
 
         const grouped: Record<string, DoughStyleDefinition[]> = {};
@@ -264,10 +302,14 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
         });
 
         return grouped;
-    }, [searchTerm, selectedCategory, selectedTag, allStyles]);
+    }, [searchTerm, selectedCategory, selectedTag, allStyles, sortBy, sortOrder, showFavorites]);
 
     const handleUseStyle = (e: React.MouseEvent, style: DoughStyleDefinition) => {
         e.stopPropagation();
+        if (style.isPro && !hasProAccess) {
+            openPaywall('styles');
+            return;
+        }
         if (onLoadStyle) {
             onLoadStyle(style);
         }
@@ -288,102 +330,155 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
 
     return (
         <>
-            <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in_out]">
-                <div className="text-center mb-10">
-                    <BookOpenIcon className="mx-auto h-12 w-12 text-lime-500" />
-                    <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                        Style Library
+            <div className="mx-auto max-w-7xl animate-fade-in">
+                {/* Hero Section with Gradient */}
+                <div className="text-center mb-12 relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-lime-500/10 via-transparent to-lime-500/10 blur-3xl -z-10" />
+                    <BookOpenIcon className="mx-auto h-16 w-16 text-lime-500 animate-float drop-shadow-lg" />
+                    <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+                        <span className="gradient-text">Style Library</span>
                     </h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
-                        Explore technical formulas for Pizzas, Breads, Pastry, and more.
+                    <p className="mt-5 max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">
+                        Explore <span className="font-semibold text-lime-600">technical formulas</span> for Pizzas, Breads, Pastry, and more.
                     </p>
                 </div>
 
-                <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4 p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                    <div className="flex flex-col justify-center">
-                        <h3 className="font-bold text-slate-800 text-lg">Create Your Own</h3>
-                        <p className="text-sm text-slate-500 mt-1">Define your own unique methods or ask AI to generate a technical profile for you.</p>
+                {/* Create Your Own Section - Premium Design */}
+                <div className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 shadow-xl relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 to-transparent pointer-events-none" />
+                    <div className="flex flex-col justify-center relative z-10">
+                        <h3 className="font-extrabold text-slate-900 text-xl flex items-center gap-2">
+                            <SparklesIcon className="h-5 w-5 text-lime-500" />
+                            Create Your Own
+                        </h3>
+                        <p className="text-sm text-slate-600 mt-2 leading-relaxed">Define your own unique methods or ask AI to generate a technical profile for you.</p>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-3 justify-end items-center">
-                        <ProFeatureLock origin='styles' featureName="AI Style Builder" className="w-full sm:w-auto">
+                    <div className="flex flex-col sm:flex-row gap-3 justify-end items-center relative z-10">
+                        <ProFeatureLock origin='styles' contextLabel="AI Style Builder" className="w-full sm:w-auto">
                             <button
                                 onClick={() => setIsAiModalOpen(true)}
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 py-2.5 px-5 font-bold text-white shadow-sm hover:bg-indigo-700 transition-transform hover:scale-105"
+                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 py-3 px-6 font-bold text-white shadow-lg hover:shadow-xl hover:from-indigo-600 hover:to-indigo-700 transition-all duration-300 hover:scale-105 btn-premium"
                             >
                                 <SparklesIcon className="h-5 w-5" /> Ask AI for a Style
                             </button>
                         </ProFeatureLock>
-                        <button
-                            onClick={() => { setStyleToEdit(undefined); setIsCreateModalOpen(true); }}
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-slate-100 py-2.5 px-5 font-bold text-slate-700 shadow-sm hover:bg-slate-200 transition-transform hover:scale-105"
-                        >
-                            <PlusCircleIcon className="h-5 w-5" /> Manual Create
-                        </button>
+
                     </div>
                 </div>
 
-                <div className="mb-8 flex flex-col md:flex-row gap-4 justify-center items-center p-4 rounded-xl bg-slate-50 border border-slate-200">
-                    <p className="text-sm font-semibold text-slate-700 text-center md:text-left">Need to calculate topping ingredients for your pizza bake?</p>
-                    <button onClick={() => setIsPlannerOpen(true)} className="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-lg bg-lime-500 py-2 px-4 font-semibold text-white shadow-sm hover:bg-lime-600">
-                        <CalculatorIcon className="h-5 w-5" /> Open Toppings Planner
+                {/* Toppings Planner CTA */}
+                <div className="mb-10 flex flex-col md:flex-row gap-4 justify-between items-center p-6 rounded-2xl bg-gradient-to-r from-lime-50 to-lime-100/50 border border-lime-200 shadow-lg relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-lime-400/10 to-transparent pointer-events-none" />
+                    <p className="text-base font-semibold text-slate-800 text-center md:text-left relative z-10">Need to calculate toppings or fillings for your bake?</p>
+                    <button onClick={() => setIsPlannerOpen(true)} className="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 py-3 px-6 font-bold text-white shadow-lg hover:shadow-xl hover:from-lime-600 hover:to-lime-700 transition-all duration-300 hover:scale-105 btn-premium relative z-10">
+                        <CalculatorIcon className="h-5 w-5" /> Open Ingredients Planner
                     </button>
                 </div>
 
-                {/* Search and Filter Bar */}
-                <div className="mb-6 flex flex-col md:flex-row gap-4 items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200 sticky top-20 z-20 shadow-sm">
+                {/* Search and Filter Bar - Premium Design */}
+                <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between glass-effect p-5 rounded-2xl border border-white/50 sticky top-20 z-20 shadow-xl backdrop-blur-lg">
                     <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
                         {CATEGORY_FILTERS.map(cat => (
                             <button
                                 key={cat.id}
                                 onClick={() => setSelectedCategory(cat.id as any)}
-                                className={`whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${selectedCategory === cat.id ? 'bg-lime-500 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+                                className={`whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center gap-2 shadow-sm ${selectedCategory === cat.id ? 'bg-gradient-to-r from-lime-500 to-lime-600 text-white shadow-lg scale-105' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 hover:scale-105'}`}
                             >
                                 {cat.label}
-                                <span className={`text-[10px] py-0.5 px-1.5 rounded-full ${selectedCategory === cat.id ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'}`}>
+                                <span className={`text-[10px] py-1 px-2 rounded-full font-bold ${selectedCategory === cat.id ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-600'}`}>
                                     {countByCategory(cat.id)}
                                 </span>
                             </button>
                         ))}
                     </div>
-                    <div className="relative w-full md:w-72">
-                        <input
-                            type="text"
-                            className="block w-full rounded-lg border-slate-300 bg-white py-2 pl-4 pr-3 text-sm placeholder-slate-500 focus:border-lime-500 focus:ring-lime-500"
-                            placeholder="Search by name or tag..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+
+                    <div className="flex items-center gap-2 w-full md:w-auto">
+                        {/* Favorites Toggle */}
+                        <button
+                            onClick={() => setShowFavorites(!showFavorites)}
+                            className={`p-3 rounded-xl border transition-all ${showFavorites ? 'bg-pink-50 border-pink-200 text-pink-500' : 'bg-white border-slate-200 text-slate-400 hover:text-pink-400'}`}
+                            title="Show Favorites Only"
+                        >
+                            <HeartIcon className={`h-5 w-5 ${showFavorites ? 'fill-current' : ''}`} />
+                        </button>
+
+                        {/* Filter Toggle */}
+                        <button
+                            onClick={() => setShowFilters(!showFilters)}
+                            className={`p-3 rounded-xl border transition-all ${showFilters || selectedTag ? 'bg-lime-50 border-lime-200 text-lime-600' : 'bg-white border-slate-200 text-slate-400 hover:text-lime-500'}`}
+                            title="Filter by Tags"
+                        >
+                            <FunnelIcon className="h-5 w-5" />
+                        </button>
+
+                        {/* Sort Controls */}
+                        <div className="flex items-center bg-white rounded-xl border border-slate-200 p-1">
+                            <select
+                                value={sortBy}
+                                onChange={(e) => setSortBy(e.target.value as any)}
+                                className="border-none bg-transparent text-sm font-semibold text-slate-600 focus:ring-0 py-2 pl-3 pr-8 cursor-pointer"
+                            >
+                                <option value="name">Name</option>
+                                <option value="newest">Newest</option>
+                                <option value="hydration">Hydration</option>
+                            </select>
+                            <button
+                                onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
+                                className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors"
+                            >
+                                {sortOrder === 'asc' ? <BarsArrowUpIcon className="h-5 w-5" /> : <BarsArrowDownIcon className="h-5 w-5" />}
+                            </button>
+                        </div>
+
+                        <div className="relative flex-grow md:w-64">
+                            <input
+                                type="text"
+                                className="block w-full rounded-xl border-2 border-slate-200 bg-white/80 py-3 pl-5 pr-4 text-sm placeholder-slate-500 focus:border-lime-500 focus:ring-4 focus:ring-lime-500/20 transition-all shadow-sm backdrop-blur-sm"
+                                placeholder="Search..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
 
-                {/* Tags Filter */}
-                {availableTags.length > 0 && (
-                    <div className="mb-8 flex flex-wrap items-center gap-2 px-2">
-                        <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
-                            <TagIcon className="h-3 w-3" /> Filter by Tag:
-                        </span>
-                        {availableTags.map(tag => (
-                            <button
-                                key={tag}
-                                onClick={() => setSelectedTag(prev => prev === tag ? null : tag)}
-                                className={`text-xs px-2.5 py-1 rounded-full border transition-all ${selectedTag === tag
-                                        ? 'bg-slate-700 text-white border-slate-700 shadow-sm'
-                                        : 'bg-white text-slate-600 border-slate-200 hover:border-lime-500 hover:text-lime-600'
-                                    }`}
-                            >
-                                {tag}
-                            </button>
-                        ))}
-                        {selectedTag && (
-                            <button
-                                onClick={() => setSelectedTag(null)}
-                                className="text-xs text-red-500 hover:text-red-700 ml-2 font-medium"
-                            >
-                                Clear Filter
-                            </button>
+                {/* Tags Filter - Collapsible */}
+                <div className={`transition-all duration-300 ease-in-out overflow-hidden ${showFilters || selectedTag ? 'max-h-96 opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+                    <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                        <div className="flex justify-between items-center mb-3">
+                            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1">
+                                <TagIcon className="h-3 w-3" /> Filter by Tag
+                            </span>
+                            {selectedTag && (
+                                <button
+                                    onClick={() => setSelectedTag(null)}
+                                    className="text-xs text-red-500 hover:text-red-700 font-medium hover:underline"
+                                >
+                                    Clear Filter
+                                </button>
+                            )}
+                        </div>
+
+                        {availableTags.length > 0 ? (
+                            <div className="flex flex-wrap gap-2">
+                                {availableTags.map(tag => (
+                                    <button
+                                        key={tag}
+                                        onClick={() => setSelectedTag(prev => prev === tag ? null : tag)}
+                                        className={`text-sm px-3 py-1.5 rounded-lg border transition-all ${selectedTag === tag
+                                            ? 'bg-lime-500 text-white border-lime-600 shadow-md'
+                                            : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-white hover:border-lime-300 hover:text-lime-600 hover:shadow-sm'
+                                            }`}
+                                    >
+                                        {tag}
+                                    </button>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-sm text-slate-400 italic">No tags available for current selection.</p>
                         )}
                     </div>
-                )}
+                </div>
 
                 <div className="space-y-12">
                     {Object.keys(stylesByGroup).length === 0 ? (
@@ -418,7 +513,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                         })
                     )}
                 </div>
-            </div>
+            </div >
 
             <CreateStyleModal
                 isOpen={isCreateModalOpen}
@@ -441,119 +536,6 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
     );
 };
 
-// ToppingPlannerModal component
-const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: number; }> = ({ onClose, totalBalls }) => {
-    const [flavors, setFlavors] = useState<{ name: string, ingredients: { name: string, amount: string }[], assignedBalls: number }[]>([{ name: 'Flavor 1', ingredients: [{ name: '', amount: '' }], assignedBalls: totalBalls }]);
-    const [results, setResults] = useState<Record<string, number> | null>(null);
 
-    const allocatedBalls = flavors.reduce((sum, item) => sum + item.assignedBalls, 0);
-    const remainingBalls = totalBalls - allocatedBalls;
-
-    const handleFlavorChange = (index: number, field: string, value: string | number) => {
-        const newFlavors = [...flavors];
-        if (field === 'name') {
-            // @ts-ignore
-            newFlavors[index].name = value as string;
-        } else if (field === 'assignedBalls') {
-            const newCount = Number(value);
-            const countDiff = newCount - newFlavors[index].assignedBalls;
-            if (countDiff <= remainingBalls) {
-                newFlavors[index].assignedBalls = Math.max(0, newCount);
-            }
-        }
-        setFlavors(newFlavors);
-    };
-
-    const handleIngredientChange = (flavorIndex: number, ingIndex: number, field: string, value: string) => {
-        const newFlavors = [...flavors];
-        // @ts-ignore
-        newFlavors[flavorIndex].ingredients[ingIndex] = { ...newFlavors[flavorIndex].ingredients[ingIndex], [field]: value };
-        setFlavors(newFlavors);
-    };
-
-    const addIngredient = (flavorIndex: number) => {
-        const newFlavors = [...flavors];
-        newFlavors[flavorIndex].ingredients.push({ name: '', amount: '' });
-        setFlavors(newFlavors);
-    };
-
-    const removeIngredient = (flavorIndex: number, ingIndex: number) => {
-        const newFlavors = [...flavors];
-        newFlavors[flavorIndex].ingredients.splice(ingIndex, 1);
-        setFlavors(newFlavors);
-    };
-
-    const addFlavor = () => {
-        if (remainingBalls > 0) {
-            setFlavors([...flavors, { name: `Flavor ${flavors.length + 1}`, ingredients: [{ name: '', amount: '' }], assignedBalls: 1 }]);
-        }
-    };
-
-    const removeFlavor = (index: number) => {
-        setFlavors(flavors.filter((_, i) => i !== index));
-    };
-
-    const calculateToppings = () => {
-        const consolidated: Record<string, number> = {};
-        flavors.forEach(flavor => {
-            flavor.ingredients.forEach(ing => {
-                const amount = parseFloat(ing.amount);
-                if (ing.name && !isNaN(amount)) {
-                    consolidated[ing.name] = (consolidated[ing.name] || 0) + (amount * flavor.assignedBalls);
-                }
-            });
-        });
-        setResults(consolidated);
-    };
-
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
-            <div className="relative w-full max-w-3xl bg-white rounded-2xl p-6 shadow-xl" onClick={e => e.stopPropagation()}>
-                <h2 className="text-xl font-bold mb-4">Toppings Planner</h2>
-                <div className="p-3 rounded-lg bg-slate-100 text-center font-semibold mb-4">
-                    Total Balls in Bake: {totalBalls}
-                </div>
-
-                <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
-                    {flavors.map((flavor, flavorIndex) => (
-                        <div key={flavorIndex} className="p-4 border rounded-lg">
-                            <div className="flex items-center gap-3 mb-3">
-                                <input type="text" value={flavor.name} onChange={e => handleFlavorChange(flavorIndex, 'name', e.target.value)} className="font-semibold text-lg flex-grow border-0 p-1 focus:ring-0" />
-                                <input type="number" value={flavor.assignedBalls} onChange={e => handleFlavorChange(flavorIndex, 'assignedBalls', e.target.value)} className="w-20 rounded-md border-slate-300 text-sm" />
-                                {flavors.length > 1 && <button onClick={() => removeFlavor(flavorIndex)}><TrashIcon className="h-5 w-5 text-red-500" /></button>}
-                            </div>
-                            <div className="space-y-2">
-                                {flavor.ingredients.map((ing, ingIndex) => (
-                                    <div key={ingIndex} className="flex items-center gap-2">
-                                        <input type="text" value={ing.name} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'name', e.target.value)} placeholder="Ingredient" className="flex-grow rounded-md border-slate-300 text-sm" />
-                                        <input type="text" value={ing.amount} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'amount', e.target.value)} placeholder="Qty/unit" className="w-24 rounded-md border-slate-300 text-sm" />
-                                        {flavor.ingredients.length > 1 && <button onClick={() => removeIngredient(flavorIndex, ingIndex)}><CloseIcon className="h-4 w-4 text-slate-400" /></button>}
-                                    </div>
-                                ))}
-                                <button onClick={() => addIngredient(flavorIndex)} className="text-xs font-semibold text-lime-600 flex items-center gap-1"><PlusCircleIcon className="h-4 w-4" /> Add ingredient</button>
-                            </div>
-                        </div>
-                    ))}
-                    <button onClick={addFlavor} disabled={remainingBalls <= 0} className="w-full text-sm font-semibold text-lime-600 flex items-center justify-center gap-1 p-2 border-2 border-dashed rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"><PlusCircleIcon className="h-5 w-5" /> Add flavor</button>
-                </div>
-
-                <button onClick={calculateToppings} disabled={remainingBalls !== 0} className="mt-4 w-full bg-lime-500 text-white font-semibold py-2 rounded-lg disabled:bg-slate-400 disabled:cursor-not-allowed">
-                    {remainingBalls !== 0 ? `${remainingBalls} ball(s) remaining to allocate` : 'Calculate Shopping List'}
-                </button>
-
-                {results && (
-                    <div className="mt-6 border-t pt-4">
-                        <h3 className="font-bold">Consolidated Shopping List:</h3>
-                        <ul className="list-disc list-inside mt-2 text-sm columns-2">
-                            {Object.entries(results).map(([name, total]) => (
-                                <li key={name}><strong>{name}:</strong> {total} (units)</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
 
 export default DoughStylesPage;

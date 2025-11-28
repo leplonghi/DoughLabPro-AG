@@ -9,33 +9,34 @@ const RAW_CANONICAL_STYLES = [
     category: "pizza",
     family: "Neapolitan Pizza",
     variantName: "Neapolitan AVPN Classic",
-    origin: { country: "Italy", region: "Naples", period: "19th–20th century" },
+    origin: { country: "Italy", region: "Naples", period: "18th–19th century (Codified 1984)" },
     history:
-      "Classic Neapolitan pizza as defined by the Associazione Verace Pizza Napoletana, using finely milled tipo 00 flour, lean dough and very high heat baking.",
+      "The 'Verace Pizza Napoletana' is the protected ancestor of modern pizza. While flatbreads existed for millennia, the tomato-topped pizza emerged in 18th-century Naples. The legend of the Margherita (1889) honors Queen Margherita of Savoy, but the style predates her. In 1984, the Associazione Verace Pizza Napoletana (AVPN) codified the rules to protect the tradition against industrialization.",
     culturalContext:
-      "Served in traditional pizzerias in Naples and worldwide, eaten hot from wood-fired ovens as an artisanal fast food.",
+      "A UNESCO Intangible Cultural Heritage item. It is not just food but a social ritual in Naples. Traditionally eaten with a knife and fork or folded 'a libretto' (like a booklet) as street food. It is soft, wet, and digestible, never crispy.",
     technicalProfile: {
-      hydrationRange: [58, 62],
+      hydrationRange: [58, 62.5],
       saltRange: [2.5, 3.0],
-      fatRange: [0, 0.5],
-      sugarRange: [0, 0.5],
-      preferment: "Usually direct dough with yeast; optional small biga or levain ≤20%.",
-      flourStrength: "Italian tipo 00, W 260–320",
+      fatRange: [0, 0],
+      sugarRange: [0, 0],
+      preferment: "Direct dough (impasto diretto) is the standard. Sourdough (Criskito) is allowed but rare in strict tradition.",
+      flourStrength: "Medium-High strength (W 280–320), P/L 0.50–0.60, protein 11.5–12.5%",
       fermentation: {
-        bulk: "8–12 h at 20–24°C, often partially retarded",
-        proof: "4–8 h in balls at 20–24°C",
-        coldRetard: "Optional 12–24 h in balls"
+        bulk: "2h bulk at room temp, then balling",
+        proof: "6–24h total maturation at room temp (18–25°C)",
+        coldRetard: "Traditionally not used; modern AVPN rules allow it"
       },
       oven: {
         type: "wood_fired",
         temperatureC: [430, 485],
-        notes: "Baked 60–90 seconds directly on stone deck."
+        notes: "Dome temp ~485°C, Floor ~430°C. Cook time strictly 60–90 seconds."
       },
-      recommendedUse: ["Authentic Neapolitan pizza", "High-heat pizza ovens"]
+      recommendedUse: ["Authentic Neapolitan Margherita", "Marinara"]
     },
     references: [
-      "Associazione Verace Pizza Napoletana – Disciplinare",
-      "Modernist Pizza"
+      "AVPN International Regulations",
+      "Modernist Pizza",
+      "UNESCO Intangible Cultural Heritage"
     ],
     isCanonical: true,
     source: "official"
@@ -46,32 +47,32 @@ const RAW_CANONICAL_STYLES = [
     id: "neapolitan_contemporary_high_hydration",
     category: "pizza",
     family: "Neapolitan Pizza",
-    variantName: "Neapolitan Contemporary (High Hydration)",
-    origin: { country: "Italy", region: "Naples", period: "Late 20th–21st century" },
+    variantName: "Neapolitan Contemporary (Canotto)",
+    origin: { country: "Italy", region: "Caserta / Naples", period: "2010s–Present" },
     history:
-      "Contemporary Neapolitan pizza evolved from AVPN standards with higher hydration and longer fermentation to produce a lighter, airier rim.",
+      "A modern evolution often called 'Pizza Canotto' (dinghy) due to its large, airy rim. Pioneers like Carlo Sammarco and Franco Pepe pushed hydration limits to create a lighter, more alveolated structure than the traditional style, often using preferments (Biga/Poolish) or autolyse.",
     culturalContext:
-      "Popular in modern Italian pizzerias focusing on digestibility and visual impact, often with creative toppings.",
+      "Represents the 'New Wave' of Italian pizza. It focuses on extreme digestibility, visual impact (Instagrammable structure), and gourmet toppings. It challenges the strict AVPN rules while respecting the roots.",
     technicalProfile: {
-      hydrationRange: [65, 72],
+      hydrationRange: [65, 75],
       saltRange: [2.5, 3.0],
-      fatRange: [0, 1],
-      sugarRange: [0, 1],
-      preferment: "Levain or biga 20–30% is common, with low yeast inoculation.",
-      flourStrength: "Tipo 00 or strong pizza flour, W 300–340",
+      fatRange: [0, 2],
+      sugarRange: [0, 0],
+      preferment: "Very common: 100% Biga, Poolish, or Autolyse methods.",
+      flourStrength: "High strength (W 300–350), P/L 0.55–0.65, high protein",
       fermentation: {
-        bulk: "12–24 h at cool room temperature or partially chilled",
-        proof: "4–8 h in balls at 18–22°C",
-        coldRetard: "Commonly 24–48 h total dough time"
+        bulk: "Variable; often 24–48h cold fermentation is standard",
+        proof: "2–4h at room temp before baking",
+        coldRetard: "Almost always used (24–72h)"
       },
       oven: {
         type: "wood_fired",
-        temperatureC: [430, 485],
-        notes: "Requires strong handling skills due to higher hydration."
+        temperatureC: [400, 450],
+        notes: "Slightly lower temp than AVPN to allow the larger water content to evaporate and structure to set."
       },
-      recommendedUse: ["Modern Neapolitan pizza", "Showcase high-hydration dough"]
+      recommendedUse: ["Gourmet toppings", "Instagram-style puffy crusts"]
     },
-    references: ["Modernist Pizza", "Contemporary Italian pizza literature"],
+    references: ["Modernist Pizza", "Pizza Research Institute", "Luciano Pignataro"],
     isCanonical: true,
     source: "official"
   },
@@ -82,31 +83,31 @@ const RAW_CANONICAL_STYLES = [
     category: "pizza",
     family: "Neapolitan Pizza",
     variantName: "Neapolitan Style – Home Oven Adapted",
-    origin: { country: "Italy", region: "Global adaptations", period: "21st century" },
+    origin: { country: "Global", region: "Home Kitchens", period: "21st century" },
     history:
-      "Home-oven adaptations of Neapolitan-style pizza adjust hydration, oil and sugar slightly to promote color and texture at lower baking temperatures.",
+      "The quest for Neapolitan pizza at home led to this adapted style. Since home ovens max out at 250–300°C (vs 485°C), the dough is engineered to brown at lower temperatures and retain moisture over a longer bake time (5–8 mins).",
     culturalContext:
-      "Used by home bakers worldwide who want Neapolitan-like results in electric or gas ovens without specialized equipment.",
+      "Fueled by internet communities (PizzaMaking.com, Reddit) and the pandemic baking boom. It bridges the gap between commercial quality and domestic equipment limits.",
     technicalProfile: {
-      hydrationRange: [62, 68],
-      saltRange: [2.3, 2.8],
-      fatRange: [1, 3],
-      sugarRange: [0, 2],
-      preferment: "Direct dough or mild preferment (biga or levain up to 20%).",
-      flourStrength: "Strong bread or pizza flour, W 280–330",
+      hydrationRange: [65, 70],
+      saltRange: [2.0, 2.5],
+      fatRange: [2, 4],
+      sugarRange: [1, 3],
+      preferment: "Any (Poolish/Biga) works well to add flavor complexity.",
+      flourStrength: "Strong Bread Flour or Malted 00 (W 280–320)",
       fermentation: {
-        bulk: "8–24 h including optional cold retard at 4–8°C",
-        proof: "1–3 h at room temperature before baking",
-        coldRetard: "Commonly 12–24 h in bulk or balls"
+        bulk: "Cold fermentation (24–72h) is preferred for flavor and convenience",
+        proof: "2–4h at room temp",
+        coldRetard: "Essential for home schedules"
       },
       oven: {
         type: "electric_home",
         temperatureC: [250, 300],
-        notes: "Use stone or steel; broiler/grill boost often improves top heat."
+        notes: "Crucial: Use Baking Steel or Stone. Add oil/sugar/malt to dough to assist Maillard reaction."
       },
-      recommendedUse: ["Neapolitan-inspired pizza in home ovens"]
+      recommendedUse: ["Home baking without pizza oven", "Crispier crust lovers"]
     },
-    references: ["Modernist Pizza – Home oven adaptations", "Ken Forkish – pizza methods"],
+    references: ["Ken Forkish - The Elements of Pizza", "PizzaMaking.com"],
     isCanonical: true,
     source: "official"
   },
@@ -116,32 +117,32 @@ const RAW_CANONICAL_STYLES = [
     id: "new_york_slice_shop",
     category: "pizza",
     family: "New York Style Pizza",
-    variantName: "New York Slice Shop",
-    origin: { country: "United States", region: "New York City", period: "20th century" },
+    variantName: "New York Slice Shop (Classic)",
+    origin: { country: "United States", region: "New York City", period: "Early 20th century" },
     history:
-      "New York slice pizza developed as an American interpretation of Italian pizza, optimized for gas deck ovens and by-the-slice service.",
+      "Descended from Neapolitan immigrants (Lombardi's, 1905), this style evolved to suit coal and later gas deck ovens. The dough became larger (18-20 inches), lower moisture, and tougher to handle the 'slice fold'. The use of bromated high-gluten flour became a standard for that specific chew.",
     culturalContext:
-      "Sold in slice shops, eaten folded by hand, designed to reheat well and support generous toppings.",
+      "The quintessential American street food. Cheap, fast, and eaten on the go. The 'New York Fold' is a practical necessity to keep the molten cheese and oil from sliding off.",
     technicalProfile: {
-      hydrationRange: [60, 65],
+      hydrationRange: [58, 62],
       saltRange: [2.0, 2.5],
-      fatRange: [2, 4],
+      fatRange: [2, 5],
       sugarRange: [1, 3],
-      preferment: "Usually direct dough with yeast; poolish variants exist.",
-      flourStrength: "High-gluten or strong bread flour, protein ~12.5–14%",
+      preferment: "Direct dough is standard. Old dough (scrap) sometimes added.",
+      flourStrength: "High-Gluten Flour (13–14.5% protein), often bromated",
       fermentation: {
-        bulk: "12–48 h cold ferment at 2–6°C",
-        proof: "1–2 h at room temperature before stretching",
-        coldRetard: "Core to flavor and extensibility"
+        bulk: "24–48h Cold Fermentation is critical for the characteristic blistered crust",
+        proof: "2–3h warm up before stretching",
+        coldRetard: "Mandatory for texture and flavor"
       },
       oven: {
         type: "gas_deck",
-        temperatureC: [280, 320],
-        notes: "Baked on stone or deck, sometimes finished with a reheat pass."
+        temperatureC: [280, 315],
+        notes: "Baked on deck for 7–12 minutes. Must be crisp enough to hold its own weight."
       },
-      recommendedUse: ["By-the-slice pizza", "Large round pies for slice shops"]
+      recommendedUse: ["By-the-slice sales", "Large 18-inch pies"]
     },
-    references: ["Modernist Pizza", "American pizzeria practice"],
+    references: ["Modernist Pizza", "Scott123 (PizzaMaking.com)", "Famous Ray's"],
     isCanonical: true,
     source: "official"
   },
@@ -151,32 +152,32 @@ const RAW_CANONICAL_STYLES = [
     id: "new_york_artisan_cold_ferment",
     category: "pizza",
     family: "New York Style Pizza",
-    variantName: "New York Artisan Long Cold Ferment",
-    origin: { country: "United States", region: "Artisan pizzerias", period: "Late 20th–21st century" },
+    variantName: "New York Artisan (Modern)",
+    origin: { country: "United States", region: "Brooklyn / Manhattan", period: "2000s–Present" },
     history:
-      "Artisan-oriented New York doughs extend cold fermentation and hydration to emphasize flavor, extensibility and digestibility.",
+      "A renaissance of the NY style led by pizzerias like Lucali, Scarr's, and Best Pizza. They rejected industrial ingredients (bromated flour, cheap cheese) in favor of stone-milled local flours, natural leavening (sourdough hybrids), and longer, more complex fermentations.",
     culturalContext:
-      "Used by high-end slice shops and artisan pizzerias aiming for complex flavor and open crumb with a New York profile.",
+      "Blurs the line between a slice shop and a sit-down restaurant. The crust is often darker (charred), lighter on the stomach, and has a more complex wheat flavor.",
     technicalProfile: {
-      hydrationRange: [65, 70],
-      saltRange: [2.1, 2.5],
+      hydrationRange: [63, 68],
+      saltRange: [2.2, 2.6],
       fatRange: [1, 3],
-      sugarRange: [0, 2],
-      preferment: "Small preferment or low-yeast direct dough with 48–96 h cold ferment.",
-      flourStrength: "High-gluten pizza or bread flour, protein 12.5–14%",
+      sugarRange: [0, 1],
+      preferment: "Sourdough starter (Levain) often mixed with small amount of commercial yeast.",
+      flourStrength: "Unbleached Bread Flour + Whole Wheat percentage (W 300+)",
       fermentation: {
-        bulk: "24–72 h at 2–6°C with minimal yeast",
-        proof: "1–2 h at room temperature before baking",
-        coldRetard: "Central technique for this style"
+        bulk: "48–96h Cold Fermentation. Extreme maturation breaks down gluten for tenderness.",
+        proof: "3–4h at room temp",
+        coldRetard: "The secret to the 'Artisan' flavor profile"
       },
       oven: {
         type: "gas_deck",
-        temperatureC: [270, 310],
-        notes: "Stone deck and careful baking time to avoid over-drying."
+        temperatureC: [290, 330],
+        notes: "Often baked slightly hotter and darker than classic slice shops."
       },
-      recommendedUse: ["Artisan New York-style pizza", "Long-fermented doughs"]
+      recommendedUse: ["Premium slice shops", "Whole pie artisan pizzerias"]
     },
-    references: ["Modernist Pizza", "Peter Reinhart – pizza techniques"],
+    references: ["Modernist Pizza", "Frank Pinello", "Mark Iacono"],
     isCanonical: true,
     source: "official"
   },
@@ -1719,15 +1720,190 @@ const RAW_CANONICAL_STYLES = [
     references: ["Modernist Bread", "Jewish and New York baking traditions"],
     isCanonical: true,
     source: "official"
+  },
+
+  // 46. Chicago Deep Dish
+  {
+    id: "chicago_deep_dish",
+    category: "pizza",
+    family: "American Pan Pizza",
+    variantName: "Chicago Deep Dish",
+    origin: { country: "United States", region: "Chicago", period: "1940s" },
+    history:
+      "Invented in Chicago, this style features a deep, buttery crust pressed into a pan, filled with cheese, toppings, and topped with chunky tomato sauce.",
+    culturalContext:
+      "A hearty, knife-and-fork meal, iconic to Chicago culinary culture.",
+    technicalProfile: {
+      hydrationRange: [50, 60],
+      saltRange: [1.5, 2.0],
+      fatRange: [15, 20], // High fat for biscuit-like texture
+      sugarRange: [1, 3],
+      preferment: "Direct dough, often with cornmeal or semolina in the blend.",
+      flourStrength: "All-purpose or pastry/bread blend, lower protein for tenderness",
+      fermentation: {
+        bulk: "1–2 h at room temperature",
+        proof: "20–40 min in pan",
+        coldRetard: "Optional overnight"
+      },
+      oven: {
+        type: "gas_deck",
+        temperatureC: [200, 230],
+        notes: "Long bake time (30-45 min) due to thickness and toppings."
+      },
+      recommendedUse: ["Deep dish pizza", "Casserole-style pizza"]
+    },
+    references: ["Modernist Pizza", "Chicago pizza history"],
+    isCanonical: true,
+    source: "official"
+  },
+
+  // 47. New Haven Apizza
+  {
+    id: "new_haven_apizza",
+    category: "pizza",
+    family: "American Artisan Pizza",
+    variantName: "New Haven Style (Apizza)",
+    origin: { country: "United States", region: "New Haven, CT", period: "1920s" },
+    history:
+      "Derived from Neapolitan pizza but baked in intense coal-fired ovens, resulting in a charred, oblong, thin crust.",
+    culturalContext:
+      "Served on paper sheets, known for 'mootz' (mozzarella) being a topping, not default.",
+    technicalProfile: {
+      hydrationRange: [60, 65],
+      saltRange: [2.0, 2.5],
+      fatRange: [1, 3],
+      sugarRange: [0, 2],
+      preferment: "Long cold fermentation, often direct or sponge.",
+      flourStrength: "High-gluten bread flour",
+      fermentation: {
+        bulk: "24–48 h cold fermentation",
+        proof: "1–2 h at room temperature",
+        coldRetard: "Essential for flavor and char"
+      },
+      oven: {
+        type: "coal_fired",
+        temperatureC: [300, 350], // Coal ovens get very hot
+        notes: "Coal-fired for distinct char and smokiness."
+      },
+      recommendedUse: ["Charred thin crust", "Clam pie"]
+    },
+    references: ["Modernist Pizza", "New Haven pizza lore"],
+    isCanonical: true,
+    source: "official"
+  },
+
+  // 48. St. Louis Style
+  {
+    id: "st_louis_thin",
+    category: "pizza",
+    family: "American Cracker Thin",
+    variantName: "St. Louis Style",
+    origin: { country: "United States", region: "St. Louis", period: "Mid 20th century" },
+    history:
+      "Known for its cracker-thin, unleavened (or barely leavened) crust and use of Provel cheese.",
+    culturalContext:
+      "Cut into squares ('tavern cut'), popular in the Midwest.",
+    technicalProfile: {
+      hydrationRange: [40, 50],
+      saltRange: [1.5, 2.0],
+      fatRange: [0, 2],
+      sugarRange: [1, 3],
+      preferment: "None. Often uses baking powder or very low yeast.",
+      flourStrength: "All-purpose or pastry flour for crispness",
+      fermentation: {
+        bulk: "Minimal or none",
+        proof: "None, rolled thin immediately",
+        coldRetard: "Not typical"
+      },
+      oven: {
+        type: "electric_deck",
+        temperatureC: [230, 260],
+        notes: "Baked on stone or screen for maximum crispness."
+      },
+      recommendedUse: ["Cracker crust pizza", "Party snacks"]
+    },
+    references: ["Modernist Pizza", "Midwest pizza traditions"],
+    isCanonical: true,
+    source: "official"
+  },
+
+  // 49. California Style
+  {
+    id: "california_style",
+    category: "pizza",
+    family: "American Artisan Pizza",
+    variantName: "California Style",
+    origin: { country: "United States", region: "California", period: "1980s" },
+    history:
+      "Popularized by chefs like Wolfgang Puck, focusing on gourmet, non-traditional toppings and a light, airy single-serving crust.",
+    culturalContext:
+      "Associated with 'California Cuisine', fresh local ingredients, and wood-fired cooking.",
+    technicalProfile: {
+      hydrationRange: [60, 68],
+      saltRange: [2.0, 2.5],
+      fatRange: [2, 5], // Olive oil often added
+      sugarRange: [1, 3], // Honey often used
+      preferment: "Direct dough or sponge, often with honey and olive oil.",
+      flourStrength: "All-purpose or bread flour",
+      fermentation: {
+        bulk: "12–24 h cold retard",
+        proof: "1–2 h at room temperature",
+        coldRetard: "Common for flavor"
+      },
+      oven: {
+        type: "wood_fired",
+        temperatureC: [300, 400],
+        notes: "Wood-fired for speed and flavor, but lower temp than Neapolitan."
+      },
+      recommendedUse: ["Gourmet personal pizzas", "Creative toppings"]
+    },
+    references: ["Modernist Pizza", "California cuisine history"],
+    isCanonical: true,
+    source: "official"
+  },
+
+  // 50. Japanese Shokupan
+  {
+    id: "japanese_shokupan",
+    category: "enriched_bread",
+    family: "Asian Milk Bread",
+    variantName: "Japanese Shokupan (Milk Bread)",
+    origin: { country: "Japan", region: "Nationwide", period: "20th century" },
+    history:
+      "A super-soft, fluffy white bread made using the Tangzhong (water roux) method to retain moisture and softness.",
+    culturalContext:
+      "The gold standard for sandwich bread in Japan, prized for its 'mochi-mochi' (chewy/soft) texture.",
+    technicalProfile: {
+      hydrationRange: [70, 78], // High hydration due to Tangzhong
+      saltRange: [1.8, 2.0],
+      fatRange: [6, 10], // Butter and milk fat
+      sugarRange: [6, 12],
+      preferment: "Tangzhong (cooked flour/water paste) + Yeast.",
+      flourStrength: "High-protein bread flour",
+      fermentation: {
+        bulk: "1–2 h at room temperature",
+        proof: "60–90 min in lidded or open pans",
+        coldRetard: "Optional"
+      },
+      oven: {
+        type: "electric_home",
+        temperatureC: [180, 200],
+        notes: "Baked gently to avoid thick crust; often lidded for square shape."
+      },
+      recommendedUse: ["Sandwiches", "Thick toast", "Dessert bread"]
+    },
+    references: ["Modernist Bread", "Asian baking techniques"],
+    isCanonical: true,
+    source: "official"
   }
 ];
 
 // Transform Raw Canonical Data to DoughStyleDefinition
 export const STYLES_DATA: DoughStyleDefinition[] = RAW_CANONICAL_STYLES.map(raw => {
-  
+
   // Determine RecipeStyle Enum Mapping
   let recipeStyle = RecipeStyle.NEAPOLITAN; // Default fallback
-  
+
   const id = raw.id;
   const cat = raw.category;
 
@@ -1751,7 +1927,7 @@ export const STYLES_DATA: DoughStyleDefinition[] = RAW_CANONICAL_STYLES.map(raw 
   else if (id.includes('brazilian')) recipeStyle = RecipeStyle.PAO_FRANCES; // Close enough approximation for mapping
   else if (cat === 'flatbread') recipeStyle = RecipeStyle.FLATBREAD;
   else if (cat === 'pastry') recipeStyle = RecipeStyle.SWEETS_PASTRY;
-  
+
   // Calculate Technical Values (Averages)
   const hydration = (raw.technicalProfile.hydrationRange[0] + raw.technicalProfile.hydrationRange[1]) / 2;
   const salt = (raw.technicalProfile.saltRange[0] + raw.technicalProfile.saltRange[1]) / 2;
@@ -1761,80 +1937,80 @@ export const STYLES_DATA: DoughStyleDefinition[] = RAW_CANONICAL_STYLES.map(raw 
 
   // Default Ingredients Generation
   const generatedIngredients: IngredientConfig[] = [
-     { id: 'flour', name: 'Flour', type: 'solid', role: 'flour', bakerPercentage: 100 },
-     { id: 'water', name: 'Water', type: 'liquid', role: 'water', bakerPercentage: hydration },
-     { id: 'salt', name: 'Salt', type: 'solid', role: 'salt', bakerPercentage: salt },
-     { id: 'yeast', name: 'Yeast', type: 'solid', role: 'yeast', bakerPercentage: 0.5 } // Default placeholder
+    { id: 'flour', name: 'Flour', type: 'solid', role: 'flour', bakerPercentage: 100 },
+    { id: 'water', name: 'Water', type: 'liquid', role: 'water', bakerPercentage: hydration },
+    { id: 'salt', name: 'Salt', type: 'solid', role: 'salt', bakerPercentage: salt },
+    { id: 'yeast', name: 'Yeast', type: 'solid', role: 'yeast', bakerPercentage: 0.5 } // Default placeholder
   ];
-  
+
   if (oil > 0) {
-      generatedIngredients.push({ id: 'oil', name: 'Oil/Fat', type: 'liquid', role: 'fat', bakerPercentage: oil });
+    generatedIngredients.push({ id: 'oil', name: 'Oil/Fat', type: 'liquid', role: 'fat', bakerPercentage: oil });
   }
   if (sugar > 0) {
-      generatedIngredients.push({ id: 'sugar', name: 'Sugar', type: 'solid', role: 'sugar', bakerPercentage: sugar });
+    generatedIngredients.push({ id: 'sugar', name: 'Sugar', type: 'solid', role: 'sugar', bakerPercentage: sugar });
   }
 
   // Fermentation Techniques
   const allowedTechniques = [FermentationTechnique.DIRECT, FermentationTechnique.POOLISH, FermentationTechnique.BIGA];
   let defaultTechnique = FermentationTechnique.DIRECT;
-  
+
   if (raw.technicalProfile.preferment.toLowerCase().includes('poolish')) {
-      defaultTechnique = FermentationTechnique.POOLISH;
+    defaultTechnique = FermentationTechnique.POOLISH;
   } else if (raw.technicalProfile.preferment.toLowerCase().includes('biga')) {
-      defaultTechnique = FermentationTechnique.BIGA;
+    defaultTechnique = FermentationTechnique.BIGA;
   } else if (raw.technicalProfile.preferment.toLowerCase().includes('levain') || raw.technicalProfile.preferment.toLowerCase().includes('sourdough')) {
-      allowedTechniques.push(FermentationTechnique.SOURDOUGH);
-      defaultTechnique = FermentationTechnique.SOURDOUGH;
+    allowedTechniques.push(FermentationTechnique.SOURDOUGH);
+    defaultTechnique = FermentationTechnique.SOURDOUGH;
   }
-  
+
   if (cat === 'cookie' || cat === 'flatbread') {
-      // Cookies/Flatbreads often chemical or no ferment
-       if (!allowedTechniques.includes(FermentationTechnique.NO_FERMENT)) allowedTechniques.push(FermentationTechnique.NO_FERMENT);
-       if (!allowedTechniques.includes(FermentationTechnique.CHEMICAL)) allowedTechniques.push(FermentationTechnique.CHEMICAL);
+    // Cookies/Flatbreads often chemical or no ferment
+    if (!allowedTechniques.includes(FermentationTechnique.NO_FERMENT)) allowedTechniques.push(FermentationTechnique.NO_FERMENT);
+    if (!allowedTechniques.includes(FermentationTechnique.CHEMICAL)) allowedTechniques.push(FermentationTechnique.CHEMICAL);
   }
 
 
   return {
-      id: raw.id,
-      name: raw.variantName,
-      family: raw.family,
-      category: raw.category as any, // Cast to StyleCategory
-      origin: raw.origin,
-      country: raw.origin.country,
-      year: raw.origin.period,
-      description: raw.history.split('.')[0] + '.',
-      history: raw.history,
-      culturalContext: raw.culturalContext,
-      isCanonical: raw.isCanonical,
-      source: raw.source as any,
-      isPro: ['neapolitan_avpn_classic', 'panettone_artisanal', 'colomba_pasquale'].includes(raw.id), // Some logic for Pro
-      recipeStyle: recipeStyle,
-      technical: {
-          hydration,
-          salt,
-          oil,
-          sugar,
-          fermentation: raw.technicalProfile.fermentation.bulk,
-          fermentationTechnique: defaultTechnique,
-          bakingTempC
-      },
-      technicalProfile: {
-          hydration: raw.technicalProfile.hydrationRange as [number, number],
-          salt: raw.technicalProfile.saltRange as [number, number],
-          oil: raw.technicalProfile.fatRange as [number, number],
-          sugar: raw.technicalProfile.sugarRange as [number, number],
-          flourStrength: raw.technicalProfile.flourStrength,
-          fermentation: raw.technicalProfile.fermentation,
-          ovenRecommendations: raw.technicalProfile.oven.notes,
-          difficulty: "Medium", // Default
-          recommendedUse: raw.technicalProfile.recommendedUse.join(', '),
-          prefermentDescription: raw.technicalProfile.preferment
-      },
-      references: raw.references.map(ref => ({ source: ref })),
-      allowedFermentationTechniques: allowedTechniques,
-      defaultFermentationTechnique: defaultTechnique,
-      ingredients: generatedIngredients,
-      tags: raw.technicalProfile.recommendedUse
+    id: raw.id,
+    name: raw.variantName,
+    family: raw.family,
+    category: raw.category as any, // Cast to StyleCategory
+    origin: raw.origin,
+    country: raw.origin.country,
+    year: raw.origin.period,
+    description: raw.history.split('.')[0] + '.',
+    history: raw.history,
+    culturalContext: raw.culturalContext,
+    isCanonical: raw.isCanonical,
+    source: raw.source as any,
+    isPro: ['neapolitan_avpn_classic', 'panettone_artisanal', 'colomba_pasquale'].includes(raw.id), // Some logic for Pro
+    recipeStyle: recipeStyle,
+    technical: {
+      hydration,
+      salt,
+      oil,
+      sugar,
+      fermentation: raw.technicalProfile.fermentation.bulk,
+      fermentationTechnique: defaultTechnique,
+      bakingTempC
+    },
+    technicalProfile: {
+      hydration: raw.technicalProfile.hydrationRange as [number, number],
+      salt: raw.technicalProfile.saltRange as [number, number],
+      oil: raw.technicalProfile.fatRange as [number, number],
+      sugar: raw.technicalProfile.sugarRange as [number, number],
+      flourStrength: raw.technicalProfile.flourStrength,
+      fermentation: raw.technicalProfile.fermentation,
+      ovenRecommendations: raw.technicalProfile.oven.notes,
+      difficulty: "Medium", // Default
+      recommendedUse: raw.technicalProfile.recommendedUse.join(', '),
+      prefermentDescription: raw.technicalProfile.preferment
+    },
+    references: raw.references.map(ref => ({ source: ref })),
+    allowedFermentationTechniques: allowedTechniques,
+    defaultFermentationTechnique: defaultTechnique,
+    ingredients: generatedIngredients,
+    tags: raw.technicalProfile.recommendedUse
   };
 });
 
@@ -1843,17 +2019,17 @@ export function getStyleById(id: string): DoughStyleDefinition | undefined {
 }
 
 export function getAllowedFermentationTechniques(style: RecipeStyle, bakeType: BakeType): FermentationTechnique[] {
-    const definition = STYLES_DATA.find(s => s.recipeStyle === style);
-    if (definition && definition.allowedFermentationTechniques) {
-        return definition.allowedFermentationTechniques;
-    }
-    if (bakeType === BakeType.SWEETS_PASTRY) {
-        return [FermentationTechnique.CHEMICAL, FermentationTechnique.NO_FERMENT, FermentationTechnique.DIRECT];
-    }
-    return [
-        FermentationTechnique.DIRECT,
-        FermentationTechnique.POOLISH,
-        FermentationTechnique.BIGA,
-        FermentationTechnique.SOURDOUGH
-    ];
+  const definition = STYLES_DATA.find(s => s.recipeStyle === style);
+  if (definition && definition.allowedFermentationTechniques) {
+    return definition.allowedFermentationTechniques;
+  }
+  if (bakeType === BakeType.SWEETS_PASTRY) {
+    return [FermentationTechnique.CHEMICAL, FermentationTechnique.NO_FERMENT, FermentationTechnique.DIRECT];
+  }
+  return [
+    FermentationTechnique.DIRECT,
+    FermentationTechnique.POOLISH,
+    FermentationTechnique.BIGA,
+    FermentationTechnique.SOURDOUGH
+  ];
 }

@@ -2,7 +2,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { DoughConfig, DoughResult, Batch, FlourDefinition, Oven, RecipeStyle, Levain, FeedingEvent, DoughStyleDefinition } from '../types';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 // This function builds a detailed system prompt for the AI model.
 function buildGeneralSystemPrompt(t: (key: string) => string): string {
@@ -59,7 +59,7 @@ function buildRichContext(
   if (lastBatch) {
     contextParts.push(`- **${t('assistant.context.last_batch')}**: "${lastBatch.name}" (${t('assistant.context.style')}: ${lastBatch.doughConfig.recipeStyle}, ${t('assistant.context.rating')}: ${lastBatch.rating || t('common.not_applicable')} ${t('assistant.context.stars')})`);
   }
-  
+
   const contextString = contextParts.length > 0
     ? `${t('assistant.context.header')}:\n${contextParts.join('\n')}`
     : t('assistant.context.no_context');
@@ -80,7 +80,7 @@ interface AssistantInput {
 
 export async function askGeneralAssistant(input: AssistantInput): Promise<string> {
   const { question, doughConfig, flour, oven, lastBatch, t } = input;
-  
+
   const systemInstruction = buildGeneralSystemPrompt(t);
   const userPrompt = buildRichContext(t, question, doughConfig, flour, oven, lastBatch);
 
@@ -129,53 +129,53 @@ function buildLevainContext(
   contextParts.push(`- **Base Flour:** ${levain.baseFlourType || 'Not specified'}`);
   contextParts.push(`- **Typical Use:** ${levain.typicalUse || 'Not specified'}`);
   contextParts.push(`- **Last Feeding:** ${new Date(levain.lastFeeding).toLocaleString()}`);
-  
+
   if (levain.feedingHistory && levain.feedingHistory.length > 0) {
-      contextParts.push(`- **Last ${Math.min(5, levain.feedingHistory.length)} Feeding Logs (newest first):**`);
-      levain.feedingHistory.slice(0, 5).forEach(log => {
-          contextParts.push(`  - **Date:** ${new Date(log.date).toLocaleString()}`);
-          contextParts.push(`    - **Ratio:** ${log.ratio || 'N/A'}`);
-          contextParts.push(`    - **Temperature:** ${log.ambientTemperature ? log.ambientTemperature + '°C' : 'N/A'}`);
-          if(log.notes) contextParts.push(`    - **Notes:** ${log.notes}`);
-      });
+    contextParts.push(`- **Last ${Math.min(5, levain.feedingHistory.length)} Feeding Logs (newest first):**`);
+    levain.feedingHistory.slice(0, 5).forEach(log => {
+      contextParts.push(`  - **Date:** ${new Date(log.date).toLocaleString()}`);
+      contextParts.push(`    - **Ratio:** ${log.ratio || 'N/A'}`);
+      contextParts.push(`    - **Temperature:** ${log.ambientTemperature ? log.ambientTemperature + '°C' : 'N/A'}`);
+      if (log.notes) contextParts.push(`    - **Notes:** ${log.notes}`);
+    });
   }
 
   return `${contextParts.join('\n')}\n\n**User Question:**\n"${question}"`;
 }
 
 export async function askLevainAssistant(levain: Levain, question: string): Promise<string> {
-    const systemInstruction = buildLevainSystemPrompt();
-    const userPrompt = buildLevainContext(levain, question);
+  const systemInstruction = buildLevainSystemPrompt();
+  const userPrompt = buildLevainContext(levain, question);
 
-    // Hardcoded check for out-of-scope questions (English keywords)
-    const healthKeywords = ['health', 'nutrition', 'clinical', 'medical', 'eat', 'ingest', 'safe to eat', 'safe for consumption'];
-    if (healthKeywords.some(keyword => question.toLowerCase().includes(keyword))) {
-        return "I can only help with technical adjustments for levain and dough. For health or specific dietary questions, please consult a specialized professional.";
-    }
+  // Hardcoded check for out-of-scope questions (English keywords)
+  const healthKeywords = ['health', 'nutrition', 'clinical', 'medical', 'eat', 'ingest', 'safe to eat', 'safe for consumption'];
+  if (healthKeywords.some(keyword => question.toLowerCase().includes(keyword))) {
+    return "I can only help with technical adjustments for levain and dough. For health or specific dietary questions, please consult a specialized professional.";
+  }
 
-    try {
-        const response = await ai.models.generateContent({
-            model: 'gemini-3-pro-preview',
-            contents: userPrompt,
-            config: {
-                systemInstruction,
-            }
-        });
-        const text = response.text;
-        if (!text) {
-            throw new Error("Empty response from AI model");
-        }
-        return text;
-    } catch (error) {
-        console.error('[Levain Assistant] Error calling AI model:', error);
-        throw new Error("Sorry, I couldn't process your question right now. Please try again.");
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-pro-preview',
+      contents: userPrompt,
+      config: {
+        systemInstruction,
+      }
+    });
+    const text = response.text;
+    if (!text) {
+      throw new Error("Empty response from AI model");
     }
+    return text;
+  } catch (error) {
+    console.error('[Levain Assistant] Error calling AI model:', error);
+    throw new Error("Sorry, I couldn't process your question right now. Please try again.");
+  }
 }
 
 // --- STYLE BUILDER ---
 
 export async function generateStyleFromDescription(description: string): Promise<Partial<DoughStyleDefinition>> {
-    const systemInstruction = `You are a master baker and food scientist. Your task is to convert a user's description of a bread or pizza style into a structured technical JSON object compatible with the DoughLabPro application schema.
+  const systemInstruction = `You are a master baker and food scientist. Your task is to convert a user's description of a bread or pizza style into a structured technical JSON object compatible with the DoughLabPro application schema.
     
     Input: A natural language description of a dough style.
     Output: A valid JSON object adhering to the following structure (do not include markdown formatting):
@@ -214,24 +214,24 @@ export async function generateStyleFromDescription(description: string): Promise
     
     Be technically accurate. If data is missing, infer reasonable defaults based on baking science.`;
 
-    try {
-        const response = await ai.models.generateContent({
-            model: 'gemini-3-pro-preview',
-            contents: description,
-            config: {
-                systemInstruction,
-                responseMimeType: 'application/json',
-            }
-        });
-        
-        const text = response.text;
-        if (!text) throw new Error("Empty response");
-        
-        const styleData = JSON.parse(text);
-        return styleData;
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-pro-preview',
+      contents: description,
+      config: {
+        systemInstruction,
+        responseMimeType: 'application/json',
+      }
+    });
 
-    } catch (error) {
-        console.error('[Style Builder] Error:', error);
-        throw new Error("Failed to generate style. Please try a different description.");
-    }
+    const text = response.text;
+    if (!text) throw new Error("Empty response");
+
+    const styleData = JSON.parse(text);
+    return styleData;
+
+  } catch (error) {
+    console.error('[Style Builder] Error:', error);
+    throw new Error("Failed to generate style. Please try a different description.");
+  }
 }

@@ -24,6 +24,7 @@ import {
     TagIcon,
     GlobeAltIcon,
 } from '@/components/ui/Icons';
+import { ProFeatureLock } from '@/components/ProFeatureLock';
 
 interface LearnPageProps {
     onNavigate: (page: Page) => void;
@@ -37,279 +38,216 @@ const LearnCategoryCard: React.FC<{
 }> = ({ icon, title, description, onClick }) => (
     <button
         onClick={onClick}
-        className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800"
+        className="group h-full text-left flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
     >
-        <div className="flex-shrink-0 text-lime-500">{icon}</div>
-        <div className="mt-4 flex-grow">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+        <div className="absolute inset-0 bg-gradient-to-br from-lime-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+        <div className="flex items-start justify-between mb-4 relative z-10">
+            <div className="p-3 rounded-xl bg-lime-50 text-lime-600 group-hover:bg-lime-500 group-hover:text-white transition-colors duration-300">
+                {React.cloneElement(icon as React.ReactElement, { className: "h-6 w-6" })}
+            </div>
+        </div>
+
+        <div className="relative z-10">
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-lime-700 transition-colors duration-300 mb-2">
                 {title}
             </h3>
-            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{description}</p>
+            <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
+                {description}
+            </p>
         </div>
-        <p className="mt-4 text-sm font-semibold text-slate-500 dark:text-slate-400 group-hover:text-lime-500 transition-colors">
-            Explore &rarr;
-        </p>
     </button>
 );
 
+const SectionHeader: React.FC<{ title: string; icon?: React.ReactNode }> = ({ title, icon }) => (
+    <div className="flex items-center gap-3 mb-6 mt-12 first:mt-0 pb-4 border-b border-slate-100">
+        {icon && <div className="text-lime-600">{icon}</div>}
+        <h2 className="text-2xl font-bold text-slate-800 tracking-tight">{title}</h2>
+    </div>
+);
+
+const SectionCard: React.FC<{
+    icon: React.ReactNode;
+    title: string;
+    itemCount: number;
+    onClick: () => void;
+}> = ({ icon, title, itemCount, onClick }) => (
+    <button
+        onClick={onClick}
+        className="group h-full text-left flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+    >
+        <div className="absolute inset-0 bg-gradient-to-br from-lime-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+        <div className="p-4 rounded-full bg-lime-50 text-lime-600 group-hover:bg-lime-500 group-hover:text-white transition-colors duration-300 mb-4 relative z-10">
+            {React.cloneElement(icon as React.ReactElement, { className: "h-10 w-10" })}
+        </div>
+
+        <h3 className="text-xl font-bold text-slate-900 group-hover:text-lime-700 transition-colors duration-300 mb-2 text-center relative z-10">
+            {title}
+        </h3>
+
+        <span className="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full group-hover:bg-white/80 transition-colors relative z-10">
+            {itemCount} Topics
+        </span>
+    </button>
+);
 
 const LearnPage: React.FC<LearnPageProps> = ({ onNavigate }) => {
     const { t } = useTranslation();
+    const [activeSectionIndex, setActiveSectionIndex] = React.useState<number | null>(null);
 
-    const categories = [
+    const sections = [
         {
-            page: 'learn/oven-spring' as Page,
-            title: 'Oven Spring',
-            description: 'The science of the initial dough expansion in the oven.',
-            icon: <SparklesIcon className="h-8 w-8" />,
+            title: "Foundations",
+            icon: <AcademicCapIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/dough-science', title: 'Dough Science', description: 'The fundamental physics of gluten networks, hydration, and viscoelasticity.', icon: <SparklesIcon /> },
+                { page: 'learn/fundamentals', title: 'Baking Fundamentals', description: 'Core concepts every baker needs to know.', icon: <BookOpenIcon /> },
+                { page: 'learn/glossary', title: 'Technical Glossary', description: 'Definitions of standardized baking terminology.', icon: <ListBulletIcon /> },
+            ]
         },
         {
-            page: 'learn/fermentation-biochemistry' as Page,
-            title: 'Fermentation Biochemistry',
-            description: 'Yeast, bacteria, acids, and flavor creation.',
-            icon: <BeakerIcon className="h-8 w-8" />,
+            title: "Ingredients",
+            icon: <FlourIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/ingredients/flours', title: 'Flours Library', description: 'Comprehensive database of flours and their properties.', icon: <FlourIcon /> },
+                { page: 'learn/ingredients', title: 'Ingredients Overview', description: 'Selection criteria for professional-grade flour, water, salt, and yeast.', icon: <FlourIcon /> },
+                { page: 'learn/water', title: 'Water Chemistry', description: 'Impact of pH, hardness, and mineral content on dough rheology.', icon: <WaterIcon /> },
+                { page: 'learn/salt', title: 'The Role of Salt', description: 'Ionic functions of salt in gluten strengthening and yeast regulation.', icon: <SaltIcon /> },
+                { page: 'learn/fats', title: 'Fats & Lipids', description: 'How oils and fats affect crumb softness, shelf life, and structure.', icon: <OilIcon /> },
+                { page: 'learn/sugars-malts-enzymes', title: 'Sugars & Enzymes', description: 'Amylase activity, malt addition, and their role in fermentation and crust color.', icon: <SparklesIcon /> },
+                { page: 'learn/ingredients/yeasts', title: 'Yeasts', description: 'Understanding commercial and wild yeasts.', icon: <FermentationIcon /> },
+            ]
         },
         {
-            page: 'learn/crumb-structure' as Page,
-            title: 'Crumb Structure',
-            description: 'How alveoli form and the texture of the crumb.',
-            icon: <CubeIcon className="h-8 w-8" />,
+            title: "Fermentation Science",
+            icon: <FermentationIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/fermentation-biochemistry', title: 'Fermentation Biochemistry', description: 'Yeast metabolism, bacterial activity, and the creation of flavor compounds.', icon: <BeakerIcon />, isPro: true },
+                { page: 'learn/fermentation', title: 'Fermentation Control', description: 'Managing time, temperature, and inoculation for consistent results.', icon: <FermentationIcon /> },
+                { page: 'learn/preferments', title: 'Preferments (Biga/Poolish)', description: 'Using indirect methods to boost flavor, extensibility, and shelf life.', icon: <BeakerIcon /> },
+                { page: 'learn/ambient-vs-cold-fermentation', title: 'Ambient vs. Cold', description: 'Comparative analysis of enzymatic activity at different temperatures.', icon: <SunIcon /> },
+                { page: 'learn/dough-aging', title: 'Maturation & Aging', description: 'The difference between fermentation (gas) and maturation (flavor/structure).', icon: <FermentationIcon /> },
+            ]
         },
         {
-            page: 'learn/dough-aging' as Page,
-            title: 'Dough Aging',
-            description: 'Understand starch retrogradation and sensory maturation.',
-            icon: <FermentationIcon className="h-8 w-8" />,
+            title: "Gluten & Structure",
+            icon: <CubeIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/crumb-structure', title: 'Crumb Structure', description: 'The mechanics of alveoli formation and gas retention for the perfect open crumb.', icon: <CubeIcon /> },
+                { page: 'learn/methods', title: 'Structure Building', description: 'Methods to build and maintain dough structure.', icon: <CubeIcon /> },
+            ]
         },
         {
-            page: 'learn/ambient-vs-cold-fermentation' as Page,
-            title: 'Ambient vs. Cold',
-            description: 'A scientific comparison of fermentation methods.',
-            icon: <SunIcon className="h-8 w-8" />,
+            title: "Handling Techniques",
+            icon: <WrenchScrewdriverIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/techniques', title: 'Core Techniques', description: 'Autolyse, bassinage, coil folds, and lamination explained.', icon: <WrenchScrewdriverIcon /> },
+                { page: 'learn/mixing-techniques', title: 'Mixing Science', description: 'Mechanical energy input, friction factors, and gluten development stages.', icon: <CubeIcon /> },
+                { page: 'learn/balling-technique', title: 'Balling & Shaping', description: 'Surface tension mechanics and their effect on the final proof.', icon: <CubeIcon /> },
+                { page: 'learn/autolyse', title: 'Autolyse', description: 'The science of resting dough for extensibility.', icon: <WrenchScrewdriverIcon /> },
+            ]
         },
         {
-            page: 'learn/mixing-techniques' as Page,
-            title: 'Mixing Techniques',
-            description: 'The science behind kneading, folding, and the Rubaud method.',
-            icon: <WrenchScrewdriverIcon className="h-8 w-8" />,
+            title: "Baking Science",
+            icon: <FireIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/oven-science', title: 'Oven Thermodynamics', description: 'Conduction, convection, and radiation profiles of different oven types.', icon: <FireIcon />, isPro: true },
+                { page: 'learn/oven-spring', title: 'Oven Spring', description: 'Thermodynamics of the initial expansion phase during baking.', icon: <FireIcon /> },
+                { page: 'learn/parbaking', title: 'Parbaking Strategy', description: 'Optimizing workflow with double-baking techniques.', icon: <FireIcon /> },
+                { page: 'learn/temperature-control', title: 'Temperature Control', description: 'Calculating Desired Dough Temperature (DDT) for precision baking.', icon: <SunIcon /> },
+            ]
         },
         {
-            page: 'learn/balling-technique' as Page,
-            title: 'Balling Science',
-            description: 'How surface tension organizes gluten and retains gas.',
-            icon: <CubeIcon className="h-8 w-8" />,
+            title: "Troubleshooting",
+            icon: <QuestionMarkCircleIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/troubleshooting', title: 'Troubleshooting', description: 'Diagnostic guide for common defects and their root causes.', icon: <QuestionMarkCircleIcon /> },
+                { page: 'learn/troubleshooting-guide', title: 'Visual Guide', description: 'Visual references for common dough issues.', icon: <QuestionMarkCircleIcon /> },
+            ]
         },
         {
-            page: 'learn/sensory-maturation' as Page,
-            title: 'Sensory Maturation',
-            description: 'The formation of complex aromas in long fermentations.',
-            icon: <SparklesIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/parbaking' as Page,
-            title: 'Parbaking',
-            description: 'The science and technique of parbaking and double baking.',
-            icon: <FireIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/water' as Page,
-            title: 'Water in Dough',
-            description: 'The science of hardness, minerals, and the impact of water on gluten structure.',
-            icon: <WaterIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/salt' as Page,
-            title: 'The Role of Salt',
-            description: 'Chemical and structural functions of salt, far beyond flavor.',
-            icon: <SaltIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/sugars-malts-enzymes' as Page,
-            title: 'Sugars & Enzymes',
-            description: 'How sugars, malts, and enzymes influence fermentation, color, and taste.',
-            icon: <SparklesIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/fats' as Page,
-            title: 'Fats in Dough',
-            description: 'The impact of oils and fats on softness, structure, and texture.',
-            icon: <OilIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/tomato-preservation' as Page,
-            title: 'Tomato Science',
-            description: 'Acidity, sweetness, and preservation to create the perfect sauce.',
-            icon: <FireIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/white-sauces' as Page,
-            title: 'White Sauces & Emulsions',
-            description: 'The science behind creamy bases and their behavior in heat.',
-            icon: <BeakerIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/special-sauces' as Page,
-            title: 'Special Sauces',
-            description: 'Technical use of pesto, ricotta, and other bases on pizza.',
-            icon: <TagIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/low-moisture-cheeses' as Page,
-            title: 'Low-Moisture Cheeses',
-            description: 'The science of stable melting and concentrated flavor.',
-            icon: <CubeIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/smoked-cheeses' as Page,
-            title: 'Smoked Cheeses',
-            description: 'The physics of smoke and aromatic impact on pizza.',
-            icon: <FireIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/cured-meats' as Page,
-            title: 'Cured Meats',
-            description: 'Understanding curing science and how it transforms flavor.',
-            icon: <TagIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/smoked-aromatics' as Page,
-            title: 'Smoked & Aromatics',
-            description: 'Using ingredients with intense flavor and the risk of saturation.',
-            icon: <SparklesIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/water-rich-vegetables' as Page,
-            title: 'Water-Rich Vegetables',
-            description: 'How to control moisture in mushrooms, zucchini, and others.',
-            icon: <WaterIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/caramelizable-vegetables' as Page,
-            title: 'Caramelizable Vegetables',
-            description: 'The science of sugars in onions, peppers, and their impact on flavor.',
-            icon: <FireIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/regional-combos' as Page,
-            title: 'Regional Combos',
-            description: 'A cultural journey through pizzas of the world.',
-            icon: <GlobeAltIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/sensory-profiles' as Page,
-            title: 'Sensory Profiles',
-            description: 'The balance of umami, fat, acidity, sweetness, and crunch.',
-            icon: <BeakerIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/techniques' as Page,
-            title: 'General Techniques',
-            description: 'Learn about autolyse, stretch & fold, no-knead, and more.',
-            icon: <WrenchScrewdriverIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/fermentation' as Page,
-            title: 'Fermentation',
-            description: 'Master the art of cold maturation and levain control.',
-            icon: <FermentationIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/preferments' as Page,
-            title: 'Preferments',
-            description: 'The science and effects of Poolish, Biga, and Sourdough.',
-            icon: <BeakerIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/dough-science' as Page,
-            title: 'Dough Science',
-            description: 'Understand gluten network, hydration, and the importance of DDT.',
-            icon: <SparklesIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/oven-science' as Page,
-            title: 'Oven Science',
-            description: 'Understand how conduction, convection, and radiation transform your dough.',
-            icon: <FireIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/temperature-control' as Page,
-            title: 'Temperature Control',
-            description: 'The secret to consistency: understand DDT and temperature effects.',
-            icon: <SunIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/storage' as Page,
-            title: 'Dough Storage',
-            description: 'The science of storing dough to control fermentation and texture.',
-            icon: <CubeIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/hygiene-safety' as Page,
-            title: 'Hygiene & Safety',
-            description: 'Sanitary principles for safe and responsible handling.',
-            icon: <ShieldCheckIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/equipment' as Page,
-            title: 'Equipment',
-            description: 'The impact of peels, stones, steel, and other tools on the result.',
-            icon: <WrenchScrewdriverIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/troubleshooting' as Page,
-            title: 'Troubleshooting',
-            description: 'Solve problems like tearing dough, raw base, and lack of rise.',
-            icon: <QuestionMarkCircleIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/ingredients' as Page,
-            title: 'Ingredients',
-            description: 'Know flour types, salt functions, oil, and yeast.',
-            icon: <FlourIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/chemistry-library' as Page,
-            title: 'Chemistry Library',
-            description: 'Dive deep into enzymatic reactions and microorganisms.',
-            icon: <FlaskIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/style-guide' as Page,
-            title: 'Style Guide',
-            description: 'Explore characteristics of Neapolitan, NY, Detroit, and more.',
-            icon: <BookOpenIcon className="h-8 w-8" />,
-        },
-        {
-            page: 'learn/glossary' as Page,
-            title: 'Glossary',
-            description: 'A dictionary of the most important technical baking terms.',
-            icon: <ListBulletIcon className="h-8 w-8" />,
-        },
-
+            title: "Technical References",
+            icon: <BookOpenIcon className="h-6 w-6" />,
+            items: [
+                { page: 'learn/references', title: 'References Library', description: 'Citations and sources for the scientific principles used in DoughLabPro.', icon: <BookOpenIcon /> },
+                { page: 'learn/chemistry-library', title: 'Chemistry Library', description: 'Deep dive into enzymatic reactions, Maillard reaction, and caramelization.', icon: <FlaskIcon />, isPro: true },
+                { page: 'learn/equipment', title: 'Tools & Equipment', description: 'Technical impact of baking surfaces (steel vs stone) and mixers.', icon: <WrenchScrewdriverIcon /> },
+                { page: 'learn/hygiene-safety', title: 'Food Safety', description: 'HACCP principles and pathogen control in the dough lab.', icon: <ShieldCheckIcon /> },
+            ]
+        }
     ];
 
+    const activeSection = activeSectionIndex !== null ? sections[activeSectionIndex] : null;
+
     return (
-        <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out]">
-            <div className="text-center mb-12">
-                <AcademicCapIcon className="mx-auto h-12 w-12 text-lime-500" />
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-                    {t('learn.title')}
+        <div className="mx-auto max-w-7xl animate-fade-in pb-20">
+            {/* Hero Section */}
+            <div className="text-center mb-16 relative py-10">
+                <div className="absolute inset-0 bg-gradient-to-b from-lime-50/50 to-transparent -z-10 rounded-b-[3rem]" />
+                <div className="inline-flex p-4 rounded-2xl bg-white shadow-xl mb-6 ring-1 ring-slate-100">
+                    <AcademicCapIcon className="h-12 w-12 text-lime-600" />
+                </div>
+                <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+                    Dough Science Library
                 </h1>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-700 dark:text-slate-300">
-                    {t('learn.subtitle')}
+                <p className="mt-6 max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">
+                    A comprehensive technical resource for the modern baker. Explore the <span className="font-semibold text-lime-700">physics</span>, <span className="font-semibold text-lime-700">chemistry</span>, and <span className="font-semibold text-lime-700">gastronomy</span> of dough making.
                 </p>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {categories.map(category => (
-                    <LearnCategoryCard
-                        key={category.page}
-                        icon={category.icon}
-                        title={category.title}
-                        description={category.description}
-                        onClick={() => onNavigate(category.page)}
-                    />
-                ))}
+            <div className="px-4 sm:px-6">
+                {activeSection ? (
+                    <div className="animate-fade-in">
+                        <button
+                            onClick={() => setActiveSectionIndex(null)}
+                            className="mb-6 flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-lime-600 transition-colors"
+                        >
+                            &larr; Back to Categories
+                        </button>
+
+                        <SectionHeader title={activeSection.title} icon={activeSection.icon} />
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {activeSection.items.map((item: any) => {
+                                const card = (
+                                    <LearnCategoryCard
+                                        key={item.page}
+                                        icon={item.icon}
+                                        title={item.title}
+                                        description={item.description}
+                                        onClick={() => onNavigate(item.page as Page)}
+                                    />
+                                );
+
+                                if (item.isPro) {
+                                    return (
+                                        <ProFeatureLock
+                                            key={item.page}
+                                            featureKey="learn_advanced"
+                                            contextLabel="Advanced Baking Science"
+                                            origin="learn"
+                                        >
+                                            {card}
+                                        </ProFeatureLock>
+                                    );
+                                }
+                                return card;
+                            })}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {sections.map((section, idx) => (
+                            <SectionCard
+                                key={idx}
+                                icon={section.icon}
+                                title={section.title}
+                                itemCount={section.items.length}
+                                onClick={() => setActiveSectionIndex(idx)}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );

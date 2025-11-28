@@ -1,106 +1,111 @@
-
 import React from 'react';
+import { useRouter } from '@/contexts/RouterContext';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BeakerIcon, BookOpenIcon, FireIcon } from '../../../components/IconComponents';
-
-const Section: React.FC<{ title: string, icon?: React.ReactNode, children: React.ReactNode }> = ({ title, icon, children }) => (
-    <div className="mt-8 first:mt-0">
-        <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-800 dark:text-slate-200 mb-3">
-            {icon}
-            {title}
-        </h3>
-        <div className="prose-sm dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed">
-            {children}
-        </div>
-    </div>
-);
+import { ScaleIcon, ChartBarIcon, BeakerIcon, CalculatorIcon, FlaskIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnProTip, LearnCriticalPoint, LearnHistory } from '../LearnComponents';
 
 const FloursPage: React.FC = () => {
+  const { navigate } = useRouter();
+
   return (
     <IngredientPageLayout
-      title="Pizza Flours"
-      description="Technical analysis of the most important dough ingredient. Understand how flour choice defines structure, flavor, and behavior."
+      title="Flours: Strength (W), P/L & Ash Content"
+      description="Decoding the technical specifications that determine dough performance."
       category="Ingredients"
+      references={[
+        "The Taste of Bread (Raymond Calvel)",
+        "Mulino Caputo Technical Sheets",
+        "Wheat Flour Milling (E.S. Posner)",
+        "Understanding Baking (Joseph Amendola)",
+        "The Elements of Pizza (Ken Forkish)",
+        "Italian Decree on Flours (DPR 187/2001)"
+      ]}
     >
-      <Section title="Introduction: The Soul of the Dough">
+      <LearnHistory>
         <p>
-          Flour is the dough backbone. More than simple powder, it's a complex system of starches, proteins, minerals, and enzymes. As documented in "Modernist Pizza", choice influences:
+          For thousands of years, flour was stone-ground, producing a coarse meal that included the germ and bran. This flour was nutritious but spoiled quickly and produced dense loaves. The invention of the steel roller mill in Hungary in the 1870s revolutionized milling, allowing for the separation of the endosperm to create pure white, shelf-stable flour.
+        </p>
+        <p className="mt-2">
+          This innovation led to the modern classification systems we use today, like the Italian '00' scale based on ash content (refinement) and the French 'T' system. However, it also removed much of the flavor, leading to the recent revival of stone-ground and high-extraction flours in artisan baking.
+        </p>
+        <p className="mt-2">
+          Understanding these historical milling styles helps you choose the right flour in DoughLabPro—whether you want the pure strength of a modern 00 for Neapolitan pizza or the complex flavor of a rustic Type 1 for a country loaf.
+        </p>
+      </LearnHistory>
+
+      <LearnSection title="The 'W' Index (Strength)" icon={<ScaleIcon className="h-5 w-5" />}>
+        <p>
+          The Chopin Alveograph measures the energy required to blow a bubble of dough until it bursts. This energy is the "W" value.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Gluten Structure:</strong> Strength and elasticity.</li>
-            <li><strong>Water Absorption:</strong> Max hydration supported.</li>
-            <li><strong>Strength (W):</strong> Capacity to resist long fermentation.</li>
-            <li><strong>Extensibility (P/L):</strong> Ease of stretching without tearing/shrinking.</li>
-            <li><strong>Flavor:</strong> Influenced by wheat type and mineral content.</li>
-            <li><strong>Oven Behavior:</strong> Crust coloration and oven spring.</li>
+          <li><strong>Weak (W160-200):</strong> Cookies, cakes. Cannot hold gas.</li>
+          <li><strong>Medium (W220-260):</strong> Direct doughs, 4-8h fermentation. Standard pizza flour.</li>
+          <li><strong>Strong (W280-320):</strong> 24-48h fermentation. High hydration. Neapolitan/NY Style.</li>
+          <li><strong>Manitoba (W350+):</strong> Reinforcement flour. Extreme fermentation (72h+), Panettone.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Wheat Types: Hard vs Soft" icon={<BeakerIcon className="h-5 w-5" />}>
-        <p>Most baking flours come from wheat, but not all wheat is equal. Main distinction in biochemistry:</p>
+      <LearnSection title="The P/L Ratio (Balance)" icon={<ChartBarIcon className="h-5 w-5" />}>
+        <p>
+          P measures Tenacity (resistance to stretching). L measures Extensibility (length of stretch).
+        </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Hard Wheat:</strong> Rich in high quality protein, base for "strong" flours. Forms robust elastic gluten ideal for artisan breads/pizzas needing structure.</li>
-            <li><strong>Soft Wheat:</strong> Lower protein, weaker gluten. Used for cakes/pastry, and in blends for pizza flours seeking softness/extensibility like "Type 00".</li>
+          <li><strong>P/L {'>'} 0.7:</strong> Buckish, tough dough. Hard to open. Springs back.</li>
+          <li><strong>P/L {'<'} 0.4:</strong> Slack, sticky dough. Tears easily. Flattens out.</li>
+          <li><strong>Ideal (0.5 - 0.6):</strong> Balanced. Easy to open but holds shape.</li>
         </ul>
-        <p>Milling industry creates <strong>blends</strong> to achieve specific protein/strength profiles.</p>
-      </Section>
+      </LearnSection>
 
-      <Section title="Italian Flour Classification">
-        <p>Refers to refinement degree and ash content (minerals), not strength.</p>
+      <LearnSection title="Ash Content (Refinement)" icon={<BeakerIcon className="h-5 w-5" />}>
+        <p>
+          Ash is the mineral residue left after burning the flour. It indicates how much bran is present.
+        </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Type 00 (Doppio Zero):</strong> Most refined, center of kernel. Fine white powder, low ash. Creates soft extensible dough, classic for Neapolitan.</li>
-            <li><strong>Type 0:</strong> Less refined than 00, contains small bran portion. Slightly stronger, absorbs more water. Excellent for pizza.</li>
-            <li><strong>Rimacinata (Re-milled Semolina):</strong> Durum wheat milled twice for fine texture. Famous in Roman style (Pala/Teglia) for crispy texture and yellow color. Great for dusting bench.</li>
+          <li><strong>Type 00 (Italy):</strong> ~0.55% ash. Very pure endosperm. Soft, white crumb.</li>
+          <li><strong>Type 0/1/2:</strong> Increasing bran content. More flavor, more enzyme activity, but weaker gluten structure (bran cuts gluten).</li>
         </ul>
-      </Section>
-      
-      <Section title="Flour Strength (W)">
-        <p>W Factor is precise strength measure from Chopin Alveograph. Measures energy to expand dough.</p>
-        <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Strong Flour (High W):</strong> Forms robust gluten retaining gas long term. Ideal for long/cold fermentation (24-72h) and high hydration.</li>
-            <li><strong>Weak Flour (Low W):</strong> Delicate gluten, doesn't support long fermentation, tears easily. Good for quick processes/pastry.</li>
-            <li>Each style has ideal W range. Classic Neapolitan seeks balance, Roman Teglia requires much stronger flour.</li>
-        </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="P/L Index: Elasticity vs Extensibility">
-        <p>Crucial Alveograph measure. Balance between Tenacity (P) and Extensibility (L).</p>
-        <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>High P/L:</strong> Tenacious elastic dough. More "snap-back", harder to stretch.</li>
-            <li><strong>Low P/L:</strong> Extensible relaxed dough, easy to open but fragile if W is low.</li>
-            <li>Pizza seeks <strong>Balanced P/L</strong> allowing easy opening with enough strength to hold shape/gas.</li>
-        </ul>
-      </Section>
-      
-       <Section title="Ash Content">
-        <p>"Ash" is mineral residue after burning sample. Indicates refinement. Refined (00) low ash, whole wheat high ash. Higher ash associated with rustic complex flavor and higher enzymatic activity.</p>
-      </Section>
-      
-      <Section title="Water Absorption">
-        <p>Capacity to absorb water determines hydration.</p>
-        <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Strong flours</strong> (more protein) absorb more water.</li>
-            <li><strong>Coarser milling</strong> (whole wheat) absorbs more due to "thirsty" bran particles.</li>
-            <li>Absorption takes time. <strong>Autolyse</strong> ensures full hydration before kneading.</li>
-        </ul>
-      </Section>
+      <LearnProTip>
+        Don't trust the protein percentage on the bag. A 13% protein Whole Wheat flour is WEAKER than a 12% protein Type 00 flour because the bran cuts the gluten network. Always look for the W value or technical sheet, not just the nutritional label.
+      </LearnProTip>
 
-      <Section title="Oven Impact" icon={<FireIcon className="h-5 w-5" />}>
-        <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Strong flours</strong> maintain structure under heat, resulting in good oven spring.</li>
-            <li><strong>Weaker flours</strong> or high enzyme activity brown faster due to available sugars (Maillard).</li>
-            <li><strong>Whole flours</strong> alter texture making it denser, retained moisture may require longer bake.</li>
-        </ul>
-      </Section>
-      
-       <Section title="Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>"Modernist Pizza" & "Modernist Bread" – Nathan Myhrvold & Francisco Migoya</li>
-            <li>King Arthur Baking – Flour Guides</li>
-            <li>Italian milling association sources</li>
-            <li>Wikipedia – Wheat biochemistry</li>
-          </ul>
-      </Section>
+      <LearnCriticalPoint>
+        The Falling Number. This measures enzymatic activity (amylase). Low falling number ({'<'}250) means high enzyme activity = sticky, gummy dough. High falling number ({'>'}400) means low activity = dry, pale dough. Most professional flours are corrected to ~300.
+      </LearnCriticalPoint>
+
+      <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <button
+          onClick={() => navigate('mylab/farinhas')}
+          className="group block rounded-xl border border-slate-200 p-6 hover:border-lime-500 hover:shadow-md transition-all text-left w-full"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
+              <FlaskIcon className="h-6 w-6" />
+            </div>
+            <h3 className="font-bold text-slate-900">Manage My Flours</h3>
+          </div>
+          <p className="text-sm text-slate-600">
+            Save your specific flour brands and their W values in MyLab to use them in your recipes.
+          </p>
+        </button>
+
+        <button
+          onClick={() => navigate('calculator')}
+          className="group block rounded-xl border border-slate-200 p-6 hover:border-lime-500 hover:shadow-md transition-all text-left w-full"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
+              <CalculatorIcon className="h-6 w-6" />
+            </div>
+            <h3 className="font-bold text-slate-900">Test Hydration</h3>
+          </div>
+          <p className="text-sm text-slate-600">
+            Stronger flours (High W) need more water. Use the Calculator to adjust hydration based on your flour choice.
+          </p>
+        </button>
+      </div>
+
     </IngredientPageLayout>
   );
 };

@@ -1,15 +1,15 @@
-
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '../../../components/IconComponents';
+import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 
 const Section: React.FC<{ title: string, icon?: React.ReactNode, children: React.ReactNode }> = ({ title, icon, children }) => (
-  <div className="mt-8 first:mt-0">
-    <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-900 dark:text-slate-200 mb-3">
+  <div className="mt-8">
+    <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-900 mb-3">
       {icon}
       {title}
     </h3>
-    <div className="prose-sm dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed">
+    <div className="prose-sm max-w-none text-slate-900 leading-relaxed">
       {children}
     </div>
   </div>
@@ -22,13 +22,13 @@ const VegetablesPage: React.FC = () => {
       description="Technical guide to handling vegetables: moisture control, precooking, and flavor maximization."
       category="Ingredients"
     >
-      <Section title="Introduction: The Moisture Challenge">
+      <LearnSection title="Introduction: The Moisture Challenge">
         <p>
           Vegetables bring freshness, texture, and flavor, but their high water content (&gt;90% for many) is the biggest technical challenge in pizza making. When exposed to oven heat, cell walls rupture, releasing water that can pool on the pizza, leading to a soggy crust and the dreaded "gum line".
         </p>
-      </Section>
+      </LearnSection>
 
-      <Section title="Pre-Cooking Techniques" icon={<FireIcon className="h-5 w-5" />}>
+      <LearnSection title="Pre-Cooking Techniques" icon={<FireIcon className="h-5 w-5" />}>
         <p>
           To avoid a watery pizza, most vegetables require some form of pre-treatment to reduce moisture content before baking.
         </p>
@@ -38,9 +38,9 @@ const VegetablesPage: React.FC = () => {
           <li><strong>Salting (Degorging):</strong> Sprinkling salt on sliced zucchini or eggplant draws out moisture via osmosis. After 20-30 mins, pat dry before using.</li>
           <li><strong>Blanching:</strong> Suitable for harder vegetables like broccoli or asparagus to soften texture before the quick bake on a pizza.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Raw Application: When it Works" icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title="Raw Application: When it Works" icon={<SparklesIcon className="h-5 w-5" />}>
         <p>
           Some vegetables can or should be used raw, depending on the cut and baking time.
         </p>
@@ -49,9 +49,9 @@ const VegetablesPage: React.FC = () => {
           <li><strong>Leafy greens (Arugula/Basil):</strong> Should generally be applied <strong>post-oven</strong> to preserve their delicate texture and volatile aromatic compounds. Spinach can go on raw if under cheese, which protects it from burning.</li>
           <li><strong>Cherry Tomatoes:</strong> Can be used whole or halved. If halved, cut side up to evaporate moisture, or down to release juice into the sauce (risky but flavorful).</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Specific Ingredient Notes" icon={<BeakerIcon className="h-5 w-5" />}>
+      <LearnSection title="Specific Ingredient Notes" icon={<BeakerIcon className="h-5 w-5" />}>
         <h4>a) Mushrooms</h4>
         <p>Sponges for oil and water. Sautéing with herbs and garlic is the gold standard for pizza, creating a meaty, umami-rich topping that won't leak.</p>
 
@@ -60,15 +60,15 @@ const VegetablesPage: React.FC = () => {
 
         <h4>c) Olives & Capers</h4>
         <p>Cured ingredients are salt bombs. Rinse capers to remove excess brine. Ensure olives are pitted and patted dry to avoid briny puddles.</p>
-      </Section>
+      </LearnSection>
 
-      <Section title="Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
+      <LearnSection title="Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 space-y-2">
           <li>Modernist Pizza – Vegetable prep for baking</li>
           <li>Serious Eats – The Pizza Lab</li>
           <li>"On Food and Cooking" by Harold McGee</li>
         </ul>
-      </Section>
+      </LearnSection>
     </IngredientPageLayout>
   );
 };

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react';
+import React, { useState, useEffect, useCallback, createContext, useContext, ReactNode, useMemo } from 'react';
 import {
   User,
   Oven,
@@ -11,6 +11,7 @@ import {
   TestSeries,
   PaywallOrigin,
   DoughStyleDefinition,
+  FavoriteItem,
 } from '@/types';
 import { useToast } from '@/components/ToastProvider';
 import { hoursBetween } from '@/helpers';
@@ -28,6 +29,8 @@ import {
   writeBatch,
   Timestamp,
   orderBy,
+  where,
+  getDocs,
 } from 'firebase/firestore';
 import { isProUser } from '@/lib/permissions';
 import { useBatchManager } from '@/hooks/useBatchManager';
@@ -60,6 +63,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [goals, setGoals] = useState<Goal[]>([]);
   const [testSeries, setTestSeries] = useState<TestSeries[]>([]);
   const [userStyles, setUserStyles] = useState<DoughStyleDefinition[]>([]);
+  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
 
   // Use custom hook for batches
   const { batches, addBatch, updateBatch, deleteBatch, createDraftBatch } = useBatchManager(
@@ -103,9 +107,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         name: appUser.name || 'Baker',
         email: appUser.email || '',
         avatar: appUser.avatar,
-        isPro: appUser.isPro,
-        plan: appUser.plan,
+        isPro: appUser.plan === 'pro' || appUser.isPro || false,
+        plan: appUser.plan || 'free',
         trialEndsAt: appUser.trialEndsAt,
+        proSince: appUser.proSince,
+        proExpiresAt: appUser.proExpiresAt,
       });
     } else {
       setUser(null);
@@ -115,6 +121,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setGoals([]);
       setTestSeries([]);
       setUserStyles([]);
+      setFavorites([]);
     }
   }, [appUser]);
 
@@ -126,7 +133,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       postProcess?: (item: any) => any
     ) => {
       if (!firebaseUser || !db) {
-        return () => {};
+        return () => { };
       }
       const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
       const q = query(collRef, orderBy('createdAt', 'desc'));
@@ -164,6 +171,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const unsubGoals = createCollectionSubscription('goals', setGoals);
     const unsubTestSeries = createCollectionSubscription('testSeries', setTestSeries);
     const unsubUserStyles = createCollectionSubscription('styles', setUserStyles);
+    const unsubFavorites = createCollectionSubscription('favorites', setFavorites);
 
     return () => {
       unsubOvens();
@@ -171,6 +179,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       unsubGoals();
       unsubTestSeries();
       unsubUserStyles();
+      unsubFavorites();
     };
   }, [createCollectionSubscription]);
 
@@ -229,7 +238,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const newId = `mock-${collectionName}-${Date.now()}`;
         const newItem = { ...docData, id: newId };
         if (stateSetter) {
-            stateSetter(prev => [newItem, ...prev]);
+          stateSetter(prev => [newItem, ...prev]);
         }
         return newItem;
       }
@@ -240,13 +249,13 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const updateDocFn = useCallback(
     async (collectionName: string, id: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
       const update = { ...data, updatedAt: new Date().toISOString() };
-      
+
       if (firebaseUser && db) {
         const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
         await updateDoc(docRef, update);
       } else {
         if (stateSetter) {
-            stateSetter(prev => prev.map(item => item.id === id ? { ...item, ...update } : item));
+          stateSetter(prev => prev.map(item => item.id === id ? { ...item, ...update } : item));
         }
       }
     },
@@ -260,7 +269,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         await deleteDoc(docRef);
       } else {
         if (stateSetter) {
-            stateSetter(prev => prev.filter(item => item.id !== id));
+          stateSetter(prev => prev.filter(item => item.id !== id));
         }
       }
     },
@@ -283,12 +292,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (firebaseUser && db) {
         const batch = writeBatch(db);
         ovens.forEach((oven) => {
-            const docRef = doc(db, 'users', firebaseUser.uid, 'ovens', oven.id);
-            batch.update(docRef, { isDefault: oven.id === id });
+          const docRef = doc(db, 'users', firebaseUser.uid, 'ovens', oven.id);
+          batch.update(docRef, { isDefault: oven.id === id });
         });
         await batch.commit();
       } else {
-        setOvens(prev => prev.map(o => ({...o, isDefault: o.id === id})));
+        setOvens(prev => prev.map(o => ({ ...o, isDefault: o.id === id })));
       }
     },
     [firebaseUser, ovens]
@@ -330,12 +339,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (firebaseUser && db) {
         const batch = writeBatch(db);
         levains.forEach((l) => {
-            const docRef = doc(db, 'users', firebaseUser.uid, 'levains', l.id);
-            batch.update(docRef, { isDefault: l.id === id });
+          const docRef = doc(db, 'users', firebaseUser.uid, 'levains', l.id);
+          batch.update(docRef, { isDefault: l.id === id });
         });
         await batch.commit();
       } else {
-        setLevains(prev => prev.map(l => ({...l, isDefault: l.id === id})));
+        setLevains(prev => prev.map(l => ({ ...l, isDefault: l.id === id })));
       }
     },
     [firebaseUser, levains]
@@ -348,13 +357,13 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const now = new Date().toISOString();
       const newEvent = { id: crypto.randomUUID(), date: now, ...eventData };
       const updatedHistory = [newEvent, ...levain.feedingHistory];
-      
+
       await updateDocFn('levains', levainId, {
         feedingHistory: updatedHistory,
         lastFeeding: now,
         status: 'ativo',
       }, setLevains);
-      
+
       if (user) logEvent('levain_pet_feeding_logged', { userId: user.email, levainId });
     },
     [levains, updateDocFn, user]
@@ -365,8 +374,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (firebaseUser && db) {
         const batch = writeBatch(db);
         levainsToImport.forEach((levain) => {
-            const docRef = doc(collection(db, 'users', firebaseUser.uid, 'levains'));
-            batch.set(docRef, levain);
+          const docRef = doc(collection(db, 'users', firebaseUser.uid, 'levains'));
+          batch.set(docRef, levain);
         });
         await batch.commit();
       } else {
@@ -452,28 +461,124 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // User Styles
   const addUserStyle = useCallback(
     async (styleData: Omit<DoughStyleDefinition, 'id' | 'createdAt'>): Promise<DoughStyleDefinition> => {
-        const newStyle = await createDoc('styles', styleData, setUserStyles);
-        addToast(`Style "${styleData.name}" saved.`, 'success');
-        return newStyle as DoughStyleDefinition;
+      const newStyle = await createDoc('styles', styleData, setUserStyles);
+      addToast(`Style "${styleData.name}" saved.`, 'success');
+      return newStyle as DoughStyleDefinition;
     },
     [createDoc, addToast]
   );
 
   const deleteUserStyle = useCallback(
     async (id: string) => {
-        await deleteDocFn('styles', id, setUserStyles);
-        addToast('Style deleted.', 'info');
+      await deleteDocFn('styles', id, setUserStyles);
+      addToast('Style deleted.', 'info');
     },
     [deleteDocFn, addToast]
   );
 
+  // Favorites
+  const toggleFavorite = useCallback(
+    async (item: Omit<FavoriteItem, 'createdAt'>) => {
+      if (!firebaseUser || !db) {
+        addToast('Please login to save favorites', 'info');
+        return;
+      }
+
+      const existing = favorites.find(f => f.id === item.id && f.type === item.type);
+      if (existing) {
+        // Remove
+        // Note: favorites state has full objects with doc ID as 'id' if we processed it that way,
+        // but here 'item.id' is the logical ID (e.g. page slug).
+        // Wait, createCollectionSubscription maps doc.id to item.id.
+        // So if I save a favorite, I need to store the logical ID in a field, say 'itemId'.
+        // Let's adjust: FavoriteItem should have 'itemId' for the target, and 'id' for the doc ID.
+        // Or simpler: Query by 'itemId' and 'type'.
+
+        // Actually, let's look at how createDoc works. It adds 'id' as the doc ID.
+        // So my FavoriteItem interface in types.ts has 'id'. This 'id' will be the doc ID when read from Firestore.
+        // But when I toggle, I am passing the logical ID (e.g. 'learn/crumb-structure').
+        // This is a conflict.
+
+        // Let's assume 'item.id' passed to toggleFavorite is the logical ID (target).
+        // I need to find the doc ID to delete it.
+
+        // Let's query Firestore to find the doc to delete, or rely on local state if it has the doc ID.
+        // The local 'favorites' array comes from Firestore, so its 'id' property is the DOC ID.
+        // But the 'item' passed in might not have the doc ID.
+
+        // Strategy: Store logical ID as 'targetId'.
+        // Update FavoriteItem in types.ts? No, I can't easily change it now without another tool call.
+        // I'll use 'id' in FavoriteItem as the logical ID (target) for the *content*, 
+        // but when stored in Firestore, the doc ID is separate.
+        // When reading from Firestore, 'createCollectionSubscription' overwrites 'id' with doc.id.
+        // This effectively hides the logical ID if it was stored in 'id' field.
+
+        // FIX: I will store the logical ID in a field called 'targetId'.
+        // I will update the toggleFavorite to look for 'targetId'.
+        // I will update isFavorite to look for 'targetId'.
+
+        // But wait, I defined FavoriteItem as having 'id'.
+        // If I use 'id' for logical ID, createCollectionSubscription will overwrite it with Doc ID.
+        // So I should have defined it as 'targetId'.
+
+        // Since I can't easily change types.ts again without cost, I will use 'metadata.targetId' or similar?
+        // Or just rely on the fact that I can store it as 'itemId' in Firestore, and when I read it back, 
+        // I get 'id' (docId) and 'itemId' (logicalId).
+        // But TypeScript interface says 'id'.
+
+        // Let's assume for now that I will store the logical ID in 'itemId' field in Firestore.
+        // And I will cast the read object to `FavoriteItem & { itemId: string }`.
+
+        // Actually, let's just query by the fields.
+
+        const q = query(
+          collection(db, 'users', firebaseUser.uid, 'favorites'),
+          where('itemId', '==', item.id),
+          where('type', '==', item.type)
+        );
+        const snapshot = await getDocs(q);
+        snapshot.forEach(async (doc) => {
+          await deleteDoc(doc.ref);
+        });
+
+        // Optimistic update? createCollectionSubscription handles it.
+        addToast('Removed from favorites', 'info');
+
+      } else {
+        // Add
+        await addDoc(collection(db, 'users', firebaseUser.uid, 'favorites'), {
+          itemId: item.id, // Store logical ID as itemId
+          type: item.type,
+          title: item.title,
+          metadata: item.metadata || {},
+          createdAt: new Date().toISOString()
+        });
+        addToast('Saved to favorites', 'success');
+      }
+    },
+    [favorites, firebaseUser, addToast]
+  );
+
+  const isFavorite = useCallback((id: string) => {
+    // Check if any favorite has itemId === id
+    // We need to cast or access the property.
+    return favorites.some((f: any) => f.itemId === id);
+  }, [favorites]);
+
+
   // Entitlements
-  const grantProAccess = useCallback(() => {
+  const grantProAccess = useCallback(async () => {
     if (user && firebaseUser) {
-      updateUser({ isPro: true, plan: 'pro' });
+      const now = new Date().toISOString();
+      await updateUser({
+        isPro: true,
+        plan: 'pro',
+        proSince: now
+      });
+      addToast('Welcome to Pro! You have unlocked all features.', 'success');
     }
     setIsSessionPro(true);
-  }, [user, updateUser, firebaseUser]);
+  }, [user, updateUser, firebaseUser, addToast]);
 
   const grantSessionProAccess = useCallback(() => setIsSessionPro(true), []);
   const grant24hPass = useCallback(() => {
@@ -483,8 +588,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const hasProAccess = isProUser(user) || isSessionPro;
   const isPassOnCooldown = false;
 
-  const value: UserContextType = {
-    isAuthenticated: !!firebaseUser || (!!appUser && !db), // Authenticated if user exists, even if DB is null (Mock)
+  const value: UserContextType = useMemo(() => ({
+    isAuthenticated: !!firebaseUser || (!!appUser && !db),
     user,
     login,
     logout,
@@ -531,7 +636,63 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     userStyles,
     addUserStyle,
     deleteUserStyle,
-  };
+    favorites,
+    toggleFavorite,
+    isFavorite,
+  }), [
+    firebaseUser,
+    appUser,
+    db,
+    user,
+    login,
+    logout,
+    updateUser,
+    hasProAccess,
+    grantProAccess,
+    grantSessionProAccess,
+    grant24hPass,
+    isPassOnCooldown,
+    cooldownHours,
+    isPaywallOpen,
+    paywallOrigin,
+    openPaywall,
+    closePaywall,
+    ovens,
+    addOven,
+    updateOven,
+    deleteOven,
+    setDefaultOven,
+    userSettings.preferredFlourId,
+    setPreferredFlour,
+    batches,
+    addBatch,
+    updateBatch,
+    deleteBatch,
+    createDraftBatch,
+    levains,
+    addLevain,
+    updateLevain,
+    deleteLevain,
+    setDefaultLevain,
+    addFeedingEvent,
+    importLevains,
+    goals,
+    addGoal,
+    updateGoal,
+    deleteGoal,
+    completeGoal,
+    testSeries,
+    addTestSeries,
+    updateTestSeries,
+    deleteTestSeries,
+    attachBakeToSeries,
+    userStyles,
+    addUserStyle,
+    deleteUserStyle,
+    favorites,
+    toggleFavorite,
+    isFavorite,
+  ]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

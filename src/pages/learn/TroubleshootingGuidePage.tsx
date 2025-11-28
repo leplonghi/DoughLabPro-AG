@@ -4,6 +4,7 @@ import { Page } from '@/types';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { QuestionMarkCircleIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 interface TroubleshootingGuidePageProps {
   onNavigate: (page: Page) => void;

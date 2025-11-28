@@ -1,11 +1,12 @@
 
 import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
+import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 const GlossaryTerm: React.FC<{ term: string; children: React.ReactNode }> = ({ term, children }) => (
-  <div className="py-4 border-b border-slate-200 dark:border-slate-700 last:border-b-0">
-    <dt className="font-bold text-md text-slate-900 dark:text-slate-100">{term}</dt>
-    <dd className="mt-1 text-slate-700 dark:text-slate-300 leading-relaxed">{children}</dd>
+  <div className="py-4 border-b border-slate-200  last:border-b-0">
+    <dt className="font-bold text-md text-slate-900 ">{term}</dt>
+    <dd className="mt-1 text-slate-700  leading-relaxed">{children}</dd>
   </div>
 );
 

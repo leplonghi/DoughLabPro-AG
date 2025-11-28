@@ -1,15 +1,15 @@
-
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '../../../components/IconComponents';
+import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 
 const Section: React.FC<{ title: string, icon?: React.ReactNode, children: React.ReactNode }> = ({ title, icon, children }) => (
-  <div className="mt-8 first:mt-0">
-    <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-900 dark:text-slate-200 mb-3">
+  <div className="mt-8">
+    <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-900 mb-3">
       {icon}
       {title}
     </h3>
-    <div className="prose-sm dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed">
+    <div className="prose-sm max-w-none text-slate-900 leading-relaxed">
       {children}
     </div>
   </div>
@@ -23,7 +23,7 @@ const SaucesPage: React.FC = () => {
       description="A technical analysis of the pizza heart: the sauce. Understand how tomato choice and preparation impact acidity, moisture, and final flavor balance."
       category="Ingredients"
     >
-      <Section title="Introduction: The Central Role of Sauce">
+      <LearnSection title="Introduction: The Central Role of Sauce">
         <p>
           Sauce is much more than a simple wet ingredient; it defines the pizza's soul. A good sauce brings:
         </p>
@@ -37,9 +37,9 @@ const SaucesPage: React.FC = () => {
         <p>
           Scientifically, tomato is a natural marvel containing water (&gt;90%), natural sugars (fructose/glucose), organic acids (citric/malic), and polysaccharides like pectin giving structure/viscosity.
         </p>
-      </Section>
+      </LearnSection>
 
-      <Section title="Tomatoes and Moisture Chemistry" icon={<BeakerIcon className="h-5 w-5" />}>
+      <LearnSection title="Tomatoes and Moisture Chemistry" icon={<BeakerIcon className="h-5 w-5" />}>
         <p>
           Water management is challenge number one when working with tomatoes.
         </p>
@@ -49,9 +49,9 @@ const SaucesPage: React.FC = () => {
           <li><strong>Pectin:</strong> Natural thickener. Processing and cooking can alter pectin structure, influencing final viscosity.</li>
           <li><strong>Reduction:</strong> Slow cooking evaporates water, concentrating sugars, acids, and flavor compounds. Controls moisture and intensifies flavor.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Raw vs. Cooked Sauce: A Style Choice">
+      <LearnSection title="Raw vs. Cooked Sauce: A Style Choice">
         <p>Deciding whether to cook sauce before pizza is a key distinction between styles, documented by sources like AVPN and NY Style guides.</p>
         <h4>Raw Sauce (Neapolitan Style)</h4>
         <ul className="list-disc pl-5 mt-2 space-y-1">
@@ -66,42 +66,42 @@ const SaucesPage: React.FC = () => {
           <li><strong>Prep:</strong> Simmered to reduce volume 25-50%, concentrating flavor and eliminating excess water.</li>
           <li><strong>Advantage:</strong> Greater control over final moisture, reducing soggy pizza risk, especially in home ovens with longer bake times.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Density and Viscosity: The Sweet Spot">
+      <LearnSection title="Density and Viscosity: The Sweet Spot">
         <p>Sauce consistency is crucial and must adapt to pizza style.</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Too Liquid:</strong> Main cause of "gum line" (raw dough layer under topping). Excess water prevents base heat from baking dough, steaming it instead.</li>
           <li><strong>Too Dense:</strong> Can act as thermal insulator preventing heat penetration. Pasty sauce can result in dry texture.</li>
           <li><strong>Ideal:</strong> Thick enough to coat spoon back without running immediately, fluid enough to spread easily.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Thermal Behavior in Oven" icon={<FireIcon className="h-5 w-5" />}>
+      <LearnSection title="Thermal Behavior in Oven" icon={<FireIcon className="h-5 w-5" />}>
         <p>Inside oven, sauce undergoes rapid transformation:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Evaporation:</strong> Water evaporates first, concentrating components.</li>
           <li><strong>Flavor Concentration:</strong> Sugars and acids become pronounced. Balanced cold sauce can become overly sweet or acidic after baking.</li>
           <li><strong>Pigment Oxidation:</strong> Lycopene is relatively stable but can suffer slight oxidation darkening sauce color.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Classic Sauce Combinations">
+      <LearnSection title="Classic Sauce Combinations">
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Neapolitan:</strong> Raw tomato purity complemented only by mozzarella creaminess and fresh basil added at end.</li>
           <li><strong>NY Style:</strong> Cooked sauce seasoned with oregano creates robust flavor base supporting pepperoni fat and cheese quantity.</li>
           <li><strong>High Topping Load:</strong> For many ingredients (vegetables), denser cooked sauce essential not to add more moisture.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="Risks and Common Care" icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title="Risks and Common Care" icon={<SparklesIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Excess Water:</strong> Main cause of soggy pizza. Always reduce moisture, either by cooking or using denser pulp tomatoes.</li>
           <li><strong>Too Sweet:</strong> Sugars caramelize fast and can burn in high heat, tasting bitter.</li>
           <li><strong>Too Acidic:</strong> Overly acidic sauce dominates flavors. Balance with pinch of sugar/baking soda if needed, or longer cooking.</li>
           <li><strong>Overcooking:</strong> Hours of cooking develops depth but loses freshness. 20-40 mins usually sufficient for pizza.</li>
         </ul>
-      </Section>
+      </LearnSection>
     </IngredientPageLayout>
   );
 };

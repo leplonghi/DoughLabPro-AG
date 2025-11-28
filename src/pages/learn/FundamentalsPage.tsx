@@ -4,6 +4,7 @@ import { Page } from '@/types';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { SparklesIcon, BeakerIcon, CubeIcon, FermentationIcon, WaterIcon, SaltIcon, OilIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 interface FundamentalsPageProps {
   onNavigate: (page: Page) => void;

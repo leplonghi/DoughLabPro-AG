@@ -60,60 +60,65 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
 
   const selectedLevain = useMemo(() => {
     if (props.config.yeastType === YeastType.USER_LEVAIN) {
-      return levains.find(l => l.id === props.config.levainId) || levains.find(l=>l.isDefault) || levains[0];
+      return levains.find(l => l.id === props.config.levainId) || levains.find(l => l.isDefault) || levains[0];
     }
     return null;
   }, [props.config.yeastType, props.config.levainId, levains]);
-  
+
   const renderOnboardingTooltip = () => {
-      if (!props.onboardingState?.isActive) return null;
+    if (!props.onboardingState?.isActive) return null;
 
-      const steps = [
-          { ref: formRef, title: t('onboarding.step1_title'), desc: t('onboarding.step1_desc') },
-          { ref: numPizzasRef, title: t('onboarding.step2_title'), desc: t('onboarding.step2_desc') },
-          { ref: resultsRef, title: t('onboarding.step3_title'), desc: t('onboarding.step3_desc') },
-          { ref: saveButtonRef, title: t('onboarding.step4_title'), desc: t('onboarding.step4_desc') }
-      ];
+    const steps = [
+      { ref: formRef, title: t('onboarding.step1_title'), desc: t('onboarding.step1_desc') },
+      { ref: numPizzasRef, title: t('onboarding.step2_title'), desc: t('onboarding.step2_desc') },
+      { ref: resultsRef, title: t('onboarding.step3_title'), desc: t('onboarding.step3_desc') },
+      { ref: saveButtonRef, title: t('onboarding.step4_title'), desc: t('onboarding.step4_desc') }
+    ];
 
-      const currentStepIndex = props.onboardingState.step - 1;
-      if (currentStepIndex < 0 || currentStepIndex >= steps.length || !props.onOnboardingNextStep || !props.onOnboardingBackStep) return null;
+    const currentStepIndex = props.onboardingState.step - 1;
+    if (currentStepIndex < 0 || currentStepIndex >= steps.length || !props.onOnboardingNextStep || !props.onOnboardingBackStep) return null;
 
-      const { ref, title, desc } = steps[currentStepIndex];
+    const { ref, title, desc } = steps[currentStepIndex];
 
-      return (
-          <OnboardingTooltip
-              targetElement={ref.current}
-              step={props.onboardingState.step}
-              totalSteps={6} // Total steps across all pages
-              title={title}
-              description={desc}
-              onNext={props.onOnboardingNextStep}
-              onBack={props.onOnboardingBackStep}
-              onFinish={() => {}} // Finish is handled on the last page
-          />
-      );
+    return (
+      <OnboardingTooltip
+        targetElement={ref.current}
+        step={props.onboardingState.step}
+        totalSteps={6} // Total steps across all pages
+        title={title}
+        description={desc}
+        onNext={props.onOnboardingNextStep}
+        onBack={props.onOnboardingBackStep}
+        onFinish={() => { }} // Finish is handled on the last page
+      />
+    );
   };
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start animate-fade-in">
         <div className="lg:sticky lg:top-24 space-y-6" ref={formRef}>
           <div className="flex items-center justify-center gap-2">
-            <UiModeToggle mode={props.calculatorMode} onModeChange={props.onCalculatorModeChange} />
+            <UiModeToggle
+              mode={props.calculatorMode}
+              onModeChange={(mode) => {
+                props.onCalculatorModeChange(mode);
+              }}
+            />
             <div className="group relative">
-                <InfoIcon className="h-4 w-4 cursor-help text-slate-400" />
-                <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-72 -translate-x-1/2 rounded-md bg-slate-800 p-3 text-xs text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
-                    <p dangerouslySetInnerHTML={{ __html: t('form.tooltips.ui_mode') }} />
-                </div>
+              <InfoIcon className="h-4 w-4 cursor-help text-slate-400 " />
+              <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-72 -translate-x-1/2 rounded-xl bg-slate-800  p-3 text-xs text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 border border-slate-700 ">
+                <p dangerouslySetInnerHTML={{ __html: t('form.tooltips.ui_mode') }} />
+              </div>
             </div>
           </div>
           <CalculatorForm
             {...props}
             levains={levains}
             selectedLevain={selectedLevain}
-            inputRefs={{numPizzas: numPizzasRef}}
+            inputRefs={{ numPizzas: numPizzasRef }}
           />
-        </div>
+        </div >
         <div ref={resultsRef}>
           <ResultsDisplay
             results={props.results}
@@ -125,14 +130,14 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             onStartBatch={props.onStartBatch}
             selectedFlour={props.selectedFlour}
             calculatorMode={props.calculatorMode}
-            calculationMode={props.calculationMode} 
-            hasProAccess={props.hasProAccess} 
+            calculationMode={props.calculationMode}
+            hasProAccess={props.hasProAccess}
             onOpenPaywall={props.onOpenPaywall}
             saveButtonRef={saveButtonRef}
             onboardingStep={props.onboardingState?.step}
           />
         </div>
-      </div>
+      </div >
       {props.onboardingState && renderOnboardingTooltip()}
     </>
   );

@@ -4,6 +4,7 @@ import { Page } from '@/types';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { SunIcon, WrenchScrewdriverIcon, CubeIcon, SparklesIcon, FireIcon, BeakerIcon, ShieldCheckIcon, ClockIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 interface MethodsPageProps {
   onNavigate: (page: Page) => void;

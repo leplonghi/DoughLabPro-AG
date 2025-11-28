@@ -1,87 +1,113 @@
-
 import React from 'react';
+import { useRouter } from '@/contexts/RouterContext';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BeakerIcon, BookOpenIcon, SparklesIcon } from '../../../components/IconComponents';
-
-const Section: React.FC<{ title: string, icon?: React.ReactNode, children: React.ReactNode }> = ({ title, icon, children }) => (
-    <div className="mt-8 first:mt-0">
-        <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-800 dark:text-slate-200 mb-3">
-            {icon}
-            {title}
-        </h3>
-        <div className="prose-sm dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed">
-            {children}
-        </div>
-    </div>
-);
+import { BeakerIcon, CalculatorIcon, FlaskIcon, FireIcon, ScaleIcon, FermentationIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnProTip, LearnCriticalPoint, LearnHistory } from '../LearnComponents';
 
 const YeastsPage: React.FC = () => {
+  const { navigate } = useRouter();
+
   return (
     <IngredientPageLayout
-      title="Yeasts: The Biological Engine"
-      description="Scientific analysis of microorganisms giving life, structure, and flavor to pizza."
+      title="Yeasts: Commercial vs. Wild"
+      description="Understanding the biological engine of your dough."
       category="Ingredients"
+      references={[
+        "The Art of Fermentation (Sandor Katz)",
+        "Modernist Bread (Nathan Myhrvold)",
+        "Yeast: The Practical Guide (Chris White)",
+        "Bread Science (Emily Buehler)",
+        "The Bread Builders (Wing & Scott)",
+        "Sourdough (Sarah Owens)"
+      ]}
     >
-      <Section title="1. Introduction: What is Yeast?">
+      <LearnHistory>
         <p>
-          Scientifically, baking yeasts are single-celled microorganisms, primarily <em>Saccharomyces cerevisiae</em>. Their function is metabolizing simple sugars in flour via anaerobic process. Generates two main byproducts: <strong>Carbon Dioxide (CO₂)</strong> trapped in gluten making dough rise, and <strong>Ethanol</strong>. Also produces secondary compounds like esters/aldehydes crucial for aroma/flavor.
+          For most of human history, all bread was sourdough. Bakers relied on 'starters' passed down through generations or captured from the air. It wasn't until the 1860s, thanks to Louis Pasteur, that we identified yeast as a living organism.
         </p>
-      </Section>
+        <p className="mt-2">
+          The Fleischmann brothers introduced the first commercial compressed yeast in America in 1868, revolutionizing baking by offering consistent, predictable results without the daily maintenance of a starter. Instant yeast followed in the 1970s, further simplifying the process.
+        </p>
+        <p className="mt-2">
+          DoughLabPro allows you to switch seamlessly between these historical methods—calculating precise amounts for commercial yeast or managing the complex ratios of a wild sourdough culture.
+        </p>
+      </LearnHistory>
 
-      <Section title="2. Dry Yeast (IDY & ADY)" icon={<BeakerIcon className="h-5 w-5" />}>
+      <LearnSection title="Commercial Yeast Types" icon={<BeakerIcon className="h-5 w-5" />}>
         <p>
-          Dry yeast is dormant dehydrated <em>S. cerevisiae</em>. Main advantage ("Modernist Bread") is <strong>high stability</strong> and shelf life, ideal for consistent production. Reactivation via hydration is highly predictable.
+          <em>Saccharomyces cerevisiae</em> is the single species used in all commercial baking.
         </p>
-      </Section>
-      
-      <Section title="3. Fresh Yeast">
-        <p>
-          Compressed blocks (~70% moisture), active state yeast. <strong>Higher immediate activity</strong>, short shelf life, temp sensitive. Traditional in Europe.
-        </p>
-      </Section>
-
-      <Section title="4. Natural Fermentation (Levain/Sourdough)">
-        <p>
-          Unlike commercial yeast, levain is a <strong>complex symbiotic mixture</strong> of wild yeast and Lactic Acid Bacteria (LAB). LAB produce acids (lactic/acetic) giving characteristic sour flavor and structure. Slower complex action. (See Levain Pet module).
-        </p>
-      </Section>
-
-      <Section title="5. Factors Affecting Fermentation">
-        <p>Fermentation speed regulated by:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Temperature:</strong> Ideal 24-27°C.</li>
-            <li><strong>Hydration:</strong> Mobility of nutrients.</li>
-            <li><strong>Flour Type:</strong> Available sugars. Whole flour accelerates.</li>
-            <li><strong>Salt:</strong> Retards via osmosis.</li>
-            <li><strong>Fat:</strong> Coating cells can retard process.</li>
+          <li><strong>Fresh Yeast (CY):</strong> 70% water. Highly active. Short shelf life. The gold standard for aroma.</li>
+          <li><strong>Active Dry (ADY):</strong> Granules coated in dead yeast cells. Must be proofed in warm water. Slower start.</li>
+          <li><strong>Instant Dry (IDY):</strong> Porous rods. Dissolves instantly. Potent. 3x stronger than Fresh by weight.</li>
         </ul>
-      </Section>
+      </LearnSection>
 
-      <Section title="6. Aromas Produced" icon={<SparklesIcon className="h-5 w-5" />}>
-        <p>Fermentation creates aromas:</p>
+      <LearnSection title="Conversion Rates" icon={<ScaleIcon className="h-5 w-5" />}>
+        <p>
+          Because water content varies, you must convert when swapping types:
+        </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Yeasts:</strong> Alcohols, esters (fruity).</li>
-            <li><strong>LAB:</strong> Lactic acid (yogurt), acetic acid (vinegar).</li>
+          <li><strong>1g Instant (IDY)</strong> = 1.2g Active Dry (ADY) = 3g Fresh (CY).</li>
         </ul>
-      </Section>
+        <p className="mt-2">
+          Always weigh yeast with a precision scale (0.01g). Teaspoons are wildly inaccurate.
+        </p>
+      </LearnSection>
 
-      <Section title="7. Common Risks">
+      <LearnSection title="Wild Yeast (Sourdough/Levain)" icon={<FermentationIcon className="h-5 w-5" />}>
+        <p>
+          A symbiotic culture of wild yeast (often <em>Candida milleri</em> or <em>S. exiguus</em>) and Lactic Acid Bacteria (<em>Lactobacillus sanfranciscensis</em>).
+        </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Over-proofing:</strong> Gluten collapse, weak sticky dough, acidic taste.</li>
-            <li><strong>Under-proofing:</strong> Dense heavy product, undeveloped flavor.</li>
-            <li><strong>High Temp:</strong> Uncontrolled fermentation, gas before flavor.</li>
+          <li><strong>Slower fermentation:</strong> Requires hours, not minutes.</li>
+          <li><strong>Complex flavor:</strong> Acidity from bacteria.</li>
+          <li><strong>Stronger dough structure:</strong> Acidity strengthens gluten.</li>
+          <li><strong>Longer shelf life:</strong> Acidity inhibits mold.</li>
         </ul>
-      </Section>
-      
-      <Section title="8. Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>Modernist Bread</li>
-            <li>Modernist Pizza</li>
-            <li>King Arthur Baking – Yeast 101</li>
-            <li>Microbiology articles on <em>Saccharomyces cerevisiae</em></li>
-            <li>Wikipedia – Fermentation, Yeast</li>
-          </ul>
-      </Section>
+      </LearnSection>
+
+      <LearnProTip>
+        Yeast never dies in the fridge. It just sleeps. You can keep fresh yeast for weeks if wrapped tightly, or freeze it (though it loses ~10% potency). Dry yeast keeps for months in the freezer.
+      </LearnProTip>
+
+      <LearnCriticalPoint>
+        Thermal Death Point. Yeast begins to die at 50°C and is completely dead at 60°C. Never dissolve yeast in hot water. Use lukewarm (30-35°C) or cold water.
+      </LearnCriticalPoint>
+
+      <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <button
+          onClick={() => navigate('calculator')}
+          className="group block rounded-xl border border-slate-200 p-6 hover:border-lime-500 hover:shadow-md transition-all text-left w-full"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
+              <CalculatorIcon className="h-6 w-6" />
+            </div>
+            <h3 className="font-bold text-slate-900">Calculate Yeast</h3>
+          </div>
+          <p className="text-sm text-slate-600">
+            Switch between Fresh, ADY, IDY, or Sourdough in the Calculator settings to get the exact amount for your recipe.
+          </p>
+        </button>
+
+        <button
+          onClick={() => navigate('mylab/levain')}
+          className="group block rounded-xl border border-slate-200 p-6 hover:border-lime-500 hover:shadow-md transition-all text-left w-full"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
+              <FlaskIcon className="h-6 w-6" />
+            </div>
+            <h3 className="font-bold text-slate-900">Manage My Levain</h3>
+          </div>
+          <p className="text-sm text-slate-600">
+            Track your sourdough starter's feeding schedule, ratios, and activity in the Levain Pet feature.
+          </p>
+        </button>
+      </div>
+
     </IngredientPageLayout>
   );
 };

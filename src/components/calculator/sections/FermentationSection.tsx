@@ -5,6 +5,7 @@ import ChoiceButton from '@/components/ui/ChoiceButton';
 import FormSection from '@/components/calculator/AccordionSection';
 import SliderInput from '@/components/ui/SliderInput';
 import { FermentationIcon, LockClosedIcon, InfoIcon } from '@/components/ui/Icons';
+import { ProFeatureLock } from '@/components/ProFeatureLock';
 
 interface FermentationSectionProps {
   config: DoughConfig;
@@ -90,20 +91,15 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
               )}
             </div>
 
-            <div className="relative group" onClick={isAllowed(FermentationTechnique.POOLISH) ? handleLockedClick : undefined}>
-              <ChoiceButton
-                active={config.fermentationTechnique === FermentationTechnique.POOLISH}
-                onClick={() =>
-                  hasProAccess && isAllowed(FermentationTechnique.POOLISH) && onConfigChange({ fermentationTechnique: FermentationTechnique.POOLISH })
-                }
-                className={!hasProAccess || !isAllowed(FermentationTechnique.POOLISH) ? "opacity-60 cursor-not-allowed pointer-events-none" : ""}
-                label="Poolish"
-              />
-              {!hasProAccess && isAllowed(FermentationTechnique.POOLISH) && (
-                <div className="absolute -top-2 -right-2 bg-lime-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5">
-                  <LockClosedIcon className="h-2.5 w-2.5" /> PRO
-                </div>
-              )}
+            <div className="relative group">
+              <ProFeatureLock featureKey="calculator_preferments" contextLabel="Poolish Preferment">
+                <ChoiceButton
+                  active={config.fermentationTechnique === FermentationTechnique.POOLISH}
+                  onClick={() => isAllowed(FermentationTechnique.POOLISH) && onConfigChange({ fermentationTechnique: FermentationTechnique.POOLISH })}
+                  className={!isAllowed(FermentationTechnique.POOLISH) ? "opacity-50 cursor-not-allowed" : ""}
+                  label="Poolish"
+                />
+              </ProFeatureLock>
               {!isAllowed(FermentationTechnique.POOLISH) && (
                 <div className="absolute -top-2 -right-2 bg-slate-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
@@ -111,20 +107,15 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
               )}
             </div>
 
-            <div className="relative group" onClick={isAllowed(FermentationTechnique.BIGA) ? handleLockedClick : undefined}>
-              <ChoiceButton
-                active={config.fermentationTechnique === FermentationTechnique.BIGA}
-                onClick={() =>
-                  hasProAccess && isAllowed(FermentationTechnique.BIGA) && onConfigChange({ fermentationTechnique: FermentationTechnique.BIGA })
-                }
-                className={!hasProAccess || !isAllowed(FermentationTechnique.BIGA) ? "opacity-60 cursor-not-allowed pointer-events-none" : ""}
-                label="Biga"
-              />
-              {!hasProAccess && isAllowed(FermentationTechnique.BIGA) && (
-                <div className="absolute -top-2 -right-2 bg-lime-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5">
-                  <LockClosedIcon className="h-2.5 w-2.5" /> PRO
-                </div>
-              )}
+            <div className="relative group">
+              <ProFeatureLock featureKey="calculator_preferments" contextLabel="Biga Preferment">
+                <ChoiceButton
+                  active={config.fermentationTechnique === FermentationTechnique.BIGA}
+                  onClick={() => isAllowed(FermentationTechnique.BIGA) && onConfigChange({ fermentationTechnique: FermentationTechnique.BIGA })}
+                  className={!isAllowed(FermentationTechnique.BIGA) ? "opacity-50 cursor-not-allowed" : ""}
+                  label="Biga"
+                />
+              </ProFeatureLock>
               {!isAllowed(FermentationTechnique.BIGA) && (
                 <div className="absolute -top-2 -right-2 bg-slate-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
                   <InfoIcon className="h-2.5 w-2.5" /> N/A

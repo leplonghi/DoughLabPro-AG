@@ -44,7 +44,7 @@ const translations = {
     },
     form: {
       recipe_style: 'Recipe Style',
-      dough_ball_weight: 'Dough Ball Weight',
+      dough_ball_weight: 'Piece Weight',
       hydration: 'Hydration',
       salt: 'Salt',
       oil: 'Oil/Fat',
@@ -63,8 +63,8 @@ const translations = {
       },
       neapolitan: 'Neapolitan',
       new_york: 'New York Style',
-      pan_pizza: 'Pan Pizza',
-      chicago_deep_dish: 'Chicago Deep Dish',
+      pan_pizza: 'Pan Dough',
+      chicago_deep_dish: 'Chicago Style',
       romana_tonda: 'Romana Tonda',
       siciliana: 'Sicilian',
       grandma_style: 'Grandma Style',
@@ -91,7 +91,7 @@ const translations = {
       total_sugar: 'Total Sugar',
       total_yeast: 'Total Yeast',
       total_dough: 'Total Dough Weight',
-      single_ball: 'Weight per Ball',
+      single_ball: 'Weight per Piece',
       final_dough_title: 'Final Dough Mix',
       flour: 'Flour',
       water: 'Water',
@@ -163,7 +163,7 @@ const translations = {
       },
     },
     levain_pet: {
-      title: 'Levain Pet',
+      title: 'Levain Monitor',
       status: {
         ativo: 'Active',
         precisa_atencao: 'Needs Attention',
@@ -189,14 +189,14 @@ const translations = {
       step1_title: 'Configure',
       step1_desc: 'Set your parameters here.',
       step2_title: 'Quantity',
-      step2_desc: 'Adjust number of balls or weight.',
+      step2_desc: 'Adjust number of pieces or weight.',
       step3_title: 'Results',
       step3_desc: 'See your exact recipe here.',
       step4_title: 'Save',
       step4_desc: 'Save your batch to My Lab.',
     },
     levain_onboarding: {
-      screen1_title: 'Meet your Levain Pet',
+      screen1_title: 'Meet your Levain',
       screen1_text: 'Track feedings and health.',
       screen1_button: 'Next',
       screen2_title: 'Feedings',
@@ -276,58 +276,54 @@ const translations = {
       reference_title: 'Technical Reference',
     },
     flours_page: {
-        title: 'Flours Library',
-        subtitle: 'Understand the characteristics of different flours.',
-        default: 'Default',
-        set_default: 'Set as Default',
-        hydration_rec: 'Recommended Hydration',
-        strength: 'Strength (W)',
-        back_to_calculator: 'Back to Calculator',
+      title: 'Flours Library',
+      subtitle: 'Understand the characteristics of different flours.',
+      default: 'Default',
+      set_default: 'Set as Default',
+      hydration_rec: 'Recommended Hydration',
+      strength: 'Strength (W)',
+      back_to_calculator: 'Back to Calculator',
     },
     diary_page: {
-        title: 'My Bakes',
-        subtitle: 'History of your productions.',
-        empty_title: 'No bakes yet',
-        empty_subtitle: 'Start a new calculation to save your first bake.',
-        create_first: 'Go to Calculator',
-        new_batch: 'Log New Bake',
-        card: {
-            hydration: 'Hydration',
-            weight: 'Ball Weight',
-            units: 'Units',
-            redo: 'Load',
-            open: 'Details',
-        }
+      title: 'My Bakes',
+      subtitle: 'History of your productions.',
+      empty_title: 'No bakes yet',
+      empty_subtitle: 'Start a new calculation to save your first bake.',
+      create_first: 'Go to Calculator',
+      new_batch: 'Log New Bake',
+      card: {
+        hydration: 'Hydration',
+        weight: 'Piece Weight',
+        units: 'Units',
+        redo: 'Load',
+        open: 'Details',
+      }
     },
     info: {
-        update_success: 'Updated successfully.',
+      update_success: 'Updated successfully.',
     },
     confirmations: {
-        delete_batch: 'Are you sure you want to delete "{name}"?',
-        delete_oven: 'Are you sure you want to delete oven "{name}"?',
-        delete_levain: 'Are you sure you want to delete levain "{name}"?',
+      delete_batch: 'Are you sure you want to delete "{name}"?',
+      delete_oven: 'Are you sure you want to delete oven "{name}"?',
+      delete_levain: 'Are you sure you want to delete levain "{name}"?',
     },
     mode_toggle: {
-        basic: 'Guided',
-        advanced: 'Advanced',
+      basic: 'Guided',
+      advanced: 'Advanced',
     },
     suggestions: {
-        hot_day: { title: 'Hot Day', desc: 'Try lower yeast.' },
-        cold_day: { title: 'Cold Day', desc: 'Try longer ferment.' },
-        steel_oven: { title: 'Baking Steel', desc: 'Great for NY Style.' },
-        default: { title: 'Try Focaccia', desc: 'A forgiving starter.' },
+      hot_day: { title: 'Hot Day', desc: 'Try lower yeast.' },
+      cold_day: { title: 'Cold Day', desc: 'Try longer ferment.' },
+      steel_oven: { title: 'Baking Steel', desc: 'Great for crisp crusts.' },
+      default: { title: 'Try Focaccia', desc: 'A forgiving starter.' },
     },
     ads: {
-        advertisement: 'Advertisement',
+      advertisement: 'Advertisement',
     },
     modals: {
-        close: 'Close',
+      close: 'Close',
     },
-    user_menu: {
-        theme_light: 'Light',
-        theme_dark: 'Dark',
-        theme_system: 'System',
-    }
+
   },
 };
 
@@ -345,7 +341,7 @@ export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const t = useCallback((key: string, replacements?: { [key: string]: string | number | undefined }): string => {
     const keyParts = key.split('.');
     let translation: any = translations[locale];
-    
+
     for (const part of keyParts) {
       if (translation && typeof translation === 'object' && part in translation) {
         translation = translation[part];
@@ -355,14 +351,14 @@ export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
 
     if (typeof translation !== 'string') {
-         return (replacements as any)?.defaultValue ?? key;
+      return (replacements as any)?.defaultValue ?? key;
     }
 
     let result = translation;
     if (replacements) {
       Object.entries(replacements).forEach(([placeholder, value]) => {
         if (placeholder !== 'defaultValue') {
-            result = result.replace(`{${placeholder}}`, String(value));
+          result = result.replace(`{${placeholder}}`, String(value));
         }
       });
     }

@@ -9,45 +9,45 @@ const COMPANY_CITY_STATE = '[CITY/STATE]';
 const LAST_UPDATED_DATE = '[dd/mm/yyyy]';
 
 const sections = [
-  { id: 'overview', title: 'Overview' },
-  { id: 'terms', title: 'Terms of Use' },
-  { id: 'privacy', title: 'Privacy Policy' },
-  { id: 'cookies', title: 'Cookie Policy' },
-  { id: 'affiliate', title: 'Affiliate Disclosure' },
-  { id: 'eula', title: 'EULA' },
-  { id: 'ip', title: 'Intellectual Property' },
-  { id: 'contact', title: 'Legal Contact' },
+    { id: 'overview', title: 'Overview' },
+    { id: 'terms', title: 'Terms of Use' },
+    { id: 'privacy', title: 'Privacy Policy' },
+    { id: 'cookies', title: 'Cookie Policy' },
+    { id: 'affiliate', title: 'Affiliate Disclosure' },
+    { id: 'eula', title: 'EULA' },
+    { id: 'ip', title: 'Intellectual Property' },
+    { id: 'contact', title: 'Legal Contact' },
 ];
 
 const LegalSection: React.FC<{ id: string, title: string, lastUpdated?: string, children: React.ReactNode }> = ({ id, title, lastUpdated, children }) => (
-  <section id={id} className="mb-12 scroll-mt-24">
-    <div className="border-b border-slate-200 pb-4">
-      <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
-      {lastUpdated && (
-        <p className="mt-2 text-sm text-slate-500">Last updated: {lastUpdated}</p>
-      )}
-    </div>
-    <div className="prose mt-6 max-w-none text-slate-600">
-      {children}
-    </div>
-  </section>
+    <section id={id} className="mb-12 scroll-mt-24">
+        <div className="border-b border-slate-200 pb-4">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+            {lastUpdated && (
+                <p className="mt-2 text-sm text-slate-500">Last updated: {lastUpdated}</p>
+            )}
+        </div>
+        <div className="prose mt-6 max-w-none text-slate-600">
+            {children}
+        </div>
+    </section>
 );
 
 
 const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    
+
     // A simplified handler for mobile navigation that closes the menu.
     const handleMobileNav = (id: string) => {
-      setIsMobileMenuOpen(false);
-      window.location.hash = `#legal#${id}`;
+        setIsMobileMenuOpen(false);
+        window.location.hash = `#legal#${id}`;
     };
 
     return (
         <div className="mx-auto max-w-7xl">
             {/* Mobile Header/Dropdown */}
             <div className="lg:hidden mb-6 relative">
-                <button 
+                <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     className="w-full flex items-center justify-between rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200/50 text-left"
                 >
@@ -75,20 +75,20 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
                 <aside className="hidden lg:block lg:col-span-1">
                     <nav className="sticky top-24 space-y-2">
                         {sections.map((section) => (
-                        <a
-                            key={section.id}
-                            href={`#/legal#${section.id}`}
-                            className="flex w-full items-center rounded-lg p-3 text-sm font-semibold transition-colors text-slate-600 hover:bg-slate-100"
-                        >
-                            <span className="truncate">{section.title}</span>
-                        </a>
+                            <a
+                                key={section.id}
+                                href={`#/legal#${section.id}`}
+                                className="flex w-full items-center rounded-lg p-3 text-sm font-semibold transition-colors text-slate-600 hover:bg-slate-100"
+                            >
+                                <span className="truncate">{section.title}</span>
+                            </a>
                         ))}
                     </nav>
                 </aside>
 
                 <main className="lg:col-span-3">
                     <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-10">
-                        
+
                         <LegalSection id="overview" title="Legal Matters">
                             <p>This area gathers the documents regulating the use of DoughLabPro, data protection, cookie usage, app licensing, affiliate disclosures, and contact channels for legal matters.</p>
                             <p>We recommend reading these documents carefully before using the application.</p>
@@ -118,31 +118,31 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
                         </LegalSection>
 
                         <LegalSection id="privacy" title="Privacy Policy" lastUpdated={LAST_UPDATED_DATE}>
-                           <p>This Policy explains how we collect, process, store, and protect Users' personal data.</p>
-                           <h3>1. Data We Collect</h3>
-                           <p>We may collect:</p>
-                           <ul>
-                            <li><strong>a) User-provided data:</strong> Name; Email; Voluntarily registered data; Content entered in My Lab (recipes, notes, photos).</li>
-                            <li><strong>b) Automatically collected data:</strong> Device technical data; IP address, browser type, and identifiers; Usage logs; Cookies and similar technologies; App performance information.</li>
-                            <li><strong>c) Payment data:</strong> Processed exclusively by third parties (Google, Apple, payment processors). We do not store complete credit card information.</li>
-                           </ul>
-                           <h3>2. Purposes of Processing</h3>
-                           <p>We use data to: allow access and use of the App; personalize and improve the experience; register personal settings and User history; perform statistical analysis and product improvements; send communications related to the App; comply with legal obligations.</p>
-                           <h3>3. Data Sharing</h3>
-                           <p>We may share data with: hosting and infrastructure providers; analytics services (such as Google Analytics, Firebase); payment methods and app stores. We do not sell personal data to third parties.</p>
-                           <h3>4. Data Retention</h3>
-                           <p>We will keep personal data for the time necessary to fulfill the purposes described in this Policy, legal obligations, and regular exercise of rights.</p>
-                           <h3>5. Third-Party Links & Affiliates</h3>
-                           <p>DoughLabPro may display links to third-party websites, including affiliate links to online shops and marketplaces. If you click those links, you will be redirected to external websites that are not operated by DoughLabPro. We are not responsible for the content, privacy practices or data collection policies of those third-party sites. We encourage you to review their privacy policies before providing any personal information or completing a purchase.</p>
+                            <p>This Policy explains how we collect, process, store, and protect Users' personal data.</p>
+                            <h3>1. Data We Collect</h3>
+                            <p>We may collect:</p>
+                            <ul>
+                                <li><strong>a) User-provided data:</strong> Name; Email; Voluntarily registered data; Content entered in My Lab (recipes, notes, photos).</li>
+                                <li><strong>b) Automatically collected data:</strong> Device technical data; IP address, browser type, and identifiers; Usage logs; Cookies and similar technologies; App performance information.</li>
+                                <li><strong>c) Payment data:</strong> Processed exclusively by third parties (Google, Apple, payment processors). We do not store complete credit card information.</li>
+                            </ul>
+                            <h3>2. Purposes of Processing</h3>
+                            <p>We use data to: allow access and use of the App; personalize and improve the experience; register personal settings and User history; perform statistical analysis and product improvements; send communications related to the App; comply with legal obligations.</p>
+                            <h3>3. Data Sharing</h3>
+                            <p>We may share data with: hosting and infrastructure providers; analytics services (such as Google Analytics, Firebase); payment methods and app stores. We do not sell personal data to third parties.</p>
+                            <h3>4. Data Retention</h3>
+                            <p>We will keep personal data for the time necessary to fulfill the purposes described in this Policy, legal obligations, and regular exercise of rights.</p>
+                            <h3>5. Third-Party Links & Affiliates</h3>
+                            <p>DoughLabPro may display links to third-party websites, including affiliate links to online shops and marketplaces. If you click those links, you will be redirected to external websites that are not operated by DoughLabPro. We are not responsible for the content, privacy practices or data collection policies of those third-party sites. We encourage you to review their privacy policies before providing any personal information or completing a purchase.</p>
                         </LegalSection>
 
                         <LegalSection id="cookies" title="Cookie Policy" lastUpdated={LAST_UPDATED_DATE}>
-                          <h3>1. What are Cookies</h3>
-                          <p>Cookies are small files stored on your device that help recognize the browser and improve the user experience, remembering preferences and analyzing performance.</p>
-                          <h3>2. How We Use Cookies</h3>
-                          <p>We may use: Strictly necessary cookies: for basic App operation; Performance cookies: to understand usage and improve features; Functionality cookies: to remember theme (light/dark), language, and other preferences.</p>
-                          <h3>3. Managing Cookies</h3>
-                          <p>You can manage or disable cookies in your browser or device settings.</p>
+                            <h3>1. What are Cookies</h3>
+                            <p>Cookies are small files stored on your device that help recognize the browser and improve the user experience, remembering preferences and analyzing performance.</p>
+                            <h3>2. How We Use Cookies</h3>
+                            <p>We may use: Strictly necessary cookies: for basic App operation; Performance cookies: to understand usage and improve features; Functionality cookies: to remember language and other preferences.</p>
+                            <h3>3. Managing Cookies</h3>
+                            <p>You can manage or disable cookies in your browser or device settings.</p>
                         </LegalSection>
 
                         <LegalSection id="affiliate" title="Affiliate Disclosure" lastUpdated={LAST_UPDATED_DATE}>
@@ -152,10 +152,10 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
                         </LegalSection>
 
                         <LegalSection id="eula" title="EULA – End User License Agreement" lastUpdated={LAST_UPDATED_DATE}>
-                          <h3>1. License</h3>
-                          <p>We grant the User a limited, personal, non-exclusive, non-transferable, and revocable license to install and use the App on their devices, exclusively for personal purposes.</p>
-                          <h3>2. Restrictions</h3>
-                          <p>The User agrees not to: decompile, reverse engineer, or attempt to access the source code; distribute unauthorized copies of the App; modify, sublicense, or resell the App; use the App for illegal purposes.</p>
+                            <h3>1. License</h3>
+                            <p>We grant the User a limited, personal, non-exclusive, non-transferable, and revocable license to install and use the App on their devices, exclusively for personal purposes.</p>
+                            <h3>2. Restrictions</h3>
+                            <p>The User agrees not to: decompile, reverse engineer, or attempt to access the source code; distribute unauthorized copies of the App; modify, sublicense, or resell the App; use the App for illegal purposes.</p>
                         </LegalSection>
 
                         <LegalSection id="ip" title="Intellectual Property">

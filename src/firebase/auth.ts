@@ -1,5 +1,5 @@
 
-import { getAuth, GoogleAuthProvider, Auth } from "@firebase/auth";
+import { getAuth, GoogleAuthProvider, Auth } from "firebase/auth";
 import { app } from "./app";
 
 export let auth: Auth | null = null;

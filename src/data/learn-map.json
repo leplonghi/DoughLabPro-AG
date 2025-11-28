@@ -1,0 +1,372 @@
+{
+    "articles": [
+        {
+            "file": "AmbientVsColdFermentationPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Ambient vs. Cold Fermentation: Scientific Comparison",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "AutolysePage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Autolyse: Letting Flour and Water Do the First Shift",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "BallingTechniquePage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Balling: The Physics of Surface Tension",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "CaramelizableVegetablesPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Caramelizable Vegetables: Sugars & Aromas",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "ChemistryLibraryPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Pizza Chemistry Library",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "CriticalIngredientsPage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Critical Ingredients",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "CrumbStructurePage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Crumb Structure Science",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "CuredMeatsPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Cured Meats: Curing Science & Flavors",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "DoughAgingPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Dough Aging: Maturation and Degradation",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "DoughSciencePage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Dough Science 101",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "EquipmentPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Essential Pizza Equipment",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "FatsPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Fats (Lipids)",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "FermentationBiochemistryPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Fermentation Biochemistry",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "FermentationPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Fermentation",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "FundamentalsPage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Fundamentals",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "GlossaryPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Glossary",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "HygieneSafetyPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Hygiene & Safety",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "IngredientsPage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Ingredients",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "LearnPage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Learn",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "LowMoistureCheesesPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Low-Moisture Cheeses",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "MethodsPage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Methods",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "MixingTechniquesPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Mixing Techniques",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "OvenSciencePage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Oven Science",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "OvenSpringPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Oven Spring",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "OvensHeatPage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Ovens & Heat",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "ParbakingPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Parbaking",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "PrefermentsPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Preferments",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "RegionalCombosPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Regional Combos",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SaltPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Salt",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SensoryGuidePage.tsx",
+            "type": "stub",
+            "status": "ok",
+            "title": "Sensory Guide",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SensoryMaturationPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Sensory Maturation",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SensoryProfilesPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Sensory Profiles",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SmokedAromaticsPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Smoked Aromatics",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SmokedCheesesPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Smoked Cheeses",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SpecialSaucesPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Special Sauces",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "StoragePage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Storage",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "StyleGuidePage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Style Guide",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "SugarsPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Sugars",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "TechniquesPage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Techniques",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "TemperatureControlPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Temperature Control",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "TomatoPreservationPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Tomato Preservation",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "TroubleshootingGuidePage.tsx",
+            "type": "hub",
+            "status": "ok",
+            "title": "Troubleshooting Guide",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "TroubleshootingPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "Troubleshooting",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "WaterPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Water",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "WaterRichVegetablesPage.tsx",
+            "type": "content",
+            "status": "shallow",
+            "title": "Water-Rich Vegetables",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        },
+        {
+            "file": "WhiteSaucesPage.tsx",
+            "type": "content",
+            "status": "ok",
+            "title": "White Sauces",
+            "hasPortuguese": false,
+            "hasLowContrast": false
+        }
+    ]
+}

@@ -15,12 +15,6 @@ export const RequireAuth: React.FC<{ children: React.ReactNode; onOpenAuth?: () 
                 <h2 className="text-xl font-semibold text-slate-800">Authentication Required</h2>
                 <p className="text-slate-600">Please log in to access this page.</p>
                 <div className="flex gap-4">
-                    <button
-                        onClick={() => loginAsGuest()}
-                        className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-md font-medium transition-colors"
-                    >
-                        Continue as Guest (Dev)
-                    </button>
                     {onOpenAuth && (
                         <button
                             onClick={onOpenAuth}

@@ -1,29 +1,18 @@
 // Force rebuild
 import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, GlobeAltIcon, FireIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
+import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 // Local Section component for structuring content
-const Section: React.FC<{ title: string, icon?: React.ReactNode, children: React.ReactNode }> = ({ title, icon, children }) => (
-    <div className="mt-8 first:mt-0">
-        <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-900 dark:text-slate-200 mb-3">
-            {icon}
-            {title}
-        </h3>
-        <div className="prose-sm dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed">
-            {children}
-        </div>
-    </div>
-);
-
 const StyleGuidePage: React.FC = () => {
     return (
         <TechnicalPageLayout
-            title="Pizza Style Guide"
-            subtitle="A conceptual, historical, and scientific description of major pizza styles, focusing on structural and textural characteristics."
+            title="Dough Style Guide"
+            subtitle="A conceptual, historical, and scientific description of major dough styles, focusing on structural and textural characteristics."
             showReferencesSection={false} // Custom references section at the end
         >
-            <Section title="1. Pizza Napoletana (AVPN – Conceptual Version)" icon={<FireIcon className="h-5 w-5" />}>
+            <LearnSection title="1. Pizza Napoletana (AVPN – Conceptual Version)" icon={<FireIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>Dough:</strong> Extremely soft and extensible, designed to be opened by hand.</li>
                     <li><strong>Rim (Cornicione):</strong> The most iconic feature. It is puffed, airy, with irregular alveoli and typical leopard spots ("leoparding") due to rapid, intense baking.</li>
@@ -32,9 +21,9 @@ const StyleGuidePage: React.FC = () => {
                     <li><strong>Structure:</strong> Center is very thin and wet, almost "soupy", making the slice soft and elastic, meant to be folded and eaten.</li>
                     <li><strong>Oven Floor:</strong> Requires a floor with low thermal conductivity (like clay "biscotto") so base bakes perfectly without burning.</li>
                 </ul>
-            </Section>
+            </LearnSection>
 
-            <Section title="2. New York Style" icon={<SparklesIcon className="h-5 w-5" />}>
+            <LearnSection title="2. New York Style" icon={<SparklesIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>Base:</strong> Firmer and wider, resulting in large, structured slices.</li>
                     <li><strong>Rim:</strong> Crispy outside, but soft and chewy inside.</li>
@@ -43,9 +32,9 @@ const StyleGuidePage: React.FC = () => {
                     <li><strong>Baking:</strong> Longer and at more moderate temperatures than Neapolitan, typically in gas deck ovens.</li>
                     <li><strong>Main Feature:</strong> The "foldable slice", allowing large slices to be eaten with one hand.</li>
                 </ul>
-            </Section>
+            </LearnSection>
 
-            <Section title="3. Roman (Pala and Teglia)" icon={<BookOpenIcon className="h-5 w-5" />}>
+            <LearnSection title="3. Roman (Pala and Teglia)" icon={<BookOpenIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>Dough:</strong> Very high extensibility and hydration, resulting in extremely light and airy texture.</li>
                     <li><strong>Crumb:</strong> Characterized by very large and irregular alveoli.</li>
@@ -54,9 +43,9 @@ const StyleGuidePage: React.FC = () => {
                     <li><strong>Flour:</strong> Commonly uses very strong flours to support high hydration and long fermentations.</li>
                     <li><strong>Tradition:</strong> A pillar of contemporary Roman baking, sold in bakeries ("forni") by weight.</li>
                 </ul>
-            </Section>
+            </LearnSection>
 
-            <Section title="4. Detroit Style" icon={<BeakerIcon className="h-5 w-5" />}>
+            <LearnSection title="4. Detroit Style" icon={<BeakerIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>Baking Pan:</strong> Baked in rectangular steel pans, which conduct heat intensely.</li>
                     <li><strong>Cheese Crust ("Frico"):</strong> The trademark of the style. Cheese is spread to the pan edges, creating a caramelized and crispy wall.</li>
@@ -64,9 +53,9 @@ const StyleGuidePage: React.FC = () => {
                     <li><strong>Inverted Assembly:</strong> Sauce is applied in stripes on top of cheese ("red stripes"), protecting dough from excess moisture.</li>
                     <li><strong>Final Texture:</strong> A crispy, almost fried base, soft interior, and ultra-crispy cheese edges.</li>
                 </ul>
-            </Section>
+            </LearnSection>
 
-            <Section title="5. Focaccia / Pan Pizza">
+            <LearnSection title="5. Focaccia / Pan Dough">
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>Dough:</strong> High with a spongy and open crumb structure.</li>
                     <li><strong>Texture:</strong> Soft and moist inside, with base and surface golden from oil.</li>
@@ -74,32 +63,32 @@ const StyleGuidePage: React.FC = () => {
                     <li><strong>Oily Base:</strong> Generous use of olive oil in the pan is fundamental for texture and flavor, lightly frying the base.</li>
                     <li><strong>Use:</strong> Robust structure is ideal for supporting heavier and wetter toppings.</li>
                 </ul>
-            </Section>
+            </LearnSection>
 
-            <Section title="6. Chicago Deep Dish (Technical Summary)">
+            <LearnSection title="6. Chicago Style (Technical Summary)">
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>Pie Structure:</strong> Closer to a savory pie than a flat pizza.</li>
                     <li><strong>Dough:</strong> Dough forms a high wall and contains fat (butter or oil), giving it a rich, biscuit-like texture.</li>
                     <li><strong>Inverted Layers:</strong> Assembly is done in reverse order (cheese on base, fillings in middle, sauce on top) to protect ingredients during long bake time.</li>
                     <li><strong>Baking:</strong> Very long and at low temperature to cook large amount of filling without burning dough.</li>
                 </ul>
-            </Section>
+            </LearnSection>
 
-            <Section title="7. Thermal Considerations by Style">
+            <LearnSection title="7. Thermal Considerations by Style">
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>High Temperature</strong> styles (like Neapolitan) depend on <strong>intense radiant heat</strong> from oven ceiling to cook top and puff rim quickly.</li>
                     <li><strong>Home Oven</strong> styles (like adapted NY Style or Detroit) depend more on <strong>heat conduction</strong> from a good surface (steel or pan) and <strong>convection</strong> (circulating hot air) to cook dough over a longer period.</li>
                 </ul>
-            </Section>
+            </LearnSection>
 
-            <Section title="8. Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
+            <LearnSection title="8. Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 space-y-2">
                     <li>Modernist Pizza – Nathan Myhrvold & Francisco Migoya</li>
                     <li>Associazione Verace Pizza Napoletana (AVPN) – Official disciplinare</li>
                     <li>Historical and culinary records on pizza evolution in New York, Rome, and Detroit.</li>
                     <li>Historical pizzerias like Lombardi's (NY), Forno Campo de' Fiori (Rome), and Buddy's (Detroit).</li>
                 </ul>
-            </Section>
+            </LearnSection>
         </TechnicalPageLayout>
     );
 };

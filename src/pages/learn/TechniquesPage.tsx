@@ -3,6 +3,7 @@ import TechnicalPageLayout from './TechnicalPageLayout';
 import { Page } from '@/types';
 import { WrenchScrewdriverIcon, CubeIcon, FireIcon, BeakerIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
+import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 // Reusing the card component style from LearnPage for consistency, but adapted for this layout
 const TechniqueCard: React.FC<{
@@ -13,16 +14,16 @@ const TechniqueCard: React.FC<{
 }> = ({ icon, title, description, onClick }) => (
   <button
     onClick={onClick}
-    className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800"
+    className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
   >
     <div className="flex-shrink-0 text-lime-500">{icon}</div>
     <div className="mt-4 flex-grow">
-      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+      <h3 className="text-lg font-bold text-slate-900 group-hover:text-lime-600 transition-colors">
         {title}
       </h3>
-      <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{description}</p>
+      <p className="mt-2 text-sm text-slate-900 leading-relaxed">{description}</p>
     </div>
-    <p className="mt-4 text-sm font-semibold text-slate-500 dark:text-slate-400 group-hover:text-lime-500 transition-colors">
+    <p className="mt-4 text-sm font-semibold text-slate-500 group-hover:text-lime-500 transition-colors">
       Read More &rarr;
     </p>
   </button>
@@ -80,7 +81,7 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
         ))}
       </div>
 
-      <div className="mt-12 prose prose-slate dark:prose-invert max-w-none">
+      <div className="mt-12 prose prose-slate max-w-none">
         <h3>Why Technique Matters</h3>
         <p>
           Even with the perfect recipe, the way you handle the dough determines the final outcome.
