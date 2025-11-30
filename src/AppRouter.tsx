@@ -9,6 +9,7 @@ import { useCalculator } from '@/contexts/CalculatorContext';
 import { FLOURS } from '@/flours-constants';
 import { getStyleById } from '@/data/stylesData';
 import AuthModal from '@/components/AuthModal';
+import { LearnProvider } from '@/contexts/LearnContext';
 
 // Lazy Load Pages
 const CalculatorPage = React.lazy(() => import('@/pages/CalculatorPage'));
@@ -37,50 +38,33 @@ const MethodsPage = React.lazy(() => import('@/pages/learn/MethodsPage'));
 const CriticalIngredientsPage = React.lazy(() => import('@/pages/learn/CriticalIngredientsPage'));
 const OvensHeatPage = React.lazy(() => import('@/pages/learn/OvensHeatPage'));
 const TroubleshootingGuidePage = React.lazy(() => import('@/pages/learn/TroubleshootingGuidePage'));
-const FermentationPage = React.lazy(() => import('@/pages/learn/FermentationPage'));
-const DoughSciencePage = React.lazy(() => import('@/pages/learn/DoughSciencePage'));
 const TroubleshootingPage = React.lazy(() => import('@/pages/learn/TroubleshootingPage'));
 const IngredientsPage = React.lazy(() => import('@/pages/learn/IngredientsPage'));
 const ChemistryLibraryPage = React.lazy(() => import('@/pages/learn/ChemistryLibraryPage'));
 const StyleGuidePage = React.lazy(() => import('@/pages/learn/StyleGuidePage'));
 const GlossaryPage = React.lazy(() => import('@/pages/learn/GlossaryPage'));
 const OvenSciencePage = React.lazy(() => import('@/pages/learn/OvenSciencePage'));
-const OvenSpringPage = React.lazy(() => import('@/pages/learn/OvenSpringPage'));
 const FermentationBiochemistryPage = React.lazy(() => import('@/pages/learn/FermentationBiochemistryPage'));
 const CrumbStructurePage = React.lazy(() => import('@/pages/learn/CrumbStructurePage'));
-const DoughAgingPage = React.lazy(() => import('@/pages/learn/DoughAgingPage'));
-const AmbientVsColdFermentationPage = React.lazy(() => import('@/pages/learn/AmbientVsColdFermentationPage'));
-const MixingTechniquesPage = React.lazy(() => import('@/pages/learn/MixingTechniquesPage'));
-const BallingTechniquePage = React.lazy(() => import('@/pages/learn/BallingTechniquePage'));
-const SensoryMaturationPage = React.lazy(() => import('@/pages/learn/SensoryMaturationPage'));
 const ParbakingPage = React.lazy(() => import('@/pages/learn/ParbakingPage'));
-const WaterPage = React.lazy(() => import('@/pages/learn/WaterPage'));
-const SaltPage = React.lazy(() => import('@/pages/learn/SaltPage'));
-const SugarsPage = React.lazy(() => import('@/pages/learn/SugarsPage'));
-const FatsPage = React.lazy(() => import('@/pages/learn/FatsPage'));
 const TomatoPreservationPage = React.lazy(() => import('@/pages/learn/TomatoPreservationPage'));
 const WhiteSaucesPage = React.lazy(() => import('@/pages/learn/WhiteSaucesPage'));
 const SpecialSaucesPage = React.lazy(() => import('@/pages/learn/SpecialSaucesPage'));
-const LowMoistureCheesesPage = React.lazy(() => import('@/pages/learn/LowMoistureCheesesPage'));
-const SmokedCheesesPage = React.lazy(() => import('@/pages/learn/SmokedCheesesPage'));
-const CuredMeatsPage = React.lazy(() => import('@/pages/learn/CuredMeatsPage'));
-const SmokedAromaticsPage = React.lazy(() => import('@/pages/learn/SmokedAromaticsPage'));
-const WaterRichVegetablesPage = React.lazy(() => import('@/pages/learn/WaterRichVegetablesPage'));
-const CaramelizableVegetablesPage = React.lazy(() => import('@/pages/learn/CaramelizableVegetablesPage'));
-const RegionalCombosPage = React.lazy(() => import('@/pages/learn/RegionalCombosPage'));
 const SensoryProfilesPage = React.lazy(() => import('@/pages/learn/SensoryProfilesPage'));
-const AutolysePage = React.lazy(() => import('@/pages/learn/AutolysePage'));
 const TechniquesPage = React.lazy(() => import('@/pages/learn/TechniquesPage'));
-const PrefermentsPage = React.lazy(() => import('@/pages/learn/PrefermentsPage'));
 const TemperatureControlPage = React.lazy(() => import('@/pages/learn/TemperatureControlPage'));
 const StoragePage = React.lazy(() => import('@/pages/learn/StoragePage'));
 const HygieneSafetyPage = React.lazy(() => import('@/pages/learn/HygieneSafetyPage'));
 const EquipmentPage = React.lazy(() => import('@/pages/learn/EquipmentPage'));
 const SensoryGuidePage = React.lazy(() => import('@/pages/learn/SensoryGuidePage'));
+const BakingSciencePage = React.lazy(() => import('@/pages/learn/BakingSciencePage'));
+const LearnArticlePage = React.lazy(() => import('@/pages/learn/LearnArticlePage'));
+const AllArticlesPage = React.lazy(() => import('@/pages/learn/AllArticlesPage'));
+const CategoryPage = React.lazy(() => import('@/pages/learn/CategoryPage'));
+const SearchResultsPage = React.lazy(() => import('@/pages/learn/SearchResultsPage'));
 
 // Ingredient Sub-Pages
 const IngredientsFloursPage = React.lazy(() => import('@/pages/learn/ingredients/FloursPage'));
-const YeastsPage = React.lazy(() => import('@/pages/learn/ingredients/YeastsPage'));
 const CheesesPage = React.lazy(() => import('@/pages/learn/ingredients/CheesesPage'));
 const MeatsPage = React.lazy(() => import('@/pages/learn/ingredients/MeatsPage'));
 const VegetablesPage = React.lazy(() => import('@/pages/learn/ingredients/VegetablesPage'));
@@ -110,8 +94,6 @@ const ConsistencyListPage = React.lazy(() => import('@/pages/mylab/ConsistencyLi
 const ConsistencyDetailPage = React.lazy(() => import('@/pages/mylab/ConsistencyDetailPage'));
 
 // Feature Pages
-
-
 const CommunityPage = React.lazy(() => import('@/pages/CommunityPage'));
 const CommunityBatchDetailPage = React.lazy(() => import('@/pages/CommunityBatchDetailPage'));
 const ProActivatedPage = React.lazy(() => import('@/pages/pro/ProActivatedPage'));
@@ -193,6 +175,15 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             return protect(<CommunityBatchDetailPage batchId={routeParams} onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} onNavigate={navigate} />);
         }
 
+        // Dynamic Article Route
+        if (route === 'learn/article' && routeParams) {
+            return protect(
+                <LearnProvider>
+                    <LearnArticlePage articleId={routeParams} />
+                </LearnProvider>
+            );
+        }
+
         switch (route) {
             case 'mylab':
             case 'lab':
@@ -241,6 +232,15 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
 
             case 'learn':
                 return protect(<LearnPage onNavigate={navigate} />);
+            case 'learn/all':
+                return protect(<AllArticlesPage />);
+            case 'learn/search':
+                return protect(<SearchResultsPage />);
+            case 'learn/category':
+                return protect(<CategoryPage categoryId={routeParams || undefined} />);
+            case 'learn/article':
+                // Fallback if routeParams is missing or direct navigation
+                return protect(<LearnPage onNavigate={navigate} />);
             case 'learn/fundamentals':
                 return protect(<FundamentalsPage onNavigate={navigate} />);
             case 'learn/methods':
@@ -253,14 +253,10 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protect(<TroubleshootingGuidePage onNavigate={navigate} />);
             case 'learn/techniques':
                 return protect(<TechniquesPage onNavigate={navigate} />);
-            case 'learn/fermentation':
-                return protect(<FermentationPage />);
-            case 'learn/preferments':
-                return protect(<PrefermentsPage />);
-            case 'learn/dough-science':
-                return protect(<DoughSciencePage />);
             case 'learn/oven-science':
                 return protect(<OvenSciencePage />);
+            case 'learn/baking-science':
+                return protect(<BakingSciencePage onNavigate={navigate} />);
             case 'learn/temperature-control':
                 return protect(<TemperatureControlPage />);
             case 'learn/storage':
@@ -275,8 +271,6 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protect(<IngredientsPage onNavigate={navigate} />);
             case 'learn/ingredients/flours':
                 return protect(<IngredientsFloursPage />);
-            case 'learn/ingredients/yeasts':
-                return protect(<YeastsPage />);
             case 'learn/ingredients/cheeses':
                 return protect(<CheesesPage />);
             case 'learn/ingredients/meats':
@@ -305,56 +299,20 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protect(<StyleGuidePage />);
             case 'learn/glossary':
                 return protect(<GlossaryPage />);
-            case 'learn/oven-spring':
-                return protect(<OvenSpringPage />);
             case 'learn/fermentation-biochemistry':
                 return protect(<FermentationBiochemistryPage />);
             case 'learn/crumb-structure':
                 return protect(<CrumbStructurePage />);
-            case 'learn/dough-aging':
-                return protect(<DoughAgingPage />);
-            case 'learn/ambient-vs-cold-fermentation':
-                return protect(<AmbientVsColdFermentationPage />);
-            case 'learn/mixing-techniques':
-                return protect(<MixingTechniquesPage />);
-            case 'learn/balling-technique':
-                return protect(<BallingTechniquePage />);
-            case 'learn/sensory-maturation':
-                return protect(<SensoryMaturationPage />);
             case 'learn/parbaking':
                 return protect(<ParbakingPage />);
-            case 'learn/water':
-                return protect(<WaterPage />);
-            case 'learn/salt':
-                return protect(<SaltPage />);
-            case 'learn/sugars-malts-enzymes':
-                return protect(<SugarsPage />);
-            case 'learn/fats':
-                return protect(<FatsPage />);
             case 'learn/tomato-preservation':
                 return protect(<TomatoPreservationPage />);
             case 'learn/white-sauces':
                 return protect(<WhiteSaucesPage />);
             case 'learn/special-sauces':
                 return protect(<SpecialSaucesPage />);
-            case 'learn/low-moisture-cheeses':
-                return protect(<LowMoistureCheesesPage />);
-            case 'learn/smoked-cheeses':
-                return protect(<SmokedCheesesPage />);
-            case 'learn/cured-meats':
-                return protect(<CuredMeatsPage />);
-            case 'learn/smoked-aromatics':
-                return protect(<SmokedAromaticsPage />);
-            case 'learn/water-rich-vegetables':
-                return protect(<WaterRichVegetablesPage />);
-            case 'learn/caramelizable-vegetables':
-                return protect(<CaramelizableVegetablesPage />);
-            case 'learn/regional-combos':
-                return protect(<RegionalCombosPage />);
             case 'learn/sensory-profiles':
                 return protect(<SensoryProfilesPage />);
-            case 'learn/autolyse':
-                return protect(<AutolysePage />);
             case 'learn/references':
                 return protect(<ReferencesPage />);
             case 'profile':

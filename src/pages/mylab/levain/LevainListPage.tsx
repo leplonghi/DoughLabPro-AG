@@ -8,8 +8,8 @@ import { logEvent } from '@/services/analytics';
 import { exportLevainData, importLevainData } from '@/services/levainDataService';
 import { useToast } from '@/components/ToastProvider';
 import MyLabLayout from '../MyLabLayout';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
-import { canUseFeature } from '@/logic/permissions';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
 
 interface LevainListPageProps {
     onNavigate: (page: Page, params?: string) => void;
@@ -17,11 +17,13 @@ interface LevainListPageProps {
 
 const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
     const { t } = useTranslation();
-    const { user, levains, addLevain, importLevains: importLevainsToContext, hasProAccess, openPaywall } = useUser();
+    const { user, levains, addLevain, importLevains: importLevainsToContext, openPaywall } = useUser();
     const { addToast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const plan = getCurrentPlan(user);
 
     useEffect(() => {
         if (user) {
@@ -39,7 +41,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
     };
 
     const handleAddLevainClick = () => {
-        if (!canUseFeature(user, 'levain_multiple') && levains.length >= 1) {
+        if (!canUseFeature(plan, 'levain.lab_full') && levains.length >= 1) {
             openPaywall('levain');
             return;
         }
@@ -125,8 +127,8 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                        {levains.length >= 1 ? (
-                            <ProFeatureLock featureKey="levain_multiple" contextLabel="Multiple Levain Pets">
+                        {levains.length >= 1 && !canUseFeature(plan, 'levain.lab_full') ? (
+                            <ProFeatureLock featureKey="levain.lab_full" customMessage="Unlock unlimited Levain Pets with Lab Pro.">
                                 <button
                                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 transition-all opacity-50 cursor-not-allowed"
                                 >
@@ -204,14 +206,12 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                             )
                         })}
 
-                        {!canUseFeature(user, 'levain_multiple') && levains.length >= 1 && (
+                        {!canUseFeature(plan, 'levain.lab_full') && levains.length >= 1 && (
                             <ProFeatureLock
-                                origin="levain"
-                                featureKey="levain_multiple"
-                                contextLabel="Unlimited Levain Pets"
-                                className="h-full min-h-[11.25rem] rounded-2xl overflow-hidden"
+                                featureKey="levain.lab_full"
+                                customMessage="Unlock unlimited Levain Pets with Lab Pro."
                             >
-                                <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-lime-200 bg-lime-50/50 p-6 h-full">
+                                <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-lime-200 bg-lime-50/50 p-6 h-full min-h-[200px]">
                                     <div className="p-3 bg-lime-100 rounded-full text-lime-600 mb-3">
                                         <PlusCircleIcon className="h-8 w-8" />
                                     </div>

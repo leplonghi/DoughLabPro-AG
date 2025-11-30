@@ -7,6 +7,7 @@ import {
   FormErrors,
   CalculationMode,
   Levain,
+  FermentationTechnique,
 } from '@/types';
 import { DOUGH_STYLE_PRESETS } from '@/constants';
 import { STYLES_DATA, getStyleById, getAllowedFermentationTechniques } from '@/data/stylesData';
@@ -29,7 +30,7 @@ import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
 import StyleContextBar from '@/components/calculator/StyleContextBar';
 import { useUser } from '@/contexts/UserProvider';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
 interface CalculatorFormProps {
   config: DoughConfig;
@@ -73,6 +74,12 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   const { addToast } = useToast();
   const { userStyles } = useUser();
   const isBasic = calculatorMode === 'basic';
+
+  // Safety check: Prevent rendering if config is not properly initialized
+  if (!config || !config.recipeStyle || !config.bakeType) {
+    console.warn('[CalculatorForm] Config not properly initialized, skipping render:', config);
+    return <div className="p-4 text-center text-slate-500">Loading calculator...</div>;
+  }
 
   // State for presets
   const [presets, setPresets] = useState<{ name: string }[]>([]);
@@ -158,7 +165,13 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   );
 
   const allowedFermentationTechniques = useMemo(() => {
-    return getAllowedFermentationTechniques(config.recipeStyle, config.bakeType);
+    // Safety check: ensure config has required properties
+    if (!config || !config.recipeStyle || !config.bakeType) {
+      console.warn('[CalculatorForm] Invalid config for getAllowedFermentationTechniques:', config);
+      return [FermentationTechnique.DIRECT];
+    }
+    const techniques = getAllowedFermentationTechniques(config.recipeStyle, config.bakeType);
+    return Array.isArray(techniques) ? techniques : [FermentationTechnique.DIRECT];
   }, [config.recipeStyle, config.bakeType]);
 
   const getInputClasses = (hasError: boolean) =>
@@ -308,7 +321,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       </FormSection>
 
       {!isBasic && (
-        <ProFeatureLock origin="calculator" featureKey="calculator_advanced" contextLabel="Advanced Environment Controls">
+        <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Unlock advanced environment controls with Lab Pro.">
           <EnvironmentSection
             config={config}
             onConfigChange={onConfigChange}
@@ -320,7 +333,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
       {!isBasic && (
         <>
-          <ProFeatureLock origin="calculator" featureKey="calculator_advanced" contextLabel="Recipe Notes">
+          <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Keep detailed notes with Lab Pro.">
             <FormSection
               title="Notes"
               description="Log observations about this formula."
@@ -338,7 +351,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             </FormSection>
           </ProFeatureLock>
 
-          <ProFeatureLock origin="calculator" featureKey="calculator_advanced" contextLabel="Custom Presets">
+          <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Save your custom formulas with Lab Pro.">
             <FormSection
               title="Save Custom Preset"
               description="Save the current configuration for future use."

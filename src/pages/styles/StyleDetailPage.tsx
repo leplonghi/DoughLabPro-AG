@@ -14,10 +14,11 @@ import {
 } from '@/components/ui/Icons';
 import { AFFILIATE_PRODUCTS } from '@/data/affiliateLinks';
 import { Logo } from '@/components/ui/Logo';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import { useUser } from '@/contexts/UserProvider';
 import PDFExportButton from '@/components/ui/PDFExportButton';
 import ShareButton from '@/components/ui/ShareButton';
+import { allLearnArticles } from '@/data/learn';
 
 interface StyleDetailPageProps {
     style: DoughStyleDefinition;
@@ -72,6 +73,51 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
             </div>
         );
     };
+
+    const FormulaTable = () => (
+        <div className={`bg-slate-50 rounded-xl border border-slate-200 overflow-hidden`}>
+            <table className="w-full text-sm text-left">
+                <thead className="bg-slate-100 text-slate-500 uppercase text-xs">
+                    <tr>
+                        <th className="px-4 py-3">Ingredient</th>
+                        <th className="px-4 py-3 text-right">% (Baker's)</th>
+                    </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                    {style.ingredients.map(ing => (
+                        <tr key={ing.id}>
+                            <td className="px-4 py-3 font-medium text-slate-700">{ing.name}</td>
+                            <td className="px-4 py-3 text-right font-mono text-slate-600">{ing.bakerPercentage}%</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+
+    const TechnicalParams = () => (
+        <div className={`bg-slate-50 p-6 rounded-xl border border-slate-200`}>
+            <h3 className="font-bold text-slate-900 mb-4">Technical Parameters</h3>
+            <div className="space-y-4">
+                <div>
+                    <p className="text-xs text-slate-500 uppercase font-semibold">Hydration</p>
+                    <p className="text-xl font-bold text-slate-800">{style.technical.hydration}%</p>
+                </div>
+                <div>
+                    <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
+                        <ClockIcon className="h-3 w-3" /> Fermentation
+                    </p>
+                    <p className="text-base font-medium text-slate-800">{style.technical.fermentation}</p>
+                </div>
+                <div>
+                    <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
+                        <FireIcon className="h-3 w-3" /> Oven Temp
+                    </p>
+                    <p className="text-base font-medium text-slate-800">{style.technical.bakingTempC}°C</p>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <div className="mx-auto max-w-4xl animate-[fadeIn_0.3s_ease-in_out]">
@@ -168,30 +214,16 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 <BeakerIcon className="h-5 w-5 text-lime-500" />
                                 Base Formula
                             </h2>
-                            <ProFeatureLock
-                                origin="styles"
-                                contextLabel="Full style specs and baker's percentages are available in Pro."
-                                className={style.isPro && !hasProAccess ? "min-h-[200px] flex items-center justify-center" : ""}
-                            >
-                                <div className={`bg-slate-50 rounded-xl border border-slate-200 overflow-hidden ${style.isPro && !hasProAccess ? 'filter blur-sm pointer-events-none opacity-60' : ''}`}>
-                                    <table className="w-full text-sm text-left">
-                                        <thead className="bg-slate-100 text-slate-500 uppercase text-xs">
-                                            <tr>
-                                                <th className="px-4 py-3">Ingredient</th>
-                                                <th className="px-4 py-3 text-right">% (Baker's)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-slate-200">
-                                            {style.ingredients.map(ing => (
-                                                <tr key={ing.id}>
-                                                    <td className="px-4 py-3 font-medium text-slate-700">{ing.name}</td>
-                                                    <td className="px-4 py-3 text-right font-mono text-slate-600">{ing.bakerPercentage}%</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </ProFeatureLock>
+                            {style.isPro ? (
+                                <ProFeatureLock
+                                    featureKey="styles.full_access"
+                                    customMessage="Full style specs and baker's percentages are available in Pro."
+                                >
+                                    <FormulaTable />
+                                </ProFeatureLock>
+                            ) : (
+                                <FormulaTable />
+                            )}
                         </section>
 
                         {/* Notes & Risks */}
@@ -215,43 +247,66 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 )}
                             </section>
                         )}
+
+                        {/* Learn Foundations */}
+                        <section>
+                            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-4">
+                                <BookOpenIcon className="h-5 w-5 text-lime-500" />
+                                Learn Foundations
+                            </h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {allLearnArticles.filter(article =>
+                                    article.tags?.some(t => style.name.toLowerCase().includes(t.toLowerCase()) || style.category.toLowerCase().includes(t.toLowerCase())) ||
+                                    article.practicalApplications?.some(app => app.toLowerCase().includes(style.name.toLowerCase()))
+                                ).slice(0, 6).map(article => (
+                                    <a
+                                        key={article.id}
+                                        href={`#/learn/${encodeURIComponent(article.category)}/${article.id}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-lime-500/50 hover:shadow-md transition-all group"
+                                    >
+                                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 block">
+                                            {article.category}
+                                        </span>
+                                        <h4 className="font-bold text-slate-800 group-hover:text-lime-600 transition-colors mb-1 line-clamp-1">
+                                            {article.title}
+                                        </h4>
+                                        <p className="text-xs text-slate-500 line-clamp-2">
+                                            {article.subtitle}
+                                        </p>
+                                    </a>
+                                ))}
+                                {allLearnArticles.filter(article =>
+                                    article.tags?.some(t => style.name.toLowerCase().includes(t.toLowerCase()) || style.category.toLowerCase().includes(t.toLowerCase())) ||
+                                    article.practicalApplications?.some(app => app.toLowerCase().includes(style.name.toLowerCase()))
+                                ).length === 0 && (
+                                        <p className="text-sm text-slate-500 col-span-2 italic">
+                                            Explore our <a href="#/learn" className="text-lime-600 hover:underline">Learn Library</a> for general baking science.
+                                        </p>
+                                    )}
+                            </div>
+                        </section>
                     </div>
 
                     {/* Right Column: Parameters & Action */}
                     <div className="space-y-6">
-                        <ProFeatureLock
-                            origin="styles"
-                            contextLabel="Technical Parameters"
-                            className={style.isPro && !hasProAccess ? "min-h-[180px] flex items-center justify-center" : ""}
-                        >
-                            <div className={`bg-slate-50 p-6 rounded-xl border border-slate-200 ${style.isPro && !hasProAccess ? 'filter blur-sm pointer-events-none opacity-60' : ''}`}>
-                                <h3 className="font-bold text-slate-900 mb-4">Technical Parameters</h3>
-                                <div className="space-y-4">
-                                    <div>
-                                        <p className="text-xs text-slate-500 uppercase font-semibold">Hydration</p>
-                                        <p className="text-xl font-bold text-slate-800">{style.technical.hydration}%</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
-                                            <ClockIcon className="h-3 w-3" /> Fermentation
-                                        </p>
-                                        <p className="text-base font-medium text-slate-800">{style.technical.fermentation}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
-                                            <FireIcon className="h-3 w-3" /> Oven Temp
-                                        </p>
-                                        <p className="text-base font-medium text-slate-800">{style.technical.bakingTempC}°C</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </ProFeatureLock>
+                        {style.isPro ? (
+                            <ProFeatureLock
+                                featureKey="styles.full_access"
+                                customMessage="Technical Parameters"
+                            >
+                                <TechnicalParams />
+                            </ProFeatureLock>
+                        ) : (
+                            <TechnicalParams />
+                        )}
 
                         {style.isPro ? (
-                            <ProFeatureLock origin='styles' contextLabel={`Pro Style: ${style.name}`}>
+                            <ProFeatureLock featureKey="styles.full_access" customMessage={`Pro Style: ${style.name}`}>
                                 <button
-                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-300 py-4 px-6 text-lg font-bold text-white cursor-not-allowed no-print"
-                                    disabled
+                                    onClick={() => onLoadAndNavigate(style)}
+                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-4 px-6 text-lg font-bold text-white shadow-lg shadow-lime-200 transition-all hover:bg-lime-600 hover:-translate-y-1 active:translate-y-0 no-print"
                                 >
                                     <CalculatorIcon className="h-6 w-6" />
                                     Load into Calculator
@@ -289,6 +344,6 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };

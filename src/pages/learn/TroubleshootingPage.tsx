@@ -1,7 +1,7 @@
 import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { QuestionMarkCircleIcon, BookOpenIcon, WrenchScrewdriverIcon, BeakerIcon, LightBulbIcon } from '@/components/ui/Icons';
-import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { LearnCollapseSection as LearnSection } from './LearnComponents';
 
 // Local Section component for structuring content
 const TroubleshootingPage: React.FC = () => {

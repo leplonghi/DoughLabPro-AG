@@ -4,60 +4,66 @@ export const curedMeatsData: LearnArticleData = {
     id: 'cured-meats',
     title: 'Cured Meats: The Science of Preservation & Umami',
     subtitle: 'Understanding water activity (aw), protein hydrolysis, and the behavior of lipids under high heat.',
-    history: {
-        heading: "Survival Food to Delicacy",
-        paragraphs: [
-            "Curing meat was originally a survival necessity. Before refrigeration, salting and drying were the only ways to preserve the harvest of a pig slaughter through the winter. Every region in Italy developed its own specific style of salumi based on the local climate and available spices.",
-            "What began as peasant food evolved into a high-status delicacy. The specific microclimates of regions like Parma (for Prosciutto) or Calabria (for spicy Nduja) became legendary, with production methods protected by law (DOP).",
-            "On pizza, cured meats provide a concentrated burst of savory intensity. Understanding the history of a meat—whether it's a smoky American pepperoni or a delicate Italian speck—helps you respect its flavor profile and decide whether to cook it or serve it raw."
-        ]
-    },
-    sections: [
-        {
-            title: 'The Curing Mechanism',
-            content: [
-                'Curing is primarily a method of dehydration. By adding salt (and often nitrates/nitrites), we lower the water activity (aw) of the meat, making it inhospitable to spoilage bacteria.',
-                'This process also concentrates flavor. As water leaves, the relative proportion of proteins, fats, and minerals increases, creating an ingredient with significantly higher flavor intensity per gram than fresh meat.'
-            ]
-        },
-        {
-            title: 'Lipid Rendering & The "Cup" Effect',
-            content: [
-                'Cured meats are often high in fat. In a high-heat pizza oven, this fat renders (melts) rapidly. This liquid fat acts as a frying medium for the lean protein parts of the meat, creating crispy edges.',
-                'The "cupping" of pepperoni is a result of differential shrinkage. The casing (or collagen-rich exterior) shrinks faster than the interior, and the heat differential between the top (exposed) and bottom (insulated) forces the slice to curl upwards.'
-            ]
-        },
-        {
-            title: 'Glutamate Concentration (Umami)',
-            content: [
-                'Long-cured meats like Prosciutto di Parma or Jamón Ibérico undergo enzymatic proteolysis during aging. Enzymes break down proteins into free amino acids, including glutamic acid.',
-                'This free glutamate triggers the Umami receptors on the tongue, providing a savory depth that anchors the lighter flavors of cheese and dough.'
-            ]
-        },
-        {
-            title: 'Post-Bake vs. Pre-Bake',
-            content: [
-                'Delicate cured meats (Prosciutto, Culatello) should almost always be added POST-bake. Their fat melting point is low, and high oven heat will destroy their delicate volatile aromas and make them overly salty.',
-                'Robust cured meats (Pepperoni, Salami, Pancetta) benefit from baking, as the fat rendering and Maillard reaction on the meat surface add texture and flavor complexity.'
-            ]
-        }
+    category: 'Ingredient Science',
+    difficulty: 'Intermediate',
+    tags: ['toppings', 'cured-meats', 'umami', 'preservation'],
+
+    intro: "Cured meats provide a concentrated burst of savory intensity. Understanding the history of a meat—whether it's a smoky American pepperoni or a delicate Italian speck—helps you respect its flavor profile and decide whether to cook it or serve it raw.",
+
+    history: "Curing meat was originally a survival necessity. Before refrigeration, salting and drying were the only ways to preserve the harvest. What began as peasant food evolved into high-status delicacies like Prosciutto di Parma or spicy Nduja.",
+
+    technicalFoundations: [
+        "The Curing Mechanism: Dehydration lowers water activity (aw), preventing spoilage and concentrating flavor.",
+        "Lipid Rendering: High fat content renders rapidly in high heat, frying the lean protein.",
+        "Glutamate Concentration: Enzymatic proteolysis during aging creates free glutamate (Umami).",
+        "The 'Cup' Effect: Differential shrinkage between casing and interior causes curling."
     ],
-    proTip: {
-        content: 'If using a very fatty cured meat (like Guanciale), consider sweating it in a pan beforehand and using the rendered fat to brush the cornicione (crust) of the pizza before baking. This infuses the entire pie with flavor.'
-    },
-    criticalPoint: {
-        content: 'Salt Saturation. Cured meats are 3–5% salt by weight. If you load a pizza with pepperoni and prosciutto, you must adjust your dough or sauce salinity downwards, or the final product will be unpalatably salty.'
-    },
+
+    doughImpact: [
+        "High salt content in meats can impact overall pizza salinity balance.",
+        "Rendered fat can soak into the crust, affecting texture."
+    ],
+
+    bakingImpact: [
+        "Robust meats (Pepperoni, Salami) benefit from Maillard reaction and fat rendering during bake.",
+        "Delicate meats (Prosciutto) lose volatile aromas and become salty if baked."
+    ],
+
+    practicalRanges: [],
+
+    practicalApplications: [
+        "Add delicate cured meats (Prosciutto, Culatello) POST-bake to preserve texture and aroma.",
+        "Bake robust cured meats (Pepperoni, Pancetta) to render fat and crisp edges.",
+        "Adjust dough or sauce salinity downwards when using heavy cured meat toppings."
+    ],
+
+    proTips: [
+        "If using a very fatty cured meat (like Guanciale), consider sweating it in a pan beforehand and using the rendered fat to brush the cornicione (crust) of the pizza before baking."
+    ],
+
+    criticalPoints: [
+        "Salt Saturation: Cured meats are 3–5% salt by weight. Balance your recipe accordingly."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [],
+    variantsAndImplications: [],
+
     references: [
-        {
-            title: 'Modernist Cuisine: The Art and Science of Cooking',
-            author: 'Nathan Myhrvold',
-            year: '2011'
-        },
-        {
-            title: 'Salumi: The Craft of Italian Dry Curing',
-            author: 'Michael Ruhlman',
-            year: '2012'
-        }
-    ]
+        "Modernist Cuisine - Nathan Myhrvold (2011)",
+        "Salumi: The Craft of Italian Dry Curing - Michael Ruhlman (2012)"
+    ],
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
+        whatItDoes: "It adds a salty, savory punch to your pizza.",
+        howToUse: "Put the tough ones in the oven, but keep the fancy soft ones for after it's cooked.",
+        dangerSigns: "Don't use too much salt in your dough if you're using lots of salty meat!"
+    }
 };

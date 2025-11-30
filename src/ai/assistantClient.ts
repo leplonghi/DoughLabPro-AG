@@ -6,7 +6,15 @@ const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' }
 
 // This function builds a detailed system prompt for the AI model.
 function buildGeneralSystemPrompt(t: (key: string) => string): string {
-  return t('assistant.system_prompt');
+  return `${t('assistant.system_prompt')}
+
+  IMPORTANT: If the user mentions specific troubleshooting issues, you MUST recommend the relevant Learn article using the format: "Learn more: [Article Title](#/learn/troubleshooting/[article-id])".
+  - Sticky Dough -> [Sticky Dough](#/learn/troubleshooting/sticky-dough)
+  - Dense Crumb -> [Dense Crumb](#/learn/troubleshooting/dense-crumb)
+  - Pale Crust -> [Pale Crust](#/learn/troubleshooting/pale-crust)
+  - Weak Gluten -> [Weak Gluten Structure](#/learn/troubleshooting/weak-gluten-structure)
+  - Uneven Browning -> [Uneven Browning](#/learn/troubleshooting/uneven-browning)
+  `;
 }
 
 

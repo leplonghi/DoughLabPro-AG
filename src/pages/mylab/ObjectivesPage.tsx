@@ -5,6 +5,7 @@ import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import { SparklesIcon, PlusCircleIcon, CheckCircleIcon, TrashIcon, PencilIcon } from '@/components/ui/Icons';
 import GoalModal from '../../components/mylab/GoalModal';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
 interface SuggestedGoal {
     title: string;
@@ -106,55 +107,60 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
         <>
             <MyLabLayout activePage="mylab/objetivos" onNavigate={onNavigate}>
                 <div className="animate-fade-in">
-                    <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div>
-                            <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">My Goals</h1>
-                            <p className="mt-2 text-slate-600 ">Set small challenges to evolve your baking skills.</p>
+                    <ProFeatureLock
+                        featureKey="mylab.unlimited_advanced"
+                        customMessage="Unlock Goals to set challenges and track your baking progress with Lab Pro."
+                    >
+                        <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div>
+                                <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">My Goals</h1>
+                                <p className="mt-2 text-slate-600 ">Set small challenges to evolve your baking skills.</p>
+                            </div>
+                            <button onClick={() => handleOpenModal()} className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all hover:scale-105 active:scale-95">
+                                <PlusCircleIcon className="h-5 w-5" />
+                                Create New Goal
+                            </button>
                         </div>
-                        <button onClick={() => handleOpenModal()} className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all hover:scale-105 active:scale-95">
-                            <PlusCircleIcon className="h-5 w-5" />
-                            Create New Goal
-                        </button>
-                    </div>
 
-                    <div className="space-y-8">
-                        {/* AI Suggestions */}
-                        <div>
-                            <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-slate-900 ">
-                                <SparklesIcon className="h-5 w-5 text-lime-500" />
-                                AI Suggestions
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                {suggestions.map(sugg => (
-                                    <div key={sugg.title} className="rounded-2xl bg-slate-50  p-5 border border-slate-200  hover:border-lime-300 transition-colors">
-                                        <h4 className="font-bold text-sm text-slate-900 ">{sugg.title}</h4>
-                                        <p className="text-xs text-slate-600  mt-2 leading-relaxed">{sugg.description}</p>
-                                        <button onClick={() => handleQuickAddSuggestion(sugg)} className="mt-4 text-xs font-bold text-lime-600  hover:underline uppercase tracking-wider">Add goal</button>
+                        <div className="space-y-8">
+                            {/* AI Suggestions */}
+                            <div>
+                                <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-slate-900 ">
+                                    <SparklesIcon className="h-5 w-5 text-lime-500" />
+                                    AI Suggestions
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    {suggestions.map(sugg => (
+                                        <div key={sugg.title} className="rounded-2xl bg-slate-50  p-5 border border-slate-200  hover:border-lime-300 transition-colors">
+                                            <h4 className="font-bold text-sm text-slate-900 ">{sugg.title}</h4>
+                                            <p className="text-xs text-slate-600  mt-2 leading-relaxed">{sugg.description}</p>
+                                            <button onClick={() => handleQuickAddSuggestion(sugg)} className="mt-4 text-xs font-bold text-lime-600  hover:underline uppercase tracking-wider">Add goal</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Goals List */}
+                            <div>
+                                <div className="border-b border-slate-200  mb-6">
+                                    <nav className="-mb-px flex space-x-6" aria-label="Tabs">
+                                        <button onClick={() => setFilter('ativo')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'ativo' ? 'border-lime-500 text-lime-600 ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>Active</button>
+                                        <button onClick={() => setFilter('concluido')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'concluido' ? 'border-lime-500 text-lime-600 ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>Completed</button>
+                                    </nav>
+                                </div>
+
+                                {filteredGoals.length > 0 ? (
+                                    <div className="space-y-4">
+                                        {filteredGoals.map(goal => <GoalItem key={goal.id} goal={goal} />)}
                                     </div>
-                                ))}
+                                ) : (
+                                    <div className="text-center py-16 rounded-2xl border-2 border-dashed border-slate-200  bg-slate-50/50 ">
+                                        <p className="text-slate-500  font-medium">No {filter === 'ativo' ? 'active' : 'completed'} goals at the moment.</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
-
-                        {/* Goals List */}
-                        <div>
-                            <div className="border-b border-slate-200  mb-6">
-                                <nav className="-mb-px flex space-x-6" aria-label="Tabs">
-                                    <button onClick={() => setFilter('ativo')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'ativo' ? 'border-lime-500 text-lime-600 ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>Active</button>
-                                    <button onClick={() => setFilter('concluido')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'concluido' ? 'border-lime-500 text-lime-600 ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>Completed</button>
-                                </nav>
-                            </div>
-
-                            {filteredGoals.length > 0 ? (
-                                <div className="space-y-4">
-                                    {filteredGoals.map(goal => <GoalItem key={goal.id} goal={goal} />)}
-                                </div>
-                            ) : (
-                                <div className="text-center py-16 rounded-2xl border-2 border-dashed border-slate-200  bg-slate-50/50 ">
-                                    <p className="text-slate-500  font-medium">No {filter === 'ativo' ? 'active' : 'completed'} goals at the moment.</p>
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                    </ProFeatureLock>
                 </div>
             </MyLabLayout>
             <GoalModal

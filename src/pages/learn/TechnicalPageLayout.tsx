@@ -5,6 +5,7 @@ import { getAffiliateSuggestionsForTopic } from '@/logic/affiliateSuggestions';
 import { useUser } from '@/contexts/UserProvider';
 import PDFExportButton from '@/components/ui/PDFExportButton';
 import ShareButton from '@/components/ui/ShareButton';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
 
 interface TechnicalPageLayoutProps {
   title: string;
@@ -16,13 +17,19 @@ interface TechnicalPageLayoutProps {
 
 const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtitle, children, showReferencesSection = false, isPro = false }) => {
   const suggestion = useMemo(() => getAffiliateSuggestionsForTopic(title), [title]);
-  const { hasProAccess, openPaywall, toggleFavorite, isFavorite } = useUser();
+  const { user, openPaywall, toggleFavorite, isFavorite } = useUser();
+  const plan = getCurrentPlan(user);
 
   // Use current path as the unique ID for the article
   const articleId = typeof window !== 'undefined' ? window.location.pathname : title;
   const isFav = isFavorite(articleId);
 
-  const showTeaser = isPro && !hasProAccess;
+  // Legacy isPro prop handling - if strictly required by prop, check if user has plan
+  // But mostly we rely on ProFeatureLock inside children now.
+  // However, if isPro is passed as true, we might want to show teaser if user is not pro.
+  // Let's assume isPro means "requires lab_pro".
+  const hasAccess = canUseFeature(plan, 'learn.full_and_grandma'); // Approximation
+  const showTeaser = isPro && !hasAccess;
 
   const handleToggleFavorite = async () => {
     await toggleFavorite({
@@ -75,14 +82,14 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
         <div className="text-center sm:text-left border-b border-slate-100 pb-6 mb-6 print:border-none print:pb-0 print:mb-4">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h1>
           {subtitle && (
-            <p className="mt-4 text-lg text-slate-900">
+            <p className="mt-4 text-lg text-slate-700">
               {subtitle}
             </p>
           )}
 
           {/* Action Bar */}
           <div className="flex flex-wrap items-center gap-3 mt-6 no-print justify-center sm:justify-start">
-            {hasProAccess ? (
+            {canUseFeature(plan, 'export.pdf_json') ? (
               <PDFExportButton
                 targetId="technical-content"
                 label="Download PDF"
@@ -118,7 +125,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
             <div className="absolute bottom-0 left-0 w-full flex justify-center pb-8 z-10">
               <div className="text-center bg-white/90 p-6 rounded-xl border border-slate-200 shadow-lg backdrop-blur-sm max-w-md">
                 <h3 className="font-bold text-slate-900 text-lg mb-2">Upgrade to Pro to unlock the full advanced dough theory library.</h3>
-                <p className="text-slate-900 text-sm mb-4">Serious bakers choose Pro for deeper knowledge.</p>
+                <p className="text-slate-700 text-sm mb-4">Serious bakers choose Pro for deeper knowledge.</p>
                 <button
                   onClick={() => openPaywall('learn')}
                   className="bg-lime-500 text-white font-bold py-2 px-6 rounded-full hover:bg-lime-600 transition-colors flex items-center justify-center gap-2 mx-auto shadow-md"
@@ -136,11 +143,11 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
         )}
 
         {/* Soft Callout for Free Users on Free content */}
-        {!isPro && !hasProAccess && (
+        {!hasAccess && !showTeaser && (
           <div className="mt-12 p-6 bg-gradient-to-r from-slate-50 to-lime-50 rounded-xl border border-lime-100 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
             <div>
               <h4 className="font-bold text-slate-900">Want to go deeper?</h4>
-              <p className="text-sm text-slate-900">Pro unlocks expert-level techniques and insights.</p>
+              <p className="text-sm text-slate-700">Pro unlocks expert-level techniques and insights.</p>
             </div>
             <button
               onClick={() => openPaywall('learn')}
@@ -182,7 +189,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
               <BookOpenIcon className="h-6 w-6 text-lime-500" />
               <span>Technical References</span>
             </h2>
-            <p className="mt-4 text-sm text-slate-800 italic">
+            <p className="mt-4 text-sm text-slate-600 italic">
               The technical references on this page are based on verifiable sources (AVPN, King Arthur Baking, Serious Eats, scientific literature, etc.). No data is fabricated.
             </p>
           </div>

@@ -7,17 +7,17 @@ import { QuestionMarkCircleIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 interface TroubleshootingGuidePageProps {
-  onNavigate: (page: Page) => void;
+    onNavigate: (page: Page) => void;
 }
 
 const TroubleshootingGuidePage: React.FC<TroubleshootingGuidePageProps> = ({ onNavigate }) => {
     const topics = [
-        { page: 'learn/troubleshooting', title: 'Sticky Dough', description: 'Diagnosis and solutions for dough that is too soft and hard to handle.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
-        { page: 'learn/troubleshooting', title: 'Dry or Tearing Dough', description: 'Understand why the dough is not developing elasticity.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
-        { page: 'learn/troubleshooting', title: 'Under-fermentation', description: 'Causes and corrections for dough that doesn\'t rise as expected.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
-        { page: 'learn/troubleshooting', title: 'Pale Crust', description: 'Discover why your pizza is not browning in the oven.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
-        { page: 'learn/troubleshooting', title: 'Oily Cheese', description: 'The science behind "oil-out" and how to control it.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
-        { page: 'learn/troubleshooting', title: 'Soggy Center (Gum Line)', description: 'How to avoid the layer of dense raw dough under the topping.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
+        { page: 'learn/article/sticky-dough', title: 'Sticky Dough', description: 'Diagnosis and solutions for dough that is too soft and hard to handle.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
+        { page: 'learn/article/tough-dough', title: 'Dry or Tearing Dough', description: 'Understand why the dough is not developing elasticity.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
+        { page: 'learn/article/overproof-underproof', title: 'Under-fermentation', description: 'Causes and corrections for dough that doesn\'t rise as expected.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
+        { page: 'learn/article/pale-crust', title: 'Pale Crust', description: 'Discover why your pizza is not browning in the oven.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
+        { page: 'learn/article/low-moisture-cheeses', title: 'Oily Cheese', description: 'The science behind "oil-out" and how to control it.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
+        { page: 'learn/article/gummy-crumb', title: 'Soggy Center (Gum Line)', description: 'How to avoid the layer of dense raw dough under the topping.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
     ];
 
     return (

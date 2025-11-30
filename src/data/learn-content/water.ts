@@ -1,82 +1,102 @@
 import { LearnArticleData } from '@/types/learn';
 
-export const waterData: LearnArticleData = {
-    id: 'water',
-    title: 'Water: Hardness, pH & Chlorine',
-    subtitle: 'The invisible ingredient that makes up 40% of your dough mass.',
-    history: {
-        heading: "From Aqueducts to Filtration",
-        paragraphs: [
-            "Historically, bakers had to rely on whatever local water source was available, which heavily influenced regional bread styles. The hard, mineral-rich water of New York is often cited as a key factor in the texture of its famous bagels and pizza crusts, while softer water in other regions produced different results.",
-            "Before modern sanitation, water was often a source of contamination. The fermentation process and the baking heat were crucial for making grain-based foods safe to eat. Today, while safety isn't an issue, the chemical composition of tap water (chlorine, chloramines) has become a new challenge for the modern baker.",
-            "DoughLabPro encourages you to treat water as an ingredient, not just a utility. Understanding its mineral content and temperature is the first step towards consistent, professional-quality dough."
-        ]
-    },
-    sections: [
+export const waterArticle: LearnArticleData = {
+    id: "water-hydration-dynamics",
+    title: "Water & Hydration Dynamics",
+    subtitle: "Hydration controls gluten formation, extensibility, fermentation speed and final texture.",
+    category: "Ingredient Science",
+    difficulty: "Beginner",
+    tags: ["water", "hydration", "gluten", "fermentation"],
+
+    intro: "Water activates gluten-forming proteins, drives enzymatic activity, defines dough rheology and regulates fermentation. Its temperature directly determines dough temperature (DT), which is the primary driver of fermentation speed.",
+    history: "Traditional baking relied on ambient water sources with variable mineral content. Modern bakers understand water hardness, pH and temperature as critical variables affecting gluten development, fermentation and flavor.",
+
+    technicalFoundations: [
+        "Water hydrates gliadin and glutenin, enabling gluten networks to form.",
+        "Warmer water increases dough temperature (DT), speeding fermentation.",
+        "Hard water (high mineral content) strengthens gluten; soft water weakens it.",
+        "Hydration percentage defines dough viscosity, extensibility and gas retention."
+    ],
+
+    doughImpact: [
+        "Low hydration (50–58%) → tight, strong dough with limited extensibility.",
+        "Medium hydration (60–65%) → balanced handling, ideal for many pizza styles.",
+        "High hydration (68–80%+) → open crumb, high extensibility, but sticky handling.",
+        "Water temperature defines initial dough temperature (DT), controlling yeast activity."
+    ],
+
+    bakingImpact: [
+        "Higher hydration delays crust setting, allowing stronger oven spring.",
+        "Low hydration produces denser crumbs and crispier crusts.",
+        "Very high hydration encourages gelation and open, creamy crumb (e.g., focaccia)."
+    ],
+
+    practicalRanges: [
+        { label: "Neapolitan", notes: "Recommended: 62% (Range: 58-65%)" },
+        { label: "New York", notes: "Recommended: 65% (Range: 60-68%)" },
+        { label: "Roman (Pala/Taglio)", notes: "Recommended: 78% (Range: 70-85%)" },
+        { label: "Artisan Bread", notes: "Recommended: 75% (Range: 68-85%)" }
+    ],
+
+    practicalApplications: [
+        "Hydration slider adjusts flour absorption based on style selection in Calculator.",
+        "Water temperature input modifies the predicted dough temperature (DT).",
+        "Each style specifies hydration ranges aligned with traditional handling and final texture.",
+        "Run A/B hydration tests: 58% vs 62% vs 70% and compare structure in MyLab.",
+        "Hydration affects levain acid balance; higher hydration increases LAB activity.",
+        "Doughbot warns if hydration is too high for your flour type.",
+        "DT Calculator suggests exact water temperature to hit your fermentation curve."
+    ],
+
+    proTips: [
+        "Use water temperature—not yeast percentage—to control fermentation speed.",
+        "High hydration requires stronger flour and gentler handling.",
+        "If dough tears easily, reduce hydration or strengthen gluten through mixing."
+    ],
+
+    criticalPoints: [
+        "Hydration changes dramatically between flours. Never assume universal numbers.",
+        "Warm kitchens accelerate fermentation; adjust water temperature accordingly."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "DT (dough temperature) is the most sensitive fermentation parameter.",
+        "Protease and amylase activity increase with hydration and temperature.",
+        "Mineral content alters gluten strength significantly."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'Water Hardness (Mineral Content)',
-            content: [
-                'Hardness refers to calcium and magnesium ions.',
-                '• Too Soft: Dough is sticky, slack, and gluten is weak. (Minerals help cross-link gluten).',
-                '• Too Hard: Gluten is too tight/tough. Fermentation is slowed.',
-                '• Ideal: Moderately hard (100-150 ppm). Most bottled "Spring Water" is perfect.'
-            ]
+            variant: "Soft Water (Low Mineral)",
+            implications: "Water low in calcium and magnesium. Gentle on gluten, softer dough feel. Weaker gluten network; may require less hydration. Softer crumb, reduced chew. Recommended for Soft dough styles, Enriched doughs."
         },
         {
-            title: 'pH Levels',
-            content: [
-                'Yeast prefers a slightly acidic environment (pH 5-6).',
-                '• Alkaline Water (>7.5): Slows fermentation and can degrade gluten.',
-                '• Acidic Water (<5): Can make dough too tight initially.',
-                'Tap water is usually neutral to slightly alkaline.'
-            ]
+            variant: "Hard Water (High Mineral)",
+            implications: "High mineral content (Ca²⁺ / Mg²⁺). Strengthens gluten, firmer dough. Increases dough strength; can reduce extensibility if excessive. More chew, more structure. Recommended for NY-style, Bagels, High-strength doughs."
         },
         {
-            title: 'Chlorine & Chloramine',
-            content: [
-                'Municipal water is treated to kill bacteria. Yeast is a fungus, but chlorine can damage it.',
-                '• Chlorine: Evaporates if water sits out for 24h.',
-                '• Chloramine: Does NOT evaporate. Must be filtered (carbon filter) or neutralized (Campden tablet).',
-                'High chlorine levels can kill your sourdough starter or inhibit commercial yeast.'
-            ]
+            variant: "Temperature-Controlled Water",
+            implications: "Water used to set target dough temperature (DT). Direct control of fermentation speed. Consistent fermentation curves. Predictable oven spring and crust quality."
         }
     ],
-    proTip: {
-        content: 'Temperature Control. Water is the easiest variable to change to control final dough temperature (FDT). Use ice water in summer and warm water in winter to hit your target 24°C dough temp.'
-    },
-    criticalPoint: {
-        content: 'Reverse Osmosis Warning. RO water is completely stripped of minerals. It is "too pure." If using RO water, you may need to add a pinch of mineral salt or mix it with spring water to restore the ions needed for gluten structure.'
-    },
+
     references: [
-        {
-            title: 'Water Quality & Baking',
-            link: 'https://www.kingarthurbaking.com/blog/2019/02/19/water-for-bread-baking'
-        },
-        {
-            title: 'Modernist Bread',
-            author: 'Nathan Myhrvold',
-            year: '2017'
-        },
-        {
-            title: 'Water in Foods',
-            author: 'P. Fito & A. Chiralt',
-            year: '1994'
-        },
-        {
-            title: 'The Baker\'s Manual',
-            author: 'Joseph Amendola',
-            year: '2001'
-        },
-        {
-            title: 'Handbook of Food Science, Technology, and Engineering',
-            author: 'Y.H. Hui',
-            year: '2006'
-        },
-        {
-            title: 'Journal of Agricultural and Food Chemistry',
-            author: 'ACS Publications',
-            year: 'Various'
-        }
+        "Suas, M. Advanced Bread and Pastry.",
+        "Calvel, R. The Taste of Bread.",
+        "Hamelman, J. Bread."
     ],
-    affiliatePlacementKeys: ['learn_hydration_context']
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Honey, water is like the 'wake-up call' for your flour. Without it, nothing happens.",
+        whatItDoes: "More water makes a softer, airier dough. Less water makes a firmer, easier-to-handle dough.",
+        howToUse: "When you add water, the flour comes alive — it stretches, gets soft, and starts forming the dough’s structure.",
+        dangerSigns: "If the dough sticks too much to your fingers, don't worry — wetter doughs just need gentle hands and a little patience."
+    }
 };

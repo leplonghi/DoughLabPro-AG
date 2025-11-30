@@ -5,7 +5,8 @@ import ChoiceButton from '@/components/ui/ChoiceButton';
 import FormSection from '@/components/calculator/AccordionSection';
 import SliderInput from '@/components/ui/SliderInput';
 import { FermentationIcon, LockClosedIcon, InfoIcon } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { getArticleById } from '@/data/learn';
 
 interface FermentationSectionProps {
   config: DoughConfig;
@@ -26,8 +27,10 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
   errors,
   hasProAccess,
   onOpenPaywall,
-  allowedTechniques,
+  allowedTechniques = [],
 }) => {
+  const safeAllowedTechniques = Array.isArray(allowedTechniques) ? allowedTechniques : [];
+
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     onConfigChange({ [name]: Number(value) });
@@ -39,11 +42,11 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
     }
   };
 
-  const isAllowed = (tech: FermentationTechnique) => allowedTechniques.includes(tech);
+  const isAllowed = (tech: FermentationTechnique) => safeAllowedTechniques.includes(tech);
 
   // If the style only allows Chemical or No Ferment, we simplify the UI
-  const isChemicalOrNoFermentOnly = allowedTechniques.length === 1 &&
-    (allowedTechniques[0] === FermentationTechnique.CHEMICAL || allowedTechniques[0] === FermentationTechnique.NO_FERMENT);
+  const isChemicalOrNoFermentOnly = safeAllowedTechniques.length === 1 &&
+    (safeAllowedTechniques[0] === FermentationTechnique.CHEMICAL || safeAllowedTechniques[0] === FermentationTechnique.NO_FERMENT);
 
   if (isChemicalOrNoFermentOnly) {
     return (
@@ -54,7 +57,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
       >
         <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 text-center">
           <p className="text-sm font-medium text-slate-700">
-            {allowedTechniques[0] === FermentationTechnique.CHEMICAL ? 'Chemical Leavening (Baking Powder/Soda)' : 'No Fermentation / Physical Leavening'}
+            {safeAllowedTechniques[0] === FermentationTechnique.CHEMICAL ? 'Chemical Leavening (Baking Powder/Soda)' : 'No Fermentation / Physical Leavening'}
           </p>
           <p className="text-xs text-slate-500 mt-1">
             This style does not use yeast fermentation.
@@ -92,7 +95,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
             </div>
 
             <div className="relative group">
-              <ProFeatureLock featureKey="calculator_preferments" contextLabel="Poolish Preferment">
+              <ProFeatureLock featureKey="calculator.preferments_advanced" customMessage="Poolish Preferment is a Pro feature.">
                 <ChoiceButton
                   active={config.fermentationTechnique === FermentationTechnique.POOLISH}
                   onClick={() => isAllowed(FermentationTechnique.POOLISH) && onConfigChange({ fermentationTechnique: FermentationTechnique.POOLISH })}
@@ -108,7 +111,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
             </div>
 
             <div className="relative group">
-              <ProFeatureLock featureKey="calculator_preferments" contextLabel="Biga Preferment">
+              <ProFeatureLock featureKey="calculator.preferments_advanced" customMessage="Biga Preferment is a Pro feature.">
                 <ChoiceButton
                   active={config.fermentationTechnique === FermentationTechnique.BIGA}
                   onClick={() => isAllowed(FermentationTechnique.BIGA) && onConfigChange({ fermentationTechnique: FermentationTechnique.BIGA })}
@@ -124,7 +127,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
             </div>
           </div>
 
-          {!allowedTechniques.includes(FermentationTechnique.POOLISH) && !allowedTechniques.includes(FermentationTechnique.BIGA) && (
+          {!safeAllowedTechniques.includes(FermentationTechnique.POOLISH) && !safeAllowedTechniques.includes(FermentationTechnique.BIGA) && (
             <p className="text-xs text-center text-slate-500 mt-2 italic">
               Preferments (Poolish/Biga) are not typically used for this style.
             </p>
@@ -155,6 +158,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 unit="%"
                 tooltip="Percentage of total flour to use in the preferment."
                 hasError={!!errors.prefermentFlourPercentage}
+                learnArticle={getArticleById('preferments-overview')}
               />
             </div>
           )}

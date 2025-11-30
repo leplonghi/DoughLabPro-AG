@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
 import { BeakerIcon, LightBulbIcon, SparklesIcon } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
 const DoughbotPage: React.FC = () => {
   const [problem, setProblem] = useState('');
@@ -28,7 +28,7 @@ const DoughbotPage: React.FC = () => {
       subtitle="Analyze your dough, understand what to adjust."
       showReferencesSection
     >
-      <ProFeatureLock origin="tools" featureKey="tools_doughbot" contextLabel="Doughbot AI Diagnostics">
+      <ProFeatureLock featureKey="tools.doughbot" customMessage="Unlock AI-powered dough diagnostics with Lab Pro.">
         <div className="space-y-8 animate-fade-in">
           {/* Input Section */}
           <div className="rounded-2xl border border-slate-200  bg-slate-50  p-6">

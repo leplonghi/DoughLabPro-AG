@@ -19,7 +19,8 @@ import {
   LockClosedIcon,
 } from '@/components/ui/Icons';
 import { timeSince } from '@/helpers';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { getArticleById } from '@/data/learn';
 
 interface IngredientsSectionProps {
   config: DoughConfig;
@@ -153,6 +154,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.hydration}
             recommendedMin={getRange('hydration')?.[0]}
             recommendedMax={getRange('hydration')?.[1]}
+            learnArticle={getArticleById('water')}
           />
           <SliderInput
             label="Salt"
@@ -164,6 +166,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.salt}
             recommendedMin={getRange('salt')?.[0]}
             recommendedMax={getRange('salt')?.[1]}
+            learnArticle={getArticleById('salt')}
           />
           <SliderInput
             label="Oil/Fat"
@@ -175,6 +178,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.oil}
             recommendedMin={getRange('oil')?.[0]}
             recommendedMax={getRange('oil')?.[1]}
+            learnArticle={getArticleById('fats')}
           />
           <SliderInput
             label="Sugar"
@@ -186,6 +190,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.sugar}
             recommendedMin={getRange('sugar')?.[0]}
             recommendedMax={getRange('sugar')?.[1]}
+            learnArticle={getArticleById('sugars')}
           />
         </>
       )}
@@ -198,7 +203,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
               {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.labelKey}</option>))}
             </select>
           </div>
-          <SliderInput label={isAnySourdough ? "Starter %" : "Yeast %"} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip="Determines fermentation speed. Adjust based on time and temperature. Less yeast = longer fermentation = more flavor." hasError={!!errors.yeastPercentage} />
+          <SliderInput label={isAnySourdough ? "Starter %" : "Yeast %"} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip="Determines fermentation speed. Adjust based on time and temperature. Less yeast = longer fermentation = more flavor." hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeasts')} />
         </div>
 
         {isAnySourdough && (
@@ -263,16 +268,45 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             )}
           </div>
         )}
-      </div>
 
-      {!isBasic && config.ingredients && (
-        <ProFeatureLock origin="calculator" featureKey="calculator_advanced" contextLabel="Advanced Ingredient Management">
-          <IngredientTableEditor
-            ingredients={config.ingredients}
-            onChange={handleIngredientsUpdate}
-          />
-        </ProFeatureLock>
-      )}
+        <div className="mt-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+              <CubeIcon className="h-5 w-5 text-slate-400" />
+              Advanced Ingredients
+            </h3>
+            <ProFeatureLock
+              featureId="calculator_advanced"
+              hasAccess={hasProAccess}
+              onOpenPaywall={onOpenPaywall}
+              label="Unlock Advanced Ingredients"
+            >
+              <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
+                {config.ingredients?.length || 0} active
+              </span>
+            </ProFeatureLock>
+          </div>
+
+          <div className={`relative ${!hasProAccess ? 'opacity-60 pointer-events-none select-none' : ''}`}>
+            {!hasProAccess && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-slate-50/50 backdrop-blur-[1px] rounded-xl">
+                <button
+                  onClick={onOpenPaywall}
+                  className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-lg font-bold shadow-lg hover:scale-105 transition-transform"
+                >
+                  <LockClosedIcon className="h-4 w-4" />
+                  Unlock Pro Ingredients
+                </button>
+              </div>
+            )}
+            <IngredientTableEditor
+              ingredients={config.ingredients || []}
+              onChange={handleIngredientsUpdate}
+              totalFlour={1000} // Placeholder, calculation handles real value
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

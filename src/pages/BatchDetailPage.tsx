@@ -24,7 +24,9 @@ import { saveCommunityBatch, deleteCommunityBatch } from '@/data/communityStore'
 import { uploadImage } from '@/services/storageService';
 import { FLOURS } from '@/flours-constants';
 import { exportBatchToPDF } from '@/services/exportService';
-import { canUseFeature } from '@/logic/permissions';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
+import { allLearnArticles } from '@/data/learn';
+import { BookOpenIcon } from '@/components/ui/Icons';
 
 interface BatchDetailPageProps {
     batchId: string | null;
@@ -140,6 +142,8 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const [isUploading, setIsUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    const userPlan = getCurrentPlan(user);
+
     const handlePhotoSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0] && editableBatch) {
             const file = e.target.files[0];
@@ -185,6 +189,17 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
             await updateBatch(editableBatch);
 
             if (editableBatch.isPublic) {
+                // Check permission for publishing
+                if (!canUseFeature(userPlan, 'community.share_and_clone')) {
+                    // If they don't have permission, we shouldn't be here ideally, but if they are,
+                    // we could revert or just warn.
+                    // For now, we'll assume the toggle prevents this state, but if it happens, we proceed
+                    // or we could throw/return.
+                    // Let's enforce it:
+                    addToast('Publishing requires Lab Pro', 'error');
+                    return;
+                }
+
                 const communityVersion: CommunityBatch = {
                     id: editableBatch.id,
                     ownerDisplayName: user?.name || t('batch_detail.anonymous'),
@@ -198,6 +213,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                     bakingTempC: editableBatch.doughConfig.bakingTempC,
                     photoUrl: editableBatch.photoUrl,
                     thumbnailUrl: editableBatch.photoUrl,
+                    ovenType: editableBatch.ovenType,
                 };
                 await saveCommunityBatch(communityVersion);
             } else {
@@ -212,7 +228,9 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const handleDuplicate = async () => {
         if (!editableBatch) return;
         const savedBatches = batches.filter(b => b.status !== BatchStatus.DRAFT);
-        if (!canUseFeature(user, 'mylab_unlimited') && savedBatches.length >= 3) {
+
+        // Check limit for free users (e.g. 3 batches)
+        if (!canUseFeature(userPlan, 'mylab.unlimited_advanced') && savedBatches.length >= 3) {
             openPaywall('mylab');
             return;
         }
@@ -237,7 +255,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     };
 
     const handleExportPDF = () => {
-        if (!canUseFeature(user, 'exports_pdf')) {
+        if (!canUseFeature(userPlan, 'export.pdf_json')) {
             openPaywall('mylab');
             return;
         }
@@ -247,6 +265,20 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
         } catch (e) {
             addToast('Could not export PDF at this time.', 'error');
         }
+    };
+
+    const handleTogglePublic = () => {
+        if (!editableBatch) return;
+
+        if (!editableBatch.isPublic) {
+            // Trying to make public -> Check permission
+            if (!canUseFeature(userPlan, 'community.share_and_clone')) {
+                openPaywall('community');
+                return;
+            }
+        }
+
+        setEditableBatch({ ...editableBatch, isPublic: !editableBatch.isPublic });
     };
 
     if (!editableBatch) {
@@ -338,6 +370,66 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
 
                 {/* Sidebar */}
                 <div className="w-full lg:w-1/3 space-y-6 lg:sticky lg:top-24">
+                    {/* Related Learn Insights */}
+                    <div className="rounded-2xl bg-gradient-to-br from-lime-50 to-white p-6 shadow-sm border border-lime-100">
+                        <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-lime-900">
+                            <BookOpenIcon className="h-5 w-5 text-lime-600" />
+                            {t('batch_detail.learn_insights', { defaultValue: 'Related Insights' })}
+                        </h3>
+                        <div className="space-y-3">
+                            {allLearnArticles.filter(article => {
+                                const config = editableBatch.doughConfig;
+
+                                // Use new schema fields: practicalApplications, tags, etc.
+                                const articleTags = article.tags || [];
+                                const practicalApps = article.practicalApplications || [];
+
+                                // Match based on practical applications and tags
+                                if (config.hydration > 65 && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('hydration')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('hydration')) ||
+                                    article.id.includes('hydration') || article.id.includes('water')
+                                )) return true;
+
+                                if ((editableBatch.bulkTimeHours || 0) > 4 && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('fermentation')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('fermentation')) ||
+                                    article.id.includes('fermentation')
+                                )) return true;
+
+                                if (['sourdough', 'levain'].includes(config.yeastType) && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('sourdough')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('sourdough')) ||
+                                    article.id.includes('sourdough')
+                                )) return true;
+
+                                if (editableBatch.ovenType && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('baking')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('baking')) ||
+                                    article.id.includes('baking')
+                                )) return true;
+
+                                // Fallback matches by ID
+                                if (article.id === 'water' || article.id.includes('fermentation-basics')) return true;
+                                return false;
+                            }).slice(0, 4).map(article => (
+                                <a
+                                    key={article.id}
+                                    href={`#/learn/${encodeURIComponent(article.category)}/${article.id}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block p-3 bg-white rounded-xl border border-lime-100 hover:border-lime-300 hover:shadow-md transition-all group"
+                                >
+                                    <h4 className="font-bold text-sm text-slate-800 group-hover:text-lime-700 transition-colors line-clamp-1">
+                                        {article.title}
+                                    </h4>
+                                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                                        {article.subtitle}
+                                    </p>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
                     <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
                         <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.rating')}</h3>
                         <div className="flex items-center justify-center gap-1">
@@ -392,7 +484,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                     Publish to Community
                                 </span>
                                 <button
-                                    onClick={() => setEditableBatch({ ...editableBatch, isPublic: !editableBatch.isPublic })}
+                                    onClick={handleTogglePublic}
                                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${editableBatch.isPublic ? 'bg-lime-500' : 'bg-slate-300'}`}
                                 >
                                     <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${editableBatch.isPublic ? 'translate-x-6' : 'translate-x-1'}`} />

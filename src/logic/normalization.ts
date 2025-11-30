@@ -9,7 +9,7 @@ import { getAllowedFermentationTechniques } from '../data/stylesData';
  * - Ensures YeastType consistency if technique is Sourdough.
  */
 export function normalizeDoughConfig(config: DoughConfig): DoughConfig {
-  const allowedTechniques = getAllowedFermentationTechniques(config.recipeStyle, config.bakeType);
+  const allowedTechniques = getAllowedFermentationTechniques(config.recipeStyle, config.bakeType) || [];
 
   let newTechnique = config.fermentationTechnique;
   let newYeastType = config.yeastType;
@@ -27,32 +27,33 @@ export function normalizeDoughConfig(config: DoughConfig): DoughConfig {
       newYeastType = YeastType.SOURDOUGH_STARTER;
     }
   } else if (newTechnique === FermentationTechnique.CHEMICAL || newTechnique === FermentationTechnique.NO_FERMENT) {
-     // For chemical/no ferment, yeast type is less relevant but should not be Sourdough
-     if (newYeastType === YeastType.SOURDOUGH_STARTER || newYeastType === YeastType.USER_LEVAIN) {
-         newYeastType = YeastType.IDY;
-     }
+    // For chemical/no ferment, yeast type is less relevant but should not be Sourdough
+    if (newYeastType === YeastType.SOURDOUGH_STARTER || newYeastType === YeastType.USER_LEVAIN) {
+      newYeastType = YeastType.IDY;
+    }
   } else {
-     // Direct, Poolish, Biga
-     // If we are switching FROM Sourdough to Direct/Poolish/Biga, we must switch yeast type to commercial
-     // unless the user specifically wants hybrid (which we treat as Sourdough technique usually).
-     // For simplicity in this strict model:
-     if (newYeastType === YeastType.SOURDOUGH_STARTER || newYeastType === YeastType.USER_LEVAIN) {
-         // If config says Poolish but yeast is Sourdough -> Invalid state for standard Poolish.
-         // Force yeast to IDY for standard preferments
-         newYeastType = YeastType.IDY; 
-     }
+    // Direct, Poolish, Biga
+    // If we are switching FROM Sourdough to Direct/Poolish/Biga, we must switch yeast type to commercial
+    // unless the user specifically wants hybrid (which we treat as Sourdough technique usually).
+    // For simplicity in this strict model:
+    if (newYeastType === YeastType.SOURDOUGH_STARTER || newYeastType === YeastType.USER_LEVAIN) {
+      // If config says Poolish but yeast is Sourdough -> Invalid state for standard Poolish.
+      // Force yeast to IDY for standard preferments
+      newYeastType = YeastType.IDY;
+    }
   }
-  
+
   // 3. Specific overrides for Cookie/Pastry
   if (config.bakeType === BakeType.SWEETS_PASTRY) {
-      if (config.recipeStyle.includes('COOKIE') || config.recipeStyle.includes('PATE')) {
-          // Force no ferment/chemical
-          if (newTechnique !== FermentationTechnique.CHEMICAL && newTechnique !== FermentationTechnique.NO_FERMENT) {
-               newTechnique = allowedTechniques.includes(FermentationTechnique.CHEMICAL) 
-                ? FermentationTechnique.CHEMICAL 
-                : FermentationTechnique.NO_FERMENT;
-          }
+    const styleStr = config.recipeStyle || '';
+    if (styleStr.includes('COOKIE') || styleStr.includes('PATE')) {
+      // Force no ferment/chemical
+      if (newTechnique !== FermentationTechnique.CHEMICAL && newTechnique !== FermentationTechnique.NO_FERMENT) {
+        newTechnique = allowedTechniques.includes(FermentationTechnique.CHEMICAL)
+          ? FermentationTechnique.CHEMICAL
+          : FermentationTechnique.NO_FERMENT;
       }
+    }
   }
 
   return {

@@ -5,7 +5,7 @@ import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import { FLOURS } from '../../flours-constants';
 import { CalculatorIcon, ExclamationCircleIcon } from '../../components/ui/Icons';
-import { ProFeatureLock } from '../../components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
 interface CompareRecipesPageProps {
     onNavigate: (page: Page, params?: string) => void;

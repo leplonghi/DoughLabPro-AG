@@ -1,76 +1,93 @@
 import { LearnArticleData } from '@/types/learn';
 
-export const sugarsData: LearnArticleData = {
-    id: 'sugars',
-    title: 'Sugars: Fuel, Color & Tenderness',
-    subtitle: 'The multiple roles of simple carbohydrates in dough rheology and baking.',
-    history: {
-        heading: "Honey, Molasses, and Refinement",
-        paragraphs: [
-            "Before the industrial refinement of sugar cane and beets, bakers relied on honey, fruit juices, or malted grains to sweeten and enrich their doughs. The Egyptians used honey in their breads, while medieval Europeans often used ale barm (rich in maltose) as both a leavening agent and a sweetener.",
-            "The widespread availability of refined white sugar in the 19th century changed baking forever, allowing for consistent, high-sugar doughs that were previously impossible to manage. However, in the world of artisan pizza and bread, we often look back to malt (sprouted grains) as the superior 'sugar' for its enzymatic benefits.",
-            "Understanding the source of your sugar—whether it's the simple sucrose of table sugar or the complex enzymatic package of diastatic malt—is key to controlling the color and fermentation rate of your final product."
-        ]
-    },
-    sections: [
+export const sugarsArticle: LearnArticleData = {
+    id: "sugars-enzymatic-activity",
+    title: "Sugars & Enzymatic Activity",
+    subtitle: "How sugars, amylase and fermentation chemistry shape browning, flavor and gas production.",
+    category: "Ingredient Science",
+    difficulty: "Advanced",
+    tags: ["sugars", "enzymes", "browning", "fermentation"],
+
+    intro: "Sugars influence fermentation speed, browning, flavor complexity and dough softness. Endogenous starch enzymes (amylases) convert starch into fermentable sugars that fuel yeast activity and improve crust coloration.",
+    history: "Traditional breads relied solely on natural enzymatic sugar release. Modern baking introduced added sugars for enriched doughs, color control and fermentation balance.",
+
+    technicalFoundations: [
+        "Yeast primarily consumes simple sugars: glucose, fructose and maltose.",
+        "Amylase enzymes (α-amylase and β-amylase) convert starch into maltose.",
+        "Added sugars increase fermentation rate and browning.",
+        "Excess sugar competes for water, tightening gluten and slowing hydration."
+    ],
+
+    doughImpact: [
+        "Low sugar = mild fermentation and light browning.",
+        "Moderate sugar enhances softness and fermentation stability.",
+        "High sugar (>10%) slows yeast due to osmotic pressure.",
+        "Enzyme-rich flours produce more fermentable sugars naturally."
+    ],
+
+    bakingImpact: [
+        "More maltose = stronger Maillard reaction and deeper crust color.",
+        "Added sugars caramelize, improving flavor and aroma.",
+        "Sugar-rich dough browns faster and risks burning at high temperatures."
+    ],
+
+    practicalRanges: [
+        { label: "Lean Doughs (Pizza/Bread)", notes: "Recommended: 1% (Range: 0-2%)" },
+        { label: "Enriched Doughs", notes: "Recommended: 6% (Range: 3-10%)" },
+        { label: "Sweet Doughs", notes: "Recommended: 14% (Range: 10-20%)" }
+    ],
+
+    practicalApplications: [
+        "Doughbot adjusts fermentation predictions when sugar >5%.",
+        "Warn users if sugar is too high for high-temperature baking.",
+        "Roman and NY styles may use small sugar percentages.",
+        "Compare 0%, 1% and 3% sugar batches to track crust color changes in MyLab.",
+        "Levain fermentation is sensitive to excess sugar; use minimal amounts.",
+        "Color predictor uses sugar %, malt presence and oven style."
+    ],
+
+    proTips: [
+        "Use malt powder for controlled browning without excessive sweetness.",
+        "Monitor sugar levels for high-heat ovens (Neapolitan)."
+    ],
+
+    criticalPoints: [
+        "Too much sugar slows yeast dramatically.",
+        "Different sugars caramelize at different temperatures."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "Sugars strongly affect browning.",
+        "High sugar impacts dough hydration and fermentation curves."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'Yeast Food vs. Residual Sugar',
-            content: [
-                'Yeast consumes simple sugars (glucose, fructose, maltose).',
-                '• Fermentation Fuel: The sugar consumed creates CO₂ (rise) and alcohol (flavor).',
-                '• Residual Sugar: The sugar LEFT OVER after fermentation is what browns the crust (Maillard/Caramelization).',
-                'If fermentation goes too long, yeast eats all the sugar. The result is a "pale" crust that refuses to brown, even at high heat.'
-            ]
+            variant: "Natural Starch Sugars",
+            implications: "Sugars released from flour through enzymatic activity. Driven by amylase, varies by flour type. Stronger fermentation in whole grains. Naturally darker crusts."
         },
         {
-            title: 'Diastatic Malt (Enzymatic Sugar)',
-            content: [
-                'Diastatic malt contains active amylase enzymes. Adding it to flour converts the flour\'s own starch into sugar continuously. This ensures a steady supply of food for yeast AND residual sugar for browning, even in long fermentations.'
-            ]
-        },
-        {
-            title: 'Hygroscopy (Moisture Retention)',
-            content: [
-                'Sugar loves water (hygroscopic). High-sugar doughs (like brioche or some American pizza styles) hold onto moisture better, resulting in a softer crumb and longer shelf life.'
-            ]
+            variant: "Added Sugars",
+            implications: "Granulated sugar, honey, malt syrup. Fuel for yeast, enhances softness. Can slow hydration if excessive. Promotes caramelization."
         }
     ],
-    proTip: {
-        content: 'Honey vs. Sugar. Honey is invert sugar (glucose + fructose) and is more hygroscopic than sucrose (table sugar). It creates a softer, moister crumb and browns faster. Adjust oven temp down by 10-15°C if swapping sugar for honey.'
-    },
-    criticalPoint: {
-        content: 'The 2% Limit for High Heat. In a Neapolitan oven (450°C+), any added sugar will burn instantly before the dough cooks. Sugar is strictly for ovens below 350°C (Home ovens, NY Deck ovens).'
-    },
+
     references: [
-        {
-            title: 'How Baking Works',
-            author: 'Paula Figoni',
-            year: '2010'
-        },
-        {
-            title: 'The Bread Baker\'s Apprentice',
-            author: 'Peter Reinhart',
-            year: '2001'
-        },
-        {
-            title: 'Sweeteners and Sugar Alternatives in Food Technology',
-            author: 'Kay O\'Donnell',
-            year: '2012'
-        },
-        {
-            title: 'Understanding Baking',
-            author: 'Joseph Amendola',
-            year: '2003'
-        },
-        {
-            title: 'Modernist Bread',
-            author: 'Nathan Myhrvold',
-            year: '2017'
-        },
-        {
-            title: 'Journal of Food Science',
-            author: 'IFT',
-            year: 'Various'
-        }
-    ]
+        "Calvel, R. The Taste of Bread.",
+        "Hamelman, J. Bread."
+    ],
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Sweetheart, sugar is like a little energy snack for your dough.",
+        whatItDoes: "It speeds up the yeast and adds color and softness.",
+        howToUse: "A bit of sugar helps the dough grow and makes the crust golden.",
+        dangerSigns: "Too much sugar makes the dough heavy and slow. And be careful — sugary dough burns faster in the oven."
+    }
 };

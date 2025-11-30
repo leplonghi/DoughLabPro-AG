@@ -51,5 +51,5 @@ export const getProductsForPlacement = (placementId: string) => {
     if (!placement) return [];
     return placement.productIds
         .map(id => AFFILIATE_PRODUCTS.find(p => p.id === id))
-        .filter(Boolean);
+        .filter((p): p is typeof AFFILIATE_PRODUCTS[0] => !!p);
 };

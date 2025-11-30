@@ -45,7 +45,8 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, Plan> = {
 
 export function getUserPlan(user: User | null): "free" | "pro" {
     if (!user) return "free";
-    return user.plan ?? "free";
+    if (user.plan === 'pro' || user.plan === 'lab_pro') return 'pro';
+    return "free";
 }
 
 export function canUseFeature(user: User | null, featureKey: FeatureKey): boolean {

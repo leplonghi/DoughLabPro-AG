@@ -14,6 +14,7 @@ export interface OvenAnalysisResult {
   preheatAdvice: string[];
   bakingStrategy: string[];
   doughAdjustments: string[];
+  recommendedArticles: { id: string; reason: string }[];
 }
 
 export interface OvenValidationResult {
@@ -56,6 +57,7 @@ export function analyzeOvenProfile(input: OvenProfileInput): OvenAnalysisResult 
     preheatAdvice: [],
     bakingStrategy: [],
     doughAdjustments: [],
+    recommendedArticles: [],
   };
 
   // --- 1. Summary & General Categorization ---
@@ -82,11 +84,11 @@ export function analyzeOvenProfile(input: OvenProfileInput): OvenAnalysisResult 
         result.preheatAdvice.push("Your preheat time is good. A saturated stone/steel ensures the bottom cooks as fast as the top.");
       }
     } else {
-        result.preheatAdvice.push("Without a stone or steel, preheat is less critical for thermal mass, but ensuring the air temp is stable is still key (20-30 mins).");
+      result.preheatAdvice.push("Without a stone or steel, preheat is less critical for thermal mass, but ensuring the air temp is stable is still key (20-30 mins).");
     }
 
     if (convectionMode) {
-        result.preheatAdvice.push("Convection helps preheat faster, but ensure the stone/steel core temp has caught up to the air temp.");
+      result.preheatAdvice.push("Convection helps preheat faster, but ensure the stone/steel core temp has caught up to the air temp.");
     }
   }
 
@@ -108,20 +110,20 @@ export function analyzeOvenProfile(input: OvenProfileInput): OvenAnalysisResult 
   }
 
   if (ovenType === 'home_electric' || ovenType === 'home_gas') {
-     if (rackPosition === 'top' && surface !== 'none') {
-         result.bakingStrategy.push("Top rack is good for radiant heat (browning), but ensure your stone gets enough heat from below.");
-     } else if (rackPosition === 'bottom') {
-         result.bakingStrategy.push("Bottom rack maximizes conductive heat from the oven floor elements. Good for setting the crust.");
-     }
-     
-     if (maxTemperature < 280) {
-         result.bakingStrategy.push("Broiler Method Tip: Turn on the broiler (grill) for the last 1-2 minutes of the bake to char the crust/cheese.");
-     }
+    if (rackPosition === 'top' && surface !== 'none') {
+      result.bakingStrategy.push("Top rack is good for radiant heat (browning), but ensure your stone gets enough heat from below.");
+    } else if (rackPosition === 'bottom') {
+      result.bakingStrategy.push("Bottom rack maximizes conductive heat from the oven floor elements. Good for setting the crust.");
+    }
+
+    if (maxTemperature < 280) {
+      result.bakingStrategy.push("Broiler Method Tip: Turn on the broiler (grill) for the last 1-2 minutes of the bake to char the crust/cheese.");
+    }
   }
 
   if (ovenType === 'wood') {
-      result.bakingStrategy.push("Rotate the pizza frequently toward the flame to ensure even cooking.");
-      result.bakingStrategy.push("Lift the pizza to the dome for a few seconds at the end to finish the toppings.");
+    result.bakingStrategy.push("Rotate the pizza frequently toward the flame to ensure even cooking.");
+    result.bakingStrategy.push("Lift the pizza to the dome for a few seconds at the end to finish the toppings.");
   }
 
   // --- 4. Dough Adjustments ---
@@ -135,6 +137,18 @@ export function analyzeOvenProfile(input: OvenProfileInput): OvenAnalysisResult 
   } else if (category.includes('High-Heat') || category === 'Wood-Fired Oven') {
     result.doughAdjustments.push("REMOVE Sugar and Oil: At these temps (>350°C), they will cause the crust to burn before it cooks.");
     result.doughAdjustments.push("Use '00' flour if possible; it resists high heat better than malted bread flour.");
+  }
+
+  // --- 5. Recommended Articles ---
+  if (category === 'Low-Power Home Oven' || maxTemperature < 250) {
+    result.recommendedArticles.push({ id: 'pale-crust', reason: 'Low temperatures can cause pale crusts.' });
+    result.recommendedArticles.push({ id: 'uneven-browning', reason: 'Learn how to manage heat distribution.' });
+  }
+  if (surface === 'none') {
+    result.recommendedArticles.push({ id: 'baking-surfaces-and-heat-transfer', reason: 'Using a stone or steel is critical for better crust.' });
+  }
+  if (category.includes('High-Heat') || category === 'Wood-Fired Oven') {
+    result.recommendedArticles.push({ id: 'baking-profiles-by-style', reason: 'Understand heat management for high-temp styles.' });
   }
 
   return result;

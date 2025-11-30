@@ -1,14 +1,14 @@
 
 import React, { useState } from 'react';
 import { TechnicalStep, TechnicalPhase } from '@/types';
-import { 
-    ClockIcon, 
-    FireIcon, 
-    BeakerIcon, 
-    WrenchScrewdriverIcon, 
-    CubeIcon, 
-    ExclamationCircleIcon, 
-    LightBulbIcon, 
+import {
+    ClockIcon,
+    FireIcon,
+    BeakerIcon,
+    WrenchScrewdriverIcon,
+    CubeIcon,
+    ExclamationCircleIcon,
+    LightBulbIcon,
     BookOpenIcon,
     ChevronDownIcon,
     SparklesIcon,
@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/Icons';
 
 interface TechnicalMethodPanelProps {
-  steps: TechnicalStep[];
+    steps: TechnicalStep[];
 }
 
 const PhaseIcon: React.FC<{ phase: TechnicalPhase }> = ({ phase }) => {
@@ -51,10 +51,10 @@ const PhaseIcon: React.FC<{ phase: TechnicalPhase }> = ({ phase }) => {
 };
 
 const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: () => void; mode: 'technical' | 'grandma' }> = ({ step, isExpanded, onToggle, mode }) => {
-    const isPreferment = step.title.toLowerCase().includes('poolish') || 
-                         step.title.toLowerCase().includes('biga') || 
-                         step.title.toLowerCase().includes('sponge') ||
-                         (step.phase === 'PREP' && step.title.toLowerCase().includes('levain'));
+    const isPreferment = (step.title || '').toLowerCase().includes('poolish') ||
+        (step.title || '').toLowerCase().includes('biga') ||
+        (step.title || '').toLowerCase().includes('sponge') ||
+        (step.phase === 'PREP' && (step.title || '').toLowerCase().includes('levain'));
 
     const containerClasses = isPreferment
         ? "border-amber-200 bg-amber-50/80 hover:border-amber-300 hover:shadow-md ring-1 ring-amber-100"
@@ -65,12 +65,12 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
     return (
         <div className="relative pb-10 pl-8 sm:pl-12 last:pb-0">
             <div className="absolute left-[15px] top-8 h-full w-0.5 bg-slate-200 last:hidden" aria-hidden="true"></div>
-            
+
             <div className="absolute left-0 top-0">
                 <PhaseIcon phase={step.phase} />
             </div>
 
-            <div 
+            <div
                 className={`group relative flex flex-col rounded-2xl border p-5 shadow-sm transition-all cursor-pointer ${containerClasses}`}
                 onClick={onToggle}
             >
@@ -104,7 +104,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                     {isGrandma ? (step.grandmaInstructions || step.actionInstructions) : step.actionInstructions}
                 </p>
 
-                <div 
+                <div
                     className={`grid grid-cols-1 gap-3 overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'mt-5 opacity-100 max-h-[1000px]' : 'max-h-0 opacity-0'}`}
                 >
                     <div className="h-px w-full bg-slate-200/60 mb-1"></div>
@@ -152,7 +152,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                         </div>
                     )}
                 </div>
-                
+
                 {!isExpanded && (step.proTip || step.criticalPoint) && (
                     <div className="mt-3 flex gap-2">
                         {step.criticalPoint && (
@@ -173,63 +173,63 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
 }
 
 const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) => {
-  const [expandedStepId, setExpandedStepId] = useState<string | null>(steps[0]?.id || null);
-  const [mode, setMode] = useState<'technical' | 'grandma'>('technical');
+    const [expandedStepId, setExpandedStepId] = useState<string | null>(steps[0]?.id || null);
+    const [mode, setMode] = useState<'technical' | 'grandma'>('technical');
 
-  const handleToggle = (id: string) => {
-      setExpandedStepId(prev => prev === id ? null : id);
-  };
+    const handleToggle = (id: string) => {
+        setExpandedStepId(prev => prev === id ? null : id);
+    };
 
-  if (steps.length === 0) return null;
+    if (steps.length === 0) return null;
 
-  return (
-    <div className="mt-8 animate-[fadeIn_0.5s_ease-out]">
-      <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-            <div className="p-2 bg-lime-100 text-lime-600 rounded-lg">
-                <BookOpenIcon className="h-6 w-6" />
+    return (
+        <div className="mt-8 animate-[fadeIn_0.5s_ease-out]">
+            <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-lime-100 text-lime-600 rounded-lg">
+                        <BookOpenIcon className="h-6 w-6" />
+                    </div>
+                    <div>
+                        <h2 className="text-xl font-bold text-slate-900">Step-by-Step Method</h2>
+                        <p className="text-sm text-slate-500">Workflow generated for your dough.</p>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <button
+                        onClick={() => setMode('technical')}
+                        className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'technical' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                    >
+                        <WrenchScrewdriverIcon className="h-3 w-3" /> Technical
+                    </button>
+                    <button
+                        onClick={() => setMode('grandma')}
+                        className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'grandma' ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                    >
+                        <UserCircleIcon className="h-3 w-3" /> Grandma
+                    </button>
+                </div>
             </div>
-            <div>
-                <h2 className="text-xl font-bold text-slate-900">Step-by-Step Method</h2>
-                <p className="text-sm text-slate-500">Workflow generated for your dough.</p>
+
+            <div className="space-y-0">
+                {steps.map((step) => (
+                    <StepCard
+                        key={step.id}
+                        step={step}
+                        isExpanded={expandedStepId === step.id}
+                        onToggle={() => handleToggle(step.id)}
+                        mode={mode}
+                    />
+                ))}
+            </div>
+
+            <div className="mt-10 p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                <p className="text-xs text-slate-500 italic font-medium">
+                    This workflow adapts dynamically to hydration, yeast type, and room temperature settings.
+                </p>
             </div>
         </div>
-
-        <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-lg border border-slate-200">
-            <button
-                onClick={() => setMode('technical')}
-                className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'technical' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-            >
-                <WrenchScrewdriverIcon className="h-3 w-3" /> Technical
-            </button>
-            <button
-                onClick={() => setMode('grandma')}
-                className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'grandma' ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-            >
-                <UserCircleIcon className="h-3 w-3" /> Grandma
-            </button>
-        </div>
-      </div>
-
-      <div className="space-y-0">
-        {steps.map((step) => (
-            <StepCard 
-                key={step.id} 
-                step={step} 
-                isExpanded={expandedStepId === step.id} 
-                onToggle={() => handleToggle(step.id)}
-                mode={mode}
-            />
-        ))}
-      </div>
-      
-      <div className="mt-10 p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-          <p className="text-xs text-slate-500 italic font-medium">
-              This workflow adapts dynamically to hydration, yeast type, and room temperature settings.
-          </p>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default TechnicalMethodPanel;

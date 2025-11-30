@@ -1,82 +1,100 @@
 import { LearnArticleData } from '@/types/learn';
 
-export const yeastsData: LearnArticleData = {
-    id: 'yeasts',
-    title: 'Yeasts: Commercial vs. Wild',
-    subtitle: 'Understanding the biological engine of your dough.',
-    history: {
-        heading: "The Taming of the Microbe",
-        paragraphs: [
-            "For most of human history, all bread was sourdough. Bakers relied on 'starters' passed down through generations or captured from the air. It wasn't until the 1860s, thanks to Louis Pasteur, that we identified yeast as a living organism.",
-            "The Fleischmann brothers introduced the first commercial compressed yeast in America in 1868, revolutionizing baking by offering consistent, predictable results without the daily maintenance of a starter. Instant yeast followed in the 1970s, further simplifying the process.",
-            "DoughLabPro allows you to switch seamlessly between these historical methods—calculating precise amounts for commercial yeast or managing the complex ratios of a wild sourdough culture."
-        ]
-    },
-    sections: [
+export const yeastArticle: LearnArticleData = {
+    id: "yeast-leavening-agents",
+    title: "Yeast & Leavening Agents",
+    subtitle: "Gas production, aroma development and fermentation control.",
+    category: "Ingredient Science",
+    difficulty: "Beginner",
+    tags: ["yeast", "leavening", "fermentation", "ingredients"],
+
+    intro: "Yeast transforms dough from dense paste into an aerated structure through gas production and biochemical reactions. Its behavior depends on type, dosage, temperature and time.",
+    history: "Commercial yeast evolved from traditional brewing strains. Instant and active dry yeasts standardized production, while sourdough cultures preserved traditional fermentation complexity.",
+
+    technicalFoundations: [
+        "Saccharomyces cerevisiae consumes sugars and produces CO₂ and ethanol.",
+        "Different yeast types require different hydration and handling.",
+        "Fermentation curves depend on yeast % and dough temperature.",
+        "Levain includes LAB (lactic acid bacteria) that influence acidity and aroma."
+    ],
+
+    doughImpact: [
+        "Too little yeast slows fermentation and reduces oven spring.",
+        "Too much yeast accelerates rise but weakens flavor and structure.",
+        "Yeast type changes fermentation timing: instant is faster, fresh is milder."
+    ],
+
+    bakingImpact: [
+        "Proper leavening produces strong oven spring and open crumb.",
+        "Over-yeasted dough collapses early and bakes gummy.",
+        "Levain produces deeper crust color due to acidity and sugar balance."
+    ],
+
+    practicalRanges: [
+        { label: "Instant Yeast", notes: "Recommended: 0.3% (Range: 0.1-1.0%)" },
+        { label: "Fresh Yeast", notes: "Recommended: 1.0% (Range: 0.3-3.0%)" },
+        { label: "Cold Fermentation (Instant)", notes: "Recommended: 0.1% (Range: 0.05-0.2%)" }
+    ],
+
+    practicalApplications: [
+        "Yeast % auto-adjusts with fermentation time and target dough temperature in Calculator.",
+        "Calculator suggests minimal IDY amounts for long cold fermentation.",
+        "Each style defines typical yeast curves for direct and cold fermentation.",
+        "Run tests comparing 0.1% vs 0.3% vs 0.5% instant yeast in MyLab.",
+        "Explain safe hybrid ratios (levain + commercial yeast).",
+        "Doughbot flags under/over-proofing based on yeast amount and DT."
+    ],
+
+    proTips: [
+        "Use yeast percentage + target dough temperature, not random increases.",
+        "When switching yeast types, follow established equivalences."
+    ],
+
+    criticalPoints: [
+        "Excess yeast cannot fix weak gluten.",
+        "High yeast + warm dough = blowout risk."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "Temperature is the strongest driver of yeast speed.",
+        "Salt reduces yeast activity; sugar increases it."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'Commercial Yeast Types',
-            content: [
-                'Saccharomyces cerevisiae is the single species used in all commercial baking.',
-                '• Fresh Yeast (CY): 70% water. Highly active. Short shelf life. The gold standard for aroma.',
-                '• Active Dry (ADY): Granules coated in dead yeast cells. Must be proofed in warm water. Slower start.',
-                '• Instant Dry (IDY): Porous rods. Dissolves instantly. Potent. 3x stronger than Fresh by weight.'
-            ]
+            variant: "Instant Yeast (IDY)",
+            implications: "Highly active, fast hydration. Fine granules, high activity, no prehydration. Fast fermentation; strong initial gas production. Good oven spring; ideal for low-skill mixing. Recommended for Most pizza styles, Cold fermentation."
         },
         {
-            title: 'Conversion Rates',
-            content: [
-                'Because water content varies, you must convert when swapping types:',
-                '• 1g Instant (IDY) = 1.2g Active Dry (ADY) = 3g Fresh (CY).',
-                'Always weigh yeast with a precision scale (0.01g). Teaspoons are wildly inaccurate.'
-            ]
+            variant: "Active Dry Yeast (ADY)",
+            implications: "Dehydrated yeast requiring rehydration. Medium granules, needs blooming. Slower start; consistent results. Balanced flavor, moderate spring. Recommended for Home baking, Direct doughs."
         },
         {
-            title: 'Wild Yeast (Sourdough/Levain)',
-            content: [
-                'A symbiotic culture of wild yeast (often Candida milleri or S. exiguus) and Lactic Acid Bacteria (Lactobacillus sanfranciscensis).',
-                '• Slower fermentation (requires hours, not minutes).',
-                '• Complex flavor (Acidity from bacteria).',
-                '• Stronger dough structure (Acidity strengthens gluten).',
-                '• Longer shelf life (Acidity inhibits mold).'
-            ]
+            variant: "Fresh Yeast",
+            implications: "High moisture content, mild flavor. Soft blocks, short shelf-life. Reliable fermentation; sensitive to temperature. Mild aroma and good spring. Recommended for Artisan baking, Short fermentations."
+        },
+        {
+            variant: "Sourdough (Levain)",
+            implications: "Wild yeasts + LAB. Acidity, complex aroma. Lower gas production than commercial yeast; requires longer fermentation. Deep color and rich flavor due to organic acids. Recommended for Hybrid doughs, High-flavor breads."
         }
     ],
-    proTip: {
-        content: 'Yeast never dies in the fridge. It just sleeps. You can keep fresh yeast for weeks if wrapped tightly, or freeze it (though it loses ~10% potency). Dry yeast keeps for months in the freezer.'
-    },
-    criticalPoint: {
-        content: 'Thermal Death Point. Yeast begins to die at 50°C and is completely dead at 60°C. Never dissolve yeast in hot water. Use lukewarm (30-35°C) or cold water.'
-    },
+
     references: [
-        {
-            title: 'The Art of Fermentation',
-            author: 'Sandor Katz',
-            year: '2012'
-        },
-        {
-            title: 'Modernist Bread',
-            author: 'Nathan Myhrvold',
-            year: '2017'
-        },
-        {
-            title: 'Yeast: The Practical Guide to Beer Fermentation',
-            author: 'Chris White & Jamil Zainasheff',
-            year: '2010'
-        },
-        {
-            title: 'Bread Science: The Chemistry and Craft of Making Bread',
-            author: 'Emily Buehler',
-            year: '2006'
-        },
-        {
-            title: 'The Bread Builders',
-            author: 'Daniel Wing & Alan Scott',
-            year: '1999'
-        },
-        {
-            title: 'Sourdough',
-            author: 'Sarah Owens',
-            year: '2015'
-        }
-    ]
+        "Suas, M. Advanced Bread and Pastry.",
+        "Calvel, R. The Taste of Bread."
+    ],
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Sweetheart, think of yeast as tiny helpers making little balloons inside your dough.",
+        whatItDoes: "More yeast means faster rise, less yeast means slower but tastier dough.",
+        howToUse: "They eat sugars and fill the dough with air, making it soft and fluffy.",
+        dangerSigns: "Too much yeast and the dough grows wild — then falls flat like a sad pancake."
+    }
 };

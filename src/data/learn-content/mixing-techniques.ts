@@ -4,80 +4,93 @@ export const mixingTechniquesData: LearnArticleData = {
     id: 'mixing-techniques',
     title: 'Mixing Techniques: Energy & Oxidation',
     subtitle: 'How mechanical energy transforms flour and water into a structured network.',
-    history: {
-        heading: "From Troughs to Spirals",
-        paragraphs: [
-            "For most of human history, mixing was done by hand in wooden troughs. This was back-breaking labor that naturally limited the amount of oxidation and development a dough could receive, preserving the creamy color and flavor of the grain.",
-            "The industrial revolution brought mechanical mixers, initially designed to mimic hand kneading. However, the invention of high-speed mixers in the 20th century led to the 'Chorleywood Bread Process'—a method of ultra-high-speed mixing that produced fluffy but flavorless white bread in minutes.",
-            "Modern artisan baking has returned to 'improved' or 'short' mix techniques, often using spiral mixers that gently fold the dough without overheating it. DoughLabPro advocates for this balanced approach: mixing just enough to develop structure, but stopping before you bleach out the flavor."
-        ]
-    },
-    sections: [
+    category: 'Process Techniques',
+    difficulty: 'Intermediate',
+    tags: ['mixing', 'oxidation', 'friction', 'gluten'],
+
+    intro: "Mixing is more than just combining ingredients; it's the process of developing the gluten network through mechanical energy and oxidation. The goal is to achieve the right balance of strength and extensibility without over-oxidizing the dough.",
+
+    history: "For most of human history, mixing was done by hand in wooden troughs. This was back-breaking labor that naturally limited the amount of oxidation and development a dough could receive, preserving the creamy color and flavor of the grain. The industrial revolution brought mechanical mixers, initially designed to mimic hand kneading. However, the invention of high-speed mixers in the 20th century led to the 'Chorleywood Bread Process'—a method of ultra-high-speed mixing that produced fluffy but flavorless white bread in minutes. Modern artisan baking has returned to 'improved' or 'short' mix techniques, often using spiral mixers that gently fold the dough without overheating it.",
+
+    technicalFoundations: [
+        "Incorporation: Combining ingredients until no dry flour remains.",
+        "Development: Gluten bonds form and align; dough becomes cohesive.",
+        "Peak Development: Maximum strength; dough cleans the bowl and passes the windowpane test.",
+        "Breakdown: Overmixing leads to gluten bond shattering due to excessive oxidation and mechanical stress."
+    ],
+
+    doughImpact: [
+        "Proper mixing ensures even hydration and ingredient distribution.",
+        "Developing the gluten network provides gas retention capabilities.",
+        "Friction from mixing increases dough temperature (Friction Factor)."
+    ],
+
+    bakingImpact: [
+        "Well-developed gluten supports oven spring and volume.",
+        "Over-oxidized dough results in a very white crumb and bland flavor.",
+        "Under-mixed dough may result in a dense crumb and poor volume."
+    ],
+
+    practicalRanges: [
+        { label: "Spiral Mixer Friction", notes: "Recommended: 6°C (Range: 5-8°C)" },
+        { label: "Planetary Mixer Friction", notes: "Recommended: 12°C (Range: 10-15°C)" },
+        { label: "Hand Mixing Friction", notes: "Recommended: 0°C (Range: 0-1°C)" }
+    ],
+
+    practicalApplications: [
+        "Account for Friction Factor in water temp calculation in Calculator.",
+        "Different styles require different mixing intensities (e.g. Panettone vs. No-Knead).",
+        "Record mixing time and final dough temperature in MyLab.",
+        "Ask for mixing time adjustments based on mixer type in Doughbot."
+    ],
+
+    proTips: [
+        "Bassinage (Double Hydration): For high hydration doughs (>70%), do not add all water at once. Mix with 60-65% water until gluten forms, then slowly trickle in the remaining water. This allows the gluten to build strength before being diluted.",
+        "Stop mixing when the dough is smooth and passes the windowpane test, regardless of the clock."
+    ],
+
+    criticalPoints: [
+        "Don't Mix by Time, Mix by Feel. 10 minutes in a KitchenAid is different from 10 minutes in a Sunmix.",
+        "Watch your dough temperature. If it gets too hot, stop and cool it down."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "Mixer speed and duration directly affect dough temperature.",
+        "Salt addition time affects gluten formation speed (salt tightens gluten)."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'The Phases of Mixing',
-            content: [
-                '1. Incorporation: Combining ingredients. No structure yet.',
-                '2. Development: Gluten bonds form. Dough becomes cohesive.',
-                '3. Peak Development: Maximum strength. Dough cleans the bowl. Windowpane test passes.',
-                '4. Breakdown (Overmixing): Gluten bonds shatter due to excessive oxidation and mechanical stress. Dough becomes sticky and wet.'
-            ]
+            variant: "Spiral Mixer",
+            implications: "Bowl rotates with the hook. Gentle action. Low friction, efficient development, low oxidation. Preserves carotenoids (flavor/color). Creamy crumb, excellent flavor. Recommended for Pizza, Artisan Bread."
         },
         {
-            title: 'Friction Factor',
-            content: [
-                'Mixing generates heat. The "Friction Factor" is the temperature increase caused by the mixer.',
-                '• Spiral Mixer: Low friction (+5°C to +8°C). Ideal for pizza.',
-                '• Planetary/Stand Mixer: High friction (+10°C to +15°C). Heats dough rapidly.',
-                '• Hand Mixing: Zero friction. Requires warm water to compensate.',
-                'You must calculate your water temperature based on your mixer\'s friction factor to hit the target FDT (Final Dough Temp).'
-            ]
+            variant: "Planetary Mixer",
+            implications: "Hook rotates around a stationary bowl. High friction, inefficient for dough. Heats dough rapidly; risk of over-oxidation. Good for enriched doughs, less ideal for lean doughs. Recommended for Brioche, Cookies, Cakes."
         },
         {
-            title: 'Oxidation',
-            content: [
-                'Mixing introduces oxygen. Oxygen strengthens gluten (good) but destroys carotenoid pigments (flavor/color) (bad).',
-                '• Intensive Mixing: Very white crumb, huge volume, bland flavor (Supermarket bread).',
-                '• Improved/Short Mixing: Creamy crumb, lower volume, superior flavor (Artisan bread/Pizza).'
-            ]
+            variant: "Hand Mixing",
+            implications: "Manual folding and squeezing. Zero friction, gentle, labor intensive. Requires autolyse and stretch & folds for strength. Open crumb, rustic texture. Recommended for High hydration, Home baking."
         }
     ],
-    proTip: {
-        content: 'Bassinage (Double Hydration). For high hydration doughs (>70%), do not add all water at once. Mix with 60-65% water until gluten forms, then slowly trickle in the remaining water. This allows the gluten to build strength before being diluted.'
-    },
-    criticalPoint: {
-        content: 'Don\'t Mix by Time, Mix by Feel. "Mix for 10 minutes" is a useless instruction. 10 minutes in a KitchenAid is different from 10 minutes in a Sunmix. Stop when the dough is smooth and passes the windowpane test, regardless of the clock.'
-    },
+
     references: [
-        {
-            title: 'Advanced Bread and Pastry',
-            author: 'Michel Suas',
-            year: '2008'
-        },
-        {
-            title: 'Modernist Bread',
-            author: 'Nathan Myhrvold',
-            year: '2017'
-        },
-        {
-            title: 'The Taste of Bread',
-            author: 'Raymond Calvel',
-            year: '2001'
-        },
-        {
-            title: 'Bread: A Baker\'s Book of Techniques and Recipes',
-            author: 'Jeffrey Hamelman',
-            year: '2004'
-        },
-        {
-            title: 'Baking Science & Technology',
-            author: 'E.J. Pyler',
-            year: '1988'
-        },
-        {
-            title: 'Journal of Food Engineering',
-            author: 'Various Authors',
-            year: '2010'
-        }
+        "Michel Suas, Advanced Bread and Pastry (2008)",
+        "Raymond Calvel, The Taste of Bread (2001)",
+        "Jeffrey Hamelman, Bread (2004)"
     ],
-    affiliatePlacementKeys: ['learn_mixing_tools']
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Mixing dough is like giving it a good massage.",
+        whatItDoes: "It turns a shaggy mess into a smooth, stretchy ball.",
+        howToUse: "You're helping the flour and water get to know each other and become strong friends.",
+        dangerSigns: "If you don't mix enough, your bread will be heavy. If you mix too much, you kill the flavor."
+    }
 };

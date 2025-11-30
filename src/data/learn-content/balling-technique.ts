@@ -4,52 +4,68 @@ export const ballingTechniqueData: LearnArticleData = {
     id: 'balling-technique',
     title: 'Balling (Staglio): The Physics of Surface Tension',
     subtitle: 'Why the way you shape your dough ball determines the quality of your final crust.',
-    history: {
-        heading: "The Art of Staglio",
-        paragraphs: [
-            "In Naples, the process of dividing and shaping dough balls is known as 'Staglio a mano'. Traditionally, this was done entirely by hand, with the pizzaiolo pinching off a piece of dough from the bulk mass (the 'mozzeratura' technique, similar to making mozzarella) and rolling it on the marble bench.",
-            "This manual technique was passed down through generations of pizzaioli as a rite of passage. The speed and consistency of the staglio were marks of a master baker, ensuring that every pizza would be identical in size and fermentation.",
-            "While mechanical dividers and rounders exist today, the hand-rolled ball remains the gold standard for artisan pizza. It is the only way to ensure the delicate gluten structure is preserved and the surface tension is perfectly set for the final rise."
-        ]
-    },
-    sections: [
-        {
-            title: 'The "Skin" Effect',
-            content: [
-                'Balling is not just about making it round. It is about creating a "skin" of tension on the outer surface of the dough.',
-                'This tight skin acts as a containment vessel. As the yeast produces gas during the final proof, the skin forces the expansion to happen UPWARDS (vertical rise) rather than OUTWARDS (flattening). It also pressurizes the internal gas bubbles, which contributes to explosive oven spring.'
-            ]
-        },
-        {
-            title: 'Sealing the Seam',
-            content: [
-                'The bottom of the ball (the seam) must be sealed tight. If the seam is open, gas will leak out the bottom, and the ball will lose pressure. It\'s like a balloon with a hole.',
-                'A proper balling technique pulls the gluten matrix around the dough mass and pinches it shut at the bottom.'
-            ]
-        },
-        {
-            title: 'Gluten Alignment',
-            content: [
-                'The circular motion of balling aligns the gluten strands in a concentric pattern. This ensures that when you eventually stretch the pizza, it opens into a circle naturally. If the gluten is chaotic, the dough will be lopsided or tear in random spots.'
-            ]
-        }
+    category: 'Process Techniques',
+    difficulty: 'Intermediate',
+    tags: ['shaping', 'staglio', 'surface-tension', 'gluten'],
+
+    intro: "Balling is not just about making it round. It is about creating a 'skin' of tension on the outer surface of the dough. This tight skin acts as a containment vessel, forcing expansion upwards and pressurizing internal gas bubbles for explosive oven spring.",
+
+    history: "In Naples, the process of dividing and shaping dough balls is known as 'Staglio a mano'. Traditionally done entirely by hand, the pizzaiolo pinches off a piece of dough ('mozzeratura') and rolls it on the marble bench. This manual technique remains the gold standard for artisan pizza, ensuring delicate gluten structure is preserved.",
+
+    technicalFoundations: [
+        "The 'Skin' Effect: Creating a tight outer surface to contain gas pressure.",
+        "Vertical Rise: Tension forces expansion upwards rather than outwards.",
+        "Gluten Alignment: Circular motion aligns gluten strands concentrically for even stretching.",
+        "Sealing the Seam: The bottom must be sealed tight to prevent gas leakage."
     ],
-    proTip: {
-        content: 'The "Rest" Period. You cannot stretch a dough ball immediately after balling. The gluten is too tight (elastic). It needs to relax (typically 2-6 hours at room temp, or 24h cold) before it becomes extensible enough to open.'
-    },
-    criticalPoint: {
-        content: 'Tearing the Skin. If you ball too aggressively, you will tear the outer surface (you\'ll see a rough, "shredded" texture). This destroys the gas retention capability. The skin must be smooth and taut, not ripped.'
-    },
+
+    doughImpact: [
+        "Proper balling ensures even fermentation and shape retention.",
+        "A tight skin pressurizes internal gas bubbles.",
+        "Chaotic gluten alignment leads to lopsided dough or random tears."
+    ],
+
+    bakingImpact: [
+        "Explosive oven spring due to pressurized gas.",
+        "Even cornione (rim) development.",
+        "Consistent round shape."
+    ],
+
+    practicalRanges: [],
+
+    practicalApplications: [
+        "Practice the 'mozzeratura' or hand-rolling technique for artisan results.",
+        "Ensure the seam is completely sealed at the bottom of the ball.",
+        "Allow balls to rest (relax) before stretching; you cannot stretch immediately after balling."
+    ],
+
+    proTips: [
+        "The 'Rest' Period: You cannot stretch a dough ball immediately after balling. The gluten is too tight (elastic). It needs to relax (typically 2-6 hours at room temp, or 24h cold) before it becomes extensible enough to open."
+    ],
+
+    criticalPoints: [
+        "Tearing the Skin: If you ball too aggressively, you will tear the outer surface (rough, 'shredded' texture). This destroys gas retention. The skin must be smooth and taut."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [],
+    variantsAndImplications: [],
+
     references: [
-        {
-            title: 'The Pizza Bible',
-            author: 'Tony Gemignani',
-            year: '2014'
-        },
-        {
-            title: 'Modernist Pizza',
-            author: 'Nathan Myhrvold',
-            year: '2021'
-        }
-    ]
+        "The Pizza Bible - Tony Gemignani (2014)",
+        "Modernist Pizza - Nathan Myhrvold (2021)"
+    ],
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
+        whatItDoes: "It makes the dough into a nice tight ball so it rises up high.",
+        howToUse: "Roll it smooth and tight, like making a snowball.",
+        dangerSigns: "Don't rip the skin! Treat it gently."
+    }
 };

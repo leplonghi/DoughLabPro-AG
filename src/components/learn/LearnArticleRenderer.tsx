@@ -1,169 +1,388 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LearnArticleData } from '@/types/learn';
-import TechnicalPageLayout from '@/pages/learn/TechnicalPageLayout';
+import { GrandmaRenderer } from '@/pages/learn/GrandmaRenderer';
+import { generateArticleSummary } from '@/pages/learn/summaryGenerator';
+import { CollapseSection, SubCollapse } from '@/pages/learn/LearnComponents';
 import {
-    LightBulbIcon,
-    ExclamationCircleIcon,
-    BookOpenIcon,
-    CheckCircleIcon,
-    GlobeAltIcon,
-    ChevronDownIcon
+    BookOpenIcon, ScaleIcon, ChartBarIcon, FireIcon, AdjustmentsIcon,
+    SparklesIcon, CalculatorIcon, LightBulbIcon, ExclamationCircleIcon,
+    BeakerIcon, CheckIcon, UserCircleIcon, ListBulletIcon, WrenchScrewdriverIcon,
+    PhotoIcon, QuestionMarkCircleIcon, CloseIcon, GlobeAmericasIcon, CloudIcon
 } from '@/components/ui/Icons';
-
-import LearnAffiliateBlock from './LearnAffiliateBlock';
+import { useRouter } from '@/contexts/RouterContext';
+import { useLearnContext, LearnMode } from '@/contexts/LearnContext';
+import { useTranslation } from '@/i18n';
 
 interface LearnArticleRendererProps {
-    data: LearnArticleData;
+    articleData?: LearnArticleData;
+    data?: LearnArticleData;
 }
 
-const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ data }) => {
-    const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+type ArticleReadingMode = LearnMode | 'summary';
+
+const StandardSection: React.FC<{
+    title: string;
+    children: React.ReactNode;
+    icon?: React.ReactNode;
+}> = ({ title, children, icon }) => (
+    <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm mb-6">
+        <div className="px-6 sm:px-8 py-6 border-b border-stone-100 bg-stone-50/30">
+            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-3">
+                {icon && <span className="text-lime-500">{icon}</span>}
+                {title}
+            </h3>
+        </div>
+        <div className="p-6 sm:p-8">
+            <div className="prose prose-slate max-w-none">
+                {children}
+            </div>
+        </div>
+    </div>
+);
+
+export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ articleData, data }) => {
+    const finalData = articleData || data;
+    if (!finalData) return null;
+
+    const { t } = useTranslation();
+    const { navigate } = useRouter();
+    const { mode: globalMode, setMode: setGlobalMode } = useLearnContext();
+
+    const [localMode, setLocalMode] = useState<ArticleReadingMode>(globalMode);
+
+    useEffect(() => {
+        if (localMode !== 'summary') {
+            setLocalMode(globalMode);
+        }
+    }, [globalMode]);
+
+    const handleModeChange = (newMode: ArticleReadingMode) => {
+        setLocalMode(newMode);
+        if (newMode !== 'summary') {
+            setGlobalMode(newMode);
+        }
+    };
+
+    const summaryData = generateArticleSummary(finalData);
 
     return (
-        <TechnicalPageLayout
-            title={data.title}
-            subtitle={data.subtitle}
-            showReferencesSection={false} // We handle references manually in this new standard
-        >
-            {/* History Section */}
-            {data.history && (
-                <div className="mb-12 rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm animate-fade-in">
-                    <button
-                        onClick={() => setIsHistoryOpen(!isHistoryOpen)}
-                        className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors text-left"
-                    >
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-white rounded-lg border border-slate-200 text-slate-500">
-                                <GlobeAltIcon className="h-5 w-5" />
-                            </div>
-                            <span className="font-bold text-slate-700">{data.history.heading}</span>
-                        </div>
-                        <ChevronDownIcon className={`h-5 w-5 text-slate-400 transition-transform duration-200 ${isHistoryOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {isHistoryOpen && (
-                        <div className="p-6 border-t border-slate-200 bg-white prose prose-slate max-w-none text-slate-600">
-                            {data.history.paragraphs.map((para, idx) => (
-                                <p key={idx} className="mb-4 last:mb-0">{para}</p>
+        <div className="min-h-screen bg-stone-50 text-slate-900 pb-20">
+            {/* Header Section */}
+            <div className="bg-white border-b border-stone-200 pt-8 pb-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-4xl mx-auto">
+                    <div className="flex items-center gap-3 mb-4">
+                        {finalData.category && (
+                            <button
+                                onClick={() => navigate('learn/category', encodeURIComponent(finalData.category!))}
+                                className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-80 transition-opacity ${finalData.category === 'Ingredient Science' ? 'bg-lime-900 text-lime-300 border border-lime-700' :
+                                    finalData.category === 'Dough Science' ? 'bg-sky-900 text-sky-300 border border-sky-700' :
+                                        finalData.category === 'Fermentation Science' ? 'bg-amber-900 text-amber-300 border border-amber-700' :
+                                            'bg-stone-700 text-stone-300 border border-stone-600'
+                                    }`}
+                            >
+                                {finalData.category}
+                            </button>
+                        )}
+                        {finalData.difficulty && (
+                            <span className="px-3 py-1 rounded-full bg-stone-700 text-stone-300 text-xs font-bold border border-stone-600">
+                                {finalData.difficulty}
+                            </span>
+                        )}
+                    </div>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 tracking-tight leading-tight">
+                        {finalData.title}
+                    </h1>
+                    <p className="text-xl text-slate-500 font-light leading-relaxed">
+                        {finalData.subtitle}
+                    </p>
+
+                    {finalData.tags && finalData.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-6">
+                            {finalData.tags.map(tag => (
+                                <span key={tag} className="text-xs text-lime-800 bg-lime-100 px-2.5 py-1 rounded-md border border-lime-200 font-medium">
+                                    #{tag}
+                                </span>
                             ))}
                         </div>
                     )}
                 </div>
-            )}
-
-            {/* Main Sections */}
-            <div className="space-y-12">
-                {data.sections.map((section, index) => (
-                    <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                        <h3 className="flex items-center gap-3 text-2xl font-bold text-slate-900 mb-4">
-                            {section.icon && <span className="text-lime-600">{section.icon}</span>}
-                            {section.title}
-                        </h3>
-                        <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-4">
-                            {section.content.map((block, i) => (
-                                <div key={i}>{block}</div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
             </div>
 
-            {/* Pro Tip Box */}
-            {data.proTip && (
-                <div className="mt-12 rounded-2xl bg-amber-50 border border-amber-100 p-8 shadow-sm animate-fade-in">
-                    <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 p-2 bg-amber-100 rounded-lg text-amber-600">
-                            <LightBulbIcon className="h-6 w-6" />
-                        </div>
-                        <div>
-                            <h4 className="text-lg font-bold text-slate-900 mb-2">
-                                {data.proTip.title || 'Pro Tip'}
-                            </h4>
-                            <div className="text-slate-800 leading-relaxed">
-                                {data.proTip.content}
-                            </div>
-                        </div>
+            {/* Mode Selector */}
+            <div className="sticky top-16 z-40 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex space-x-2 overflow-x-auto py-3 no-scrollbar justify-center">
+                        <button
+                            onClick={() => handleModeChange('technical')}
+                            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'technical'
+                                ? 'bg-lime-600 border-lime-600 text-white shadow-lg shadow-lime-900/20 scale-105'
+                                : 'bg-white border-stone-200 text-stone-500 hover:border-lime-500 hover:text-lime-600'
+                                }`}
+                        >
+                            <BookOpenIcon className="w-4 h-4" />
+                            {t('learn.technical_mode', { defaultValue: 'Technical Mode' })}
+                        </button>
+                        <button
+                            onClick={() => handleModeChange('grandma')}
+                            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'grandma'
+                                ? 'bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-900/20 scale-105'
+                                : 'bg-white border-stone-200 text-stone-500 hover:border-amber-400 hover:text-amber-600'
+                                }`}
+                        >
+                            <UserCircleIcon className="w-4 h-4" />
+                            {t('learn.grandma_mode', { defaultValue: 'Grandma Mode' })}
+                        </button>
+                        <button
+                            onClick={() => handleModeChange('summary')}
+                            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'summary'
+                                ? 'bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-900/20 scale-105'
+                                : 'bg-white border-stone-200 text-stone-500 hover:border-purple-400 hover:text-purple-600'
+                                }`}
+                        >
+                            <ListBulletIcon className="w-4 h-4" />
+                            {t('learn.summary_mode', { defaultValue: 'Summary Mode' })}
+                        </button>
                     </div>
                 </div>
-            )}
+            </div>
 
-            {/* Critical Point Box */}
-            {data.criticalPoint && (
-                <div className="mt-8 rounded-2xl bg-red-50 border border-red-100 p-8 shadow-sm animate-fade-in">
-                    <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 p-2 bg-red-100 rounded-lg text-red-600">
-                            <ExclamationCircleIcon className="h-6 w-6" />
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+
+                {/* MODE: GRANDMA */}
+                {localMode === 'grandma' && (
+                    finalData.grandmaVersion ? (
+                        <GrandmaRenderer data={finalData.grandmaVersion} />
+                    ) : (
+                        <div className="p-8 bg-white rounded-2xl text-center text-slate-500 border border-stone-200">
+                            {t('learn.grandma_nap', { defaultValue: 'Grandma is taking a nap. (No simplified version available for this article yet).' })}
+                            <button onClick={() => handleModeChange('technical')} className="block mx-auto mt-4 text-lime-600 hover:underline">{t('learn.return_main', { defaultValue: 'Return to Main Article' })}</button>
                         </div>
-                        <div>
-                            <h4 className="text-lg font-bold text-slate-900 mb-2">
-                                {data.criticalPoint.title || 'Critical Point'}
-                            </h4>
-                            <div className="text-slate-800 leading-relaxed">
-                                {data.criticalPoint.content}
-                            </div>
+                    )
+                )}
+
+                {/* MODE: SUMMARY */}
+                {localMode === 'summary' && (
+                    <div className="space-y-6 animate-fadeIn">
+                        <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                            <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <ListBulletIcon className="w-5 h-5 text-purple-500" />
+                                {t('learn.executive_summary', { defaultValue: 'Executive Summary' })}
+                            </h3>
+                            <p className="text-slate-600 leading-relaxed mb-6">{summaryData.intro}</p>
+
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm uppercase tracking-wider">{t('learn.key_takeaways', { defaultValue: 'Key Takeaways' })}</h4>
+                            <ul className="space-y-2 mb-6">
+                                {summaryData.keyPoints.map((point, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-slate-600">
+                                        <CheckIcon className="w-5 h-5 text-lime-600 flex-shrink-0 mt-0.5" />
+                                        <span>{point}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* Affiliate Suggestions */}
-            {data.affiliatePlacementKeys && data.affiliatePlacementKeys.length > 0 && (
-                <LearnAffiliateBlock placementKeys={data.affiliatePlacementKeys} />
-            )}
+                {/* MODE: TECHNICAL (MAIN) */}
+                {localMode === 'technical' && (
+                    <div className="space-y-4 animate-fadeIn">
 
-            {/* Internal Call to Action */}
-            {data.callToAction && (
-                <div className="mt-12 rounded-2xl bg-gradient-to-r from-lime-500 to-lime-600 p-8 text-white shadow-lg animate-fade-in text-center">
-                    <h4 className="text-xl font-bold mb-3">
-                        {data.callToAction.text}
-                    </h4>
-                    <button
-                        onClick={() => window.location.hash = data.callToAction!.link} // Simple hash navigation or use useRouter if available
-                        className="inline-flex items-center gap-2 bg-white text-lime-600 px-6 py-3 rounded-xl font-bold shadow-md hover:bg-lime-50 transition-colors hover:scale-105 active:scale-95"
-                    >
-                        {data.callToAction.icon}
-                        {data.callToAction.buttonText}
-                    </button>
-                </div>
-            )}
+                        {/* Intro */}
+                        <StandardSection title={t('learn.introduction', { defaultValue: 'Introduction' })} icon={<BookOpenIcon className="h-5 w-5" />}>
+                            <p className="text-lg leading-relaxed text-slate-700">{finalData.intro}</p>
+                        </StandardSection>
 
-            {/* References Section */}
-            {data.references && data.references.length > 0 && (
-                <div className="mt-16 border-t border-slate-200 pt-10 animate-fade-in">
-                    <h3 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-6">
-                        <BookOpenIcon className="h-6 w-6 text-lime-600" />
-                        <span>Technical References</span>
-                    </h3>
-                    <div className="grid gap-4 sm:grid-cols-2">
-                        {data.references.map((ref, index) => (
-                            <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-lime-200 transition-colors">
-                                <CheckCircleIcon className="h-5 w-5 text-lime-500 mt-0.5 flex-shrink-0" />
-                                <div>
-                                    <p className="font-semibold text-slate-900">{ref.title}</p>
-                                    {(ref.author || ref.year) && (
-                                        <p className="text-sm text-slate-500 mt-1">
-                                            {ref.author} {ref.year && `(${ref.year})`}
-                                        </p>
-                                    )}
-                                    {ref.link && (
-                                        <a
-                                            href={ref.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-xs font-bold text-lime-600 hover:underline mt-2 inline-block"
-                                        >
-                                            Verify Source &rarr;
-                                        </a>
-                                    )}
+                        {/* History */}
+                        <StandardSection title={t('learn.history_context', { defaultValue: 'History & Context' })} icon={<BookOpenIcon className="h-5 w-5" />}>
+                            <p className="text-slate-600 leading-relaxed">{finalData.history}</p>
+                        </StandardSection>
+
+                        {/* Technical Foundations */}
+                        {finalData.technicalFoundations && finalData.technicalFoundations.length > 0 && (
+                            <StandardSection title={t('learn.technical_foundations', { defaultValue: 'Technical Foundations' })} icon={<ScaleIcon className="h-5 w-5" />}>
+                                <ul className="space-y-3">
+                                    {finalData.technicalFoundations.map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-slate-700">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-lime-500 mt-2 flex-shrink-0" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </StandardSection>
+                        )}
+
+                        {/* Dough Impact */}
+                        {finalData.doughImpact && finalData.doughImpact.length > 0 && (
+                            <StandardSection title={t('learn.impact_dough', { defaultValue: 'Impact on Dough' })} icon={<ChartBarIcon className="h-5 w-5" />}>
+                                <ul className="space-y-3">
+                                    {finalData.doughImpact.map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-slate-700">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </StandardSection>
+                        )}
+
+                        {/* Baking Impact */}
+                        {finalData.bakingImpact && finalData.bakingImpact.length > 0 && (
+                            <StandardSection title={t('learn.baking_performance', { defaultValue: 'Baking Performance' })} icon={<FireIcon className="h-5 w-5" />}>
+                                <ul className="space-y-3">
+                                    {finalData.bakingImpact.map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-slate-700">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 flex-shrink-0" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </StandardSection>
+                        )}
+
+                        {/* Practical Ranges */}
+                        {finalData.practicalRanges && finalData.practicalRanges.length > 0 && (
+                            <StandardSection title={t('learn.practical_ranges', { defaultValue: 'Practical Ranges' })} icon={<AdjustmentsIcon className="h-5 w-5" />}>
+                                <div className="space-y-4">
+                                    {finalData.practicalRanges.map((range, i) => (
+                                        <div key={i} className="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                                            <div className="font-bold text-slate-900 mb-1">{range.label}</div>
+                                            <div className="text-sm text-slate-600">
+                                                {range.notes || (
+                                                    range.recommended ?
+                                                        `Recommended: ${range.recommended}${range.unit} (Range: ${range.min}-${range.max}${range.unit})` :
+                                                        `${range.min}-${range.max}${range.unit}`
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            </div>
-                        ))}
+                            </StandardSection>
+                        )}
+
+                        {/* Practical Applications (New) */}
+                        {finalData.practicalApplications && finalData.practicalApplications.length > 0 && (
+                            <StandardSection title={t('learn.practical_applications', { defaultValue: 'Practical Applications' })} icon={<WrenchScrewdriverIcon className="h-5 w-5" />}>
+                                <ul className="space-y-3">
+                                    {finalData.practicalApplications.map((app, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-slate-700">
+                                            <CheckIcon className="w-5 h-5 text-lime-600 flex-shrink-0 mt-0.5" />
+                                            <span>{app}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </StandardSection>
+                        )}
+
+                        {/* Pro Tips */}
+                        {finalData.proTips && finalData.proTips.length > 0 && (
+                            <StandardSection title={t('learn.pro_tips', { defaultValue: 'Pro Tips' })} icon={<LightBulbIcon className="h-5 w-5" />}>
+                                <div className="bg-amber-50 p-6 rounded-xl border border-amber-100 space-y-4">
+                                    {finalData.proTips.map((tip, i) => (
+                                        <div key={i} className="flex gap-3">
+                                            <LightBulbIcon className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                                            <p className="text-amber-900/90">{tip}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </StandardSection>
+                        )}
+
+                        {/* Critical Points */}
+                        {finalData.criticalPoints && finalData.criticalPoints.length > 0 && (
+                            <StandardSection title={t('learn.critical_points', { defaultValue: 'Critical Points' })} icon={<ExclamationCircleIcon className="h-5 w-5" />}>
+                                <div className="bg-rose-50 p-6 rounded-xl border border-rose-100 space-y-4">
+                                    {finalData.criticalPoints.map((point, i) => (
+                                        <div key={i} className="flex gap-3">
+                                            <ExclamationCircleIcon className="h-5 w-5 text-rose-500 flex-shrink-0 mt-0.5" />
+                                            <p className="text-rose-900/90">{point}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </StandardSection>
+                        )}
+
+                        {/* Regional Variants */}
+                        {finalData.regionalVariants && finalData.regionalVariants.length > 0 && (
+                            <StandardSection title={t('learn.regional_variants', { defaultValue: 'Regional Variants' })} icon={<GlobeAmericasIcon className="h-5 w-5" />}>
+                                <ul className="space-y-3">
+                                    {finalData.regionalVariants.map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-slate-700">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2 flex-shrink-0" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </StandardSection>
+                        )}
+
+                        {/* Climate Scenarios */}
+                        {finalData.climateScenarios && finalData.climateScenarios.length > 0 && (
+                            <StandardSection title={t('learn.climate_scenarios', { defaultValue: 'Climate Scenarios' })} icon={<CloudIcon className="h-5 w-5" />}>
+                                <ul className="space-y-3">
+                                    {finalData.climateScenarios.map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-slate-700">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </StandardSection>
+                        )}
+
+                        {/* Variants & Implications */}
+                        {finalData.variantsAndImplications && finalData.variantsAndImplications.length > 0 && (
+                            <StandardSection title={t('learn.variants_implications', { defaultValue: 'Variants & Implications' })} icon={<SparklesIcon className="h-5 w-5" />}>
+                                <div className="space-y-4">
+                                    {finalData.variantsAndImplications.map((variant, i) => (
+                                        <SubCollapse key={i} title={variant.variant || variant.name || 'Variant'}>
+                                            <div className="space-y-2">
+                                                <p className="text-slate-700 text-sm">{variant.implications || variant.description}</p>
+                                                {/* Legacy Support */}
+                                                {variant.doughImplications && (
+                                                    <p className="text-xs text-slate-500"><strong>Dough:</strong> {variant.doughImplications}</p>
+                                                )}
+                                                {variant.bakingImplications && (
+                                                    <p className="text-xs text-slate-500"><strong>Baking:</strong> {variant.bakingImplications}</p>
+                                                )}
+                                            </div>
+                                        </SubCollapse>
+                                    ))}
+                                </div>
+                            </StandardSection>
+                        )}
+
+                        {/* FAQ */}
+                        {finalData.faq && finalData.faq.length > 0 && (
+                            <CollapseSection title={t('learn.faq', { defaultValue: 'Frequently Asked Questions' })} icon={<QuestionMarkCircleIcon className="h-5 w-5" />}>
+                                <div className="space-y-4">
+                                    {finalData.faq.map((item, i) => (
+                                        <div key={i} className="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                                            <h4 className="font-bold text-slate-900 mb-2 flex items-start gap-2">
+                                                <QuestionMarkCircleIcon className="h-5 w-5 text-lime-600 flex-shrink-0 mt-0.5" />
+                                                {item.q}
+                                            </h4>
+                                            <p className="text-slate-700 pl-7">{item.a}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CollapseSection>
+                        )}
+
+                        {/* References */}
+                        {finalData.references && finalData.references.length > 0 && (
+                            <CollapseSection title={t('learn.references', { defaultValue: 'References' })} icon={<BookOpenIcon className="h-5 w-5" />}>
+                                <ul className="list-decimal pl-5 space-y-2 text-stone-500 text-sm">
+                                    {finalData.references.map((ref, i) => (
+                                        <li key={i}>{ref}</li>
+                                    ))}
+                                </ul>
+                            </CollapseSection>
+                        )}
+
                     </div>
-                    <p className="text-xs text-slate-400 italic mt-6">
-                        All references in DoughLab Pro are verified against scientific literature or recognized culinary authorities.
-                    </p>
-                </div>
-            )}
-        </TechnicalPageLayout>
+                )}
+            </div>
+        </div>
     );
 };
 

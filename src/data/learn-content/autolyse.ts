@@ -1,80 +1,100 @@
 import { LearnArticleData } from '@/types/learn';
 
-export const autolyseData: LearnArticleData = {
-    id: 'autolyse',
-    title: 'Autolyse: The Passive Development Technique',
-    subtitle: 'Letting time and enzymes do the work of the mixer.',
-    history: {
-        heading: "Origins: Professor Calvel's Revolution",
-        paragraphs: [
-            "The term 'autolyse' was coined by Professor Raymond Calvel in France during the 1970s. At the time, French bakers were using intensive mechanical mixing to speed up production, which resulted in white, tasteless bread with a bleached crumb due to excessive oxidation.",
-            "Calvel introduced the autolyse rest period to allow the dough to develop structure passively through enzymatic action rather than brute force. This restored the creamy color and rich flavor of traditional French bread while improving the dough's extensibility.",
-            "Today, this technique is a cornerstone of artisan baking worldwide, used in everything from Tartine-style sourdough to high-hydration pizza doughs, allowing home bakers to achieve professional texture with less kneading."
-        ]
-    },
-    sections: [
+export const autolyseArticle: LearnArticleData = {
+    id: "autolyse-technique",
+    title: "Autolyse — Enzymatic Relaxation & Gluten Pre-Formation",
+    subtitle: "How a simple rest improves extensibility, hydration and dough handling.",
+
+    category: "Dough Science", // Updated category
+    difficulty: "Intermediate",
+    tags: ["autolyse", "extensibility", "hydration", "calvel"],
+
+    intro: "Autolyse is the rest period where flour and water hydrate before kneading. It improves extensibility, enhances gluten alignment, reduces mixing time and develops flavor naturally.",
+
+    history: "Developed by Professor Raymond Calvel, autolyse revolutionized artisan baking by enabling stronger doughs with less oxidation during mixing.",
+
+    technicalFoundations: [
+        "Hydration activates gliadin (extensibility) and glutenin (elasticity).",
+        "Proteolytic enzymes soften gluten bonds during rest.",
+        "Amylases release sugars, enhancing fermentation potential.",
+        "Salt and yeast are excluded to prevent premature tightening or fermentation."
+    ],
+
+    doughImpact: [
+        "Greatly increases extensibility.",
+        "Reduces required mixing time by 20–40%.",
+        "Easier shaping and smoother dough surface.",
+        "Too long autolyse may weaken dough structure."
+    ],
+
+    bakingImpact: [
+        "Improved oven spring from balanced strength.",
+        "Enhanced aroma due to reduced oxidation.",
+        "More open and even crumb structure."
+    ],
+
+    practicalRanges: [
+        { label: "Short Autolyse", notes: "Recommended: 20 min (Range: 15-25 min)" },
+        { label: "Standard Autolyse", notes: "Recommended: 30 min (Range: 20-60 min)" },
+        { label: "Long Autolyse", notes: "Recommended: 90 min (Range: 60-120 min)" }
+    ],
+
+    practicalApplications: [
+        "Hydration affects ideal autolyse length; wetter doughs benefit more.",
+        "Neapolitan and artisan bread benefit significantly from autolyse.",
+        "Compare 0 min vs 30 min vs 60 min autolyse batches to see handling differences.",
+        "Levain doughs should limit autolyse to avoid over-softening due to acidity.",
+        "Doughbot correlates autolyse with gluten relaxation curves."
+    ],
+
+    proTips: [
+        "Keep autolyse simple: only flour + water.",
+        "Shorten autolyse when using high whole grain percentages."
+    ],
+
+    criticalPoints: [
+        "Salt and yeast restrict enzymatic relaxation.",
+        "Over-autolysed dough becomes weak and sticky."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "Hydration deeply affects autolyse effectiveness.",
+        "Whole grains accelerate enzymatic softening."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'The Definition',
-            content: [
-                'True Autolyse is the mixing of ONLY flour and water, followed by a rest period (20 min to several hours). No salt. No yeast. No levain.',
-                'During this rest, two things happen:',
-                '1. Hydration: The flour particles absorb water completely.',
-                '2. Enzymatic Action: Protease enzymes begin to degrade the gluten bonds slightly, and amylase enzymes turn starch into sugar.'
-            ]
+            variant: "With Whole Grain",
+            implications: "Shorter autolyse recommended. Deeper flavor."
         },
         {
-            title: 'The Biochemistry of Extensibility',
-            content: [
-                'The key player here is Protease. By snipping some of the gluten bonds, protease reduces the elasticity (snap-back) of the dough. This makes the dough more extensible (stretchy).',
-                'This is crucial for high-hydration doughs or pizza styles that need to be stretched thin without tearing. It essentially "tames" the dough.'
-            ]
-        },
-        {
-            title: 'Autolyse vs. Fermentolyse',
-            content: [
-                '• Autolyse: Flour + Water only. Pure enzymatic activity. No fermentation.',
-                '• Fermentolyse: Flour + Water + Leaven (Starter/Yeast). Fermentation begins immediately.',
-                'Many bakers use Fermentolyse for convenience, but salt is always added LATER. Salt tightens the gluten network and inhibits enzymes, which counteracts the relaxation benefit of the autolyse.'
-            ]
+            variant: "High Protein Flour",
+            implications: "Longer autolyse beneficial. Maximizes oven spring."
         }
     ],
-    proTip: {
-        content: 'The "Salt Shock". When adding salt after autolyse, the dough will tighten up dramatically. This is normal. Do not add all the remaining water at once; add it gradually (bassinage) to help the salt dissolve and incorporate without breaking the gluten structure.'
-    },
-    criticalPoint: {
-        content: 'Duration Limits. A pure autolyse can go for hours (even overnight in the fridge). A fermentolyse is limited by the yeast activity; if you leave it too long, the dough will over-ferment and degrade before you even finish mixing.'
-    },
+
     references: [
+        "Calvel, R. The Taste of Bread.",
+        "Hamelman, J. Bread."
+    ],
+
+    images: [],
+    diagrams: [],
+
+    faq: [
         {
-            title: 'The Taste of Bread',
-            author: 'Raymond Calvel',
-            year: '2001'
-        },
-        {
-            title: 'Modernist Bread',
-            author: 'Nathan Myhrvold',
-            year: '2017'
-        },
-        {
-            title: 'Bread: A Baker\'s Book of Techniques and Recipes',
-            author: 'Jeffrey Hamelman',
-            year: '2004'
-        },
-        {
-            title: 'Tartine Bread',
-            author: 'Chad Robertson',
-            year: '2010'
-        },
-        {
-            title: 'Advanced Bread and Pastry',
-            author: 'Michel Suas',
-            year: '2008'
-        },
-        {
-            title: 'Influence of Autolyse on Wheat Bread Quality',
-            author: 'Journal of Food Processing',
-            year: '2020'
+            q: "Can I add salt during autolyse?",
+            a: "Technically no, that's called a 'fermentolyse' if yeast is added too. Salt tightens gluten, counteracting the relaxation benefit of autolyse."
         }
     ],
-    affiliatePlacementKeys: ['learn_mixing_tools']
+
+    grandmaVersion: {
+        intro: "Sweetheart, autolyse is like letting the dough take a warm bath before working. Just flour and water resting together makes the dough softer and easier to handle.",
+        whatItDoes: "It helps the dough stretch without tearing and needs less mixing later.",
+        howToUse: "Your hands work less, and the dough becomes smooth and happy.",
+        dangerSigns: "But leave it too long and the dough gets weak — everything in balance."
+    }
 };

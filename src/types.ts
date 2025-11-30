@@ -270,7 +270,7 @@ export interface User {
   birthDate?: string;
   gender?: Gender;
   isPro?: boolean;
-  plan?: 'free' | 'pro';
+  plan?: 'free' | 'pro' | 'calculator_unlock' | 'lab_pro';
   proSince?: string;
   proExpiresAt?: string;
   trialEndsAt?: string | null;

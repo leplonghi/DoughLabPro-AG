@@ -2,61 +2,106 @@ import { LearnArticleData } from '@/types/learn';
 
 export const ambientVsColdFermentationData: LearnArticleData = {
     id: 'ambient-vs-cold-fermentation',
-    title: 'Ambient vs. Cold Fermentation: The Thermodynamics of Dough',
-    subtitle: 'How temperature dictates enzymatic activity, yeast metabolism, and the final sensory profile of your pizza.',
-    history: {
-        heading: "The Refrigerator Revolution",
-        paragraphs: [
-            "Before the invention of mechanical refrigeration, all dough was 'ambient' dough. Bakers had to adjust their yeast (or sourdough) quantities daily based on the weather. A hot summer day meant using less starter; a cold winter night meant using more.",
-            "The introduction of commercial refrigeration allowed bakers to decouple the mixing schedule from the baking schedule. This 'retarding' process was initially a logistical convenience—allowing bakers to sleep while the dough proofed slowly—but it was soon discovered to vastly improve the quality of the bread.",
-            "DoughLabPro gives you the power to calculate precise fermentation schedules for both methods, or a hybrid of the two, ensuring you're never at the mercy of the weather again."
-        ]
-    },
-    sections: [
+    title: 'Ambient vs. Cold Fermentation',
+    subtitle: 'The thermodynamics of dough: how temperature dictates flavor and texture.',
+
+    category: 'Fermentation Science',
+    difficulty: 'Intermediate',
+    tags: ['Temperature', 'Yeast', 'Flavor', 'Texture'],
+
+    intro: "Temperature is the master variable in baking. It dictates not just how fast your dough rises, but what it tastes like. Ambient fermentation offers speed and simplicity, while cold fermentation (retarding) unlocks superior flavor complexity and extensibility.",
+
+    history: "Before mechanical refrigeration, all dough was 'ambient', forcing bakers to adjust yeast daily based on the weather. The advent of commercial refrigeration allowed for 'retarding'—slowing the process down. Initially a convenience for scheduling, it was soon discovered to be a secret weapon for quality, creating the complex, blistered crusts we prize today.",
+
+    technicalFoundations: [
+        "Arrhenius Equation: For every 10°C increase, chemical reaction rates roughly double.",
+        "Yeast Metabolism: Thrives at ambient temps (20–25°C), producing CO₂ rapidly (Log Phase).",
+        "Enzymatic Activity: Protease and amylase remain active even at cold temps (4–6°C) where yeast is dormant.",
+        "Differential Inhibition: Cold fermentation slows yeast more than enzymes, allowing flavor precursors (amino acids and sugars) to accumulate without overproofing."
+    ],
+
+    doughImpact: [
+        "Ambient Dough: Often more elastic, harder to stretch thinly without tearing.",
+        "Cold Dough: Natural conditioners (proteases) relax the gluten over time, creating superior extensibility.",
+        "Acid Development: Cold fermentation promotes a complex pH landscape (acetic/lactic balance) vs the simple ethanol profile of ambient dough."
+    ],
+
+    bakingImpact: [
+        "Ambient: 'Yeasty' or 'boozy' aroma, simple crust color.",
+        "Cold: 'Nutty', 'bready', and 'sour' notes. Accumulated sugars fuel a supercharged Maillard reaction for blistering and deep browning.",
+        "Oven Spring: Cold doughs often have better oven spring due to a more organized gluten network."
+    ],
+
+    practicalRanges: [
+        { label: "Ambient Zone", notes: "Recommended: 24°C (Range: 20-26°C)" },
+        { label: "Cold Zone (Retarding)", notes: "Recommended: 4°C (Range: 2-6°C)" },
+        { label: "The Dead Zone", notes: "Avoid temperatures between 8-15°C. Yeast is too active for storage but too slow for predictable rising." }
+    ],
+
+    practicalApplications: [
+        "Select 'Cold Fermentation' in the Calculator to automatically adjust yeast percentages.",
+        "Use the 'Hybrid' setting for advanced schedules.",
+        "Compare two batches: one ambient (4h) vs one cold (24h) to taste the difference.",
+        "Log the 'blistering' score for cold fermented pizzas.",
+        "Sourdough is very sensitive to temperature; cold retarding can make it quite sour.",
+        "Doughbot can predict when your cold dough will be ready based on fridge temp."
+    ],
+
+    proTips: [
+        "The 'Hybrid Method' is often best: 2–4 hours at room temp to wake up the yeast, then 24–72 hours in the fridge for flavor.",
+        "Avoid the 'Dead Zone' (8°C–15°C). Yeast is too active for storage but too slow for predictable rising."
+    ],
+
+    criticalPoints: [
+        "Cold dough must be brought out 1-2 hours before baking to relax and warm up.",
+        "Never put a bulk dough straight into the fridge without *some* fermentation starting, or it might never wake up."
+    ],
+
+    regionalVariants: [
+        "Neapolitan: Traditionally ambient (8-24h), but modern variants often use cold ferment.",
+        "NY Style: Almost exclusively relies on cold fermentation for that characteristic chew and flavor."
+    ],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "Yeast Quantity: Needs to be much lower for ambient, higher for cold (unless using hybrid).",
+        "Fridge Temp: A 2°C difference in your fridge can double or halve fermentation time."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'The Kinetic Theory of Dough',
-            content: [
-                'Temperature is the master variable in baking. According to the Arrhenius equation, for every 10°C increase in temperature, the rate of chemical reactions roughly doubles. In dough, this applies to yeast metabolism (CO₂ production) and enzymatic activity.',
-                'Ambient fermentation (typically 20°C–25°C) places yeast in its optimal metabolic zone. The "Log Phase" of growth is rapid, producing gas quickly. This results in a dough that rises fast but often lacks complex flavor development, as the yeast consumes sugars before enzymes have time to break down proteins and starches into flavor precursors.'
-            ]
+            variant: "Ambient Fermentation",
+            implications: "Requires careful timing; less extensible. Standard crust; good volume."
         },
         {
-            title: 'Cold Fermentation (Retarding)',
-            content: [
-                'Cold fermentation (typically 4°C–6°C) deliberately slows down yeast activity. At these temperatures, yeast enters a dormant or slow-metabolic state. However, enzymes like protease and amylase remain relatively active.',
-                'This differential inhibition is the secret to flavor. While yeast sleeps, enzymes continue to break down gluten into amino acids (flavor) and starch into simple sugars (crust color). When the dough is finally baked, these accumulated precursors fuel a supercharged Maillard reaction.'
-            ]
+            variant: "Cold Fermentation",
+            implications: "Very relaxed; easy to open. Premium texture and aroma."
         },
         {
-            title: 'Flavor Profile Divergence',
-            content: [
-                'Ambient doughs tend to have a "yeasty" or "boozy" profile due to rapid ethanol production. They are simple and direct.',
-                'Cold fermented doughs develop "bready," "nutty," and "sour" notes. The accumulation of organic acids (acetic and lactic) creates a complex pH landscape that adds depth to the final product.'
-            ]
-        },
-        {
-            title: 'Structural Consequences',
-            content: [
-                'Cold fermentation acts as a natural dough conditioner. The extended protease activity slowly clips gluten bonds, increasing extensibility. This is why cold-fermented dough opens so easily without snapping back (elasticity).',
-                'Ambient doughs, being younger, often retain more elasticity and can be harder to stretch thinly without tearing.'
-            ]
+            variant: "Hybrid Method",
+            implications: "Balanced strength and extensibility. Ideal for home ovens."
         }
     ],
-    proTip: {
-        content: 'The "Hybrid Method" often yields the best results: 2–4 hours at ambient temperature to kickstart yeast activity, followed by 24–72 hours in the fridge for enzymatic maturation. This gives you the volume of ambient with the flavor of cold.'
-    },
-    criticalPoint: {
-        content: 'Avoid the "Dead Zone" (8°C–15°C) if possible. In this range, yeast is too active for long storage but too slow for a predictable rise, often leading to over-proofed, acidic doughs that collapse in the oven.'
-    },
+
     references: [
+        "Modernist Pizza - Nathan Myhrvold (2021)",
+        "The Effect of Fermentation Temperature on Bread Microstructure - ScienceDirect"
+    ],
+
+    images: [],
+    diagrams: [],
+
+    faq: [
         {
-            title: 'Modernist Pizza',
-            author: 'Nathan Myhrvold',
-            year: '2021'
-        },
-        {
-            title: 'The effect of fermentation temperature on the microstructure of bread',
-            link: 'https://www.sciencedirect.com/science/article/pii/S002364382030345X'
+            q: "Can I switch from ambient to cold halfway?",
+            a: "Yes, this is the 'Hybrid Method'. Just ensure you account for the time it takes for the dough to cool down."
         }
-    ]
+    ],
+
+    grandmaVersion: {
+        intro: "It's like cooking a stew: you can cook it fast on high heat, or let it simmer slow and low all day. Fast rising (warm) gets it done. Slow rising (cold) makes it delicious.",
+        whatItDoes: "Cold rising lets the dough relax and develop deep flavors, like a marinated steak.",
+        howToUse: "If you want that pizzeria-quality crust with the bubbles and the chew, the fridge is your best friend.",
+        dangerSigns: "Just don't forget it in there for a week, or it will turn into sourdough soup!"
+    }
 };

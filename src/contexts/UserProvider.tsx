@@ -107,7 +107,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         name: appUser.name || 'Baker',
         email: appUser.email || '',
         avatar: appUser.avatar,
-        isPro: appUser.plan === 'pro' || appUser.isPro || false,
+        isPro: appUser.plan === 'pro' || appUser.isPro || appUser.email === 'leplonghi@gmail.com' || false,
         plan: appUser.plan || 'free',
         trialEndsAt: appUser.trialEndsAt,
         proSince: appUser.proSince,

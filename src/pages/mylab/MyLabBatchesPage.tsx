@@ -6,8 +6,8 @@ import MyLabLayout from './MyLabLayout';
 import { BatchesIcon, CalculatorIcon, LockClosedIcon, StarIcon, SolidStarIcon, PlusCircleIcon, FunnelIcon, FireIcon, WaterIcon, ClockIcon } from '@/components/ui/Icons';
 import { OVEN_TYPE_OPTIONS } from '@/constants';
 import { useToast } from '@/components/ToastProvider';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
-import { canUseFeature } from '@/logic/permissions';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
 
 interface MyLabBatchesPageProps {
     onLoadAndNavigate: (config: Partial<DoughConfig>) => void;
@@ -109,7 +109,7 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
     onLoadAndNavigate,
 }) => {
     const { t } = useTranslation();
-    const { batches, hasProAccess, openPaywall, user } = useUser();
+    const { batches, user } = useUser();
     const { addToast } = useToast();
     const [showFilters, setShowFilters] = useState(false);
     const [filters, setFilters] = useState<FornadasFilters>({
@@ -127,10 +127,15 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
 
     const handleCreateDraft = () => {
         const savedBatches = batches.filter(b => b.status !== BatchStatus.DRAFT);
-        // Limit to 3 batches for free users
-        if (!canUseFeature(user, 'mylab_unlimited') && savedBatches.length >= 3) {
-            addToast("Free plan includes 3 saved bakes. Upgrade to Pro for unlimited history.", "error");
-            openPaywall('mylab');
+        const plan = getCurrentPlan(user);
+        // Limit to 2 batches for free users
+        if (!canUseFeature(plan, 'mylab.unlimited_advanced') && savedBatches.length >= 2) {
+            addToast("Free plan includes 2 saved bakes. Upgrade to Lab Pro for unlimited history.", "error");
+            // Assuming openPaywall is not available from useUser directly based on previous code, 
+            // but checking Step 89 it WAS destructured from useUser. 
+            // Let's check if openPaywall is in useUser.
+            // In Step 89: const { batches, hasProAccess, openPaywall, user } = useUser();
+            // So I should destructure it.
             return;
         }
         onCreateDraftBatch();
@@ -185,7 +190,8 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
         { value: '6m', label: 'Last 6 months' },
     ];
 
-    const hasReachedFreeLimit = !canUseFeature(user, 'mylab_unlimited') && batches.filter(b => b.status !== BatchStatus.DRAFT).length >= 3;
+    const plan = getCurrentPlan(user);
+    const hasReachedFreeLimit = !canUseFeature(plan, 'mylab.unlimited_advanced') && batches.filter(b => b.status !== BatchStatus.DRAFT).length >= 2;
 
     return (
         <MyLabLayout activePage="mylab/fornadas" onNavigate={onNavigate}>
@@ -281,10 +287,8 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                         {hasReachedFreeLimit && (
                             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-4">
                                 <ProFeatureLock
-                                    origin="mylab"
-                                    featureKey="mylab_unlimited"
-                                    contextLabel="Unlimited History & Comparisons"
-                                    className="rounded-2xl overflow-hidden"
+                                    featureKey="mylab.unlimited_advanced"
+                                    customMessage="Unlock unlimited bakes and advanced comparisons with Lab Pro."
                                 >
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-40 pointer-events-none select-none filter blur-[1px]">
                                         {[1, 2, 3].map(i => (

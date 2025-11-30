@@ -3,7 +3,6 @@ import TechnicalPageLayout from './TechnicalPageLayout';
 import { Page } from '@/types';
 import { WrenchScrewdriverIcon, CubeIcon, FireIcon, BeakerIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
-import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
 // Reusing the card component style from LearnPage for consistency, but adapted for this layout
 const TechniqueCard: React.FC<{
@@ -38,25 +37,25 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
 
   const techniques = [
     {
-      page: 'learn/autolyse' as Page,
+      page: 'learn/article/autolyse' as Page,
       title: 'Autolyse',
       description: 'The simple pause that transforms dough extensibility and structure.',
       icon: <BeakerIcon className="h-8 w-8" />,
     },
     {
-      page: 'learn/mixing-techniques' as Page,
+      page: 'learn/article/mixing-techniques' as Page,
       title: 'Mixing Techniques',
       description: 'From hand kneading to Rubaud and mechanical mixing strategies.',
       icon: <WrenchScrewdriverIcon className="h-8 w-8" />,
     },
     {
-      page: 'learn/balling-technique' as Page,
+      page: 'learn/article/balling-technique' as Page,
       title: 'Balling (Staglio)',
       description: 'Creating surface tension for perfect fermentation and shape.',
       icon: <CubeIcon className="h-8 w-8" />,
     },
     {
-      page: 'learn/parbaking' as Page,
+      page: 'learn/article/parbaking' as Page,
       title: 'Parbaking',
       description: 'Techniques for pre-baking bases for events or high-volume service.',
       icon: <FireIcon className="h-8 w-8" />,

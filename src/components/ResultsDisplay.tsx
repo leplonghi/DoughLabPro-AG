@@ -22,7 +22,7 @@ import { exportBatchToPDF } from '@/services/exportService';
 import TechnicalMethodPanel from '@/components/calculator/TechnicalMethodPanel';
 import { generateTechnicalMethod } from '@/logic/methodGenerator';
 import { useUser } from '@/contexts/UserProvider';
-import { canUseFeature } from '@/logic/permissions';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
 import SocialShareModal from '@/components/social/SocialShareModal';
 
 interface ResultsDisplayProps {
@@ -58,6 +58,8 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     const { user } = useUser();
     const resultRef = useRef<HTMLDivElement>(null);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
+    const userPlan = getCurrentPlan(user);
 
     const technicalSteps = useMemo(() => {
         if (!results) return [];
@@ -111,7 +113,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     };
 
     const handleShare = async () => {
-        if (!canUseFeature(user, 'exports_json')) {
+        if (!canUseFeature(userPlan, 'community.share_and_clone')) {
             addToast("Your recipes deserve to be shared — unlock sharing with Pro.", "info");
             onOpenPaywall('calculator');
             return;
@@ -126,7 +128,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     };
 
     const handleExportPDF = () => {
-        if (!canUseFeature(user, 'exports_pdf')) {
+        if (!canUseFeature(userPlan, 'export.pdf_json')) {
             addToast("Export your formulas as beautiful PDFs with Pro.", "info");
             onOpenPaywall('calculator');
             return;
@@ -281,7 +283,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                             className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 transition-colors relative group"
                         >
                             <ShareIcon className="h-4 w-4" />
-                            {!canUseFeature(user, 'exports_json') && <LockClosedIcon className="absolute top-1 right-1 h-3 w-3 text-slate-300" />}
+                            {!canUseFeature(userPlan, 'community.share_and_clone') && <LockClosedIcon className="absolute top-1 right-1 h-3 w-3 text-slate-300" />}
                             Social Card
                         </button>
                         <button
@@ -291,7 +293,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         >
                             <DownloadIcon className="h-4 w-4" />
                             PDF
-                            {!canUseFeature(user, 'exports_pdf') && <LockClosedIcon className="absolute top-1 right-1 h-3 w-3 text-slate-300" />}
+                            {!canUseFeature(userPlan, 'export.pdf_json') && <LockClosedIcon className="absolute top-1 right-1 h-3 w-3 text-slate-300" />}
                         </button>
                     </div>
                 </div>

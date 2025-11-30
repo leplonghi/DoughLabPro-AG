@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { FireIcon } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import MyLabLayout from './MyLabLayout';
 import { Page } from '@/types';
 

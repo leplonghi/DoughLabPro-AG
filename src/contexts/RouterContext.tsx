@@ -78,6 +78,15 @@ export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             } else if (hash.startsWith('community/detail/') && parts.length > 2) {
                 setRoute('community/detail');
                 setRouteParams(parts[2]);
+            } else if (hash.startsWith('learn/article/') && parts.length > 2) {
+                setRoute('learn/article');
+                setRouteParams(parts[2]);
+            } else if (hash.startsWith('learn/search/') && parts.length > 2) {
+                setRoute('learn/search');
+                setRouteParams(parts[2]);
+            } else if (hash.startsWith('learn/category/') && parts.length > 2) {
+                setRoute('learn/category');
+                setRouteParams(decodeURIComponent(parts[2]));
             } else {
                 setRoute(hash.split('?')[0] as Page);
                 setRouteParams(null);

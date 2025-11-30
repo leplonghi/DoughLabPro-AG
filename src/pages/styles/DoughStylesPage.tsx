@@ -9,11 +9,9 @@ import {
     StarIcon,
     CalculatorIcon,
     TrashIcon,
-    CloseIcon,
     FlourIcon,
     SparklesIcon,
     UserCircleIcon,
-    ClockIcon,
     GlobeAltIcon,
     TagIcon,
     HeartIcon,
@@ -22,13 +20,14 @@ import {
     FunnelIcon
 } from '@/components/ui/Icons';
 import { STYLES_DATA } from '@/data/stylesData';
-import { useTranslation } from '@/i18n';
 import { DoughStyleDefinition, DoughConfig, StyleCategory } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
 import CreateStyleModal from '@/components/styles/CreateStyleModal';
 import AiStyleBuilderModal from '@/components/styles/AiStyleBuilderModal';
 import { ToppingPlannerModal } from '@/components/modals/ToppingPlannerModal';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
+import { LibraryPageLayout } from '../learn/LibraryPageLayout';
 
 interface DoughStylesPageProps {
     doughConfig: DoughConfig;
@@ -136,11 +135,8 @@ const StyleCard: React.FC<{ style: DoughStyleDefinition; onClick: () => void; on
     return (
         <div
             onClick={onClick}
-            className="group flex flex-col rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/50 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full relative overflow-hidden backdrop-blur-sm"
+            className="group flex flex-col rounded-xl border border-stone-200 bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full relative overflow-hidden hover:border-lime-500"
         >
-            {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-lime-500/0 to-lime-500/0 group-hover:from-lime-500/5 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
-
             {style.isPro && (
                 <div className="absolute top-0 right-0 bg-gradient-to-br from-lime-400 to-lime-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl shadow-lg z-10 uppercase tracking-wide animate-pulse">
                     ✨ PRO
@@ -163,16 +159,11 @@ const StyleCard: React.FC<{ style: DoughStyleDefinition; onClick: () => void; on
                     <h3 className="font-extrabold text-xl text-slate-900 group-hover:text-lime-600 transition-all duration-300 line-clamp-1 leading-tight">
                         {style.name}
                     </h3>
-                    {/* Favorite Button on Card */}
-                    {/* We need to pass isFavorite and toggleFavorite to StyleCard, or useUser inside it. 
-                        Since StyleCard is defined outside, let's use useUser inside it if possible, 
-                        but useUser is a hook so it must be inside a component. 
-                        StyleCard is a component. */}
                 </div>
 
                 <div className="mb-4 flex gap-2 flex-wrap">
                     <CategoryBadge category={style.category} />
-                    <span className="text-[10px] font-semibold text-slate-600 bg-white/70 backdrop-blur-sm px-2.5 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1 transition-all hover:scale-105">
+                    <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1 transition-all hover:scale-105">
                         <GlobeAltIcon className="h-3 w-3" /> {style.country}
                     </span>
                 </div>
@@ -192,17 +183,17 @@ const StyleCard: React.FC<{ style: DoughStyleDefinition; onClick: () => void; on
                 {style.tags && style.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-5">
                         {style.tags.slice(0, 3).map(tag => (
-                            <span key={tag} className="text-[9px] text-slate-600 bg-slate-100/80 backdrop-blur-sm border border-slate-200 px-2 py-1 rounded-full flex items-center gap-1 hover:bg-slate-200 transition-all">
+                            <span key={tag} className="text-[9px] text-slate-600 bg-slate-100 border border-slate-200 px-2 py-1 rounded-full flex items-center gap-1 hover:bg-slate-200 transition-all">
                                 <TagIcon className="h-2.5 w-2.5" /> {tag}
                             </span>
                         ))}
                     </div>
                 )}
 
-                <div className="mt-auto pt-5 border-t border-slate-200 flex gap-2">
+                <div className="mt-auto pt-5 border-t border-slate-100 flex gap-2">
                     <button
                         onClick={onUse}
-                        className="flex-1 bg-gradient-to-r from-lime-500 to-lime-600 text-white hover:from-lime-600 hover:to-lime-700 text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105 btn-premium"
+                        className="flex-1 bg-lime-500 text-white hover:bg-lime-600 text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105"
                     >
                         <CalculatorIcon className="h-4 w-4" /> Use Style
                     </button>
@@ -237,7 +228,8 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
     const [sortBy, setSortBy] = useState<'name' | 'newest' | 'hydration'>('name');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-    const { userStyles, addUserStyle, deleteUserStyle, isFavorite, toggleFavorite, hasProAccess, openPaywall } = useUser();
+    const { userStyles, addUserStyle, deleteUserStyle, isFavorite, toggleFavorite, hasProAccess, openPaywall, user } = useUser();
+    const userPlan = getCurrentPlan(user);
 
     // Combine Official and User Styles
     const allStyles = useMemo(() => [...STYLES_DATA, ...userStyles], [userStyles]);
@@ -306,7 +298,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
 
     const handleUseStyle = (e: React.MouseEvent, style: DoughStyleDefinition) => {
         e.stopPropagation();
-        if (style.isPro && !hasProAccess) {
+        if (style.isPro && !canUseFeature(userPlan, 'styles.full_access')) {
             openPaywall('styles');
             return;
         }
@@ -329,22 +321,66 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
     };
 
     return (
-        <>
-            <div className="mx-auto max-w-7xl animate-fade-in">
-                {/* Hero Section with Gradient */}
-                <div className="text-center mb-12 relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-lime-500/10 via-transparent to-lime-500/10 blur-3xl -z-10" />
-                    <BookOpenIcon className="mx-auto h-16 w-16 text-lime-500 animate-float drop-shadow-lg" />
-                    <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-                        <span className="gradient-text">Style Library</span>
-                    </h1>
-                    <p className="mt-5 max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">
-                        Explore <span className="font-semibold text-lime-600">technical formulas</span> for Pizzas, Breads, Pastry, and more.
-                    </p>
+        <LibraryPageLayout>
+            {/* Hero Section */}
+            <div className="mb-12 mx-4 sm:mx-6">
+                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
+
+                    <div className="relative z-10 grid md:grid-cols-3 gap-8 items-center">
+                        <div className="md:col-span-2 text-left">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6">
+                                <BookOpenIcon className="w-4 h-4" />
+                                Style Library
+                            </div>
+                            <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                                The Global Encyclopedia of Dough
+                            </h1>
+                            <p className="text-lg md:text-xl text-lime-100/90 mb-8 leading-relaxed">
+                                Explore <span className="font-bold text-lime-400">technical formulas</span> for Pizzas, Breads, Pastry, and more. Validated recipes with precise hydration and fermentation parameters.
+                            </p>
+                            <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm font-medium text-lime-100/60">
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-lime-400"></span> Pizza & Breads
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Pastry & Sweets
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Regional Specialties
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Technical Profiles
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="hidden md:block bg-white/10 rounded-2xl p-5 border border-white/5 backdrop-blur-sm">
+                            <h3 className="text-lime-300 font-bold mb-2 flex items-center gap-2 text-sm">
+                                <SparklesIcon className="w-4 h-4" />
+                                Did you know?
+                            </h3>
+                            <ul className="space-y-2 text-xs text-lime-100/70">
+                                <li className="flex gap-2">
+                                    <span className="text-lime-500">•</span>
+                                    Neapolitan pizza cooks in 90s at 485°C
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-lime-500">•</span>
+                                    Brioche can contain 50% butter
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-lime-500">•</span>
+                                    Sourdough improves digestibility
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Create Your Own Section - Premium Design */}
-                <div className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 shadow-xl relative overflow-hidden">
+                <div className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6 p-8 rounded-2xl bg-white border border-stone-200 shadow-sm relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 to-transparent pointer-events-none" />
                     <div className="flex flex-col justify-center relative z-10">
                         <h3 className="font-extrabold text-slate-900 text-xl flex items-center gap-2">
@@ -354,10 +390,10 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                         <p className="text-sm text-slate-600 mt-2 leading-relaxed">Define your own unique methods or ask AI to generate a technical profile for you.</p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3 justify-end items-center relative z-10">
-                        <ProFeatureLock origin='styles' contextLabel="AI Style Builder" className="w-full sm:w-auto">
+                        <ProFeatureLock featureKey="styles.full_access" customMessage="Unlock AI Style Builder with Lab Pro.">
                             <button
                                 onClick={() => setIsAiModalOpen(true)}
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 py-3 px-6 font-bold text-white shadow-lg hover:shadow-xl hover:from-indigo-600 hover:to-indigo-700 transition-all duration-300 hover:scale-105 btn-premium"
+                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3 px-6 font-bold text-white shadow-md hover:bg-indigo-700 transition-all duration-300 hover:scale-105"
                             >
                                 <SparklesIcon className="h-5 w-5" /> Ask AI for a Style
                             </button>
@@ -367,22 +403,21 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                 </div>
 
                 {/* Toppings Planner CTA */}
-                <div className="mb-10 flex flex-col md:flex-row gap-4 justify-between items-center p-6 rounded-2xl bg-gradient-to-r from-lime-50 to-lime-100/50 border border-lime-200 shadow-lg relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-lime-400/10 to-transparent pointer-events-none" />
+                <div className="mb-10 flex flex-col md:flex-row gap-4 justify-between items-center p-6 rounded-2xl bg-lime-50 border border-lime-200 shadow-sm relative overflow-hidden">
                     <p className="text-base font-semibold text-slate-800 text-center md:text-left relative z-10">Need to calculate toppings or fillings for your bake?</p>
-                    <button onClick={() => setIsPlannerOpen(true)} className="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 py-3 px-6 font-bold text-white shadow-lg hover:shadow-xl hover:from-lime-600 hover:to-lime-700 transition-all duration-300 hover:scale-105 btn-premium relative z-10">
+                    <button onClick={() => setIsPlannerOpen(true)} className="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-3 px-6 font-bold text-white shadow-md hover:bg-lime-600 transition-all duration-300 hover:scale-105 relative z-10">
                         <CalculatorIcon className="h-5 w-5" /> Open Ingredients Planner
                     </button>
                 </div>
 
                 {/* Search and Filter Bar - Premium Design */}
-                <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between glass-effect p-5 rounded-2xl border border-white/50 sticky top-20 z-20 shadow-xl backdrop-blur-lg">
+                <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between bg-white/80 p-5 rounded-2xl border border-stone-200 sticky top-20 z-20 shadow-sm backdrop-blur-lg">
                     <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
                         {CATEGORY_FILTERS.map(cat => (
                             <button
                                 key={cat.id}
                                 onClick={() => setSelectedCategory(cat.id as any)}
-                                className={`whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center gap-2 shadow-sm ${selectedCategory === cat.id ? 'bg-gradient-to-r from-lime-500 to-lime-600 text-white shadow-lg scale-105' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 hover:scale-105'}`}
+                                className={`whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center gap-2 shadow-sm ${selectedCategory === cat.id ? 'bg-lime-500 text-white shadow-md scale-105' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 hover:scale-105'}`}
                             >
                                 {cat.label}
                                 <span className={`text-[10px] py-1 px-2 rounded-full font-bold ${selectedCategory === cat.id ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-600'}`}>
@@ -433,7 +468,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                         <div className="relative flex-grow md:w-64">
                             <input
                                 type="text"
-                                className="block w-full rounded-xl border-2 border-slate-200 bg-white/80 py-3 pl-5 pr-4 text-sm placeholder-slate-500 focus:border-lime-500 focus:ring-4 focus:ring-lime-500/20 transition-all shadow-sm backdrop-blur-sm"
+                                className="block w-full rounded-xl border-2 border-slate-200 bg-white py-3 pl-5 pr-4 text-sm placeholder-slate-500 focus:border-lime-500 focus:ring-4 focus:ring-lime-500/20 transition-all shadow-sm"
                                 placeholder="Search..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -480,7 +515,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                     </div>
                 </div>
 
-                <div className="space-y-12">
+                <div className="space-y-12 mb-20">
                     {Object.keys(stylesByGroup).length === 0 ? (
                         <div className="col-span-full text-center py-12 text-slate-500">
                             No styles found matching criteria.
@@ -513,7 +548,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                         })
                     )}
                 </div>
-            </div >
+            </div>
 
             <CreateStyleModal
                 isOpen={isCreateModalOpen}
@@ -532,10 +567,8 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
             />
 
             {isPlannerOpen && <ToppingPlannerModal onClose={() => setIsPlannerOpen(false)} totalBalls={doughConfig.numPizzas} />}
-        </>
+        </LibraryPageLayout>
     );
 };
-
-
 
 export default DoughStylesPage;

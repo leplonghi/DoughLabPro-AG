@@ -1,80 +1,100 @@
 import { LearnArticleData } from '@/types/learn';
 
-export const floursData: LearnArticleData = {
-    id: 'flours',
-    title: 'Flours: Strength (W), P/L & Ash Content',
-    subtitle: 'Decoding the technical specifications that determine dough performance.',
-    history: {
-        heading: "From Stone Mills to Steel Rollers",
-        paragraphs: [
-            "For thousands of years, flour was stone-ground, producing a coarse meal that included the germ and bran. This flour was nutritious but spoiled quickly and produced dense loaves. The invention of the steel roller mill in Hungary in the 1870s revolutionized milling, allowing for the separation of the endosperm to create pure white, shelf-stable flour.",
-            "This innovation led to the modern classification systems we use today, like the Italian '00' scale based on ash content (refinement) and the French 'T' system. However, it also removed much of the flavor, leading to the recent revival of stone-ground and high-extraction flours in artisan baking.",
-            "Understanding these historical milling styles helps you choose the right flour in DoughLabPro—whether you want the pure strength of a modern 00 for Neapolitan pizza or the complex flavor of a rustic Type 1 for a country loaf."
-        ]
-    },
-    sections: [
+export const flourArticle: LearnArticleData = {
+    id: "flour-core-composition",
+    title: "Flour — Core Composition & Gluten Potential",
+    subtitle: "The foundation of structure, elasticity and dough performance.",
+    category: "Ingredient Science",
+    difficulty: "Beginner",
+    tags: ["flour", "gluten", "protein", "ash"],
+
+    intro: "Flour provides the proteins, starches and enzymes that define dough structure. Its gluten-forming capacity determines elasticity, gas retention and final texture.",
+    history: "Wheat milling evolved from stone-grinding to modern roller milling. This increased extraction control, allowing bakers to select flours by protein level and ash content for consistent results.",
+
+    technicalFoundations: [
+        "Wheat flour contains proteins (gliadin + glutenin), starch granules, lipids and enzymes.",
+        "Protein percentage predicts potential gluten strength, but quality matters as much as quantity.",
+        "Ash content reflects mineral presence from the bran; higher ash = darker, more flavorful flours.",
+        "Enzymes (amylase, protease) regulate sugar release and dough extensibility."
+    ],
+
+    doughImpact: [
+        "High-protein flour forms stronger gluten networks, increasing elasticity and gas retention.",
+        "Low-protein flour yields softer, shorter gluten, resulting in tenderness but less structure.",
+        "Higher ash and whole grains increase fermentation activity due to enzyme presence.",
+        "Starch damage influences hydration, fermentation rate and softness."
+    ],
+
+    bakingImpact: [
+        "Strong flours support tall oven spring and open crumb.",
+        "Soft flours brown faster due to higher simple sugar availability.",
+        "Whole grain flours absorb more water and can shorten fermentation due to enzyme activity."
+    ],
+
+    practicalRanges: [
+        { label: "Neapolitan", notes: "Recommended: 12% (Range: 11-12.5%)" },
+        { label: "New York", notes: "Recommended: 13% (Range: 12-13.5%)" },
+        { label: "Bread Flour", notes: "Recommended: 13.5% (Range: 12.5-14%)" },
+        { label: "Whole Wheat", notes: "Recommended: 14% (Range: 13-15%)" }
+    ],
+
+    practicalApplications: [
+        "Hydration auto-adjusts based on flour absorption profile in Calculator.",
+        "Gluten strength influences the recommended mixing time in Calculator.",
+        "Each style selects a default protein range aligned with tradition.",
+        "Test blends: 00 + bread flour, bread flour + whole wheat in MyLab.",
+        "Track how protein level impacts extensibility and oven spring in MyLab.",
+        "Whole grain increases fermentation speed; adjust timing accordingly for Levain.",
+        "Doughbot can flag underdevelopment if protein level is too high for mixing time."
+    ],
+
+    proTips: [
+        "Blending flours allows fine control over gluten strength and flavor.",
+        "Higher protein ≠ always better. Balance extensibility and elasticity."
+    ],
+
+    criticalPoints: [
+        "Do not evaluate flour by protein alone; gluten quality varies.",
+        "Switching brands changes absorption and fermentation — test before scaling recipes."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "Protein % strongly affects hydration needs.",
+        "Enzyme activity impacts fermentation rate and dough softness."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'The "W" Index (Strength)',
-            content: [
-                'The Chopin Alveograph measures the energy required to blow a bubble of dough until it bursts. This energy is the "W" value.',
-                '• Weak (W160-200): Cookies, cakes. Cannot hold gas.',
-                '• Medium (W220-260): Direct doughs, 4-8h fermentation. Standard pizza flour.',
-                '• Strong (W280-320): 24-48h fermentation. High hydration. Neapolitan/NY Style.',
-                '• Manitoba (W350+): Reinforcement flour. Extreme fermentation (72h+), Panettone.'
-            ]
+            variant: "00 Flour (Low Ash)",
+            implications: "Highly refined Italian-milled flour with low mineral content. High extensibility, ideal for high-temperature pizza. Light color, fast charring without bitterness."
         },
         {
-            title: 'The P/L Ratio (Balance)',
-            content: [
-                'P measures Tenacity (resistance to stretching). L measures Extensibility (length of stretch).',
-                '• P/L > 0.7: Buckish, tough dough. Hard to open. Springs back.',
-                '• P/L < 0.4: Slack, sticky dough. Tears easily. Flattens out.',
-                '• Ideal (0.5 - 0.6): Balanced. Easy to open but holds shape.'
-            ]
+            variant: "Bread Flour",
+            implications: "High-protein flour commonly used for structured doughs. High elasticity; harder to stretch for beginners. Great oven spring; chewier crumb."
         },
         {
-            title: 'Ash Content (Refinement)',
-            content: [
-                'Ash is the mineral residue left after burning the flour. It indicates how much bran is present.',
-                '• Type 00 (Italy): ~0.55% ash. Very pure endosperm. Soft, white crumb.',
-                '• Type 0/1/2: Increasing bran content. More flavor, more enzyme activity, but weaker gluten structure (bran cuts gluten).'
-            ]
+            variant: "Whole Wheat Flour",
+            implications: "Flour with bran and germ intact. Higher absorption; can shorten fermentation time. Nuttier flavor; denser crumb unless blended."
         }
     ],
-    proTip: {
-        content: 'Don\'t trust the protein percentage on the bag. A 13% protein Whole Wheat flour is WEAKER than a 12% protein Type 00 flour because the bran cuts the gluten network. Always look for the W value or technical sheet, not just the nutritional label.'
-    },
-    criticalPoint: {
-        content: 'The Falling Number. This measures enzymatic activity (amylase). Low falling number (<250) means high enzyme activity = sticky, gummy dough. High falling number (>400) means low activity = dry, pale dough. Most professional flours are corrected to ~300.'
-    },
+
     references: [
-        {
-            title: 'The Taste of Bread',
-            author: 'Raymond Calvel',
-            year: '2001'
-        },
-        {
-            title: 'Mulino Caputo Technical Sheets',
-            link: 'https://www.mulinocaputo.it/'
-        },
-        {
-            title: 'Wheat Flour Milling',
-            author: 'E.S. Posner',
-            year: '2005'
-        },
-        {
-            title: 'Understanding Baking',
-            author: 'Joseph Amendola',
-            year: '2003'
-        },
-        {
-            title: 'The Elements of Pizza',
-            author: 'Ken Forkish',
-            year: '2016'
-        },
-        {
-            title: 'Italian Decree on Flours (DPR 187/2001)',
-            link: 'https://www.gazzettaufficiale.it/'
-        }
-    ]
+        "Calvel, R. The Taste of Bread.",
+        "Suas, M. Advanced Bread and Pastry.",
+        "Hamelman, J. Bread."
+    ],
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Sweetheart, think of flour like the 'skeleton' of your dough — it holds everything together. The stronger the flour, the stronger your dough will be. Some flours make stretchy dough, others make soft dough.",
+        whatItDoes: "It forms gluten, absorbs water and helps your dough trap those little gas bubbles that make bread fluffy.",
+        howToUse: "Choosing the right flour makes your pizza easier to stretch, tastier and more beautiful in the oven.",
+        dangerSigns: "But careful: strong flour can be stubborn. If it fights back when you stretch it, let it rest a little — dough also gets tired."
+    }
 };

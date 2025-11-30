@@ -38,10 +38,10 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
 
     const navLinks = [
         { page: 'calculator', label: 'Calculator', icon: <CalculatorIcon className="h-4 w-4" /> },
+        { page: 'mylab', label: 'My Lab', icon: <BeakerIcon className="h-4 w-4" /> },
         { page: 'styles', label: 'Styles', icon: <BookOpenIcon className="h-4 w-4" /> },
         { page: 'learn', label: 'Learn', icon: <AcademicCapIcon className="h-4 w-4" /> },
-        { page: 'tools-oven-analysis', label: 'Tools', icon: <WrenchScrewdriverIcon className="h-4 w-4" /> }, // Direct link to Tools (using oven-analysis as placeholder or main tools page if exists)
-        { page: 'mylab', label: 'My Lab', icon: <BeakerIcon className="h-4 w-4" /> },
+        { page: 'tools', label: 'Tools', icon: <WrenchScrewdriverIcon className="h-4 w-4" /> },
         { page: 'community', label: 'Community', icon: <UsersIcon className="h-4 w-4" /> },
     ];
 
@@ -54,19 +54,40 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                         <Logo className="h-9 w-auto" />
                     </button>
                     <nav className="flex items-center gap-1">
-                        {navLinks.map(link => (
-                            <button
-                                key={link.page}
-                                onClick={() => handleNavigate(link.page as Page)}
-                                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors flex items-center gap-2 ${activePage === link.page || activePage.startsWith(link.page + '/')
-                                    ? 'text-lime-600 bg-lime-50'
-                                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-800'
-                                    }`}
-                            >
-                                {link.icon}
-                                {link.label}
-                            </button>
-                        ))}
+                        {navLinks.map(link => {
+                            const isCalculator = link.page === 'calculator';
+                            const isActive = activePage === link.page || activePage.startsWith(link.page + '/');
+
+                            if (isCalculator) {
+                                return (
+                                    <button
+                                        key={link.page}
+                                        onClick={() => handleNavigate(link.page as Page)}
+                                        className={`rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md hover:scale-105 ${isActive
+                                            ? 'bg-lime-600 text-white ring-2 ring-lime-200 ring-offset-2'
+                                            : 'bg-lime-500 text-white hover:bg-lime-600'
+                                            }`}
+                                    >
+                                        {link.icon}
+                                        {link.label}
+                                    </button>
+                                );
+                            }
+
+                            return (
+                                <button
+                                    key={link.page}
+                                    onClick={() => handleNavigate(link.page as Page)}
+                                    className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors flex items-center gap-2 ${isActive
+                                        ? 'text-lime-600 bg-lime-50'
+                                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-800'
+                                        }`}
+                                >
+                                    {link.icon}
+                                    {link.label}
+                                </button>
+                            );
+                        })}
                     </nav>
                 </div>
 
@@ -102,10 +123,10 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
 
     const navLinks = [
         { id: 'calculator', page: 'calculator', label: 'Calculator', icon: <CalculatorIcon className="h-6 w-6 text-slate-500" /> } as any,
+        { id: 'mylab', page: 'mylab', label: 'My Lab', icon: <BeakerIcon className="h-6 w-6 text-slate-500" /> } as any,
         { id: 'styles', page: 'styles', label: 'Styles', icon: <BookOpenIcon className="h-6 w-6 text-slate-500" /> } as any,
         { id: 'learn', page: 'learn', label: 'Learn', icon: <AcademicCapIcon className="h-6 w-6 text-slate-500" /> } as any,
-        { id: 'tools', page: 'tools-oven-analysis', label: 'Tools', icon: <WrenchScrewdriverIcon className="h-6 w-6 text-slate-500" /> } as any,
-        { id: 'mylab', page: 'mylab', label: 'My Lab', icon: <BeakerIcon className="h-6 w-6 text-slate-500" /> } as any,
+        { id: 'tools', page: 'tools', label: 'Tools', icon: <WrenchScrewdriverIcon className="h-6 w-6 text-slate-500" /> } as any,
         { id: 'community', page: 'community', label: 'Community', icon: <UsersIcon className="h-6 w-6 text-slate-500" /> } as any,
         { id: 'profile', page: 'profile', label: 'Profile', icon: <UserCircleIcon className="h-6 w-6 text-slate-500" /> } as any,
     ];

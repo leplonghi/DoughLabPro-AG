@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
 import { FireIcon, LightBulbIcon, SparklesIcon, BeakerIcon, ClockIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
 import { analyzeOvenProfile, OvenProfileInput, OvenAnalysisResult, validateOvenInput } from '@/logic/ovenProfile';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
 // Component for a single tip/list item
 const AdviceItem: React.FC<{ text: string }> = ({ text }) => (
@@ -81,7 +81,7 @@ export const OvenAnalysisPage: React.FC = () => {
       subtitle="Analyze your equipment to get tailored baking strategies, hydration limits, and rack positioning advice."
       showReferencesSection
     >
-      <ProFeatureLock origin="tools" featureKey="tools_oven_analysis" contextLabel="Oven Analysis Tool">
+      <ProFeatureLock featureKey="tools.oven_analysis" customMessage="Unlock advanced oven analysis and baking strategies with Lab Pro.">
         <div className="space-y-8 animate-fade-in">
           {/* Input Section */}
           <div className="rounded-2xl border border-slate-200  bg-white  p-6 shadow-sm sm:p-8">

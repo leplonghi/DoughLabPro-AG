@@ -2019,13 +2019,21 @@ export function getStyleById(id: string): DoughStyleDefinition | undefined {
 }
 
 export function getAllowedFermentationTechniques(style: RecipeStyle, bakeType: BakeType): FermentationTechnique[] {
+  // Safety check: ensure we always return an array
+  if (!style || !bakeType) {
+    console.warn('[getAllowedFermentationTechniques] Missing parameters:', { style, bakeType });
+    return [FermentationTechnique.DIRECT];
+  }
+
   const definition = STYLES_DATA.find(s => s.recipeStyle === style);
-  if (definition && definition.allowedFermentationTechniques) {
+  if (definition && definition.allowedFermentationTechniques && Array.isArray(definition.allowedFermentationTechniques)) {
     return definition.allowedFermentationTechniques;
   }
+
   if (bakeType === BakeType.SWEETS_PASTRY) {
     return [FermentationTechnique.CHEMICAL, FermentationTechnique.NO_FERMENT, FermentationTechnique.DIRECT];
   }
+
   return [
     FermentationTechnique.DIRECT,
     FermentationTechnique.POOLISH,

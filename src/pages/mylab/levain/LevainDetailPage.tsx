@@ -1,18 +1,19 @@
 import React, { useState, useMemo } from 'react';
-import { Page, Levain, YeastType } from '@/types';
+import { Page, YeastType } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
 import LevainLayout from './LevainLayout';
 import MyLabLayout from '../MyLabLayout';
-import { PlusCircleIcon, SparklesIcon, LockClosedIcon, StarIcon, ClockIcon, BeakerIcon } from '@/components/ui/Icons';
+import { PlusCircleIcon, SparklesIcon, LockClosedIcon, StarIcon, ClockIcon, BeakerIcon, BookOpenIcon } from '@/components/ui/Icons';
 import { useCalculator } from '@/contexts/CalculatorContext';
+import { getArticleById } from '@/data/learn';
 import LevainFeedingForm from './components/LevainFeedingForm';
 import LevainProfile from './components/LevainProfile';
 import LevainInsights from './components/LevainInsights';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import LevainAssistant from './components/LevainAssistant';
 import { calculateLevainStats, getEmotionColor } from '@/logic/levainPetUtils';
 import LevainAvatar from '@/components/LevainAvatar';
-import { canUseFeature } from '@/logic/permissions';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
 
 interface LevainDetailPageProps {
     levainId: string | null;
@@ -20,11 +21,13 @@ interface LevainDetailPageProps {
 }
 
 const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigate }) => {
-    const { levains, hasProAccess, openPaywall, user } = useUser();
+    const { levains, openPaywall, user } = useUser();
     const [activeTab, setActiveTab] = useState<'summary' | 'feedings' | 'profile' | 'insights'>('summary');
     const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
     const [isAssistantOpen, setIsAssistantOpen] = useState(false);
     const { setConfig } = useCalculator();
+
+    const plan = getCurrentPlan(user);
 
     const levain = useMemo(() => levains.find(l => l.id === levainId), [levains, levainId]);
 
@@ -106,7 +109,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                         Use in Bake
                     </button>
 
-                    <ProFeatureLock featureKey="levain_analytics" origin='levain' contextLabel="AI Assistant" className="w-full sm:w-auto">
+                    <ProFeatureLock featureKey="levain.lab_full" customMessage="Unlock AI Assistant with Lab Pro." className="w-full sm:w-auto">
                         <button
                             onClick={() => setIsAssistantOpen(true)}
                             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-indigo-50  text-indigo-600  border border-indigo-100  py-3 px-6 font-bold hover:bg-indigo-100 transition-colors"
@@ -129,11 +132,45 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                     <p className="text-xl font-bold text-slate-800 ">{Math.floor((Date.now() - new Date(levain.createdAt).getTime()) / (1000 * 60 * 60 * 24))} days</p>
                 </div>
             </div>
+
+            {/* Learn About Levain Behavior */}
+            <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <BookOpenIcon className="h-5 w-5 text-lime-500" />
+                    Learn About Levain Behavior
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {[
+                        { id: 'yeasts', summary: 'Understand the microbiology of wild yeast and bacteria in your starter.' },
+                        { id: 'excess-acidity', summary: 'Learn how to control acid load to prevent gluten degradation.' },
+                        { id: 'weak-gluten-structure', summary: 'Diagnose and fix weak dough caused by proteolysis or over-fermentation.' }
+                    ].map(item => {
+                        const article = getArticleById(item.id);
+                        if (!article) return null;
+                        return (
+                            <a
+                                key={item.id}
+                                href={`#/learn/${encodeURIComponent(article.category)}/${article.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-lime-500 hover:shadow-md transition-all group"
+                            >
+                                <h4 className="font-bold text-slate-800 group-hover:text-lime-600 transition-colors mb-2 line-clamp-1">
+                                    {article.title}
+                                </h4>
+                                <p className="text-xs text-slate-600 line-clamp-3">
+                                    {item.summary}
+                                </p>
+                            </a>
+                        );
+                    })}
+                </div>
+            </div>
         </div>
     );
 
     const renderFeedings = () => {
-        const historyToShow = canUseFeature(user, 'levain_analytics') ? levain.feedingHistory : levain.feedingHistory.slice(0, 3);
+        const historyToShow = canUseFeature(plan, 'levain.lab_full') ? levain.feedingHistory : levain.feedingHistory.slice(0, 3);
         return (
             <div className="rounded-2xl border border-slate-200  bg-white  p-6 shadow-sm animate-fade-in">
                 <div className="flex items-center justify-between mb-4">
@@ -156,7 +193,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                                 {log.notes && <p className="text-xs text-slate-500  italic mt-2">"{log.notes}"</p>}
                             </div>
                         ))}
-                        {!canUseFeature(user, 'levain_analytics') && levain.feedingHistory.length > 3 && (
+                        {!canUseFeature(plan, 'levain.lab_full') && levain.feedingHistory.length > 3 && (
                             <div className="p-6 text-center bg-gradient-to-b from-slate-50 to-white   rounded-2xl border border-dashed border-lime-200  mt-6">
                                 <div className="flex justify-center mb-3 text-lime-600 ">
                                     <LockClosedIcon className="h-8 w-8" />
@@ -186,9 +223,8 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
             case 'profile': return <LevainProfile levain={levain} />;
             case 'insights': return (
                 <ProFeatureLock
-                    origin='levain'
-                    featureKey="levain_analytics"
-                    contextLabel="Track your Levain like a scientist. Visualize activity cycles, temperature correlation, and health scoring available in Pro."
+                    featureKey="levain.lab_full"
+                    customMessage="Track your Levain like a scientist. Visualize activity cycles, temperature correlation, and health scoring available in Pro."
                     className="min-h-[300px] flex items-center justify-center rounded-2xl overflow-hidden"
                 >
                     <LevainInsights levain={levain} />

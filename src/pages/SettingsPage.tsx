@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
 import { UnitSystem } from '@/types';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
 const ChoiceButton: React.FC<{
   active: boolean;
@@ -66,9 +66,8 @@ const SettingsPage: React.FC = () => {
               App Theme
             </label>
             <ProFeatureLock
-              featureKey="settings_theme"
-              contextLabel="Customize App Appearance"
-              origin="settings"
+              featureKey="app.theme_customization"
+              customMessage="Theme customization is a Lab Pro feature."
             >
               <div className="grid grid-cols-3 gap-3">
                 <ChoiceButton active={true} onClick={() => { }}>Light</ChoiceButton>

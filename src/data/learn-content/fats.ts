@@ -1,82 +1,100 @@
 import { LearnArticleData } from '@/types/learn';
 
-export const fatsData: LearnArticleData = {
-    id: 'fats',
-    title: 'Fats (Lipids): The Shortening Effect & Flavor',
-    subtitle: 'How oil, lard, and butter modify the gluten network and alter the texture of the crumb.',
-    history: {
-        heading: "Lard, Oil, and Luxury",
-        paragraphs: [
-            "In the history of Italian baking, fat was often a luxury. The original Neapolitan pizza was a street food for the poor, typically made with a lean dough (flour, water, salt, yeast). However, the addition of lard (strutto) was common in richer variations or for special occasions, providing calories and tenderness.",
-            "Olive oil, while abundant in the Mediterranean, was historically more expensive than pork fat in many inland regions. It wasn't until the mid-20th century that olive oil became the standard fat for pizza doughs globally, prized for its health benefits and flavor profile.",
-            "Today, the choice of fat is a stylistic signature. Roman Teglia often uses olive oil for crunch, while some traditionalists still swear by a touch of lard for the ultimate flaky crust. DoughLabPro helps you balance these fats without compromising your gluten structure."
-        ]
-    },
-    sections: [
+export const fatsArticle: LearnArticleData = {
+    id: "fats-oils-lubrication-oxidation",
+    title: "Fats & Oils — Lubrication, Tenderness & Oxidation",
+    subtitle: "Influencing tenderness, structure lubrication and shelf-life.",
+    category: "Ingredient Science",
+    difficulty: "Intermediate",
+    tags: ["fats", "oils", "tenderness", "oxidation"],
+
+    intro: "Fats coat gluten strands, improving tenderness, extensibility and softness. They slow staling and influence browning, aroma and dough rheology.",
+    history: "Traditional doughs used animal fats (lard, butter). Modern baking introduced plant oils, emulsifiers and controlled lipid profiles to adjust structure and flavor.",
+
+    technicalFoundations: [
+        "Fats coat gluten proteins, limiting cross-linking and increasing tenderness.",
+        "Liquid oils increase extensibility; solid fats add structure and richness.",
+        "Oxidation affects flavor stability: saturated fats resist oxidation, unsaturated oils oxidize faster.",
+        "Fats reduce water activity, slowing staling."
+    ],
+
+    doughImpact: [
+        "Oils make dough softer and easier to stretch.",
+        "Butter enriches dough, adding tenderness and aroma.",
+        "Lard improves plasticity and bite.",
+        "Excess fat weakens gluten too much, reducing gas retention."
+    ],
+
+    bakingImpact: [
+        "Fats improve browning by enhancing heat transfer.",
+        "Enriched doughs produce tender crumb and soft crust.",
+        "Olive oil creates crisp surfaces in Roman-style and focaccia."
+    ],
+
+    practicalRanges: [
+        { label: "Pizza Dough", notes: "Recommended: 2% (Range: 1-5%)" },
+        { label: "Focaccia", notes: "Recommended: 10% (Range: 5-15%)" },
+        { label: "Enriched Breads", notes: "Recommended: 15% (Range: 5-25%)" }
+    ],
+
+    practicalApplications: [
+        "Fat % modifies recommended hydration.",
+        "Olive oil triggers Roman-style crispness adjustments in Calculator.",
+        "Test butter vs olive oil vs no fat to evaluate crumb softness differences in MyLab.",
+        "High fat slows levain fermentation; extend proofing.",
+        "Doughbot warns if fat % weakens gluten beyond safe handling range."
+    ],
+
+    proTips: [
+        "Use oils for extensibility; use butter for richness.",
+        "Avoid high fat in weak flours — it collapses gas retention."
+    ],
+
+    criticalPoints: [
+        "Fats must be fully incorporated; streaks weaken structure.",
+        "Rancid oils ruin flavor — store properly."
+    ],
+
+    regionalVariants: [],
+    climateScenarios: [],
+    styleComparisons: [],
+    parameterSensitivity: [
+        "Fat % influences hydration strongly.",
+        "Saturated vs unsaturated fats behave differently during baking."
+    ],
+
+    variantsAndImplications: [
         {
-            title: 'The "Shortening" Effect',
-            content: [
-                'Fats are hydrophobic. When introduced to dough, they coat the flour proteins (gliadin and glutenin). This physical barrier prevents these proteins from hydrating fully and linking up to form long gluten chains.',
-                'The result is "shorter" gluten strands. This translates to a softer, more tender crumb (like a brioche or a soft bun) rather than a chewy, tough crumb (like a baguette). In pizza, oil contributes to a tender "melt-in-the-mouth" bite.'
-            ]
+            variant: "Olive Oil",
+            implications: "Common in Italian doughs. Liquid, distinct aroma. Increases extensibility; makes dough more workable. Enhances crust crispness and aroma."
         },
         {
-            title: 'Moisture Retention',
-            content: [
-                'Fat does not evaporate. It remains liquid (or semi-solid) in the baked product, providing a sensation of moistness even when the water content is lower. It also creates a barrier that slows down staling (moisture loss) after baking.'
-            ]
+            variant: "Butter",
+            implications: "Solid fat adding richness. Water content, melting behavior. Tenderizes and enriches dough. Adds aroma; softens crumb."
         },
         {
-            title: 'Heat Transfer & Frying',
-            content: [
-                'Fat on the surface of the dough (from the pan or added on top) conducts heat much more efficiently than air. This leads to the "frying" effect seen in Pan Pizzas or Focaccia, creating a crispy, golden micro-crust that is distinct from the dry crunch of a lean dough.'
-            ]
+            variant: "Lard",
+            implications: "Solid animal fat with unique plasticity. High saturation, stable structure. Enhances softness; improves handling. Tender bite; subtle savory notes."
         },
         {
-            title: 'Types of Fat',
-            content: [
-                '• Olive Oil: Liquid at room temp. Adds distinct flavor and tenderness. Standard for many Italian styles.',
-                '• Lard (Strutto): Solid at room temp. Creates a flaky texture. Traditional in Neapolitan doughs historically and Roman styles.',
-                '• Butter: Contains water and milk solids. Adds flavor but burns easily at high pizza temps.'
-            ]
+            variant: "Vegetable Oils",
+            implications: "Neutral profile oils. Unsaturated, light flavor. Softens dough; increases extensibility. Consistent browning; mild flavor."
         }
     ],
-    proTip: {
-        content: 'Always add fat LATE in the mixing process (after the pumpkin stage). If you add oil before the water hydrates the flour, you will coat the dry flour and permanently inhibit gluten formation, leading to a dough that never comes together.'
-    },
-    criticalPoint: {
-        content: 'The 3% Threshold. Going beyond 3% fat by weight significantly changes the dough rheology. It becomes much softer and less elastic. High-fat doughs (5%+) often require stronger flour to compensate for the weakening of the gluten network.'
-    },
+
     references: [
-        {
-            title: 'How Baking Works',
-            author: 'Paula Figoni',
-            year: '2010'
-        },
-        {
-            title: 'The Pizza Bible',
-            author: 'Tony Gemignani',
-            year: '2014'
-        },
-        {
-            title: 'On Food and Cooking',
-            author: 'Harold McGee',
-            year: '2004'
-        },
-        {
-            title: 'Bakery Products: Science and Technology',
-            author: 'Y.H. Hui',
-            year: '2006'
-        },
-        {
-            title: 'Fats in Food Technology',
-            author: 'K.K. Rajah',
-            year: '2002'
-        },
-        {
-            title: 'Journal of the American Oil Chemists\' Society',
-            author: 'Springer',
-            year: 'Various'
-        }
-    ]
+        "Calvel, R. The Taste of Bread.",
+        "Suas, M. Advanced Bread and Pastry."
+    ],
+
+    images: [],
+    diagrams: [],
+    faq: [],
+
+    grandmaVersion: {
+        intro: "Sweetheart, fat is like lotion for your dough — it makes everything smooth and soft.",
+        whatItDoes: "Fat keeps the dough tender and helps it brown beautifully.",
+        howToUse: "A little oil or butter makes the dough easier to stretch and tastier when baked.",
+        dangerSigns: "But too much fat makes the dough lazy — it won’t hold its shape."
+    }
 };

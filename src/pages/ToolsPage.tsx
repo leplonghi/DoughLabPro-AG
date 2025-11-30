@@ -6,10 +6,13 @@ import {
     FireIcon,
     BeakerIcon,
     CalculatorIcon,
-    SparklesIcon
+    SparklesIcon,
+    LockClosedIcon
 } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
 import LearnAffiliateBlock from '@/components/learn/LearnAffiliateBlock';
+import { useUser } from '@/contexts/UserProvider';
+import { canUseFeature, getCurrentPlan, FeatureKey } from '@/permissions';
+import { LibraryPageLayout } from './learn/LibraryPageLayout';
 
 interface ToolsPageProps {
     onNavigate: (page: Page) => void;
@@ -20,24 +23,29 @@ const ToolCard: React.FC<{
     title: string;
     description: string;
     onClick: () => void;
-    isPro?: boolean;
+    isLocked?: boolean;
     isNew?: boolean;
-}> = ({ icon, title, description, onClick, isPro, isNew }) => (
+}> = ({ icon, title, description, onClick, isLocked, isNew }) => (
     <button
         onClick={onClick}
-        className="group h-full text-left flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+        className="group h-full text-left flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative overflow-hidden hover:border-lime-500"
     >
-        <div className="absolute inset-0 bg-gradient-to-br from-lime-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
         <div className="flex items-start justify-between mb-4 relative z-10">
-            <div className="p-3 rounded-xl bg-lime-50 text-lime-600 group-hover:bg-lime-500 group-hover:text-white transition-colors duration-300">
+            <div className={`p-3 rounded-xl transition-colors duration-300 ${isLocked ? 'bg-slate-100 text-slate-400' : 'bg-lime-50 text-lime-600 group-hover:bg-lime-500 group-hover:text-white'}`}>
                 {React.cloneElement(icon as React.ReactElement, { className: "h-8 w-8" })}
             </div>
-            {isNew && (
-                <span className="px-2 py-1 text-xs font-bold text-lime-700 bg-lime-100 rounded-full">
-                    NEW
-                </span>
-            )}
+            <div className="flex gap-2">
+                {isNew && (
+                    <span className="px-2 py-1 text-xs font-bold text-lime-700 bg-lime-100 rounded-full">
+                        NEW
+                    </span>
+                )}
+                {isLocked && (
+                    <span className="px-2 py-1 text-xs font-bold text-slate-500 bg-slate-100 rounded-full flex items-center gap-1">
+                        <LockClosedIcon className="h-3 w-3" /> PRO
+                    </span>
+                )}
+            </div>
         </div>
 
         <div className="relative z-10">
@@ -53,6 +61,8 @@ const ToolCard: React.FC<{
 
 const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     const { t } = useTranslation();
+    const { user } = useUser();
+    const plan = getCurrentPlan(user);
 
     const tools = [
         {
@@ -61,7 +71,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
             description: 'Advanced dough calculator for creating, scaling, and balancing recipes with precision.',
             icon: <CalculatorIcon />,
             page: 'calculator',
-            isPro: false
+            featureKey: null
         },
         {
             id: 'doughbot',
@@ -69,7 +79,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
             description: 'AI-powered diagnostic tool to troubleshoot dough issues and get instant solutions.',
             icon: <SparklesIcon />,
             page: 'tools-doughbot',
-            isPro: true,
+            featureKey: 'tools.doughbot',
             isNew: true
         },
         {
@@ -78,7 +88,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
             description: 'Analyze your oven\'s heat distribution and optimize baking parameters for your specific model.',
             icon: <FireIcon />,
             page: 'tools-oven-analysis',
-            isPro: true
+            featureKey: 'tools.oven_analysis'
         },
         // Future tools can be added here
         {
@@ -87,77 +97,86 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
             description: 'Coming Soon: Convert recipes between different hydration levels automatically.',
             icon: <BeakerIcon />,
             page: 'tools', // Placeholder
-            isPro: false,
+            featureKey: null,
             comingSoon: true
         }
     ];
 
     return (
-        <div className="mx-auto max-w-7xl animate-fade-in pb-20">
-            {/* Hero Section */}
-            <div className="text-center mb-16 relative py-10">
-                <div className="absolute inset-0 bg-gradient-to-b from-lime-50/50 to-transparent -z-10 rounded-b-[3rem]" />
-                <div className="inline-flex p-4 rounded-2xl bg-white shadow-xl mb-6 ring-1 ring-slate-100">
-                    <WrenchScrewdriverIcon className="h-12 w-12 text-lime-600" />
+        <LibraryPageLayout>
+            <div className="mx-auto max-w-7xl animate-fade-in pb-20">
+                {/* Hero Section */}
+                {/* Hero Section */}
+                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-10 mb-12 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
+
+                    <div className="relative z-10 text-center max-w-3xl mx-auto">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6">
+                            <WrenchScrewdriverIcon className="w-4 h-4" />
+                            Professional Utilities
+                        </div>
+                        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                            Baking Tools
+                        </h1>
+                        <p className="text-lg md:text-xl text-lime-100/90 mb-8 leading-relaxed">
+                            Professional grade utilities to refine your process, analyze results, and perfect your craft.
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-lime-100/80">
+                            <span className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-lime-400"></span> Recipe Calculation
+                            </span>
+                            <span className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span> AI Diagnostics
+                            </span>
+                            <span className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Oven Analysis
+                            </span>
+                            <span className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Hydration
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-                    Baking Tools
-                </h1>
-                <p className="mt-6 max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">
-                    Professional-grade utilities to refine your process, analyze results, and perfect your craft.
-                </p>
-            </div>
 
-            <div className="px-4 sm:px-6">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {tools.map((tool) => {
-                        if ((tool as any).comingSoon) {
+                <div className="px-4 sm:px-6">
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {tools.map((tool) => {
+                            if ((tool as any).comingSoon) {
+                                return (
+                                    <div key={tool.id} className="opacity-60 grayscale pointer-events-none">
+                                        <ToolCard
+                                            icon={tool.icon}
+                                            title={tool.title}
+                                            description={tool.description}
+                                            onClick={() => { }}
+                                        />
+                                    </div>
+                                );
+                            }
+
+                            const isLocked = tool.featureKey ? !canUseFeature(plan, tool.featureKey as FeatureKey) : false;
+
                             return (
-                                <div key={tool.id} className="opacity-60 grayscale pointer-events-none">
-                                    <ToolCard
-                                        icon={tool.icon}
-                                        title={tool.title}
-                                        description={tool.description}
-                                        onClick={() => { }}
-                                    />
-                                </div>
-                            );
-                        }
-
-                        const card = (
-                            <ToolCard
-                                key={tool.id}
-                                icon={tool.icon}
-                                title={tool.title}
-                                description={tool.description}
-                                onClick={() => onNavigate(tool.page as Page)}
-                                isPro={tool.isPro}
-                                isNew={tool.isNew}
-                            />
-                        );
-
-                        if (tool.isPro) {
-                            return (
-                                <ProFeatureLock
+                                <ToolCard
                                     key={tool.id}
-                                    featureKey={tool.id === 'doughbot' ? 'ai_assistant' : 'advanced_analytics'} // Mapping to likely feature keys
-                                    contextLabel={tool.title}
-                                    origin="tools"
-                                >
-                                    {card}
-                                </ProFeatureLock>
+                                    icon={tool.icon}
+                                    title={tool.title}
+                                    description={tool.description}
+                                    onClick={() => onNavigate(tool.page as Page)}
+                                    isLocked={isLocked}
+                                    isNew={(tool as any).isNew}
+                                />
                             );
-                        }
+                        })}
+                    </div>
+                </div>
 
-                        return card;
-                    })}
+                <div className="px-4 sm:px-6 mt-12">
+                    <LearnAffiliateBlock placementKeys={['tools_general']} />
                 </div>
             </div>
-
-            <div className="px-4 sm:px-6 mt-12">
-                <LearnAffiliateBlock placementKeys={['tools_general']} />
-            </div>
-        </div>
+        </LibraryPageLayout>
     );
 };
 

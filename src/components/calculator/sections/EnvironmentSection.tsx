@@ -1,23 +1,21 @@
+
 import React from 'react';
-import { DoughConfig, FormErrors, AmbientTemperature } from '@/types';
+import { DoughConfig, AmbientTemperature } from '@/types';
 import { SunIcon, InfoIcon } from '@/components/ui/Icons';
 import AccordionSection from '@/components/calculator/AccordionSection';
 import { AMBIENT_TEMPERATURE_OPTIONS, ENVIRONMENT_TEMPERATURE_GUIDELINES } from '@/constants';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import { useToast } from '@/components/ToastProvider';
 
+
 interface EnvironmentSectionProps {
     config: DoughConfig;
     onConfigChange: (newConfig: Partial<DoughConfig>) => void;
-    getSelectClasses: () => string;
-    errors: FormErrors;
 }
 
 const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
     config,
     onConfigChange,
-    getSelectClasses,
-    errors,
 }) => {
     const { addToast } = useToast();
 

@@ -4,7 +4,7 @@ import MyLabLayout from './MyLabLayout';
 import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import { ClockIcon, BatchesIcon, BeakerIcon, PlusCircleIcon } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ProFeatureLock';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
 interface TimelineEvent {
   id: string;
@@ -93,9 +93,8 @@ const TimelinePage: React.FC<{ onNavigate: (page: Page, params?: string) => void
         </div>
 
         <ProFeatureLock
-          origin='mylab'
-          featureKey="mylab_timeline"
-          contextLabel="Pro users track everything — hydration, fermentation, bake outcomes. See your entire baking journey in one place."
+          featureKey="mylab.timeline"
+          customMessage="Pro users track everything — hydration, fermentation, bake outcomes. See your entire baking journey in one place."
           className="min-h-[18.75rem] flex items-center justify-center rounded-2xl overflow-hidden"
         >
           {timelineEvents.length === 0 ? (
