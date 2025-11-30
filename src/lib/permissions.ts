@@ -16,8 +16,8 @@ export function isTrialActive(user: User | null | undefined): boolean {
  */
 export function isProUser(user: User | null | undefined): boolean {
   if (!user) return false;
-  // User is Pro if the flag is true, plan is 'pro', or if they are in a valid trial
-  return !!user.isPro || user.plan === 'pro' || isTrialActive(user);
+  // User is Pro if the flag is true, plan is 'pro' or 'lab_pro', or if they are in a valid trial
+  return !!user.isPro || user.plan === 'pro' || user.plan === 'lab_pro' || isTrialActive(user);
 }
 
 /**
@@ -33,12 +33,12 @@ export function isFreeUser(user: User | null | undefined): boolean {
  */
 export function remainingTrialDays(user: User | null | undefined): number {
   if (!user || !user.trialEndsAt) return 0;
-  
+
   const now = new Date();
   const end = new Date(user.trialEndsAt);
-  
+
   if (end <= now) return 0;
-  
+
   const diffTime = Math.abs(end.getTime() - now.getTime());
-  return Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }

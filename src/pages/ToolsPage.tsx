@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
 import { Page } from '@/types';
+import { ToolCard as ToolCardType } from '@/types/tools';
 import {
     WrenchScrewdriverIcon,
     FireIcon,
@@ -18,14 +19,15 @@ interface ToolsPageProps {
     onNavigate: (page: Page) => void;
 }
 
-const ToolCard: React.FC<{
+const ToolCardView: React.FC<{
     icon: React.ReactNode;
     title: string;
     description: string;
     onClick: () => void;
     isLocked?: boolean;
     isNew?: boolean;
-}> = ({ icon, title, description, onClick, isLocked, isNew }) => (
+    preview?: string;
+}> = ({ icon, title, description, onClick, isLocked, isNew, preview }) => (
     <button
         onClick={onClick}
         className="group h-full text-left flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative overflow-hidden hover:border-lime-500"
@@ -41,7 +43,7 @@ const ToolCard: React.FC<{
                     </span>
                 )}
                 {isLocked && (
-                    <span className="px-2 py-1 text-xs font-bold text-slate-500 bg-slate-100 rounded-full flex items-center gap-1">
+                    <span className="px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-amber-900 bg-gradient-to-r from-amber-200 to-yellow-400 rounded-full flex items-center gap-1 shadow-sm">
                         <LockClosedIcon className="h-3 w-3" /> PRO
                     </span>
                 )}
@@ -55,6 +57,11 @@ const ToolCard: React.FC<{
             <p className="text-sm text-slate-600 leading-relaxed">
                 {description}
             </p>
+            {isLocked && preview && (
+                <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs text-slate-500 italic">
+                    <span className="font-semibold text-slate-600 not-italic">Pro Insight:</span> {preview}
+                </div>
+            )}
         </div>
     </button>
 );
@@ -64,41 +71,46 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     const { user } = useUser();
     const plan = getCurrentPlan(user);
 
-    const tools = [
+    const TOOLS: ToolCardType[] = [
         {
             id: 'calculator',
             title: 'FormulaLab',
             description: 'Advanced dough calculator for creating, scaling, and balancing recipes with precision.',
+            isPro: false,
+            route: 'calculator',
             icon: <CalculatorIcon />,
-            page: 'calculator',
-            featureKey: null
+            featureKey: undefined
         },
         {
             id: 'doughbot',
             title: 'Dough Diagnostic',
             description: 'AI-powered diagnostic tool to troubleshoot dough issues and get instant solutions.',
+            isPro: true,
+            route: 'tools/doughbot',
             icon: <SparklesIcon />,
-            page: 'tools-doughbot',
-            featureKey: 'tools.doughbot',
-            isNew: true
+            preview: "Example: Dough tearing? Gluten underdeveloped. Extend autolyse by 20 minutes.",
+            isNew: true,
+            featureKey: 'tools.doughbot'
         },
         {
             id: 'oven-profiler',
             title: 'Oven Profiler',
             description: 'Analyze your oven\'s heat distribution and optimize baking parameters for your specific model.',
+            isPro: true,
+            route: 'tools/oven-profiler',
             icon: <FireIcon />,
-            page: 'tools-oven-analysis',
+            preview: "Example: Your oven maxes at 250°C — use top rack + longer preheat for proper browning.",
             featureKey: 'tools.oven_analysis'
         },
-        // Future tools can be added here
         {
             id: 'hydration-converter',
             title: 'Hydration Converter',
             description: 'Coming Soon: Convert recipes between different hydration levels automatically.',
+            isPro: false,
+            route: 'tools',
             icon: <BeakerIcon />,
-            page: 'tools', // Placeholder
-            featureKey: null,
-            comingSoon: true
+            comingSoon: true,
+            featureKey: undefined
         }
     ];
 
@@ -106,46 +118,34 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         <LibraryPageLayout>
             <div className="mx-auto max-w-7xl animate-fade-in pb-20">
                 {/* Hero Section */}
-                {/* Hero Section */}
-                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-10 mb-12 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
+                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-8 mb-8 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
                     <div className="relative z-10 text-center max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
                             <WrenchScrewdriverIcon className="w-4 h-4" />
                             Professional Utilities
                         </div>
-                        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">
                             Baking Tools
                         </h1>
-                        <p className="text-lg md:text-xl text-lime-100/90 mb-8 leading-relaxed">
-                            Professional grade utilities to refine your process, analyze results, and perfect your craft.
+                        <p className="text-base md:text-lg text-lime-100/90 mb-4 leading-relaxed">
+                            Professional-grade tools for diagnostics, analysis and optimization.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-lime-100/80">
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-lime-400"></span> Recipe Calculation
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span> AI Diagnostics
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Oven Analysis
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Hydration
-                            </span>
-                        </div>
+                        <p className="text-sm text-lime-200 font-medium">
+                            Unlock Pro tools for advanced oven analytics and dough diagnostics.
+                        </p>
                     </div>
                 </div>
 
                 <div className="px-4 sm:px-6">
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {tools.map((tool) => {
-                            if ((tool as any).comingSoon) {
+                        {TOOLS.map((tool) => {
+                            if (tool.comingSoon) {
                                 return (
                                     <div key={tool.id} className="opacity-60 grayscale pointer-events-none">
-                                        <ToolCard
+                                        <ToolCardView
                                             icon={tool.icon}
                                             title={tool.title}
                                             description={tool.description}
@@ -158,14 +158,15 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
                             const isLocked = tool.featureKey ? !canUseFeature(plan, tool.featureKey as FeatureKey) : false;
 
                             return (
-                                <ToolCard
+                                <ToolCardView
                                     key={tool.id}
                                     icon={tool.icon}
                                     title={tool.title}
                                     description={tool.description}
-                                    onClick={() => onNavigate(tool.page as Page)}
+                                    onClick={() => onNavigate(tool.route as Page)}
                                     isLocked={isLocked}
-                                    isNew={(tool as any).isNew}
+                                    isNew={tool.isNew}
+                                    preview={tool.preview}
                                 />
                             );
                         })}

@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DoughStyleDefinition } from '@/types';
 import {
     CalculatorIcon,
     BookOpenIcon,
     BeakerIcon,
-    FireIcon,
-    InfoIcon,
-    ClockIcon,
     ShoppingBagIcon,
     ExternalLinkIcon,
     GlobeAltIcon,
     HeartIcon,
+    ArrowLeftIcon,
+    ShareIcon,
+    PrinterIcon
 } from '@/components/ui/Icons';
 import { AFFILIATE_PRODUCTS } from '@/data/affiliateLinks';
 import { Logo } from '@/components/ui/Logo';
@@ -19,6 +19,16 @@ import { useUser } from '@/contexts/UserProvider';
 import PDFExportButton from '@/components/ui/PDFExportButton';
 import ShareButton from '@/components/ui/ShareButton';
 import { allLearnArticles } from '@/data/learn';
+import { LibraryPageLayout } from '../learn/LibraryPageLayout';
+import { getCurrentPlan } from '@/permissions';
+import {
+
+    OriginBadge,
+    DifficultyBadge
+} from '@/components/styles/StyleComponents';
+import { TechnicalProfileCard } from '@/components/styles/TechnicalProfileCard';
+
+import { ChevronDown, ChevronUp, Layers, Globe, Calendar, FlaskConical } from 'lucide-react';
 
 interface StyleDetailPageProps {
     style: DoughStyleDefinition;
@@ -27,8 +37,28 @@ interface StyleDetailPageProps {
 }
 
 export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadAndNavigate, onBack }) => {
-    const { hasProAccess, openPaywall, isFavorite, toggleFavorite } = useUser();
+    const { hasProAccess, openPaywall, isFavorite, toggleFavorite, user } = useUser();
+    const userPlan = getCurrentPlan(user);
+    const isPro = hasProAccess; // Simplified check
+
+    // No adaptation needed
+
     const favorited = isFavorite(style.id);
+    const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'science'>('overview');
+
+    // Accordion States
+    const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+        substyles: true,
+        regional: false,
+        seasonal: false,
+        experimental: false
+    });
+
+    const toggleSection = (section: string) => {
+        setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
+    };
+
+
 
     const renderRecommendation = () => {
         let text = "";
@@ -74,276 +104,318 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
         );
     };
 
-    const FormulaTable = () => (
-        <div className={`bg-slate-50 rounded-xl border border-slate-200 overflow-hidden`}>
-            <table className="w-full text-sm text-left">
-                <thead className="bg-slate-100 text-slate-500 uppercase text-xs">
-                    <tr>
-                        <th className="px-4 py-3">Ingredient</th>
-                        <th className="px-4 py-3 text-right">% (Baker's)</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200">
-                    {style.ingredients.map(ing => (
-                        <tr key={ing.id}>
-                            <td className="px-4 py-3 font-medium text-slate-700">{ing.name}</td>
-                            <td className="px-4 py-3 text-right font-mono text-slate-600">{ing.bakerPercentage}%</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-
-    const TechnicalParams = () => (
-        <div className={`bg-slate-50 p-6 rounded-xl border border-slate-200`}>
-            <h3 className="font-bold text-slate-900 mb-4">Technical Parameters</h3>
-            <div className="space-y-4">
-                <div>
-                    <p className="text-xs text-slate-500 uppercase font-semibold">Hydration</p>
-                    <p className="text-xl font-bold text-slate-800">{style.technical.hydration}%</p>
-                </div>
-                <div>
-                    <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
-                        <ClockIcon className="h-3 w-3" /> Fermentation
-                    </p>
-                    <p className="text-base font-medium text-slate-800">{style.technical.fermentation}</p>
-                </div>
-                <div>
-                    <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
-                        <FireIcon className="h-3 w-3" /> Oven Temp
-                    </p>
-                    <p className="text-base font-medium text-slate-800">{style.technical.bakingTempC}°C</p>
-                </div>
-            </div>
-        </div>
-    );
+    const handleLoadCalculator = () => {
+        onLoadAndNavigate(style);
+    };
 
     return (
-        <div className="mx-auto max-w-4xl animate-[fadeIn_0.3s_ease-in_out]">
-            {/* Back Button */}
-            <button onClick={onBack} className="mb-6 text-sm font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1 no-print">
-                &larr; Back to Library
-            </button>
+        <LibraryPageLayout>
+            <div className="max-w-5xl mx-auto animate-fade-in pb-20">
+                {/* Sticky Mini Header */}
+            </div>
 
-            <div id="style-detail-content" className="bg-white rounded-2xl shadow-lg ring-1 ring-slate-200/50 overflow-hidden">
-                {/* Print-only Header */}
-                <div className="hidden print-header items-center justify-between p-6 border-b border-slate-200 mb-4">
-                    <Logo className="h-8 w-auto" />
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Advanced Dough Science</p>
-                </div>
+            {/* Hero */}
+            <div className="relative bg-slate-900 text-white overflow-hidden rounded-b-3xl sm:rounded-3xl shadow-xl mb-8 mx-0 sm:mx-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+                <div className="absolute top-0 right-0 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
 
-                {/* Header - Updated to Light Premium Design */}
-                <div className="bg-gradient-to-br from-slate-50 to-white p-8 border-b border-slate-100 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                    <div className="flex justify-between items-start relative z-10">
-                        <div>
-                            <div className="flex items-center gap-3">
-                                <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">{style.name}</h1>
-                                <button
-                                    onClick={() => toggleFavorite({
-                                        id: style.id,
-                                        type: 'style',
-                                        title: style.name,
-                                        metadata: { category: style.category }
-                                    })}
-                                    className={`p-2 rounded-full transition-all no-print ${favorited ? 'bg-pink-100 text-pink-500' : 'bg-white/50 text-slate-400 hover:text-pink-500 hover:bg-white'}`}
-                                    title={favorited ? "Remove from favorites" : "Add to favorites"}
-                                >
-                                    <HeartIcon className={`h-6 w-6 ${favorited ? 'fill-current' : ''}`} />
-                                </button>
-                            </div>
-                            <p className="text-slate-600 mt-2 text-lg leading-relaxed max-w-2xl">{style.description}</p>
-                            <div className="flex gap-3 mt-5 text-sm font-bold text-slate-600">
-                                <span className="bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-lime-500"></span>
-                                    {style.category}
-                                </span>
-                                <span className="bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1">
-                                    <GlobeAltIcon className="h-3 w-3 text-slate-400" />
-                                    {style.country}
-                                </span>
-                                {style.year && (
-                                    <span className="bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1">
-                                        <ClockIcon className="h-3 w-3 text-slate-400" />
-                                        {style.year}
-                                    </span>
-                                )}
-                            </div>
-
-                            {/* Action Bar */}
-                            <div className="flex flex-wrap items-center gap-3 mt-6 no-print">
-                                <PDFExportButton
-                                    targetId="style-detail-content"
-                                    label="Download PDF"
-                                    className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm"
-                                />
-                                <ShareButton
-                                    title={style.name}
-                                    text={`Check out this dough style: ${style.name}`}
-                                    className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm"
-                                />
-                            </div>
-                        </div>
-                        {style.isPro && (
-                            <span className="bg-gradient-to-r from-lime-500 to-lime-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide shadow-md animate-pulse">
-                                PRO
+                <div className="relative z-10 p-8 md:p-12">
+                    <div className="flex flex-wrap gap-3 mb-6">
+                        <OriginBadge origin={style.origin} />
+                        <DifficultyBadge difficulty={style.technicalProfile.difficulty} />
+                        {style.isCanonical && (
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-500/20 text-sky-200 border border-sky-500/30">
+                                Official Standard
                             </span>
                         )}
                     </div>
-                </div>
 
-                <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <h1 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">{style.name}</h1>
+                    <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
+                        {style.description}
+                    </p>
 
-                    {/* Left Column: Technical Data */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* History Section - Always Visible */}
-                        <section>
-                            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-3">
-                                <BookOpenIcon className="h-5 w-5 text-lime-500" />
-                                History & Context
-                            </h2>
-                            <p className="text-slate-600 leading-relaxed">
-                                {style.history}
-                            </p>
-                        </section>
+                    <div className="flex flex-wrap gap-4">
+                        <button
+                            onClick={handleLoadCalculator}
+                            className="bg-lime-500 hover:bg-lime-400 text-slate-900 font-bold py-3 px-6 rounded-xl shadow-lg shadow-lime-900/20 flex items-center gap-2 transition-transform hover:scale-105"
+                        >
+                            <CalculatorIcon className="h-5 w-5" />
+                            Use in Calculator
+                        </button>
 
-                        {/* Formula Section - Partially Locked for Pro */}
-                        <section>
-                            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-4">
-                                <BeakerIcon className="h-5 w-5 text-lime-500" />
-                                Base Formula
-                            </h2>
-                            {style.isPro ? (
-                                <ProFeatureLock
-                                    featureKey="styles.full_access"
-                                    customMessage="Full style specs and baker's percentages are available in Pro."
-                                >
-                                    <FormulaTable />
-                                </ProFeatureLock>
-                            ) : (
-                                <FormulaTable />
-                            )}
-                        </section>
-
-                        {/* Notes & Risks */}
-                        {(style.notes || style.risks) && (
-                            <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {style.risks && (
-                                    <div className="bg-amber-50 p-4 rounded-xl border border-amber-100">
-                                        <h3 className="font-bold text-amber-800 mb-2 text-sm uppercase tracking-wide">Watch Out</h3>
-                                        <ul className="list-disc list-inside text-sm text-amber-900 space-y-1">
-                                            {style.risks.map((r, i) => <li key={i}>{r}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-                                {style.notes && (
-                                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                        <h3 className="font-bold text-blue-800 mb-2 text-sm uppercase tracking-wide">Chef's Notes</h3>
-                                        <ul className="list-disc list-inside text-sm text-blue-900 space-y-1">
-                                            {style.notes.map((n, i) => <li key={i}>{n}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-                            </section>
-                        )}
-
-                        {/* Learn Foundations */}
-                        <section>
-                            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-4">
-                                <BookOpenIcon className="h-5 w-5 text-lime-500" />
-                                Learn Foundations
-                            </h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                {allLearnArticles.filter(article =>
-                                    article.tags?.some(t => style.name.toLowerCase().includes(t.toLowerCase()) || style.category.toLowerCase().includes(t.toLowerCase())) ||
-                                    article.practicalApplications?.some(app => app.toLowerCase().includes(style.name.toLowerCase()))
-                                ).slice(0, 6).map(article => (
-                                    <a
-                                        key={article.id}
-                                        href={`#/learn/${encodeURIComponent(article.category)}/${article.id}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-lime-500/50 hover:shadow-md transition-all group"
-                                    >
-                                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 block">
-                                            {article.category}
-                                        </span>
-                                        <h4 className="font-bold text-slate-800 group-hover:text-lime-600 transition-colors mb-1 line-clamp-1">
-                                            {article.title}
-                                        </h4>
-                                        <p className="text-xs text-slate-500 line-clamp-2">
-                                            {article.subtitle}
-                                        </p>
-                                    </a>
-                                ))}
-                                {allLearnArticles.filter(article =>
-                                    article.tags?.some(t => style.name.toLowerCase().includes(t.toLowerCase()) || style.category.toLowerCase().includes(t.toLowerCase())) ||
-                                    article.practicalApplications?.some(app => app.toLowerCase().includes(style.name.toLowerCase()))
-                                ).length === 0 && (
-                                        <p className="text-sm text-slate-500 col-span-2 italic">
-                                            Explore our <a href="#/learn" className="text-lime-600 hover:underline">Learn Library</a> for general baking science.
-                                        </p>
-                                    )}
-                            </div>
-                        </section>
-                    </div>
-
-                    {/* Right Column: Parameters & Action */}
-                    <div className="space-y-6">
-                        {style.isPro ? (
-                            <ProFeatureLock
-                                featureKey="styles.full_access"
-                                customMessage="Technical Parameters"
-                            >
-                                <TechnicalParams />
-                            </ProFeatureLock>
-                        ) : (
-                            <TechnicalParams />
-                        )}
-
-                        {style.isPro ? (
-                            <ProFeatureLock featureKey="styles.full_access" customMessage={`Pro Style: ${style.name}`}>
-                                <button
-                                    onClick={() => onLoadAndNavigate(style)}
-                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-4 px-6 text-lg font-bold text-white shadow-lg shadow-lime-200 transition-all hover:bg-lime-600 hover:-translate-y-1 active:translate-y-0 no-print"
-                                >
-                                    <CalculatorIcon className="h-6 w-6" />
-                                    Load into Calculator
-                                </button>
-                            </ProFeatureLock>
-                        ) : (
-                            <button
-                                onClick={() => onLoadAndNavigate(style)}
-                                className="w-full flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-4 px-6 text-lg font-bold text-white shadow-lg shadow-lime-200 transition-all hover:bg-lime-600 hover:-translate-y-1 active:translate-y-0 no-print"
-                            >
-                                <CalculatorIcon className="h-6 w-6" />
-                                Load into Calculator
-                            </button>
-                        )}
-
-                        <p className="text-xs text-center text-slate-400">
-                            This will configure the calculator with the base formula for this style.
-                        </p>
-
-                        {renderRecommendation()}
-
-                        {/* Soft Callout for Free Styles */}
-                        {!style.isPro && !hasProAccess && (
-                            <div className="mt-8 p-4 bg-gradient-to-r from-slate-50 to-lime-50 rounded-lg border border-lime-100 text-center no-print">
-                                <p className="text-sm font-bold text-slate-800 mb-2">Want to go deeper?</p>
-                                <p className="text-xs text-slate-600 mb-3">Pro unlocks expert-level techniques and insights for all styles.</p>
-                                <button
-                                    onClick={() => openPaywall('styles')}
-                                    className="text-xs font-bold text-lime-600 hover:underline"
-                                >
-                                    Learn about Pro &rarr;
-                                </button>
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
-        </div >
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-4 sm:px-6">
+                {/* Main Content */}
+                <div className="lg:col-span-2 space-y-8">
+
+                    {/* Technical Profile Card */}
+                    <TechnicalProfileCard profile={style.technicalProfile} />
+
+                    {/* History & Context */}
+                    <section className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                        <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                            <BookOpenIcon className="h-5 w-5 text-lime-600" />
+                            History & Context
+                        </h2>
+                        <div className="prose prose-slate max-w-none text-slate-600">
+                            <p>{style.history}</p>
+                        </div>
+                    </section>
+
+
+
+                    {/* Substyles Section */}
+                    {style.substyles && style.substyles.length > 0 && (
+                        <section className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                onClick={() => toggleSection('substyles')}
+                                className="w-full flex items-center justify-between p-6 bg-slate-50 hover:bg-slate-100 transition-colors"
+                            >
+                                <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                    <Layers className="h-5 w-5 text-purple-600" />
+                                    Substyles & Variations
+                                </h2>
+                                {openSections['substyles'] ? <ChevronUp className="h-5 w-5 text-slate-400" /> : <ChevronDown className="h-5 w-5 text-slate-400" />}
+                            </button>
+
+                            {openSections['substyles'] && (
+                                <div className="p-6 border-t border-slate-200">
+                                    <div className="space-y-4">
+                                        {style.substyles.slice(0, isPro ? undefined : 1).map((sub, idx) => (
+                                            <div key={sub.id} className="p-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all bg-white">
+                                                <div className="flex justify-between items-start mb-2">
+                                                    <h4 className="font-bold text-slate-800">{sub.title}</h4>
+                                                    {sub.isNew && <span className="text-[10px] font-bold px-2 py-0.5 bg-lime-100 text-lime-700 rounded-full">NEW</span>}
+                                                </div>
+                                                <p className="text-sm text-slate-600 mb-3">{sub.description}</p>
+                                                {isPro && sub.technicalAdjustments && (
+                                                    <div className="text-xs bg-slate-50 p-2 rounded border border-slate-100">
+                                                        <span className="font-semibold text-slate-700">Adjustments: </span>
+                                                        <span className="text-slate-500">
+                                                            {sub.technicalAdjustments.hydration && `Hydration ${sub.technicalAdjustments.hydration[0]}-${sub.technicalAdjustments.hydration[1]}%`}
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+
+                                        {!isPro && style.substyles.length > 1 && (
+                                            <div className="relative p-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 text-center">
+                                                <div className="absolute inset-0 backdrop-blur-[1px] bg-white/50" />
+                                                <div className="relative z-10 flex flex-col items-center">
+                                                    <Lock className="h-6 w-6 text-slate-400 mb-2" />
+                                                    <p className="font-semibold text-slate-700 mb-1">Unlock {style.substyles.length - 1} more substyles</p>
+                                                    <p className="text-sm text-slate-500 mb-3">Get access to all variations and technical adjustments.</p>
+                                                    <button onClick={() => openPaywall('styles')} className="text-sm font-bold text-indigo-600 hover:underline">
+                                                        Upgrade to Pro
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </section>
+                    )}
+
+                    {/* Regional Expressions Section */}
+                    {style.regionExpressions && style.regionExpressions.length > 0 && (
+                        <section className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                onClick={() => toggleSection('regional')}
+                                className="w-full flex items-center justify-between p-6 bg-slate-50 hover:bg-slate-100 transition-colors"
+                            >
+                                <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                    <GlobeAltIcon className="h-5 w-5 text-teal-600" />
+                                    Regional Expressions
+                                </h2>
+                                {openSections['regional'] ? <ChevronUp className="h-5 w-5 text-slate-400" /> : <ChevronDown className="h-5 w-5 text-slate-400" />}
+                            </button>
+
+                            {openSections['regional'] && (
+                                <div className="p-6 border-t border-slate-200">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {style.regionExpressions.slice(0, isPro ? undefined : 1).map((reg, idx) => (
+                                            <div key={idx} className="p-4 rounded-xl border border-slate-200 bg-white">
+                                                <h4 className="font-bold text-slate-800 mb-1">{reg.region}</h4>
+                                                <p className="text-sm text-slate-600">{reg.description}</p>
+                                            </div>
+                                        ))}
+
+                                        {!isPro && style.regionExpressions.length > 1 && (
+                                            <div className="flex items-center justify-center p-6 rounded-xl border border-dashed border-slate-300 bg-slate-50">
+                                                <div className="text-center">
+                                                    <Lock className="h-5 w-5 text-slate-400 mx-auto mb-1" />
+                                                    <p className="text-sm font-medium text-slate-600">Unlock {style.regionExpressions.length - 1} more regions</p>
+                                                    <button onClick={() => openPaywall('styles')} className="text-xs font-bold text-indigo-600 hover:underline mt-1">Upgrade</button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </section>
+                    )}
+
+                    {/* Seasonal Variants Section */}
+                    {style.seasonalVariants && style.seasonalVariants.length > 0 && (
+                        <section className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                onClick={() => toggleSection('seasonal')}
+                                className="w-full flex items-center justify-between p-6 bg-slate-50 hover:bg-slate-100 transition-colors"
+                            >
+                                <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                    <Calendar className="h-5 w-5 text-amber-600" />
+                                    Seasonal Variants
+                                </h2>
+                                {openSections['seasonal'] ? <ChevronUp className="h-5 w-5 text-slate-400" /> : <ChevronDown className="h-5 w-5 text-slate-400" />}
+                            </button>
+
+                            {openSections['seasonal'] && (
+                                <div className="p-6 border-t border-slate-200">
+                                    <div className="space-y-4">
+                                        {style.seasonalVariants.slice(0, isPro ? undefined : 1).map((season, idx) => (
+                                            <div key={idx} className="flex gap-4 p-4 rounded-xl border border-slate-200 bg-white">
+                                                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 font-bold text-xs uppercase">
+                                                    {season.season.substring(0, 3)}
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-bold text-slate-800 mb-1">{season.season}</h4>
+                                                    <p className="text-sm text-slate-600">{season.description}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {!isPro && style.seasonalVariants.length > 1 && (
+                                            <div className="p-4 text-center bg-slate-50 rounded-xl border border-slate-200">
+                                                <p className="text-sm text-slate-500">More seasonal variants available for Pro users.</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </section>
+                    )}
+
+                    {/* Experimental Variants Section */}
+                    {style.experimentalVariants && style.experimentalVariants.length > 0 && (
+                        <section className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden border-l-4 border-l-rose-500">
+                            <button
+                                onClick={() => toggleSection('experimental')}
+                                className="w-full flex items-center justify-between p-6 bg-rose-50 hover:bg-rose-100 transition-colors"
+                            >
+                                <h2 className="text-xl font-bold text-rose-900 flex items-center gap-2">
+                                    <FlaskConical className="h-5 w-5 text-rose-600" />
+                                    Lab Exclusive / Experimental
+                                </h2>
+                                {openSections['experimental'] ? <ChevronUp className="h-5 w-5 text-rose-400" /> : <ChevronDown className="h-5 w-5 text-rose-400" />}
+                            </button>
+
+                            {openSections['experimental'] && (
+                                <div className="p-6 border-t border-rose-100 bg-rose-50/30">
+                                    <ProFeatureLock featureKey="styles.full_access" customMessage="Unlock experimental lab variants.">
+                                        <div className="grid grid-cols-1 gap-4">
+                                            {style.experimentalVariants.map((exp, idx) => (
+                                                <div key={idx} className="p-4 rounded-xl border border-rose-200 bg-white">
+                                                    <h4 className="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                                                        {exp.title}
+                                                        <span className="text-[10px] font-bold px-2 py-0.5 bg-rose-100 text-rose-700 rounded-full">EXPERIMENTAL</span>
+                                                    </h4>
+                                                    <p className="text-sm text-slate-600 mb-2">{exp.description}</p>
+                                                    {exp.cautionPoints && (
+                                                        <div className="text-xs text-rose-600 bg-rose-50 p-2 rounded">
+                                                            <span className="font-bold">Caution:</span> {exp.cautionPoints.join(', ')}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </ProFeatureLock>
+                                </div>
+                            )}
+                        </section>
+                    )}
+
+                    {/* Learn Connections */}
+                    <section>
+                        <h2 className="text-xl font-bold text-slate-900 mb-4">Related Foundations</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {allLearnArticles.filter(article =>
+                                article.tags?.some(t => style.name.toLowerCase().includes(t.toLowerCase()) || style.category.toLowerCase().includes(t.toLowerCase()))
+                            ).slice(0, 4).map(article => (
+                                <a
+                                    key={article.id}
+                                    href={`#/learn/article/${article.id}`}
+                                    className="block p-4 bg-white rounded-xl border border-slate-200 hover:border-lime-500 hover:shadow-md transition-all group"
+                                >
+                                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 block">
+                                        {article.category}
+                                    </span>
+                                    <h4 className="font-bold text-slate-800 group-hover:text-lime-600 transition-colors mb-1">
+                                        {article.title}
+                                    </h4>
+                                </a>
+                            ))}
+                        </div>
+                    </section>
+                </div>
+
+                {/* Right Column: Actions & Tools */}
+                <div className="space-y-6">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 sticky top-24">
+                        <h3 className="font-bold text-slate-900 mb-4">Apply in DoughLab</h3>
+
+                        <button
+                            onClick={handleLoadCalculator}
+                            className="w-full flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-3 px-4 text-white font-bold shadow-md hover:bg-lime-600 transition-all mb-3"
+                        >
+                            <CalculatorIcon className="h-5 w-5" />
+                            Load Formula
+                        </button>
+
+                        <div className="space-y-2 mb-6">
+                            <button className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-slate-100 text-sm font-medium text-slate-700 transition-colors">
+                                <span>Compare with...</span>
+                                <ArrowLeftIcon className="h-4 w-4 rotate-180" />
+                            </button>
+                            <button className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-slate-100 text-sm font-medium text-slate-700 transition-colors">
+                                <span>MyLab Experiments</span>
+                                <BeakerIcon className="h-4 w-4" />
+                            </button>
+                        </div>
+
+                        {renderRecommendation()}
+
+                        <div className="mt-6 pt-6 border-t border-slate-100">
+                            <h4 className="font-semibold text-slate-900 mb-2 text-sm">Recommended Experiments</h4>
+                            <ul className="space-y-2">
+                                {style.parameterSensitivity && style.parameterSensitivity.length > 0 ? (
+                                    style.parameterSensitivity.slice(0, 3).map((param, idx) => (
+                                        <li key={idx} className="text-xs text-slate-600 flex items-start gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0" />
+                                            Test sensitivity: {param}
+                                        </li>
+                                    ))
+                                ) : (
+                                    <>
+                                        <li className="text-xs text-slate-600 flex items-start gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0" />
+                                            Try increasing hydration by 2% to open crumb.
+                                        </li>
+                                        <li className="text-xs text-slate-600 flex items-start gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0" />
+                                            Test cold fermentation vs room temp (24h).
+                                        </li>
+                                    </>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </LibraryPageLayout>
     );
 };

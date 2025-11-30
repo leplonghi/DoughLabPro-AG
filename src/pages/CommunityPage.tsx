@@ -57,20 +57,19 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onLoadInspiration, onNavi
         <LibraryPageLayout>
             <div className="mx-auto max-w-7xl animate-fade-in">
                 {/* Hero Section */}
-                {/* Hero Section */}
-                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-10 mb-12 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
+                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-3 md:p-4 mb-8 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
                     <div className="relative z-10 text-center max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
                             <FeedIcon className="w-4 h-4" />
                             Community Hub
                         </div>
-                        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                        <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3 tracking-tight leading-tight">
                             {t('community_page.title')}
                         </h1>
-                        <p className="text-lg md:text-xl text-lime-100/90 mb-8 leading-relaxed">
+                        <p className="text-sm md:text-base text-lime-100/90 mb-4 leading-relaxed">
                             {t('community_page.subtitle')}
                         </p>
                         <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-lime-100/80">

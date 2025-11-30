@@ -28,7 +28,6 @@ import StyleSection from '@/components/calculator/sections/StyleSection';
 import FermentationSection from '@/components/calculator/sections/FermentationSection';
 import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
-import StyleContextBar from '@/components/calculator/StyleContextBar';
 import { useUser } from '@/contexts/UserProvider';
 import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 
@@ -198,26 +197,22 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         </span>
       </div>
 
-      {/* Active Style Context */}
-      {activeStyle && (
-        <StyleContextBar style={activeStyle} />
-      )}
-
-      {!activeStyle && config.baseStyleName && (
-        <div className="flex items-center justify-between rounded-lg bg-lime-50 p-3 text-sm text-lime-800 border border-lime-200 shadow-sm">
-          <div className="flex items-center gap-2">
-            <SparklesIcon className="h-5 w-5 text-lime-600" />
-            <span>
-              Base Style: <strong>{config.baseStyleName}</strong>
-            </span>
-          </div>
-          <button
-            onClick={() => onConfigChange({ baseStyleName: undefined })}
-            className="rounded-full p-1 hover:bg-lime-200 transition-colors"
-            title="Clear style"
-          >
-            <CloseIcon className="h-4 w-4" />
-          </button>
+      {/* Simple Style Badge - Only show if a style is loaded */}
+      {(activeStyle || config.baseStyleName) && (
+        <div className="flex items-center justify-center gap-2 text-xs text-slate-600">
+          <span className="text-slate-400">Target:</span>
+          <span className="font-semibold text-slate-700">
+            {activeStyle?.name || config.baseStyleName}
+          </span>
+          {activeStyle && (
+            <button
+              onClick={() => onConfigChange({ selectedStyleId: undefined, baseStyleName: undefined })}
+              className="ml-1 text-slate-400 hover:text-slate-600 transition-colors"
+              title="Clear style"
+            >
+              <CloseIcon className="h-3 w-3" />
+            </button>
+          )}
         </div>
       )}
 

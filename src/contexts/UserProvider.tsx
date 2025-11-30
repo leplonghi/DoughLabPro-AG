@@ -35,6 +35,11 @@ import {
 import { isProUser } from '@/lib/permissions';
 import { useBatchManager } from '@/hooks/useBatchManager';
 
+const shouldUseFirestore = (user: User | null | any, db: any) => {
+  return !!user && !!db && user.uid !== 'guest-123';
+};
+
+
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 const getStatusFromLastFeeding = (levain: Levain): LevainStatus => {
@@ -103,16 +108,27 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Sync User
   useEffect(() => {
     if (appUser) {
-      setUser({
+      const syncedUser = {
         name: appUser.name || 'Baker',
         email: appUser.email || '',
         avatar: appUser.avatar,
-        isPro: appUser.plan === 'pro' || appUser.isPro || appUser.email === 'leplonghi@gmail.com' || false,
-        plan: appUser.plan || 'free',
+        isPro: appUser.plan === 'pro' || appUser.plan === 'lab_pro' || appUser.isPro || appUser.email === 'leplonghi@gmail.com' || false,
+        plan: appUser.plan === 'pro' ? 'lab_pro' : (appUser.plan || 'free'),
         trialEndsAt: appUser.trialEndsAt,
         proSince: appUser.proSince,
         proExpiresAt: appUser.proExpiresAt,
+      };
+
+      console.log('[UserProvider] Syncing user:', {
+        appUser,
+        syncedUser,
+        email: appUser.email,
+        originalPlan: appUser.plan,
+        finalPlan: syncedUser.plan,
+        isPro: syncedUser.isPro
       });
+
+      setUser(syncedUser);
     } else {
       setUser(null);
       // Clear data on logout
@@ -132,7 +148,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setter: React.Dispatch<React.SetStateAction<any[]>>,
       postProcess?: (item: any) => any
     ) => {
-      if (!firebaseUser || !db) {
+      if (!shouldUseFirestore(firebaseUser, db)) {
         return () => { };
       }
       const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
@@ -197,7 +213,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const updateUser = useCallback(
     async (updatedData: Partial<User>) => {
-      if (user && firebaseUser && db) {
+      if (user && shouldUseFirestore(firebaseUser, db)) {
         const userRef = doc(db, 'users', firebaseUser.uid);
         await updateDoc(userRef, updatedData);
       }
@@ -229,7 +245,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         updatedAt: now,
       };
 
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
         const docRef = await addDoc(collRef, docData);
         return { ...docData, id: docRef.id };
@@ -250,7 +266,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     async (collectionName: string, id: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
       const update = { ...data, updatedAt: new Date().toISOString() };
 
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
         await updateDoc(docRef, update);
       } else {
@@ -264,7 +280,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const deleteDocFn = useCallback(
     async (collectionName: string, id: string, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
         await deleteDoc(docRef);
       } else {
@@ -289,7 +305,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const deleteOven = useCallback((id: string) => deleteDocFn('ovens', id, setOvens), [deleteDocFn]);
   const setDefaultOven = useCallback(
     async (id: string) => {
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const batch = writeBatch(db);
         ovens.forEach((oven) => {
           const docRef = doc(db, 'users', firebaseUser.uid, 'ovens', oven.id);
@@ -336,7 +352,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const deleteLevain = useCallback((id: string) => deleteDocFn('levains', id, setLevains), [deleteDocFn]);
   const setDefaultLevain = useCallback(
     async (id: string) => {
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const batch = writeBatch(db);
         levains.forEach((l) => {
           const docRef = doc(db, 'users', firebaseUser.uid, 'levains', l.id);
@@ -371,7 +387,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const importLevains = useCallback(
     async (levainsToImport: Levain[]) => {
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const batch = writeBatch(db);
         levainsToImport.forEach((levain) => {
           const docRef = doc(collection(db, 'users', firebaseUser.uid, 'levains'));
@@ -572,7 +588,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const now = new Date().toISOString();
       await updateUser({
         isPro: true,
-        plan: 'pro',
+        plan: 'lab_pro',
         proSince: now
       });
       addToast('Welcome to Pro! You have unlocked all features.', 'success');

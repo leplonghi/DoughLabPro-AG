@@ -200,19 +200,23 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protectPro(<CompareRecipesPage onNavigate={navigate} onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} />);
             case 'mylab/massas':
                 return protectPro(<MyLabDoughsPage onNavigate={navigate} />);
-            case 'mylab/farinhas':
+            case 'mylab/flours':
+            case 'mylab/farinhas': // Legacy
                 return protectPro(<MyLabFloursPage onNavigate={navigate} />);
-            case 'mylab/fornadas':
+            case 'mylab/bakes':
+            case 'mylab/fornadas': // Legacy
                 return protect(<MyLabBatchesPage onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} onNavigate={navigate} onCreateDraftBatch={onCreateDraftBatch} />);
             case 'mylab/diario-sensorial':
                 return protectPro(<MyLabSensoryDiaryPage onNavigate={navigate} />);
-            case 'mylab/comparacoes':
+            case 'mylab/comparisons':
+            case 'mylab/comparacoes': // Legacy
                 return protect(<MyLabComparisonsPage onNavigate={navigate} onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} />);
             case 'mylab/insights':
                 return protect(<MyLabInsightsPage onNavigate={navigate} />);
             case 'mylab/timeline':
                 return protect(<TimelinePage onNavigate={navigate} />);
-            case 'mylab/objetivos':
+            case 'mylab/goals':
+            case 'mylab/objetivos': // Legacy
                 return protectPro(<ObjectivesPage onNavigate={navigate} />);
             case 'mylab/consistency':
                 return protectPro(<ConsistencyListPage onNavigate={navigate} />);
@@ -345,9 +349,9 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protect(<DoughStylesPage doughConfig={config} onLoadStyle={(s) => handleLoadStyleFromModule(s, navigate)} onNavigateToDetail={(id) => navigate('styles/detail', id)} />);
             case 'tools':
                 return protect(<ToolsPage onNavigate={navigate} />);
-            case 'tools-oven-analysis':
+            case 'tools/oven-profiler':
                 return protectPro(<OvenAnalysisPage />);
-            case 'tools-doughbot':
+            case 'tools/doughbot':
                 return protectPro(<DoughbotPage />);
 
             case 'calculator':

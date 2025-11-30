@@ -272,7 +272,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-              <CubeIcon className="h-5 w-5 text-slate-400" />
+              <CubeIcon className="h-5 w-5 text-lime-600" />
               Advanced Ingredients
             </h3>
             <ProFeatureLock

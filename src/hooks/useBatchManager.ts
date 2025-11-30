@@ -16,6 +16,10 @@ import { User as FirebaseUser } from '@firebase/auth';
 import { Batch, BatchStatus } from '@/types';
 import { DEFAULT_CONFIG } from '@/constants';
 
+const shouldUseFirestore = (user: any, db: any) => {
+  return !!user && !!db && user.uid !== 'guest-123';
+};
+
 export function useBatchManager(
   firebaseUser: FirebaseUser | null,
   db: Firestore | null,
@@ -25,10 +29,10 @@ export function useBatchManager(
 
   // --- Firebase Subscription ---
   useEffect(() => {
-    if (!firebaseUser || !db) {
+    if (!shouldUseFirestore(firebaseUser, db)) {
       // If no DB/User, we rely on local state managed by actions below
       // We might optionally load from localStorage here for persistence in mock mode
-      return; 
+      return;
     }
 
     const uid = firebaseUser.uid;
@@ -68,7 +72,7 @@ export function useBatchManager(
         updatedAt: now,
       };
 
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const collRef = collection(db, 'users', firebaseUser.uid, 'batches');
         const docRef = await addDoc(collRef, docData);
         return { ...docData, id: docRef.id } as Batch;
@@ -94,7 +98,7 @@ export function useBatchManager(
 
   const updateBatch = useCallback(
     async (updatedBatch: Batch) => {
-      if (firebaseUser && db) {
+      if (shouldUseFirestore(firebaseUser, db)) {
         const docRef = doc(db, 'users', firebaseUser.uid, 'batches', updatedBatch.id);
         await updateDoc(docRef, { ...updatedBatch, updatedAt: new Date().toISOString() });
       } else {
@@ -108,15 +112,15 @@ export function useBatchManager(
   const deleteBatch = useCallback(
     async (id: string) => {
       const batchToDelete = batches.find((b) => b.id === id);
-      
-      if (firebaseUser && db) {
+
+      if (shouldUseFirestore(firebaseUser, db)) {
         const docRef = doc(db, 'users', firebaseUser.uid, 'batches', id);
         await deleteDoc(docRef);
       } else {
         // Mock Mode
         setBatches(prev => prev.filter(b => b.id !== id));
       }
-      
+
       if (batchToDelete) addToast(`Bake "${batchToDelete.name}" deleted.`, 'info');
     },
     [firebaseUser, db, batches, addToast]

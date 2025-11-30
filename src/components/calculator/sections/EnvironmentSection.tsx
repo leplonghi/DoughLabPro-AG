@@ -77,7 +77,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 
                 {currentGuideline && (
                     <div className="rounded-md bg-sky-50 p-3 text-xs text-sky-700 flex gap-2 items-start">
-                        <InfoIcon className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                        <InfoIcon className="h-4 w-4 flex-shrink-0 mt-0.5 text-lime-600" />
                         <div>
                             <p className="font-semibold">Impact on Fermentation:</p>
                             <p>{currentGuideline.notes}</p>

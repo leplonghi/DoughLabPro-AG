@@ -4,11 +4,42 @@ import { WrenchScrewdriverIcon, ExternalLinkIcon } from '@/components/ui/Icons';
 
 interface LearnAffiliateBlockProps {
     placementKeys: string[];
+    userContext?: {
+        levainHealth?: number;
+        averageFermentationTemp?: number;
+        averageHydration?: number;
+    };
 }
 
-const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys }) => {
+const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys, userContext }) => {
     // Aggregate products from all keys, removing duplicates
     const allProducts = placementKeys.flatMap(key => getProductsForPlacement(key));
+
+    // Intelligent adaptation based on user context
+    let contextMessage = "Tools that help with this technique";
+
+    if (userContext) {
+        const { levainHealth, averageFermentationTemp, averageHydration } = userContext;
+
+        // Suggest based on levain health
+        if (levainHealth !== undefined && levainHealth < 70) {
+            contextMessage = "Strengthen your starter with high-protein flour";
+            // Could filter/prioritize strong flour products here
+        }
+
+        // Suggest based on fermentation temperature
+        if (averageFermentationTemp !== undefined && averageFermentationTemp > 28) {
+            contextMessage = "Control fermentation with proofing tools";
+            // Could filter/prioritize proofing boxes, cooling tools
+        }
+
+        // Suggest based on hydration
+        if (averageHydration !== undefined && averageHydration > 70) {
+            contextMessage = "High-protein flours for better structure";
+            // Could filter/prioritize high-protein flours
+        }
+    }
+
     const uniqueProducts = Array.from(new Map(allProducts.map(p => [p.id, p])).values());
 
     if (uniqueProducts.length === 0) return null;
@@ -27,7 +58,7 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                         Recommended Equipment
                     </h4>
                     <p className="text-xs text-slate-500">
-                        Tools that help with this technique
+                        {contextMessage}
                     </p>
                 </div>
             </div>

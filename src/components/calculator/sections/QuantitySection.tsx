@@ -51,7 +51,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                             Number of {config.bakeType === 'pizzas' ? 'Pizzas' : 'Loaves/Pieces'}
                         </label>
                         <div className="group relative flex items-center">
-                            <InfoIcon className="h-3.5 w-3.5 cursor-help text-slate-400" />
+                            <InfoIcon className="h-3.5 w-3.5 cursor-help text-lime-600" />
                             <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2 rounded-md bg-slate-800 p-2 text-xs font-normal text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
                                 Total number of pieces or loaves you want to make.
                                 <svg className="absolute left-0 top-full h-2 w-full text-slate-800" x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
@@ -79,7 +79,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                             Weight per Piece (g)
                         </label>
                         <div className="group relative flex items-center">
-                            <InfoIcon className="h-3.5 w-3.5 cursor-help text-slate-400" />
+                            <InfoIcon className="h-3.5 w-3.5 cursor-help text-lime-600" />
                             <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-56 -translate-x-1/2 rounded-md bg-slate-800 p-2 text-xs font-normal text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
                                 Target weight for each piece. ~250g for pizza, ~800g for bread loaves.
                                 <svg className="absolute left-0 top-full h-2 w-full text-slate-800" x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>

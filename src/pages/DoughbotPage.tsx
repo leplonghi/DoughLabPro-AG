@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
-import { BeakerIcon, LightBulbIcon, SparklesIcon } from '@/components/ui/Icons';
+import { SparklesIcon } from '@/components/ui/Icons';
 import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { useDoughbot } from '@/hooks/useDoughbot';
+import { DoughbotResultsPlaceholder } from '@/components/tools/doughbot/DoughbotResultsPlaceholder';
 
 const DoughbotPage: React.FC = () => {
-  const [problem, setProblem] = useState('');
-  const [description, setDescription] = useState('');
+  const {
+    problem,
+    setProblem,
+    description,
+    setDescription,
+    diagnose
+  } = useDoughbot();
 
   const commonProblems = [
     { value: '', label: 'Select a common problem...' },
@@ -17,11 +24,6 @@ const DoughbotPage: React.FC = () => {
     { value: 'shrinking', label: 'Dough snaps back / shrinks' },
   ];
 
-  // TODO: Implement real diagnostic logic based on trusted sources (AVPN, King Arthur, etc.)
-  const handleDiagnose = () => {
-    console.log('Diagnosing:', { problem, description });
-  };
-
   return (
     <TechnicalPageLayout
       title="Doughbot"
@@ -31,20 +33,20 @@ const DoughbotPage: React.FC = () => {
       <ProFeatureLock featureKey="tools.doughbot" customMessage="Unlock AI-powered dough diagnostics with Lab Pro.">
         <div className="space-y-8 animate-fade-in">
           {/* Input Section */}
-          <div className="rounded-2xl border border-slate-200  bg-slate-50  p-6">
-            <h3 className="text-xl font-bold text-slate-900  mb-4">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <h3 className="text-xl font-bold text-slate-900 mb-4">
               1. Describe your problem
             </h3>
             <div className="space-y-4">
               <div>
-                <label htmlFor="problem-select" className="block text-sm font-medium text-slate-700 ">
+                <label htmlFor="problem-select" className="block text-sm font-medium text-slate-700">
                   Common Issue (optional)
                 </label>
                 <select
                   id="problem-select"
                   value={problem}
                   onChange={(e) => setProblem(e.target.value)}
-                  className="mt-1 block w-full rounded-xl border-slate-300  bg-white  py-3 px-4 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm text-slate-700 "
+                  className="mt-1 block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm text-slate-700"
                 >
                   {commonProblems.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -54,7 +56,7 @@ const DoughbotPage: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label htmlFor="problem-description" className="block text-sm font-medium text-slate-700 ">
+                <label htmlFor="problem-description" className="block text-sm font-medium text-slate-700">
                   Detailed Description
                 </label>
                 <textarea
@@ -62,12 +64,12 @@ const DoughbotPage: React.FC = () => {
                   rows={4}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="mt-1 block w-full rounded-xl border-slate-300  bg-white  py-3 px-4 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm text-slate-700 "
+                  className="mt-1 block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm text-slate-700"
                   placeholder="E.g., My 68% hydration dough sat in the fridge for 24h, but tears easily when I try to open it..."
                 />
               </div>
               <button
-                onClick={handleDiagnose}
+                onClick={diagnose}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-500 py-3 px-6 text-sm font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 hover:shadow-xl hover:scale-105 transition-all active:scale-95"
               >
                 <SparklesIcon className="h-5 w-5" />
@@ -77,33 +79,7 @@ const DoughbotPage: React.FC = () => {
           </div>
 
           {/* Results Section Placeholder */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-slate-900 ">
-              2. Preliminary Diagnosis
-            </h3>
-            <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
-              <h4 className="flex items-center gap-2 text-lg font-bold text-slate-800 ">
-                <BeakerIcon className="h-5 w-5 text-slate-600 " />
-                Possible Causes
-              </h4>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700 ">
-                {/* Placeholder */}
-                <li>Diagnosis of potential causes will appear here.</li>
-                <li>Each cause will be explained based on baking science.</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
-              <h4 className="flex items-center gap-2 text-lg font-bold text-slate-800 ">
-                <LightBulbIcon className="h-5 w-5 text-yellow-600 " />
-                Suggested Solutions
-              </h4>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700 ">
-                {/* Placeholder */}
-                <li>Technical suggestions for correction will appear here.</li>
-                <li>Solutions will include recipe and process adjustments.</li>
-              </ul>
-            </div>
-          </div>
+          <DoughbotResultsPlaceholder />
         </div>
       </ProFeatureLock>
     </TechnicalPageLayout>

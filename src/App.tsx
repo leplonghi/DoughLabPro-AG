@@ -19,6 +19,18 @@ import { I18nProvider, useTranslation } from '@/i18n';
 import { CalculatorProvider, useCalculator } from '@/contexts/CalculatorContext';
 import { RouterProvider, useRouter } from '@/contexts/RouterContext';
 
+// Domain-specific providers
+import { BatchesProviderComponent } from '@/contexts/BatchesProvider';
+import { LevainProvider } from '@/contexts/LevainProvider';
+import { GoalsProvider } from '@/contexts/GoalsProvider';
+import { FloursProvider } from '@/contexts/FloursProvider';
+import { ConsistencyProvider } from '@/contexts/ConsistencyProvider';
+import { InsightsProvider } from '@/contexts/InsightsProvider';
+import { RecipesProvider } from '@/contexts/RecipesProvider';
+import { DoughsProvider } from '@/contexts/DoughsProvider';
+import { SensoryProvider } from '@/contexts/SensoryProvider';
+import { TimelineProvider } from '@/contexts/TimelineProvider';
+
 import AppRouter from '@/AppRouter';
 import { PrimaryPage, BatchStatus } from '@/types';
 import { FLOURS } from '@/flours-constants';
@@ -26,7 +38,10 @@ import { FLOURS } from '@/flours-constants';
 // Lazy Load Assistant
 const AssistantPage = React.lazy(() => import('@/components/AssistantPage'));
 
+console.log('[App] BatchesProvider imported:', BatchesProviderComponent);
+
 function AppContent() {
+  console.log('[App] AppContent rendering');
   const { route, navigate } = useRouter();
   const { loading: authLoading } = useAuth();
   const {
@@ -237,11 +252,32 @@ function App() {
       <ToastProvider>
         <I18nProvider>
           <UserProvider>
-            <RouterProvider>
-              <CalculatorProvider>
-                <AppContent />
-              </CalculatorProvider>
-            </RouterProvider>
+            {/* Domain-specific providers */}
+            <BatchesProviderComponent>
+              <LevainProvider>
+                <GoalsProvider>
+                  <FloursProvider>
+                    <ConsistencyProvider>
+                      <InsightsProvider>
+                        <RecipesProvider>
+                          <DoughsProvider>
+                            <SensoryProvider>
+                              <TimelineProvider>
+                                <RouterProvider>
+                                  <CalculatorProvider>
+                                    <AppContent />
+                                  </CalculatorProvider>
+                                </RouterProvider>
+                              </TimelineProvider>
+                            </SensoryProvider>
+                          </DoughsProvider>
+                        </RecipesProvider>
+                      </InsightsProvider>
+                    </ConsistencyProvider>
+                  </FloursProvider>
+                </GoalsProvider>
+              </LevainProvider>
+            </BatchesProviderComponent>
           </UserProvider>
         </I18nProvider>
       </ToastProvider>

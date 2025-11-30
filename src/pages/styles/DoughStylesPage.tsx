@@ -1,26 +1,17 @@
-// Force rebuild
 import React, { useState, useMemo } from 'react';
 import {
     BookOpenIcon,
-    BeakerIcon,
-    FireIcon,
-    CubeIcon,
-    ChevronRightIcon,
-    StarIcon,
+    SparklesIcon,
     CalculatorIcon,
     TrashIcon,
-    FlourIcon,
-    SparklesIcon,
-    UserCircleIcon,
-    GlobeAltIcon,
-    TagIcon,
     HeartIcon,
     BarsArrowDownIcon,
     BarsArrowUpIcon,
-    FunnelIcon
+    FunnelIcon,
+    TagIcon
 } from '@/components/ui/Icons';
 import { STYLES_DATA } from '@/data/stylesData';
-import { DoughStyleDefinition, DoughConfig, StyleCategory } from '@/types';
+import { DoughStyleDefinition, StyleCategory } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
 import CreateStyleModal from '@/components/styles/CreateStyleModal';
 import AiStyleBuilderModal from '@/components/styles/AiStyleBuilderModal';
@@ -28,6 +19,10 @@ import { ToppingPlannerModal } from '@/components/modals/ToppingPlannerModal';
 import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { LibraryPageLayout } from '../learn/LibraryPageLayout';
+import { StyleCard } from '@/components/styles/StyleCard';
+import { normalizeDoughStyle } from '@/utils/styleAdapter';
+import { DoughConfig } from '@/types';
+import { useStyleSearch } from '@/hooks/useStyleSearch';
 
 interface DoughStylesPageProps {
     doughConfig: DoughConfig;
@@ -36,272 +31,95 @@ interface DoughStylesPageProps {
 }
 
 // Navigation Categories matching the new taxonomy
-const CATEGORY_FILTERS: { id: StyleCategory | 'all', label: string }[] = [
-    { id: 'all', label: 'All Styles' },
+// Navigation Categories matching the new taxonomy
+const CATEGORY_FILTERS: { id: StyleCategory | 'All', label: string }[] = [
+    { id: 'All', label: 'All Styles' },
     { id: 'pizza', label: 'Pizza' },
     { id: 'bread', label: 'Breads' },
-    { id: 'enriched_bread', label: 'Enriched' },
-    { id: 'burger_bun', label: 'Buns' },
-    { id: 'pastry', label: 'Pastry' },
-    { id: 'cookie', label: 'Cookies' },
+    { id: 'enriched_bread', label: 'Enriched Breads' },
+    { id: 'burger_bun', label: 'Burger Buns' },
+    { id: 'pastry', label: 'Pastry & Laminated' },
+    { id: 'cookies_confectionery', label: 'Cookies & Confectionery' },
+    { id: 'flatbread', label: 'Flatbreads & Unleavened' },
+    { id: 'other', label: 'Other / Experimental' },
 ];
 
 // Helper to group categories for display sections
+// Helper to group categories for display sections
 const getDisplayGroup = (category: StyleCategory): string => {
     switch (category) {
-        case 'pizza': return 'Pizzas';
-        case 'bread': return 'Breads & Rustic Loaves';
+        case 'pizza': return 'Pizza';
+        case 'bread': return 'Bread';
         case 'enriched_bread': return 'Enriched Breads';
-        case 'flatbread': return 'Flatbreads';
         case 'burger_bun': return 'Burger Buns';
-        case 'pastry': return 'Pastry & Sweet Doughs';
-        case 'cookie': return 'Cookies & Confectionery';
-        default: return 'Other Styles';
+        case 'pastry': return 'Pastry & Laminated';
+        case 'cookies_confectionery': return 'Cookies & Confectionery';
+        case 'flatbread': return 'Flatbreads & Unleavened';
+        default: return 'Other / Experimental';
     }
 };
 
 // Priority order for display groups
+// Priority order for display groups
 const GROUP_ORDER = [
-    'Pizzas',
-    'Breads & Rustic Loaves',
+    'Pizza',
+    'Bread',
     'Enriched Breads',
     'Burger Buns',
-    'Pastry & Sweet Doughs',
+    'Pastry & Laminated',
     'Cookies & Confectionery',
-    'Other Styles'
+    'Flatbreads & Unleavened',
+    'Other / Experimental'
 ];
 
-const CategoryBadge: React.FC<{ category: StyleCategory }> = ({ category }) => {
-    let colorClass = 'bg-slate-100 text-slate-700 border-slate-200';
-    let icon = <CubeIcon className="h-3 w-3 mr-1" />;
-
-    switch (category) {
-        case 'pizza':
-            colorClass = 'bg-orange-50 text-orange-700 border-orange-200';
-            icon = <FireIcon className="h-3 w-3 mr-1" />;
-            break;
-        case 'bread':
-            colorClass = 'bg-amber-50 text-amber-800 border-amber-200';
-            icon = <BeakerIcon className="h-3 w-3 mr-1" />;
-            break;
-        case 'enriched_bread':
-            colorClass = 'bg-yellow-50 text-yellow-700 border-yellow-200';
-            icon = <StarIcon className="h-3 w-3 mr-1" />;
-            break;
-        case 'burger_bun':
-            colorClass = 'bg-orange-50 text-orange-800 border-orange-200';
-            icon = <CubeIcon className="h-3 w-3 mr-1" />;
-            break;
-        case 'pastry':
-            colorClass = 'bg-pink-50 text-pink-700 border-pink-200';
-            icon = <SparklesIcon className="h-3 w-3 mr-1" />;
-            break;
-        case 'cookie':
-            colorClass = 'bg-stone-100 text-stone-700 border-stone-200';
-            icon = <FlourIcon className="h-3 w-3 mr-1" />;
-            break;
-    }
-
-    return (
-        <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${colorClass}`}>
-            {icon}
-            {category.replace(/_/g, ' ')}
-        </span>
-    );
-};
-
-const TechnicalBadge: React.FC<{ label: string, value: string | number }> = ({ label, value }) => (
-    <div className="flex flex-col px-2 py-1 bg-slate-50 rounded border border-slate-100 items-center text-center">
-        <span className="text-[9px] uppercase text-slate-400 font-bold tracking-wider">{label}</span>
-        <span className="text-xs font-semibold text-slate-700">{value}</span>
-    </div>
-);
-
-const StyleCard: React.FC<{ style: DoughStyleDefinition; onClick: () => void; onUse: (e: React.MouseEvent) => void; onDelete?: (e: React.MouseEvent) => void }> = ({ style, onClick, onUse, onDelete }) => {
-    // New Badge Logic (last 30 days)
-    const isNew = useMemo(() => {
-        if (!style.releaseDate) return false;
-        const release = new Date(style.releaseDate);
-        const diffTime = Math.abs(new Date().getTime() - release.getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        return diffDays <= 30;
-    }, [style.releaseDate]);
-
-    // Format hydration display
-    const hydrationDisplay = style.technicalProfile
-        ? `${style.technicalProfile.hydration[0]}-${style.technicalProfile.hydration[1]}%`
-        : `${style.technical.hydration}%`;
-
-    return (
-        <div
-            onClick={onClick}
-            className="group flex flex-col rounded-xl border border-stone-200 bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full relative overflow-hidden hover:border-lime-500"
-        >
-            {style.isPro && (
-                <div className="absolute top-0 right-0 bg-gradient-to-br from-lime-400 to-lime-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl shadow-lg z-10 uppercase tracking-wide animate-pulse">
-                    ✨ PRO
-                </div>
-            )}
-            {!style.isCanonical && (
-                <div className={`absolute top-0 left-0 text-white text-[10px] font-bold px-3 py-1.5 rounded-br-xl shadow-lg z-10 uppercase tracking-wide flex items-center gap-1 ${style.source === 'user_ai' ? 'bg-gradient-to-br from-indigo-400 to-indigo-600' : 'bg-gradient-to-br from-sky-400 to-sky-600'}`}>
-                    {style.source === 'user_ai' ? <SparklesIcon className="h-3 w-3 animate-pulse" /> : <UserCircleIcon className="h-3 w-3" />}
-                    {style.source === 'user_ai' ? 'AI' : 'CUSTOM'}
-                </div>
-            )}
-            {isNew && style.isCanonical && (
-                <div className="absolute top-0 left-0 bg-gradient-to-br from-blue-400 to-blue-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-br-xl shadow-lg z-10 uppercase tracking-wide flex items-center gap-1">
-                    <SparklesIcon className="h-3 w-3" /> NEW
-                </div>
-            )}
-
-            <div className="p-6 flex-grow flex flex-col relative z-[1]">
-                <div className="flex justify-between items-start mb-3 mt-2">
-                    <h3 className="font-extrabold text-xl text-slate-900 group-hover:text-lime-600 transition-all duration-300 line-clamp-1 leading-tight">
-                        {style.name}
-                    </h3>
-                </div>
-
-                <div className="mb-4 flex gap-2 flex-wrap">
-                    <CategoryBadge category={style.category} />
-                    <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1 transition-all hover:scale-105">
-                        <GlobeAltIcon className="h-3 w-3" /> {style.country}
-                    </span>
-                </div>
-
-                <p className="text-sm text-slate-600 mb-5 line-clamp-2 flex-grow leading-relaxed">
-                    {style.description}
-                </p>
-
-                {/* Technical Stats Grid */}
-                <div className="grid grid-cols-3 gap-2 mb-5">
-                    <TechnicalBadge label="Hydration" value={hydrationDisplay} />
-                    <TechnicalBadge label="Time" value={style.technicalProfile ? style.technicalProfile.fermentation?.bulk.split(' ')[0] : 'Std'} />
-                    <TechnicalBadge label="Skill" value={style.technicalProfile?.difficulty || 'Med'} />
-                </div>
-
-                {/* Tags */}
-                {style.tags && style.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                        {style.tags.slice(0, 3).map(tag => (
-                            <span key={tag} className="text-[9px] text-slate-600 bg-slate-100 border border-slate-200 px-2 py-1 rounded-full flex items-center gap-1 hover:bg-slate-200 transition-all">
-                                <TagIcon className="h-2.5 w-2.5" /> {tag}
-                            </span>
-                        ))}
-                    </div>
-                )}
-
-                <div className="mt-auto pt-5 border-t border-slate-100 flex gap-2">
-                    <button
-                        onClick={onUse}
-                        className="flex-1 bg-lime-500 text-white hover:bg-lime-600 text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105"
-                    >
-                        <CalculatorIcon className="h-4 w-4" /> Use Style
-                    </button>
-                    {!style.isCanonical && onDelete && (
-                        <button
-                            onClick={onDelete}
-                            className="bg-red-50 text-red-600 hover:bg-red-100 p-2.5 rounded-xl transition-all hover:scale-105 shadow-sm"
-                            title="Delete Style"
-                        >
-                            <TrashIcon className="h-4 w-4" />
-                        </button>
-                    )}
-                    <button className="flex-1 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold py-2.5 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md hover:scale-105">
-                        Details <ChevronRightIcon className="h-4 w-4" />
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
-};
-
 const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadStyle, onNavigateToDetail }) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState<StyleCategory | 'all'>('all');
-    const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isAiModalOpen, setIsAiModalOpen] = useState(false);
     const [styleToEdit, setStyleToEdit] = useState<Partial<DoughStyleDefinition> | undefined>(undefined);
     const [isPlannerOpen, setIsPlannerOpen] = useState(false);
-    const [showFavorites, setShowFavorites] = useState(false);
     const [showFilters, setShowFilters] = useState(false);
-    const [sortBy, setSortBy] = useState<'name' | 'newest' | 'hydration'>('name');
-    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-
     const { userStyles, addUserStyle, deleteUserStyle, isFavorite, toggleFavorite, hasProAccess, openPaywall, user } = useUser();
     const userPlan = getCurrentPlan(user);
 
     // Combine Official and User Styles
-    const allStyles = useMemo(() => [...STYLES_DATA, ...userStyles], [userStyles]);
+    const allStyles: DoughStyleDefinition[] = useMemo(() => {
+        const normalizedUserStyles = userStyles.map(normalizeDoughStyle);
+        return [...STYLES_DATA, ...normalizedUserStyles];
+    }, [userStyles]);
 
-    // Extract unique tags from all available styles
-    const availableTags = useMemo(() => {
-        const tags = new Set<string>();
-        allStyles.forEach(style => {
-            style.tags?.forEach(t => tags.add(t));
-        });
-        return Array.from(tags).sort();
-    }, [allStyles]);
+    const {
+        searchTerm, setSearchTerm,
+        selectedCategory, setSelectedCategory,
+        selectedTag, setSelectedTag,
+        showFavorites, setShowFavorites,
+        filterSubstyles, setFilterSubstyles,
+        filterRegional, setFilterRegional,
+        filterSeasonal, setFilterSeasonal,
+        sortBy, setSortBy,
+        sortOrder, setSortOrder,
+        availableTags,
+        filteredStyles
+    } = useStyleSearch({ styles: allStyles });
 
     // Helper to count styles in a category
     const countByCategory = (cat: string) => {
-        if (cat === 'all') return allStyles.length;
+        if (cat === 'All') return allStyles.length;
         return allStyles.filter(s => s.category === cat).length;
     };
 
     // Group styles by Display Section
     const stylesByGroup = useMemo(() => {
-        const filtered = allStyles.filter(style => {
-            const searchLower = searchTerm.toLowerCase();
-            const matchesSearch = style.name.toLowerCase().includes(searchLower) ||
-                style.description.toLowerCase().includes(searchLower) ||
-                (style.tags && style.tags.some(t => t.toLowerCase().includes(searchLower)));
-
-            const matchesCategory = selectedCategory === 'all' || style.category === selectedCategory;
-
-            const matchesTag = selectedTag ? style.tags?.includes(selectedTag) : true;
-            const matchesFavorite = showFavorites ? isFavorite(style.id) : true;
-
-            return matchesSearch && matchesCategory && matchesTag && matchesFavorite;
-        });
-
-        // Sort
-        filtered.sort((a, b) => {
-            let comparison = 0;
-            switch (sortBy) {
-                case 'name':
-                    comparison = a.name.localeCompare(b.name);
-                    break;
-                case 'newest':
-                    const dateA = new Date(a.releaseDate || 0).getTime();
-                    const dateB = new Date(b.releaseDate || 0).getTime();
-                    comparison = dateA - dateB;
-                    break;
-                case 'hydration':
-                    const hydA = a.technicalProfile ? (a.technicalProfile.hydration[0] + a.technicalProfile.hydration[1]) / 2 : a.technical.hydration;
-                    const hydB = b.technicalProfile ? (b.technicalProfile.hydration[0] + b.technicalProfile.hydration[1]) / 2 : b.technical.hydration;
-                    comparison = hydA - hydB;
-                    break;
-            }
-            return sortOrder === 'asc' ? comparison : -comparison;
-        });
-
         const grouped: Record<string, DoughStyleDefinition[]> = {};
-        filtered.forEach(style => {
+        filteredStyles.forEach(style => {
             const groupName = getDisplayGroup(style.category);
             if (!grouped[groupName]) grouped[groupName] = [];
             grouped[groupName].push(style);
         });
-
         return grouped;
-    }, [searchTerm, selectedCategory, selectedTag, allStyles, sortBy, sortOrder, showFavorites]);
+    }, [filteredStyles]);
 
     const handleUseStyle = (e: React.MouseEvent, style: DoughStyleDefinition) => {
         e.stopPropagation();
-        if (style.isPro && !canUseFeature(userPlan, 'styles.full_access')) {
-            openPaywall('styles');
-            return;
-        }
         if (onLoadStyle) {
             onLoadStyle(style);
         }
@@ -323,63 +141,37 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
     return (
         <LibraryPageLayout>
             {/* Hero Section */}
-            <div className="mb-12 mx-4 sm:mx-6">
-                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
+            <div className="mb-8 mx-4 sm:mx-6">
+                <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden border border-slate-700">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
 
-                    <div className="relative z-10 grid md:grid-cols-3 gap-8 items-center">
-                        <div className="md:col-span-2 text-left">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6">
-                                <BookOpenIcon className="w-4 h-4" />
-                                Style Library
-                            </div>
-                            <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-                                The Global Encyclopedia of Dough
-                            </h1>
-                            <p className="text-lg md:text-xl text-lime-100/90 mb-8 leading-relaxed">
-                                Explore <span className="font-bold text-lime-400">technical formulas</span> for Pizzas, Breads, Pastry, and more. Validated recipes with precise hydration and fermentation parameters.
-                            </p>
-                            <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm font-medium text-lime-100/60">
-                                <span className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-lime-400"></span> Pizza & Breads
-                                </span>
-                                <span className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Pastry & Sweets
-                                </span>
-                                <span className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Regional Specialties
-                                </span>
-                                <span className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Technical Profiles
-                                </span>
-                            </div>
+                    <div className="relative z-10 text-center max-w-3xl mx-auto">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-600 text-lime-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+                            <BookOpenIcon className="w-4 h-4" />
+                            Style Library
                         </div>
-
-                        <div className="hidden md:block bg-white/10 rounded-2xl p-5 border border-white/5 backdrop-blur-sm">
-                            <h3 className="text-lime-300 font-bold mb-2 flex items-center gap-2 text-sm">
-                                <SparklesIcon className="w-4 h-4" />
-                                Did you know?
-                            </h3>
-                            <ul className="space-y-2 text-xs text-lime-100/70">
-                                <li className="flex gap-2">
-                                    <span className="text-lime-500">•</span>
-                                    Neapolitan pizza cooks in 90s at 485°C
-                                </li>
-                                <li className="flex gap-2">
-                                    <span className="text-lime-500">•</span>
-                                    Brioche can contain 50% butter
-                                </li>
-                                <li className="flex gap-2">
-                                    <span className="text-lime-500">•</span>
-                                    Sourdough improves digestibility
-                                </li>
-                            </ul>
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                            Global Dough Style Encyclopedia
+                        </h1>
+                        <p className="text-base md:text-lg text-slate-300 mb-6 leading-relaxed font-light">
+                            Scientific profiles, baking parameters, and regional variants.
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-400">
+                            <span className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
+                                <span className="w-2 h-2 rounded-full bg-lime-500"></span> Validated Formulas
+                            </span>
+                            <span className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
+                                <span className="w-2 h-2 rounded-full bg-amber-500"></span> Historical Context
+                            </span>
+                            <span className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
+                                <span className="w-2 h-2 rounded-full bg-sky-500"></span> Technical Profiles
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                {/* Create Your Own Section - Premium Design */}
+                {/* Create Your Own Section */}
                 <div className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6 p-8 rounded-2xl bg-white border border-stone-200 shadow-sm relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 to-transparent pointer-events-none" />
                     <div className="flex flex-col justify-center relative z-10">
@@ -398,7 +190,6 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                                 <SparklesIcon className="h-5 w-5" /> Ask AI for a Style
                             </button>
                         </ProFeatureLock>
-
                     </div>
                 </div>
 
@@ -410,7 +201,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                     </button>
                 </div>
 
-                {/* Search and Filter Bar - Premium Design */}
+                {/* Search and Filter Bar */}
                 <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between bg-white/80 p-5 rounded-2xl border border-stone-200 sticky top-20 z-20 shadow-sm backdrop-blur-lg">
                     <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
                         {CATEGORY_FILTERS.map(cat => (
@@ -477,6 +268,22 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                     </div>
                 </div>
 
+                {/* Advanced Filters */}
+                <div className="mb-6 flex flex-wrap gap-4 px-4">
+                    <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                        <input type="checkbox" checked={filterSubstyles} onChange={e => setFilterSubstyles(e.target.checked)} className="rounded border-slate-300 text-lime-500 focus:ring-lime-500" />
+                        Substyles Available
+                    </label>
+                    <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                        <input type="checkbox" checked={filterRegional} onChange={e => setFilterRegional(e.target.checked)} className="rounded border-slate-300 text-lime-500 focus:ring-lime-500" />
+                        Regional Expressions
+                    </label>
+                    <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                        <input type="checkbox" checked={filterSeasonal} onChange={e => setFilterSeasonal(e.target.checked)} className="rounded border-slate-300 text-lime-500 focus:ring-lime-500" />
+                        Seasonal Variants
+                    </label>
+                </div>
+
                 {/* Tags Filter - Collapsible */}
                 <div className={`transition-all duration-300 ease-in-out overflow-hidden ${showFilters || selectedTag ? 'max-h-96 opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
                     <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
@@ -537,9 +344,6 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                                             <StyleCard
                                                 key={style.id}
                                                 style={style}
-                                                onClick={() => onNavigateToDetail(style.id)}
-                                                onUse={(e) => handleUseStyle(e, style)}
-                                                onDelete={!style.isCanonical ? (e) => handleDeleteUserStyle(e, style.id) : undefined}
                                             />
                                         ))}
                                     </div>

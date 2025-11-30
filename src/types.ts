@@ -364,7 +364,7 @@ export interface TestSeries {
   relatedBakes: string[];
 }
 
-export type PaywallOrigin = 'levain' | 'mylab' | 'calculator' | 'styles' | 'learn' | 'general' | 'plans_page' | 'tools' | 'exports_pdf';
+export type PaywallOrigin = 'levain' | 'mylab' | 'calculator' | 'styles' | 'learn' | 'general' | 'plans_page' | 'tools' | 'exports_pdf' | 'mylab_flours' | 'mylab_consistency';
 
 // --- Styles System Extensions ---
 
@@ -401,32 +401,93 @@ export interface Reference {
   notes?: string;
 }
 
-export type StyleCategory = "pizza" | "bread" | "enriched_bread" | "burger_bun" | "pastry" | "cookie" | "flatbread" | "other";
+export type StyleCategory = "pizza" | "bread" | "enriched_bread" | "burger_bun" | "pastry" | "cookies_confectionery" | "flatbread" | "other";
+
+export interface SubstyleDefinition {
+  id: string;
+  title: string;
+  description: string;
+  technicalAdjustments?: Partial<DoughStyleDefinition["technicalProfile"]>;
+  notes?: string[];
+  isNew?: boolean;
+}
+
+export interface RegionExpression {
+  region: string;
+  description: string;
+  differences?: string[];
+}
+
+export interface SeasonalVariant {
+  season: string;
+  description: string;
+  notes?: string[];
+}
+
+export interface ExperimentalVariant {
+  title: string;
+  description: string;
+  cautionPoints?: string[];
+}
+
+export interface Reference {
+  source: string;
+  author?: string;
+  url?: string;
+  year?: string;
+}
 
 export interface DoughStyleDefinition {
   id: string;
-  name: string; // Variant Name in UI
-  family?: string; // Grouping key e.g. "Italian Rustic", "Viennoiserie"
+  name: string;
+  family: string;
   category: StyleCategory;
+  description: string;
 
-  // Expanded Metadata
-  origin: StyleOrigin;
+  // Metadata
+  origin: {
+    country: string;
+    region?: string;
+    period?: string;
+  };
   history: string;
   culturalContext?: string;
   isCanonical: boolean;
-  source: StyleSource;
-  createdBy?: string; // UID if user-generated
-  createdAt?: string | Timestamp;
-
-  // Legacy fields maintained for compatibility
-  country: string;
-  year?: string;
+  source: "official" | "user_manual" | "user_ai";
   releaseDate?: string;
-  description: string;
-  isPro: boolean;
-  recipeStyle?: RecipeStyle;
 
-  technical: {
+  // Core Technical Profile
+  technicalProfile: {
+    hydration: [number, number];
+    salt: [number, number];
+    oil?: [number, number];
+    sugar?: [number, number];
+    flourStrength?: string;
+    fermentation: {
+      bulk: string;
+      proof: string;
+      coldRetard?: string;
+    };
+    oven: {
+      temperatureC: [number, number];
+      type: string;
+      notes?: string;
+    };
+    difficulty: "Easy" | "Medium" | "Hard" | "Expert";
+  };
+
+  // NEW BLOCKS
+  substyles: SubstyleDefinition[];
+  regionExpressions: RegionExpression[];
+  seasonalVariants: SeasonalVariant[];
+  experimentalVariants: ExperimentalVariant[];
+  tags: string[];
+  references: Reference[];
+
+  // Legacy fields maintained for compatibility (optional)
+  recipeStyle?: RecipeStyle;
+  isPro?: boolean;
+  technical?: {
     hydration: number;
     salt: number;
     oil: number;
@@ -435,17 +496,9 @@ export interface DoughStyleDefinition {
     fermentationTechnique: FermentationTechnique;
     bakingTempC: number;
   };
-
-  technicalProfile?: StyleTechnicalProfile;
-  references?: Reference[];
-  allowedFermentationTechniques: FermentationTechnique[];
-  defaultFermentationTechnique: FermentationTechnique;
-  ingredients: IngredientConfig[];
-  ingredientDetails?: IngredientConfig[];
-  variations?: string[];
-  risks?: string[];
-  notes?: string[];
-  tags?: string[];
+  ingredients?: IngredientConfig[];
+  allowedFermentationTechniques?: FermentationTechnique[];
+  defaultFermentationTechnique?: FermentationTechnique;
 }
 
 export type DoughStylePreset = any; // Legacy alias

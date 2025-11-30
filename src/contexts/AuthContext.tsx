@@ -70,7 +70,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                             // Override with claims if present (claims are authoritative from admin)
                             if (isProClaim) {
                                 userData.isPro = true;
-                                userData.plan = 'pro';
+                                userData.plan = 'lab_pro';
                             }
                             setAppUser(userData);
                         } else {
@@ -80,7 +80,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                                 email: user.email || '',
                                 avatar: user.photoURL || undefined,
                                 isPro: isProClaim || false,
-                                plan: (planClaim as 'free' | 'pro') || 'free',
+                                plan: planClaim === 'pro' ? 'lab_pro' : ((planClaim as 'free' | 'lab_pro' | 'calculator_unlock') || 'free'),
                             };
                             await setDoc(userDocRef, newUser);
                             setAppUser(newUser);
@@ -92,7 +92,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                             name: user.displayName || 'User',
                             email: user.email || '',
                             isPro: isProClaim || false,
-                            plan: (planClaim as 'free' | 'pro') || 'free'
+                            plan: planClaim === 'pro' ? 'lab_pro' : ((planClaim as 'free' | 'lab_pro' | 'calculator_unlock') || 'free')
                         });
                     }
                 }
@@ -186,7 +186,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             name: 'Guest User',
             email: 'guest@doughlab.pro',
             isPro: true, // Give Pro access to guest for testing
-            plan: 'pro',
+            plan: 'lab_pro',
         });
     };
 

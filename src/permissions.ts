@@ -59,14 +59,16 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
 
 export function getCurrentPlan(user: User | null): PlanId {
     if (!user) return 'free';
+
     // Map legacy 'pro' to 'lab_pro' for now, or use the specific plan field
-    if (user.plan === 'lab_pro') return 'lab_pro';
+    if (user.plan === 'lab_pro' || user.plan === 'pro') return 'lab_pro';
     if (user.plan === 'calculator_unlock') return 'calculator_unlock';
     if (user.plan === 'free') return 'free';
 
-    // Fallback for legacy data
+    // Fallback for legacy data (isPro flag)
     if (user.isPro) return 'lab_pro';
 
+    console.warn('[getCurrentPlan] User has unexpected plan value:', user.plan, 'isPro:', user.isPro);
     return 'free';
 }
 

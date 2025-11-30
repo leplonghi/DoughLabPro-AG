@@ -229,25 +229,25 @@ const LearnHomePage: React.FC = () => {
     return (
         <LibraryPageLayout>
             {/* 1. Hero Section */}
-            <div className="mb-12 mx-4 sm:mx-6">
-                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+            <div className="mb-8 mx-4 sm:mx-6">
+                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-3 md:p-4 shadow-2xl relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
                     <div className="relative z-10 text-center max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
                             <BookOpenIcon className="w-4 h-4" />
                             DoughLab Learning Hub
                         </div>
-                        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                        <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3 tracking-tight leading-tight">
                             DoughLab Learning Hub
                         </h1>
-                        <p className="text-lg md:text-xl text-lime-100/90 mb-8 leading-relaxed">
+                        <p className="text-sm md:text-base text-lime-100/90 mb-4 leading-relaxed">
                             A complete scientific library on dough chemistry, fermentation, baking physics and troubleshooting.
                         </p>
                         <button
                             onClick={() => navigate('learn/all')}
-                            className="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-400 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg shadow-lime-900/20"
+                            className="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-400 text-white font-bold py-2 px-6 rounded-full transition-all transform hover:scale-105 shadow-lg shadow-lime-900/20"
                         >
                             <BookOpenIcon className="w-5 h-5" />
                             Explore All Articles

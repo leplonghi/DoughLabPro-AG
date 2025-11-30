@@ -87,7 +87,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                             )}
                             {step.durationLabel && !isGrandma && (
                                 <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600 border border-slate-200">
-                                    <ClockIcon className="h-3 w-3 text-slate-400" /> {step.durationLabel}
+                                    <ClockIcon className="h-3 w-3 text-lime-600" /> {step.durationLabel}
                                 </span>
                             )}
                         </div>
