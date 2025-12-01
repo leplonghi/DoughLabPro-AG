@@ -1,5 +1,6 @@
 import React from 'react';
 import { getProductsForPlacement } from '@/data/affiliatePlacements';
+import { AffiliateProduct } from '@/data/affiliateLinks';
 import { WrenchScrewdriverIcon, ExternalLinkIcon } from '@/components/ui/Icons';
 
 interface LearnAffiliateBlockProps {
@@ -13,7 +14,7 @@ interface LearnAffiliateBlockProps {
 
 const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys, userContext }) => {
     // Aggregate products from all keys, removing duplicates
-    const allProducts = placementKeys.flatMap(key => getProductsForPlacement(key));
+    const allProducts: AffiliateProduct[] = placementKeys.flatMap(key => getProductsForPlacement(key));
 
     // Intelligent adaptation based on user context
     let contextMessage = "Tools that help with this technique";

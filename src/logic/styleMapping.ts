@@ -1,0 +1,76 @@
+import { RecipeStyle } from '@/types';
+
+export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
+    [RecipeStyle.NEAPOLITAN]: 'neapolitan',
+    [RecipeStyle.NEW_YORK]: 'nyc_thin',
+    [RecipeStyle.PAN_PIZZA]: 'pan_pizza',
+    [RecipeStyle.CHICAGO_DEEP_DISH]: 'chicago_deep_dish',
+    [RecipeStyle.ROMANA_TONDA]: 'romana_tonda',
+    [RecipeStyle.SICILIANA]: 'siciliana',
+    [RecipeStyle.GRANDMA_STYLE]: 'grandma',
+    [RecipeStyle.DETROIT]: 'detroit',
+    [RecipeStyle.ROMAN]: 'roman_teglia',
+    [RecipeStyle.THIN_CRUST]: 'thin_crust',
+
+    // Breads
+    [RecipeStyle.PAO_FRANCES]: 'pao_frances',
+    [RecipeStyle.BAGUETTE]: 'baguette',
+    [RecipeStyle.CIABATTA]: 'ciabatta',
+    [RecipeStyle.PUMPERNICKEL]: 'pumpernickel',
+    [RecipeStyle.RYE]: 'rye',
+    [RecipeStyle.PAO_DE_BATATA]: 'pao_de_batata',
+    [RecipeStyle.FOCACCIA]: 'focaccia',
+    [RecipeStyle.CHALLAH]: 'challah',
+    [RecipeStyle.BAGEL]: 'bagel',
+    [RecipeStyle.ENGLISH_MUFFIN]: 'english_muffin',
+    [RecipeStyle.PITA]: 'pita',
+    [RecipeStyle.BURGER_BUN]: 'burger_bun',
+    [RecipeStyle.HOKKAIDO_MILK_BREAD]: 'hokkaido_milk_bread',
+    [RecipeStyle.SOURDOUGH]: 'sourdough_rustic',
+    [RecipeStyle.COUNTRY_LOAF]: 'country_loaf',
+    [RecipeStyle.SANDWICH_LOAF]: 'sandwich_loaf',
+    [RecipeStyle.FLATBREAD]: 'flatbread',
+    [RecipeStyle.BRIOCHE]: 'brioche',
+    [RecipeStyle.DINNER_ROLLS]: 'dinner_rolls',
+
+    // Sweets
+    [RecipeStyle.PATE_SUCREE]: 'pate_sucree',
+    [RecipeStyle.SABLEE]: 'sablee',
+    [RecipeStyle.POUND_CAKE]: 'pound_cake',
+    [RecipeStyle.COOKIES]: 'cookies',
+    [RecipeStyle.COOKIE_NY_CHOC_CHIP]: 'nyc_thick_cookie',
+    [RecipeStyle.CINNAMON_ROLL]: 'cinnamon_roll',
+    [RecipeStyle.SWEET_ROLL]: 'sweet_roll',
+    [RecipeStyle.BABKA]: 'babka',
+    [RecipeStyle.DONUT]: 'donut',
+    [RecipeStyle.SHORTBREAD]: 'shortbread',
+    [RecipeStyle.PIE_DOUGH]: 'pie_dough',
+    [RecipeStyle.BOLO_SIMPLES]: 'bolo_simples',
+    [RecipeStyle.BROWNIE]: 'brownie',
+    [RecipeStyle.SWEETS_PASTRY]: 'sweets_pastry',
+
+    // Others
+    [RecipeStyle.MASSA_PODRE]: 'massa_podre',
+    [RecipeStyle.MASSA_ESFIHA]: 'massa_esfiha',
+    [RecipeStyle.MASSA_TORTA]: 'massa_torta',
+
+    // New styles / Variations
+    [RecipeStyle.BREAD_RUSTIC_SOURDOUGH]: 'sourdough_rustic',
+    [RecipeStyle.BREAD_BAGUETTE_CLASSIC]: 'baguette',
+    [RecipeStyle.BREAD_SANDWICH_SOFT]: 'sandwich_loaf',
+    [RecipeStyle.ENRICHED_BRIOCHE_CLASSIC]: 'brioche',
+    [RecipeStyle.ENRICHED_DINNER_ROLL]: 'dinner_rolls',
+    [RecipeStyle.BURGER_BUN_BRIOCHE]: 'burger_bun',
+    [RecipeStyle.BURGER_BUN_POTATO]: 'burger_bun',
+    [RecipeStyle.BURGER_BUN_SOFT]: 'burger_bun',
+    [RecipeStyle.PASTRY_CINNAMON_ROLL]: 'cinnamon_roll',
+    [RecipeStyle.PASTRY_DANISH]: 'danish',
+    [RecipeStyle.COOKIE_CLASSIC_CHOC_CHIP]: 'cookies',
+    [RecipeStyle.COOKIE_BROWN_BUTTER]: 'cookies',
+    [RecipeStyle.COOKIE_SHORTBREAD]: 'shortbread',
+
+    // Legacy
+    [RecipeStyle.NY_STYLE]: 'nyc_thin',
+    [RecipeStyle.SICILIAN]: 'siciliana',
+    [RecipeStyle.CHICAGO]: 'chicago_deep_dish',
+};

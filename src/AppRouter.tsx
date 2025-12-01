@@ -7,7 +7,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { useRouter } from '@/contexts/RouterContext';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { FLOURS } from '@/flours-constants';
-import { getStyleById } from '@/data/stylesData';
+import { STYLES_DATA } from '@/data/stylesData';
 import AuthModal from '@/components/AuthModal';
 import { LearnProvider } from '@/contexts/LearnContext';
 
@@ -165,7 +165,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             return protectPro(<ConsistencyDetailPage seriesId={routeParams} onNavigate={navigate} />);
         }
         if (route === 'styles/detail' && routeParams) {
-            const style = getStyleById(routeParams);
+            const style = STYLES_DATA.find(s => s.id === routeParams);
             if (style) {
                 return protect(<StyleDetailPage style={style} onLoadAndNavigate={(s) => handleLoadStyleFromModule(s, navigate)} onBack={() => navigate('styles')} />);
             }

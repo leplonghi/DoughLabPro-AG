@@ -1,6 +1,6 @@
 
 import { DoughConfig, FermentationTechnique, RecipeStyle, BakeType, YeastType } from '../types';
-import { getAllowedFermentationTechniques } from '../data/stylesData';
+import { getAllowedFermentationTechniques } from './fermentationLogic';
 
 /**
  * Ensures that the DoughConfig is valid for the current RecipeStyle and BakeType.

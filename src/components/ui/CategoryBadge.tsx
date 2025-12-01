@@ -11,7 +11,7 @@ const CATEGORY_COLORS: Record<StyleCategory, string> = {
     enriched_bread: 'bg-yellow-100 text-yellow-800 border-yellow-200',
     burger_bun: 'bg-red-100 text-red-800 border-red-200',
     pastry: 'bg-pink-100 text-pink-800 border-pink-200',
-    cookies_confectionery: 'bg-purple-100 text-purple-800 border-purple-200',
+    cookie: 'bg-purple-100 text-purple-800 border-purple-200',
     flatbread: 'bg-stone-100 text-stone-800 border-stone-200',
     other: 'bg-slate-100 text-slate-800 border-slate-200',
 };
@@ -22,7 +22,7 @@ const CATEGORY_LABELS: Record<StyleCategory, string> = {
     enriched_bread: 'Enriched',
     burger_bun: 'Bun',
     pastry: 'Pastry',
-    cookies_confectionery: 'Cookie',
+    cookie: 'Cookie',
     flatbread: 'Flatbread',
     other: 'Other',
 };

@@ -11,7 +11,7 @@ export type StyleCategory =
     | 'enriched_bread'
     | 'burger_bun'
     | 'pastry'
-    | 'cookies_confectionery'
+    | 'cookie'
     | 'flatbread'
     | 'other';
 
@@ -25,14 +25,26 @@ export interface Reference {
     notes?: string;
 }
 
+export interface StyleImages {
+    hero: string;
+    dough: string;
+    crumb: string;
+}
+
+export interface StylePairings {
+    canonical: string[];
+    modern: string[];
+    regional: string[];
+}
+
 // ========================================================
 // 2. CORE SUB-SCHEMAS
 // ========================================================
 
 export interface StyleOrigin {
     country: string;
-    region?: string;
-    period?: string;
+    region: string;
+    period: string;
 }
 
 export interface StyleTechnicalProfile {
@@ -40,38 +52,28 @@ export interface StyleTechnicalProfile {
     salt: [number, number];
     oil?: [number, number];
     sugar?: [number, number];
-    prefermentDescription?: string;
+    cocoa?: [number, number];
+
     flourStrength?: string;
+    preferment?: string;
+
+    fermentationSteps: string[]; // Action-oriented steps
+
+    ovenTemp: [number, number]; // Celsius
+
+    recommendedUse: string[];
+    difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
+
+    // Legacy/Optional fields for backward compatibility or specific types
+    prefermentDescription?: string;
     fermentation?: {
         bulk: string;
-        proof: string;
+        proof?: string;
         coldRetard?: string;
-    };
-    oven?: {
-        temperatureC: [number, number];
-        type: string;
+        rest?: string;
         notes?: string;
     };
     ovenRecommendations?: string;
-    difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
-    recommendedUse: string;
-}
-
-export interface StyleVariation {
-    id: string;
-    title: string;
-    description: string;
-    technicalAdjustments?: Partial<StyleTechnicalProfile>;
-    notes?: string[];
-    isNew?: boolean;
-    type?: 'substyle' | 'regional' | 'seasonal' | 'experimental';
-}
-
-export interface StyleNarrative {
-    description: string;
-    history: string;
-    culturalContext?: string;
-    origin: StyleOrigin;
 }
 
 // ========================================================
@@ -81,41 +83,40 @@ export interface StyleNarrative {
 export interface DoughStyleDefinition {
     id: string;
     name: string;
-    family?: string;
     category: StyleCategory;
 
     origin: StyleOrigin;
-    history: string;
-    culturalContext?: string;
-
-    isCanonical: boolean;
-    source: StyleSource;
-    createdBy?: string;
-    createdAt?: string | Timestamp;
-    releaseDate?: string;
 
     description: string;
-    country: string;
-    year?: string;
+    history: string;
+
+    regulatoryNotes?: string;
+    globalPresence?: string;
+
+    pairings?: StylePairings;
+
+    tags: string[];
+    difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
+
+    fermentationType: 'direct' | 'preferment' | 'levain' | 'cold';
+
+    technicalProfile: StyleTechnicalProfile;
+
+    watchouts?: string[]; // Replaces risks
+    notes: string[];
+    references: Reference[];
 
     isPro: boolean;
+    source: StyleSource;
+    createdAt: string;
+    releaseDate: string;
 
-    technical: {
-        hydration: number;
-        salt: number;
-        oil: number;
-        sugar: number;
-        fermentation: string;
-        fermentationTechnique: FermentationTechnique;
-        bakingTempC: number;
-    };
+    images?: StyleImages;
+    relatedLearn?: string[];
 
-    technicalProfile?: StyleTechnicalProfile;
-
+    // Legacy fields for backward compatibility
     risks?: string[];
-    notes?: string[];
-    references?: Reference[];
-    variations?: StyleVariation[];
-    tags?: string[];
-    learnKeywords?: string[];
+    variations?: any[];
+    isCanonical?: boolean;
+    country?: string;
 }

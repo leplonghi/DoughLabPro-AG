@@ -97,7 +97,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start animate-fade-in">
-        <div className="lg:sticky lg:top-24 space-y-6" ref={formRef}>
+        <div className="space-y-6" ref={formRef}>
           <div className="flex items-center justify-center gap-2">
             <UiModeToggle
               mode={props.calculatorMode}
@@ -119,7 +119,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             inputRefs={{ numPizzas: numPizzasRef }}
           />
         </div >
-        <div ref={resultsRef}>
+        <div className="lg:sticky lg:top-24" ref={resultsRef}>
           <ResultsDisplay
             results={props.results}
             config={props.config}

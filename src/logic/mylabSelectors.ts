@@ -68,7 +68,7 @@ export function getTodaySuggestion(
       id: 'hot_day_neapolitan',
       titleKey: 'suggestions.hot_day.title',
       descriptionKey: 'suggestions.hot_day.desc',
-      presetId: 'pizza_napoletana_avpn', // Neapolitan preset
+      presetId: 'neapolitan_avpn_classic', // Neapolitan preset
     };
   }
 
@@ -80,7 +80,7 @@ export function getTodaySuggestion(
       id: 'steel_ny_style',
       titleKey: 'suggestions.steel_oven.title',
       descriptionKey: 'suggestions.steel_oven.desc',
-      presetId: 'pizza_newyork_slice', // NY Style preset
+      presetId: 'new_york_style_pizza', // NY Style preset
     };
   }
 
@@ -89,7 +89,7 @@ export function getTodaySuggestion(
       id: 'cold_day_detroit',
       titleKey: 'suggestions.cold_day.title',
       descriptionKey: 'suggestions.cold_day.desc',
-      presetId: 'pizza_detroit', // Detroit style preset (good for long ferments)
+      presetId: 'detroit_style', // Detroit style preset (good for long ferments)
     };
   }
 
@@ -98,6 +98,6 @@ export function getTodaySuggestion(
     id: 'default_explore_focaccia',
     titleKey: 'suggestions.default.title',
     descriptionKey: 'suggestions.default.desc',
-    presetId: 'focaccia_classic',
+    presetId: 'focaccia_genovese',
   };
 }

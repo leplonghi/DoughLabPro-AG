@@ -1,238 +1,358 @@
-MASTER DOCUMENT — PART 1/3
-
-(Global Spec + Category Traits)
-DoughLabPro – Style Library / Hybrid Technical Specification
-Version: 1.0 (Canonical)
-Author: DoughLabPro Knowledge Architecture
-All content validated using scientific sources including Modernist Bread, Modernist Pizza, Hamelman, AVPN, BBGA, CIA Baking & Pastry, King Arthur, ISO/AFNOR flour standards, and EU DOP/IGP documentation.
-
+DOUGHLABPRO — MASTER SPEC 2025.2
+PART 1/4 — MASTER HEADER + GLOBAL PRINCIPLES + GOLD SCHEMA + IMAGE SYSTEM
 ============================================
-SECTION 1 — GLOBAL SPEC
-============================================
-1.1 Purpose of the Style Library
+/* ============================================================
+   DOUGHLABPRO — STYLES SYSTEM MASTER DOCUMENT (2025.2)
+   PART 1/4 — HEADER + GLOBAL PRINCIPLES + GOLD SCHEMA + IMAGE SYSTEM
+   PRIORITY: ABSOLUTE (OVERRIDE ALL PREVIOUS SPECS)
+   This file defines the global protocol for the Styles Library,
+   including schema rules, editorial standards, UI/UX anchors,
+   validation constraints, and the global Image Specification.
 
-The DoughLabPro Style Library exists to:
+   All future sections MUST comply with this document.
+   ============================================================ */
 
-Provide scientifically validated dough style definitions for use across Calculator, Learn, MyLab, Levain, Tools, and future modules.
+------------------------------------------------------------
+0. PURPOSE OF THIS MASTER DOCUMENT
+------------------------------------------------------------
 
-Standardize terminology, ranges, and technical envelopes across all styles.
+This document is the single source of truth for:
 
-Serve as a foundational “knowledge graph” that enforces accuracy, internal consistency, and reproducibility.
+The global Styles Library architecture
 
-Offer historically and culturally grounded descriptions of global dough traditions.
+The Style GOLD Schema
 
-Enable monthly expansion with new styles while preserving backward compatibility.
+The UI/UX 2025 framework
 
-The Style Library is the single source of truth for:
+The Image System Specification
 
-Hydration envelopes
+Technical validation rules
 
-Salt and sugar ranges
+Editorial consistency rules
 
-Fat content and enrichment levels
+Data constraints (≤8KB, ranges only, references real only)
 
-Preferment formats
-
-Flour strength requirements
-
-Fermentation pathways
-
-Mixing and dough handling
-
-Baking profiles
-
-Regional variants
-
-Climate adaptations
-
-Risk conditions
-
-1.2 What a “Style” Represents
-
-A Style is a codified technical identity of a dough tradition.
-
-A style always includes:
-
-Technical Envelope
-Scientifically defined ranges for hydration, salt, oil, sugar, flour strength, preferments, temperatures, and timings.
-
-Process Identity
-Mixing method, fermentation method, shaping logic, baking profile.
-
-Historical-Cultural Identity
-Region, era, regulatory body (if applicable), and culinary purpose.
-
-Functional Identity
-How the dough behaves, how it is used, and what outcomes it produces.
-
-JSON Schema Instance
-A fully structured machine-readable object.
-
-1.3 Style Library → App Integration
-
-Styles integrate with:
+Integration rules with:
 
 Calculator
 
-Loads technicalProfile ranges
-
-Pre-fills dough configuration
-
-Enforces validated hydration/salt limits
-
-Triggers warnings (e.g., high hydration sensitivity)
-
 Learn
-
-Shows theory behind each style
-
-Links technical foundations to articles
-
-Provides deeper science
 
 MyLab
 
-Allows A/B experiments
+Firestore
 
-Tracks deviations from canonical values
+Permissions & Paywall
 
-Stores personal variants
+No module may override these rules unless explicitly documented.
 
-Levain
+------------------------------------------------------------
+1. GLOBAL PRINCIPLES
+------------------------------------------------------------
 
-Specifies levain percentage usage
+Every style must be:
 
-Adjusts fermentation timing
+scientifically valid
 
-Tools (OvenProfiler, DoughBot, Timeline)
+historically accurate
 
-Uses style parameters to simulate fermentation curves, baking graphs, timelines.
+culturally contextualized
 
-1.4 Validation Rules (Global Constraints)
+operationally reproducible
 
-These constraints apply to ALL styles.
+technically documented
 
-Hydration (global envelope)
+written in English only
 
-Based on Modernist Bread + King Arthur hydration analysis:
+referenced with real sources
 
-Minimum: 35% (some enriched doughs, cookies)
+internally consistent with Learn
 
-Maximum: 105% (high-hydration pan breads; Roman Pala upper limit ~95–100%)
-Values outside these ranges trigger automatic warnings.
+Every style must follow a single unified schema (GOLD Schema).
 
-Salt (baker’s %)
+All UI must follow the 2025 LibraryPageLayout.
 
-Scientific envelope from BBGA and Hamelman:
+Every field must be deterministic, typed, validated, normalized, and Pro-lock compatible.
 
-Typical: 1.8% – 3.0%
+Each style must include:
 
-Maximum allowed in DoughLabPro: 3.5%
+strong editorial body
 
-Minimum palatable threshold: 1.5%
+technical ranges
 
-Oil/Fat
+fermentation steps
 
-Based on Modernist Pizza + CIA Baking & Pastry:
+cultural context
 
-Lean doughs: 0–3%
+warnings
 
-Medium enriched: 3–15%
+recommended uses
 
-Highly enriched (brioche): 15–50%
+real references
 
-Sugar
+Monthly updates must use this same schema — 5 new styles per month minimum.
 
-Lean doughs: 0–2%
-
-Sweet doughs: 5–20%
-
-Pastry/cookie: 10–50%
-
-Flour Strength (W value or protein)
-
-When W unavailable, fallback to protein.
-
-Weak flours: W < 180
-
-Medium: W 180–260
-
-Strong: W 260–320
-
-Very strong: W > 320
-
-Sources: Caputo Tech Sheets, French AFNOR classification, Modernist Bread.
-
-Fermentation Time Constraints
-
-Room temp: 18–26°C
-
-Cold fermentation: 2–8°C
-
-Max safe cold fermentation time: 120 h
-(beyond this, enzymatic degradation risk)
-
-Oven Profiles
-
-Standardized categories:
-
-Wood-fired (400–485°C)
-
-Deck oven (260–330°C)
-
-Home oven (230–290°C)
-
-Pan-style (200–260°C)
-
-Each style references a subset.
-
-1.5 Naming Rules
-
-To avoid collisions, naming follows:
-
-Primary name (canonical): "Neapolitan AVPN Classic"
-
-Secondary name (variant): "Neapolitan Contemporary"
-
-All lowercase id: "neapolitan_avpn_classic"
-
-User-created styles receive:
-
-"user_manual_*" or "user_ai_*" prefix.
-
-1.6 JSON Gold Schema (Field-by-field definition)
-
-This is the schema used in Section 3C for each style.
+------------------------------------------------------------
+2. GOLD STYLE SCHEMA (JSON REQUIRED FIELDS)
+------------------------------------------------------------
+/* ============================================================
+   GOLD STYLE SCHEMA — REQUIRED FOR ALL STYLES
+   - All fields mandatory unless marked optional.
+   - JSON data must not exceed 8 KB.
+   - All quantities must be numeric ranges.
+   ============================================================ */
 
 {
   "id": "string",
   "name": "string",
-  "category": "pizza|bread|enriched_bread|burger_bun|pastry|cookie|flatbread|other",
+  "category": "pizza" | "bread" | "enriched_bread" | "burger_bun" | "pastry" | "cookie" | "flatbread" | "other",
+
   "origin": {
     "country": "string",
-    "region": "string | optional",
-    "period": "string | optional"
+    "region": "string",
+    "period": "string"
   },
+
+  "description": "string",
   "history": "string",
+  "culturalContext": "string",
+
+  "tags": ["string"],          // max 4
+  "difficulty": "Easy" | "Medium" | "Hard" | "Expert",
+  "fermentationType": "direct" | "preferment" | "levain" | "cold",
+
   "technicalProfile": {
-      "hydration": [number, number],
-      "salt": [number, number],
-      "oil": [number, number],
-      "sugar": [number, number],
-      "flourStrength": "string | optional",
-      "prefermentDescription": "string | optional",
-      "fermentation": {
-        "bulk": "string",
-        "proof": "string",
-        "coldRetard": "string | optional"
-      },
-      "ovenRecommendations": "string",
-      "difficulty": "Easy|Medium|Hard|Expert",
-      "recommendedUse": "string"
+    "hydration": [min, max],
+    "salt": [min, max],
+    "oil": [min, max],
+    "sugar": [min, max],
+    "cocoa": [min, max],                      // optional
+    "flourStrength": "string",
+    "preferment": "string",
+    "fermentationSteps": ["string"],          // action-oriented: “Fold every 30 min…”
+    "ovenTemp": [min, max],                   // must be Celsius
+    "recommendedUse": ["string"],
+    "difficulty": "Easy" | "Medium" | "Hard" | "Expert"
   },
-  "risks": ["string"],
+
+  "warnings": ["string"],
   "notes": ["string"],
-  "variations": ["string"],
-  "tags": ["string"],
-  "references": ["string"]
+
+  "images": {
+    "hero": "string",        // required
+    "gallery": ["string"],   // at least 3
+    "macro": ["string"]      // optional but recommended
+  },
+
+  "references": [
+    {
+      "source": "string",
+      "author": "string",
+      "year": "string",
+      "url": "string"
+    }
+  ],
+
+  "isPro": true,
+  "source": "official" | "user_manual" | "user_ai",
+  "createdAt": "string",
+  "releaseDate": "string"
 }
+
+
+MANDATORY CONSTRAINTS:
+
+JSON ≤ 8KB
+
+At least 3 real references
+
+Numeric ranges ONLY
+
+Oven temp must be Celsius
+
+Tags ≤ 4
+
+Difficulty present twice (overall + technical)
+
+No images missing
+
+Pathing must match /assets/styles/{id}/...
+
+------------------------------------------------------------
+3. GLOBAL IMAGE SYSTEM (FULL SPECIFICATION)
+------------------------------------------------------------
+/* ============================================================
+   GLOBAL IMAGE SYSTEM — REQUIRED FOR ALL STYLES
+   Ensures visual consistency across the entire Styles Library.
+   Applies to Storage, Schema, UI, Editorial, and Validation.
+   ============================================================ */
+
+3.1 Directory Structure
+
+All style images must be stored here:
+
+/src/assets/styles/{styleId}/
+    hero.webp
+    gallery-01.webp
+    gallery-02.webp
+    gallery-03.webp
+    macro-01.webp
+
+Rules:
+
+{styleId} must match style.id
+
+.webp only
+
+Max file size: 300 KB
+
+Min 4 images per style
+
+Naming required
+
+The app must NOT generate images — only reference them
+
+Nanobanana Pro will provide the images externally
+
+3.2 Schema Requirements
+
+Add this field to every style:
+
+"images": {
+  "hero": "/assets/styles/{id}/hero.webp",
+  "gallery": [
+    "/assets/styles/{id}/gallery-01.webp",
+    "/assets/styles/{id}/gallery-02.webp",
+    "/assets/styles/{id}/gallery-03.webp"
+  ],
+  "macro": [
+    "/assets/styles/{id}/macro-01.webp"
+  ]
+}
+
+3.3 UI/UX Placement Rules
+Hero Image
+
+Full width
+
+16:9
+
+Placed at top of StyleDetailPage
+
+Background gradient uses color palette extracted from hero
+
+Gallery Section
+
+Placed after “History”:
+
+Responsive grid (1 → 2 → 3 columns)
+
+Lightbox
+
+Zoom + drag
+
+Desktop hover magnifier
+
+Macro Section
+
+Placed near “Warnings”:
+
+4:5 ratio
+
+Extreme crumb close-ups
+
+3.4 Editorial and Styling Rules (Mandatory)
+Lighting
+
+Soft, diffused, natural
+
+5200–5600K
+
+Zero harsh shadows
+
+Background & Palette
+
+Neutral: beige, slate, charcoal
+
+Food editorial aesthetic (Kinfolk / Bon Appétit)
+
+Clean props only (linen, cutting board, flour)
+
+Camera Angles
+
+Hero: 45°
+
+Gallery: 90° overhead
+
+Gallery: 0° side profile
+
+Macro: extreme close-up
+
+Composition
+
+Rule of thirds
+
+Focus on crust, crumb, structure
+
+No branding
+
+No human hands
+
+No chaotic props
+
+Always minimalistic
+
+3.5 Nanobanana Pro Prompt Templates
+Hero Prompt
+Ultra-realistic food photography of {styleName}, 8K, 45° angle,
+soft diffused lighting, warm neutrals, editorial magazine aesthetic,
+emphasize crust blistering and crumb texture, shallow DOF,
+no branding, no hands, clean beige stone background.
+
+Gallery Prompt (Overhead)
+Top-down 90° overhead shot of {styleName}, high resolution,
+neutral palette, baking studio environment, minimal composition,
+texture and structure visible, no branding.
+
+Gallery Prompt (Side Profile)
+Side profile image of {styleName}, 0° camera angle, natural light,
+crust coloration clearly visible, editorial culinary style.
+
+Macro Prompt
+Extreme macro close-up of {styleName} crumb or gluten strands,
+8K resolution, shallow depth of field, highly detailed aeration,
+scientific aesthetic, no props.
+
+3.6 Validation Rules
+
+Antigravity must reject any style if:
+
+hero missing
+
+gallery < 3 images
+
+wrong path format
+
+wrong file format
+
+file size > 300 KB
+
+wrong ratio (hero ≠ 16:9, macro ≠ 4:5)
+
+invalid folder name
+
+Fallback allowed:
+
+/assets/placeholders/hero-default.webp
+
+
+UI must show:
+
+“Images for this style are coming soon.”
+
+3.7 Summary Block (to remain at top of internal Antigravity memory)
+GLOBAL RULE: Every style MUST include a fully valid `images` block,
+with correct file paths, .webp format, ratios, and gallery items.
+Reject any style that fails image validation.
+
+✔ PARTE 1/4 ENTREGUE.

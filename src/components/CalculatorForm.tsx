@@ -10,7 +10,9 @@ import {
   FermentationTechnique,
 } from '@/types';
 import { DOUGH_STYLE_PRESETS } from '@/constants';
-import { STYLES_DATA, getStyleById, getAllowedFermentationTechniques } from '@/data/stylesData';
+import { STYLES_DATA } from '@/data/stylesData';
+import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
+import { RECIPE_STYLE_TO_ID } from '@/logic/styleMapping';
 import * as customPresets from '@/logic/customPresets';
 import {
   PencilIcon,
@@ -144,14 +146,15 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   const activeStyle = useMemo(() => {
     if (config.selectedStyleId) {
       // Try finding in official data
-      const official = getStyleById(config.selectedStyleId);
+      const official = STYLES_DATA.find(s => s.id === config.selectedStyleId);
       if (official) return official;
       // Try finding in user styles
       const userStyle = userStyles.find(s => s.id === config.selectedStyleId);
       if (userStyle) return userStyle;
     }
     // Fallback to finding by preset ID if selectedStyleId is missing (legacy compatibility)
-    return STYLES_DATA.find(s => s.recipeStyle === config.recipeStyle);
+    const styleId = RECIPE_STYLE_TO_ID[config.recipeStyle];
+    return STYLES_DATA.find(s => s.id === styleId);
   }, [config.selectedStyleId, config.stylePresetId, config.recipeStyle, userStyles]);
 
   const recipeStylesToShow = DOUGH_STYLE_PRESETS.filter(

@@ -517,6 +517,8 @@ export interface FavoriteItem {
 export interface UserContextType {
   isAuthenticated: boolean;
   user: User | null;
+  userLoading: boolean;
+  planLoading: boolean;
   login: (user: User) => void;
   logout: () => void;
   updateUser: (updatedData: Partial<User>) => void;

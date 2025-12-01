@@ -1,171 +1,431 @@
-SECTION 2 — CATEGORY TRAITS
+DOUGHLABPRO — MASTER SPEC 2025.2
+PART 2/4 — UI/UX 2025 SYSTEM + FILTER ENGINE + BEHAVIOR RULES
 ============================================
+/* ============================================================
+   PART 2/4 — UI/UX + FILTER SYSTEM + INTERACTION BEHAVIOR
+   This document defines:
+     - The complete 2025 UI/UX framework for Styles Library
+     - The global filter system architecture
+     - Navigation and interaction rules
+     - Pro-feature gating behavior
+     - Learn / MyLab / Calculator / Firestore integration links
+   ============================================================ */
 
-Each category below will guide the constraints and narrative tone for its styles.
+------------------------------------------------------------
+4. UI/UX SYSTEM — 2025 LIBRARY LAYOUT
 
-All descriptions are validated using:
+The Styles Library MUST use LibraryPageLayout (shared with Learn, Tools, Flours).
+This ensures a unified premium look and reduces user cognitive load.
 
-Modernist Bread
+4.1 Global Page Structure
+Page
+ └── LibraryPageLayout
+      ├── Hero
+      ├── Sticky Filter Bar
+      ├── Filter Drawer (expanded)
+      ├── Display Groups
+      │     └── Style Cards
+      └── Modals
 
-Modernist Pizza
 
-CIA Baking & Pastry
+The UI must feel:
 
-BBGA Educational Papers
+premium
 
-King Arthur Baking Technical Guides
+editorial
 
-EU DOP/IGP documentation
+consistent
 
-Italian baking textbooks (Calvel, Caputo, Mulino Padano)
+scientific but intuitive
 
-2.1 PIZZA (Category Definition)
-Scientific Definition
+visually aligned with DoughLabPro brand (deep green + lime highlights)
 
-Pizza dough is a lean wheat-based dough, low in fat and sugar, designed for high-heat baking and rapid oven spring.
+------------------------------------------------------------
+4.2 HERO BLOCK (GLOBAL REQUIREMENT)
+4.2.1 Visual Spec
 
-Technical Envelope
+100% width
 
-Hydration: 55–75% (except Roman styles)
+Gradient:
+from-[#27492E] to-[#3C773C]
 
-Salt: 2.5–3.0% typical
+Subtle texture overlays (1–2% opacity)
 
-Oil: 0–5% depending on style
+Floating dots in lime/sky as micro-accent
 
-Sugar: 0–3%
+4.2.2 Text
 
-Flour strength: W 260–320 recommended
+Title:
 
-Fermentation: direct or preferment (biga/poolish) depending on regional style
+The Global Dough Atlas
 
-Oven: wood (<90 sec), deck (~4–6 min), or home (~7–10 min)
 
-Cultural Identity
+Subtitle:
 
-Pizza varies across Italy and globally, adapting to flour characteristics, oven availability, and urban food culture.
+Explore validated formulas, history, techniques, and regional dough traditions across 6 major global families.
 
-References
+4.2.3 Hero Actions (3 buttons)
 
-AVPN Regulations, Modernist Pizza, Caputo Technical Documents.
+Create Style (Manual)
 
-2.2 BREADS & RUSTIC LOAVES
-Scientific Definition
+AI Style Builder (Pro-only)
 
-Bread doughs are hydration-variable, focusing on structure, crumb, and fermentation complexity.
+Ingredient Planner
 
-Technical Envelope
+All must follow the ShadCN button spec defined in the master UI kit.
 
-Hydration: 60–100%
+------------------------------------------------------------
+4.3 STICKY FILTER BAR
 
-Salt: 1.8–2.2% (World Bread Salt Average)
+Always visible during scroll.
 
-Preferments: common (poolish, biga, pâte fermentée, levain)
+Components:
 
-Baking: deck ovens or Dutch oven setups
+Category Pills
 
-Flour strength: highly variable (W 180–300)
+Favorites Toggle
 
-Cultural Identity
+Filter Drawer Toggle
 
-Diverse regional traditions: French boulangerie, Italian pane, German rye systems.
+Sort Dropdown (name, hydration, newest)
 
-References
+Sort Order Toggle
 
-Modernist Bread, Hamelman, French AFNOR.
+Search Input (debounced 250ms)
 
-2.3 ENRICHED DOUGH
-Scientific Definition
+Styling:
 
-Doughs high in fat, sugar, eggs, and dairy, creating tender, sweet structures.
+Background: white/80
 
-Technical Envelope
+backdrop-blur-lg
 
-Hydration: 55–70%
+Border bottom: slate-200/80
 
-Fat: 15–50%
+Shadow: subtle
 
-Sugar: 10–25%
+Behavior:
 
-Salt: 1.5–2.0%
+Filters update grid instantly
 
-Mixing: intensive
+Smooth animated transitions (150ms, ease-out)
 
-Fermentation: controlled due to sugar/fat inhibition
+Pills use dynamic category color system (pizza=orange, bread=amber…)
 
-Cultural Identity
+------------------------------------------------------------
+4.4 FILTER DRAWER (ADVANCED FILTERS)
 
-Brioche, challah, milk bread.
+Required fields:
 
-References
+Difficulty (E/M/H/X)
+Region (Italy, Japan, France, USA, Brazil, UK, Global)
+Fermentation: direct / preferment / cold / levain
+Tags: multi-select
+Hydration range slider (optional future)
 
-CIA Baking & Pastry; Hamelman.
+Design:
 
-2.4 BUNS
-Scientific Definition
+Collapsible
 
-Soft, enriched doughs designed for delicate crumb and short bake times.
+Animated height transitions
 
-Technical Envelope
+Clean pill-based filter selections
 
-Hydration: 60–70%
+Neutral whites and slate tones
 
-Fat: 5–20%
+------------------------------------------------------------
+4.5 STYLE GRID — DISPLAY GROUPS
 
-Sugar: 5–15%
+Styles must be grouped using:
 
-Cultural Identity
+Pizzas
+Breads & Rustic Loaves
+Enriched Breads
+Burger Buns
+Pastry & Sweet Doughs
+Cookies & Confectionery
+Flatbreads (if any)
+Other Styles
 
-American diner buns, Japanese milk buns, potato buns.
+UI Rules:
 
-2.5 PASTRY
-Scientific Definition
+Each group shows name + count badge
 
-Laminated or semi-laminated doughs with structured fat layers.
+Grid layout:
 
-Technical Envelope
+Mobile: 1 column
 
-Hydration: 50–60%
+Tablet: 2 columns
 
-Fat: 30–70% laminated
+Desktop: 3
 
-Sugar: 5–20%
+XL: 4
 
-Cultural Identity
+------------------------------------------------------------
+4.6 STYLE CARD SPEC (2025)
+Header Elements:
 
-Croissant, Danish, cinnamon rolls.
+Status badges:
 
-2.6 COOKIES
-Scientific Definition
+Pro (lime gradient)
 
-Low-hydration, high-fat, high-sugar doughs relying on creaming, not gluten development.
+AI (indigo gradient)
 
-Technical Envelope
+Custom (sky gradient)
 
-Hydration: 20–40%
+NEW (blue gradient < 30 days)
 
-Fat: 25–60%
+Body:
 
-Sugar: 25–60%
+title (bold)
 
-No fermentation envelope
+category badge
 
-Cultural Identity
+origin country
 
-American soft cookies, shortbread, brown butter styles.
+short description
 
-2.7 FLATBREADS
-Scientific Definition
+3 technical tags:
 
-Ultra-fast, high-heat breads with minimal fermentation.
+hydration
 
-Technical Envelope
+fermentation time
 
-Hydration: 55–70%
+difficulty
 
-Fat: 0–5%
+Actions:
 
-Baking: high heat (griddle or tandoor)
+Use Style (primary)
 
-2.8 SPECIAL REGIONAL DOUGHS
+Details
 
-Used only for rare styles like pão de queijo, focaccia al formaggio, etc.
+Delete (custom only)
+
+Interaction:
+
+hover shadow
+
+negative space clean
+
+rounded-xl
+
+------------------------------------------------------------
+4.7 STYLEDETAILPAGE — SCIENTIFIC DOSSIER UI
+
+This is the most important UI in the entire Styles module.
+
+Required sections:
+
+Back button
+
+Hero image (16:9)
+
+Header block:
+
+title
+
+favorite toggle
+
+category / region / period
+
+Pro badge (if locked)
+
+description
+
+Action bar:
+
+Load into Calculator
+
+PDF export
+
+Share
+
+Main content grid (2/3 + 1/3)
+
+Sections:
+
+History & Cultural Context
+
+Base Formula (Baker’s %)
+
+Notes (chef notes)
+
+Warnings (amber panel)
+
+Gallery (overhead + side-profile images)
+
+Macro (crumb close-up)
+
+Related Learn Articles
+
+Sidebar (right):
+
+Technical Profile (Pro-locked if needed)
+
+Recommended Tools (affiliate)
+
+Quick Facts panel
+
+Behavioral Rule:
+
+If style.isPro = true → blur technical fields + CTA “Unlock Pro”.
+
+============================================================
+5. BEHAVIOR RULES (INTERACTIONS)
+============================================================
+/* ============================================================
+   Behavior rules define what happens when user interacts with:
+   - Use Style
+   - Favorites
+   - Filters
+   - Sorting
+   - AI Builder
+   - Pro locks
+   - Learn links
+   ============================================================ */
+
+------------------------------------------------------------
+5.1 “Use Style” Button Behavior
+IF style.isPro = true AND user.isPro = false:
+    → openPaywall('styles')
+ELSE
+    → Load style into Calculator
+    → Map technicalProfile → DoughConfig
+    → Navigate to /calculator
+
+
+Mapping rules will be in PART 3.
+
+------------------------------------------------------------
+5.2 Favorites
+
+Favorites stored in Firestore via UserProvider.
+
+Rules:
+
+toggling must prevent event bubbling (prevent card navigation)
+
+immediate optimistic UI update
+
+favorites list participates in filtering
+
+------------------------------------------------------------
+5.3 Sorting Spec
+
+Sort by:
+
+name
+
+newest
+
+hydration range average
+
+SortOrder:
+
+asc
+
+desc
+
+Hydration sorting algorithm:
+
+avgA = (A.hydration[0] + A.hydration[1]) / 2
+avgB = (B.hydration[0] + B.hydration[1]) / 2
+
+------------------------------------------------------------
+5.4 Filter Matching Algorithm
+
+Filters apply cumulatively:
+
+searchMatch AND categoryMatch AND tagMatch AND difficultyMatch
+AND fermentationMatch AND regionMatch AND favoritesMatch
+
+------------------------------------------------------------
+5.5 AI Style Builder (Pro) Behavior
+
+Rules:
+
+Always requires Pro
+
+If free user → show lock overlay
+
+After generating, AI output is passed into CreateStyleModal for manual final validation
+
+AI-generated styles must respect the GOLD schema
+
+AI source MUST be: "source": "user_ai"
+
+------------------------------------------------------------
+5.6 Learn Article Linking
+
+Every style must link to at least one Learn article based on tags.
+Learn article tags must correspond to style tags (e.g. “gluten”, “hydration”).
+
+On StyleDetailPage:
+
+Related Learn Articles:
+  - list from allLearnArticles filtered by shared tags
+
+------------------------------------------------------------
+5.7 MyLab Integration
+
+Every style must include fields that allow MyLab to generate suggestions like:
+
+“Try A/B testing hydration from 62% to 68%”
+
+“Compare cold vs room-temp fermentation”
+
+“Record oven spring differences”
+
+This uses:
+
+technicalProfile ranges
+
+fermentationType
+
+tags
+
+Rules for MyLab appear in Part 3.
+
+------------------------------------------------------------
+5.8 Affiliate Rules
+
+Sidebar must show Recommended Tools, mapped by:
+
+flour type
+
+hydration range
+
+oven temp
+
+fermentation type
+
+Mappings in Part 3.
+
+------------------------------------------------------------
+5.9 Pro Gating
+
+Every Pro-gated field must follow:
+
+IF user is free:
+   blur
+   overlay gradient
+   show locked icon
+   CTA: “Unlock DoughLab Pro”
+
+
+Blur intensity: 10–20%
+No hiding — user must see what exists.
+
+------------------------------------------------------------
+5.10 ReleaseDate Behavior
+
+If releaseDate ≤ 30 days ago → show NEW badge.
+
+Badge:
+
+bg-gradient-to-br from-blue-400 to-blue-600
+text-white
+rounded-full
+text-xs
+px-2 py-0.5
+
+✔ PARTE 2/4 ENTREGUE.

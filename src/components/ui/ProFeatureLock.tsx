@@ -26,21 +26,15 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
     className = '',
     origin,
 }) => {
-    const { user, openPaywall } = useUser();
+    const { user, openPaywall, userLoading, planLoading } = useUser();
     const { navigate } = useRouter();
+
+    if (userLoading || planLoading) {
+        return <div className="opacity-40 pointer-events-none">{children}</div>;
+    }
 
     const plan = getCurrentPlan(user);
     const isAllowed = canUseFeature(plan, featureKey);
-
-    // Comprehensive debug logging
-    console.group(`[ProFeatureLock] ${featureKey}`);
-    console.log('User Object:', user);
-    console.log('User Plan (raw):', user?.plan);
-    console.log('User isPro:', user?.isPro);
-    console.log('Detected Plan:', plan);
-    console.log('Feature Key:', featureKey);
-    console.log('Is Allowed:', isAllowed);
-    console.groupEnd();
 
     if (isAllowed) {
         return <>{children}</>;

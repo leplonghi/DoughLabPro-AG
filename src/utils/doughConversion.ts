@@ -1,5 +1,5 @@
 import { DoughStyleDefinition } from '@/types/styles';
-import { DoughConfig, FermentationTechnique, YeastType, BakeType, IngredientConfig } from '@/types';
+import { DoughConfig, FermentationTechnique, YeastType, BakeType, IngredientConfig, RecipeStyle } from '@/types';
 
 export function convertStyleToDoughConfig(style: DoughStyleDefinition): Partial<DoughConfig> {
     // Determine BakeType based on category
@@ -7,52 +7,85 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition): Partial<
     const cat = style.category;
     if (cat === 'bread' || cat === 'enriched_bread' || cat === 'burger_bun' || cat === 'flatbread') {
         bakeType = BakeType.BREADS_SAVORY;
-    } else if (cat === 'pastry' || cat === 'cookies_confectionery') {
+    } else if (cat === 'pastry' || cat === 'cookie') {
         bakeType = BakeType.SWEETS_PASTRY;
     }
+
+    // Determine RecipeStyle (Heuristic mapping)
+    let recipeStyle = RecipeStyle.NEAPOLITAN; // Default fallback
+    const id = style.id.toLowerCase();
+
+    if (id.includes('neapolitan')) recipeStyle = RecipeStyle.NEAPOLITAN;
+    else if (id.includes('new_york') || id.includes('ny_')) recipeStyle = RecipeStyle.NEW_YORK;
+    else if (id.includes('roman')) recipeStyle = RecipeStyle.ROMAN;
+    else if (id.includes('detroit')) recipeStyle = RecipeStyle.DETROIT;
+    else if (id.includes('sicilian')) recipeStyle = RecipeStyle.SICILIANA;
+    else if (id.includes('focaccia')) recipeStyle = RecipeStyle.FOCACCIA;
+    else if (id.includes('baguette')) recipeStyle = RecipeStyle.BAGUETTE;
+    else if (id.includes('ciabatta')) recipeStyle = RecipeStyle.CIABATTA;
+    else if (id.includes('brioche')) recipeStyle = RecipeStyle.BRIOCHE;
+    else if (id.includes('burger')) recipeStyle = RecipeStyle.BURGER_BUN;
+    else if (id.includes('sourdough')) recipeStyle = RecipeStyle.SOURDOUGH;
+    else if (id.includes('cookie')) recipeStyle = RecipeStyle.COOKIES;
 
     // Determine Fermentation Technique
     let fermentationTechnique = FermentationTechnique.DIRECT;
     let yeastType = YeastType.IDY;
     let yeastPercentage = 0.5;
 
-    // Use explicit technique if available, otherwise infer
-    if (style.technical?.fermentationTechnique) {
-        fermentationTechnique = style.technical.fermentationTechnique;
-    } else {
-        const fermentation = style.technicalProfile?.fermentation?.bulk?.toLowerCase() || '';
-        const prefermentDesc = style.technicalProfile?.prefermentDescription?.toLowerCase() || '';
-        const combinedText = fermentation + ' ' + prefermentDesc;
-
-        if (combinedText.includes('poolish')) {
+    // Map new fermentationType to FermentationTechnique
+    switch (style.fermentationType) {
+        case 'preferment':
+            // Heuristic to guess poolish vs biga if not specified
+            // Default to POOLISH as it's more common for general preferments unless specified
             fermentationTechnique = FermentationTechnique.POOLISH;
-        } else if (combinedText.includes('biga')) {
-            fermentationTechnique = FermentationTechnique.BIGA;
-        } else if (combinedText.includes('sourdough') || combinedText.includes('levain') || combinedText.includes('starter')) {
+            if (style.technicalProfile.preferment?.toLowerCase().includes('biga')) {
+                fermentationTechnique = FermentationTechnique.BIGA;
+            }
+            break;
+        case 'levain':
             fermentationTechnique = FermentationTechnique.SOURDOUGH;
             yeastType = YeastType.SOURDOUGH_STARTER;
-            yeastPercentage = 20; // Default starter %
-        }
+            yeastPercentage = 20;
+            break;
+        case 'cold':
+            // Cold fermentation is usually direct or poolish based, but we'll default to direct with cold proof logic if we had it
+            // For now, map to DIRECT but maybe with notes?
+            // Actually, if it's cold, it's often a technique, not a preferment type.
+            // Let's check if there's a preferment mentioned in technicalProfile
+            if (style.technicalProfile.preferment) {
+                fermentationTechnique = FermentationTechnique.POOLISH; // Assumption
+            } else {
+                fermentationTechnique = FermentationTechnique.DIRECT;
+            }
+            break;
+        case 'direct':
+        default:
+            fermentationTechnique = FermentationTechnique.DIRECT;
+            break;
     }
 
     // Calculate averages from ranges
-    const hydration = style.technicalProfile?.hydration
+    const hydration = style.technicalProfile.hydration
         ? (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2
-        : style.technical.hydration;
+        : 65; // Default
 
-    const salt = style.technicalProfile?.salt
+    const salt = style.technicalProfile.salt
         ? (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2
-        : style.technical.salt;
+        : 2;
 
-    const oil = style.technicalProfile?.oil
+    const oil = style.technicalProfile.oil
         ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2
-        : style.technical.oil;
+        : 0;
 
-    const sugar = style.technicalProfile?.sugar
+    const sugar = style.technicalProfile.sugar
         ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2
-        : style.technical.sugar;
+        : 0;
 
-    const bakingTempC = style.technical.bakingTempC;
+    // Derive baking temp from ovenTemp range
+    const bakingTempC = style.technicalProfile.ovenTemp
+        ? Math.round((style.technicalProfile.ovenTemp[0] + style.technicalProfile.ovenTemp[1]) / 2)
+        : 250;
 
     // Generate Ingredients
     const ingredients: IngredientConfig[] = [
@@ -71,6 +104,7 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition): Partial<
 
     return {
         bakeType,
+        recipeStyle,
         baseStyleName: style.name,
         selectedStyleId: style.id,
         hydration,

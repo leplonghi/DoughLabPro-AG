@@ -31,7 +31,11 @@ import {
   orderBy,
   where,
   getDocs,
+  getDoc,
 } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '@/firebase/auth';
+import { PlanId } from '@/permissions';
 import { isProUser } from '@/lib/permissions';
 import { useBatchManager } from '@/hooks/useBatchManager';
 
@@ -59,10 +63,14 @@ const getStatusFromLastFeeding = (levain: Levain): LevainStatus => {
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { addToast } = useToast();
-  const { firebaseUser, appUser, loginWithGoogle, logout: authLogout } = useAuth();
+  const { loginWithGoogle, logout: authLogout } = useAuth();
 
   // Local state mirrors
+  const [firebaseUser, setFirebaseUser] = useState<any>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [userLoading, setUserLoading] = useState(true);
+  const [planLoading, setPlanLoading] = useState(true);
+
   const [ovens, setOvens] = useState<Oven[]>([]);
   const [levains, setLevains] = useState<Levain[]>([]);
   const [goals, setGoals] = useState<Goal[]>([]);
@@ -105,42 +113,86 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setPaywallOrigin(null);
   }, []);
 
-  // Sync User
+  // Sync User - Race-Safe Implementation
   useEffect(() => {
-    if (appUser) {
-      const syncedUser = {
-        name: appUser.name || 'Baker',
-        email: appUser.email || '',
-        avatar: appUser.avatar,
-        isPro: appUser.plan === 'pro' || appUser.plan === 'lab_pro' || appUser.isPro || appUser.email === 'leplonghi@gmail.com' || false,
-        plan: appUser.plan === 'pro' ? 'lab_pro' : (appUser.plan || 'free'),
-        trialEndsAt: appUser.trialEndsAt,
-        proSince: appUser.proSince,
-        proExpiresAt: appUser.proExpiresAt,
-        isAdmin: appUser.email === 'leplonghi@gmail.com' || appUser.isAdmin || false,
-      };
+    if (!auth) return;
 
-      console.log('[UserProvider] Syncing user:', {
-        appUser,
-        syncedUser,
-        email: appUser.email,
-        originalPlan: appUser.plan,
-        finalPlan: syncedUser.plan,
-        isPro: syncedUser.isPro
-      });
+    const unsub = onAuthStateChanged(auth, async (authUser) => {
+      setFirebaseUser(authUser);
 
-      setUser(syncedUser);
-    } else {
-      setUser(null);
-      // Clear data on logout
-      setOvens([]);
-      setLevains([]);
-      setGoals([]);
-      setTestSeries([]);
-      setUserStyles([]);
-      setFavorites([]);
-    }
-  }, [appUser]);
+      if (!authUser) {
+        setUser(null);
+        setUserLoading(false);
+        setPlanLoading(false);
+        // Clear data on logout
+        setOvens([]);
+        setLevains([]);
+        setGoals([]);
+        setTestSeries([]);
+        setUserStyles([]);
+        setFavorites([]);
+        return;
+      }
+
+      setUserLoading(true);
+      setPlanLoading(true);
+
+      try {
+        const ref = doc(db, 'users', authUser.uid);
+        // Note: getDoc is imported from firebase/firestore
+        // We need to ensure we are using the correct db instance
+        // The file imports db from @/firebase/db
+
+        // We use a try-catch block for the fetch
+        let profileData: any = {};
+        try {
+          const snap = await getDoc(ref);
+          if (snap.exists()) {
+            profileData = snap.data();
+          }
+        } catch (err) {
+          console.error("Error fetching user profile:", err);
+        }
+
+        const email = authUser.email ? authUser.email.toLowerCase() : '';
+        const isAdminEmail = email === 'leplonghi@gmail.com';
+
+        const plan: PlanId =
+          profileData.plan === "lab_pro" ||
+            profileData.plan === "pro" ||
+            profileData.isPro ||
+            profileData.isAdmin ||
+            isAdminEmail // Keep admin override
+            ? "lab_pro"
+            : profileData.plan === "calculator_unlock"
+              ? "calculator_unlock"
+              : "free";
+
+        const mergedProfile: User = {
+          name: profileData.name || authUser.displayName || 'Baker',
+          email: authUser.email || '',
+          avatar: profileData.avatar || authUser.photoURL || undefined,
+          plan, // Normalized plan
+          isPro: plan === 'lab_pro', // Derived from plan
+          isAdmin: !!profileData.isAdmin || authUser.email === 'leplonghi@gmail.com',
+          trialEndsAt: profileData.trialEndsAt,
+          proSince: profileData.proSince,
+          proExpiresAt: profileData.proExpiresAt,
+          stripeCustomerId: profileData.stripeCustomerId,
+          stripeSubscriptionId: profileData.stripeSubscriptionId,
+          gender: profileData.gender,
+          birthDate: profileData.birthDate,
+        };
+
+        setUser(mergedProfile);
+      } finally {
+        setUserLoading(false);
+        setPlanLoading(false);
+      }
+    });
+
+    return () => unsub();
+  }, []);
 
   // Generic subscription helper
   const createCollectionSubscription = useCallback(
@@ -606,8 +658,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const isPassOnCooldown = false;
 
   const value: UserContextType = useMemo(() => ({
-    isAuthenticated: !!firebaseUser || (!!appUser && !db),
+    isAuthenticated: !!firebaseUser,
     user,
+    userLoading,
+    planLoading,
     login,
     logout,
     updateUser,
@@ -658,7 +712,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     isFavorite,
   }), [
     firebaseUser,
-    appUser,
     db,
     user,
     login,

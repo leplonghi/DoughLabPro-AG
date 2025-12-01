@@ -22,7 +22,14 @@ export type FeatureKey =
     | 'community.share_and_clone'
     | 'app.theme_customization'
     | 'mylab.timeline'
-    | 'tools.toppings_advanced';
+    | 'tools.toppings_advanced'
+    | 'styles.detail'
+    | 'styles.ai.builder'
+    | 'levain_unlimited'
+    | 'styles.formula'
+    | 'styles.technical'
+    | 'styles.technical_parameters'
+    | 'styles.specs';
 
 export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     // Calculator
@@ -55,29 +62,36 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     'app.theme_customization': ['lab_pro'],
     'mylab.timeline': ['lab_pro'],
     'tools.toppings_advanced': ['lab_pro'],
+
+    // Missing keys added for Pro access
+    'styles.detail': ['free', 'calculator_unlock', 'lab_pro'],
+    'styles.ai.builder': ['lab_pro'],
+    'levain_unlimited': ['lab_pro'],
+    'styles.formula': ['lab_pro'],
+    'styles.technical': ['lab_pro'],
+    'styles.technical_parameters': ['lab_pro'],
+    'styles.specs': ['lab_pro'],
 };
 
 export function getCurrentPlan(user: User | null): PlanId {
     if (!user) return 'free';
 
-    // Map legacy 'pro' to 'lab_pro' for now, or use the specific plan field
-    if (user.plan === 'lab_pro' || user.plan === 'pro') return 'lab_pro';
-    if (user.plan === 'calculator_unlock') return 'calculator_unlock';
-    if (user.plan === 'free') return 'free';
+    // Safety fallback for admin
+    if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'lab_pro';
 
-    // Fallback for legacy data (isPro flag)
-    if (user.isPro) return 'lab_pro';
-
-    console.warn('[getCurrentPlan] User has unexpected plan value:', user.plan, 'isPro:', user.isPro);
-    return 'free';
+    return (user.plan as PlanId) || 'free';
 }
 
 export function canUseFeature(plan: PlanId, feature: FeatureKey): boolean {
     const allowedPlans = FEATURE_PLAN_MAP[feature];
-    if (!allowedPlans || !Array.isArray(allowedPlans)) {
-        console.warn(`[canUseFeature] Invalid feature key: ${feature}`);
+
+    if (!allowedPlans) {
+        console.error(
+            `[canUseFeature] Missing FEATURE_PLAN_MAP key: ${feature}. Plan: ${plan}`
+        );
         return false;
     }
+
     return allowedPlans.includes(plan);
 }
 
