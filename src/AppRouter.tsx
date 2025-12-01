@@ -346,7 +346,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             case 'landing':
                 return <LandingPage />;
             case 'styles':
-                return protect(<DoughStylesPage doughConfig={config} onLoadStyle={(s) => handleLoadStyleFromModule(s, navigate)} onNavigateToDetail={(id) => navigate('styles/detail', id)} />);
+                return protect(<DoughStylesPage onNavigateToDetail={(id) => navigate('styles/detail', id)} onUseInCalculator={(s) => handleLoadStyleFromModule(s, navigate)} />);
             case 'tools':
                 return protect(<ToolsPage onNavigate={navigate} />);
             case 'tools/oven-profiler':

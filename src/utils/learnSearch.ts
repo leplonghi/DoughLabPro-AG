@@ -52,8 +52,8 @@ export const searchLearn = (query: string): SearchResult[] => {
 
         // 5. Variants (Weight 5)
         article.variantsAndImplications?.forEach(v => {
-            check(v.variant || v.name, 5, 'Variants');
-            check(v.implications || v.description, 2, 'Variants');
+            check(v.variant, 5, 'Variants');
+            check(v.implications, 2, 'Variants');
         });
 
         // 6. Parameter Sensitivity (Weight 3)

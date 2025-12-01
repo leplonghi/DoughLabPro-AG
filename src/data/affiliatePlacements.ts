@@ -1,4 +1,4 @@
-import { AFFILIATE_PRODUCTS } from './affiliateLinks';
+import { AFFILIATE_PRODUCTS, AffiliateProduct } from './affiliateLinks';
 
 export interface AffiliatePlacement {
     id: string;
@@ -46,7 +46,7 @@ export const AFFILIATE_PLACEMENTS: Record<string, AffiliatePlacement> = {
     }
 };
 
-export const getProductsForPlacement = (placementId: string) => {
+export const getProductsForPlacement = (placementId: string): AffiliateProduct[] => {
     const placement = AFFILIATE_PLACEMENTS[placementId];
     if (!placement) return [];
     return placement.productIds

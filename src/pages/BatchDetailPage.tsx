@@ -273,7 +273,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
         if (!editableBatch.isPublic) {
             // Trying to make public -> Check permission
             if (!canUseFeature(userPlan, 'community.share_and_clone')) {
-                openPaywall('community');
+                openPaywall('general');
                 return;
             }
         }

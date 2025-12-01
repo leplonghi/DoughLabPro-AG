@@ -119,7 +119,7 @@ export const UploadIcon = Upload;
 export const ShareIcon = Share2;
 export const ExternalLinkIcon = ExternalLink;
 export const StarIcon = Star;
-export const SolidStarIcon = (props: LucideProps) => <Star fill="currentColor" {...props} />;
+export const SolidStarIcon = (props: any) => <Star fill="currentColor" {...props} />;
 export const HeartIcon = Heart;
 export const BookmarkSquareIcon = Bookmark;
 export const SettingsIcon = Settings;

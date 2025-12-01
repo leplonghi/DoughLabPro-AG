@@ -24,7 +24,7 @@ export function generateArticleSummary(article: LearnArticleData): ArticleSummar
     const ranges = article.practicalRanges;
 
     // 4. Top Variants (Names only)
-    const variants = article.variantsAndImplications?.map(v => v.variant || v.name || '').filter(Boolean).slice(0, 3) || [];
+    const variants = article.variantsAndImplications?.map(v => v.variant || '').filter(Boolean).slice(0, 3) || [];
 
     // 5. Practical Applications
     const practicalApplications = article.practicalApplications || [];

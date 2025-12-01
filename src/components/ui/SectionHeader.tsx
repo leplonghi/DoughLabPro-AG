@@ -1,0 +1,19 @@
+import React from 'react';
+
+interface SectionHeaderProps {
+    title: string;
+    icon?: React.ReactNode;
+    action?: React.ReactNode;
+}
+
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, icon, action }) => {
+    return (
+        <div className="flex items-center justify-between mb-6 border-b border-slate-200 pb-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                {icon}
+                {title}
+            </h2>
+            {action}
+        </div>
+    );
+};

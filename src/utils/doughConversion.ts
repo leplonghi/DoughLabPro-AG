@@ -1,10 +1,10 @@
-import { StyleDefinition } from '../types/styleDefinition';
-import { DoughConfig, FermentationTechnique, YeastType, BakeType, IngredientConfig } from '../types';
+import { DoughStyleDefinition } from '@/types/styles';
+import { DoughConfig, FermentationTechnique, YeastType, BakeType, IngredientConfig } from '@/types';
 
-export function convertStyleToDoughConfig(style: StyleDefinition): Partial<DoughConfig> {
+export function convertStyleToDoughConfig(style: DoughStyleDefinition): Partial<DoughConfig> {
     // Determine BakeType based on category
     let bakeType = BakeType.PIZZAS;
-    const cat = style.category.toLowerCase();
+    const cat = style.category;
     if (cat === 'bread' || cat === 'enriched_bread' || cat === 'burger_bun' || cat === 'flatbread') {
         bakeType = BakeType.BREADS_SAVORY;
     } else if (cat === 'pastry' || cat === 'cookies_confectionery') {
@@ -16,29 +16,43 @@ export function convertStyleToDoughConfig(style: StyleDefinition): Partial<Dough
     let yeastType = YeastType.IDY;
     let yeastPercentage = 0.5;
 
-    // Infer preferment from fermentation description or foundations
-    // style.technicalProfile.fermentation is an object { bulk: string, proof: string, ... }
-    const fermentation = style.technicalProfile.fermentation.bulk.toLowerCase();
+    // Use explicit technique if available, otherwise infer
+    if (style.technical?.fermentationTechnique) {
+        fermentationTechnique = style.technical.fermentationTechnique;
+    } else {
+        const fermentation = style.technicalProfile?.fermentation?.bulk?.toLowerCase() || '';
+        const prefermentDesc = style.technicalProfile?.prefermentDescription?.toLowerCase() || '';
+        const combinedText = fermentation + ' ' + prefermentDesc;
 
-    const foundations = style.technicalFoundations ? style.technicalFoundations.join(' ').toLowerCase() : '';
-    const combinedText = fermentation + ' ' + foundations;
-
-    if (combinedText.includes('poolish')) {
-        fermentationTechnique = FermentationTechnique.POOLISH;
-    } else if (combinedText.includes('biga')) {
-        fermentationTechnique = FermentationTechnique.BIGA;
-    } else if (combinedText.includes('sourdough') || combinedText.includes('levain') || combinedText.includes('starter')) {
-        fermentationTechnique = FermentationTechnique.SOURDOUGH;
-        yeastType = YeastType.SOURDOUGH_STARTER;
-        yeastPercentage = 20; // Default starter %
+        if (combinedText.includes('poolish')) {
+            fermentationTechnique = FermentationTechnique.POOLISH;
+        } else if (combinedText.includes('biga')) {
+            fermentationTechnique = FermentationTechnique.BIGA;
+        } else if (combinedText.includes('sourdough') || combinedText.includes('levain') || combinedText.includes('starter')) {
+            fermentationTechnique = FermentationTechnique.SOURDOUGH;
+            yeastType = YeastType.SOURDOUGH_STARTER;
+            yeastPercentage = 20; // Default starter %
+        }
     }
 
-    // Calculate averages
-    const hydration = (style.technicalProfile.hydrationRange[0] + style.technicalProfile.hydrationRange[1]) / 2;
-    const salt = (style.technicalProfile.saltRange[0] + style.technicalProfile.saltRange[1]) / 2;
-    const oil = style.technicalProfile.oilRange ? (style.technicalProfile.oilRange[0] + style.technicalProfile.oilRange[1]) / 2 : 0;
-    const sugar = style.technicalProfile.sugarRange ? (style.technicalProfile.sugarRange[0] + style.technicalProfile.sugarRange[1]) / 2 : 0;
-    const bakingTempC = (style.technicalProfile.oven.temperatureC[0] + style.technicalProfile.oven.temperatureC[1]) / 2;
+    // Calculate averages from ranges
+    const hydration = style.technicalProfile?.hydration
+        ? (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2
+        : style.technical.hydration;
+
+    const salt = style.technicalProfile?.salt
+        ? (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2
+        : style.technical.salt;
+
+    const oil = style.technicalProfile?.oil
+        ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2
+        : style.technical.oil;
+
+    const sugar = style.technicalProfile?.sugar
+        ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2
+        : style.technical.sugar;
+
+    const bakingTempC = style.technical.bakingTempC;
 
     // Generate Ingredients
     const ingredients: IngredientConfig[] = [
@@ -57,7 +71,7 @@ export function convertStyleToDoughConfig(style: StyleDefinition): Partial<Dough
 
     return {
         bakeType,
-        baseStyleName: style.title,
+        baseStyleName: style.name,
         selectedStyleId: style.id,
         hydration,
         salt,
@@ -73,6 +87,6 @@ export function convertStyleToDoughConfig(style: StyleDefinition): Partial<Dough
         doughBallWeight: 250,
         scale: 1,
         prefermentFlourPercentage: 20, // Default if preferment used
-        notes: `Loaded from style: ${style.title}\n\n${style.intro}`
+        notes: `Loaded from style: ${style.name}\n\n${style.description}`
     };
 }

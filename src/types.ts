@@ -276,6 +276,7 @@ export interface User {
   trialEndsAt?: string | null;
   stripeCustomerId?: string | null;
   stripeSubscriptionId?: string | null;
+  isAdmin?: boolean;
 }
 
 export interface Oven {
@@ -364,7 +365,7 @@ export interface TestSeries {
   relatedBakes: string[];
 }
 
-export type PaywallOrigin = 'levain' | 'mylab' | 'calculator' | 'styles' | 'learn' | 'general' | 'plans_page' | 'tools' | 'exports_pdf' | 'mylab_flours' | 'mylab_consistency';
+export type PaywallOrigin = 'levain' | 'mylab' | 'calculator' | 'styles' | 'learn' | 'general' | 'plans_page' | 'tools' | 'exports_pdf' | 'mylab_flours' | 'mylab_consistency' | 'styles.library' | 'styles.detail' | 'styles.ai.builder';
 
 // --- Styles System Extensions ---
 
@@ -468,12 +469,14 @@ export interface DoughStyleDefinition {
       proof: string;
       coldRetard?: string;
     };
-    oven: {
+    oven?: {
       temperatureC: [number, number];
       type: string;
       notes?: string;
     };
+    ovenRecommendations?: string;
     difficulty: "Easy" | "Medium" | "Hard" | "Expert";
+    recommendedUse?: string;
   };
 
   // NEW BLOCKS

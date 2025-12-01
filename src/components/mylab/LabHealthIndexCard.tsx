@@ -2,7 +2,7 @@ import React from 'react';
 import { useInsights } from '@/contexts/InsightsProvider';
 import { useBatches } from '@/contexts/BatchesProvider';
 import { useLevain } from '@/contexts/LevainProvider';
-import { ActivityLogIcon, HeartIcon, LightningBoltIcon, CheckCircledIcon } from '@radix-ui/react-icons'; // Assuming these exist or use local icons
+// import { ActivityLogIcon, HeartIcon, LightningBoltIcon, CheckCircledIcon } from '@radix-ui/react-icons'; // Removed due to conflict
 
 // Fallback icons if Radix not available
 import {

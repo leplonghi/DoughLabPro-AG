@@ -117,6 +117,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         trialEndsAt: appUser.trialEndsAt,
         proSince: appUser.proSince,
         proExpiresAt: appUser.proExpiresAt,
+        isAdmin: appUser.email === 'leplonghi@gmail.com' || appUser.isAdmin || false,
       };
 
       console.log('[UserProvider] Syncing user:', {

@@ -3,6 +3,7 @@ import { useRouter } from '@/contexts/RouterContext';
 import { FeatureKey, canUseFeature, getCurrentPlan } from '@/permissions';
 import { useUser } from '@/contexts/UserProvider';
 import { LockClosedIcon } from '@/components/ui/Icons';
+import { PaywallOrigin } from '@/types';
 
 interface ProFeatureLockProps {
     featureKey: FeatureKey;
@@ -12,6 +13,7 @@ interface ProFeatureLockProps {
     customMessage?: string;
     showLockIcon?: boolean;
     className?: string;
+    origin?: PaywallOrigin;
 }
 
 export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
@@ -22,6 +24,7 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
     customMessage,
     showLockIcon = true,
     className = '',
+    origin,
 }) => {
     const { user, openPaywall } = useUser();
     const { navigate } = useRouter();
@@ -74,7 +77,7 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
                     onClick={(e) => {
                         e.stopPropagation();
                         if (openPaywall) {
-                            openPaywall('general'); // Or map featureKey to PaywallOrigin if needed
+                            openPaywall(origin || 'general');
                         } else {
                             navigate('plans');
                         }

@@ -1,113 +1,226 @@
 import React, { useState, useMemo } from 'react';
+import { DoughStyleDefinition, StyleCategory } from '@/types/styles';
+import { STYLES_DATA } from '@/data/stylesData';
+import { useUser } from '@/contexts/UserProvider';
+import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
+import { PageHero } from '@/components/ui/PageHero';
+import { CategoryBadge } from '@/components/ui/CategoryBadge';
+import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import {
     BookOpenIcon,
     SparklesIcon,
     CalculatorIcon,
-    TrashIcon,
     HeartIcon,
-    BarsArrowDownIcon,
-    BarsArrowUpIcon,
     FunnelIcon,
-    TagIcon
+    TagIcon,
+    BarsArrowDownIcon,
+    BarsArrowUpIcon
 } from '@/components/ui/Icons';
-import { STYLES_DATA } from '@/data/stylesData';
-import { DoughStyleDefinition, StyleCategory } from '@/types';
-import { useUser } from '@/contexts/UserProvider';
-import CreateStyleModal from '@/components/styles/CreateStyleModal';
-import AiStyleBuilderModal from '@/components/styles/AiStyleBuilderModal';
-import { ToppingPlannerModal } from '@/components/modals/ToppingPlannerModal';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
-import { canUseFeature, getCurrentPlan } from '@/permissions';
-import { LibraryPageLayout } from '../learn/LibraryPageLayout';
-import { StyleCard } from '@/components/styles/StyleCard';
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
-import { DoughConfig } from '@/types';
-import { useStyleSearch } from '@/hooks/useStyleSearch';
 
-interface DoughStylesPageProps {
-    doughConfig: DoughConfig;
-    onLoadStyle: (style: DoughStyleDefinition) => void;
-    onNavigateToDetail: (styleId: string) => void;
-}
+// ========================================================
+// 1. CONSTANTS & CONFIG
+// ========================================================
 
-// Navigation Categories matching the new taxonomy
-// Navigation Categories matching the new taxonomy
 const CATEGORY_FILTERS: { id: StyleCategory | 'All', label: string }[] = [
     { id: 'All', label: 'All Styles' },
     { id: 'pizza', label: 'Pizza' },
     { id: 'bread', label: 'Breads' },
-    { id: 'enriched_bread', label: 'Enriched Breads' },
-    { id: 'burger_bun', label: 'Burger Buns' },
-    { id: 'pastry', label: 'Pastry & Laminated' },
-    { id: 'cookies_confectionery', label: 'Cookies & Confectionery' },
-    { id: 'flatbread', label: 'Flatbreads & Unleavened' },
-    { id: 'other', label: 'Other / Experimental' },
+    { id: 'enriched_bread', label: 'Enriched' },
+    { id: 'burger_bun', label: 'Buns' },
+    { id: 'pastry', label: 'Pastry' },
+    { id: 'cookies_confectionery', label: 'Cookies' },
+    { id: 'flatbread', label: 'Flatbreads' },
+    { id: 'other', label: 'Other' },
 ];
 
-// Helper to group categories for display sections
-// Helper to group categories for display sections
+const GROUP_ORDER = [
+    'Pizzas',
+    'Breads & Rustic Loaves',
+    'Enriched Breads',
+    'Burger Buns',
+    'Pastry & Sweet Doughs',
+    'Cookies & Confectionery',
+    'Flatbreads',
+    'Other Styles'
+];
+
 const getDisplayGroup = (category: StyleCategory): string => {
     switch (category) {
-        case 'pizza': return 'Pizza';
-        case 'bread': return 'Bread';
+        case 'pizza': return 'Pizzas';
+        case 'bread': return 'Breads & Rustic Loaves';
         case 'enriched_bread': return 'Enriched Breads';
         case 'burger_bun': return 'Burger Buns';
-        case 'pastry': return 'Pastry & Laminated';
+        case 'pastry': return 'Pastry & Sweet Doughs';
         case 'cookies_confectionery': return 'Cookies & Confectionery';
-        case 'flatbread': return 'Flatbreads & Unleavened';
-        default: return 'Other / Experimental';
+        case 'flatbread': return 'Flatbreads';
+        default: return 'Other Styles';
     }
 };
 
-// Priority order for display groups
-// Priority order for display groups
-const GROUP_ORDER = [
-    'Pizza',
-    'Bread',
-    'Enriched Breads',
-    'Burger Buns',
-    'Pastry & Laminated',
-    'Cookies & Confectionery',
-    'Flatbreads & Unleavened',
-    'Other / Experimental'
-];
+// ========================================================
+// 2. SUB-COMPONENTS
+// ========================================================
 
-const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadStyle, onNavigateToDetail }) => {
-    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-    const [isAiModalOpen, setIsAiModalOpen] = useState(false);
-    const [styleToEdit, setStyleToEdit] = useState<Partial<DoughStyleDefinition> | undefined>(undefined);
-    const [isPlannerOpen, setIsPlannerOpen] = useState(false);
+const StyleCard: React.FC<{ style: DoughStyleDefinition; onClick: () => void; onUseInCalculator: (style: DoughStyleDefinition) => void }> = ({ style, onClick, onUseInCalculator }) => {
+    const { isFavorite, toggleFavorite } = useUser();
+    const favorited = isFavorite(style.id);
+
+    return (
+        <div
+            onClick={onClick}
+            className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-lime-200 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full relative"
+        >
+            {/* Header */}
+            <div className="p-5 pb-3">
+                <div className="flex justify-between items-start mb-2">
+                    <CategoryBadge category={style.category} />
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            toggleFavorite({
+                                id: style.id,
+                                type: 'style',
+                                title: style.name,
+                                metadata: { category: style.category }
+                            });
+                        }}
+                        className={`p-1.5 rounded-full hover:bg-slate-100 transition-colors ${favorited ? 'text-pink-500' : 'text-slate-300 hover:text-pink-400'}`}
+                    >
+                        <HeartIcon className={`h-5 w-5 ${favorited ? 'fill-current' : ''}`} />
+                    </button>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-lime-600 transition-colors line-clamp-1">{style.name}</h3>
+                <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">{style.origin.country} {style.origin.region && `• ${style.origin.region}`}</p>
+            </div>
+
+            {/* Description */}
+            <div className="px-5 pb-4 flex-grow">
+                <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed">{style.description}</p>
+            </div>
+
+            {/* Tech Specs */}
+            <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 grid grid-cols-2 gap-2">
+                <div className="flex flex-col">
+                    <span className="text-[10px] uppercase text-slate-400 font-bold">Hydration</span>
+                    <span className="text-sm font-bold text-slate-700">
+                        {style.technicalProfile?.hydration[0]}-{style.technicalProfile?.hydration[1]}%
+                    </span>
+                </div>
+                <div className="flex flex-col">
+                    <span className="text-[10px] uppercase text-slate-400 font-bold">Difficulty</span>
+                    <span className={`text-sm font-bold ${style.technicalProfile?.difficulty === 'Easy' ? 'text-green-600' :
+                        style.technicalProfile?.difficulty === 'Medium' ? 'text-amber-600' :
+                            'text-red-600'
+                        }`}>
+                        {style.technicalProfile?.difficulty}
+                    </span>
+                </div>
+            </div>
+
+            {/* Badges/Tags */}
+            {style.tags && style.tags.length > 0 && (
+                <div className="px-5 py-3 border-t border-slate-100 flex flex-wrap gap-1">
+                    {style.tags.slice(0, 3).map(tag => (
+                        <span key={tag} className="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded-full font-medium">
+                            {tag}
+                        </span>
+                    ))}
+                    {style.tags.length > 3 && (
+                        <span className="text-[10px] px-2 py-0.5 bg-slate-50 text-slate-400 rounded-full font-medium">+{style.tags.length - 3}</span>
+                    )}
+                </div>
+            )}
+
+            {/* Actions */}
+            <div className="p-4 border-t border-slate-100 mt-auto">
+                <ProFeatureLock featureKey="styles.detail" customMessage="Unlock calculator integration" origin="styles.library">
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onUseInCalculator(style);
+                        }}
+                        className="w-full bg-slate-50 hover:bg-lime-500 hover:text-white text-slate-600 text-sm font-bold py-2 px-4 rounded-xl transition-all flex items-center justify-center gap-2 group/btn"
+                    >
+                        <CalculatorIcon className="h-4 w-4 text-slate-400 group-hover/btn:text-white" />
+                        Use in Calculator
+                    </button>
+                </ProFeatureLock>
+            </div>
+        </div>
+    );
+};
+
+// ========================================================
+// 3. MAIN PAGE COMPONENT
+// ========================================================
+
+interface DoughStylesPageProps {
+    onNavigateToDetail: (styleId: string) => void;
+    onUseInCalculator: (style: DoughStyleDefinition) => void;
+}
+
+const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, onUseInCalculator }) => {
+    const { userStyles, isFavorite } = useUser();
+
+    // State
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState<StyleCategory | 'All'>('All');
+    const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const [showFavorites, setShowFavorites] = useState(false);
+    const [sortBy, setSortBy] = useState<'name' | 'newest' | 'hydration'>('name');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const [showFilters, setShowFilters] = useState(false);
-    const { userStyles, addUserStyle, deleteUserStyle, isFavorite, toggleFavorite, hasProAccess, openPaywall, user } = useUser();
-    const userPlan = getCurrentPlan(user);
 
-    // Combine Official and User Styles
-    const allStyles: DoughStyleDefinition[] = useMemo(() => {
+    // Combine Data
+    const allStyles = useMemo(() => {
         const normalizedUserStyles = userStyles.map(normalizeDoughStyle);
-        return [...STYLES_DATA, ...normalizedUserStyles];
+        // Ensure STYLES_DATA is treated as DoughStyleDefinition[]
+        return [...(STYLES_DATA as unknown as DoughStyleDefinition[]), ...normalizedUserStyles];
     }, [userStyles]);
 
-    const {
-        searchTerm, setSearchTerm,
-        selectedCategory, setSelectedCategory,
-        selectedTag, setSelectedTag,
-        showFavorites, setShowFavorites,
-        filterSubstyles, setFilterSubstyles,
-        filterRegional, setFilterRegional,
-        filterSeasonal, setFilterSeasonal,
-        sortBy, setSortBy,
-        sortOrder, setSortOrder,
-        availableTags,
-        filteredStyles
-    } = useStyleSearch({ styles: allStyles });
+    // Derived Data: Available Tags
+    const availableTags = useMemo(() => {
+        const tags = new Set<string>();
+        allStyles.forEach(style => style.tags?.forEach(t => tags.add(t)));
+        return Array.from(tags).sort();
+    }, [allStyles]);
 
-    // Helper to count styles in a category
-    const countByCategory = (cat: string) => {
-        if (cat === 'All') return allStyles.length;
-        return allStyles.filter(s => s.category === cat).length;
-    };
+    // Filter & Sort Logic
+    const filteredStyles = useMemo(() => {
+        let result = allStyles.filter(style => {
+            const searchLower = searchTerm.toLowerCase();
+            const matchesSearch = style.name.toLowerCase().includes(searchLower) ||
+                style.description.toLowerCase().includes(searchLower);
+            const matchesCategory = selectedCategory === 'All' || style.category === selectedCategory;
+            const matchesTag = selectedTag ? style.tags?.includes(selectedTag) : true;
+            const matchesFavorite = showFavorites ? isFavorite(style.id) : true;
 
-    // Group styles by Display Section
+            return matchesSearch && matchesCategory && matchesTag && matchesFavorite;
+        });
+
+        return result.sort((a, b) => {
+            let comparison = 0;
+            switch (sortBy) {
+                case 'name':
+                    comparison = a.name.localeCompare(b.name);
+                    break;
+                case 'newest':
+                    const dateA = new Date(a.releaseDate || 0).getTime();
+                    const dateB = new Date(b.releaseDate || 0).getTime();
+                    comparison = dateA - dateB;
+                    break;
+                case 'hydration':
+                    const hydA = (a.technicalProfile?.hydration[0] || 0);
+                    const hydB = (b.technicalProfile?.hydration[0] || 0);
+                    comparison = hydA - hydB;
+                    break;
+            }
+            return sortOrder === 'asc' ? comparison : -comparison;
+        });
+    }, [allStyles, searchTerm, selectedCategory, selectedTag, showFavorites, sortBy, sortOrder, isFavorite]);
+
+    // Grouping for Display
     const stylesByGroup = useMemo(() => {
         const grouped: Record<string, DoughStyleDefinition[]> = {};
         filteredStyles.forEach(style => {
@@ -118,100 +231,72 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
         return grouped;
     }, [filteredStyles]);
 
-    const handleUseStyle = (e: React.MouseEvent, style: DoughStyleDefinition) => {
-        e.stopPropagation();
-        if (onLoadStyle) {
-            onLoadStyle(style);
-        }
-    };
-
-    const handleDeleteUserStyle = async (e: React.MouseEvent, id: string) => {
-        e.stopPropagation();
-        if (confirm('Are you sure you want to delete this custom style?')) {
-            await deleteUserStyle(id);
-        }
-    };
-
-    const handleAiStyleGenerated = (style: Partial<DoughStyleDefinition>) => {
-        setStyleToEdit({ ...style, source: 'user_ai' });
-        setIsCreateModalOpen(true);
-        setIsAiModalOpen(false);
+    const countByCategory = (cat: string) => {
+        if (cat === 'All') return allStyles.length;
+        return allStyles.filter(s => s.category === cat).length;
     };
 
     return (
         <LibraryPageLayout>
-            {/* Hero Section */}
-            <div className="mb-8 mx-4 sm:mx-6">
-                <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden border border-slate-700">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
-
-                    <div className="relative z-10 text-center max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-600 text-lime-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-                            <BookOpenIcon className="w-4 h-4" />
-                            Style Library
-                        </div>
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight leading-tight">
-                            Global Dough Style Encyclopedia
-                        </h1>
-                        <p className="text-base md:text-lg text-slate-300 mb-6 leading-relaxed font-light">
-                            Scientific profiles, baking parameters, and regional variants.
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-400">
-                            <span className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
-                                <span className="w-2 h-2 rounded-full bg-lime-500"></span> Validated Formulas
-                            </span>
-                            <span className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
-                                <span className="w-2 h-2 rounded-full bg-amber-500"></span> Historical Context
-                            </span>
-                            <span className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
-                                <span className="w-2 h-2 rounded-full bg-sky-500"></span> Technical Profiles
-                            </span>
-                        </div>
+            <PageHero
+                title="Global Dough Style Encyclopedia"
+                subtitle="Scientific profiles, baking parameters, and regional variants."
+                badges={
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-600 text-lime-400 text-xs font-bold uppercase tracking-wider shadow-sm">
+                        <BookOpenIcon className="w-4 h-4" /> Style Library
                     </div>
-                </div>
+                }
+            />
 
-                {/* Create Your Own Section */}
-                <div className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6 p-8 rounded-2xl bg-white border border-stone-200 shadow-sm relative overflow-hidden">
+            {/* Actions Bar */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                {/* Create / AI */}
+                <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 to-transparent pointer-events-none" />
-                    <div className="flex flex-col justify-center relative z-10">
-                        <h3 className="font-extrabold text-slate-900 text-xl flex items-center gap-2">
-                            <SparklesIcon className="h-5 w-5 text-lime-500" />
-                            Create Your Own
-                        </h3>
-                        <p className="text-sm text-slate-600 mt-2 leading-relaxed">Define your own unique methods or ask AI to generate a technical profile for you.</p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-3 justify-end items-center relative z-10">
-                        <ProFeatureLock featureKey="styles.full_access" customMessage="Unlock AI Style Builder with Lab Pro.">
-                            <button
-                                onClick={() => setIsAiModalOpen(true)}
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3 px-6 font-bold text-white shadow-md hover:bg-indigo-700 transition-all duration-300 hover:scale-105"
-                            >
-                                <SparklesIcon className="h-5 w-5" /> Ask AI for a Style
+                    <div className="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 className="font-bold text-slate-900 text-lg flex items-center gap-2">
+                                <SparklesIcon className="h-5 w-5 text-lime-500" />
+                                Create Custom Style
+                            </h3>
+                            <p className="text-sm text-slate-600 mt-1">Define your own or ask AI to generate it.</p>
+                        </div>
+                        <ProFeatureLock featureKey="styles.ai.builder" customMessage="Unlock AI Builder" origin="styles.ai.builder">
+                            <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-xl shadow-md transition-all transform hover:scale-105">
+                                AI Builder
                             </button>
                         </ProFeatureLock>
                     </div>
                 </div>
 
-                {/* Toppings Planner CTA */}
-                <div className="mb-10 flex flex-col md:flex-row gap-4 justify-between items-center p-6 rounded-2xl bg-lime-50 border border-lime-200 shadow-sm relative overflow-hidden">
-                    <p className="text-base font-semibold text-slate-800 text-center md:text-left relative z-10">Need to calculate toppings or fillings for your bake?</p>
-                    <button onClick={() => setIsPlannerOpen(true)} className="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-3 px-6 font-bold text-white shadow-md hover:bg-lime-600 transition-all duration-300 hover:scale-105 relative z-10">
-                        <CalculatorIcon className="h-5 w-5" /> Open Ingredients Planner
+                {/* Planner CTA */}
+                <div className="bg-lime-50 p-6 rounded-2xl border border-lime-200 shadow-sm flex justify-between items-center">
+                    <div>
+                        <h3 className="font-bold text-slate-900 text-lg">Ingredients Planner</h3>
+                        <p className="text-sm text-slate-700 mt-1">Calculate toppings & fillings.</p>
+                    </div>
+                    <button className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-xl shadow-md transition-all transform hover:scale-105 flex items-center gap-2">
+                        <CalculatorIcon className="h-5 w-5" /> Open
                     </button>
                 </div>
+            </div>
 
-                {/* Search and Filter Bar */}
-                <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between bg-white/80 p-5 rounded-2xl border border-stone-200 sticky top-20 z-20 shadow-sm backdrop-blur-lg">
+            {/* Filter Bar */}
+            <div className="sticky top-4 z-20 bg-white/90 backdrop-blur-lg p-4 rounded-2xl border border-stone-200 shadow-sm mb-8 flex flex-col gap-4">
+                {/* Top Row: Categories & Search */}
+                <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                     <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
                         {CATEGORY_FILTERS.map(cat => (
                             <button
                                 key={cat.id}
                                 onClick={() => setSelectedCategory(cat.id as any)}
-                                className={`whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center gap-2 shadow-sm ${selectedCategory === cat.id ? 'bg-lime-500 text-white shadow-md scale-105' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 hover:scale-105'}`}
+                                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${selectedCategory === cat.id
+                                    ? 'bg-lime-500 text-white shadow-md'
+                                    : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                                    }`}
                             >
                                 {cat.label}
-                                <span className={`text-[10px] py-1 px-2 rounded-full font-bold ${selectedCategory === cat.id ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-600'}`}>
+                                <span className={`text-[10px] py-0.5 px-1.5 rounded-full ${selectedCategory === cat.id ? 'bg-white/20' : 'bg-slate-200'}`}>
                                     {countByCategory(cat.id)}
                                 </span>
                             </button>
@@ -219,158 +304,117 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                     </div>
 
                     <div className="flex items-center gap-2 w-full md:w-auto">
-                        {/* Favorites Toggle */}
                         <button
                             onClick={() => setShowFavorites(!showFavorites)}
-                            className={`p-3 rounded-xl border transition-all ${showFavorites ? 'bg-pink-50 border-pink-200 text-pink-500' : 'bg-white border-slate-200 text-slate-400 hover:text-pink-400'}`}
-                            title="Show Favorites Only"
+                            className={`p-2.5 rounded-xl border transition-all ${showFavorites ? 'bg-pink-50 border-pink-200 text-pink-500' : 'bg-white border-slate-200 text-slate-400 hover:text-pink-400'}`}
                         >
                             <HeartIcon className={`h-5 w-5 ${showFavorites ? 'fill-current' : ''}`} />
                         </button>
-
-                        {/* Filter Toggle */}
                         <button
                             onClick={() => setShowFilters(!showFilters)}
-                            className={`p-3 rounded-xl border transition-all ${showFilters || selectedTag ? 'bg-lime-50 border-lime-200 text-lime-600' : 'bg-white border-slate-200 text-slate-400 hover:text-lime-500'}`}
-                            title="Filter by Tags"
+                            className={`p-2.5 rounded-xl border transition-all ${showFilters || selectedTag ? 'bg-lime-50 border-lime-200 text-lime-600' : 'bg-white border-slate-200 text-slate-400 hover:text-lime-500'}`}
                         >
                             <FunnelIcon className="h-5 w-5" />
                         </button>
-
-                        {/* Sort Controls */}
-                        <div className="flex items-center bg-white rounded-xl border border-slate-200 p-1">
-                            <select
-                                value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value as any)}
-                                className="border-none bg-transparent text-sm font-semibold text-slate-600 focus:ring-0 py-2 pl-3 pr-8 cursor-pointer"
-                            >
-                                <option value="name">Name</option>
-                                <option value="newest">Newest</option>
-                                <option value="hydration">Hydration</option>
-                            </select>
-                            <button
-                                onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-                                className="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors"
-                            >
-                                {sortOrder === 'asc' ? <BarsArrowUpIcon className="h-5 w-5" /> : <BarsArrowDownIcon className="h-5 w-5" />}
-                            </button>
-                        </div>
-
                         <div className="relative flex-grow md:w-64">
                             <input
                                 type="text"
-                                className="block w-full rounded-xl border-2 border-slate-200 bg-white py-3 pl-5 pr-4 text-sm placeholder-slate-500 focus:border-lime-500 focus:ring-4 focus:ring-lime-500/20 transition-all shadow-sm"
-                                placeholder="Search..."
+                                placeholder="Search styles..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full rounded-xl border-slate-200 bg-slate-50 py-2.5 pl-4 pr-4 text-sm focus:border-lime-500 focus:ring-lime-500"
                             />
                         </div>
                     </div>
                 </div>
 
-                {/* Advanced Filters */}
-                <div className="mb-6 flex flex-wrap gap-4 px-4">
-                    <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
-                        <input type="checkbox" checked={filterSubstyles} onChange={e => setFilterSubstyles(e.target.checked)} className="rounded border-slate-300 text-lime-500 focus:ring-lime-500" />
-                        Substyles Available
-                    </label>
-                    <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
-                        <input type="checkbox" checked={filterRegional} onChange={e => setFilterRegional(e.target.checked)} className="rounded border-slate-300 text-lime-500 focus:ring-lime-500" />
-                        Regional Expressions
-                    </label>
-                    <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
-                        <input type="checkbox" checked={filterSeasonal} onChange={e => setFilterSeasonal(e.target.checked)} className="rounded border-slate-300 text-lime-500 focus:ring-lime-500" />
-                        Seasonal Variants
-                    </label>
-                </div>
-
-                {/* Tags Filter - Collapsible */}
-                <div className={`transition-all duration-300 ease-in-out overflow-hidden ${showFilters || selectedTag ? 'max-h-96 opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
-                    <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-                        <div className="flex justify-between items-center mb-3">
-                            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1">
-                                <TagIcon className="h-3 w-3" /> Filter by Tag
-                            </span>
-                            {selectedTag && (
-                                <button
-                                    onClick={() => setSelectedTag(null)}
-                                    className="text-xs text-red-500 hover:text-red-700 font-medium hover:underline"
+                {/* Collapsible Filters: Tags & Sort */}
+                {(showFilters || selectedTag) && (
+                    <div className="pt-4 border-t border-slate-100 animate-fade-in">
+                        <div className="flex flex-col md:flex-row gap-6">
+                            {/* Sort */}
+                            <div className="flex items-center gap-2">
+                                <span className="text-xs font-bold uppercase text-slate-400">Sort By</span>
+                                <select
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value as any)}
+                                    className="text-sm border-slate-200 rounded-lg py-1.5 pl-3 pr-8 bg-slate-50"
                                 >
-                                    Clear Filter
+                                    <option value="name">Name</option>
+                                    <option value="newest">Newest</option>
+                                    <option value="hydration">Hydration</option>
+                                </select>
+                                <button onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')} className="p-1.5 bg-slate-100 rounded-lg text-slate-500">
+                                    {sortOrder === 'asc' ? <BarsArrowUpIcon className="h-4 w-4" /> : <BarsArrowDownIcon className="h-4 w-4" />}
                                 </button>
-                            )}
-                        </div>
-
-                        {availableTags.length > 0 ? (
-                            <div className="flex flex-wrap gap-2">
-                                {availableTags.map(tag => (
-                                    <button
-                                        key={tag}
-                                        onClick={() => setSelectedTag(prev => prev === tag ? null : tag)}
-                                        className={`text-sm px-3 py-1.5 rounded-lg border transition-all ${selectedTag === tag
-                                            ? 'bg-lime-500 text-white border-lime-600 shadow-md'
-                                            : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-white hover:border-lime-300 hover:text-lime-600 hover:shadow-sm'
-                                            }`}
-                                    >
-                                        {tag}
-                                    </button>
-                                ))}
                             </div>
-                        ) : (
-                            <p className="text-sm text-slate-400 italic">No tags available for current selection.</p>
-                        )}
-                    </div>
-                </div>
 
-                <div className="space-y-12 mb-20">
-                    {Object.keys(stylesByGroup).length === 0 ? (
-                        <div className="col-span-full text-center py-12 text-slate-500">
-                            No styles found matching criteria.
+                            {/* Tags */}
+                            <div className="flex-grow">
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1">
+                                        <TagIcon className="h-3 w-3" /> Filter Tags
+                                    </span>
+                                    {selectedTag && (
+                                        <button onClick={() => setSelectedTag(null)} className="text-xs text-red-500 font-medium hover:underline">Clear</button>
+                                    )}
+                                </div>
+                                <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto custom-scrollbar">
+                                    {availableTags.map(tag => (
+                                        <button
+                                            key={tag}
+                                            onClick={() => setSelectedTag(prev => prev === tag ? null : tag)}
+                                            className={`text-xs px-2.5 py-1 rounded-lg border transition-all ${selectedTag === tag
+                                                ? 'bg-lime-500 text-white border-lime-600'
+                                                : 'bg-white text-slate-600 border-slate-200 hover:border-lime-300'
+                                                }`}
+                                        >
+                                            {tag}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                    ) : (
-                        GROUP_ORDER.map(groupName => {
-                            const styles = stylesByGroup[groupName];
-                            if (!styles || styles.length === 0) return null;
-
-                            return (
-                                <section key={groupName} className="animate-fade-in">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <h2 className="text-2xl font-bold text-slate-800">{groupName}</h2>
-                                        <span className="text-xs font-medium px-2 py-1 bg-slate-100 rounded-full text-slate-500">{styles.length}</span>
-                                        <div className="h-px bg-slate-200 flex-grow"></div>
-                                    </div>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                        {styles.map(style => (
-                                            <StyleCard
-                                                key={style.id}
-                                                style={style}
-                                            />
-                                        ))}
-                                    </div>
-                                </section>
-                            );
-                        })
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
 
-            <CreateStyleModal
-                isOpen={isCreateModalOpen}
-                onClose={() => setIsCreateModalOpen(false)}
-                defaultValues={styleToEdit}
-                onSave={async (style) => {
-                    await addUserStyle(style);
-                    setIsCreateModalOpen(false);
-                }}
-            />
+            {/* Results Grid */}
+            <div className="space-y-12 pb-20">
+                {Object.keys(stylesByGroup).length === 0 ? (
+                    <div className="text-center py-20">
+                        <p className="text-slate-500 text-lg">No styles found matching your criteria.</p>
+                        <button onClick={() => { setSearchTerm(''); setSelectedCategory('All'); setSelectedTag(null); }} className="mt-4 text-lime-600 font-bold hover:underline">
+                            Clear all filters
+                        </button>
+                    </div>
+                ) : (
+                    GROUP_ORDER.map(groupName => {
+                        const styles = stylesByGroup[groupName];
+                        if (!styles || styles.length === 0) return null;
 
-            <AiStyleBuilderModal
-                isOpen={isAiModalOpen}
-                onClose={() => setIsAiModalOpen(false)}
-                onStyleGenerated={handleAiStyleGenerated}
-            />
-
-            {isPlannerOpen && <ToppingPlannerModal onClose={() => setIsPlannerOpen(false)} totalBalls={doughConfig.numPizzas} />}
+                        return (
+                            <section key={groupName} className="animate-fade-in">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <h2 className="text-2xl font-bold text-slate-800">{groupName}</h2>
+                                    <span className="text-xs font-bold px-2 py-1 bg-slate-100 rounded-full text-slate-500">{styles.length}</span>
+                                    <div className="h-px bg-slate-200 flex-grow"></div>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                    {styles.map(style => (
+                                        <StyleCard
+                                            key={style.id}
+                                            style={style}
+                                            onClick={() => onNavigateToDetail(style.id)}
+                                            onUseInCalculator={onUseInCalculator}
+                                        />
+                                    ))}
+                                </div>
+                            </section>
+                        );
+                    })
+                )}
+            </div>
         </LibraryPageLayout>
     );
 };

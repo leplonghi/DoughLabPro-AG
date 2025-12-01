@@ -296,7 +296,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         let bakeType = BakeType.PIZZAS;
         if (style.category === 'bread' || style.category === 'enriched_bread' || style.category === 'burger_bun') {
             bakeType = BakeType.BREADS_SAVORY;
-        } else if (style.category === 'pastry' || style.category === 'cookie') {
+        } else if (style.category === 'pastry' || style.category === 'cookies_confectionery') {
             bakeType = BakeType.SWEETS_PASTRY;
         }
 
