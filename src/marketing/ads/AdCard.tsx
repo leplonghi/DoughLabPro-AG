@@ -1,0 +1,55 @@
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import { shouldShowAd, getAd, recordAdView } from './adsEngine';
+import { Ad } from './adsCatalog';
+
+interface AdCardProps {
+    context?: string; // e.g., 'calculator_footer', 'styles_list'
+    className?: string;
+}
+
+export const AdCard: React.FC<AdCardProps> = ({ context = 'general', className = '' }) => {
+    const { user } = useAuth();
+    const [ad, setAd] = useState<Ad | null>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        if (shouldShowAd(user)) {
+            const selectedAd = getAd(context);
+            if (selectedAd) {
+                setAd(selectedAd);
+                setIsVisible(true);
+                recordAdView(selectedAd.id);
+            }
+        }
+    }, [user, context]);
+
+    if (!isVisible || !ad) return null;
+
+    return (
+        <div className={`bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-lg ${className}`}>
+            <div className="relative h-32 w-full overflow-hidden">
+                <img
+                    src={ad.imageUrl}
+                    alt={ad.title}
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+                />
+                <div className="absolute top-2 right-2 bg-black/60 text-[10px] text-zinc-400 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                    Sponsored
+                </div>
+            </div>
+            <div className="p-4">
+                <h4 className="text-sm font-bold text-zinc-100 mb-1 line-clamp-1">{ad.title}</h4>
+                <p className="text-xs text-zinc-400 mb-3 line-clamp-2">{ad.description}</p>
+                <a
+                    href={ad.ctaLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-bold rounded-lg transition-colors"
+                >
+                    {ad.ctaText}
+                </a>
+            </div>
+        </div>
+    );
+};

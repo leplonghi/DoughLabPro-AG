@@ -16,3 +16,31 @@ export const uploadImage = async (file: File, path: string): Promise<string> => 
         throw error;
     }
 };
+
+import { Levain } from "@/types";
+
+export const exportLevains = (levains: Levain[]) => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(levains));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "levains_backup.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+};
+
+export const importLevains = async (file: File): Promise<Levain[]> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const json = JSON.parse(event.target?.result as string);
+                resolve(json);
+            } catch (error) {
+                reject(error);
+            }
+        };
+        reader.onerror = (error) => reject(error);
+        reader.readAsText(file);
+    });
+};

@@ -283,7 +283,11 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                             className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 transition-colors relative group"
                         >
                             <ShareIcon className="h-4 w-4" />
-                            {!canUseFeature(userPlan, 'community.share_and_clone') && <LockClosedIcon className="absolute top-1 right-1 h-3 w-3 text-slate-300" />}
+                            {!canUseFeature(userPlan, 'community.share_and_clone') && (
+                                <div className="absolute -top-1 -right-1 bg-slate-100 rounded-full p-0.5 border border-slate-200 shadow-sm">
+                                    <LockClosedIcon className="h-2.5 w-2.5 text-slate-400" />
+                                </div>
+                            )}
                             Social Card
                         </button>
                         <button
@@ -293,7 +297,11 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         >
                             <DownloadIcon className="h-4 w-4" />
                             PDF
-                            {!canUseFeature(userPlan, 'export.pdf_json') && <LockClosedIcon className="absolute top-1 right-1 h-3 w-3 text-slate-300" />}
+                            {!canUseFeature(userPlan, 'export.pdf_json') && (
+                                <div className="absolute -top-1 -right-1 bg-slate-100 rounded-full p-0.5 border border-slate-200 shadow-sm">
+                                    <LockClosedIcon className="h-2.5 w-2.5 text-slate-400" />
+                                </div>
+                            )}
                         </button>
                     </div>
                 </div>

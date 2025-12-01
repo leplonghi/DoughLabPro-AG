@@ -4,17 +4,11 @@ import { DoughConfig, DoughResult, Batch, FlourDefinition, Oven, RecipeStyle, Le
 
 const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
+import { DOUGHY_SYSTEM_PROMPT } from './doughyPrompt';
+
 // This function builds a detailed system prompt for the AI model.
 function buildGeneralSystemPrompt(t: (key: string) => string): string {
-  return `${t('assistant.system_prompt')}
-
-  IMPORTANT: If the user mentions specific troubleshooting issues, you MUST recommend the relevant Learn article using the format: "Learn more: [Article Title](#/learn/troubleshooting/[article-id])".
-  - Sticky Dough -> [Sticky Dough](#/learn/troubleshooting/sticky-dough)
-  - Dense Crumb -> [Dense Crumb](#/learn/troubleshooting/dense-crumb)
-  - Pale Crust -> [Pale Crust](#/learn/troubleshooting/pale-crust)
-  - Weak Gluten -> [Weak Gluten Structure](#/learn/troubleshooting/weak-gluten-structure)
-  - Uneven Browning -> [Uneven Browning](#/learn/troubleshooting/uneven-browning)
-  `;
+  return DOUGHY_SYSTEM_PROMPT;
 }
 
 
@@ -25,6 +19,7 @@ function buildGeneralSystemPrompt(t: (key: string) => string): string {
  * @param flour The selected flour definition.
  * @param oven The user's default oven profile.
  * @param lastBatch The user's most recent batch for historical context.
+ * @param userPlan The user's subscription plan.
  * @returns A formatted string containing both context and the user's question.
  */
 function buildRichContext(
@@ -34,45 +29,69 @@ function buildRichContext(
   flour?: FlourDefinition,
   oven?: Oven,
   lastBatch?: Batch,
+  userPlan?: 'free' | 'pro',
 ): string {
-  const contextParts: string[] = [];
+
+  const contextData: any = {
+    userPlan: userPlan || 'free',
+  };
 
   if (config) {
-    contextParts.push(`- **${t('assistant.context.active_recipe')}**:`);
-    contextParts.push(`  - ${t('assistant.context.style')}: ${config.recipeStyle}`);
-    contextParts.push(`  - ${t('assistant.context.hydration')}: ${config.hydration}%`);
-    contextParts.push(`  - ${t('assistant.context.salt')}: ${config.salt}%`);
-    contextParts.push(`  - ${t('assistant.context.oil')}: ${config.oil}%`);
-    contextParts.push(`  - ${t('assistant.context.yeast')}: ${config.yeastPercentage}% (${config.yeastType})`);
-    contextParts.push(`  - ${t('assistant.context.technique')}: ${config.fermentationTechnique}`);
-    contextParts.push(`  - ${t('assistant.context.ambient')}: ${config.ambientTemperature}`);
-
-    // AVPN/NY Violation checks
-    if (config.recipeStyle === RecipeStyle.NEAPOLITAN && (config.oil > 0 || (config.sugar && config.sugar > 0))) {
-      contextParts.push(`  - **${t('assistant.context.style_warning.title')}**: ${t('assistant.context.style_warning.neapolitan')}`);
-    }
-    if (config.recipeStyle === RecipeStyle.NEW_YORK && config.oil === 0) {
-      contextParts.push(`  - **${t('assistant.context.style_warning.title')}**: ${t('assistant.context.style_warning.ny_style')}`);
-    }
+    contextData.calculatorSettings = {
+      style: config.recipeStyle,
+      flourWeight: config.totalFlour || 0, // Approximate if not set
+      hydration: config.hydration,
+      saltPct: config.salt,
+      preferment: {
+        type: config.fermentationTechnique,
+        pct: config.prefermentFlourPercentage,
+        hydration: 100 // Assumption, or derive if available
+      }
+    };
   }
 
   if (flour) {
-    contextParts.push(`- **${t('assistant.context.selected_flour')}**: ${flour.name} (${t('assistant.context.strength_w')}: ${flour.strengthW || t('common.not_applicable')}, ${t('assistant.context.protein')}: ${flour.protein || t('common.not_applicable')}%)`);
+    // Add flour info to calculator settings or separate field if prompt allows
+    // The prompt expects flour in lastBake, but maybe we can add it to calculatorSettings or a generic context
+    // The prompt example shows "flour" inside "lastBake".
+    // Let's add a top-level "currentFlour" if useful, or just rely on the AI to pick it up.
+    // The prompt says "Possible fields: ... If context is missing, DO NOT hallucinate."
+    // It lists specific fields. Let's try to map to them as best as possible.
+    // But it also says "The host application may pass dynamic context."
+    contextData.currentFlour = {
+      brand: flour.name,
+      protein: flour.protein,
+      W: flour.strengthW
+    };
   }
 
   if (oven) {
-    contextParts.push(`- **${t('assistant.context.default_oven')}**: ${t(`profile.ovens.types.${oven.type.toLowerCase()}`)}, ${t('assistant.context.max_temp')}: ${oven.maxTemperature}°C. ${t('assistant.context.surface')}: ${oven.hasSteel ? t('assistant.context.steel') : (oven.hasStone ? t('assistant.context.stone') : t('assistant.context.none'))}.`);
+    contextData.environment = {
+      ...contextData.environment,
+      ovenMaxTemp: oven.maxTemperature,
+      ovenType: oven.type,
+      hasStone: oven.hasStone,
+      hasSteel: oven.hasSteel
+    };
   }
 
   if (lastBatch) {
-    contextParts.push(`- **${t('assistant.context.last_batch')}**: "${lastBatch.name}" (${t('assistant.context.style')}: ${lastBatch.doughConfig.recipeStyle}, ${t('assistant.context.rating')}: ${lastBatch.rating || t('common.not_applicable')} ${t('assistant.context.stars')})`);
+    contextData.lastBake = {
+      style: lastBatch.doughConfig.recipeStyle,
+      hydration: lastBatch.doughConfig.hydration,
+      resultNotes: lastBatch.notes,
+      rating: lastBatch.rating
+    };
   }
 
-  const contextString = contextParts.length > 0
-    ? `${t('assistant.context.header')}:\n${contextParts.join('\n')}`
-    : t('assistant.context.no_context');
+  // Serialize context to JSON
+  const contextString = JSON.stringify(contextData, null, 2);
 
-  return `${contextString}\n\n${t('assistant.context.user_question')}:\n"${question}"`;
+  return `CONTEXT_JSON_BLOCK:
+${contextString}
+
+USER_QUESTION:
+"${question}"`;
 }
 
 
@@ -83,19 +102,20 @@ interface AssistantInput {
   lastBatch?: Batch;
   flour?: FlourDefinition;
   oven?: Oven;
+  userPlan?: 'free' | 'pro';
   t: (key: string, replacements?: { [key: string]: string | number | undefined }) => string;
 }
 
 export async function askGeneralAssistant(input: AssistantInput): Promise<string> {
-  const { question, doughConfig, flour, oven, lastBatch, t } = input;
+  const { question, doughConfig, flour, oven, lastBatch, userPlan, t } = input;
 
   const systemInstruction = buildGeneralSystemPrompt(t);
-  const userPrompt = buildRichContext(t, question, doughConfig, flour, oven, lastBatch);
+  const userPrompt = buildRichContext(t, question, doughConfig, flour, oven, lastBatch, userPlan);
 
   try {
     // FIX: Updated model from gemini-1.5-pro to gemini-3-pro-preview for complex tasks
     const response = await ai.models.generateContent({
-      model: 'gemini-3-pro-preview',
+      model: 'gemini-2.0-flash-exp', // Updated to latest fast model or keep pro-preview if preferred
       contents: userPrompt,
       config: {
         systemInstruction,

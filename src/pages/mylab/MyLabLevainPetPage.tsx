@@ -1,9 +1,11 @@
 import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { FireIcon } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+
 import MyLabLayout from './MyLabLayout';
 import { Page } from '@/types';
+
+import { SocialShare } from '@/marketing/social/SocialShare';
 
 interface MyLabLevainPetPageProps {
     onNavigate: (page: Page) => void;
@@ -20,14 +22,22 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
 
                 {activeLevain ? (
                     <div className="bg-white  rounded-2xl border border-slate-200  p-8 shadow-sm">
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className="p-3 bg-orange-100  rounded-full text-orange-600 ">
-                                <FireIcon className="h-8 w-8" />
+                        <div className="flex items-center justify-between mb-6">
+                            <div className="flex items-center gap-4">
+                                <div className="p-3 bg-orange-100  rounded-full text-orange-600 ">
+                                    <FireIcon className="h-8 w-8" />
+                                </div>
+                                <div>
+                                    <h2 className="text-2xl font-bold text-slate-900 ">{activeLevain.name}</h2>
+                                    <p className="text-slate-600 ">Status: Active</p>
+                                </div>
                             </div>
-                            <div>
-                                <h2 className="text-2xl font-bold text-slate-900 ">{activeLevain.name}</h2>
-                                <p className="text-slate-600 ">Status: Active</p>
-                            </div>
+                            <SocialShare
+                                title={`Meet ${activeLevain.name}, my sourdough starter!`}
+                                data={activeLevain}
+                                type="levain"
+                                className="bg-slate-100 hover:bg-slate-200 text-slate-700"
+                            />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="p-4 bg-slate-50  rounded-xl">
@@ -55,16 +65,16 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                 {/* Advanced Analytics Section */}
                 <div className="mt-8">
                     <h3 className="text-xl font-bold text-slate-900  mb-4">Fermentation Health</h3>
-                    <ProFeatureLock origin="levain" featureKey="levain_unlimited" contextLabel="Advanced Levain Analytics">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="h-48 bg-slate-50  rounded-2xl border border-slate-200  flex items-center justify-center">
-                                <span className="text-slate-400  font-medium">Activity Chart</span>
-                            </div>
-                            <div className="h-48 bg-slate-50  rounded-2xl border border-slate-200  flex items-center justify-center">
-                                <span className="text-slate-400  font-medium">pH History</span>
-                            </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="h-48 bg-slate-50  rounded-2xl border border-slate-200  flex items-center justify-center">
+                            <span className="text-slate-400  font-medium">Activity Chart</span>
                         </div>
-                    </ProFeatureLock>
+                        <div className="h-48 bg-slate-50  rounded-2xl border border-slate-200  flex items-center justify-center">
+                            <span className="text-slate-400  font-medium">pH History</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </MyLabLayout>

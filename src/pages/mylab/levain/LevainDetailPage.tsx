@@ -9,11 +9,12 @@ import { getArticleById } from '@/data/learn';
 import LevainFeedingForm from './components/LevainFeedingForm';
 import LevainProfile from './components/LevainProfile';
 import LevainInsights from './components/LevainInsights';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import LevainAssistant from './components/LevainAssistant';
 import { calculateLevainStats, getEmotionColor } from '@/logic/levainPetUtils';
 import LevainAvatar from '@/components/LevainAvatar';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
+import { SocialShare } from '@/marketing/social/SocialShare';
 
 interface LevainDetailPageProps {
     levainId: string | null;
@@ -109,7 +110,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                         Use in Bake
                     </button>
 
-                    <ProFeatureLock featureKey="levain.lab_full" customMessage="Unlock AI Assistant with Lab Pro." className="w-full sm:w-auto">
+                    <LockFeature featureKey="levain.lab_full" customMessage="Unlock AI Assistant with Lab Pro." className="w-full sm:w-auto">
                         <button
                             onClick={() => setIsAssistantOpen(true)}
                             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-indigo-50  text-indigo-600  border border-indigo-100  py-3 px-6 font-bold hover:bg-indigo-100 transition-colors"
@@ -117,7 +118,14 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                             <SparklesIcon className="h-5 w-5" />
                             Ask AI
                         </button>
-                    </ProFeatureLock>
+                    </LockFeature>
+
+                    <SocialShare
+                        title={`Meet ${levain.name}, my sourdough starter!`}
+                        data={levain}
+                        type="levain"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-slate-100 text-slate-700 py-3 px-6 font-bold hover:bg-slate-200 transition-colors"
+                    />
                 </div>
             </div>
 
@@ -170,7 +178,24 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
     );
 
     const renderFeedings = () => {
-        const historyToShow = canUseFeature(plan, 'levain.lab_full') ? levain.feedingHistory : levain.feedingHistory.slice(0, 3);
+        const renderHistoryList = (history: typeof levain.feedingHistory) => (
+            <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                {history.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map(log => (
+                    <div key={log.id} className="flex flex-col gap-1 rounded-xl bg-slate-50  p-4 text-sm border border-slate-100  hover:border-lime-200 transition-colors">
+                        <div className="flex justify-between items-center">
+                            <span className="font-bold text-slate-700 ">{new Date(log.date).toLocaleDateString()}</span>
+                            <span className="text-xs text-slate-400  flex items-center gap-1"><ClockIcon className="h-3 w-3" /> {new Date(log.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
+                        <div className="flex gap-4 mt-2 text-xs text-slate-600 ">
+                            <span className="bg-white  px-2 py-0.5 rounded border border-slate-200  font-mono">Ratio: {log.ratio || '1:1:1'}</span>
+                            <span>{log.flourAmount}g Flour / {log.waterAmount}g Water</span>
+                        </div>
+                        {log.notes && <p className="text-xs text-slate-500  italic mt-2">"{log.notes}"</p>}
+                    </div>
+                ))}
+            </div>
+        );
+
         return (
             <div className="rounded-2xl border border-slate-200  bg-white  p-6 shadow-sm animate-fade-in">
                 <div className="flex items-center justify-between mb-4">
@@ -179,38 +204,33 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                 {levain.feedingHistory.length === 0 ? (
                     <p className="text-sm text-center py-8 text-slate-500 ">No feedings recorded yet.</p>
                 ) : (
-                    <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                        {historyToShow.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map(log => (
-                            <div key={log.id} className="flex flex-col gap-1 rounded-xl bg-slate-50  p-4 text-sm border border-slate-100  hover:border-lime-200 transition-colors">
-                                <div className="flex justify-between items-center">
-                                    <span className="font-bold text-slate-700 ">{new Date(log.date).toLocaleDateString()}</span>
-                                    <span className="text-xs text-slate-400  flex items-center gap-1"><ClockIcon className="h-3 w-3" /> {new Date(log.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                                </div>
-                                <div className="flex gap-4 mt-2 text-xs text-slate-600 ">
-                                    <span className="bg-white  px-2 py-0.5 rounded border border-slate-200  font-mono">Ratio: {log.ratio || '1:1:1'}</span>
-                                    <span>{log.flourAmount}g Flour / {log.waterAmount}g Water</span>
-                                </div>
-                                {log.notes && <p className="text-xs text-slate-500  italic mt-2">"{log.notes}"</p>}
-                            </div>
-                        ))}
-                        {!canUseFeature(plan, 'levain.lab_full') && levain.feedingHistory.length > 3 && (
-                            <div className="p-6 text-center bg-gradient-to-b from-slate-50 to-white   rounded-2xl border border-dashed border-lime-200  mt-6">
-                                <div className="flex justify-center mb-3 text-lime-600 ">
-                                    <LockClosedIcon className="h-8 w-8" />
-                                </div>
-                                <p className="text-sm font-bold text-slate-800  mb-1">
-                                    Pro keeps your full Levain feeding history forever.
-                                </p>
-                                <button
-                                    onClick={() => openPaywall('levain')}
-                                    className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-white bg-lime-500 px-5 py-2.5 rounded-full hover:bg-lime-600 shadow-lg shadow-lime-500/20 transition-transform hover:scale-105 active:scale-95"
-                                >
-                                    <StarIcon className="h-3 w-3" />
-                                    Unlock Full History
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                    <LockFeature
+                        featureKey="levain.lab_full"
+                        fallback={
+                            <>
+                                {renderHistoryList(levain.feedingHistory.slice(0, 3))}
+                                {levain.feedingHistory.length > 3 && (
+                                    <div className="p-6 text-center bg-gradient-to-b from-slate-50 to-white   rounded-2xl border border-dashed border-lime-200  mt-6">
+                                        <div className="flex justify-center mb-3 text-lime-600 ">
+                                            <LockClosedIcon className="h-8 w-8" />
+                                        </div>
+                                        <p className="text-sm font-bold text-slate-800  mb-1">
+                                            Pro keeps your full Levain feeding history forever.
+                                        </p>
+                                        <button
+                                            onClick={() => openPaywall('levain')}
+                                            className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-white bg-lime-500 px-5 py-2.5 rounded-full hover:bg-lime-600 shadow-lg shadow-lime-500/20 transition-transform hover:scale-105 active:scale-95"
+                                        >
+                                            <StarIcon className="h-3 w-3" />
+                                            Unlock Full History
+                                        </button>
+                                    </div>
+                                )}
+                            </>
+                        }
+                    >
+                        {renderHistoryList(levain.feedingHistory)}
+                    </LockFeature>
                 )}
             </div>
         );
@@ -222,13 +242,13 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
             case 'feedings': return renderFeedings();
             case 'profile': return <LevainProfile levain={levain} />;
             case 'insights': return (
-                <ProFeatureLock
+                <LockFeature
                     featureKey="levain.lab_full"
                     customMessage="Track your Levain like a scientist. Visualize activity cycles, temperature correlation, and health scoring available in Pro."
                     className="min-h-[300px] flex items-center justify-center rounded-2xl overflow-hidden"
                 >
                     <LevainInsights levain={levain} />
-                </ProFeatureLock>
+                </LockFeature>
             );
             default: return null;
         }

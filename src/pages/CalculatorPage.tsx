@@ -20,7 +20,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
 import { InfoIcon } from '@/components/ui/Icons';
 import OnboardingTooltip from '@/components/onboarding/OnboardingTooltip';
-
+import { AdCard } from '@/marketing/ads/AdCard';
 
 interface CalculatorPageProps {
   config: DoughConfig;
@@ -118,7 +118,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             selectedLevain={selectedLevain}
             inputRefs={{ numPizzas: numPizzasRef }}
           />
-        </div >
+        </div>
         <div className="lg:sticky lg:top-24" ref={resultsRef}>
           <ResultsDisplay
             results={props.results}
@@ -137,8 +137,9 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             onboardingStep={props.onboardingState?.step}
           />
         </div>
-      </div >
+      </div>
       {props.onboardingState && renderOnboardingTooltip()}
+      <AdCard context="calculator_footer" className="mt-8 mb-4" />
     </>
   );
 };

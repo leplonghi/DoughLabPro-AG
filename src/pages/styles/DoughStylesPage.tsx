@@ -4,7 +4,7 @@ import { STYLES_DATA } from '@/data/stylesData';
 import { useUser } from '@/contexts/UserProvider';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { PageHero } from '@/components/ui/PageHero';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import { StyleCard } from '@/components/styles/StyleCard';
 import { StylesFilterDrawer } from '@/components/styles/StylesFilterDrawer';
 import {
@@ -18,6 +18,7 @@ import {
     ChefHat
 } from 'lucide-react';
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
+import { AdCard } from '@/marketing/ads/AdCard';
 
 // ========================================================
 // 1. CONSTANTS & CONFIG
@@ -202,11 +203,11 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                             <p className="text-sm text-slate-600 mt-1">Define your own or ask AI to generate it.</p>
                         </div>
                         <div className="flex gap-2">
-                            <ProFeatureLock featureKey="styles.ai.builder" customMessage="Unlock AI Builder" origin="styles.ai.builder">
+                            <LockFeature featureKey="styles.ai.builder" customMessage="Unlock AI Builder" origin="styles.ai.builder">
                                 <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-xl shadow-md transition-all transform hover:scale-105 flex items-center gap-2">
                                     <Sparkles className="w-4 h-4" /> AI Builder
                                 </button>
-                            </ProFeatureLock>
+                            </LockFeature>
                         </div>
                     </div>
                 </div>
@@ -372,6 +373,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                     setSelectedRegions([]);
                 }}
             />
+            <AdCard context="styles_list" className="mt-12" />
         </LibraryPageLayout>
     );
 };

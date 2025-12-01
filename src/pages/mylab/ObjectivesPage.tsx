@@ -5,7 +5,7 @@ import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import { SparklesIcon, PlusCircleIcon, CheckCircleIcon, TrashIcon, PencilIcon } from '@/components/ui/Icons';
 import GoalModal from '../../components/mylab/GoalModal';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 
 interface SuggestedGoal {
     title: string;
@@ -107,7 +107,7 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
         <>
             <MyLabLayout activePage="mylab/objetivos" onNavigate={onNavigate}>
                 <div className="animate-fade-in">
-                    <ProFeatureLock
+                    <LockFeature
                         featureKey="mylab.unlimited_advanced"
                         customMessage="Unlock Goals to set challenges and track your baking progress with Lab Pro."
                     >
@@ -160,7 +160,7 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                                 )}
                             </div>
                         </div>
-                    </ProFeatureLock>
+                    </LockFeature>
                 </div>
             </MyLabLayout>
             <GoalModal

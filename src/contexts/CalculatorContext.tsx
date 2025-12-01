@@ -10,7 +10,8 @@ import {
     DoughResult,
     FormErrors,
     ProRecipe,
-    DoughStyleDefinition
+    DoughStyleDefinition,
+    RecipeStyle
 } from '@/types';
 import { DOUGH_STYLE_PRESETS, DEFAULT_CONFIG } from '@/constants';
 import { FLOURS } from '@/flours-constants';
@@ -296,22 +297,44 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         let bakeType = BakeType.PIZZAS;
         if (style.category === 'bread' || style.category === 'enriched_bread' || style.category === 'burger_bun') {
             bakeType = BakeType.BREADS_SAVORY;
-        } else if (style.category === 'pastry' || style.category === 'cookies_confectionery') {
+        } else if (style.category === 'pastry' || style.category === 'cookies_confectionery' || style.category === 'cookie') {
             bakeType = BakeType.SWEETS_PASTRY;
+        }
+
+        const STYLE_ID_TO_PRESET_ID: Record<string, string> = {
+            'neapolitan_avpn_classic': 'pizza_napolitana',
+        };
+        const mappedPresetId = STYLE_ID_TO_PRESET_ID[style.id];
+
+        // Extract values from technical profile (using average of range)
+        const hydration = (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2;
+        const salt = (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2;
+        const oil = style.technicalProfile.oil ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2 : 0;
+        const sugar = style.technicalProfile.sugar ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2 : 0;
+        const bakingTempC = (style.technicalProfile.ovenTemp[0] + style.technicalProfile.ovenTemp[1]) / 2;
+
+        // Map fermentation type
+        let fermentationTechnique = FermentationTechnique.DIRECT;
+        let yeastType = YeastType.IDY;
+        if (style.fermentationType === 'levain') {
+            fermentationTechnique = FermentationTechnique.SOURDOUGH;
+            yeastType = YeastType.SOURDOUGH_STARTER;
+        } else if (style.fermentationType === 'preferment') {
+            fermentationTechnique = FermentationTechnique.POOLISH; // Default to poolish
         }
 
         let newDoughConfig: Partial<DoughConfig> = {
             bakeType,
             baseStyleName: style.name,
-            recipeStyle: style.recipeStyle,
-            hydration: style.technical.hydration,
-            salt: style.technical.salt,
-            oil: style.technical.oil,
-            sugar: style.technical.sugar,
-            bakingTempC: style.technical.bakingTempC,
-            fermentationTechnique: style.technical.fermentationTechnique,
-            ingredients: style.ingredients.map(ing => ({ ...ing, manualOverride: false })),
-            stylePresetId: undefined,
+            recipeStyle: style.recipeStyle || RecipeStyle.NEAPOLITAN,
+            hydration,
+            salt,
+            oil,
+            sugar,
+            bakingTempC,
+            fermentationTechnique,
+            yeastType,
+            stylePresetId: mappedPresetId,
             selectedStyleId: style.id
         };
 

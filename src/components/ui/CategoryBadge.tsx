@@ -12,6 +12,7 @@ const CATEGORY_COLORS: Record<StyleCategory, string> = {
     burger_bun: 'bg-red-100 text-red-800 border-red-200',
     pastry: 'bg-pink-100 text-pink-800 border-pink-200',
     cookie: 'bg-purple-100 text-purple-800 border-purple-200',
+    cookies_confectionery: 'bg-purple-100 text-purple-800 border-purple-200',
     flatbread: 'bg-stone-100 text-stone-800 border-stone-200',
     other: 'bg-slate-100 text-slate-800 border-slate-200',
 };
@@ -23,6 +24,7 @@ const CATEGORY_LABELS: Record<StyleCategory, string> = {
     burger_bun: 'Bun',
     pastry: 'Pastry',
     cookie: 'Cookie',
+    cookies_confectionery: 'Confectionery',
     flatbread: 'Flatbread',
     other: 'Other',
 };

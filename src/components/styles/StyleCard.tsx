@@ -3,7 +3,7 @@ import { DoughStyleDefinition } from '@/types/styles';
 import { useRouter } from '@/contexts/RouterContext';
 import { Droplets, Clock, BarChart, Calculator, Trash2, ArrowRight, Sparkles, User, Globe } from 'lucide-react';
 import { CategoryBadge } from '@/components/ui/CategoryBadge';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import { useUser } from '@/contexts/UserProvider';
 
 interface StyleCardProps {
@@ -124,7 +124,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
 
             {/* Action Bar */}
             <div className="p-3 border-t border-slate-100 mt-auto grid grid-cols-2 gap-2">
-                <ProFeatureLock featureKey="styles.detail" customMessage="Unlock calculator" origin="styles.card">
+                <LockFeature featureKey="styles.detail" customMessage="Unlock calculator" origin="styles.card">
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
@@ -135,7 +135,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                         <Calculator className="h-3.5 w-3.5" />
                         Use Style
                     </button>
-                </ProFeatureLock>
+                </LockFeature>
 
                 {isUserStyle && onDelete ? (
                     <button

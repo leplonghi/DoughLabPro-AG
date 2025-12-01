@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { Batch, BatchStatus, Page, CommunityBatch, DoughConfig, DoughResult } from '@/types';
@@ -20,13 +19,16 @@ import {
     FireIcon,
     FeedIcon
 } from '@/components/ui/Icons';
-import { saveCommunityBatch, deleteCommunityBatch } from '@/data/communityStore';
 import { uploadImage } from '@/services/storageService';
 import { FLOURS } from '@/flours-constants';
 import { exportBatchToPDF } from '@/services/exportService';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { allLearnArticles } from '@/data/learn';
 import { BookOpenIcon } from '@/components/ui/Icons';
+import { ShareBatchModal } from '@/community/components/ShareBatchModal';
+import { SocialShare } from '@/marketing/social/SocialShare';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import { AdCard } from "@/marketing/ads/AdCard";
 
 interface BatchDetailPageProps {
     batchId: string | null;
@@ -140,6 +142,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const [isEditingNotes, setIsEditingNotes] = useState(false);
     const [tempNotes, setTempNotes] = useState('');
     const [isUploading, setIsUploading] = useState(false);
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const userPlan = getCurrentPlan(user);
@@ -187,40 +190,6 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const handleSave = async () => {
         if (editableBatch) {
             await updateBatch(editableBatch);
-
-            if (editableBatch.isPublic) {
-                // Check permission for publishing
-                if (!canUseFeature(userPlan, 'community.share_and_clone')) {
-                    // If they don't have permission, we shouldn't be here ideally, but if they are,
-                    // we could revert or just warn.
-                    // For now, we'll assume the toggle prevents this state, but if it happens, we proceed
-                    // or we could throw/return.
-                    // Let's enforce it:
-                    addToast('Publishing requires Lab Pro', 'error');
-                    return;
-                }
-
-                const communityVersion: CommunityBatch = {
-                    id: editableBatch.id,
-                    ownerDisplayName: user?.name || t('batch_detail.anonymous'),
-                    title: editableBatch.name,
-                    description: editableBatch.notes,
-                    createdAt: editableBatch.createdAt,
-                    baseConfig: editableBatch.doughConfig,
-                    styleId: editableBatch.doughConfig.recipeStyle,
-                    hydrationPercentage: editableBatch.doughConfig.hydration,
-                    ratingAverage: editableBatch.rating,
-                    bakingTempC: editableBatch.doughConfig.bakingTempC,
-                    photoUrl: editableBatch.photoUrl,
-                    thumbnailUrl: editableBatch.photoUrl,
-                    ovenType: editableBatch.ovenType,
-                };
-                await saveCommunityBatch(communityVersion);
-            } else {
-                // If not public, ensure it's removed from community if it was there
-                await deleteCommunityBatch(editableBatch.id);
-            }
-
             addToast(t('info.update_success'), 'success');
         }
     };
@@ -267,18 +236,12 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
         }
     };
 
-    const handleTogglePublic = () => {
-        if (!editableBatch) return;
-
-        if (!editableBatch.isPublic) {
-            // Trying to make public -> Check permission
-            if (!canUseFeature(userPlan, 'community.share_and_clone')) {
-                openPaywall('general');
-                return;
-            }
+    const handleShareClick = () => {
+        if (!canUseFeature(userPlan, 'community.feed')) {
+            openPaywall('community');
+            return;
         }
-
-        setEditableBatch({ ...editableBatch, isPublic: !editableBatch.isPublic });
+        setIsShareModalOpen(true);
     };
 
     if (!editableBatch) {
@@ -366,6 +329,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             <div className="prose prose-sm max-w-none min-h-[10rem] whitespace-pre-wrap text-slate-700 ">{editableBatch.notes || <p className="italic text-slate-400 ">{t('batch_detail.no_notes')}</p>}</div>
                         )}
                     </div>
+                    <AdCard context="batch_detail" />
                 </div>
 
                 {/* Sidebar */}
@@ -476,20 +440,27 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                         <div className="space-y-3">
                             <button onClick={() => onLoadAndNavigate(doughConfig)} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><BatchesIcon className="h-5 w-5" /> {t('batch_detail.actions.repeat')}</button>
                             <button onClick={handleDuplicate} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><DocumentDuplicateIcon className="h-5 w-5" /> {t('batch_detail.actions.duplicate')}</button>
-                            <button onClick={handleExportPDF} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><DownloadIcon className="h-5 w-5" /> {t('batch_detail.actions.export_pdf')}</button>
 
-                            <div className="flex items-center justify-between rounded-xl bg-slate-100 p-3">
-                                <span className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                    <FeedIcon className="h-5 w-5 text-lime-600" />
-                                    Publish to Community
-                                </span>
+                            <LockedTeaser featureKey="export.pdf_json">
+                                <button onClick={handleExportPDF} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><DownloadIcon className="h-5 w-5" /> {t('batch_detail.actions.export_pdf')}</button>
+                            </LockedTeaser>
+
+                            <LockedTeaser featureKey="community.feed">
                                 <button
-                                    onClick={handleTogglePublic}
-                                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${editableBatch.isPublic ? 'bg-lime-500' : 'bg-slate-300'}`}
+                                    onClick={handleShareClick}
+                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 py-3 font-bold text-white shadow-lg shadow-lime-500/20 hover:from-lime-600 hover:to-lime-700 transition-all"
                                 >
-                                    <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${editableBatch.isPublic ? 'translate-x-6' : 'translate-x-1'}`} />
+                                    <FeedIcon className="h-5 w-5" />
+                                    Share in Community
                                 </button>
-                            </div>
+                            </LockedTeaser>
+
+                            <SocialShare
+                                title={`My ${editableBatch.name} Recipe`}
+                                data={editableBatch.doughConfig}
+                                type="recipe"
+                                className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-3 font-bold text-slate-700 hover:bg-slate-200 transition-colors"
+                            />
 
                             <button onClick={handleDelete} className="w-full flex items-center justify-center gap-2 rounded-xl text-red-600  py-3 font-bold hover:bg-red-50 transition-colors"><TrashIcon className="h-5 w-5" /> {t('batch_detail.actions.delete')}</button>
                         </div>
@@ -505,6 +476,12 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                     {t('common.save_changes')}
                 </button>
             </div>
+
+            <ShareBatchModal
+                batch={editableBatch}
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+            />
         </div>
     );
 };

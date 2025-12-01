@@ -5,7 +5,7 @@ import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import { FLOURS } from '../../flours-constants';
 import { CalculatorIcon, ExclamationCircleIcon } from '../../components/ui/Icons';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 
 interface CompareRecipesPageProps {
     onNavigate: (page: Page, params?: string) => void;
@@ -105,9 +105,10 @@ const CompareRecipesPage: React.FC<CompareRecipesPageProps> = ({ onNavigate, onL
                 <p className="mt-1 text-sm text-slate-500">See side-by-side differences between two recipes.</p>
             </div>
 
-            <ProFeatureLock
+            <LockFeature
                 origin='mylab'
-                contextLabel="See beyond the surface. Unlock advanced dough science with Pro to compare recipes side-by-side."
+                featureKey="mylab.unlimited_advanced"
+                customMessage="See beyond the surface. Unlock advanced dough science with Pro to compare recipes side-by-side."
                 className="min-h-[25rem] flex items-center justify-center"
             >
                 {error ? (
@@ -145,7 +146,7 @@ const CompareRecipesPage: React.FC<CompareRecipesPageProps> = ({ onNavigate, onL
                         )}
                     </div>
                 )}
-            </ProFeatureLock>
+            </LockFeature>
         </div>
     );
 };

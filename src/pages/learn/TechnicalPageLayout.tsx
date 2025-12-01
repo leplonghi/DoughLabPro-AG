@@ -5,7 +5,7 @@ import { getAffiliateSuggestionsForTopic } from '@/logic/affiliateSuggestions';
 import { useUser } from '@/contexts/UserProvider';
 import PDFExportButton from '@/components/ui/PDFExportButton';
 import ShareButton from '@/components/ui/ShareButton';
-import { canUseFeature, getCurrentPlan } from '@/permissions';
+import { LockFeature } from '@/components/auth/LockFeature';
 
 interface TechnicalPageLayoutProps {
   title: string;
@@ -18,18 +18,11 @@ interface TechnicalPageLayoutProps {
 const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtitle, children, showReferencesSection = false, isPro = false }) => {
   const suggestion = useMemo(() => getAffiliateSuggestionsForTopic(title), [title]);
   const { user, openPaywall, toggleFavorite, isFavorite } = useUser();
-  const plan = getCurrentPlan(user);
 
   // Use current path as the unique ID for the article
   const articleId = typeof window !== 'undefined' ? window.location.pathname : title;
   const isFav = isFavorite(articleId);
 
-  // Legacy isPro prop handling - if strictly required by prop, check if user has plan
-  // But mostly we rely on ProFeatureLock inside children now.
-  // However, if isPro is passed as true, we might want to show teaser if user is not pro.
-  // Let's assume isPro means "requires lab_pro".
-  const hasAccess = canUseFeature(plan, 'learn.full_and_grandma'); // Approximation
-  const showTeaser = isPro && !hasAccess;
 
   const handleToggleFavorite = async () => {
     await toggleFavorite({
@@ -89,25 +82,28 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
 
           {/* Action Bar */}
           <div className="flex flex-wrap items-center gap-3 mt-6 no-print justify-center sm:justify-start">
-            {canUseFeature(plan, 'export.pdf_json') ? (
+            <LockFeature
+              featureKey="export.pdf_json"
+              fallback={
+                <button
+                  onClick={() => openPaywall('exports_pdf')}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 text-slate-400 cursor-not-allowed hover:bg-slate-200 transition-colors font-medium text-sm"
+                >
+                  <div className="flex items-center gap-1">
+                    <span className="text-amber-500">
+                      <StarIcon className="h-4 w-4" />
+                    </span>
+                    Download PDF
+                  </div>
+                </button>
+              }
+            >
               <PDFExportButton
                 targetId="technical-content"
                 label="Download PDF"
                 className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm"
               />
-            ) : (
-              <button
-                onClick={() => openPaywall('exports_pdf')}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 text-slate-400 cursor-not-allowed hover:bg-slate-200 transition-colors font-medium text-sm"
-              >
-                <div className="flex items-center gap-1">
-                  <span className="text-amber-500">
-                    <StarIcon className="h-4 w-4" />
-                  </span>
-                  Download PDF
-                </div>
-              </button>
-            )}
+            </LockFeature>
             <ShareButton
               title={title}
               text={subtitle || `Learn about ${title}`}
@@ -116,26 +112,35 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
           </div>
         </div>
 
-        {showTeaser ? (
-          <div className="relative no-print">
-            <div className="prose mt-8 max-w-none text-slate-900 h-[300px] overflow-hidden relative leading-relaxed">
-              {children}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/80 to-white pointer-events-none"></div>
-            </div>
-            <div className="absolute bottom-0 left-0 w-full flex justify-center pb-8 z-10">
-              <div className="text-center bg-white/90 p-6 rounded-xl border border-slate-200 shadow-lg backdrop-blur-sm max-w-md">
-                <h3 className="font-bold text-slate-900 text-lg mb-2">Upgrade to Pro to unlock the full advanced dough theory library.</h3>
-                <p className="text-slate-700 text-sm mb-4">Serious bakers choose Pro for deeper knowledge.</p>
-                <button
-                  onClick={() => openPaywall('learn')}
-                  className="bg-lime-500 text-white font-bold py-2 px-6 rounded-full hover:bg-lime-600 transition-colors flex items-center justify-center gap-2 mx-auto shadow-md"
-                >
-                  <StarIcon className="h-4 w-4" />
-                  Unlock Full Article
-                </button>
+        {isPro ? (
+          <LockFeature
+            featureKey="learn.full_and_grandma"
+            fallback={
+              <div className="relative no-print">
+                <div className="prose mt-8 max-w-none text-slate-900 h-[300px] overflow-hidden relative leading-relaxed">
+                  {children}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/80 to-white pointer-events-none"></div>
+                </div>
+                <div className="absolute bottom-0 left-0 w-full flex justify-center pb-8 z-10">
+                  <div className="text-center bg-white/90 p-6 rounded-xl border border-slate-200 shadow-lg backdrop-blur-sm max-w-md">
+                    <h3 className="font-bold text-slate-900 text-lg mb-2">Upgrade to Pro to unlock the full advanced dough theory library.</h3>
+                    <p className="text-slate-700 text-sm mb-4">Serious bakers choose Pro for deeper knowledge.</p>
+                    <button
+                      onClick={() => openPaywall('learn')}
+                      className="bg-lime-500 text-white font-bold py-2 px-6 rounded-full hover:bg-lime-600 transition-colors flex items-center justify-center gap-2 mx-auto shadow-md"
+                    >
+                      <StarIcon className="h-4 w-4" />
+                      Unlock Full Article
+                    </button>
+                  </div>
+                </div>
               </div>
+            }
+          >
+            <div className="prose mt-8 max-w-none text-slate-900 leading-relaxed print:mt-4">
+              {children}
             </div>
-          </div>
+          </LockFeature>
         ) : (
           <div className="prose mt-8 max-w-none text-slate-900 leading-relaxed print:mt-4">
             {children}
@@ -143,7 +148,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
         )}
 
         {/* Soft Callout for Free Users on Free content */}
-        {!hasAccess && !showTeaser && (
+        {!isPro && (
           <div className="mt-12 p-6 bg-gradient-to-r from-slate-50 to-lime-50 rounded-xl border border-lime-100 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
             <div>
               <h4 className="font-bold text-slate-900">Want to go deeper?</h4>
@@ -159,7 +164,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
         )}
 
         {/* Contextual Shop Suggestion */}
-        {!showTeaser && suggestion && (
+        {suggestion && (
           <div className="mt-12 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-lime-200 bg-lime-50/50 p-6 no-print">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 rounded-full bg-white p-2 shadow-sm text-lime-600">
@@ -183,7 +188,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
           </div>
         )}
 
-        {showReferencesSection && !showTeaser && (
+        {showReferencesSection && (
           <div className="mt-12 border-t border-slate-200 pt-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900">
               <BookOpenIcon className="h-6 w-6 text-lime-500" />

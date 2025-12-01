@@ -75,9 +75,19 @@ export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             } else if (hash.startsWith('mylab/consistency/detail/') && parts.length > 3) {
                 setRoute('mylab/consistency/detail');
                 setRouteParams(parts[3]);
-            } else if (hash.startsWith('community/detail/') && parts.length > 2) {
-                setRoute('community/detail');
+            } else if (hash.startsWith('community/post/') && parts.length > 2) {
+                setRoute('community/post');
                 setRouteParams(parts[2]);
+            } else if (hash.startsWith('community/detail/') && parts.length > 2) {
+                // Legacy support or alias
+                setRoute('community/post');
+                setRouteParams(parts[2]);
+            } else if (hash.startsWith('community/user/') && parts.length > 2) {
+                setRoute('community/user');
+                setRouteParams(parts[2]);
+            } else if (hash.startsWith('community/create')) {
+                setRoute('community/create');
+                setRouteParams(null);
             } else if (hash.startsWith('learn/article/') && parts.length > 2) {
                 setRoute('learn/article');
                 setRouteParams(parts[2]);

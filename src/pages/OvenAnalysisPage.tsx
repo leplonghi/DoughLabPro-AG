@@ -1,6 +1,6 @@
 import React from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import { useOvenProfiler } from '@/hooks/useOvenProfiler';
 import { OvenProfilerForm } from '@/components/tools/ovenProfiler/OvenProfilerForm';
 import { OvenProfilerResults } from '@/components/tools/ovenProfiler/OvenProfilerResults';
@@ -26,7 +26,7 @@ export const OvenAnalysisPage: React.FC = () => {
       subtitle="Analyze your equipment to get tailored baking strategies, hydration limits, and rack positioning advice."
       showReferencesSection
     >
-      <ProFeatureLock featureKey="tools.oven_analysis" customMessage="Unlock advanced oven analysis and baking strategies with Lab Pro.">
+      <LockFeature featureKey="tools.oven_analysis" customMessage="Unlock advanced oven analysis and baking strategies with Lab Pro.">
         <div className="space-y-8 animate-fade-in">
           <OvenProfilerForm
             profile={profile}
@@ -39,7 +39,7 @@ export const OvenAnalysisPage: React.FC = () => {
             <OvenProfilerResults analysis={analysis} />
           )}
         </div>
-      </ProFeatureLock>
+      </LockFeature>
     </TechnicalPageLayout>
   );
 };

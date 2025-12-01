@@ -4,7 +4,7 @@ import { useTranslation } from '../i18n';
 import { PizzaSliceIcon } from './ui/Icons';
 import { TOPPING_COMBINATIONS } from '../toppings-constants';
 import { RecipeStyle } from '../types';
-import { ProFeatureLock } from './ui/ProFeatureLock';
+import { LockFeature } from './auth/LockFeature';
 
 const ToppingsPage: React.FC = () => {
     const { t } = useTranslation();
@@ -91,13 +91,13 @@ const ToppingsPage: React.FC = () => {
                     }
 
                     return (
-                        <ProFeatureLock
+                        <LockFeature
                             key={category}
                             featureKey="tools.toppings_advanced"
                             customMessage={`Unlock ${category} topping combinations with Lab Pro.`}
                         >
                             {content}
-                        </ProFeatureLock>
+                        </LockFeature>
                     );
                 })}
             </div>

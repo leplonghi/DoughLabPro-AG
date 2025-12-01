@@ -30,6 +30,7 @@ import { RecipesProvider } from '@/contexts/RecipesProvider';
 import { DoughsProvider } from '@/contexts/DoughsProvider';
 import { SensoryProvider } from '@/contexts/SensoryProvider';
 import { TimelineProvider } from '@/contexts/TimelineProvider';
+import { MarketingProvider } from '@/marketing/MarketingContext';
 
 import AppRouter from '@/AppRouter';
 import { PrimaryPage, BatchStatus } from '@/types';
@@ -162,7 +163,7 @@ function AppContent() {
           <div className="space-y-4">
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="w-full py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl shadow-lg shadow-slate-900/20 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full py-3.5 bg-gradient-to-br from-lime-500 to-lime-700 hover:from-lime-600 hover:to-lime-800 text-white font-bold rounded-xl shadow-lg shadow-lime-900/20 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Sign In / Create Account
             </button>
@@ -171,6 +172,7 @@ function AppContent() {
               By continuing, you agree to our Terms of Service and Privacy Policy.
             </p>
           </div>
+
         </div>
 
         <AuthModal
@@ -199,6 +201,7 @@ function AppContent() {
                 defaultOven={ovens.find(o => o.isDefault) || ovens[0]}
                 selectedFlour={FLOURS.find(f => f.id === config.flourId)}
                 lastBatch={lastBatch}
+                userPlan={hasProAccess ? 'pro' : 'free'}
                 t={t}
               />
             </RequireAuth>
@@ -252,32 +255,34 @@ function App() {
       <ToastProvider>
         <I18nProvider>
           <UserProvider>
-            {/* Domain-specific providers */}
-            <BatchesProviderComponent>
-              <LevainProvider>
-                <GoalsProvider>
-                  <FloursProvider>
-                    <ConsistencyProvider>
-                      <InsightsProvider>
-                        <RecipesProvider>
-                          <DoughsProvider>
-                            <SensoryProvider>
-                              <TimelineProvider>
-                                <RouterProvider>
-                                  <CalculatorProvider>
-                                    <AppContent />
-                                  </CalculatorProvider>
-                                </RouterProvider>
-                              </TimelineProvider>
-                            </SensoryProvider>
-                          </DoughsProvider>
-                        </RecipesProvider>
-                      </InsightsProvider>
-                    </ConsistencyProvider>
-                  </FloursProvider>
-                </GoalsProvider>
-              </LevainProvider>
-            </BatchesProviderComponent>
+            <MarketingProvider>
+              {/* Domain-specific providers */}
+              <BatchesProviderComponent>
+                <LevainProvider>
+                  <GoalsProvider>
+                    <FloursProvider>
+                      <ConsistencyProvider>
+                        <InsightsProvider>
+                          <RecipesProvider>
+                            <DoughsProvider>
+                              <SensoryProvider>
+                                <TimelineProvider>
+                                  <RouterProvider>
+                                    <CalculatorProvider>
+                                      <AppContent />
+                                    </CalculatorProvider>
+                                  </RouterProvider>
+                                </TimelineProvider>
+                              </SensoryProvider>
+                            </DoughsProvider>
+                          </RecipesProvider>
+                        </InsightsProvider>
+                      </ConsistencyProvider>
+                    </FloursProvider>
+                  </GoalsProvider>
+                </LevainProvider>
+              </BatchesProviderComponent>
+            </MarketingProvider>
           </UserProvider>
         </I18nProvider>
       </ToastProvider>

@@ -1,161 +1,87 @@
-
 import React from 'react';
-import {
-  DoughConfig,
-  IngredientConfig,
-  YeastType,
-  Levain,
-  DoughStyleDefinition,
-} from '@/types';
-import { YEAST_OPTIONS } from '@/constants';
-import SliderInput from '@/components/ui/SliderInput';
-import IngredientTableEditor from '@/components/calculator/IngredientTableEditor';
-import {
-  CubeIcon,
-  WaterIcon,
-  SaltIcon,
-  OilIcon,
-  WrenchScrewdriverIcon,
-  LockClosedIcon,
-} from '@/components/ui/Icons';
-import { timeSince } from '@/helpers';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
-import { getArticleById } from '@/data/learn';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import SliderInput from "@/components/ui/SliderInput";
+import { CubeIcon } from "@/components/ui/Icons";
+import { YeastType, FormErrors, DoughConfig, Levain } from "@/types";
+import { getArticleById } from "@/data/learnArticles";
+import { timeSince } from "@/utils/dateUtils";
+import { LockFeature } from "@/components/auth/LockFeature";
+import { IngredientTableEditor } from "@/components/calculator/IngredientTableEditor";
 
 interface IngredientsSectionProps {
   config: DoughConfig;
-  errors: any;
-  onConfigChange: (newConfig: Partial<DoughConfig>) => void;
-  onYeastTypeChange: (yeastType: YeastType) => void;
-  calculatorMode: 'basic' | 'advanced';
+  errors: FormErrors;
+  handleNumberChange: (name: string, value: number) => void;
+  handleSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleIngredientsUpdate: (ingredients: any[]) => void;
+  isBasic: boolean;
+  isAnySourdough: boolean;
   levains: Levain[];
-  selectedLevain: Levain | null;
+  selectedLevain?: Levain;
+  YEAST_OPTIONS: { value: string; labelKey: string }[];
+  getRange: (field: string) => [number, number] | undefined;
   getSelectClasses: () => string;
-  onCalculatorModeChange: (mode: 'basic' | 'advanced') => void;
-  hasProAccess: boolean;
-  onOpenPaywall: () => void;
-  activeStyle?: DoughStyleDefinition;
 }
-
-const CompactParamCard: React.FC<{
-  icon: React.ReactNode;
-  label: string;
-  value: number;
-  unit?: string;
-  colorClass: string;
-}> = ({ icon, label, value, unit = '%', colorClass }) => (
-  <div className="flex flex-row items-center justify-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 shadow-sm transition-all hover:bg-white hover:shadow-md">
-    <div className={`flex-shrink-0 rounded-full p-1.5 ${colorClass} bg-opacity-15`}>
-      {React.cloneElement(icon as React.ReactElement<{ className?: string }>, { className: `h-4 w-4 ${colorClass.replace('bg-', 'text-')}` })}
-    </div>
-    <div className="flex flex-col items-start leading-tight">
-      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">{label}</span>
-      <span className="text-base font-bold text-slate-800">
-        {value}<span className="text-xs font-medium text-slate-500 ml-0.5">{unit}</span>
-      </span>
-    </div>
-  </div>
-);
 
 const IngredientsSection: React.FC<IngredientsSectionProps> = ({
   config,
   errors,
-  onConfigChange,
-  onYeastTypeChange,
-  calculatorMode,
+  handleNumberChange,
+  handleSelectChange,
+  handleIngredientsUpdate,
+  isBasic,
+  isAnySourdough,
   levains,
   selectedLevain,
+  YEAST_OPTIONS,
+  getRange,
   getSelectClasses,
-  onCalculatorModeChange,
-  hasProAccess,
-  onOpenPaywall,
-  activeStyle,
 }) => {
-  const isBasic = calculatorMode === 'basic';
-  const isAnySourdough = [YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(config.yeastType);
-
-  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const numValue = value === '' ? 0 : Number(value);
-    if (!isNaN(numValue)) {
-      onConfigChange({ [name]: numValue });
-    }
-  };
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    if (name === 'yeastType') {
-      onYeastTypeChange(value as YeastType);
-    } else {
-      onConfigChange({ [name]: value });
-    }
-  };
-
-  const handleIngredientsUpdate = (newIngredients: IngredientConfig[]) => {
-    onConfigChange({ ingredients: newIngredients });
-  };
-
-  // Helper to get ranges safely
-  const getRange = (key: 'hydration' | 'salt' | 'oil' | 'sugar') => {
-    if (!activeStyle || !activeStyle.technicalProfile) return undefined;
-    // @ts-ignore - technicalProfile keys match
-    return activeStyle.technicalProfile[key];
-  }
-
   return (
     <div className="space-y-6">
       {isBasic ? (
-        <div className="space-y-3">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            <CompactParamCard
-              icon={<WaterIcon />}
-              label="Hydration"
-              value={Number(config.hydration.toFixed(1))}
-              colorClass="text-blue-500 bg-blue-500"
-            />
-            <CompactParamCard
-              icon={<SaltIcon />}
-              label="Salt"
-              value={Number(config.salt.toFixed(1))}
-              colorClass="text-slate-500 bg-slate-500"
-            />
-            <CompactParamCard
-              icon={<OilIcon />}
-              label="Oil"
-              value={Number(config.oil.toFixed(1))}
-              colorClass="text-amber-500 bg-amber-500"
-            />
-            <CompactParamCard
-              icon={<CubeIcon />}
-              label="Sugar"
-              value={Number((config.sugar || 0).toFixed(1))}
-              colorClass="text-pink-500 bg-pink-500"
-            />
-          </div>
-          <div className="flex justify-end">
-            <button
-              onClick={() => onCalculatorModeChange('advanced')}
-              className="flex items-center gap-1.5 text-xs font-semibold text-sky-600 hover:text-sky-700 hover:underline transition-colors"
-            >
-              <WrenchScrewdriverIcon className="h-3 w-3" />
-              Customize parameters
-            </button>
-          </div>
-        </div>
-      ) : (
         <>
           <SliderInput
             label="Hydration"
             name="hydration"
             value={config.hydration}
             onChange={handleNumberChange}
-            min={0} max={120} step={1} unit="%"
-            tooltip="Controls dough wetness and crust texture. Higher hydration (65%+) creates an open, airy crumb but is stickier to handle."
+            min={50} max={90} step={1} unit="%"
+            tooltip="Water content relative to flour weight."
             hasError={!!errors.hydration}
             recommendedMin={getRange('hydration')?.[0]}
             recommendedMax={getRange('hydration')?.[1]}
             learnArticle={getArticleById('water')}
           />
+          <SliderInput
+            label="Salt"
+            name="salt"
+            value={config.salt}
+            onChange={handleNumberChange}
+            min={0} max={5} step={0.1} unit="%"
+            tooltip="Salt content relative to flour weight."
+            hasError={!!errors.salt}
+            recommendedMin={getRange('salt')?.[0]}
+            recommendedMax={getRange('salt')?.[1]}
+            learnArticle={getArticleById('salt')}
+          />
+        </>
+      ) : (
+        <>
+          <LockedTeaser featureKey="calculator.hydration_advanced">
+            <SliderInput
+              label="Hydration"
+              name="hydration"
+              value={config.hydration}
+              onChange={handleNumberChange}
+              min={0} max={120} step={1} unit="%"
+              tooltip="Controls dough wetness and crust texture. Higher hydration (65%+) creates an open, airy crumb but is stickier to handle."
+              hasError={!!errors.hydration}
+              recommendedMin={getRange('hydration')?.[0]}
+              recommendedMax={getRange('hydration')?.[1]}
+              learnArticle={getArticleById('water')}
+            />
+          </LockedTeaser>
           <SliderInput
             label="Salt"
             name="salt"
@@ -259,7 +185,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                 ) : (
                   <div className="text-center py-2">
                     <p className="text-sm text-slate-600 mb-3">No starters found in My Lab.</p>
-                    <a href="#/mylab/levain" className="inline-flex items-center justify-center gap-2 rounded-md bg-lime-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-lime-600">
+                    <a href="#/mylab/levain" className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-br from-lime-500 to-lime-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:from-lime-600 hover:to-lime-800">
                       Create Levain
                     </a>
                   </div>
@@ -275,35 +201,13 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
               <CubeIcon className="h-5 w-5 text-lime-600" />
               Advanced Ingredients
             </h3>
-            <ProFeatureLock
-              featureId="calculator_advanced"
-              hasAccess={hasProAccess}
-              onOpenPaywall={onOpenPaywall}
-              label="Unlock Advanced Ingredients"
-            >
-              <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
-                {config.ingredients?.length || 0} active
-              </span>
-            </ProFeatureLock>
-          </div>
-
-          <div className={`relative ${!hasProAccess ? 'opacity-60 pointer-events-none select-none' : ''}`}>
-            {!hasProAccess && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-slate-50/50 backdrop-blur-[1px] rounded-xl">
-                <button
-                  onClick={onOpenPaywall}
-                  className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-lg font-bold shadow-lg hover:scale-105 transition-transform"
-                >
-                  <LockClosedIcon className="h-4 w-4" />
-                  Unlock Pro Ingredients
-                </button>
-              </div>
-            )}
-            <IngredientTableEditor
-              ingredients={config.ingredients || []}
-              onChange={handleIngredientsUpdate}
-              totalFlour={1000} // Placeholder, calculation handles real value
-            />
+            <LockFeature featureKey="calculator.advanced_ingredients" customMessage="Unlock Pro Ingredients">
+              <IngredientTableEditor
+                ingredients={config.ingredients || []}
+                onChange={handleIngredientsUpdate}
+                totalFlour={1000} // Placeholder, calculation handles real value
+              />
+            </LockFeature>
           </div>
         </div>
       </div>

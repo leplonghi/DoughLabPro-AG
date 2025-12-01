@@ -5,7 +5,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
 import { FlaskIcon, PlusCircleIcon } from '@/components/ui/Icons';
 import ConsistencySeriesModal from '@/components/mylab/ConsistencySeriesModal';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 
 const ConsistencyListPage: React.FC<{ onNavigate: (page: Page, params?: string) => void }> = ({ onNavigate }) => {
     const { testSeries, addTestSeries, updateTestSeries } = useUser();
@@ -36,7 +36,7 @@ const ConsistencyListPage: React.FC<{ onNavigate: (page: Page, params?: string) 
         <>
             <MyLabLayout activePage="mylab/consistency" onNavigate={onNavigate}>
                 <div className="animate-fade-in">
-                    <ProFeatureLock
+                    <LockFeature
                         featureKey="mylab.unlimited_advanced"
                         customMessage="Unlock Consistency Mode to plan and track test series with Lab Pro."
                     >
@@ -79,7 +79,7 @@ const ConsistencyListPage: React.FC<{ onNavigate: (page: Page, params?: string) 
                                 <p className="text-sm text-slate-500  mt-1">Click "Create New Series" to start your first experiment.</p>
                             </div>
                         )}
-                    </ProFeatureLock>
+                    </LockFeature>
                 </div>
             </MyLabLayout>
             <ConsistencySeriesModal

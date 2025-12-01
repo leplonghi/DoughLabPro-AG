@@ -29,57 +29,23 @@ export type FeatureKey =
     | 'styles.formula'
     | 'styles.technical'
     | 'styles.technical_parameters'
-    | 'styles.specs';
+    | 'styles.specs'
+    | 'community.feed'
+    | 'community.clone'
+    | 'community.like'
+    | 'community.comment'
+    | 'community.profile_full'
+    | 'community.ranking'
+    | 'calculator.hydration_advanced'
+    | 'calculator.save_preset'
 
-export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
-    // Calculator
-    'calculator.basic_3_styles': ['free', 'calculator_unlock', 'lab_pro'],
-    'calculator.all_styles': ['calculator_unlock', 'lab_pro'],
-    'calculator.preferments_advanced': ['calculator_unlock', 'lab_pro'],
-    'calculator.environmental_insights': ['calculator_unlock', 'lab_pro'],
+// Safety fallback for admin
+if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'lab_pro';
 
-    // Styles
-    'styles.pick_3_full': ['free', 'calculator_unlock', 'lab_pro'],
-    'styles.full_access': ['calculator_unlock', 'lab_pro'],
+const plan = user.plan;
+if (plan === 'pro') return 'lab_pro';
 
-    // Learn
-    'learn.summary_only': ['free', 'calculator_unlock', 'lab_pro'],
-    'learn.full_and_grandma': ['lab_pro'],
-
-    // MyLab
-    'mylab.two_bakes_one_full': ['free', 'calculator_unlock', 'lab_pro'],
-    'mylab.unlimited_advanced': ['lab_pro'],
-
-    // Levain
-    'levain.create_basic': ['free', 'calculator_unlock', 'lab_pro'],
-    'levain.lab_full': ['lab_pro'],
-
-    // Tools
-    'tools.doughbot': ['lab_pro'],
-    'tools.oven_analysis': ['lab_pro'],
-    'export.pdf_json': ['calculator_unlock', 'lab_pro'],
-    'community.share_and_clone': ['lab_pro'],
-    'app.theme_customization': ['lab_pro'],
-    'mylab.timeline': ['lab_pro'],
-    'tools.toppings_advanced': ['lab_pro'],
-
-    // Missing keys added for Pro access
-    'styles.detail': ['free', 'calculator_unlock', 'lab_pro'],
-    'styles.ai.builder': ['lab_pro'],
-    'levain_unlimited': ['lab_pro'],
-    'styles.formula': ['lab_pro'],
-    'styles.technical': ['lab_pro'],
-    'styles.technical_parameters': ['lab_pro'],
-    'styles.specs': ['lab_pro'],
-};
-
-export function getCurrentPlan(user: User | null): PlanId {
-    if (!user) return 'free';
-
-    // Safety fallback for admin
-    if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'lab_pro';
-
-    return (user.plan as PlanId) || 'free';
+return (plan as PlanId) || 'free';
 }
 
 export function canUseFeature(plan: PlanId, feature: FeatureKey): boolean {

@@ -68,6 +68,13 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
         url: 'https://amazon.com/s?k=infrared+thermometer',
         category: 'tools',
         description: 'Measure the surface temperature of your stone or steel.'
+    },
+    {
+        id: 'pizza_peel',
+        name: 'Pizza Peel',
+        url: 'https://amazon.com/s?k=pizza+peel',
+        category: 'tools',
+        description: 'Essential for launching pizzas into the oven.'
     }
 ];
 

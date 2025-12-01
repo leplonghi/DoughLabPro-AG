@@ -14,6 +14,8 @@ import LearnAffiliateBlock from '@/components/learn/LearnAffiliateBlock';
 import { useUser } from '@/contexts/UserProvider';
 import { canUseFeature, getCurrentPlan, FeatureKey } from '@/permissions';
 import { LibraryPageLayout } from './learn/LibraryPageLayout';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import { AdCard } from "@/marketing/ads/AdCard";
 
 interface ToolsPageProps {
     onNavigate: (page: Page) => void;
@@ -155,26 +157,33 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
                                 );
                             }
 
-                            const isLocked = tool.featureKey ? !canUseFeature(plan, tool.featureKey as FeatureKey) : false;
-
-                            return (
+                            const Card = (
                                 <ToolCardView
-                                    key={tool.id}
                                     icon={tool.icon}
                                     title={tool.title}
                                     description={tool.description}
                                     onClick={() => onNavigate(tool.route as Page)}
-                                    isLocked={isLocked}
                                     isNew={tool.isNew}
                                     preview={tool.preview}
                                 />
                             );
+
+                            if (tool.featureKey) {
+                                return (
+                                    <LockedTeaser key={tool.id} featureKey={tool.featureKey}>
+                                        {Card}
+                                    </LockedTeaser>
+                                );
+                            }
+
+                            return <React.Fragment key={tool.id}>{Card}</React.Fragment>;
                         })}
                     </div>
                 </div>
 
-                <div className="px-4 sm:px-6 mt-12">
+                <div className="px-4 sm:px-6 mt-12 space-y-8">
                     <LearnAffiliateBlock placementKeys={['tools_general']} />
+                    <AdCard context="tools_footer" />
                 </div>
             </div>
         </LibraryPageLayout>

@@ -1,7 +1,7 @@
 import React from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
 import { SparklesIcon } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import { useDoughbot } from '@/hooks/useDoughbot';
 import { DoughbotResultsPlaceholder } from '@/components/tools/doughbot/DoughbotResultsPlaceholder';
 
@@ -30,7 +30,7 @@ const DoughbotPage: React.FC = () => {
       subtitle="Analyze your dough, understand what to adjust."
       showReferencesSection
     >
-      <ProFeatureLock featureKey="tools.doughbot" customMessage="Unlock AI-powered dough diagnostics with Lab Pro.">
+      <LockFeature featureKey="tools.doughbot" customMessage="Unlock AI-powered dough diagnostics with Lab Pro.">
         <div className="space-y-8 animate-fade-in">
           {/* Input Section */}
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
@@ -81,7 +81,7 @@ const DoughbotPage: React.FC = () => {
           {/* Results Section Placeholder */}
           <DoughbotResultsPlaceholder />
         </div>
-      </ProFeatureLock>
+      </LockFeature>
     </TechnicalPageLayout>
   );
 };

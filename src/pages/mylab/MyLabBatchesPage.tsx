@@ -1,39 +1,33 @@
 import React, { useState, useMemo } from 'react';
-import { DoughConfig, Page, Batch, RecipeStyle, OvenType, BatchStatus } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
+import { Batch, BatchStatus, Page } from '@/types';
 import { useTranslation } from '@/i18n';
+import {
+    PlusCircleIcon,
+    BatchesIcon,
+    ClockIcon,
+    FireIcon,
+    WaterIcon,
+    StarIcon,
+    SolidStarIcon
+} from '@/components/ui/Icons';
 import MyLabLayout from './MyLabLayout';
-import { BatchesIcon, CalculatorIcon, LockClosedIcon, StarIcon, SolidStarIcon, PlusCircleIcon, FunnelIcon, FireIcon, WaterIcon, ClockIcon } from '@/components/ui/Icons';
-import { OVEN_TYPE_OPTIONS } from '@/constants';
-import { useToast } from '@/components/ToastProvider';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import { AdCard } from "@/marketing/ads/AdCard";
+import { SocialShare } from "@/marketing/social/SocialShare";
 
 interface MyLabBatchesPageProps {
-    onLoadAndNavigate: (config: Partial<DoughConfig>) => void;
     onNavigate: (page: Page, params?: string) => void;
-    onCreateDraftBatch: () => void;
+    onCreateDraftBatch: () => Promise<Batch>;
+    onLoadAndNavigate: (config: any) => void;
 }
 
-// Filter state interface
-interface FornadasFilters {
-    style: RecipeStyle | 'ALL';
-    period: '7d' | '30d' | '6m' | 'ALL';
-    oven: OvenType | 'ALL';
-    minHydration: string;
-    maxHydration: string;
-}
-
-// Result Tag component
-const ResultTag: React.FC<{ rating?: number }> = ({ rating }) => {
-    if (!rating || rating < 1) return null;
-
-    return (
-        <div className="flex items-center gap-0.5 bg-yellow-100 text-yellow-700   px-2 py-1 rounded-full text-xs font-bold shadow-sm backdrop-blur-sm">
-            <SolidStarIcon className="h-3 w-3" />
-            <span>{rating.toFixed(1)}</span>
-        </div>
-    );
+const ResultTag: React.FC<{ rating: number }> = ({ rating }) => {
+    if (rating >= 4.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-lime-100 text-lime-700 border border-lime-200">GREAT</span>;
+    if (rating >= 3.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200">GOOD</span>;
+    return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-100 text-yellow-700 border border-yellow-200">ADJUST</span>;
 };
 
 const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, params?: string) => void }> = ({ batch, t, onNavigate }) => {
@@ -94,7 +88,12 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
                 </div>
 
                 <div className="mt-auto pt-3 border-t border-slate-100  flex justify-between items-center text-xs text-slate-500 ">
-                    <span>{date}</span>
+                    <div className="flex items-center gap-2">
+                        <span>{date}</span>
+                        <div onClick={(e) => e.stopPropagation()}>
+                            <SocialShare type="batch" title={batch.name} data={batch} className="p-1 hover:bg-slate-100 rounded-full transition-colors" />
+                        </div>
+                    </div>
                     <span className="group-hover:text-lime-600 font-medium transition-colors">View Details &rarr;</span>
                 </div>
             </div>
@@ -108,159 +107,51 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
     onCreateDraftBatch,
     onLoadAndNavigate,
 }) => {
+    const { user, batches, hasProAccess, openPaywall } = useUser();
     const { t } = useTranslation();
-    const { batches, user } = useUser();
-    const { addToast } = useToast();
-    const [showFilters, setShowFilters] = useState(false);
-    const [filters, setFilters] = useState<FornadasFilters>({
-        style: 'ALL',
-        period: 'ALL',
-        oven: 'ALL',
-        minHydration: '',
-        maxHydration: '',
-    });
-
-    const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFilters(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleCreateDraft = () => {
-        const savedBatches = batches.filter(b => b.status !== BatchStatus.DRAFT);
-        const plan = getCurrentPlan(user);
-        // Limit to 2 batches for free users
-        if (!canUseFeature(plan, 'mylab.unlimited_advanced') && savedBatches.length >= 2) {
-            addToast("Free plan includes 2 saved bakes. Upgrade to Lab Pro for unlimited history.", "error");
-            // Assuming openPaywall is not available from useUser directly based on previous code, 
-            // but checking Step 89 it WAS destructured from useUser. 
-            // Let's check if openPaywall is in useUser.
-            // In Step 89: const { batches, hasProAccess, openPaywall, user } = useUser();
-            // So I should destructure it.
-            return;
-        }
-        onCreateDraftBatch();
-    };
-
-    const uniqueStylesInBatches = useMemo(() => {
-        const styles = new Set(batches.filter(b => b.status !== BatchStatus.DRAFT).map(b => b.doughConfig.recipeStyle));
-        return Array.from(styles);
-    }, [batches]);
+    const plan = getCurrentPlan(user);
 
     const filteredBatches = useMemo(() => {
-        const now = new Date();
         return batches
-            .filter(b => b.status !== BatchStatus.DRAFT) // Don't show drafts
-            .filter(batch => {
-                // Style filter
-                if (filters.style !== 'ALL' && batch.doughConfig.recipeStyle !== filters.style) {
-                    return false;
-                }
-                // Period filter
-                if (filters.period !== 'ALL') {
-                    const batchDate = new Date(batch.createdAt);
-                    let daysLimit = 0;
-                    if (filters.period === '7d') daysLimit = 7;
-                    if (filters.period === '30d') daysLimit = 30;
-                    if (filters.period === '6m') daysLimit = 180;
-                    const diffDays = (now.getTime() - batchDate.getTime()) / (1000 * 3600 * 24);
-                    if (diffDays > daysLimit) return false;
-                }
-                // Oven filter
-                if (filters.oven !== 'ALL' && (batch.ovenType !== filters.oven)) {
-                    return false;
-                }
-                // Hydration filter
-                const minHyd = parseFloat(filters.minHydration);
-                const maxHyd = parseFloat(filters.maxHydration);
-                if (!isNaN(minHyd) && batch.doughConfig.hydration < minHyd) {
-                    return false;
-                }
-                if (!isNaN(maxHyd) && batch.doughConfig.hydration > maxHyd) {
-                    return false;
-                }
-                return true;
-            })
+            .filter(b => b.status !== BatchStatus.DRAFT)
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-    }, [batches, filters]);
+    }, [batches]);
 
-    const periodOptions = [
-        { value: 'ALL', label: 'All Time' },
-        { value: '7d', label: 'Last 7 days' },
-        { value: '30d', label: 'Last 30 days' },
-        { value: '6m', label: 'Last 6 months' },
-    ];
+    const handleCreateDraft = async () => {
+        const draft = await onCreateDraftBatch();
+        onNavigate('batch', draft.id);
+    };
 
-    const plan = getCurrentPlan(user);
-    const hasReachedFreeLimit = !canUseFeature(plan, 'mylab.unlimited_advanced') && batches.filter(b => b.status !== BatchStatus.DRAFT).length >= 2;
+    // Free plan limit: 3 batches
+    const hasReachedFreeLimit = !canUseFeature(plan, 'mylab.unlimited_advanced') && filteredBatches.length >= 3;
 
     return (
         <MyLabLayout activePage="mylab/fornadas" onNavigate={onNavigate}>
             <div className="animate-fade-in space-y-6">
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">
-                            My Bakes
-                        </h1>
-                        <p className="mt-2 text-slate-600 ">
-                            Track your progress and perfect your recipes.
-                        </p>
+                        <h1 className="text-2xl font-bold tracking-tight text-slate-900 ">My Batches</h1>
+                        <p className="text-sm text-slate-500 ">Track your baking journey and perfect your recipes.</p>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <button
-                            onClick={() => setShowFilters(!showFilters)}
-                            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border font-medium transition-colors ${showFilters ? 'bg-lime-50 border-lime-200 text-lime-700   ' : 'bg-white  border-slate-200  text-slate-600  hover:bg-slate-50'}`}
-                        >
-                            <FunnelIcon className="h-5 w-5" />
-                            <span>Filters</span>
-                        </button>
+
+                    {!hasReachedFreeLimit ? (
                         <button
                             onClick={handleCreateDraft}
-                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-lime-500 text-white font-bold shadow-lg shadow-lime-500/20 hover:bg-lime-600 hover:shadow-xl hover:scale-105 transition-all active:scale-95"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-105 active:scale-95"
                         >
                             <PlusCircleIcon className="h-5 w-5" />
-                            <span>Log Bake</span>
+                            <span>New Batch</span>
                         </button>
-                    </div>
+                    ) : (
+                        <button
+                            onClick={() => openPaywall('mylab')}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-100 text-slate-500 py-2.5 px-5 font-bold cursor-not-allowed opacity-75"
+                        >
+                            <PlusCircleIcon className="h-5 w-5" />
+                            <span>Limit Reached</span>
+                        </button>
+                    )}
                 </div>
-
-                {/* Filters Panel */}
-                {showFilters && (
-                    <div className="p-6 rounded-2xl bg-white  border border-slate-200  shadow-sm animate-slide-down">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold text-slate-500  uppercase tracking-wider">Style</label>
-                                <select name="style" value={filters.style} onChange={handleFilterChange} className="w-full rounded-xl border-slate-300  bg-slate-50  text-sm focus:ring-lime-500 focus:border-transparent text-slate-700  p-2.5">
-                                    <option value="ALL">All Styles</option>
-                                    {uniqueStylesInBatches.map(style => (
-                                        <option key={style} value={style}>{t(`form.${style.toLowerCase()}`, { defaultValue: style })}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold text-slate-500  uppercase tracking-wider">Time Period</label>
-                                <select name="period" value={filters.period} onChange={handleFilterChange} className="w-full rounded-xl border-slate-300  bg-slate-50  text-sm focus:ring-lime-500 focus:border-transparent text-slate-700  p-2.5">
-                                    {periodOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
-                                </select>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold text-slate-500  uppercase tracking-wider">Oven Type</label>
-                                <select name="oven" value={filters.oven} onChange={handleFilterChange} className="w-full rounded-xl border-slate-300  bg-slate-50  text-sm focus:ring-lime-500 focus:border-transparent text-slate-700  p-2.5">
-                                    <option value="ALL">All Ovens</option>
-                                    {OVEN_TYPE_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>)}
-                                </select>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold text-slate-500  uppercase tracking-wider">Hydration Range</label>
-                                <div className="flex items-center gap-2">
-                                    <input type="number" name="minHydration" value={filters.minHydration} onChange={handleFilterChange} placeholder="Min %" className="w-full rounded-xl border-slate-300  bg-slate-50  text-sm focus:ring-lime-500 focus:border-transparent text-slate-700  p-2.5" />
-                                    <span className="text-slate-400">-</span>
-                                    <input type="number" name="maxHydration" value={filters.maxHydration} onChange={handleFilterChange} placeholder="Max %" className="w-full rounded-xl border-slate-300  bg-slate-50  text-sm focus:ring-lime-500 focus:border-transparent text-slate-700  p-2.5" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
 
                 {/* Content */}
                 {batches.filter(b => b.status !== BatchStatus.DRAFT).length === 0 ? (
@@ -286,20 +177,18 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                         {/* Pro Slot */}
                         {hasReachedFreeLimit && (
                             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-4">
-                                <ProFeatureLock
-                                    featureKey="mylab.unlimited_advanced"
-                                    customMessage="Unlock unlimited bakes and advanced comparisons with Lab Pro."
-                                >
+                                <LockedTeaser featureKey="mylab.unlimited_advanced">
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-40 pointer-events-none select-none filter blur-[1px]">
                                         {[1, 2, 3].map(i => (
                                             <div key={i} className="h-64 rounded-2xl border border-slate-200  bg-white "></div>
                                         ))}
                                     </div>
-                                </ProFeatureLock>
+                                </LockedTeaser>
                             </div>
                         )}
                     </div>
                 )}
+                <AdCard context="batches_bottom" className="mt-8" />
             </div>
         </MyLabLayout>
     );

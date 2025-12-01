@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
 import { UnitSystem } from '@/types';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 
 const ChoiceButton: React.FC<{
   active: boolean;
@@ -65,7 +65,7 @@ const SettingsPage: React.FC = () => {
             <label className="mb-2 block text-sm font-medium text-slate-700">
               App Theme
             </label>
-            <ProFeatureLock
+            <LockFeature
               featureKey="app.theme_customization"
               customMessage="Theme customization is a Lab Pro feature."
             >
@@ -74,7 +74,7 @@ const SettingsPage: React.FC = () => {
                 <ChoiceButton active={false} onClick={() => { }}>Dark</ChoiceButton>
                 <ChoiceButton active={false} onClick={() => { }}>System</ChoiceButton>
               </div>
-            </ProFeatureLock>
+            </LockFeature>
           </div>
 
           <div className="border-t border-slate-200 pt-6">

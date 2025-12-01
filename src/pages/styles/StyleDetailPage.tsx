@@ -5,7 +5,6 @@ import { PageHero } from '@/components/ui/PageHero';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CategoryBadge } from '@/components/ui/CategoryBadge';
 import { TechnicalBadge } from '@/components/ui/TechnicalBadge';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import { useUser } from '@/contexts/UserProvider';
 import {
     BookOpen,
@@ -26,6 +25,9 @@ import {
 import ShareButton from '@/components/ui/ShareButton';
 import PDFExportButton from '@/components/ui/PDFExportButton';
 import { allLearnArticles } from '@/data/learn';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import { AdCard } from "@/marketing/ads/AdCard";
+import { SocialShare } from "@/marketing/social/SocialShare";
 
 interface StyleDetailPageProps {
     style: DoughStyleDefinition;
@@ -77,7 +79,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                     </button>
                     <ShareButton title={style.name} text={style.description} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors" />
                     <PDFExportButton targetId="style-detail-content" label="Download PDF" className="hidden sm:flex bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm px-3 py-2 rounded-xl text-sm font-bold" />
-                    <ProFeatureLock featureKey="styles.detail" customMessage="Unlock calculator integration" origin="styles.detail">
+                    <LockedTeaser featureKey="calculator.advanced">
                         <button
                             onClick={() => onLoadAndNavigate(style)}
                             className="ml-2 bg-lime-500 hover:bg-lime-600 text-white text-sm font-bold py-2 px-4 rounded-xl shadow-sm transition-all flex items-center gap-2"
@@ -85,7 +87,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                             <Calculator className="h-4 w-4" />
                             <span className="hidden sm:inline">Use in Calculator</span>
                         </button>
-                    </ProFeatureLock>
+                    </LockedTeaser>
                 </div>
             </div>
 
@@ -144,6 +146,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                             </div>
                         </div>
 
+                        <AdCard context="style_detail_bottom" className="my-8" />
                         <hr className="my-10 border-slate-100" />
 
                         {/* 2. Formula */}
@@ -151,7 +154,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                             <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                                 <Scale className="w-6 h-6 text-indigo-600" /> Base Formula (Baker's %)
                             </h3>
-                            <ProFeatureLock featureKey="styles.formula" customMessage="Full style specs and baker's percentages are available in Pro." origin="styles.formula">
+                            <LockedTeaser featureKey="styles.advancedSpecs">
                                 <div className="overflow-hidden border rounded-xl border-slate-200 shadow-sm">
                                     <table className="w-full text-sm text-left">
                                         <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-100">
@@ -208,7 +211,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                         </tbody>
                                     </table>
                                 </div>
-                            </ProFeatureLock>
+                            </LockedTeaser>
                         </div>
 
                         <hr className="my-10 border-slate-100" />
@@ -276,6 +279,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                     <p className="text-sm text-slate-500 italic">Explore the Learn section for general baking science.</p>
                                 )}
                             </div>
+                            <SocialShare type="style" title={style.name} data={style} className="mt-8" />
                         </div>
 
                     </div>
@@ -291,7 +295,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 <Beaker className="w-5 h-5 text-lime-400" /> Technical Profile
                             </h3>
                         </div>
-                        <ProFeatureLock featureKey="styles.technical" customMessage="Detailed technical parameters are available in Pro." origin="styles.technical">
+                        <LockedTeaser featureKey="styles.advancedSpecs">
                             <div className="p-6 space-y-8">
 
                                 {/* Hydration Meter */}
@@ -385,7 +389,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 </div>
 
                             </div>
-                        </ProFeatureLock>
+                        </LockedTeaser>
                     </div>
 
                 </div>

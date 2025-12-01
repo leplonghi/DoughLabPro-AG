@@ -1,5 +1,4 @@
-
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import {
   DoughConfig,
   YeastType,
@@ -7,31 +6,22 @@ import {
   FormErrors,
   CalculationMode,
   Levain,
-  FermentationTechnique,
+  Oven,
+  FlourDefinition,
+  OnboardingState,
 } from '@/types';
-import { DOUGH_STYLE_PRESETS } from '@/constants';
-import { STYLES_DATA } from '@/data/stylesData';
-import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
-import { RECIPE_STYLE_TO_ID } from '@/logic/styleMapping';
-import * as customPresets from '@/logic/customPresets';
 import {
-  PencilIcon,
-  FlourIcon,
   BookmarkSquareIcon,
-  LockClosedIcon,
-  TrashIcon,
-  CloseIcon,
-  SparklesIcon,
 } from '@/components/ui/Icons';
 import FormSection from '@/components/calculator/AccordionSection';
-import { useToast } from '@/components/ToastProvider';
 import IngredientsSection from '@/components/calculator/sections/IngredientsSection';
 import StyleSection from '@/components/calculator/sections/StyleSection';
 import FermentationSection from '@/components/calculator/sections/FermentationSection';
 import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
-import { useUser } from '@/contexts/UserProvider';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import { getRange } from '@/logic/validationLogic';
+import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS } from '@/constants';
 
 interface CalculatorFormProps {
   config: DoughConfig;
@@ -41,17 +31,19 @@ interface CalculatorFormProps {
   onStyleChange: (presetId: string) => void;
   onYeastTypeChange: (yeastType: YeastType) => void;
   onReset: () => void;
-  calculatorMode: 'basic' | 'advanced';
+  levains: Levain[];
+  selectedLevain?: Levain;
+  inputRefs?: {
+    numPizzas?: React.RefObject<HTMLInputElement>;
+  };
+  defaultOven?: Oven;
+  selectedFlour?: FlourDefinition;
   calculationMode: CalculationMode;
   onCalculationModeChange: (mode: CalculationMode) => void;
-  onCalculatorModeChange: (mode: 'basic' | 'advanced') => void;
+  calculatorMode: 'basic' | 'advanced';
   hasProAccess: boolean;
   onOpenPaywall: () => void;
-  levains: Levain[];
-  selectedLevain: Levain | null;
-  inputRefs: {
-    numPizzas: React.Ref<HTMLInputElement>;
-  };
+  onboardingState?: OnboardingState;
 }
 
 const CalculatorForm: React.FC<CalculatorFormProps> = ({
@@ -62,210 +54,57 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   onStyleChange,
   onYeastTypeChange,
   onReset,
-  calculatorMode,
-  calculationMode,
-  onCalculationModeChange,
-  onCalculatorModeChange,
-  hasProAccess,
-  onOpenPaywall,
   levains,
   selectedLevain,
   inputRefs,
+  defaultOven,
+  selectedFlour,
+  calculationMode,
+  onCalculationModeChange,
+  calculatorMode,
+  hasProAccess,
+  onOpenPaywall,
+  onboardingState,
 }) => {
-  const { addToast } = useToast();
-  const { userStyles } = useUser();
   const isBasic = calculatorMode === 'basic';
+  const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
 
-  // Safety check: Prevent rendering if config is not properly initialized
-  if (!config || !config.recipeStyle || !config.bakeType) {
-    console.warn('[CalculatorForm] Config not properly initialized, skipping render:', config);
-    return <div className="p-4 text-center text-slate-500">Loading calculator...</div>;
-  }
+  const handleNumberChange = (name: string, value: number) => {
+    onConfigChange({ [name]: value });
+  };
 
-  // State for presets
-  const [presets, setPresets] = useState<{ name: string }[]>([]);
-  const [selectedPreset, setSelectedPreset] = useState<string>('');
-
-  const refreshPresets = () => {
-    const presetList = customPresets.listCustomPresets();
-    setPresets(presetList);
-    if (presetList.length > 0) {
-      if (!presetList.some((p) => p.name === selectedPreset)) {
-        setSelectedPreset(presetList[0].name);
-      }
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    if (name === 'yeastType') {
+      onYeastTypeChange(value as YeastType);
     } else {
-      setSelectedPreset('');
+      onConfigChange({ [name]: value });
     }
   };
 
-  useEffect(() => {
-    refreshPresets();
-  }, []);
+  const handleIngredientsUpdate = (ingredients: any[]) => {
+    onConfigChange({ ingredients });
+  };
+
+  const getSelectClasses = () => {
+    return "block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm";
+  };
 
   const handleSavePreset = () => {
-    const name = prompt('Name your preset:');
-    if (name && name.trim()) {
-      customPresets.saveCustomPreset(name, config);
-      addToast(`Preset "${name}" saved!`, 'success');
-      refreshPresets();
-      setSelectedPreset(name);
-    }
+    // Placeholder for save preset logic
+    console.log("Save preset clicked");
   };
 
-  const handleLoadPreset = () => {
-    if (!selectedPreset) return;
-    const loadedConfig = customPresets.loadCustomPreset(selectedPreset);
-    if (loadedConfig) {
-      onConfigChange(loadedConfig);
-      addToast(`Preset "${selectedPreset}" loaded.`, 'info');
-    }
-  };
+  const recipeStylesToShow = useMemo(() => {
+    return DOUGH_STYLE_PRESETS.filter(p => p.type === config.bakeType);
+  }, [config.bakeType]);
 
-  const handleDeletePreset = () => {
-    if (!selectedPreset) return;
-    if (window.confirm(`Are you sure you want to delete preset "${selectedPreset}"?`)) {
-      customPresets.deleteCustomPreset(selectedPreset);
-      addToast(`Preset "${selectedPreset}" deleted.`, 'info');
-      const newList = customPresets.listCustomPresets();
-      setPresets(newList);
-      setSelectedPreset(newList[0]?.name || '');
-    }
-  };
-
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onConfigChange({ [e.target.name]: e.target.value });
-  };
-
-  const handleResetPreset = () => {
-    if (config.stylePresetId) {
-      onStyleChange(config.stylePresetId);
-    }
-  };
-
-  // Find current active style definition (Official or User)
-  const activeStyle = useMemo(() => {
-    if (config.selectedStyleId) {
-      // Try finding in official data
-      const official = STYLES_DATA.find(s => s.id === config.selectedStyleId);
-      if (official) return official;
-      // Try finding in user styles
-      const userStyle = userStyles.find(s => s.id === config.selectedStyleId);
-      if (userStyle) return userStyle;
-    }
-    // Fallback to finding by preset ID if selectedStyleId is missing (legacy compatibility)
-    const styleId = RECIPE_STYLE_TO_ID[config.recipeStyle];
-    return STYLES_DATA.find(s => s.id === styleId);
-  }, [config.selectedStyleId, config.stylePresetId, config.recipeStyle, userStyles]);
-
-  const recipeStylesToShow = DOUGH_STYLE_PRESETS.filter(
-    (p) => p.type === config.bakeType,
-  );
-
-  const currentPreset = useMemo(
-    () => DOUGH_STYLE_PRESETS.find((p) => p.id === config.stylePresetId),
-    [config.stylePresetId],
-  );
-
-  const allowedFermentationTechniques = useMemo(() => {
-    // Safety check: ensure config has required properties
-    if (!config || !config.recipeStyle || !config.bakeType) {
-      console.warn('[CalculatorForm] Invalid config for getAllowedFermentationTechniques:', config);
-      return [FermentationTechnique.DIRECT];
-    }
-    const techniques = getAllowedFermentationTechniques(config.recipeStyle, config.bakeType);
-    return Array.isArray(techniques) ? techniques : [FermentationTechnique.DIRECT];
-  }, [config.recipeStyle, config.bakeType]);
-
-  const getInputClasses = (hasError: boolean) =>
-    `w-full rounded-lg bg-slate-50 p-2 text-slate-900 border ${hasError
-      ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-      : 'border-slate-300 focus:border-lime-500 focus:ring-lime-500'
-    }`;
-  const getSelectClasses = () =>
-    'w-full rounded-lg border-slate-300 bg-slate-50 p-2 text-slate-900 focus:border-lime-500 focus:ring-lime-500';
-
-  const isAnySourdough = [
-    YeastType.SOURDOUGH_STARTER,
-    YeastType.USER_LEVAIN,
-  ].includes(config.yeastType);
+  const currentPreset = useMemo(() => {
+    return DOUGH_STYLE_PRESETS.find(p => p.id === config.stylePresetId);
+  }, [config.stylePresetId]);
 
   return (
     <div className="space-y-6">
-      <div className="text-center">
-        <span
-          className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${isBasic ? 'bg-sky-100 text-sky-800' : 'bg-lime-100 text-lime-800'
-            }`}
-        >
-          {isBasic ? 'Guided Mode' : 'Advanced Mode'}
-        </span>
-      </div>
-
-      {/* Simple Style Badge - Only show if a style is loaded */}
-      {(activeStyle || config.baseStyleName) && (
-        <div className="flex items-center justify-center gap-2 text-xs text-slate-600">
-          <span className="text-slate-400">Target:</span>
-          <span className="font-semibold text-slate-700">
-            {activeStyle?.name || config.baseStyleName}
-          </span>
-          {activeStyle && (
-            <button
-              onClick={() => onConfigChange({ selectedStyleId: undefined, baseStyleName: undefined })}
-              className="ml-1 text-slate-400 hover:text-slate-600 transition-colors"
-              title="Clear style"
-            >
-              <CloseIcon className="h-3 w-3" />
-            </button>
-          )}
-        </div>
-      )}
-
-      {!isBasic && (
-        <FormSection
-          title="Load Custom Preset"
-          description="Start from one of your saved dough formulas."
-          icon={<BookmarkSquareIcon className="h-6 w-6" />}
-        >
-          <div className="space-y-4">
-            <div className="flex gap-2">
-              <select
-                value={selectedPreset}
-                onChange={(e) => setSelectedPreset(e.target.value)}
-                disabled={presets.length === 0}
-                className={getSelectClasses()}
-                aria-label="Select saved preset"
-              >
-                {presets.length === 0 ? (
-                  <option>No presets saved</option>
-                ) : (
-                  presets.map((p) => (
-                    <option key={p.name} value={p.name}>
-                      {p.name}
-                    </option>
-                  ))
-                )}
-              </select>
-              <button
-                onClick={handleDeletePreset}
-                disabled={!selectedPreset}
-                className="flex-shrink-0 rounded-lg p-2 text-red-500 transition-colors hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-50"
-                title="Delete Preset"
-              >
-                <TrashIcon className="h-5 w-5" />
-              </button>
-            </div>
-            <button
-              onClick={handleLoadPreset}
-              disabled={!selectedPreset}
-              className="w-full rounded-md bg-slate-200 py-2 px-3 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              Load Preset
-            </button>
-          </div>
-        </FormSection>
-      )}
-
-      {/* Style Selection is less relevant if an Active Style is loaded, but kept for basic mode switching */}
-      {/* Style Selection - Always visible to allow changing styles */}
       <StyleSection
         config={config}
         onBakeTypeChange={onBakeTypeChange}
@@ -273,97 +112,61 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         recipeStylesToShow={recipeStylesToShow}
         isBasic={isBasic}
         currentPreset={currentPreset}
-        onResetPreset={handleResetPreset}
+        onResetPreset={() => onStyleChange('')}
+      />
+
+      <QuantitySection
+        config={config}
+        onConfigChange={onConfigChange}
+        calculationMode={calculationMode}
+        onCalculationModeChange={onCalculationModeChange}
+        errors={errors}
+        inputRef={inputRefs?.numPizzas}
+      />
+
+      <IngredientsSection
+        config={config}
+        errors={errors}
+        handleNumberChange={handleNumberChange}
+        handleSelectChange={handleSelectChange}
+        handleIngredientsUpdate={handleIngredientsUpdate}
+        isBasic={isBasic}
+        isAnySourdough={isAnySourdough}
+        levains={levains}
+        selectedLevain={selectedLevain}
+        YEAST_OPTIONS={YEAST_OPTIONS}
+        getRange={getRange}
+        getSelectClasses={getSelectClasses}
       />
 
       <FermentationSection
         config={config}
         onConfigChange={onConfigChange}
-        isAnySourdough={isAnySourdough}
-        isBasic={isBasic}
         errors={errors}
-        hasProAccess={hasProAccess}
-        onOpenPaywall={onOpenPaywall}
-        allowedTechniques={allowedFermentationTechniques}
+        isBasic={isBasic}
       />
 
-      <QuantitySection
+      <EnvironmentSection
         config={config}
-        calculationMode={calculationMode}
-        onCalculationModeChange={onCalculationModeChange}
         onConfigChange={onConfigChange}
         errors={errors}
-        getInputClasses={getInputClasses}
-        numPizzasRef={inputRefs.numPizzas}
       />
 
-      <FormSection
-        title="Ingredients"
-        description="Adjust the percentages of each component."
-        icon={<FlourIcon className="h-6 w-6" />}
-      >
-        <IngredientsSection
-          config={config}
-          errors={errors}
-          onConfigChange={onConfigChange}
-          onYeastTypeChange={onYeastTypeChange}
-          calculatorMode={calculatorMode}
-          levains={levains}
-          selectedLevain={selectedLevain}
-          getSelectClasses={getSelectClasses}
-          onCalculatorModeChange={onCalculatorModeChange}
-          hasProAccess={hasProAccess}
-          onOpenPaywall={onOpenPaywall}
-          activeStyle={activeStyle}
-        />
-      </FormSection>
-
       {!isBasic && (
-        <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Unlock advanced environment controls with Lab Pro.">
-          <EnvironmentSection
-            config={config}
-            onConfigChange={onConfigChange}
-            getSelectClasses={getSelectClasses}
-            errors={errors}
-          />
-        </ProFeatureLock>
-      )}
-
-      {!isBasic && (
-        <>
-          <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Keep detailed notes with Lab Pro.">
-            <FormSection
-              title="Notes"
-              description="Log observations about this formula."
-              icon={<PencilIcon className="h-6 w-6" />}
+        <LockedTeaser featureKey="calculator.save_preset">
+          <FormSection
+            title="Save Custom Preset"
+            description="Save the current configuration for future use."
+            icon={<BookmarkSquareIcon className="h-6 w-6" />}
+          >
+            <button
+              onClick={handleSavePreset}
+              className="w-full flex items-center justify-center gap-2 rounded-md bg-lime-500 py-2 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-lime-600"
             >
-              <textarea
-                id="notes"
-                name="notes"
-                rows={4}
-                value={config.notes || ''}
-                onChange={handleTextareaChange}
-                placeholder="E.g., Fermented for 24h in the fridge..."
-                className="w-full rounded-lg border-slate-300 bg-slate-50 p-2 text-slate-900 focus:border-lime-500 focus:ring-lime-500"
-              />
-            </FormSection>
-          </ProFeatureLock>
-
-          <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Save your custom formulas with Lab Pro.">
-            <FormSection
-              title="Save Custom Preset"
-              description="Save the current configuration for future use."
-              icon={<BookmarkSquareIcon className="h-6 w-6" />}
-            >
-              <button
-                onClick={handleSavePreset}
-                className="w-full flex items-center justify-center gap-2 rounded-md bg-lime-500 py-2 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-lime-600"
-              >
-                Save as Custom Style
-              </button>
-            </FormSection>
-          </ProFeatureLock>
-        </>
+              Save as Custom Style
+            </button>
+          </FormSection>
+        </LockedTeaser>
       )}
 
       <div>
@@ -377,12 +180,12 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       </div>
 
       {!hasProAccess && (
-        <div className="mt-8 rounded-xl bg-lime-50 border border-lime-100 p-6 text-center shadow-sm">
-          <p className="text-lg font-bold text-lime-900">Stop guessing. Start mastering your dough.</p>
-          <p className="mt-1 text-sm text-lime-700">Costs less than 25¢ a day. Cheaper than a coffee.</p>
+        <div className="mt-6 rounded-lg bg-lime-50 border border-lime-100 p-4 text-center shadow-sm">
+          <p className="text-sm font-bold text-lime-900">Stop guessing. Start mastering.</p>
+          <p className="mt-0.5 text-xs text-lime-700">Professional tools for less than 25¢ a day.</p>
           <button
             onClick={onOpenPaywall}
-            className="mt-4 rounded-full bg-lime-600 px-6 py-2 text-sm font-bold text-white transition-transform hover:scale-105 hover:bg-lime-700 shadow-md shadow-lime-200"
+            className="mt-3 rounded-full bg-lime-600 px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105 hover:bg-lime-700 shadow-sm shadow-lime-200"
           >
             Upgrade to Pro
           </button>

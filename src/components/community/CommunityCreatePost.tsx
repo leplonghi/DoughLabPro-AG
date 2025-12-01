@@ -23,7 +23,7 @@ const CommunityCreatePost: React.FC = () => {
 
             <button
                 onClick={() => navigate('mylab/fornadas')}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 text-sm font-bold text-white shadow-lg shadow-slate-900/10 hover:bg-slate-800 transition-all active:scale-95"
+                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-lime-500 to-lime-700 py-3 text-sm font-bold text-white shadow-lg shadow-lime-900/10 hover:from-lime-600 hover:to-lime-800 transition-all active:scale-95"
             >
                 Go to My Lab
                 <ChevronRightIcon className="h-4 w-4" />

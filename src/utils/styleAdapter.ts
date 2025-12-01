@@ -64,11 +64,13 @@ export function adaptNewToLegacy(style: StyleDefinition): DoughStyleDefinition {
     return {
         id: style.id,
         name: style.title,
-        family: style.family,
         category: style.category.toLowerCase() as any,
-        origin: style.origin,
+        origin: {
+            country: style.origin.country,
+            region: style.origin.region || 'Unknown',
+            period: (style.origin as any).period || 'Unknown'
+        },
         history: style.history,
-        culturalContext: style.intro,
         isCanonical: style.isCanonical,
         source: style.source as any,
         // createdBy and createdAt removed from DoughStyleDefinition
@@ -76,12 +78,13 @@ export function adaptNewToLegacy(style: StyleDefinition): DoughStyleDefinition {
         // createdAt: style.createdAt,
         description: style.intro,
         isPro: false, // Default or derive
+        difficulty: style.technicalProfile.difficulty as any,
+        fermentationType: 'direct',
+        notes: [],
+        createdAt: new Date().toISOString(),
+        releaseDate: new Date().toISOString(),
 
         // New Blocks (Empty by default for adapter)
-        substyles: [],
-        regionExpressions: [],
-        seasonalVariants: [],
-        experimentalVariants: [],
         references: [],
 
         technicalProfile: {
@@ -91,52 +94,31 @@ export function adaptNewToLegacy(style: StyleDefinition): DoughStyleDefinition {
             sugar: style.technicalProfile.sugarRange,
             flourStrength: style.technicalProfile.flourStrength,
             fermentation: typeof style.technicalProfile.fermentation === 'string' ? { bulk: style.technicalProfile.fermentation, proof: 'Standard' } : style.technicalProfile.fermentation,
-            oven: {
-                temperatureC: style.technicalProfile.oven.temperatureC,
-                type: style.technicalProfile.oven.type,
-                notes: style.technicalProfile.oven.notes
-            },
+            fermentationSteps: [], // Default empty
+            ovenTemp: style.technicalProfile.oven.temperatureC,
+            ovenRecommendations: style.technicalProfile.oven.notes,
+            recommendedUse: [], // Default empty
             difficulty: style.technicalProfile.difficulty as any
         },
 
         // Legacy fields
-        technical: {
-            hydration: (style.technicalProfile.hydrationRange[0] + style.technicalProfile.hydrationRange[1]) / 2,
-            salt: (style.technicalProfile.saltRange[0] + style.technicalProfile.saltRange[1]) / 2,
-            oil: style.technicalProfile.oilRange ? (style.technicalProfile.oilRange[0] + style.technicalProfile.oilRange[1]) / 2 : 0,
-            sugar: style.technicalProfile.sugarRange ? (style.technicalProfile.sugarRange[0] + style.technicalProfile.sugarRange[1]) / 2 : 0,
-            fermentation: typeof style.technicalProfile.fermentation === 'string' ? style.technicalProfile.fermentation : style.technicalProfile.fermentation.bulk,
-            fermentationTechnique: 'DIRECT' as any, // Default
-            bakingTempC: (style.technicalProfile.oven.temperatureC[0] + style.technicalProfile.oven.temperatureC[1]) / 2
-        },
-        allowedFermentationTechniques: ['DIRECT', 'POOLISH', 'BIGA', 'SOURDOUGH'] as any, // Default
-        defaultFermentationTechnique: 'DIRECT' as any,
-        ingredients: [], // Placeholder
         tags: style.tags
     };
 }
 
 export function normalizeDoughStyle(style: any): DoughStyleDefinition {
-    // If it has substyles, assume it's already normalized or close enough
-    if (style.substyles && Array.isArray(style.substyles)) {
-        return style as DoughStyleDefinition;
-    }
-
-    // Otherwise, adapt old structure to new DoughStyleDefinition
+    // otherwise adapt old structure to new DoughStyleDefinition
     return {
         ...style,
-        substyles: [],
-        regionExpressions: [],
-        seasonalVariants: [],
-        experimentalVariants: [],
-        references: [],
+        references: style.references || [],
         // Ensure technicalProfile exists if it was missing or different
         technicalProfile: style.technicalProfile || {
             hydration: [60, 60],
             salt: [2, 2],
-            fermentation: { bulk: 'Standard', proof: 'Standard' },
-            oven: { temperatureC: [250, 250], type: 'home_electric' },
-            difficulty: 'Medium'
+            fermentationSteps: [],
+            ovenTemp: [250, 250],
+            difficulty: 'Medium',
+            recommendedUse: []
         }
-    };
+    } as DoughStyleDefinition;
 }

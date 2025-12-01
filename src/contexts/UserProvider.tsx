@@ -157,6 +157,25 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const email = authUser.email ? authUser.email.toLowerCase() : '';
         const isAdminEmail = email === 'leplonghi@gmail.com';
 
+        // Auto-fix Firestore for admin
+        if (isAdminEmail && (profileData.plan !== 'lab_pro' || !profileData.isAdmin)) {
+          console.log("Auto-upgrading admin user in Firestore...");
+          try {
+            await updateDoc(ref, {
+              isAdmin: true,
+              plan: 'lab_pro',
+              isPro: true,
+              updatedAt: new Date().toISOString()
+            });
+            // Update local profileData to reflect the change immediately
+            profileData.isAdmin = true;
+            profileData.plan = 'lab_pro';
+            profileData.isPro = true;
+          } catch (err) {
+            console.error("Failed to auto-upgrade admin:", err);
+          }
+        }
+
         const plan: PlanId =
           profileData.plan === "lab_pro" ||
             profileData.plan === "pro" ||
@@ -174,7 +193,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           avatar: profileData.avatar || authUser.photoURL || undefined,
           plan, // Normalized plan
           isPro: plan === 'lab_pro', // Derived from plan
-          isAdmin: !!profileData.isAdmin || authUser.email === 'leplonghi@gmail.com',
+          isAdmin: !!profileData.isAdmin || isAdminEmail,
           trialEndsAt: profileData.trialEndsAt,
           proSince: profileData.proSince,
           proExpiresAt: profileData.proExpiresAt,

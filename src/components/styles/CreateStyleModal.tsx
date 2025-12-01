@@ -38,17 +38,20 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                 ...prev,
                 name: defaultValues.name || '',
                 description: defaultValues.description || '',
+                // @ts-ignore
                 family: defaultValues.family || 'My Custom Styles',
                 category: defaultValues.category || 'pizza',
-                hydration: defaultValues.technical?.hydration || 65,
-                salt: defaultValues.technical?.salt || 2.0,
-                oil: defaultValues.technical?.oil || 0,
-                sugar: defaultValues.technical?.sugar || 0,
-                fermentationTime: defaultValues.technical?.fermentation || '24h',
-                bakingTempC: defaultValues.technical?.bakingTempC || 250,
-                country: defaultValues.origin?.country || defaultValues.country || 'Custom',
+                hydration: defaultValues.technicalProfile?.hydration[0] || 65,
+                salt: defaultValues.technicalProfile?.salt[0] || 2.0,
+                oil: defaultValues.technicalProfile?.oil[0] || 0,
+                sugar: defaultValues.technicalProfile?.sugar[0] || 0,
+                // @ts-ignore
+                fermentationTime: defaultValues.technicalProfile?.fermentation?.bulk || '24h',
+                bakingTempC: defaultValues.technicalProfile?.ovenTemp[0] || 250,
+                country: defaultValues.origin?.country || 'Custom',
                 region: defaultValues.origin?.region || '',
                 history: defaultValues.history || '',
+                // @ts-ignore
                 culturalContext: defaultValues.culturalContext || '',
                 source: (defaultValues.source as any) || 'user_manual',
             }));
@@ -88,51 +91,36 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
         const newStyle: Omit<DoughStyleDefinition, 'id' | 'createdAt'> = {
             name: formData.name,
             description: formData.description,
-            family: formData.family,
             category: formData.category,
+            family: formData.family,
             isCanonical: false,
             source: formData.source,
-            origin: { country: formData.country, region: formData.region },
+            origin: { country: formData.country, region: formData.region, period: 'Contemporary' },
             history: formData.history || 'User created style.',
             culturalContext: formData.culturalContext,
             isPro: false,
-            recipeStyle: RecipeStyle.NEAPOLITAN, // Default placeholder mapping
-            technical: {
-                hydration: formData.hydration,
-                salt: formData.salt,
-                oil: formData.oil,
-                sugar: formData.sugar,
-                fermentation: formData.fermentationTime,
-                fermentationTechnique: FermentationTechnique.DIRECT,
-                bakingTempC: formData.bakingTempC,
-            },
-            allowedFermentationTechniques: [FermentationTechnique.DIRECT, FermentationTechnique.POOLISH, FermentationTechnique.BIGA],
-            defaultFermentationTechnique: FermentationTechnique.DIRECT,
-            ingredients: [],
+            recipeStyle: RecipeStyle.NEAPOLITAN,
             technicalProfile: {
                 hydration: [Math.max(0, formData.hydration - 2), formData.hydration + 2],
                 salt: [Math.max(0, formData.salt - 0.2), formData.salt + 0.2],
                 oil: [formData.oil, formData.oil],
                 sugar: [formData.sugar, formData.sugar],
                 flourStrength: "Custom",
+                fermentationSteps: [],
+                ovenTemp: [formData.bakingTempC, formData.bakingTempC],
+                recommendedUse: [],
+                difficulty: "Medium",
                 fermentation: {
                     bulk: "Custom",
                     proof: "Custom"
-                },
-                oven: {
-                    temperatureC: [formData.bakingTempC, formData.bakingTempC],
-                    type: 'Custom',
-                    notes: `${formData.bakingTempC}°C`
-                },
-                difficulty: "Medium"
+                }
             },
-            // Preserve references if passed in defaultValues (from AI)
             references: defaultValues?.references || [],
-            substyles: [],
-            regionExpressions: [],
-            seasonalVariants: [],
-            experimentalVariants: [],
             tags: [],
+            difficulty: 'Medium',
+            fermentationType: 'direct',
+            notes: [],
+            releaseDate: new Date().toISOString(),
         };
 
         onSave(newStyle);
@@ -142,7 +130,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-lime-950/80 backdrop-blur-sm p-4" onClick={onClose}>
             <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]" onClick={e => e.stopPropagation()}>
                 <div className="flex items-center justify-between p-4 border-b border-slate-100 flex-shrink-0">
                     <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
@@ -247,7 +235,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
 
                 <div className="p-4 border-t border-slate-100 flex justify-end gap-2 flex-shrink-0 bg-white">
                     <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button onClick={handleSubmit} className="px-6 py-2 text-sm font-bold text-white bg-lime-500 hover:bg-lime-600 rounded-lg shadow-sm">
+                    <button onClick={handleSubmit} className="px-6 py-2 text-sm font-bold text-white bg-gradient-to-br from-lime-500 to-lime-700 hover:from-lime-600 hover:to-lime-800 rounded-lg shadow-sm">
                         {formData.source === 'user_ai' ? 'Save Generated Style' : 'Save Style'}
                     </button>
                 </div>

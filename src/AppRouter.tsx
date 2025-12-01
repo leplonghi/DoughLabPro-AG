@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import RequireAuth from '@/components/RequireAuth';
-import RequirePro from '@/components/RequirePro';
+import { RequireFeature } from '@/components/auth/RequireFeature';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import { useUser } from '@/contexts/UserProvider';
 import { useRouter } from '@/contexts/RouterContext';
@@ -10,6 +10,7 @@ import { FLOURS } from '@/flours-constants';
 import { STYLES_DATA } from '@/data/stylesData';
 import AuthModal from '@/components/AuthModal';
 import { LearnProvider } from '@/contexts/LearnContext';
+import { FeatureKey } from '@/permissions';
 
 // Lazy Load Pages
 const CalculatorPage = React.lazy(() => import('@/pages/CalculatorPage'));
@@ -94,8 +95,10 @@ const ConsistencyListPage = React.lazy(() => import('@/pages/mylab/ConsistencyLi
 const ConsistencyDetailPage = React.lazy(() => import('@/pages/mylab/ConsistencyDetailPage'));
 
 // Feature Pages
-const CommunityPage = React.lazy(() => import('@/pages/CommunityPage'));
-const CommunityBatchDetailPage = React.lazy(() => import('@/pages/CommunityBatchDetailPage'));
+const CommunityPage = React.lazy(() => import('@/community/pages/CommunityPage').then(module => ({ default: module.CommunityPage })));
+const CommunityPostPage = React.lazy(() => import('@/community/pages/CommunityPostPage').then(module => ({ default: module.CommunityPostPage })));
+const CommunityUserProfilePage = React.lazy(() => import('@/community/pages/CommunityUserProfilePage').then(module => ({ default: module.CommunityUserProfilePage })));
+const CommunityCreatePostPage = React.lazy(() => import('@/community/pages/CommunityCreatePostPage').then(module => ({ default: module.CommunityCreatePostPage })));
 const ProActivatedPage = React.lazy(() => import('@/pages/pro/ProActivatedPage'));
 const DoughbotPage = React.lazy(() => import('@/pages/DoughbotPage'));
 const ToolsPage = React.lazy(() => import('@/pages/ToolsPage'));
@@ -129,6 +132,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
         unitSystem,
         calculatorMode,
         setCalculatorMode,
+        calculationMode,
+        setCalculationMode,
         handleLoadAndNavigate,
         handleLoadStyleFromModule,
         handleLoadProRecipe
@@ -146,11 +151,11 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
         </RequireAuth>
     );
 
-    const protectPro = (component: React.ReactNode) => (
+    const protectWithFeature = (component: React.ReactNode, featureKey: FeatureKey) => (
         <RequireAuth onOpenAuth={() => setIsAuthModalOpen(true)}>
-            <RequirePro>
+            <RequireFeature featureKey={featureKey}>
                 {component}
-            </RequirePro>
+            </RequireFeature>
         </RequireAuth>
     );
 
@@ -162,7 +167,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             return protect(<LevainDetailPage levainId={routeParams} onNavigate={navigate} />);
         }
         if (route === 'mylab/consistency/detail' && routeParams) {
-            return protectPro(<ConsistencyDetailPage seriesId={routeParams} onNavigate={navigate} />);
+            return protectWithFeature(<ConsistencyDetailPage seriesId={routeParams} onNavigate={navigate} />, 'mylab.unlimited_advanced');
         }
         if (route === 'styles/detail' && routeParams) {
             const style = STYLES_DATA.find(s => s.id === routeParams);
@@ -171,8 +176,16 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             }
         }
 
-        if (route === 'community/detail' && routeParams) {
-            return protect(<CommunityBatchDetailPage batchId={routeParams} onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} onNavigate={navigate} />);
+        if ((route === 'community/detail' || route === 'community/post') && routeParams) {
+            return protect(<CommunityPostPage postId={routeParams} />);
+        }
+
+        if (route === 'community/user' && routeParams) {
+            return protect(<CommunityUserProfilePage uid={routeParams} />);
+        }
+
+        if (route === 'community/create') {
+            return protect(<CommunityCreatePostPage />);
         }
 
         // Dynamic Article Route
@@ -195,33 +208,33 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                     />
                 );
             case 'mylab/receitas':
-                return protectPro(<MyLabRecipesPage onNavigate={navigate} />);
+                return protectWithFeature(<MyLabRecipesPage onNavigate={navigate} />, 'mylab.unlimited_advanced');
             case 'mylab/receitas/comparar':
-                return protectPro(<CompareRecipesPage onNavigate={navigate} onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} />);
+                return protectWithFeature(<CompareRecipesPage onNavigate={navigate} onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} />, 'mylab.unlimited_advanced');
             case 'mylab/massas':
-                return protectPro(<MyLabDoughsPage onNavigate={navigate} />);
+                return protectWithFeature(<MyLabDoughsPage onNavigate={navigate} />, 'mylab.unlimited_advanced');
             case 'mylab/flours':
             case 'mylab/farinhas': // Legacy
-                return protectPro(<MyLabFloursPage onNavigate={navigate} />);
+                return protectWithFeature(<MyLabFloursPage onNavigate={navigate} />, 'mylab.unlimited_advanced');
             case 'mylab/bakes':
             case 'mylab/fornadas': // Legacy
                 return protect(<MyLabBatchesPage onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} onNavigate={navigate} onCreateDraftBatch={onCreateDraftBatch} />);
             case 'mylab/diario-sensorial':
-                return protectPro(<MyLabSensoryDiaryPage onNavigate={navigate} />);
+                return protectWithFeature(<MyLabSensoryDiaryPage onNavigate={navigate} />, 'mylab.unlimited_advanced');
             case 'mylab/comparisons':
             case 'mylab/comparacoes': // Legacy
                 return protect(<MyLabComparisonsPage onNavigate={navigate} onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)} />);
             case 'mylab/insights':
                 return protect(<MyLabInsightsPage onNavigate={navigate} />);
             case 'mylab/timeline':
-                return protect(<TimelinePage onNavigate={navigate} />);
+                return protectWithFeature(<TimelinePage onNavigate={navigate} />, 'mylab.timeline');
             case 'mylab/goals':
             case 'mylab/objetivos': // Legacy
-                return protectPro(<ObjectivesPage onNavigate={navigate} />);
+                return protectWithFeature(<ObjectivesPage onNavigate={navigate} />, 'mylab.unlimited_advanced');
             case 'mylab/consistency':
-                return protectPro(<ConsistencyListPage onNavigate={navigate} />);
+                return protectWithFeature(<ConsistencyListPage onNavigate={navigate} />, 'mylab.unlimited_advanced');
             case 'mylab/levain-pet':
-                return protectPro(<MyLabLevainPetPage />);
+                return protectWithFeature(<MyLabLevainPetPage />, 'levain.lab_full');
             case 'mylab/levain':
                 return protect(<LevainListPage onNavigate={navigate} />);
             case 'plans':
@@ -350,9 +363,9 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             case 'tools':
                 return protect(<ToolsPage onNavigate={navigate} />);
             case 'tools/oven-profiler':
-                return protectPro(<OvenAnalysisPage />);
+                return protectWithFeature(<OvenAnalysisPage />, 'tools.oven_analysis');
             case 'tools/doughbot':
-                return protectPro(<DoughbotPage />);
+                return protectWithFeature(<DoughbotPage />, 'tools.doughbot');
 
             case 'calculator':
                 return protect(
@@ -371,8 +384,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                         onStartBatch={onStartBatch}
                         defaultOven={defaultOven}
                         selectedFlour={selectedFlour}
-                        calculationMode={calculatorMode}
-                        onCalculationModeChange={setCalculatorMode}
+                        calculationMode={calculationMode}
+                        onCalculationModeChange={setCalculationMode}
                         calculatorMode={calculatorMode}
                         onCalculatorModeChange={setCalculatorMode}
                         hasProAccess={hasProAccess}
@@ -380,7 +393,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                     />
                 );
             case 'community':
-                return protect(<CommunityPage onLoadInspiration={(c) => handleLoadAndNavigate(c, navigate)} onNavigate={navigate} />);
+                return protect(<CommunityPage />);
             default:
                 return protect(
                     <MyLabPage

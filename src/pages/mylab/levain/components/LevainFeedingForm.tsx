@@ -5,15 +5,15 @@ import { useToast } from '@/components/ToastProvider';
 import { CloseIcon, FlourIcon, WaterIcon, FireIcon, WeightIcon, CalculatorIcon } from '@/components/ui/Icons';
 
 interface LevainFeedingFormProps {
-  isOpen: boolean;
-  onClose: () => void;
-  levainId: string;
+    isOpen: boolean;
+    onClose: () => void;
+    levainId: string;
 }
 
 const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, levainId }) => {
     const { addFeedingEvent } = useUser();
     const { addToast } = useToast();
-    
+
     const [starterWeight, setStarterWeight] = useState<number>(0);
     const [flourAmount, setFlourAmount] = useState<number>(50);
     const [waterAmount, setWaterAmount] = useState<number>(50);
@@ -31,7 +31,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
             setRatio('1:1:1');
         }
     }, [isOpen]);
-    
+
     const applyRatio = (rFlour: number, rWater: number) => {
         if (starterWeight > 0) {
             setFlourAmount(starterWeight * rFlour);
@@ -47,7 +47,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         addFeedingEvent(levainId, {
             flourAmount,
             waterAmount,
@@ -65,7 +65,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
 
     return (
         <div
-            className="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm animate-[fadeIn_0.3s_ease-out]"
+            className="fixed inset-0 z-40 flex items-center justify-center bg-lime-950/60 backdrop-blur-sm animate-[fadeIn_0.3s_ease-out]"
             onClick={onClose}
             role="dialog"
             aria-modal="true"
@@ -74,7 +74,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                 className="relative mx-4 w-full max-w-lg rounded-2xl bg-white shadow-2xl overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
             >
-                 <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/50 px-6 py-4">
+                <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/50 px-6 py-4">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-lime-100 rounded-lg text-lime-600">
                             <WeightIcon className="h-5 w-5" />
@@ -89,44 +89,44 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-6">
-                    
+
                     {/* Quick Ratios */}
                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                         <div className="flex items-center gap-2 mb-3">
-                             <CalculatorIcon className="h-4 w-4 text-slate-500" />
-                             <span className="text-xs font-bold uppercase tracking-wide text-slate-500">Ratio Calculator</span>
+                            <CalculatorIcon className="h-4 w-4 text-slate-500" />
+                            <span className="text-xs font-bold uppercase tracking-wide text-slate-500">Ratio Calculator</span>
                         </div>
-                        
+
                         <div className="flex items-center gap-4 mb-4">
-                             <div className="flex-1">
+                            <div className="flex-1">
                                 <label className="block text-xs text-slate-500 mb-1">Current Starter (g)</label>
-                                <input 
-                                    type="number" 
-                                    value={starterWeight || ''} 
-                                    onChange={e => setStarterWeight(Number(e.target.value))} 
-                                    placeholder="Optional" 
-                                    className="w-full rounded-md border-slate-300 text-sm py-1.5" 
+                                <input
+                                    type="number"
+                                    value={starterWeight || ''}
+                                    onChange={e => setStarterWeight(Number(e.target.value))}
+                                    placeholder="Optional"
+                                    className="w-full rounded-md border-slate-300 text-sm py-1.5"
                                 />
-                             </div>
-                             <div className="flex gap-2 items-end">
-                                 <button type="button" onClick={() => applyRatio(1, 1)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:1:1</button>
-                                 <button type="button" onClick={() => applyRatio(2, 2)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:2:2</button>
-                                 <button type="button" onClick={() => applyRatio(5, 5)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:5:5</button>
-                             </div>
+                            </div>
+                            <div className="flex gap-2 items-end">
+                                <button type="button" onClick={() => applyRatio(1, 1)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:1:1</button>
+                                <button type="button" onClick={() => applyRatio(2, 2)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:2:2</button>
+                                <button type="button" onClick={() => applyRatio(5, 5)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:5:5</button>
+                            </div>
                         </div>
                     </div>
 
                     {/* Inputs Grid */}
                     <div className="grid grid-cols-2 gap-4">
-                         <div className="space-y-1.5">
+                        <div className="space-y-1.5">
                             <label className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
                                 <FlourIcon className="h-4 w-4 text-amber-500" /> Flour (g)
                             </label>
-                            <input 
+                            <input
                                 type="number" required
-                                value={flourAmount} 
-                                onChange={e => setFlourAmount(Number(e.target.value))} 
-                                className="w-full rounded-lg border-slate-300 bg-amber-50/30 focus:border-amber-500 focus:ring-amber-500 font-mono text-lg text-slate-800" 
+                                value={flourAmount}
+                                onChange={e => setFlourAmount(Number(e.target.value))}
+                                className="w-full rounded-lg border-slate-300 bg-amber-50/30 focus:border-amber-500 focus:ring-amber-500 font-mono text-lg text-slate-800"
                             />
                         </div>
 
@@ -134,11 +134,11 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                             <label className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
                                 <WaterIcon className="h-4 w-4 text-blue-500" /> Water (g)
                             </label>
-                            <input 
+                            <input
                                 type="number" required
-                                value={waterAmount} 
-                                onChange={e => setWaterAmount(Number(e.target.value))} 
-                                className="w-full rounded-lg border-slate-300 bg-blue-50/30 focus:border-blue-500 focus:ring-blue-500 font-mono text-lg text-slate-800" 
+                                value={waterAmount}
+                                onChange={e => setWaterAmount(Number(e.target.value))}
+                                className="w-full rounded-lg border-slate-300 bg-blue-50/30 focus:border-blue-500 focus:ring-blue-500 font-mono text-lg text-slate-800"
                             />
                         </div>
                     </div>
@@ -147,9 +147,9 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                     <div className="grid grid-cols-2 gap-4 pt-2">
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Flour Type</label>
-                            <select 
-                                value={flourType} 
-                                onChange={e => setFlourType(e.target.value)} 
+                            <select
+                                value={flourType}
+                                onChange={e => setFlourType(e.target.value)}
                                 className="w-full rounded-md border-slate-300 text-sm text-slate-700 focus:border-lime-500 focus:ring-lime-500"
                             >
                                 <option>White Flour</option>
@@ -162,29 +162,29 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                             <label className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
                                 <FireIcon className="h-3 w-3" /> Temp (°C)
                             </label>
-                            <input 
-                                type="number" 
-                                value={ambientTemperature || ''} 
-                                onChange={e => setAmbientTemperature(Number(e.target.value))} 
-                                placeholder="24" 
-                                className="w-full rounded-md border-slate-300 text-sm focus:border-lime-500 focus:ring-lime-500 text-slate-700" 
+                            <input
+                                type="number"
+                                value={ambientTemperature || ''}
+                                onChange={e => setAmbientTemperature(Number(e.target.value))}
+                                placeholder="24"
+                                className="w-full rounded-md border-slate-300 text-sm focus:border-lime-500 focus:ring-lime-500 text-slate-700"
                             />
                         </div>
                     </div>
-                    
+
                     <div>
                         <label className="block text-sm font-medium text-slate-700 mb-1">Ratio Used</label>
-                        <input 
-                            type="text" 
-                            value={ratio} 
-                            onChange={e => setRatio(e.target.value)} 
-                            className="w-full rounded-md border-slate-300 text-sm text-slate-600 bg-slate-50" 
+                        <input
+                            type="text"
+                            value={ratio}
+                            onChange={e => setRatio(e.target.value)}
+                            className="w-full rounded-md border-slate-300 text-sm text-slate-600 bg-slate-50"
                         />
                     </div>
 
-                     <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
+                    <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                         <button type="button" onClick={onClose} className="rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors">Cancel</button>
-                        <button type="submit" className="rounded-lg bg-lime-500 px-6 py-2 text-sm font-bold text-white shadow-md shadow-lime-200 hover:bg-lime-600 transition-all active:scale-95">Confirm Feeding</button>
+                        <button type="submit" className="rounded-lg bg-gradient-to-br from-lime-500 to-lime-700 px-6 py-2 text-sm font-bold text-white shadow-md shadow-lime-200 hover:from-lime-600 hover:to-lime-800 transition-all active:scale-95">Confirm Feeding</button>
                     </div>
                 </form>
             </div>

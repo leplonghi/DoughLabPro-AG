@@ -5,7 +5,7 @@ import ChoiceButton from '@/components/ui/ChoiceButton';
 import FormSection from '@/components/calculator/AccordionSection';
 import SliderInput from '@/components/ui/SliderInput';
 import { FermentationIcon, LockClosedIcon, InfoIcon } from '@/components/ui/Icons';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import { getArticleById } from '@/data/learn';
 
 interface FermentationSectionProps {
@@ -95,14 +95,14 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
             </div>
 
             <div className="relative group">
-              <ProFeatureLock featureKey="calculator.preferments_advanced" customMessage="Poolish Preferment is a Pro feature.">
+              <LockFeature featureKey="calculator.preferments_advanced" customMessage="Poolish Preferment is a Pro feature.">
                 <ChoiceButton
                   active={config.fermentationTechnique === FermentationTechnique.POOLISH}
-                  onClick={() => isAllowed(FermentationTechnique.POOLISH) && onConfigChange({ fermentationTechnique: FermentationTechnique.POOLISH })}
+                  onClick={() => isAllowed(FermentationTechnique.POOLISH) && onConfigChange({ fermentationTechnique: FermentationTechnique.POOLISH, prefermentFlourPercentage: 30 })}
                   className={!isAllowed(FermentationTechnique.POOLISH) ? "opacity-50 cursor-not-allowed" : ""}
                   label="Poolish"
                 />
-              </ProFeatureLock>
+              </LockFeature>
               {!isAllowed(FermentationTechnique.POOLISH) && (
                 <div className="absolute -top-2 -right-2 bg-slate-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
@@ -111,14 +111,14 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
             </div>
 
             <div className="relative group">
-              <ProFeatureLock featureKey="calculator.preferments_advanced" customMessage="Biga Preferment is a Pro feature.">
+              <LockFeature featureKey="calculator.preferments_advanced" customMessage="Biga Preferment is a Pro feature.">
                 <ChoiceButton
                   active={config.fermentationTechnique === FermentationTechnique.BIGA}
-                  onClick={() => isAllowed(FermentationTechnique.BIGA) && onConfigChange({ fermentationTechnique: FermentationTechnique.BIGA })}
+                  onClick={() => isAllowed(FermentationTechnique.BIGA) && onConfigChange({ fermentationTechnique: FermentationTechnique.BIGA, prefermentFlourPercentage: 50 })}
                   className={!isAllowed(FermentationTechnique.BIGA) ? "opacity-50 cursor-not-allowed" : ""}
                   label="Biga"
                 />
-              </ProFeatureLock>
+              </LockFeature>
               {!isAllowed(FermentationTechnique.BIGA) && (
                 <div className="absolute -top-2 -right-2 bg-slate-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
                   <InfoIcon className="h-2.5 w-2.5" /> N/A

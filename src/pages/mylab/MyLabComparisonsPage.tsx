@@ -2,7 +2,7 @@ import React from 'react';
 import { Page, DoughConfig } from '@/types';
 import { ChartBarIcon, PlusCircleIcon } from '@/components/ui/Icons';
 import MyLabLayout from './MyLabLayout';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 
 interface MyLabComparisonsPageProps {
     onNavigate: (page: Page) => void;
@@ -13,7 +13,7 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
     return (
         <MyLabLayout activePage="mylab/comparacoes" onNavigate={onNavigate}>
             <div className="animate-fade-in">
-                <ProFeatureLock featureKey="mylab.unlimited_advanced" customMessage="Unlock Batch Comparisons with Lab Pro.">
+                <LockFeature featureKey="mylab.unlimited_advanced" customMessage="Unlock Batch Comparisons with Lab Pro.">
                     <div className="flex items-center justify-between mb-8">
                         <div>
                             <h1 className="text-3xl font-bold text-slate-900 ">Comparisons</h1>
@@ -34,7 +34,7 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                             Select two or more batches to compare their outcomes and learn what works best.
                         </p>
                     </div>
-                </ProFeatureLock>
+                </LockFeature>
             </div>
         </MyLabLayout>
     );

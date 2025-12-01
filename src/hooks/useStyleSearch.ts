@@ -49,9 +49,9 @@ export function useStyleSearch({ styles }: UseStyleSearchProps) {
             const matchesFavorite = showFavorites ? isFavorite(style.id) : true;
 
             // Advanced Filters (safely checking properties that might be optional on legacy types)
-            const matchesSubstyles = filterSubstyles ? (style.substyles && style.substyles.length > 0) : true;
-            const matchesRegional = filterRegional ? (style.regionExpressions && style.regionExpressions.length > 0) : true;
-            const matchesSeasonal = filterSeasonal ? (style.seasonalVariants && style.seasonalVariants.length > 0) : true;
+            const matchesSubstyles = true; // Legacy filter disabled
+            const matchesRegional = true; // Legacy filter disabled
+            const matchesSeasonal = true; // Legacy filter disabled
 
             return matchesSearch && matchesCategory && matchesTag && matchesFavorite && matchesSubstyles && matchesRegional && matchesSeasonal;
         });
@@ -69,8 +69,8 @@ export function useStyleSearch({ styles }: UseStyleSearchProps) {
                     comparison = dateA - dateB;
                     break;
                 case 'hydration':
-                    const hydA = (a.technicalProfile?.hydration[0] || a.technical?.hydration || 0);
-                    const hydB = (b.technicalProfile?.hydration[0] || b.technical?.hydration || 0);
+                    const hydA = (a.technicalProfile?.hydration[0] || 0);
+                    const hydB = (b.technicalProfile?.hydration[0] || 0);
                     comparison = hydA - hydB;
                     break;
             }

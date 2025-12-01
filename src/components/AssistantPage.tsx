@@ -11,6 +11,7 @@ interface AssistantPageProps {
   lastBatch?: SavedDoughConfig;
   selectedFlour?: FlourDefinition;
   defaultOven?: Oven;
+  userPlan?: 'free' | 'pro';
   t: (key: string, replacements?: { [key: string]: string | number | undefined }) => string;
 }
 
@@ -49,6 +50,7 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
         lastBatch: props.lastBatch,
         flour: props.selectedFlour,
         oven: props.defaultOven,
+        userPlan: props.userPlan,
         t,
       });
       setMessages(prev => [...prev, { role: 'assistant', content: response }]);
@@ -66,20 +68,20 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
 
     const bubbleClasses = isUser
       ? 'bg-lime-500 text-white self-end'
-      : isError 
+      : isError
         ? 'bg-red-100 text-red-800 self-start'
         : 'bg-slate-200 text-slate-800 self-start';
 
     const icon = isUser ? <UserCircleIcon className="h-6 w-6" /> : <SparklesIcon className="h-6 w-6 text-lime-500" />;
 
     return (
-        <div className={`flex items-start gap-3 w-full ${isUser ? 'justify-end' : 'justify-start'}`}>
-            {!isUser && <div className="flex-shrink-0">{icon}</div>}
-            <div className={`max-w-md rounded-2xl p-4 ${bubbleClasses}`}>
-                <p className="whitespace-pre-wrap">{message.content}</p>
-            </div>
-             {isUser && <div className="flex-shrink-0">{icon}</div>}
+      <div className={`flex items-start gap-3 w-full ${isUser ? 'justify-end' : 'justify-start'}`}>
+        {!isUser && <div className="flex-shrink-0">{icon}</div>}
+        <div className={`max-w-md rounded-2xl p-4 ${bubbleClasses}`}>
+          <p className="whitespace-pre-wrap">{message.content}</p>
         </div>
+        {isUser && <div className="flex-shrink-0">{icon}</div>}
+      </div>
     );
   };
 
@@ -100,8 +102,8 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
           <div className="flex items-start gap-3 w-full justify-start">
             <div className="flex-shrink-0"><SparklesIcon className="h-6 w-6 text-lime-500" /></div>
             <div className="max-w-md rounded-2xl p-4 bg-slate-200 flex items-center gap-2">
-                <SpinnerIcon className="h-5 w-5 animate-spin" />
-                <span className="text-sm font-medium">{t('common.thinking')}</span>
+              <SpinnerIcon className="h-5 w-5 animate-spin" />
+              <span className="text-sm font-medium">{t('common.thinking')}</span>
             </div>
           </div>
         )}

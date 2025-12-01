@@ -14,6 +14,7 @@ import {
     ChartBarIcon,
     WrenchScrewdriverIcon
 } from '@/components/ui/Icons';
+import { AdCard } from '@/marketing/ads/AdCard';
 
 // --- Categories Configuration ---
 const CATEGORIES = [
@@ -286,7 +287,8 @@ const LearnHomePage: React.FC = () => {
                     </form>
                 </div>
             </div>
-        </LibraryPageLayout >
+            <AdCard context="learn_home" className="mx-4 sm:mx-6 mb-8" />
+        </LibraryPageLayout>
     );
 };
 

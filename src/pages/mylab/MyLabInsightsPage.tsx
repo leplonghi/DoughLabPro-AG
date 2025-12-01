@@ -1,7 +1,7 @@
 import React from 'react';
 import { Page } from '../../types';
 import MyLabLayout from './MyLabLayout';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { LockFeature } from '@/components/auth/LockFeature';
 import { ChartBarIcon } from '@/components/ui/Icons';
 
 const InsightCard: React.FC<{
@@ -32,7 +32,7 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                     </p>
                 </div>
 
-                <ProFeatureLock
+                <LockFeature
                     featureKey="mylab.unlimited_advanced"
                     customMessage="Unlock deep insights into your baking habits, flour usage, and sensory notes with Lab Pro."
                     className="min-h-[25rem] flex items-center justify-center rounded-2xl overflow-hidden"
@@ -75,7 +75,7 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                             onLinkClick={() => onNavigate('mylab/comparacoes')}
                         />
                     </div>
-                </ProFeatureLock>
+                </LockFeature>
             </div>
         </MyLabLayout>
     );

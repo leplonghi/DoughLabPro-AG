@@ -33,7 +33,7 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
+                className="absolute inset-0 bg-lime-950/60 backdrop-blur-sm transition-opacity"
                 onClick={onClose}
             ></div>
 
@@ -79,7 +79,7 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
 
                     <button
                         onClick={handleUpgrade}
-                        className="w-full py-3.5 bg-lime-600 hover:bg-lime-700 text-white font-bold rounded-xl shadow-lg shadow-lime-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] ring-1 ring-lime-400/50"
+                        className="w-full py-3.5 bg-gradient-to-br from-lime-500 to-lime-700 hover:from-lime-600 hover:to-lime-800 text-white font-bold rounded-xl shadow-lg shadow-lime-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] ring-1 ring-lime-400/50"
                     >
                         Start Free Trial
                     </button>

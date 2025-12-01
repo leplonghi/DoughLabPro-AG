@@ -1,118 +1,96 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Levain, Page } from '@/types';
-import { useTranslation } from '@/i18n';
-import { BeakerIcon, PlusCircleIcon, DownloadIcon, ShareIcon, LockClosedIcon, StarIcon } from '@/components/ui/Icons';
+import React, { useState, useRef } from 'react';
 import { useUser } from '@/contexts/UserProvider';
-import LevainModal from '@/components/LevainModal';
-import { logEvent } from '@/services/analytics';
-import { exportLevainData, importLevainData } from '@/services/levainDataService';
-import { useToast } from '@/components/ToastProvider';
+import { Page, Levain } from '@/types';
+import { PlusCircleIcon, BeakerIcon, DownloadIcon, ShareIcon } from '@/components/ui/Icons';
 import MyLabLayout from '../MyLabLayout';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import LevainModal from '@/components/LevainModal';
+import { importLevains, exportLevains } from '@/services/storageService';
+import { useToast } from '@/components/ToastProvider';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import { AdCard } from "@/marketing/ads/AdCard";
 
 interface LevainListPageProps {
     onNavigate: (page: Page, params?: string) => void;
 }
 
+const statusStyles: Record<string, { color: string, text: string }> = {
+    ativo: { color: 'bg-lime-100 text-lime-700', text: 'Active' },
+    precisa_atencao: { color: 'bg-orange-100 text-orange-700', text: 'Hungry' },
+    descanso: { color: 'bg-blue-100 text-blue-700', text: 'Hibernating' },
+    arquivado: { color: 'bg-slate-100 text-slate-500', text: 'Discarded' },
+};
+
+const formatTimeSince = (dateString: string) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60));
+
+    if (diffInHours < 24) return `${diffInHours}h`;
+    return `${Math.floor(diffInHours / 24)}d`;
+};
+
 const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
-    const { t } = useTranslation();
-    const { user, levains, addLevain, importLevains: importLevainsToContext, openPaywall } = useUser();
+    const { user, levains, addLevain, updateLevain } = useUser();
     const { addToast } = useToast();
-    const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
-
     const plan = getCurrentPlan(user);
 
-    useEffect(() => {
-        if (user) {
-            logEvent('levain_pet_opened', { userId: user.email });
-        }
-    }, [user]);
-
-    const handleSaveLevain = (levainData: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory'> | (Partial<Levain> & { id: string })) => {
-        // This component only creates levains.
-        if (!('id' in levainData)) {
-            const { createdAt, status, ...restOfData } = levainData;
-            addLevain(restOfData as Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'>);
-        }
-        setIsModalOpen(false);
-    };
-
     const handleAddLevainClick = () => {
-        if (!canUseFeature(plan, 'levain.lab_full') && levains.length >= 1) {
-            openPaywall('levain');
+        if (!canUseFeature(plan, 'levain.multipleLevains') && levains.length >= 1) {
+            // This should be handled by LockedTeaser now, but keeping as fallback
             return;
         }
         setIsModalOpen(true);
-    }
-
-    const formatTimeSince = (dateString: string) => {
-        if (!dateString) return 'never';
-        const seconds = Math.floor((new Date().getTime() - new Date(dateString).getTime()) / 1000);
-        let interval = seconds / 31536000;
-        if (interval > 1) return `approx. ${Math.floor(interval)} years`;
-        interval = seconds / 2592000;
-        if (interval > 1) return `approx. ${Math.floor(interval)} months`;
-        interval = seconds / 86400;
-        if (interval > 1) return `approx. ${Math.floor(interval)} days`;
-        interval = seconds / 3600;
-        if (interval > 1) return `approx. ${Math.floor(interval)} hours`;
-        interval = seconds / 60;
-        if (interval > 1) return `approx. ${Math.floor(interval)} minutes`;
-        return `approx. ${Math.floor(seconds)} seconds`;
     };
 
-    const handleExport = () => {
-        const jsonString = exportLevainData(levains);
-        const blob = new Blob([jsonString], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `doughlabpro_levain_backup_${new Date().toISOString().split('T')[0]}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        addToast('Data exported successfully.', 'success');
+    const handleSaveLevain = async (levainData: Omit<Levain, 'id' | 'createdAt' | 'updatedAt'>) => {
+        try {
+            await addLevain(levainData);
+            addToast('Levain created successfully', 'success');
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error(error);
+            addToast('Failed to create levain', 'error');
+        }
     };
 
     const handleImportClick = () => {
         fileInputRef.current?.click();
     };
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const text = e.target?.result;
-            if (typeof text === 'string') {
-                const result = importLevainData(text);
-                if (result.error) {
-                    addToast(result.error, 'error');
-                } else {
-                    importLevainsToContext(result.newLevains);
-                    addToast('Levain Pet data imported successfully.', 'success');
-                }
+        try {
+            const importedLevains = await importLevains(file);
+            for (const levain of importedLevains) {
+                // Remove ID to create new entry
+                const { id, ...data } = levain;
+                await addLevain(data);
             }
-        };
-        reader.readAsText(file);
-        event.target.value = ''; // Reset file input
+            addToast(`Imported ${importedLevains.length} levains successfully`, 'success');
+        } catch (error) {
+            console.error(error);
+            addToast('Failed to import levains', 'error');
+        }
+        if (fileInputRef.current) fileInputRef.current.value = '';
     };
 
-    const statusStyles = {
-        ativo: { text: 'Active', color: 'bg-green-100 text-green-800' },
-        precisa_atencao: { text: 'Needs Attention', color: 'bg-yellow-100 text-yellow-800' },
-        descanso: { text: 'Resting', color: 'bg-blue-100 text-blue-800' },
-        arquivado: { text: 'Archived', color: 'bg-neutral-100 text-neutral-800' },
+    const handleExport = () => {
+        if (!canUseFeature(plan, 'levain.exportPDF')) {
+            return;
+        }
+        try {
+            exportLevains(levains);
+            addToast('Levains exported successfully', 'success');
+        } catch (error) {
+            console.error(error);
+            addToast('Failed to export levains', 'error');
+        }
     };
-
-    if (isLoading) {
-        return <div className="p-8 text-center">Loading...</div>;
-    }
 
     return (
         <MyLabLayout activePage="mylab/levain" onNavigate={onNavigate}>
@@ -128,14 +106,14 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                     </div>
                     <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                         {levains.length >= 1 && !canUseFeature(plan, 'levain.lab_full') ? (
-                            <ProFeatureLock featureKey="levain.lab_full" customMessage="Unlock unlimited Levain Pets with Lab Pro.">
+                            <LockedTeaser featureKey="levain.multipleLevains">
                                 <button
                                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 transition-all opacity-50 cursor-not-allowed"
                                 >
                                     <PlusCircleIcon className="h-5 w-5" />
                                     <span>Add Levain</span>
                                 </button>
-                            </ProFeatureLock>
+                            </LockedTeaser>
                         ) : (
                             <button
                                 onClick={handleAddLevainClick}
@@ -149,9 +127,11 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                             <button onClick={handleImportClick} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 transition-colors">
                                 <DownloadIcon className="h-5 w-5" /> Import
                             </button>
-                            <button onClick={handleExport} disabled={levains.length === 0} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 disabled:opacity-50 transition-colors">
-                                <ShareIcon className="h-5 w-5" /> Export
-                            </button>
+                            <LockedTeaser featureKey="levain.exportPDF">
+                                <button onClick={handleExport} disabled={levains.length === 0} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 disabled:opacity-50 transition-colors">
+                                    <ShareIcon className="h-5 w-5" /> Export
+                                </button>
+                            </LockedTeaser>
                             <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" style={{ display: 'none' }} />
                         </div>
                     </div>
@@ -207,10 +187,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                         })}
 
                         {!canUseFeature(plan, 'levain.lab_full') && levains.length >= 1 && (
-                            <ProFeatureLock
-                                featureKey="levain.lab_full"
-                                customMessage="Unlock unlimited Levain Pets with Lab Pro."
-                            >
+                            <LockedTeaser featureKey="levain.multipleLevains">
                                 <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-lime-200 bg-lime-50/50 p-6 h-full min-h-[200px]">
                                     <div className="p-3 bg-lime-100 rounded-full text-lime-600 mb-3">
                                         <PlusCircleIcon className="h-8 w-8" />
@@ -220,10 +197,11 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                                         Free plan includes 1 Levain Pet.
                                     </p>
                                 </div>
-                            </ProFeatureLock>
+                            </LockedTeaser>
                         )}
                     </div>
                 )}
+                <AdCard context="levain_footer" className="mt-8" />
             </div>
             <LevainModal
                 isOpen={isModalOpen}

@@ -7,20 +7,24 @@ interface PageHeroProps {
     backgroundClass?: string;
 }
 
-export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, badges, backgroundClass = "bg-slate-900" }) => {
+export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, badges, backgroundClass = "bg-gradient-to-br from-lime-900 to-lime-950" }) => {
     return (
         <div className={`relative rounded-3xl p-8 md:p-12 shadow-xl mb-8 overflow-hidden ${backgroundClass}`}>
-            <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent pointer-events-none" />
-            <div className="relative z-10 max-w-3xl">
-                {badges && <div className="flex flex-wrap gap-2 mb-4">{badges}</div>}
-                <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
-                    {title}
-                </h1>
-                {subtitle && (
-                    <p className="text-lg text-slate-200 leading-relaxed font-light">
-                        {subtitle}
-                    </p>
-                )}
+            <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>
+            <div className="relative z-10">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        {badges && <div className="mb-4">{badges}</div>}
+                        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+                            {title}
+                        </h1>
+                        {subtitle && (
+                            <p className="text-lg text-slate-200 font-medium max-w-2xl">
+                                {subtitle}
+                            </p>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
