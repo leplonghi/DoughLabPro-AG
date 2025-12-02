@@ -374,12 +374,12 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                 )) return true;
 
                                 // Fallback matches by ID
-                                if (article.id === 'water' || article.id.includes('fermentation-basics')) return true;
+                                if (article.id === 'water-hydration-dynamics' || article.id.includes('fermentation-basics')) return true;
                                 return false;
                             }).slice(0, 4).map(article => (
                                 <a
                                     key={article.id}
-                                    href={`#/learn/${encodeURIComponent(article.category)}/${article.id}`}
+                                    href={`#/learn/article/${article.id}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block p-3 bg-white rounded-xl border border-lime-100 hover:border-lime-300 hover:shadow-md transition-all group"

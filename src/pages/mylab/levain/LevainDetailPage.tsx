@@ -149,7 +149,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
-                        { id: 'yeasts', summary: 'Understand the microbiology of wild yeast and bacteria in your starter.' },
+                        { id: 'yeast-leavening-agents', summary: 'Understand the microbiology of wild yeast and bacteria in your starter.' },
                         { id: 'excess-acidity', summary: 'Learn how to control acid load to prevent gluten degradation.' },
                         { id: 'weak-gluten-structure', summary: 'Diagnose and fix weak dough caused by proteolysis or over-fermentation.' }
                     ].map(item => {
@@ -158,7 +158,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                         return (
                             <a
                                 key={item.id}
-                                href={`#/learn/${encodeURIComponent(article.category)}/${article.id}`}
+                                href={`#/learn/article/${article.id}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-lime-500 hover:shadow-md transition-all group"

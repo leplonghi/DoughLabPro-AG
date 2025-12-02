@@ -38,19 +38,19 @@ const ToppingsPage: React.FC = () => {
 
                     const content = (
                         <div key={category}>
-                            <h2 className="text-2xl font-bold capitalize text-slate-800 border-b-2 border-lime-500 pb-2 mb-6">
+                            <h2 className="text-2xl font-bold capitalize text-dlp-text-primary border-b-2 border-dlp-accent pb-2 mb-6">
                                 {category}
                             </h2>
                             <div className="space-y-8">
                                 {groupedToppings[category].map(combo => (
-                                    <div key={combo.id} className="rounded-xl border border-slate-200 bg-white shadow-md overflow-hidden">
+                                    <div key={combo.id} className="rounded-xl border border-dlp-border bg-dlp-bg-card shadow-dlp-md overflow-hidden">
                                         <div className="p-6">
-                                            <h3 className="text-xl font-bold text-slate-900">{combo.name}</h3>
-                                            <p className="mt-1 text-sm text-slate-600">{combo.notes}</p>
+                                            <h3 className="text-xl font-bold text-dlp-text-primary">{combo.name}</h3>
+                                            <p className="mt-1 text-sm text-dlp-text-secondary">{combo.notes}</p>
                                             <div className="mt-3 flex flex-wrap gap-2">
-                                                <span className="text-xs font-semibold mr-2">Styles:</span>
+                                                <span className="text-xs font-semibold mr-2 text-dlp-text-secondary">Styles:</span>
                                                 {combo.compatibleStyles.map(style => (
-                                                    <span key={style} className="inline-block rounded-full bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-700">
+                                                    <span key={style} className="inline-block rounded-full bg-dlp-bg-muted px-2 py-0.5 text-xs font-semibold text-dlp-text-secondary">
                                                         {t(`form.${style.toLowerCase()}`, { defaultValue: style })}
                                                     </span>
                                                 ))}
@@ -58,23 +58,23 @@ const ToppingsPage: React.FC = () => {
                                         </div>
                                         <div className="overflow-x-auto">
                                             <table className="min-w-full text-sm text-left">
-                                                <thead className="bg-slate-50">
+                                                <thead className="bg-dlp-bg-muted">
                                                     <tr>
-                                                        <th className="px-6 py-3 font-medium text-slate-600">Size</th>
-                                                        <th className="px-6 py-3 font-medium text-slate-600 text-right">Sauce (g)</th>
-                                                        <th className="px-6 py-3 font-medium text-slate-600 text-right">Cheese (g)</th>
-                                                        <th className="px-6 py-3 font-medium text-slate-600 text-right">Topping (g)</th>
-                                                        <th className="px-6 py-3 font-medium text-slate-600 text-right">Finish Oil (g)</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary">Size</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Sauce (g)</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Cheese (g)</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Topping (g)</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Finish Oil (g)</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody className="divide-y divide-slate-200">
+                                                <tbody className="divide-y divide-dlp-border">
                                                     {combo.sizes.map(size => (
                                                         <tr key={size.sizeCm}>
-                                                            <td className="px-6 py-4 font-semibold text-slate-800">{size.sizeCm} cm</td>
-                                                            <td className="px-6 py-4 text-right">{size.sauceGrams || '–'}</td>
-                                                            <td className="px-6 py-4 text-right">{size.cheeseGrams || '–'}</td>
-                                                            <td className="px-6 py-4 text-right">{size.toppingsGrams ?? '–'}</td>
-                                                            <td className="px-6 py-4 text-right">{size.oilFinishGrams ?? '–'}</td>
+                                                            <td className="px-6 py-4 font-semibold text-dlp-text-primary">{size.sizeCm} cm</td>
+                                                            <td className="px-6 py-4 text-right text-dlp-text-secondary">{size.sauceGrams || '–'}</td>
+                                                            <td className="px-6 py-4 text-right text-dlp-text-secondary">{size.cheeseGrams || '–'}</td>
+                                                            <td className="px-6 py-4 text-right text-dlp-text-secondary">{size.toppingsGrams ?? '–'}</td>
+                                                            <td className="px-6 py-4 text-right text-dlp-text-secondary">{size.oilFinishGrams ?? '–'}</td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

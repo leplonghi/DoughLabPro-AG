@@ -37,15 +37,15 @@ export const calculateLevainStats = (levain: Levain): LevainStats => {
   } else if (levain.status === 'descanso') {
     // In fridge, health degrades slower
     if (hoursSince > 168) { // > 1 week
-        const overdueHours = hoursSince - 168;
-        healthScore = Math.max(0, 100 - (overdueHours / 24) * 5); // Lose 5% per day overdue
+      const overdueHours = hoursSince - 168;
+      healthScore = Math.max(0, 100 - (overdueHours / 24) * 5); // Lose 5% per day overdue
     }
   } else {
     // Active at room temp
     if (hoursSince > idealInterval) {
-        const overdueHours = hoursSince - idealInterval;
-        // Lose points aggressively if active and starving
-        healthScore = Math.max(0, 100 - (overdueHours / 2) * 5); 
+      const overdueHours = hoursSince - idealInterval;
+      // Lose points aggressively if active and starving
+      healthScore = Math.max(0, 100 - (overdueHours / 2) * 5);
     }
   }
 
@@ -54,28 +54,28 @@ export const calculateLevainStats = (levain: Levain): LevainStats => {
   let emotion: LevainEmotion = 'happy';
 
   if (status === 'arquivado') {
-      emotion = 'dead';
+    emotion = 'dead';
   } else if (status === 'descanso') {
-      emotion = 'sleeping';
+    emotion = 'sleeping';
   } else {
-      // Auto-detect status based on time if currently marked 'active'
-      if (hoursSince <= idealInterval * 1.2) {
-          status = 'ativo';
-          emotion = 'happy';
-      } else if (hoursSince <= idealInterval * 2) {
-          status = 'precisa_atencao';
-          emotion = 'hungry';
-      } else {
-          status = 'precisa_atencao';
-          emotion = 'sad';
-      }
+    // Auto-detect status based on time if currently marked 'active'
+    if (hoursSince <= idealInterval * 1.2) {
+      status = 'ativo';
+      emotion = 'happy';
+    } else if (hoursSince <= idealInterval * 2) {
+      status = 'precisa_atencao';
+      emotion = 'hungry';
+    } else {
+      status = 'precisa_atencao';
+      emotion = 'sad';
+    }
   }
 
   // Next feeding calculation
   let nextFeedingDue = null;
   if (status !== 'arquivado') {
-      const interval = status === 'descanso' ? 168 : idealInterval; // 1 week if resting, else ideal
-      nextFeedingDue = new Date(lastFed.getTime() + interval * 36e5);
+    const interval = status === 'descanso' ? 168 : idealInterval; // 1 week if resting, else ideal
+    nextFeedingDue = new Date(lastFed.getTime() + interval * 36e5);
   }
 
   return {
@@ -89,11 +89,11 @@ export const calculateLevainStats = (levain: Levain): LevainStats => {
 };
 
 export const getEmotionColor = (emotion: LevainEmotion): string => {
-    switch (emotion) {
-        case 'happy': return 'text-lime-500 bg-lime-100';
-        case 'hungry': return 'text-amber-500 bg-amber-100';
-        case 'sad': return 'text-red-500 bg-red-100';
-        case 'sleeping': return 'text-blue-400 bg-blue-50';
-        case 'dead': return 'text-slate-400 bg-slate-100';
-    }
+  switch (emotion) {
+    case 'happy': return 'text-dlp-success bg-dlp-success/10';
+    case 'hungry': return 'text-dlp-warning bg-dlp-warning/10';
+    case 'sad': return 'text-dlp-error bg-dlp-error/10';
+    case 'sleeping': return 'text-blue-500 bg-blue-50';
+    case 'dead': return 'text-dlp-text-muted bg-dlp-bg-muted';
+  }
 };

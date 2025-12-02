@@ -20,12 +20,12 @@ export const CommunityCreatePostCTA: React.FC = () => {
     };
 
     return (
-        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-700 mb-6 flex items-center gap-4">
-            <div className="h-10 w-10 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden flex-shrink-0">
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 mb-6 flex items-center gap-4">
+            <div className="h-10 w-10 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
                 {user?.avatar ? (
                     <img src={user.avatar} alt={user.name} className="h-full w-full object-cover" />
                 ) : (
-                    <div className="h-full w-full flex items-center justify-center text-slate-400">
+                    <div className="h-full w-full flex items-center justify-center text-gray-400">
                         <Camera className="h-5 w-5" />
                     </div>
                 )}
@@ -33,14 +33,14 @@ export const CommunityCreatePostCTA: React.FC = () => {
 
             <button
                 onClick={handleCreate}
-                className="flex-1 text-left bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-full px-4 py-2.5 text-slate-500 dark:text-slate-400 text-sm border border-slate-200 dark:border-slate-700"
+                className="flex-1 text-left bg-gray-50 hover:bg-gray-100 transition-colors rounded-full px-4 py-2.5 text-gray-500 text-sm border border-gray-200"
             >
                 Share your latest bake, {user?.name?.split(' ')[0] || 'Baker'}...
             </button>
 
             <button
                 onClick={handleCreate}
-                className="flex-shrink-0 p-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-colors shadow-lg shadow-indigo-500/30"
+                className="flex-shrink-0 p-2.5 bg-lime-600 hover:bg-lime-700 text-white rounded-full transition-colors shadow-lg shadow-lime-600/20"
             >
                 <PlusCircle className="h-5 w-5" />
             </button>

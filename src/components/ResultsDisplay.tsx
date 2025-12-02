@@ -68,12 +68,12 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     if (!results) {
         return (
-            <div className="rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 p-8 text-center h-full flex flex-col items-center justify-center text-slate-500 min-h-[300px]">
-                <div className="mb-4 rounded-full bg-white p-4 shadow-sm ring-1 ring-slate-100">
-                    <BeakerIcon className="h-8 w-8 text-slate-400" />
+            <div className="rounded-2xl border-2 border-dashed border-dlp-border bg-dlp-bg-muted p-8 text-center h-full flex flex-col items-center justify-center text-dlp-text-muted min-h-[300px]">
+                <div className="mb-4 rounded-full bg-dlp-bg-card p-4 shadow-dlp-sm border border-dlp-border">
+                    <BeakerIcon className="h-8 w-8 text-dlp-text-muted" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-700">Your Formula Awaits</h3>
-                <p className="text-sm mt-2 max-w-xs mx-auto text-slate-500">
+                <h3 className="text-lg font-semibold text-dlp-text-secondary">Your Formula Awaits</h3>
+                <p className="text-sm mt-2 max-w-xs mx-auto text-dlp-text-muted">
                     Adjust the parameters on the left to generate your perfect dough recipe.
                 </p>
             </div>
@@ -150,12 +150,12 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     };
 
     const renderRow = (label: string, grams: number, ingredientId: string, subtext?: string) => (
-        <div className="flex items-center justify-between border-b border-slate-100 py-3 last:border-0">
+        <div className="flex items-center justify-between border-b border-dlp-border py-3 last:border-0">
             <div>
-                <p className="font-medium text-slate-700">{label}</p>
-                {subtext && <p className="text-xs text-slate-600">{subtext}</p>}
+                <p className="font-medium text-dlp-text-secondary">{label}</p>
+                {subtext && <p className="text-xs text-dlp-text-muted">{subtext}</p>}
             </div>
-            <span className="font-mono font-semibold text-slate-900">
+            <span className="font-mono font-semibold text-dlp-text-primary">
                 {displayIngredient(label, grams, ingredientId)}
             </span>
         </div>
@@ -163,27 +163,27 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     return (
         <div ref={resultRef} className="space-y-8">
-            <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 animate-[fadeIn_0.3s_ease-out]">
-                <div className="mb-6 flex items-center justify-between border-b border-slate-200 pb-4">
-                    <h2 className="text-xl font-bold text-slate-900">{t('results.title')}</h2>
-                    <div className="flex rounded-lg bg-slate-100 p-1">
+            <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border animate-[fadeIn_0.3s_ease-out]">
+                <div className="mb-6 flex items-center justify-between border-b border-dlp-border pb-4">
+                    <h2 className="text-xl font-bold text-dlp-text-primary">{t('results.title')}</h2>
+                    <div className="flex rounded-lg bg-dlp-bg-muted p-1">
                         <button
                             onClick={() => onUnitChange('g')}
-                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'g' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'g' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                 }`}
                         >
                             g
                         </button>
                         <button
                             onClick={() => onUnitChange('oz')}
-                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'oz' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'oz' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                 }`}
                         >
                             oz
                         </button>
                         <button
                             onClick={() => onUnitChange('volume')}
-                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'volume' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'volume' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                 }`}
                         >
                             Vol
@@ -193,22 +193,22 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
                 {/* Summary Cards */}
                 <div className="mb-8 grid grid-cols-2 gap-4">
-                    <div className="rounded-xl bg-lime-50 p-4 text-center">
-                        <p className="text-xs font-bold uppercase tracking-wider text-lime-700">{t('results.total_dough')}</p>
-                        <p className="mt-1 text-2xl font-extrabold text-lime-800">{displayValue(results.totalDough)}</p>
+                    <div className="rounded-xl bg-dlp-bg-muted p-4 text-center">
+                        <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('results.total_dough')}</p>
+                        <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">{displayValue(results.totalDough)}</p>
                     </div>
                     {config.numPizzas > 1 && (
-                        <div className="rounded-xl bg-sky-50 p-4 text-center">
-                            <p className="text-xs font-bold uppercase tracking-wider text-sky-700">{t('results.single_ball')}</p>
-                            <p className="mt-1 text-2xl font-extrabold text-sky-800">{displayValue(results.totalDough / config.numPizzas)}</p>
+                        <div className="rounded-xl bg-dlp-bg-muted p-4 text-center">
+                            <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('results.single_ball')}</p>
+                            <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">{displayValue(results.totalDough / config.numPizzas)}</p>
                         </div>
                     )}
                 </div>
 
                 {/* Pre-ferment Section */}
                 {results.preferment && (
-                    <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
-                        <div className="mb-3 flex items-center gap-2 border-b border-amber-200 pb-2 text-amber-800">
+                    <div className="mb-6 rounded-xl border border-dlp-border bg-dlp-bg-muted p-4">
+                        <div className="mb-3 flex items-center gap-2 border-b border-dlp-border pb-2 text-dlp-text-primary">
                             <BeakerIcon className="h-5 w-5" />
                             <h3 className="font-bold text-sm uppercase tracking-wide">
                                 {t(`form.${config.fermentationTechnique.toLowerCase()}`, { defaultValue: 'Preferment' })}
@@ -235,7 +235,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
                 {/* Final Dough / Main Ingredients */}
                 <div className="space-y-1 mb-8">
-                    <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500">
+                    <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-dlp-text-muted">
                         {results.preferment ? t('results.final_dough_title') : t('results.ingredients_title', { defaultValue: 'Ingredients' })}
                     </h3>
 
@@ -270,7 +270,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                     <button
                         onClick={onStartBatch}
                         ref={saveButtonRef}
-                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-500 py-3.5 text-base font-bold text-white shadow-lg shadow-lime-200 transition-all hover:bg-lime-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-accent py-3.5 text-base font-bold text-white shadow-dlp-md transition-all hover:bg-dlp-accent-hover hover:shadow-dlp-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-dlp-sm"
                     >
                         <BatchesIcon className="h-5 w-5" />
                         {t('diary_page.new_batch')}
@@ -280,12 +280,12 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         <button
                             onClick={() => setIsShareModalOpen(true)}
                             title="Generate a social card to share"
-                            className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 transition-colors relative group"
+                            className="flex items-center justify-center gap-2 rounded-lg border border-dlp-border bg-dlp-bg-card py-2.5 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm hover:bg-dlp-bg-muted transition-colors relative group"
                         >
                             <ShareIcon className="h-4 w-4" />
                             {!canUseFeature(userPlan, 'community.share_and_clone') && (
-                                <div className="absolute -top-1 -right-1 bg-slate-100 rounded-full p-0.5 border border-slate-200 shadow-sm">
-                                    <LockClosedIcon className="h-2.5 w-2.5 text-slate-400" />
+                                <div className="absolute -top-1 -right-1 bg-dlp-bg-muted rounded-full p-0.5 border border-dlp-border shadow-dlp-sm">
+                                    <LockClosedIcon className="h-2.5 w-2.5 text-dlp-text-muted" />
                                 </div>
                             )}
                             Social Card
@@ -293,13 +293,13 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         <button
                             onClick={handleExportPDF}
                             title="Download a professional PDF of your formula"
-                            className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 transition-colors relative group"
+                            className="flex items-center justify-center gap-2 rounded-lg border border-dlp-border bg-dlp-bg-card py-2.5 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm hover:bg-dlp-bg-muted transition-colors relative group"
                         >
                             <DownloadIcon className="h-4 w-4" />
                             PDF
                             {!canUseFeature(userPlan, 'export.pdf_json') && (
-                                <div className="absolute -top-1 -right-1 bg-slate-100 rounded-full p-0.5 border border-slate-200 shadow-sm">
-                                    <LockClosedIcon className="h-2.5 w-2.5 text-slate-400" />
+                                <div className="absolute -top-1 -right-1 bg-dlp-bg-muted rounded-full p-0.5 border border-dlp-border shadow-dlp-sm">
+                                    <LockClosedIcon className="h-2.5 w-2.5 text-dlp-text-muted" />
                                 </div>
                             )}
                         </button>
@@ -308,18 +308,18 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             </div>
 
             {/* Technical Method Section */}
-            <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50">
+            <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border">
                 <TechnicalMethodPanel steps={technicalSteps} />
-                <div className="mt-8 border-t border-slate-100 pt-6 flex justify-center gap-4">
+                <div className="mt-8 border-t border-dlp-border pt-6 flex justify-center gap-4">
                     <button
                         onClick={handleShare}
-                        className="flex items-center gap-2 text-sm font-semibold text-lime-600 hover:text-lime-700 transition-colors"
+                        className="flex items-center gap-2 text-sm font-semibold text-dlp-accent hover:text-dlp-accent-hover transition-colors"
                     >
                         <ShareIcon className="h-4 w-4" /> Share
                     </button>
                     <button
                         onClick={handleExportPDF}
-                        className="flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-800 transition-colors"
+                        className="flex items-center gap-2 text-sm font-semibold text-dlp-text-secondary hover:text-dlp-text-primary transition-colors"
                     >
                         <DownloadIcon className="h-4 w-4" /> Download PDF
                     </button>

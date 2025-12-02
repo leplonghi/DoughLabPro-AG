@@ -55,24 +55,24 @@ export const CommunityCreatePostPage: React.FC = () => {
             <div className="max-w-2xl mx-auto">
                 <button
                     onClick={() => navigate('community')}
-                    className="flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white mb-6 transition-colors"
+                    className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors"
                 >
                     <ArrowLeft className="h-5 w-5" />
                     <span>Back to Community</span>
                 </button>
 
-                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden p-6">
-                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Create New Bake</h1>
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden p-6">
+                    <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New Bake</h1>
 
                     {error && (
-                        <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-4 rounded-lg mb-6 text-sm">
+                        <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6 text-sm">
                             {error}
                         </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Title
                             </label>
                             <input
@@ -81,12 +81,12 @@ export const CommunityCreatePostPage: React.FC = () => {
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
                                 placeholder="e.g. Sunday Morning Sourdough"
-                                className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                                className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Description
                             </label>
                             <textarea
@@ -95,13 +95,13 @@ export const CommunityCreatePostPage: React.FC = () => {
                                 required
                                 rows={4}
                                 placeholder="Share your process, flour blend, or tasting notes..."
-                                className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all resize-none"
+                                className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all resize-none"
                             />
                         </div>
 
                         <div className="grid grid-cols-2 gap-6">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Hydration (%)
                                 </label>
                                 <input
@@ -110,15 +110,15 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     onChange={(e) => setHydration(Number(e.target.value))}
                                     min={50}
                                     max={120}
-                                    className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                                    className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Photos
                                 </label>
-                                <div className="w-full h-[42px] border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg flex items-center justify-center text-slate-400 cursor-not-allowed bg-slate-50 dark:bg-slate-900/50">
+                                <div className="w-full h-[42px] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400 cursor-not-allowed bg-gray-50">
                                     <ImageIcon className="h-5 w-5 mr-2" />
                                     <span className="text-sm">Upload disabled</span>
                                 </div>
@@ -129,14 +129,14 @@ export const CommunityCreatePostPage: React.FC = () => {
                             <button
                                 type="button"
                                 onClick={() => navigate('community')}
-                                className="px-6 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg font-medium transition-colors"
+                                className="px-6 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-colors"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
+                                className="px-6 py-2 bg-lime-600 hover:bg-lime-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
                             >
                                 {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                                 Post Bake

@@ -75,76 +75,39 @@ export const AdminTools: React.FC = () => {
     };
 
     return (
-        <div style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            background: 'rgba(0, 0, 0, 0.9)',
-            color: 'white',
-            padding: '20px',
-            borderRadius: '12px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            maxWidth: '320px',
-            zIndex: 10000,
-        }}>
-            <h3 style={{ margin: '0 0 16px 0', fontSize: '16px', fontWeight: 'bold' }}>
+        <div className="fixed bottom-5 right-5 z-[10000] max-w-xs w-full bg-black/90 text-white p-5 rounded-xl shadow-dlp-lg border border-white/10 backdrop-blur-sm">
+            <h3 className="mb-4 text-base font-bold flex items-center gap-2">
                 🔧 Admin Tools
             </h3>
 
-            <div style={{ marginBottom: '12px', fontSize: '13px', opacity: 0.8 }}>
+            <div className="mb-3 text-xs opacity-80 space-y-1">
                 <div>UID: {firebaseUser?.uid.slice(0, 8)}...</div>
                 <div>Email: {firebaseUser?.email}</div>
-                <div>Current Plan: <strong>{user.plan}</strong></div>
-                <div>isPro: <strong>{user.isPro ? 'true' : 'false'}</strong></div>
+                <div>Current Plan: <strong className="text-dlp-accent">{user.plan}</strong></div>
+                <div>isPro: <strong className={user.isPro ? 'text-dlp-success' : 'text-dlp-error'}>{user.isPro ? 'true' : 'false'}</strong></div>
             </div>
 
             <button
                 onClick={grantProToCurrentUser}
                 disabled={loading}
-                style={{
-                    width: '100%',
-                    padding: '10px',
-                    background: 'linear-gradient(135deg, #10b981, #059669)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: loading ? 'not-allowed' : 'pointer',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    opacity: loading ? 0.6 : 1,
-                    transition: 'opacity 0.2s',
-                }}
+                className={`w-full p-2.5 rounded-lg font-bold text-sm transition-all ${loading
+                    ? 'bg-dlp-text-muted cursor-not-allowed opacity-60'
+                    : 'bg-dlp-accent hover:bg-dlp-accent-hover text-white shadow-md hover:shadow-lg'
+                    }`}
             >
                 {loading ? '⏳ Processing...' : '✨ Grant Pro Access'}
             </button>
 
             {message && (
-                <div style={{
-                    marginTop: '12px',
-                    padding: '10px',
-                    background: message.startsWith('✅')
-                        ? 'rgba(16, 185, 129, 0.1)'
-                        : 'rgba(239, 68, 68, 0.1)',
-                    borderRadius: '6px',
-                    fontSize: '12px',
-                    border: `1px solid ${message.startsWith('✅')
-                        ? 'rgba(16, 185, 129, 0.3)'
-                        : 'rgba(239, 68, 68, 0.3)'}`,
-                }}>
+                <div className={`mt-3 p-2.5 rounded-lg text-xs border ${message.startsWith('✅')
+                    ? 'bg-dlp-success/10 border-dlp-success/30 text-dlp-success'
+                    : 'bg-dlp-error/10 border-dlp-error/30 text-dlp-error'
+                    }`}>
                     {message}
                 </div>
             )}
 
-            <div style={{
-                marginTop: '12px',
-                padding: '8px',
-                background: 'rgba(59, 130, 246, 0.1)',
-                border: '1px solid rgba(59, 130, 246, 0.2)',
-                borderRadius: '6px',
-                fontSize: '11px',
-                opacity: 0.7,
-            }}>
+            <div className="mt-3 p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-[11px] opacity-70">
                 💡 This tool updates your Firestore user document to grant Pro access.
             </div>
         </div>

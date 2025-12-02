@@ -56,7 +56,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
             icon: <FlourIcon className="h-8 w-8" />,
         },
         {
-            page: 'learn/article/yeasts' as Page,
+            page: 'learn/article/yeast-leavening-agents' as Page,
             title: 'Yeasts',
             description: 'Commercial yeasts, sourdough starters, and fermentation science.',
             icon: <BeakerIcon className="h-8 w-8" />,

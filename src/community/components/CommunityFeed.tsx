@@ -12,7 +12,7 @@ export const CommunityFeed: React.FC = () => {
     if (loading && posts.length === 0) {
         return (
             <div className="flex justify-center py-12">
-                <Loader2 className="h-8 w-8 animate-spin text-indigo-500" />
+                <Loader2 className="h-8 w-8 animate-spin text-dlp-accent" />
             </div>
         );
     }
@@ -26,24 +26,26 @@ export const CommunityFeed: React.FC = () => {
     }
 
     return (
-        <div className="space-y-6">
-            {posts.map((post, index) => {
-                // Free users get 3 unlocked posts (first 3 in feed for now)
-                const isLocked = !hasProAccess && index >= 3;
+        <div className="space-y-8">
+            <div className="grid grid-cols-1 gap-6">
+                {posts.map((post, index) => {
+                    // Free users get 3 unlocked posts (first 3 in feed for now)
+                    const isLocked = !hasProAccess && index >= 3;
 
-                if (isLocked) {
-                    return <CommunityPostCardLocked key={post.id} post={post} />;
-                }
+                    if (isLocked) {
+                        return <CommunityPostCardLocked key={post.id} post={post} />;
+                    }
 
-                return <CommunityPostCard key={post.id} post={post} />;
-            })}
+                    return <CommunityPostCard key={post.id} post={post} />;
+                })}
+            </div>
 
             {hasMore && (
                 <div className="text-center pt-4">
                     <button
                         onClick={loadMore}
                         disabled={loading}
-                        className="px-6 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors disabled:opacity-50"
+                        className="px-6 py-2 bg-dlp-bg-card border border-dlp-border rounded-full text-sm font-medium text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors disabled:opacity-50"
                     >
                         {loading ? 'Loading...' : 'Load More'}
                     </button>
@@ -51,7 +53,7 @@ export const CommunityFeed: React.FC = () => {
             )}
 
             {!hasMore && posts.length > 0 && (
-                <div className="text-center py-8 text-slate-400 text-sm">
+                <div className="text-center py-8 text-dlp-text-muted text-sm">
                     You've reached the end of the feed. Time to bake!
                 </div>
             )}

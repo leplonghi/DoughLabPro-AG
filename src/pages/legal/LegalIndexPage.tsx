@@ -40,7 +40,11 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
     // A simplified handler for mobile navigation that closes the menu.
     const handleMobileNav = (id: string) => {
         setIsMobileMenuOpen(false);
-        window.location.hash = `#legal#${id}`;
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            window.history.pushState(null, '', `#/legal?section=${id}`);
+        }
     };
 
     return (
@@ -59,7 +63,7 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
                         {sections.map((section) => (
                             <a
                                 key={section.id}
-                                href={`#/legal#${section.id}`}
+                                href={`#/legal?section=${section.id}`}
                                 onClick={(e) => { e.preventDefault(); handleMobileNav(section.id); }}
                                 className="block w-full text-left rounded-md p-3 text-sm font-medium text-slate-700 hover:bg-slate-50"
                             >
@@ -77,7 +81,15 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
                         {sections.map((section) => (
                             <a
                                 key={section.id}
-                                href={`#/legal#${section.id}`}
+                                href={`#/legal?section=${section.id}`}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const element = document.getElementById(section.id);
+                                    if (element) {
+                                        element.scrollIntoView({ behavior: 'smooth' });
+                                        window.history.pushState(null, '', `#/legal?section=${section.id}`);
+                                    }
+                                }}
                                 className="flex w-full items-center rounded-lg p-3 text-sm font-semibold transition-colors text-slate-600 hover:bg-slate-100"
                             >
                                 <span className="truncate">{section.title}</span>

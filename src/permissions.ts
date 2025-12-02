@@ -38,14 +38,89 @@ export type FeatureKey =
     | 'community.ranking'
     | 'calculator.hydration_advanced'
     | 'calculator.save_preset'
+    | 'consistency'
+    | 'return_prompt'
+    | 'mylab.quickAction'
+    | 'mylab.healthIndex'
+    | 'styles.advancedSpecs'
+    | 'calculator.advanced'
+    | 'levain.multipleLevains'
+    | 'levain.exportPDF'
+    | 'calculator.advanced_ingredients';
 
-// Safety fallback for admin
-if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'lab_pro';
+export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
+    // Calculator
+    'calculator.basic_3_styles': ['free', 'calculator_unlock', 'lab_pro'],
+    'calculator.all_styles': ['calculator_unlock', 'lab_pro'],
+    'calculator.preferments_advanced': ['calculator_unlock', 'lab_pro'],
+    'calculator.environmental_insights': ['calculator_unlock', 'lab_pro'],
+    'calculator.advanced': ['calculator_unlock', 'lab_pro'],
+    'calculator.advanced_ingredients': ['calculator_unlock', 'lab_pro'],
 
-const plan = user.plan;
-if (plan === 'pro') return 'lab_pro';
+    // Styles
+    'styles.pick_3_full': ['free', 'calculator_unlock', 'lab_pro'],
+    'styles.full_access': ['calculator_unlock', 'lab_pro'],
+    'styles.advancedSpecs': ['lab_pro'],
 
-return (plan as PlanId) || 'free';
+    // Learn
+    'learn.summary_only': ['free', 'calculator_unlock', 'lab_pro'],
+    'learn.full_and_grandma': ['lab_pro'],
+
+    // MyLab
+    'mylab.two_bakes_one_full': ['free', 'calculator_unlock', 'lab_pro'],
+    'mylab.unlimited_advanced': ['lab_pro'],
+    'mylab.quickAction': ['lab_pro'],
+    'mylab.healthIndex': ['lab_pro'],
+
+    // Levain
+    'levain.create_basic': ['free', 'calculator_unlock', 'lab_pro'],
+    'levain.lab_full': ['lab_pro'],
+    'levain.multipleLevains': ['lab_pro'],
+    'levain.exportPDF': ['lab_pro'],
+
+    // Tools
+    'tools.doughbot': ['lab_pro'],
+    'tools.oven_analysis': ['lab_pro'],
+    'export.pdf_json': ['calculator_unlock', 'lab_pro'],
+    'community.share_and_clone': ['lab_pro'],
+    'app.theme_customization': ['lab_pro'],
+    'mylab.timeline': ['lab_pro'],
+    'tools.toppings_advanced': ['lab_pro'],
+
+    // Missing keys added for Pro access
+    'styles.detail': ['free', 'calculator_unlock', 'lab_pro'],
+    'styles.ai.builder': ['lab_pro'],
+    'levain_unlimited': ['lab_pro'],
+    'styles.formula': ['lab_pro'],
+    'styles.technical': ['lab_pro'],
+    'styles.technical_parameters': ['lab_pro'],
+    'styles.specs': ['lab_pro'],
+
+    // Community
+    'community.feed': ['lab_pro'],
+    'community.clone': ['lab_pro'],
+    'community.like': ['lab_pro'],
+    'community.comment': ['lab_pro'],
+    'community.profile_full': ['lab_pro'],
+    'community.ranking': ['lab_pro'],
+
+    // Marketing / FOMO Triggers
+    'calculator.hydration_advanced': ['calculator_unlock', 'lab_pro'],
+    'calculator.save_preset': ['calculator_unlock', 'lab_pro'],
+    'consistency': ['lab_pro'],
+    'return_prompt': ['lab_pro'],
+};
+
+export function getCurrentPlan(user: User | null): PlanId {
+    if (!user) return 'free';
+
+    // Safety fallback for admin
+    if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'lab_pro';
+
+    const plan = user.plan;
+    if (plan === 'pro') return 'lab_pro';
+
+    return (plan as PlanId) || 'free';
 }
 
 export function canUseFeature(plan: PlanId, feature: FeatureKey): boolean {

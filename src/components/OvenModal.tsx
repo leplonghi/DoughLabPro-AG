@@ -70,23 +70,23 @@ const OvenModal: React.FC<OvenModalProps> = ({
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-            <div className="w-full max-w-md rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200">
-                <div className="flex items-center justify-between border-b border-slate-100 p-4">
-                    <h2 className="text-lg font-bold text-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fadeIn">
+            <div className="w-full max-w-md rounded-2xl bg-dlp-bg-card shadow-dlp-lg ring-1 ring-dlp-border overflow-hidden">
+                <div className="flex items-center justify-between border-b border-dlp-border p-4 bg-dlp-bg-muted">
+                    <h2 className="text-lg font-bold text-dlp-text-primary">
                         {ovenToEdit ? t('profile.ovens.edit_oven') : t('profile.ovens.add_oven')}
                     </h2>
                     <button
                         onClick={onClose}
-                        className="rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                        className="rounded-full p-1 text-dlp-text-muted hover:bg-dlp-border hover:text-dlp-text-secondary transition-colors"
                     >
                         <CloseIcon className="h-5 w-5" />
                     </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="p-4 space-y-4">
+                <form onSubmit={handleSubmit} className="p-6 space-y-5">
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-slate-700">
+                        <label htmlFor="name" className="block text-sm font-bold text-dlp-text-secondary mb-1">
                             {t('profile.ovens.name')}
                         </label>
                         <input
@@ -96,14 +96,14 @@ const OvenModal: React.FC<OvenModalProps> = ({
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder="My Home Oven"
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-5">
                         <div>
-                            <label htmlFor="type" className="block text-sm font-medium text-slate-700">
+                            <label htmlFor="type" className="block text-sm font-bold text-dlp-text-secondary mb-1">
                                 {t('profile.ovens.type')}
                             </label>
                             <select
@@ -111,7 +111,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 name="type"
                                 value={formData.type}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             >
                                 {Object.values(OvenType).map((type) => (
                                     <option key={type} value={type}>
@@ -121,7 +121,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="maxTemperature" className="block text-sm font-medium text-slate-700">
+                            <label htmlFor="maxTemperature" className="block text-sm font-bold text-dlp-text-secondary mb-1">
                                 Max Temp (°C)
                             </label>
                             <input
@@ -133,12 +133,12 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 max="600"
                                 value={formData.maxTemperature}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             />
                         </div>
                     </div>
 
-                    <div className="flex gap-6">
+                    <div className="flex gap-6 p-3 bg-dlp-bg-muted rounded-xl border border-dlp-border">
                         <div className="flex items-center">
                             <input
                                 id="hasStone"
@@ -146,9 +146,9 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 type="checkbox"
                                 checked={formData.hasStone}
                                 onChange={handleChange}
-                                className="h-4 w-4 rounded border-slate-300 text-lime-600 focus:ring-lime-500"
+                                className="h-5 w-5 rounded border-dlp-border text-dlp-accent focus:ring-dlp-accent"
                             />
-                            <label htmlFor="hasStone" className="ml-2 block text-sm text-slate-700">
+                            <label htmlFor="hasStone" className="ml-2 block text-sm font-medium text-dlp-text-secondary">
                                 {t('profile.ovens.has_stone')}
                             </label>
                         </div>
@@ -159,16 +159,16 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 type="checkbox"
                                 checked={formData.hasSteel}
                                 onChange={handleChange}
-                                className="h-4 w-4 rounded border-slate-300 text-lime-600 focus:ring-lime-500"
+                                className="h-5 w-5 rounded border-dlp-border text-dlp-accent focus:ring-dlp-accent"
                             />
-                            <label htmlFor="hasSteel" className="ml-2 block text-sm text-slate-700">
+                            <label htmlFor="hasSteel" className="ml-2 block text-sm font-medium text-dlp-text-secondary">
                                 {t('profile.ovens.has_steel')}
                             </label>
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="notes" className="block text-sm font-medium text-slate-700">
+                        <label htmlFor="notes" className="block text-sm font-bold text-dlp-text-secondary mb-1">
                             {t('profile.ovens.notes')}
                         </label>
                         <textarea
@@ -177,22 +177,22 @@ const OvenModal: React.FC<OvenModalProps> = ({
                             rows={3}
                             value={formData.notes || ''}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder="Optional notes about your oven..."
                         />
                     </div>
 
-                    <div className="mt-6 flex justify-end gap-3">
+                    <div className="pt-4 flex justify-end gap-3 border-t border-dlp-border">
                         <button
                             type="button"
                             onClick={onClose}
-                            className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+                            className="rounded-xl border border-dlp-border bg-dlp-bg-card px-5 py-2.5 text-sm font-bold text-dlp-text-secondary shadow-sm hover:bg-dlp-bg-muted transition-all"
                         >
                             {t('common.cancel')}
                         </button>
                         <button
                             type="submit"
-                            className="rounded-md bg-lime-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2"
+                            className="rounded-xl bg-dlp-accent px-5 py-2.5 text-sm font-bold text-white shadow-dlp-md hover:bg-dlp-accent-hover hover:shadow-dlp-lg transition-all transform hover:-translate-y-0.5"
                         >
                             {t('common.save')}
                         </button>

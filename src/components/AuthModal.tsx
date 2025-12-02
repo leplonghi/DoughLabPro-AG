@@ -150,17 +150,17 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
             <div
-                className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-fade-in"
+                className="relative w-full max-w-md bg-dlp-bg-card rounded-2xl shadow-dlp-lg overflow-hidden animate-fade-in"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header Image/Gradient */}
-                <div className="h-32 bg-gradient-to-br from-lime-500 to-lime-600 flex items-center justify-center relative overflow-hidden">
+                <div className="h-32 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover flex items-center justify-center relative overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center mix-blend-overlay"></div>
                     <div className="text-center z-10 p-4">
                         <h2 className="text-3xl font-bold text-white drop-shadow-md">
                             {view === 'forgot-password' ? 'Reset Password' : 'DoughLab Pro'}
                         </h2>
-                        <p className="text-lime-100 text-sm font-medium mt-1 drop-shadow-sm">
+                        <p className="text-white/90 text-sm font-medium mt-1 drop-shadow-sm">
                             {view === 'forgot-password' ? 'Recover your access' : 'Bem-vindo ao DoughLab Pro'}
                         </p>
                     </div>
@@ -175,12 +175,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 <div className="p-6 pt-8">
                     {/* Tabs */}
                     {view !== 'forgot-password' && (
-                        <div className="flex mb-6 bg-slate-100 p-1 rounded-xl">
+                        <div className="flex mb-6 bg-dlp-bg-muted p-1 rounded-xl">
                             <button
                                 onClick={() => { setView('login'); setError(null); }}
                                 className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${view === 'login'
-                                    ? 'bg-white text-slate-900 shadow-sm'
-                                    : 'text-slate-500 hover:text-slate-700'
+                                    ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm'
+                                    : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                     }`}
                             >
                                 Login
@@ -188,8 +188,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 onClick={() => { setView('signup'); setError(null); }}
                                 className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${view === 'signup'
-                                    ? 'bg-white text-slate-900 shadow-sm'
-                                    : 'text-slate-500 hover:text-slate-700'
+                                    ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm'
+                                    : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                     }`}
                             >
                                 Sign Up
@@ -209,32 +209,32 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     {view === 'login' && (
                         <form onSubmit={handleEmailLogin} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Email</label>
                                 <div className="relative">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-dlp-text-muted">
                                         <UserCircleIcon className="w-5 h-5" />
                                     </div>
                                     <input
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition-colors"
+                                        className="block w-full pl-10 pr-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
                                         placeholder="you@example.com"
                                         required
                                     />
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Password</label>
                                 <div className="relative">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-dlp-text-muted">
                                         <LockClosedIcon className="w-5 h-5" />
                                     </div>
                                     <input
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition-colors"
+                                        className="block w-full pl-10 pr-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
                                         placeholder="••••••••"
                                         required
                                     />
@@ -243,7 +243,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     <button
                                         type="button"
                                         onClick={() => setView('forgot-password')}
-                                        className="text-xs text-lime-600 hover:text-lime-700 font-medium"
+                                        className="text-xs text-dlp-accent hover:text-dlp-accent-hover font-medium"
                                     >
                                         Esqueci minha senha
                                     </button>
@@ -253,7 +253,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full py-3 px-4 bg-lime-600 hover:bg-lime-700 text-white font-semibold rounded-xl shadow-lg shadow-lime-600/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                                className="w-full py-3 px-4 bg-dlp-accent hover:bg-dlp-accent-hover text-white font-semibold rounded-xl shadow-dlp-md transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                             >
                                 {isLoading ? <SpinnerIcon className="w-5 h-5 animate-spin" /> : 'Sign In'}
                             </button>
@@ -263,34 +263,34 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     {view === 'signup' && (
                         <form onSubmit={handleSignup} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Name</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Name</label>
                                 <input
                                     type="text"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="block w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition-colors"
+                                    className="block w-full px-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
                                     placeholder="Your Name"
                                     required
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Email</label>
                                 <input
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="block w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition-colors"
+                                    className="block w-full px-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
                                     placeholder="you@example.com"
                                     required
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Password</label>
                                 <input
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="block w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition-colors"
+                                    className="block w-full px-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
                                     placeholder="Create a password (min 6 chars)"
                                     required
                                     minLength={6}
@@ -300,7 +300,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full py-3 px-4 bg-lime-600 hover:bg-lime-700 text-white font-semibold rounded-xl shadow-lg shadow-lime-600/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                                className="w-full py-3 px-4 bg-dlp-accent hover:bg-dlp-accent-hover text-white font-semibold rounded-xl shadow-dlp-md transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                             >
                                 {isLoading ? <SpinnerIcon className="w-5 h-5 animate-spin" /> : 'Create Account'}
                             </button>
@@ -311,32 +311,32 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         <div className="space-y-4">
                             {resetSent ? (
                                 <div className="text-center py-6">
-                                    <div className="mx-auto w-12 h-12 bg-lime-100 text-lime-600 rounded-full flex items-center justify-center mb-4">
+                                    <div className="mx-auto w-12 h-12 bg-lime-100 text-dlp-accent rounded-full flex items-center justify-center mb-4">
                                         <CheckCircleIcon className="w-6 h-6" />
                                     </div>
-                                    <h3 className="text-lg font-semibold text-slate-900">Check your email</h3>
-                                    <p className="text-slate-600 mt-2 text-sm">
+                                    <h3 className="text-lg font-semibold text-dlp-text-primary">Check your email</h3>
+                                    <p className="text-dlp-text-secondary mt-2 text-sm">
                                         We sent a password reset link to <strong>{email}</strong>
                                     </p>
                                     <button
                                         onClick={() => setView('login')}
-                                        className="mt-6 w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-xl transition-colors"
+                                        className="mt-6 w-full py-2.5 px-4 bg-dlp-bg-muted hover:bg-dlp-border text-dlp-text-secondary font-medium rounded-xl transition-colors"
                                     >
                                         Back to Login
                                     </button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleResetPassword} className="space-y-4">
-                                    <p className="text-sm text-slate-600 mb-4">
+                                    <p className="text-sm text-dlp-text-secondary mb-4">
                                         Enter your email address and we'll send you a link to reset your password.
                                     </p>
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                                        <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Email</label>
                                         <input
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="block w-full px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition-colors"
+                                            className="block w-full px-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
                                             placeholder="you@example.com"
                                             required
                                         />
@@ -344,14 +344,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     <button
                                         type="submit"
                                         disabled={isLoading}
-                                        className="w-full py-3 px-4 bg-lime-600 hover:bg-lime-700 text-white font-semibold rounded-xl shadow-lg shadow-lime-600/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                                        className="w-full py-3 px-4 bg-dlp-accent hover:bg-dlp-accent-hover text-white font-semibold rounded-xl shadow-dlp-md transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                                     >
                                         {isLoading ? <SpinnerIcon className="w-5 h-5 animate-spin" /> : 'Send Reset Link'}
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => setView('login')}
-                                        className="w-full py-2.5 px-4 text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors"
+                                        className="w-full py-2.5 px-4 text-dlp-text-secondary hover:text-dlp-text-primary font-medium text-sm transition-colors"
                                     >
                                         Cancel
                                     </button>
@@ -364,10 +364,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     {view !== 'forgot-password' && (
                         <div className="relative my-6">
                             <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-slate-200"></div>
+                                <div className="w-full border-t border-dlp-border"></div>
                             </div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-2 bg-white text-slate-500">Or continue with</span>
+                                <span className="px-2 bg-dlp-bg-card text-dlp-text-muted">Or continue with</span>
                             </div>
                         </div>
                     )}
@@ -378,7 +378,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 onClick={handleGoogleLogin}
                                 disabled={isLoading}
-                                className="w-full py-2.5 px-4 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-700 font-medium rounded-xl transition-all flex items-center justify-center gap-3"
+                                className="w-full py-2.5 px-4 bg-dlp-bg-card border border-dlp-border hover:bg-dlp-bg-muted hover:border-dlp-border-strong text-dlp-text-secondary font-medium rounded-xl transition-all flex items-center justify-center gap-3"
                             >
                                 <GoogleIcon className="w-5 h-5" />
                                 <span>Google</span>
@@ -387,7 +387,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 onClick={handleGuestLogin}
                                 disabled={isLoading}
-                                className="w-full py-2.5 px-4 text-slate-500 hover:text-slate-700 text-sm font-medium transition-colors"
+                                className="w-full py-2.5 px-4 text-dlp-text-muted hover:text-dlp-text-secondary text-sm font-medium transition-colors"
                             >
                                 Continue as Guest
                             </button>

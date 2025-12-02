@@ -87,7 +87,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   };
 
   const getSelectClasses = () => {
-    return "block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm";
+    return "block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm";
   };
 
   const handleSavePreset = () => {
@@ -144,12 +144,15 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         onConfigChange={onConfigChange}
         errors={errors}
         isBasic={isBasic}
+        isAnySourdough={isAnySourdough}
+        hasProAccess={hasProAccess}
+        onOpenPaywall={onOpenPaywall}
+        allowedTechniques={currentPreset?.fermentationMethods || []}
       />
 
       <EnvironmentSection
         config={config}
         onConfigChange={onConfigChange}
-        errors={errors}
       />
 
       {!isBasic && (
@@ -161,7 +164,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           >
             <button
               onClick={handleSavePreset}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-lime-500 py-2 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-lime-600"
+              className="w-full flex items-center justify-center gap-2 rounded-md bg-dlp-accent py-2 px-3 text-sm font-semibold text-white shadow-dlp-sm transition-colors hover:bg-dlp-accent-hover"
             >
               Save as Custom Style
             </button>
@@ -173,19 +176,19 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <button
           type="button"
           onClick={onReset}
-          className="w-full rounded-lg bg-slate-200 py-3 px-4 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2"
+          className="w-full rounded-lg bg-dlp-bg-muted py-3 px-4 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm transition-all hover:bg-dlp-border-strong focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
         >
           Reset Fields
         </button>
       </div>
 
       {!hasProAccess && (
-        <div className="mt-6 rounded-lg bg-lime-50 border border-lime-100 p-4 text-center shadow-sm">
-          <p className="text-sm font-bold text-lime-900">Stop guessing. Start mastering.</p>
-          <p className="mt-0.5 text-xs text-lime-700">Professional tools for less than 25¢ a day.</p>
+        <div className="mt-6 rounded-lg bg-dlp-bg-muted border border-dlp-border p-4 text-center shadow-dlp-sm">
+          <p className="text-sm font-bold text-dlp-text-primary">Stop guessing. Start mastering.</p>
+          <p className="mt-0.5 text-xs text-dlp-text-secondary">Professional tools for less than 25¢ a day.</p>
           <button
             onClick={onOpenPaywall}
-            className="mt-3 rounded-full bg-lime-600 px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105 hover:bg-lime-700 shadow-sm shadow-lime-200"
+            className="mt-3 rounded-full bg-dlp-accent px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105 hover:bg-dlp-accent-hover shadow-dlp-sm"
           >
             Upgrade to Pro
           </button>

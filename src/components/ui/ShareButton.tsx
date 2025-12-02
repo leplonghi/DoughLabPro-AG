@@ -49,8 +49,8 @@ const ShareButton: React.FC<ShareButtonProps> = ({
         >
             {copied ? (
                 <>
-                    <CheckIcon className="h-4 w-4 text-lime-600" />
-                    <span className="text-lime-600 font-medium">Copied!</span>
+                    <CheckIcon className="h-4 w-4 text-dlp-success" />
+                    <span className="text-dlp-success font-medium">Copied!</span>
                 </>
             ) : (
                 <>

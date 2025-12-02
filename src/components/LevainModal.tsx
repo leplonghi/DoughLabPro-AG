@@ -139,14 +139,14 @@ const LevainModal: React.FC<LevainModalProps> = ({
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fadeIn">
-            <div className="w-full max-w-md rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200 overflow-hidden">
-                <div className="flex items-center justify-between border-b border-slate-100 p-4 bg-slate-50/50">
-                    <h2 className="text-lg font-bold text-slate-800">
+            <div className="w-full max-w-md rounded-2xl bg-dlp-bg-card shadow-dlp-lg ring-1 ring-dlp-border overflow-hidden">
+                <div className="flex items-center justify-between border-b border-dlp-border p-4 bg-dlp-bg-muted">
+                    <h2 className="text-lg font-bold text-dlp-text-primary">
                         {levainToEdit ? t('profile.levains.edit_levain') : t('profile.levains.add_levain')}
                     </h2>
                     <button
                         onClick={onClose}
-                        className="rounded-full p-1 text-slate-400 hover:bg-slate-200 hover:text-slate-600 transition-colors"
+                        className="rounded-full p-1 text-dlp-text-muted hover:bg-dlp-border hover:text-dlp-text-secondary transition-colors"
                     >
                         <CloseIcon className="h-5 w-5" />
                     </button>
@@ -154,7 +154,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
                     <div>
-                        <label htmlFor="name" className="block text-sm font-bold text-slate-700 mb-1">
+                        <label htmlFor="name" className="block text-sm font-bold text-dlp-text-secondary mb-1">
                             {t('profile.levains.name')}
                         </label>
                         <input
@@ -164,14 +164,14 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="block w-full rounded-xl border-slate-200 bg-slate-50 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder="e.g. Bubbles, The Beast"
                         />
                     </div>
 
                     <div className="grid grid-cols-2 gap-5">
                         <div>
-                            <label htmlFor="hydration" className="flex items-center text-sm font-bold text-slate-700 mb-1">
+                            <label htmlFor="hydration" className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">
                                 {t('profile.levains.hydration')} (%)
                                 <Tooltip text="The ratio of water to flour. 100% means equal parts by weight." />
                             </label>
@@ -184,11 +184,11 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                 max="200"
                                 value={formData.hydration}
                                 onChange={handleChange}
-                                className="block w-full rounded-xl border-slate-200 bg-slate-50 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             />
                         </div>
                         <div>
-                            <label htmlFor="totalWeight" className="flex items-center text-sm font-bold text-slate-700 mb-1">
+                            <label htmlFor="totalWeight" className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">
                                 Total Weight (g)
                                 <Tooltip text="Current total weight of your starter jar content." />
                             </label>
@@ -199,13 +199,13 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                 min="0"
                                 value={formData.totalWeight}
                                 onChange={handleChange}
-                                className="block w-full rounded-xl border-slate-200 bg-slate-50 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label className="flex items-center text-sm font-bold text-slate-700 mb-1">
+                        <label className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">
                             Base Flour Type
                             <Tooltip text="The primary flour used to feed this starter." />
                         </label>
@@ -213,7 +213,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             <select
                                 value={isCustomFlour ? 'custom' : formData.baseFlourType}
                                 onChange={handleFlourSelect}
-                                className="block w-full rounded-xl border-slate-200 bg-slate-50 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             >
                                 {PRESET_FLOURS.map(flour => (
                                     <option key={flour} value={flour}>{flour}</option>
@@ -228,7 +228,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                     value={formData.baseFlourType || ''}
                                     onChange={handleChange}
                                     placeholder="Enter custom flour type"
-                                    className="block w-full rounded-xl border-slate-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3 animate-fadeIn"
+                                    className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 animate-fadeIn text-dlp-text-primary placeholder-dlp-text-muted"
                                     autoFocus
                                 />
                             )}
@@ -236,7 +236,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                     </div>
 
                     <div>
-                        <label className="flex items-center text-sm font-bold text-slate-700 mb-1">
+                        <label className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">
                             Feeding Schedule
                             <Tooltip text="How often does this starter need to be fed to stay active?" />
                         </label>
@@ -244,7 +244,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             <select
                                 value={isCustomInterval ? 'custom' : formData.idealFeedingIntervalHours}
                                 onChange={handleIntervalSelect}
-                                className="block w-full rounded-xl border-slate-200 bg-slate-50 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             >
                                 {PRESET_INTERVALS.map(interval => (
                                     <option key={interval.value} value={interval.value}>{interval.label}</option>
@@ -260,31 +260,31 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                         min="1"
                                         value={formData.idealFeedingIntervalHours}
                                         onChange={handleChange}
-                                        className="block w-full rounded-xl border-slate-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                                        className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                                         placeholder="Hours"
                                     />
-                                    <span className="text-sm text-slate-500 font-medium">hours</span>
+                                    <span className="text-sm text-dlp-text-muted font-medium">hours</span>
                                 </div>
                             )}
                         </div>
                     </div>
 
-                    <div className="flex items-center p-3 bg-lime-50 rounded-xl border border-lime-100">
+                    <div className="flex items-center p-3 bg-dlp-bg-muted rounded-xl border border-dlp-border">
                         <input
                             id="notificationEnabled"
                             name="notificationEnabled"
                             type="checkbox"
                             checked={formData.notificationEnabled || false}
                             onChange={handleChange}
-                            className="h-5 w-5 rounded border-slate-300 text-lime-600 focus:ring-lime-500"
+                            className="h-5 w-5 rounded border-dlp-border text-dlp-accent focus:ring-dlp-accent"
                         />
-                        <label htmlFor="notificationEnabled" className="ml-3 block text-sm font-medium text-slate-700">
+                        <label htmlFor="notificationEnabled" className="ml-3 block text-sm font-medium text-dlp-text-secondary">
                             Enable Feeding Reminders
                         </label>
                     </div>
 
                     <div>
-                        <label htmlFor="notes" className="block text-sm font-bold text-slate-700 mb-1">
+                        <label htmlFor="notes" className="block text-sm font-bold text-dlp-text-secondary mb-1">
                             {t('profile.levains.notes')}
                         </label>
                         <textarea
@@ -293,22 +293,22 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             rows={3}
                             value={formData.notes || ''}
                             onChange={handleChange}
-                            className="block w-full rounded-xl border-slate-200 bg-slate-50 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder="Origin story, flavor profile, or special instructions..."
                         />
                     </div>
 
-                    <div className="pt-4 flex justify-end gap-3 border-t border-slate-100">
+                    <div className="pt-4 flex justify-end gap-3 border-t border-dlp-border">
                         <button
                             type="button"
                             onClick={onClose}
-                            className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition-all"
+                            className="rounded-xl border border-dlp-border bg-dlp-bg-card px-5 py-2.5 text-sm font-bold text-dlp-text-secondary shadow-sm hover:bg-dlp-bg-muted transition-all"
                         >
                             {t('common.cancel')}
                         </button>
                         <button
                             type="submit"
-                            className="rounded-xl bg-lime-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-lime-200 hover:bg-lime-600 hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                            className="rounded-xl bg-dlp-accent px-5 py-2.5 text-sm font-bold text-white shadow-dlp-md hover:bg-dlp-accent-hover hover:shadow-dlp-lg transition-all transform hover:-translate-y-0.5"
                         >
                             {t('common.save')}
                         </button>

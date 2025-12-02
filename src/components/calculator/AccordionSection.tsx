@@ -16,17 +16,17 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
     className = '',
 }) => {
     return (
-        <div className={`rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md ${className}`}>
+        <div className={`rounded-xl border border-dlp-border bg-dlp-bg-card p-5 shadow-dlp-sm transition-all hover:shadow-dlp-md ${className}`}>
             <div className="mb-4 flex items-start gap-4">
                 {icon && (
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-lime-100 text-lime-600">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-dlp-bg-muted text-dlp-accent">
                         {icon}
                     </div>
                 )}
                 <div>
-                    <h3 className="text-lg font-bold text-slate-800">{title}</h3>
+                    <h3 className="text-lg font-bold text-dlp-text-primary">{title}</h3>
                     {description && (
-                        <p className="text-sm text-slate-500">{description}</p>
+                        <p className="text-sm text-dlp-text-secondary">{description}</p>
                     )}
                 </div>
             </div>

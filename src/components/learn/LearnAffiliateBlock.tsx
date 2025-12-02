@@ -49,22 +49,22 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
     const displayProducts = uniqueProducts.slice(0, 3);
 
     return (
-        <div className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-6 animate-fade-in">
+        <div className="mt-12 rounded-xl border border-dlp-border bg-dlp-bg-muted p-6 animate-fade-in">
             <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-white rounded-lg border border-slate-200 text-slate-500">
+                <div className="p-2 bg-dlp-bg-card rounded-lg border border-dlp-border text-dlp-text-muted">
                     <WrenchScrewdriverIcon className="h-5 w-5" />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider">
+                    <h4 className="text-sm font-bold text-dlp-text-primary uppercase tracking-wider">
                         Recommended Equipment
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-dlp-text-secondary">
                         {contextMessage}
                     </p>
                 </div>
             </div>
 
-            <p className="text-sm text-slate-600 mb-6 italic">
+            <p className="text-sm text-dlp-text-secondary mb-6 italic">
                 If you want to experiment with this concept, the following tools make it easier to get consistent results in a home kitchen.
             </p>
 
@@ -75,19 +75,19 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                         href={product.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group block bg-white rounded-lg border border-slate-200 p-4 hover:border-lime-300 hover:shadow-md transition-all"
+                        className="group block bg-dlp-bg-card rounded-lg border border-dlp-border p-4 hover:border-dlp-accent hover:shadow-dlp-md transition-all"
                     >
                         <div className="flex justify-between items-start mb-2">
-                            <span className="text-xs font-semibold text-lime-600 bg-lime-50 px-2 py-1 rounded-full">
+                            <span className="text-xs font-semibold text-dlp-accent bg-dlp-accent/10 px-2 py-1 rounded-full">
                                 {product.category === 'tools' ? 'Tool' : 'Ingredient'}
                             </span>
-                            <ExternalLinkIcon className="h-4 w-4 text-slate-300 group-hover:text-lime-500 transition-colors" />
+                            <ExternalLinkIcon className="h-4 w-4 text-dlp-text-muted group-hover:text-dlp-accent transition-colors" />
                         </div>
-                        <h5 className="font-bold text-slate-800 text-sm mb-1 group-hover:text-lime-700 transition-colors">
+                        <h5 className="font-bold text-dlp-text-primary text-sm mb-1 group-hover:text-dlp-accent-hover transition-colors">
                             {product.name}
                         </h5>
                         {product.description && (
-                            <p className="text-xs text-slate-500 line-clamp-2">
+                            <p className="text-xs text-dlp-text-secondary line-clamp-2">
                                 {product.description}
                             </p>
                         )}

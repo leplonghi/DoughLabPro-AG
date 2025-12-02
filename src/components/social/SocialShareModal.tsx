@@ -49,27 +49,27 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm animate-fade-in">
-            <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+            <div className="relative w-full max-w-md rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-lg border border-dlp-border">
                 <button
                     onClick={onClose}
-                    className="absolute right-4 top-4 p-2 text-slate-400 hover:text-slate-600"
+                    className="absolute right-4 top-4 p-2 text-dlp-text-muted hover:text-dlp-text-secondary"
                 >
                     <CloseIcon className="h-6 w-6" />
                 </button>
 
-                <h3 className="mb-6 text-xl font-bold text-slate-900 flex items-center gap-2">
-                    <ShareIcon className="h-5 w-5 text-lime-600" />
+                <h3 className="mb-6 text-xl font-bold text-dlp-text-primary flex items-center gap-2">
+                    <ShareIcon className="h-5 w-5 text-dlp-accent" />
                     Share Your Formula
                 </h3>
 
                 {/* The Card to be Captured */}
-                <div className="flex justify-center mb-8 overflow-hidden rounded-xl shadow-lg">
+                <div className="flex justify-center mb-8 overflow-hidden rounded-xl shadow-dlp-md">
                     <div
                         ref={cardRef}
                         id="baker-card"
                         className="w-[320px] aspect-[4/5] bg-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden"
                     >
-                        {/* Background Accents */}
+                        {/* Background Accents - Keeping these specific for the share card aesthetic */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-lime-500/20 blur-3xl rounded-full -mr-10 -mt-10"></div>
                         <div className="absolute bottom-0 left-0 w-32 h-32 bg-sky-500/20 blur-3xl rounded-full -ml-10 -mb-10"></div>
 
@@ -141,7 +141,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                     <button
                         onClick={handleDownload}
                         disabled={isGenerating}
-                        className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 text-sm font-bold text-white shadow-lg transition-transform active:scale-95 disabled:opacity-50"
+                        className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-dlp-text-primary py-3 text-sm font-bold text-dlp-bg-card shadow-dlp-lg transition-transform active:scale-95 disabled:opacity-50 hover:bg-dlp-text-secondary"
                     >
                         {isGenerating ? (
                             <span>Generating...</span>
@@ -153,7 +153,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                         )}
                     </button>
                 </div>
-                <p className="mt-4 text-center text-xs text-slate-500">
+                <p className="mt-4 text-center text-xs text-dlp-text-muted">
                     Perfect for Instagram Stories or sharing with friends.
                 </p>
             </div>

@@ -67,12 +67,12 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
     const isError = message.role === 'error';
 
     const bubbleClasses = isUser
-      ? 'bg-lime-500 text-white self-end'
+      ? 'bg-dlp-accent text-white self-end'
       : isError
-        ? 'bg-red-100 text-red-800 self-start'
-        : 'bg-slate-200 text-slate-800 self-start';
+        ? 'bg-dlp-error/10 text-dlp-error self-start'
+        : 'bg-dlp-bg-muted text-dlp-text-primary self-start';
 
-    const icon = isUser ? <UserCircleIcon className="h-6 w-6" /> : <SparklesIcon className="h-6 w-6 text-lime-500" />;
+    const icon = isUser ? <UserCircleIcon className="h-6 w-6" /> : <SparklesIcon className="h-6 w-6 text-dlp-accent" />;
 
     return (
       <div className={`flex items-start gap-3 w-full ${isUser ? 'justify-end' : 'justify-start'}`}>
@@ -86,10 +86,10 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl flex flex-col h-[calc(100vh-8rem)] rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/50">
-      <div className="flex-shrink-0 p-4 border-b border-slate-200">
-        <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-          <SparklesIcon className="h-6 w-6 text-lime-500" />
+    <div className="mx-auto max-w-4xl flex flex-col h-[calc(100vh-8rem)] rounded-2xl bg-dlp-bg-card shadow-dlp-lg ring-1 ring-dlp-border">
+      <div className="flex-shrink-0 p-4 border-b border-dlp-border">
+        <h1 className="text-2xl font-bold text-dlp-text-primary flex items-center gap-3">
+          <SparklesIcon className="h-6 w-6 text-dlp-accent" />
           {t('assistant_page.title_short')}
         </h1>
       </div>
@@ -100,8 +100,8 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
         ))}
         {isLoading && (
           <div className="flex items-start gap-3 w-full justify-start">
-            <div className="flex-shrink-0"><SparklesIcon className="h-6 w-6 text-lime-500" /></div>
-            <div className="max-w-md rounded-2xl p-4 bg-slate-200 flex items-center gap-2">
+            <div className="flex-shrink-0"><SparklesIcon className="h-6 w-6 text-dlp-accent" /></div>
+            <div className="max-w-md rounded-2xl p-4 bg-dlp-bg-muted flex items-center gap-2">
               <SpinnerIcon className="h-5 w-5 animate-spin" />
               <span className="text-sm font-medium">{t('common.thinking')}</span>
             </div>
@@ -110,20 +110,20 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="flex-shrink-0 p-4 border-t border-slate-200">
+      <div className="flex-shrink-0 p-4 border-t border-dlp-border">
         <form onSubmit={handleSend} className="flex items-center gap-4">
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={t('assistant_page.placeholder_short')}
-            className="flex-1 rounded-lg border-slate-300 bg-slate-100 p-3 text-slate-900 focus:border-lime-500 focus:ring-lime-500"
+            className="flex-1 rounded-lg border-dlp-border bg-dlp-bg-muted p-3 text-dlp-text-primary focus:border-dlp-accent focus:ring-dlp-accent"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={isLoading || !inputValue.trim()}
-            className="rounded-lg bg-lime-500 py-3 px-5 font-semibold text-white shadow-sm transition-colors hover:bg-lime-600 disabled:cursor-not-allowed disabled:bg-slate-400"
+            className="rounded-lg bg-dlp-accent py-3 px-5 font-semibold text-white shadow-sm transition-colors hover:bg-dlp-accent-hover disabled:cursor-not-allowed disabled:bg-dlp-text-muted"
           >
             {t('assistant_page.send')}
           </button>

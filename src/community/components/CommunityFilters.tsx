@@ -15,7 +15,7 @@ export const CommunityFilters: React.FC<CommunityFiltersProps> = ({ activeFilter
 
     return (
         <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
-            <div className="flex items-center gap-2 mr-2 text-slate-400">
+            <div className="flex items-center gap-2 mr-2 text-gray-400">
                 <Filter className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider">Sort By</span>
             </div>
@@ -31,11 +31,11 @@ export const CommunityFilters: React.FC<CommunityFiltersProps> = ({ activeFilter
                         className={`
               flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
               ${isActive
-                                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20'
-                                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'}
+                                ? 'bg-dlp-accent text-white border border-dlp-accent shadow-dlp-sm'
+                                : 'bg-dlp-bg-card text-dlp-text-secondary hover:bg-dlp-bg-muted border border-dlp-border'}
             `}
                     >
-                        <Icon className={`h-4 w-4 ${isActive ? 'text-indigo-200' : 'text-slate-400'}`} />
+                        <Icon className={`h-4 w-4 ${isActive ? 'text-white' : 'text-dlp-text-muted'}`} />
                         {filter.label}
                     </button>
                 );

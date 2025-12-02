@@ -120,7 +120,7 @@ export const TourGuide: React.FC = () => {
 
             {/* Spotlight Effect */}
             <div
-                className="absolute transition-all duration-500 ease-in-out border-2 border-lime-500 rounded-lg shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
+                className="absolute transition-all duration-500 ease-in-out border-2 border-dlp-accent rounded-lg shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
                 style={{
                     top: targetRect.top + window.scrollY - 4,
                     left: targetRect.left + window.scrollX - 4,
@@ -131,22 +131,22 @@ export const TourGuide: React.FC = () => {
 
             {/* Tooltip Card */}
             <div
-                className="absolute pointer-events-auto bg-white rounded-xl shadow-2xl p-6 w-80 animate-fade-in transition-all duration-500"
+                className="absolute pointer-events-auto bg-dlp-bg-card rounded-xl shadow-dlp-lg p-6 w-80 animate-fade-in transition-all duration-500 ring-1 ring-dlp-border"
                 style={{ top, left }}
             >
                 <button
                     onClick={handleClose}
-                    className="absolute top-3 right-3 text-slate-400 hover:text-slate-600"
+                    className="absolute top-3 right-3 text-dlp-text-muted hover:text-dlp-text-secondary"
                 >
                     <CloseIcon className="h-5 w-5" />
                 </button>
 
                 <div className="mb-4">
-                    <span className="inline-block px-2 py-1 rounded bg-lime-100 text-lime-800 text-xs font-bold mb-2">
+                    <span className="inline-block px-2 py-1 rounded bg-dlp-bg-muted text-dlp-accent text-xs font-bold mb-2 border border-dlp-border">
                         Step {currentStep + 1} of {TOUR_STEPS.length}
                     </span>
-                    <h3 className="text-lg font-bold text-slate-900">{step.title}</h3>
-                    <p className="text-slate-600 text-sm mt-1 leading-relaxed">
+                    <h3 className="text-lg font-bold text-dlp-text-primary">{step.title}</h3>
+                    <p className="text-dlp-text-secondary text-sm mt-1 leading-relaxed">
                         {step.content}
                     </p>
                 </div>
@@ -154,13 +154,13 @@ export const TourGuide: React.FC = () => {
                 <div className="flex justify-between items-center mt-4">
                     <button
                         onClick={handleClose}
-                        className="text-xs font-semibold text-slate-500 hover:text-slate-800"
+                        className="text-xs font-semibold text-dlp-text-muted hover:text-dlp-text-primary"
                     >
                         Skip Tour
                     </button>
                     <button
                         onClick={handleNext}
-                        className="flex items-center gap-1 bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-800 transition-colors"
+                        className="flex items-center gap-1 bg-dlp-accent text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-dlp-accent-hover transition-colors shadow-dlp-sm"
                     >
                         {currentStep === TOUR_STEPS.length - 1 ? 'Finish' : 'Next'}
                         <ChevronRightIcon className="h-4 w-4" />

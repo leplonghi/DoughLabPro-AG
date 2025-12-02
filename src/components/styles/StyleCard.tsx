@@ -28,7 +28,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
     return (
         <div
             onClick={handleCardClick}
-            className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-lime-200 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full relative"
+            className="group bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-lime-200 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full relative"
         >
             {/* Header / Badges */}
             <div className="p-5 pb-3 relative">
@@ -36,22 +36,22 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     <div className="flex flex-wrap gap-2">
                         <CategoryBadge category={style.category} />
                         {style.isPro && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-lime-400 to-green-500 text-white shadow-sm">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-lime-500 text-white shadow-sm">
                                 PRO
                             </span>
                         )}
                         {isAiStyle && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-700 border border-indigo-200">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-100 text-indigo-700 border border-indigo-200">
                                 <Sparkles className="w-3 h-3 mr-1" /> AI
                             </span>
                         )}
                         {isUserStyle && !isAiStyle && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-700 border border-sky-200">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-sky-100 text-sky-700 border border-sky-200">
                                 <User className="w-3 h-3 mr-1" /> Custom
                             </span>
                         )}
                         {isNew && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500 text-white shadow-sm">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-500 text-white shadow-sm">
                                 NEW
                             </span>
                         )}
@@ -74,7 +74,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     </button>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-lime-600 transition-colors line-clamp-1">{style.name}</h3>
+                <h3 className="text-xl font-semibold text-slate-900 mb-1 group-hover:text-lime-600 transition-colors line-clamp-1">{style.name}</h3>
                 <div className="flex items-center gap-2 text-xs text-slate-500 font-medium uppercase tracking-wide">
                     <span className="flex items-center gap-1">
                         <Globe className="w-3 h-3" /> {style.origin.country}
@@ -130,7 +130,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             e.stopPropagation();
                             onUseInCalculator(style);
                         }}
-                        className="w-full bg-lime-50 hover:bg-lime-500 hover:text-white text-lime-700 text-xs font-bold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn"
+                        className="w-full bg-lime-50 hover:bg-lime-500 hover:text-white text-lime-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn"
                     >
                         <Calculator className="h-3.5 w-3.5" />
                         Use Style
@@ -143,7 +143,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             e.stopPropagation();
                             onDelete(style);
                         }}
-                        className="w-full bg-red-50 hover:bg-red-500 hover:text-white text-red-700 text-xs font-bold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
+                        className="w-full bg-red-50 hover:bg-red-500 hover:text-white text-red-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
                     >
                         <Trash2 className="h-3.5 w-3.5" />
                         Delete
@@ -154,7 +154,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             e.stopPropagation();
                             handleCardClick();
                         }}
-                        className="w-full bg-slate-50 hover:bg-slate-200 text-slate-600 text-xs font-bold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
+                        className="w-full bg-slate-50 hover:bg-slate-200 text-slate-600 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
                     >
                         Details
                         <ArrowRight className="h-3.5 w-3.5" />

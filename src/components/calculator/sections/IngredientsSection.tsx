@@ -3,7 +3,7 @@ import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import SliderInput from "@/components/ui/SliderInput";
 import { CubeIcon } from "@/components/ui/Icons";
 import { YeastType, FormErrors, DoughConfig, Levain } from "@/types";
-import { getArticleById } from "@/data/learnArticles";
+import { getArticleById } from "@/data/learn";
 import { timeSince } from "@/utils/dateUtils";
 import { LockFeature } from "@/components/auth/LockFeature";
 import { IngredientTableEditor } from "@/components/calculator/IngredientTableEditor";
@@ -51,7 +51,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.hydration}
             recommendedMin={getRange('hydration')?.[0]}
             recommendedMax={getRange('hydration')?.[1]}
-            learnArticle={getArticleById('water')}
+            learnArticle={getArticleById('water-hydration-dynamics')}
           />
           <SliderInput
             label="Salt"
@@ -63,7 +63,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.salt}
             recommendedMin={getRange('salt')?.[0]}
             recommendedMax={getRange('salt')?.[1]}
-            learnArticle={getArticleById('salt')}
+            learnArticle={getArticleById('salt-functionality-osmotic-effects')}
           />
         </>
       ) : (
@@ -79,7 +79,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
               hasError={!!errors.hydration}
               recommendedMin={getRange('hydration')?.[0]}
               recommendedMax={getRange('hydration')?.[1]}
-              learnArticle={getArticleById('water')}
+              learnArticle={getArticleById('water-hydration-dynamics')}
             />
           </LockedTeaser>
           <SliderInput
@@ -92,7 +92,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.salt}
             recommendedMin={getRange('salt')?.[0]}
             recommendedMax={getRange('salt')?.[1]}
-            learnArticle={getArticleById('salt')}
+            learnArticle={getArticleById('salt-functionality-osmotic-effects')}
           />
           <SliderInput
             label="Oil/Fat"
@@ -104,7 +104,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.oil}
             recommendedMin={getRange('oil')?.[0]}
             recommendedMax={getRange('oil')?.[1]}
-            learnArticle={getArticleById('fats')}
+            learnArticle={getArticleById('fats-oils-lubrication-oxidation')}
           />
           <SliderInput
             label="Sugar"
@@ -116,35 +116,35 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             hasError={!!errors.sugar}
             recommendedMin={getRange('sugar')?.[0]}
             recommendedMax={getRange('sugar')?.[1]}
-            learnArticle={getArticleById('sugars')}
+            learnArticle={getArticleById('sugars-enzymatic-activity')}
           />
         </>
       )}
 
-      <div className="pt-6 border-t border-slate-200">
+      <div className="pt-6 border-t border-dlp-border">
         <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2">
           <div>
-            <label htmlFor="yeastType" className="mb-1 block text-sm font-medium text-slate-700">Yeast Type</label>
+            <label htmlFor="yeastType" className="mb-1 block text-sm font-medium text-dlp-text-secondary">Yeast Type</label>
             <select id="yeastType" name="yeastType" value={config.yeastType} onChange={handleSelectChange} className={getSelectClasses()}>
               {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.labelKey}</option>))}
             </select>
           </div>
-          <SliderInput label={isAnySourdough ? "Starter %" : "Yeast %"} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip="Determines fermentation speed. Adjust based on time and temperature. Less yeast = longer fermentation = more flavor." hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeasts')} />
+          <SliderInput label={isAnySourdough ? "Starter %" : "Yeast %"} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip="Determines fermentation speed. Adjust based on time and temperature. Less yeast = longer fermentation = more flavor." hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} />
         </div>
 
         {isAnySourdough && (
-          <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-4">
+          <div className="mt-4 rounded-lg border border-dlp-border bg-dlp-bg-muted p-4">
             {config.yeastType === YeastType.SOURDOUGH_STARTER && (
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-white rounded-full shadow-sm text-slate-400">
+                <div className="p-2 bg-dlp-bg-card rounded-full shadow-dlp-sm text-dlp-text-muted border border-dlp-border">
                   <CubeIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-800">Generic Starter</h4>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h4 className="text-sm font-bold text-dlp-text-primary">Generic Starter</h4>
+                  <p className="text-xs text-dlp-text-secondary mt-1">
                     Assumed Hydration: <strong>100%</strong>.
                   </p>
-                  <p className="text-xs text-slate-500 mt-2">
+                  <p className="text-xs text-dlp-text-muted mt-2">
                     To track your specific starter's hydration and feeding schedule, select <strong>"My Starter"</strong>.
                   </p>
                 </div>
@@ -156,25 +156,25 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                 {levains.length > 0 ? (
                   <div className="space-y-3">
                     <div>
-                      <label htmlFor="levainId" className="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Selected Levain</label>
+                      <label htmlFor="levainId" className="block text-xs font-bold uppercase tracking-wide text-dlp-text-muted mb-1">Selected Levain</label>
                       <select id="levainId" name="levainId" value={config.levainId || ''} onChange={handleSelectChange} className={getSelectClasses()}>
                         {levains.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
                       </select>
                     </div>
                     {selectedLevain && (
-                      <div className="bg-white rounded-md border border-slate-200 p-3 shadow-sm grid grid-cols-2 gap-4">
+                      <div className="bg-dlp-bg-card rounded-md border border-dlp-border p-3 shadow-dlp-sm grid grid-cols-2 gap-4">
                         <div>
-                          <span className="block text-xs text-slate-500 uppercase">Hydration</span>
-                          <span className="block text-lg font-bold text-slate-800">{selectedLevain.hydration}%</span>
+                          <span className="block text-xs text-dlp-text-muted uppercase">Hydration</span>
+                          <span className="block text-lg font-bold text-dlp-text-primary">{selectedLevain.hydration}%</span>
                         </div>
                         <div>
-                          <span className="block text-xs text-slate-500 uppercase">Last Fed</span>
-                          <span className="block text-lg font-bold text-slate-800">{timeSince(selectedLevain.lastFeeding)} ago</span>
+                          <span className="block text-xs text-dlp-text-muted uppercase">Last Fed</span>
+                          <span className="block text-lg font-bold text-dlp-text-primary">{timeSince(selectedLevain.lastFeeding)} ago</span>
                         </div>
-                        <div className="col-span-2 border-t border-slate-100 pt-2 mt-1">
-                          <span className="block text-xs text-slate-500">Status</span>
-                          <span className={`font-medium ${selectedLevain.status === 'ativo' ? 'text-green-600' :
-                            selectedLevain.status === 'precisa_atencao' ? 'text-amber-600' : 'text-slate-600'
+                        <div className="col-span-2 border-t border-dlp-border pt-2 mt-1">
+                          <span className="block text-xs text-dlp-text-muted">Status</span>
+                          <span className={`font-medium ${selectedLevain.status === 'ativo' ? 'text-dlp-success' :
+                            selectedLevain.status === 'precisa_atencao' ? 'text-dlp-warning' : 'text-dlp-text-secondary'
                             }`}>
                             {selectedLevain.status === 'ativo' ? 'Active' : selectedLevain.status === 'precisa_atencao' ? 'Needs Attention' : 'Resting'}
                           </span>
@@ -184,8 +184,8 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                   </div>
                 ) : (
                   <div className="text-center py-2">
-                    <p className="text-sm text-slate-600 mb-3">No starters found in My Lab.</p>
-                    <a href="#/mylab/levain" className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-br from-lime-500 to-lime-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:from-lime-600 hover:to-lime-800">
+                    <p className="text-sm text-dlp-text-secondary mb-3">No starters found in My Lab.</p>
+                    <a href="#/mylab/levain" className="inline-flex items-center justify-center gap-2 rounded-md bg-dlp-accent px-4 py-2 text-sm font-semibold text-white shadow-dlp-sm hover:bg-dlp-accent-hover transition-colors">
                       Create Levain
                     </a>
                   </div>
@@ -197,8 +197,8 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
 
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-              <CubeIcon className="h-5 w-5 text-lime-600" />
+            <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
+              <CubeIcon className="h-5 w-5 text-dlp-accent" />
               Advanced Ingredients
             </h3>
             <LockFeature featureKey="calculator.advanced_ingredients" customMessage="Unlock Pro Ingredients">

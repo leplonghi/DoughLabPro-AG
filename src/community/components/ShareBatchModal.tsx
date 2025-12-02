@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Batch } from '@/types';
+import { Batch, YeastType } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
 import { communityStore } from '@/community/store/communityStore';
 import { useToast } from '@/components/ToastProvider';
@@ -62,19 +62,23 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
 
         setIsSubmitting(true);
         try {
+            const fermentationNotesParts = [];
+            if (batch.bulkTimeHours !== undefined) fermentationNotesParts.push(`Bulk: ${batch.bulkTimeHours}h`);
+            if (batch.proofTimeHours !== undefined) fermentationNotesParts.push(`Proof: ${batch.proofTimeHours}h`);
+
             await communityStore.createPost({
                 uid: user.uid,
                 username: user.name || 'Anonymous Baker',
                 userPhotoURL: user.avatar || undefined,
                 batchId: batch.id,
-                styleKey: batch.doughConfig.recipeStyle, // Assuming this maps to styleKey
+                styleKey: batch.doughConfig.recipeStyle,
                 hydration: batch.doughConfig.hydration,
-                flour: batch.doughConfig.flourId, // Or name if available
+                flour: batch.doughConfig.flourId,
                 saltPct: batch.doughConfig.salt,
-                levainPct: batch.doughConfig.yeastType === 'sourdough' ? 20 : 0, // Approximation or need real data
-                prefermentUsed: !!batch.doughResult.preferment,
+                levainPct: (batch.doughConfig.yeastType === YeastType.SOURDOUGH_STARTER || batch.doughConfig.yeastType === YeastType.USER_LEVAIN) ? 20 : 0, // Approximation
+                prefermentUsed: !!batch.doughResult?.preferment,
                 method: batch.doughConfig.fermentationTechnique,
-                fermentationNotes: `Bulk: ${batch.bulkTimeHours}h, Proof: ${batch.proofTimeHours}h`,
+                fermentationNotes: fermentationNotesParts.join(', '),
                 ovenType: batch.ovenType,
                 photos: [selectedPhoto],
                 tags: tags,
@@ -95,10 +99,10 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-            <div className="w-full max-w-lg rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-xl animate-in fade-in zoom-in duration-200">
+            <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in duration-200">
                 <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">Share this Bake</h2>
-                    <button onClick={onClose} className="text-slate-500 hover:text-slate-900 dark:hover:text-white">
+                    <h2 className="text-xl font-bold text-gray-900">Share this Bake</h2>
+                    <button onClick={onClose} className="text-gray-500 hover:text-gray-900">
                         <CloseIcon className="h-6 w-6" />
                     </button>
                 </div>
@@ -106,14 +110,14 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                 <div className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
                     {/* Photo Selection */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Photo</label>
-                        <div className="relative aspect-video rounded-xl bg-slate-100 dark:bg-slate-700 overflow-hidden flex items-center justify-center border-2 border-dashed border-slate-300 dark:border-slate-600 hover:border-lime-500 transition-colors group">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Photo</label>
+                        <div className="relative aspect-video rounded-xl bg-gray-100 overflow-hidden flex items-center justify-center border-2 border-dashed border-gray-300 hover:border-lime-500 transition-colors group">
                             {selectedPhoto ? (
                                 <img src={selectedPhoto} alt="Bake" className="w-full h-full object-cover" />
                             ) : (
                                 <div className="text-center p-4">
-                                    <PhotoIcon className="h-10 w-10 mx-auto text-slate-400 mb-2" />
-                                    <span className="text-sm text-slate-500">Click to upload photo</span>
+                                    <PhotoIcon className="h-10 w-10 mx-auto text-gray-400 mb-2" />
+                                    <span className="text-sm text-gray-500">Click to upload photo</span>
                                 </div>
                             )}
                             <input
@@ -132,34 +136,34 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
 
                     {/* Title */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Title</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
                         <input
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full rounded-xl border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-lime-500 focus:border-lime-500"
+                            className="w-full rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-lime-500 focus:border-lime-500"
                         />
                     </div>
 
                     {/* Description */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Description</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                         <textarea
                             rows={3}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            className="w-full rounded-xl border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-lime-500 focus:border-lime-500"
+                            className="w-full rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-lime-500 focus:border-lime-500"
                         />
                     </div>
 
                     {/* Tags */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tags</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Tags</label>
                         <div className="flex gap-2 mb-2 flex-wrap">
                             {tags.map(tag => (
-                                <span key={tag} className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-400">
+                                <span key={tag} className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-lime-100 text-lime-800">
                                     #{tag}
-                                    <button onClick={() => handleRemoveTag(tag)} className="hover:text-lime-900 dark:hover:text-lime-300">&times;</button>
+                                    <button onClick={() => handleRemoveTag(tag)} className="hover:text-lime-900">&times;</button>
                                 </span>
                             ))}
                         </div>
@@ -170,11 +174,11 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                                 onChange={(e) => setTagInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleAddTag()}
                                 placeholder="Add a tag..."
-                                className="flex-1 rounded-xl border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-lime-500 focus:border-lime-500 text-sm"
+                                className="flex-1 rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-lime-500 focus:border-lime-500 text-sm"
                             />
                             <button
                                 onClick={handleAddTag}
-                                className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-200 dark:hover:bg-slate-600"
+                                className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 font-medium text-sm hover:bg-gray-200"
                             >
                                 Add
                             </button>
@@ -185,7 +189,7 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                 <div className="mt-6 flex justify-end gap-3">
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-100 dark:hover:bg-slate-700"
+                        className="px-4 py-2 rounded-xl text-gray-600 font-medium hover:bg-gray-100"
                     >
                         Cancel
                     </button>

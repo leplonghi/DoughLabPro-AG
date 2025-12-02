@@ -59,7 +59,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
         >
             <div className="space-y-4">
                 <div>
-                    <label className="mb-2 block text-xs font-bold text-slate-700">
+                    <label className="mb-2 block text-xs font-bold text-dlp-text-secondary">
                         Ambient Temperature
                     </label>
                     <div className="grid grid-cols-3 gap-2">
@@ -76,13 +76,13 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                 </div>
 
                 {currentGuideline && (
-                    <div className="rounded-md bg-sky-50 p-3 text-xs text-sky-700 flex gap-2 items-start">
-                        <InfoIcon className="h-4 w-4 flex-shrink-0 mt-0.5 text-lime-600" />
+                    <div className="rounded-md bg-dlp-bg-muted p-3 text-xs text-dlp-text-secondary flex gap-2 items-start border border-dlp-border">
+                        <InfoIcon className="h-4 w-4 flex-shrink-0 mt-0.5 text-dlp-accent" />
                         <div>
-                            <p className="font-semibold">Impact on Fermentation:</p>
+                            <p className="font-semibold text-dlp-text-primary">Impact on Fermentation:</p>
                             <p>{currentGuideline.notes}</p>
                             {currentGuideline.yeastAdjustment !== 1.0 && (
-                                <p className="mt-1 font-mono text-[10px] bg-sky-100 inline-block px-1 rounded">
+                                <p className="mt-1 font-mono text-[10px] bg-dlp-bg-card inline-block px-1 rounded border border-dlp-border">
                                     Yeast Factor: {currentGuideline.yeastAdjustment}x
                                 </p>
                             )}

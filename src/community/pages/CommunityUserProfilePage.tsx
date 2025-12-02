@@ -48,16 +48,16 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
         <LibraryPageLayout>
             <div className="max-w-5xl mx-auto">
                 {/* Profile Header */}
-                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden mb-8">
-                    <div className="h-32 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div className="h-32 bg-gradient-to-r from-lime-500 to-green-600"></div>
                     <div className="px-8 pb-8">
                         <div className="relative flex justify-between items-end -mt-12 mb-6">
-                            <div className="h-24 w-24 rounded-full bg-white dark:bg-slate-800 p-1">
-                                <div className="h-full w-full rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                            <div className="h-24 w-24 rounded-full bg-white p-1">
+                                <div className="h-full w-full rounded-full bg-gray-200 overflow-hidden">
                                     {profileUser.photoURL ? (
                                         <img src={profileUser.photoURL} alt={profileUser.username} className="h-full w-full object-cover" />
                                     ) : (
-                                        <div className="h-full w-full flex items-center justify-center text-slate-400">
+                                        <div className="h-full w-full flex items-center justify-center text-gray-400">
                                             <User className="h-10 w-10" />
                                         </div>
                                     )}
@@ -70,8 +70,8 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                                         onClick={toggleFollow}
                                         disabled={followLoading}
                                         className={`px-6 py-2 rounded-full font-medium transition-colors ${isFollowing
-                                            ? 'bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600'
-                                            : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                                            ? 'bg-gray-100 text-gray-900 border border-gray-200'
+                                            : 'bg-lime-600 text-white hover:bg-lime-700'
                                             }`}
                                     >
                                         {isFollowing ? 'Following' : 'Follow'}
@@ -81,33 +81,33 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                         </div>
 
                         <div>
-                            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{profileUser.username}</h1>
-                            <div className="flex items-center gap-4 mt-2 text-sm text-slate-500 dark:text-slate-400">
+                            <h1 className="text-2xl font-bold text-gray-900">{profileUser.username}</h1>
+                            <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
                                 <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Global Baker</span>
                                 <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> Joined 2025</span>
                             </div>
                         </div>
 
                         {/* Locked Stats Section */}
-                        <LockFeature featureKey="community.profile_full" mode="blur" className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700" customMessage="Unlock full Community">
+                        <LockFeature featureKey="community.profile_full" mode="blur" className="mt-8 pt-8 border-t border-gray-100" customMessage="Unlock full Community">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
-                                    <div className="text-2xl font-bold text-slate-900 dark:text-white">{posts.length}</div>
-                                    <div className="text-xs text-slate-500 uppercase tracking-wide">Bakes</div>
+                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                    <div className="text-2xl font-bold text-gray-900">{posts.length}</div>
+                                    <div className="text-xs text-gray-500 uppercase tracking-wide">Bakes</div>
                                 </div>
-                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
-                                    <div className="text-2xl font-bold text-slate-900 dark:text-white">0</div>
-                                    <div className="text-xs text-slate-500 uppercase tracking-wide">Followers</div>
+                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                    <div className="text-2xl font-bold text-gray-900">0</div>
+                                    <div className="text-xs text-gray-500 uppercase tracking-wide">Followers</div>
                                 </div>
-                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
-                                    <div className="text-2xl font-bold text-slate-900 dark:text-white">0</div>
-                                    <div className="text-xs text-slate-500 uppercase tracking-wide">Clones</div>
+                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                    <div className="text-2xl font-bold text-gray-900">0</div>
+                                    <div className="text-xs text-gray-500 uppercase tracking-wide">Clones</div>
                                 </div>
-                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center gap-3">
-                                    <Award className="h-8 w-8 text-amber-500" />
+                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 flex items-center gap-3">
+                                    <Award className="h-8 w-8 text-lime-500" />
                                     <div>
-                                        <div className="font-bold text-slate-900 dark:text-white">Top 10%</div>
-                                        <div className="text-xs text-slate-500 uppercase tracking-wide">Rank</div>
+                                        <div className="font-bold text-gray-900">Top 10%</div>
+                                        <div className="text-xs text-gray-500 uppercase tracking-wide">Rank</div>
                                     </div>
                                 </div>
                             </div>
@@ -116,12 +116,12 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                 </div>
 
                 {/* User Posts Grid */}
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Recent Bakes</h2>
+                <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Bakes</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {loading ? (
-                        <div className="col-span-full text-center py-12 text-slate-400">Loading bakes...</div>
+                        <div className="col-span-full text-center py-12 text-gray-400">Loading bakes...</div>
                     ) : posts.length === 0 ? (
-                        <div className="col-span-full text-center py-12 text-slate-400">No bakes shared yet.</div>
+                        <div className="col-span-full text-center py-12 text-gray-400">No bakes shared yet.</div>
                     ) : (
                         posts.map(post => (
                             <CommunityPostCard key={post.id} post={post} />

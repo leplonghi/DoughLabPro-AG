@@ -234,7 +234,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             case 'mylab/consistency':
                 return protectWithFeature(<ConsistencyListPage onNavigate={navigate} />, 'mylab.unlimited_advanced');
             case 'mylab/levain-pet':
-                return protectWithFeature(<MyLabLevainPetPage />, 'levain.lab_full');
+                return protectWithFeature(<MyLabLevainPetPage onNavigate={navigate} />, 'levain.lab_full');
             case 'mylab/levain':
                 return protect(<LevainListPage onNavigate={navigate} />);
             case 'plans':

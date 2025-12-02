@@ -55,7 +55,7 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
       icon: <CubeIcon className="h-8 w-8" />,
     },
     {
-      page: 'learn/article/parbaking' as Page,
+      page: 'learn/parbaking' as Page,
       title: 'Parbaking',
       description: 'Techniques for pre-baking bases for events or high-volume service.',
       icon: <FireIcon className="h-8 w-8" />,

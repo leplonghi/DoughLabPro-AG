@@ -38,7 +38,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
         return (
             <button
                 onClick={onOpenAuthModal}
-                className="text-sm font-semibold text-slate-600 hover:text-slate-900"
+                className="text-sm font-semibold text-dlp-text-secondary hover:text-dlp-text-primary"
             >
                 Sign In
             </button>
@@ -65,19 +65,19 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
         <div className="relative" ref={menuRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-center w-9 h-9 rounded-full bg-white border border-lime-500 text-lime-700 font-semibold hover:bg-lime-50 transition-colors focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2"
+                className="flex items-center justify-center w-9 h-9 rounded-full bg-dlp-bg-card border border-dlp-accent text-dlp-accent font-semibold hover:bg-dlp-bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
             >
                 {initials}
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none z-50 overflow-hidden animate-fade-in">
+                <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-xl bg-dlp-bg-card shadow-dlp-lg ring-1 ring-dlp-border focus:outline-none z-50 overflow-hidden animate-fade-in">
                     {/* User Info Header */}
-                    <div className="px-4 py-3 border-b border-slate-100 bg-slate-50/50">
-                        <p className="text-sm font-semibold text-slate-900 truncate">
+                    <div className="px-4 py-3 border-b border-dlp-border bg-dlp-bg-muted">
+                        <p className="text-sm font-semibold text-dlp-text-primary truncate">
                             {user?.name || 'User'}
                         </p>
-                        <p className="text-xs text-slate-500 truncate mt-0.5">
+                        <p className="text-xs text-dlp-text-muted truncate mt-0.5">
                             {user?.email || ''}
                         </p>
                     </div>
@@ -86,40 +86,40 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                     <div className="py-1">
                         <button
                             onClick={() => handleItemClick('profile')}
-                            className="flex w-full items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors group"
+                            className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
-                            <UserCircleIcon className="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600" />
+                            <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
                             Profile
                         </button>
 
                         <button
                             onClick={() => handleItemClick('settings')}
-                            className="flex w-full items-center justify-between px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors group"
+                            className="flex w-full items-center justify-between px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
                             <div className="flex items-center">
-                                <SettingsIcon className="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600" />
+                                <SettingsIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
                                 Settings
                             </div>
-                            <ChevronRightIcon className="h-4 w-4 text-slate-400" />
+                            <ChevronRightIcon className="h-4 w-4 text-dlp-text-muted" />
                         </button>
 
                         <button
                             onClick={() => handleItemClick('help')}
-                            className="flex w-full items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors group"
+                            className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
-                            <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600" />
+                            <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
                             Help
                         </button>
 
                         <button
                             onClick={() => handleItemClick('legal')}
-                            className="flex w-full items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors group"
+                            className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
-                            <ClockIcon className="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600" />
+                            <ClockIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
                             Legal
                         </button>
 
-                        <div className="border-t border-slate-100 my-1"></div>
+                        <div className="border-t border-dlp-border my-1"></div>
 
                         <button
                             onClick={handleLogout}

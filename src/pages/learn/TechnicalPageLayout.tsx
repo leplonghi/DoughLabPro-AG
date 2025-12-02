@@ -19,8 +19,8 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
   const suggestion = useMemo(() => getAffiliateSuggestionsForTopic(title), [title]);
   const { user, openPaywall, toggleFavorite, isFavorite } = useUser();
 
-  // Use current path as the unique ID for the article
-  const articleId = typeof window !== 'undefined' ? window.location.pathname : title;
+  // Use current hash as the unique ID for the article (handling hash routing)
+  const articleId = typeof window !== 'undefined' ? window.location.hash.slice(1) || title : title;
   const isFav = isFavorite(articleId);
 
 

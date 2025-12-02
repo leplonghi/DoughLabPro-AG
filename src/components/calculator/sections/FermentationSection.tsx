@@ -55,11 +55,11 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
         description="Leavening method for this style."
         icon={<FermentationIcon className="h-6 w-6" />}
       >
-        <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 text-center">
-          <p className="text-sm font-medium text-slate-700">
+        <div className="p-4 bg-dlp-bg-muted rounded-lg border border-dlp-border text-center">
+          <p className="text-sm font-medium text-dlp-text-secondary">
             {safeAllowedTechniques[0] === FermentationTechnique.CHEMICAL ? 'Chemical Leavening (Baking Powder/Soda)' : 'No Fermentation / Physical Leavening'}
           </p>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-dlp-text-muted mt-1">
             This style does not use yeast fermentation.
           </p>
         </div>
@@ -74,7 +74,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
       icon={<FermentationIcon className="h-6 w-6" />}
     >
       {isAnySourdough ? (
-        <p className="text-center text-sm text-slate-600 bg-slate-100 p-3 rounded-lg">
+        <p className="text-center text-sm text-dlp-text-secondary bg-dlp-bg-muted p-3 rounded-lg">
           Sourdough Starter acts as the preferment. Biga/Poolish options disabled.
         </p>
       ) : (
@@ -88,7 +88,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 label="Direct"
               />
               {!isAllowed(FermentationTechnique.DIRECT) && (
-                <div className="absolute -top-2 -right-2 bg-slate-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5" title="Not applicable for this style">
+                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title="Not applicable for this style">
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
                 </div>
               )}
@@ -104,7 +104,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 />
               </LockFeature>
               {!isAllowed(FermentationTechnique.POOLISH) && (
-                <div className="absolute -top-2 -right-2 bg-slate-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
+                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
                 </div>
               )}
@@ -120,7 +120,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 />
               </LockFeature>
               {!isAllowed(FermentationTechnique.BIGA) && (
-                <div className="absolute -top-2 -right-2 bg-slate-500 text-white text-[10px] font-bold px-1.5 rounded-full shadow-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
+                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
                 </div>
               )}
@@ -128,13 +128,13 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
           </div>
 
           {!safeAllowedTechniques.includes(FermentationTechnique.POOLISH) && !safeAllowedTechniques.includes(FermentationTechnique.BIGA) && (
-            <p className="text-xs text-center text-slate-500 mt-2 italic">
+            <p className="text-xs text-center text-dlp-text-muted mt-2 italic">
               Preferments (Poolish/Biga) are not typically used for this style.
             </p>
           )}
 
           {config.fermentationTechnique !== FermentationTechnique.DIRECT && (
-            <div className="pt-6 border-t border-slate-200">
+            <div className="pt-6 border-t border-dlp-border">
               <SliderInput
                 label="% Flour in Preferment"
                 name="prefermentFlourPercentage"

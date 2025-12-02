@@ -66,7 +66,7 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
 
           <div className="flex justify-end">
             <a
-              href={`/styles/${style.id}`}
+              href={`#/styles/detail/${style.id}`}
               className="text-xs font-semibold text-lime-600 hover:text-lime-700 flex items-center gap-1"
             >
               View Full Style Guide &rarr;

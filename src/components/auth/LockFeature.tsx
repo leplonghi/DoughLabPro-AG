@@ -64,7 +64,7 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
                 <div className="pointer-events-none opacity-60 grayscale">
                     {children}
                 </div>
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-dlp-text-primary text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
                     {customMessage || "Unlock full Community"}
                 </div>
             </div>
@@ -79,25 +79,25 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
             </div>
 
             {/* Overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/40 dark:bg-black/40 backdrop-blur-[1px] z-10 p-3 text-center transition-all duration-300">
-                <div className="flex flex-col items-center justify-center p-3 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-xl shadow-lg border border-slate-200 dark:border-zinc-700 transform transition-all hover:scale-105">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-dlp-bg/40 backdrop-blur-[1px] z-10 p-3 text-center transition-all duration-300">
+                <div className="flex flex-col items-center justify-center p-3 bg-dlp-bg-card/90 backdrop-blur-md rounded-xl shadow-dlp-lg border border-dlp-border transform transition-all hover:scale-105">
                     {showLockIcon && (
-                        <div className="bg-lime-100 dark:bg-lime-900/30 text-lime-600 dark:text-lime-400 p-2 rounded-full mb-2 shadow-sm">
+                        <div className="bg-dlp-accent/10 text-dlp-accent p-2 rounded-full mb-2 shadow-dlp-sm">
                             <LockClosedIcon className="w-4 h-4" />
                         </div>
                     )}
 
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-0.5">
+                    <h3 className="text-sm font-bold text-dlp-text-primary mb-0.5">
                         Unlock Feature
                     </h3>
 
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 mb-2 max-w-[150px] leading-tight">
+                    <p className="text-[10px] text-dlp-text-secondary mb-2 max-w-[150px] leading-tight">
                         {customMessage || "Unlock full Community"}
                     </p>
 
                     <button
                         onClick={handleUnlockClick}
-                        className="bg-lime-500 hover:bg-lime-400 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors shadow-sm"
+                        className="bg-dlp-accent hover:bg-dlp-accent-hover text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors shadow-dlp-sm"
                     >
                         View Plans
                     </button>

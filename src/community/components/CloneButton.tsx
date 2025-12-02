@@ -16,7 +16,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({ post }) => {
             <button
                 onClick={() => clonePost(post)}
                 disabled={loading}
-                className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors disabled:opacity-50"
+                className="flex items-center gap-1.5 text-gray-600 hover:text-lime-600 transition-colors disabled:opacity-50"
             >
                 {loading ? (
                     <Loader2 className="h-5 w-5 animate-spin" />

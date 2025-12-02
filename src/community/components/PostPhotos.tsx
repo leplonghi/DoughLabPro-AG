@@ -8,7 +8,7 @@ export const PostPhotos: React.FC<PostPhotosProps> = ({ photos }) => {
     if (!photos || photos.length === 0) return null;
 
     return (
-        <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+        <div className="relative aspect-square w-full bg-gray-100 overflow-hidden">
             {/* For V1, just show the first photo. Carousel can be added later. */}
             <img
                 src={photos[0]}

@@ -26,7 +26,7 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
 
     return (
         <div
-            className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+            className="bg-dlp-bg-card rounded-lg shadow-dlp-sm border border-dlp-border overflow-hidden hover:shadow-dlp-md transition-shadow cursor-pointer"
             onClick={handleCardClick}
         >
             <PostHeader
@@ -39,8 +39,8 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
             <PostPhotos photos={post.photos} />
 
             <div className="p-4 pb-2">
-                <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-1">{post.title || 'Untitled Bake'}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 line-clamp-2">{post.description}</p>
+                <h3 className="font-semibold text-lg text-dlp-text-primary mb-1">{post.title || 'Untitled Bake'}</h3>
+                <p className="text-sm text-dlp-text-secondary line-clamp-2">{post.description}</p>
             </div>
 
             <PostTechnicalPanel post={post} />

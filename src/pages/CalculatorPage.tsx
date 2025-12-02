@@ -106,8 +106,8 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
               }}
             />
             <div className="group relative">
-              <InfoIcon className="h-4 w-4 cursor-help text-slate-400 " />
-              <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-72 -translate-x-1/2 rounded-xl bg-slate-800  p-3 text-xs text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 border border-slate-700 ">
+              <InfoIcon className="h-4 w-4 cursor-help text-dlp-text-muted " />
+              <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-72 -translate-x-1/2 rounded-xl bg-dlp-bg-card p-3 text-xs text-dlp-text-primary opacity-0 shadow-dlp-md transition-opacity duration-300 group-hover:opacity-100 border border-dlp-border ">
                 <p dangerouslySetInnerHTML={{ __html: t('form.tooltips.ui_mode') }} />
               </div>
             </div>

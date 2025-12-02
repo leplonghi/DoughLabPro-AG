@@ -140,35 +140,28 @@ function AppContent() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 p-4 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 z-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-lime-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-        </div>
-
+      <div className="min-h-screen flex flex-col items-center justify-center bg-dlp-bg-soft p-4 relative overflow-hidden">
         <div className="z-10 text-center max-w-md w-full">
           <div className="mb-8 flex justify-center">
             <Logo className="h-24 w-auto" />
           </div>
 
-          <h1 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight">Welcome to your digital dough lab</h1>
-          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+          <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">Welcome to your digital dough lab</h1>
+          <p className="text-lg text-dlp-text-secondary mb-8 leading-relaxed">
             The ultimate precision tool for professional and home bakers.
             <br />
-            <span className="text-sm text-slate-500 mt-2 block">Sign in to access your lab, recipes, and tools.</span>
+            <span className="text-sm text-dlp-text-muted mt-2 block">Sign in to access your lab, recipes, and tools.</span>
           </p>
 
           <div className="space-y-4">
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="w-full py-3.5 bg-gradient-to-br from-lime-500 to-lime-700 hover:from-lime-600 hover:to-lime-800 text-white font-bold rounded-xl shadow-lg shadow-lime-900/20 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full py-3.5 bg-dlp-accent hover:bg-dlp-accent-hover text-white font-semibold rounded-xl shadow-dlp-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Sign In / Create Account
             </button>
 
-            <p className="text-xs text-slate-400 mt-6">
+            <p className="text-xs text-dlp-text-muted mt-6">
               By continuing, you agree to our Terms of Service and Privacy Policy.
             </p>
           </div>
@@ -184,7 +177,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 transition-colors duration-300 flex flex-col">
+    <div className="min-h-screen bg-dlp-bg-soft font-sans text-dlp-text-primary transition-colors duration-300 flex flex-col">
       <Navigation
         activePage={route as PrimaryPage}
         onNavigate={navigate}

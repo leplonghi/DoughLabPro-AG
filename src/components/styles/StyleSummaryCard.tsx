@@ -66,7 +66,7 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
 
                     <div className="flex justify-end pt-2 border-t border-slate-50">
                         <a
-                            href={`#/styles/${style.id}`}
+                            href={`#/styles/detail/${style.id}`}
                             className="text-xs font-bold text-lime-600 hover:text-lime-700 flex items-center gap-1"
                         >
                             View Full Style Guide &rarr;

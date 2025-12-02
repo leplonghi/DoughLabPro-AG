@@ -36,30 +36,30 @@ export const PostComments: React.FC<PostCommentsProps> = ({ postId }) => {
     };
 
     return (
-        <div className="bg-slate-50 dark:bg-slate-900/50 p-4 border-t border-slate-100 dark:border-slate-700">
+        <div className="bg-gray-50 p-4 border-t border-gray-100">
             {/* Comments List */}
             <div className="space-y-4 mb-4 max-h-60 overflow-y-auto">
                 {loading ? (
-                    <div className="text-center text-slate-400 text-sm">Loading comments...</div>
+                    <div className="text-center text-gray-400 text-sm">Loading comments...</div>
                 ) : comments.length === 0 ? (
-                    <div className="text-center text-slate-400 text-sm">No comments yet. Be the first!</div>
+                    <div className="text-center text-gray-400 text-sm">No comments yet. Be the first!</div>
                 ) : (
                     comments.map((comment) => (
                         <div key={comment.id} className="flex gap-3">
-                            <div className="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 overflow-hidden">
+                            <div className="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden">
                                 {comment.userPhotoURL ? (
                                     <img src={comment.userPhotoURL} alt={comment.username} className="h-full w-full object-cover" />
                                 ) : (
-                                    <User className="h-4 w-4 m-2 text-slate-400" />
+                                    <User className="h-4 w-4 m-2 text-gray-400" />
                                 )}
                             </div>
                             <div className="flex-1">
-                                <div className="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm">
+                                <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm">
                                     <div className="flex items-center justify-between mb-1">
-                                        <span className="font-semibold text-xs text-slate-900 dark:text-white">{comment.username}</span>
-                                        <span className="text-[10px] text-slate-400">{formatPostDate(comment.createdAt)}</span>
+                                        <span className="font-semibold text-xs text-gray-900">{comment.username}</span>
+                                        <span className="text-[10px] text-gray-400">{formatPostDate(comment.createdAt)}</span>
                                     </div>
-                                    <p className="text-sm text-slate-600 dark:text-slate-300">{comment.text}</p>
+                                    <p className="text-sm text-gray-600">{comment.text}</p>
                                 </div>
                             </div>
                         </div>
@@ -75,12 +75,12 @@ export const PostComments: React.FC<PostCommentsProps> = ({ postId }) => {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                         placeholder="Add a comment..."
-                        className="w-full pl-4 pr-12 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="w-full pl-4 pr-12 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500"
                     />
                     <button
                         type="submit"
                         disabled={!newComment.trim() || submitting}
-                        className="absolute right-1.5 top-1.5 p-1.5 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 disabled:opacity-50 disabled:hover:bg-indigo-600 transition-colors"
+                        className="absolute right-1.5 top-1.5 p-1.5 bg-lime-600 text-white rounded-full hover:bg-lime-700 disabled:opacity-50 disabled:hover:bg-lime-600 transition-colors"
                     >
                         <Send className="h-4 w-4" />
                     </button>

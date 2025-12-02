@@ -1,0 +1,37 @@
+:root {
+  /* Background */
+  --dlp-bg: #FFFFFF;
+  --dlp-bg-soft: #F8F9FA;
+  --dlp-bg-card: #FFFFFF;
+  --dlp-bg-muted: #F3F4F6;
+
+  /* Border */
+  --dlp-border: #E5E7EB;
+  --dlp-border-strong: #D1D5DB;
+
+  /* Text */
+  --dlp-text-primary: #111827;
+  --dlp-text-secondary: #4B5563;
+  --dlp-text-muted: #6B7280;
+
+  /* Accent */
+  --dlp-accent: #84CC16;
+  --dlp-accent-hover: #65A30D;
+  --dlp-accent-light: #A3E635;
+
+  /* Shadows */
+  --dlp-shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --dlp-shadow-md: 0 4px 6px rgba(0,0,0,0.06);
+
+  /* Spacing */
+  --dlp-space-xxs: 2px;
+  --dlp-space-xs: 4px;
+  --dlp-space-sm: 8px;
+  --dlp-space-md: 12px;
+  --dlp-space-lg: 16px;
+  --dlp-space-xl: 20px;
+  --dlp-space-2xl: 24px;
+  --dlp-space-3xl: 32px;
+  --dlp-space-4xl: 40px;
+  --dlp-space-5xl: 48px;
+}

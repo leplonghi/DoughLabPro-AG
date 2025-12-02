@@ -75,4 +75,6 @@ export const FOMO_TRIGGERS: Record<FeatureKey, FomoTriggerConfig> = {
     'levain.multipleLevains': { key: 'levain.multipleLevains', description: 'Multiple Levains', cta: 'Unlock' },
     'levain.exportPDF': { key: 'levain.exportPDF', description: 'Export PDF', cta: 'Unlock' },
     'calculator.advanced_ingredients': { key: 'calculator.advanced_ingredients', description: 'Advanced Ingredients', cta: 'Unlock' },
+    'styles.advancedSpecs': { key: 'styles.advancedSpecs', description: 'Advanced Specs', cta: 'Unlock' },
+    'calculator.advanced': { key: 'calculator.advanced', description: 'Advanced Calculator', cta: 'Unlock' },
 };
