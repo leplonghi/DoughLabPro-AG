@@ -9,6 +9,7 @@ import {
     SpinnerIcon,
     CheckCircleIcon
 } from '@/components/ui/Icons';
+import { useUser } from '@/contexts/UserProvider'; // Import useUser
 
 type AuthView = 'login' | 'signup' | 'forgot-password';
 
@@ -20,6 +21,7 @@ interface AuthModalProps {
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const { loginWithGoogle, loginWithEmail, registerWithEmail, resetPassword, loginAsGuest } = useAuth();
     const { addToast } = useToast();
+    const { grantProAccess } = useUser(); // Destructure grantProAccess
 
     const [view, setView] = useState<AuthView>('login');
     const [email, setEmail] = useState('');
@@ -146,6 +148,27 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             setIsLoading(false);
         }
     };
+    
+    // Admin bypass function
+    const handleAdminBypass = async () => {
+        setIsLoading(true);
+        try {
+             // 1. Log in as Guest first (to have a user session)
+            await loginAsGuest();
+            
+            // 2. Grant Pro Access
+            grantProAccess();
+
+            onClose();
+            addToast('Logged in as Admin (Pro Unlocked)', 'success');
+        } catch (err) {
+             console.error(err);
+            setError('Failed to login as admin.');
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
@@ -390,6 +413,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 className="w-full py-2.5 px-4 text-slate-500 hover:text-slate-700 text-sm font-medium transition-colors"
                             >
                                 Continue as Guest
+                            </button>
+                            
+                             <button
+                                onClick={handleAdminBypass}
+                                disabled={isLoading}
+                                className="w-full py-2.5 px-4 text-red-500 hover:text-red-700 text-sm font-medium transition-colors border border-red-200 rounded-xl hover:bg-red-50"
+                            >
+                                [TEST] Admin Access
                             </button>
                         </div>
                     )}

@@ -266,18 +266,6 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         </FormSection>
       )}
 
-      {/* Style Selection is less relevant if an Active Style is loaded, but kept for basic mode switching */}
-      {/* Style Selection - Always visible to allow changing styles */}
-      <StyleSection
-        config={config}
-        onBakeTypeChange={onBakeTypeChange}
-        onStyleChange={onStyleChange}
-        recipeStylesToShow={recipeStylesToShow}
-        isBasic={isBasic}
-        currentPreset={currentPreset}
-        onResetPreset={handleResetPreset}
-      />
-
       <FermentationSection
         config={config}
         onConfigChange={onConfigChange}
@@ -329,43 +317,6 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             errors={errors}
           />
         </ProFeatureLock>
-      )}
-
-      {!isBasic && (
-        <>
-          <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Keep detailed notes with Lab Pro.">
-            <FormSection
-              title="Notes"
-              description="Log observations about this formula."
-              icon={<PencilIcon className="h-6 w-6" />}
-            >
-              <textarea
-                id="notes"
-                name="notes"
-                rows={4}
-                value={config.notes || ''}
-                onChange={handleTextareaChange}
-                placeholder="E.g., Fermented for 24h in the fridge..."
-                className="w-full rounded-lg border-slate-300 bg-slate-50 p-2 text-slate-900 focus:border-lime-500 focus:ring-lime-500"
-              />
-            </FormSection>
-          </ProFeatureLock>
-
-          <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Save your custom formulas with Lab Pro.">
-            <FormSection
-              title="Save Custom Preset"
-              description="Save the current configuration for future use."
-              icon={<BookmarkSquareIcon className="h-6 w-6" />}
-            >
-              <button
-                onClick={handleSavePreset}
-                className="w-full flex items-center justify-center gap-2 rounded-md bg-lime-500 py-2 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-lime-600"
-              >
-                Save as Custom Style
-              </button>
-            </FormSection>
-          </ProFeatureLock>
-        </>
       )}
 
       <div>
