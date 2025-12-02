@@ -1,33 +1,60 @@
 import { useState } from 'react';
-import { cloneBakeToMyLab } from '../utils/cloneBakeToMyLab';
+import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
-import { useUser } from '../../contexts/UserProvider';
-import { useCalculator } from '../../contexts/CalculatorContext';
-import { useRouter } from '../../contexts/RouterContext';
+import { useUser } from '@/contexts/UserProvider';
+import { useToast } from '@/components/ToastProvider';
+import { DoughConfig, BatchStatus, BakeType, RecipeStyle, FermentationTechnique, YeastType, AmbientTemperature } from '@/types';
 
 export const useCommunityClone = () => {
-    const { addBatch, user } = useUser();
-    const { handleLoadAndNavigate } = useCalculator();
-    const { navigate } = useRouter();
     const [loading, setLoading] = useState(false);
+    const { user, addBatch } = useUser();
+    const { addToast } = useToast();
 
     const clonePost = async (post: CommunityPost) => {
-        if (!user) return;
+        if (!user) {
+            addToast("You must be logged in to clone recipes.", "error");
+            return;
+        }
+
         setLoading(true);
         try {
-            await cloneBakeToMyLab({
-                post,
-                addBatch,
-                handleLoadAndNavigate,
-                navigate,
-                userUid: user.uid || user.stripeCustomerId || user.email || 'unknown'
-                // Checking types.ts: User has no 'uid' field, but 'email'. Wait, Firebase User has uid.
-                // The User interface in types.ts is custom.
-                // I'll assume I can get the uid from somewhere or use email as fallback, but for community features, uid is better.
-                // Let's check UserContext again.
+            // 1. Record clone in community stats
+            await communityStore.recordClone(post.id, user.uid);
+
+            // 2. Reconstruct DoughConfig (best effort)
+            // Note: This is an approximation since CommunityPost doesn't store full config yet.
+            const config: DoughConfig = {
+                bakeType: BakeType.PIZZAS, // Default
+                recipeStyle: (post.styleKey as RecipeStyle) || RecipeStyle.NEAPOLITAN,
+                flourId: post.flour || 'caputo_blue',
+                ambientTemperature: AmbientTemperature.MILD,
+                numPizzas: 4,
+                doughBallWeight: 250,
+                hydration: post.hydration || 65,
+                salt: post.saltPct || 3,
+                oil: 0,
+                sugar: 0,
+                fermentationTechnique: (post.method as FermentationTechnique) || FermentationTechnique.DIRECT,
+                yeastType: YeastType.IDY,
+                yeastPercentage: 0.1,
+                prefermentFlourPercentage: 0,
+                scale: 1,
+                notes: `Cloned from ${post.username}: ${post.title || 'Community Recipe'}`,
+                bakingTempC: 430,
+            };
+
+            // 3. Add to user's batches
+            await addBatch({
+                name: `Clone of ${post.title || 'Community Recipe'}`,
+                doughConfig: config,
+                status: BatchStatus.PLANNED,
+                isFavorite: false,
             });
+
+            addToast("Recipe cloned to your Lab!", "success");
         } catch (err) {
             console.error(err);
+            addToast("Failed to clone recipe.", "error");
         } finally {
             setLoading(false);
         }

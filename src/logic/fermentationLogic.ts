@@ -1,7 +1,8 @@
 import { FermentationTechnique, RecipeStyle, BakeType } from '../types';
 
 export function getAllowedFermentationTechniques(style: RecipeStyle | string, bakeType: BakeType): FermentationTechnique[] {
-    // Default for most breads/pizzas
+    // All standard fermentation techniques (Direct, Poolish, Biga, Sourdough) are allowed
+    // for pizzas, breads, and enriched doughs by default
     const standardTechniques = [
         FermentationTechnique.DIRECT,
         FermentationTechnique.POOLISH,
@@ -9,21 +10,22 @@ export function getAllowedFermentationTechniques(style: RecipeStyle | string, ba
         FermentationTechnique.SOURDOUGH
     ];
 
+    // Only restrict fermentation techniques for specific pastry items
     if (bakeType === BakeType.SWEETS_PASTRY) {
-        // Check if style string contains cookie or pate
         const styleStr = String(style).toUpperCase();
-        if (styleStr.includes('COOKIE') || styleStr.includes('PATE') || styleStr.includes('SABLEE') || styleStr.includes('SHORTBREAD') || styleStr.includes('BROWNIE') || styleStr.includes('CAKE')) {
+        // Cookies, pâte sablée, brownies, and cakes use chemical leavening or no fermentation
+        if (styleStr.includes('COOKIE') || styleStr.includes('PATE') || styleStr.includes('SABLEE') ||
+            styleStr.includes('SHORTBREAD') || styleStr.includes('BROWNIE') || styleStr.includes('CAKE')) {
             return [FermentationTechnique.CHEMICAL, FermentationTechnique.NO_FERMENT];
         }
-        // Brioche, etc.
+        // Enriched doughs like Brioche, Panettone, etc. use standard techniques
         return standardTechniques;
     }
 
-    // Specific overrides for strict styles if needed
-    if (String(style).toUpperCase().includes('NEAPOLITAN')) {
-        // Neapolitan usually allows Direct, Sourdough, Biga. Poolish is less common but technically possible in modern interpretations.
-        return [FermentationTechnique.DIRECT, FermentationTechnique.SOURDOUGH, FermentationTechnique.BIGA, FermentationTechnique.POOLISH];
-    }
-
+    // All other types (pizzas, breads, flatbreads) allow all standard techniques
+    // This includes:
+    // - Pizzas: Neapolitan (traditionally Direct), Roman al Taglio (Biga), NY Style (Poolish)
+    // - Breads: Baguette (Direct/Poolish), Ciabatta (Biga), Pain de Campagne (Levain)
+    // - Flatbreads: Focaccia, Pita, etc.
     return standardTechniques;
 }

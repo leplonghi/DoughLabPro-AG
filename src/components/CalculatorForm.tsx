@@ -90,6 +90,11 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     return "block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm";
   };
 
+  const getInputClasses = (hasError: boolean) => {
+    return `block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm ${hasError ? 'border-dlp-error focus:border-dlp-error focus:ring-dlp-error' : ''
+      }`;
+  };
+
   const handleSavePreset = () => {
     // Placeholder for save preset logic
     console.log("Save preset clicked");
@@ -121,7 +126,8 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         calculationMode={calculationMode}
         onCalculationModeChange={onCalculationModeChange}
         errors={errors}
-        inputRef={inputRefs?.numPizzas}
+        getInputClasses={getInputClasses}
+        numPizzasRef={inputRefs?.numPizzas}
       />
 
       <IngredientsSection

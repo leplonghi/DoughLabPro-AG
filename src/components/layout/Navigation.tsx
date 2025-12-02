@@ -64,8 +64,8 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                                         key={link.page}
                                         onClick={() => handleNavigate(link.page as Page)}
                                         className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 flex items-center gap-2 shadow-dlp-sm hover:shadow-dlp-md hover:scale-105 ${isActive
-                                            ? 'bg-dlp-accent text-white ring-2 ring-dlp-accent/50 ring-offset-2'
-                                            : 'bg-dlp-accent text-white hover:bg-dlp-accent-hover'
+                                            ? 'bg-[#84CC16] text-white ring-2 ring-[#84CC16]/50 ring-offset-2'
+                                            : 'bg-[#84CC16] text-white hover:bg-[#65A30D]'
                                             }`}
                                     >
                                         {link.icon}

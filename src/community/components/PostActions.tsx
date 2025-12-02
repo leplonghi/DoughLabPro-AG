@@ -9,9 +9,10 @@ import { LockFeature } from '../../components/auth/LockFeature';
 interface PostActionsProps {
     post: CommunityPost;
     onCommentClick: () => void;
+    commentCount?: number;
 }
 
-export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick }) => {
+export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, commentCount }) => {
     const { user } = useUser();
     const { isLiked, toggleLike, loading: likeLoading } = useCommunityLike(post.id, user?.stripeCustomerId || 'unknown'); // Fallback ID
 
@@ -37,7 +38,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick }
                         className="flex items-center gap-1.5 text-gray-600 hover:text-lime-600 transition-colors"
                     >
                         <MessageCircle className="h-5 w-5" />
-                        <span className="text-sm font-medium">{post.comments}</span>
+                        <span className="text-sm font-medium">{commentCount ?? post.comments}</span>
                     </button>
                 </LockFeature>
 

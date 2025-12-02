@@ -5,7 +5,7 @@ import { CommunityProfileSidebar } from '../components/CommunityProfileSidebar';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
 
 export const CommunityPage: React.FC = () => {
-    const [activeFilter, setActiveFilter] = useState('trending');
+    const [activeFilter, setActiveFilter] = useState<'latest' | 'trending' | 'top'>('trending');
 
     return (
         <LibraryPageLayout>
@@ -18,8 +18,8 @@ export const CommunityPage: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     {/* Main Feed Column */}
                     <div className="lg:col-span-8">
-                        <CommunityFilters activeFilter={activeFilter} onFilterChange={setActiveFilter} />
-                        <CommunityFeed />
+                        <CommunityFilters activeFilter={activeFilter} onFilterChange={(f) => setActiveFilter(f as any)} />
+                        <CommunityFeed filter={activeFilter} />
                     </div>
 
                     {/* Sidebar Column */}

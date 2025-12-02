@@ -213,17 +213,25 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                 </div>
 
                 {/* Planner CTA */}
-                <div className="bg-lime-50 p-6 rounded-2xl border border-lime-200 shadow-sm flex justify-between items-center hover:shadow-md transition-all">
+                {/* Planner CTA */}
+                <div className="group relative bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm flex justify-between items-center opacity-75 cursor-not-allowed">
                     <div>
-                        <h3 className="font-bold text-slate-900 text-lg flex items-center gap-2">
-                            <ChefHat className="h-5 w-5 text-lime-600" />
+                        <h3 className="font-bold text-slate-500 text-lg flex items-center gap-2">
+                            <ChefHat className="h-5 w-5 text-slate-400" />
                             Ingredients Planner
                         </h3>
-                        <p className="text-sm text-slate-700 mt-1">Calculate toppings & fillings ratios.</p>
+                        <p className="text-sm text-slate-400 mt-1">Calculate toppings & fillings ratios.</p>
                     </div>
-                    <button className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-xl shadow-md transition-all transform hover:scale-105 flex items-center gap-2">
-                        <Calculator className="h-5 w-5" /> Open
+                    <button disabled className="bg-slate-200 text-slate-400 font-bold py-2 px-4 rounded-xl shadow-none cursor-not-allowed flex items-center gap-2">
+                        <Calculator className="h-5 w-5" /> Coming Soon
                     </button>
+
+                    {/* Tooltip */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-4 bg-slate-900 text-white text-xs rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none shadow-xl">
+                        <p className="font-bold mb-1 text-lime-400">Coming Soon</p>
+                        Plan your formulas based on your actual pantry — with validated substitutions, hydration safety ranges, and direct integration with the Dough Calculator.
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-900"></div>
+                    </div>
                 </div>
             </div>
 

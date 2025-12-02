@@ -7,9 +7,10 @@ import { formatPostDate } from '../utils/formatPost';
 
 interface PostCommentsProps {
     postId: string;
+    onCommentAdded?: () => void;
 }
 
-export const PostComments: React.FC<PostCommentsProps> = ({ postId }) => {
+export const PostComments: React.FC<PostCommentsProps> = ({ postId, onCommentAdded }) => {
     const { comments, loading, addComment } = useCommunityComments(postId);
     const { user } = useUser();
     const [newComment, setNewComment] = useState('');
@@ -28,6 +29,7 @@ export const PostComments: React.FC<PostCommentsProps> = ({ postId }) => {
                 user.avatar
             );
             setNewComment('');
+            if (onCommentAdded) onCommentAdded();
         } catch (err) {
             console.error(err);
         } finally {

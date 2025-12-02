@@ -5,8 +5,12 @@ import { CommunityPostCardLocked } from './CommunityPostCardLocked';
 import { useUser } from '../../contexts/UserProvider';
 import { Loader2 } from 'lucide-react';
 
-export const CommunityFeed: React.FC = () => {
-    const { posts, loading, hasMore, loadMore, error } = useCommunityFeed();
+interface CommunityFeedProps {
+    filter?: 'latest' | 'trending' | 'top';
+}
+
+export const CommunityFeed: React.FC<CommunityFeedProps> = ({ filter = 'latest' }) => {
+    const { posts, loading, hasMore, loadMore, error } = useCommunityFeed(filter as 'latest' | 'trending' | 'top');
     const { hasProAccess } = useUser();
 
     if (loading && posts.length === 0) {

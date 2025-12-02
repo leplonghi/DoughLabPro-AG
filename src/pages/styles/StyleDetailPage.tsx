@@ -1,7 +1,6 @@
 import React from 'react';
 import { DoughStyleDefinition } from '@/types/styles';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
-import { PageHero } from '@/components/ui/PageHero';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CategoryBadge } from '@/components/ui/CategoryBadge';
 import { TechnicalBadge } from '@/components/ui/TechnicalBadge';
@@ -20,7 +19,9 @@ import {
     AlertTriangle,
     ChefHat,
     Thermometer,
-    Scale
+    Scale,
+    MapPin,
+    Calendar
 } from 'lucide-react';
 import ShareButton from '@/components/ui/ShareButton';
 import PDFExportButton from '@/components/ui/PDFExportButton';
@@ -91,27 +92,85 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                 </div>
             </div>
 
-            {/* Hero Section */}
-            <PageHero
-                title={style.name}
-                subtitle={style.family || 'Global Dough Style'}
-                backgroundClass="bg-gradient-to-br from-[#3A6B3A] to-[#558B55]"
-                badges={
-                    <div className="flex flex-wrap gap-2">
+            {/* Hero Section (Spec 2025.3: 16:9 Image) */}
+            <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-lg mb-8 group bg-slate-100">
+                {style.images?.hero ? (
+                    <img
+                        src={style.images.hero}
+                        alt={style.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#3A6B3A] to-[#558B55] flex items-center justify-center p-8">
+                        <div className="text-center opacity-20">
+                            <ChefHat className="w-24 h-24 mx-auto mb-4" />
+                            <h1 className="text-4xl md:text-6xl font-black tracking-tight">{style.name}</h1>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Title & Metadata Section (Spec 2025.3: Title + Category + Region + Period + Favorite) */}
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10 animate-fade-in">
+                <div className="space-y-4 max-w-3xl">
+                    <div className="flex flex-wrap items-center gap-3">
                         <CategoryBadge category={style.category} />
+
+                        {style.origin?.region && (
+                            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider border border-slate-200">
+                                <MapPin className="w-3.5 h-3.5" />
+                                <span>{style.origin.region}, {style.origin.country}</span>
+                            </div>
+                        )}
+
+                        {style.origin?.period && (
+                            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider border border-slate-200">
+                                <Calendar className="w-3.5 h-3.5" />
+                                <span>{style.origin.period}</span>
+                            </div>
+                        )}
+
                         {style.isCanonical && (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-500/20 text-sky-200 border border-sky-500/30">
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700 border border-sky-200">
                                 Official Standard
                             </span>
                         )}
+
                         {style.isPro && (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-gradient-to-r from-lime-400 to-green-500 text-white shadow-sm">
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-lime-500 to-green-600 text-white shadow-sm">
                                 PRO
                             </span>
                         )}
                     </div>
-                }
-            />
+
+                    <div>
+                        <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-2">
+                            {style.name}
+                        </h1>
+                        <p className="text-xl text-slate-500 font-medium">
+                            {style.family || 'Global Dough Style'}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex items-start gap-3 pt-2">
+                    <button
+                        onClick={() => toggleFavorite({
+                            id: style.id,
+                            type: 'style',
+                            title: style.name,
+                            metadata: { category: style.category }
+                        })}
+                        className={`group flex items-center gap-2 px-5 py-3 rounded-2xl border-2 transition-all duration-300 ${favorited
+                            ? 'bg-pink-50 border-pink-200 text-pink-500 shadow-sm'
+                            : 'bg-white border-slate-200 text-slate-500 hover:border-pink-200 hover:text-pink-500 hover:bg-pink-50'
+                            }`}
+                    >
+                        <Heart className={`w-6 h-6 ${favorited ? 'fill-current' : 'group-hover:scale-110 transition-transform'}`} />
+                        <span className="font-bold hidden sm:inline">{favorited ? 'Saved' : 'Save'}</span>
+                    </button>
+                </div>
+            </div>
 
             {/* Main Content Grid */}
             <div id="style-detail-content" className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">

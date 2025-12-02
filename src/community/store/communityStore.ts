@@ -39,11 +39,15 @@ export const communityStore = {
         return docRef.id;
     },
 
-    getFeed: async (lastDoc?: DocumentSnapshot, limitCount = 10) => {
+    getFeed: async (lastDoc?: DocumentSnapshot, limitCount = 10, filter: 'latest' | 'trending' | 'top' = 'latest') => {
+        let orderByField = 'createdAt';
+        if (filter === 'trending') orderByField = 'comments';
+        if (filter === 'top') orderByField = 'likes';
+
         let q = query(
             collection(db, POSTS_COLLECTION),
             where('visibility', '==', 'public'),
-            orderBy('createdAt', 'desc'),
+            orderBy(orderByField, 'desc'),
             limit(limitCount)
         );
 

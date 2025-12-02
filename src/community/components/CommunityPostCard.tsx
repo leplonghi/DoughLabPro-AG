@@ -14,6 +14,7 @@ interface CommunityPostCardProps {
 
 export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) => {
     const [showComments, setShowComments] = useState(false);
+    const [commentCount, setCommentCount] = useState(post.comments);
     const { navigate } = useRouter();
 
     const handleCardClick = (e: React.MouseEvent) => {
@@ -26,7 +27,7 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
 
     return (
         <div
-            className="bg-dlp-bg-card rounded-lg shadow-dlp-sm border border-dlp-border overflow-hidden hover:shadow-dlp-md transition-shadow cursor-pointer"
+            className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
             onClick={handleCardClick}
         >
             <PostHeader
@@ -39,8 +40,8 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
             <PostPhotos photos={post.photos} />
 
             <div className="p-4 pb-2">
-                <h3 className="font-semibold text-lg text-dlp-text-primary mb-1">{post.title || 'Untitled Bake'}</h3>
-                <p className="text-sm text-dlp-text-secondary line-clamp-2">{post.description}</p>
+                <h3 className="font-semibold text-lg text-gray-900 mb-1">{post.title || 'Untitled Bake'}</h3>
+                <p className="text-sm text-gray-600 line-clamp-2">{post.description}</p>
             </div>
 
             <PostTechnicalPanel post={post} />
@@ -49,10 +50,16 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
 
             <PostActions
                 post={post}
+                commentCount={commentCount}
                 onCommentClick={() => setShowComments(!showComments)}
             />
 
-            {showComments && <PostComments postId={post.id} />}
+            {showComments && (
+                <PostComments
+                    postId={post.id}
+                    onCommentAdded={() => setCommentCount(prev => prev + 1)}
+                />
+            )}
         </div>
     );
 };

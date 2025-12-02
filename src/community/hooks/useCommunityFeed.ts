@@ -3,7 +3,7 @@ import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
 import { DocumentSnapshot } from 'firebase/firestore';
 
-export const useCommunityFeed = () => {
+export const useCommunityFeed = (filter: 'latest' | 'trending' | 'top' = 'latest') => {
     const [posts, setPosts] = useState<CommunityPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -13,7 +13,8 @@ export const useCommunityFeed = () => {
     const fetchPosts = useCallback(async (isInitial = false) => {
         try {
             setLoading(true);
-            const result = await communityStore.getFeed(isInitial ? undefined : lastDoc);
+            // If initial, ignore lastDoc state and pass undefined
+            const result = await communityStore.getFeed(isInitial ? undefined : lastDoc, 10, filter);
 
             if (isInitial) {
                 setPosts(result.posts);
@@ -29,11 +30,15 @@ export const useCommunityFeed = () => {
         } finally {
             setLoading(false);
         }
-    }, [lastDoc]);
+    }, [lastDoc, filter]);
 
     useEffect(() => {
+        // Reset and fetch when filter changes
+        setPosts([]);
+        setLastDoc(undefined);
+        setHasMore(true);
         fetchPosts(true);
-    }, []);
+    }, [filter]);
 
     const loadMore = () => {
         if (!loading && hasMore) {

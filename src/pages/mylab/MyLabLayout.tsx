@@ -21,7 +21,7 @@ interface MyLabLayoutProps {
 
 const MyLabLayout: React.FC<MyLabLayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-[500px]">
+    <div className="min-h-[500px] bg-slate-50/50">
       {children}
     </div>
   );
