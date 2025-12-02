@@ -264,12 +264,12 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                         </div>
 
                         {/* Daily Tip */}
-                        <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800   p-6 text-white shadow-lg border border-slate-700/50">
+                        <div className="rounded-2xl bg-white p-6 text-slate-800 shadow-md border border-slate-200">
                             <div className="flex items-start gap-3">
-                                <SparklesIcon className="h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                                <SparklesIcon className="h-5 w-5 text-yellow-500 flex-shrink-0 mt-0.5" />
                                 <div>
-                                    <h3 className="font-bold text-sm uppercase tracking-wide text-slate-400">Pro Tip</h3>
-                                    <p className="text-slate-200 text-sm mt-2 leading-relaxed">
+                                    <h3 className="font-bold text-sm uppercase tracking-wide text-slate-500">Pro Tip</h3>
+                                    <p className="text-slate-600 text-sm mt-2 leading-relaxed">
                                         "For a more open crumb, try increasing your hydration by 2% and adding a 30-minute autolyse step."
                                     </p>
                                 </div>

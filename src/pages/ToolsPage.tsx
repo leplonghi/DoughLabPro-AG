@@ -106,35 +106,36 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         <LibraryPageLayout>
             <div className="mx-auto max-w-7xl animate-fade-in pb-20">
                 {/* Hero Section */}
-                {/* Hero Section */}
-                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-10 mb-12 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
+                <div className="mb-8 mx-4 sm:mx-6">
+                    <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
-                    <div className="relative z-10 text-center max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6">
-                            <WrenchScrewdriverIcon className="w-4 h-4" />
-                            Professional Utilities
-                        </div>
-                        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-                            Baking Tools
-                        </h1>
-                        <p className="text-lg md:text-xl text-lime-100/90 mb-8 leading-relaxed">
-                            Professional grade utilities to refine your process, analyze results, and perfect your craft.
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-lime-100/80">
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-lime-400"></span> Recipe Calculation
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span> AI Diagnostics
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Oven Analysis
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Hydration
-                            </span>
+                        <div className="relative z-10 text-center max-w-3xl mx-auto">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
+                                <WrenchScrewdriverIcon className="w-4 h-4" />
+                                Professional Utilities
+                            </div>
+                            <h1 className="text-2xl md:text-4xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                                Baking Tools
+                            </h1>
+                            <p className="text-base md:text-lg text-lime-100/90 mb-6 leading-relaxed">
+                                Professional grade utilities to refine your process, analyze results, and perfect your craft.
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-lime-100/80">
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-lime-400"></span> Recipe Calculation
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span> AI Diagnostics
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Oven Analysis
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Hydration
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

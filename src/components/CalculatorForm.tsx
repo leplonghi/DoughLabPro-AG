@@ -13,10 +13,8 @@ import { DOUGH_STYLE_PRESETS } from '@/constants';
 import { STYLES_DATA, getStyleById, getAllowedFermentationTechniques } from '@/data/stylesData';
 import * as customPresets from '@/logic/customPresets';
 import {
-  PencilIcon,
   FlourIcon,
   BookmarkSquareIcon,
-  LockClosedIcon,
   TrashIcon,
   CloseIcon,
   SparklesIcon,
@@ -28,9 +26,9 @@ import StyleSection from '@/components/calculator/sections/StyleSection';
 import FermentationSection from '@/components/calculator/sections/FermentationSection';
 import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
-import StyleContextBar from '@/components/calculator/StyleContextBar';
 import { useUser } from '@/contexts/UserProvider';
 import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import CreateStyleModal from '@/components/styles/CreateStyleModal';
 
 interface CalculatorFormProps {
   config: DoughConfig;
@@ -72,8 +70,10 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   inputRefs,
 }) => {
   const { addToast } = useToast();
-  const { userStyles } = useUser();
+  const { userStyles, addUserStyle } = useUser();
   const isBasic = calculatorMode === 'basic';
+  
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
 
   // Safety check: Prevent rendering if config is not properly initialized
   if (!config || !config.recipeStyle || !config.bakeType) {
@@ -101,15 +101,40 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     refreshPresets();
   }, []);
 
-  const handleSavePreset = () => {
-    const name = prompt('Name your preset:');
-    if (name && name.trim()) {
-      customPresets.saveCustomPreset(name, config);
-      addToast(`Preset "${name}" saved!`, 'success');
-      refreshPresets();
-      setSelectedPreset(name);
+  const handleSavePreset = async (style: any) => {
+    try {
+        // Prepare the new style object
+        const newStyle = {
+            ...style,
+            technical: {
+                hydration: config.hydration,
+                salt: config.salt,
+                oil: config.oil,
+                sugar: config.sugar || 0,
+                fermentation: config.notes || 'Custom Fermentation', // Default if notes are empty
+                fermentationTechnique: config.fermentationTechnique,
+                bakingTempC: config.bakingTempC
+            },
+             // Map dough config to required fields
+             category: 'pizza', // Default or derive
+             origin: { country: 'Custom' },
+             history: 'Created via Calculator',
+             isCanonical: false,
+             source: 'user_manual',
+             ingredients: config.ingredients || [], // Ensure ingredients are passed
+             allowedFermentationTechniques: [config.fermentationTechnique],
+             defaultFermentationTechnique: config.fermentationTechnique,
+        };
+
+        await addUserStyle(newStyle);
+        addToast(`Style "${style.name}" saved to your library!`, 'success');
+        setIsSaveModalOpen(false);
+    } catch (error) {
+        console.error("Error saving style:", error);
+        addToast("Failed to save style. Please try again.", "error");
     }
   };
+
 
   const handleLoadPreset = () => {
     if (!selectedPreset) return;
@@ -129,10 +154,6 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       setPresets(newList);
       setSelectedPreset(newList[0]?.name || '');
     }
-  };
-
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onConfigChange({ [e.target.name]: e.target.value });
   };
 
   const handleResetPreset = () => {
@@ -198,11 +219,6 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         </span>
       </div>
 
-      {/* Active Style Context */}
-      {activeStyle && (
-        <StyleContextBar style={activeStyle} />
-      )}
-
       {!activeStyle && config.baseStyleName && (
         <div className="flex items-center justify-between rounded-lg bg-lime-50 p-3 text-sm text-lime-800 border border-lime-200 shadow-sm">
           <div className="flex items-center gap-2">
@@ -266,6 +282,18 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         </FormSection>
       )}
 
+      {/* Style Selection is less relevant if an Active Style is loaded, but kept for basic mode switching */}
+      {/* Style Selection - Always visible to allow changing styles */}
+      <StyleSection
+        config={config}
+        onBakeTypeChange={onBakeTypeChange}
+        onStyleChange={onStyleChange}
+        recipeStylesToShow={recipeStylesToShow}
+        isBasic={isBasic}
+        currentPreset={currentPreset}
+        onResetPreset={handleResetPreset}
+      />
+
       <FermentationSection
         config={config}
         onConfigChange={onConfigChange}
@@ -319,6 +347,25 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         </ProFeatureLock>
       )}
 
+      {!isBasic && (
+        <>
+          <ProFeatureLock featureKey="calculator.environmental_insights" customMessage="Save your custom formulas with Lab Pro.">
+            <FormSection
+              title="Save Custom Preset"
+              description="Save the current configuration for future use."
+              icon={<BookmarkSquareIcon className="h-6 w-6" />}
+            >
+              <button
+                onClick={() => setIsSaveModalOpen(true)}
+                className="w-full flex items-center justify-center gap-2 rounded-md bg-lime-500 py-2 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-lime-600"
+              >
+                Save as Custom Style
+              </button>
+            </FormSection>
+          </ProFeatureLock>
+        </>
+      )}
+
       <div>
         <button
           type="button"
@@ -341,6 +388,19 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           </button>
         </div>
       )}
+      
+      <CreateStyleModal 
+          isOpen={isSaveModalOpen} 
+          onClose={() => setIsSaveModalOpen(false)} 
+          onSave={handleSavePreset} 
+          defaultValues={{
+             name: "",
+             description: config.notes || "My custom dough formula",
+             category: 'pizza', // Or derive from bakeType
+             // Pass partial technical data to pre-fill if possible, but the modal mainly asks for metadata
+          }}
+      />
+
     </div>
   );
 };
