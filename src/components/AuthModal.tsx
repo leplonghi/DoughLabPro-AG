@@ -9,7 +9,7 @@ import {
     SpinnerIcon,
     CheckCircleIcon
 } from '@/components/ui/Icons';
-import { useUser } from '@/contexts/UserProvider'; // Import useUser
+import { useUser } from '@/contexts/UserProvider';
 
 type AuthView = 'login' | 'signup' | 'forgot-password';
 
@@ -21,7 +21,7 @@ interface AuthModalProps {
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const { loginWithGoogle, loginWithEmail, registerWithEmail, resetPassword, loginAsGuest } = useAuth();
     const { addToast } = useToast();
-    const { grantProAccess } = useUser(); // Destructure grantProAccess
+    const { grantProAccess } = useUser();
 
     const [view, setView] = useState<AuthView>('login');
     const [email, setEmail] = useState('');
@@ -53,7 +53,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             addToast('Successfully logged in with Google!', 'success');
         } catch (err: any) {
             console.error(err);
-            setError(err.message || 'Failed to login with Google. Please try again.');
+            if (err.code === 'auth/unauthorized-domain') {
+                 setError('This domain is not authorized for Google Sign-In. Please contact support.');
+            } else {
+                 setError(err.message || 'Failed to login with Google. Please try again.');
+            }
         } finally {
             setIsLoading(false);
         }
