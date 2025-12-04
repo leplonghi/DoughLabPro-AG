@@ -1,8 +1,4 @@
-
-import { DoughStyleDefinition, FermentationTechnique, RecipeStyle, BakeType, IngredientConfig } from '../types';
-
-// Raw Canonical Data provided
-export const RAW_CANONICAL_STYLES = [
+[
   {
     "id": "neapolitan_avpn",
     "name": "Neapolitan (AVPN)",
@@ -13,7 +9,7 @@ export const RAW_CANONICAL_STYLES = [
       "period": "18th–19th century, codified 1984 by AVPN"
     },
     "description": "Traditional Neapolitan pizza as defined by the AVPN regulations: a minimally enriched, highly extensible dough with relatively low hydration by modern standards, fermented at room temperature and baked at extreme heat. It produces a soft, foldable center with a pronounced cornicione, light fermentation acidity and characteristic leopard spotting on the crust.",
-    "history": "Flatbreads topped with ingredients existed for centuries around the Mediterranean, but the modern Neapolitan pizza emerged in Naples between the late 1700s and the 1800s, when tomatoes became widely accepted as food and soft-wheat flours milled to tipo 00 enabled very thin yet extensible doughs. In 1984, Antonio Pace and Lello Surace, together with leading Neapolitan pizzaioli, formalized the fundamental rules for the 'Verace Pizza Napoletana' and founded the Associazione Verace Pizza Napoletana (AVPN). Their disciplinare specifies ingredients, mixing, fermentation, shaping and baking requirements, protecting the style as a cultural and gastronomic reference.",
+    "history": "Flatbreads topped with ingredients existed for centuries around the Mediterranean, but the modern Neapolitan pizza emerged in Naples between the late 1700s and the 1800s, when tomatoes became widely accepted as food and soft-wheat flours milled to tipo 00 enabled very thin yet extensible doughs. In 1984, Antonio Pace and Lello Surace, together with leading Neapolitan pizzaioli, formalized the fundamental rules for the \"Verace Pizza Napoletana\" and founded the Associazione Verace Pizza Napoletana (AVPN). Their disciplinare specifies ingredients, mixing, fermentation, shaping and baking requirements, protecting the style as a cultural and gastronomic reference.",
     "tags": [
       "high-temp",
       "soft-extensibility",
@@ -271,210 +267,61 @@ export const RAW_CANONICAL_STYLES = [
       "region": "Detroit, Michigan",
       "period": "1946 — Buddy’s Rendezvous"
     },
-    "description": "High-hydration, airy crumb, rectangular pizza baked in blue steel pans with caramelized frico cheese edge.",
-    "history": "Created in 1946 at Buddy’s Rendezvous using blue steel automotive pans. The high hydration, long fermentation, heavy oiling and brick cheese produced a unique structure and caramelization.",
+    "description": "Detroit style is a high-hydration, thick, rectangular pan pizza baked in blue steel pans. It is characterized by a light, airy crumb, a fried bottom crust from abundant oil, and a caramelized cheese border known as the \"frico crust\". Traditionally, cheese is placed edge-to-edge against the pan and the sauce is applied in stripes on top.",
+    "history": "Detroit-style pizza was developed in 1946 at Buddy’s Rendezvous (later Buddy’s Pizza) in Detroit. The recipe is often linked to Sicilian sfincione-type dough baked in blue steel pans originally used as parts trays in the automobile industry. The combination of high hydration, long fermentation, heavy oiling and Wisconsin brick or similar cheese created a unique crust structure and caramelization. The style remained regional for decades before being rediscovered and popularized across the United States in the 21st century.",
     "tags": [
       "pan-pizza",
       "high-hydration",
-      "focaccia-like",
-      "american-classic"
+      "american-classic",
+      "cheese-frico-edge",
+      "focaccia-like-crumb",
+      "long-fermentation"
     ],
     "difficulty": "medium",
     "fermentationType": "cold",
     "technicalProfile": {
       "hydration": "68–75%",
       "salt": "2.0–2.4%",
-      "oil": "3–6%",
-      "sugar": "1–2%",
-      "flourStrength": "W 280–320",
-      "preferment": "Optional poolish 10–20%.",
+      "oil": "3–6% in dough plus heavy pan oiling",
+      "sugar": "1–2% (supports browning and yeast activity)",
+      "cocoa": "0%",
+      "flourStrength": "W 280–320 (strong bread or pizza flour)",
+      "preferment": "Optional small poolish (10–20%) or straight dough with extended cold fermentation.",
       "fermentationSteps": [
-        "Mix to full gluten; cold ferment 24–48 h.",
-        "Press dough into heavily oiled blue steel pan.",
-        "Final proof 1–2 h.",
-        "Cheese-to-edge, sauce-on-top.",
-        "Bake until bottom is fried and frico edge caramelized."
+        "Mix to full gluten development despite high hydration, using rest phases or stretch-and-fold to avoid overheating.",
+        "Cold fermentation 24–48 h at 4–6°C to develop flavor and structure.",
+        "Portion and gently press dough into heavily oiled blue steel or heavy-gauge rectangular pans, allowing it to relax in one or two stages until it reaches the corners.",
+        "Final proof 60–120 min at room temperature until aerated and slightly domed.",
+        "Top with cheese spread to the very edges to create a caramelized frico crust, add toppings as desired and finish with sauce stripes before or after baking depending on variant.",
+        "Bake until the bottom is deeply golden and the cheese edge is crisp and caramelized."
       ],
-      "ovenTemp": "250–300°C",
+      "ovenTemp": "250–300°C (pan baked)",
       "recommendedUse": [
-        "Blue steel pans",
-        "High-power electric/gas ovens"
+        "Blue steel automotive-style pans (traditional)",
+        "Heavy black steel or aluminum pans with similar thermal behavior",
+        "High-power electric or gas ovens with strong bottom heat"
       ],
       "difficulty": "medium"
     },
     "warnings": [
-      "Pouco óleo reduz a crosta frita.",
-      "Overproof colapsa a estrutura.",
-      "Sem queijo na borda → sem frico."
+      "Insufficient pan oil reduces the fried, crisp bottom and may cause sticking.",
+      "Overproofing in the pan leads to collapse and uneven structure after baking.",
+      "Placing sauce directly against the pan edge instead of cheese decreases frico formation and can burn.",
+      "Hydration much below ~68% produces a denser, less characteristic crumb."
     ],
     "notes": [
-      "Brick cheese é tradicional.",
-      "A camada de queijo protege a massa do molho."
+      "Wisconsin brick cheese is considered traditional; blends of high-moisture mozzarella and other cheeses are common modern substitutes.",
+      "The cheese-first, sauce-later layering protects the crumb and maintains crispness even under heavy toppings.",
+      "Many contemporary recipes combine both cold fermentation and a warm pan proof to balance flavor and handling."
     ],
     "references": [
-      "Buddy’s Pizza historical records",
-      "Modernist Pizza — Detroit Style"
+      "Buddy’s Pizza — Historical accounts of Detroit-style origin",
+      "Detroit-style pizza documentation in Modernist Pizza and contemporary technical articles",
+      "Published culinary articles describing the use of blue steel automotive pans and the 1946 origin story"
     ],
     "isPro": false,
     "source": "DLP Core Pack",
     "createdAt": "2025-01-01",
     "releaseDate": "2025-01-01"
   }
-];
-
-export function mapRawStyleToDoughStyleDefinition(raw: any): DoughStyleDefinition {
-  // Determine RecipeStyle Enum Mapping
-  let recipeStyle = RecipeStyle.NEAPOLITAN; // Default fallback
-
-  const id = raw.id;
-  const cat = raw.category;
-
-  // Mapping logic based on ID or Category
-  if (id.includes('neapolitan')) recipeStyle = RecipeStyle.NEAPOLITAN;
-  else if (id.includes('new_york')) recipeStyle = RecipeStyle.NEW_YORK;
-  else if (id.includes('detroit')) recipeStyle = RecipeStyle.DETROIT;
-  else if (id.includes('roman') || id.includes('teglia')) recipeStyle = RecipeStyle.ROMANA_TONDA; // Closest map
-  else if (id.includes('scrocchiarella')) recipeStyle = RecipeStyle.THIN_CRUST;
-  else if (id.includes('sicilian')) recipeStyle = RecipeStyle.SICILIANA; // Or SICILIAN
-  else if (id.includes('grandma')) recipeStyle = RecipeStyle.GRANDMA_STYLE;
-  else if (id.includes('baguette')) recipeStyle = RecipeStyle.BAGUETTE;
-  else if (id.includes('ciabatta')) recipeStyle = RecipeStyle.CIABATTA;
-  else if (id.includes('focaccia')) recipeStyle = RecipeStyle.FOCACCIA;
-  else if (id.includes('brioche')) recipeStyle = RecipeStyle.BRIOCHE;
-  else if (id.includes('burger')) recipeStyle = RecipeStyle.BURGER_BUN;
-  else if (id.includes('cinnamon')) recipeStyle = RecipeStyle.CINNAMON_ROLL;
-  else if (id.includes('cookie')) recipeStyle = RecipeStyle.COOKIES;
-  else if (id.includes('rye')) recipeStyle = RecipeStyle.RYE;
-  else if (id.includes('sourdough') || id.includes('levain') || id.includes('pain_de_campagne')) recipeStyle = RecipeStyle.SOURDOUGH;
-  else if (id.includes('brazilian')) recipeStyle = RecipeStyle.PAO_FRANCES; // Close enough approximation for mapping
-  else if (cat === 'flatbread') recipeStyle = RecipeStyle.FLATBREAD;
-  else if (cat === 'pastry') recipeStyle = RecipeStyle.SWEETS_PASTRY;
-
-  // Calculate Technical Values (Averages)
-  const hydrationRange = raw.technicalProfile.hydration.match(/(\d+)[–-](\d+)/);
-  const hydration = hydrationRange ? (parseInt(hydrationRange[1]) + parseInt(hydrationRange[2])) / 2 : 60; // Fallback
-
-  const saltRange = raw.technicalProfile.salt.match(/(\d+(\.\d+)?)[–-](\d+(\.\d+)?)/);
-  const salt = saltRange ? (parseFloat(saltRange[1]) + parseFloat(saltRange[3])) / 2 : 2.0;
-
-  const oilRange = raw.technicalProfile.oil.match(/(\d+)[–-](\d+)/);
-  const oil = oilRange ? (parseInt(oilRange[1]) + parseInt(oilRange[2])) / 2 : 0;
-
-  const sugarRange = raw.technicalProfile.sugar.match(/(\d+)[–-](\d+)/);
-  const sugar = sugarRange ? (parseInt(sugarRange[1]) + parseInt(sugarRange[2])) / 2 : 0;
-
-  const ovenTempRange = raw.technicalProfile.ovenTemp.match(/(\d+)[–-](\d+)/);
-  const bakingTempC = ovenTempRange ? (parseInt(ovenTempRange[1]) + parseInt(ovenTempRange[2])) / 2 : 250;
-
-  // Default Ingredients Generation
-  const generatedIngredients: IngredientConfig[] = [
-    { id: 'flour', name: 'Flour', type: 'solid', role: 'flour', bakerPercentage: 100 },
-    { id: 'water', name: 'Water', type: 'liquid', role: 'water', bakerPercentage: hydration },
-    { id: 'salt', name: 'Salt', type: 'solid', role: 'salt', bakerPercentage: salt },
-    { id: 'yeast', name: 'Yeast', type: 'solid', role: 'yeast', bakerPercentage: 0.5 } // Default placeholder
-  ];
-
-  if (oil > 0) {
-    generatedIngredients.push({ id: 'oil', name: 'Oil/Fat', type: 'liquid', role: 'fat', bakerPercentage: oil });
-  }
-  if (sugar > 0) {
-    generatedIngredients.push({ id: 'sugar', name: 'Sugar', type: 'solid', role: 'sugar', bakerPercentage: sugar });
-  }
-
-  // Fermentation Techniques
-  const allowedTechniques = [FermentationTechnique.DIRECT, FermentationTechnique.POOLISH, FermentationTechnique.BIGA];
-  let defaultTechnique = FermentationTechnique.DIRECT;
-
-  if (raw.technicalProfile.preferment && raw.technicalProfile.preferment.toLowerCase().includes('poolish')) {
-    defaultTechnique = FermentationTechnique.POOLISH;
-  } else if (raw.technicalProfile.preferment && raw.technicalProfile.preferment.toLowerCase().includes('biga')) {
-    defaultTechnique = FermentationTechnique.BIGA;
-  } else if (raw.technicalProfile.preferment && (raw.technicalProfile.preferment.toLowerCase().includes('levain') || raw.technicalProfile.preferment.toLowerCase().includes('sourdough'))) {
-    allowedTechniques.push(FermentationTechnique.SOURDOUGH);
-    defaultTechnique = FermentationTechnique.SOURDOUGH;
-  }
-
-  if (cat === 'cookie' || cat === 'flatbread') {
-    // Cookies/Flatbreads often chemical or no ferment
-    if (!allowedTechniques.includes(FermentationTechnique.NO_FERMENT)) allowedTechniques.push(FermentationTechnique.NO_FERMENT);
-    if (!allowedTechniques.includes(FermentationTechnique.CHEMICAL)) allowedTechniques.push(FermentationTechnique.CHEMICAL);
-  }
-
-
-  return {
-    id: raw.id,
-    name: raw.name,
-    family: raw.category, // Using category as family for now
-    category: raw.category.toLowerCase() as any, // Cast to StyleCategory
-    origin: raw.origin,
-    country: raw.origin.country,
-    year: raw.origin.period,
-    description: raw.description,
-    history: raw.history,
-    culturalContext: "See history.", // Placeholder or derived
-    isCanonical: true, // Assuming these are canonical
-    source: raw.source as any,
-    isPro: raw.isPro,
-    recipeStyle: recipeStyle,
-    technical: {
-      hydration,
-      salt,
-      oil,
-      sugar,
-      fermentation: raw.technicalProfile.fermentationSteps.join(' '), // Joining steps for summary
-      fermentationTechnique: defaultTechnique,
-      bakingTempC
-    },
-    technicalProfile: {
-      hydration: [hydration - 2, hydration + 2], // Synthesized range
-      salt: [salt - 0.2, salt + 0.2],
-      oil: [oil, oil + 1],
-      sugar: [sugar, sugar + 1],
-      flourStrength: raw.technicalProfile.flourStrength,
-      fermentation: {
-          bulk: raw.technicalProfile.fermentationSteps[0] || "Standard",
-          proof: raw.technicalProfile.fermentationSteps[1] || "Standard"
-      },
-      ovenRecommendations: raw.technicalProfile.ovenTemp,
-      difficulty: raw.difficulty as any,
-      recommendedUse: raw.technicalProfile.recommendedUse.join(', '),
-      prefermentDescription: raw.technicalProfile.preferment
-    },
-    references: raw.references.map(ref => ({ source: ref })),
-    allowedFermentationTechniques: allowedTechniques,
-    defaultFermentationTechnique: defaultTechnique,
-    ingredients: generatedIngredients,
-    tags: raw.tags
-  };
-}
-
-// Transform Raw Canonical Data to DoughStyleDefinition
-export const STYLES_DATA: DoughStyleDefinition[] = RAW_CANONICAL_STYLES.map(mapRawStyleToDoughStyleDefinition);
-
-export function getStyleById(id: string): DoughStyleDefinition | undefined {
-  return STYLES_DATA.find(s => s.id === id);
-}
-
-export function getAllowedFermentationTechniques(style: RecipeStyle, bakeType: BakeType): FermentationTechnique[] {
-  // Safety check: ensure we always return an array
-  if (!style || !bakeType) {
-    console.warn('[getAllowedFermentationTechniques] Missing parameters:', { style, bakeType });
-    return [FermentationTechnique.DIRECT];
-  }
-
-  const definition = STYLES_DATA.find(s => s.recipeStyle === style);
-  if (definition && definition.allowedFermentationTechniques && Array.isArray(definition.allowedFermentationTechniques)) {
-    return definition.allowedFermentationTechniques;
-  }
-
-  if (bakeType === BakeType.SWEETS_PASTRY) {
-    return [FermentationTechnique.CHEMICAL, FermentationTechnique.NO_FERMENT, FermentationTechnique.DIRECT];
-  }
-
-  return [
-    FermentationTechnique.DIRECT,
-    FermentationTechnique.POOLISH,
-    FermentationTechnique.BIGA,
-    FermentationTechnique.SOURDOUGH
-  ];
-}
+]

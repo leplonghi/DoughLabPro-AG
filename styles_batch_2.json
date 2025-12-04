@@ -1,0 +1,330 @@
+[
+  {
+    "id": "roman_scrocchiarella_teglia",
+    "name": "Roman Scrocchiarella (Pizza in Teglia)",
+    "category": "Pizza",
+    "origin": {
+      "country": "Italy",
+      "region": "Rome and Lazio bakeries",
+      "period": "Late 20th century professional codification"
+    },
+    "description": "Roman \"scrocchiarella\" or pizza in teglia is a high-hydration, long-fermented pan pizza baked in rectangular trays. It is characterized by a light but structured crumb with large alveoli, a very crisp base, and a notably crunchy bite that gives the style its name (\"scrocchiarella\" ≈ crackly).",
+    "history": "Roman pan pizza evolved in the second half of the 20th century, as Italian bakeries in Rome began using strong flours and long fermentation to create highly hydrated doughs baked in electric deck ovens. The style became known for its elongated or rectangular slices sold by weight. Professional practice increasingly favored stiff biga preferments, long cold fermentation (often 48–72 hours) and hydration levels that can reach or exceed 80%, producing a very open crumb and a crisp, crackly crust. Today, pizza in teglia and pizza alla pala are recognized as distinct Roman styles, but both rely on high hydration and advanced dough handling.",
+    "tags": [
+      "high-hydration",
+      "roman-style",
+      "pan-baked",
+      "long-fermentation",
+      "biga-preferment",
+      "crisp-bottom",
+      "open-crumb"
+    ],
+    "difficulty": "high",
+    "fermentationType": "cold",
+    "technicalProfile": {
+      "hydration": "75–85%",
+      "salt": "2.2–2.8%",
+      "oil": "2–4% (in dough) plus pan oil",
+      "sugar": "0–1%",
+      "cocoa": "0%",
+      "flourStrength": "W 300–340 (strong Italian pizza/bread flour)",
+      "preferment": "Biga 30–50% of total flour at ~45–50% hydration, fermented cool for 16–24 h.",
+      "fermentationSteps": [
+        "Prepare a stiff biga with a portion of the flour, a small amount of yeast and cold water; ferment 16–24 h at cool temperatures (typically 16–20°C).",
+        "Mix final dough by incorporating biga, remaining flour, water in stages, salt and oil, using short mixing plus rest periods to avoid overheating.",
+        "Perform a series of stretch-and-fold sets during the first 2–3 h to build structure while preserving extensibility.",
+        "Refrigerate the dough 24–72 h at 3–5°C for flavor and gas development.",
+        "Portion dough into well-oiled rectangular trays, gently stretching without degassing; allow a warm proof of 60–120 min until aerated and slightly domed.",
+        "Par-bake or fully bake with strong bottom heat until the base is crisp and the crumb is well set, then top and finish as desired if using par-bake strategy."
+      ],
+      "ovenTemp": "280–320°C (electric deck or strong domestic setup)",
+      "recommendedUse": [
+        "Electric deck ovens with stone or steel decks",
+        "Heavy-gauge rectangular pans in high-power domestic ovens",
+        "Perforated pans for enhanced bottom heat transfer"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Hydration below ~75% reduces the characteristic open crumb and tends to produce a denser, focaccia-like texture rather than true Roman scrocchiarella.",
+      "Overmixing high-hydration dough can damage extensibility and cause spreading instead of vertical rise.",
+      "Insufficient pan oil compromises the crisp base and may cause sticking.",
+      "Inadequate fermentation time leads to underdeveloped flavor and irregular crumb structure."
+    ],
+    "notes": [
+      "Roman pan pizza relies heavily on correct flour choice; flours with insufficient strength cannot support the long fermentation and high hydration without collapsing.",
+      "Many professionals use a two-stage baking strategy (par-bake base, then add delicate toppings) to preserve crispness and ingredient quality.",
+      "The style is often sold by weight and cut into rectangular pieces, reflecting its bakery-oriented origin rather than single-serve round pies."
+    ],
+    "references": [
+      "Le 5 Stagioni technical documentation on Roman pizza and high-hydration doughs",
+      "Modernist Pizza — sections on Roman pizza in teglia and pizza alla pala",
+      "Professional blog and recipe literature on Roman high-hydration pan pizza using biga preferments"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "sao_paulo_pao_frances",
+    "name": "São Paulo Pão Francês",
+    "category": "Bread",
+    "origin": {
+      "country": "Brazil",
+      "region": "São Paulo and major urban centers",
+      "period": "20th century adaptation of French bread"
+    },
+    "description": "Brazilian \"pão francês\", also known as \"pãozinho\", is a small, lean wheat roll with a thin, crisp crust and a light, tender crumb. It is baked in large batches with steam and is a daily staple in Brazilian bakeries, structurally distinct from the French baguette despite its name.",
+    "history": "Pão francês developed in Brazil in the early 20th century as urban bakeries in cities such as São Paulo adapted French-style breads to local wheat flour and customer preferences. Brazilian flours historically had different protein and ash profiles, leading bakers to adjust formulas with small amounts of sugar, fat and conditioning agents to achieve consistent volume, thin crisp crust and soft crumb. Over time, pão francês became the most consumed bread product in Brazil, with trade associations and technical centers publishing detailed guidelines and studies about its rheology, fermentation and baking conditions.",
+    "tags": [
+      "brazilian-classic",
+      "lean-dough",
+      "steam-baked",
+      "roll",
+      "short-fermentation",
+      "everyday-bread"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "ambient",
+    "technicalProfile": {
+      "hydration": "58–62%",
+      "salt": "1.8–2.2%",
+      "oil": "1–2% (shortening or vegetable oil)",
+      "sugar": "1–2%",
+      "cocoa": "0%",
+      "flourStrength": "W 150–220 (typical Brazilian bread flours)",
+      "preferment": "Commonly a sponge or indirect method with 20–30% of the flour; straight doughs are also used in high-output bakeries.",
+      "fermentationSteps": [
+        "Mix ingredients until moderate gluten development, avoiding overheating in spiral mixers.",
+        "Bulk fermentation 1–2 h at 24–28°C, with optional short rest in the mixer bowl or on the bench.",
+        "Divide into small pieces (typically 50–70 g), pre-shape and rest briefly.",
+        "Final shaping into short batons or torpedo-shaped rolls with a single central seam placed down and a longitudinal score on top.",
+        "Final proof 45–70 min at controlled temperature and humidity until rolls are expanded but still stable.",
+        "Bake with strong initial steam to promote rapid expansion and a thin, glossy crust."
+      ],
+      "ovenTemp": "220–250°C with steam injection",
+      "recommendedUse": [
+        "Steam-injected deck or rack ovens common in Brazilian bakeries",
+        "Domestic ovens with improvised steam methods for small batch replication"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Insufficient steam reduces volume and produces a dull, thick crust instead of a thin, brittle shell.",
+      "Underdeveloped gluten yields flat rolls with poor oven spring; overmixing can tighten the crumb and increase chewiness.",
+      "Excess sugar or fat shifts the product toward a semi-enriched roll and alters traditional texture.",
+      "Improper scoring depth or angle results in uneven ruptures instead of a controlled central opening."
+    ],
+    "notes": [
+      "Despite the name, pão francês is a distinct Brazilian style rather than a direct copy of French baguettes.",
+      "Small additions of sugar and fat, while not strictly \"lean\", are common practice to adapt to local flours and consumer expectations.",
+      "Industrial and artisanal formulations are widely studied in Brazilian technical literature due to the bread’s economic importance."
+    ],
+    "references": [
+      "Brazilian Association of Bakery and Confectionery (ABIP) technical publications on pão francês",
+      "Scientific articles on rheological properties and technological attributes of Brazilian French bread dough",
+      "Modernist Bread — sections on global white breads and Brazilian pão francês"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "montreal_style_bagels",
+    "name": "Montreal Style Bagels",
+    "category": "Bread",
+    "origin": {
+      "country": "Canada",
+      "region": "Montreal, Quebec (Mile End and surrounding neighborhoods)",
+      "period": "Early 20th century, Jewish immigrant bakeries"
+    },
+    "description": "Montreal style bagels are hand-rolled, boiled in honey-sweetened water and baked in wood-fired ovens. They are smaller, denser and sweeter than New York bagels, with a more pronounced chew, thinner crust and abundant sesame or poppy seed coatings.",
+    "history": "Bagels arrived in Montreal with Eastern European Jewish immigrants in the early 20th century. Bakeries such as Fairmount Bagel (founded 1919) and St-Viateur Bagel (founded 1957) standardized what is now recognized as the Montreal style: hand-rolled rings, boiled in honey water, dipped in seeds and baked in wood-fired ovens. The formula is slightly sweeter and often uses malt and honey, producing a golden color and distinct aroma. The style is deeply linked to local Jewish food culture and is widely recognized as part of Montreal’s culinary identity.",
+    "tags": [
+      "boiled-bread",
+      "wood-fired",
+      "sweet-dough",
+      "dense-crumb",
+      "canadian-classic",
+      "hand-rolled"
+    ],
+    "difficulty": "medium-high",
+    "fermentationType": "ambient",
+    "technicalProfile": {
+      "hydration": "53–58%",
+      "salt": "1.8–2.0%",
+      "oil": "0–2%",
+      "sugar": "4–8% (honey and/or malt-based sweetness)",
+      "cocoa": "0%",
+      "flourStrength": "W 300–340 (strong bread flour)",
+      "preferment": "Traditionally straight dough; some modern bakers use short sponges or pre-ferments for added flavor.",
+      "fermentationSteps": [
+        "Mix a relatively stiff dough with strong flour, water, salt, honey and/or malt, and optional small fat percentage.",
+        "Bulk ferment briefly (often 45–90 min) at moderate room temperature until slightly risen but still strong.",
+        "Divide into small pieces, roll into ropes and form rings by joining the ends with overlap and pressure.",
+        "Proof lightly or rest briefly to relax dough, then boil each bagel in honey-sweetened water until slightly swollen.",
+        "Dip boiled bagels in sesame or poppy seeds and arrange on wooden planks or peels.",
+        "Bake in a wood-fired oven at high heat until well-colored with a thin, slightly blistered crust."
+      ],
+      "ovenTemp": "350–420°C (wood-fired ovens, often somewhat cooler than Neapolitan pizza but still very hot)",
+      "recommendedUse": [
+        "Traditional wood-fired bagel ovens with stone decks",
+        "High-heat gas or electric ovens with stone or steel surfaces for style emulation"
+      ],
+      "difficulty": "medium-high"
+    },
+    "warnings": [
+      "Hydration significantly above the typical range produces an open, bread-like crumb instead of the characteristic dense chew.",
+      "Boiling times that are too long can cause excessive water absorption and collapse during baking.",
+      "Insufficient honey or malt in the boil reduces the traditional sweetness and color of the crust.",
+      "Wood-fired ovens require experience to manage combustion products and temperature uniformity."
+    ],
+    "notes": [
+      "Montreal bagels are usually eaten plain, with cream cheese or smoked fish, and are often purchased still warm from the oven.",
+      "Compared to New York bagels, they are typically smaller, sweeter, have larger holes and are baked directly on the stone of wood-fired ovens.",
+      "Traditional bakeries maintain continuous production cycles, shaping and baking throughout the day."
+    ],
+    "references": [
+      "Historical and cultural overviews of Montreal bagels from Canadian food encyclopedias and tourism boards",
+      "Documentation of St-Viateur and Fairmount bagel production methods (hand-rolling, honey water boil, wood-fired baking)",
+      "Modernist Bread — sections on bagels and regional variations"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "armenian_lavash_traditional",
+    "name": "Armenian Lavash (Traditional)",
+    "category": "Flatbread",
+    "origin": {
+      "country": "Armenia",
+      "region": "Ararat region and Armenian communities",
+      "period": "Ancient origins, formally recognized as heritage in 2014"
+    },
+    "description": "Lavash is a traditional Armenian flatbread, rolled or stretched very thin and baked against the walls of a conical clay oven called a tonir. It is soft when fresh, can be dried for long storage and later rehydrated, and plays a central role in Armenian culinary and ritual life.",
+    "history": "Lavash has deep historical roots in Armenian and neighboring cuisines. In 2014, \"Lavash, the preparation, meaning and appearance of traditional bread as an expression of culture in Armenia\" was inscribed on UNESCO’s Representative List of the Intangible Cultural Heritage of Humanity. Preparation is traditionally carried out by small groups of women who knead a simple dough, roll or stretch it over a special cushion and slap it onto the hot inner wall of the tonir. Once baked, lavash may be consumed fresh or dried; dried sheets can be stored for months and rehydrated with water before serving, reflecting its importance as a staple in environments with marked seasonality.",
+    "tags": [
+      "flatbread",
+      "tandoor-style",
+      "heritage-bread",
+      "low-hydration",
+      "sheeted-dough",
+      "long-storage"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "none-or-short",
+    "technicalProfile": {
+      "hydration": "48–55%",
+      "salt": "1.5–2.0%",
+      "oil": "0%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 180–240 (medium-strength wheat flour)",
+      "preferment": "Traditionally, lavash may be made from simply fermented or even nearly unleavened dough; when used, leavening is mild and based on prior dough or small yeast additions.",
+      "fermentationSteps": [
+        "Mix flour, water and salt into a smooth, relatively firm dough; allow brief rest to relax gluten.",
+        "Divide into portions and shape into tight balls, then rest again to facilitate sheeting.",
+        "Roll or stretch dough into very thin sheets, often using an oval or round cushion as a support.",
+        "Transfer the thin sheet onto the cushion and slap it against the inner wall of a preheated tonir oven.",
+        "Bake quickly until the bread blisters, sets and begins to color; remove with long tools and cool.",
+        "For long storage, dry completely; to serve later, sprinkle with water and allow to soften."
+      ],
+      "ovenTemp": "Approx. 300–450°C on tonir walls (high radiant and conductive heat)",
+      "recommendedUse": [
+        "Traditional tonir or tandoor ovens",
+        "Very hot pizza stones or steels in domestic ovens as an approximation",
+        "Flat griddles or inverted pots for partial approximations, though they do not reproduce tonir conditions fully"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Hydration that is too high makes it difficult to sheet lavash extremely thin without tearing.",
+      "Insufficient dough relaxation leads to shrinkage and uneven thickness.",
+      "Overbaking in the tonir makes the bread brittle and prone to breaking when handling fresh-style lavash.",
+      "Rehydrating dried lavash with excessive water can cause localized sogginess instead of uniform softening."
+    ],
+    "notes": [
+      "Lavash is often used as a wrap for cheese, herbs and grilled meats, and can act as both bread and utensil.",
+      "The ability to dry and store lavash for long periods made it particularly valuable in traditional agrarian and pastoral contexts.",
+      "The communal nature of lavash production is an important part of its cultural significance, beyond its purely nutritional function."
+    ],
+    "references": [
+      "UNESCO — Lavash, the preparation, meaning and appearance of traditional bread as an expression of culture in Armenia",
+      "Food culture encyclopedias describing Armenian lavash and related flatbreads in the region",
+      "Modernist Bread — sections on ancient and traditional flatbreads"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "persian_barbari_bread",
+    "name": "Persian Barbari Bread",
+    "category": "Bread",
+    "origin": {
+      "country": "Iran",
+      "region": "Razavi Khorasan and urban bakeries",
+      "period": "Documented in the Qajar era and early 20th century"
+    },
+    "description": "Barbari is a traditional Iranian leavened flatbread with an elongated, thick shape, longitudinal grooves and a glossy, satiny crust produced by a flour-based glaze called roomal. It has a crisp exterior and a soft, chewy interior and is commonly topped with sesame or black seeds.",
+    "history": "Barbari bread is one of the most popular breads in Iran and is widely consumed for breakfast and daily meals. The style is associated historically with communities referred to as \"Barbar\" in the Qajar era. It is made from wheat flour dough that is shaped into long ovals with characteristic parallel grooves on the surface. Before baking, bakers brush the surface with roomal, a flour-and-water (or similar) paste that promotes shine and crust texture. Modern descriptions emphasize its golden-brown color, seeds and distinctive shape, and baking in hot deck or tunnel ovens.",
+    "tags": [
+      "flatbread",
+      "roomal-glaze",
+      "iranian-bread",
+      "elongated-loaf",
+      "seed-topped",
+      "breakfast-bread"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "ambient",
+    "technicalProfile": {
+      "hydration": "60–70%",
+      "salt": "2.0–2.2%",
+      "oil": "0–1%",
+      "sugar": "0–1%",
+      "cocoa": "0%",
+      "flourStrength": "W 240–280 (medium-strong bread flour)",
+      "preferment": "Frequently produced with an indirect method or sponge (20–30% of flour) to improve flavor and handling, although direct doughs also exist.",
+      "fermentationSteps": [
+        "Mix flour, water, salt, yeast and any small amounts of sugar or oil to a moderately soft dough with sufficient gluten development.",
+        "Bulk ferment 60–90 min at ambient temperature until noticeably expanded.",
+        "Divide dough and pre-shape into ovals; rest briefly to relax.",
+        "Shape by stretching into long, thick ovals and pressing fingers or a special tool to create parallel grooves along the surface.",
+        "Brush or pour roomal glaze over the surface to hydrate and coat the dough, then sprinkle sesame or black seeds if used.",
+        "Final proof 20–30 min and bake until the crust is golden-brown, glossy and crisp while the interior remains moist and chewy."
+      ],
+      "ovenTemp": "260–300°C (hot deck or hearth ovens)",
+      "recommendedUse": [
+        "Stone-based deck ovens, common in traditional and modern Iranian bakeries",
+        "High-temperature domestic ovens with stones or steels for approximation"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Roomal that is too thick or too thin can either inhibit oven spring or fail to provide the characteristic sheen.",
+      "Overproofing reduces groove definition and can lead to excessive spreading.",
+      "Insufficient bottom heat produces a pale, underbaked crust and gummy interior.",
+      "Hydration much above the typical range makes it difficult to maintain the defined grooves and elongated shape."
+    ],
+    "notes": [
+      "Barbari is often eaten warm with cheese, herbs, butter or spreads and is a common feature of Iranian breakfast tables.",
+      "The combination of grooves and roomal influences how the crust dries and colors during baking, giving Barbari its signature look.",
+      "Professional formulas sometimes vary seed types and roomal composition, but the fundamental appearance and structure remain recognizable."
+    ],
+    "references": [
+      "Encyclopedic and technical descriptions of Barbari bread as an Iranian flatbread glazed with roomal and often topped with seeds",
+      "King Arthur Baking and other professional sources documenting Barbari roomal as a functional alternative to steam for crust development",
+      "Modernist Bread and Iranian food scholarship on traditional breads, including Barbari’s shape, grooves and cultural role"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  }
+]

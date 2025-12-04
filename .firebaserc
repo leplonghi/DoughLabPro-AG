@@ -1,7 +1,5 @@
 {
   "projects": {
-    "default": "doughlabpro-app"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "doughlabpro-fire"
+  }
 }

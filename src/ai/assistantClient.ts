@@ -93,9 +93,8 @@ export async function askGeneralAssistant(input: AssistantInput): Promise<string
   const userPrompt = buildRichContext(t, question, doughConfig, flour, oven, lastBatch);
 
   try {
-    // FIX: Updated model from gemini-1.5-pro to gemini-3-pro-preview for complex tasks
     const response = await ai.models.generateContent({
-      model: 'gemini-3-pro-preview',
+      model: 'gemini-2.0-flash',
       contents: userPrompt,
       config: {
         systemInstruction,
@@ -163,7 +162,7 @@ export async function askLevainAssistant(levain: Levain, question: string): Prom
 
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3-pro-preview',
+      model: 'gemini-2.0-flash',
       contents: userPrompt,
       config: {
         systemInstruction,
@@ -224,7 +223,7 @@ export async function generateStyleFromDescription(description: string): Promise
 
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3-pro-preview',
+      model: 'gemini-2.0-flash',
       contents: description,
       config: {
         systemInstruction,

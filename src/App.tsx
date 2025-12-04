@@ -147,7 +147,7 @@ function AppContent() {
           <div className="space-y-4">
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="w-full py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl shadow-lg shadow-slate-900/20 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full py-3.5 bg-lime-600 hover:bg-lime-700 text-white font-bold rounded-xl shadow-lg shadow-lime-600/20 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Sign In / Create Account
             </button>

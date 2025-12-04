@@ -19,6 +19,8 @@ import { normalizeDoughConfig } from '@/logic/normalization';
 import { logEvent } from '@/services/analytics';
 import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
+import { STYLES_DATA } from '@/data/stylesData';
+import { fetchStyles } from '@/services/stylesService';
 
 interface CalculatorContextType {
     config: DoughConfig;
@@ -35,6 +37,9 @@ interface CalculatorContextType {
     results: DoughResult | null;
     hasInteracted: boolean;
     setHasInteracted: React.Dispatch<React.SetStateAction<boolean>>;
+    
+    // Global Styles List
+    styles: DoughStyleDefinition[];
 
     // Handlers
     handleConfigChange: (newConfig: Partial<DoughConfig>) => void;
@@ -92,6 +97,25 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const [unitSystem, setUnitSystem] = useState<UnitSystem>(UnitSystem.METRIC);
     const [errors, setErrors] = useState<FormErrors>({});
     const [hasInteracted, setHasInteracted] = useState(false);
+    
+    // Styles State - Initialized with fallback data
+    const [styles, setStyles] = useState<DoughStyleDefinition[]>(STYLES_DATA);
+
+    // --- Styles Fetching ---
+    useEffect(() => {
+        let isMounted = true;
+        fetchStyles()
+            .then((fetchedStyles) => {
+                if (isMounted && fetchedStyles && fetchedStyles.length > 0) {
+                    setStyles(fetchedStyles);
+                }
+            })
+            .catch((err) => {
+                console.warn('Failed to fetch styles asynchronously, keeping static data.', err);
+            });
+        
+        return () => { isMounted = false; };
+    }, []);
 
     // --- Validation ---
     useEffect(() => {
@@ -370,6 +394,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         results,
         hasInteracted,
         setHasInteracted,
+        styles,
         handleConfigChange,
         handleBakeTypeChange,
         handleStyleChange,
@@ -388,6 +413,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         errors,
         results,
         hasInteracted,
+        styles,
         handleConfigChange,
         handleBakeTypeChange,
         handleStyleChange,

@@ -10,7 +10,7 @@ import {
   FermentationTechnique,
 } from '@/types';
 import { DOUGH_STYLE_PRESETS } from '@/constants';
-import { STYLES_DATA, getStyleById, getAllowedFermentationTechniques } from '@/data/stylesData';
+import { getStyleById, getAllowedFermentationTechniques } from '@/data/stylesData';
 import * as customPresets from '@/logic/customPresets';
 import {
   FlourIcon,
@@ -27,6 +27,7 @@ import FermentationSection from '@/components/calculator/sections/FermentationSe
 import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
 import { useUser } from '@/contexts/UserProvider';
+import { useCalculator } from '@/contexts/CalculatorContext';
 import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import CreateStyleModal from '@/components/styles/CreateStyleModal';
 
@@ -71,6 +72,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 }) => {
   const { addToast } = useToast();
   const { userStyles, addUserStyle } = useUser();
+  const { styles: contextStyles } = useCalculator(); // Use styles from context instead of direct import
   const isBasic = calculatorMode === 'basic';
   
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
@@ -165,16 +167,24 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   // Find current active style definition (Official or User)
   const activeStyle = useMemo(() => {
     if (config.selectedStyleId) {
-      // Try finding in official data
-      const official = getStyleById(config.selectedStyleId);
+      // Try finding in official data (fetched via context now if possible, or helper)
+      // Note: getStyleById currently uses the static STYLES_DATA from data file.
+      // To fully decouple, we should use contextStyles.find(...)
+      
+      const official = contextStyles.find(s => s.id === config.selectedStyleId);
       if (official) return official;
+      
+      // Fallback to static helper if context isn't populated yet (rare edge case)
+      const staticOfficial = getStyleById(config.selectedStyleId);
+      if (staticOfficial) return staticOfficial;
+
       // Try finding in user styles
       const userStyle = userStyles.find(s => s.id === config.selectedStyleId);
       if (userStyle) return userStyle;
     }
     // Fallback to finding by preset ID if selectedStyleId is missing (legacy compatibility)
-    return STYLES_DATA.find(s => s.recipeStyle === config.recipeStyle);
-  }, [config.selectedStyleId, config.stylePresetId, config.recipeStyle, userStyles]);
+    return contextStyles.find(s => s.recipeStyle === config.recipeStyle);
+  }, [config.selectedStyleId, config.stylePresetId, config.recipeStyle, userStyles, contextStyles]);
 
   const recipeStylesToShow = DOUGH_STYLE_PRESETS.filter(
     (p) => p.type === config.bakeType,

@@ -1,0 +1,35 @@
+{
+  "id": "",
+  "name": "",
+  "category": "",
+  "origin": {
+    "country": "",
+    "region": "",
+    "period": ""
+  },
+  "description": "",
+  "history": "",
+  "tags": [],
+  "difficulty": "",
+  "fermentationType": "",
+  "technicalProfile": {
+    "hydration": "",
+    "salt": "",
+    "oil": "",
+    "sugar": "",
+    "cocoa": "",
+    "flourStrength": "",
+    "preferment": "",
+    "fermentationSteps": [],
+    "ovenTemp": "",
+    "recommendedUse": [],
+    "difficulty": ""
+  },
+  "warnings": [],
+  "notes": [],
+  "references": [],
+  "isPro": false,
+  "source": "",
+  "createdAt": "",
+  "releaseDate": ""
+}

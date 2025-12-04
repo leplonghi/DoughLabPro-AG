@@ -9,6 +9,7 @@
     "rules": "storage.rules"
   },
   "hosting": {
+    "site": "doughlabpro-fire-studio",
     "public": "dist",
     "ignore": [
       "firebase.json",

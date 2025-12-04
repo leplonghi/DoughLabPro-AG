@@ -17,15 +17,15 @@ import {
     HeartIcon,
     BarsArrowDownIcon,
     BarsArrowUpIcon,
-    FunnelIcon
+    FunnelIcon,
+    LockClosedIcon
 } from '@/components/ui/Icons';
-import { STYLES_DATA } from '@/data/stylesData';
 import { DoughStyleDefinition, DoughConfig, StyleCategory } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
+import { useCalculator } from '@/contexts/CalculatorContext';
 import CreateStyleModal from '@/components/styles/CreateStyleModal';
 import AiStyleBuilderModal from '@/components/styles/AiStyleBuilderModal';
 import { ToppingPlannerModal } from '@/components/modals/ToppingPlannerModal';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { LibraryPageLayout } from '../learn/LibraryPageLayout';
 
@@ -218,10 +218,11 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
     const { userStyles, addUserStyle, deleteUserStyle, isFavorite, toggleFavorite, hasProAccess, openPaywall, user } = useUser();
+    const { styles: contextStyles } = useCalculator(); // Import styles from context
     const userPlan = getCurrentPlan(user);
 
-    // Combine Official and User Styles
-    const allStyles = useMemo(() => [...STYLES_DATA, ...userStyles], [userStyles]);
+    // Combine Official and User Styles using the context which has static + remote data
+    const allStyles = useMemo(() => [...contextStyles, ...userStyles], [contextStyles, userStyles]);
 
     // Extract unique tags from all available styles
     const availableTags = useMemo(() => {
@@ -379,15 +380,12 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ doughConfig, onLoadSt
                         <p className="text-sm text-slate-600 mt-1 leading-relaxed">Define your own unique methods or ask AI to generate a technical profile for you.</p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3 justify-end items-center relative z-10">
-                        <ProFeatureLock featureKey="styles.full_access" customMessage="Unlock AI Style Builder with Lab Pro.">
-                            <button
-                                onClick={() => setIsAiModalOpen(true)}
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 py-2.5 px-5 font-bold text-white shadow-md hover:bg-indigo-700 transition-all duration-300 hover:scale-105 text-sm"
-                            >
-                                <SparklesIcon className="h-4 w-4" /> Ask AI for a Style
-                            </button>
-                        </ProFeatureLock>
-
+                        <button
+                            disabled
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-2.5 px-5 font-bold text-slate-400 shadow-none cursor-not-allowed text-sm border border-slate-200"
+                        >
+                            <LockClosedIcon className="h-4 w-4" /> Ask AI for a Style (Coming Soon)
+                        </button>
                     </div>
                 </div>
 
