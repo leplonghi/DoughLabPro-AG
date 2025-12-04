@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "doughlabpro-fire"
-  }
+  },
+  "targets": {
+    "doughlabpro-fire": {
+      "hosting": {
+        "doughlabpro-fire": [
+          "doughlabpro-fire"
+        ],
+        "studio": [
+          "doughlabpro-fire-studio"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

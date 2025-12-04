@@ -1,4 +1,4 @@
-import { UnitSystem, ToppingSizeProfile, YeastType } from './types';
+import { UnitSystem, ToppingSizeProfile, YeastType, Unit } from './types';
 import { YEAST_EQUIVALENCIES } from './constants';
 
 // Grams per cup for key ingredients.
@@ -235,6 +235,43 @@ export function timeSince(dateString: string): string {
     interval = seconds / 60;
     if (interval > 1) return `${Math.floor(interval)}min`;
     return `${Math.floor(seconds)}s`;
+}
+
+/**
+ * Converts weight between different units.
+ * @param value The value to convert.
+ * @param fromUnit The unit of the value ('g' or 'oz').
+ * @param toUnit The unit to convert to ('g' or 'oz' or 'volume').
+ * @param unitSystem The unit system (METRIC or US_CUSTOMARY) for context if needed.
+ * @returns The converted value.
+ */
+export function convertWeight(
+  value: number,
+  fromUnit: 'g' | 'oz',
+  toUnit: Unit,
+  unitSystem: UnitSystem
+): number {
+  if (fromUnit === toUnit) return value;
+
+  // Convert to grams first as base
+  let grams = value;
+  if (fromUnit === 'oz') {
+    grams = value * 28.3495;
+  }
+
+  // Convert from grams to target
+  if (toUnit === 'g') {
+    return grams;
+  } else if (toUnit === 'oz') {
+    return grams / 28.3495;
+  } else {
+    // Volume conversion requires ingredient context, which isn't passed here.
+    // For this generic helper, we assume we might return grams if volume requested improperly,
+    // or handle it in specific components like IngredientsSection.
+    // However, the caller in IngredientsSection passes 'g' or 'oz' as target usually.
+    // If target is volume, we return 0 or handle externally.
+    return grams; 
+  }
 }
 
 // Add polyfill for randomUUID if it doesn't exist

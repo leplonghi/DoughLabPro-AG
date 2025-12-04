@@ -1,24 +1,128 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { DoughStyleDefinition } from '@/types';
+import { 
+  ArrowLeft, 
+  FlaskConical, 
+  Thermometer, 
+  Droplet, 
+  Clock, 
+  Lightbulb,
+  ChefHat,
+  Wheat,
+  Info
+} from 'lucide-react';
 import {
     CalculatorIcon,
-    BookOpenIcon,
-    BeakerIcon,
-    FireIcon,
-    InfoIcon,
-    ClockIcon,
-    ShoppingBagIcon,
-    ExternalLinkIcon,
-    GlobeAltIcon,
-    HeartIcon,
 } from '@/components/ui/Icons';
-import { AFFILIATE_PRODUCTS } from '@/data/affiliateLinks';
-import { Logo } from '@/components/ui/Logo';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
-import { useUser } from '@/contexts/UserProvider';
-import PDFExportButton from '@/components/ui/PDFExportButton';
-import ShareButton from '@/components/ui/ShareButton';
-import { allLearnArticles } from '@/data/learn';
+
+// --- Sub-Components for Modular UI ---
+
+const TechGauge: React.FC<{ 
+  icon: React.ReactNode; 
+  label: string; 
+  value: string | number; 
+  min?: number; 
+  max?: number; 
+  current?: number; 
+  unit?: string;
+  colorClass?: string;
+}> = ({ icon, label, value, min = 0, max = 100, current = 0, unit, colorClass = "bg-blue-500" }) => {
+  const percentage = Math.min(Math.max(((current - min) / (max - min)) * 100, 0), 100);
+
+  return (
+    <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
+      <div className="flex items-center gap-2 mb-2 text-slate-500 text-xs font-bold uppercase tracking-wider">
+        {icon} {label}
+      </div>
+      <div className="text-2xl font-black text-slate-900 mb-2">
+        {value}{unit && <span className="text-sm font-medium text-slate-400 ml-1">{unit}</span>}
+      </div>
+      {/* Progress Bar */}
+      <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+        <div 
+          className={`h-full rounded-full transition-all duration-1000 ${colorClass}`} 
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
+      {(min !== undefined && max !== undefined) && (
+        <div className="flex justify-between mt-1 text-[10px] text-slate-400 font-mono">
+          <span>{min}{unit}</span>
+          <span>{max}{unit}</span>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const DifficultyStars: React.FC<{ difficulty: string }> = ({ difficulty }) => {
+  const levels: Record<string, number> = { 'Easy': 1, 'Medium': 2, 'Hard': 3, 'Expert': 4, 'medium-high': 3, 'medium': 2, 'high': 3, 'low': 1 };
+  const normalizedDiff = difficulty ? difficulty.toLowerCase() : 'medium';
+  let currentLevel = 2;
+  
+  if (normalizedDiff.includes('expert') || normalizedDiff.includes('high')) currentLevel = 4;
+  else if (normalizedDiff.includes('hard') || normalizedDiff.includes('complex')) currentLevel = 3;
+  else if (normalizedDiff.includes('medium')) currentLevel = 2;
+  else currentLevel = 1;
+
+  return (
+    <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col justify-center">
+      <div className="flex items-center gap-2 mb-2 text-slate-500 text-xs font-bold uppercase tracking-wider">
+        <ChefHat className="w-4 h-4" /> Difficulty
+      </div>
+      <div className="flex gap-1 mb-1">
+        {[1, 2, 3, 4].map((star) => (
+          <div 
+            key={star} 
+            className={`h-2 w-full rounded-full ${star <= currentLevel ? 'bg-amber-400' : 'bg-slate-100'}`}
+          />
+        ))}
+      </div>
+      <span className="text-sm font-bold text-slate-700 self-end mt-1 capitalize">{difficulty || 'Medium'}</span>
+    </div>
+  );
+};
+
+const ScienceCard: React.FC<{ icon: React.ReactNode; title: string; text: string }> = ({ icon, title, text }) => (
+  <div className="bg-green-50/50 rounded-xl p-5 border border-green-100 hover:border-green-200 transition-colors">
+    <div className="flex items-center gap-2 mb-3 text-green-700 font-bold text-sm uppercase tracking-wide">
+      {icon} {title}
+    </div>
+    <p className="text-slate-700 text-sm leading-relaxed font-medium">
+      {text}
+    </p>
+  </div>
+);
+
+const TimelineItem: React.FC<{ title: string; action: string; duration?: string; isLast: boolean }> = ({ title, action, duration, isLast }) => (
+  <div className="relative pl-8 pb-12 last:pb-0">
+    {/* Connector Line */}
+    {!isLast && (
+      <div className="absolute left-[11px] top-6 w-0.5 h-full bg-slate-200" />
+    )}
+    
+    {/* Dot */}
+    <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-white border-4 border-slate-300 z-10" />
+
+    <div className="grid md:grid-cols-12 gap-6">
+      {/* Left: Action */}
+      <div className="md:col-span-12 pt-1">
+        <div className="flex items-center gap-2 mb-1">
+          {duration && (
+             <span className="text-xs font-bold text-slate-400 flex items-center gap-1">
+                <Clock className="w-3 h-3" /> {duration}
+             </span>
+          )}
+        </div>
+        <h3 className="text-lg font-bold text-slate-900 mb-2">{title}</h3>
+        <p className="text-slate-600 text-sm leading-relaxed">
+          {action}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+// --- Main Page Component ---
 
 interface StyleDetailPageProps {
     style: DoughStyleDefinition;
@@ -27,323 +131,163 @@ interface StyleDetailPageProps {
 }
 
 export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadAndNavigate, onBack }) => {
-    const { hasProAccess, openPaywall, isFavorite, toggleFavorite } = useUser();
-    const favorited = isFavorite(style.id);
+  // Parsing technical values for gauges
+  const hydrationVal = Array.isArray(style.technicalProfile?.hydration) 
+        ? (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2 
+        : (style.technical.hydration || 60);
+  
+  const ovenTempVal = parseInt(style.technicalProfile?.ovenRecommendations?.replace(/[^0-9]/g, '') || '250');
 
-    const renderRecommendation = () => {
-        let text = "";
-        let linkId = "";
+  // Fallback for scientific data if not present in legacy types
+  const scientificData = (style as any).scientificProfile || {
+      flourRheology: "Standard protein content recommended for optimal gluten development.",
+      processScience: "Balances fermentation time with hydration for characteristic texture."
+  };
 
-        if (style.category === 'pizza') {
-            if (style.name.includes('Neapolitan')) {
-                text = "For authentic Neapolitan-style baking, high-heat pizza ovens (450°C+) make a huge difference.";
-                linkId = "ooni_oven";
-            } else {
-                text = "For crispy bottoms in a home oven, a heavy-duty baking steel performs better than stone.";
-                linkId = "baking_steel";
-            }
-        } else if (style.category === 'bread') {
-            text = "Bread doughs, especially high hydration ones, are much easier to handle with a good bench scraper and proofing box.";
-            linkId = "proofing_box";
-        } else {
-            text = "Precision is key for pastry. A digital scale with 0.1g accuracy is essential.";
-            linkId = "scale_precision";
-        }
+  const fermentationSteps = style.technicalProfile?.fermentationSteps || [];
 
-        const product = AFFILIATE_PRODUCTS.find(p => p.id === linkId);
-        const url = product ? product.url : '/shop';
-
-        return (
-            <div className="mt-8 pt-8 border-t border-slate-200">
-                <h3 className="flex items-center gap-2 font-bold text-slate-900 mb-3">
-                    <ShoppingBagIcon className="h-5 w-5 text-lime-500" />
-                    Recommended Tools
-                </h3>
-                <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
-                    <p className="text-sm text-slate-700 mb-3">{text}</p>
-                    <a
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-semibold text-lime-600 hover:underline"
-                    >
-                        See recommended gear in Shop <ExternalLinkIcon className="h-3 w-3" />
-                    </a>
-                </div>
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 pb-20">
+      
+      {/* 1. Hero Header */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <button 
+            onClick={onBack}
+            className="flex items-center gap-2 text-slate-500 hover:text-slate-900 mb-4 transition-colors text-xs font-bold uppercase tracking-wider"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to Library
+          </button>
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="flex gap-2 mb-3">
+                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wide shadow-sm">
+                  {style.origin.country}
+                </span>
+                <span className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wide shadow-sm">
+                  {style.category}
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-none mb-2">
+                {style.name}
+              </h1>
+              <p className="text-slate-500 font-medium max-w-2xl text-lg">
+                {style.description}
+              </p>
             </div>
-        );
-    };
-
-    const FormulaTable = () => (
-        <div className={`bg-slate-50 rounded-xl border border-slate-200 overflow-hidden`}>
-            <table className="w-full text-sm text-left">
-                <thead className="bg-slate-100 text-slate-500 uppercase text-xs">
-                    <tr>
-                        <th className="px-4 py-3">Ingredient</th>
-                        <th className="px-4 py-3 text-right">% (Baker's)</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200">
-                    {style.ingredients.map(ing => (
-                        <tr key={ing.id}>
-                            <td className="px-4 py-3 font-medium text-slate-700">{ing.name}</td>
-                            <td className="px-4 py-3 text-right font-mono text-slate-600">{ing.bakerPercentage}%</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-
-    const TechnicalParams = () => (
-        <div className={`bg-slate-50 p-6 rounded-xl border border-slate-200`}>
-            <h3 className="font-bold text-slate-900 mb-4">Technical Parameters</h3>
-            <div className="space-y-4">
-                <div>
-                    <p className="text-xs text-slate-500 uppercase font-semibold">Hydration</p>
-                    <p className="text-xl font-bold text-slate-800">{style.technical.hydration}%</p>
-                </div>
-                <div>
-                    <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
-                        <ClockIcon className="h-3 w-3" /> Fermentation
-                    </p>
-                    <p className="text-base font-medium text-slate-800">{style.technical.fermentation}</p>
-                </div>
-                <div>
-                    <p className="text-xs text-slate-500 uppercase font-semibold flex items-center gap-1">
-                        <FireIcon className="h-3 w-3" /> Oven Temp
-                    </p>
-                    <p className="text-base font-medium text-slate-800">{style.technical.bakingTempC}°C</p>
-                </div>
-            </div>
-        </div>
-    );
-
-    return (
-        <div className="mx-auto max-w-4xl animate-[fadeIn_0.3s_ease-in_out]">
-            {/* Back Button */}
-            <button onClick={onBack} className="mb-6 text-sm font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1 no-print">
-                &larr; Back to Library
+            
+            <button 
+                onClick={() => onLoadAndNavigate(style)}
+                className="px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 hover:scale-105 transition-all shadow-xl shadow-slate-200 flex-shrink-0 flex items-center gap-2"
+            >
+              <CalculatorIcon className="w-5 h-5 text-white" />
+              Open in Calculator
             </button>
+          </div>
+        </div>
+      </header>
 
-            <div id="style-detail-content" className="bg-white rounded-2xl shadow-lg ring-1 ring-slate-200/50 overflow-hidden">
-                {/* Print-only Header */}
-                <div className="hidden print-header items-center justify-between p-6 border-b border-slate-200 mb-4">
-                    <Logo className="h-8 w-auto" />
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Advanced Dough Science</p>
+      <main className="max-w-6xl mx-auto px-6 py-10 space-y-12">
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          
+          {/* LEFT COLUMN: Visual Specs Dashboard */}
+          <div className="lg:col-span-1 space-y-6">
+            <h2 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">Lab Parameters</h2>
+            
+            <TechGauge 
+              icon={<Droplet className="w-4 h-4 text-blue-500" />}
+              label="Hydration"
+              value={hydrationVal}
+              current={hydrationVal}
+              min={50}
+              max={100} 
+              unit="%"
+              colorClass="bg-blue-500"
+            />
+
+            <TechGauge 
+              icon={<Thermometer className="w-4 h-4 text-orange-500" />}
+              label="Oven Temp"
+              value={style.technicalProfile?.ovenRecommendations || ovenTempVal}
+              current={ovenTempVal}
+              min={0}
+              max={500}
+              unit={typeof style.technicalProfile?.ovenRecommendations === 'number' ? '°C' : ''}
+              colorClass="bg-gradient-to-r from-orange-400 to-red-500"
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              <DifficultyStars difficulty={style.difficulty} />
+              <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col justify-center">
+                <div className="flex items-center gap-2 mb-2 text-slate-500 text-xs font-bold uppercase tracking-wider">
+                   <Clock className="w-4 h-4" /> Time
                 </div>
-
-                {/* Header - Updated to Light Premium Design */}
-                <div className="bg-gradient-to-br from-slate-50 to-white p-8 border-b border-slate-100 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                    <div className="flex justify-between items-start relative z-10">
-                        <div>
-                            <div className="flex items-center gap-3">
-                                <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">{style.name}</h1>
-                                <button
-                                    onClick={() => toggleFavorite({
-                                        id: style.id,
-                                        type: 'style',
-                                        title: style.name,
-                                        metadata: { category: style.category }
-                                    })}
-                                    className={`p-2 rounded-full transition-all no-print ${favorited ? 'bg-pink-100 text-pink-500' : 'bg-white/50 text-slate-400 hover:text-pink-500 hover:bg-white'}`}
-                                    title={favorited ? "Remove from favorites" : "Add to favorites"}
-                                >
-                                    <HeartIcon className={`h-6 w-6 ${favorited ? 'fill-current' : ''}`} />
-                                </button>
-                            </div>
-                            <p className="text-slate-600 mt-2 text-lg leading-relaxed max-w-2xl">{style.description}</p>
-                            <div className="flex gap-3 mt-5 text-sm font-bold text-slate-600">
-                                <span className="bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-lime-500"></span>
-                                    {style.category}
-                                </span>
-                                <span className="bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1">
-                                    <GlobeAltIcon className="h-3 w-3 text-slate-400" />
-                                    {style.country}
-                                </span>
-                                {style.year && (
-                                    <span className="bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm flex items-center gap-1">
-                                        <ClockIcon className="h-3 w-3 text-slate-400" />
-                                        {style.year}
-                                    </span>
-                                )}
-                            </div>
-
-                            {/* Action Bar */}
-                            <div className="flex flex-wrap items-center gap-3 mt-6 no-print">
-                                <PDFExportButton
-                                    targetId="style-detail-content"
-                                    label="Download PDF"
-                                    className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm"
-                                />
-                                <ShareButton
-                                    title={style.name}
-                                    text={`Check out this dough style: ${style.name}`}
-                                    className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm"
-                                />
-                            </div>
-                        </div>
-                        {style.isPro && (
-                            <span className="bg-gradient-to-r from-lime-500 to-lime-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide shadow-md animate-pulse">
-                                PRO
-                            </span>
-                        )}
-                    </div>
-                </div>
-
-                <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-                    {/* Left Column: Technical Data */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* History Section - Always Visible */}
-                        <section>
-                            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-3">
-                                <BookOpenIcon className="h-5 w-5 text-lime-500" />
-                                History & Context
-                            </h2>
-                            <p className="text-slate-600 leading-relaxed">
-                                {style.history}
-                            </p>
-                        </section>
-
-                        {/* Formula Section - Partially Locked for Pro */}
-                        <section>
-                            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-4">
-                                <BeakerIcon className="h-5 w-5 text-lime-500" />
-                                Base Formula
-                            </h2>
-                            {style.isPro ? (
-                                <ProFeatureLock
-                                    featureKey="styles.full_access"
-                                    customMessage="Full style specs and baker's percentages are available in Pro."
-                                >
-                                    <FormulaTable />
-                                </ProFeatureLock>
-                            ) : (
-                                <FormulaTable />
-                            )}
-                        </section>
-
-                        {/* Notes & Risks */}
-                        {(style.notes || style.risks) && (
-                            <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {style.risks && (
-                                    <div className="bg-amber-50 p-4 rounded-xl border border-amber-100">
-                                        <h3 className="font-bold text-amber-800 mb-2 text-sm uppercase tracking-wide">Watch Out</h3>
-                                        <ul className="list-disc list-inside text-sm text-amber-900 space-y-1">
-                                            {style.risks.map((r, i) => <li key={i}>{r}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-                                {style.notes && (
-                                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                        <h3 className="font-bold text-blue-800 mb-2 text-sm uppercase tracking-wide">Chef's Notes</h3>
-                                        <ul className="list-disc list-inside text-sm text-blue-900 space-y-1">
-                                            {style.notes.map((n, i) => <li key={i}>{n}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-                            </section>
-                        )}
-
-                        {/* Learn Foundations */}
-                        <section>
-                            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 mb-4">
-                                <BookOpenIcon className="h-5 w-5 text-lime-500" />
-                                Learn Foundations
-                            </h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                {allLearnArticles.filter(article =>
-                                    article.tags?.some(t => style.name.toLowerCase().includes(t.toLowerCase()) || style.category.toLowerCase().includes(t.toLowerCase())) ||
-                                    article.practicalApplications?.some(app => app.toLowerCase().includes(style.name.toLowerCase()))
-                                ).slice(0, 6).map(article => (
-                                    <a
-                                        key={article.id}
-                                        href={`#/learn/${encodeURIComponent(article.category)}/${article.id}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-lime-500/50 hover:shadow-md transition-all group"
-                                    >
-                                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 block">
-                                            {article.category}
-                                        </span>
-                                        <h4 className="font-bold text-slate-800 group-hover:text-lime-600 transition-colors mb-1 line-clamp-1">
-                                            {article.title}
-                                        </h4>
-                                        <p className="text-xs text-slate-500 line-clamp-2">
-                                            {article.subtitle}
-                                        </p>
-                                    </a>
-                                ))}
-                                {allLearnArticles.filter(article =>
-                                    article.tags?.some(t => style.name.toLowerCase().includes(t.toLowerCase()) || style.category.toLowerCase().includes(t.toLowerCase())) ||
-                                    article.practicalApplications?.some(app => app.toLowerCase().includes(style.name.toLowerCase()))
-                                ).length === 0 && (
-                                        <p className="text-sm text-slate-500 col-span-2 italic">
-                                            Explore our <a href="#/learn" className="text-lime-600 hover:underline">Learn Library</a> for general baking science.
-                                        </p>
-                                    )}
-                            </div>
-                        </section>
-                    </div>
-
-                    {/* Right Column: Parameters & Action */}
-                    <div className="space-y-6">
-                        {style.isPro ? (
-                            <ProFeatureLock
-                                featureKey="styles.full_access"
-                                customMessage="Technical Parameters"
-                            >
-                                <TechnicalParams />
-                            </ProFeatureLock>
-                        ) : (
-                            <TechnicalParams />
-                        )}
-
-                        {style.isPro ? (
-                            <ProFeatureLock featureKey="styles.full_access" customMessage={`Pro Style: ${style.name}`}>
-                                <button
-                                    onClick={() => onLoadAndNavigate(style)}
-                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-4 px-6 text-lg font-bold text-white shadow-lg shadow-lime-200 transition-all hover:bg-lime-600 hover:-translate-y-1 active:translate-y-0 no-print"
-                                >
-                                    <CalculatorIcon className="h-6 w-6" />
-                                    Load into Calculator
-                                </button>
-                            </ProFeatureLock>
-                        ) : (
-                            <button
-                                onClick={() => onLoadAndNavigate(style)}
-                                className="w-full flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-4 px-6 text-lg font-bold text-white shadow-lg shadow-lime-200 transition-all hover:bg-lime-600 hover:-translate-y-1 active:translate-y-0 no-print"
-                            >
-                                <CalculatorIcon className="h-6 w-6" />
-                                Load into Calculator
-                            </button>
-                        )}
-
-                        <p className="text-xs text-center text-slate-400">
-                            This will configure the calculator with the base formula for this style.
-                        </p>
-
-                        {renderRecommendation()}
-
-                        {/* Soft Callout for Free Styles */}
-                        {!style.isPro && !hasProAccess && (
-                            <div className="mt-8 p-4 bg-gradient-to-r from-slate-50 to-lime-50 rounded-lg border border-lime-100 text-center no-print">
-                                <p className="text-sm font-bold text-slate-800 mb-2">Want to go deeper?</p>
-                                <p className="text-xs text-slate-600 mb-3">Pro unlocks expert-level techniques and insights for all styles.</p>
-                                <button
-                                    onClick={() => openPaywall('styles')}
-                                    className="text-xs font-bold text-lime-600 hover:underline"
-                                >
-                                    Learn about Pro &rarr;
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <div className="text-xl font-black text-slate-900 capitalize">{style.fermentationType}</div>
+                <div className="text-[10px] text-slate-400 font-mono">Process</div>
+              </div>
             </div>
-        </div >
-    );
+
+            {/* Scientific Profile Cards */}
+            <div className="pt-6 border-t border-slate-200">
+               <h2 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">Scientific Foundations</h2>
+               <div className="space-y-4">
+                 <ScienceCard 
+                   icon={<Wheat className="w-4 h-4" />}
+                   title="Flour Rheology"
+                   text={scientificData.flourRheology}
+                 />
+                 <ScienceCard 
+                   icon={<FlaskConical className="w-4 h-4" />}
+                   title="Process Chemistry"
+                   text={scientificData.processScience}
+                 />
+               </div>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: The Didactic Timeline */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+              <div className="flex items-center gap-3 mb-10 border-b border-slate-100 pb-6">
+                <div className="bg-indigo-100 p-3 rounded-xl text-indigo-600">
+                   <FlaskConical className="w-6 h-6" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-black text-slate-900">Process Engineering</h2>
+                  <p className="text-slate-500 text-sm font-medium">Step-by-step scientific breakdown of the method.</p>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                {fermentationSteps.map((step, idx) => (
+                  <TimelineItem 
+                    key={idx} 
+                    title={`Step ${idx + 1}`}
+                    action={step}
+                    isLast={idx === fermentationSteps.length - 1} 
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* References */}
+            <div className="mt-8 px-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Validated References</h4>
+              <div className="flex flex-wrap gap-2">
+                {style.references && style.references.map((ref, i) => (
+                  <span key={i} className="inline-flex items-center px-3 py-1 rounded-lg bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200">
+                    {typeof ref === 'string' ? ref : (ref as any).source}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </main>
+    </div>
+  );
 };

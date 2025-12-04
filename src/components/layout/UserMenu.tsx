@@ -71,7 +71,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none z-50 overflow-hidden animate-fade-in">
+                <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none z-50 overflow-hidden animate-fade-in border border-slate-200">
                     {/* User Info Header */}
                     <div className="px-4 py-3 border-b border-slate-100 bg-slate-50/50">
                         <p className="text-sm font-semibold text-slate-900 truncate">

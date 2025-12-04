@@ -1,8 +1,7 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from '@/i18n';
 import { UnitSystem } from '@/types';
-import { ProFeatureLock } from '@/components/ui/ProFeatureLock';
+import { useUser } from '@/contexts/UserProvider';
 
 const ChoiceButton: React.FC<{
   active: boolean;
@@ -24,6 +23,7 @@ const ChoiceButton: React.FC<{
 const SettingsPage: React.FC = () => {
   const { t } = useTranslation();
   const [unitSystem, setUnitSystem] = React.useState<UnitSystem>(UnitSystem.METRIC);
+  const { hasProAccess } = useUser();
 
   return (
     <div className="mx-auto max-w-2xl animate-[fadeIn_0.5s_ease-in-out]">
@@ -59,22 +59,6 @@ const SettingsPage: React.FC = () => {
             <p className="mt-2 text-xs text-slate-500">
               {t('form.unit_system_tooltip')}
             </p>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700">
-              App Theme
-            </label>
-            <ProFeatureLock
-              featureKey="app.theme_customization"
-              customMessage="Theme customization is a Lab Pro feature."
-            >
-              <div className="grid grid-cols-3 gap-3">
-                <ChoiceButton active={true} onClick={() => { }}>Light</ChoiceButton>
-                <ChoiceButton active={false} onClick={() => { }}>Dark</ChoiceButton>
-                <ChoiceButton active={false} onClick={() => { }}>System</ChoiceButton>
-              </div>
-            </ProFeatureLock>
           </div>
 
           <div className="border-t border-slate-200 pt-6">

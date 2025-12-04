@@ -121,12 +121,20 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     useEffect(() => {
         const validationErrors: FormErrors = {};
 
-        if (config.numPizzas < 1 || config.numPizzas > 100) {
-            validationErrors.numPizzas = 'A value between 1 and 100 is recommended.';
+        // Validation logic depends on calculationMode
+        if (calculationMode === 'mass') {
+            if (config.numPizzas < 1 || config.numPizzas > 100) {
+                validationErrors.numPizzas = 'A value between 1 and 100 is recommended.';
+            }
+            if (config.doughBallWeight < 10 || config.doughBallWeight > 2000) {
+                validationErrors.doughBallWeight = 'A value between 10g and 2000g is recommended.';
+            }
+        } else if (calculationMode === 'flour') {
+            if (!config.totalFlour || config.totalFlour < 50 || config.totalFlour > 50000) {
+                validationErrors.totalFlour = 'Total flour must be between 50g and 50,000g.';
+            }
         }
-        if (config.doughBallWeight < 100 || config.doughBallWeight > 2000) {
-            validationErrors.doughBallWeight = 'A value between 100g and 2000g is recommended.';
-        }
+
         if (config.hydration < 0 || config.hydration > 120) {
             validationErrors.hydration = 'A value between 0% and 120% is recommended.';
         }
@@ -149,7 +157,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             }
         }
         setErrors(validationErrors);
-    }, [config]);
+    }, [config, calculationMode]);
 
     useEffect(() => {
         const currentErrors = errors;
@@ -324,6 +332,10 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             bakeType = BakeType.SWEETS_PASTRY;
         }
 
+        const ingredients = style.ingredients 
+            ? style.ingredients.map(ing => ({ ...ing, manualOverride: false })) 
+            : [];
+
         let newDoughConfig: Partial<DoughConfig> = {
             bakeType,
             baseStyleName: style.name,
@@ -334,7 +346,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             sugar: style.technical.sugar,
             bakingTempC: style.technical.bakingTempC,
             fermentationTechnique: style.technical.fermentationTechnique,
-            ingredients: style.ingredients.map(ing => ({ ...ing, manualOverride: false })),
+            ingredients: ingredients,
             stylePresetId: undefined,
             selectedStyleId: style.id
         };

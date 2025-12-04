@@ -1,0 +1,337 @@
+[
+  {
+    "id": "french_brioche_classic",
+    "name": "French Brioche (Classic)",
+    "category": "Bread",
+    "origin": {
+      "country": "France",
+      "region": "Normandy / Paris",
+      "period": "17th Century (Modern form 19th Century)"
+    },
+    "description": "Brioche is a highly enriched Viennoiserie pastry of French origin, whose high egg and butter content gives it a rich and tender crumb. The classic 'Brioche à Tête' or 'Nanterre' is characterized by a paper-thin, golden-brown crust and a soft, shreddable interior that relies on strong gluten development to support the heavy fat load.",
+    "history": "The word 'brioche' first appeared in 1404. It evolved from a blessed bread used in church services to a luxury item. The modern high-butter version became possible with the improvement of yeast and flour quality in the 19th century. Normany, famous for its butter, is often cited as the spiritual home of the highest quality brioche. It sits on the line between bread and pastry (Viennoiserie).",
+    "tags": [
+      "enriched-dough",
+      "viennoiserie",
+      "high-butter",
+      "french-classic",
+      "soft-crumb"
+    ],
+    "difficulty": "high",
+    "fermentationType": "cold",
+    "technicalProfile": {
+      "hydration": "50–60% (Milk/Eggs often calculated as hydration)",
+      "salt": "1.8–2.2%",
+      "oil": "0%",
+      "sugar": "10–20%",
+      "cocoa": "0%",
+      "flourStrength": "W 280–350 (High protein required to hold fat)",
+      "preferment": "Often uses a Sponge (Levain de levure) or Poolish in older methods; modern recipes frequently use intensive direct mixing with cold fermentation.",
+      "fermentationSteps": [
+        "Mix flour, eggs, liquids, sugar, yeast to full gluten development.",
+        "Add softened butter gradually (emulsification phase) while mixing.",
+        "Bulk ferment 1-2 hours at room temp.",
+        "Degas and cold retard (fridge) for 12-24 hours (Crucial for handling and flavor).",
+        "Shape cold dough (braids, balls, or loaf).",
+        "Final proof 2-3 hours at 26-28°C (Do not exceed 29°C or butter will melt).",
+        "Egg wash and bake."
+      ],
+      "ovenTemp": "180–200°C",
+      "recommendedUse": [
+        "Convection oven (professional)",
+        "Home oven with lower rack placement to prevent browning too fast"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Butter MUST be added only after gluten is developed, or the dough will break.",
+      "Proofing temperature must not exceed the melting point of butter (~29°C).",
+      "Cold fermentation is mandatory for shaping; warm brioche dough is impossible to handle."
+    ],
+    "notes": [
+      "Butter percentages can range from 20% (poor man's brioche) to 100% (rich man's).",
+      "Eggs provide the hydration and structure; water is rarely used in large quantities.",
+      "The 'improved mix' method (Calvel) is standard for this style."
+    ],
+    "references": [
+      "Raymond Calvel - Le Goût du Pain (The Taste of Bread)",
+      "Modernist Bread, Vol 2. - Enriched Doughs",
+      "CIA (Culinary Institute of America) - Baking & Pastry: Mastering the Art and Craft",
+      "Michel Suas - Advanced Bread and Pastry",
+      "Pierre Hermé - Pastry"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "italian_ciabatta_cavallari",
+    "name": "Italian Ciabatta (Cavallari Style)",
+    "category": "Bread",
+    "origin": {
+      "country": "Italy",
+      "region": "Adria (Veneto)",
+      "period": "1982 (Invented by Arnaldo Cavallari)"
+    },
+    "description": "Ciabatta ('Slipper') is a modern Italian white bread made from wheat flour, water, salt, yeast, and olive oil. It was created in 1982 by Arnaldo Cavallari as a response to the popularity of French baguettes. It is characterized by a very high hydration (70-80%+), huge irregular holes (alveoli) in the crumb, and a crispy, floury crust.",
+    "history": "Arnaldo Cavallari, a miller and baker in Adria, developed the 'Ciabatta Polesana' to save the Italian sandwich market from the baguette. He used a very wet dough and high-protein flour, often employing a Biga preferment. The result was a rustic, flat, elongated loaf that looked like a slipper. It quickly became an international standard for artisan bread.",
+    "tags": [
+      "high-hydration",
+      "italian-modern",
+      "open-crumb",
+      "biga-preferment",
+      "slipper-bread"
+    ],
+    "difficulty": "high",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "70–85%",
+      "salt": "2.0–2.2%",
+      "oil": "1–3% (Olive oil, common but not strictly mandatory in all variations)",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 280–320 (Strong flour needed for hydration)",
+      "preferment": "Biga (stiff preferment) is the traditional and most common method (30-50% of flour).",
+      "fermentationSteps": [
+        "Prepare Biga (45-50% hydration) and ferment 16-24h at 18°C.",
+        "Mix Biga with remaining flour, water, salt, malt, and oil.",
+        "Mix to full gluten development (intensive mix often used).",
+        "Bulk ferment in a tub with coil folds (2-3 hours).",
+        "Turn out onto heavily floured bench.",
+        "Cut into rectangles (do not shape or degas).",
+        "Final proof 30-45 mins on couche or board.",
+        "Bake with steam."
+      ],
+      "ovenTemp": "230–250°C with steam",
+      "recommendedUse": [
+        "Deck oven (Stone hearth)",
+        "Home oven with baking stone"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Do not degas the dough during 'shaping'; simply cut it.",
+      "High hydration requires expert handling or the use of a mixer; hand kneading is very difficult.",
+      "Steam is essential for the crust character."
+    ],
+    "notes": [
+      "The 'Ciabatta Italia' mark was originally protected.",
+      "Often contains malt extract to help browning and fermentation.",
+      "The flour dusting is a signature visual element."
+    ],
+    "references": [
+      "Modernist Bread, Vol 2. - Ciabatta History",
+      "The Bread Baker's Apprentice - Peter Reinhart",
+      "Carol Field - The Italian Baker",
+      "Simili Sisters - Pane e Roba Dolce",
+      "Arnaldo Cavallari - Historical Interviews/Archives"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "brazilian_pao_frances_padaria",
+    "name": "Brazilian Pão Francês (Padaria Style)",
+    "category": "Bread",
+    "origin": {
+      "country": "Brazil",
+      "region": "National",
+      "period": "Early 20th Century (Industrialized mid-century)"
+    },
+    "description": "The 'Pão Francês' (French Bread) is the absolute staple of the Brazilian bakery (Padaria). Despite its name, it differs from the French baguette. It is a small roll (50g) with a thin, crispy, golden crust and a soft, airy, white crumb. It typically includes small amounts of sugar and fat (shortening) and is baked with steam to produce a 'craquelé' crust.",
+    "history": "Influenced by French baking travelers in the early 20th century, Brazilian bakers adapted the recipe to local flours (which were softer) and tastes. They added sugar and fat to ensure consistent fermentation and texture. It became the 'Pão de Sal' consumed daily by millions. The Brazilian technical standard (ABNT NBR 16170) now defines its characteristics.",
+    "tags": [
+      "brazilian-staple",
+      "daily-bread",
+      "steam-baked",
+      "crisp-crust",
+      "soft-crumb"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "58–62%",
+      "salt": "1.8–2.0%",
+      "oil": "1–2% (Vegetable fat/shortening)",
+      "sugar": "0.5–1.5% (Yeast food and color)",
+      "cocoa": "0%",
+      "flourStrength": "W 220–260 (Medium strength)",
+      "preferment": "Traditionally Direct Method (Straight Dough) or Sponge (Esponja).",
+      "fermentationSteps": [
+        "Mix all ingredients to full development (windowpane).",
+        "Rest dough 10-20 minutes.",
+        "Divide into 50-60g pieces.",
+        "Shape into small cylinders (mechanically or by hand).",
+        "Proof in steam cabinet or covered environment (approx 90-120 mins).",
+        "Score longitudinally (pestana).",
+        "Bake with generous steam."
+      ],
+      "ovenTemp": "220–240°C with steam",
+      "recommendedUse": [
+        "Rotary rack ovens (common in Brazil)",
+        "Deck ovens with steam injection"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Lack of steam results in a dull, thick crust rather than thin and crispy.",
+      "Over-mixing bleaches the crumb (oxidizes) which is sometimes desired for whiteness but loses flavor.",
+      "The score (pestana) must open well; skinning the dough before scoring helps."
+    ],
+    "notes": [
+      "Often uses ascorbic acid (Vitamin C) as an improver.",
+      "Best eaten within hours of baking; stales relatively fast.",
+      "Sold by weight (kg) in Brazil, not by unit."
+    ],
+    "references": [
+      "ABNT NBR 16170 - Pão Francês Specification",
+      "SENAI - Tecnologia de Panificação (Brazilian Baking Textbook)",
+      "ICC - International Association for Cereal Science and Technology (Latin American variants)",
+      "Modernist Bread - Regional Breads (South America)",
+      "AIB International - Baking Science & Technology"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "armenian_lavash_traditional",
+    "name": "Armenian Lavash (UNESCO Heritage)",
+    "category": "Flatbread",
+    "origin": {
+      "country": "Armenia",
+      "region": "Caucasus",
+      "period": "Ancient (UNESCO Inscribed 2014)"
+    },
+    "description": "Lavash is a traditional thin flatbread that is an integral part of Armenian cuisine. It is made from a simple wheat dough, rolled into large, paper-thin sheets, and slapped against the hot clay walls of a tonal (tonir) oven. It bubbles and blisters instantly, creating a bread that can be eaten soft or dried for long-term storage (rehydrated with water).",
+    "history": "Inscribed in 2014 on the Representative List of the Intangible Cultural Heritage of Humanity, Lavash preparation is a communal activity, traditionally undertaken by groups of women. The techniques have been passed down for millennia. It serves not just as food but as a utensil and a symbol of prosperity and hospitality in Armenian weddings and rituals.",
+    "tags": [
+      "flatbread",
+      "ancient",
+      "tandoor-baked",
+      "unesco-heritage",
+      "preservation-bread"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "55–65%",
+      "salt": "1.5–2.0%",
+      "oil": "0%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 200–240 (Medium strength)",
+      "preferment": "Old Dough (Pater) is traditionally used as the starter.",
+      "fermentationSteps": [
+        "Mix flour, water, salt, and old dough (or yeast).",
+        "Knead well to moderate development.",
+        "Bulk ferment 1-2 hours.",
+        "Divide into balls (gndik).",
+        "Roll out paper thin using a rolling pin on a low table.",
+        "Stretch over a 'bat' or cushion (pillow).",
+        "Slap onto the hot wall of the Tonir (Tandoor) approx 250-300°C wall temp.",
+        "Bake for 30-60 seconds until blistered."
+      ],
+      "ovenTemp": "250–400°C (Radiant/Conductive heat)",
+      "recommendedUse": [
+        "Tonir / Tandoor",
+        "Inverted Wok or convex griddle (Saj) for home simulation",
+        "Pizza stone (bottom rack)"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Dough must be relaxed enough to roll thin without tearing.",
+      "Overbaking makes it too brittle to fold.",
+      "Safety warning: Traditional Tonir baking involves leaning into a hot pit."
+    ],
+    "notes": [
+      "Dried lavash can be stored for months and rehydrated by sprinkling water.",
+      "Used for 'brduj' (wrapped sandwiches).",
+      "The 'old dough' method provides a subtle sourdough flavor."
+    ],
+    "references": [
+      "UNESCO - Intangible Cultural Heritage List (Lavash)",
+      "Modernist Bread, Vol 3. - Flatbreads",
+      "Armenian Cuisine - Aline Kamakian",
+      "ICC - Flatbread Technologies",
+      "Oxford Companion to Food - Flatbreads"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "lebanese_manoushe_traditional",
+    "name": "Lebanese Manoushe (Man'oushe)",
+    "category": "Flatbread",
+    "origin": {
+      "country": "Lebanon",
+      "region": "Levant",
+      "period": "Traditional"
+    },
+    "description": "The Manoushe (plural Manaeesh) is the quintessential breakfast of Lebanon. It is a soft, round flatbread, indented with fingertips (similar to focaccia but thinner) to hold toppings, most famously Za'atar mixed with olive oil. It is baked in high-temperature ovens or on a convex metal dome (Saj).",
+    "history": "Rooted in the ancient baking traditions of the Fertile Crescent, the Manoushe is a canvas for local ingredients. The word comes from the Arabic root 'naqasha', meaning to sculpt or engrave, referring to the finger indentations. It is traditionally baked in neighborhood communal ovens (Forn) where families would bring their own toppings.",
+    "tags": [
+      "flatbread",
+      "levantine",
+      "zaatar",
+      "street-food",
+      "breakfast"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "60–70%",
+      "salt": "1.8–2.0%",
+      "oil": "2–4% (Olive oil in dough)",
+      "sugar": "0–1%",
+      "cocoa": "0%",
+      "flourStrength": "W 220–260 (AP or Bread Flour)",
+      "preferment": "Direct method with commercial yeast is standard today; sourdough variants exist historically.",
+      "fermentationSteps": [
+        "Mix flour, water, salt, yeast, oil.",
+        "Bulk ferment 1-2 hours.",
+        "Divide into balls (approx 150g).",
+        "Rest 30 mins.",
+        "Flatten into rounds (approx 5mm thick).",
+        "Dock/dimple with fingertips to prevent ballooning and hold topping.",
+        "Spread Za'atar/Oil mix.",
+        "Bake high heat."
+      ],
+      "ovenTemp": "250–350°C",
+      "recommendedUse": [
+        "Pizza stone/steel",
+        "Saj (Convex griddle)",
+        "Wood-fired oven"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Topping (Za'atar+Oil) should be applied BEFORE baking.",
+      "If the oven is too cool, the bread dries out before cooking.",
+      "Do not roll too thin like Lavash; it should have some crumb."
+    ],
+    "notes": [
+      "Za'atar mix ratio: Typically 1 part za'atar to 2-3 parts olive oil.",
+      "Can also be topped with cheese (Akkawi) or ground meat (Lahm Bi Ajeen).",
+      "The dimpling is crucial for the oil not to run off."
+    ],
+    "references": [
+      "Man'oushe: Inside the Street Corner Lebanese Bakery - Barbara Abdeni Massaad",
+      "Modernist Bread - Flatbreads of the Middle East",
+      "Claudia Roden - The Book of Jewish Food (Levantine Breads)",
+      "ICC - Cereal Science in the Middle East",
+      "Chef Ramzi - The Culinary Heritage of Lebanon"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  }
+]

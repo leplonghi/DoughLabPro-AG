@@ -12,7 +12,6 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  /* Premium gradient background */
   color: #0f172a;
   min-height: 100vh;
 }
@@ -20,7 +19,6 @@ body {
 /* Pro Lock Effect */
 .pro-locked {
   filter: blur(0.1875rem);
-  /* 3px */
   opacity: 0.5;
   pointer-events: none;
   user-select: none;
@@ -28,78 +26,34 @@ body {
 
 /* Premium Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-
-  100% {
-    background-position: 1000px 0;
-  }
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
 }
 
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.4s ease-out;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
+.animate-fade-in { animation: fadeIn 0.6s ease-out; }
+.animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
+.animate-scale-in { animation: scaleIn 0.4s ease-out; }
+.animate-float { animation: float 3s ease-in-out infinite; }
 
 /* Glassmorphism effect */
 .glass-effect {
@@ -153,16 +107,12 @@ input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 1.25rem;
-  /* 20px */
   height: 1.25rem;
-  /* 20px */
   background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
   border-radius: 50%;
   cursor: pointer;
   margin-top: -0.375rem;
-  /* -6px Adjust to center thumb on the track */
   border: 0.25rem solid #fff;
-  /* 4px */
   box-shadow: 0 2px 8px rgba(132, 204, 22, 0.3);
   transition: all 0.2s;
 }
@@ -174,14 +124,11 @@ input[type='range']::-webkit-slider-thumb:hover {
 
 input[type='range']::-moz-range-thumb {
   width: 0.75rem;
-  /* 12px */
   height: 0.75rem;
-  /* 12px */
   background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
   border-radius: 50%;
   cursor: pointer;
   border: 0.25rem solid #fff;
-  /* 4px */
   box-shadow: 0 2px 8px rgba(132, 204, 22, 0.3);
   transition: all 0.2s;
 }
@@ -195,7 +142,6 @@ input[type='range']::-moz-range-thumb:hover {
 input[type='range']::-webkit-slider-runnable-track {
   width: 100%;
   height: 0.5rem;
-  /* 8px */
   cursor: pointer;
   background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
   border-radius: 9999px;
@@ -205,7 +151,6 @@ input[type='range']::-webkit-slider-runnable-track {
 input[type='range']::-moz-range-track {
   width: 100%;
   height: 0.5rem;
-  /* 8px */
   cursor: pointer;
   background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
   border-radius: 9999px;
@@ -236,7 +181,6 @@ input[type='range']::-moz-range-track {
   letter-spacing: -0.025em;
   line-height: 1.1;
   color: #0f172a;
-  /* slate-900 */
 }
 
 .prose-editorial h2 {
@@ -246,7 +190,6 @@ input[type='range']::-moz-range-track {
   margin-top: 2.5em;
   margin-bottom: 1em;
   color: #1e293b;
-  /* slate-800 */
 }
 
 .prose-editorial p {
@@ -254,23 +197,18 @@ input[type='range']::-moz-range-track {
   line-height: 1.75;
   margin-bottom: 1.5em;
   color: #334155;
-  /* slate-700 */
   font-size: 1.125rem;
-  /* lg */
 }
 
 .prose-editorial strong {
   font-weight: 600;
   color: #0f172a;
-  /* slate-900 */
 }
 
 .prose-editorial blockquote {
   font-style: italic;
   border-left: 4px solid #84cc16;
-  /* lime-500 */
   padding-left: 1.5em;
   color: #475569;
-  /* slate-600 */
   margin: 2em 0;
 }

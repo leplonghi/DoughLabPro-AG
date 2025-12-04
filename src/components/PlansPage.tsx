@@ -1,108 +1,104 @@
 import React from 'react';
-import { useTranslation } from '@/i18n';
-import { CheckIcon, StarIcon, SparklesIcon } from '@/components/ui/Icons';
 import { useUser } from '@/contexts/UserProvider';
+import { CheckIcon, SparklesIcon } from '@/components/ui/Icons';
+import { PLANS } from '@/entitlements';
 
 interface PlansPageProps {
-    onGrantAccess: () => void;
-    onNavigateHome: () => void;
+    onClose?: () => void;
 }
 
-const PlansPage: React.FC<PlansPageProps> = ({ onGrantAccess, onNavigateHome }) => {
-    const { t } = useTranslation();
-    const { hasProAccess, openPaywall } = useUser();
+export const PlansPage: React.FC<PlansPageProps> = ({ onClose }) => {
+    const { grantProAccess, grant24hPass, isPassOnCooldown, cooldownHoursRemaining } = useUser();
 
-    const features = [
-        { name: 'Unlimited Saved Batches', free: false, pro: true },
-        { name: 'Advanced Calculator Mode', free: false, pro: true },
-        { name: 'Create Custom Styles', free: false, pro: true },
-        { name: 'AI Assistant (Doughbot)', free: false, pro: true },
-        { name: 'Oven Analysis Tool', free: false, pro: true },
-        { name: 'Levain Management', free: false, pro: true },
-        { name: 'Export to PDF', free: false, pro: true },
-        { name: 'Basic Calculator', free: true, pro: true },
-        { name: 'Standard Presets', free: true, pro: true },
-        { name: 'Community Access', free: true, pro: true },
-    ];
+    const handleSubscribe = () => {
+        // In a real app, this would redirect to Stripe/LemonSqueezy
+        if (confirm("Simulate successful Pro subscription?")) {
+            grantProAccess();
+            if (onClose) onClose();
+        }
+    };
+
+    const handle24hPass = () => {
+        if (!isPassOnCooldown) {
+            grant24hPass();
+            if (onClose) onClose();
+        }
+    };
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 animate-[fadeIn_0.5s_ease-in-out]">
-            <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-                    Choose Your Plan
+        <div className="bg-slate-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl text-center">
+                <h2 className="text-lg font-semibold leading-8 text-lime-600">Pricing</h2>
+                <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                    Choose the right plan for your journey
                 </h1>
-                <p className="mt-4 text-xl text-slate-600">
-                    Unlock the full potential of your baking with DoughLab Pro.
+                <p className="mt-4 text-lg leading-relaxed text-slate-600 max-w-2xl mx-auto">
+                    Whether you're just starting your pizza journey or you're a seasoned dough engineer, we have a plan for you.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 max-w-5xl mx-auto">
+            <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-start gap-y-8 gap-x-8 sm:mt-20 lg:max-w-4xl lg:grid-cols-2">
                 {/* Free Plan */}
-                <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
-                    <h2 className="text-2xl font-bold text-slate-900">Free</h2>
-                    <p className="mt-2 text-slate-500">Essential tools for home bakers.</p>
-                    <p className="mt-8 text-4xl font-bold text-slate-900">$0</p>
-                    <p className="text-sm text-slate-500">Forever free</p>
-
-                    <ul className="mt-8 space-y-4">
-                        {features.filter(f => f.free).map((feature) => (
-                            <li key={feature.name} className="flex items-center gap-3">
-                                <CheckIcon className="h-5 w-5 text-lime-500" />
-                                <span className="text-slate-700">{feature.name}</span>
-                            </li>
-                        ))}
-                        {features.filter(f => !f.free).map((feature) => (
-                            <li key={feature.name} className="flex items-center gap-3 opacity-50">
-                                <div className="h-5 w-5 rounded-full border border-slate-300" />
-                                <span className="text-slate-400">{feature.name}</span>
+                <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-md transition-shadow ring-1 ring-slate-200">
+                    <h3 className="text-lg font-semibold leading-8 text-slate-900">Free</h3>
+                    <p className="mt-4 text-sm leading-6 text-slate-500">Essential tools for home bakers.</p>
+                    <p className="mt-6 flex items-baseline gap-x-1">
+                        <span className="text-4xl font-bold tracking-tight text-slate-900">$0</span>
+                        <span className="text-sm font-semibold leading-6 text-slate-600">/month</span>
+                    </p>
+                    <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-slate-600">
+                        {['Basic Calculator', 'Limited Saves (1 Batch)', 'Community Access'].map((feature) => (
+                            <li key={feature} className="flex gap-x-3">
+                                <CheckIcon className="h-6 w-5 flex-none text-lime-600" aria-hidden="true" />
+                                {feature}
                             </li>
                         ))}
                     </ul>
-
                     <button
-                        onClick={onNavigateHome}
-                        className="mt-8 w-full rounded-lg border border-slate-300 bg-white py-3 px-4 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                        onClick={handle24hPass}
+                        disabled={isPassOnCooldown}
+                        className={`mt-8 block w-full rounded-xl px-3 py-3 text-center text-sm font-bold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${isPassOnCooldown
+                            ? 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
+                            : 'bg-white text-lime-600 border-2 border-lime-600 hover:bg-lime-50'
+                            }`}
                     >
-                        Continue with Free
+                        {isPassOnCooldown
+                            ? `Free Pass Cooldown: ${cooldownHoursRemaining}h`
+                            : 'Try Pro Features (24h Pass)'}
                     </button>
                 </div>
 
                 {/* Pro Plan */}
-                <div className="relative rounded-2xl border-2 border-lime-500 bg-white p-8 shadow-xl">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-lime-500 px-4 py-1 text-sm font-bold text-white uppercase tracking-wide">
-                        Most Popular
+                <div className="relative rounded-3xl border-2 border-lime-500 bg-white p-8 shadow-xl overflow-hidden">
+                    <div className="absolute top-0 right-0 -mt-2 -mr-2 w-24 h-24 bg-lime-500/10 rounded-full blur-2xl"></div>
+                    
+                    <div className="flex items-center justify-between gap-x-4">
+                        <h3 className="text-lg font-semibold leading-8 text-lime-900">Lab Pro</h3>
+                        <span className="rounded-full bg-lime-100 px-2.5 py-1 text-xs font-semibold leading-5 text-lime-700 uppercase tracking-wide">
+                            Most Popular
+                        </span>
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
-                        Pro
-                        <SparklesIcon className="h-6 w-6 text-lime-500" />
-                    </h2>
-                    <p className="mt-2 text-slate-500">Advanced tools for serious pizza makers.</p>
-                    <p className="mt-8 text-4xl font-bold text-slate-900">$4.99</p>
-                    <p className="text-sm text-slate-500">per month</p>
-
-                    <ul className="mt-8 space-y-4">
-                        {features.map((feature) => (
-                            <li key={feature.name} className="flex items-center gap-3">
-                                <CheckIcon className="h-5 w-5 text-lime-500" />
-                                <span className="text-slate-700 font-medium">{feature.name}</span>
+                    <p className="mt-4 text-sm leading-6 text-slate-600">Advanced science for serious dough engineers.</p>
+                    <p className="mt-6 flex items-baseline gap-x-1">
+                        <span className="text-4xl font-bold tracking-tight text-slate-900">$4.99</span>
+                        <span className="text-sm font-semibold leading-6 text-slate-600">/month</span>
+                    </p>
+                    <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-slate-600">
+                        {PLANS.lab_pro.features.map((feature) => (
+                            <li key={feature} className="flex gap-x-3">
+                                <CheckIcon className="h-6 w-5 flex-none text-lime-500" aria-hidden="true" />
+                                {feature}
                             </li>
                         ))}
                     </ul>
-
                     <button
-                        onClick={() => openPaywall('plans_page')}
-                        disabled={hasProAccess}
-                        className={`mt-8 w-full rounded-lg py-3 px-4 text-center text-sm font-bold text-white transition-all shadow-lg ${hasProAccess
-                                ? 'bg-slate-400 cursor-not-allowed'
-                                : 'bg-lime-500 hover:bg-lime-600 hover:scale-[1.02]'
-                            }`}
+                        onClick={handleSubscribe}
+                        className="mt-8 block w-full rounded-xl bg-lime-600 px-3 py-3 text-center text-sm font-bold leading-6 text-white shadow-lg shadow-lime-200 hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600 transition-all hover:scale-[1.02]"
                     >
-                        {hasProAccess ? 'Current Plan' : 'Upgrade to Pro'}
+                        Subscribe to Pro
                     </button>
                 </div>
             </div>
         </div>
     );
 };
-
-export default PlansPage;

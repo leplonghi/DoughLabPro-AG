@@ -82,8 +82,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     const displayValue = (grams: number) => {
         if (unit === 'volume') {
-            // This is handled per row, passing ingredient name
-            return grams.toFixed(0) + 'g'; // Fallback
+            return grams.toFixed(0) + 'g';
         }
         if (unit === 'oz') {
             return (grams * 0.035274).toFixed(2) + ' oz';
@@ -97,10 +96,8 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         ingredientId: string
     ) => {
         if (unit === 'volume') {
-            // Map internal IDs to density keys
             let densityKey = ingredientId;
             if (ingredientId === 'base-flour') densityKey = 'flour';
-            // Add more mappings if needed
 
             return gramsToVolume(
                 densityKey,
@@ -214,7 +211,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                                 {t(`form.${config.fermentationTechnique.toLowerCase()}`, { defaultValue: 'Preferment' })}
                             </h3>
                         </div>
-                        <div className="space-y-2 text-sm">
+                        <div className="space-y-2 text-sm text-amber-900">
                             <div className="flex justify-between">
                                 <span>{t('results.flour')}</span>
                                 <span className="font-mono font-bold">{displayIngredient('Flour', results.preferment.flour, 'flour')}</span>
@@ -270,7 +267,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                     <button
                         onClick={onStartBatch}
                         ref={saveButtonRef}
-                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-500 py-3.5 text-base font-bold text-white shadow-lg shadow-lime-200 transition-all hover:bg-lime-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-500 hover:bg-lime-600 py-3.5 text-base font-bold text-white shadow-lg shadow-lime-200 transition-all hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm"
                     >
                         <BatchesIcon className="h-5 w-5" />
                         {t('diary_page.new_batch')}

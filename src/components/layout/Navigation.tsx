@@ -7,7 +7,6 @@ import {
     Bars3Icon,
     CloseIcon,
     BookOpenIcon,
-    FireIcon,
     BeakerIcon,
     UsersIcon,
     WrenchScrewdriverIcon,

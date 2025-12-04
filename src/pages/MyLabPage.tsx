@@ -53,10 +53,10 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                     <div>
-                        <h1 className="text-2xl md:text-3xl font-bold text-slate-900  tracking-tight">
+                        <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
                             {getGreeting()}, {user?.name?.split(' ')[0] || 'Baker'}
                         </h1>
-                        <p className="text-slate-500  mt-1">
+                        <p className="text-slate-500 mt-1">
                             Here's what's happening in your lab today.
                         </p>
                     </div>
@@ -82,33 +82,33 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             {/* Levain Status Widget */}
                             <div
                                 onClick={() => onNavigate('mylab/levain')}
-                                className="group relative overflow-hidden rounded-2xl bg-white  p-5 shadow-sm border border-slate-100  hover:border-orange-200 transition-all cursor-pointer"
+                                className="group relative overflow-hidden rounded-2xl bg-white p-5 shadow-sm border border-slate-100 hover:border-orange-200 transition-all cursor-pointer"
                             >
                                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                                     <FireIcon className="h-24 w-24 text-orange-500" />
                                 </div>
                                 <div className="flex items-center gap-3 mb-3">
-                                    <div className={`p-2 rounded-lg ${activeLevain ? 'bg-orange-100  text-orange-600 ' : 'bg-slate-100  text-slate-400 '}`}>
+                                    <div className={`p-2 rounded-lg ${activeLevain ? 'bg-orange-100 text-orange-600' : 'bg-slate-100 text-slate-400'}`}>
                                         <FireIcon className="h-5 w-5" />
                                     </div>
-                                    <h3 className="font-semibold text-slate-900 ">Levain Status</h3>
+                                    <h3 className="font-semibold text-slate-900">Levain Status</h3>
                                 </div>
 
                                 {activeLevain ? (
                                     <div>
-                                        <p className="text-lg font-bold text-slate-800 ">{activeLevain.name}</p>
-                                        <div className="flex items-center gap-2 mt-2 text-xs text-slate-500 ">
+                                        <p className="text-lg font-bold text-slate-800">{activeLevain.name}</p>
+                                        <div className="flex items-center gap-2 mt-2 text-xs text-slate-500">
                                             <ClockIcon className="h-3.5 w-3.5" />
                                             <span>Fed {new Date(activeLevain.lastFeeding).toLocaleDateString()}</span>
                                         </div>
-                                        <div className="mt-3 inline-flex items-center text-xs font-bold text-orange-600  bg-orange-50  px-2 py-1 rounded-md">
+                                        <div className="mt-3 inline-flex items-center text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded-md">
                                             Active & Ready
                                         </div>
                                     </div>
                                 ) : (
                                     <div>
-                                        <p className="text-slate-500  text-sm">No active starter.</p>
-                                        <span className="mt-3 inline-block text-xs font-medium text-orange-600  hover:underline">Create one &rarr;</span>
+                                        <p className="text-slate-500 text-sm">No active starter.</p>
+                                        <span className="mt-3 inline-block text-xs font-medium text-orange-600 hover:underline">Create one &rarr;</span>
                                     </div>
                                 )}
                             </div>
@@ -116,34 +116,34 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             {/* Last Bake Widget */}
                             <div
                                 onClick={() => lastBake ? onNavigate('batch', lastBake.id) : onNavigate('calculator')}
-                                className="group relative overflow-hidden rounded-2xl bg-white  p-5 shadow-sm border border-slate-100  hover:border-blue-200 transition-all cursor-pointer"
+                                className="group relative overflow-hidden rounded-2xl bg-white p-5 shadow-sm border border-slate-100 hover:border-blue-200 transition-all cursor-pointer"
                             >
                                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                                     <BeakerIcon className="h-24 w-24 text-blue-500" />
                                 </div>
                                 <div className="flex items-center gap-3 mb-3">
-                                    <div className="p-2 rounded-lg bg-blue-100  text-blue-600 ">
+                                    <div className="p-2 rounded-lg bg-blue-100 text-blue-600">
                                         <BeakerIcon className="h-5 w-5" />
                                     </div>
-                                    <h3 className="font-semibold text-slate-900 ">Recent Activity</h3>
+                                    <h3 className="font-semibold text-slate-900">Recent Activity</h3>
                                 </div>
 
                                 {lastBake ? (
                                     <div>
-                                        <p className="text-lg font-bold text-slate-800  truncate">{lastBake.name}</p>
-                                        <div className="flex items-center gap-2 mt-2 text-xs text-slate-500 ">
-                                            <span className="bg-slate-100  px-1.5 py-0.5 rounded">{lastBake.doughConfig.hydration}% Hydration</span>
+                                        <p className="text-lg font-bold text-slate-800 truncate">{lastBake.name}</p>
+                                        <div className="flex items-center gap-2 mt-2 text-xs text-slate-500">
+                                            <span className="bg-slate-100 px-1.5 py-0.5 rounded">{lastBake.doughConfig.hydration}% Hydration</span>
                                             <span>•</span>
                                             <span>{new Date(lastBake.createdAt).toLocaleDateString()}</span>
                                         </div>
-                                        <div className="mt-3 inline-flex items-center text-xs font-bold text-blue-600  bg-blue-50  px-2 py-1 rounded-md">
+                                        <div className="mt-3 inline-flex items-center text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md">
                                             View Results
                                         </div>
                                     </div>
                                 ) : (
                                     <div>
-                                        <p className="text-slate-500  text-sm">Start your first bake.</p>
-                                        <span className="mt-3 inline-block text-xs font-medium text-blue-600  hover:underline">Open Calculator &rarr;</span>
+                                        <p className="text-slate-500 text-sm">Start your first bake.</p>
+                                        <span className="mt-3 inline-block text-xs font-medium text-blue-600 hover:underline">Open Calculator &rarr;</span>
                                     </div>
                                 )}
                             </div>
@@ -197,7 +197,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                         {/* Active Goal Banner */}
                         {activeGoal && (
-                            <div className="rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600   p-6 text-white shadow-lg relative overflow-hidden">
+                            <div className="rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-white shadow-lg relative overflow-hidden">
                                 <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white/20 blur-xl"></div>
                                 <div className="relative z-10 flex justify-between items-center">
                                     <div>
@@ -227,37 +227,37 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                     <div className="space-y-6">
 
                         {/* Lab Stats */}
-                        <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-100 ">
-                            <h3 className="font-bold text-slate-900  mb-4 flex items-center gap-2">
+                        <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100">
+                            <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
                                 <ChartBarIcon className="h-5 w-5 text-lime-500" />
                                 Lab Performance
                             </h3>
 
                             <div className="space-y-4">
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 ">
-                                    <span className="text-sm text-slate-500 ">Total Bakes</span>
-                                    <span className="text-lg font-bold text-slate-900 ">{totalBakes}</span>
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50">
+                                    <span className="text-sm text-slate-500">Total Bakes</span>
+                                    <span className="text-lg font-bold text-slate-900">{totalBakes}</span>
                                 </div>
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 ">
-                                    <span className="text-sm text-slate-500 ">Success Rate</span>
-                                    <span className={`text-lg font-bold ${successRate >= 80 ? 'text-green-600 ' : 'text-yellow-600 '}`}>
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50">
+                                    <span className="text-sm text-slate-500">Success Rate</span>
+                                    <span className={`text-lg font-bold ${successRate >= 80 ? 'text-green-600' : 'text-yellow-600'}`}>
                                         {successRate}%
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="mt-6 pt-6 border-t border-slate-100 ">
+                            <div className="mt-6 pt-6 border-t border-slate-100">
                                 <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Recommended Reading</p>
                                 <div
                                     onClick={() => onNavigate('learn/fermentation')}
                                     className="group flex items-start gap-3 cursor-pointer hover:bg-slate-50 p-2 -mx-2 rounded-lg transition-colors"
                                 >
-                                    <div className="h-10 w-10 rounded-lg bg-indigo-100  text-indigo-600  flex items-center justify-center flex-shrink-0">
+                                    <div className="h-10 w-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
                                         <SparklesIcon className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-medium text-slate-900  group-hover:text-indigo-600 transition-colors">Mastering Fermentation</p>
-                                        <p className="text-xs text-slate-500  line-clamp-2">Learn how time and temperature affect your crumb structure.</p>
+                                        <p className="text-sm font-medium text-slate-900 group-hover:text-indigo-600 transition-colors">Mastering Fermentation</p>
+                                        <p className="text-xs text-slate-500 line-clamp-2">Learn how time and temperature affect your crumb structure.</p>
                                     </div>
                                 </div>
                             </div>
@@ -289,13 +289,13 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 const QuickAction: React.FC<{ icon: React.ReactNode; label: string; subLabel: string; onClick: () => void }> = ({ icon, label, subLabel, onClick }) => (
     <button
         onClick={onClick}
-        className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white  border border-slate-100  shadow-sm hover:shadow-md hover:border-lime-200 transition-all hover:-translate-y-1"
+        className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-lime-200 transition-all hover:-translate-y-1"
     >
-        <div className="mb-3 p-2 rounded-full bg-slate-50 ">
+        <div className="mb-3 p-2 rounded-full bg-slate-50">
             {icon}
         </div>
-        <span className="text-sm font-bold text-slate-900 ">{label}</span>
-        <span className="text-xs text-slate-500 ">{subLabel}</span>
+        <span className="text-sm font-bold text-slate-900">{label}</span>
+        <span className="text-xs text-slate-500">{subLabel}</span>
     </button>
 );
 

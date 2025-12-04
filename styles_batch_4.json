@@ -1,0 +1,338 @@
+[
+  {
+    "id": "roman_teglia_classic",
+    "name": "Roman Teglia (Teglia Romana)",
+    "category": "Pizza",
+    "origin": {
+      "country": "Italy",
+      "region": "Rome",
+      "period": "1980s–1990s (Modern High-Hydration Evolution)"
+    },
+    "description": "Pizza in Teglia Romana is a contemporary high-hydration pan pizza characterized by a light, open crumb, a crispy bottom, and distinct digestibility. Unlike traditional home pan pizzas, the professional Roman style uses strong flour, cold fermentation (48–72h), and hydration levels often exceeding 80%, resulting in a structure that is airy like a ciabatta yet sturdy enough to hold heavy toppings.",
+    "history": "While pan pizza has existed in Rome for decades, the modern 'Teglia Romana' as a high-technical product evolved significantly in the late 1980s and 1990s. Pioneered by millers and bakers like Angelo Iezzi and later popularized globally by figures such as Gabriele Bonci, the style shifted from a dense, oily dough to a high-hydration, cold-fermented product. This evolution was driven by improvements in Italian flour technology (high W, high absorption) and a focus on digestibility and lightness. It is traditionally sold 'al taglio' (by the cut/weight).",
+    "tags": [
+      "high-hydration",
+      "roman-style",
+      "cold-fermentation",
+      "pan-pizza",
+      "airy-crumb",
+      "al-taglio"
+    ],
+    "difficulty": "high",
+    "fermentationType": "cold",
+    "technicalProfile": {
+      "hydration": "75–90%",
+      "salt": "2.2–2.5%",
+      "oil": "2–3% (in dough) + generous pan oiling",
+      "sugar": "0–1% (rarely used in strict professional circles)",
+      "cocoa": "0%",
+      "flourStrength": "W 320–380 (High protein, high absorption)",
+      "preferment": "Commonly uses a stiff Biga or can be a high-hydration direct dough with stretch-and-folds.",
+      "fermentationSteps": [
+        "Mix flour and 70% of water (autolyse optional but recommended).",
+        "Add yeast and remaining water gradually (bassinage) to reach full hydration.",
+        "Add salt and oil at the end of mixing.",
+        "Bulk ferment 1-2 hours at room temp with coil folds.",
+        "Cold ferment (bulk) for 24-72 hours at 4°C.",
+        "Divide and shape into logs; rest 3-4 hours at room temp.",
+        "Stretch gently into oiled blue steel pans using fingertips.",
+        "Bake at high heat (bottom heavy) to crisp the base."
+      ],
+      "ovenTemp": "280–320°C",
+      "recommendedUse": [
+        "Electric deck ovens (Moretti Forni, etc.)",
+        "Home ovens with baking steel (par-bake method recommended)"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Hydration below 75% will not yield the characteristic open alveolation.",
+      "Over-handling during the pan stretch will degas the dough and create dense spots.",
+      "Must be baked on the oven floor or closest rack to ensure the bottom crisps before the top burns."
+    ],
+    "notes": [
+      "The 'crunch' (scrocchiarella) is a hallmark of the style.",
+      "Reheating is part of the serving process; slices are often reheated to restore crispness.",
+      "Toppings are often applied after baking or halfway through (for delicate ingredients)."
+    ],
+    "references": [
+      "Modernist Pizza, Vol 2. - Roman Pan Pizza",
+      "The Pizza Bible - Tony Gemignani (Teglia method)",
+      "Gabriele Bonci - Pizza: Seasonal Recipes from Rome's Legendary Pizzarium",
+      "Le 5 Stagioni - Technical Sheets for Teglia Romana",
+      "Dissapore - La Pizza in Teglia Romana: Storia e Tecnica"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "sicilian_sfincione_traditional",
+    "name": "Sicilian Sfincione (Traditional)",
+    "category": "Pizza",
+    "origin": {
+      "country": "Italy",
+      "region": "Palermo, Sicily",
+      "period": "Mid-19th Century (documented roots)"
+    },
+    "description": "Sfincione (from 'sfinci' meaning sponge) is the archetypal Sicilian pizza. It is a thick, soft, focaccia-like dough, traditionally topped with a sauce made of onions, anchovies, tomatoes, oregano, and sheep's milk cheese (caciocavallo), finished with breadcrumbs. Unlike the crispy Roman styles, Sfincione is prized for its spongy tenderness and savory, rich topping.",
+    "history": "Originating in Palermo, possibly in the convent of San Vito, Sfincione was a festive dish for Christmas and New Year's Eve. It predates the Neapolitan pizza Margherita. The style reflects Sicily's layered history, with Arab influences seen in the use of breadcrumbs (to keep moisture in) and the sweet-sour onion sauce. It is traditionally sold by 'sfincionari' on three-wheeled carts or in bakeries, rather than pizzerias.",
+    "tags": [
+      "sicilian",
+      "focaccia-style",
+      "onion-sauce",
+      "breadcrumbs",
+      "soft-crumb",
+      "street-food"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "ambient",
+    "technicalProfile": {
+      "hydration": "60–70%",
+      "salt": "2.0–2.2%",
+      "oil": "2–4% (Olive oil is crucial for flavor and texture)",
+      "sugar": "0–2% (helps browning and yeast activity)",
+      "cocoa": "0%",
+      "flourStrength": "W 260–300 (Medium-strong bread flour/Semolina blends)",
+      "preferment": "Often uses a 'crescenza' or old dough, but direct method is common in bakeries.",
+      "fermentationSteps": [
+        "Mix dough to moderate gluten development (windowpane not strictly necessary).",
+        "Bulk ferment until doubled (approx 2-3 hours).",
+        "Transfer to oiled rectangular pan; stretch to edges.",
+        "Final proof in pan for 1-2 hours until very puffy.",
+        "Press anchovies into the dough.",
+        "Top with caciocavallo cubes, then the cooked onion-tomato sauce.",
+        "Sprinkle heavily with breadcrumbs and oregano.",
+        "Bake at moderate heat to cook the thick dough through without burning the toppings."
+      ],
+      "ovenTemp": "220–250°C",
+      "recommendedUse": [
+        "Standard home oven",
+        "Deck oven (mid-temp)"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Do not use raw onions; the sauce must be cooked down (stewed) beforehand.",
+      "Breadcrumbs are mandatory; they protect the sauce and add texture.",
+      "If the dough is too thin, it becomes a standard pan pizza, losing the 'sponge' identity."
+    ],
+    "notes": [
+      "Semolina (Rimacinata) is often blended (20-50%) with white flour for texture and color.",
+      "The cheese traditionally goes UNDER the sauce to prevent burning.",
+      "It is best eaten warm, not piping hot, allowing flavors to settle."
+    ],
+    "references": [
+      "Modernist Pizza, Vol 1. - History of Sfincione",
+      "The Pizza Bible - Tony Gemignani",
+      "Saveur - The Real Sicilian Pizza",
+      "Gambero Rosso - Storia dello Sfincione Palermitano",
+      "Slow Food Sicily - Presidi Slow Food (Sfincione variants)"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "chicago_deep_dish_uno",
+    "name": "Chicago Deep Dish (Classic)",
+    "category": "Pizza",
+    "origin": {
+      "country": "United States",
+      "region": "Chicago, Illinois",
+      "period": "1943 (Pizzeria Uno)"
+    },
+    "description": "A controversial and distinct style, Chicago Deep Dish is more akin to a savory pie than a flatbread. It features a high-fat, low-hydration biscuit-like crust pressed into a deep round pan, filled with layers of cheese (on the bottom), meats/vegetables, and topped with crushed plum tomatoes. It requires a long bake time.",
+    "history": "Documented to have been invented at Pizzeria Uno in 1943 by Ike Sewell and Ric Riccardo. The intention was to create a hearty meal that stood apart from the thin tavern-style pizzas of the era. The dough recipe is unique for its use of corn oil (and sometimes butter) and short mixing time, creating a 'short' pastry texture rather than a chewy bread texture. It became a global icon of Chicago cuisine.",
+    "tags": [
+      "deep-dish",
+      "pie-like",
+      "biscuit-crust",
+      "laminated",
+      "cheese-bottom",
+      "american-icon"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "short",
+    "technicalProfile": {
+      "hydration": "50–55% (Low hydration is key)",
+      "salt": "1.5–1.8%",
+      "oil": "15–20% (Corn oil, or Vegetable oil + Butter blend)",
+      "sugar": "1–2%",
+      "cocoa": "0%",
+      "flourStrength": "W 220–260 (AP or Lower protein bread flour)",
+      "preferment": "None. Short fermentation is preferred to keep the dough 'dead' and barely elastic.",
+      "fermentationSteps": [
+        "Mix flour, salt, sugar, yeast.",
+        "Add water and oil. Mix briefly—do not develop gluten. Stop when combined.",
+        "Bulk ferment 1-2 hours or cold ferment overnight (for flavor, not structure).",
+        "Lamination (optional but recommended): Roll out, spread butter, fold, rest.",
+        "Press into deep-dish pan (up the sides).",
+        "Layer: Sliced mozzarella (bottom), Sausage (raw patty), Sauce (top).",
+        "Bake for 30-45 minutes."
+      ],
+      "ovenTemp": "205–230°C",
+      "recommendedUse": [
+        "Deep round cake pans or cast iron skillets",
+        "Standard home oven (lower rack)"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "High hydration (>60%) will ruin the crust, making it bread-like instead of biscuity.",
+      "Putting cheese on top will burn it due to the long bake time; cheese must go on the bottom.",
+      "The sausage layer should be applied raw in a flat patty to cook evenly with the pie."
+    ],
+    "notes": [
+      "Corn oil is traditional for the 'Uno' flavor profile.",
+      "The sauce should be chunky, often using crushed tomatoes rather than smooth puree.",
+      "Let the pizza rest 5-10 minutes after baking to set the structure."
+    ],
+    "references": [
+      "Modernist Pizza, Vol 2. - Chicago Deep Dish",
+      "The Pizza Bible - Tony Gemignani",
+      "Pizzeria Uno - Corporate History & Archives",
+      "Chicago Tribune - The History of Deep Dish",
+      "Cook's Illustrated - Deep Dish Pizza Science"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "roman_pinsa_modern",
+    "name": "Pinsa Romana (Modern)",
+    "category": "Pizza",
+    "origin": {
+      "country": "Italy",
+      "region": "Rome (Modern Invention)",
+      "period": "2001 (Corrado Di Marco)"
+    },
+    "description": "Pinsa Romana is a modern oval-shaped flatbread made from a proprietary blend of wheat, soy, and rice flours. It is marketed as an 'ancient' recipe but is a contemporary innovation designed for lightness and digestibility. The soy provides structure, the rice adds crunch/lightness and retains water, and the wheat provides the gluten backbone.",
+    "history": "Invented in 2001 by Corrado Di Marco, an Italian flour technician. While the name derives from the Latin 'pinsere' (to press/stretch), the recipe is not ancient. Di Marco created a mix to solve digestibilty issues in standard pizza. The result is a cloud-like, crispy, high-hydration product. The 'Pinsa' trademark is strictly controlled, but the style (oval, mixed flours, high hydration) has been widely replicated globally.",
+    "tags": [
+      "pinsa",
+      "mixed-flour",
+      "rice-flour",
+      "soy-flour",
+      "oval-shape",
+      "modern-italian"
+    ],
+    "difficulty": "high",
+    "fermentationType": "cold",
+    "technicalProfile": {
+      "hydration": "75–85%",
+      "salt": "2.0–2.5%",
+      "oil": "2–3%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 300+ (for the wheat component)",
+      "preferment": "Often uses a dried sourdough powder (pasta acida) in the mix, plus commercial yeast.",
+      "fermentationSteps": [
+        "Mix the flour blend (Wheat/Soy/Rice) with 80% of cold water.",
+        "Add yeast and salt.",
+        "Drizzle remaining water and oil slowly.",
+        "Bulk ferment 24-48-72 hours at 4°C.",
+        "Divide into balls; roll in rice flour (spolvero) to prevent sticking.",
+        "Press into oval shape using fingertips.",
+        "Bake on stone or in pan."
+      ],
+      "ovenTemp": "280–300°C",
+      "recommendedUse": [
+        "Electric deck oven",
+        "Home oven with stone (essential for bottom crisp)"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Cannot use 100% wheat flour; the rice/soy blend is the defining feature.",
+      "Extremely sticky dough due to high hydration; generous dusting flour (rice flour) is needed for shaping.",
+      "Do not use a rolling pin; fingertips only to preserve the 'cloud' structure."
+    ],
+    "notes": [
+      "Typical blend ratio approx: 80% Strong Wheat, 15% Rice, 5% Soy.",
+      "The oval shape distinguishes it visually from Teglia or Neapolitan.",
+      "Often par-baked plain, then topped and finished."
+    ],
+    "references": [
+      "Modernist Pizza, Vol 2. - Pinsa Romana",
+      "Di Marco - Official Pinsa Disciplinare",
+      "Panificio Italiano - The Science of Pinsa Flour",
+      "Italian Pizza Makers Association - Pinsa Specifications",
+      "Gambero Rosso - Il Fenomeno Pinsa"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "ny_sicilian_square",
+    "name": "NY Sicilian Square",
+    "category": "Pizza",
+    "origin": {
+      "country": "United States",
+      "region": "New York City",
+      "period": "Mid-20th Century"
+    },
+    "description": "The New York Sicilian is a thick, square pan pizza that evolved from the Sicilian Sfincione but adapted to American tastes and equipment. It features a thick (~1 inch) airy crumb with a fried bottom, topped with mozzarella and a cooked tomato sauce. Unlike the Grandma slice (which is thinner and proofed less), the Sicilian is fully proofed in the pan before baking.",
+    "history": "Brought by Sicilian immigrants to NY, this style diverged from the Palermo original. It lost the breadcrumbs and caciocavallo, replacing them with low-moisture mozzarella and pizza sauce. Iconic pizzerias like L&B Spumoni Gardens codified the style (often putting cheese under the sauce). It is a staple of NY slice shops, offering a hearty contrast to the thin round slice.",
+    "tags": [
+      "square-slice",
+      "pan-pizza",
+      "thick-crust",
+      "ny-style",
+      "comfort-food"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "60–65%",
+      "salt": "2.0–2.5%",
+      "oil": "3–5% (in dough) + Pan Oil",
+      "sugar": "1–2% (for browning and yeast food)",
+      "cocoa": "0%",
+      "flourStrength": "W 280–320 (High gluten flour is preferred for chew)",
+      "preferment": "Direct method is standard, but cold fermentation improves crumb structure.",
+      "fermentationSteps": [
+        "Mix dough to full gluten development.",
+        "Bulk ferment 1-2 hours.",
+        "Place in heavily oiled rectangular sheet pan.",
+        "Stretch to corners (may require resting intervals).",
+        "Final proof in pan: 2-3 hours until dough fills the pan and is very light.",
+        "Par-bake (optional but common) to set structure.",
+        "Top and finish bake."
+      ],
+      "ovenTemp": "260–290°C",
+      "recommendedUse": [
+        "Gas deck oven (standard NY pizzeria setup)",
+        "Home oven with heavy baking sheet"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Under-proofing yields a dense, gummy brick.",
+      "Sauce on top prevents the cheese from burning during the longer bake time.",
+      "Must use enough oil in the pan to fry the bottom, otherwise it will stick and steam."
+    ],
+    "notes": [
+      "Different from 'Grandma Pizza' which is thinner and proofed for less time.",
+      "The sauce is usually slightly sweeter and thicker than round pie sauce.",
+      "L&B Spumoni Gardens is the reference standard for the 'inverted' (cheese under sauce) style."
+    ],
+    "references": [
+      "Modernist Pizza, Vol 2. - NY Sicilian vs Grandma",
+      "The Pizza Bible - Tony Gemignani",
+      "Serious Eats - The Pizza Lab: Sicilian Pizza",
+      "PMQ Pizza Magazine - Square Pan Pizza History",
+      "New York Times - The Definitive Guide to NY Pizza Styles"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  }
+]
