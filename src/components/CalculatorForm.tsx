@@ -21,6 +21,7 @@ import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { getRange } from '@/logic/validationLogic';
+import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
 import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS } from '@/constants';
 
 interface CalculatorFormProps {
@@ -153,7 +154,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         isAnySourdough={isAnySourdough}
         hasProAccess={hasProAccess}
         onOpenPaywall={onOpenPaywall}
-        allowedTechniques={currentPreset?.fermentationMethods || []}
+        allowedTechniques={getAllowedFermentationTechniques(config.recipeStyle, config.bakeType)}
       />
 
       <EnvironmentSection
