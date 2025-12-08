@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { DoughStyleDefinition, StyleCategory } from '@/types/styles';
-import { STYLES_DATA } from '@/data/stylesData';
+import { useStyles } from '@/contexts/StylesProvider';
 import { useUser } from '@/contexts/UserProvider';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { PageHero } from '@/components/ui/PageHero';
@@ -70,6 +70,7 @@ interface DoughStylesPageProps {
 }
 
 const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, onUseInCalculator }) => {
+    const { styles: stylesData } = useStyles();
     const { userStyles, isFavorite, deleteUserStyle } = useUser();
 
     // State
@@ -88,9 +89,9 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
     // Combine Data
     const allStyles = useMemo(() => {
         const normalizedUserStyles = userStyles.map(normalizeDoughStyle);
-        // Ensure STYLES_DATA is treated as DoughStyleDefinition[]
-        return [...(STYLES_DATA as unknown as DoughStyleDefinition[]), ...normalizedUserStyles];
-    }, [userStyles]);
+        // stylesData comes from context now (which might be Firestore or fallback)
+        return [...stylesData, ...normalizedUserStyles];
+    }, [stylesData, userStyles]);
 
     // Derived Data: Available Options
     const { availableTags, availableRegions } = useMemo(() => {

@@ -18,7 +18,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
     const favorited = isFavorite(style.id);
 
     const isNew = style.releaseDate ? (new Date().getTime() - new Date(style.releaseDate).getTime()) < 30 * 24 * 60 * 60 * 1000 : false;
-    const isUserStyle = style.source.startsWith('user');
+    const isUserStyle = style.source?.startsWith('user') || false;
     const isAiStyle = style.source === 'user_ai';
 
     const handleCardClick = () => {
@@ -94,12 +94,14 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     <Droplets className="w-3 h-3 mr-1.5" />
                     {style.technicalProfile?.hydration[0]}-{style.technicalProfile?.hydration[1]}%
                 </div>
-                {style.technicalProfile?.fermentation && (
+                {(style.technicalProfile?.fermentation || (style.technicalProfile?.fermentationSteps && style.technicalProfile.fermentationSteps.length > 0)) && (
                     <div className="inline-flex items-center px-2 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-medium border border-amber-100">
                         <Clock className="w-3 h-3 mr-1.5" />
-                        {typeof style.technicalProfile.fermentation === 'object'
-                            ? (style.technicalProfile.fermentation.bulk.includes('h') ? style.technicalProfile.fermentation.bulk : 'Variable')
-                            : 'Variable'}
+                        {style.technicalProfile?.fermentation
+                            ? (typeof style.technicalProfile.fermentation === 'object'
+                                ? (style.technicalProfile.fermentation.bulk.includes('h') ? style.technicalProfile.fermentation.bulk : 'Variable')
+                                : 'Variable')
+                            : 'Multi-Stage'}
                     </div>
                 )}
                 <div className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${style.technicalProfile?.difficulty === 'Easy' ? 'bg-green-50 text-green-700 border-green-100' :

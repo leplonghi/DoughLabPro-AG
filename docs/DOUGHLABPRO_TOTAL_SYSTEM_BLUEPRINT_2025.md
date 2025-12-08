@@ -134,6 +134,7 @@ The app uses `react-router-dom` defined in `src/AppRouter.tsx`.
 
 ### 3. Styles Module
 *   **Purpose**: Encyclopedia of dough types.
+*   **Content Strategy**: 30 Core Styles available at launch, plus 5 new "Seasonal/Pro" styles released monthly for the first 3 months (Total 45 styles).
 *   **Key Interactions**: Browse styles by category (Pizza, Bread). View "Technical Profile" (ideal hydration, oven temp). "Use in Calculator" button transfers style data to the Calculator.
 
 ### 4. Learn Module
@@ -250,9 +251,9 @@ Data models are defined in `src/types/index.ts`.
 Permissions are central to the business model, defined in `src/permissions.ts`.
 
 ### Plans
-1.  **Free**: Basic access. Limited styles, limited saved bakes.
+1.  **Free**: Basic access. Limited styles (3 Picks).
 2.  **Calculator Unlock**: Access to all calculator features but limited MyLab.
-3.  **Lab Pro**: Full access to everything.
+3.  **Lab Pro**: Full access to all 30 Launch Styles and monthly content drops (5/month for 3 months).
 
 ### Paywall Logic
 *   **Feature Flags**: The `RequireFeature` component checks if the user's plan allows a specific `FeatureKey` (e.g., `mylab.unlimited_advanced`).

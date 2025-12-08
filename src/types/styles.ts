@@ -93,6 +93,7 @@ export enum RecipeStyle {
     NY_STYLE = 'NY_STYLE',
     SICILIAN = 'SICILIAN',
     CHICAGO = 'CHICAGO',
+    PRETZEL = 'PRETZEL',
 }
 
 export type StyleSource = 'official' | 'user_manual' | 'user_ai';
@@ -132,6 +133,7 @@ export interface StyleTechnicalProfile {
     salt: [number, number];
     oil?: [number, number];
     sugar?: [number, number];
+    fat?: [number, number];
     cocoa?: [number, number];
 
     flourStrength?: string;

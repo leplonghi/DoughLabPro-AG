@@ -17,6 +17,7 @@ import { UserProvider, useUser } from '@/contexts/UserProvider';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { I18nProvider, useTranslation } from '@/i18n';
 import { CalculatorProvider, useCalculator } from '@/contexts/CalculatorContext';
+import { StylesProvider } from '@/contexts/StylesProvider';
 import { RouterProvider, useRouter } from '@/contexts/RouterContext';
 
 // Domain-specific providers
@@ -262,7 +263,9 @@ function App() {
                                 <TimelineProvider>
                                   <RouterProvider>
                                     <CalculatorProvider>
-                                      <AppContent />
+                                      <StylesProvider>
+                                        <AppContent />
+                                      </StylesProvider>
                                     </CalculatorProvider>
                                   </RouterProvider>
                                 </TimelineProvider>

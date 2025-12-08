@@ -1,24 +1,21 @@
 import React from 'react';
 import { DoughStyleDefinition } from '@/types/styles';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
-import { SectionHeader } from '@/components/ui/SectionHeader';
+// import { SectionHeader } from '@/components/ui/SectionHeader'; // Unused
 import { CategoryBadge } from '@/components/ui/CategoryBadge';
-import { TechnicalBadge } from '@/components/ui/TechnicalBadge';
+// import { TechnicalBadge } from '@/components/ui/TechnicalBadge'; // Unused
 import { useUser } from '@/contexts/UserProvider';
 import {
     BookOpen,
     Beaker,
-    Clock,
     Globe,
     Sparkles,
     ArrowLeft,
     Heart,
     Calculator,
-    Share2,
     FileText,
     AlertTriangle,
     ChefHat,
-    Thermometer,
     Scale,
     MapPin,
     Calendar
@@ -31,7 +28,7 @@ import { AdCard } from "@/marketing/ads/AdCard";
 import { SocialShare } from "@/marketing/social/SocialShare";
 
 interface StyleDetailPageProps {
-    style: DoughStyleDefinition;
+    style?: DoughStyleDefinition | null;
     onLoadAndNavigate: (style: DoughStyleDefinition) => void;
     onBack: () => void;
 }
@@ -49,13 +46,32 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
         );
     }
 
+    if (!style) {
+        return (
+            <LibraryPageLayout>
+                <div className="text-center py-20">
+                    <h2 className="text-2xl font-bold text-slate-800">Style Not Found</h2>
+                    <button onClick={onBack} className="mt-4 text-lime-600 hover:underline">Return to Library</button>
+                </div>
+            </LibraryPageLayout>
+        );
+    }
+
     const favorited = isFavorite(style.id);
 
-    // Helper to render ranges
-    const renderRange = (range: [number, number] | undefined, unit: string = '%') => {
-        if (!range) return 'N/A';
+    // Safer Helper to render ranges
+    const renderRange = (range: [number, number] | undefined | null, unit: string = '%') => {
+        if (!range || !Array.isArray(range) || range.length < 2) return 'N/A';
         return `${range[0]}-${range[1]}${unit}`;
     };
+
+    // Safe average calculator
+    const getAverage = (range: [number, number] | undefined | null): number | null => {
+        if (!range || !Array.isArray(range) || range.length < 2) return null;
+        return (range[0] + range[1]) / 2;
+    };
+
+    const techProfile = style.technicalProfile || {};
 
     return (
         <LibraryPageLayout>
@@ -64,7 +80,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                 <button onClick={onBack} className="text-sm font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1">
                     <ArrowLeft className="h-4 w-4" /> Back
                 </button>
-                <span className="font-bold text-slate-800 hidden sm:block">{style.name}</span>
+                <span className="font-bold text-slate-800 hidden sm:block truncate max-w-[200px]">{style.name}</span>
                 <div className="flex gap-2">
                     <button
                         onClick={() => toggleFavorite({
@@ -92,25 +108,31 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                 </div>
             </div>
 
-            {/* Hero Section (Spec 2025.3: 16:9 Image) */}
-            <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-lg mb-8 group bg-slate-100">
+            {/* Hero Section (Spec 2025.3: Integrated Banner) */}
+            <div className="relative w-full h-64 md:h-80 rounded-3xl overflow-hidden shadow-md mb-8 group bg-slate-100">
                 {style.images?.hero ? (
                     <img
                         src={style.images.hero}
                         alt={style.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        onError={(e) => {
+                            // Fallback if image fails to load
+                            (e.target as HTMLImageElement).style.display = 'none';
+                            (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                        }}
                     />
-                ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[#3A6B3A] to-[#558B55] flex items-center justify-center p-8">
-                        <div className="text-center opacity-20">
-                            <ChefHat className="w-24 h-24 mx-auto mb-4" />
-                            <h1 className="text-4xl md:text-6xl font-black tracking-tight">{style.name}</h1>
-                        </div>
+                ) : null}
+
+                {/* Fallback Hero (Displays if no image or image error) */}
+                <div className={`w-full h-full bg-gradient-to-br from-green-600 to-emerald-900 flex items-center justify-center p-8 ${style.images?.hero ? 'hidden' : ''}`}>
+                    <div className="text-center text-white/30 select-none transform transition-transform duration-500 group-hover:scale-105">
+                        <ChefHat className="w-20 h-20 mx-auto mb-4" />
+                        <h1 className="text-3xl md:text-5xl font-black tracking-tight max-w-2xl mx-auto leading-tight">{style.name}</h1>
                     </div>
-                )}
+                </div>
             </div>
 
-            {/* Title & Metadata Section (Spec 2025.3: Title + Category + Region + Period + Favorite) */}
+            {/* Title & Metadata Section */}
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10 animate-fade-in">
                 <div className="space-y-4 max-w-3xl">
                     <div className="flex flex-wrap items-center gap-3">
@@ -119,7 +141,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                         {style.origin?.region && (
                             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider border border-slate-200">
                                 <MapPin className="w-3.5 h-3.5" />
-                                <span>{style.origin.region}, {style.origin.country}</span>
+                                <span>{style.origin.region}, {style.origin.country || 'Global'}</span>
                             </div>
                         )}
 
@@ -190,13 +212,13 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 </h2>
                             </div>
 
-                            <p className="lead text-lg text-slate-700 mb-8 leading-relaxed">{style.description}</p>
+                            <p className="lead text-lg text-slate-700 mb-8 leading-relaxed">{style.description || "No description available for this style."}</p>
 
                             <div className="bg-slate-50 rounded-xl p-6 border border-slate-100 mb-8">
                                 <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
                                     <Globe className="w-5 h-5 text-teal-600" /> History & Context
                                 </h3>
-                                <p className="text-slate-600 mb-4 leading-relaxed">{style.history}</p>
+                                <p className="text-slate-600 mb-4 leading-relaxed">{style.history || "Historical context not available."}</p>
                                 {style.culturalContext && (
                                     <div className="pl-4 border-l-4 border-teal-500 italic text-slate-600">
                                         {style.culturalContext}
@@ -233,37 +255,37 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                             </tr>
                                             <tr className="hover:bg-slate-50 transition-colors">
                                                 <td className="px-6 py-4 font-medium text-slate-900">Hydration (Water)</td>
-                                                <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.hydration[0]}%</td>
-                                                <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.hydration[1]}%</td>
+                                                <td className="px-6 py-4 text-right text-slate-600">{techProfile.hydration?.[0] ?? '?'}%</td>
+                                                <td className="px-6 py-4 text-right text-slate-600">{techProfile.hydration?.[1] ?? '?'}%</td>
                                                 <td className="px-6 py-4 text-right font-bold text-indigo-600">
-                                                    {Math.round((style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2)}%
+                                                    {getAverage(techProfile.hydration) !== null ? Math.round(getAverage(techProfile.hydration)!) : 'N/A'}%
                                                 </td>
                                             </tr>
                                             <tr className="hover:bg-slate-50 transition-colors">
                                                 <td className="px-6 py-4 font-medium text-slate-900">Salt</td>
-                                                <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.salt[0]}%</td>
-                                                <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.salt[1]}%</td>
+                                                <td className="px-6 py-4 text-right text-slate-600">{techProfile.salt?.[0] ?? '?'}%</td>
+                                                <td className="px-6 py-4 text-right text-slate-600">{techProfile.salt?.[1] ?? '?'}%</td>
                                                 <td className="px-6 py-4 text-right font-bold text-slate-700">
-                                                    {((style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2).toFixed(1)}%
+                                                    {getAverage(techProfile.salt) !== null ? getAverage(techProfile.salt)?.toFixed(1) : 'N/A'}%
                                                 </td>
                                             </tr>
-                                            {style.technicalProfile.fat && (
+                                            {techProfile.fat && (
                                                 <tr className="hover:bg-slate-50 transition-colors">
                                                     <td className="px-6 py-4 font-medium text-slate-900">Fat / Oil</td>
-                                                    <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.fat[0]}%</td>
-                                                    <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.fat[1]}%</td>
+                                                    <td className="px-6 py-4 text-right text-slate-600">{techProfile.fat[0]}%</td>
+                                                    <td className="px-6 py-4 text-right text-slate-600">{techProfile.fat[1]}%</td>
                                                     <td className="px-6 py-4 text-right font-bold text-slate-700">
-                                                        {Math.round((style.technicalProfile.fat[0] + style.technicalProfile.fat[1]) / 2)}%
+                                                        {Math.round(getAverage(techProfile.fat) || 0)}%
                                                     </td>
                                                 </tr>
                                             )}
-                                            {style.technicalProfile.sugar && (
+                                            {techProfile.sugar && (
                                                 <tr className="hover:bg-slate-50 transition-colors">
                                                     <td className="px-6 py-4 font-medium text-slate-900">Sugar</td>
-                                                    <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.sugar[0]}%</td>
-                                                    <td className="px-6 py-4 text-right text-slate-600">{style.technicalProfile.sugar[1]}%</td>
+                                                    <td className="px-6 py-4 text-right text-slate-600">{techProfile.sugar[0]}%</td>
+                                                    <td className="px-6 py-4 text-right text-slate-600">{techProfile.sugar[1]}%</td>
                                                     <td className="px-6 py-4 text-right font-bold text-slate-700">
-                                                        {Math.round((style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2)}%
+                                                        {Math.round(getAverage(techProfile.sugar) || 0)}%
                                                     </td>
                                                 </tr>
                                             )}
@@ -282,13 +304,14 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                     <Sparkles className="w-5 h-5 text-amber-500" /> Pro Tips
                                 </h3>
                                 <ul className="space-y-4">
-                                    {style.notes?.map((note, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-slate-700 leading-relaxed">
-                                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-sm" />
-                                            <span>{note}</span>
-                                        </li>
-                                    ))}
-                                    {(!style.notes || style.notes.length === 0) && (
+                                    {style.notes && style.notes.length > 0 ? (
+                                        style.notes.map((note, idx) => (
+                                            <li key={idx} className="flex items-start gap-3 text-slate-700 leading-relaxed">
+                                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-sm" />
+                                                <span>{note}</span>
+                                            </li>
+                                        ))
+                                    ) : (
                                         <li className="text-sm text-slate-500 italic">No specific pro tips available.</li>
                                     )}
                                 </ul>
@@ -298,12 +321,14 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                     <AlertTriangle className="w-5 h-5 text-rose-500" /> Watch Out
                                 </h3>
                                 <ul className="space-y-4">
-                                    {style.risks ? style.risks.map((risk, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-slate-700 leading-relaxed">
-                                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-shrink-0 shadow-sm" />
-                                            <span>{risk}</span>
-                                        </li>
-                                    )) : (
+                                    {style.risks && style.risks.length > 0 ? (
+                                        style.risks.map((risk, idx) => (
+                                            <li key={idx} className="flex items-start gap-3 text-slate-700 leading-relaxed">
+                                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-shrink-0 shadow-sm" />
+                                                <span>{risk}</span>
+                                            </li>
+                                        ))
+                                    ) : (
                                         <li className="text-sm text-slate-500 italic">No specific risks noted.</li>
                                     )}
                                 </ul>
@@ -361,12 +386,12 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 <div>
                                     <div className="flex justify-between text-sm mb-2">
                                         <span className="text-slate-500 font-medium">Hydration</span>
-                                        <span className="font-bold text-slate-900">{renderRange(style.technicalProfile.hydration)}</span>
+                                        <span className="font-bold text-slate-900">{renderRange(techProfile.hydration)}</span>
                                     </div>
                                     <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
                                         <div
                                             className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
-                                            style={{ width: `${Math.min(100, Math.max(0, (style.technicalProfile.hydration[1] || 60)))}%` }}
+                                            style={{ width: `${Math.min(100, Math.max(0, (techProfile.hydration?.[1] || 60)))}%` }}
                                         />
                                     </div>
                                     <p className="text-xs text-slate-400 mt-2">
@@ -378,17 +403,17 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
                                         <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1 tracking-wider">Difficulty</span>
-                                        <span className={`font-bold text-sm ${style.technicalProfile.difficulty === 'Easy' ? 'text-green-600' :
-                                            style.technicalProfile.difficulty === 'Medium' ? 'text-amber-600' :
+                                        <span className={`font-bold text-sm ${techProfile.difficulty === 'Easy' ? 'text-green-600' :
+                                            techProfile.difficulty === 'Medium' ? 'text-amber-600' :
                                                 'text-red-600'
                                             }`}>
-                                            {style.technicalProfile.difficulty}
+                                            {techProfile.difficulty || 'N/A'}
                                         </span>
                                     </div>
                                     <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
                                         <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1 tracking-wider">Oven Temp</span>
                                         <span className="font-bold text-sm text-slate-900">
-                                            {style.technicalProfile.oven?.temperatureC ? `${style.technicalProfile.oven.temperatureC[0]}-${style.technicalProfile.oven.temperatureC[1]}°C` : 'Variable'}
+                                            {techProfile.ovenTemp ? `${techProfile.ovenTemp[0]}-${techProfile.ovenTemp[1]}°C` : (techProfile.oven?.temperatureC ? `${techProfile.oven.temperatureC[0]}-${techProfile.oven.temperatureC[1]}°C` : 'N/A')}
                                         </span>
                                     </div>
                                 </div>
@@ -397,17 +422,35 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                 <div>
                                     <span className="text-xs text-slate-500 uppercase font-bold block mb-3 tracking-wider">Fermentation Process</span>
                                     <div className="bg-indigo-50/50 p-4 rounded-xl border border-indigo-100 text-sm space-y-3">
-                                        {typeof style.technicalProfile.fermentation === 'object' ? (
+                                        {techProfile.fermentation && typeof techProfile.fermentation === 'object' ? (
                                             <>
                                                 <div className="flex justify-between items-center border-b border-indigo-100 pb-2">
                                                     <span className="text-indigo-700">Bulk Ferment</span>
-                                                    <span className="font-bold text-indigo-900">{style.technicalProfile.fermentation.bulk}</span>
+                                                    <span className="font-bold text-indigo-900">{techProfile.fermentation.bulk || 'N/A'}</span>
                                                 </div>
                                                 <div className="flex justify-between items-center">
                                                     <span className="text-indigo-700">Final Proof</span>
-                                                    <span className="font-bold text-indigo-900">{style.technicalProfile.fermentation.proof || 'N/A'}</span>
+                                                    <span className="font-bold text-indigo-900">{techProfile.fermentation.proof || 'N/A'}</span>
                                                 </div>
                                             </>
+                                        ) : techProfile.fermentationSteps && techProfile.fermentationSteps.length > 0 ? (
+                                            <ul className="list-disc pl-4 space-y-2">
+                                                {techProfile.fermentationSteps.slice(0, 3).map((step, i) => {
+                                                    const parts = step.split('[Science:');
+                                                    const action = parts[0].trim();
+                                                    const science = parts[1] ? parts[1].replace(']', '').trim() : null;
+                                                    return (
+                                                        <li key={i} className="text-indigo-900 text-xs leading-tight">
+                                                            <span className="font-medium">{action}</span>
+                                                            {science && (
+                                                                <p className="text-indigo-600 italic text-[10px] mt-0.5 leading-snug">
+                                                                    💡 {science}
+                                                                </p>
+                                                            )}
+                                                        </li>
+                                                    );
+                                                })}
+                                            </ul>
                                         ) : (
                                             <span className="text-indigo-900 font-medium">Variable Process</span>
                                         )}
@@ -420,9 +463,9 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                     <ul className="space-y-3">
                                         <li className="flex items-center justify-between text-sm">
                                             <span className="text-slate-500">Country</span>
-                                            <span className="font-medium text-slate-900">{style.origin.country}</span>
+                                            <span className="font-medium text-slate-900">{style.origin?.country || 'Unknown'}</span>
                                         </li>
-                                        {style.origin.region && (
+                                        {style.origin?.region && (
                                             <li className="flex items-center justify-between text-sm">
                                                 <span className="text-slate-500">Region</span>
                                                 <span className="font-medium text-slate-900">{style.origin.region}</span>
@@ -430,7 +473,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                         )}
                                         <li className="flex items-center justify-between text-sm">
                                             <span className="text-slate-500">Category</span>
-                                            <span className="font-medium text-slate-900 capitalize">{style.category.replace('_', ' ')}</span>
+                                            <span className="font-medium text-slate-900 capitalize">{style.category?.replace('_', ' ') || 'Unknown'}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -441,7 +484,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
                                     <div className="flex flex-wrap gap-2">
                                         <span className="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-md border border-slate-200">Scale</span>
                                         <span className="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-md border border-slate-200">Scraper</span>
-                                        {style.technicalProfile.oven?.type === 'wood_fired' && (
+                                        {(techProfile.oven?.type === 'wood_fired' || style.tags?.includes('wood-fired')) && (
                                             <span className="px-2.5 py-1 bg-orange-50 text-orange-700 text-xs font-medium rounded-md border border-orange-100">Peel</span>
                                         )}
                                     </div>

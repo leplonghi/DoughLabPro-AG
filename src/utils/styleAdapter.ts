@@ -110,6 +110,7 @@ export function normalizeDoughStyle(style: any): DoughStyleDefinition {
     // otherwise adapt old structure to new DoughStyleDefinition
     return {
         ...style,
+        source: style.source || 'user_manual', // Default strict to prevent crashes
         references: style.references || [],
         // Ensure technicalProfile exists if it was missing or different
         technicalProfile: style.technicalProfile || {

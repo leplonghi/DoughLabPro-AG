@@ -7,7 +7,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { useRouter } from '@/contexts/RouterContext';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { FLOURS } from '@/flours-constants';
-import { STYLES_DATA } from '@/data/stylesData';
+import { useStyles } from '@/contexts/StylesProvider';
 import AuthModal from '@/components/AuthModal';
 import { LearnProvider } from '@/contexts/LearnContext';
 import { FeatureKey } from '@/permissions';
@@ -139,6 +139,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
         handleLoadProRecipe
     } = useCalculator();
 
+    const { getStyleById } = useStyles();
+
     const { ovens, hasProAccess, openPaywall } = useUser();
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
@@ -170,10 +172,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             return protectWithFeature(<ConsistencyDetailPage seriesId={routeParams} onNavigate={navigate} />, 'mylab.unlimited_advanced');
         }
         if (route === 'styles/detail' && routeParams) {
-            const style = STYLES_DATA.find(s => s.id === routeParams);
-            if (style) {
-                return protect(<StyleDetailPage style={style} onLoadAndNavigate={(s) => handleLoadStyleFromModule(s, navigate)} onBack={() => navigate('styles')} />);
-            }
+            const style = getStyleById(routeParams);
+            return protect(<StyleDetailPage style={style || null} onLoadAndNavigate={(s) => handleLoadStyleFromModule(s, navigate)} onBack={() => navigate('styles')} />);
         }
 
         if ((route === 'community/detail' || route === 'community/post') && routeParams) {
