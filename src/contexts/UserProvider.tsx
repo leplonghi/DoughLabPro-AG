@@ -572,66 +572,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return;
       }
 
-      const existing = favorites.find(f => f.id === item.id && f.type === item.type);
+      // Use 'itemId' to look for the logical ID in the favorites array
+      // Note: favorites array items have 'itemId' because we query Firestore and get all data
+      // But we need to ensure we are using the correct property.
+      const existing = favorites.find(f => (f as any).itemId === item.id && f.type === item.type);
+
       if (existing) {
         // Remove
-        // Note: favorites state has full objects with doc ID as 'id' if we processed it that way,
-        // but here 'item.id' is the logical ID (e.g. page slug).
-        // Wait, createCollectionSubscription maps doc.id to item.id.
-        // So if I save a favorite, I need to store the logical ID in a field, say 'itemId'.
-        // Let's adjust: FavoriteItem should have 'itemId' for the target, and 'id' for the doc ID.
-        // Or simpler: Query by 'itemId' and 'type'.
-
-        // Actually, let's look at how createDoc works. It adds 'id' as the doc ID.
-        // So my FavoriteItem interface in types.ts has 'id'. This 'id' will be the doc ID when read from Firestore.
-        // But when I toggle, I am passing the logical ID (e.g. 'learn/crumb-structure').
-        // This is a conflict.
-
-        // Let's assume 'item.id' passed to toggleFavorite is the logical ID (target).
-        // I need to find the doc ID to delete it.
-
-        // Let's query Firestore to find the doc to delete, or rely on local state if it has the doc ID.
-        // The local 'favorites' array comes from Firestore, so its 'id' property is the DOC ID.
-        // But the 'item' passed in might not have the doc ID.
-
-        // Strategy: Store logical ID as 'targetId'.
-        // Update FavoriteItem in types.ts? No, I can't easily change it now without another tool call.
-        // I'll use 'id' in FavoriteItem as the logical ID (target) for the *content*, 
-        // but when stored in Firestore, the doc ID is separate.
-        // When reading from Firestore, 'createCollectionSubscription' overwrites 'id' with doc.id.
-        // This effectively hides the logical ID if it was stored in 'id' field.
-
-        // FIX: I will store the logical ID in a field called 'targetId'.
-        // I will update the toggleFavorite to look for 'targetId'.
-        // I will update isFavorite to look for 'targetId'.
-
-        // But wait, I defined FavoriteItem as having 'id'.
-        // If I use 'id' for logical ID, createCollectionSubscription will overwrite it with Doc ID.
-        // So I should have defined it as 'targetId'.
-
-        // Since I can't easily change types.ts again without cost, I will use 'metadata.targetId' or similar?
-        // Or just rely on the fact that I can store it as 'itemId' in Firestore, and when I read it back, 
-        // I get 'id' (docId) and 'itemId' (logicalId).
-        // But TypeScript interface says 'id'.
-
-        // Let's assume for now that I will store the logical ID in 'itemId' field in Firestore.
-        // And I will cast the read object to `FavoriteItem & { itemId: string }`.
-
-        // Actually, let's just query by the fields.
-
-        const q = query(
-          collection(db, 'users', firebaseUser.uid, 'favorites'),
-          where('itemId', '==', item.id),
-          where('type', '==', item.type)
-        );
-        const snapshot = await getDocs(q);
-        snapshot.forEach(async (doc) => {
-          await deleteDoc(doc.ref);
-        });
-
-        // Optimistic update? createCollectionSubscription handles it.
+        // existing.id is the Firestore Document ID.
+        await deleteDocFn('favorites', existing.id);
         addToast('Removed from favorites', 'info');
-
       } else {
         // Add
         await addDoc(collection(db, 'users', firebaseUser.uid, 'favorites'), {

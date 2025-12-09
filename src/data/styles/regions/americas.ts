@@ -53,9 +53,84 @@ const nycSlice: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Scott Wiener's Pizza History" }, { source: "Modernist Pizza" }],
     images: {
-        hero: "/images/styles/nyc_hero.jpg",
-        dough: "/images/styles/nyc_dough.jpg",
-        crumb: "/images/styles/nyc_crumb.jpg"
+        hero: "/images/styles/pizza-tonda-romana.png",
+        dough: "/images/styles/pizza-tonda-romana.png",
+        crumb: "/images/styles/pizza-tonda-romana.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "The Reheat Rule",
+                explanation: "Never microwave. Reheat in a skillet or on a hot stone (250°C) to restore the crust without drying the cheese."
+            },
+            {
+                tip: "Cheese Temp Matters",
+                explanation: "Use cold, cubed Low Moisture Mozzarella. If it's warm, it separates into oil before the crust is done."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Home oven only reaches 250°C",
+                result: "The crust dries out before browning.",
+                correction: "Add 2% sugar/malt to dough (browning aid) and use a baking steel, not a stone."
+            },
+            {
+                scenario: "Dough retracts when stretching",
+                result: "Gluten is too cold or overworked.",
+                correction: "Let dough sit at room temp for 1-2h before stretching to relax the gluten 'memory'."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "Neapolitan",
+                difference: "NYC is larger (18inch), crisper, and has oil/sugar. Neapolitan is soft, wet, and lean.",
+                why_choose_this: "Choose NYC for the 'fold', portability, and heavy cheese/toppings capability."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Is NYC water the secret?",
+                answer: "Myth. While mineral content affects pH, comparable bagels/pizza are made worldwide by replicating the calcium/magnesium ratio or just using good technique.",
+                context: "Kenji Lopez-Alt"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Ideal",
+                notes: "24-48h Cold Ferment is the definitive step for the flavor and micro-blisters."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "62-65% is the sweet spot. It allows the dough to be extensible enough for the 18-inch stretch but provides enough structure to hold the fold ('The Fold') without flopping.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "The classic corner slice shop method. Often same-day dough." },
+            biga: { suitable: true, notes: "Adds excellent flavor but can make the dough too strong/bucky for easy stretching." },
+            poolish: { suitable: true, notes: "Common in modern 'Artisan' slice shops for a lighter, puffier crust." }
+        },
+        whatIf: [
+            {
+                scenario: "Crust is pale and white?",
+                outcome: "Oven temp too low (<550°F) or forgot the sugar/oil.",
+                solution: "At home temps (500°F), you MUST use 2% sugar and 3% oil to force browning."
+            },
+            {
+                scenario: "Dough keeps snapping back to small size?",
+                outcome: "Gluten is too excited.",
+                solution: "Let the dough balls rest at room temp for at least 2 hours before stretching. Cold dough = Snap back."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Neapolitan",
+                difference: "NYC uses Oil, Sugar, and Malt. Neapolitan is lean. NYC is crispy/chewy; Neapolitan is soft/wet."
+            }
+        ],
+        proTips: [
+            "The 'Screen' Trick: Bake on a screen for 5 mins, then slide directly onto the stone to finish. Best of both worlds.",
+            "Cure the balls: 48h cold fermentation is where the flavor lives."
+        ]
     }
 };
 
@@ -111,9 +186,84 @@ const detroitStyle: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Buddy's Archives" }],
     images: {
-        hero: "/images/styles/detroit_hero.jpg",
-        dough: "/images/styles/detroit_dough.jpg",
-        crumb: "/images/styles/detroit_crumb.jpg"
+        hero: "/images/styles/pizza-teglia-romana.png",
+        dough: "/images/styles/pizza-teglia-romana.png",
+        crumb: "/images/styles/pizza-teglia-romana.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "The Frico Edge",
+                explanation: "Spread cheese ALL the way to the metal wall. The cheese melting down the side creates the structural 'Frico' wall."
+            },
+            {
+                tip: "Par-bake the Skin",
+                explanation: "For home ovens, bake the dough w/o toppings for 7 mins first to ensure the center cooks before the cheese burns."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Center is raw/gummy",
+                result: "Insulated by too much sauce or dough was too cold.",
+                correction: "Apply sauce in 'Racing Stripes' ON TOP of cheese to allow heat to penetrate."
+            },
+            {
+                scenario: "Cannot find Brick Cheese",
+                result: "You lose the specific buttery tang.",
+                correction: "Use 50% Low Moisture Mozzarella + 50% Monterey Jack (or Muenster) to simulate the fat/melt profile."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "Sicilian",
+                difference: "Detroit uses Brick cheese, sauce on top, and steel pans. Sicilian uses olive oil, often crumbs, and sheet pans.",
+                why_choose_this: "Choose Detroit for the caramelized cheese crown (Frico)."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Why Blue Steel pans?",
+                answer: "They conduct heat faster than aluminum, frying the bottom in the oil before the top burns.",
+                context: "Automotive History"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Authentic",
+                notes: "Traditionally a direct dough, but cold ferment adds welcomed flavor."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "70-75% is mandatory. This is effectively a focaccia baked with cheese. The high water ensures the thick crumb remains light and airy like a sponge, not dense like a brick.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "Standard. The pan supports the structure, so complex gluten dev isn't strictly needed." },
+            biga: { suitable: false, notes: "Unnecessary complexity for a pan pizza." },
+            poolish: { suitable: true, notes: "Fantastic for an even lighter, more aerated crumb." }
+        },
+        whatIf: [
+            {
+                scenario: "Center is raw (Gum Line)?",
+                outcome: "Insulated by too much sauce or dough was cold.",
+                solution: "Par-bake the skin + cheese for 7 mins, THEN add sauce stripes and finish."
+            },
+            {
+                scenario: "No 'Frico' (Cheese Crown)?",
+                outcome: "You used Mozzarella or didn't push cheese to the edge.",
+                solution: "Use Brick Cheese or Muenster/Jack blend. It must touch the metal wall."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Chicago Deep Dish",
+                difference: "Detroit is a light, fried dough. Chicago is a dense, flaky biscuit pastry."
+            }
+        ],
+        proTips: [
+            "Season your pans: Blue steel improves with age. Never wash with soap.",
+            "Sauce on Top: It prevents the gum line. Do not spread it; stripe it."
+        ]
     }
 };
 
@@ -169,9 +319,79 @@ const chicagoDeepDish: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Pizzeria Uno History" }],
     images: {
-        hero: "/images/styles/chicago_hero.jpg",
-        dough: "/images/styles/chicago_dough.jpg",
-        crumb: "/images/styles/chicago_crumb.jpg"
+        hero: "/images/styles/pizza-siciliana.png",
+        dough: "/images/styles/pizza-siciliana.png",
+        crumb: "/images/styles/pizza-siciliana.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "The Biscuit Factor",
+                explanation: "Mix very briefly. Overmixing develops gluten, making it chewy instead of flaky. You want a 'short' dough."
+            },
+            {
+                tip: "Corn Oil is King",
+                explanation: "Although butter tastes great, corn oil provides the authentic specific flavor profile and texture of the original."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Dough shrinks when pressing",
+                result: "Elasticity is too high.",
+                correction: "Let it rest 20 mins. If it persists, you overmixed. Next time mix less."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "Pan Pizza",
+                difference: "Deep Dish is a pie/casserole with a short crust. Pan pizza (like Detroit) is a fried bread.",
+                why_choose_this: "Choose Deep Dish for a sit-down meal experience."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Why sauce on top?",
+                answer: "Insulation. The cheese and meat would burn during the long 40-minute bake if exposed. The sauce protects them.",
+                context: "Physics of Baking"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Authentic",
+                notes: "Short ferment is standard. Flavor comes from fat and toppings, not yeast."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "50-55% plus high fat (15%+ Corn Oil/Butter). This is NOT bread. This is a savory pie crust. High hydration would develop gluten -> chewy -> wrong.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "The only way. Short mix, direct use." },
+            biga: { suitable: false, notes: "Completely wrong style." },
+            poolish: { suitable: false, notes: "Completely wrong style." }
+        },
+        whatIf: [
+            {
+                scenario: "Crust is tough/chewy?",
+                outcome: "Overmixed. You developed gluten.",
+                solution: "Mix only until ingredients combine. Treat it like a pie crust or biscuit dough."
+            },
+            {
+                scenario: "Soggy mess?",
+                outcome: "Sauce was too thin or veggies released water.",
+                solution: "Use thick crushed tomatoes. Pre-cook spinach/mushrooms to remove water."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Pan Pizza (Hut/Detroit)",
+                difference: "Deep Dish is 'Short' (crumbles). Pan Pizza is 'Bread' (stretches)."
+            }
+        ],
+        proTips: [
+            "Laminate: Fold butter into the dough for a flaky layer effect (Malnati style).",
+            "Let it rest: After baking, let the pie sit 5 mins to set heavily. If you cut immediately, it flows like lava."
+        ]
     }
 };
 
@@ -227,9 +447,79 @@ const paoFrancesABNT: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "ABNT NBR 16170" }],
     images: {
-        hero: "/images/styles/pao_frances_hero.jpg",
-        dough: "/images/styles/pao_frances_dough.jpg",
-        crumb: "/images/styles/pao_frances_crumb.jpg"
+        hero: "/images/styles/baguette_hero.png",
+        dough: "/images/styles/baguette_hero.png",
+        crumb: "/images/styles/baguette_hero.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "The 'Pestana' (Split)",
+                explanation: "Requires high humidity. If you don't have a steam injector, use a spray bottle or a tray of boiling water."
+            },
+            {
+                tip: "Fat is functional",
+                explanation: "Unlike the french baguette (lean), the Brazilian version needs 3-4% fat (lard/shortening) for the specific soft cotton-like crumb."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Crust is dull and thick",
+                result: "Lack of steam or oven too cool.",
+                correction: "Maximize steam during the first 5 minutes of baking."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "French Baguette",
+                difference: "Pão Francês has fat/sugar and a softer crumb. Baguette is flour/water/salt only and chewier.",
+                why_choose_this: "Choose Pão Francês for sandwiches and breakfast rolls."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Why add sugar?",
+                answer: "To fuel the yeast rapidly in the tropical climate and aid in browning the crust quickly.",
+                context: "Brazilian Adaptation"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Authentic",
+                notes: "Fast, direct method is the commercial standard."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "58-60% allows for the massive expansion volume (ovenspring) and the 'pestana' opening. Too wet, and it flattens. Too dry, and it won't expand.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "The Brazilian standard. Heavily reliant on oxidizers (Vit C) in commercial settings." },
+            biga: { suitable: true, notes: "Produces a superior 'Artisan' version with better shelf life." },
+            poolish: { suitable: true, notes: "Good for softness, but makes the cut (pestana) harder to control." }
+        },
+        whatIf: [
+            {
+                scenario: "No 'Pestana' (The split didn't open)?",
+                outcome: "Not enough steam or skin dried out.",
+                solution: "You need 100% humidity in the first 3 minutes. Spray water on the loaves before baking."
+            },
+            {
+                scenario: "Crust is soft/leathery, not crackly?",
+                outcome: "Underbaked or low temp.",
+                solution: "Bake until golden brown. The crackle comes from the drying of the starch gel."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Baguette",
+                difference: "Pão Francês contains sugar/fat for varying softness. Baguette is lean and tough."
+            }
+        ],
+        proTips: [
+            "The Steam Trap: In a home oven, preheat a cast iron skillet and throw ice cubes in when you load the bread.",
+            "Short Bulk: Don't let it ferment too long in bulk. The energy is needed for the final proof push."
+        ]
     }
 };
 
@@ -285,9 +575,84 @@ const sfSourdough: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Boudin History" }, { source: "Microbiology of Sourdough" }],
     images: {
-        hero: "/images/styles/sf_sourdough_hero.jpg",
-        dough: "/images/styles/sf_sourdough_dough.jpg",
-        crumb: "/images/styles/sf_sourdough_crumb.jpg"
+        hero: "/images/styles/pane-toscano.png",
+        dough: "/images/styles/pane-toscano.png",
+        crumb: "/images/styles/pane-toscano.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "The 'Tartine' Fold",
+                explanation: "Don't knead. Perform gentle 'coil folds' every 30 mins during bulk to align gluten without degassing."
+            },
+            {
+                tip: "Steam is Non-Negotiable",
+                explanation: "Use a Dutch Oven. The trapped steam keeps the crust soft, allowing massive expansion (Oven Spring) before setting."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Starter is too sour (Acetic)",
+                result: "Loaf is dense and tight. Acid destroys gluten structure (Proteolysis).",
+                correction: "Feed starter more frequently (1:2:2 ratio) and use it younger (sweeter/lactic)."
+            },
+            {
+                scenario: "No 'Ear' (Burst)",
+                result: "Scoring was too shallow or oven not hot enough.",
+                correction: "Score at a 45 degree angle and ensure steam is present."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "French Baguette",
+                difference: "SF Sourdough is wild yeast (Levain) and acetic. Baguette is commercial yeast and mild.",
+                why_choose_this: "Choose SF Sourdough for keeping quality and complex flavor."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Is 'Lactobacillus sanfranciscensis' only in SF?",
+                answer: "No. It's found worldwide. The 'SF Taste' is more about the cold fermentation technique and acetic acid balance than geography.",
+                context: "Modern Microbiology"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Sourdough",
+                suitability: "Authentic",
+                notes: "Strictly pure Levain. No commercial yeast allowed."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "75%+ is standard. The acidity from the Levain tightens the gluten structure, allowing it to hold significant water without becoming soup. The water is needed for the open crumb.",
+        methodSuitability: {
+            direct: { suitable: false, notes: "Impossible. This is Sourdough." },
+            biga: { suitable: false, notes: "This is Sourdough." },
+            poolish: { suitable: false, notes: "This is Sourdough." }
+        },
+        whatIf: [
+            {
+                scenario: "Bread is dense/brick-like?",
+                outcome: "Starter was weak or bulk fermentation was too short.",
+                solution: "Ensure starter doubles in 4 hours. Push the bulk ferment until dough feels 'aerated'."
+            },
+            {
+                scenario: "Too sour (Vinegar)?",
+                outcome: "Fermented too warm or starter hadn't been fed.",
+                solution: "Discard more starter, and ferment bulk at a cooler temp (20-22°C)."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Pane Toscano",
+                difference: "SF is sour (Acetic) and salted. Toscano is mild and unsalted."
+            }
+        ],
+        proTips: [
+            "Feed the starter: A healthy microbiological colony is 90% of the work.",
+            "The Dutch Oven: It simulates a professional steam injection deck oven perfectly."
+        ]
     }
 };
 
@@ -343,9 +708,79 @@ const newHavenApizza: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Frank Pepe History" }, { source: "Pizza City, USA" }],
     images: {
-        hero: "/images/styles/apizza_hero.jpg",
-        dough: "/images/styles/apizza_dough.jpg",
-        crumb: "/images/styles/apizza_crumb.jpg"
+        hero: "/images/styles/pizza-tonda-romana.png",
+        dough: "/images/styles/pizza-tonda-romana.png",
+        crumb: "/images/styles/pizza-tonda-romana.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "Oblong is a Feature",
+                explanation: "Don't try to make it round. The 'Apizza' shape typically fills the peel. It's rustic."
+            },
+            {
+                tip: "Bake Darker",
+                explanation: "Char is flavor. Pulling it early 'to be safe' ruins the style. Let the edges turn black."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Oven only goes to 260°C",
+                result: "You won't get char.",
+                correction: "Use 2% sugar in the dough to force browning at lower temps."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "NYC Slice",
+                difference: "Apizza is thinner, crispier, and much darker (charred). NYC is golden and pliable.",
+                why_choose_this: "Choose Apizza for a crunchier, smoky experience."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Is 'Mozz' standard?",
+                answer: "No. A 'Plain' pie in New Haven is Tomato Sauce + Oregano + Pecorino. You must ask for Mozzarella ('Mutz').",
+                context: "Frank Pepe Menu"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Ideal",
+                notes: "Long cold proof (48h+) is needed to breakdown sugars for that intense char."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "60-65% drives the char. It needs to be dry enough to crisp rapidly, but wet enough to undergo the 48h ferment without drying out in the fridge.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "But needs cold fermentation (Retarding) to be authentic." },
+            biga: { suitable: false, notes: "Not typical." },
+            poolish: { suitable: false, notes: "Not typical." }
+        },
+        whatIf: [
+            {
+                scenario: "It burns instantly?",
+                outcome: "Oven too hot or sugar in dough.",
+                solution: "Authentic New Haven has NO sugar. If baking at 600°F+, remove sugar."
+            },
+            {
+                scenario: "Soggy center?",
+                outcome: "Clams/Toppings released water.",
+                solution: "Shuck clams last minute. Bake longer. Char is good."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "NYC Slice",
+                difference: "New Haven is drier, thinner, oblong, and cooked darker (Charred)."
+            }
+        ],
+        proTips: [
+            "Pecorino Romano: The 'salt' of the pizza. Apply liberally.",
+            "Don't worry about shape: If it's round, it's not Apizza."
+        ]
     }
 };
 
@@ -401,9 +836,79 @@ const brazilianGasDeck: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Associação Pizzarias Unidas" }],
     images: {
-        hero: "/images/styles/paulistana_hero.jpg",
-        dough: "/images/styles/paulistana_dough.jpg",
-        crumb: "/images/styles/paulistana_crumb.jpg"
+        hero: "/images/styles/pizza-tonda-romana.png",
+        dough: "/images/styles/pizza-tonda-romana.png",
+        crumb: "/images/styles/pizza-tonda-romana.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "Structure First",
+                explanation: "Because toppings are heavy (Catupiry, Chicken, etc), the dough must be rolled slightly thicker than Neapolitan to support the weight."
+            },
+            {
+                tip: "The Catupiry Rim",
+                explanation: "For 'Borda Recheada', pipe a thick line of chilled Catupiry on the edge, fold the dough over, and seal perfectly."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Bottom is white/soft",
+                result: "Toppings insulated the dough too much.",
+                correction: "Bake lower and slower (300°C) to allow heat to penetrate before the bottom burns."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "Neapolitan",
+                difference: "Paulistana is crispier, sturdier, and designed for heavy toppings. Neapolitan is delicate.",
+                why_choose_this: "Choose Paulistana when you want a meal-heavy pizza."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Can I use Cream Cheese?",
+                answer: "It's not the same. Catupiry has gums that prevent it from splitting at high heat. Cream cheese often turns into oil.",
+                context: "Ingredient Science"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Authentic",
+                notes: "Most pizzerias use a simple direct dough fermented for 24h."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "55-60% is conservative because this pizza is heavy. 1.2kg of toppings on a 35cm disc requires structural rigidity that high hydration cannot provide.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "The industrial standard in SP." },
+            biga: { suitable: true, notes: "Used in high-end 'Gourmet' pizzerias." },
+            poolish: { suitable: false, notes: "Too weak for the topping load." }
+        },
+        whatIf: [
+            {
+                scenario: "Soggy disaster (Pizza Soup)?",
+                outcome: "Vegetables/Chicken released water.",
+                solution: "Pre-cook everything. Sauté the onions, roast the peppers."
+            },
+            {
+                scenario: "Crust is tough?",
+                outcome: "Flour too strong or not enough oil.",
+                solution: "Soybean oil is traditional and tenderizes heavily."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Neapolitan",
+                difference: "Paulistana is a meal on a plate. Neapolitan is a light snack."
+            }
+        ],
+        proTips: [
+            "The Oregano Finish: Brazilian pizza puts oregano ON TOP of the cheese, not the sauce.",
+            "Knife and Fork: Serve it boiling hot. It cannot be hand-held."
+        ]
     }
 };
 
@@ -460,9 +965,79 @@ const nycBagel: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Bagel Union Regulations" }],
     images: {
-        hero: "/images/styles/bagel_hero.jpg",
-        dough: "/images/styles/bagel_dough.jpg",
-        crumb: "/images/styles/bagel_crumb.jpg"
+        hero: "/images/styles/ciabatta.png",
+        dough: "/images/styles/ciabatta.png",
+        crumb: "/images/styles/ciabatta.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "Alkaline Boil",
+                explanation: "Add Barley Malt Syrup and Baking Soda (or Lye for pros) to the water. This spikes the pH for intense Maillard browning."
+            },
+            {
+                tip: "Cold Proof Shaped",
+                explanation: "Shape the bagels then retard them in the fridge. Boiling cold bagels helps them hold shape."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Bagels wrinkle after baking",
+                result: "Boiled too long or proofed too long before boiling.",
+                correction: "Keep boil to 30-60 seconds per side."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "Montreal Bagel",
+                difference: "NYC is salted + malt. Montreal is no salt + honey/sugar water (sweeter) and wood fired.",
+                why_choose_this: "Choose NYC for the savory chew and sandwich capability."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Why Barley Malt?",
+                answer: "Enzymatic actvity and specific flavor. Sugar is just sweet; Malt is savory, sweet, and improves crust color.",
+                context: "Bagel Tradition"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Authentic",
+                notes: "Crucial for the micro-blisters and flavor complexity."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "50-55% is stiff. Extremely stiff. This tightness + boiling is what restricts expansion, creating the dense, chewy texture. If you hydrate to 65%, you just made a circle bread roll.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "With stiff starter or sponge." },
+            biga: { suitable: true, notes: "Excellent for locking in flavor in a stiff dough." },
+            poolish: { suitable: true, notes: "Commonly used as the 'Sponge' phase." }
+        },
+        whatIf: [
+            {
+                scenario: "Bagels look wrinkled like prunes?",
+                outcome: "Boiled too long or overproofed.",
+                solution: "Boil 30-60 secs. Proof less. They should sink slightly then float."
+            },
+            {
+                scenario: "No shine?",
+                outcome: "Water wasn't alkaline.",
+                solution: "Add Barley Malt Syrup and Baking Soda to the boil water."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Montreal Bagel",
+                difference: "NYC is saltier, bigger, and baked in standard ovens. Montreal is honey-water boiled and wood-fired."
+            }
+        ],
+        proTips: [
+            "Ice Cold Ferment: Shape, put on boards, and fridge for 24h. Boil directly from fridge.",
+            "Malt Syrup: Don't use sugar. The flavor is non-negotiable."
+        ]
     }
 };
 
@@ -518,9 +1093,79 @@ const grandmaPizza: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Pizza History (Long Island)" }],
     images: {
-        hero: "/images/styles/grandma_hero.jpg",
-        dough: "/images/styles/grandma_dough.jpg",
-        crumb: "/images/styles/grandma_crumb.jpg"
+        hero: "/images/styles/pizza-teglia-romana.png",
+        dough: "/images/styles/pizza-teglia-romana.png",
+        crumb: "/images/styles/pizza-teglia-romana.png"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "Fried Bottom",
+                explanation: "Use way more olive oil in the pan than you think. It should essentially fry the crust bottom."
+            },
+            {
+                tip: "Short Proof",
+                explanation: "Don't let it rise too much in the pan. It should be relatively dense and thin, not foccacia-like."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Dough springs back",
+                result: "Gluten is tight.",
+                correction: "Stretch, wait 10 mins, stretch again. Don't fight the gluten."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "Sicilian",
+                difference: "Grandma is thin, short proof, domestic. Sicilian is thick, long proof, bakery style.",
+                why_choose_this: "Choose Grandma for a quick weeknight sheet pan family meal."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Why 'Grandma'?",
+                answer: "It mimics the home cooking of Italian immigrants who didn't have pizza ovens, just standard sheet pans and home stoves.",
+                context: "History"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Authentic",
+                notes: "Originally a 'making it for dinner tonight' dough."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "60-65% ensures a crisp bottom (fried in pan oil) but a dense encough crumb to support toppings. Too airy, and it loses the 'homestyle' rusticity.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "The definition of Grandma style. Mix, short rise, bake." },
+            biga: { suitable: false, notes: "Too fancy." },
+            poolish: { suitable: false, notes: "Too fancy." }
+        },
+        whatIf: [
+            {
+                scenario: "Sticks to the pan?",
+                outcome: "Not enough oil.",
+                solution: "The pan should basically have a shallow pool of olive oil."
+            },
+            {
+                scenario: "Soggy?",
+                outcome: "Bake it lower.",
+                solution: "Place pan on bottom rack for 10 mins to sear the underside."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Sicilian",
+                difference: "Grandma is thin and quick. Sicilian is thick and sponge-like."
+            }
+        ],
+        proTips: [
+            "Garlic in the Oil: Infuse the pan oil with garlic for that signature smell.",
+            "Don't crimp the edges: Let the cheese melt over the side."
+        ]
     }
 };
 
@@ -582,6 +1227,76 @@ const chicagoTavern: DoughStyleDefinition = {
         hero: "/images/styles/chicago_hero.jpg",
         dough: "/images/styles/chicago_dough.jpg",
         crumb: "/images/styles/chicago_crumb.jpg"
+    },
+    education: {
+        pro_tips: [
+            {
+                tip: "The Cure",
+                explanation: "After rolling, let the skin sit uncovered in the fridge for 24h. This dries it out to create the cracker texture."
+            },
+            {
+                tip: "Dock Aggressively",
+                explanation: "Thousands of holes are needed to prevent separation of layers (pita effect)."
+            }
+        ],
+        what_if: [
+            {
+                scenario: "Crust is chewy not crisp",
+                result: "Hydration too high or didn't cure enough.",
+                correction: "Drop hydration to 45% and cure longer."
+            }
+        ],
+        comparative_analysis: [
+            {
+                target_style: "NYC Slice",
+                difference: "Tavern is unleavened (dead yeast effect), cracker thin. NYC is a bread dough.",
+                why_choose_this: "Choose Tavern style for a snackable, light party food."
+            }
+        ],
+        q_and_a: [
+            {
+                question: "Party Cut?",
+                answer: "Essential. Small squares allow you to hold a beer in one hand and a slice in the other.",
+                context: "Tavern Culture"
+            }
+        ],
+        fermentation_methods: [
+            {
+                method: "Direct",
+                suitability: "Possible",
+                notes: "Fermentation is secondary to the drying/curing process."
+            }
+        ]
+    },
+    deepDive: {
+        hydrationLogic: "45-50%. Extremely dry. We need to prevent steam. Steam creates puff. Puff creates soft. We want a dead, flat, cracker.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "Often used with a 'dead yeast' approach (long cure)." },
+            biga: { suitable: false, notes: "We don't want volume." },
+            poolish: { suitable: false, notes: "We don't want extensibility." }
+        },
+        whatIf: [
+            {
+                scenario: "It puffed up like a pita?",
+                outcome: "You didn't dock it.",
+                solution: "Use a docker roller. Perforate the entire surface."
+            },
+            {
+                scenario: "Chewy?",
+                outcome: "Too much water or didn't cure.",
+                solution: "Let the rolled skins sit in the fridge uncovered for 24h to dehydrate."
+            }
+        ],
+        comparisons: [
+            {
+                vsStyle: "Deep Dish",
+                difference: "Locals eat Tavern. Tourists eat Deep Dish."
+            }
+        ],
+        proTips: [
+            "The Sheeter: Pros use a machine to get it paper thin. Use a rolling pin aggressively.",
+            "Cornmeal dust: Roll in cornmeal for extra crunch and release."
+        ]
     }
 };
 

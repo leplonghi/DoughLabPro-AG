@@ -34,9 +34,32 @@ export const BriocheATete = defineDoughStyle({
         "Under-proofing results in a dense, heavy crumb."
     ],
     tags: ["bread", "french", "enriched", "butter", "dessert"],
+    images: {
+        hero: "/images/styles/pane-toscano.png",
+        dough: "/images/styles/pane-toscano.png",
+        crumb: "/images/styles/pane-toscano.png"
+    },
     references: [
         { source: "The Art of French Baking", url: "" }
-    ]
+    ],
+    education: {
+        pro_tips: [
+            { tip: "Cold Ingredients", explanation: "Everything must be cold. If butter melts during mixing, the dough becomes greasy and won't rise properly." },
+            { tip: "Windowpane First", explanation: "Develop the gluten fully with eggs/flour BEFORE adding butter. Fat coats protein, stopping development." }
+        ],
+        what_if: [
+            { scenario: "Dough is an oily soup", result: "Emulsion broke (got too hot).", correction: "Chill bowl immediately. If that fails, it's a loss." }
+        ],
+        comparative_analysis: [
+            { target_style: "Challah", difference: "Brioche is dairy-rich (Butter/Milk). Challah is pareve (Oil/Water).", why_choose_this: "Choose Brioche for decadence." }
+        ],
+        q_and_a: [
+            { question: "Why the 'Top Knot'?", answer: "Tradition. It prevents the center from rising too high and provides a textural contrast.", context: "French History" }
+        ],
+        fermentation_methods: [
+            { method: "Direct", suitability: "Ideal", notes: "Often uses a sponge/poolish to help yeast start in the fat-heavy environment." }
+        ]
+    }
 });
 
 export const Challah = defineDoughStyle({
@@ -68,7 +91,25 @@ export const Challah = defineDoughStyle({
         "Double egg wash (once before proof, once before bake) for profound shine.",
         "Braiding dictates the final shape and structure."
     ],
-    tags: ["bread", "jewish", "braided", "dairy-free", "ceremonial"]
+    tags: ["bread", "jewish", "braided", "dairy-free", "ceremonial"],
+    education: {
+        pro_tips: [
+            { tip: "Double Egg Wash", explanation: "Brush once after braiding, and again right before baking. This fills the gaps and creates a lacquer-like shine." },
+            { tip: "The 3-Strand Rule", explanation: "Start braiding from the MIDDLE, not the end. It keeps the loaf symmetrical." }
+        ],
+        what_if: [
+            { scenario: "Braid tears during proof", result: "Braided too tightly.", correction: "Braid loosely; the oven spring will fill the gaps." }
+        ],
+        comparative_analysis: [
+            { target_style: "Brioche", difference: "Challah uses oil (Pareve). Brioche uses butter (Dairy).", why_choose_this: "Choose Challah for meat meals (Kosher rules)." }
+        ],
+        q_and_a: [
+            { question: "Why 'Pareve'?", answer: "To comply with Kosher laws forbidding mixing dairy and meat. Challah is the Sabbath bread for meat dinners.", context: "Jewish Tradition" }
+        ],
+        fermentation_methods: [
+            { method: "Direct", suitability: "Authentic", notes: "Standard direct dough. Sourdough versions (Water Challah) exist but are niche." }
+        ]
+    }
 });
 
 export const BurgerBun = defineDoughStyle({
@@ -100,7 +141,25 @@ export const BurgerBun = defineDoughStyle({
         "Use a Tangzhong (water roux) for extended softness.",
         "Sesame seeds are traditional but optional."
     ],
-    tags: ["bread", "american", "soft", "sandwich"]
+    tags: ["bread", "american", "soft", "sandwich"],
+    education: {
+        pro_tips: [
+            { tip: "Flatten the Ball", explanation: "Don't just round them. Flattening gently before proofing ensures a wide bun for the patty, rather than a tennis ball." },
+            { tip: "Steam is the Enemy", explanation: "Do NOT use steam. You want a soft, thin skin, not a crust." }
+        ],
+        what_if: [
+            { scenario: "Bun splits horizontally", result: "Underproofed.", correction: "Let it proof until it jiggles like jelly." }
+        ],
+        comparative_analysis: [
+            { target_style: "Potato Bun", difference: "Potato starch holds more water, staying soft longer. Classic buns are wheat-only.", why_choose_this: "Choose Classic for structure." }
+        ],
+        q_and_a: [
+            { question: "Why 80g?", answer: "The Golden Ratio. 80-90g bun matches a standard 4-6oz meat patty perfectly.", context: "Burger Science" }
+        ],
+        fermentation_methods: [
+            { method: "Direct", suitability: "Ideal", notes: "Fast and consistent. Sometimes uses Tangzhong for softness." }
+        ]
+    }
 });
 
 export const Shokupan = defineDoughStyle({
@@ -133,7 +192,25 @@ export const Shokupan = defineDoughStyle({
         "Shaping involves rolling up logs and placing them side-by-side in the tin.",
         "Produces 'cotton-like' shreddable crumb."
     ],
-    tags: ["bread", "japanese", "tangzhong", "soft", "sandwich"]
+    tags: ["bread", "japanese", "tangzhong", "soft", "sandwich"],
+    education: {
+        pro_tips: [
+            { tip: "The 65°C Magic", explanation: "Cook the flour/water roux (Tangzhong) exactly to 65°C. This maximizes starch gelatinization without degrading the starch." },
+            { tip: "Lid On vs Off", explanation: "Lid ON = Square (Pullman/Sandwich). Lid OFF = Mountain (Rustic top)." }
+        ],
+        what_if: [
+            { scenario: "Dough didn't rise", result: "Tangzhong was too hot when added.", correction: "Cool Tangzhong to room temp before adding yeast." }
+        ],
+        comparative_analysis: [
+            { target_style: "Western Sandwich Bread", difference: "Shokupan uses cooked flour (Tangzhong) for superior moisture retention.", why_choose_this: "Choose Shokupan for the softest possible texture." }
+        ],
+        q_and_a: [
+            { question: "Yudane vs Tangzhong?", answer: "Yudane uses boiling water (no cooking). Tangzhong uses 65°C cooking. Both achieve gelatinization.", context: "Asian Baking" }
+        ],
+        fermentation_methods: [
+            { method: "Direct", suitability: "Authentic", notes: "Base is direct, but modified by the scalded flour paste." }
+        ]
+    }
 });
 
 export const Panettone = defineDoughStyle({
@@ -174,5 +251,23 @@ export const Panettone = defineDoughStyle({
     tags: ["bread", "italian", "christmas", "sourdough", "sweet"],
     references: [
         { source: "Panettone Disciplinare (Italy)", url: "" }
-    ]
+    ],
+    education: {
+        pro_tips: [
+            { tip: "The Hang", explanation: "Gravity is the enemy. You MUST hang Panettone upside down for 12h immediately after baking, or it collapses under its own butter weight." },
+            { tip: "Tripling Rule", explanation: "The First Dough (Primo Impasto) MUST triple in volume. If it doesn't, do not proceed to Second Dough. Wait." }
+        ],
+        what_if: [
+            { scenario: "Taste is Sour", result: "Starter was too acetic.", correction: "Wash the starter (Bagnetto) in sugar water to remove acidity before building." }
+        ],
+        comparative_analysis: [
+            { target_style: "Pandoro", difference: "Pandoro contains no fruit and is shaped like a star. Panettone has fruit and is domed.", why_choose_this: "Choose Panettone for the fruit/spice complexity." }
+        ],
+        q_and_a: [
+            { question: "Commercial Yeast?", answer: "Forbidden. True Panettone uses ONLY 'Pasta Madre' (stiff sourdough) for leavening and preservation.", context: "Italian Law" }
+        ],
+        fermentation_methods: [
+            { method: "Sourdough", suitability: "Authentic", notes: "The most complex sourdough challenge in the world." }
+        ]
+    }
 });

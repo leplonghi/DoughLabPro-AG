@@ -73,4 +73,5 @@ export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
     [RecipeStyle.NY_STYLE]: 'nyc_thin',
     [RecipeStyle.SICILIAN]: 'siciliana',
     [RecipeStyle.CHICAGO]: 'chicago_deep_dish',
+    [RecipeStyle.PRETZEL]: 'pretzel',
 };

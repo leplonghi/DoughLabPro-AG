@@ -21,7 +21,7 @@ const LearnPage = React.lazy(() => import('@/pages/learn/LearnPage'));
 const ReferencesPage = React.lazy(() => import('@/pages/ReferencesPage'));
 const MyLabPage = React.lazy(() => import('@/pages/MyLabPage'));
 const OvenAnalysisPage = React.lazy(() => import('@/pages/OvenAnalysisPage'));
-const DoughStylesPage = React.lazy(() => import('@/pages/styles/DoughStylesPage'));
+const DoughStylesPage = React.lazy(() => import('@/pages/StylesLibrary').then(module => ({ default: module.StylesLibraryPage })));
 const StyleDetailPage = React.lazy(() => import('@/pages/styles/StyleDetailPage').then(module => ({ default: module.StyleDetailPage })));
 const SettingsPage = React.lazy(() => import('@/pages/SettingsPage'));
 const LanguagePage = React.lazy(() => import('@/pages/settings/LanguagePage'));
@@ -102,6 +102,7 @@ const CommunityCreatePostPage = React.lazy(() => import('@/community/pages/Commu
 const ProActivatedPage = React.lazy(() => import('@/pages/pro/ProActivatedPage'));
 const DoughbotPage = React.lazy(() => import('@/pages/DoughbotPage'));
 const ToolsPage = React.lazy(() => import('@/pages/ToolsPage'));
+const HydrationConverterPage = React.lazy(() => import('@/pages/HydrationConverterPage'));
 
 // --- Placeholder Pages ---
 function HelpPage() {
@@ -366,6 +367,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protectWithFeature(<OvenAnalysisPage />, 'tools.oven_analysis');
             case 'tools/doughbot':
                 return protectWithFeature(<DoughbotPage />, 'tools.doughbot');
+            case 'tools/hydration-converter':
+                return protect(<HydrationConverterPage />);
 
             case 'calculator':
                 return protect(

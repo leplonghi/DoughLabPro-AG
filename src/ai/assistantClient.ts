@@ -263,3 +263,66 @@ export async function generateStyleFromDescription(description: string): Promise
     throw new Error("Failed to generate style. Please try a different description.");
   }
 }
+
+// --- DOUGHBOT DIAGNOSTIC ---
+
+import { DoughbotResult } from '../types/doughbot';
+
+export async function diagnoseDoughIssue(
+  problem: string,
+  description: string,
+  userContext: string
+): Promise<DoughbotResult> {
+  const systemInstruction = `You are Doughbot, a specialized diagnostic AI for pizza and bread dough.
+    Your task is to analyze a user's dough problem and provide structured, actionable solutions.
+    
+    Input:
+    1. Problem Category (e.g. "Sticky dough", "Flat loaf")
+    2. Detailed Description
+    3. User Context (Dough config, environment, etc.)
+    
+    Output:
+    A valid JSON object adhering to this schema:
+    {
+      "causes": ["List of 1-3 probable causes"],
+      "solutions": ["List of 1-3 actionable solutions"],
+      "ranges": {
+        "hydration": Number (optional recommended hydration if relevant),
+        "fermentation": "String (optional advice, e.g. 'Shorten bulk by 30m')",
+        "flour": "String (optional flour advice)"
+      }
+    }
+    
+    Rules:
+    - Be concise and scientific.
+    - If hydration is the likely culprit, suggest a specific safer % in "ranges.hydration".
+    - Do NOT include markdown formatting in the JSON output.
+    `;
+
+  const userPrompt = `
+    Problem: ${problem}
+    Description: ${description}
+    Context: ${userContext}
+  `;
+
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-pro-preview',
+      contents: userPrompt,
+      config: {
+        systemInstruction,
+        responseMimeType: 'application/json',
+      }
+    });
+
+    const text = response.text;
+    if (!text) throw new Error("Empty diagnostic response");
+
+    const result = JSON.parse(text) as DoughbotResult;
+    return result;
+
+  } catch (error) {
+    console.error('[Doughbot] Error:', error);
+    throw new Error("Failed to diagnose the issue. Please try again.");
+  }
+}

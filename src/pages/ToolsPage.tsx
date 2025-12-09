@@ -106,12 +106,11 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         },
         {
             id: 'hydration-converter',
-            title: 'Hydration Converter',
-            description: 'Coming Soon: Convert recipes between different hydration levels automatically.',
+            title: 'Hydration Adjuster',
+            description: 'Calculate exactly how much water or flour to add to correct your dough\'s hydration.',
             isPro: false,
-            route: 'tools',
+            route: 'tools/hydration-converter',
             icon: <BeakerIcon />,
-            comingSoon: true,
             featureKey: undefined
         }
     ];

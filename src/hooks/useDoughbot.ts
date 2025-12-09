@@ -1,35 +1,38 @@
 import { useState } from "react";
 import { DoughbotResult } from "../types/doughbot";
+import { diagnoseDoughIssue } from "@/ai/assistantClient";
 
 export const useDoughbot = () => {
     const [problem, setProblem] = useState("");
     const [description, setDescription] = useState("");
     const [result, setResult] = useState<DoughbotResult | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const validateInputs = () => {
         return problem.trim().length > 0 || description.trim().length > 0;
     };
 
-    const diagnose = () => {
+    const diagnose = async (context: string = "") => {
         if (!validateInputs()) return;
 
-        // Placeholder logic; real engine will replace it
-        // Simulating a result for now to show the placeholder UI if needed, 
-        // or just keeping it null as per current behavior which shows static placeholder
-        // But the task says "Substituir placeholder atual por componente novo" and "diagnose()".
-        // The current page just logs to console.
-        // Let's set a dummy result so we can conditionally render the results component if we wanted to,
-        // but the current UI shows the placeholder statically. 
-        // However, the prompt says "Substituir placeholder atual por componente novo".
+        setIsLoading(true);
+        setError(null);
 
-        setResult({
-            causes: ["Gluten underdeveloped"],
-            solutions: ["Extend autolyse by 20–30 minutes"],
-            ranges: { hydration: 65 },
-        });
+        try {
+            const diagnosis = await diagnoseDoughIssue(problem, description, context);
+            setResult(diagnosis);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "An error occurred");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const reset = () => setResult(null);
+    const reset = () => {
+        setResult(null);
+        setError(null);
+    };
 
     return {
         problem,
@@ -37,6 +40,8 @@ export const useDoughbot = () => {
         description,
         setDescription,
         result,
+        isLoading,
+        error,
         diagnose,
         validateInputs,
         reset,

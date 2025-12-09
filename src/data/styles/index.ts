@@ -1,13 +1,10 @@
-import { italyStyles } from './regions/italy';
-import { americasStyles } from './regions/americas';
-import { europeStyles } from './regions/europe';
-import { globalStyles } from './regions/global';
+import { italianStyles } from './regions/italy';
+// No future importaremos americasStyles, etc.
 
-export const ALL_LOCAL_STYLES = [
-  ...italyStyles,
-  ...americasStyles,
-  ...europeStyles,
-  ...globalStyles,
-];
+export const getAllStyles = () => {
+    return [...italianStyles];
+};
 
-export { italyStyles, americasStyles, europeStyles, globalStyles };
+export const getStyleById = (id: string) => {
+    return getAllStyles().find(s => s.id === id);
+};

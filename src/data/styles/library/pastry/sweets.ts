@@ -37,7 +37,25 @@ export const NYChocolateChip = defineDoughStyle({
     tags: ["cookie", "american", "chocolate", "gooey", "sweet"],
     references: [
         { source: "Levain Bakery", url: "" }
-    ]
+    ],
+    education: {
+        pro_tips: [
+            { tip: "Do Not Cream", explanation: "Mix butter/sugar briefly. Creaming adds air, making a 'cakey' cookie. You want dense and fudgy." },
+            { tip: "The 12h Rest", explanation: "Hydrates the flour completely and solidifies the butter, preventing spread." }
+        ],
+        what_if: [
+            { scenario: "Cookie is flat", result: "Butter was too warm or chemical leavener expired.", correction: "Use ice cold butter chunks and chill dough before baking." }
+        ],
+        comparative_analysis: [
+            { target_style: "Toll House", difference: "NY Style uses cold butter, cake flour/cornstarch, and is huge. Toll House is creamed and smaller.", why_choose_this: "Choose NY Style for a gooey center." }
+        ],
+        q_and_a: [
+            { question: "Why Cornstarch?", answer: "It 'cuts' the protein of the flour, making the cookie tender despite the massive size.", context: "Cookie Chemistry" }
+        ],
+        fermentation_methods: [
+            { method: "Direct", suitability: "Ideal", notes: "Chemical leavening (Soda/Powder) replaces yeast." }
+        ]
+    }
 });
 
 export const FrenchCroissant = defineDoughStyle({
@@ -79,7 +97,25 @@ export const FrenchCroissant = defineDoughStyle({
     tags: ["pastry", "french", "laminated", "breakfast", "butter"],
     references: [
         { source: "Viennoiserie Disciplinare", url: "" }
-    ]
+    ],
+    education: {
+        pro_tips: [
+            { tip: "Plasticity Match", explanation: "Butter and dough usually need to be the same consistency. If butter is harder, it shatters. If softer, it squirts out." },
+            { tip: "The Wobble", explanation: "A fully proofed croissant should wobble like jelly when the tray is shaken. If it's firm, wait." }
+        ],
+        what_if: [
+            { scenario: "Pool of butter in oven", result: "Proofed too hot (>26°C) or underproofed.", correction: "Ideally proof at 24°C-25°C." }
+        ],
+        comparative_analysis: [
+            { target_style: "Puff Pastry", difference: "Croissant has yeast (fermented). Puff Pastry is mechanical lift only.", why_choose_this: "Choose Croissant for the airy, honeycomb interior." }
+        ],
+        q_and_a: [
+            { question: "How many layers?", answer: "Modern standard is often 27 layers (3 single turns). More layers = finer crumb but less open honeycomb.", context: "Lamination Math" }
+        ],
+        fermentation_methods: [
+            { method: "Poolish", suitability: "Ideal", notes: "A poolish preferment adds extensibility to the dough, making rolling easier." }
+        ]
+    }
 });
 
 export const CinnamonRoll = defineDoughStyle({
@@ -113,6 +149,24 @@ export const CinnamonRoll = defineDoughStyle({
         "Tangzhong method keeps them soft for days."
     ],
     tags: ["pastry", "american", "sweet", "breakfast", "cinnamon"],
+    education: {
+        pro_tips: [
+            { tip: "Dental Floss Cut", explanation: "Use unflavored floss to cut the log. Knives squash the spiral; floss cuts cleanly from the outside in." },
+            { tip: "The Cream Hack", explanation: "Pour warm heavy cream over the rolls right before baking for Cinnabon-level gooeyness." }
+        ],
+        what_if: [
+            { scenario: "Centers popped up", result: "Rolled too tightly.", correction: "Roll the log loosely to allow expansion." }
+        ],
+        comparative_analysis: [
+            { target_style: "Sticky Bun", difference: "Sticky buns bake on top of caramel/nuts and are flipped. Cinnamon rolls are glazed on top.", why_choose_this: "Choose Cinnamon Rolls for cream cheese frosting lovers." }
+        ],
+        q_and_a: [
+            { question: "Why Bread Flour?", answer: "You need the chewier texture to hold the heavy filling. AP flour makes them too cakey.", context: "Texture Balance" }
+        ],
+        fermentation_methods: [
+            { method: "Direct", suitability: "Authentic", notes: "Enriched direct dough is standard." }
+        ]
+    }
 });
 
 export const FudgyBrownie = defineDoughStyle({
@@ -147,5 +201,23 @@ export const FudgyBrownie = defineDoughStyle({
     tags: ["sweet", "chocolate", "dessert", "american"],
     references: [
         { source: "Palmer House Hotel", url: "" }
-    ]
+    ],
+    education: {
+        pro_tips: [
+            { tip: "The Shiny Crust", explanation: "Whip eggs and sugar vigorously to the 'ribbon stage' before adding chocolate/flour. This creates the meringue-like skin." },
+            { tip: "Ice Bath", explanation: "Shocking the baked brownies in an ice bath halts cooking immediately, ensuring the center stays fudgy." }
+        ],
+        what_if: [
+            { scenario: "Cakey texture", result: "Too much flour or overbaked.", correction: "Reduce flour, increase fat/sugar ratios." }
+        ],
+        comparative_analysis: [
+            { target_style: "Chocolate Cake", difference: "Brownies have no chemical leavening and much higher fat/sugar density.", why_choose_this: "Choose Brownie for density." }
+        ],
+        q_and_a: [
+            { question: "Cocoa or Chocolate?", answer: "Both. Melted chocolate gives fudge texture; Cocoa powder gives deep flavor notes.", context: "Flavor Profiling" }
+        ],
+        fermentation_methods: [
+            { method: "Direct", suitability: "Not Recommended", notes: "No fermentation. It's a batter." }
+        ]
+    }
 });

@@ -14,6 +14,7 @@ type PartialStyleDefinition = Partial<Omit<DoughStyleDefinition, 'id' | 'technic
     technicalProfile: Partial<DoughStyleDefinition['technicalProfile']> & {
         hydration: [number, number]; // Hydration is mandatory
     };
+    education?: DoughStyleDefinition['education'];
 };
 
 /**
@@ -82,7 +83,8 @@ export const defineDoughStyle = (def: PartialStyleDefinition): DoughStyleDefinit
             author: r.author,
             year: r.year
         })) || [],
-        source: 'official'
+        source: 'official',
+        education: def.education
     };
 };
 

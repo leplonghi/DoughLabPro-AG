@@ -1,4 +1,5 @@
 
+// ... (previous imports and types remain unchanged)
 
 // ========================================================
 // 1. HELPER TYPES
@@ -139,12 +140,37 @@ export interface StyleTechnicalProfile {
     flourStrength?: string;
     preferment?: string;
 
+    rheology?: {
+        elasticity: 'Very Low' | 'Low' | 'Medium' | 'High' | 'Very High';
+        extensibility: 'Very Low' | 'Low' | 'Medium' | 'High' | 'Very High';
+        tenacity: 'Very Low' | 'Low' | 'Medium' | 'High' | 'Very High';
+        description?: string;
+    };
+    texture?: {
+        crust: string; // e.g. "Eggshell thin"
+        crumb: string; // e.g. "Melting, moist"
+    };
+    flourProfile?: { // New deep flour specs
+        type: string; // e.g. "00", "T65"
+        protein: string;
+        w: string; // W Index
+        pl: string; // P/L Ratio
+        elastisity?: string; // Optional specific note
+    };
+
     fermentationSteps: string[]; // Action-oriented steps
 
     ovenTemp: [number, number]; // Celsius
 
     recommendedUse: string[];
     difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
+
+    // Level 2 Addition: Experiment
+    experiment?: {
+        name: string;
+        description: string;
+        technique: string;
+    };
 
     // Legacy/Optional fields for backward compatibility or specific types
     prefermentDescription?: string;
@@ -161,6 +187,85 @@ export interface StyleTechnicalProfile {
 // ========================================================
 // 3. MAIN DEFINITION
 // ========================================================
+
+// Level 2.5: Advanced Technical Specifications
+export interface AdvancedProfile {
+    // The Science of Flour (Rheology)
+    flourRheology: {
+        w_index: string; // e.g. "W280-320"
+        pl_ratio: string; // P/L (Elasticity/Extensibility Ratio)
+        absorption_capacity: string; // e.g. "High (65%+)"
+        protein_type: string; // e.g. "Soft Wheat, low damaged starch"
+        science_explanation: string; // "Why this flour?"
+    };
+
+    // The Science of Heat (Thermodynamics)
+    thermalProfile: {
+        oven_type: string;
+        heat_distribution: string; // e.g. "High conduction (floor), High radiation (dome)"
+        crust_development: string; // e.g. "Leopard spotting due to rapid gelatinization"
+        crumb_structure: string; // e.g. "Large alveoli, thin walls"
+    };
+
+    // The Chemistry of Fermentation
+    fermentationScience: {
+        yeast_activity: string; // e.g. "Slow due to cold retard"
+        ph_target: string; // e.g. "pH 5.5 - 5.8"
+        organic_acids: string; // e.g. "Lactic dominant over Acetic"
+        enzymatic_activity: string; // e.g. "High protease activity during autolyse"
+    };
+}
+
+// New Rich Content Interface (Level 3 - Educational)
+export interface EducationalContent {
+    pro_tips: {
+        tip: string;
+        explanation: string;
+    }[];
+
+    what_if: {
+        scenario: string; // e.g. "Hydration is increased to 70%"
+        result: string; // e.g. "Dough becomes too sticky to stretch"
+        correction: string; // e.g. "Use cold water or reduce autolyse"
+    }[];
+
+    comparative_analysis: {
+        target_style: string; // e.g. "Roman Teglia"
+        difference: string; // e.g. "Thicker, uses pan instead of hearth"
+        why_choose_this: string; // e.g. "Better for toppings density"
+    }[];
+
+    q_and_a: {
+        question: string;
+        answer: string;
+        context?: string;
+    }[];
+
+    fermentation_methods: {
+        method: 'Direct' | 'Biga' | 'Poolish' | 'Sourdough' | 'Hybrid';
+        suitability: 'Ideal' | 'Possible' | 'Not Recommended' | 'Historical' | 'Authentic';
+        notes: string;
+    }[];
+}
+
+export interface DeepDive {
+    hydrationLogic: string;
+    methodSuitability: {
+        direct: { suitable: boolean; notes: string };
+        biga: { suitable: boolean; notes: string };
+        poolish: { suitable: boolean; notes: string };
+    };
+    whatIf: Array<{
+        scenario: string;
+        outcome: string;
+        solution: string;
+    }>;
+    comparisons: Array<{
+        vsStyle: string;
+        difference: string;
+    }>;
+    proTips: string[];
+}
 
 export interface DoughStyleDefinition {
     id: string;
@@ -187,6 +292,19 @@ export interface DoughStyleDefinition {
 
     technicalProfile: StyleTechnicalProfile;
 
+    // Level 2.5: The Scientific Core
+    scientificProfile?: AdvancedProfile;
+
+    // Level 3: Educational & Deep Dive Content
+    education?: EducationalContent;
+    deepDive?: DeepDive;
+
+    // App Mapping (MyLab)
+    experimentSuggestions?: string[]; // e.g. "Try pushing hydration to 75%..."
+
+    // Educational Links
+    learnLinkTags?: string[]; // e.g. ["rheology-101", "maillard-reaction"]
+
     watchouts?: string[]; // Replaces risks
     notes: string[];
     references: Reference[];
@@ -197,7 +315,8 @@ export interface DoughStyleDefinition {
     releaseDate: string;
 
     images?: StyleImages;
-    relatedLearn?: string[];
+    // Legacy mapping (can be deprecated eventually)
+    relatedLearn?: string[]; // Keeping for now, likely mapped to learnLinkTags
 
     // Legacy fields for backward compatibility
     risks?: string[];

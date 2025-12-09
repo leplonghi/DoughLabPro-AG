@@ -1,416 +1,985 @@
-import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
+import { DoughStyle } from '@/types/dough';
 
-const neapolitan: DoughStyleDefinition = {
-    id: "neapolitan_stg_classic",
-    name: "Pizza Napoletana STG",
-    category: "pizza",
-    recipeStyle: RecipeStyle.NEAPOLITAN,
-    origin: {
-        country: "Italy",
-        region: "Campania (Napoli)",
-        period: "18th Century (Codified 1984)"
+export const italianStyles: DoughStyle[] = [
+    {
+        id: "pizza-napoletana",
+        name: "Pizza Napoletana STG",
+        region: 'Italy',
+        subRegion: 'Naples, Campania',
+        category: 'Pizza',
+        tags: ["High Heat", "Direct Method", "STG", "Wood Fired"],
+        description: "The gold standard of pizza. Soft, pliable ('a libretto'), with a distinctively airy cornicione and leoparding checks. Protected by UNESCO.",
+        history_context: "Defined by the 'Associazione Verace Pizza Napoletana' (AVPN), this style dates back to the 18th century. It was rigorously codified to protect the tradition against industrialization. True Neapolitan pizza is an artisanal product that requires specific hand stretching ('schiaffo') and a wood-fired oven.",
+        base_formula: [
+            { name: "Flour (Type 00)", percentage: 100 },
+            { name: "Water", percentage: 60 },
+            { name: "Salt", percentage: 2.8 },
+            { name: "Fresh Yeast", percentage: 0.15 }
+        ],
+        specs: {
+            hydration: { ideal: 60, min: 57, max: 62.5 },
+            ovenTemp: { ideal: 450, min: 430, max: 485 },
+            fermentationTime: "24h",
+            difficulty: 'Expert'
+        },
+        scientificProfile: {
+            flourRheology: "Requires '00' flour with W280-320. The key is strict P/L control (0.50-0.60): we need extensibility for easy stretching without snap-back, but enough strength to hold gas during a long 24h fermentation at room temperature.",
+            processScience: "The defining physical event is 'Sudden Evaporation'. At >430°C, the moisture in the dough turns to steam almost instantly. Because the gluten is relaxed (extensible), the cornicione inflates rapidly before the crust sets, creating the signature 'voids' inside the rim."
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: "Controlled Mixing",
+                duration: "15-20 min",
+                action: "Dissolve salt in water, add yeast, then flour. Mix to reach final internal temp of 23-25°C.",
+                science: "Salt is added first in the Napoletana tradition to control yeast activity immediately for the long room-temp fermentation. Mixing is gentle to avoid excessive oxidation."
+            },
+            {
+                phase: 'Bulk',
+                title: "Puntata (Bulk Fermentation)",
+                duration: "2-4 hours",
+                action: "Rest the entire mass in an airtight container at room temperature.",
+                science: "Allows enzymatic activity (Amylase and Protease) to begin breaking down starch into fermentable sugars and relaxing the gluten net."
+            },
+            {
+                phase: 'Ball',
+                title: "Staglio (Balling)",
+                duration: "10-20 min",
+                action: "Divide info 200-280g balls by hand, ensuring tight, smooth skin.",
+                science: "Dividing re-tensions the gluten network. A tight skin is crucial to retain gas pressure during the secondary rise."
+            },
+            {
+                phase: 'Ball',
+                title: "Appretto (Maturation)",
+                duration: "16-20 hours",
+                action: "Store balls in dough boxes at controlled temperature (18-22°C).",
+                science: "The long 'Appretto' is where the flavor develops through fermentation byproducts. The gluten relaxes fully, preparing for the stretch."
+            },
+            {
+                phase: 'Bake',
+                title: "Flash Bake",
+                duration: "60-90 seconds",
+                action: "Bake at 430-480°C on the floor.",
+                science: "Leidenfrost effect protects the bottom. Radiation cooks the top. The speed ensures the crumb remains moist (gelatinized) while the crust chars."
+            }
+        ],
+        references: ["AVPN International Regulations", "Modernist Pizza (Myhrvold)", "The Pizza Bible"],
+        images: {
+            hero: "/images/styles/pizza-napoletana.png",
+            dough: "/images/styles/pizza-napoletana.png",
+            crumb: "/images/styles/pizza-napoletana.png"
+        },
+        education: {
+            pro_tips: [
+                {
+                    tip: "Respect the 'Punto di Pasta'",
+                    explanation: "Stop mixing when the dough is smooth and 'pumpkin-like'. Over-mixing tightens the gluten too much, leading to rubbery pizza."
+                },
+                {
+                    tip: "Use Room Temp Water",
+                    explanation: "For 24h room temp fermentation, cold water can stall yeast activity initially. Use water at ~20°C unless your room is very hot."
+                }
+            ],
+            what_if: [
+                {
+                    scenario: "Hydration is increased to 70%+",
+                    result: "Dough becomes too sticky to handle and stretches into a hole immediately.",
+                    correction: "Stick to 58-65%. If sticky, use a 'spolvero' (dusting flour) of semolina, but don't force more water."
+                },
+                {
+                    scenario: "Oven temp is only 250°C (Home Oven)",
+                    result: "The pizza dries out before it browns. The crust becomes a hard cracker instead of soft/airy.",
+                    correction: "Add sugar/malt to dough for browning (not authentic but necessary) and hydration to 65-70% to retain moisture."
+                },
+                {
+                    scenario: "Dough balls are cold (from fridge)",
+                    result: "Leopard spotting turns into 'measles' (small micro-blisters) and the crust is tough.",
+                    correction: "Always let dough balls come to room temp for at least 2-4 hours before baking."
+                }
+            ],
+            comparative_analysis: [
+                {
+                    target_style: "Roman Tonda",
+                    difference: "Neapolitan is soft, foldable ('a libretto'), and baked fast. Roman Tonda is crispy, cracker-like, and rolled flat.",
+                    why_choose_this: "Choose Neapolitan for a light, digestible, and soft experience."
+                },
+                {
+                    target_style: "NY Style",
+                    difference: "NY Style adds oil and sugar, bakes lower/slower for a sturdy slice. Neapolitan has no oil/sugar and is floppy.",
+                    why_choose_this: "Choose Neapolitan for pure fermentation flavor and artisanal texture."
+                }
+            ],
+            q_and_a: [
+                {
+                    question: "Why is the hydration limit 62.5%?",
+                    answer: "Scientific balance. 55-62% provides the perfect elasticity to stretch thin by hand without tearing, while retaining enough moisture to stay soft during the 485°C flash bake. Higher hydration makes it unmanageable for the specific 'slap' technique.",
+                    context: "AVPN Regulations"
+                },
+                {
+                    question: "Can I use Biga or Poolish?",
+                    answer: "Traditionally, no (Direct method is STG). However, modern 'Canotto' (dinghy) style uses Biga/Poolish to create an exaggerated airy rim. It is delicious but technically a different sub-style.",
+                    context: "Modern Evolution"
+                }
+            ],
+            fermentation_methods: [
+                {
+                    method: "Direct",
+                    suitability: "Authentic",
+                    notes: "The gold standard for STG. 24h at room temp creates the classic flavor profile."
+                },
+                {
+                    method: "Poolish",
+                    suitability: "Possible",
+                    notes: "Used for 'Canotto' style to get explosive cornichone. Makes dough very extensible."
+                },
+                {
+                    method: "Biga",
+                    suitability: "Possible",
+                    notes: "Adds chewiness and complex acidity. Harder to manage."
+                }
+            ]
+        },
+        deepDive: {
+            hydrationLogic: "58-62% is the STG standard because the 485°C wood-fired oven requires rapid evaporation without burning the crust. The modern 'Canotto' style uses 70%+, but demands much stronger flour and advanced handling skills.",
+            methodSuitability: {
+                direct: { suitable: true, notes: "Ideal & Traditional. Maximizes pure wheat flavor and digestibility with 24h fermentation." },
+                biga: { suitable: false, notes: "Non-traditional (STG), but widely used in 'Neo-Neapolitan' to create extreme cornicione volume and complex flavor." },
+                poolish: { suitable: true, notes: "Good for home ovens to boost extensibility, but can make the dough too soft/slack for classic slap stretching." }
+            },
+            whatIf: [
+                {
+                    scenario: "Lowering temp to 250°C (Home Oven)?",
+                    outcome: "The dough dries out before it browns. You get a hard cracker.",
+                    solution: "Add 2-3% sugar and oil to aid browning and softness (Technically becomes NY/Neo-Neapolitan)."
+                },
+                {
+                    scenario: "Using weak flour (All Purpose)?",
+                    outcome: "It cannot withstand the 24h fermentation.",
+                    solution: "The gluten network will degrade and tear when stretching. Use a specific Pizza/Bread flour."
+                }
+            ],
+            comparisons: [
+                {
+                    vsStyle: "Romana Tonda",
+                    difference: "Neapolitan is soft, foldable ('wallet'), and moist. Romana is paper-thin, dry, and crispy."
+                }
+            ],
+            proTips: [
+                "Respect the 'Punto di Pasta': Stop mixing when the dough is smooth.",
+                "Use Room Temp Water (~20°C) to simulate the Naples climate unless it's extremely hot."
+            ]
+        }
     },
-    description: "The UNESCO-protected Verace Pizza Napoletana. Soft, elastic, and foldable ('a libretto') with a raised cornicione and leopard spotting. Baked in 60-90 seconds at blistering temperatures.",
-    history: "Born in the streets of Naples as food for the poor. The Marinara (1734) and Margherita (1889) are the pillars. Codified by the AVPN to protect the artisanal tradition.",
-    difficulty: "Expert",
-    fermentationType: "direct",
-    technicalProfile: {
-        hydration: [58, 62.5],
-        salt: [2.5, 3.0],
-        oil: [0, 0],
-        sugar: [0, 0],
-        flourStrength: "W280-320",
-        ovenTemp: [430, 485],
-        recommendedUse: ["Margherita STG", "Marinara STG"],
-        difficulty: "Expert",
-        fermentationSteps: [
-            "Mix ingredients to reach a final dough temperature of 23-25°C. [Science: Controls yeast activity rate and gluten consistency.]",
-            "Bulk fermentation (Puntata) for 2 hours at 23°C. [Science: Allows initial yeast multiplication and organic acid production without excessive gas retention.]",
-            "Ball (Staglio) and maturate (Appretto) for 8-24 hours at 18-21°C. [Science: Long relaxation degrades gluten slightly via protease enzymes, ensuring extensibility (low elasticity) for easy opening.]"
-        ]
+    {
+        id: "pizza-teglia-romana",
+        name: "Pizza in Teglia Romana",
+        region: 'Italy',
+        subRegion: 'Rome, Lazio',
+        category: 'Pizza',
+        tags: ["High Hydration", "Pan Pizza", "Cold Ferment", "Airy Crumb"],
+        description: "A highly hydrated pan pizza known for its light, airy, open crumb and crispy bottom. Sold by weight ('al taglio') in Rome.",
+        history_context: "Revolutionized in the late 80s/90s by Angelo Iezzi, shifting from a dense oily focaccia to a high-hydration, cold-fermented masterpiece that requires technique over grease.",
+        base_formula: [
+            { name: "Strong Flour (Type 0/00)", percentage: 100 },
+            { name: "Water", percentage: 80 },
+            { name: "Salt", percentage: 2.5 },
+            { name: "Olive Oil", percentage: 2.5 },
+            { name: "Dry Yeast", percentage: 0.7 }
+        ],
+        specs: {
+            hydration: { ideal: 80, min: 75, max: 90 },
+            ovenTemp: { ideal: 250, min: 230, max: 270 },
+            fermentationTime: "48-72h",
+            difficulty: 'Expert'
+        },
+        scientificProfile: {
+            flourRheology: "Requires extremely strong flour (W350+, P/L 0.55). The gluten network must be powerful enough to hold 80%+ water and trap the massive CO2 bubbles during the cold ferment.",
+            processScience: "The defining science is 'Starch Gelatinization vs Gluten Structure'. High water allows full enzymatic activity (protease), creating a melt-in-the-mouth texture. The cold ferment (4°C) slows yeast but lets bacteria produce acids that strengthen the gluten, making the impossible hydration manageable."
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: "Bassinage Mixing",
+                duration: "20 min",
+                action: "Mix flour with 65% water until pumpkin-like skin forms. Slowly trickle in remaining cold water.",
+                science: "Bassinage prevents the dough from turning into soup. You establish the gluten structure first, then rely on the gluten's absorption capacity."
+            },
+            {
+                phase: 'Bulk',
+                title: "Cold Bulk (Puntata)",
+                duration: "24-48 hours",
+                action: "Place in oiled container at 4°C.",
+                science: "Cold retarding creates structure (hardening of fats/gluten alignment) and flavor (organic acids)."
+            },
+            {
+                phase: 'Ball',
+                title: "Staglio & Relax",
+                duration: "4 hours",
+                action: "Form dough balls and let rise at room temp until doubled.",
+                science: "The dough must warm up to ferment (expand) and relax before the delicate stretching phase."
+            },
+            {
+                phase: 'Bake',
+                title: "Floor then Top",
+                duration: "12-15 min",
+                action: "Bake on oven floor (lowest rack) to fry the bottom, then mid-rack for toppings.",
+                science: "Conductive heat from the bottom creates the crust structure before the weight of the toppings can collapse the crumb."
+            }
+        ],
+        references: ["Angelo Iezzi Method", "Pizza Today"],
+        images: {
+            hero: "/images/styles/pizza-teglia-romana.png",
+            dough: "/images/styles/pizza-teglia-romana.png",
+            crumb: "/images/styles/pizza-teglia-romana.png"
+        },
+        education: {
+            pro_tips: [
+                {
+                    tip: "Cold Water is Critical",
+                    explanation: "Use ice-cold water during mixing. High hydration generates friction heat; keeping it cool prevents the gluten from damaging during the long mix."
+                },
+                {
+                    tip: "No Rolling Pins",
+                    explanation: "Never use a rolling pin. It crushes the alveoli (air pockets). Use your fingertips to gently push the gas from the center to the edges."
+                }
+            ],
+            what_if: [
+                {
+                    scenario: "Hydration is too low (<75%)",
+                    result: "The crust becomes dense and bread-like, losing its signature cloud-like lightness.",
+                    correction: "Increase water gradually (Bassinage) to reach at least 75-80%."
+                },
+                {
+                    scenario: "Dough tears during stretching",
+                    result: "Gluten is too tense or under-developed.",
+                    correction: "Wait 15 minutes to let gluten relax, then try again. Do not force it."
+                }
+            ],
+            comparative_analysis: [
+                {
+                    target_style: "Focaccia",
+                    difference: "Teglia is crispier on the bottom and airy/light, while Focaccia is oily, softer, and denser.",
+                    why_choose_this: "Choose Teglia for a lighter, crunchier bite that holds toppings well."
+                }
+            ],
+            q_and_a: [
+                {
+                    question: "Why 48h fermentation?",
+                    answer: "To break down the complex proteins in strong flour. This makes the high-gluten dough digestible and creates the complex organic acid flavor profile.",
+                    context: "Bonci Method"
+                }
+            ],
+            fermentation_methods: [
+                {
+                    method: "Direct",
+                    suitability: "Ideal",
+                    notes: "The standard Cold Ferment (4°C for 24-48h). Essential for handling 80% hydration."
+                }
+            ]
+        },
+        deepDive: {
+            hydrationLogic: "80% is the magic number for the 'cloud' texture. High water creates steam pockets (alveoli) and keeps the crumb moist despite the long bake. Below 75%, it's just heavy focaccia.",
+            methodSuitability: {
+                direct: { suitable: true, notes: "The 'No-Knead' cold ferment approach is effectively a direct method simplified. Very effective." },
+                biga: { suitable: false, notes: "Rarely used as the main method because the gluten needs to be fully hydrated, not stiff." },
+                poolish: { suitable: true, notes: "Excellent choice. A 100% Poolish dough yields incredible lightness." }
+            },
+            whatIf: [
+                {
+                    scenario: "Dough is impossible to handle (Soup)?",
+                    outcome: "You added water too fast.",
+                    solution: "Use the 'Bassinage' technique. Add 65% water first, develop gluten, then slowly add the rest."
+                },
+                {
+                    scenario: "Bottom is pale and soft?",
+                    outcome: "Oven floor wasn't hot enough.",
+                    solution: "Bake on the lowest rack or directly on a stone/steel for the first 10 minutes."
+                }
+            ],
+            comparisons: [
+                {
+                    vsStyle: "Sicilian (Sfincione)",
+                    difference: "Teglia is airy, crunchy, and light. Sicilian is spongy, soft, and bread-like."
+                }
+            ],
+            proTips: [
+                "Use Semolina for stretching: It prevents sticking without absorbing into the dough like flour.",
+                "The 'Fridge Cure': 24-48h in the fridge makes the dough easier to handle and tastier."
+            ]
+        }
     },
-    tags: ["stg", "avpn", "wood-fired", "high-heat"],
-    pairings: {
-        canonical: ["San Marzano DOP", "Mozzarella di Bufala", "Fresh Basil"],
-        modern: ["Yellow Tomato", "Provola Affumicata"],
-        regional: ["Friarielli", "Sausage"]
+    {
+        id: "pizza-tonda-romana",
+        name: "Pizza Tonda Romana (Scrocchiarella)",
+        region: 'Italy',
+        subRegion: 'Rome, Lazio',
+        category: 'Pizza',
+        tags: ["Low Hydration", "Rolling Pin", "Crispy", "Cracker-thin"],
+        description: "The 'Scrocchiarella' (The Crunchy One). Ultra-thin, borderless, and cracker-like. Often rolled with a pin to degas completely.",
+        history_context: "The everyday pizzeria pizza of Rome. Unlike Naples, Rome favors a longer bake at lower temps to dry out the crust for maximum crunch.",
+        base_formula: [
+            { name: "Flour (Type 00)", percentage: 100 },
+            { name: "Water", percentage: 56 },
+            { name: "Salt", percentage: 2.0 },
+            { name: "Olive Oil", percentage: 3.0 },
+            { name: "Fresh Yeast", percentage: 0.5 }
+        ],
+        specs: {
+            hydration: { ideal: 56, min: 53, max: 58 },
+            ovenTemp: { ideal: 300, min: 280, max: 330 },
+            fermentationTime: "24h",
+            difficulty: 'Medium'
+        },
+        scientificProfile: {
+            flourRheology: "Medium strength (W240). We don't want extreme elasticity because we manually roll it flat. Too much nerve (elasticity) makes it shrink back.",
+            processScience: "Evaporation is the goal. Low hydration + Oil + Rolling Pin = Dehydration. We are effectively frying the dough in its own oil and drying it out to create a biscuit structure."
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: "Stiff Mix",
+                duration: "10-12 min",
+                action: "Mix to smooth, stiff consistency.",
+                science: "Low hydration means less gluten mobility, resulting in a tighter, shorter crumb."
+            },
+            {
+                phase: 'Bulk',
+                title: "Short Bulk",
+                duration: "1-2 hours",
+                action: "Room temp rest.",
+                science: "Just enough to let yeast activate."
+            },
+            {
+                phase: 'Ball',
+                title: "Rolling (Stesura)",
+                duration: "2 min",
+                action: "Use a rolling pin (Mattarello) to flatten to 2-3mm thickness.",
+                science: "Mechanical degassing removes all macro-alveoli. This ensures the crust is uniform and crunchy, not bread-like."
+            },
+            {
+                phase: 'Bake',
+                title: "Slow(er) Bake",
+                duration: "3-5 min",
+                action: "Bake at 300°C.",
+                science: "Longer residence time in the oven compared to Neapolitan ensures the Maillard reaction penetrates deep and water evaporates fully."
+            }
+        ],
+        references: ["Roman Pizza Academy", "La Città della Pizza"],
+        images: {
+            hero: "/images/styles/pizza-tonda-romana.png",
+            dough: "/images/styles/pizza-tonda-romana.png",
+            crumb: "/images/styles/pizza-tonda-romana.png"
+        },
+        education: {
+            pro_tips: [
+                {
+                    tip: "Roll it thin... then thinner",
+                    explanation: "The goal is 'Scrocchiarella' (crunchy). Roll to 2-3mm. If it looks too thin, it's probably almost right."
+                },
+                {
+                    tip: "Dock the dough",
+                    explanation: "Use a fork to prick the entire surface. This prevents large bubbles from forming, ensuring a flat, even cracker crust."
+                }
+            ],
+            what_if: [
+                {
+                    scenario: "Dough shrinks back when rolling",
+                    result: "Gluten is too elastic (Nerve).",
+                    correction: "Let the dough balls rest for 30 mixed before rolling to relax the proteins."
+                },
+                {
+                    scenario: "Crust is chewy, not crunchy",
+                    result: "Hydration too high or baked too fast.",
+                    correction: "Lower hydration to ~56% and bake at a lower temp (~300°C) for longer to dry it out."
+                }
+            ],
+            comparative_analysis: [
+                {
+                    target_style: "Neapolitan",
+                    difference: "Tonda Romana is the anti-Neapolitan: thin, crispy, no raised border, and rolled flat.",
+                    why_choose_this: "Choose Tonda if you prefer a cracker-like crunch suitable for heavy toppings."
+                }
+            ],
+            q_and_a: [
+                {
+                    question: "Why add oil to the dough?",
+                    answer: "Oil aids in crispness (frying effect) and extensibility, helping rolling without tearing.",
+                    context: "Roman Tradition"
+                }
+            ],
+            fermentation_methods: [
+                {
+                    method: "Direct",
+                    suitability: "Authentic",
+                    notes: "Short warm fermentation (6-24h) is standard for this quick-service style."
+                }
+            ]
+        },
+        deepDive: {
+            hydrationLogic: "Low hydration (~56%) is critical. We want to restrict steam generation so the crust dries out and becomes a cracker. High hydration would make it chewy.",
+            methodSuitability: {
+                direct: { suitable: true, notes: "Standard. A simple direct dough works best for this low-stress, flat style." },
+                biga: { suitable: false, notes: "Unnecessary complexity. We don't want the volume or wild crumb that Biga provides." },
+                poolish: { suitable: false, notes: "Too extensible. We want some resistance (nerve) to roll it thin." }
+            },
+            whatIf: [
+                {
+                    scenario: "Dough keeps snapping back?",
+                    outcome: "Too much elasticity.",
+                    solution: "Let the dough balls rest longer (30-60 mins) before rolling to relax the gluten."
+                },
+                {
+                    scenario: "Not crispy enough?",
+                    outcome: "Too much water or baked too fast.",
+                    solution: "Lower temp to 270°C and bake longer to fully dehydrate the crust."
+                }
+            ],
+            comparisons: [
+                {
+                    vsStyle: "Neapolitan",
+                    difference: "Polar opposites. Tonda is rolled flat to remove gas. Neapolitan is slapped to preserve it."
+                }
+            ],
+            proTips: [
+                "The Rolling Pin is a Tool: Don't be afraid to use it. It evens out the crumb for that signature crunch.",
+                "Docking is key: Poke holes to prevent it from turning into a pita bread balloon."
+            ]
+        }
     },
-    watchouts: [
-        "Oven too cold (<400°C) results in a tough, dry crust (biscuity).",
-        "Over-kneading creates a rubbery crumb that fights back during opening.",
-        "Dough too cold (<15°C) will bubble aggressively (measles) rather than spotted char."
-    ],
-    notes: [
-        "Strictly direct dough method (no preferments) per STG rules.",
-        "Requires 0% fat to ensure the crust remains soft only through rapid baking, not shortening agents.",
-        "Cornicione structure relies on steam expansion before crust sets (oven spring)."
-    ],
-    isPro: false,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "AVPN Regulations" }, { source: "Modernist Pizza" }],
-    images: {
-        hero: "/images/styles/napoli_hero.jpg",
-        dough: "/images/styles/napoli_dough.jpg",
-        crumb: "/images/styles/napoli_crumb.jpg"
+    {
+        id: "focaccia-genovese",
+        name: "Focaccia Genovese",
+        region: 'Italy',
+        subRegion: 'Genoa, Liguria',
+        category: 'Flatbread',
+        tags: ["High Oil", "Breakfast", "Emulsion", "Pan"],
+        description: "The authentic 'Fugassa'. A masterpiece of olive oil and flour, characterized by its golden dimples and white, creamy 'eyes'.",
+        history_context: "Historically a breakfast food for dock workers in Genoa, dipping it in cappuccino or white wine. The authentic Genovese version differs from others by its precise use of 'Salamoia' (brine) and lower height (max 2cm).",
+        base_formula: [
+            { name: "Soft Wheat Flour", percentage: 100 },
+            { name: "Water", percentage: 65 },
+            { name: "Olive Oil (Dough)", percentage: 6 },
+            { name: "Salt", percentage: 2.2 },
+            { name: "Fresh Yeast", percentage: 2 },
+            { name: "Brine (Topping)", percentage: 15 }
+        ],
+        specs: {
+            hydration: { ideal: 65, min: 60, max: 68 },
+            ovenTemp: { ideal: 230, min: 220, max: 240 },
+            fermentationTime: "12-14h",
+            difficulty: 'Medium'
+        },
+        scientificProfile: {
+            flourRheology: "Uses a Medium strength flour (W260-280). We don't want extreme elasticity; the dough must be extensible enough to fill the pan corners without fighting back.",
+            processScience: "The Core Science is the 'Salamoia' (Brine Emulsion). Pouring a mix of water and oil over the dough before baking creates a thermal barrier. The liquid pools in the dimples, preventing the dough there from exceeding 100°C. This essentially boils the dough in the holes (keeping them white/soft) while the ridges fry in oil (becoming golden/crisp)."
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: "Short Mix",
+                duration: "10-12 min",
+                action: "Mix flour, water, salt, yeast, and olive oil. Stop before full gluten development.",
+                science: "We avoid an overly strong gluten structure. The high oil content (6-10%) chemically lubricates the gluten strands, increasing extensibility."
+            },
+            {
+                phase: 'Bulk',
+                title: "First Rise",
+                duration: "60-90 min",
+                action: "Let rise until volume increases by 50%.",
+                science: "Initial yeast activity establishes the alveolar structure."
+            },
+            {
+                phase: 'Bulk',
+                title: "Pan Stretch",
+                duration: "20 min",
+                action: "Transfer to oiled pan. Stretch gently to corners. If it retracts, wait 10 mins and try again.",
+                science: "Allowing the dough to sit lets the gluten relax via protease action, making the final stretch possible without tearing."
+            },
+            {
+                phase: 'Ball',
+                title: "Dimpling & Salamoia",
+                duration: "5 min",
+                action: "Pour brine (water/oil/salt) over dough. Press fingers deep to create holes.",
+                science: "Dimpling 'staples' the top and bottom crusts together to prevent ballooning. The brine fills these reservoirs."
+            },
+            {
+                phase: 'Bake',
+                title: "Moist Bake",
+                duration: "15-18 min",
+                action: "Bake at 230°C until golden brown.",
+                science: "The water in the brine evaporates, steaming the focaccia from the outside in, while the oil fries the surface."
+            }
+        ],
+        references: ["Ezra Pound's Letters (Historical)", "Salt, Fat, Acid, Heat"],
+        images: {
+            hero: "/images/styles/focaccia-genovese.png",
+            dough: "/images/styles/focaccia-genovese.png",
+            crumb: "/images/styles/focaccia-genovese.png"
+        },
+        education: {
+            pro_tips: [
+                {
+                    tip: "The Brine is King",
+                    explanation: "Don't skimp on the 'Salamoia'. The pockets of brine boil the dough while it bakes, creating the creamy interior."
+                },
+                {
+                    tip: "Blind Bake the Bottom",
+                    explanation: "For home ovens, place the pan on the floor for the first 5 mins to ensure the bottom fries in the oil."
+                }
+            ],
+            what_if: [
+                {
+                    scenario: "Dimples disappear during baking",
+                    result: "You didn't press hard enough or didn't use enough brine to weigh them down.",
+                    correction: "Press your fingers until you feel the pan. Fill holes with brine."
+                }
+            ],
+            comparative_analysis: [
+                {
+                    target_style: "Focaccia Barese",
+                    difference: "Genovese is about the Brine/Oil emulsion. Barese includes potato in the dough and tomatoes on top.",
+                    why_choose_this: "Choose Genovese for the pure wheat/oil flavor profile."
+                }
+            ],
+            q_and_a: [
+                {
+                    question: "Salt percentage seems high?",
+                    answer: "It is. Authentic Genovese is salty. The brine adds surface saltiness that contrasts with the sweet wheat.",
+                    context: "Ligurian Palate"
+                }
+            ],
+            fermentation_methods: [
+                {
+                    method: "Direct",
+                    suitability: "Authentic",
+                    notes: "Standard direct dough, heavily enriched with oil."
+                }
+            ]
+        },
+        deepDive: {
+            hydrationLogic: "65% is balanced for a pan dough. The key isn't the water inside, but the oil/brine outside. The dough boils in the brine pockets.",
+            methodSuitability: {
+                direct: { suitable: true, notes: "The classic way. High yeast, short time, immediate satisfaction." },
+                biga: { suitable: true, notes: "Adds a nice perfume, but often considered 'too fancy' for street food focaccia." },
+                poolish: { suitable: true, notes: "Makes for a very light, almost cake-like focaccia." }
+            },
+            whatIf: [
+                {
+                    scenario: "White spots are missing (The 'Eyes')?",
+                    outcome: "Brine didn't pool correctly or you didn't dimple deep enough.",
+                    solution: "Press fingers until you touch the tray. Pour brine lavishly."
+                },
+                {
+                    scenario: "Dough is tough/chewy?",
+                    outcome: "Used strong bread flour instead of soft flour.",
+                    solution: "Cut with 50% All Purpose or Pastry flour. Focaccia should be tender."
+                }
+            ],
+            comparisons: [
+                {
+                    vsStyle: "Pizza Teglia",
+                    difference: "Focaccia is shorter, oilier, and denser. Teglia is tall, airy, and crisp."
+                }
+            ],
+            proTips: [
+                "Blind bake the bottom: Put the pan on the oven floor for the first 5 mins.",
+                "Don't hold back on oil: If your hands aren't greasy, you're doing it wrong."
+            ]
+        }
+    },
+    {
+        id: "sfincione-palermitano",
+        name: "Sfincione Palermitano",
+        region: 'Italy',
+        subRegion: 'Palermo, Sicily',
+        category: 'Pizza',
+        tags: ["Sponge", "Focaccia-style", "Street Food", "Onions"],
+        description: "A thick, spongy, soft pizza topped with a sauce of onions, anchovies, tomatoes, oregano, and caciocavallo cheese. Often topped with breadcrumbs.",
+        history_context: "The name derives from 'Spongia' (Sponge). A Christmas tradition in Palermo, traditionally sold by 'Sfincionari' on three-wheeled carts.",
+        base_formula: [
+            { name: "Semolina/Wheat Blend", percentage: 100 },
+            { name: "Water", percentage: 70 },
+            { name: "Salt", percentage: 2.2 },
+            { name: "Fresh Yeast", percentage: 1.0 },
+            { name: "Lard (Strutto)", percentage: 5 }
+        ],
+        specs: {
+            hydration: { ideal: 70, min: 65, max: 75 },
+            ovenTemp: { ideal: 220, min: 200, max: 240 },
+            fermentationTime: "4-6h",
+            difficulty: 'Medium'
+        },
+        scientificProfile: {
+            flourRheology: "Semolina Remilled (Rimacinata) mixed with soft wheat. The hard grain provides a specific 'bite' and golden color.",
+            processScience: "Fat coating. The use of Lard (Strutto) shortens the gluten strands, creating a soft, cake-like crumb ('Sponge') rather than a chewy bread."
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: "Soft Mix",
+                duration: "15 min",
+                action: "Incorporate fat at the end.",
+                science: "Adding fat late allows gluten to form first, then the fat coats it to tenderize."
+            },
+            {
+                phase: 'Bulk',
+                title: "Double Rise",
+                duration: "2h + 2h",
+                action: "Rise in bowl, then rise in pan.",
+                science: "Second proof in the pan ensures the dough relaxes into the corners."
+            },
+            {
+                phase: 'Bake',
+                title: "Topping Shield",
+                duration: "20-25 min",
+                action: "Bake with sauce and breadcrumbs on top.",
+                science: "The thick sauce and breadcrumbs protect the dough surface from drying out, keeping the 'sponge' moist while the bottom fries in the oiled pan."
+            }
+        ],
+        references: ["Sicilian Food History", "Gambero Rosso"],
+        images: {
+            hero: "/images/styles/pizza-siciliana.png",
+            dough: "/images/styles/pizza-siciliana.png",
+            crumb: "/images/styles/pizza-siciliana.png"
+        },
+        education: {
+            pro_tips: [
+                {
+                    tip: "Strutto for Softness",
+                    explanation: "Authenitc Sfincione uses lard (Strutto), not oil, in the dough. This creates a distinct 'short' texture that is soft but not chewy."
+                },
+                {
+                    tip: "The Sauce Shield",
+                    explanation: "Apply the sauce thick. It protects the dough from the oven heat, keeping the top steaming/soft while the bottom fries."
+                }
+            ],
+            what_if: [
+                {
+                    scenario: "Using Oil instead of Lard",
+                    result: "The texture becomes more bread-like and chewy, losing the 'spongy' cake-quality.",
+                    correction: "Use butter or shortening if Lard is unavailable."
+                }
+            ],
+            comparative_analysis: [
+                {
+                    target_style: "Sicilian (USA)",
+                    difference: "US Sicilian is often just a thick square pizza. Sfincione is a specific recipe with breadcrumbs, onions, and caciocavallo.",
+                    why_choose_this: "Choose Sfincione for the authentic Palermo street food experience."
+                }
+            ],
+            q_and_a: [
+                {
+                    question: "Breadcrumbs on pizza?",
+                    answer: "Yes. They absorb the oil from the sauce and create a crunchy top layer that contrasts with the soft sponge.",
+                    context: "Palermo Tradition"
+                }
+            ],
+            fermentation_methods: [
+                {
+                    method: "Direct",
+                    suitability: "Authentic",
+                    notes: "Fast rising sponge."
+                }
+            ]
+        },
+        deepDive: {
+            hydrationLogic: "70% hydration plus 5% Lard creates a 'short' dough. The fat coats the gluten, preventing it from becoming tough, resulting in a sponge cake texture.",
+            methodSuitability: {
+                direct: { suitable: true, notes: "Authentic method. The softness comes from fat, not preferments." },
+                biga: { suitable: false, notes: "Not typical for this style." },
+                poolish: { suitable: false, notes: "Not typical." }
+            },
+            whatIf: [
+                {
+                    scenario: "Top burns before bottom is crisp?",
+                    outcome: "Too high rack position.",
+                    solution: "The sauce layer is thick and wet. Bake low to drive heat into the dough first."
+                },
+                {
+                    scenario: "Vegetarian version?",
+                    outcome: "Without lard, it loses the 'Sponge' texture.",
+                    solution: "Substitute with high-quality Vegetable Shortening or Butter. Oil makes it too chewy."
+                }
+            ],
+            comparisons: [
+                {
+                    vsStyle: "Focaccia Genovese",
+                    difference: "Sfincione uses a sauce 'shield' to steam the dough. Focaccia uses brine."
+                }
+            ],
+            proTips: [
+                "The 'Rusks': Use toasted breadcrumbs on top. They soak up the oil and add the necessary crunch.",
+                "Two Rises: One in the bowl, one in the pan. Crucial for the height."
+            ]
+        }
+    },
+    {
+        id: "pane-toscano",
+        name: "Pane Toscano DOP (Sem Sal)",
+        region: 'Italy',
+        subRegion: 'Tuscany',
+        category: 'Bread',
+        tags: ["No Salt", "Sourdough", "DOP", "Ancient"],
+        description: "The famous 'Pane Sciocco' (Saltless Bread). Thick crunchy crust, irregular crumb, and completely bland flavor designed to pair with salty Tuscan cured meats.",
+        history_context: "Dates back to the 12th century rivalry between Pisa and Florence, where Pisa blocked salt shipments. Florentines adapted by baking without it. It is now a DOP designation.",
+        base_formula: [
+            { name: "Soft Wheat Type 0", percentage: 100 },
+            { name: "Water", percentage: 60 },
+            { name: "Salt", percentage: 0 },
+            { name: "Sourdough (Biga/Levain)", percentage: 20 }
+        ],
+        specs: {
+            hydration: { ideal: 60, min: 55, max: 65 },
+            ovenTemp: { ideal: 230, min: 220, max: 240 },
+            fermentationTime: "12-16h",
+            difficulty: 'Medium'
+        },
+        scientificProfile: {
+            flourRheology: "Uses weak-medium flour. Without salt to tighten the gluten network, the dough is chemically slack and ferments much faster.",
+            processScience: "Yeast Kinetics: Salt is a yeast inhibitor. Removing it creates 'Running Yeast', meaning fermentation explodes rapidly. We must use a Biga or acidic Levain to control this speed and strengthen the gluten."
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: "Biga Natural",
+                duration: "12h prior",
+                action: "Prepare stiff preferment.",
+                science: "Acidity is needed to give strength to the glute since salt ions aren't there to help bonding."
+            },
+            {
+                phase: 'Bulk',
+                title: "Careful Bulk",
+                duration: "60-90 min",
+                action: "Watch closely. It moves fast.",
+                science: "Without osmolarity pressure from salt, yeast cells work at max efficiency."
+            },
+            {
+                phase: 'Bake',
+                title: "Dry Bake",
+                duration: "45-50 min",
+                action: "Bake until 'hollow' sound.",
+                science: "The lack of hygroscopic salt means the bread dries out faster and stales quicker, but achieves a very thick, hard crust."
+            }
+        ],
+        references: ["Consorzio del Pane Toscano DOP"],
+        images: {
+            hero: "/images/styles/pane-toscano.png",
+            dough: "/images/styles/pane-toscano.png",
+            crumb: "/images/styles/pane-toscano.png"
+        },
+        education: {
+            pro_tips: [
+                {
+                    tip: "Watch the Fermentation",
+                    explanation: "Without salt to inhibit yeast, this dough creates gas explosively fast. Check it 50% sooner than salted doughs."
+                },
+                {
+                    tip: "Pairing is Mandatory",
+                    explanation: "This bread is bland on purpose. It is engineered to be eaten with salty prosciutto or strong cheese."
+                }
+            ],
+            what_if: [
+                {
+                    scenario: "Fails to brown",
+                    result: "Salt regulates browning. Without it, the crust stays pale.",
+                    correction: "Use a hotter oven (240°C) and steam to promote color."
+                }
+            ],
+            comparative_analysis: [
+                {
+                    target_style: "Sourdough",
+                    difference: "Toscano is often sourdough based but specifically lacks salt, altering the chemistry significantly.",
+                    why_choose_this: "Choose Toscano strictly for charcuterie boards."
+                }
+            ],
+            q_and_a: [
+                {
+                    question: "Can I add salt?",
+                    answer: "You can, but then it's not Pane Toscano. It's just generic country bread.",
+                    context: "DOP Regulation"
+                }
+            ],
+            fermentation_methods: [
+                {
+                    method: "Sourdough",
+                    suitability: "Authentic",
+                    notes: "Acidic preferments (Biga/Levain) are needed to strengthen the gluten in the absence of salt."
+                }
+            ]
+        },
+        deepDive: {
+            hydrationLogic: "60% is standard. The lack of salt changes the rheology - salt tightens gluten. Without it, the dough is naturally slack, so we don't need high water for extensibility.",
+            methodSuitability: {
+                direct: { suitable: false, notes: "Without salt to control yeast, direct dough explodes too fast and tastes bland." },
+                biga: { suitable: true, notes: "Essential. The acidity of the Biga strengthens the gluten in the absence of salt." },
+                poolish: { suitable: false, notes: "Too weak. We need the strength of a stiff preferment." }
+            },
+            whatIf: [
+                {
+                    scenario: "Bread is completely pale?",
+                    outcome: "No salt = Unchecked yeast eats all sugars. No sugar left for browning (Maillard).",
+                    solution: "Bake at higher temp (240°C) and use steam. Accept a lighter crust color as authentic."
+                },
+                {
+                    scenario: "Tastes like cardboard?",
+                    outcome: "It's unsalted bread. By itself, it is bland.",
+                    solution: "Serve with salty prosciutto, pecorino, or aggressive stews."
+                }
+            ],
+            comparisons: [
+                {
+                    vsStyle: "French Baguette",
+                    difference: "Toscano has a thick, hard crust and dense crumb. Baguette is thin-crusted and light."
+                }
+            ],
+            proTips: [
+                "Don't add salt: Seriously. It ruins the chemistry and the tradition.",
+                "Use a Stiff Levain: If you have sourdough starter, use it. The acid is the flavor driver here."
+            ]
+        }
+    },
+    {
+        id: "ciabatta-classic",
+        name: "Ciabatta",
+        region: 'Italy',
+        subRegion: 'Adria, Veneto',
+        category: 'Bread',
+        tags: ["High Hydration", "Preferment", "Biga", "Modern"],
+        description: "Meaning 'Slipper', this 1980s invention is the Italian answer to the baguette. Known for its paper-thin crust and massive, irregular alveoli (holes).",
+        history_context: "Invented in 1982 by Arnaldo Cavallari to combat the popularity of French baguettes. It emphasizes high hydration and usage of Biga for flavor complexity.",
+        base_formula: [
+            { name: "High Gluten Flour", percentage: 100 },
+            { name: "Water (Total)", percentage: 78 },
+            { name: "Salt", percentage: 2.2 },
+            { name: "Fresh Yeast", percentage: 0.5 }
+        ],
+        specs: {
+            hydration: { ideal: 78, min: 75, max: 85 },
+            ovenTemp: { ideal: 240, min: 230, max: 250 },
+            fermentationTime: "18-24h",
+            difficulty: 'Hard'
+        },
+        scientificProfile: {
+            flourRheology: "Requires High Protein/High W (W320+). With hydration pushing 80%, weak flour would degrade into a soup due to protease activity. Strong gluten is needed to trap the massive steam generation.",
+            processScience: "Structure is driven by 'Bassinage' and 'Steam Expansion'. Adding water in stages builds the gluten network first. In the oven, the high water content converts to steam rapidly. The strong gluten traps these expanding gas pockets, creating the signature 'Open Crumb'."
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: "Biga Preparation",
+                duration: "16-18h prior",
+                action: "Mix strong flour, water (45%), and tiny amount of yeast. Ferment at 18°C.",
+                science: "This stiff preferment promotes Acetic Acid production, which strengthens the gluten structure chemically, allowing it to hold more water later."
+            },
+            {
+                phase: 'Mix',
+                title: "Double Hydration (Bassinage)",
+                duration: "15-20 min",
+                action: "Mix Biga with 85% of total water. Develop full gluten. Then slowly trickle in the remaining water.",
+                science: "Adding all water at once creates 'slippage' where gluten can't link. Bassinage allows us to hydrate an established network."
+            },
+            {
+                phase: 'Bulk',
+                title: "Coil Folds",
+                duration: "Every 45 min",
+                action: "Lift the dough from the center and let it fold under itself.",
+                science: "Mechanical alignment of gluten strands. Since the dough is too wet to knead, we use gravity to organize the structure without degassing."
+            },
+            {
+                phase: 'Ball',
+                title: "Shaping",
+                duration: "Rapid",
+                action: "Flour heavily, cut into rectangles, flip onto courier. HANDLE WITH EXTREME CARE.",
+                science: "We are handling a foam structure. Any pressure will collapse the large bubbles we worked to create."
+            },
+            {
+                phase: 'Bake',
+                title: "Steam Bake",
+                duration: "25-30 min",
+                action: "High heat (240°C) with steam injection for first 10 mins.",
+                science: "Steam keeps the crust soft, allowing maximum expansion (Oven Spring) before gelatinization sets the final shape."
+            }
+        ],
+        references: ["Modernist Bread", "The Bread Baker's Apprentice"],
+        images: {
+            hero: "/images/styles/ciabatta.png",
+            dough: "/images/styles/ciabatta.png",
+            crumb: "/images/styles/ciabatta.png"
+        },
+        education: {
+            pro_tips: [
+                {
+                    tip: "Handle like Nitro",
+                    explanation: "Once fermented, the dough is a foam. Cut it and flip it with extreme care. Do not punch down. Do not shape tight."
+                },
+                {
+                    tip: "Invert the Biga",
+                    explanation: "To mix easily, dissolve the stiff biga in the water first (make a slurry) before adding the rest of the flour."
+                }
+            ],
+            what_if: [
+                {
+                    scenario: "Hydration < 75%",
+                    result: "You get a dense bread roll, not a Ciabatta. The large holes require excess water to turn into steam.",
+                    correction: "Push hydration to at least 78%."
+                }
+            ],
+            comparative_analysis: [
+                {
+                    target_style: "Baguette",
+                    difference: "Baguette is lower hydration (65-70%) and tightly shaped. Ciabatta is high hydration (80%+) and loosely cut.",
+                    why_choose_this: "Choose Ciabatta for sandwiches (holds sauce better) and dipping."
+                }
+            ],
+            q_and_a: [
+                {
+                    question: "Why Biga and not Sourdough?",
+                    answer: "Authentic Ciabatta (1982) uses Biga to get a specific nutty, milky flavor profile without the sour tang of levain.",
+                    context: "Arnaldo Cavallari"
+                }
+            ],
+            fermentation_methods: [
+                {
+                    method: "Biga",
+                    suitability: "Ideal",
+                    notes: "Using a 100% Biga preferment creates strength for the high water."
+                },
+                {
+                    method: "Direct",
+                    suitability: "Not Recommended",
+                    notes: "Hard to get the structure without chemical straighteners."
+                }
+            ]
+        },
+        deepDive: {
+            hydrationLogic: "78-85% is the definition of Ciabatta. It must be wet enough to be self-leveling. The steam expansion from this water creates the massive holes.",
+            methodSuitability: {
+                direct: { suitable: false, notes: "You cannot get the open crumb or flavor without a preferment." },
+                biga: { suitable: true, notes: "The Original 1982 Method. 100% of flour in the Biga for max strength." },
+                poolish: { suitable: true, notes: "Creates a lighter, thinner crust version, but less 'meaty' crumb." }
+            },
+            whatIf: [
+                {
+                    scenario: "Bread spreads flat in the oven (Flying Saucer)?",
+                    outcome: "Over-proofed or weak flour.",
+                    solution: "Ciabatta is delicate. Catch it before it peaks. Use W320+ flour."
+                },
+                {
+                    scenario: "Dense crumb (Mouse holes)?",
+                    outcome: "Degassed during shaping.",
+                    solution: "Treat the dough like nitroglycerin. Flip gently. Do not press."
+                }
+            ],
+            comparisons: [
+                {
+                    vsStyle: "Baguette",
+                    difference: "Ciabatta is wetter, flatter, and has larger, wilder holes. Baguette is controlled and cylindrical."
+                }
+            ],
+            proTips: [
+                "Invert the process: Dissolve the Biga in water first to make a 'milk', then add flour.",
+                "Flour the courier heavily: Stickiness is the enemy of the oven launch."
+            ]
+        }
     }
-};
-
-const tegliaRomana: DoughStyleDefinition = {
-    id: "pizza_teglia_romana_v2",
-    name: "Pizza in Teglia Romana",
-    category: "pizza",
-    recipeStyle: RecipeStyle.ROMAN,
-    origin: {
-        country: "Italy",
-        region: "Lazio (Rome)",
-        period: "1980s (Modern Revolution)"
-    },
-    description: "High-hydration pan pizza known for its spectacular open crumb (alveoli) and crispy bottom. Light, airy, and digestible.",
-    history: "Revolutionized by masters like Angelo Iezzi and Gabriele Bonci, moving away from dense bakery pizza to a high-hydration, cold-ferment artisanal product.",
-    difficulty: "Hard",
-    fermentationType: "preferment",
-    technicalProfile: {
-        hydration: [75, 85],
-        salt: [2.2, 2.5],
-        oil: [2, 3],
-        sugar: [0, 1],
-        flourStrength: "W320-350",
-        ovenTemp: [250, 280],
-        recommendedUse: ["Potato & Rosemary", "Burrata & Mortadella"],
-        difficulty: "Hard",
-        fermentationSteps: [
-            "Mix flour and 70% water (autolyse) for improved extensibility. [Science: Fully hydrates proteins and shortens mix time, preventing oxidation.]",
-            "Add yeast/salt and bassiinage (remaining water) slowly. [Science: Gradual water addition prevents gluten network collapse in high hydration doughs.]",
-            "Cold bulk fermentation (4°C) for 24-48h. [Science: Slows yeast but allows amylase enzymes to break down starches into sugars for crust color and flavor.]",
-            "Final proof in pan (3-4h). [Science: Relaxes gluten for final volume and ensures bottom crispness.]"
-        ]
-    },
-    tags: ["high-hydration", "roman", "pan", "alveoli"],
-    pairings: {
-        canonical: ["Potato slices", "Rosemary", "Mozzarella"],
-        modern: ["Pumpkin cream", "Guanciale"],
-        regional: ["Zucchini flowers", "Anchovies"]
-    },
-    watchouts: [
-        "Under-baking the bottom: Ensure direct deck contact or use bottom rack.",
-        "Degassing during stretch: Use fingertips gently to preserve air bubbles.",
-        "Over-mixing: Breaks the delicate gluten structure needed for 80% water."
-    ],
-    notes: [
-        "Requires strong flour (W320+) to hold the water structure.",
-        "Olive oil in the dough aids extensibility.",
-        "Reheated slices ('scrocchiarella') regain crispness perfectly."
-    ],
-    isPro: true,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "Bonci Technical Notes" }],
-    images: {
-        hero: "/images/styles/teglia_hero.jpg",
-        dough: "/images/styles/teglia_dough.jpg",
-        crumb: "/images/styles/teglia_crumb.jpg"
-    }
-};
-
-const tondaRomana: DoughStyleDefinition = {
-    id: "pizza_tonda_romana_v2",
-    name: "Pizza Tonda Romana",
-    category: "pizza",
-    recipeStyle: RecipeStyle.ROMANA_TONDA,
-    origin: {
-        country: "Italy",
-        region: "Lazio (Rome)",
-        period: "Post-WWII"
-    },
-    description: "The 'Scrocchiarella' - ultra-thin, cracker-like, and crispy. Rolled out with a pin to remove gas, ensuring no raised cornicione.",
-    history: "The traditional pizzeria pizza of Rome, contrasting drastically with the soft Neapolitan style. Designed to hold heavy loads of ingredients without collapsing.",
-    difficulty: "Medium",
-    fermentationType: "direct",
-    technicalProfile: {
-        hydration: [55, 58],
-        salt: [2.0, 2.5],
-        oil: [2, 4],
-        sugar: [0, 1],
-        flourStrength: "W260-290",
-        ovenTemp: [300, 340],
-        recommendedUse: ["Capricciosa", "Fungi", "Prosciutto"],
-        difficulty: "Medium",
-        fermentationSteps: [
-            "Mix to a stiff, smooth dough (55-58% hydration). [Science: Low water content is critical for inhibiting gluten puff and ensuring crispness.]",
-            "Short bulk fermentation (2-4h). [Science: Sufficient for flavor but limits gas production.]",
-            "Maturate balls 24h at 4°C. [Science: Relaxes the tight dough to allow rolling without shrinkage.]",
-            "Roll flat with rolling pin. [Science: Mechanically crushes alveoli to prevent rising/puffing.]"
-        ]
-    },
-    tags: ["thin", "crispy", "rolling-pin", "scrocchiarella"],
-    pairings: {
-        canonical: ["Artichokes", "Olives", "Egg", "Prosciutto (Capricciosa)"],
-        modern: ["Cacio e Pepe cream"],
-        regional: ["Suppli on the side"]
-    },
-    watchouts: [
-        "Dough retraction: If it shrinks when rolling, it needs more rest (protease action).",
-        "Soggy center: Sauce too watery for thin crust.",
-        "Burning: Due to low hydration, it browns fast; watch the oven."
-    ],
-    notes: [
-        "Seed oil is often used instead of olive oil for a crunchier texture.",
-        "Baked longer and lower than Neapolitan (3 mins @ 320°C).",
-        "Must be eaten immediately to retain the 'scrocchio' (crunch)."
-    ],
-    isPro: false,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "Roman Pizza Traditions" }],
-    images: {
-        hero: "/images/styles/tonda_hero.jpg",
-        dough: "/images/styles/tonda_dough.jpg",
-        crumb: "/images/styles/tonda_crumb.jpg"
-    }
-};
-
-const focacciaGenovese: DoughStyleDefinition = {
-    id: "focaccia_genovese_classica_v2",
-    name: "Focaccia Genovese",
-    category: "flatbread",
-    recipeStyle: RecipeStyle.FOCACCIA,
-    origin: {
-        country: "Italy",
-        region: "Liguria (Genoa)",
-        period: "16th Century"
-    },
-    description: "The gold standard of focaccia. Not just bread with oil, but a precise emulsion-baked flatbread with signature 'omphalos' (eye-holes) filled with brine.",
-    history: "A breakfast staple in Genoa, traditionally eaten dipped in cappuccino. Protected by a Slow Food presidium.",
-    difficulty: "Medium",
-    fermentationType: "direct",
-    technicalProfile: {
-        hydration: [60, 65],
-        salt: [2.0, 2.5],
-        oil: [10, 15],
-        sugar: [1, 2],
-        flourStrength: "W260-280",
-        ovenTemp: [220, 240],
-        recommendedUse: ["Plain (Classica)", "Onion", "Sage"],
-        difficulty: "Medium",
-        fermentationSteps: [
-            "Mix dough with minimal development. [Science: Undermixing preserves carotenoids (color) and prevents tough, chewy gluten.]",
-            "First rise 1.5h. [Science: Establishes fermentation structure.]",
-            "Roll into pan and proof for 30m. [Science: Relaxes gluten for dimpling.]",
-            "Pour Brine (Salamoia) and dimple vigorously. [Science: The oil/water emulsion prevents crust formation in the holes, keeping the crumb creamy.]"
-        ]
-    },
-    tags: ["focaccia", "high-oil", "brine", "genoa"],
-    pairings: {
-        canonical: ["Coarse sea salt", "EVOO"],
-        modern: ["Stracchino cheese"],
-        regional: ["Onions (Cipolla)"]
-    },
-    watchouts: [
-        "Dry surface: Not enough brine. The dough should essentially boil in oil/water.",
-        "Chewy texture: Flour too strong (>W300) or overmixed.",
-        "Bottom burning: Pan too thin; use aluminum or blue steel."
-    ],
-    notes: [
-        "The brine is 1 part water to 1 part oil mixed with salt.",
-        "Malt or sugar aids browning at the lower baking temp (230°C).",
-        "Total preparation time is relatively short (4-5 hours)."
-    ],
-    isPro: false,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "Consorzio Focaccia Genovese" }],
-    images: {
-        hero: "/images/styles/focaccia_hero.jpg",
-        dough: "/images/styles/focaccia_dough.jpg",
-        crumb: "/images/styles/focaccia_crumb.jpg"
-    }
-};
-
-const sicilianSfincione: DoughStyleDefinition = {
-    id: "sicilian_sfincione_v2",
-    name: "Pizza Siciliana (Sfincione)",
-    category: "pizza",
-    recipeStyle: RecipeStyle.SICILIANA,
-    origin: {
-        country: "Italy",
-        region: "Sicily (Palermo)",
-        period: "19th Century"
-    },
-    description: "The original 'sponge' pizza. Thick, soft, and topped with a rich sauce of onions, anchovies, and caciocavallo cheese, topped with breadcrumbs.",
-    history: "The ancestor of the American 'Sicilian Slice'. Traditionally served during holidays. The name comes from 'spongia' (sponge).",
-    difficulty: "Medium",
-    fermentationType: "direct",
-    technicalProfile: {
-        hydration: [65, 70],
-        salt: [2.0, 2.5],
-        oil: [2, 4],
-        sugar: [1, 2],
-        flourStrength: "W280-300",
-        ovenTemp: [220, 240],
-        recommendedUse: ["Sfincione Palermitano", "Sfincione Bagherese"],
-        difficulty: "Medium",
-        fermentationSteps: [
-            "Mix intense dough. [Science: Strong gluten development needed to hold the heavy toppings and thick structure.]",
-            "Bulk ferment 2h. [Science: Generates gas for the sponge structure.]",
-            "Pan proof 2h. [Science: Allows the dough to double in height in the pan.]",
-            "Top and bake. [Science: Breadcrumbs on top protect the sauce from drying out during the long bake.]"
-        ]
-    },
-    tags: ["thick", "soft", "sicilian", "onion"],
-    pairings: {
-        canonical: ["Caciocavallo", "Anchovy", "Onion stew", "Breadcrumbs"],
-        modern: ["Ricotta salata"],
-        regional: ["Oregano"]
-    },
-    watchouts: [
-        "Gummy layer: Sauce too wet or applied too early. Cook the onion sauce down significantly.",
-        "Dense crumb: Underproofed in the pan.",
-        "Soggy bottom: Not enough oil in the pan."
-    ],
-    notes: [
-        "Cheese (Caciocavallo) often goes UNDER the sauce to prevent burning.",
-        "The topping is more of a stew (onions, anchovies, tomato) than a raw sauce.",
-        "Breadcrumbs absorb moisture and add texture."
-    ],
-    isPro: false,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "Slow Food Sicily" }],
-    images: {
-        hero: "/images/styles/sfincione_hero.jpg",
-        dough: "/images/styles/sfincione_dough.jpg",
-        crumb: "/images/styles/sfincione_crumb.jpg"
-    }
-};
-
-const paneToscano: DoughStyleDefinition = {
-    id: "pane_toscano_dop_v2",
-    name: "Pane Toscano DOP (Sciocco)",
-    category: "bread",
-    recipeStyle: RecipeStyle.COUNTRY_LOAF,
-    origin: {
-        country: "Italy",
-        region: "Tuscany",
-        period: "Middle Ages"
-    },
-    description: "The famous salt-less bread of Tuscany. Crusty, bland on its own but perfect for bold Tuscan foods (salty hams, stews).",
-    history: "Legend says Pisans blocked salt shipments to Florence in the 12th century, forcing bakers to adapt. The lack of salt modifies the fermentation chemistry significantly.",
-    difficulty: "Hard",
-    fermentationType: "preferment",
-    technicalProfile: {
-        hydration: [60, 65],
-        salt: [0, 0],
-        oil: [0, 0],
-        sugar: [0, 0],
-        flourStrength: "W240-260",
-        ovenTemp: [220, 240],
-        recommendedUse: ["Bruschetta", "Ribollita", "Panzanella"],
-        difficulty: "Hard",
-        fermentationSteps: [
-            "Prepare Biga (stiff preferment) 16h. [Science: Biga provides acidity and strength, crucial since salt (a gluten strengthener) is absent.]",
-            "Mix final dough. [Science: Fermentation happens much faster without salt to inhibit yeast osmotic pressure.]",
-            "Bulk ferment 1-1.5h. [Science: Short bulk due to rapid yeast activity in salt-free environment.]",
-            "Bake with steam. [Science: Steam gelatinizes surface starch for crust color, which is harder to achieve without salt.]"
-        ]
-    },
-    tags: ["salt-free", "tuscany", "dop", "rustic"],
-    pairings: {
-        canonical: ["Prosciutto Toscano (Salty)", "Liver Pâté"],
-        modern: ["Kale stew"],
-        regional: ["Olive oil"]
-    },
-    watchouts: [
-        "Overproofing: Without salt, yeast runs wild. Watch closely.",
-        "Pale Crust: Lack of salt reduces Maillard reaction. Bake dark.",
-        "Collapse: Gluten is weaker without salt. Handle gently."
-    ],
-    notes: [
-        "The flavor profile is neutral/sweet, designed not to compete with food.",
-        "Stales quickly (no salt to hold moisture), hence its use in soups/salads (Ribollita).",
-        "DOP regulations specify Type '0' flour with cereal germ."
-    ],
-    isPro: true,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "Pane Toscano DOP Regulations" }],
-    images: {
-        hero: "/images/styles/toscano_hero.jpg",
-        dough: "/images/styles/toscano_dough.jpg",
-        crumb: "/images/styles/toscano_crumb.jpg"
-    }
-};
-
-const ciabattaClassic: DoughStyleDefinition = {
-    id: "ciabatta_classic_v2",
-    name: "Ciabatta (High Hydration)",
-    category: "bread",
-    recipeStyle: RecipeStyle.CIABATTA,
-    origin: {
-        country: "Italy",
-        region: "Veneto",
-        period: "1982"
-    },
-    description: "The 'slipper' bread invented to compete with the baguette. Extremely high hydration, thin crispy crust, and massive irregular holes.",
-    history: "Created by Arnaldo Cavallari in 1982 using high-protein flour and varying the hydration to create a purely Italian product with industrial handling capability but artisanal quality.",
-    difficulty: "Expert",
-    fermentationType: "preferment",
-    technicalProfile: {
-        hydration: [75, 85],
-        salt: [2.0, 2.2],
-        oil: [0, 2],
-        sugar: [0, 1],
-        flourStrength: "W340-380",
-        ovenTemp: [230, 250],
-        recommendedUse: ["Panini", "Table Bread"],
-        difficulty: "Expert",
-        fermentationSteps: [
-            "Prepare Biga (50% of flour) 18h. [Science: High acid load strengthens gluten structure for the high water content.]",
-            "Mix with 'Double Hydration' method. [Science: Adding water in two stages prevents the gluten from washing out before it forms.]",
-            "Bulk ferment with Coil Folds. [Science: Folds align gluten strands without degassing, trapping air.]",
-            "Divide and proof on floured couche. [Science: Handling must be gentle to preserve the large gas bubbles formed during bulk.]"
-        ]
-    },
-    tags: ["high-hydration", "open-crumb", "veneto", "modern-classic"],
-    pairings: {
-        canonical: ["Salami", "Provolone"],
-        modern: ["Avocado toast"],
-        regional: ["Sopressa Veneta"]
-    },
-    watchouts: [
-        "Flat loaf: Weak flour or overproofed.",
-        "Dense crumb: Degassed during shaping. Cut, don't shape.",
-        "Gummy interior: Underbaked. High water needs a long forceful bake."
-    ],
-    notes: [
-        "True Ciabatta is not shaped; it is cut from a long fermented strip.",
-        "Requires steam for the first 10-15 minutes.",
-        "Flour must have high protein (14%+) to support 80%+ water."
-    ],
-    isPro: false,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "Cavallari Archives" }, { source: "Modernist Bread" }],
-    images: {
-        hero: "/images/styles/ciabatta_hero.jpg",
-        dough: "/images/styles/ciabatta_dough.jpg",
-        crumb: "/images/styles/ciabatta_crumb.jpg"
-    }
-};
-
-export const italyStyles: DoughStyleDefinition[] = [
-    neapolitan,
-    tegliaRomana,
-    tondaRomana,
-    focacciaGenovese,
-    sicilianSfincione,
-    paneToscano,
-    ciabattaClassic
 ];

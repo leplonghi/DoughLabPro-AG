@@ -59,7 +59,7 @@ const STYLE_CHARACTERISTICS: Record<
   [RecipeStyle.SHORTBREAD]: { hydrationRange: [0, 10], idealW: [150, 200], idealOvenTemp: [160, 170], name: 'Shortbread' },
   [RecipeStyle.BROWNIE]: { hydrationRange: [20, 30], idealW: [150, 200], idealOvenTemp: [160, 180], name: 'Brownie' },
   [RecipeStyle.SWEETS_PASTRY]: { hydrationRange: [5, 20], idealW: [150, 220], idealOvenTemp: [160, 190], name: 'Pastry & Sweets' },
-  
+
   // New Styles from Types
   [RecipeStyle.BREAD_RUSTIC_SOURDOUGH]: { hydrationRange: [70, 80], idealW: [280, 350], idealOvenTemp: [230, 250], name: 'Rustic Sourdough' },
   [RecipeStyle.BREAD_BAGUETTE_CLASSIC]: { hydrationRange: [65, 75], idealW: [260, 300], idealOvenTemp: [240, 260], name: 'Classic Baguette' },
@@ -74,6 +74,7 @@ const STYLE_CHARACTERISTICS: Record<
   [RecipeStyle.COOKIE_CLASSIC_CHOC_CHIP]: { hydrationRange: [0, 10], idealW: [150, 200], idealOvenTemp: [175, 190], name: 'Classic Choc Chip' },
   [RecipeStyle.COOKIE_BROWN_BUTTER]: { hydrationRange: [0, 10], idealW: [150, 200], idealOvenTemp: [175, 190], name: 'Brown Butter Cookie' },
   [RecipeStyle.COOKIE_SHORTBREAD]: { hydrationRange: [0, 5], idealW: [120, 160], idealOvenTemp: [160, 170], name: 'Shortbread' },
+  [RecipeStyle.PRETZEL]: { hydrationRange: [50, 55], idealW: [280, 320], idealOvenTemp: [220, 240], name: 'Pretzel' },
 };
 
 
@@ -119,7 +120,7 @@ function calculateFitScore(
   } else {
     score += 10; // No oven info
   }
-  
+
   return Math.min(100, score);
 }
 
@@ -146,9 +147,9 @@ export function getAutoStyleInsights(
 
   // 1. Set Ideal Ranges for current style
   insights.idealHydrationRange = `${currentStyleChars.hydrationRange[0]}% - ${currentStyleChars.hydrationRange[1]}%`;
-  
+
   if (config.bakeType === BakeType.SWEETS_PASTRY) {
-      insights.idealFermentationRange = "N/A (Chemical leavening or physical aeration)";
+    insights.idealFermentationRange = "N/A (Chemical leavening or physical aeration)";
   } else if (environmentTempC) {
     if (environmentTempC < 20) insights.idealFermentationRange = "24–72 hours (cold or ambient)";
     else if (environmentTempC <= 24) insights.idealFermentationRange = "12–24 hours";
@@ -158,22 +159,22 @@ export function getAutoStyleInsights(
 
   // 2. Calculate Fit Score for the current configuration
   insights.styleFitScore = calculateFitScore(config, currentStyle, flourStrength, oven);
-  
+
   // 3. Generate Warnings and Notes
   if (flourStrength) {
-      const [minW, maxW] = currentStyleChars.idealW;
-      if(flourStrength < minW) insights.mismatchWarnings.push(`Your flour (W ${flourStrength}) might be too weak for ${currentStyleChars.name}, which performs better with W ${minW}-${maxW}.`);
-      if(flourStrength > maxW) insights.mismatchWarnings.push(`Your flour (W ${flourStrength}) is stronger than necessary for ${currentStyleChars.name}.`);
+    const [minW, maxW] = currentStyleChars.idealW;
+    if (flourStrength < minW) insights.mismatchWarnings.push(`Your flour (W ${flourStrength}) might be too weak for ${currentStyleChars.name}, which performs better with W ${minW}-${maxW}.`);
+    if (flourStrength > maxW) insights.mismatchWarnings.push(`Your flour (W ${flourStrength}) is stronger than necessary for ${currentStyleChars.name}.`);
   }
-  
+
   if (oven) {
-      const [minT] = currentStyleChars.idealOvenTemp;
-      if(oven.maxTemperature < minT) {
-          insights.mismatchWarnings.push(`Your oven (${oven.maxTemperature}°C) does not reach the ideal temperature of ${minT}°C for ${currentStyleChars.name}.`);
-          if (currentStyle === RecipeStyle.NEAPOLITAN) {
-              insights.professionalNotes.push("Master Tip: For home ovens, a style like NY Style with a baking steel generally yields a superior result compared to adapting Neapolitan.");
-          }
+    const [minT] = currentStyleChars.idealOvenTemp;
+    if (oven.maxTemperature < minT) {
+      insights.mismatchWarnings.push(`Your oven (${oven.maxTemperature}°C) does not reach the ideal temperature of ${minT}°C for ${currentStyleChars.name}.`);
+      if (currentStyle === RecipeStyle.NEAPOLITAN) {
+        insights.professionalNotes.push("Master Tip: For home ovens, a style like NY Style with a baking steel generally yields a superior result compared to adapting Neapolitan.");
       }
+    }
   }
 
   // 4. Find the best recommended style
@@ -182,7 +183,7 @@ export function getAutoStyleInsights(
 
   for (const style in STYLE_CHARACTERISTICS) {
     const recipeStyle = style as RecipeStyle;
-    if(recipeStyle === currentStyle) continue;
+    if (recipeStyle === currentStyle) continue;
 
     const score = calculateFitScore(config, recipeStyle, flourStrength, oven);
     if (score > bestFitScore) {
@@ -192,8 +193,8 @@ export function getAutoStyleInsights(
   }
 
   if (bestFitStyle && bestFitScore > insights.styleFitScore + 18) {
-      insights.recommendedStyle = STYLE_CHARACTERISTICS[bestFitStyle].name;
-      insights.professionalNotes.push(`Based on your oven and flour, the style ${insights.recommendedStyle} seems to be an even better match.`);
+    insights.recommendedStyle = STYLE_CHARACTERISTICS[bestFitStyle].name;
+    insights.professionalNotes.push(`Based on your oven and flour, the style ${insights.recommendedStyle} seems to be an even better match.`);
   }
 
   return insights;

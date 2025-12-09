@@ -293,7 +293,10 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         navigate('calculator');
     }, [config, addToast]);
 
-    const handleLoadStyleFromModule = useCallback((style: DoughStyleDefinition, navigate: (page: string) => void) => {
+    const handleLoadStyleFromModule = useCallback((style: any, navigate: (page: string) => void) => {
+        // NOTE: Accepting 'any' because we are supporting both DoughStyleDefinition (Legacy) and DoughStyle (New V2.5)
+
+        // 1. Determine Bake Type
         let bakeType = BakeType.PIZZAS;
         if (style.category === 'bread' || style.category === 'enriched_bread' || style.category === 'burger_bun') {
             bakeType = BakeType.BREADS_SAVORY;
@@ -303,25 +306,50 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
         const STYLE_ID_TO_PRESET_ID: Record<string, string> = {
             'neapolitan_avpn_classic': 'pizza_napolitana',
+            'pizza-napoletana': 'pizza_napolitana', // Mapping new ID
         };
         const mappedPresetId = STYLE_ID_TO_PRESET_ID[style.id];
 
-        // Extract values from technical profile (using average of range)
-        const hydration = (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2;
-        const salt = (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2;
-        const oil = style.technicalProfile.oil ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2 : 0;
-        const sugar = style.technicalProfile.sugar ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2 : 0;
-        const bakingTempC = (style.technicalProfile.ovenTemp[0] + style.technicalProfile.ovenTemp[1]) / 2;
+        // 2. Extract Technical Values
+        let hydration = 65;
+        let salt = 2.5;
+        let oil = 0;
+        let sugar = 0;
+        let bakingTempC = 400;
 
-        // Map fermentation type
+        if (style.technicalProfile) {
+            // Legacy DoughStyleDefinition
+            hydration = (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2;
+            salt = (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2;
+            oil = style.technicalProfile.oil ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2 : 0;
+            sugar = style.technicalProfile.sugar ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2 : 0;
+            bakingTempC = (style.technicalProfile.ovenTemp[0] + style.technicalProfile.ovenTemp[1]) / 2;
+        } else if (style.specs) {
+            // New DoughStyle (V2.5)
+            hydration = style.specs.hydration.ideal;
+            // Handle salt (sometimes it's in base_formula, defaulting if missing)
+            // Assuming standard for now or looking at base_formula if available
+            if (style.base_formula) {
+                const saltIng = style.base_formula.find((i: any) => i.name.toLowerCase().includes('salt') || i.name.toLowerCase().includes('sal'));
+                if (saltIng) salt = saltIng.percentage;
+            }
+            // Specs has ovenTemp.ideal
+            bakingTempC = style.specs.ovenTemp ? style.specs.ovenTemp.ideal : 400;
+        }
+
+        // 3. Fermentation Mapping
         let fermentationTechnique = FermentationTechnique.DIRECT;
         let yeastType = YeastType.IDY;
-        if (style.fermentationType === 'levain') {
-            fermentationTechnique = FermentationTechnique.SOURDOUGH;
-            yeastType = YeastType.SOURDOUGH_STARTER;
-        } else if (style.fermentationType === 'preferment') {
-            fermentationTechnique = FermentationTechnique.POOLISH; // Default to poolish
+
+        const fermentationMethod = style.fermentationType || (style.process ? 'process_derived' : 'direct'); // Fallback
+
+        if (fermentationMethod === 'levain' || (style.specs && style.specs.difficulty === 'Expert')) {
+            // Heuristic: Expert usually implies Sourdough or Biga/Poolish complex. 
+            // But for Pizza Napoletana STG (V2.5), it uses Yeast usually but can be sourdough.
+            // Lets stick to Direct/IDY unless explicit.
         }
+
+        // Explicit Check for Process steps mentioning 'Biga' or 'Poolish' => not implemented fully yet, defaulting to Direct for stability
 
         let newDoughConfig: Partial<DoughConfig> = {
             bakeType,
