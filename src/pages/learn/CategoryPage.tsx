@@ -1,8 +1,9 @@
 import React from 'react';
 import { useRouter } from '@/contexts/RouterContext';
 import { getArticlesByCategory } from '@/data/learn';
-import { ArrowLeftIcon, BookOpenIcon, BeakerIcon, FireIcon, ScaleIcon, WrenchScrewdriverIcon, ExclamationCircleIcon } from '@/components/ui/Icons';
+import { ArrowLeftIcon, BookOpenIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
+import { LEARN_CATEGORIES } from '@/data/learn/categories';
 
 interface CategoryPageProps {
     categoryId?: string;
@@ -16,30 +17,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
     const decodedCategory = categoryId ? decodeURIComponent(categoryId) : '';
     const articles = getArticlesByCategory(decodedCategory);
 
-    const getCategoryIcon = (cat: string) => {
-        switch (cat) {
-            case 'Ingredient Science': return <ScaleIcon className="w-8 h-8 text-lime-400" />;
-            case 'Dough Science': return <BeakerIcon className="w-8 h-8 text-sky-400" />;
-            case 'Fermentation Science': return <BookOpenIcon className="w-8 h-8 text-amber-400" />;
-            case 'Baking Science': return <FireIcon className="w-8 h-8 text-rose-400" />;
-            case 'Process Techniques': return <WrenchScrewdriverIcon className="w-8 h-8 text-purple-400" />;
-            case 'Troubleshooting': return <ExclamationCircleIcon className="w-8 h-8 text-red-400" />;
-            default: return <BookOpenIcon className="w-8 h-8 text-stone-400" />;
-        }
-    };
-
-    const getCategoryDescription = (cat: string) => {
-        // This could be moved to a data file or translation
-        switch (cat) {
-            case 'Ingredient Science': return 'Deep dive into the chemistry and function of flour, water, salt, yeast, and enrichments.';
-            case 'Dough Science': return 'Understand gluten development, rheology, and the physics of dough structure.';
-            case 'Fermentation Science': return 'Master the biology of yeast, bacteria, and fermentation kinetics.';
-            case 'Baking Science': return 'Thermodynamics, heat transfer, and the transformation from dough to bread.';
-            case 'Process Techniques': return 'Step-by-step guides on mixing, folding, shaping, and handling.';
-            case 'Troubleshooting': return 'Diagnose and fix common issues like sticky dough, dense crumb, or pale crust.';
-            default: return 'Explore our comprehensive knowledge base.';
-        }
-    };
+    // Find category configuration
+    const categoryData = LEARN_CATEGORIES.find(c => c.title === decodedCategory);
 
     if (!decodedCategory) return <div>Category not found</div>;
 
@@ -56,15 +35,15 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                     </nav>
 
                     <div className="flex items-center gap-4 mb-4">
-                        <div className="p-3 bg-stone-100 rounded-xl border border-stone-200">
-                            {getCategoryIcon(decodedCategory)}
+                        <div className={`p-3 bg-stone-100 rounded-xl border border-stone-200 ${categoryData?.text || 'text-slate-600'}`}>
+                            {categoryData?.icon || <BookOpenIcon className="w-8 h-8" />}
                         </div>
                         <div>
                             <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                                 {decodedCategory}
                             </h1>
                             <p className="text-lg text-slate-600 mt-1 max-w-2xl">
-                                {getCategoryDescription(decodedCategory)}
+                                {categoryData?.description || t('learn.category_default_desc', { defaultValue: 'Explore our comprehensive knowledge base.' })}
                             </p>
                         </div>
                     </div>

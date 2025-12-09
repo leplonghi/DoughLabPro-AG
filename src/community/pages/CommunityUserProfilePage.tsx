@@ -1,13 +1,12 @@
+
 import React, { useEffect, useState } from 'react';
 import { useRouter } from '../../contexts/RouterContext';
 import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
-import { CommunityPostCard } from '../components/CommunityPostCard';
-import { LockFeature } from '../../components/auth/LockFeature';
-import { User, MapPin, Calendar, Award } from 'lucide-react';
-import { useCommunityFollow } from '../hooks/useCommunityFollow';
-import { useUser } from '../../contexts/UserProvider';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
+import { ArrowLeft, Loader2, User as UserIcon, Grid, LayoutList, Bookmark, FileText } from 'lucide-react';
+import { CommunityPostCard } from '../components/CommunityPostCard';
+import { useUser } from '../../contexts/UserProvider';
 
 interface CommunityUserProfilePageProps {
     uid: string;
@@ -15,117 +14,199 @@ interface CommunityUserProfilePageProps {
 
 export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> = ({ uid }) => {
     const { navigate } = useRouter();
-    const { user: currentUser } = useUser();
-    const [posts, setPosts] = useState<CommunityPost[]>([]);
-    const [loading, setLoading] = useState(true);
+    const { user: currentUser, favorites } = useUser();
 
-    // Follow logic
-    const { isFollowing, toggleFollow, loading: followLoading } = useCommunityFollow(currentUser?.stripeCustomerId, uid);
+    const [posts, setPosts] = useState<CommunityPost[]>([]);
+    const [savedPosts, setSavedPosts] = useState<CommunityPost[]>([]);
+    const [activeTab, setActiveTab] = useState<'posts' | 'saved'>('posts');
+    const [loading, setLoading] = useState(true);
+    const [savedLoading, setSavedLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const isOwnProfile = currentUser?.uid === uid || currentUser?.stripeCustomerId === uid;
+
+    // Derived profile info
+    const userProfile = isOwnProfile ? {
+        name: currentUser?.name,
+        photoURL: currentUser?.avatar
+    } : (posts.length > 0 ? {
+        name: posts[0].username,
+        photoURL: posts[0].userPhotoURL
+    } : null);
 
     useEffect(() => {
-        if (!uid) return;
-        const loadUserPosts = async () => {
+        const fetchPosts = async () => {
+            if (!uid) return;
+            setLoading(true);
             try {
-                setLoading(true);
-                const userPosts = await communityStore.getUserPosts(uid);
-                setPosts(userPosts);
+                const fetchedPosts = await communityStore.getUserPosts(uid);
+                setPosts(fetchedPosts);
             } catch (err) {
                 console.error(err);
+                setError('Failed to load user posts');
             } finally {
                 setLoading(false);
             }
         };
-        loadUserPosts();
+
+        fetchPosts();
     }, [uid]);
 
-    // Mock user profile data since we don't have a separate user profile fetch yet
-    const profileUser = posts.length > 0 ? {
-        username: posts[0].username,
-        photoURL: posts[0].userPhotoURL
-    } : { username: 'Baker', photoURL: undefined };
+    useEffect(() => {
+        const fetchSaved = async () => {
+            if (!isOwnProfile || activeTab !== 'saved') return;
+
+            setSavedLoading(true);
+            try {
+                const savedIds = favorites
+                    .filter(f => f.type === 'community_post' && f.itemId)
+                    .map(f => f.itemId!);
+
+                if (savedIds.length === 0) {
+                    setSavedPosts([]);
+                    return;
+                }
+
+                // Parallel fetch (simple solution)
+                const promises = savedIds.map(id => communityStore.getPost(id).catch(() => null));
+                const results = await Promise.all(promises);
+
+                // Filter out nulls (deleted posts)
+                setSavedPosts(results.filter((p): p is CommunityPost => p !== null));
+            } catch (err) {
+                console.error("Failed to fetch saved posts", err);
+            } finally {
+                setSavedLoading(false);
+            }
+        };
+
+        fetchSaved();
+    }, [isOwnProfile, activeTab, favorites]);
+
+    if (loading) {
+        return (
+            <LibraryPageLayout>
+                <div className="flex items-center justify-center min-h-[50vh]">
+                    <Loader2 className="h-8 w-8 animate-spin text-lime-600" />
+                </div>
+            </LibraryPageLayout>
+        );
+    }
+
+    if (error) {
+        return (
+            <LibraryPageLayout>
+                <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
+                    <p className="text-gray-500 mb-4">{error}</p>
+                    <button
+                        onClick={() => navigate('community')}
+                        className="text-lime-600 font-medium hover:underline"
+                    >
+                        Return to Community
+                    </button>
+                </div>
+            </LibraryPageLayout>
+        );
+    }
 
     return (
         <LibraryPageLayout>
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-4xl mx-auto">
+                <button
+                    onClick={() => navigate('community')}
+                    className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors"
+                >
+                    <ArrowLeft className="h-5 w-5" />
+                    <span>Back to Community</span>
+                </button>
+
                 {/* Profile Header */}
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8">
-                    <div className="h-32 bg-gradient-to-r from-lime-500 to-green-600"></div>
-                    <div className="px-8 pb-8">
-                        <div className="relative flex justify-between items-end -mt-12 mb-6">
-                            <div className="h-24 w-24 rounded-full bg-white p-1">
-                                <div className="h-full w-full rounded-full bg-gray-200 overflow-hidden">
-                                    {profileUser.photoURL ? (
-                                        <img src={profileUser.photoURL} alt={profileUser.username} className="h-full w-full object-cover" />
-                                    ) : (
-                                        <div className="h-full w-full flex items-center justify-center text-gray-400">
-                                            <User className="h-10 w-10" />
-                                        </div>
-                                    )}
-                                </div>
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8 p-8 flex flex-col items-center text-center">
+                    <div className="h-24 w-24 rounded-full bg-gray-100 overflow-hidden mb-4 ring-4 ring-lime-50">
+                        {userProfile?.photoURL ? (
+                            <img
+                                src={userProfile.photoURL}
+                                alt={userProfile.name}
+                                className="h-full w-full object-cover"
+                            />
+                        ) : (
+                            <div className="h-full w-full flex items-center justify-center bg-gray-200">
+                                <UserIcon className="h-10 w-10 text-gray-400" />
                             </div>
+                        )}
+                    </div>
 
-                            <div className="flex gap-3">
-                                <LockFeature featureKey="community.follow" mode="tooltip" customMessage="Unlock full Community">
-                                    <button
-                                        onClick={toggleFollow}
-                                        disabled={followLoading}
-                                        className={`px-6 py-2 rounded-full font-medium transition-colors ${isFollowing
-                                            ? 'bg-gray-100 text-gray-900 border border-gray-200'
-                                            : 'bg-lime-600 text-white hover:bg-lime-700'
-                                            }`}
-                                    >
-                                        {isFollowing ? 'Following' : 'Follow'}
-                                    </button>
-                                </LockFeature>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h1 className="text-2xl font-bold text-gray-900">{profileUser.username}</h1>
-                            <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
-                                <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Global Baker</span>
-                                <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> Joined 2025</span>
-                            </div>
-                        </div>
-
-                        {/* Locked Stats Section */}
-                        <LockFeature featureKey="community.profile_full" mode="blur" className="mt-8 pt-8 border-t border-gray-100" customMessage="Unlock full Community">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                    <div className="text-2xl font-bold text-gray-900">{posts.length}</div>
-                                    <div className="text-xs text-gray-500 uppercase tracking-wide">Bakes</div>
-                                </div>
-                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                    <div className="text-2xl font-bold text-gray-900">0</div>
-                                    <div className="text-xs text-gray-500 uppercase tracking-wide">Followers</div>
-                                </div>
-                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                    <div className="text-2xl font-bold text-gray-900">0</div>
-                                    <div className="text-xs text-gray-500 uppercase tracking-wide">Clones</div>
-                                </div>
-                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 flex items-center gap-3">
-                                    <Award className="h-8 w-8 text-lime-500" />
-                                    <div>
-                                        <div className="font-bold text-gray-900">Top 10%</div>
-                                        <div className="text-xs text-gray-500 uppercase tracking-wide">Rank</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </LockFeature>
+                    <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                        {userProfile?.name || 'Unknown Baker'}
+                    </h1>
+                    <div className="text-gray-500 text-sm mb-6">
+                        {posts.length} {posts.length === 1 ? 'Bake' : 'Bakes'} Shared
                     </div>
                 </div>
 
-                {/* User Posts Grid */}
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Bakes</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {loading ? (
-                        <div className="col-span-full text-center py-12 text-gray-400">Loading bakes...</div>
-                    ) : posts.length === 0 ? (
-                        <div className="col-span-full text-center py-12 text-gray-400">No bakes shared yet.</div>
+                {/* Content Tabs (Only for own profile) */}
+                {isOwnProfile && (
+                    <div className="flex items-center gap-6 border-b border-gray-200 mb-6 px-4">
+                        <button
+                            onClick={() => setActiveTab('posts')}
+                            className={`pb-3 text-sm font-medium flex items-center gap-2 border-b-2 transition-colors ${activeTab === 'posts'
+                                    ? 'border-lime-600 text-lime-600'
+                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                                }`}
+                        >
+                            <FileText className="h-4 w-4" />
+                            My Bakes
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('saved')}
+                            className={`pb-3 text-sm font-medium flex items-center gap-2 border-b-2 transition-colors ${activeTab === 'saved'
+                                    ? 'border-lime-600 text-lime-600'
+                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                                }`}
+                        >
+                            <Bookmark className="h-4 w-4" />
+                            Saved
+                        </button>
+                    </div>
+                )}
+
+                {/* Posts Grid */}
+                <div className="px-4 pb-12">
+                    {activeTab === 'posts' ? (
+                        <>
+                            {!isOwnProfile && <h2 className="text-lg font-semibold text-gray-900 mb-4">Bakes</h2>}
+
+                            {posts.length === 0 ? (
+                                <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
+                                    <p className="text-gray-500">No bakes shared yet.</p>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {posts.map(post => (
+                                        <CommunityPostCard key={post.id} post={post} />
+                                    ))}
+                                </div>
+                            )}
+                        </>
                     ) : (
-                        posts.map(post => (
-                            <CommunityPostCard key={post.id} post={post} />
-                        ))
+                        /* Saved Tab Content */
+                        <>
+                            {savedLoading ? (
+                                <div className="flex justify-center py-12">
+                                    <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
+                                </div>
+                            ) : savedPosts.length === 0 ? (
+                                <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
+                                    <p className="text-gray-500">You haven't saved any posts yet.</p>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {savedPosts.map(post => (
+                                        <CommunityPostCard key={post.id} post={post} />
+                                    ))}
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
             </div>

@@ -45,8 +45,9 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
   const isAllowed = (tech: FermentationTechnique) => safeAllowedTechniques.includes(tech);
 
   // If the style only allows Chemical or No Ferment, we simplify the UI
-  const isChemicalOrNoFermentOnly = safeAllowedTechniques.length === 1 &&
-    (safeAllowedTechniques[0] === FermentationTechnique.CHEMICAL || safeAllowedTechniques[0] === FermentationTechnique.NO_FERMENT);
+  const isChemicalOrNoFermentOnly = safeAllowedTechniques.length > 0 && safeAllowedTechniques.every(t =>
+    t === FermentationTechnique.CHEMICAL || t === FermentationTechnique.NO_FERMENT
+  );
 
   if (isChemicalOrNoFermentOnly) {
     return (
@@ -57,10 +58,10 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
       >
         <div className="p-4 bg-dlp-bg-muted rounded-lg border border-dlp-border text-center">
           <p className="text-sm font-medium text-dlp-text-secondary">
-            {safeAllowedTechniques[0] === FermentationTechnique.CHEMICAL ? 'Chemical Leavening (Baking Powder/Soda)' : 'No Fermentation / Physical Leavening'}
+            Chemical / Physical Leavening
           </p>
           <p className="text-xs text-dlp-text-muted mt-1">
-            This style does not use yeast fermentation.
+            This style uses baking powder, soda, or mechanical action instead of yeast fermentation.
           </p>
         </div>
       </FormSection>

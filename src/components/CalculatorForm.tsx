@@ -109,58 +109,128 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     return DOUGH_STYLE_PRESETS.find(p => p.id === config.stylePresetId);
   }, [config.stylePresetId]);
 
+  // Guided Mode Logic
+  const hasStyle = !!config.stylePresetId || !!config.selectedStyleId || !!config.baseStyleName;
+  // Quantity is considered "valid" if we have valid numbers. Since defaults strictly exist, this is usually true.
+  // But purely for the "Reveal" effect, it works because initially it renders, and subsequent steps depend on it.
+  // To truly force "choice", we rely on the fact that Style is the primary trigger.
+  const hasQuantity = hasStyle && config.numPizzas > 0 && config.doughBallWeight > 0;
+
+  // Helper for instruction banners
+  const StepBanner = ({ step, title, description }: { step: number, title: string, description: string }) => {
+    if (!isBasic) return null;
+    return (
+      <div className="mb-4 rounded-lg bg-dlp-bg-muted border border-dlp-border p-4 animate-fade-in">
+        <h4 className="text-sm font-bold text-dlp-text-primary flex items-center gap-2">
+          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-dlp-accent text-white text-[10px]">
+            {step}
+          </span>
+          {title}
+        </h4>
+        <p className="text-xs text-dlp-text-secondary mt-1 ml-7">{description}</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="space-y-6">
-      <StyleSection
-        config={config}
-        onBakeTypeChange={onBakeTypeChange}
-        onStyleChange={onStyleChange}
-        recipeStylesToShow={recipeStylesToShow}
-        isBasic={isBasic}
-        currentPreset={currentPreset}
-        onResetPreset={() => onStyleChange('')}
-      />
+    <div className="space-y-8">
 
-      <QuantitySection
-        config={config}
-        onConfigChange={onConfigChange}
-        calculationMode={calculationMode}
-        onCalculationModeChange={onCalculationModeChange}
-        errors={errors}
-        getInputClasses={getInputClasses}
-        numPizzasRef={inputRefs?.numPizzas}
-      />
+      {/* Step 1: Style Selection */}
+      <div className="animate-fade-in">
+        <StepBanner
+          step={1}
+          title="Choose Your Style"
+          description="Select the type of product (Pizza, Bread, Pastry) and the specific style you want to make."
+        />
+        <StyleSection
+          config={config}
+          onBakeTypeChange={onBakeTypeChange}
+          onStyleChange={onStyleChange}
+          recipeStylesToShow={recipeStylesToShow}
+          isBasic={isBasic}
+          currentPreset={currentPreset}
+          onResetPreset={() => onStyleChange('')}
+        />
+      </div>
 
-      <IngredientsSection
-        config={config}
-        errors={errors}
-        handleNumberChange={handleNumberChange}
-        handleSelectChange={handleSelectChange}
-        handleIngredientsUpdate={handleIngredientsUpdate}
-        isBasic={isBasic}
-        isAnySourdough={isAnySourdough}
-        levains={levains}
-        selectedLevain={selectedLevain}
-        YEAST_OPTIONS={YEAST_OPTIONS}
-        getRange={getRange}
-        getSelectClasses={getSelectClasses}
-      />
+      {/* Step 2: Quantity */}
+      {(!isBasic || hasStyle) && (
+        <div className="animate-fade-in-up">
+          <StepBanner
+            step={2}
+            title="Define Quantity"
+            description="How much dough do you need? Set the number of balls/loaves and their individual weight."
+          />
+          <QuantitySection
+            config={config}
+            onConfigChange={onConfigChange}
+            calculationMode={calculationMode}
+            onCalculationModeChange={onCalculationModeChange}
+            errors={errors}
+            getInputClasses={getInputClasses}
+            numPizzasRef={inputRefs?.numPizzas}
+          />
+        </div>
+      )}
 
-      <FermentationSection
-        config={config}
-        onConfigChange={onConfigChange}
-        errors={errors}
-        isBasic={isBasic}
-        isAnySourdough={isAnySourdough}
-        hasProAccess={hasProAccess}
-        onOpenPaywall={onOpenPaywall}
-        allowedTechniques={getAllowedFermentationTechniques(config.recipeStyle, config.bakeType)}
-      />
+      {/* Step 3: Ingredients & Fermentation (Grouped for flow) */}
+      {(!isBasic || hasQuantity) && (
+        <div className="space-y-8 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
 
-      <EnvironmentSection
-        config={config}
-        onConfigChange={onConfigChange}
-      />
+          <div>
+            <StepBanner
+              step={3}
+              title="Customize Ingredients"
+              description="Adjust the key characteristics like hydration (water) and salt to match your taste or flour capability."
+            />
+            <IngredientsSection
+              config={config}
+              errors={errors}
+              handleNumberChange={handleNumberChange}
+              handleSelectChange={handleSelectChange}
+              handleIngredientsUpdate={handleIngredientsUpdate}
+              isBasic={isBasic}
+              isAnySourdough={isAnySourdough}
+              levains={levains}
+              selectedLevain={selectedLevain}
+              YEAST_OPTIONS={YEAST_OPTIONS}
+              getRange={(field) => getRange(field, config.bakeType)}
+              getSelectClasses={getSelectClasses}
+            />
+          </div>
+
+          <div>
+            <StepBanner
+              step={4}
+              title="Fermentation Strategy"
+              description="Choose how you want to ferment your dough (Direct, Poolish, Biga, etc)."
+            />
+            <FermentationSection
+              config={config}
+              onConfigChange={onConfigChange}
+              errors={errors}
+              isBasic={isBasic}
+              isAnySourdough={isAnySourdough}
+              hasProAccess={hasProAccess}
+              onOpenPaywall={onOpenPaywall}
+              allowedTechniques={getAllowedFermentationTechniques(config.recipeStyle, config.bakeType)}
+            />
+          </div>
+
+          <div>
+            <StepBanner
+              step={5}
+              title="Baking Environment"
+              description="Tell us about your oven temperature to fine-tune the recipe."
+            />
+            <EnvironmentSection
+              config={config}
+              onConfigChange={onConfigChange}
+            />
+          </div>
+
+        </div>
+      )}
 
       {!isBasic && (
         <LockedTeaser featureKey="calculator.save_preset">

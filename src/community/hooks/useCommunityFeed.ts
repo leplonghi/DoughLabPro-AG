@@ -24,9 +24,16 @@ export const useCommunityFeed = (filter: 'latest' | 'trending' | 'top' = 'latest
 
             setLastDoc(result.lastDoc);
             setHasMore(result.posts.length > 0);
-        } catch (err) {
-            console.error(err);
-            setError('Failed to load feed');
+        } catch (err: any) {
+            console.error('Feed error:', err);
+            // Provide more specific error messages if possible
+            if (err.code === 'failed-precondition') {
+                setError('The query requires an index. It is likely still being built by Firestore. Please try again in 5-10 minutes.');
+            } else if (err.code === 'permission-denied') {
+                setError('You do not have permission to view this feed.');
+            } else {
+                setError(err.message || 'Failed to load feed');
+            }
         } finally {
             setLoading(false);
         }

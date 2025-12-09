@@ -35,6 +35,7 @@ const STYLE_CHARACTERISTICS: Record<
   [RecipeStyle.PAO_FRANCES]: { hydrationRange: [58, 65], idealW: [240, 290], idealOvenTemp: [200, 230], name: 'French Bread' },
   [RecipeStyle.PUMPERNICKEL]: { hydrationRange: [80, 100], idealW: [150, 200], idealOvenTemp: [150, 180], name: 'Pumpernickel' },
   [RecipeStyle.PAO_DE_BATATA]: { hydrationRange: [60, 70], idealW: [220, 280], idealOvenTemp: [180, 200], name: 'Potato Bread' },
+  [RecipeStyle.PAO_DE_QUEIJO]: { hydrationRange: [40, 50], idealW: [0, 0], idealOvenTemp: [180, 220], name: 'Pão de Queijo' },
   [RecipeStyle.CHALLAH]: { hydrationRange: [55, 65], idealW: [250, 320], idealOvenTemp: [180, 200], name: 'Challah' },
   [RecipeStyle.BAGEL]: { hydrationRange: [50, 60], idealW: [300, 380], idealOvenTemp: [220, 250], name: 'Bagel' },
   [RecipeStyle.ENGLISH_MUFFIN]: { hydrationRange: [65, 75], idealW: [240, 300], idealOvenTemp: [150, 180], name: 'English Muffin' },

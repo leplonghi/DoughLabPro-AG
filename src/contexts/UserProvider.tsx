@@ -213,6 +213,22 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return () => unsub();
   }, []);
 
+
+
+  // --- LOCAL FAVOURITES (Guest Mode) ---
+  useEffect(() => {
+    if (!firebaseUser) {
+      try {
+        const stored = localStorage.getItem('dough-lab-guest-favorites');
+        if (stored) {
+          setFavorites(JSON.parse(stored));
+        }
+      } catch (err) {
+        console.error("Error loading guest favorites:", err);
+      }
+    }
+  }, [firebaseUser]);
+
   // Generic subscription helper
   const createCollectionSubscription = useCallback(
     (
@@ -567,19 +583,43 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Favorites
   const toggleFavorite = useCallback(
     async (item: Omit<FavoriteItem, 'createdAt'>) => {
-      if (!firebaseUser || !db) {
-        addToast('Please login to save favorites', 'info');
+      // Guest Mode Logic
+      if (!shouldUseFirestore(firebaseUser, db)) {
+        let newFavorites = [...favorites];
+        // Use logic ID check
+        const existingIndex = newFavorites.findIndex(f => (f.itemId === item.id || f.id === item.id) && f.type === item.type);
+
+        if (existingIndex >= 0) {
+          // Remove
+          newFavorites.splice(existingIndex, 1);
+          addToast('Removed from favorites', 'info');
+        } else {
+          // Add
+          const newItem: FavoriteItem = {
+            id: `local-${Date.now()}`, // Generic ID for list keys
+            itemId: item.id,
+            type: item.type,
+            title: item.title,
+            metadata: item.metadata || {},
+            createdAt: new Date().toISOString()
+          };
+          newFavorites.push(newItem);
+          addToast('Saved to favorites', 'success');
+        }
+
+        setFavorites(newFavorites);
+        localStorage.setItem('dough-lab-guest-favorites', JSON.stringify(newFavorites));
         return;
       }
 
+      // Firestore Logic (Logged In)
       // Use 'itemId' to look for the logical ID in the favorites array
       // Note: favorites array items have 'itemId' because we query Firestore and get all data
-      // But we need to ensure we are using the correct property.
-      const existing = favorites.find(f => (f as any).itemId === item.id && f.type === item.type);
+      const existing = favorites.find(f => (f.itemId === item.id || f.id === item.id) && f.type === item.type);
 
       if (existing) {
         // Remove
-        // existing.id is the Firestore Document ID.
+        // existing.id is the Firestore Document ID (from createCollectionSubscription)
         await deleteDocFn('favorites', existing.id);
         addToast('Removed from favorites', 'info');
       } else {
@@ -598,9 +638,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 
   const isFavorite = useCallback((id: string) => {
-    // Check if any favorite has itemId === id
-    // We need to cast or access the property.
-    return favorites.some((f: any) => f.itemId === id);
+    // Check if any favorite has itemId === id (logical) or id === id (legacy/fallback)
+    return favorites.some(f => f.itemId === id || f.id === id);
   }, [favorites]);
 
 

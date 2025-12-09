@@ -19,6 +19,7 @@ export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
     [RecipeStyle.PUMPERNICKEL]: 'pumpernickel',
     [RecipeStyle.RYE]: 'rye',
     [RecipeStyle.PAO_DE_BATATA]: 'pao_de_batata',
+    [RecipeStyle.PAO_DE_QUEIJO]: 'pao_de_queijo',
     [RecipeStyle.FOCACCIA]: 'focaccia',
     [RecipeStyle.CHALLAH]: 'challah',
     [RecipeStyle.BAGEL]: 'bagel',

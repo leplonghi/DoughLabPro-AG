@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import { useRouter } from '../../contexts/RouterContext';
 import { useUser } from '../../contexts/UserProvider';
 import { communityStore } from '../store/communityStore';
 import { ArrowLeft, Loader2, Image as ImageIcon } from 'lucide-react';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
+import { OvenType } from '@/types';
 
 export const CommunityCreatePostPage: React.FC = () => {
     const { navigate } = useRouter();
@@ -11,8 +13,56 @@ export const CommunityCreatePostPage: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [hydration, setHydration] = useState<number>(70);
+    const [flour, setFlour] = useState('');
+    const [ovenType, setOvenType] = useState<string>('ELECTRIC');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    const [file, setFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const selectedFile = e.target.files[0];
+
+            // Basic validation
+            if (selectedFile.size > 5 * 1024 * 1024) {
+                setError('Image size should be less than 5MB');
+                return;
+            }
+
+            if (!selectedFile.type.startsWith('image/')) {
+                setError('Please select a valid image file');
+                return;
+            }
+
+            setFile(selectedFile);
+            setPreviewUrl(URL.createObjectURL(selectedFile));
+            setError(null);
+        }
+    };
+
+    const uploadImage = async (fileToUpload: File, userId: string): Promise<string> => {
+        try {
+            // Dynamically import storage to avoid breaking if storage is not set up
+            const { storage } = await import('@/firebase/storage');
+            const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
+
+            if (!storage) {
+                console.warn('Firebase Storage not initialized, falling back to unsplash placeholder');
+                return 'https://images.unsplash.com/photo-1542834371-41040eb34996?auto=format&fit=crop&q=80&w=1000';
+            }
+
+            const fileName = `${userId}_${Date.now()}_${fileToUpload.name}`;
+            const storageRef = ref(storage, `community_uploads/${fileName}`);
+
+            await uploadBytes(storageRef, fileToUpload);
+            return await getDownloadURL(storageRef);
+        } catch (err) {
+            console.error('Upload failed', err);
+            throw new Error('Failed to upload image');
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -22,22 +72,28 @@ export const CommunityCreatePostPage: React.FC = () => {
         setError(null);
 
         try {
-            // Create a basic post structure
-            // In a real app, we would handle image uploads here
+            let photoUrl = 'https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&q=80&w=1000'; // Default placeholder
+
+            if (file) {
+                photoUrl = await uploadImage(file, user.uid || user.stripeCustomerId || 'unknown');
+            }
+
             const newPost = {
-                uid: user.stripeCustomerId || 'unknown',
+                uid: user.uid || user.stripeCustomerId || 'unknown',
                 username: user.name || 'Baker',
                 userPhotoURL: user.avatar,
                 title,
                 description,
                 hydration,
-                photos: ['https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&q=80&w=1000'], // Placeholder image
+                flour: flour || 'Mix',
+                ovenType: ovenType as any,
+                photos: [photoUrl],
                 likes: 0,
                 comments: 0,
                 clones: 0,
                 tags: ['sourdough', 'homemade'],
                 visibility: 'public' as const,
-                createdAt: new Date() as any // Firestore timestamp handled in store usually, but for type compatibility
+                createdAt: new Date() as any // serverTimestamp logic handled in store if needed, or pass Date
             };
 
             await communityStore.createPost(newPost);
@@ -116,11 +172,69 @@ export const CommunityCreatePostPage: React.FC = () => {
 
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Flour Blend
+                                </label>
+                                <input
+                                    type="text"
+                                    value={flour}
+                                    onChange={(e) => setFlour(e.target.value)}
+                                    placeholder="e.g. 90% Bread, 10% Rye"
+                                    className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Oven Type
+                                </label>
+                                <select
+                                    value={ovenType}
+                                    onChange={(e) => setOvenType(e.target.value)}
+                                    className="w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all appearance-none"
+                                >
+                                    {Object.values(OvenType).map((type) => (
+                                        <option key={type} value={type}>
+                                            {type.replace('_', ' ')}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="col-span-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Photos
                                 </label>
-                                <div className="w-full h-[42px] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400 cursor-not-allowed bg-gray-50">
-                                    <ImageIcon className="h-5 w-5 mr-2" />
-                                    <span className="text-sm">Upload disabled</span>
+                                <div className="w-full">
+                                    <label
+                                        htmlFor="file-upload"
+                                        className={`w-full h-32 border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer transition-colors ${previewUrl ? 'border-lime-500 bg-lime-50' : 'border-gray-300 hover:border-lime-500 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        {previewUrl ? (
+                                            <div className="relative w-full h-full p-2">
+                                                <img
+                                                    src={previewUrl}
+                                                    alt="Preview"
+                                                    className="w-full h-full object-cover rounded-lg"
+                                                />
+                                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 hover:bg-opacity-20 transition-all">
+                                                    <span className="text-white opacity-0 hover:opacity-100 font-medium drop-shadow-md">Change Photo</span>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <ImageIcon className="h-8 w-8 text-gray-400 mb-2" />
+                                                <span className="text-sm text-gray-500">Upload a photo</span>
+                                            </>
+                                        )}
+                                        <input
+                                            id="file-upload"
+                                            type="file"
+                                            className="hidden"
+                                            accept="image/*"
+                                            onChange={handleFileChange}
+                                        />
+                                    </label>
                                 </div>
                             </div>
                         </div>

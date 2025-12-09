@@ -1,28 +1,40 @@
 import React, { useState, useMemo } from 'react';
-import { STYLES_DATA } from '@/data/styles/registry';
-import { DoughStyleDefinition, StyleCategory } from '@/types/styles';
+import { STYLES_DATA, COMING_SOON_STYLES } from '@/data/styles/registry';
+import { DoughStyleDefinition } from '@/types/styles';
 import { Region, Category } from '@/types/dough';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { StyleCard } from '@/components/styles/StyleCard';
-import { Search, ChefHat } from 'lucide-react';
+import { Search, ChefHat, Globe2, MapPin, Calendar } from 'lucide-react';
 
 interface StylesLibraryPageProps {
     onNavigateToDetail: (id: string) => void;
     onUseInCalculator: (style: any) => void;
 }
 
-// Helper to map V1 Country to Region Filter
-const getRegionFromCountry = (country: string): Region | 'Global' => {
-    const c = country.toLowerCase();
-    if (c === 'italy') return 'Italy';
-    if (['usa', 'brazil', 'canada', 'mexico', 'argentina', 'colombia'].includes(c)) return 'Americas';
-    if (['france', 'germany', 'denmark', 'uk', 'spain', 'sweden', 'poland', 'belgium', 'netherlands'].includes(c)) return 'Europe';
+// Expanded Region Helper
+const resolveRegion = (origin: string): Region | 'Global' => {
+    const o = origin.toLowerCase();
+
+    // Direct Region Matches
+    if (o === 'asia') return 'Asia';
+    if (o === 'europe') return 'Europe';
+    if (o === 'north america') return 'North America';
+    if (o === 'south america') return 'South America';
+    if (o === 'italy') return 'Italy';
+
+    // Country Mapping (Legacy Support)
+    if (['usa', 'canada', 'mexico'].includes(o)) return 'North America';
+    if (['brazil', 'argentina', 'colombia', 'peru'].includes(o)) return 'South America';
+    if (['france', 'germany', 'denmark', 'uk', 'spain', 'sweden', 'poland', 'belgium', 'netherlands'].includes(o)) return 'Europe';
+    if (['japan', 'china', 'india', 'taiwan', 'korea', 'thailand', 'vietnam'].includes(o)) return 'Asia';
+
     return 'Global';
 };
 
 export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCalculator }) => {
+    // State
     const [filterCategory, setFilterCategory] = useState<Category | 'All'>('All');
-    const [filterRegion, setFilterRegion] = useState<Region | 'All'>('All');
+    const [filterRegion, setFilterRegion] = useState<Region | 'All' | 'Global'>('All');
     const [searchQuery, setSearchQuery] = useState('');
 
     // --- AGGREGATE DATA ---
@@ -33,24 +45,29 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
     // --- FILTER LOGIC ---
     const filteredStyles = useMemo(() => {
         return allStyles.filter(style => {
-            // Category Filter (Normalize case: V1 uses lowercase)
+            // Category Filter
+            const styleCat = style.category?.toLowerCase();
             const matchesCategory = filterCategory === 'All' ||
-                (style.category?.toLowerCase() === filterCategory.toLowerCase()) ||
-                (filterCategory === 'Enriched' && (style.category === 'enriched_bread' || style.category === 'burger_bun' || style.category === 'pastry')) ||
-                (filterCategory === 'Bread' && (style.category === 'bread' || style.category === 'flatbread'));
+                (styleCat === filterCategory.toLowerCase()) ||
+                (filterCategory === 'Enriched' && (styleCat === 'enriched_bread' || styleCat === 'burger_bun' || styleCat === 'pastry' || styleCat === 'buns' || styleCat === 'snack' || styleCat === 'enriched')) ||
+                (filterCategory === 'Bread' && (styleCat === 'bread' || styleCat === 'flatbread' || styleCat === 'soft bread'));
 
             // Region Filter
-            const styleRegion = getRegionFromCountry(style.origin.country);
+            const styleRegion = resolveRegion(style.origin.country || style.origin.region || '');
             const matchesRegion = filterRegion === 'All' || styleRegion === filterRegion;
 
             // Search Filter
             const matchesSearch = style.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 style.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                style.origin.country.toLowerCase().includes(searchQuery.toLowerCase());
+                (style.origin.country || '').toLowerCase().includes(searchQuery.toLowerCase());
 
             return matchesCategory && matchesRegion && matchesSearch;
         });
     }, [allStyles, filterCategory, filterRegion, searchQuery]);
+
+    // Available Regions for Filter Tabs
+    // We treat 'Global' as a specific bucket for fallback styles, distinct from 'All'
+    const regionTabs: (Region | 'Global')[] = ['Italy', 'Europe', 'North America', 'South America', 'Asia', 'Global'];
 
     return (
         <LibraryPageLayout>
@@ -76,74 +93,93 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
             </div>
 
             {/* --- SEARCH & FILTER BAR --- */}
-            <div className="sticky top-0 z-30 bg-white/80 backdrop-blur-md py-4 mb-8 border-b border-slate-200 -mx-4 px-4 md:static md:bg-transparent md:border-none md:p-0 md:mx-0">
+            <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md py-4 mb-8 border-b border-slate-200 -mx-4 px-4 md:static md:bg-transparent md:border-none md:p-0 md:mx-0 transition-all">
 
-                {/* Search Input */}
-                <div className="relative mb-6">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Search className="h-5 w-5 text-slate-400" />
+                <div className="max-w-4xl mx-auto">
+                    {/* Search Input */}
+                    <div className="relative mb-6">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <Search className="h-5 w-5 text-slate-400" />
+                        </div>
+                        <input
+                            type="text"
+                            className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 sm:text-sm shadow-sm transition-all"
+                            placeholder="Search styles (e.g. 'Neapolitan', 'Shokupan', 'Baguette')..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
                     </div>
-                    <input
-                        type="text"
-                        className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 sm:text-sm shadow-sm transition-all"
-                        placeholder="Search styles (e.g. 'Neapolitan', 'Ciabatta')..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
+
+                    {/* Filter Pills Container */}
+                    <div className="flex flex-col gap-4">
+
+                        {/* Categories Row */}
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-16 shrink-0 pt-2 sm:pt-0">Type</span>
+                            <div className="flex flex-wrap gap-2 items-center">
+                                <button
+                                    onClick={() => setFilterCategory('All')}
+                                    className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${filterCategory === 'All'
+                                        ? 'bg-slate-900 text-white border-slate-900'
+                                        : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                                        }`}
+                                >
+                                    All
+                                </button>
+                                <div className="w-px h-4 bg-slate-300 mx-1 hidden sm:block"></div>
+                                {(['Pizza', 'Bread', 'Flatbread', 'Enriched'] as Category[]).map(cat => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setFilterCategory(current => current === cat ? 'All' : cat)}
+                                        className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterCategory === cat
+                                            ? 'bg-lime-600 text-white border-lime-600 shadow-md transform scale-105'
+                                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                                            }`}
+                                    >
+                                        {cat === 'Pizza' && '🍕'}
+                                        {cat === 'Bread' && '🍞'}
+                                        {cat === 'Flatbread' && '🫓'}
+                                        {cat === 'Enriched' && '🥐'}
+                                        <span className="ml-1">{cat}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Regions Row */}
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-16 shrink-0 pt-2 sm:pt-0">Region</span>
+                            <div className="flex flex-wrap gap-2 items-center">
+                                <button
+                                    onClick={() => setFilterRegion('All')}
+                                    className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterRegion === 'All'
+                                        ? 'bg-slate-900 text-white border-slate-900'
+                                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <Globe2 className="w-3 h-3" />
+                                    <span>Any</span>
+                                </button>
+
+                                {regionTabs.map(reg => (
+                                    <button
+                                        key={reg}
+                                        onClick={() => setFilterRegion(current => current === reg ? 'All' : reg)}
+                                        className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterRegion === reg
+                                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-md transform scale-105'
+                                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                                            }`}
+                                    >
+                                        {reg === 'Italy' && <MapPin className="w-3 h-3" />}
+                                        {reg !== 'Italy' && <Globe2 className="w-3 h-3" />}
+                                        <span>{reg}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Filter Pills */}
-                <div className="flex flex-wrap gap-2 items-center">
-                    {/* Reset */}
-                    <button
-                        onClick={() => { setFilterCategory('All'); setFilterRegion('All'); }}
-                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${filterCategory === 'All' && filterRegion === 'All'
-                            ? 'bg-slate-900 text-white border-slate-900'
-                            : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                            }`}
-                    >
-                        All
-                    </button>
-
-                    <div className="w-px h-6 bg-slate-300 mx-2 hidden sm:block"></div>
-
-                    {/* Categories */}
-                    {(['Pizza', 'Bread', 'Flatbread', 'Enriched'] as Category[]).map(cat => (
-                        <button
-                            key={cat}
-                            onClick={() => setFilterCategory(current => current === cat ? 'All' : cat)}
-                            className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterCategory === cat
-                                ? 'bg-lime-500 text-white border-lime-500 shadow-md transform scale-105'
-                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                                }`}
-                        >
-                            {cat === 'Pizza' && '🍕'}
-                            {cat === 'Bread' && '🍞'}
-                            {cat === 'Flatbread' && '🫓'}
-                            {cat === 'Enriched' && '🥐'}
-                            {cat}
-                        </button>
-                    ))}
-
-                    <div className="w-px h-6 bg-slate-300 mx-2 hidden sm:block"></div>
-
-                    {/* Regions */}
-                    {(['Italy', 'Americas', 'Europe', 'Global'] as Region[]).map(reg => (
-                        <button
-                            key={reg}
-                            onClick={() => setFilterRegion(current => current === reg ? 'All' : reg)}
-                            className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterRegion === reg
-                                ? 'bg-indigo-500 text-white border-indigo-500 shadow-md transform scale-105'
-                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                                }`}
-                        >
-                            {reg === 'Italy' && '🇮🇹'}
-                            {reg === 'Americas' && '🌎'}
-                            {reg === 'Europe' && '🇪🇺'}
-                            {reg}
-                        </button>
-                    ))}
-                </div>
             </div>
 
             {/* --- CONTENT GRID --- */}
@@ -168,6 +204,43 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                     </button>
                 </div>
             )}
+
+            {/* --- COMING SOON SECTION --- */}
+            <div className="mt-16 border-t border-slate-200 pt-10 pb-8">
+                <div className="flex items-center gap-2 mb-6">
+                    <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
+                        <Calendar className="w-4 h-4" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-800">Coming Soon: Early 2026 Roadmap</h2>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {COMING_SOON_STYLES.map(style => (
+                        <div key={style.id} className="relative group bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-amber-300 transition-all opacity-80 hover:opacity-100">
+                            <div className="h-32 bg-slate-100 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 group-hover:from-amber-100 group-hover:to-orange-50 transition-colors"></div>
+                                <div className="absolute inset-0 flex items-center justify-center text-slate-300 group-hover:text-amber-200">
+                                    <ChefHat className="w-12 h-12 opacity-20" />
+                                </div>
+                                <div className="absolute bottom-2 right-2 px-2 py-1 rounded text-[10px] font-bold bg-white/90 text-slate-600 shadow-sm">
+                                    {style.releaseDate}
+                                </div>
+                            </div>
+                            <div className="p-4">
+                                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{style.region}</div>
+                                <h3 className="font-bold text-slate-800 text-sm mb-1 leading-snug">{style.name}</h3>
+                                <div className="flex items-center gap-1.5 text-xs text-amber-600 font-medium mt-2">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                                    </span>
+                                    In Development
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </LibraryPageLayout>
     );
 };

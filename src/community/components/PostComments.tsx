@@ -23,7 +23,7 @@ export const PostComments: React.FC<PostCommentsProps> = ({ postId, onCommentAdd
         setSubmitting(true);
         try {
             await addComment(
-                user.stripeCustomerId || 'unknown',
+                user.uid || user.stripeCustomerId || 'unknown',
                 user.name,
                 newComment,
                 user.avatar

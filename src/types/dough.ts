@@ -1,10 +1,61 @@
-export type Region = 'Italy' | 'Americas' | 'Europe' | 'Global';
-export type Category = 'Pizza' | 'Bread' | 'Enriched' | 'Flatbread';
+import { RecipeStyle } from './styles';
+
+export type Region =
+    | 'North America'
+    | 'South America'
+    | 'Europe'
+    | 'Asia'
+    | 'Middle East'
+    | 'Africa'
+    | 'Oceania'
+    | 'Italy';
+
+export type Category =
+    | 'Pizza'
+    | 'Bread'
+    | 'Flatbread'
+    | 'Enriched'
+    | 'Snack'         // ex: Pão de Queijo, Pretzel
+    | 'Buns'          // ex: Burger, Hot Dog
+    | 'Pastry'        // ex: Croissant, Danish
+    | 'Soft Bread';   // ex: Shokupan
 
 export interface BaseIngredient {
     name: string;
     percentage: number;
 }
+
+// --- LOGIC & ENGINEERING ENUMS ---
+
+// Local RecipeStyle enum removed in favor of strict typed one from ./styles
+// Any local usage should be migrated to FermentationTechnique or specific methods
+export { RecipeStyle };
+
+export enum YeastType {
+    INSTANT = 'INSTANT',
+    ACTIVE_DRY = 'ACTIVE_DRY',
+    FRESH = 'FRESH',
+    SOURDOUGH_STARTER = 'SOURDOUGH_STARTER',
+    NONE = 'NONE', // Químico ou físico apenas
+}
+
+export enum FermentationTechnique {
+    DIRECT = 'DIRECT',
+    COLD_FERMENT = 'COLD_FERMENT',
+    SCALD = 'SCALD',       // Escaldo (Pão de Queijo)
+    NO_FERMENT = 'NO_FERMENT',
+}
+
+// --- CALCULATION BRAIN ---
+
+export interface CalculationProfile {
+    method: 'baker_percentage' | 'starch_scald' | 'simple_mix';
+    requiresYeast: boolean;
+    requiresSteam?: boolean;
+    allowOil?: boolean;
+}
+
+// --- DOMAIN INTERFACES ---
 
 export interface DoughSpecs {
     hydration: { ideal: number; min: number; max: number };
@@ -13,13 +64,41 @@ export interface DoughSpecs {
     difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
 }
 
+
+
+
 export interface ScientificProfile {
-    flourRheology: string;
-    processScience: string;
+    // The Science of Flour (Rheology)
+    flourRheology: {
+        w_index: string; // e.g. "W280-320"
+        pl_ratio: string; // P/L (Elasticity/Extensibility Ratio)
+        absorption_capacity: string; // e.g. "High (65%+)"
+        protein_type: string; // e.g. "Soft Wheat, low damaged starch"
+        science_explanation: string; // "Why this flour?"
+    };
+
+    // The Science of Heat (Thermodynamics)
+    thermalProfile: {
+        oven_type: string;
+        heat_distribution: string; // e.g. "High conduction (floor), High radiation (dome)"
+        crust_development: string; // e.g. "Leopard spotting due to rapid gelatinization"
+        crumb_structure: string; // e.g. "Large alveoli, thin walls"
+    };
+
+    // The Chemistry of Fermentation
+    fermentationScience: {
+        yeast_activity: string; // e.g. "Slow due to cold retard"
+        ph_target: string; // e.g. "pH 5.5 - 5.8"
+        organic_acids: string; // e.g. "Lactic dominant over Acetic"
+        enzymatic_activity: string; // e.g. "High protease activity during autolyse"
+    };
+
+    // Legacy support for migration (optional)
+    processScience?: string;
 }
 
 export interface ProcessStep {
-    phase: 'Mix' | 'Bulk' | 'Ball' | 'Bake';
+    phase: 'Mix' | 'Bulk' | 'Ball' | 'Bake' | 'Prep' | 'Lamination' | 'Cook';
     title: string;
     duration: string;
     action: string;
@@ -27,7 +106,7 @@ export interface ProcessStep {
     temperature?: string;
 }
 
-// New educational content interface matching styles.ts
+// Educational content interface
 export interface EducationalContent {
     pro_tips: {
         tip: string;
@@ -53,13 +132,13 @@ export interface EducationalContent {
     }[];
 
     fermentation_methods: {
-        method: 'Direct' | 'Biga' | 'Poolish' | 'Sourdough' | 'Hybrid';
+        method: 'Direct' | 'Biga' | 'Poolish' | 'Sourdough' | 'Hybrid' | 'Scald' | 'Tangzhong';
         suitability: 'Ideal' | 'Possible' | 'Not Recommended' | 'Historical' | 'Authentic';
         notes: string;
     }[];
 }
 
-// New Deep Dive Module for Expert Consulting
+// Deep Dive Module for Expert Consulting
 export interface DeepDive {
     hydrationLogic: string;
     methodSuitability: {
@@ -87,6 +166,7 @@ export interface DoughStyle {
     region: Region;
     subRegion: string;
     category: Category;
+    recipeStyle?: RecipeStyle; // Added for Calculator/Filter logic
     tags: string[];
 
     description: string;
@@ -96,9 +176,12 @@ export interface DoughStyle {
 
     specs: DoughSpecs;
 
+    // Engineering Logic (New Brain)
+    calculation?: CalculationProfile;
+
     scientificProfile: ScientificProfile;
 
-    // New optional field for rich content
+    // Rich content
     education?: EducationalContent;
 
     // The Knowledge Module
@@ -113,4 +196,13 @@ export interface DoughStyle {
         dough: string;
         crumb: string;
     };
+
+    // Legacy Support
+    origin?: string;
+    technical?: any;
+
+    // Expanded Context
+    regulatory_info?: string;
+    global_presence?: string;
+    variations?: any[];
 }

@@ -59,6 +59,17 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                         className="h-full"
                     />
                 ))}
+
+                {/* Visual indicator for Custom/Library Styles */}
+                {/* Visual indicator for Custom/Library Styles or Hidden Presets */}
+                {(config.baseStyleName && !recipeStylesToShow.some(p => p.id === config.stylePresetId)) && (
+                    <ChoiceButton
+                        active={true}
+                        label={config.baseStyleName}
+                        onClick={() => { }} // No-op, already active
+                        className="h-full border-lime-500 bg-lime-50 text-lime-700"
+                    />
+                )}
             </div>
         </AccordionSection>
     );

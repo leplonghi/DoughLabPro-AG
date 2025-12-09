@@ -13,19 +13,22 @@ export function getAllowedFermentationTechniques(style: RecipeStyle | string, ba
     // Only restrict fermentation techniques for specific pastry items
     if (bakeType === BakeType.SWEETS_PASTRY) {
         const styleStr = String(style).toUpperCase();
-        // Cookies, pâte sablée, brownies, and cakes use chemical leavening or no fermentation
-        if (styleStr.includes('COOKIE') || styleStr.includes('PATE') || styleStr.includes('SABLEE') ||
-            styleStr.includes('SHORTBREAD') || styleStr.includes('BROWNIE') || styleStr.includes('CAKE')) {
-            return [FermentationTechnique.CHEMICAL, FermentationTechnique.NO_FERMENT];
+
+        // Whitelist: Styles that explicitly use yeast
+        // Brioche, Panettone, Croissant, Danish, Donut, Savarin, Baba, Colomba, Challah, Babka
+        const yeastedExamples = [
+            'BRIOCHE', 'PANETTONE', 'CROISSANT', 'DANISH', 'DONUT', 'DOUGHNUT',
+            'SAVARIN', 'BABA', 'COLOMBA', 'CHALLAH', 'BABKA', 'BUN', 'ROLL', 'CORNETTO'
+        ];
+
+        if (yeastedExamples.some(y => styleStr.includes(y))) {
+            return standardTechniques;
         }
-        // Enriched doughs like Brioche, Panettone, etc. use standard techniques
-        return standardTechniques;
+
+        // Default for Pastry (Cookies, Cakes, Brownies, Tarts, etc.) is Chemical/No Ferment
+        return [FermentationTechnique.CHEMICAL, FermentationTechnique.NO_FERMENT];
     }
 
     // All other types (pizzas, breads, flatbreads) allow all standard techniques
-    // This includes:
-    // - Pizzas: Neapolitan (traditionally Direct), Roman al Taglio (Biga), NY Style (Poolish)
-    // - Breads: Baguette (Direct/Poolish), Ciabatta (Biga), Pain de Campagne (Levain)
-    // - Flatbreads: Focaccia, Pita, etc.
     return standardTechniques;
 }

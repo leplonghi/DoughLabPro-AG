@@ -1,8 +1,10 @@
 import { defineDoughStyle } from '../../builder';
+import { RecipeStyle } from '@/types';
 
 export const NYChocolateChip = defineDoughStyle({
     name: "NY Style Chip Cookie",
     category: "cookie",
+    recipeStyle: RecipeStyle.COOKIE_NY_CHOC_CHIP,
     description: "The modern 'Levain-style' cookie: massive (170g+), tall, mountains of dough with a gooey, underbaked center and a crispy, golden exterior. Relies on cold butter cubes and minimal mixing.",
     origin: {
         country: "USA",
@@ -35,6 +37,11 @@ export const NYChocolateChip = defineDoughStyle({
         "Baking too low/slow -> flat cookie."
     ],
     tags: ["cookie", "american", "chocolate", "gooey", "sweet"],
+    images: {
+        hero: "/images/styles/ny-cookie-hero.png",
+        dough: "/images/styles/placeholder_dough.jpg", // Kept generic
+        crumb: "/images/styles/placeholder_dough.jpg"
+    },
     references: [
         { source: "Levain Bakery", url: "" }
     ],
@@ -55,12 +62,25 @@ export const NYChocolateChip = defineDoughStyle({
         fermentation_methods: [
             { method: "Direct", suitability: "Ideal", notes: "Chemical leavening (Soda/Powder) replaces yeast." }
         ]
-    }
+    },
+    base_formula: [
+        { name: "Bread/Cake Flour Blend", percentage: 100 },
+        { name: "Brown Sugar", percentage: 40 },
+        { name: "White Sugar", percentage: 35 },
+        { name: "Cold Butter Cubes", percentage: 65 },
+        { name: "Whole Eggs", percentage: 40 },
+        { name: "Dark Chocolate Chips", percentage: 90 },
+        { name: "Walnuts (Optional)", percentage: 40 },
+        { name: "Cornstarch", percentage: 2 },
+        { name: "Baking Powder", percentage: 1.5 },
+        { name: "Sea Salt", percentage: 1.5 }
+    ]
 });
 
 export const FrenchCroissant = defineDoughStyle({
     name: "French Croissant",
     category: "pastry",
+    recipeStyle: RecipeStyle.SWEETS_PASTRY,
     description: "The ultimate test of a baker's skill. A laminated yeast dough (Viennoiserie) featuring alternate layers of butter and dough (managed via 'turns'). Results in a honeycomb interior structure.",
     origin: {
         country: "France / Austria",
@@ -95,6 +115,11 @@ export const FrenchCroissant = defineDoughStyle({
         "Proofing collapse."
     ],
     tags: ["pastry", "french", "laminated", "breakfast", "butter"],
+    images: {
+        hero: "/images/styles/croissant-hero.png",
+        dough: "/images/styles/placeholder_dough.jpg",
+        crumb: "/images/styles/placeholder_dough.jpg"
+    },
     references: [
         { source: "Viennoiserie Disciplinare", url: "" }
     ],
@@ -115,12 +140,23 @@ export const FrenchCroissant = defineDoughStyle({
         fermentation_methods: [
             { method: "Poolish", suitability: "Ideal", notes: "A poolish preferment adds extensibility to the dough, making rolling easier." }
         ]
-    }
+    },
+    base_formula: [
+        { name: "T55/Bread Flour", percentage: 100 },
+        { name: "Water/Milk", percentage: 58 },
+        { name: "Sugar", percentage: 12 },
+        { name: "Salt", percentage: 2 },
+        { name: "Instant Yeast", percentage: 1.2 },
+        { name: "Butter (Dough)", percentage: 8 },
+        { name: "Butter (Lamination Block)", percentage: 28 },
+        { name: "Egg Wash", percentage: 5 }
+    ]
 });
 
 export const CinnamonRoll = defineDoughStyle({
     name: "Classic Cinnamon Roll",
     category: "pastry", // Or Enriched Bread, but fits Pastry logic
+    recipeStyle: RecipeStyle.CINNAMON_ROLL,
     description: "Soft, enriched dough rolled with a cinnamon-sugar-butter smear and cut into spirals. Topped with cream cheese icing or fondant glaze. A staple of American comfort baking.",
     origin: {
         country: "USA / Sweden",
@@ -149,6 +185,11 @@ export const CinnamonRoll = defineDoughStyle({
         "Tangzhong method keeps them soft for days."
     ],
     tags: ["pastry", "american", "sweet", "breakfast", "cinnamon"],
+    images: {
+        hero: "/images/styles/cinnamon-roll-hero.png",
+        dough: "/images/styles/placeholder_dough.jpg",
+        crumb: "/images/styles/placeholder_dough.jpg"
+    },
     education: {
         pro_tips: [
             { tip: "Dental Floss Cut", explanation: "Use unflavored floss to cut the log. Knives squash the spiral; floss cuts cleanly from the outside in." },
@@ -166,12 +207,27 @@ export const CinnamonRoll = defineDoughStyle({
         fermentation_methods: [
             { method: "Direct", suitability: "Authentic", notes: "Enriched direct dough is standard." }
         ]
-    }
+    },
+    base_formula: [
+        { name: "Bread Flour", percentage: 100 },
+        { name: "Whole Milk", percentage: 65 },
+        { name: "Sugar", percentage: 15 },
+        { name: "Butter (Soft)", percentage: 15 },
+        { name: "Whole Egg", percentage: 10 },
+        { name: "Instant Yeast", percentage: 1.5 },
+        { name: "Salt", percentage: 2 },
+        { name: "Filling: Brown Sugar", percentage: 25 },
+        { name: "Filling: Cinnamon", percentage: 2.5 },
+        { name: "Filling: Butter", percentage: 10 },
+        { name: "Frosting: Cream Cheese", percentage: 20 },
+        { name: "Frosting: Powdered Sugar", percentage: 15 }
+    ]
 });
 
 export const FudgyBrownie = defineDoughStyle({
     name: "Fudgy Brownie",
     category: "cookie", // Adapting to 'Confectionery' family
+    recipeStyle: RecipeStyle.BROWNIE,
     description: "A dense, rich chocolate bar with zero leavening agents (relying on egg foam or just density). shiny crackly top (meringue skin) and a moist, truffle-like interior.",
     origin: {
         country: "USA",
@@ -199,6 +255,11 @@ export const FudgyBrownie = defineDoughStyle({
         "Cocoa powder adds depth; melted chocolate adds fudge factor."
     ],
     tags: ["sweet", "chocolate", "dessert", "american"],
+    images: {
+        hero: "/images/styles/brownie-hero.png",
+        dough: "/images/styles/placeholder_dough.jpg",
+        crumb: "/images/styles/placeholder_dough.jpg"
+    },
     references: [
         { source: "Palmer House Hotel", url: "" }
     ],
@@ -219,5 +280,16 @@ export const FudgyBrownie = defineDoughStyle({
         fermentation_methods: [
             { method: "Direct", suitability: "Not Recommended", notes: "No fermentation. It's a batter." }
         ]
-    }
+    },
+    base_formula: [
+        { name: "AP Flour", percentage: 100 },
+        { name: "White Sugar", percentage: 120 },
+        { name: "Brown Sugar", percentage: 40 },
+        { name: "Butter (Melted)", percentage: 100 },
+        { name: "Dark Chocolate (70%)", percentage: 60 },
+        { name: "Cocoa Powder", percentage: 25 },
+        { name: "Whole Eggs", percentage: 70 },
+        { name: "Vanilla Extract", percentage: 2 },
+        { name: "Salt", percentage: 1 }
+    ]
 });

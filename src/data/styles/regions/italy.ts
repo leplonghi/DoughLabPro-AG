@@ -1,4 +1,4 @@
-import { DoughStyle } from '@/types/dough';
+import { DoughStyle, RecipeStyle } from '@/types/dough';
 
 export const italianStyles: DoughStyle[] = [
     {
@@ -7,6 +7,7 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Naples, Campania',
         category: 'Pizza',
+        recipeStyle: RecipeStyle.NEAPOLITAN,
         tags: ["High Heat", "Direct Method", "STG", "Wood Fired"],
         description: "The gold standard of pizza. Soft, pliable ('a libretto'), with a distinctively airy cornicione and leoparding checks. Protected by UNESCO.",
         history_context: "Defined by the 'Associazione Verace Pizza Napoletana' (AVPN), this style dates back to the 18th century. It was rigorously codified to protect the tradition against industrialization. True Neapolitan pizza is an artisanal product that requires specific hand stretching ('schiaffo') and a wood-fired oven.",
@@ -23,7 +24,25 @@ export const italianStyles: DoughStyle[] = [
             difficulty: 'Expert'
         },
         scientificProfile: {
-            flourRheology: "Requires '00' flour with W280-320. The key is strict P/L control (0.50-0.60): we need extensibility for easy stretching without snap-back, but enough strength to hold gas during a long 24h fermentation at room temperature.",
+            flourRheology: {
+                w_index: "W280-320",
+                pl_ratio: "0.50-0.60 (Extensible)",
+                absorption_capacity: "Medium-High",
+                protein_type: "Type 00",
+                science_explanation: "Requires '00' flour with W280-320. The key is strict P/L control (0.50-0.60): we need extensibility for easy stretching without snap-back, but enough strength to hold gas during a long 24h fermentation at room temperature."
+            },
+            thermalProfile: {
+                oven_type: "Wood Fired (Dome)",
+                heat_distribution: "High Conduction (Floor) & Radiation",
+                crust_development: "Leopard Spotting",
+                crumb_structure: "Airy Cornicione, Thin Center"
+            },
+            fermentationScience: {
+                yeast_activity: "Controlled (Room Temp)",
+                ph_target: "pH 5.5",
+                organic_acids: "Lactic Dominant",
+                enzymatic_activity: "High (24h Maturation)"
+            },
             processScience: "The defining physical event is 'Sudden Evaporation'. At >430°C, the moisture in the dough turns to steam almost instantly. Because the gluten is relaxed (extensible), the cornicione inflates rapidly before the crust sets, creating the signature 'voids' inside the rim."
         },
         process: [
@@ -176,6 +195,7 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Rome, Lazio',
         category: 'Pizza',
+        recipeStyle: RecipeStyle.ROMAN,
         tags: ["High Hydration", "Pan Pizza", "Cold Ferment", "Airy Crumb"],
         description: "A highly hydrated pan pizza known for its light, airy, open crumb and crispy bottom. Sold by weight ('al taglio') in Rome.",
         history_context: "Revolutionized in the late 80s/90s by Angelo Iezzi, shifting from a dense oily focaccia to a high-hydration, cold-fermented masterpiece that requires technique over grease.",
@@ -193,7 +213,25 @@ export const italianStyles: DoughStyle[] = [
             difficulty: 'Expert'
         },
         scientificProfile: {
-            flourRheology: "Requires extremely strong flour (W350+, P/L 0.55). The gluten network must be powerful enough to hold 80%+ water and trap the massive CO2 bubbles during the cold ferment.",
+            flourRheology: {
+                w_index: "W350+ (High Strength)",
+                pl_ratio: "0.55 (High Absorption)",
+                absorption_capacity: "Very High (80%+)",
+                protein_type: "Type 0/00 Strong",
+                science_explanation: "Requires extremely strong flour (W350+, P/L 0.55). The gluten network must be powerful enough to hold 80%+ water and trap the massive CO2 bubbles during the cold ferment."
+            },
+            thermalProfile: {
+                oven_type: "Deck Oven",
+                heat_distribution: "Conduction (Floor)",
+                crust_development: "Fried/Crispy Bottom",
+                crumb_structure: "Open, Alveolated"
+            },
+            fermentationScience: {
+                yeast_activity: "Slow (Cold Retard)",
+                ph_target: "Acidic (Protease Activity)",
+                organic_acids: "Complex (Cold Ferment)",
+                enzymatic_activity: "High (Proteolysis)"
+            },
             processScience: "The defining science is 'Starch Gelatinization vs Gluten Structure'. High water allows full enzymatic activity (protease), creating a melt-in-the-mouth texture. The cold ferment (4°C) slows yeast but lets bacteria produce acids that strengthen the gluten, making the impossible hydration manageable."
         },
         process: [
@@ -314,6 +352,7 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Rome, Lazio',
         category: 'Pizza',
+        recipeStyle: RecipeStyle.ROMANA_TONDA,
         tags: ["Low Hydration", "Rolling Pin", "Crispy", "Cracker-thin"],
         description: "The 'Scrocchiarella' (The Crunchy One). Ultra-thin, borderless, and cracker-like. Often rolled with a pin to degas completely.",
         history_context: "The everyday pizzeria pizza of Rome. Unlike Naples, Rome favors a longer bake at lower temps to dry out the crust for maximum crunch.",
@@ -331,7 +370,25 @@ export const italianStyles: DoughStyle[] = [
             difficulty: 'Medium'
         },
         scientificProfile: {
-            flourRheology: "Medium strength (W240). We don't want extreme elasticity because we manually roll it flat. Too much nerve (elasticity) makes it shrink back.",
+            flourRheology: {
+                w_index: "W240 (Medium)",
+                pl_ratio: "Low Elasticity (No Nerve)",
+                absorption_capacity: "Medium",
+                protein_type: "Type 00",
+                science_explanation: "Medium strength (W240). We don't want extreme elasticity because we manually roll it flat. Too much nerve (elasticity) makes it shrink back."
+            },
+            thermalProfile: {
+                oven_type: "Electric/Gas Deck",
+                heat_distribution: "Consistent",
+                crust_development: "Dry, Crispy, Cracker-like",
+                crumb_structure: "Tight, Dense"
+            },
+            fermentationScience: {
+                yeast_activity: "Standard",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "Moderate"
+            },
             processScience: "Evaporation is the goal. Low hydration + Oil + Rolling Pin = Dehydration. We are effectively frying the dough in its own oil and drying it out to create a biscuit structure."
         },
         process: [
@@ -452,6 +509,7 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Genoa, Liguria',
         category: 'Flatbread',
+        recipeStyle: RecipeStyle.FOCACCIA,
         tags: ["High Oil", "Breakfast", "Emulsion", "Pan"],
         description: "The authentic 'Fugassa'. A masterpiece of olive oil and flour, characterized by its golden dimples and white, creamy 'eyes'.",
         history_context: "Historically a breakfast food for dock workers in Genoa, dipping it in cappuccino or white wine. The authentic Genovese version differs from others by its precise use of 'Salamoia' (brine) and lower height (max 2cm).",
@@ -470,7 +528,25 @@ export const italianStyles: DoughStyle[] = [
             difficulty: 'Medium'
         },
         scientificProfile: {
-            flourRheology: "Uses a Medium strength flour (W260-280). We don't want extreme elasticity; the dough must be extensible enough to fill the pan corners without fighting back.",
+            flourRheology: {
+                w_index: "W260-280 (Medium)",
+                pl_ratio: "Extensible",
+                absorption_capacity: "Medium",
+                protein_type: "Soft Wheat",
+                science_explanation: "Uses a Medium strength flour (W260-280). We don't want extreme elasticity; the dough must be extensible enough to fill the pan corners without fighting back."
+            },
+            thermalProfile: {
+                oven_type: "Convection/Deck",
+                heat_distribution: "Steam (Brine)",
+                crust_development: "Golden (Fried in Oil)",
+                crumb_structure: "Soft, Creamy"
+            },
+            fermentationScience: {
+                yeast_activity: "Fast",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "High"
+            },
             processScience: "The Core Science is the 'Salamoia' (Brine Emulsion). Pouring a mix of water and oil over the dough before baking creates a thermal barrier. The liquid pools in the dimples, preventing the dough there from exceeding 100°C. This essentially boils the dough in the holes (keeping them white/soft) while the ridges fry in oil (becoming golden/crisp)."
         },
         process: [
@@ -593,6 +669,7 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Palermo, Sicily',
         category: 'Pizza',
+        recipeStyle: RecipeStyle.SICILIANA,
         tags: ["Sponge", "Focaccia-style", "Street Food", "Onions"],
         description: "A thick, spongy, soft pizza topped with a sauce of onions, anchovies, tomatoes, oregano, and caciocavallo cheese. Often topped with breadcrumbs.",
         history_context: "The name derives from 'Spongia' (Sponge). A Christmas tradition in Palermo, traditionally sold by 'Sfincionari' on three-wheeled carts.",
@@ -610,7 +687,25 @@ export const italianStyles: DoughStyle[] = [
             difficulty: 'Medium'
         },
         scientificProfile: {
-            flourRheology: "Semolina Remilled (Rimacinata) mixed with soft wheat. The hard grain provides a specific 'bite' and golden color.",
+            flourRheology: {
+                w_index: "Varies (Semolina Blend)",
+                pl_ratio: "Short (Fat)",
+                absorption_capacity: "Medium",
+                protein_type: "Semolina/Wheat Blend",
+                science_explanation: "Semolina Remilled (Rimacinata) mixed with soft wheat. The hard grain provides a specific 'bite' and golden color."
+            },
+            thermalProfile: {
+                oven_type: "Deck (Sheet Pan)",
+                heat_distribution: "Protected Top",
+                crust_development: "Fried Bottom, Steamed Top",
+                crumb_structure: "Spongy, Cake-like"
+            },
+            fermentationScience: {
+                yeast_activity: "Moderate",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "Moderate"
+            },
             processScience: "Fat coating. The use of Lard (Strutto) shortens the gluten strands, creating a soft, cake-like crumb ('Sponge') rather than a chewy bread."
         },
         process: [
@@ -735,7 +830,25 @@ export const italianStyles: DoughStyle[] = [
             difficulty: 'Medium'
         },
         scientificProfile: {
-            flourRheology: "Uses weak-medium flour. Without salt to tighten the gluten network, the dough is chemically slack and ferments much faster.",
+            flourRheology: {
+                w_index: "Weak-Medium",
+                pl_ratio: "Slack (No Salt)",
+                absorption_capacity: "Medium",
+                protein_type: "Soft Wheat Type 0",
+                science_explanation: "Uses weak-medium flour. Without salt to tighten the gluten network, the dough is chemically slack and ferments much faster."
+            },
+            thermalProfile: {
+                oven_type: "Wood Fired/Hearth",
+                heat_distribution: "Radiant",
+                crust_development: "Thick, Hard, Pale",
+                crumb_structure: "Irregular"
+            },
+            fermentationScience: {
+                yeast_activity: "Explosive (Runaway)",
+                ph_target: "Acidic (Sourdough Control)",
+                organic_acids: "High Acetic (Biga)",
+                enzymatic_activity: "Very High"
+            },
             processScience: "Yeast Kinetics: Salt is a yeast inhibitor. Removing it creates 'Running Yeast', meaning fermentation explodes rapidly. We must use a Biga or acidic Levain to control this speed and strengthen the gluten."
         },
         process: [
@@ -860,7 +973,25 @@ export const italianStyles: DoughStyle[] = [
             difficulty: 'Hard'
         },
         scientificProfile: {
-            flourRheology: "Requires High Protein/High W (W320+). With hydration pushing 80%, weak flour would degrade into a soup due to protease activity. Strong gluten is needed to trap the massive steam generation.",
+            flourRheology: {
+                w_index: "W320+ (High)",
+                pl_ratio: "Strong but Extensible",
+                absorption_capacity: "Very High",
+                protein_type: "High Gluten Flour",
+                science_explanation: "Requires High Protein/High W (W320+). With hydration pushing 80%, weak flour would degrade into a soup due to protease activity. Strong gluten is needed to trap the massive steam generation."
+            },
+            thermalProfile: {
+                oven_type: "Deck (Steam)",
+                heat_distribution: "Conduction",
+                crust_development: "Paper-thin, Crispy",
+                crumb_structure: "Massive Alveoli"
+            },
+            fermentationScience: {
+                yeast_activity: "Controlled (Biga)",
+                ph_target: "Acidic (Acetic Strength)",
+                organic_acids: "Acetic (Structure)",
+                enzymatic_activity: "Controlled"
+            },
             processScience: "Structure is driven by 'Bassinage' and 'Steam Expansion'. Adding water in stages builds the gluten network first. In the oven, the high water content converts to steam rapidly. The strong gluten traps these expanding gas pockets, creating the signature 'Open Crumb'."
         },
         process: [

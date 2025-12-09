@@ -31,6 +31,27 @@ const nycSlice: DoughStyleDefinition = {
             "Warm up 2h before bake. [Science: Cold dough in a hot oven bubbles aggressively; tempering ensures even oven spring.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W360-400 (High Gluten)",
+            pl_ratio: "0.6 (Elastic)",
+            absorption_capacity: "High (65%)",
+            protein_type: "Spring Wheat (14%)",
+            science_explanation: "High protein requires oil/sugar (tenderizers) to allow the 'fold' without the crust cracking like a cracker. The gluten density supports the large 18-inch diameter."
+        },
+        thermalProfile: {
+            oven_type: "Gas Deck",
+            heat_distribution: "Conduction (Stone)",
+            crust_development: "Crispy, pliable, golden",
+            crumb_structure: "Thin, dense but airy rim"
+        },
+        fermentationScience: {
+            yeast_activity: "Retarded (Cold)",
+            ph_target: "pH 5.2",
+            organic_acids: "Balanced (Acetic notes)",
+            enzymatic_activity: "Controlled (Cold)"
+        }
+    },
     tags: ["nyc", "slice", "deck-oven", "foldable"],
     pairings: {
         canonical: ["Low Moisture Mozzarella", "Oregano", "Garlic Powder"],
@@ -53,9 +74,9 @@ const nycSlice: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Scott Wiener's Pizza History" }, { source: "Modernist Pizza" }],
     images: {
-        hero: "/images/styles/pizza-tonda-romana.png",
-        dough: "/images/styles/pizza-tonda-romana.png",
-        crumb: "/images/styles/pizza-tonda-romana.png"
+        hero: "/images/styles/nyc-slice-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -164,6 +185,27 @@ const detroitStyle: DoughStyleDefinition = {
             "Pan proof 2-3h. [Science: The critical step. Dough must relax completely to fill corners and aerate into a sponge-like crumb.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W300-320",
+            pl_ratio: "Balanced",
+            absorption_capacity: "High (70%+)",
+            protein_type: "Bread Flour",
+            science_explanation: "Structure is supported by the steel pan walls, so we don't need extreme gluten strength. High hydration aids the 'focaccia-like' open crumb."
+        },
+        thermalProfile: {
+            oven_type: "Blue Steel Pan",
+            heat_distribution: "Conduction (Oil Fry)",
+            crust_development: "Fried, caramelized (Frico)",
+            crumb_structure: "Sponge-like, airy"
+        },
+        fermentationScience: {
+            yeast_activity: "High",
+            ph_target: "Normal",
+            organic_acids: "Lactic",
+            enzymatic_activity: "High (High water)"
+        }
+    },
     tags: ["pan", "frico", "deep-dish", "detroit"],
     pairings: {
         canonical: ["Wisconsin Brick Cheese", "Tomato Sauce (applied post-bake)"],
@@ -186,9 +228,9 @@ const detroitStyle: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Buddy's Archives" }],
     images: {
-        hero: "/images/styles/pizza-teglia-romana.png",
-        dough: "/images/styles/pizza-teglia-romana.png",
-        crumb: "/images/styles/pizza-teglia-romana.png"
+        hero: "/images/styles/detroit-style-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -297,6 +339,27 @@ const chicagoDeepDish: DoughStyleDefinition = {
             "Laminate/Press into pan. [Science: No elasticity required; the dough should mold like pie crust.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W240 (AP/Biscuit)",
+            pl_ratio: "Short (High Fat)",
+            absorption_capacity: "Low",
+            protein_type: "AP/Pastry Blend",
+            science_explanation: "A 'Short Dough'. The high fat content coats the proteins, preventing long gluten chains. This creates a flaky, biscuit-like break instead of a chew."
+        },
+        thermalProfile: {
+            oven_type: "Deep Pan",
+            heat_distribution: "Conduction (Slow)",
+            crust_development: "Fried/Biscuit",
+            crumb_structure: "Dense, flaky"
+        },
+        fermentationScience: {
+            yeast_activity: "Low",
+            ph_target: "Neutral",
+            organic_acids: "None",
+            enzymatic_activity: "Low"
+        }
+    },
     tags: ["casserole", "biscuit-crust", "corn-oil"],
     pairings: {
         canonical: ["Italian Sausage Layer", "Chunky Tomato Sauce"],
@@ -319,9 +382,9 @@ const chicagoDeepDish: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Pizzeria Uno History" }],
     images: {
-        hero: "/images/styles/pizza-siciliana.png",
-        dough: "/images/styles/pizza-siciliana.png",
-        crumb: "/images/styles/pizza-siciliana.png"
+        hero: "/images/styles/chicago-deep-dish-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -395,133 +458,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
     }
 };
 
-const paoFrancesABNT: DoughStyleDefinition = {
-    id: "pao_frances_brazil",
-    name: "Pão Francês (Brasileiro ABNT)",
-    category: "bread",
-    recipeStyle: RecipeStyle.PAO_FRANCES,
-    origin: {
-        country: "Brazil",
-        region: "Nationwide",
-        period: "20th Century"
-    },
-    description: "The daily bread of Brazil. A short, oval roll with a thin, crackly golden crust and a light, airy white crumb. Regulated by ABNT NBR 16170.",
-    history: "Inspired by French baguettes but adapted to Brazilian climate and ingredients. Contains sugar and fat to assist fermentation and shelf life in tropical heat.",
-    difficulty: "Medium",
-    fermentationType: "direct",
 
-    technicalProfile: {
-        hydration: [58, 62],
-        salt: [2.0, 2.2],
-        oil: [1, 2], // Often lard or shortening
-        sugar: [1, 2],
-        flourStrength: "W260-280",
-        ovenTemp: [220, 250],
-        recommendedUse: ["Misto Quente", "Com Manteiga (Na Chapa)"],
-        difficulty: "Medium",
-        fermentationSteps: [
-            "Intensive Mix. [Science: Full gluten development required for the airy, expanded volume.]",
-            "Bulk ferment. [Science: Short bulk, relying on final proof for volume.]",
-            "Steam Bake. [Science: Essential for the 'Craquelado' (crackly) crust. Without steam, it's just a bun.]"
-        ]
-    },
-    tags: ["brazil", "roll", "daily-bread", "abnt"],
-    pairings: {
-        canonical: ["Butter", "Catupiry", "Mortadella"],
-        modern: ["Pão na Chapa"],
-        regional: ["Média (with milky coffee)"]
-    },
-    watchouts: [
-        "No Crackles ('Pestana' fails): Not enough steam or dough too dry.",
-        "Dense crumb: Poor shaping or underproofed.",
-        "Thick crust: Oven temp too low, drying out the shell."
-    ],
-    notes: [
-        "ABNT Standard requires a specific specific volume and crust color.",
-        "Additives (oxidizers) are common in professional bakeries for impossible volume; home bakers need perfect fermentation.",
-        "The slash (pestana) is functional, controlling expansion."
-    ],
-    isPro: false,
-    source: "official",
-    createdAt: "2025-01-01",
-    releaseDate: "2025-01-01",
-    references: [{ source: "ABNT NBR 16170" }],
-    images: {
-        hero: "/images/styles/baguette_hero.png",
-        dough: "/images/styles/baguette_hero.png",
-        crumb: "/images/styles/baguette_hero.png"
-    },
-    education: {
-        pro_tips: [
-            {
-                tip: "The 'Pestana' (Split)",
-                explanation: "Requires high humidity. If you don't have a steam injector, use a spray bottle or a tray of boiling water."
-            },
-            {
-                tip: "Fat is functional",
-                explanation: "Unlike the french baguette (lean), the Brazilian version needs 3-4% fat (lard/shortening) for the specific soft cotton-like crumb."
-            }
-        ],
-        what_if: [
-            {
-                scenario: "Crust is dull and thick",
-                result: "Lack of steam or oven too cool.",
-                correction: "Maximize steam during the first 5 minutes of baking."
-            }
-        ],
-        comparative_analysis: [
-            {
-                target_style: "French Baguette",
-                difference: "Pão Francês has fat/sugar and a softer crumb. Baguette is flour/water/salt only and chewier.",
-                why_choose_this: "Choose Pão Francês for sandwiches and breakfast rolls."
-            }
-        ],
-        q_and_a: [
-            {
-                question: "Why add sugar?",
-                answer: "To fuel the yeast rapidly in the tropical climate and aid in browning the crust quickly.",
-                context: "Brazilian Adaptation"
-            }
-        ],
-        fermentation_methods: [
-            {
-                method: "Direct",
-                suitability: "Authentic",
-                notes: "Fast, direct method is the commercial standard."
-            }
-        ]
-    },
-    deepDive: {
-        hydrationLogic: "58-60% allows for the massive expansion volume (ovenspring) and the 'pestana' opening. Too wet, and it flattens. Too dry, and it won't expand.",
-        methodSuitability: {
-            direct: { suitable: true, notes: "The Brazilian standard. Heavily reliant on oxidizers (Vit C) in commercial settings." },
-            biga: { suitable: true, notes: "Produces a superior 'Artisan' version with better shelf life." },
-            poolish: { suitable: true, notes: "Good for softness, but makes the cut (pestana) harder to control." }
-        },
-        whatIf: [
-            {
-                scenario: "No 'Pestana' (The split didn't open)?",
-                outcome: "Not enough steam or skin dried out.",
-                solution: "You need 100% humidity in the first 3 minutes. Spray water on the loaves before baking."
-            },
-            {
-                scenario: "Crust is soft/leathery, not crackly?",
-                outcome: "Underbaked or low temp.",
-                solution: "Bake until golden brown. The crackle comes from the drying of the starch gel."
-            }
-        ],
-        comparisons: [
-            {
-                vsStyle: "Baguette",
-                difference: "Pão Francês contains sugar/fat for varying softness. Baguette is lean and tough."
-            }
-        ],
-        proTips: [
-            "The Steam Trap: In a home oven, preheat a cast iron skillet and throw ice cubes in when you load the bread.",
-            "Short Bulk: Don't let it ferment too long in bulk. The energy is needed for the final proof push."
-        ]
-    }
-};
 
 const sfSourdough: DoughStyleDefinition = {
     id: "sf_sourdough",
@@ -553,6 +490,27 @@ const sfSourdough: DoughStyleDefinition = {
             "Bake dark. [Science: Acidity inhibits Maillard reaction, so aggressive heat and time are needed for the dark chestnut color.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W300-350",
+            pl_ratio: "Strong/Stiff",
+            absorption_capacity: "High",
+            protein_type: "Strong Wheat",
+            science_explanation: "Proteolysis (acid degrading gluten) is the enemy. We need very strong flour to survive the long, acidic fermentation without collapsing."
+        },
+        thermalProfile: {
+            oven_type: "Dutch Oven / Hearth",
+            heat_distribution: "Radiant & Steam",
+            crust_development: "Blistered, thick",
+            crumb_structure: "Wild, irregular"
+        },
+        fermentationScience: {
+            yeast_activity: "Wild (Levain)",
+            ph_target: "pH 4.0-4.5",
+            organic_acids: "Acetic Dominant (Stiff Starter)",
+            enzymatic_activity: "Very High (Proteolysis)"
+        }
+    },
     tags: ["sour", "wild-yeast", "gold-rush", "san-francisco"],
     pairings: {
         canonical: ["Clam Chowder", "Dungeness Crab"],
@@ -575,9 +533,9 @@ const sfSourdough: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Boudin History" }, { source: "Microbiology of Sourdough" }],
     images: {
-        hero: "/images/styles/pane-toscano.png",
-        dough: "/images/styles/pane-toscano.png",
-        crumb: "/images/styles/pane-toscano.png"
+        hero: "/images/styles/sf-sourdough-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -686,6 +644,27 @@ const newHavenApizza: DoughStyleDefinition = {
             "Coal Fired Bake. [Science: Intense dry heat evaporates surface moisture instantly, creating char without burning the center.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W300-340",
+            pl_ratio: "Extensible",
+            absorption_capacity: "Medium",
+            protein_type: "High Gluten",
+            science_explanation: "High strength is required to stretch very thin without tearing, but extended cold fermentation relaxes the gluten (extensibility)."
+        },
+        thermalProfile: {
+            oven_type: "Coal Fired Deck",
+            heat_distribution: "Intense Radiation (600°F+)",
+            crust_development: "Charred, dry",
+            crumb_structure: "Chewy, uneven"
+        },
+        fermentationScience: {
+            yeast_activity: "Retarded",
+            ph_target: "Normal",
+            organic_acids: "Balanced",
+            enzymatic_activity: "High (Maillard fuel)"
+        }
+    },
     tags: ["coal-fired", "char", "clam-pie", "connecticut"],
     pairings: {
         canonical: ["Littleneck Clams", "Garlic", "Oregano", "Pecorino"],
@@ -708,9 +687,9 @@ const newHavenApizza: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Frank Pepe History" }, { source: "Pizza City, USA" }],
     images: {
-        hero: "/images/styles/pizza-tonda-romana.png",
-        dough: "/images/styles/pizza-tonda-romana.png",
-        crumb: "/images/styles/pizza-tonda-romana.png"
+        hero: "/images/styles/new-haven-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -814,6 +793,27 @@ const brazilianGasDeck: DoughStyleDefinition = {
             "Bake at 300°C. [Science: Lower temp than Napoli allows toppings to heat through without burning the crust.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W280-320",
+            pl_ratio: "Balanced",
+            absorption_capacity: "Medium",
+            protein_type: "Standard Wheat",
+            science_explanation: "A 'Workhorse' flour. It needs to be strong enough to carry heavy cheese/toppings but not so tough that it fights back when rolled out."
+        },
+        thermalProfile: {
+            oven_type: "Gas Deck",
+            heat_distribution: "Conduction (Moderate)",
+            crust_development: "Crispy bottom, soft crumb",
+            crumb_structure: "Dense, supporting"
+        },
+        fermentationScience: {
+            yeast_activity: "Standard",
+            ph_target: "Normal",
+            organic_acids: "Low",
+            enzymatic_activity: "Moderate"
+        }
+    },
     tags: ["brazil", "heavy-toppings", "catupiry", "sao-paulo"],
     pairings: {
         canonical: ["Catupiry", "Corn", "Peas", "Hard Boiled Eggs"],
@@ -836,9 +836,9 @@ const brazilianGasDeck: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Associação Pizzarias Unidas" }],
     images: {
-        hero: "/images/styles/pizza-tonda-romana.png",
-        dough: "/images/styles/pizza-tonda-romana.png",
-        crumb: "/images/styles/pizza-tonda-romana.png"
+        hero: "/images/styles/brazilian-gas-deck-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -943,6 +943,27 @@ const nycBagel: DoughStyleDefinition = {
             "Boil in Malt/Soda water. [Science: Gelatinizes the outer starch layer for shine and sets the crust size before baking.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W380-420 (Very High)",
+            pl_ratio: "Very Elastic",
+            absorption_capacity: "High (but under-hydrated)",
+            protein_type: "High Gluten Spring Wheat",
+            science_explanation: "The highest protein flour possible is used. Because hydration is low (50%), the gluten is incredibly tight, creating the 'jaw workout' chewiness."
+        },
+        thermalProfile: {
+            oven_type: "Revolving Deck / Boards",
+            heat_distribution: "Convection/Radiant",
+            crust_development: "Shiny, Blistered (Gelatinized)",
+            crumb_structure: "Dense, Tight"
+        },
+        fermentationScience: {
+            yeast_activity: "Retarded (Cold)",
+            ph_target: "Normal",
+            organic_acids: "Low (Direct)",
+            enzymatic_activity: "Enhanced (Malt)"
+        }
+    },
     tags: ["bagel", "boiled", "malty", "nyc"],
     pairings: {
         canonical: ["Schmear (Cream Cheese)", "Lox", "Capers", "Red Onion"],
@@ -965,9 +986,9 @@ const nycBagel: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Bagel Union Regulations" }],
     images: {
-        hero: "/images/styles/ciabatta.png",
-        dough: "/images/styles/ciabatta.png",
-        crumb: "/images/styles/ciabatta.png"
+        hero: "/images/styles/nyc-bagel-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -1071,6 +1092,27 @@ const grandmaPizza: DoughStyleDefinition = {
             "Stretch into oiled pan immediately. [Science: Oil conducts heat for a fried bottom texture.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "Medium (AP/Bread)",
+            pl_ratio: "Balanced",
+            absorption_capacity: "Medium",
+            protein_type: "All Purpose",
+            science_explanation: "Does not require high protein. A softer flour helps it stretch into the corners of the pan without shrinking back."
+        },
+        thermalProfile: {
+            oven_type: "Home Oven (Sheet Pan)",
+            heat_distribution: "Conduction (Oil)",
+            crust_development: "Fried bottom",
+            crumb_structure: "Dense, soft"
+        },
+        fermentationScience: {
+            yeast_activity: "Fast (Warm)",
+            ph_target: "Normal",
+            organic_acids: "None",
+            enzymatic_activity: "High (Sugar/Oil)"
+        }
+    },
     tags: ["pizza", "pan-pizza", "italian-american", "beginner-friendly", "thin-crust"],
     pairings: {
         canonical: ["Garlic", "Crushed Tomatoes", "Mozzarella", "Olive Oil"],
@@ -1093,9 +1135,9 @@ const grandmaPizza: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Pizza History (Long Island)" }],
     images: {
-        hero: "/images/styles/pizza-teglia-romana.png",
-        dough: "/images/styles/pizza-teglia-romana.png",
-        crumb: "/images/styles/pizza-teglia-romana.png"
+        hero: "/images/styles/grandma-pizza-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -1200,6 +1242,27 @@ const chicagoTavern: DoughStyleDefinition = {
             "Dock heavily and bake. [Science: Docking prevents steam pockets from separating cheese from crust.]"
         ]
     },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "Variable",
+            pl_ratio: "Dead (No Elasticity)",
+            absorption_capacity: "Low",
+            protein_type: "AP or High Gluten",
+            science_explanation: "The goal is 'Dead Dough'. We want zero elasticity so it rolls paper thin, and zero ovenspring (puff). Low hydration + rolling pin achieves this."
+        },
+        thermalProfile: {
+            oven_type: "Deck / Stone",
+            heat_distribution: "Conduction",
+            crust_development: "Cracker-like, dry",
+            crumb_structure: "None (Laminated/Flat)"
+        },
+        fermentationScience: {
+            yeast_activity: "Inhibited (Dry/Cold)",
+            ph_target: "Normal",
+            organic_acids: "None",
+            enzymatic_activity: "Low"
+        }
+    },
     tags: ["pizza", "american", "midwest", "thin-crust", "party-cut", "cracker"],
     pairings: {
         canonical: ["Fennel Sausage", "Giardiniera", "Mozzarella"],
@@ -1224,9 +1287,9 @@ const chicagoTavern: DoughStyleDefinition = {
         { source: "Pizza City, USA", author: "Steve Dolinsky" }
     ],
     images: {
-        hero: "/images/styles/chicago_hero.jpg",
-        dough: "/images/styles/chicago_dough.jpg",
-        crumb: "/images/styles/chicago_crumb.jpg"
+        hero: "/images/styles/chicago-tavern-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
         pro_tips: [
@@ -1300,11 +1363,10 @@ const chicagoTavern: DoughStyleDefinition = {
     }
 };
 
-export const americasStyles: DoughStyleDefinition[] = [
+export const northAmericaStyles: DoughStyleDefinition[] = [
     nycSlice,
     detroitStyle,
     chicagoDeepDish,
-    paoFrancesABNT,
     sfSourdough,
     newHavenApizza,
     brazilianGasDeck,

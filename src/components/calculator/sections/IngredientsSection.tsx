@@ -42,11 +42,14 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
       {isBasic ? (
         <>
           <SliderInput
-            label="Hydration"
+            label={config.bakeType === 'SWEETS_PASTRY' ? "Liquids (inc. Eggs)" : "Hydration"}
             name="hydration"
             value={config.hydration}
             onChange={handleNumberChange}
-            min={50} max={90} step={1} unit="%"
+            min={config.bakeType === 'SWEETS_PASTRY' ? 0 : 50}
+            max={config.bakeType === 'SWEETS_PASTRY' ? 200 : 90}
+            step={1}
+            unit="%"
             tooltip="Water content relative to flour weight."
             hasError={!!errors.hydration}
             recommendedMin={getRange('hydration')?.[0]}
@@ -70,11 +73,11 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
         <>
           <LockedTeaser featureKey="calculator.hydration_advanced">
             <SliderInput
-              label="Hydration"
+              label={config.bakeType === 'SWEETS_PASTRY' ? "Liquids (inc. Eggs)" : "Hydration"}
               name="hydration"
               value={config.hydration}
               onChange={handleNumberChange}
-              min={0} max={120} step={1} unit="%"
+              min={0} max={config.bakeType === 'SWEETS_PASTRY' ? 200 : 120} step={1} unit="%"
               tooltip="Controls dough wetness and crust texture. Higher hydration (65%+) creates an open, airy crumb but is stickier to handle."
               hasError={!!errors.hydration}
               recommendedMin={getRange('hydration')?.[0]}
@@ -95,7 +98,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             learnArticle={getArticleById('salt-functionality-osmotic-effects')}
           />
           <SliderInput
-            label="Oil/Fat"
+            label={config.bakeType === 'SWEETS_PASTRY' ? "Butter/Fat" : "Oil/Fat"}
             name="oil"
             value={config.oil}
             onChange={handleNumberChange}
@@ -122,15 +125,18 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
       )}
 
       <div className="pt-6 border-t border-dlp-border">
-        <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2">
-          <div>
-            <label htmlFor="yeastType" className="mb-1 block text-sm font-medium text-dlp-text-secondary">Yeast Type</label>
-            <select id="yeastType" name="yeastType" value={config.yeastType} onChange={handleSelectChange} className={getSelectClasses()}>
-              {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.labelKey}</option>))}
-            </select>
+        {/* Hide Yeast controls if style is Chemical/No-Ferment (e.g. Brownies, Cookies) */}
+        {!(config.fermentationTechnique === 'CHEMICAL' || config.fermentationTechnique === 'NO_FERMENT') && (
+          <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="yeastType" className="mb-1 block text-sm font-medium text-dlp-text-secondary">Yeast Type</label>
+              <select id="yeastType" name="yeastType" value={config.yeastType} onChange={handleSelectChange} className={getSelectClasses()}>
+                {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.labelKey}</option>))}
+              </select>
+            </div>
+            <SliderInput label={isAnySourdough ? "Starter %" : "Yeast %"} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip="Determines fermentation speed. Adjust based on time and temperature. Less yeast = longer fermentation = more flavor." hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} />
           </div>
-          <SliderInput label={isAnySourdough ? "Starter %" : "Yeast %"} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip="Determines fermentation speed. Adjust based on time and temperature. Less yeast = longer fermentation = more flavor." hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} />
-        </div>
+        )}
 
         {isAnySourdough && (
           <div className="mt-4 rounded-lg border border-dlp-border bg-dlp-bg-muted p-4">

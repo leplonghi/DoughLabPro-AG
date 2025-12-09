@@ -41,6 +41,16 @@ export const DOUGH_WEIGHT_RANGES: { [key in RecipeStyle]?: string } = {
   [RecipeStyle.HOKKAIDO_MILK_BREAD]: '450-900g',
   [RecipeStyle.COOKIE_NY_CHOC_CHIP]: '100-170g',
   [RecipeStyle.CINNAMON_ROLL]: '80-120g',
+  // New Styles
+  [RecipeStyle.PAO_DE_QUEIJO]: '20-50g',
+  [RecipeStyle.PAO_FRANCES]: '50-60g',
+  [RecipeStyle.FLATBREAD]: '80-150g',
+  [RecipeStyle.ENRICHED_BRIOCHE_CLASSIC]: '40-80g',
+  [RecipeStyle.BRIOCHE]: '60-400g', // Small vs Nanterre
+  [RecipeStyle.PRETZEL]: '80-120g',
+  [RecipeStyle.BROWNIE]: '40-150g',
+  [RecipeStyle.SWEETS_PASTRY]: '50-150g',
+  [RecipeStyle.PASTRY_DANISH]: '60-120g',
 };
 
 export const DEFAULT_CONFIG: DoughConfig = {

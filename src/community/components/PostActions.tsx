@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, MessageCircle, Share2 } from 'lucide-react';
+import { Heart, MessageCircle, Share2, Bookmark } from 'lucide-react';
 import { CommunityPost } from '../types';
 import { useCommunityLike } from '../hooks/useCommunityLike';
 import { useUser } from '../../contexts/UserProvider';
@@ -13,8 +13,27 @@ interface PostActionsProps {
 }
 
 export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, commentCount }) => {
-    const { user } = useUser();
-    const { isLiked, toggleLike, loading: likeLoading } = useCommunityLike(post.id, user?.stripeCustomerId || 'unknown'); // Fallback ID
+    const { user, isFavorite, toggleFavorite } = useUser();
+    const { isLiked, toggleLike, loading: likeLoading, loaded, initialLiked } = useCommunityLike(post.id, user?.stripeCustomerId || 'unknown');
+
+    const displayLikes = loaded
+        ? post.likes + (isLiked ? 1 : 0) - (initialLiked ? 1 : 0)
+        : post.likes;
+
+    const isSaved = isFavorite(post.id);
+
+    const handleBookmark = async () => {
+        if (!user) return; // Hook handles auth requirement usually, but safe check
+        await toggleFavorite({
+            id: post.id,
+            type: 'community_post',
+            title: post.title || 'Untitled Bake',
+            metadata: {
+                username: post.username,
+                photo: post.photos?.[0]
+            }
+        });
+    };
 
     return (
         <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100">
@@ -27,7 +46,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, 
                         className={`flex items-center gap-1.5 transition-colors ${isLiked ? 'text-pink-500' : 'text-gray-600 hover:text-pink-500'}`}
                     >
                         <Heart className={`h-5 w-5 ${isLiked ? 'fill-current' : ''}`} />
-                        <span className="text-sm font-medium">{post.likes + (isLiked ? 1 : 0)}</span>
+                        <span className="text-sm font-medium">{displayLikes}</span>
                     </button>
                 </LockFeature>
 
@@ -46,10 +65,20 @@ export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, 
                 <CloneButton post={post} />
             </div>
 
-            {/* Share (Always free?) - Not in feature keys, assume free or hidden */}
-            <button className="text-gray-400 hover:text-gray-600">
-                <Share2 className="h-5 w-5" />
-            </button>
+            <div className="flex items-center gap-4">
+                {/* Bookmark */}
+                <button
+                    onClick={handleBookmark}
+                    className={`transition-colors ${isSaved ? 'text-lime-600' : 'text-gray-400 hover:text-gray-600'}`}
+                >
+                    <Bookmark className={`h-5 w-5 ${isSaved ? 'fill-current' : ''}`} />
+                </button>
+
+                {/* Share */}
+                <button className="text-gray-400 hover:text-gray-600">
+                    <Share2 className="h-5 w-5" />
+                </button>
+            </div>
         </div>
     );
 };

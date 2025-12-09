@@ -36,6 +36,7 @@ export enum RecipeStyle {
     PUMPERNICKEL = 'PUMPERNICKEL',
     RYE = 'RYE',
     PAO_DE_BATATA = 'PAO_DE_BATATA', // Potato Bread
+    PAO_DE_QUEIJO = 'PAO_DE_QUEIJO', // Cheese Bread
     FOCACCIA = 'FOCACCIA',
     CHALLAH = 'CHALLAH',
     BAGEL = 'BAGEL',
@@ -242,7 +243,7 @@ export interface EducationalContent {
     }[];
 
     fermentation_methods: {
-        method: 'Direct' | 'Biga' | 'Poolish' | 'Sourdough' | 'Hybrid';
+        method: 'Direct' | 'Biga' | 'Poolish' | 'Sourdough' | 'Hybrid' | 'Scald' | 'Tangzhong';
         suitability: 'Ideal' | 'Possible' | 'Not Recommended' | 'Historical' | 'Authentic';
         notes: string;
     }[];
@@ -323,4 +324,7 @@ export interface DoughStyleDefinition {
     variations?: any[];
     isCanonical?: boolean;
     country?: string;
+
+    // V3 Backport
+    base_formula?: any[];
 }

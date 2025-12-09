@@ -11,48 +11,38 @@ type PartialStyleDefinition = Partial<Omit<DoughStyleDefinition, 'id' | 'technic
 
     // Optional overrides
     id?: string;
+    recipeStyle?: any; // Allow explicit style mapping
     technicalProfile: Partial<DoughStyleDefinition['technicalProfile']> & {
         hydration: [number, number]; // Hydration is mandatory
     };
     education?: DoughStyleDefinition['education'];
+    base_formula?: any[]; // Allow ingredient composition
 };
 
-/**
- * DEFAULTS for boilerplate reduction
- */
-const DEFAULT_FERMENTATION = {
-    bulk: "2-4h @ RT",
-    proof: "12-24h @ CT",
-};
+// ... (existing constants)
 
-const DEFAULT_REQ_TOOLS = ["Scale", "Mixer/Hands"];
-
-/**
- * The Style Builder Function
- * Reduz a verbosidade e garante integridade dos dados via TypeScript
- */
 export const defineDoughStyle = (def: PartialStyleDefinition): DoughStyleDefinition => {
-    // 1. Auto-generate ID from name if missing (e.g. "New York Slice" -> "new_york_slice")
+    // ... (existing ID logic)
     const id = def.id || def.name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
 
-    // 2. Merge Technical Profile with Defaults
-    // 2. Merge Technical Profile with Defaults
+    // ... (existing technicalProfile logic)
     const technicalProfile: DoughStyleDefinition['technicalProfile'] = {
         difficulty: 'Medium',
         salt: [2.0, 3.0],
-        fermentationSteps: [], // Required by type
+        fermentationSteps: [],
         ovenTemp: [250, 300],
         recommendedUse: [],
         ...def.technicalProfile,
     };
 
     // 3. Construct the Full Object
-    // @ts-ignore - allowing loose mapping for backward compatibility if input types are slightly off
+    // @ts-ignore
     return {
         id,
         name: def.name,
         description: def.description,
         category: def.category,
+        recipeStyle: def.recipeStyle, // Pass through
         origin: {
             country: 'Unknown',
             region: null,
@@ -72,7 +62,7 @@ export const defineDoughStyle = (def: PartialStyleDefinition): DoughStyleDefinit
             crumb: def.images?.crumb || null
         },
         notes: def.notes || [],
-        watchouts: (def as any).watchouts || (def as any).risks || [], // Map risks to watchouts
+        watchouts: (def as any).watchouts || (def as any).risks || [],
         releaseDate: def.releaseDate || new Date().toISOString(),
         createdAt: (def as any).createdAt || new Date().toISOString(),
         family: def.family || mapCategoryToFamily(def.category),
@@ -84,7 +74,8 @@ export const defineDoughStyle = (def: PartialStyleDefinition): DoughStyleDefinit
             year: r.year
         })) || [],
         source: 'official',
-        education: def.education
+        education: def.education,
+        base_formula: def.base_formula // Pass through
     };
 };
 

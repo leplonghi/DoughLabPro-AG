@@ -35,9 +35,9 @@ export const BriocheATete = defineDoughStyle({
     ],
     tags: ["bread", "french", "enriched", "butter", "dessert"],
     images: {
-        hero: "/images/styles/pane-toscano.png",
-        dough: "/images/styles/pane-toscano.png",
-        crumb: "/images/styles/pane-toscano.png"
+        hero: "/images/styles/brioche-hero.png",
+        dough: "/images/styles/brioche_dough.jpg",
+        crumb: "/images/styles/brioche_crumb.jpg"
     },
     references: [
         { source: "The Art of French Baking", url: "" }
@@ -92,6 +92,11 @@ export const Challah = defineDoughStyle({
         "Braiding dictates the final shape and structure."
     ],
     tags: ["bread", "jewish", "braided", "dairy-free", "ceremonial"],
+    images: {
+        hero: "/images/styles/challah-hero.png",
+        dough: "/images/styles/placeholder_dough.jpg",
+        crumb: "/images/styles/placeholder_crumb.jpg"
+    },
     education: {
         pro_tips: [
             { tip: "Double Egg Wash", explanation: "Brush once after braiding, and again right before baking. This fills the gaps and creates a lacquer-like shine." },
@@ -142,6 +147,11 @@ export const BurgerBun = defineDoughStyle({
         "Sesame seeds are traditional but optional."
     ],
     tags: ["bread", "american", "soft", "sandwich"],
+    images: {
+        hero: "/images/styles/burger-bun-hero.png",
+        dough: "/images/styles/placeholder_dough.jpg",
+        crumb: "/images/styles/placeholder_crumb.jpg"
+    },
     education: {
         pro_tips: [
             { tip: "Flatten the Ball", explanation: "Don't just round them. Flattening gently before proofing ensures a wide bun for the patty, rather than a tennis ball." },
@@ -193,6 +203,11 @@ export const Shokupan = defineDoughStyle({
         "Produces 'cotton-like' shreddable crumb."
     ],
     tags: ["bread", "japanese", "tangzhong", "soft", "sandwich"],
+    images: {
+        hero: "/images/styles/shokupan-hero.png",
+        dough: "/images/styles/shokupan-dough.jpg",
+        crumb: "/images/styles/shokupan-crumb.jpg"
+    },
     education: {
         pro_tips: [
             { tip: "The 65°C Magic", explanation: "Cook the flour/water roux (Tangzhong) exactly to 65°C. This maximizes starch gelatinization without degrading the starch." },
@@ -240,7 +255,7 @@ export const Panettone = defineDoughStyle({
     fermentationType: "levain", // Use 'levain' instead of 'sourdough' based on type def
     notes: [
         "Requires 'Pasta Madre' maintained in water or bound in cloth.",
-        "Temperature control (26-28°C) is critical for pH balance.",
+        "Temperature control (26-28°C) is critical. Must use strict pH management.",
         "Must be hung upside down immediately after baking to prevent collapse."
     ],
     watchouts: [
@@ -249,6 +264,11 @@ export const Panettone = defineDoughStyle({
         "Mixing too hot separates the butter."
     ],
     tags: ["bread", "italian", "christmas", "sourdough", "sweet"],
+    images: {
+        hero: "/images/styles/panettone-hero.png",
+        dough: "/images/styles/placeholder_dough.jpg",
+        crumb: "/images/styles/placeholder_crumb.jpg"
+    },
     references: [
         { source: "Panettone Disciplinare (Italy)", url: "" }
     ],

@@ -11,12 +11,15 @@ import {
     FormErrors,
     ProRecipe,
     DoughStyleDefinition,
-    RecipeStyle
+    RecipeStyle,
+    IngredientConfig
 } from '@/types';
-import { DOUGH_STYLE_PRESETS, DEFAULT_CONFIG } from '@/constants';
+import { DOUGH_STYLE_PRESETS, DEFAULT_CONFIG, DOUGH_WEIGHT_RANGES } from '@/constants';
 import { FLOURS } from '@/flours-constants';
 import { calculateDoughUniversal, syncIngredientsFromConfig } from '@/logic/doughMath';
 import { normalizeDoughConfig } from '@/logic/normalization';
+import { convertStyleToDoughConfig } from '@/utils/doughConversion';
+import { STYLES_DATA } from '@/data/styles/registry';
 import { logEvent } from '@/services/analytics';
 import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
@@ -101,8 +104,20 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         if (config.numPizzas < 1 || config.numPizzas > 100) {
             validationErrors.numPizzas = 'A value between 1 and 100 is recommended.';
         }
-        if (config.doughBallWeight < 100 || config.doughBallWeight > 2000) {
-            validationErrors.doughBallWeight = 'A value between 100g and 2000g is recommended.';
+        // Dynamic Weight Validation based on Style
+        let minW = 100;
+        let maxW = 2000;
+        if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
+            const rangeStr = DOUGH_WEIGHT_RANGES[config.recipeStyle] || '';
+            const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
+            if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
+                minW = nums[0];
+                maxW = nums[1];
+            }
+        }
+
+        if (config.doughBallWeight < minW || config.doughBallWeight > maxW) {
+            validationErrors.doughBallWeight = `A value between ${minW}g and ${maxW}g is recommended.`;
         }
         if (config.hydration < 0 || config.hydration > 120) {
             validationErrors.hydration = 'A value between 0% and 120% is recommended.';
@@ -220,6 +235,10 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const handleStyleChange = useCallback((presetId: string) => {
         setHasInteracted(true);
         const preset = DOUGH_STYLE_PRESETS.find((p) => p.id === presetId);
+
+        // Try to find the full definition in the registry to get ingredients
+        const fullStyle = STYLES_DATA.find(s => s.id === presetId);
+
         if (preset) {
             const { defaultHydration, defaultSalt, defaultOil, defaultYeastPct, defaultSugar, preferredFlourProfileId, recipeStyle, type } = preset;
             const presetValues: Partial<DoughConfig> = {
@@ -235,14 +254,71 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 presetValues.flourId = preferredFlourProfileId;
             }
 
+            // If we found a full style definition, try to extract ingredients from it
+            // Defaults (based on Pizza standard)
+            let targetWeight = 250;
+            let targetCount = 4;
+
+            // If we found a full style definition, try to extract ingredients and specific defaults
+            let ingredients: any[] | undefined = undefined;
+
+            if (fullStyle) {
+                const converted = convertStyleToDoughConfig(fullStyle);
+                if (converted.ingredients && converted.ingredients.length > 0) {
+                    ingredients = converted.ingredients;
+                }
+                // Use converted defaults if available explicitly
+                if (converted.doughBallWeight) targetWeight = converted.doughBallWeight;
+                if (converted.numPizzas) targetCount = converted.numPizzas;
+            }
+
+            // Refine Quantity Defaults based on BakeType/Style if not explicit
+            if (preset.type === BakeType.BREADS_SAVORY) targetCount = 2;
+            if (preset.type === BakeType.SWEETS_PASTRY) {
+                // Cookies
+                if (recipeStyle === RecipeStyle.COOKIES || presetId.includes('cookie') || presetId.includes('brownie')) {
+                    targetCount = 12;
+                    targetWeight = 80;
+                } else {
+                    // Generic Pastry (Croissants, Cinnamon Rolls)
+                    targetCount = 8;
+                    targetWeight = 100;
+                }
+            }
+
+            // Override with Range Data if available and standard
+            if (DOUGH_WEIGHT_RANGES[recipeStyle]) {
+                const rangeStr = DOUGH_WEIGHT_RANGES[recipeStyle] || '';
+                const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
+                // Only override if we haven't got a specific "converted" weight
+                if (!fullStyle || !convertStyleToDoughConfig(fullStyle).doughBallWeight) {
+                    if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
+                        targetWeight = (nums[0] + nums[1]) / 2;
+                    } else if (nums.length === 1 && !isNaN(nums[0])) {
+                        targetWeight = nums[0];
+                    }
+                }
+            }
+
             let newConf = {
                 ...config,
                 recipeStyle,
                 ...presetValues,
+                doughBallWeight: targetWeight,
+                numPizzas: targetCount,
                 stylePresetId: preset.id,
             };
+
             newConf = normalizeDoughConfig(newConf);
-            newConf.ingredients = syncIngredientsFromConfig(newConf);
+
+            // If we have specific ingredients from the registry, use them.
+            // Otherwise, sync from the sliders.
+            if (ingredients) {
+                newConf.ingredients = ingredients;
+            } else {
+                newConf.ingredients = syncIngredientsFromConfig(newConf);
+            }
+
             setConfig(newConf);
         }
     }, [config.yeastType, config]);
@@ -294,89 +370,57 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }, [config, addToast]);
 
     const handleLoadStyleFromModule = useCallback((style: any, navigate: (page: string) => void) => {
-        // NOTE: Accepting 'any' because we are supporting both DoughStyleDefinition (Legacy) and DoughStyle (New V2.5)
+        // Standardize using the robust utility
+        const converted = convertStyleToDoughConfig(style);
 
-        // 1. Determine Bake Type
-        let bakeType = BakeType.PIZZAS;
-        if (style.category === 'bread' || style.category === 'enriched_bread' || style.category === 'burger_bun') {
-            bakeType = BakeType.BREADS_SAVORY;
-        } else if (style.category === 'pastry' || style.category === 'cookies_confectionery' || style.category === 'cookie') {
-            bakeType = BakeType.SWEETS_PASTRY;
-        }
+        // Preserve smart defaults for weight/count from Context logic using Constants
+        let targetWeight = converted.doughBallWeight || 250;
+        let targetCount = converted.numPizzas || 4;
 
-        const STYLE_ID_TO_PRESET_ID: Record<string, string> = {
-            'neapolitan_avpn_classic': 'pizza_napolitana',
-            'pizza-napoletana': 'pizza_napolitana', // Mapping new ID
-        };
-        const mappedPresetId = STYLE_ID_TO_PRESET_ID[style.id];
+        const matchingPreset = DOUGH_STYLE_PRESETS.find(p => p.id === style.id);
+        const recipeStyle = converted.recipeStyle || RecipeStyle.NEAPOLITAN;
+        const bakeType = converted.bakeType || BakeType.PIZZAS;
 
-        // 2. Extract Technical Values
-        let hydration = 65;
-        let salt = 2.5;
-        let oil = 0;
-        let sugar = 0;
-        let bakingTempC = 400;
-
-        if (style.technicalProfile) {
-            // Legacy DoughStyleDefinition
-            hydration = (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2;
-            salt = (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2;
-            oil = style.technicalProfile.oil ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2 : 0;
-            sugar = style.technicalProfile.sugar ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2 : 0;
-            bakingTempC = (style.technicalProfile.ovenTemp[0] + style.technicalProfile.ovenTemp[1]) / 2;
-        } else if (style.specs) {
-            // New DoughStyle (V2.5)
-            hydration = style.specs.hydration.ideal;
-            // Handle salt (sometimes it's in base_formula, defaulting if missing)
-            // Assuming standard for now or looking at base_formula if available
-            if (style.base_formula) {
-                const saltIng = style.base_formula.find((i: any) => i.name.toLowerCase().includes('salt') || i.name.toLowerCase().includes('sal'));
-                if (saltIng) salt = saltIng.percentage;
+        if (DOUGH_WEIGHT_RANGES[recipeStyle]) {
+            const rangeStr = DOUGH_WEIGHT_RANGES[recipeStyle] || '';
+            const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
+            if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
+                targetWeight = (nums[0] + nums[1]) / 2;
+            } else if (nums.length === 1 && !isNaN(nums[0])) {
+                targetWeight = nums[0];
             }
-            // Specs has ovenTemp.ideal
-            bakingTempC = style.specs.ovenTemp ? style.specs.ovenTemp.ideal : 400;
         }
 
-        // 3. Fermentation Mapping
-        let fermentationTechnique = FermentationTechnique.DIRECT;
-        let yeastType = YeastType.IDY;
-
-        const fermentationMethod = style.fermentationType || (style.process ? 'process_derived' : 'direct'); // Fallback
-
-        if (fermentationMethod === 'levain' || (style.specs && style.specs.difficulty === 'Expert')) {
-            // Heuristic: Expert usually implies Sourdough or Biga/Poolish complex. 
-            // But for Pizza Napoletana STG (V2.5), it uses Yeast usually but can be sourdough.
-            // Lets stick to Direct/IDY unless explicit.
+        if (bakeType === BakeType.BREADS_SAVORY) targetCount = 2;
+        if (bakeType === BakeType.SWEETS_PASTRY) {
+            const rs = recipeStyle.toString(); // Ensure string comparison
+            if (rs.includes('COOKIE')) targetCount = 12;
+            else targetCount = 8;
         }
-
-        // Explicit Check for Process steps mentioning 'Biga' or 'Poolish' => not implemented fully yet, defaulting to Direct for stability
 
         let newDoughConfig: Partial<DoughConfig> = {
-            bakeType,
-            baseStyleName: style.name,
-            recipeStyle: style.recipeStyle || RecipeStyle.NEAPOLITAN,
-            hydration,
-            salt,
-            oil,
-            sugar,
-            bakingTempC,
-            fermentationTechnique,
-            yeastType,
-            stylePresetId: mappedPresetId,
-            selectedStyleId: style.id
+            ...converted,
+            doughBallWeight: targetWeight,
+            numPizzas: targetCount,
+            // Ensure ID is passed correctly
+            stylePresetId: matchingPreset ? matchingPreset.id : undefined
         };
 
-        const tempConfig = { ...config, ...newDoughConfig };
-        const normalized = normalizeDoughConfig(tempConfig);
+        // Normalize
+        // We merge with current config to fill gaps, then override with new values
+        const configToNormalize = { ...config, ...newDoughConfig } as DoughConfig;
+        let normalized = normalizeDoughConfig(configToNormalize);
 
-        newDoughConfig = {
-            ...newDoughConfig,
-            fermentationTechnique: normalized.fermentationTechnique,
-            yeastType: normalized.yeastType
-        };
+        // If ingredients were provided by utility (e.g. from Formula), use them directly.
+        // If not (fallback), sync them.
+        if (converted.ingredients && converted.ingredients.length > 0) {
+            normalized.ingredients = converted.ingredients;
+        } else {
+            normalized.ingredients = syncIngredientsFromConfig(normalized);
+        }
 
         setCalculatorMode('advanced');
-        handleLoadAndNavigate(newDoughConfig, navigate);
+        handleLoadAndNavigate(normalized, navigate);
     }, [config, handleLoadAndNavigate]);
 
     const resetConfig = useCallback(() => {

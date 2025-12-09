@@ -74,6 +74,105 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
         }
     );
 
+    // --- PASTRY PATHWAY (Early Return for Non-Yeasted) ---
+    // We exclude Yeasted pastries (like Croissants/Danish) so they fall through to the standard fermentation steps.
+    if (config.bakeType === BakeType.SWEETS_PASTRY && !(config.yeastPercentage > 0 || isSourdough)) {
+        const isBrownie = config.recipeStyle === RecipeStyle.BROWNIE;
+
+        if (isBrownie) {
+            // BROWNIE METHOD (Melted Fat & Ribbon Stage)
+            addStep(
+                'MIX',
+                'Melt Fat & Chocolate',
+                'Melt the butter (and chocolate, if using) gently over a double boiler or in short bursts in the microwave. Let cool slightly (to <45°C).',
+                'Melt your butter and chocolate together. Don\'t burn it! Let it cool down a bit so it doesn\'t cook the eggs.',
+                { technicalExplanation: 'Melting the fat rather than creaming it yields a denser, fudgier texture by reducing air incorporation.' }
+            );
+            addStep(
+                'MIX',
+                'Ribbon Stage (Eggs & Sugar)',
+                'Whisk eggs and sugar vigorously until pale, thick, and falling in "ribbons" (approx 3-5 mins).',
+                'Beat the eggs and sugar until they look white and fluffy, like a milkshake.',
+                {
+                    technicalExplanation: 'Dissolving the sugar into the eggs creates a shiny, "papery" crust on top (meringue-like structure). Evaluating "Ribbon Stage" ensures sufficient aeration.',
+                    proTip: 'If the sugar isn\'t fully dissolved, the crust will be dull.'
+                }
+            );
+            addStep(
+                'MIX',
+                'Emulsification & Folding',
+                'Stream the cooled chocolate/butter mixture into the egg foam while whisking gently. Then, FOLD in the sifted dry ingredients just until combined.',
+                'Pour the chocolate into the eggs and mix. Then add the flour and fold it in gently with a spatula. Don\'t overmix!',
+                {
+                    criticalPoint: 'Do not overmix after adding flour! Developing gluten creates a tough, rubbery brownie instead of a tender/fudgy one.'
+                }
+            );
+            addStep(
+                'BAKE',
+                'Baking',
+                `Bake at ${config.bakingTempC}°C (${(config.bakingTempC * 9 / 5 + 32).toFixed(0)}°F). Test with a toothpick: it should come out with moist crumbs, not wet batter.`,
+                'Bake it until a toothpick comes out with a few sticky crumbs attached. If it\'s clean, you overbaked it!',
+                {
+                    technicalExplanation: 'Brownies rely on egg protein coagulation and sugar crystallization for structure. Carry-over cooking is significant; pull them before they seem 100% done.',
+                }
+            );
+        } else {
+            // COOKIE METHOD (Creaming Method)
+            addStep(
+                'MIX',
+                'Creaming (Butter & Sugar)',
+                'Beat softened butter and sugar(s) together until light, fluffy, and pale (3-5 mins).',
+                'Mix the butter and sugar until it looks like light, fluffy frosting.',
+                {
+                    technicalExplanation: 'The "Creaming Method" punches millions of micro-air bubbles into the fat. These bubbles expand during baking (leavening), creating lift and texture.',
+                    criticalPoint: 'Butter must be pliable (18-20°C) but not melted. Melted butter cannot hold air bubbles.'
+                }
+            );
+            addStep(
+                'MIX',
+                'Emulsification (Liquids)',
+                'Add eggs one at a time, beating well after each addition. Scrape down the bowl.',
+                'Add the eggs one by one. Mix well so it doesn\'t look curdled.',
+                {
+                    technicalExplanation: 'Eggs are mostly water; butter is fat. Incremental addition allows the lecithin in egg yolks to emulsify the water into the fat phase, preventing breaking.'
+                }
+            );
+            addStep(
+                'MIX',
+                'Incorporation (Dry Ingredients)',
+                'Add dry ingredients (flour, salt, leaveners) all at once. Mix on LOW speed just until streaks of flour disappear.',
+                'Add the flour and mix slowly. Stop as soon as the white powder is gone.',
+                {
+                    technicalExplanation: 'Minimize mixing time after adding flour to limit gluten development. Short gluten strands = tender cookies.',
+                    proTip: 'Add mix-ins (chips, nuts) now.'
+                }
+            );
+            addStep(
+                'BULK',
+                'Cold Maturation (Chilling)',
+                'Chill the dough for at least 2-24 hours before scooping/baking.',
+                'Put the dough in the fridge for a few hours (or overnight). It makes better cookies!',
+                {
+                    durationLabel: '2-24h',
+                    technicalExplanation: 'Chilling hydrates the flour (less spread), solidifies the fat (less spread), and allows enzymes to break down carbohydrates (browning/flavor).',
+                    references: ['Maillard Reaction', 'J. Kenji Lopez-Alt']
+                }
+            );
+            addStep(
+                'BAKE',
+                'Baking',
+                `Bake at ${config.bakingTempC}°C (${(config.bakingTempC * 9 / 5 + 32).toFixed(0)}°F) until edges are set but centers are soft.`,
+                'Bake until the edges look golden brown. The center should still look a bit soft.',
+                {
+                    temperatureLabel: `${config.bakingTempC}°C`,
+                    technicalExplanation: 'Sugar caramelization and Maillard browning occur rapidly. The center will finish setting on the hot baking sheet out of the oven.'
+                }
+            );
+        }
+
+        return steps;
+    }
+
     // --- PHASE 2: PRE-FERMENT (Day -1) ---
     if (isPoolish) {
         addStep(

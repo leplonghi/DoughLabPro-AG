@@ -1,39 +1,62 @@
-
 import React, { useState, useEffect } from 'react';
-import { CloseIcon, BeakerIcon, FireIcon, ClockIcon, GlobeAltIcon, BookOpenIcon, UserCircleIcon } from '@/components/ui/Icons';
-import { DoughStyleDefinition, StyleCategory, RecipeStyle, FermentationTechnique } from '@/types';
+import {
+    X,
+    Info,
+    Beaker,
+    Microscope,
+    Plus,
+    Trash2,
+    Save,
+    UserCircle
+} from 'lucide-react';
+import { DoughStyleDefinition, StyleCategory, RecipeStyle } from '@/types';
+import { DoughStyle, ProcessStep } from '@/types/dough';
 
 interface CreateStyleModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: (style: Omit<DoughStyleDefinition, 'id' | 'createdAt'>) => void;
+    onSave: (style: any) => void; // Using any to bypass strict legacy type if needed, but we aim for DoughStyleDefinition compatibility
     defaultValues?: Partial<DoughStyleDefinition>;
 }
 
 const CATEGORIES: StyleCategory[] = ['pizza', 'bread', 'enriched_bread', 'burger_bun', 'pastry', 'cookies_confectionery', 'flatbread'];
+const DIFFICULTIES = ['Easy', 'Medium', 'Hard', 'Expert'];
 
 const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, onSave, defaultValues }) => {
+    const [activeTab, setActiveTab] = useState<'overview' | 'engineering' | 'science'>('overview');
+
+    // Extended Form Data State
     const [formData, setFormData] = useState({
+        // Overview
         name: '',
         description: '',
         family: 'My Custom Styles',
         category: 'pizza' as StyleCategory,
+        country: 'Custom',
+        region: '',
+        history: '',
+        tags: '', // Comma separated string
+        source: 'user_manual' as 'user_manual' | 'user_ai',
+
+        // Engineering
         hydration: 65,
         salt: 2.0,
         oil: 0,
         sugar: 0,
         fermentationTime: '24h',
         bakingTempC: 250,
-        country: 'Custom',
-        region: '',
-        history: '',
-        culturalContext: '',
-        source: 'user_manual' as 'user_manual' | 'user_ai',
-        isCanonical: false,
+        difficulty: 'Medium' as 'Easy' | 'Medium' | 'Hard' | 'Expert',
+
+        // Science Lab (New)
+        flourRheology: '', // Textarea
+        processScience: '', // Textarea
+        processSteps: [] as ProcessStep[],
     });
 
     useEffect(() => {
         if (defaultValues) {
+            // Attempt to extract process steps if available in a legacy format or new props
+            // This is a simplification; in a real scenario we'd parse the advanced objects.
             setFormData(prev => ({
                 ...prev,
                 name: defaultValues.name || '',
@@ -41,39 +64,31 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                 // @ts-ignore
                 family: defaultValues.family || 'My Custom Styles',
                 category: defaultValues.category || 'pizza',
+
+                // Engineering
                 hydration: defaultValues.technicalProfile?.hydration[0] || 65,
                 salt: defaultValues.technicalProfile?.salt[0] || 2.0,
-                oil: defaultValues.technicalProfile?.oil[0] || 0,
-                sugar: defaultValues.technicalProfile?.sugar[0] || 0,
+                oil: defaultValues.technicalProfile?.oil?.[0] || 0,
+                sugar: defaultValues.technicalProfile?.sugar?.[0] || 0,
                 // @ts-ignore
                 fermentationTime: defaultValues.technicalProfile?.fermentation?.bulk || '24h',
                 bakingTempC: defaultValues.technicalProfile?.ovenTemp[0] || 250,
+                difficulty: defaultValues.difficulty || 'Medium',
+
+                // Origin
                 country: defaultValues.origin?.country || 'Custom',
                 region: defaultValues.origin?.region || '',
                 history: defaultValues.history || '',
-                // @ts-ignore
-                culturalContext: defaultValues.culturalContext || '',
                 source: (defaultValues.source as any) || 'user_manual',
+
+                // Tags
+                tags: defaultValues.tags?.join(', ') || '',
+
+                // Science & Process (Defaults or Empty)
+                flourRheology: defaultValues.technicalProfile?.flourStrength || '',
+                processScience: defaultValues.notes?.[0] || '',
+                processSteps: [], // Cannot easily parse back from string[] arrays without heuristic, keeping empty for now
             }));
-        } else {
-            setFormData({
-                name: '',
-                description: '',
-                family: 'My Custom Styles',
-                category: 'pizza',
-                hydration: 65,
-                salt: 2.0,
-                oil: 0,
-                sugar: 0,
-                fermentationTime: '24h',
-                bakingTempC: 250,
-                country: 'Custom',
-                region: '',
-                history: '',
-                culturalContext: '',
-                source: 'user_manual',
-                isCanonical: false,
-            });
         }
     }, [defaultValues, isOpen]);
 
@@ -85,9 +100,41 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
         }));
     };
 
+    // --- Process Builder Logic ---
+    const addProcessStep = () => {
+        setFormData(prev => ({
+            ...prev,
+            processSteps: [
+                ...prev.processSteps,
+                { phase: 'Mix', title: 'New Step', duration: '10 min', action: '', science: '' }
+            ]
+        }));
+    };
+
+    const updateProcessStep = (index: number, field: keyof ProcessStep, value: string) => {
+        const newSteps = [...formData.processSteps];
+        newSteps[index] = { ...newSteps[index], [field]: value };
+        setFormData(prev => ({ ...prev, processSteps: newSteps }));
+    };
+
+    const removeProcessStep = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            processSteps: prev.processSteps.filter((_, i) => i !== index)
+        }));
+    };
+
+    // --- Submit Logic (The "Complete" Object) ---
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
+        // Construct formatting for Process Steps (Legacy Adapter)
+        const fermentationSteps = formData.processSteps.map(step =>
+            `${step.title}: ${step.action} [Science: ${step.science}]`
+        );
+
+        // Construct the V2 Style Object (Compatible with DoughStyle definition mostly)
+        // But adapting to strict DoughStyleDefinition for the app
         const newStyle: Omit<DoughStyleDefinition, 'id' | 'createdAt'> = {
             name: formData.name,
             description: formData.description,
@@ -95,31 +142,64 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
             family: formData.family,
             isCanonical: false,
             source: formData.source,
-            origin: { country: formData.country, region: formData.region, period: 'Contemporary' },
+            origin: {
+                country: formData.country,
+                region: formData.region,
+                period: 'Contemporary'
+            },
             history: formData.history || 'User created style.',
-            culturalContext: formData.culturalContext,
             isPro: false,
-            recipeStyle: RecipeStyle.NEAPOLITAN,
+            recipeStyle: RecipeStyle.NEAPOLITAN, // Defaulting, ideally user selects
+
+            // Core Technical Profile
             technicalProfile: {
                 hydration: [Math.max(0, formData.hydration - 2), formData.hydration + 2],
                 salt: [Math.max(0, formData.salt - 0.2), formData.salt + 0.2],
                 oil: [formData.oil, formData.oil],
                 sugar: [formData.sugar, formData.sugar],
-                flourStrength: "Custom",
-                fermentationSteps: [],
                 ovenTemp: [formData.bakingTempC, formData.bakingTempC],
+                difficulty: formData.difficulty,
+
+                // Mapped Fields
+                flourStrength: formData.flourRheology || "Custom",
+                fermentationSteps: fermentationSteps,
                 recommendedUse: [],
-                difficulty: "Medium",
                 fermentation: {
-                    bulk: "Custom",
+                    bulk: formData.fermentationTime,
                     proof: "Custom"
+                },
+
+                // Optional: Store raw process in notes or a specific field if supported
+            },
+
+            // Scientific Profile (Advanced Schema)
+            scientificProfile: {
+                flourRheology: {
+                    w_index: "Custom",
+                    pl_ratio: "Balanced",
+                    absorption_capacity: "Medium",
+                    protein_type: "Wheat",
+                    science_explanation: formData.flourRheology
+                },
+                thermalProfile: {
+                    oven_type: "Generic",
+                    heat_distribution: "Standard",
+                    crust_development: "Standard",
+                    crumb_structure: "Standard"
+                },
+                fermentationScience: {
+                    yeast_activity: "Standard",
+                    ph_target: "5.5",
+                    organic_acids: "Balanced",
+                    enzymatic_activity: "Standard"
                 }
             },
-            references: defaultValues?.references || [],
-            tags: [],
-            difficulty: 'Medium',
+
+            tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+            difficulty: formData.difficulty,
             fermentationType: 'direct',
-            notes: [],
+            notes: [formData.processScience], // Storing general science here
+            references: defaultValues?.references || [],
             releaseDate: new Date().toISOString(),
         };
 
@@ -130,112 +210,298 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-lime-950/80 backdrop-blur-sm p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]" onClick={e => e.stopPropagation()}>
-                <div className="flex items-center justify-between p-4 border-b border-slate-100 flex-shrink-0">
-                    <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                        {formData.source === 'user_ai' ? (
-                            <span className="flex items-center gap-1 text-indigo-600"><UserCircleIcon className="h-5 w-5" /> AI Generated Style</span>
-                        ) : 'Create New Style'}
-                    </h2>
-                    <button onClick={onClose} className="p-1 text-slate-400 hover:bg-slate-100 rounded-full">
-                        <CloseIcon className="h-5 w-5" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4 transition-all" onClick={onClose}>
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col h-[85vh]" onClick={e => e.stopPropagation()}>
+
+                {/* Header */}
+                <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-white z-10">
+                    <div>
+                        <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                            {formData.source === 'user_ai' ? (
+                                <span className="flex items-center gap-2 text-indigo-600">
+                                    <UserCircle className="h-6 w-6" /> AI Generated Style
+                                </span>
+                            ) : 'Create New Style'}
+                        </h2>
+                        <p className="text-sm text-gray-500">Define the parameters of your custom dough.</p>
+                    </div>
+                    <button onClick={onClose} className="p-2 text-gray-400 hover:bg-gray-100 rounded-full transition-colors">
+                        <X className="h-6 w-6" />
                     </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="flex-grow overflow-y-auto p-6 space-y-6">
+                {/* Tabs */}
+                <div className="flex border-b border-gray-100 bg-gray-50/50">
+                    <button
+                        onClick={() => setActiveTab('overview')}
+                        className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'overview' ? 'border-lime-500 text-lime-700 bg-lime-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <Info className="w-4 h-4" /> Overview
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('engineering')}
+                        className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'engineering' ? 'border-orange-500 text-orange-700 bg-orange-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <Beaker className="w-4 h-4" /> Engineering
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('science')}
+                        className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'science' ? 'border-purple-500 text-purple-700 bg-purple-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+                    >
+                        <Microscope className="w-4 h-4" /> Science Lab
+                    </button>
+                </div>
+
+                {/* Content Area */}
+                <form onSubmit={handleSubmit} className="flex-grow overflow-y-auto bg-gray-50/30">
                     {formData.source === 'user_ai' && (
-                        <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-100 text-xs text-indigo-800 mb-4">
-                            This style was generated by AI. Please review the technical parameters and description before saving.
+                        <div className="m-6 mb-0 bg-indigo-50 p-4 rounded-xl border border-indigo-100 text-sm text-indigo-800 flex items-start gap-3">
+                            <Info className="w-5 h-5 mt-0.5 shrink-0" />
+                            <p>This style was generated by AI. Please review the technical parameters, science logic, and description before saving to ensure accuracy.</p>
                         </div>
                     )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="col-span-2">
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Style Name</label>
-                            <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full rounded-lg border-slate-300 focus:ring-lime-500 focus:border-lime-500" placeholder="e.g., My Weekend Pizza" />
-                        </div>
+                    {/* TAB 1: OVERVIEW */}
+                    {activeTab === 'overview' && (
+                        <div className="p-6 space-y-6 animate-fade-in">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-1">
+                                    <label className="block text-sm font-medium text-gray-700">Style Name</label>
+                                    <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder="e.g. Grandma Square Pie" />
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="block text-sm font-medium text-gray-700">Category</label>
+                                    <select name="category" value={formData.category} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5 capitalize">
+                                        {CATEGORIES.map(c => <option key={c} value={c}>{c.replace('_', ' ')}</option>)}
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Category</label>
-                            <select name="category" value={formData.category} onChange={handleChange} className="w-full rounded-lg border-slate-300 focus:ring-lime-500 focus:border-lime-500 capitalize">
-                                {CATEGORIES.map(c => <option key={c} value={c}>{c.replace('_', ' ')}</option>)}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Family (Group)</label>
-                            <input type="text" name="family" value={formData.family} onChange={handleChange} className="w-full rounded-lg border-slate-300 focus:ring-lime-500 focus:border-lime-500" placeholder="e.g., My Experiments" />
-                        </div>
-                    </div>
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">Description</label>
+                                <textarea name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-3" placeholder="A brief, appetizing description of this dough style..." />
+                            </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
-                        <textarea name="description" value={formData.description} onChange={handleChange} rows={2} className="w-full rounded-lg border-slate-300 focus:ring-lime-500 focus:border-lime-500" placeholder="Briefly describe this style..." />
-                    </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+                                <div className="space-y-1">
+                                    <label className="block text-sm font-medium text-gray-700">Country of Origin</label>
+                                    <input type="text" name="country" value={formData.country} onChange={handleChange} className="w-full rounded-lg border-gray-300 text-sm" />
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="block text-sm font-medium text-gray-700">Region / City</label>
+                                    <input type="text" name="region" value={formData.region} onChange={handleChange} className="w-full rounded-lg border-gray-300 text-sm" />
+                                </div>
+                                <div className="space-y-1 col-span-2">
+                                    <label className="block text-sm font-medium text-gray-700">History / Context</label>
+                                    <input type="text" name="history" value={formData.history} onChange={handleChange} className="w-full rounded-lg border-gray-300 text-sm" placeholder="e.g. Originated in 1940s Detroit..." />
+                                </div>
+                            </div>
 
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
-                        <h3 className="text-xs font-bold uppercase text-slate-500 flex items-center gap-2">
-                            <BeakerIcon className="h-4 w-4" /> Technical Parameters
-                        </h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600">Hydration (%)</label>
-                                <input type="number" name="hydration" value={formData.hydration} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600">Salt (%)</label>
-                                <input type="number" name="salt" value={formData.salt} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" step="0.1" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600">Oil (%)</label>
-                                <input type="number" name="oil" value={formData.oil} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" step="0.5" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600">Sugar (%)</label>
-                                <input type="number" name="sugar" value={formData.sugar} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" step="0.5" />
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">Tags</label>
+                                <input type="text" name="tags" value={formData.tags} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder="e.g. pan-pizza, crispy, sourdough (comma separated)" />
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600 flex items-center gap-1"><ClockIcon className="h-3 w-3" /> Fermentation</label>
-                                <input type="text" name="fermentationTime" value={formData.fermentationTime} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" placeholder="e.g. 24h Cold" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600 flex items-center gap-1"><FireIcon className="h-3 w-3" /> Bake Temp (°C)</label>
-                                <input type="number" name="bakingTempC" value={formData.bakingTempC} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" />
-                            </div>
-                        </div>
-                    </div>
+                    )}
 
-                    <div className="space-y-4 border-t border-slate-100 pt-4">
-                        <h3 className="text-xs font-bold uppercase text-slate-500 flex items-center gap-2">
-                            <GlobeAltIcon className="h-4 w-4" /> Origin & Context
-                        </h3>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600">Country</label>
-                                <input type="text" name="country" value={formData.country} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" />
+                    {/* TAB 2: ENGINEERING */}
+                    {activeTab === 'engineering' && (
+                        <div className="p-6 space-y-8 animate-fade-in">
+                            {/* Ratios */}
+                            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                                <h3 className="text-sm font-bold uppercase text-orange-600 mb-4 flex items-center gap-2">
+                                    <Beaker className="w-4 h-4" /> Core Ratios (Bakers %)
+                                </h3>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">Hydration</label>
+                                        <div className="flex items-center gap-2">
+                                            <input type="number" name="hydration" value={formData.hydration} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
+                                            <span className="text-gray-400 font-bold">%</span>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">Salt</label>
+                                        <div className="flex items-center gap-2">
+                                            <input type="number" step="0.1" name="salt" value={formData.salt} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
+                                            <span className="text-gray-400 font-bold">%</span>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">Fat / Oil</label>
+                                        <div className="flex items-center gap-2">
+                                            <input type="number" step="0.5" name="oil" value={formData.oil} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
+                                            <span className="text-gray-400 font-bold">%</span>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">Sugar</label>
+                                        <div className="flex items-center gap-2">
+                                            <input type="number" step="0.5" name="sugar" value={formData.sugar} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
+                                            <span className="text-gray-400 font-bold">%</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <label className="block text-xs font-medium text-slate-600">Region</label>
-                                <input type="text" name="region" value={formData.region} onChange={handleChange} className="w-full rounded-md border-slate-300 text-sm" />
+
+                            {/* Execution */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div className="space-y-1">
+                                    <label className="block text-sm font-medium text-gray-700">Fermentation Time</label>
+                                    <input type="text" name="fermentationTime" value={formData.fermentationTime} onChange={handleChange} className="w-full rounded-lg border-gray-300" placeholder="e.g. 24h Cold" />
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="block text-sm font-medium text-gray-700">Baking Temp (°C)</label>
+                                    <input type="number" name="bakingTempC" value={formData.bakingTempC} onChange={handleChange} className="w-full rounded-lg border-gray-300" />
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="block text-sm font-medium text-gray-700">Difficulty</label>
+                                    <select name="difficulty"
+                                        // @ts-ignore
+                                        value={formData.difficulty}
+                                        onChange={handleChange} className="w-full rounded-lg border-gray-300">
+                                        {DIFFICULTIES.map(d => <option key={d} value={d}>{d}</option>)}
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <label className="block text-xs font-medium text-slate-600">History</label>
-                            <textarea name="history" value={formData.history} onChange={handleChange} rows={2} className="w-full rounded-md border-slate-300 text-sm" />
+                    )}
+
+                    {/* TAB 3: SCIENCE LAB */}
+                    {activeTab === 'science' && (
+                        <div className="p-6 space-y-8 animate-fade-in">
+                            {/* Scientific Theory */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="flex items-center gap-2 text-sm font-bold text-purple-800">
+                                        <Microscope className="w-4 h-4" /> Flour Rheology & Chemistry
+                                    </label>
+                                    <textarea
+                                        name="flourRheology"
+                                        value={formData.flourRheology}
+                                        onChange={handleChange}
+                                        rows={4}
+                                        className="w-full rounded-xl border-purple-200 focus:ring-purple-500 focus:border-purple-500 bg-purple-50/30 text-sm"
+                                        placeholder="Explain the required W index, P/L ratio, and elasticity/extensibility balance. E.g., 'Requires W320+ for 48h cold ferment...'"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="flex items-center gap-2 text-sm font-bold text-purple-800">
+                                        <Beaker className="w-4 h-4" /> Process Chemistry Logic
+                                    </label>
+                                    <textarea
+                                        name="processScience"
+                                        value={formData.processScience}
+                                        onChange={handleChange}
+                                        rows={4}
+                                        className="w-full rounded-xl border-purple-200 focus:ring-purple-500 focus:border-purple-500 bg-purple-50/30 text-sm"
+                                        placeholder="Explain the scientific 'why' behind the process. E.g., 'The high hydration coupled with bassinage allows for...'"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Process Builder */}
+                            <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                                <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                                    <h3 className="font-bold text-gray-700 text-sm uppercase">Process Timeline</h3>
+                                    <button
+                                        type="button"
+                                        onClick={addProcessStep}
+                                        className="flex items-center gap-1 text-xs font-bold text-white bg-purple-600 hover:bg-purple-700 px-3 py-1.5 rounded-lg transition-colors"
+                                    >
+                                        <Plus className="w-3 h-3" /> Add Step
+                                    </button>
+                                </div>
+
+                                <div className="divide-y divide-gray-100">
+                                    {formData.processSteps.length === 0 ? (
+                                        <div className="p-8 text-center text-gray-400 italic text-sm">
+                                            No process steps defined. Click "Add Step" to build the timeline.
+                                        </div>
+                                    ) : (
+                                        formData.processSteps.map((step, index) => (
+                                            <div key={index} className="p-4 hover:bg-gray-50 transition-colors group">
+                                                <div className="grid grid-cols-12 gap-3 mb-2">
+                                                    <div className="col-span-12 md:col-span-3">
+                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">Title</label>
+                                                        <input
+                                                            type="text"
+                                                            value={step.title}
+                                                            onChange={(e) => updateProcessStep(index, 'title', e.target.value)}
+                                                            className="w-full text-sm font-bold text-gray-800 rounded border-gray-200 py-1"
+                                                        />
+                                                    </div>
+                                                    <div className="col-span-6 md:col-span-2">
+                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">Phase</label>
+                                                        <select
+                                                            value={step.phase}
+                                                            onChange={(e) => updateProcessStep(index, 'phase', e.target.value as any)}
+                                                            className="w-full text-xs rounded border-gray-200 py-1"
+                                                        >
+                                                            <option value="Mix">Mix</option>
+                                                            <option value="Bulk">Bulk</option>
+                                                            <option value="Ball">Ball</option>
+                                                            <option value="Bake">Bake</option>
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-span-6 md:col-span-2">
+                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">Duration</label>
+                                                        <input
+                                                            type="text"
+                                                            value={step.duration}
+                                                            onChange={(e) => updateProcessStep(index, 'duration', e.target.value)}
+                                                            className="w-full text-sm rounded border-gray-200 py-1"
+                                                        />
+                                                    </div>
+                                                    <div className="col-span-12 md:col-span-5 flex justify-end items-end">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => removeProcessStep(index)}
+                                                            className="text-red-400 hover:text-red-600 p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div>
+                                                        <label className="block text-xs font-medium text-gray-400 mb-1">Action</label>
+                                                        <textarea
+                                                            value={step.action}
+                                                            onChange={(e) => updateProcessStep(index, 'action', e.target.value)}
+                                                            rows={2}
+                                                            className="w-full text-sm rounded-lg border-gray-200 resize-none"
+                                                            placeholder="What to do..."
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label className="block text-xs font-medium text-purple-400 mb-1">Science (The Why)</label>
+                                                        <textarea
+                                                            value={step.science}
+                                                            onChange={(e) => updateProcessStep(index, 'science', e.target.value)}
+                                                            rows={2}
+                                                            className="w-full text-sm rounded-lg border-purple-100 bg-purple-50/30 resize-none focus:border-purple-300 focus:ring-purple-200"
+                                                            placeholder="Why this step matters scientifically..."
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <label className="block text-xs font-medium text-slate-600">Cultural Context</label>
-                            <textarea name="culturalContext" value={formData.culturalContext} onChange={handleChange} rows={2} className="w-full rounded-md border-slate-300 text-sm" />
-                        </div>
-                    </div>
+                    )}
 
                 </form>
 
-                <div className="p-4 border-t border-slate-100 flex justify-end gap-2 flex-shrink-0 bg-white">
-                    <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button onClick={handleSubmit} className="px-6 py-2 text-sm font-bold text-white bg-gradient-to-br from-lime-500 to-lime-700 hover:from-lime-600 hover:to-lime-800 rounded-lg shadow-sm">
+                {/* Footer */}
+                <div className="p-5 border-t border-gray-100 bg-white flex justify-end gap-3 z-10 box-border">
+                    <button onClick={onClose} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded-xl transition-colors">
+                        Cancel
+                    </button>
+                    <button onClick={handleSubmit} className="px-6 py-2.5 text-sm font-bold text-white bg-slate-900 hover:bg-black rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
+                        <Save className="w-4 h-4" />
                         {formData.source === 'user_ai' ? 'Save Generated Style' : 'Save Style'}
                     </button>
                 </div>

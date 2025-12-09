@@ -1,18 +1,31 @@
 import React from 'react';
 import { MoreHorizontal, User } from 'lucide-react';
 import { formatPostDate } from '../utils/formatPost';
+import { useRouter } from '../../contexts/RouterContext';
 
 interface PostHeaderProps {
+    uid?: string; // Optional for compatibility, but should be provided
     username: string;
     userPhotoURL?: string;
     createdAt: any;
     title?: string;
 }
 
-export const PostHeader: React.FC<PostHeaderProps> = ({ username, userPhotoURL, createdAt, title }) => {
+export const PostHeader: React.FC<PostHeaderProps> = ({ uid, username, userPhotoURL, createdAt, title }) => {
+    const { navigate } = useRouter();
+
+    const handleUserClick = (e: React.MouseEvent) => {
+        if (!uid) return;
+        e.stopPropagation(); // Prevent parent card click if needed
+        navigate('community/user', uid);
+    };
+
     return (
         <div className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
+            <div
+                className={`flex items-center gap-3 ${uid ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}`}
+                onClick={handleUserClick}
+            >
                 <div className="h-10 w-10 rounded-full bg-gray-100 overflow-hidden">
                     {userPhotoURL ? (
                         <img src={userPhotoURL} alt={username} className="h-full w-full object-cover" />
@@ -23,7 +36,9 @@ export const PostHeader: React.FC<PostHeaderProps> = ({ username, userPhotoURL, 
                     )}
                 </div>
                 <div>
-                    <div className="font-semibold text-gray-900 text-sm">{username}</div>
+                    <div className="font-semibold text-gray-900 text-sm hover:underline hover:text-lime-700 transition-colors">
+                        {username}
+                    </div>
                     <div className="text-xs text-gray-500">{formatPostDate(createdAt)}</div>
                 </div>
             </div>

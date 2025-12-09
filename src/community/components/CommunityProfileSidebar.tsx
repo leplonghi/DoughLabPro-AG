@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useUser } from '../../contexts/UserProvider';
 import { LockFeature } from '../../components/auth/LockFeature';
-import { User, Award, TrendingUp } from 'lucide-react';
+import { User, Award, TrendingUp, PlusCircle } from 'lucide-react';
+import { useRouter } from '../../contexts/RouterContext';
+import { communityStore } from '../store/communityStore';
+import { CommunityPost } from '../types';
 
 export const CommunityProfileSidebar: React.FC = () => {
     const { user, hasProAccess } = useUser();
+    const { navigate } = useRouter();
+    const [stats, setStats] = useState({ posts: 0, likes: 0, clones: 0 });
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            if (!user?.uid && !user?.stripeCustomerId) return;
+            const uid = user.uid || user.stripeCustomerId || 'unknown';
+            try {
+                // Fetch user posts to aggregate stats
+                // Note: accurate global stats typically require a backend counter
+                const posts = await communityStore.getUserPosts(uid);
+                const totalLikes = posts.reduce((acc, post) => acc + post.likes, 0);
+                const totalClones = posts.reduce((acc, post) => acc + post.clones, 0);
+
+                setStats({
+                    posts: posts.length,
+                    likes: totalLikes,
+                    clones: totalClones
+                });
+            } catch (err) {
+                console.error("Failed to fetch user stats", err);
+            }
+        };
+
+        fetchStats();
+    }, [user]);
 
     if (!user) return null;
 
@@ -32,17 +61,25 @@ export const CommunityProfileSidebar: React.FC = () => {
                 <h3 className="mt-3 font-semibold text-dlp-text-primary">{user.name}</h3>
                 <p className="text-xs text-dlp-text-muted">Joined {new Date().getFullYear()}</p>
 
+                <button
+                    onClick={() => navigate('community/create')}
+                    className="mt-4 w-full flex items-center justify-center gap-2 bg-dlp-accent hover:bg-lime-700 text-white py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                    <PlusCircle className="h-4 w-4" />
+                    New Post
+                </button>
+
                 <div className="mt-4 grid grid-cols-3 gap-2 border-t border-dlp-border pt-4">
                     <div className="text-center">
-                        <div className="text-sm font-semibold text-dlp-text-primary">0</div>
+                        <div className="text-sm font-semibold text-dlp-text-primary">{stats.posts}</div>
                         <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">Posts</div>
                     </div>
                     <div className="text-center border-l border-dlp-border">
-                        <div className="text-sm font-semibold text-dlp-text-primary">0</div>
+                        <div className="text-sm font-semibold text-dlp-text-primary">{stats.likes}</div>
                         <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">Likes</div>
                     </div>
                     <div className="text-center border-l border-dlp-border">
-                        <div className="text-sm font-semibold text-dlp-text-primary">0</div>
+                        <div className="text-sm font-semibold text-dlp-text-primary">{stats.clones}</div>
                         <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">Clones</div>
                     </div>
                 </div>

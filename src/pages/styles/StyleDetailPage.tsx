@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DoughStyle, ProcessStep } from '@/types/dough';
-import { italianStyles } from '@/data/styles/regions/italy';
+import { STYLES_DATA } from '@/data/styles/registry'; // Use Global Registry
+import { DoughStyleDefinition } from '@/types/styles';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { useUser } from '@/contexts/UserProvider';
 import {
@@ -25,75 +26,154 @@ import {
     AlertTriangle
 } from 'lucide-react';
 
+// --- ADAPTER: Legacy/Registry (V2) -> UI (V3) ---
+// This ensures that American/European styles (V2 Definitions) can be rendered by this V3 Page.
+function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
+    // 1. Parse Fermentation Steps from Strings to Objects
+    const processSteps: ProcessStep[] = def.technicalProfile.fermentationSteps.map((stepStr, index) => {
+        // Format assumption: "Title. [Science: Explanation]"
+        const scienceMatch = stepStr.match(/\[Science: (.*?)\]/);
+        const scienceText = scienceMatch ? scienceMatch[1] : "Control of enzymatic activity and gluten development.";
+        const cleanText = stepStr.replace(/\[Science:.*?\]/, '').trim();
+
+        let phase: any = 'Bulk';
+        if (index === 0) phase = 'Mix';
+        if (index === def.technicalProfile.fermentationSteps.length - 1) phase = 'Bake';
+
+        // Extract title if possible (e.g. "Mix to Windowpane.")
+        const parts = cleanText.split('.');
+        const title = parts[0] || `Step ${index + 1}`;
+        const action = parts.slice(1).join('.').trim() || cleanText;
+
+        return {
+            phase: phase,
+            title: title,
+            duration: "Variable",
+            action: action || title, // Fallback if no dot split
+            science: scienceText
+        };
+    });
+
+    // 2. Construct Scientific Profile (Robust Mapping)
+    const scientificProfile = def.scientificProfile || {
+        flourRheology: {
+            w_index: def.technicalProfile.flourStrength || "N/A",
+            pl_ratio: "0.55-0.65",
+            absorption_capacity: "Medium-High",
+            protein_type: "Soft Wheat",
+            science_explanation: def.notes?.[0] || "Standard flour properties apply."
+        },
+        thermalProfile: {
+            oven_type: "Standard",
+            heat_distribution: "Conduction/Convection",
+            crust_development: "Maillard dominant",
+            crumb_structure: "Open",
+            ...def.scientificProfile?.thermalProfile
+        },
+        fermentationScience: {
+            yeast_activity: "Standard",
+            ph_target: "5.5",
+            organic_acids: "Balanced",
+            enzymatic_activity: "Moderate",
+            ...def.scientificProfile?.fermentationScience
+        }
+    };
+
+    return {
+        id: def.id,
+        name: def.name,
+        region: (def.origin.country === 'Italy' ? 'Italy' : def.origin.country === 'USA' ? 'Americas' : 'Europe') as any,
+        subRegion: def.origin.region,
+        category: 'Pizza', // Simplification for UI tags
+        tags: def.tags,
+        description: def.description,
+        history_context: def.history,
+        base_formula: def.base_formula || [
+            { name: "Flour", percentage: 100 },
+            { name: "Water", percentage: (def.technicalProfile.hydration[0] + def.technicalProfile.hydration[1]) / 2 },
+            { name: "Salt", percentage: (def.technicalProfile.salt[0] + def.technicalProfile.salt[1]) / 2 },
+            { name: "Yeast", percentage: 0.5 }
+        ],
+        specs: {
+            hydration: {
+                ideal: Math.round((def.technicalProfile.hydration[0] + def.technicalProfile.hydration[1]) / 2),
+                min: def.technicalProfile.hydration[0],
+                max: def.technicalProfile.hydration[1]
+            },
+            ovenTemp: {
+                ideal: Math.round((def.technicalProfile.ovenTemp[0] + def.technicalProfile.ovenTemp[1]) / 2),
+                min: def.technicalProfile.ovenTemp[0],
+                max: def.technicalProfile.ovenTemp[1]
+            },
+            fermentationTime: "24-48h",
+            difficulty: def.technicalProfile.difficulty
+        },
+        scientificProfile: scientificProfile,
+        regulatory_info: def.regulatoryNotes,
+        global_presence: def.globalPresence,
+        variations: def.variations,
+        education: def.education as any,
+        deepDive: def.deepDive,
+        process: processSteps,
+        references: def.references.map(r => r.source),
+        images: def.images
+    };
+}
+
 // --- COMPONENTS ---
 
-// 1. Science Pulse Timeline Component (Refined)
-const SciencePulseTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }) => {
+// 1. Scientific Process Timeline (Improved V2)
+const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }) => {
     return (
-        <div className="relative space-y-12 pl-4 md:pl-0">
-            {/* Central Line */}
-            <div className="absolute left-8 top-4 bottom-4 w-0.5 bg-gradient-to-b from-slate-200 via-lime-200 to-slate-200 md:left-1/2 md:-ml-px hidden md:block"></div>
+        <div className="relative space-y-8 pl-6 md:pl-0">
+            {/* Main Connector Line */}
+            <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-1 bg-slate-100 rounded-full md:-ml-0.5 hidden md:block" />
 
-            {steps.map((step, index) => (
-                <div key={index} className="relative flex flex-col md:flex-row items-center justify-between group">
+            {steps.map((step, index) => {
+                const isLeft = index % 2 === 0;
+                return (
+                    <div key={index} className={`relative flex flex-col md:flex-row items-stretch md:items-center gap-6 md:gap-0 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
 
-                    {/* Left Side (Action) */}
-                    <div className="w-full md:w-[45%] mb-4 md:mb-0 md:text-right pr-0 md:pr-8 order-2 md:order-1">
-                        <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-lime-50 to-transparent rounded-bl-3xl opacity-50"></div>
+                        {/* Content Card */}
+                        <div className={`flex-1 md:w-1/2 ${isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'} relative`}>
+                            <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
+                                <div className={`absolute top-0 w-1 h-full ${isLeft ? 'right-0 bg-lime-500' : 'left-0 bg-indigo-500'} opacity-0 group-hover:opacity-100 transition-opacity`} />
 
-                            <div className="flex items-center justify-between md:justify-end gap-2 mb-3">
-                                <span className="text-[10px] uppercase font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                                    Step {index + 1}
-                                </span>
-                                <h4 className="font-bold text-slate-800 text-lg">{step.title}</h4>
-                            </div>
+                                <span className="text-[10px] uppercase font-black text-slate-300 mb-1.5 block tracking-widest">Phase {index + 1}</span>
+                                <h4 className="font-bold text-slate-800 text-base mb-1.5">{step.title}</h4>
+                                <p className="text-slate-600 text-xs leading-relaxed mb-3">{step.action}</p>
 
-                            <p className="text-slate-600 text-sm leading-relaxed mb-3">
-                                {step.action}
-                            </p>
-
-                            <div className="flex items-center justify-end gap-3 text-xs font-semibold text-slate-500">
-                                {step.duration && (
-                                    <span className="flex items-center gap-1 bg-slate-50 px-2 py-1 rounded-md border border-slate-100">
-                                        <Clock className="w-3 h-3 text-lime-600" /> {step.duration}
-                                    </span>
-                                )}
-                                {step.temperature && (
-                                    <span className="flex items-center gap-1 bg-red-50 px-2 py-1 rounded-md border border-red-100 text-red-600">
-                                        <Thermometer className="w-3 h-3" /> {step.temperature}
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Center Node */}
-                    <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex flex-col items-center justify-center order-1 md:order-2 h-full z-10 w-full md:w-auto pointer-events-none md:pointer-events-auto">
-                        <div className="w-8 h-8 rounded-full bg-white border-4 border-lime-500 shadow-lg relative z-10 mt-[-2rem] md:mt-0 mb-4 md:mb-0 ml-4 md:ml-0 flex items-center justify-center">
-                            <div className="w-2 h-2 bg-lime-500 rounded-full animate-pulse"></div>
-                        </div>
-                    </div>
-
-                    {/* Right Side (Science) */}
-                    <div className="w-full md:w-[45%] pl-0 md:pl-8 order-3">
-                        <div className="bg-gradient-to-br from-indigo-50 to-white p-5 rounded-2xl border border-indigo-100 relative group-hover:border-indigo-200 transition-colors">
-                            <div className="flex items-start gap-3">
-                                <div className="bg-white p-1.5 rounded-full shadow-sm shrink-0 mt-1">
-                                    <Lightbulb className="w-4 h-4 text-amber-500 fill-amber-100" />
+                                {/* Metrics */}
+                                <div className={`flex flex-wrap gap-2 ${isLeft ? 'md:justify-end' : 'md:justify-start'}`}>
+                                    {step.duration && <span className="text-[10px] font-semibold bg-slate-50 text-slate-500 px-2 py-1 rounded border border-slate-100 flex items-center gap-1"><Clock className="w-3 h-3" /> {step.duration}</span>}
+                                    {step.temperature && <span className="text-[10px] font-semibold bg-orange-50 text-orange-600 px-2 py-1 rounded border border-orange-100 flex items-center gap-1"><Thermometer className="w-3 h-3" /> {step.temperature}</span>}
                                 </div>
-                                <div>
-                                    <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider mb-1 block">The Science</span>
-                                    <p className="text-sm text-indigo-900/80 italic leading-relaxed">
-                                        "{step.science}"
-                                    </p>
+                            </div>
+                        </div>
+
+                        {/* Central Node */}
+                        <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center z-10 hidden md:flex">
+                            <div className="w-10 h-10 rounded-full bg-white border-4 border-slate-200 shadow-sm flex items-center justify-center font-bold text-slate-400 text-xs relative">
+                                {index + 1}
+                                <div className="absolute inset-0 bg-lime-500 rounded-full opacity-0 hover:opacity-100 transition-opacity blur-md" />
+                            </div>
+                        </div>
+
+                        {/* Science Insight (Opposite Side) */}
+                        <div className={`flex-1 md:w-1/2 ${!isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'} hidden md:block opacity-60 hover:opacity-100 transition-opacity`}>
+                            <div className="flex items-start gap-4 h-full p-4 rounded-xl hover:bg-slate-50 transition-colors cursor-help">
+                                <div className={`mt-1 p-2 rounded-lg ${isLeft ? 'order-2 bg-indigo-50 text-indigo-500' : 'bg-lime-50 text-lime-500'}`}>
+                                    <Lightbulb className="w-4 h-4" />
+                                </div>
+                                <div className={isLeft ? 'text-right flex-1' : 'flex-1'}>
+                                    <span className="text-[10px] font-bold uppercase text-slate-400 block mb-1">What's happening chemically?</span>
+                                    <p className="text-xs text-slate-600 italic leading-relaxed">"{step.science}"</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 };
@@ -124,8 +204,6 @@ const HydrationBar: React.FC<{ value: number; min: number; max: number }> = ({ v
         </div>
     );
 };
-
-// --- MAIN PAGE ---
 
 interface StyleDetailPageProps {
     style?: any;
@@ -393,16 +471,27 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
 export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initialStyle, onLoadAndNavigate, onBack }) => {
     const { isFavorite, toggleFavorite } = useUser();
     const [styleData, setStyleData] = useState<DoughStyle | null>(null);
+    const [viewFormula, setViewFormula] = useState<any[]>([]);
 
     useEffect(() => {
+        let foundDef: DoughStyleDefinition | undefined;
+
         if (initialStyle && initialStyle.id) {
-            const found = italianStyles.find(s => s.id === initialStyle.id);
-            if (found) {
-                setStyleData(found);
-                return;
+            // Priority 1: Check Global Registry
+            foundDef = STYLES_DATA.find(s => s.id === initialStyle.id);
+
+            // Priority 2: Use passed style if not in registry (e.g. dynamic/user style)
+            if (!foundDef) {
+                foundDef = initialStyle as unknown as DoughStyleDefinition;
             }
         }
-        setStyleData(italianStyles[0]);
+
+        if (foundDef) {
+            // Convert Registry Definition (V2) -> Page Style (V3)
+            const adaptedStyle = mapDefinitionToStyle(foundDef);
+            setStyleData(adaptedStyle);
+            setViewFormula(adaptedStyle.base_formula || []);
+        }
     }, [initialStyle]);
 
     if (!styleData) return (
@@ -425,7 +514,6 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                     </button>
                     <div>
                         <h1 className="text-lg md:text-xl font-bold text-slate-900 leading-none tracking-tight">{styleData.name}</h1>
-                        <span className="text-[10px] uppercase font-bold text-lime-600 tracking-wider">Level 2.5 Master Spec</span>
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -447,33 +535,47 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
             <div className="max-w-7xl mx-auto pt-6 pb-20">
 
                 {/* --- HERO SECTION --- */}
-                <div className="relative h-56 md:h-72 w-full rounded-2xl overflow-hidden mb-8 shadow-2xl transition-all">
-                    {/* Modern Gradient Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-900 to-slate-900 z-0"></div>
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+                <div className="relative h-56 md:h-72 w-full rounded-2xl overflow-hidden mb-8 shadow-2xl transition-all group">
+                    {/* Dynamic Hero Background Image */}
+                    {styleData.images?.hero ? (
+                        <div
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 z-0"
+                            style={{ backgroundImage: `url(${styleData.images.hero})` }}
+                        >
+                            {/* The Blur/Darkening Layer - Modern Glassy Look */}
+                            <div className="absolute inset-0 backdrop-blur-[2px] bg-lime-900/30"></div>
+                            {/* Gradient Overlay for Text Readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-lime-900/90 via-lime-900/40 to-transparent"></div>
+                        </div>
+                    ) : (
+                        // Fallback Gradient
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-slate-900 to-slate-900 z-0">
+                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+                        </div>
+                    )}
 
                     {/* Content */}
                     <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 z-10 text-white">
                         <div className="flex items-center gap-3 mb-4 animate-fade-in-up">
-                            <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                            <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-sm">
                                 <MapPin className="w-3 h-3 text-emerald-300" /> {styleData.subRegion}
                             </span>
-                            <span className={`px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider ${styleData.specs.difficulty === 'Expert' ? 'text-purple-300 border-purple-500/30' : 'text-lime-300'}`}>
+                            <span className={`px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm ${styleData.specs.difficulty === 'Expert' ? 'text-purple-300 border-purple-500/30' : 'text-lime-300'}`}>
                                 {styleData.specs.difficulty} Level
                             </span>
                         </div>
 
-                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-2 drop-shadow-lg bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400 w-fit">
+                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-2 drop-shadow-lg text-white">
                             {styleData.name}
                         </h2>
 
-                        <p className="text-lg md:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">
+                        <p className="text-lg md:text-xl text-slate-200 font-medium max-w-2xl leading-relaxed drop-shadow-md">
                             {styleData.description}
                         </p>
                     </div>
 
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 right-0 p-8 opacity-20 hidden md:block">
+                    {/* Decorative Elements (Subtler now) */}
+                    <div className="absolute top-0 right-0 p-8 opacity-10 hidden md:block z-0 pointer-events-none">
                         <ChefHat className="w-48 h-48 text-white rotate-12" />
                     </div>
                 </div>
@@ -481,33 +583,60 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                     {/* --- LEFT COLUMN (CONTENT) --- */}
-                    <div className="lg:col-span-8 space-y-8">
+                    <div className="lg:col-span-7 space-y-8">
 
-                        {/* History & Context (Detailed) */}
-                        <section className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2 bg-amber-50 rounded-lg">
-                                    <BookOpen className="w-5 h-5 text-amber-600" />
+                        {/* History & Cultural Context (Expanded) */}
+                        <section className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                            <div className="p-8 pb-0">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="p-2 bg-amber-50 rounded-lg">
+                                        <BookOpen className="w-5 h-5 text-amber-600" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-slate-800">Historical & Cultural Context</h3>
                                 </div>
-                                <h3 className="text-xl font-bold text-slate-800">Historical & Cultural Context</h3>
-                            </div>
 
-                            <div className="prose prose-slate max-w-none">
-                                <p className="text-lg leading-relaxed text-slate-700 font-serif border-l-4 border-amber-200 pl-6 italic bg-amber-50/30 py-4 rounded-r-lg">
-                                    "{styleData.history_context}"
-                                </p>
-                            </div>
+                                {(() => {
+                                    const hasCuriosities = styleData.regulatory_info || (styleData.education?.pro_tips && styleData.education.pro_tips.length > 0);
+                                    return (
+                                        <div className={`grid grid-cols-1 ${hasCuriosities ? 'lg:grid-cols-3' : 'lg:grid-cols-1'} gap-8 mb-8`}>
+                                            <div className={`${hasCuriosities ? 'lg:col-span-2' : ''} prose prose-slate max-w-none`}>
+                                                <p className="text-lg leading-relaxed text-slate-700 font-serif border-l-4 border-amber-200 pl-6 italic">
+                                                    "{styleData.history_context}"
+                                                </p>
+                                                {styleData.global_presence && (
+                                                    <div className="mt-6">
+                                                        <h4 className="font-bold text-slate-900 text-sm uppercase mb-2">Global Presence</h4>
+                                                        <p className="text-sm text-slate-600">{styleData.global_presence}</p>
+                                                    </div>
+                                                )}
+                                            </div>
 
-                            {styleData.references && styleData.references.length > 0 && (
-                                <div className="mt-6 pt-6 border-t border-slate-100 flex flex-wrap gap-2">
-                                    <span className="text-xs font-bold text-slate-400 uppercase mr-2 mt-1">Validated By:</span>
-                                    {styleData.references.map((ref, i) => (
-                                        <span key={i} className="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-[10px] font-medium text-slate-500">
-                                            {ref}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
+                                            {/* Curiosities / Did You Know (Conditional) */}
+                                            {hasCuriosities && (
+                                                <div className="bg-amber-50/50 rounded-xl p-5 border border-amber-100">
+                                                    <h4 className="font-bold text-amber-900 text-sm uppercase mb-3 flex items-center gap-2">
+                                                        <Lightbulb className="w-4 h-4" /> Did You Know?
+                                                    </h4>
+                                                    <ul className="space-y-3">
+                                                        {styleData.regulatory_info && (
+                                                            <li className="text-xs text-amber-900/80 leading-snug">
+                                                                <span className="font-bold block text-amber-700 mb-1">Regulation:</span>
+                                                                {styleData.regulatory_info}
+                                                            </li>
+                                                        )}
+                                                        {styleData.education?.pro_tips?.slice(0, 2).map((tip: any, i: number) => (
+                                                            <li key={i} className="text-xs text-amber-900/80 leading-snug">
+                                                                <span className="font-bold block text-amber-700 mb-1">{tip.tip}</span>
+                                                                {tip.explanation}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })()}
+                            </div>
                         </section>
 
                         {/* Scientific Process (Dynamic Timeline) */}
@@ -522,7 +651,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                 </div>
                             </div>
 
-                            <SciencePulseTimeline steps={styleData.process} />
+                            <ScientificProcessTimeline steps={styleData.process} />
                         </section>
 
                         {/* Deep Dive Module (New) */}
@@ -531,12 +660,50 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                         {/* Educational Content (New Level 3) */}
                         {styleData.education && <EducationSection education={styleData.education} />}
 
+                        {/* Validation & References */}
+                        <div className="mt-8 pt-8 border-t border-slate-100">
+                            <div className="flex items-center gap-2 mb-4">
+                                <BookOpen className="w-4 h-4 text-slate-400" />
+                                <h4 className="text-sm font-bold text-slate-700 uppercase">References & Validation</h4>
+                            </div>
+
+                            <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="bg-emerald-100 p-1.5 rounded-full">
+                                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                                    </div>
+                                    <div>
+                                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide block">Scientifically Validated</span>
+                                        <span className="text-[10px] text-emerald-600/80">Parameters verified against cereal chemistry standards.</span>
+                                    </div>
+                                </div>
+
+                                {styleData.references && styleData.references.length > 0 && (
+                                    <div className="space-y-2 mt-4 pt-4 border-t border-slate-200/50">
+                                        <span className="text-[10px] uppercase font-bold text-slate-400 block mb-2">Primary Sources</span>
+                                        <ul className="space-y-1">
+                                            {styleData.references.map((ref, i) => (
+                                                <li key={i} className="text-xs text-slate-500 hover:text-indigo-600 transition-colors flex items-start gap-2">
+                                                    <span className="mt-1 w-1 h-1 rounded-full bg-slate-300"></span>
+                                                    {ref.startsWith('http') ? (
+                                                        <a href={ref} target="_blank" rel="noopener noreferrer" className="underline decoration-slate-300 hover:decoration-indigo-300 underline-offset-2 break-all">
+                                                            {ref}
+                                                        </a>
+                                                    ) : ref}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
 
                     </div>
 
 
                     {/* --- RIGHT COLUMN (SPECS - DEEP TECH) --- */}
-                    <div className="lg:col-span-4 space-y-6">
+                    <div className="lg:col-span-5 space-y-6">
 
                         {/* Master Specs Panel */}
                         <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden sticky top-28">
@@ -546,24 +713,12 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                 <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest flex items-center gap-2">
                                     <Calculator className="w-4 h-4 text-lime-600" /> Tech Specs
                                 </h3>
-                                <span className="text-[10px] bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold">LEVEL 2.5</span>
                             </div>
 
                             <div className="p-6 space-y-8">
 
                                 {/* 1. Hydration Deep Dive */}
                                 <div>
-                                    <div className="flex justify-between items-end mb-2">
-                                        <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1">
-                                            <Droplets className="w-3 h-3 text-sky-500" /> Hydration
-                                        </label>
-                                        <span className="text-2xl font-black text-slate-900 leading-none">{styleData.specs.hydration.ideal}<span className="text-sm text-slate-400">%</span></span>
-                                    </div>
-                                    <HydrationBar
-                                        value={styleData.specs.hydration.ideal}
-                                        min={styleData.specs.hydration.min}
-                                        max={styleData.specs.hydration.max}
-                                    />
                                     {/* 1. Hydration & Environment */}
                                     <div>
                                         <div className="flex justify-between items-end mb-2">
@@ -614,8 +769,8 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                         </label>
 
                                         <div className="grid grid-cols-5 gap-2 mb-3">
-                                            <div className="col-span-2 bg-slate-800 rounded-lg p-2 text-center text-white">
-                                                <span className="text-[9px] uppercase font-bold text-slate-400 block mb-1">Target</span>
+                                            <div className="col-span-2 bg-lime-600 rounded-lg p-2 text-center text-white">
+                                                <span className="text-[9px] uppercase font-bold text-lime-200 block mb-1">Target</span>
                                                 <span className="text-xl font-bold">{styleData.specs.ovenTemp.ideal}°C</span>
                                             </div>
                                             <div className="col-span-3 bg-slate-50 rounded-lg p-2 border border-slate-100 flex flex-col justify-center">
@@ -652,18 +807,18 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             <div className="flex justify-between items-center mb-2">
                                                 <span className="text-[10px] font-bold text-emerald-800 uppercase">Recommended Strength</span>
                                                 <span className="text-xs font-bold text-emerald-600 bg-white px-2 py-0.5 rounded shadow-sm border border-emerald-100">
-                                                    W {styleData.specs.difficulty === 'Expert' ? '350+' : styleData.specs.difficulty === 'Hard' ? '300-320' : '260-280'}
+                                                    {styleData.scientificProfile.flourRheology.w_index || (styleData.specs.difficulty === 'Expert' ? 'W 350+' : 'W 260+')}
                                                 </span>
                                             </div>
                                             <p className="text-[11px] text-emerald-900 leading-relaxed italic">
-                                                "{styleData.scientificProfile.flourRheology}"
+                                                "{styleData.scientificProfile.flourRheology.science_explanation}"
                                             </p>
                                         </div>
 
                                         <div className="flex gap-2">
                                             <div className="flex-1 bg-slate-50 rounded p-2 text-center border border-slate-100">
                                                 <span className="block text-[9px] uppercase text-slate-400 font-bold">P/L Ratio</span>
-                                                <span className="text-xs font-bold text-slate-700">0.55 - 0.65</span>
+                                                <span className="text-xs font-bold text-slate-700">{styleData.scientificProfile.flourRheology.pl_ratio || "0.55"}</span>
                                             </div>
                                             <div className="flex-1 bg-slate-50 rounded p-2 text-center border border-slate-100">
                                                 <span className="block text-[9px] uppercase text-slate-400 font-bold">Protein</span>
@@ -682,49 +837,60 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             <Scale className="w-3 h-3 text-slate-400" /> Formula & Variations
                                         </label>
 
-                                        <div className="space-y-3">
-                                            {/* Base Table */}
-                                            <div className="bg-white rounded-lg border border-slate-200 overflow-hidden">
-                                                <table className="w-full text-[11px]">
-                                                    <thead className="bg-slate-50 text-slate-400 font-bold uppercase">
-                                                        <tr>
-                                                            <th className="px-3 py-1.5 text-left">Ingredient</th>
-                                                            <th className="px-3 py-1.5 text-right">%</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody className="divide-y divide-slate-50">
-                                                        {styleData.base_formula?.map((ing, i) => (
-                                                            <tr key={i}>
-                                                                <td className="px-3 py-1.5 font-medium text-slate-700">{ing.name}</td>
-                                                                <td className="px-3 py-1.5 text-right font-bold text-slate-900">{ing.percentage}%</td>
-                                                            </tr>
-                                                        ))}
-                                                    </tbody>
-                                                    <tfoot className="bg-slate-50">
-                                                        <tr>
-                                                            <td colSpan={2} className="px-3 py-2 text-center text-[10px] text-slate-400 italic">
-                                                                *All based on Flour Weight (100%)
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                        {/* Variations Tabs */}
+                                        {styleData.variations && styleData.variations.length > 0 && (
+                                            <div className="flex gap-2 mb-3 overflow-x-auto pb-1">
+                                                <button
+                                                    onClick={() => setViewFormula(styleData.base_formula || [])}
+                                                    className={`px-2 py-1 text-[10px] font-bold rounded shadow-sm whitespace-nowrap transition-colors ${viewFormula === styleData.base_formula ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                                                >
+                                                    Base Formula
+                                                </button>
+                                                {styleData.variations.map((v: any, i: number) => (
+                                                    <button
+                                                        key={i}
+                                                        onClick={() => setViewFormula(v.formula || v.ingredients || [])}
+                                                        className={`px-2 py-1 text-[10px] font-bold rounded shadow-sm whitespace-nowrap transition-colors ${viewFormula === (v.formula || v.ingredients) ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                                                    >
+                                                        {v.name}
+                                                    </button>
+                                                ))}
                                             </div>
+                                        )}
 
-                                            {/* Variations Toggle/Info */}
-                                            <div className="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
-                                                <ArrowRightLeft className="w-3 h-3 text-slate-400 mt-0.5" />
-                                                <div>
-                                                    <span className="text-[10px] font-bold text-slate-600 uppercase block">Common Variations</span>
-                                                    <ul className="text-[10px] text-slate-500 space-y-1 mt-1 list-disc pl-3">
-                                                        {styleData.specs.hydration.ideal > 70
-                                                            ? <li><strong>Lower Hydration ({styleData.specs.hydration.ideal - 5}%):</strong> Easier to handle for beginners.</li>
-                                                            : <li><strong>Sourdough Hybrid:</strong> Replace 20% flour with stiff starter for more depth.</li>
-                                                        }
-                                                        <li><strong>Cold Ferment Extension:</strong> Can be pushed to 72h for max digestibility (Watch acidity).</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                        <div className="bg-white rounded-lg border border-slate-200 overflow-hidden">
+                                            <table className="w-full text-[11px]">
+                                                <thead className="bg-slate-50 text-slate-400 font-bold uppercase">
+                                                    <tr>
+                                                        <th className="px-3 py-1.5 text-left">Ingredient</th>
+                                                        <th className="px-3 py-1.5 text-right">%</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="divide-y divide-slate-50">
+                                                    {viewFormula.map((ing, i) => (
+                                                        <tr key={i}>
+                                                            <td className="px-3 py-1.5 font-medium text-slate-700">{ing.name}</td>
+                                                            <td className="px-3 py-1.5 text-right font-bold text-slate-900">{ing.percentage}%</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                                <tfoot className="bg-slate-50">
+                                                    <tr>
+                                                        <td colSpan={2} className="px-3 py-2 text-center text-[10px] text-slate-400 italic">
+                                                            *All based on Flour Weight (100%)
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
                                         </div>
+                                    </div>
+
+                                    {/* Oven Profiler Link (New) */}
+                                    <div className="mt-6 pt-6 border-t border-slate-100">
+                                        <button className="w-full py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 hover:scale-[1.02] transition-transform">
+                                            <Flame className="w-4 h-4" /> Launch Oven Profiler
+                                        </button>
+                                        <p className="text-[10px] text-center text-slate-400 mt-2">Adjust baking metrics for your specific equipment.</p>
                                     </div>
 
                                 </div>

@@ -382,7 +382,8 @@ export interface TestSeries {
 
 export interface FavoriteItem {
     id: string;
-    type: 'learn' | 'batch' | 'style' | 'other';
+    itemId?: string; // Logical ID (e.g. styleId, batchId)
+    type: 'learn' | 'batch' | 'style' | 'community_post' | 'other';
     title: string;
     createdAt: string;
     metadata?: any;
@@ -406,7 +407,7 @@ export interface NavLinkItem {
     requiresPro?: boolean;
 }
 
-export type PaywallOrigin = 'general' | 'calculator' | 'styles' | 'learn' | 'community' | 'mylab' | 'plans_page' | 'exports_pdf' | 'levain' | 'mylab_flours' | 'mylab_consistency';
+export type PaywallOrigin = 'general' | 'calculator' | 'styles' | 'learn' | 'community' | 'mylab' | 'plans_page' | 'exports_pdf' | 'levain' | 'mylab_flours' | 'mylab_consistency' | 'mylab_timeline';
 
 export interface SmartAdjustmentSuggestion {
     key: keyof DoughConfig;

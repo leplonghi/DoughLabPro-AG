@@ -31,6 +31,7 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
             onClick={handleCardClick}
         >
             <PostHeader
+                uid={post.uid}
                 username={post.username}
                 userPhotoURL={post.userPhotoURL}
                 createdAt={post.createdAt}
