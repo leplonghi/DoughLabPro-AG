@@ -25,7 +25,7 @@ export const CommunityCreatePostPage: React.FC = () => {
     // Enums
     const [selectedStyle, setSelectedStyle] = useState<RecipeStyle>(RecipeStyle.NEAPOLITAN);
     const [method, setMethod] = useState<FermentationTechnique>(FermentationTechnique.DIRECT);
-    const [ovenType, setOvenType] = useState<OvenType>(OvenType.HOME_OVEN); // Default to home oven as it's most common
+    const [ovenType, setOvenType] = useState<OvenType>(OvenType.ELECTRIC);
     const [flour, setFlour] = useState('');
 
     // UI State
@@ -122,19 +122,19 @@ export const CommunityCreatePostPage: React.FC = () => {
         <button
             type="button"
             onClick={onClick}
-            className={`relative p-4 rounded-xl text-left transition-all duration-200 border-2 ${active
+            className={`relative p-4 rounded-xl text-left transition-all duration-200 border-2 w-full ${active
                     ? 'border-lime-500 bg-lime-50/[0.3] shadow-sm'
                     : 'border-transparent bg-gray-50 hover:bg-gray-100 hover:border-gray-200'
                 }`}
         >
-            <div className={`font-semibold ${active ? 'text-lime-700' : 'text-gray-900'}`}>
+            <div className={`font-semibold text-sm ${active ? 'text-lime-700' : 'text-gray-900'}`}>
                 {label}
             </div>
             {subLabel && (
                 <div className="text-xs text-gray-500 mt-1">{subLabel}</div>
             )}
             {active && (
-                <div className="absolute top-3 right-3 h-2 w-2 rounded-full bg-lime-500 shadow-lime-glow" />
+                <div className="absolute top-2 right-2 h-2 w-2 rounded-full bg-lime-500 shadow-lime-glow" />
             )}
         </button>
     );
