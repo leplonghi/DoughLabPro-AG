@@ -27,6 +27,7 @@ import {
   Check,
   CheckCircle,
   AlertCircle,
+  AlertTriangle,
   Info,
   Lock,
   Copy,
@@ -62,6 +63,8 @@ import {
   Save,
   Activity,
   Sun,
+  Snowflake,
+  Thermometer,
   Lightbulb,
   Scale,
   BarChart3,
@@ -110,6 +113,7 @@ export const TrashIcon = Trash2;
 export const CheckIcon = Check;
 export const CheckCircleIcon = CheckCircle;
 export const ExclamationCircleIcon = AlertCircle;
+export const AlertTriangleIcon = AlertTriangle;
 export const InfoIcon = Info;
 export const LockClosedIcon = Lock;
 export const DocumentDuplicateIcon = Copy;
@@ -151,6 +155,8 @@ export const SaveIcon = Save;
 
 export const FermentationIcon = Activity;
 export const SunIcon = Sun;
+export const SnowIcon = Snowflake;
+export const ThermometerIcon = Thermometer;
 export const LightBulbIcon = Lightbulb;
 export const WeightIcon = Scale;
 export const ChartBarIcon = BarChart3;

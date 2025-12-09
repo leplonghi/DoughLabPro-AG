@@ -1,0 +1,342 @@
+[
+  {
+    "id": "persian_barbari_bread",
+    "name": "Persian Barbari Bread",
+    "category": "Bread",
+    "origin": {
+      "country": "Iran",
+      "region": "Tehran / Northwest Iran",
+      "period": "Qajar Dynasty (Standardized form)"
+    },
+    "description": "Barbari is a thick, elongated Iranian flatbread characterized by its golden-brown crust, sesame seeds, and deep longitudinal grooves. Its defining feature is the 'Roomal' (or 'Sir') glaze—a paste of flour, water, and baking soda/sugar—brushed on before baking to create a crispy skin and promote browning.",
+    "history": "Named after the 'Barbar' people (Hazaras) of Khorasan who brought the bread to Tehran during the Qajar era. It quickly became the most popular breakfast bread in Iran. Traditionally baked in Tanour ovens, it is known for its distinct shape and chewiness. The use of baking soda in the glaze (not the dough) is a unique chemical browning agent used for centuries.",
+    "tags": [
+      "flatbread",
+      "persian",
+      "roomal-glaze",
+      "hearth-baked",
+      "breakfast-bread"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "65–75% (High hydration for open crumb)",
+      "salt": "1.8–2.0%",
+      "oil": "1–2% (Vegetable oil often added for softness)",
+      "sugar": "1–2% (in dough, plus sugar in glaze)",
+      "cocoa": "0%",
+      "flourStrength": "W 240–280 (Medium-strong wheat flour)",
+      "preferment": "Traditionally uses a Sourdough (Khamir Torsh) or Old Dough; modern bakeries use commercial yeast (Khamir Mayeh).",
+      "fermentationSteps": [
+        "Mix flour, water, salt, yeast, oil.",
+        "Bulk ferment until doubled (1.5-2 hours).",
+        "Prepare Roomal Glaze: Cook flour, water, sugar/baking soda to a paste.",
+        "Divide dough and rest (bench rest) 20 mins.",
+        "Shape into long ovals.",
+        "Create grooves using fingers (lengthwise).",
+        "Brush generously with Roomal glaze.",
+        "Sprinkle with sesame and nigella seeds.",
+        "Bake immediately at high heat."
+      ],
+      "ovenTemp": "250–300°C",
+      "recommendedUse": [
+        "Baking Stone / Steel",
+        "Tanour (Tandoor) simulation"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Without the Roomal glaze, the bread will look pale and dry.",
+      "Do not over-proof after shaping or the grooves will disappear.",
+      "The glaze must be applied just before baking."
+    ],
+    "notes": [
+      "Roomal recipe ratio: 1 tsp flour + 1 tsp soda/sugar + 1/2 cup water (cooked).",
+      "Best served warm with feta cheese (Paneer), walnuts, and herbs (Sabzi).",
+      "The 'Barbar' name is historical, referring to the Hazara community."
+    ],
+    "references": [
+      "Modernist Bread, Vol 3. - Flatbreads of West Asia",
+      "Najmieh Batmanglij - Food of Life: Ancient Persian Ceremonies",
+      "ICC - Cereal Technologies in Iran",
+      "Encyclopedia Iranica - Bread (Nan)",
+      "Food Culture in the Near East - Peter Heine"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "turkish_pide_bread",
+    "name": "Turkish Pide (Ramazan Pidesi)",
+    "category": "Bread",
+    "origin": {
+      "country": "Turkey",
+      "region": "Anatolia",
+      "period": "Ottoman Empire (15th Century+)"
+    },
+    "description": "Turkish Pide (specifically Ramazan Pidesi) is a soft, round or oval flatbread with a diamond-patterned indentation on top. It is coated with an egg-yolk or flour-water glaze and topped with sesame and nigella seeds. It differs from the boat-shaped 'Icili Pide' (filled pizza) as it is a table bread.",
+    "history": "Bread (Ekmek) is sacred in Turkish culture. Pide has roots in the Ottoman palace cuisine and earlier Seljuk traditions. Ramazan Pidesi is specifically associated with the breaking of the fast (Iftar) during Ramadan, where bakeries produce it in massive quantities just before sundown. The diamond pattern is not just decorative; it prevents the bread from ballooning like a pita.",
+    "tags": [
+      "flatbread",
+      "ottoman",
+      "ramadan",
+      "soft-bread",
+      "egg-glazed"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "65–70%",
+      "salt": "1.8–2.0%",
+      "oil": "2–3% (Olive or Sunflower)",
+      "sugar": "1–2%",
+      "cocoa": "0%",
+      "flourStrength": "W 220–260 (All purpose / Bread flour mix)",
+      "preferment": "Often uses a 'Biga' or 'Eksi Maye' (Sourdough) historically, but direct yeast method is standard for Ramazan production speed.",
+      "fermentationSteps": [
+        "Mix dough to moderate development.",
+        "Bulk ferment 1-2 hours.",
+        "Divide and round into balls.",
+        "Rest 30 mins.",
+        "Flatten into rounds (approx 1-2cm thick).",
+        "Use fingertips dipped in glaze/water to press a border and a diamond grid in the center.",
+        "Brush with egg yolk/yogurt mix (Sifa).",
+        "Sprinkle heavily with Sesame and Nigella.",
+        "Bake hot."
+      ],
+      "ovenTemp": "230–250°C",
+      "recommendedUse": [
+        "Pizza Stone",
+        "Deck Oven"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "If you press too hard, you cut the dough; too soft, the pattern vanishes.",
+      "The 'Sifa' (glaze) is essential for the color and seed adhesion.",
+      "Must be eaten fresh; dries out faster than loaf breads."
+    ],
+    "notes": [
+      "Nigella seeds (Çörek Otu) are considered to have health benefits and are standard.",
+      "The pattern is called 'Tirnak' (fingernail) because it is traditionally done with fingernails.",
+      "Bakeries often add wheat bran to the bottom to prevent sticking."
+    ],
+    "references": [
+      "Turkish Cuisine: With Timeless Recipes - Ministry of Culture",
+      "Modernist Bread - Flatbreads",
+      "Classic Turkish Cooking - Ghillie Basan",
+      "The Art of Turkish Cooking - Neşet Eren",
+      "ICC - Traditional Foods of Turkey"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "moroccan_khobz_eddar",
+    "name": "Moroccan Khobz (Khobz Eddar)",
+    "category": "Bread",
+    "origin": {
+      "country": "Morocco",
+      "region": "Maghreb",
+      "period": "Traditional"
+    },
+    "description": "Khobz Eddar (Bread of the House) is the daily round flatbread of Morocco. It is slightly leavened, approx 2-3cm thick, and coarse-textured, often using a mix of white flour and fine semolina (Smida). It serves as a utensil (scoop) for Tagines and salads.",
+    "history": "In the Maghreb, bread is the primary source of calories. Historically, families kneaded dough at home and sent it to the communal oven (Ferran) to be baked. The baker knew each family's bread by its stamp or cloth pattern. Today, it is also baked in home gas ovens. The use of Semolina reflects the durum wheat agriculture of North Africa.",
+    "tags": [
+      "semolina-bread",
+      "north-african",
+      "daily-bread",
+      "tagine-bread",
+      "hearth-baked"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "55–60% (Stiffer dough for handling)",
+      "salt": "1.8–2.0%",
+      "oil": "2–4% (Vegetable or Olive)",
+      "sugar": "1–2%",
+      "cocoa": "0%",
+      "flourStrength": "W 200–240 (Blend of Soft Wheat + Durum Semolina)",
+      "preferment": "Direct method common.",
+      "fermentationSteps": [
+        "Mix White Flour and Fine Semolina (ratio 2:1 or 1:1).",
+        "Add water, yeast, salt, oil, anise seeds (optional).",
+        "Knead well (historically by hand for 20 mins).",
+        "Bulk ferment 1 hour.",
+        "Divide and shape into rounds.",
+        "Flatten to 1.5cm thickness.",
+        "Poke with a fork or stamp to prevent ballooning.",
+        "Second proof 30-45 mins.",
+        "Bake."
+      ],
+      "ovenTemp": "200–220°C",
+      "recommendedUse": [
+        "Home gas oven",
+        "Cast iron pan"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Do not make the dough too wet; it must hold its round shape without a pan.",
+      "Semolina absorbs water slowly; kneading is crucial for hydration.",
+      "Must be docked (poked) or it becomes a pita."
+    ],
+    "notes": [
+      "Often flavored with Anise or Sesame.",
+      "Crust should be golden but not hard/crispy like a baguette.",
+      "Durum Semolina gives it a yellow hue and chewy texture."
+    ],
+    "references": [
+      "Paula Wolfert - The Food of Morocco",
+      "Modernist Bread - Regional Breads",
+      "Couscous and Other Good Food from Morocco - Paula Wolfert",
+      "Moroccan Ministry of Agriculture - Durum Wheat usage",
+      "ICC - North African Cereal Products"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "egyptian_aish_baladi",
+    "name": "Egyptian Aish Baladi",
+    "category": "Flatbread",
+    "origin": {
+      "country": "Egypt",
+      "region": "Nile Delta",
+      "period": "Ancient (Pharaonic roots)"
+    },
+    "description": "Aish Baladi ('Life of the Country') is the ubiquitous pocket bread of Egypt. Unlike white pita, it is made with 100% whole wheat flour and traditionally leavened with sourdough, baked at scorching temperatures to puff instantly. It has a coarse, bran-covered crust and a distinct sour flavor.",
+    "history": "Egypt is the cradle of bread baking (levain was discovered there). Aish Baladi is a direct descendant of ancient Emmer wheat breads. It is subsidized by the government due to its importance. The traditional method involves very soft, wet dough handled on a bed of wheat bran ('Radda').",
+    "tags": [
+      "whole-wheat",
+      "ancient-grain",
+      "pocket-bread",
+      "sourdough",
+      "high-fiber"
+    ],
+    "difficulty": "high",
+    "fermentationType": "sourdough",
+    "technicalProfile": {
+      "hydration": "70–80% (Very wet for whole wheat)",
+      "salt": "1.5–1.8%",
+      "oil": "0%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "High extraction Whole Wheat (Red Wheat)",
+      "preferment": "Traditional Sourdough (Biga/Old Dough) is mandatory for authentic flavor.",
+      "fermentationSteps": [
+        "Mix whole wheat flour, water, salt, starter.",
+        "Knead to combine (will be sticky).",
+        "Bulk ferment 2-3 hours.",
+        "Divide pieces onto a bed of wheat bran (Radda).",
+        "Let them rest (proof) on the bran.",
+        "Flatten gently by hand (patting).",
+        "Transfer to peel.",
+        "Bake at max temp (shock heat) to puff."
+      ],
+      "ovenTemp": "350–450°C",
+      "recommendedUse": [
+        "Pizza Oven (essential for puff)",
+        "Baking Steel (preheated max)"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Low oven temperature = No pocket (it will dry out).",
+      "Dough is extremely sticky; you MUST use bran to handle it.",
+      "Whole wheat ferments faster than white flour; watch the proof."
+    ],
+    "notes": [
+      "The 'Aish' means Life - signifying bread's central role.",
+      "The bran coating prevents sticking and adds nutty flavor.",
+      "Often eaten with Fuul Medames or Falafel."
+    ],
+    "references": [
+      "The Pharaoh's Kitchen - Magda Mehdawy",
+      "Modernist Bread, Vol 3. - Ancient Breads",
+      "National Geographic - The Bread of Egypt",
+      "FAO - Egyptian Wheat Subsidies and Bread Quality",
+      "ICC - Whole Grain Breads in Middle East"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "yemenite_malawach",
+    "name": "Yemenite Malawach",
+    "category": "Flatbread",
+    "origin": {
+      "country": "Yemen",
+      "region": "Jewish Communities (Aden)",
+      "period": "Traditional"
+    },
+    "description": "Malawach is a laminated flatbread from Yemenite Jewish cuisine. It consists of thin layers of puff-pastry-like dough brushed with fat (oil, butter, or chicken fat/schmaltz) and cooked in a frying pan. It is flaky, rich, and crispy, resembling a Paratha or Msemen.",
+    "history": "Brought to Israel by Yemenite Jews during Operation Magic Carpet (1949-1950), Malawach became a staple Israeli street food and freezer aisle item. Historically, it was a way to make a rich bread for Sabbath mornings (dough prepared Friday, cooked Saturday). It is related to the Jachnun dough but cooked quickly in a pan rather than slow-baked.",
+    "tags": [
+      "laminated",
+      "fried-bread",
+      "yemenite",
+      "rich-dough",
+      "crispy"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "55–60% (Dough)",
+      "salt": "2.0%",
+      "oil": "2–4% in dough + High amount for laminating",
+      "sugar": "1–3%",
+      "cocoa": "0%",
+      "flourStrength": "W 200–240 (AP Flour)",
+      "preferment": "None. Direct dough. Relaxation is key, not fermentation.",
+      "fermentationSteps": [
+        "Mix flour, water, salt, sugar, small amount of yeast (optional in some versions, but standard in Malawach).",
+        "Knead well.",
+        "Divide into balls and coat in oil.",
+        "Rest 30 mins (Relax gluten).",
+        "Flatten paper thin.",
+        "Smear with soft butter/margarine.",
+        "Fold (Book fold or Roll into coil).",
+        "Refrigerate or freeze (to set fat).",
+        "Roll out to circle.",
+        "Fry in pan with little oil."
+      ],
+      "ovenTemp": "Pan Fry (Medium Heat)",
+      "recommendedUse": [
+        "Frying Pan / Skillet",
+        "Griddle"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Dough must rest between rolling steps or it will shrink back.",
+      "Fat must be soft/melted for spreading but set before final roll.",
+      "Cook on medium heat to ensure inside layers cook before outside burns."
+    ],
+    "notes": [
+      "Traditionally served with Grated Tomato Dip, Hard Boiled Egg, and Zhug (hot sauce).",
+      "Can be sweet (with honey) or savory.",
+      "Freezes exceptionally well."
+    ],
+    "references": [
+      "The Book of Jewish Food - Claudia Roden",
+      "Modernist Bread - Laminated Flatbreads",
+      "Jerusalem: A Cookbook - Ottolenghi",
+      "Yemenite Heritage Museum Archives",
+      "Israeli Ministry of Foreign Affairs - Cultural Foods"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  }
+]

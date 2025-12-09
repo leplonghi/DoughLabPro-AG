@@ -1,0 +1,327 @@
+[
+  {
+    "id": "neapolitan_avpn",
+    "name": "Neapolitan (AVPN)",
+    "category": "Pizza",
+    "origin": {
+      "country": "Italy",
+      "region": "Naples, Campania",
+      "period": "18th–19th century, codified 1984 by AVPN"
+    },
+    "description": "Traditional Neapolitan pizza as defined by the AVPN regulations: a minimally enriched, highly extensible dough with relatively low hydration by modern standards, fermented at room temperature and baked at extreme heat. It produces a soft, foldable center with a pronounced cornicione, light fermentation acidity and characteristic leopard spotting on the crust.",
+    "history": "Flatbreads topped with ingredients existed for centuries around the Mediterranean, but the modern Neapolitan pizza emerged in Naples between the late 1700s and the 1800s, when tomatoes became widely accepted as food and soft-wheat flours milled to tipo 00 enabled very thin yet extensible doughs. In 1984, Antonio Pace and Lello Surace, together with leading Neapolitan pizzaioli, formalized the fundamental rules for the \"Verace Pizza Napoletana\" and founded the Associazione Verace Pizza Napoletana (AVPN). Their disciplinare specifies ingredients, mixing, fermentation, shaping and baking requirements, protecting the style as a cultural and gastronomic reference.",
+    "tags": [
+      "high-temp",
+      "soft-extensibility",
+      "short-fermentation",
+      "classic-italian",
+      "low-oil",
+      "direct-method",
+      "00-flour"
+    ],
+    "difficulty": "medium-high",
+    "fermentationType": "ambient",
+    "technicalProfile": {
+      "hydration": "55–62% (AVPN base ~55–59%)",
+      "salt": "2.5–3.0%",
+      "oil": "0%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 250–320 (tipo 00, AVPN-compliant)",
+      "preferment": "None in traditional AVPN; some modern, non-AVPN variants use 5–10% biga or levain for flavor.",
+      "fermentationSteps": [
+        "Direct mix: dissolve salt in water, add yeast, gradually incorporate tipo 00 flour and mix until smooth.",
+        "Bulk fermentation 8–12 h at 20–24°C, until dough has developed gas and elasticity without over-acidification.",
+        "Divide and ball: portion into 230–280 g balls and rest 4–6 h at 20–24°C.",
+        "Open the dough by hand only, without rolling pins or sheeters, preserving internal gas.",
+        "Top lightly to avoid overloading the center and bake immediately at very high temperature."
+      ],
+      "ovenTemp": "430–485°C (traditional wood-fired dome)",
+      "recommendedUse": [
+        "Traditional Neapolitan wood-fired ovens with stone floor",
+        "High-heat gas or pellet ovens capable of ≥430°C",
+        "Steel/stone in domestic ovens only when they reliably exceed 350°C (non-AVPN, but operationally useful)"
+      ],
+      "difficulty": "medium-high"
+    },
+    "warnings": [
+      "Overproofed dough loses extensibility and may tear during hand stretching.",
+      "Hydration significantly above AVPN recommendations changes handling and is no longer compliant with the disciplinare.",
+      "Excess bench flour burns at high temperature and creates bitter flavors on the cornice.",
+      "Fermentation at temperatures above 25°C shortens the useful window and increases risk of over-acidification."
+    ],
+    "notes": [
+      "AVPN formulations are based on 1 L of water and 1.7–1.8 kg of flour, leading to a relatively modest hydration compared with many modern artisan pizzas.",
+      "The characteristic leopard spotting depends on the balance between dough dryness on the surface, oven floor temperature and flame intensity.",
+      "Rolling pins or mechanical sheeters are explicitly forbidden by AVPN because they expel gas and change the structure of the cornicione."
+    ],
+    "references": [
+      "Associazione Verace Pizza Napoletana — International Regulations (Il Disciplinare)",
+      "True Italian Taste Brasil — Verace Pizza Napoletana STG overview",
+      "Modernist Pizza, Vol. 1 — History and Fundamentals"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "new_york_classic",
+    "name": "New York Style Pizza",
+    "category": "Pizza",
+    "origin": {
+      "country": "United States",
+      "region": "New York City",
+      "period": "Early 20th century, Italian-American adaptation"
+    },
+    "description": "New York style pizza is a large, thin, foldable pizza baked on deck ovens, with a crisp underside and a chewy interior. It uses strong American bread flour, moderate to high hydration compared to Neapolitan, small amounts of oil and optional sugar to support browning in longer bakes.",
+    "history": "New York style emerged when Italian immigrants adapted Neapolitan pizza to American wheat flours and gas-fired deck ovens in the early 1900s. American bread flour, with higher protein and different milling characteristics than Italian tipo 00, produced a chewier structure. Longer bake times at lower temperatures than Neapolitan required changes to hydration, oil and sugar. Over decades, the iconic large slices sold by the slice, the hand-tossed shaping and the foldable geometry became a distinct identity, separate from its Neapolitan roots.",
+    "tags": [
+      "deck-oven",
+      "long-fermentation",
+      "high-gluten",
+      "thin-crust",
+      "american-classic",
+      "cold-fermentation"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "cold",
+    "technicalProfile": {
+      "hydration": "58–65%",
+      "salt": "1.8–2.2%",
+      "oil": "1–3% (typically neutral or olive oil)",
+      "sugar": "0–3% (optional, supports browning in longer bakes)",
+      "cocoa": "0%",
+      "flourStrength": "W 300–340 (high-gluten flour)",
+      "preferment": "Optional poolish or preferment at 20–30% of total flour for flavor; many pizzerias use straight dough with extended cold fermentation.",
+      "fermentationSteps": [
+        "Mix dough with cold water to limit initial temperature rise, incorporating flour, salt, small oil percentage and optional sugar.",
+        "Short bench rest or brief ambient bulk (15–30 min) to relax dough.",
+        "Divide into large dough balls (e.g. 300–400 g for 30–35 cm pies) and refrigerate at 2–5°C for 24–72 h.",
+        "Remove from cold storage and temper at room temperature 60–120 min before opening.",
+        "Hand-stretch on a lightly floured surface, avoiding rolling pins, and bake directly on a deck or preheated stone/steel."
+      ],
+      "ovenTemp": "315–345°C (deck oven typical range)",
+      "recommendedUse": [
+        "Gas or electric deck ovens with stone decks",
+        "Heavy baking steels or stones in domestic ovens for NY-style emulation",
+        "Conveyor ovens tuned to similar bottom heat and time profiles (industrial adaptation)"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Hydration below ~58% often produces a dense, cracker-like texture instead of a foldable slice.",
+      "Sugar levels above ~3% can cause excessive darkening or burning on deck ovens with long bake times.",
+      "Insufficient cold fermentation (less than 24 h) reduces flavor complexity and extensibility.",
+      "Overproof after cold storage leads to weak rims and collapsed center."
+    ],
+    "notes": [
+      "Many NY pizzerias rely on 48–72 h of cold fermentation for optimal extensibility and flavor development.",
+      "High-gluten flour helps maintain structural integrity in very large slices that are folded and eaten by hand.",
+      "Baking directly on a stone or deck is essential to achieve the characteristic crisp-but-flexible bottom surface."
+    ],
+    "references": [
+      "Modernist Pizza, Vol. 2 — American Pizza Styles",
+      "Gozney — Pizza Dough Hydration Guide (NY style 58–65% hydration)",
+      "PizzaBlab — Encyclopizza: New York Style Pizza Characteristics"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "french_baguette_classic",
+    "name": "French Baguette (Classic)",
+    "category": "Bread",
+    "origin": {
+      "country": "France",
+      "region": "Paris and urban bakeries",
+      "period": "Early 20th century standardization"
+    },
+    "description": "The classic French baguette is a lean wheat bread with a crisp, thin crust and creamy, moderately open crumb. It is made from only flour, water, salt and yeast, with moderate-to-high hydration and relatively short ingredients list, relying on fermentation and handling for flavor.",
+    "history": "Long loaves existed earlier in French baking, but the baguette as a distinct form became widespread in Paris in the early 1900s with changes in legislation, work schedules and milling. French laws limited additives in standard bread, reinforcing lean formulas. Techniques like poolish and controlled fermentation improved aroma and crust quality. Authors such as Raymond Calvel and Jeffrey Hamelman systematized technical knowledge around mixing, dough strength, fermentation and scoring to achieve consistent baguettes with open crumb and distinctive ears.",
+    "tags": [
+      "lean-dough",
+      "steam-baked",
+      "open-crumb",
+      "high-extensibility",
+      "classic-french",
+      "poolish"
+    ],
+    "difficulty": "high",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "65–75%",
+      "salt": "1.8–2.2%",
+      "oil": "0%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 180–240 (French T55/T65 type flours)",
+      "preferment": "Commonly a poolish with 30–50% of total flour; levain variants exist for more acidity and complexity.",
+      "fermentationSteps": [
+        "Mix ingredients to a moderate gluten development, avoiding over-oxidation.",
+        "Bulk fermentation 1–3 h at 22–26°C with 2–3 folds at 30–45 min intervals to build strength.",
+        "Pre-shape into loose cylinders and bench rest 20–30 min for relaxation.",
+        "Final shaping into baguettes with tension while preserving internal gas.",
+        "Final proof 45–75 min, typically on a floured couche.",
+        "Score with several overlapping cuts at a shallow angle and bake with full steam at the start."
+      ],
+      "ovenTemp": "235–260°C with strong initial steam",
+      "recommendedUse": [
+        "Steam-injected deck ovens (bakery standard)",
+        "Domestic ovens with steam methods (lava rocks, trays, sprayers) for home adaptation"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Insufficient steam reduces oven spring and produces a dull, thick crust.",
+      "Overmixing tightens crumb, reduces openness and may cause excessive oxidation (pale crumb).",
+      "Underproofing leads to ruptured sides and irregular expansion; overproofing reduces scoring bloom."
+    ],
+    "notes": [
+      "Hydration closer to 70–75% tends to produce a more open crumb in skilled hands, but handling becomes more demanding.",
+      "Poolish pre-ferments contribute nutty, lactic notes and better crust coloration through increased sugar availability.",
+      "Proper scoring angle (~30° relative to the loaf axis) and overlap determine ear formation and visual signature."
+    ],
+    "references": [
+      "Raymond Calvel — Le Goût du Pain",
+      "Jeffrey Hamelman — Bread: A Baker’s Book of Techniques and Recipes",
+      "Modernist Bread — Volumes on Lean Breads and Baguettes"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "japanese_shokupan_classic",
+    "name": "Japanese Shokupan",
+    "category": "Bread",
+    "origin": {
+      "country": "Japan",
+      "region": "Urban bakeries (Tokyo and other cities)",
+      "period": "20th century, Western influence adapted to Japanese taste"
+    },
+    "description": "Shokupan is a soft, enriched Japanese milk bread known for its pillowy crumb, fine and even cell structure, mild sweetness and thin, tender crust. It often uses tangzhong or yudane techniques to gelatinize part of the starch, increasing water absorption and shelf life.",
+    "history": "Bread was introduced to Japan centuries ago, but modern Shokupan developed in the 20th century as Western-style loaves were adapted to local preferences. Japanese bakers favored softer, slightly sweet breads suited to toast and sandwiches. Techniques like tangzhong (a cooked flour paste) and yudane (gelatinized flour with boiling water) were integrated to create higher hydration and softer textures without relying solely on fats. Shokupan became a staple in school lunches, kissaten cafés and convenience stores.",
+    "tags": [
+      "enriched-dough",
+      "milk-bread",
+      "tangzhong",
+      "soft-crumb",
+      "asian-bakery",
+      "sandwich-loaf"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "70–80% (including milk and water, not counting fats)",
+      "salt": "1.5–2.0%",
+      "oil": "5–8% (typically butter or neutral fat)",
+      "sugar": "6–12%",
+      "cocoa": "0%",
+      "flourStrength": "W 250–300 (strong bread flour)",
+      "preferment": "Tangzhong 5–10% or yudane 10–15% of flour weight; some formulas also use sponge or levain for flavor.",
+      "fermentationSteps": [
+        "Prepare tangzhong or yudane by cooking flour with water or milk to gelatinize starch, then cool completely.",
+        "Mix main dough with bread flour, liquids, sugar and tangzhong/yudane, adding fat gradually after partial gluten development.",
+        "Bulk fermentation 1–2 h at 24–27°C until roughly doubled, with 1 fold if needed for strength.",
+        "Divide and pre-shape, rest briefly, then roll and coil pieces to fit Pullman or loaf pans.",
+        "Final proof 45–90 min until dough nearly crowns or reaches desired height.",
+        "Bake at moderate temperature to prevent excessive crust thickening, optionally with a lidded pan for a perfectly square loaf."
+      ],
+      "ovenTemp": "175–195°C",
+      "recommendedUse": [
+        "Pullman pans with or without lids",
+        "Standard domestic ovens with reliable temperature control"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Excessive sugar and fat without proper gluten development leads to collapsed loaves and dense crumb.",
+      "Tangzhong or yudane added while still hot can damage yeast activity and gluten structure.",
+      "Underbaking leaves a gummy interior due to high hydration and enrichment."
+    ],
+    "notes": [
+      "Tangzhong tends to produce extremely tender crumb with extended softness over several days.",
+      "Yudane generally yields slightly chewier texture and may tolerate higher hydration.",
+      "Because of the high enrichment, proper kneading to full gluten development is critical before final fermentation."
+    ],
+    "references": [
+      "Modernist Bread — Enriched Doughs and Asian Breads sections",
+      "Japanese professional and home-baking literature on Shokupan and milk breads",
+      "Documented Shokupan methods in contemporary recipe resources focusing on tangzhong and yudane"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "detroit_style_pan_pizza",
+    "name": "Detroit Style Pan Pizza",
+    "category": "Pizza",
+    "origin": {
+      "country": "United States",
+      "region": "Detroit, Michigan",
+      "period": "1946 — Buddy’s Rendezvous"
+    },
+    "description": "Detroit style is a high-hydration, thick, rectangular pan pizza baked in blue steel pans. It is characterized by a light, airy crumb, a fried bottom crust from abundant oil, and a caramelized cheese border known as the \"frico crust\". Traditionally, cheese is placed edge-to-edge against the pan and the sauce is applied in stripes on top.",
+    "history": "Detroit-style pizza was developed in 1946 at Buddy’s Rendezvous (later Buddy’s Pizza) in Detroit. The recipe is often linked to Sicilian sfincione-type dough baked in blue steel pans originally used as parts trays in the automobile industry. The combination of high hydration, long fermentation, heavy oiling and Wisconsin brick or similar cheese created a unique crust structure and caramelization. The style remained regional for decades before being rediscovered and popularized across the United States in the 21st century.",
+    "tags": [
+      "pan-pizza",
+      "high-hydration",
+      "american-classic",
+      "cheese-frico-edge",
+      "focaccia-like-crumb",
+      "long-fermentation"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "cold",
+    "technicalProfile": {
+      "hydration": "68–75%",
+      "salt": "2.0–2.4%",
+      "oil": "3–6% in dough plus heavy pan oiling",
+      "sugar": "1–2% (supports browning and yeast activity)",
+      "cocoa": "0%",
+      "flourStrength": "W 280–320 (strong bread or pizza flour)",
+      "preferment": "Optional small poolish (10–20%) or straight dough with extended cold fermentation.",
+      "fermentationSteps": [
+        "Mix to full gluten development despite high hydration, using rest phases or stretch-and-fold to avoid overheating.",
+        "Cold fermentation 24–48 h at 4–6°C to develop flavor and structure.",
+        "Portion and gently press dough into heavily oiled blue steel or heavy-gauge rectangular pans, allowing it to relax in one or two stages until it reaches the corners.",
+        "Final proof 60–120 min at room temperature until aerated and slightly domed.",
+        "Top with cheese spread to the very edges to create a caramelized frico crust, add toppings as desired and finish with sauce stripes before or after baking depending on variant.",
+        "Bake until the bottom is deeply golden and the cheese edge is crisp and caramelized."
+      ],
+      "ovenTemp": "250–300°C (pan baked)",
+      "recommendedUse": [
+        "Blue steel automotive-style pans (traditional)",
+        "Heavy black steel or aluminum pans with similar thermal behavior",
+        "High-power electric or gas ovens with strong bottom heat"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Insufficient pan oil reduces the fried, crisp bottom and may cause sticking.",
+      "Overproofing in the pan leads to collapse and uneven structure after baking.",
+      "Placing sauce directly against the pan edge instead of cheese decreases frico formation and can burn.",
+      "Hydration much below ~68% produces a denser, less characteristic crumb."
+    ],
+    "notes": [
+      "Wisconsin brick cheese is considered traditional; blends of high-moisture mozzarella and other cheeses are common modern substitutes.",
+      "The cheese-first, sauce-later layering protects the crumb and maintains crispness even under heavy toppings.",
+      "Many contemporary recipes combine both cold fermentation and a warm pan proof to balance flavor and handling."
+    ],
+    "references": [
+      "Buddy’s Pizza — Historical accounts of Detroit-style origin",
+      "Detroit-style pizza documentation in Modernist Pizza and contemporary technical articles",
+      "Published culinary articles describing the use of blue steel automotive pans and the 1946 origin story"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  }
+]

@@ -1,0 +1,327 @@
+[
+  {
+    "id": "focaccia_genovese_classic",
+    "name": "Focaccia Genovese (Classic)",
+    "category": "Bread",
+    "origin": {
+      "country": "Italy",
+      "region": "Liguria — Genoa",
+      "period": "Traditional, documented modern forms in 19th–20th centuries"
+    },
+    "description": "Focaccia Genovese is a high-hydration, olive-oil-enriched flatbread from Liguria, known for its dimpled surface, aromatic olive oil, delicate crispness on the outside and tender, slightly chewy crumb. It is typically baked as a slab and cut into rectangles or strips.",
+    "history": "Focaccia has ancient Mediterranean roots, but the Ligurian form associated with Genoa became well known for its abundant use of olive oil, sea salt and characteristic dimpling. Over time, professional formulas emphasized moderately strong flour, long fermentation and careful handling to balance crisp edges with a moist interior. Contemporary Italian technical literature and regional regulations describe thickness, hydration and surface treatment, reinforcing the style as a culinary emblem of Genoa and the Ligurian coast.",
+    "tags": [
+      "high-hydration",
+      "olive-oil-rich",
+      "flatbread",
+      "italian-regional",
+      "dimpled-surface",
+      "pan-baked"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "65–75%",
+      "salt": "2.0–2.5%",
+      "oil": "6–12% (dough) plus generous surface oil",
+      "sugar": "0–2% (optional, small)",
+      "cocoa": "0%",
+      "flourStrength": "W 220–280 (medium to medium-strong bread/pizza flour)",
+      "preferment": "Some bakers use biga or poolish (20–30% of flour) for flavor; others rely on long cold bulk fermentation with baker’s yeast.",
+      "fermentationSteps": [
+        "Mix flour, water, salt, yeast and olive oil to form a soft, extensible dough; avoid aggressive mixing that would over-strengthen gluten.",
+        "Bulk ferment 2–4 h at room temperature, or 12–24 h under refrigeration with periodic folds to develop structure.",
+        "Transfer dough to a well-oiled rectangular pan, gently stretching without degassing completely; rest to relax if needed.",
+        "Perform characteristic dimpling by pressing oiled fingertips deeply into the dough, distributing salt and additional oil or brine over the surface.",
+        "Final proof 30–60 min until slightly aerated and relaxed.",
+        "Bake until the edges are golden-brown and crisp and the surface shows alternating shallow pools and small blisters."
+      ],
+      "ovenTemp": "220–260°C (pan baking)",
+      "recommendedUse": [
+        "Electric or gas deck ovens with strong top and bottom heat",
+        "Heavy-gauge pans in domestic ovens preheated thoroughly"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Insufficient oil in the pan and on the surface reduces the characteristic aroma and crispness.",
+      "Overmixing can produce a tight, bread-like crumb rather than the desired tender, irregular alveoli.",
+      "Underbaking leaves the interior gummy; overbaking dries the crumb and hardens the crust.",
+      "Too little proof after panning limits expansion and produces a dense slab."
+    ],
+    "notes": [
+      "Some traditional methods use a light brine (salamoia) poured over the dough before baking, combining water and olive oil.",
+      "Focaccia Genovese is often eaten plain, with coffee or wine, or filled like a sandwich.",
+      "Regional variations exist in thickness and topping, but the core identity relies on olive oil richness and dimpled texture."
+    ],
+    "references": [
+      "Italian regional baking literature on Focaccia Genovese and Ligurian breads",
+      "Modernist Bread — sections on focaccia and Italian flatbreads",
+      "Professional Italian flour mill technical guides discussing hydration and oil levels for focaccia"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "chicago_tavern_style_pizza",
+    "name": "Chicago Tavern-Style Pizza",
+    "category": "Pizza",
+    "origin": {
+      "country": "United States",
+      "region": "Chicago taverns and neighborhood bars",
+      "period": "Mid-20th century"
+    },
+    "description": "Chicago tavern-style pizza is a thin, crispy bar pizza baked on flat pans or directly on a deck, cut into small squares (\"party cut\"). The crust is drier and crisper than many other thin styles, with moderate fat and relatively low hydration compared to artisan-styles, designed for easy sharing alongside drinks.",
+    "history": "Distinct from Chicago deep-dish, tavern-style pizza developed in neighborhood bars and taverns in the mid-1900s. Its ultra-thin, crisp crust, heavy toppings and square cut made it convenient for sharing among drinkers. Documented histories point to Italian-American pizzerias connected to taverns and bar service, particularly on Chicago’s South and West sides. Recent media and culinary research have helped clarify tavern-style as its own category, separate from \"thin crust\" generically and from deep-dish or pan pizzas.",
+    "tags": [
+      "thin-crust",
+      "cracker-crust",
+      "square-cut",
+      "american-tavern",
+      "low-hydration",
+      "deck-oven"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "48–55%",
+      "salt": "1.8–2.2%",
+      "oil": "3–5% (in dough) plus pan or deck oiling as needed",
+      "sugar": "1–3% (supports browning and slight sweetness)",
+      "cocoa": "0%",
+      "flourStrength": "W 240–300 (bread or high-protein AP flour)",
+      "preferment": "Usually straight dough; some formulas use overnight cold fermentation for flavor and better handling.",
+      "fermentationSteps": [
+        "Mix a fairly stiff dough with strong flour, water, salt, oil, sugar and yeast until homogeneous but not overdeveloped.",
+        "Rest or bulk ferment briefly (from 30–90 min at room temperature) or cold ferment 12–24 h for additional flavor.",
+        "Portion and roll out very thinly, often with a rolling pin, to a diameter that matches pans or baking screens.",
+        "Dock the dough to control bubbling and apply sauce, cheese and toppings up to but not exceeding the thin structure’s limits.",
+        "Bake on a seasoned pan, screen or directly on a deck until the crust is fully crisp, edges are browned and toppings are cooked.",
+        "Cut into small squares (\"party cut\") rather than traditional wedges."
+      ],
+      "ovenTemp": "260–315°C (deck or conveyor ovens)",
+      "recommendedUse": [
+        "Gas or electric deck ovens, common in pizzerias",
+        "Dark, seasoned pans or screens in domestic ovens at maximum safe temperature"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Hydration above the typical range reduces crispness and may cause the crust to buckle under heavy toppings.",
+      "Overloading with moisture-rich ingredients risks soggy center even if the edges are crisp.",
+      "Insufficient docking can produce large blisters that interfere with even topping distribution.",
+      "Baking at too low a temperature produces a dry but pale crust instead of a properly browned cracker-like texture."
+    ],
+    "notes": [
+      "Chicago tavern-style is often topped generously with cheese and sausage, reflecting its bar-food roots.",
+      "The party-cut square slices emphasize snackability, allowing guests to take smaller portions.",
+      "Compared to New York style, the dough is thinner, drier and more cracker-like, with less pronounced oven spring."
+    ],
+    "references": [
+      "Culinary histories and journalism pieces distinguishing tavern-style pizza from Chicago deep-dish and thin crust more broadly",
+      "Modernist Pizza — discussions of regional thin-crust variants and bar/tavern styles",
+      "Pizzeria and cookbook recipes documenting low hydration and rolling-pin techniques for tavern-style crusts"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "southern_buttermilk_biscuits",
+    "name": "Southern Buttermilk Biscuits",
+    "category": "Bread",
+    "origin": {
+      "country": "United States",
+      "region": "American South",
+      "period": "19th–20th century home and diner baking"
+    },
+    "description": "Southern buttermilk biscuits are small, tender, chemically leavened breads with a layered crumb, made with soft wheat flour, fat cut into the dough and acidic buttermilk. They bake quickly and are served with butter, jam, gravies or fried chicken.",
+    "history": "Biscuits evolved from European quick breads and were adapted in the American South using locally milled soft wheat flours and later chemical leaveners such as baking powder. Buttermilk, available from butter making, contributed both acidity and flavor. By the 19th and 20th centuries, biscuits were central to Southern breakfast and dinner tables, appearing in home kitchens, diners and chain restaurants. Techniques for cutting fat into flour, minimal mixing and folding layers became widely documented in cookbooks and professional baking references.",
+    "tags": [
+      "chemically-leavened",
+      "soft-wheat",
+      "quick-bread",
+      "layered-crumb",
+      "american-southern",
+      "buttermilk"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "none-or-short",
+    "technicalProfile": {
+      "hydration": "Approx. 60–75% when counting buttermilk and any additional liquids (varies widely by formula and flour absorption)",
+      "salt": "1.5–2.2%",
+      "oil": "0% (fat usually in solid form: butter, shortening or lard 20–40% of flour weight)",
+      "sugar": "0–5% (optional, usually low)",
+      "cocoa": "0%",
+      "flourStrength": "Soft wheat, lower protein (~8–10%), not usually expressed as W but functionally weak compared to bread flour",
+      "preferment": "None; leavening via baking powder and/or baking soda reacting with buttermilk acidity.",
+      "fermentationSteps": [
+        "Chill fat and, if possible, flour to maintain low dough temperature.",
+        "Cut cold fat into flour until small, pea-sized pieces remain, distributing fat without fully homogenizing.",
+        "Add cold buttermilk and gently mix just until a shaggy mass forms, avoiding gluten development.",
+        "Pat or roll dough gently and fold once or several times to build layers, then pat to final thickness.",
+        "Cut biscuits with a sharp cutter, avoiding twisting, which can seal edges and hinder rise.",
+        "Bake immediately in a hot oven until well risen and golden-brown on top, with visible layers."
+      ],
+      "ovenTemp": "215–230°C",
+      "recommendedUse": [
+        "Conventional domestic or commercial ovens with strong top heat",
+        "Baking sheets or cast iron skillets for direct bottom heat and coloration"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Overmixing develops gluten, producing tough biscuits instead of tender, flaky ones.",
+      "Warm fat or dough reduces flakiness and leads to dense crumb.",
+      "Excess leavening can cause rapid expansion followed by collapse, creating irregular internal structure.",
+      "Using bread flour or very strong flours makes tenderness harder to achieve."
+    ],
+    "notes": [
+      "Layering techniques (folding the dough) accentuate vertical lift and flakiness.",
+      "Buttermilk contributes both flavor and acid to activate baking soda when used.",
+      "Many traditional recipes bake biscuits close together to encourage vertical rise rather than lateral spreading."
+    ],
+    "references": [
+      "Professional and home-baking references on biscuits and chemically leavened quick breads",
+      "American South culinary histories documenting biscuit culture and buttermilk use",
+      "CIA and similar baking textbooks describing biscuit mixing methods and soft-wheat flour roles"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "german_broetchen_rolls",
+    "name": "German Brötchen (Crisp Rolls)",
+    "category": "Bread",
+    "origin": {
+      "country": "Germany",
+      "region": "Various regions, bakery traditions",
+      "period": "19th–20th century standard bakery item"
+    },
+    "description": "Brötchen are small German wheat rolls with a crisp, often crackly crust and a light, cottony interior. They are commonly eaten at breakfast and used for sandwiches, and are produced in large volumes by bakeries using refined wheat flours and controlled fermentation.",
+    "history": "German bakery culture developed a range of small wheat breads and rolls; Brötchen became a standard product in many regions. National and regional guidelines and trade literature describe typical volumes, crumb properties and crust characteristics. Flour qualities, fermentation control and steam baking are used to achieve a thin, brittle crust and soft crumb. Variants include Kaiser-style shaping, elongated forms and seeded versions.",
+    "tags": [
+      "wheat-roll",
+      "steam-baked",
+      "breakfast-bread",
+      "european-bakery",
+      "cottony-crumb",
+      "crisp-crust"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "ambient",
+    "technicalProfile": {
+      "hydration": "58–65%",
+      "salt": "1.8–2.2%",
+      "oil": "0–2%",
+      "sugar": "0–3% (optional, supports color and mild sweetness)",
+      "cocoa": "0%",
+      "flourStrength": "W 200–260 (bread flour, often Type 550 or similar)",
+      "preferment": "Common use of poolish, sponge or small amounts of old dough for flavor; direct methods are also used in industrial production.",
+      "fermentationSteps": [
+        "Mix dough to moderate gluten development, balancing strength and extensibility.",
+        "Bulk ferment 1–2 h at controlled temperature (often around 24–26°C).",
+        "Divide into small pieces (frequently 40–80 g), pre-shape and rest briefly to relax.",
+        "Final shape into ovals, rounds or specific forms (such as Kaiser rolls) using manual or mechanical methods.",
+        "Final proof until noticeably expanded but still resilient, typically 30–60 min depending on conditions.",
+        "Score, moisten and bake with steam to generate a thin, crisp crust and characteristic volume."
+      ],
+      "ovenTemp": "220–250°C with steam",
+      "recommendedUse": [
+        "Steam-injected deck or rack ovens used in European bakeries",
+        "Domestic ovens with improvised steam techniques for small batches"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Insufficient steam reduces expansion and yields a dull, chewy crust.",
+      "Overproofing leads to weak structure and collapsed or flat rolls.",
+      "Underdeveloped gluten reduces volume and makes shaping more difficult.",
+      "Excess sugar changes color and flavor balance, pushing the product toward sweet rolls rather than classic Brötchen."
+    ],
+    "notes": [
+      "Different German regions have specific names and slight formulation differences for similar wheat rolls.",
+      "Use of Type 550 or comparable flours balances crust color, volume and crumb tenderness.",
+      "Many bakeries work with part-baked or frozen doughs, but artisan practice still relies on fresh production."
+    ],
+    "references": [
+      "German baking trade literature on Brötchen and small wheat breads",
+      "Modernist Bread — discussions of European wheat rolls and small breads",
+      "Technical sheets from German flour mills on Brötchen flour types and process parameters"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "moroccan_khobz_round_bread",
+    "name": "Moroccan Khobz (Round Table Bread)",
+    "category": "Bread",
+    "origin": {
+      "country": "Morocco",
+      "region": "Urban and rural households and bakeries",
+      "period": "Traditional, long-standing North African bread"
+    },
+    "description": "Khobz (or khobz dyal dar) is a round, relatively flat Moroccan wheat bread, often enriched lightly with semolina, with a chewy crumb and a browned, sometimes sesame-coated crust. It is used as everyday table bread and to scoop tagines, salads and other dishes.",
+    "history": "In Morocco and across North Africa, wheat breads such as khobz form a central part of daily meals. Doughs are prepared at home or in bakeries and baked in communal or commercial ovens. Recipes vary by region and household but generally include wheat flour, water, yeast and salt, sometimes with semolina, oil or sugar. The breads are shaped into rounds of varying thickness and baked on hot hearths or in deck ovens. Culinary literature documents khobz as a core element of Moroccan food culture, with specific shapes and topping choices linked to occasions and preferences.",
+    "tags": [
+      "north-african",
+      "round-bread",
+      "hearth-baked",
+      "everyday-bread",
+      "semolina-enriched",
+      "table-bread"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "ambient",
+    "technicalProfile": {
+      "hydration": "60–70%",
+      "salt": "1.8–2.2%",
+      "oil": "0–4% (often olive or vegetable oil, optional)",
+      "sugar": "0–3% (optional, small amounts)",
+      "cocoa": "0%",
+      "flourStrength": "W 200–260 (bread or all-purpose flour; durum/semolina often used as a component rather than sole flour)",
+      "preferment": "Often direct dough with commercial yeast; some households use prefermented dough or sourdough for additional flavor.",
+      "fermentationSteps": [
+        "Mix flour (and semolina, if used), water, salt, yeast and optional oil/sugar to form a supple, moderately soft dough.",
+        "Knead until smooth and cohesive, ensuring sufficient gluten development for shaping.",
+        "Bulk ferment 1–2 h at ambient temperature until expanded and aerated.",
+        "Divide into portions and shape into flat, round loaves of the desired diameter and thickness.",
+        "Optionally score or dock lightly and sprinkle with semolina or seeds.",
+        "Final proof 30–45 min and bake on a hot hearth, stone or pan until the loaves are well colored and cooked through."
+      ],
+      "ovenTemp": "220–260°C (hearth or deck baking)",
+      "recommendedUse": [
+        "Stone- or tile-lined ovens used traditionally and in bakeries",
+        "Domestic ovens with baking stones or steels for similar bottom heat"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Hydration too low produces dense, heavy loaves lacking the desired chew and openness.",
+      "Overproofing can cause loaves to collapse or bake with an overly coarse, weak structure.",
+      "Underbaking leaves the interior doughy, which is particularly noticeable because the bread is often torn by hand at the table.",
+      "Excess semolina or very coarse grinds without adjustment in hydration can reduce volume."
+    ],
+    "notes": [
+      "Khobz is frequently used as both bread and eating utensil, torn into pieces to scoop stews and salads.",
+      "Loaf thickness is adjusted according to intended use, from thinner rounds for more crust to thicker loaves for softer interior crumb.",
+      "Toppings such as sesame or nigella seeds provide both visual and flavor variation."
+    ],
+    "references": [
+      "North African and Moroccan food culture references describing khobz as a primary daily bread",
+      "Modernist Bread — coverage of Middle Eastern and North African breads",
+      "Culinary books and fieldwork describing traditional Moroccan bread-making and communal oven practices"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-01-01",
+    "releaseDate": "2025-01-01"
+  }
+]

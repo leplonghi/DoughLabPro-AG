@@ -1,0 +1,343 @@
+[
+  {
+    "id": "modern_neapolitan_canotto",
+    "name": "Modern Neapolitan (Canotto)",
+    "category": "Pizza",
+    "origin": {
+      "country": "Italy",
+      "region": "Caserta / Naples",
+      "period": "2010s (Contemporary Evolution)"
+    },
+    "description": "The 'Canotto' (dinghy) style is a contemporary evolution of Neapolitan pizza. Unlike the traditional STG/AVPN style, it features an exaggerated, puffy, and airy cornicione (rim) with a large alveolation. This is achieved through higher hydration (65-75%), the use of preferments (Biga/Poolish), and strong flours capable of long cold fermentation.",
+    "history": "Emerging in the suburbs of Naples (like Caserta) in the early 2010s, a new generation of pizzaioli (e.g., Carlo Sammarco, Francesco Martucci) began pushing the boundaries of hydration and fermentation. They moved away from the 'wagon wheel' flatness of traditional Neapolitan pizza towards a structure resembling high-hydration artisan bread. While initially controversial among traditionalists, it has gained global popularity for its lightness and digestibility.",
+    "tags": [
+      "high-hydration",
+      "canotto",
+      "puffy-crust",
+      "contemporary-pizza",
+      "cold-fermentation"
+    ],
+    "difficulty": "high",
+    "fermentationType": "cold",
+    "technicalProfile": {
+      "hydration": "65–75%",
+      "salt": "2.2–2.5%",
+      "oil": "0–2% (Optional, unlike traditional AVPN)",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 300–350 (High protein to support hydration)",
+      "preferment": "Often uses 100% Biga or Poolish (indirect method) to maximize explosive oven spring.",
+      "fermentationSteps": [
+        "Prepare Biga (stiff preferment) 16-24h prior.",
+        "Refresh Biga with remaining flour and water (autolyse recommended).",
+        "Mix to full gluten development (intensive mix).",
+        "Bulk ferment 2-4 hours at ambient temp.",
+        "Ball tightly.",
+        "Cold ferment 24-48 hours.",
+        "Remove from fridge 2-4 hours before baking.",
+        "Shape gently, pushing gas to the rim (do not slap down).",
+        "Bake at high heat."
+      ],
+      "ovenTemp": "400–450°C",
+      "recommendedUse": [
+        "Gas/Wood Pizza Oven",
+        "High-end Electric Pizza Oven (Effeuno, etc.)"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Requires high heat; cannot be baked in a standard home oven without stone/steel modification.",
+      "Dough is sticky; requires skill in handling to avoid degassing the rim.",
+      "Over-fermentation collapses the structure; timing the 'point of pasta' is critical."
+    ],
+    "notes": [
+      "The 'Canotto' rim is mostly air; it should not be doughy.",
+      "Often baked at slightly lower temps than AVPN (430C vs 485C) to allow the larger rim to cook through without burning.",
+      "Use Semolina Rimacinata for opening the dough."
+    ],
+    "references": [
+      "Modernist Pizza, Vol 1. - The New Neapolitan",
+      "Top 50 Pizza Guide - Contemporary Pizza Criteria",
+      "Luciano Pignataro - La Pizza: Una Storia Contemporanea",
+      "Enzo Coccia - The Neapolitan Pizza",
+      "Pizza Today - The Rise of Canotto Style"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "artisan_sourdough_high_hydration",
+    "name": "Artisan Sourdough (High Hydration)",
+    "category": "Bread",
+    "origin": {
+      "country": "International",
+      "region": "California / France",
+      "period": "Modern Revival (1990s-Present)"
+    },
+    "description": "The modern standard for 'Instagram-worthy' bread: an open, wild crumb, dark caramelized crust (bien cuit), and a prominent 'ear'. It relies on high hydration (75-85%+), natural leaven (levain), and gentle handling to preserve the gas structure created during long fermentation.",
+    "history": "While sourdough is ancient, the *style* of open-crumb, high-hydration hearth loaves is a modern pursuit, popularized by the San Francisco sourdough tradition and refined by bakers like Chad Robertson (Tartine). It emphasizes the natural flavor of grain, long cold retarding to build acidity and blistered crusts, and hand-mixing techniques.",
+    "tags": [
+      "sourdough",
+      "high-hydration",
+      "open-crumb",
+      "artisan-bread",
+      "wild-yeast"
+    ],
+    "difficulty": "high",
+    "fermentationType": "sourdough",
+    "technicalProfile": {
+      "hydration": "75–85% (and up to 90%+ with whole grains)",
+      "salt": "1.8–2.2%",
+      "oil": "0%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 280–320 (Strong Bread Flour + Whole Wheat blend)",
+      "preferment": "Liquid Levain (100% hydration) or Stiff Levain.",
+      "fermentationSteps": [
+        "Autolyse (Flour + Water) 1-4 hours.",
+        "Add active Levain.",
+        "Add Salt and reserve water (Bassinage).",
+        "Bulk ferment 3-5 hours with Coil Folds every 30-45 mins.",
+        "Preshape and Bench Rest 30 mins.",
+        "Final Shape (Batard or Boule) with tension.",
+        "Cold Retard 12-24 hours at 4°C.",
+        "Score and Bake with Steam."
+      ],
+      "ovenTemp": "240–260°C (dropping to 220°C)",
+      "recommendedUse": [
+        "Dutch Oven (Combo Cooker)",
+        "Deck Oven with Steam Injection"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Starter strength is everything; weak starter = flat bread.",
+      "High hydration is difficult to handle; use wet hands or rice flour.",
+      "Steam is non-negotiable for oven spring and ear formation."
+    ],
+    "notes": [
+      "The 'Ear' is created by the angle of the lame (score) and adequate steam.",
+      "Whole grain additions increase water absorption.",
+      "Crumb structure (alveoli) is defined during bulk fermentation, not proofing."
+    ],
+    "references": [
+      "Tartine Bread - Chad Robertson",
+      "Modernist Bread, Vol 3. - Sourdough",
+      "Flour Water Salt Yeast - Ken Forkish",
+      "Open Crumb Mastery - Trevor Wilson",
+      "The Sourdough School - Vanessa Kimbell"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "japanese_milk_bun",
+    "name": "Japanese Milk Bun (Hokkaido)",
+    "category": "Bread",
+    "origin": {
+      "country": "Japan",
+      "region": "Hokkaido",
+      "period": "20th Century"
+    },
+    "description": "Famed for its cotton-soft, cloud-like texture and milky flavor. The secret is often the Tangzhong (water roux) or Yudane method, where a portion of the flour is cooked with liquid to gelatinize the starch, allowing the dough to hold more moisture without becoming sticky.",
+    "history": "Japan developed a distinct bread culture post-WWII, favoring soft, slightly sweet white breads. The 'Hokkaido' style refers to the use of high-quality dairy (milk/cream) from the Hokkaido region. It became a sensation globally in Asian bakeries (like 85°C Bakery) for its shreddability and shelf life.",
+    "tags": [
+      "enriched-dough",
+      "tangzhong",
+      "soft-bread",
+      "asian-bakery",
+      "high-rise"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "65–75% (Includes Milk/Cream/Eggs)",
+      "salt": "1.5–1.8%",
+      "oil": "8–15% (Butter)",
+      "sugar": "8–15%",
+      "cocoa": "0%",
+      "flourStrength": "W 280–320 (High protein bread flour needed for height)",
+      "preferment": "Tangzhong (Flour/Water 1:5 cooked to 65°C) used at 5-10% of flour weight.",
+      "fermentationSteps": [
+        "Prepare Tangzhong and cool.",
+        "Mix flour, sugar, yeast, milk, egg, tangzhong.",
+        "Knead to windowpane.",
+        "Add soft butter gradually.",
+        "Bulk ferment 1-2 hours (double size).",
+        "Divide and rest.",
+        "Shape (Roll out, fold sides, roll up) - typical 3-hump loaf.",
+        "Proof in pan until 80% full.",
+        "Egg wash.",
+        "Bake."
+      ],
+      "ovenTemp": "170–180°C",
+      "recommendedUse": [
+        "Pullman Loaf Pan",
+        "Square Cake Pan (for rolls)"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Tangzhong must be cooled before adding to yeast mixture.",
+      "If the oven is too hot, the high sugar content will burn the crust before the center cooks.",
+      "Requires intensive kneading to develop the structure that supports the rise."
+    ],
+    "notes": [
+      "Often contains milk powder for extra dairy flavor.",
+      "Stays soft for days due to gelatinized starch.",
+      "Can be filled with custard or red bean paste."
+    ],
+    "references": [
+      "Modernist Bread - Asian Breads",
+      "The China Study - Bakery Evolution",
+      "Just One Cookbook - Japanese Bread",
+      "Yvonne Chen - 65°C Bread Doctor",
+      "King Arthur Baking - Tangzhong Method"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "cinnamon_roll_dough",
+    "name": "Cinnamon Roll Dough (Classic)",
+    "category": "Bread",
+    "origin": {
+      "country": "Sweden / USA",
+      "region": "Global",
+      "period": "1920s (US Style), 1800s (Swedish)"
+    },
+    "description": "A rich, sweet yeast dough meant to be rolled out, spread with a butter-sugar-spice mixture, rolled up, and cut into spirals. The American style (Cinnabon) is soft, gooey, and frosted; the Swedish style (Kanelbullar) is spiced with cardamom in the dough and topped with pearl sugar.",
+    "history": "The Swedish 'Kanelbulle' originated in the 1920s when ingredients became available post-war. In the US, the cinnamon roll became larger, softer, and sweeter, often served as a breakfast pastry. The dough must be extensible enough to roll flat but strong enough to hold the filling.",
+    "tags": [
+      "enriched-dough",
+      "sweet-roll",
+      "breakfast-pastry",
+      "spiral",
+      "comfort-food"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "60–65%",
+      "salt": "1.5–1.8%",
+      "oil": "10–20% (Butter)",
+      "sugar": "10–20% (in dough) + Filling",
+      "cocoa": "0%",
+      "flourStrength": "W 220–260 (AP or Bread Flour)",
+      "preferment": "Straight dough is standard; Sponge used for lighter texture.",
+      "fermentationSteps": [
+        "Scald milk.",
+        "Mix dough ingredients (add butter last).",
+        "Bulk ferment 1-2 hours.",
+        "Degas and rest (chilling helps rolling).",
+        "Roll into large rectangle (approx 5mm thick).",
+        "Spread soft butter, Brown Sugar, Cinnamon.",
+        "Roll tightly into a log.",
+        "Cut with thread or sharp knife.",
+        "Proof in pan until touching.",
+        "Bake until 90°C internal.",
+        "Frost while warm."
+      ],
+      "ovenTemp": "180–190°C",
+      "recommendedUse": [
+        "High-sided baking pan",
+        "Sheet pan (for individual rolls)"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Rolling the dough too tight pops the center up during baking.",
+      "Rolling too loose lets the filling leak out.",
+      "Don't overbake - they should be soft, not crusty."
+    ],
+    "notes": [
+      "Dental floss (unflavored) creates the cleanest cut.",
+      "Pouring warm cream over the rolls before baking is a hack for extra gooiness (Cinnabon clone).",
+      "Cardamom in the dough is the Nordic signature."
+    ],
+    "references": [
+      "CIA - Baking and Pastry",
+      "Modernist Bread - Sweet Goods",
+      "Fika: The Art of The Swedish Coffee Break",
+      "Bravetart - Iconic American Desserts",
+      "AIB - Sweet Yeast Dough Technology"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "burger_bun_dough",
+    "name": "Burger Bun Dough (Brioche Style)",
+    "category": "Bread",
+    "origin": {
+      "country": "United States",
+      "region": "National",
+      "period": "Modern (Gourmet Burger Era)"
+    },
+    "description": "The ideal vessel for a burger: soft but sturdy, not flaky (won't disintegrate), with a tight crumb to hold juices. It is an enriched dough, often leaning towards a light brioche or potato roll profile, with a shiny egg-washed crust.",
+    "history": "As the hamburger moved from fast food to gourmet status, the bun evolved. The 'Potato Roll' (Martin's) and the 'Brioche Bun' became standards to replace the cheap, airy supermarket bun. The goal is a bread that compresses easily when bitten but springs back, without overwhelming the meat.",
+    "tags": [
+      "soft-roll",
+      "enriched-dough",
+      "burger-bun",
+      "sandwich-bread",
+      "tight-crumb"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "60–68%",
+      "salt": "1.8–2.0%",
+      "oil": "5–10% (Butter or Oil)",
+      "sugar": "5–12% (Promotes browning and softness)",
+      "cocoa": "0%",
+      "flourStrength": "W 240–280 (Bread Flour for hinge strength)",
+      "preferment": "Direct method. Intensive mix for fine crumb.",
+      "fermentationSteps": [
+        "Mix all ingredients to full development.",
+        "Bulk ferment 1 hour.",
+        "Divide into 80-100g portions.",
+        "Round tight to create surface tension.",
+        "Flatten slightly (puck shape) to prevent balls from becoming spheres.",
+        "Proof on parchment lined sheet (covered).",
+        "Egg wash.",
+        "Bake until golden."
+      ],
+      "ovenTemp": "190–200°C",
+      "recommendedUse": [
+        "Sheet Pan",
+        "Bun Molds / Rings (for uniform width)"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "If the bun is too tall (spherical), the burger is hard to eat; flatten the dough balls before proofing.",
+      "Over-enrichment (too much butter) makes the bun greasy and crumbly.",
+      "Under-baking causes the bun to collapse under the weight of the patty."
+    ],
+    "notes": [
+      "Toasting the cut face is mandatory for structural integrity.",
+      "Sesame seeds are traditional.",
+      "Potato flour (3-5%) adds significant softness."
+    ],
+    "references": [
+      "Modernist Bread - Sandwich Breads",
+      "CIA - Baking & Pastry",
+      "The Burger Lab - Serious Eats",
+      "Shake Shack - Recipes & Philosophy",
+      "King Arthur Baking - Beautiful Burger Buns"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  }
+]

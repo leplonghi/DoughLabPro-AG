@@ -1,0 +1,343 @@
+[
+  {
+    "id": "french_pain_de_campagne",
+    "name": "Pain de Campagne (French Country Bread)",
+    "category": "Bread",
+    "origin": {
+      "country": "France",
+      "region": "Rural France",
+      "period": "Traditional (Revived 20th Century)"
+    },
+    "description": "Pain de Campagne, or 'Country Bread', is the quintessential French rustic loaf. Historically, it was a large sourdough loaf made with high-extraction wheat flour and a small percentage of rye, designed to stay fresh for several days. It features a thick, dark crust and a chewy, flavorful crumb with mild acidity.",
+    "history": "For centuries, communal ovens in French villages baked large sourdough loaves (MICHE) to feed families for a week. As white bread (baguettes) became fashionable in cities, country bread declined. It was revived in the late 20th century by artisanal bakers like Lionel Poilâne and theorists like Raymond Calvel, who championed the flavor of natural leavening and stone-milled flours.",
+    "tags": [
+      "sourdough",
+      "rustic-bread",
+      "rye-blend",
+      "french-classic",
+      "hearth-baked"
+    ],
+    "difficulty": "medium-high",
+    "fermentationType": "sourdough",
+    "technicalProfile": {
+      "hydration": "65–75% (Moderate for handling large loaves)",
+      "salt": "1.8–2.0%",
+      "oil": "0%",
+      "sugar": "0%",
+      "cocoa": "0%",
+      "flourStrength": "W 240–280 (T80 Wheat + 10-15% Rye)",
+      "preferment": "Levain (Natural Sourdough) is essential; sometimes spiked with a pinch of yeast in commercial settings (Poolish variant).",
+      "fermentationSteps": [
+        "Mix flours (Wheat/Rye), water, and levain.",
+        "Autolyse 30-60 mins (optional but recommended).",
+        "Add salt and mix to moderate development.",
+        "Bulk ferment 3-4 hours with folds.",
+        "Divide and pre-shape into boules.",
+        "Bench rest 20-30 mins.",
+        "Final shape (tight skin) into bannetons.",
+        "Proof 2-3 hours at ambient or retard overnight.",
+        "Score deeply.",
+        "Bake with steam."
+      ],
+      "ovenTemp": "230–250°C",
+      "recommendedUse": [
+        "Hearth / Deck Oven",
+        "Dutch Oven (for home)"
+      ],
+      "difficulty": "medium-high"
+    },
+    "warnings": [
+      "Rye flour increases fermentation speed; watch the dough.",
+      "If the crust is too pale, the flavor will be undeveloped.",
+      "Must be fully cooled before slicing to set the crumb structure."
+    ],
+    "notes": [
+      "Often made with T80 (High Extraction) flour for deeper flavor.",
+      "Can be huge (1.5kg - 2kg Miches).",
+      "The acidity should be balanced, not vinegary."
+    ],
+    "references": [
+      "Raymond Calvel - Le Goût du Pain",
+      "Jeffrey Hamelman - Bread: A Baker's Book of Techniques and Recipes",
+      "Modernist Bread, Vol 2. - Lean Breads",
+      "Lionel Poilâne - The Bread Bible",
+      "Suas - Advanced Bread and Pastry"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "nordic_rugbrod_rye",
+    "name": "Nordic Rugbrød (Danish Rye Bread)",
+    "category": "Bread",
+    "origin": {
+      "country": "Denmark",
+      "region": "Scandinavia",
+      "period": "Viking Age (Modern form 19th C)"
+    },
+    "description": "Rugbrød is a dense, dark, brick-like bread made primarily from rye flour and cracked rye kernels (berries), often enriched with seeds (sunflower, flax, pumpkin). It is fermented with sourdough to make the rye digestible and structure stable. It is the foundation of 'Smørrebrød' (open-faced sandwiches).",
+    "history": "Rye grows well in the cold, wet Nordic climate where wheat struggles. Historically, it was the fuel of the working class. The sourdough acidification is technically necessary: rye has high amylase enzyme activity, and without acid to inhibit it, the bread would become a gummy mess ('starch attack'). Modern versions focus on whole grains and seeds for health.",
+    "tags": [
+      "rye-bread",
+      "nordic-staple",
+      "sourdough",
+      "whole-grain",
+      "dense-crumb"
+    ],
+    "difficulty": "high",
+    "fermentationType": "sourdough",
+    "technicalProfile": {
+      "hydration": "80–100% (Rye absorbs massive water)",
+      "salt": "1.8–2.2%",
+      "oil": "0–2% (Optional)",
+      "sugar": "0–3% (Malt syrup or molasses often added)",
+      "cocoa": "0%",
+      "flourStrength": "Low Gluten (Rye has pentosans, not gluten structure)",
+      "preferment": "Rye Sourdough (Surdej) is mandatory for chemistry.",
+      "fermentationSteps": [
+        "Soak seeds and cracked rye kernels (soaker) overnight.",
+        "Refresh Rye Sourdough.",
+        "Mix sourdough, rye flour, soaked grains, water, salt, malt.",
+        "Mix briefly (no gluten to develop, just homogenization).",
+        "Bulk ferment 1 hour.",
+        "Fill into Pullman pans (greased well).",
+        "Final proof 2-4 hours until pinholes appear.",
+        "Bake low and slow (1-2 hours) to cure the interior."
+      ],
+      "ovenTemp": "180–200°C",
+      "recommendedUse": [
+        "Pullman Pan / Loaf Pan",
+        "Steam helps initially"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "Do NOT slice until 24 hours after baking; it needs to cure.",
+      "Without acid (sourdough), the crumb will be sticky/gummy.",
+      "High hydration is normal; it's a paste, not a dough."
+    ],
+    "notes": [
+      "Often uses chopped stale rye bread as an improver.",
+      "Keeps for weeks if stored correctly.",
+      "Beer is sometimes used as the liquid."
+    ],
+    "references": [
+      "Modernist Bread, Vol 3. - Rye Breads",
+      "Trine Hahnemann - Scandinavian Baking",
+      "Claus Meyer - Meyer's Bakery",
+      "Nordic Food Lab - Rye Research",
+      "Jeffrey Hamelman - Bread (German/Rye section)"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "german_pretzel_laugen",
+    "name": "German Pretzel (Laugenbrezel)",
+    "category": "Bread",
+    "origin": {
+      "country": "Germany",
+      "region": "Swabia / Bavaria",
+      "period": "Medieval (12th Century)"
+    },
+    "description": "The Laugenbrezel is a knotted bread with a deep mahogany, glossy skin and a white, dense, chewy interior. The unique crust flavor and color come from dipping the dough in a Lye solution (Sodium Hydroxide, NaOH) before baking, which triggers a violent Maillard reaction.",
+    "history": "Legends abound (monks praying, bakers held hostage), but the pretzel is an ancient guild symbol. The lye dip (Lauge) likely originated from accidental dipping in cleaning buckets. It is a protected cultural product in Germany. Swabian pretzels have thin crispy arms and a fat belly; Bavarian ones are more uniform.",
+    "tags": [
+      "pretzel",
+      "lye-dipped",
+      "german-classic",
+      "snack-bread",
+      "chewy-crumb"
+    ],
+    "difficulty": "high",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "50–55% (Very stiff dough)",
+      "salt": "2.0% (plus coarse salt on top)",
+      "oil": "2–4% (Lard or Butter)",
+      "sugar": "0–1% (Malt is traditional)",
+      "cocoa": "0%",
+      "flourStrength": "W 220–260 (Standard bread flour)",
+      "preferment": "Usually direct method with a stiff texture (Pate Fermentee optional).",
+      "fermentationSteps": [
+        "Mix stiff dough to full development.",
+        "Bulk ferment 30-60 mins (short).",
+        "Divide and preshape.",
+        "Roll into long tapered ropes (belly thick, ends thin).",
+        "Swing and knot into pretzel shape.",
+        "Uncovered proof (to form a skin) or cold retard.",
+        "Dip in 3-4% Lye Solution (Safety Gear Required).",
+        "Score the belly.",
+        "Top with salt.",
+        "Bake immediately."
+      ],
+      "ovenTemp": "220–240°C",
+      "recommendedUse": [
+        "Stainless Steel Dipping setup",
+        "Baking Steel/Stone or Sheet Pan"
+      ],
+      "difficulty": "high"
+    },
+    "warnings": [
+      "DANGER: Lye (NaOH) is caustic. Wear gloves and goggles. Add Lye to Water, never Water to Lye.",
+      "Aluminum pans will dissolve in contact with Lye; use Steel or Silicone.",
+      "Baking Soda is a weak substitute that yields poor gloss."
+    ],
+    "notes": [
+      "The 'split' in the belly is iconic.",
+      "Traditional fat is Lard (Schweineschmalz).",
+      "Often eaten with Weillwurst and Mustard."
+    ],
+    "references": [
+      "Modernist Bread, Vol 3. - Pretzels & Lye",
+      "German Bakers Guild (Zentralverband) - Guidelines",
+      "Jeffrey Hamelman - Bread",
+      "AIB International - Lye Application Safety",
+      "Stanley Ginsberg - The Rye Baker (German traditions section)"
+    ],
+    "isPro": true,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "american_dinner_rolls_soft",
+    "name": "Soft American Dinner Rolls",
+    "category": "Bread",
+    "origin": {
+      "country": "United States",
+      "region": "National",
+      "period": "Mid-20th Century"
+    },
+    "description": "The classic American Dinner Roll (Parker House style or similar) is a soft, fluffy, slightly sweet, enriched yeast roll. It has a thin, golden crust often brushed with butter, and a cotton-like shreddable crumb. It is a staple of holiday meals (Thanksgiving).",
+    "history": "Evolving from European enriched breads but adapted to American soft wheat and sugar availability, these rolls became standardized in the 20th century via cookbooks like Betty Crocker and industrial production (King's Hawaiian). The emphasis is on softness (tenderness) rather than chewiness.",
+    "tags": [
+      "enriched-dough",
+      "soft-roll",
+      "american-classic",
+      "holiday-bread",
+      "butter-rich"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "direct",
+    "technicalProfile": {
+      "hydration": "60–65% (Milk/Water mix)",
+      "salt": "1.8–2.0%",
+      "oil": "8–15% (Butter or Shortening)",
+      "sugar": "8–12% (Noticeably sweet)",
+      "cocoa": "0%",
+      "flourStrength": "W 200–240 (AP or Bread flour, not too strong)",
+      "preferment": "Direct method or Sponge (for lightness). Tangzhong is a modern addition for extra softness.",
+      "fermentationSteps": [
+        "Scald milk (if using) to denature proteins.",
+        "Mix flour, sugar, yeast, liquid.",
+        "Add fat (butter) after gluten forms.",
+        "Bulk ferment 1-2 hours.",
+        "Divide into small balls (40-50g).",
+        "Round gently.",
+        "Place in pan (touching for pull-apart, spaced for rounds).",
+        "Final proof until very light.",
+        "Bake.",
+        "Brush with butter immediately."
+      ],
+      "ovenTemp": "180–190°C",
+      "recommendedUse": [
+        "Cake Pan / Sheet Pan",
+        "Convection Oven"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "Overbaking dries them out instantly.",
+      "Too much flour during shaping creates tough seams.",
+      "Sugar content requires lower oven temp to prevent burning."
+    ],
+    "notes": [
+      "Potato flour or mashed potato is a traditional softener.",
+      "Egg wash gives shine; butter wash gives flavor and softens crust.",
+      "Can be shaped as crescents, knots, or cloverleaves."
+    ],
+    "references": [
+      "CIA - Baking & Pastry: Mastering the Art and Craft",
+      "Modernist Bread, Vol 2. - Enriched Doughs",
+      "King Arthur Baking - All-Purpose Baker's Companion",
+      "Rose Levy Beranbaum - The Bread Bible",
+      "Stella Parks - BraveTart (American baking history)"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  },
+  {
+    "id": "scandinavian_knackebrod",
+    "name": "Scandinavian Knäckebröd (Crispbread)",
+    "category": "Flatbread",
+    "origin": {
+      "country": "Sweden",
+      "region": "Scandinavia",
+      "period": "AD 500 (Ancient)"
+    },
+    "description": "Knäckebröd is a hard, dry, cracker-like flatbread made traditionally from rye flour. It is rolled thin, docked (holed) to prevent ballooning, and baked until completely desiccated. It was the preservation method for rye harvests in the north.",
+    "history": "Historically baked twice a year (after harvest and in spring), these breads were stored on poles near the ceiling (hence the hole in the center of traditional large rounds). It was a staple food for Vikings and farmers. Modern versions vary from 100% whole rye to lighter wheat blends with seeds.",
+    "tags": [
+      "flatbread",
+      "rye-cracker",
+      "preservation-bread",
+      "scandinavian",
+      "crunchy"
+    ],
+    "difficulty": "medium",
+    "fermentationType": "mixed",
+    "technicalProfile": {
+      "hydration": "45–55% (Stiff, rollable)",
+      "salt": "1.5–2.0%",
+      "oil": "0–2%",
+      "sugar": "0–2% (Honey/Syrup optional)",
+      "cocoa": "0%",
+      "flourStrength": "Low (Rye/Coarse Wheat)",
+      "preferment": "Sourdough improves flavor, but yeast is common. Some variants use ice/snow for mechanical leavening.",
+      "fermentationSteps": [
+        "Mix flours (coarse rye), liquid (milk/water), salt, leavening.",
+        "Bulk ferment 1 hour (or less if chemically leavened).",
+        "Divide into balls.",
+        "Roll out on a textured surface (knobbly rolling pin) to indent.",
+        "Dock thoroughly.",
+        "Cut into rounds or rectangles.",
+        "Bake until dry and crisp.",
+        "Dry further in cooling oven if needed."
+      ],
+      "ovenTemp": "200–220°C",
+      "recommendedUse": [
+        "Baking Stone",
+        "Cookie Sheet"
+      ],
+      "difficulty": "medium"
+    },
+    "warnings": [
+      "If not rolled thin enough, it will be hard (tooth-breaking) rather than crisp.",
+      "Must be fully dried to store, or mold will grow.",
+      "Rye dough is sticky; use plenty of bran/flour for rolling."
+    ],
+    "notes": [
+      "Topped often with seeds or coarse salt.",
+      "The 'Knubby' rolling pin (Kruskavel) creates the signature texture.",
+      "Served with cheese, fish, or butter."
+    ],
+    "references": [
+      "Magnus Nilsson - The Nordic Baking Book",
+      "Modernist Bread - Flatbreads/Crackers",
+      "ICC - Flatbread Technologies",
+      "Swedish Institute - Food Traditions",
+      "Jan Hedh - Swedish Breads and Pastries"
+    ],
+    "isPro": false,
+    "source": "DLP Core Pack",
+    "createdAt": "2025-02-12T10:00:00Z",
+    "releaseDate": "2025-02-12T10:00:00Z"
+  }
+]
