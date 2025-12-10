@@ -192,8 +192,6 @@ export interface User {
     name: string;
     email: string;
     avatar?: string;
-    birthDate?: string;
-    gender?: Gender;
     isPro?: boolean;
     plan?: 'free' | 'pro' | 'calculator_unlock' | 'lab_pro';
     proSince?: string;
@@ -202,11 +200,16 @@ export interface User {
     stripeCustomerId?: string | null;
     stripeSubscriptionId?: string | null;
     isAdmin?: boolean;
+    gender?: Gender;
+    birthDate?: string;
     location?: string;
     bio?: string;
     website?: string;
     instagramHandle?: string;
     skillLevel?: 'beginner' | 'intermediate' | 'advanced' | 'pro';
+    trials?: {
+        [key: string]: string; // featureKey -> startDate (ISO)
+    };
 }
 
 export interface UserContextType {
@@ -217,6 +220,8 @@ export interface UserContextType {
     login: (userData: User) => void;
     logout: () => void;
     updateUser: (updatedData: Partial<User>) => Promise<void>;
+    startTrial: (featureKey: string) => Promise<void>;
+    hasActiveTrial: (featureKey: string) => boolean;
     hasProAccess: boolean;
     grantProAccess: () => Promise<void>;
     grantSessionProAccess: () => void;
@@ -351,43 +356,10 @@ export interface TestSeries {
     updatedAt: string;
     parameters: {
         variable: TestSeriesVariable;
-        addLevain: (levain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'>) => void;
-        updateLevain: (levain: Partial<Levain> & { id: string }) => void;
-        deleteLevain: (id: string) => void;
-        setDefaultLevain: (id: string) => void;
-        addFeedingEvent: (levainId: string, event: Omit<FeedingEvent, 'id' | 'date'>) => void;
-        importLevains: (levainsToImport: Levain[]) => void;
-
-        // Styles Management
-        userStyles: DoughStyleDefinition[];
-        addUserStyle: (style: Omit<DoughStyleDefinition, 'id' | 'createdAt'>) => Promise<DoughStyleDefinition>;
-        deleteUserStyle: (id: string) => Promise<void>;
-
-        // Favorites
-        favorites: FavoriteItem[];
-        toggleFavorite: (item: Omit<FavoriteItem, 'createdAt'>) => Promise<void>;
-        isFavorite: (id: string) => boolean;
-
-        preferredFlourId: string | null;
-        setPreferredFlour: (id: string | null) => void;
-        batches: Batch[];
-        addBatch: (newBatch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) => Promise<Batch>;
-        updateBatch: (updatedBatch: Batch) => void;
-        deleteBatch: (id: string) => void;
-        createDraftBatch: () => Promise<Batch>;
-        goals: Goal[];
-        addGoal: (goal: Omit<Goal, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'progress'>) => Promise<Goal>;
-        updateGoal: (goal: Partial<Goal> & { id: string }) => void;
-        deleteGoal: (id: string) => void;
-        completeGoal: (id: string) => void;
-        testSeries: TestSeries[];
-        addTestSeries: (series: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'>) => Promise<TestSeries>;
-        updateTestSeries: (series: Partial<TestSeries> & { id: string }) => void;
-        deleteTestSeries: (id: string) => void;
-        attachBakeToSeries: (seriesId: string, bakeId: string) => void;
-        customIngredientLibrary?: IngredientConfig[];
-        addCustomIngredient?: (ing: IngredientConfig) => void;
+        notes?: string;
+        steps: string[];
     };
+    relatedBakes?: string[];
 }
 
 export interface FavoriteItem {

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
-import { DocumentTextIcon, PlusCircleIcon, WaterIcon, ClockIcon, FireIcon, SolidStarIcon, BatchesIcon } from '@/components/ui/Icons';
+import { DocumentTextIcon, PlusCircleIcon, WaterIcon, ClockIcon, FireIcon, SolidStarIcon, BatchesIcon, ArrowsRightLeftIcon } from '@/components/ui/Icons';
 import { Page, Batch } from '@/types';
 import MyLabLayout from './MyLabLayout';
 import { useTranslation } from '@/i18n';
@@ -96,40 +96,53 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
                         <h1 className="text-3xl font-bold text-slate-900 ">My Recipes</h1>
                         <p className="text-slate-600  mt-2">Your collection of favorite dough configurations.</p>
                     </div>
-                    <button
-                        onClick={() => onNavigate('calculator')}
-                        className="flex items-center gap-2 bg-lime-500 text-white px-4 py-2 rounded-xl hover:bg-lime-600 transition-colors shadow-lg shadow-lime-500/20 font-bold"
-                    >
-                        <PlusCircleIcon className="h-5 w-5" />
-                        New Recipe
-                    </button>
-                </div>
-
-                {favoriteBatches.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {favoriteBatches.map(batch => (
-                            <RecipeCard key={batch.id} batch={batch} t={t} onNavigate={onNavigate} />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="bg-white  rounded-2xl border border-slate-200  p-12 text-center">
-                        <div className="w-16 h-16 bg-slate-100  rounded-full flex items-center justify-center mx-auto mb-4">
-                            <DocumentTextIcon className="h-8 w-8 text-slate-400 " />
-                        </div>
-                        <h3 className="text-lg font-semibold text-slate-900 ">No saved recipes yet</h3>
-                        <p className="text-slate-500  mt-2 max-w-sm mx-auto">
-                            Mark your best batches as <strong>Favorites</strong> to see them appear here as reusable recipes.
-                        </p>
+                    <div className="flex gap-3">
                         <button
-                            onClick={() => onNavigate('mylab/batches')}
-                            className="mt-6 text-lime-600  font-bold hover:underline"
+                            onClick={() => onNavigate('mylab/comparisons')}
+                            className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 py-2.5 px-4 font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition-all hover:scale-105 active:scale-95"
                         >
-                            Go to My Bakes
+                            <ArrowsRightLeftIcon className="h-5 w-5" />
+                            Compare
+                        </button>
+                        <button
+                            onClick={() => onNavigate('calculator')}
+                            className="inline-flex items-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all hover:scale-105 active:scale-95"
+                        >
+                            <PlusCircleIcon className="h-5 w-5" />
+                            New Recipe
                         </button>
                     </div>
-                )}
-            </div>
-        </MyLabLayout>
+                </div>
+
+
+
+                {
+                    favoriteBatches.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {favoriteBatches.map(batch => (
+                                <RecipeCard key={batch.id} batch={batch} t={t} onNavigate={onNavigate} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="bg-white  rounded-2xl border border-slate-200  p-12 text-center">
+                            <div className="w-16 h-16 bg-slate-100  rounded-full flex items-center justify-center mx-auto mb-4">
+                                <DocumentTextIcon className="h-8 w-8 text-slate-400 " />
+                            </div>
+                            <h3 className="text-lg font-semibold text-slate-900 ">No saved recipes yet</h3>
+                            <p className="text-slate-500  mt-2 max-w-sm mx-auto">
+                                Mark your best batches as <strong>Favorites</strong> to see them appear here as reusable recipes.
+                            </p>
+                            <button
+                                onClick={() => onNavigate('mylab/batches')}
+                                className="mt-6 text-lime-600  font-bold hover:underline"
+                            >
+                                Go to My Bakes
+                            </button>
+                        </div>
+                    )
+                }
+            </div >
+        </MyLabLayout >
     );
 };
 

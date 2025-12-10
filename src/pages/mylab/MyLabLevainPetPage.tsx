@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { FireIcon, PlusCircleIcon, ChartBarIcon, BeakerIcon } from '@/components/ui/Icons';
 import MyLabLayout from './MyLabLayout';
-import { Page } from '@/types';
+import { Page, Levain } from '@/types';
 import { SocialShare } from '@/marketing/social/SocialShare';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
+import LevainModal from '@/components/LevainModal';
+import { useToast } from '@/components/ToastProvider';
 
 import { LevainMarketingPage } from './levain/LevainMarketingPage';
 
@@ -14,10 +16,31 @@ interface MyLabLevainPetPageProps {
 }
 
 const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) => {
-    const { levains, hasProAccess, openPaywall } = useUser();
-    const activeLevain = levains.find(l => l.status === 'ativo');
+    const { levains, hasProAccess, addLevain, hasActiveTrial } = useUser();
+    const { addToast } = useToast();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    if (!hasProAccess) {
+    const activeLevain = levains.find(l => l.status === 'ativo');
+    const isTrial = hasActiveTrial('levain');
+
+    const handleSaveLevain = async (levainData: Omit<Levain, 'id' | 'createdAt' | 'updatedAt'> | Levain) => {
+        // LevainModal passes either Omit<Levain...> or Levain depending on edit mode.
+        // But here we are only creating.
+        try {
+            if ('id' in levainData) {
+                // Should not happen for create
+                return;
+            }
+            await addLevain(levainData);
+            addToast('Levain created successfully', 'success');
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error(error);
+            addToast('Failed to create levain', 'error');
+        }
+    };
+
+    if (!hasProAccess && !isTrial) {
         return (
             <MyLabLayout activePage="mylab/levain-pet" onNavigate={onNavigate}>
                 <LevainMarketingPage />
@@ -28,6 +51,20 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
     return (
         <MyLabLayout activePage="mylab/levain-pet" onNavigate={onNavigate}>
             <div className="space-y-8 animate-fade-in max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-6">
+
+                {isTrial && (
+                    <div className="bg-gradient-to-r from-lime-500/10 to-transparent border border-lime-500/20 p-4 rounded-xl flex items-center gap-3">
+                        <span className="flex h-3 w-3 relative">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-lime-500"></span>
+                        </span>
+                        <div>
+                            <p className="text-sm font-bold text-lime-800">7-Day Free Trial Active</p>
+                            <p className="text-xs text-lime-700/80">Enjoy full access to Levain Manager. Your trial expires in 7 days.</p>
+                        </div>
+                    </div>
+                )}
+
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex flex-col gap-1">
@@ -39,7 +76,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                         </p>
                     </div>
                     <button
-                        onClick={() => { /* TODO: Add create levain logic */ }}
+                        onClick={() => setIsModalOpen(true)}
                         className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 hover:scale-105 transition-all active:scale-95"
                     >
                         <PlusCircleIcon className="h-5 w-5" />
@@ -109,7 +146,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                                 </p>
                                 <button
                                     className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700"
-                                    onClick={() => { /* TODO */ }}
+                                    onClick={() => setIsModalOpen(true)}
                                 >
                                     <PlusCircleIcon className="h-4 w-4" />
                                     Create Starter
@@ -164,6 +201,13 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                         <AdCard context="mylab_sidebar" />
                     </div>
                 </div>
+
+                <LevainModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    onSave={handleSaveLevain}
+                    levainToEdit={null}
+                />
             </div>
         </MyLabLayout>
     );

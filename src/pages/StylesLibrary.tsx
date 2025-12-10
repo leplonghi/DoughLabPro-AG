@@ -4,7 +4,7 @@ import { DoughStyleDefinition } from '@/types/styles';
 import { Region, Category } from '@/types/dough';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { StyleCard } from '@/components/styles/StyleCard';
-import { Search, ChefHat, Globe2, MapPin, Calendar } from 'lucide-react';
+import { Search, ChefHat, Globe2, MapPin, Calendar, ChevronDown } from 'lucide-react';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 
 interface StylesLibraryPageProps {
@@ -96,87 +96,81 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
             {/* --- SEARCH & FILTER BAR --- */}
             <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md py-4 mb-8 border-b border-slate-200 -mx-4 px-4 md:static md:bg-transparent md:border-none md:p-0 md:mx-0 transition-all">
 
-                <div className="max-w-4xl mx-auto">
-                    {/* Search Input */}
-                    <div className="relative mb-6">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-slate-400" />
+                <div className="max-w-5xl mx-auto">
+
+                    <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center">
+
+                        {/* Search Input (Flexible) */}
+                        <div className="relative flex-grow">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Search className="h-4 w-4 text-slate-400" />
+                            </div>
+                            <input
+                                type="text"
+                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 text-sm shadow-sm transition-all"
+                                placeholder="Search styles..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
                         </div>
-                        <input
-                            type="text"
-                            className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 sm:text-sm shadow-sm transition-all"
-                            placeholder="Search styles (e.g. 'Neapolitan', 'Shokupan', 'Baguette')..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                    </div>
 
-                    {/* Filter Pills Container */}
-                    <div className="flex flex-col gap-4">
+                        {/* Filters Container */}
+                        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
 
-                        {/* Categories Row */}
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-16 shrink-0 pt-2 sm:pt-0">Type</span>
-                            <div className="flex flex-wrap gap-2 items-center">
+                            {/* Primary Category Tabs */}
+                            <div className="flex bg-slate-100/80 p-1 rounded-lg overflow-x-auto no-scrollbar w-full sm:w-auto border border-slate-200/50">
                                 <button
                                     onClick={() => setFilterCategory('All')}
-                                    className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${filterCategory === 'All'
-                                        ? 'bg-slate-900 text-white border-slate-900'
-                                        : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                                    className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all whitespace-nowrap ${filterCategory === 'All'
+                                        ? 'bg-white text-slate-800 shadow-sm ring-1 ring-slate-200'
+                                        : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
                                         }`}
                                 >
-                                    All
+                                    All Types
                                 </button>
-                                <div className="w-px h-4 bg-slate-300 mx-1 hidden sm:block"></div>
                                 {(['Pizza', 'Bread', 'Flatbread', 'Enriched'] as Category[]).map(cat => (
                                     <button
                                         key={cat}
                                         onClick={() => setFilterCategory(current => current === cat ? 'All' : cat)}
-                                        className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterCategory === cat
-                                            ? 'bg-lime-600 text-white border-lime-600 shadow-md transform scale-105'
-                                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                                        className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${filterCategory === cat
+                                            ? 'bg-white text-lime-700 shadow-sm ring-1 ring-lime-200'
+                                            : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
                                             }`}
                                     >
-                                        {cat === 'Pizza' && '🍕'}
-                                        {cat === 'Bread' && '🍞'}
-                                        {cat === 'Flatbread' && '🫓'}
-                                        {cat === 'Enriched' && '🥐'}
-                                        <span className="ml-1">{cat}</span>
+                                        <span>
+                                            {cat === 'Pizza' && '🍕'}
+                                            {cat === 'Bread' && '🍞'}
+                                            {cat === 'Flatbread' && '🫓'}
+                                            {cat === 'Enriched' && '🥐'}
+                                        </span>
+                                        {cat}
                                     </button>
                                 ))}
                             </div>
-                        </div>
 
-                        {/* Regions Row */}
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-16 shrink-0 pt-2 sm:pt-0">Region</span>
-                            <div className="flex flex-wrap gap-2 items-center">
-                                <button
-                                    onClick={() => setFilterRegion('All')}
-                                    className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterRegion === 'All'
-                                        ? 'bg-slate-900 text-white border-slate-900'
-                                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                                        }`}
+                            {/* Secondary Region Dropdown */}
+                            <div className="relative min-w-[140px] w-full sm:w-auto">
+                                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-500">
+                                    <Globe2 className="h-3.5 w-3.5" />
+                                </div>
+                                <select
+                                    value={filterRegion}
+                                    onChange={(e) => setFilterRegion(e.target.value as Region | 'All' | 'Global')}
+                                    className="block w-full pl-9 pr-8 py-2 text-xs font-bold border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 shadow-sm appearance-none cursor-pointer hover:bg-slate-50 transition-colors"
                                 >
-                                    <Globe2 className="w-3 h-3" />
-                                    <span>Any</span>
-                                </button>
-
-                                {regionTabs.map(reg => (
-                                    <button
-                                        key={reg}
-                                        onClick={() => setFilterRegion(current => current === reg ? 'All' : reg)}
-                                        className={`px-3 py-2 rounded-full text-xs font-bold flex items-center gap-1 transition-all border ${filterRegion === reg
-                                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-md transform scale-105'
-                                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                                            }`}
-                                    >
-                                        {reg === 'Italy' && <MapPin className="w-3 h-3" />}
-                                        {reg !== 'Italy' && <Globe2 className="w-3 h-3" />}
-                                        <span>{reg}</span>
-                                    </button>
-                                ))}
+                                    <option value="All">All Regions</option>
+                                    <option disabled>──────────</option>
+                                    {regionTabs.map(reg => (
+                                        <option key={reg} value={reg}>
+                                            {reg}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none text-slate-400">
+                                    <ChevronDown className="h-4 w-4" />
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

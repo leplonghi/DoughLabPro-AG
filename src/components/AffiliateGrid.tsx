@@ -80,7 +80,7 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
             </div>
 
             <div className="text-[10px] text-slate-400 text-center italic mt-2">
-                * We may earn a commission from qualifying purchases.
+                As an Amazon Associate, DoughLab Pro earns from qualifying purchases.
             </div>
         </div>
     );

@@ -71,6 +71,10 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
                     </a>
                 ))}
             </div>
+
+            <div className="text-[10px] text-dlp-text-muted text-center italic mt-3">
+                As an Amazon Associate, DoughLab Pro earns from qualifying purchases.
+            </div>
         </div>
     );
 };

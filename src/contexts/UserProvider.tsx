@@ -213,6 +213,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           stripeSubscriptionId: profileData.stripeSubscriptionId,
           gender: profileData.gender,
           birthDate: profileData.birthDate,
+          trials: profileData.trials || {},
         };
 
         setUser(mergedProfile);
@@ -690,6 +691,23 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setIsSessionPro(true);
   }, []);
 
+  const hasActiveTrial = useCallback((featureKey: string) => {
+    if (!user?.trials?.[featureKey]) return false;
+    const start = new Date(user.trials[featureKey]);
+    const now = new Date();
+    // 7 Day Trial
+    const diffDays = (now.getTime() - start.getTime()) / (1000 * 3600 * 24);
+    return diffDays < 7;
+  }, [user]);
+
+  const startTrial = useCallback(async (featureKey: string) => {
+    if (!user) return;
+    const now = new Date().toISOString();
+    const updatedTrials = { ...user.trials, [featureKey]: now };
+    await updateUser({ trials: updatedTrials });
+    addToast('7-Day Trial Started! Enjoy!', 'success');
+  }, [user, updateUser, addToast]);
+
   const hasProAccess = isProUser(user) || isSessionPro;
   const isPassOnCooldown = false;
 
@@ -702,6 +720,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     logout,
     updateUser,
     hasProAccess,
+    startTrial,
+    hasActiveTrial,
     grantProAccess,
     grantSessionProAccess,
     grant24hPass,

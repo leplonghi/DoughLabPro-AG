@@ -4,7 +4,7 @@ import { BeakerIcon, ChartBarIcon, ClockIcon, LockClosedIcon, SparklesIcon } fro
 import { FireIcon } from '@heroicons/react/24/solid';
 
 export const LevainMarketingPage: React.FC = () => {
-    const { openPaywall } = useUser();
+    const { openPaywall, startTrial } = useUser();
 
     return (
         <div className="max-w-4xl mx-auto p-6 space-y-8 animate-fade-in pb-20">
@@ -57,14 +57,14 @@ export const LevainMarketingPage: React.FC = () => {
                             Unlock the full <strong>Levain Manager</strong> suite. Track pH, rise logs, feeding schedules, and unlimited starters.
                         </p>
                         <button
-                            onClick={() => openPaywall('levain')}
+                            onClick={() => startTrial('levain')}
                             className="w-full py-4 px-6 bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-400 hover:to-lime-500 text-white font-bold rounded-xl shadow-lg shadow-lime-500/30 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
                         >
                             <SparklesIcon className="w-5 h-5" />
-                            Upgrade to Access
+                            Start 7-Day Free Trial
                         </button>
                         <p className="text-xs text-slate-400 mt-4">
-                            Includes 7-day free trial. Cancel anytime.
+                            No credit card required. Experience Pro.
                         </p>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from '@/i18n';
 import { UnitSystem, OvenType } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
+import { AffiliateDisclaimer } from '@/components/ui/AffiliateDisclaimer';
 
 const ChoiceButton: React.FC<{
   active: boolean;
@@ -113,7 +114,11 @@ const SettingsPage: React.FC = () => {
 
         </div>
       </div>
+      <div className="mt-8">
+        <AffiliateDisclaimer variant="footer" className="bg-transparent border-0 px-0" />
+      </div>
     </div>
+
   );
 };
 

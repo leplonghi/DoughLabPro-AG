@@ -82,8 +82,8 @@ export const latamStyles: DoughStyle[] = [
         references: ['História da Alimentação no Brasil - Câmara Cascudo', 'Brazilian Food - Sally Butcher'],
         images: {
             hero: '/images/styles/pao-de-queijo-hero.png',
-            dough: '/images/styles/pao_de_queijo_dough.webp',
-            crumb: '/images/styles/pao_de_queijo_crumb.webp'
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
         }
     },
     {
@@ -167,8 +167,8 @@ export const latamStyles: DoughStyle[] = [
         references: ['Panificação Brasileira Tradicional'],
         images: {
             hero: '/images/styles/pao-frances-hero.png',
-            dough: '/images/styles/pao_frances_dough.webp',
-            crumb: '/images/styles/pao_frances_crumb.webp'
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
         }
     },
     {
@@ -258,8 +258,8 @@ export const latamStyles: DoughStyle[] = [
         references: ['La Pizza Argentina', 'Las Cuartetas'],
         images: {
             hero: '/images/styles/fugazzeta-hero.png',
-            dough: '/images/styles/fugazzeta_dough.webp',
-            crumb: '/images/styles/fugazzeta_crumb.webp'
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
         }
     }
 ];

@@ -79,8 +79,8 @@ export const asiaStyles: DoughStyle[] = [
         references: [],
         images: {
             hero: '/images/styles/shokupan-hero.png',
-            dough: '/images/styles/shokupan-dough.jpg',
-            crumb: '/images/styles/shokupan-crumb.jpg'
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
         }
     },
     {
@@ -160,8 +160,8 @@ export const asiaStyles: DoughStyle[] = [
         references: [],
         images: {
             hero: '/images/styles/naan-hero.png',
-            dough: '/images/styles/naan-dough.jpg',
-            crumb: '/images/styles/naan-crumb.jpg'
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
         }
     },
     {
@@ -241,8 +241,8 @@ export const asiaStyles: DoughStyle[] = [
         references: [],
         images: {
             hero: '/images/styles/guabao-hero.png',
-            dough: '/images/styles/guabao-dough.jpg',
-            crumb: '/images/styles/guabao-crumb.jpg'
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
         }
     }
 ];

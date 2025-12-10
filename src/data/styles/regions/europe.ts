@@ -91,8 +91,8 @@ export const europeStyles: DoughStyle[] = [
         references: ['Le Goût du Pain - Raymond Calvel', 'Décret n°93-1074 du 13 septembre 1993'],
         images: {
             hero: '/images/styles/baguette_hero.png',
-            dough: '/images/styles/baguette_dough.jpg',
-            crumb: '/images/styles/baguette_crumb.jpg',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png',
         },
     },
     {
@@ -195,8 +195,8 @@ export const europeStyles: DoughStyle[] = [
         references: ['Larousse Gastronomique', 'Professional Baking - Wayne Gisslen'],
         images: {
             hero: '/images/styles/brioche-hero.png',
-            dough: '/images/styles/brioche_dough.jpg',
-            crumb: '/images/styles/brioche_crumb.jpg',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png',
         },
     },
     {
@@ -298,8 +298,8 @@ export const europeStyles: DoughStyle[] = [
         references: ['German Baking Standards', 'The Rye Baker (for context on German flours)'],
         images: {
             hero: '/images/styles/pretzel-hero.png',
-            dough: '/images/styles/pretzel_dough.jpg',
-            crumb: '/images/styles/pretzel_crumb.jpg',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png',
         },
     },
 ];
