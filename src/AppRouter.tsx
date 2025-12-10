@@ -105,9 +105,8 @@ const ToolsPage = React.lazy(() => import('@/pages/ToolsPage'));
 const HydrationConverterPage = React.lazy(() => import('@/pages/HydrationConverterPage'));
 
 // --- Placeholder Pages ---
-function HelpPage() {
-    return <div className="p-8 text-center">Help & Support (Coming Soon)</div>;
-}
+const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
+
 function LandingPage() {
     return <div className="p-8 text-center">Landing Page (Coming Soon)</div>;
 }

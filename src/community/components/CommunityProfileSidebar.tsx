@@ -59,7 +59,15 @@ export const CommunityProfileSidebar: React.FC = () => {
                 </div>
 
                 <h3 className="mt-3 font-semibold text-dlp-text-primary">{user.name}</h3>
-                <p className="text-xs text-dlp-text-muted">Joined {new Date().getFullYear()}</p>
+                {user.skillLevel && (
+                    <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-medium uppercase tracking-wide">
+                        {user.skillLevel}
+                    </span>
+                )}
+                {user.bio && (
+                    <p className="mt-2 text-sm text-dlp-text-muted line-clamp-2">{user.bio}</p>
+                )}
+                <p className="text-xs text-dlp-text-muted mt-1">Joined {new Date().getFullYear()}</p>
 
                 <button
                     onClick={() => navigate('community/create')}

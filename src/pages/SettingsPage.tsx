@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { useTranslation } from '@/i18n';
-import { UnitSystem } from '@/types';
-import { LockFeature } from '@/components/auth/LockFeature';
+import { UnitSystem, OvenType } from '@/types';
+import { useUser } from '@/contexts/UserProvider';
 
 const ChoiceButton: React.FC<{
   active: boolean;
@@ -23,6 +22,12 @@ const ChoiceButton: React.FC<{
 
 const SettingsPage: React.FC = () => {
   const { t } = useTranslation();
+  const {
+    defaultAmbientTempC,
+    setDefaultAmbientTempC,
+    defaultOvenType,
+    setDefaultOvenType
+  } = useUser();
   const [unitSystem, setUnitSystem] = React.useState<UnitSystem>(UnitSystem.METRIC);
 
   return (
@@ -37,7 +42,8 @@ const SettingsPage: React.FC = () => {
       <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-10">
         <h1 className="text-2xl font-bold text-slate-900 mb-6">General Settings</h1>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
+          {/* Unit System */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">
               {t('form.unit_system')}
@@ -61,27 +67,50 @@ const SettingsPage: React.FC = () => {
             </p>
           </div>
 
-          <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700">
-              App Theme
-            </label>
-            <LockFeature
-              featureKey="app.theme_customization"
-              customMessage="Theme customization is a Lab Pro feature."
-            >
-              <div className="grid grid-cols-3 gap-3">
-                <ChoiceButton active={true} onClick={() => { }}>Light</ChoiceButton>
-                <ChoiceButton active={false} onClick={() => { }}>Dark</ChoiceButton>
-                <ChoiceButton active={false} onClick={() => { }}>System</ChoiceButton>
+          {/* Environment Defaults */}
+          <div className="border-t border-slate-200 pt-6">
+            <h2 className="text-lg font-semibold text-slate-800 mb-4">Environment Defaults</h2>
+            <div className="space-y-6">
+
+              {/* Default Ambient Temperature */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  {t('community_detail.ambient_temp')} ({unitSystem === UnitSystem.METRIC ? '°C' : '°F'})
+                </label>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="number"
+                    value={defaultAmbientTempC}
+                    onChange={(e) => setDefaultAmbientTempC(Number(e.target.value))}
+                    className="block w-32 rounded-lg border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm p-2.5 border"
+                  />
+                  <span className="text-sm text-slate-500">
+                    Using {defaultAmbientTempC}°C as base for calculations.
+                  </span>
+                </div>
               </div>
-            </LockFeature>
+
+              {/* Default Oven Type */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  Default Oven Type
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {Object.values(OvenType).map((type) => (
+                    <ChoiceButton
+                      key={type}
+                      active={defaultOvenType === type}
+                      onClick={() => setDefaultOvenType(type)}
+                    >
+                      {t(`profile.ovens.types.${type.toLowerCase()}`) || type}
+                    </ChoiceButton>
+                  ))}
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <div className="border-t border-slate-200 pt-6">
-            <p className="text-center text-slate-500">
-              More settings coming soon.
-            </p>
-          </div>
         </div>
       </div>
     </div>

@@ -139,7 +139,36 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                     <h1 className="text-2xl font-bold text-gray-900 mb-1">
                         {userProfile?.name || 'Unknown Baker'}
                     </h1>
-                    <div className="text-gray-500 text-sm mb-6">
+
+                    {isOwnProfile && currentUser && (
+                        <div className="flex flex-col items-center mt-2 max-w-md mx-auto space-y-2">
+                            {currentUser.skillLevel && (
+                                <span className="px-3 py-1 bg-lime-100 text-lime-800 text-xs font-bold uppercase rounded-full tracking-wide">
+                                    {currentUser.skillLevel}
+                                </span>
+                            )}
+                            {currentUser.location && (
+                                <p className="text-sm text-gray-500 font-medium">📍 {currentUser.location}</p>
+                            )}
+                            {currentUser.bio && (
+                                <p className="text-gray-600 text-sm leading-relaxed">{currentUser.bio}</p>
+                            )}
+                            <div className="flex gap-4 mt-2">
+                                {currentUser.website && (
+                                    <a href={currentUser.website} target="_blank" rel="noreferrer" className="text-lime-600 hover:text-lime-700 text-sm font-medium">
+                                        Website
+                                    </a>
+                                )}
+                                {currentUser.instagramHandle && (
+                                    <a href={`https://instagram.com/${currentUser.instagramHandle.replace('@', '')}`} target="_blank" rel="noreferrer" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
+                                        Instagram
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="text-gray-500 text-sm mt-4 mb-2">
                         {posts.length} {posts.length === 1 ? 'Bake' : 'Bakes'} Shared
                     </div>
                 </div>
@@ -150,8 +179,8 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                         <button
                             onClick={() => setActiveTab('posts')}
                             className={`pb-3 text-sm font-medium flex items-center gap-2 border-b-2 transition-colors ${activeTab === 'posts'
-                                    ? 'border-lime-600 text-lime-600'
-                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                                ? 'border-lime-600 text-lime-600'
+                                : 'border-transparent text-gray-500 hover:text-gray-700'
                                 }`}
                         >
                             <FileText className="h-4 w-4" />
@@ -160,8 +189,8 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                         <button
                             onClick={() => setActiveTab('saved')}
                             className={`pb-3 text-sm font-medium flex items-center gap-2 border-b-2 transition-colors ${activeTab === 'saved'
-                                    ? 'border-lime-600 text-lime-600'
-                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                                ? 'border-lime-600 text-lime-600'
+                                : 'border-transparent text-gray-500 hover:text-gray-700'
                                 }`}
                         >
                             <Bookmark className="h-4 w-4" />

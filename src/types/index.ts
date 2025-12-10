@@ -202,6 +202,11 @@ export interface User {
     stripeCustomerId?: string | null;
     stripeSubscriptionId?: string | null;
     isAdmin?: boolean;
+    location?: string;
+    bio?: string;
+    website?: string;
+    instagramHandle?: string;
+    skillLevel?: 'beginner' | 'intermediate' | 'advanced' | 'pro';
 }
 
 export interface UserContextType {
@@ -257,6 +262,10 @@ export interface UserContextType {
     favorites: FavoriteItem[];
     toggleFavorite: (item: Omit<FavoriteItem, 'createdAt'>) => Promise<void>;
     isFavorite: (id: string) => boolean;
+    defaultAmbientTempC: number; // Global default
+    setDefaultAmbientTempC: (temp: number) => void;
+    defaultOvenType: OvenType; // Global default
+    setDefaultOvenType: (type: OvenType) => void;
 }
 
 
@@ -533,6 +542,12 @@ export interface MyLabEnvironmentSettings {
     ovenType?: 'HOME_ELECTRIC' | 'HOME_GAS' | 'PORTABLE_WFO' | 'WOOD_FIRED';
     bakingSurface?: 'STEEL' | 'STONE' | 'BISCOTTO' | 'TRAY';
     maxOvenTempC?: number;
+}
+
+export interface UserSettings {
+    preferredFlourId: string | null;
+    defaultAmbientTempC: number;
+    defaultOvenType: OvenType;
 }
 
 export interface Suggestion {

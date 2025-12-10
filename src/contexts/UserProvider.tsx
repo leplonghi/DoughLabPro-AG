@@ -12,6 +12,8 @@ import {
   PaywallOrigin,
   DoughStyleDefinition,
   FavoriteItem,
+  UserSettings,
+  OvenType,
 } from '@/types';
 import { useToast } from '@/components/ToastProvider';
 import { hoursBetween } from '@/helpers';
@@ -86,12 +88,21 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 
   // Settings
-  const [userSettings, setUserSettings] = useState<any>(() => {
+  const [userSettings, setUserSettings] = useState<UserSettings>(() => {
+    const defaults: UserSettings = {
+      preferredFlourId: null,
+      defaultAmbientTempC: 23,
+      defaultOvenType: OvenType.ELECTRIC,
+    };
     try {
       const stored = localStorage.getItem('dough-lab-user-settings');
-      return stored ? JSON.parse(stored) : { preferredFlourId: null };
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        return { ...defaults, ...parsed };
+      }
+      return defaults;
     } catch {
-      return { preferredFlourId: null };
+      return defaults;
     }
   });
 
@@ -320,7 +331,15 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, [userSettings]);
 
   const setPreferredFlour = useCallback((id: string | null) => {
-    setUserSettings((prev: any) => ({ ...prev, preferredFlourId: id }));
+    setUserSettings((prev) => ({ ...prev, preferredFlourId: id }));
+  }, []);
+
+  const setDefaultAmbientTempC = useCallback((temp: number) => {
+    setUserSettings((prev) => ({ ...prev, defaultAmbientTempC: temp }));
+  }, []);
+
+  const setDefaultOvenType = useCallback((type: OvenType) => {
+    setUserSettings((prev) => ({ ...prev, defaultOvenType: type }));
   }, []);
 
   // Helpers for CRUD - Mock Aware
@@ -718,6 +737,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     favorites,
     toggleFavorite,
     isFavorite,
+    defaultAmbientTempC: userSettings.defaultAmbientTempC,
+    setDefaultAmbientTempC,
+    defaultOvenType: userSettings.defaultOvenType,
+    setDefaultOvenType,
   }), [
     firebaseUser,
     db,
@@ -770,6 +793,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     favorites,
     toggleFavorite,
     isFavorite,
+    userSettings.defaultAmbientTempC,
+    setDefaultAmbientTempC,
+    userSettings.defaultOvenType,
+    setDefaultOvenType,
   ]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

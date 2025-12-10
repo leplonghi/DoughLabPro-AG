@@ -72,13 +72,28 @@ const LearnHomePage: React.FC = () => {
 
                 <div className="px-4 sm:px-6 space-y-12">
                     {/* 2. FEATURED CONTENT CARD (Standardized) */}
+
                     {featuredArticle && (
                         <div className="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
                             onClick={() => navigate('learn/article', featuredArticle.id)}>
                             <div className="md:flex">
-                                <div className="md:w-1/3 bg-stone-100 relative h-48 md:h-auto flex items-center justify-center">
-                                    <SparklesIcon className="w-12 h-12 text-stone-300" />
-                                    <div className="absolute top-4 left-4 bg-white px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider text-stone-600 shadow-sm border border-stone-100">
+                                {/* Featured Image Section */}
+                                <div
+                                    className="md:w-1/3 relative h-48 md:h-auto bg-cover bg-center"
+                                    style={{
+                                        backgroundImage: `url(${(() => {
+                                            const cat = LEARN_CATEGORIES.find(c => c.title === featuredArticle.category);
+                                            const track = cat ? LEARN_TRACKS.find(t => t.id === cat.trackId) : null;
+                                            return track ? TRACK_IMAGES[track.id] : TRACK_IMAGES['science'];
+                                        })()
+                                            })`
+                                    }}
+                                >
+                                    {/* Overlay for better text contrast if we had text over it, but here it's side by side. 
+                                        So we mainly just want the image. We can add a subtle gradient if needed. */}
+                                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+
+                                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider text-slate-900 shadow-sm border border-stone-100">
                                         Featured
                                     </div>
                                 </div>
