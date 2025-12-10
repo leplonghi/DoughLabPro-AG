@@ -131,12 +131,21 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
         // Derive baking temp if possible, else 200
         const bakingTempC = (style.technicalProfile?.ovenTemp) ? Math.round((style.technicalProfile.ovenTemp[0] + style.technicalProfile.ovenTemp[1]) / 2) : 200;
 
+        // Default Hydration Logic: Pizza/Bread needs ~65%, Pastry (Cookies/Brownies) can be 0% (hydration from eggs/butter)
+        const defaultHydration = (bakeType === BakeType.SWEETS_PASTRY) ? 0 : 65;
+
+        // Default Quantity Logic:
+        // Pastry: 1 Batch (Tray) of 1200g (e.g. Brownies, Cinnamon Rolls)
+        // Pizza/Bread: 4 Balls of 250g
+        const defaultNumPizzas = (bakeType === BakeType.SWEETS_PASTRY) ? 1 : 4;
+        const defaultBallWeight = (bakeType === BakeType.SWEETS_PASTRY) ? 1200 : 250;
+
         return {
             bakeType,
             recipeStyle,
             baseStyleName: style.name,
             selectedStyleId: style.id,
-            hydration: totalWaterPct > 0 ? totalWaterPct : 65,
+            hydration: totalWaterPct > 0 ? totalWaterPct : defaultHydration,
             salt: totalSaltPct,
             oil: totalOilPct,
             sugar: totalSugarPct,
@@ -146,8 +155,8 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
             yeastPercentage: (totalYeastPct > 0 && !starterIng) ? totalYeastPct : parsedYeastPercentage,
             prefermentFlourPercentage: (parsedFermentationTechnique !== FermentationTechnique.DIRECT) ? parsedPrefermentPercentage : undefined,
             ingredients,
-            numPizzas: 4,
-            doughBallWeight: 250,
+            numPizzas: defaultNumPizzas,
+            doughBallWeight: defaultBallWeight,
             scale: 1,
             notes: `Loaded from style: ${style.name} (Formula)`
         };

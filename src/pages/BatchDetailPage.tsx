@@ -152,7 +152,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
             const file = e.target.files[0];
             setIsUploading(true);
             try {
-                const path = `user_uploads/${user?.email || 'anonymous'}/${editableBatch.id}/${Date.now()}_${file.name}`;
+                const path = `user_uploads/${user?.uid || 'anonymous'}/${editableBatch.id}/${Date.now()}_${file.name}`;
                 const url = await uploadImage(file, path);
 
                 setEditableBatch({ ...editableBatch, photoUrl: url });

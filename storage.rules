@@ -1,8 +1,50 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if request.auth != null;
+    
+    // Helper: Check if user is the owner of the path segment
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
     }
+
+    // Helper: Check if the user is authenticated (for general read if needed)
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    // User Avatars
+    // Path: users/{uid}/avatar or users/{uid}/avatar.jpg
+    match /users/{userId}/avatar {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+    match /users/{userId}/avatar.{ext} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+
+    // User Styles (Hero images)
+    // Path: styles/{uid}/{styleId}/hero_TIMESTAMP
+    match /styles/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+
+    // Community Post Uploads
+    // Path: community_uploads/{uid}/TIMESTAMP_name
+    match /community_uploads/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+
+    // Batch Photos (User Uploads)
+    // Path: user_uploads/{uid_or_email}/{batchId}/...
+    match /user_uploads/{userId}/{allPaths=**} {
+      allow read: if true;
+      // Allow if ID matches UID OR if ID matches Email (Legacy support)
+      allow write: if isOwner(userId) || (request.auth != null && request.auth.token.email == userId);
+    }
+
+    // Default strict deny for everything else (implicit)
   }
 }

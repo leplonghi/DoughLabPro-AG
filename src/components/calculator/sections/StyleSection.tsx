@@ -45,6 +45,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                     active={config.bakeType === BakeType.SWEETS_PASTRY}
                     label="Pastry"
                     onClick={() => onBakeTypeChange(BakeType.SWEETS_PASTRY)}
+                    className={config.bakeType === BakeType.SWEETS_PASTRY ? '!bg-[#6d6c4e] !ring-[#6d6c4e]' : ''}
                 />
             </div>
 

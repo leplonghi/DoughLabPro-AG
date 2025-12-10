@@ -315,6 +315,20 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             // Otherwise, sync from the sliders.
             if (ingredients) {
                 newConf.ingredients = ingredients;
+                // Sync scalar sliders to match the authentic recipe's ingredients definitions
+                // This ensures the sliders start at the correct positions (e.g. 75% sugar for Brownie)
+                const totalHydration = ingredients.filter(i => i.role === 'water').reduce((sum, i) => sum + (i.bakerPercentage || 0), 0);
+                const totalSalt = ingredients.filter(i => i.role === 'salt').reduce((sum, i) => sum + (i.bakerPercentage || 0), 0);
+                const totalFat = ingredients.filter(i => i.role === 'fat').reduce((sum, i) => sum + (i.bakerPercentage || 0), 0);
+                const totalSugar = ingredients.filter(i => i.role === 'sugar').reduce((sum, i) => sum + (i.bakerPercentage || 0), 0);
+
+                if (totalHydration > 0) newConf.hydration = totalHydration;
+                if (totalSalt > 0) newConf.salt = totalSalt;
+                if (totalFat > 0) newConf.oil = totalFat;
+                // For sugar, we allow 0 if the recipe is explicitly Savory but has sugar role? 
+                // Usually safe to sync.
+                if (totalSugar > 0) newConf.sugar = totalSugar;
+
             } else {
                 newConf.ingredients = syncIngredientsFromConfig(newConf);
             }

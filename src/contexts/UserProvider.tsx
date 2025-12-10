@@ -199,6 +199,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
               : "free";
 
         const mergedProfile: User = {
+          uid: authUser.uid,
           name: profileData.name || authUser.displayName || 'Baker',
           email: authUser.email || '',
           avatar: profileData.avatar || authUser.photoURL || undefined,
@@ -599,6 +600,14 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     [deleteDocFn, addToast]
   );
 
+  const updateUserStyle = useCallback(
+    async (style: DoughStyleDefinition) => {
+      await updateDocFn('styles', style.id, style, setUserStyles);
+      addToast(`Style "${style.name}" updated.`, 'success');
+    },
+    [updateDocFn, addToast]
+  );
+
   // Favorites
   const toggleFavorite = useCallback(
     async (item: Omit<FavoriteItem, 'createdAt'>) => {
@@ -789,6 +798,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     attachBakeToSeries,
     userStyles,
     addUserStyle,
+    updateUserStyle,
     deleteUserStyle,
     favorites,
     toggleFavorite,

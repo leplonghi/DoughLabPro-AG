@@ -90,5 +90,19 @@ export const cinnamon_rolls_classic: StyleDefinition = {
   "diagrams": [],
   "faq": [],
   "isCanonical": true,
-  "source": "official"
+  "source": "official",
+  "base_formula": [
+    { "name": "Bread Flour", "percentage": 100 },
+    { "name": "Whole Milk", "percentage": 65 },
+    { "name": "Sugar", "percentage": 15 },
+    { "name": "Butter (Soft)", "percentage": 15 },
+    { "name": "Whole Egg", "percentage": 10 },
+    { "name": "Instant Yeast", "percentage": 1.5 },
+    { "name": "Salt", "percentage": 2 },
+    { "name": "Filling: Brown Sugar", "percentage": 25 },
+    { "name": "Filling: Cinnamon", "percentage": 2.5 },
+    { "name": "Filling: Butter", "percentage": 10 },
+    { "name": "Frosting: Cream Cheese", "percentage": 20 },
+    { "name": "Frosting: Powdered Sugar", "percentage": 15 }
+  ]
 };

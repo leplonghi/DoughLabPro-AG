@@ -173,6 +173,62 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
         return steps;
     }
 
+    // --- LAMINATED PATHWAY (Croissant, Danish, Puff) ---
+    const isLaminated = [RecipeStyle.FRENCH_CROISSANT, RecipeStyle.PASTRY_DANISH, "PuffPastry"].includes(config.recipeStyle);
+
+    if (isLaminated) {
+        addStep(
+            'MIX',
+            'Detrempe (Base Dough)',
+            'Mix flour, water, yeast, salt, sugar, and the dough-portion butter until just combined. Do not overdevelop gluten (keep extensible).',
+            'Mix the dough ingredients just until they come together. Don\'t knead it too hard!',
+            { technicalExplanation: 'Keeping the gluten structure slightly underdeveloped in the detrempe ensures extensibility for the subsequent lamination process.' }
+        );
+        addStep(
+            'BULK',
+            'Disk/Block Formation',
+            'Flatten dough into a rectangle or disk, wrap tightly in plastic, and chill for 12-24 hours.',
+            'Flatten the dough, wrap it up, and put it in the fridge overnight.',
+            { durationLabel: '12-24h', technicalExplanation: 'Chilling relaxes the gluten and ensures the dough matches the temperature/consistency of the butter block for lamination.' }
+        );
+        addStep(
+            'BULK',
+            'Lock-in (Beurrage)',
+            'Pound the butter block until pliable but cold (10-12°C). Encase it in the dough sheet.',
+            'Smash the butter until it bends but doesn\'t break. Wrap the dough around it.',
+            { criticalPoint: 'Butter and dough must have the same consistency to prevent shattering (too cold) or absorption (too warm).' }
+        );
+        addStep(
+            'BULK',
+            'Lamination (Tourage)',
+            'Perform 1 Double Fold (Book) and 1 Simple Fold (Letter), resting 30m in fridge between folds.',
+            'Fold the dough like a book, then rest. Then fold like a letter. Keep it cold!',
+            { durationLabel: '1h+', technicalExplanation: 'This process creates distinct alternating layers of fat and dough (55 layers for classic croissant) which puff upon baking.' }
+        );
+        addStep(
+            'DIVIDE',
+            'Shaping',
+            'Roll to 4mm thickness. Cut into triangles (10cm x 25cm). Elongate gently and roll tight. Egg wash.',
+            'Roll it out thin, cut long triangles, and roll them up tight. Brush with egg.',
+            { proTip: 'Cut with a decisive, downward motion (pizza cutter) to avoid sealing the layers at the edges.' }
+        );
+        addStep(
+            'PROOF',
+            'Final Proof',
+            'Proof at 26-28°C (78-82°F) until doubled and jiggly (2-3h). Layers should separate slightly.',
+            'Let them rise until they jiggle like jelly. Don\'t let it get too hot!',
+            { durationLabel: '2-3h', criticalPoint: 'Avoid temperatures above 29°C (84°F) or the butter layers will melt, ruining the flaky structure.' }
+        );
+        addStep(
+            'BAKE',
+            'Baking',
+            `Bake at 200°C (390°F) for 5-7m, then lower to 190°C (375°F) for 12-15m until deep golden brown.`,
+            'Bake hot at first for puff, then lower the heat to finish cooking.',
+            { technicalExplanation: 'Initial high heat creates steam for "oven spring" and separates layers before the crust sets.' }
+        );
+        return steps;
+    }
+
     // --- PHASE 2: PRE-FERMENT (Day -1) ---
     if (isPoolish) {
         addStep(

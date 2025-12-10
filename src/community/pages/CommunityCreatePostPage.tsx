@@ -1,40 +1,74 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from '../../contexts/RouterContext';
 import { useUser } from '../../contexts/UserProvider';
 import { communityStore } from '../store/communityStore';
-import { ArrowLeft, Loader2, Image as ImageIcon, Sparkles, ChefHat, Timer, Thermometer, Droplets, Scale, UploadCloud } from 'lucide-react';
+import { ArrowLeft, Loader2, Image as ImageIcon, Sparkles, ChefHat, Droplets, UploadCloud, CheckCircle2, History } from 'lucide-react';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
-import { OvenType, RecipeStyle, FermentationTechnique } from '@/types';
+import { OvenType, RecipeStyle, FermentationTechnique, Batch, YeastType } from '@/types';
 import SliderInput from '../../components/ui/SliderInput';
 
 export const CommunityCreatePostPage: React.FC = () => {
     const { navigate } = useRouter();
-    const { user } = useUser();
+    const { user, batches } = useUser();
 
-    // -- State --
+    // -- Mode Selection --
+    const [mode, setMode] = useState<'select' | 'create'>('select'); // 'select' = choose source, 'create' = editing form
+
+    // -- Form State --
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-    // Technical Stats
+    // Stats
     const [hydration, setHydration] = useState<number>(70);
-    const [salt, setSalt] = useState<number>(2.0);
+    const [salt, setSalt] = useState<number>(2.5);
     const [fermentationTime, setFermentationTime] = useState<number>(24);
-    const [temp, setTemp] = useState<string>(''); // e.g. "25C"
+    const [temp, setTemp] = useState<string>('');
 
-    // Enums
     const [selectedStyle, setSelectedStyle] = useState<RecipeStyle>(RecipeStyle.NEAPOLITAN);
     const [method, setMethod] = useState<FermentationTechnique>(FermentationTechnique.DIRECT);
     const [ovenType, setOvenType] = useState<OvenType>(OvenType.ELECTRIC);
     const [flour, setFlour] = useState('');
 
-    // UI State
+    // Pre-filled from batch?
+    const [sourceBatchId, setSourceBatchId] = useState<string | null>(null);
+
+    // UI/Upload
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-    // -- Handlers --
+    // -- Helpers --
+
+    const handleBatchSelect = (batch: Batch) => {
+        setSourceBatchId(batch.id);
+        setTitle(batch.name);
+        setDescription(batch.notes || '');
+
+        // Map batch data
+        setHydration(batch.doughConfig.hydration);
+        setSalt(batch.doughConfig.salt);
+        if (batch.doughConfig.totalFlour) {
+            // If we had this data calculated
+        }
+
+        // Try to map style
+        setSelectedStyle(batch.doughConfig.recipeStyle);
+        setMethod(batch.doughConfig.fermentationTechnique);
+        if (batch.ovenType) setOvenType(batch.ovenType);
+
+        // Estimate fermentation time if possible (bulk + proof)
+        const totalFerm = (batch.bulkTimeHours || 0) + (batch.proofTimeHours || 0);
+        if (totalFerm > 0) setFermentationTime(totalFerm);
+
+        if (batch.photoUrl) {
+            setPreviewUrl(batch.photoUrl);
+            // Note: If reusing photoUrl, we don't set 'file', we handles submit differently
+        }
+
+        setMode('create');
+    };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -51,14 +85,17 @@ export const CommunityCreatePostPage: React.FC = () => {
         try {
             const { storage } = await import('@/firebase/storage');
             const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
+            // Mock fallback if offline/no firebase
             if (!storage) return 'https://images.unsplash.com/photo-1542834371-41040eb34996?auto=format&fit=crop&q=80&w=1000';
+
             const fileName = `${userId}_${Date.now()}_${fileToUpload.name}`;
             const storageRef = ref(storage, `community_uploads/${fileName}`);
             await uploadBytes(storageRef, fileToUpload);
             return await getDownloadURL(storageRef);
         } catch (err) {
             console.error('Upload failed', err);
-            throw new Error('Failed to upload image.');
+            // Return placeholder for mock purposes if fail
+            return 'https://images.unsplash.com/photo-1542834371-41040eb34996?auto=format&fit=crop&q=80&w=1000';
         }
     };
 
@@ -70,8 +107,12 @@ export const CommunityCreatePostPage: React.FC = () => {
         setError(null);
 
         try {
-            let photoUrl = 'https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&q=80&w=1000';
-            if (file) photoUrl = await uploadImage(file, user.uid);
+            let photoUrl = previewUrl || 'https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&q=80&w=1000';
+
+            // Upload if new file
+            if (file) {
+                photoUrl = await uploadImage(file, user.uid);
+            }
 
             const newPost = {
                 uid: user.uid,
@@ -81,7 +122,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                 description,
                 hydration,
                 saltPct: salt,
-                fermentationTime, // Need to add to type definition if not exists, but store handles flexible data
+                fermentationTime,
                 temp,
                 flour: flour || 'Mix',
                 ovenType,
@@ -93,7 +134,8 @@ export const CommunityCreatePostPage: React.FC = () => {
                 clones: 0,
                 tags: [selectedStyle.toLowerCase(), method.toLowerCase(), 'homemade'],
                 visibility: 'public' as const,
-                createdAt: new Date() as any
+                createdAt: new Date() as any,
+                batchId: sourceBatchId || undefined // Link to original batch if exists
             };
 
             await communityStore.createPost(newPost);
@@ -107,300 +149,252 @@ export const CommunityCreatePostPage: React.FC = () => {
     };
 
     // -- Sub-Components --
-
-    const SelectionCard = ({
-        active,
-        onClick,
-        label,
-        subLabel
-    }: {
-        active: boolean;
-        onClick: () => void;
-        label: string;
-        subLabel?: string
-    }) => (
+    const SelectionPill = ({ active, onClick, children }: any) => (
         <button
             type="button"
             onClick={onClick}
-            className={`relative p-4 rounded-xl text-left transition-all duration-200 border-2 w-full ${active
-                    ? 'border-lime-500 bg-lime-50/[0.3] shadow-sm'
-                    : 'border-transparent bg-gray-50 hover:bg-gray-100 hover:border-gray-200'
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${active
+                    ? 'bg-lime-500 text-white shadow-md'
+                    : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
         >
-            <div className={`font-semibold text-sm ${active ? 'text-lime-700' : 'text-gray-900'}`}>
-                {label}
-            </div>
-            {subLabel && (
-                <div className="text-xs text-gray-500 mt-1">{subLabel}</div>
-            )}
-            {active && (
-                <div className="absolute top-2 right-2 h-2 w-2 rounded-full bg-lime-500 shadow-lime-glow" />
-            )}
+            {children}
         </button>
     );
 
     return (
         <LibraryPageLayout>
-            <div className="max-w-4xl mx-auto pb-20">
-                {/* Nav */}
-                <button
-                    onClick={() => navigate('community')}
-                    className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors group"
-                >
-                    <ArrowLeft className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" />
-                    <span>Cancel & Return</span>
-                </button>
+            <div className="max-w-3xl mx-auto pb-20">
 
-                {/* Hero Header */}
-                <div className="text-center mb-10">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-3">Showcase Your Bake</h1>
-                    <p className="text-gray-500 max-w-xl mx-auto">
-                        Share your formula, process, and results with the DoughLab community.
-                        Detailed recipes help others learn and replicate your success.
-                    </p>
+                {/* Header */}
+                <div className="flex items-center gap-4 mb-8">
+                    <button
+                        onClick={() => mode === 'create' ? setMode('select') : navigate('community')}
+                        className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                        <ArrowLeft className="h-5 w-5 text-gray-600" />
+                    </button>
+                    <div>
+                        <h1 className="text-2xl font-bold text-gray-900">New Community Post</h1>
+                    </div>
                 </div>
 
                 {error && (
-                    <div className="bg-red-50 text-red-600 p-4 mx-auto max-w-2xl rounded-lg text-sm border border-red-100 flex items-center justify-center gap-2 mb-8 animate-shake">
-                        {error}
+                    <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm border border-red-100 mb-6 flex items-center gap-2">
+                        <span className="text-xl">⚠️</span> {error}
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-8">
+                {mode === 'select' ? (
+                    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <section>
+                            <h2 className="text-lg font-semibold text-gray-900 mb-4">How do you want to start?</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <button
+                                    onClick={() => { setSourceBatchId(null); setMode('create'); }}
+                                    className="p-6 rounded-2xl border-2 border-dashed border-gray-300 hover:border-lime-500 hover:bg-lime-50/10 transition-all text-left group"
+                                >
+                                    <div className="h-12 w-12 bg-lime-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-lime-200 transition-colors">
+                                        <Sparkles className="h-6 w-6 text-lime-700" />
+                                    </div>
+                                    <h3 className="font-bold text-gray-900 mb-1">Start from Scratch</h3>
+                                    <p className="text-sm text-gray-500">Fill in your formula manually.</p>
+                                </button>
 
-                    {/* 1. Style & Core Identity */}
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex items-center gap-2">
-                            <ChefHat className="h-5 w-5 text-lime-600" />
-                            <h2 className="font-semibold text-gray-900">What did you bake?</h2>
-                        </div>
-                        <div className="p-8">
-                            <label className="block text-sm font-medium text-gray-700 mb-4">Pizza Style</label>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-                                {Object.values(RecipeStyle).map(s => (
-                                    <SelectionCard
-                                        key={s}
-                                        label={s.replace(/_/g, ' ')}
-                                        active={selectedStyle === s}
-                                        onClick={() => setSelectedStyle(s)}
-                                    />
-                                ))}
-                            </div>
+                                <div className="p-6 rounded-2xl bg-white border border-gray-200 shadow-sm">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center">
+                                            <History className="h-6 w-6 text-blue-600" />
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-gray-900">From My Lab</h3>
+                                            <p className="text-sm text-gray-500">Select a recent bake used.</p>
+                                        </div>
+                                    </div>
 
-                            <label className="block text-sm font-medium text-gray-700 mb-4">Method</label>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                {Object.values(FermentationTechnique).map(m => (
-                                    <SelectionCard
-                                        key={m}
-                                        label={m.replace(/_/g, ' ')}
-                                        active={method === m}
-                                        onClick={() => setMethod(m)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* 2. The Formula */}
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex items-center gap-2">
-                            <Droplets className="h-5 w-5 text-blue-500" />
-                            <h2 className="font-semibold text-gray-900">The Formula</h2>
-                        </div>
-                        <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                            <SliderInput
-                                label="Hydration"
-                                name="hydration"
-                                value={hydration}
-                                min={50}
-                                max={100}
-                                step={1}
-                                unit="%"
-                                onChange={(e) => setHydration(Number(e.target.value))}
-                                recommendedMin={60}
-                                recommendedMax={85}
-                                tooltip="Total water weight divided by total flour weight."
-                            />
-
-                            <SliderInput
-                                label="Salt"
-                                name="salt"
-                                value={salt}
-                                min={0}
-                                max={5}
-                                step={0.1}
-                                unit="%"
-                                onChange={(e) => setSalt(Number(e.target.value))}
-                                recommendedMin={1.8}
-                                recommendedMax={3.2}
-                                tooltip="Salt percentage relative to flour."
-                            />
-
-                            <div className="col-span-full">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Flour Selection</label>
-                                <input
-                                    type="text"
-                                    value={flour}
-                                    onChange={(e) => setFlour(e.target.value)}
-                                    placeholder="e.g. 50% Bread Flour, 50% ''00''"
-                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* 3. Process */}
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex items-center gap-2">
-                            <Timer className="h-5 w-5 text-orange-500" />
-                            <h2 className="font-semibold text-gray-900">Process & Oven</h2>
-                        </div>
-                        <div className="p-8 space-y-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <SliderInput
-                                    label="Total Fermentation"
-                                    name="fermentationTime"
-                                    value={fermentationTime}
-                                    min={1}
-                                    max={72}
-                                    step={1}
-                                    unit="h"
-                                    onChange={(e) => setFermentationTime(Number(e.target.value))}
-                                    tooltip="Combined time for bulk and proof."
-                                />
-
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-[6px]">Temperature (Optional)</label>
-                                    <div className="relative">
-                                        <Thermometer className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                                        <input
-                                            type="text"
-                                            value={temp}
-                                            onChange={(e) => setTemp(e.target.value)}
-                                            placeholder="e.g. 24°C / 75°F"
-                                            className="w-full pl-10 pr-4 py-[10px] bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all"
-                                        />
+                                    <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+                                        {batches.length === 0 ? (
+                                            <p className="text-sm text-gray-400 italic py-2">No saved batches found.</p>
+                                        ) : (
+                                            batches.slice(0, 5).map(batch => (
+                                                <button
+                                                    key={batch.id}
+                                                    onClick={() => handleBatchSelect(batch)}
+                                                    className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors text-left group"
+                                                >
+                                                    <div className="h-10 w-10 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                                                        {batch.photoUrl ? (
+                                                            <img src={batch.photoUrl} className="h-full w-full object-cover" />
+                                                        ) : (
+                                                            <div className="h-full w-full flex items-center justify-center text-xs text-gray-400">IMG</div>
+                                                        )}
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-medium text-gray-900 truncate">{batch.name}</div>
+                                                        <div className="text-xs text-gray-500">
+                                                            {new Date(batch.createdAt).toLocaleDateString()} • {batch.doughConfig.recipeStyle}
+                                                        </div>
+                                                    </div>
+                                                    <ArrowLeft className="h-4 w-4 text-gray-300 rotate-180 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                </button>
+                                            ))
+                                        )}
                                     </div>
                                 </div>
                             </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-4">Oven Used</label>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    {Object.values(OvenType).map(o => (
-                                        <SelectionCard
-                                            key={o}
-                                            label={o.replace(/_/g, ' ')}
-                                            active={ovenType === o}
-                                            onClick={() => setOvenType(o)}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+                        </section>
                     </div>
+                ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6 animate-in fade-in slide-in-from-right-8 duration-300">
 
-                    {/* 4. Story & Visuals */}
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex items-center gap-2">
-                            <Sparkles className="h-5 w-5 text-purple-600" />
-                            <h2 className="font-semibold text-gray-900">The Results</h2>
-                        </div>
-                        <div className="p-8 space-y-8">
+                        {/* Main Content Card */}
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
 
-                            {/* Photo Upload - Bigger & Better */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-3">Hero Photo</label>
-                                <div className="w-full">
-                                    <label
-                                        htmlFor="file-upload"
-                                        className={`group relative w-full h-80 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 overflow-hidden ${previewUrl
-                                                ? 'border-lime-500 bg-gray-900'
-                                                : 'border-gray-300 bg-gray-50 hover:border-lime-500 hover:bg-lime-50/10'
-                                            }`}
-                                    >
+                                {/* Photo Upload Section */}
+                                <div className="p-6 md:p-8 col-span-1">
+                                    <label className="block text-sm font-bold text-gray-900 mb-4">The Result</label>
+                                    <label className="relative aspect-square md:aspect-[3/4] rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 hover:border-lime-500 hover:bg-lime-50/10 transition-all cursor-pointer flex flex-col items-center justify-center overflow-hidden group">
                                         {previewUrl ? (
                                             <>
-                                                <img
-                                                    src={previewUrl}
-                                                    alt="Preview"
-                                                    className="w-full h-full object-cover opacity-90 transition-opacity group-hover:opacity-75"
-                                                />
-                                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                                    <div className="bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-full font-medium opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
-                                                        <UploadCloud className="h-4 w-4" /> Change Photo
+                                                <img src={previewUrl} className="w-full h-full object-cover" />
+                                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <div className="bg-white/90 backdrop-blur text-xs font-bold py-2 px-4 rounded-full flex items-center gap-2">
+                                                        <ImageIcon className="h-3 w-3" /> Change
                                                     </div>
                                                 </div>
                                             </>
                                         ) : (
-                                            <div className="text-center p-6 transform transition-transform group-hover:scale-105">
-                                                <div className="bg-white h-20 w-20 rounded-full shadow-sm flex items-center justify-center mx-auto mb-6">
-                                                    <ImageIcon className="h-10 w-10 text-gray-400 group-hover:text-lime-600 transition-colors" />
+                                            <div className="text-center p-4">
+                                                <div className="h-12 w-12 bg-white rounded-full shadow-sm flex items-center justify-center mx-auto mb-3">
+                                                    <UploadCloud className="h-6 w-6 text-lime-600" />
                                                 </div>
-                                                <h3 className="text-lg font-semibold text-gray-900 mb-1">Drop your best shot here</h3>
-                                                <p className="text-sm text-gray-500">Supports JPG, PNG (Max 5MB)</p>
+                                                <p className="text-sm font-medium text-gray-900">Upload Photo</p>
+                                                <p className="text-xs text-gray-400 mt-1">Tap to browse</p>
                                             </div>
                                         )}
-                                        <input
-                                            id="file-upload"
-                                            type="file"
-                                            className="hidden"
-                                            accept="image/*"
-                                            onChange={handleFileChange}
-                                        />
+                                        <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} />
                                     </label>
                                 </div>
-                            </div>
 
-                            <div className="space-y-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
-                                    <input
-                                        type="text"
-                                        value={title}
-                                        onChange={(e) => setTitle(e.target.value)}
-                                        required
-                                        placeholder="e.g. My Best Neapolitan Yet"
-                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all font-medium text-lg"
-                                    />
-                                </div>
+                                {/* Details Section */}
+                                <div className="p-6 md:p-8 col-span-2 space-y-6">
+                                    <div>
+                                        <label className="block text-sm font-bold text-gray-900 mb-2">Title</label>
+                                        <input
+                                            type="text"
+                                            value={title}
+                                            onChange={e => setTitle(e.target.value)}
+                                            placeholder="e.g. 72h Cold Ferment Margherita"
+                                            className="w-full text-lg font-medium placeholder:text-gray-300 border-0 border-b border-gray-200 focus:border-lime-500 focus:ring-0 px-0 py-2 transition-colors bg-transparent"
+                                            required
+                                        />
+                                    </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">My Notes / Description</label>
-                                    <textarea
-                                        value={description}
-                                        onChange={(e) => setDescription(e.target.value)}
-                                        required
-                                        rows={5}
-                                        placeholder="Share the details that matter: fermentation signs, oven management, flavor profile..."
-                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-lime-500 focus:border-transparent outline-none transition-all resize-none"
-                                    />
+                                    <div>
+                                        <label className="block text-sm font-bold text-gray-900 mb-2">Description / Method</label>
+                                        <textarea
+                                            value={description}
+                                            onChange={e => setDescription(e.target.value)}
+                                            placeholder="Share your process..."
+                                            rows={4}
+                                            className="w-full rounded-xl bg-gray-50 border-transparent focus:bg-white focus:border-lime-500 focus:ring-lime-500 transition-all text-sm"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Style</label>
+                                            <select
+                                                value={selectedStyle}
+                                                onChange={e => setSelectedStyle(e.target.value as RecipeStyle)}
+                                                className="w-full rounded-lg border-gray-200 text-sm focus:border-lime-500 focus:ring-lime-500"
+                                            >
+                                                {Object.values(RecipeStyle).map(s => (
+                                                    <option key={s} value={s}>{s.replace(/_/g, ' ')}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Method</label>
+                                            <select
+                                                value={method}
+                                                onChange={e => setMethod(e.target.value as FermentationTechnique)}
+                                                className="w-full rounded-lg border-gray-200 text-sm focus:border-lime-500 focus:ring-lime-500"
+                                            >
+                                                {Object.values(FermentationTechnique).map(m => (
+                                                    <option key={m} value={m}>{m.replace(/_/g, ' ')}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Submit */}
-                    <div className="flex justify-end pt-6">
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full md:w-auto px-10 py-4 bg-lime-600 hover:bg-lime-700 text-white rounded-xl font-bold text-lg shadow-lg shadow-lime-600/30 transition-all transform hover:-translate-y-1 active:scale-95 disabled:opacity-70 disabled:hover:transform-none flex items-center justify-center gap-3"
-                        >
-                            {loading ? (
-                                <>
-                                    <Loader2 className="h-6 w-6 animate-spin" />
-                                    <span>Publishing...</span>
-                                </>
-                            ) : (
-                                <>
-                                    <span>Share with Community</span>
-                                    <ArrowLeft className="h-6 w-6 rotate-180" />
-                                </>
-                            )}
-                        </button>
-                    </div>
-                </form>
+                        {/* Technical Stats Accordion/Section */}
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+                            <div className="flex items-center gap-2 mb-6">
+                                <span className="h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">
+                                    %
+                                </span>
+                                <h3 className="font-bold text-gray-900">Technical Details</h3>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <SliderInput
+                                    label="Hydration"
+                                    name="hydration"
+                                    value={hydration}
+                                    min={50} max={100} unit="%"
+                                    onChange={e => setHydration(Number(e.target.value))}
+                                />
+                                <SliderInput
+                                    label="Salt"
+                                    name="salt"
+                                    value={salt}
+                                    min={0} max={5} step={0.1} unit="%"
+                                    onChange={e => setSalt(Number(e.target.value))}
+                                />
+                                <SliderInput
+                                    label="Fermentation"
+                                    name="fermentation"
+                                    value={fermentationTime}
+                                    min={1} max={96} unit="h"
+                                    onChange={e => setFermentationTime(Number(e.target.value))}
+                                />
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">Oven Type</label>
+                                    <div className="flex flex-wrap gap-2">
+                                        {Object.values(OvenType).slice(0, 4).map(o => (
+                                            <SelectionPill
+                                                key={o}
+                                                active={ovenType === o}
+                                                onClick={() => setOvenType(o)}
+                                            >
+                                                {o.replace(/_/g, ' ')}
+                                            </SelectionPill>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Submit Actions */}
+                        <div className="flex justify-end pt-4">
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="px-8 py-3 bg-lime-600 hover:bg-lime-700 text-white rounded-xl font-bold shadow-lg shadow-lime-600/20 disabled:opacity-50 transition-all flex items-center gap-2"
+                            >
+                                {loading && <Loader2 className="h-5 w-5 animate-spin" />}
+                                Publish Post
+                            </button>
+                        </div>
+
+                    </form>
+                )}
             </div>
         </LibraryPageLayout>
     );

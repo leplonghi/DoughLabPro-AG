@@ -264,6 +264,13 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                             <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar mask-linear-fade flex-grow">
                                 {CATEGORY_FILTERS.map(cat => {
                                     const isActive = selectedCategory === cat.id;
+
+                                    // Custom active style for Pastry to distinguish from Pizza/Bread
+                                    let activeClass = 'bg-slate-900 border-slate-900 text-white shadow-md transform scale-105';
+                                    if (cat.id === 'pastry') {
+                                        activeClass = 'bg-[#6d6c4e] border-[#6d6c4e] text-white shadow-md transform scale-105';
+                                    }
+
                                     return (
                                         <button
                                             key={cat.id}
@@ -271,7 +278,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                             className={`
                                                 whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border
                                                 ${isActive
-                                                    ? 'bg-slate-900 border-slate-900 text-white shadow-md transform scale-105'
+                                                    ? activeClass
                                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                                                 }
                                             `}

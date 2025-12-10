@@ -258,6 +258,7 @@ export interface UserContextType {
     attachBakeToSeries: (seriesId: string, bakeId: string) => Promise<void>;
     userStyles: DoughStyleDefinition[];
     addUserStyle: (style: Omit<DoughStyleDefinition, 'id' | 'createdAt'>) => Promise<DoughStyleDefinition>;
+    updateUserStyle: (style: DoughStyleDefinition) => Promise<void>;
     deleteUserStyle: (id: string) => Promise<void>;
     favorites: FavoriteItem[];
     toggleFavorite: (item: Omit<FavoriteItem, 'createdAt'>) => Promise<void>;

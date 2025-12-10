@@ -19,7 +19,9 @@ import {
   CheckIcon,
   SparklesIcon,
   BookOpenIcon,
+  UploadIcon,
 } from '@/components/ui/Icons';
+import { ImageUpload } from '@/components/ui/ImageUpload';
 import { User, Gender, Oven, Page, Levain, UnitSystem } from '@/types';
 import OvenModal from '@/components/OvenModal';
 import LevainModal from '@/components/LevainModal';
@@ -72,6 +74,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         website: user.website,
         instagramHandle: user.instagramHandle,
         skillLevel: user.skillLevel,
+        avatar: user.avatar,
       });
     }
   }, [user]);
@@ -108,6 +111,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         website: user.website,
         instagramHandle: user.instagramHandle,
         skillLevel: user.skillLevel,
+        avatar: user.avatar,
       });
     }
     setIsEditing(false);
@@ -242,6 +246,19 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
               {isEditing ? (
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-2">Edit Profile</h3>
+
+                  <div className="flex justify-center mb-6">
+                    <ImageUpload
+                      currentImage={formData.avatar}
+                      onUpload={(url) => setFormData(prev => ({ ...prev, avatar: url }))}
+                      onDelete={() => setFormData(prev => ({ ...prev, avatar: undefined }))}
+                      path={`users/${user?.uid || 'guest'}/avatar`}
+                      label="Profile Photo"
+                      circle
+                      className="items-center"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">{t('profile.name')}</label>

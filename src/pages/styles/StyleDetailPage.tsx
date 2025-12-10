@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { DoughStyle, ProcessStep } from '@/types/dough';
 import { STYLES_DATA } from '@/data/styles/registry'; // Use Global Registry
 import { DoughStyleDefinition } from '@/types/styles';
@@ -23,8 +23,11 @@ import {
     Flame,
     ArrowRightLeft,
     Scale,
-    AlertTriangle
+    AlertTriangle,
+    Camera,
+    Upload
 } from 'lucide-react';
+import { uploadImage } from '@/services/storageService';
 
 // --- ADAPTER: Legacy/Registry (V2) -> UI (V3) ---
 // This ensures that American/European styles (V2 Definitions) can be rendered by this V3 Page.
@@ -469,9 +472,66 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
 };
 
 export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initialStyle, onLoadAndNavigate, onBack }) => {
-    const { isFavorite, toggleFavorite } = useUser();
+    const { isFavorite, toggleFavorite, userStyles, updateUserStyle, user } = useUser();
     const [styleData, setStyleData] = useState<DoughStyle | null>(null);
     const [viewFormula, setViewFormula] = useState<any[]>([]);
+    const [isUploading, setIsUploading] = useState(false);
+
+    // Determine if the current style is user-owned
+    const isOwner = useMemo(() => {
+        if (!initialStyle || !userStyles) return false;
+        return userStyles.some(s => s.id === initialStyle.id);
+    }, [initialStyle, userStyles]);
+
+    const handleHeroImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0] && styleData && isOwner) {
+            const file = e.target.files[0];
+            setIsUploading(true);
+            try {
+                const path = `styles/${user?.uid || 'temp'}/${styleData.id}/hero_${Date.now()}`;
+                const url = await uploadImage(file, path);
+
+                // Update local state
+                const newStyleData = {
+                    ...styleData,
+                    images: { ...styleData.images, hero: url }
+                };
+                setStyleData(newStyleData);
+
+                // Update in Firestore
+                // We need to map back to Definition or partial update
+                // Since styleData is DoughStyle (V3 view model), and updateUserStyle takes DoughStyleDefinition.
+                // We assume initialStyle holds the definition key properties or we have to reconstruct it.
+                // Actually initialStyle might be the Definition if passed from DoughStylesPage.
+                // Let's use initialStyle as base if possible, or cast styleData back.
+                // For safety, rely on initialStyle structure if it was a definition.
+
+                // If styleData came from mapDefinitionToStyle, it's a transformed object.
+                // We need access to the original Definition to update it cleanly.
+                // But we can construct a partial update if updateUserStyle supports it? 
+                // Currently updateUserStyle takes DoughStyleDefinition (full).
+                // But we only changed the image.
+                // Let's assume we can merge... 
+
+                // CRITICAL: We need the original definition to save back.
+                // Let's find it in userStyles.
+                const originalDef = userStyles.find(s => s.id === styleData.id);
+                if (originalDef) {
+                    const updatedDef = {
+                        ...originalDef,
+                        images: { ...originalDef.images, hero: url }
+                    };
+                    await updateUserStyle(updatedDef);
+                }
+
+            } catch (error) {
+                console.error("Failed to upload image", error);
+                // Add toast error handling here if toast context available
+            } finally {
+                setIsUploading(false);
+            }
+        }
+    };
 
     useEffect(() => {
         let foundDef: DoughStyleDefinition | undefined;
@@ -578,6 +638,27 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                     <div className="absolute top-0 right-0 p-8 opacity-10 hidden md:block z-0 pointer-events-none">
                         <ChefHat className="w-48 h-48 text-white rotate-12" />
                     </div>
+
+                    {/* Owner Actions: Upload Photo */}
+                    {isOwner && (
+                        <div className="absolute bottom-4 right-4 z-20">
+                            <label className="cursor-pointer flex items-center gap-2 px-4 py-2 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full text-white text-sm font-bold transition-all border border-white/20 shadow-lg hover:scale-105 active:scale-95">
+                                {isUploading ? (
+                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    <Camera className="w-4 h-4" />
+                                )}
+                                <span>{isUploading ? 'Uploading...' : 'Change Cover'}</span>
+                                <input
+                                    type="file"
+                                    className="hidden"
+                                    accept="image/*"
+                                    onChange={handleHeroImageUpload}
+                                    disabled={isUploading}
+                                />
+                            </label>
+                        </div>
+                    )}
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

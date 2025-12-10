@@ -7,6 +7,7 @@ import {
     UnitSystem,
     FlourDefinition,
     CalculationMode,
+    BakeType,
 } from '@/types';
 import { gramsToVolume } from '@/helpers';
 import {
@@ -239,30 +240,63 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         {results.preferment ? t('results.final_dough_title') : t('results.ingredients_title', { defaultValue: 'Ingredients' })}
                     </h3>
 
-                    {results.finalDough ? (
-                        <>
-                            {renderRow(t('results.flour'), results.finalDough.flour, 'flour')}
-                            {renderRow(t('results.water'), results.finalDough.water, 'water')}
-                            {renderRow(t('results.salt'), results.finalDough.salt, 'salt', `${config.salt}%`)}
-                            {results.finalDough.yeast > 0 && renderRow(t('results.yeast'), results.finalDough.yeast, 'yeast')}
-                            {results.finalDough.oil > 0 && renderRow(t('results.oil'), results.finalDough.oil, 'oil', `${config.oil}%`)}
-                            {results.finalDough.sugar > 0 && renderRow(t('results.sugar'), results.finalDough.sugar, 'sugar', `${config.sugar}%`)}
-                        </>
+                    {[BakeType.SWEETS_PASTRY].includes(config.bakeType) ? (
+                        <div className="space-y-0 divide-y divide-dlp-border">
+                            {results.ingredientWeights?.map(ing => {
+                                const n = ing.name.toLowerCase();
+                                let subtext = `${(ing.bakerPercentage || 0).toFixed(1)}%`;
+
+                                // Unit conversion for Eggs
+                                if ((n.includes('egg') || n.includes('ovo')) && !n.includes('free') && !n.includes('plant')) { // Avoid 'egg-free' etc
+                                    let unitWeight = 50; // Standard Large Egg
+                                    let unitName = 'un';
+
+                                    if (n.includes('yolk') || n.includes('gema')) {
+                                        unitWeight = 18;
+                                    } else if ((n.includes('white') || n.includes('clara')) && !n.includes('chocolate')) { // Avoid White Chocolate
+                                        unitWeight = 30;
+                                    }
+
+                                    const units = (ing.weight / unitWeight);
+                                    // Format: if close to integer, show integer, else 1 decimal
+                                    const unitStr = Math.abs(Math.round(units) - units) < 0.1
+                                        ? Math.round(units).toString()
+                                        : units.toFixed(1);
+
+                                    subtext += ` • ~${unitStr} ${unitName}`;
+                                }
+
+                                return renderRow(ing.name, ing.weight, ing.id, subtext);
+                            })}
+                        </div>
                     ) : (
                         <>
-                            {renderRow(t('results.flour'), results.totalFlour, 'flour')}
-                            {renderRow(t('results.water'), results.totalWater, 'water', `${config.hydration}%`)}
-                            {renderRow(t('results.salt'), results.totalSalt, 'salt', `${config.salt}%`)}
-                            {results.totalYeast > 0 && renderRow(t('results.yeast'), results.totalYeast, 'yeast', `${config.yeastPercentage}%`)}
-                            {results.totalOil > 0 && renderRow(t('results.oil'), results.totalOil, 'oil', `${config.oil}%`)}
-                            {results.totalSugar > 0 && renderRow(t('results.sugar'), results.totalSugar, 'sugar', `${config.sugar}%`)}
+                            {results.finalDough ? (
+                                <>
+                                    {renderRow(t('results.flour'), results.finalDough.flour, 'flour')}
+                                    {renderRow(t('results.water'), results.finalDough.water, 'water')}
+                                    {renderRow(t('results.salt'), results.finalDough.salt, 'salt', `${config.salt}%`)}
+                                    {results.finalDough.yeast > 0 && renderRow(t('results.yeast'), results.finalDough.yeast, 'yeast')}
+                                    {results.finalDough.oil > 0 && renderRow(t('results.oil'), results.finalDough.oil, 'oil', `${config.oil}%`)}
+                                    {results.finalDough.sugar > 0 && renderRow(t('results.sugar'), results.finalDough.sugar, 'sugar', `${config.sugar}%`)}
+                                </>
+                            ) : (
+                                <>
+                                    {renderRow(t('results.flour'), results.totalFlour, 'flour')}
+                                    {renderRow(t('results.water'), results.totalWater, 'water', `${config.hydration}%`)}
+                                    {renderRow(t('results.salt'), results.totalSalt, 'salt', `${config.salt}%`)}
+                                    {results.totalYeast > 0 && renderRow(t('results.yeast'), results.totalYeast, 'yeast', `${config.yeastPercentage}%`)}
+                                    {results.totalOil > 0 && renderRow(t('results.oil'), results.totalOil, 'oil', `${config.oil}%`)}
+                                    {results.totalSugar > 0 && renderRow(t('results.sugar'), results.totalSugar, 'sugar', `${config.sugar}%`)}
+                                </>
+                            )}
+
+                            {/* Custom/Other ingredients from Universal model */}
+                            {results.ingredientWeights?.filter(i => i.role === 'other').map(ing => (
+                                renderRow(ing.name, ing.weight, ing.id, `${ing.bakerPercentage}%`)
+                            ))}
                         </>
                     )}
-
-                    {/* Custom/Other ingredients from Universal model */}
-                    {results.ingredientWeights?.filter(i => i.role === 'other').map(ing => (
-                        renderRow(ing.name, ing.weight, ing.id, `${ing.bakerPercentage}%`)
-                    ))}
                 </div>
 
                 {/* Actions */}

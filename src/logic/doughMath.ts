@@ -68,22 +68,22 @@ export function normalizeDoughConfigWithIngredients(config: DoughConfig): DoughC
 
   // 6. Yeast
   if ([YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(config.yeastType)) {
-     ingredients.push({
-         id: 'levain',
-         name: 'Levain (Sourdough Starter)',
-         type: 'solid', // Semisolid
-         bakerPercentage: config.yeastPercentage,
-         role: 'starter'
-     });
+    ingredients.push({
+      id: 'levain',
+      name: 'Levain (Sourdough Starter)',
+      type: 'solid', // Semisolid
+      bakerPercentage: config.yeastPercentage,
+      role: 'starter'
+    });
   } else {
-      // Commercial Yeast or Chemical Leavening
-      ingredients.push({
-          id: 'yeast',
-          name: 'Yeast/Leavening',
-          type: 'solid',
-          bakerPercentage: config.yeastPercentage,
-          role: 'yeast'
-      });
+    // Commercial Yeast or Chemical Leavening
+    ingredients.push({
+      id: 'yeast',
+      name: 'Yeast/Leavening',
+      type: 'solid',
+      bakerPercentage: config.yeastPercentage,
+      role: 'yeast'
+    });
   }
 
   return {
@@ -95,26 +95,60 @@ export function normalizeDoughConfigWithIngredients(config: DoughConfig): DoughC
 // --- Sync Logic ---
 
 export function syncIngredientsFromConfig(config: DoughConfig): IngredientConfig[] {
-    const normalized = normalizeDoughConfigWithIngredients(config);
-    
-    // Iterate through ingredients and update values based on config settings,
-    // BUT respect manualOverride flag if present.
-    const ingredients = normalized.ingredients!.map(ing => {
-        // If manually overridden in the table, do not update from sliders
-        if (ing.manualOverride) {
-            return ing; 
-        }
+  const normalized = normalizeDoughConfigWithIngredients(config);
 
-        // Sync logic for standard sliders
-        if (ing.role === 'water') return { ...ing, bakerPercentage: config.hydration };
-        if (ing.role === 'salt') return { ...ing, bakerPercentage: config.salt };
-        if (ing.role === 'fat') return { ...ing, bakerPercentage: config.oil };
-        if (ing.role === 'sugar') return { ...ing, bakerPercentage: config.sugar || 0 };
-        if (ing.role === 'yeast' || ing.role === 'starter') return { ...ing, bakerPercentage: config.yeastPercentage };
-        
-        return ing;
-    });
-    return ingredients;
+  // Multi-Ingredient Logic:
+  // Calculate current totals for roles that might have multiple components (Fat, Sugar)
+  const aggs = { fat: 0, sugar: 0 };
+  normalized.ingredients!.forEach(i => {
+    // Only sum items that are not manually overridden (locked)
+    if (!i.manualOverride) {
+      if (i.role === 'fat') aggs.fat += i.bakerPercentage || 0;
+      if (i.role === 'sugar') aggs.sugar += (i.bakerPercentage || 0);
+    }
+  });
+
+  return normalized.ingredients!.map(ing => {
+    // If manually overridden in the table, do not update from sliders
+    if (ing.manualOverride) {
+      return ing;
+    }
+
+    // Logic for Multi-Component Scaling (Fat, Sugar)
+    // If we have existing ingredients of this role, we scale them to match the slider's target total
+    // This preserves the relative ratio (e.g. 20% Butter / 10% Chocolate) while changing the total richness.
+    let targetTotal = -1;
+    let currentTotal = 0;
+
+    if (ing.role === 'fat') {
+      targetTotal = config.oil;
+      currentTotal = aggs.fat;
+    } else if (ing.role === 'sugar') {
+      targetTotal = config.sugar || 0;
+      currentTotal = aggs.sugar;
+    }
+
+    if (targetTotal >= 0 && currentTotal > 0) {
+      // Apply scaling factor
+      const factor = targetTotal / currentTotal;
+      // Guard against extreme factors or NaN
+      if (isFinite(factor) && factor >= 0) {
+        return { ...ing, bakerPercentage: (ing.bakerPercentage || 0) * factor };
+      }
+    }
+
+    // Fallback / Standard Sync (Single Component or First Init)
+    if (ing.role === 'water') return { ...ing, bakerPercentage: config.hydration };
+    if (ing.role === 'salt') return { ...ing, bakerPercentage: config.salt };
+
+    // If total was 0 (e.g. new addition), just set the value directly
+    if (ing.role === 'fat' && currentTotal === 0) return { ...ing, bakerPercentage: config.oil };
+    if (ing.role === 'sugar' && currentTotal === 0) return { ...ing, bakerPercentage: config.sugar || 0 };
+
+    if (ing.role === 'yeast' || ing.role === 'starter') return { ...ing, bakerPercentage: config.yeastPercentage };
+
+    return ing;
+  });
 }
 
 
@@ -135,156 +169,156 @@ export const calculateDoughUniversal = (
   calculationMode: CalculationMode,
   userLevain?: Levain | null
 ): DoughResult => {
-    // Ensure we have ingredients
-    const normalizedConfig = normalizeDoughConfigWithIngredients(config);
-    const ingredients = normalizedConfig.ingredients || [];
+  // Ensure we have ingredients
+  const normalizedConfig = normalizeDoughConfigWithIngredients(config);
+  const ingredients = normalizedConfig.ingredients || [];
 
-    // 1. Calculate Total Target Weight
-    // Standard calc: Total Dough = NumPizzas * BallWeight * Scale
-    let totalTargetWeight = config.numPizzas * config.doughBallWeight * config.scale;
-    
-    // If calculating by total flour input, logic reverses
-    let totalFlour = 0;
+  // 1. Calculate Total Target Weight
+  // Standard calc: Total Dough = NumPizzas * BallWeight * Scale
+  let totalTargetWeight = config.numPizzas * config.doughBallWeight * config.scale;
 
-    // Calculate Sum of Percentages (The "Factor")
-    // Example: 100 (flour) + 65 (water) + 3 (salt) = 168%
-    let totalPercentage = 0;
-    ingredients.forEach(ing => {
-        totalPercentage += ing.bakerPercentage;
-    });
+  // If calculating by total flour input, logic reverses
+  let totalFlour = 0;
 
-    if (calculationMode === 'flour' && config.totalFlour) {
-        // Mode: "I have 1kg of flour, how much dough does it make?"
-        totalFlour = config.totalFlour;
-        totalTargetWeight = totalFlour * (totalPercentage / 100);
-    } else {
-        // Mode: "I need 1kg of dough, how much flour do I need?"
-        // Formula: Flour = TotalDough * (100 / SumPercentages)
-        totalFlour = totalTargetWeight * (100 / totalPercentage);
+  // Calculate Sum of Percentages (The "Factor")
+  // Example: 100 (flour) + 65 (water) + 3 (salt) = 168%
+  let totalPercentage = 0;
+  ingredients.forEach(ing => {
+    totalPercentage += ing.bakerPercentage;
+  });
+
+  if (calculationMode === 'flour' && config.totalFlour) {
+    // Mode: "I have 1kg of flour, how much dough does it make?"
+    totalFlour = config.totalFlour;
+    totalTargetWeight = totalFlour * (totalPercentage / 100);
+  } else {
+    // Mode: "I need 1kg of dough, how much flour do I need?"
+    // Formula: Flour = TotalDough * (100 / SumPercentages)
+    totalFlour = totalTargetWeight * (100 / totalPercentage);
+  }
+
+  // 2. Calculate Absolute Weights for ALL ingredients based on Total Flour
+  const ingredientWeights = ingredients.map(ing => ({
+    id: ing.id,
+    name: ing.name,
+    weight: totalFlour * (ing.bakerPercentage / 100),
+    role: ing.role,
+    bakerPercentage: ing.bakerPercentage
+  }));
+
+  const result: DoughResult = {
+    totalFlour: totalFlour,
+    totalWater: 0,
+    totalSalt: 0,
+    totalOil: 0,
+    totalSugar: 0,
+    totalYeast: 0,
+    totalDough: totalTargetWeight,
+    ingredientWeights: ingredientWeights
+  };
+
+  // Extract base weights for easy access
+  const waterWeight = ingredientWeights.find(i => i.role === 'water')?.weight || 0;
+  const saltWeight = ingredientWeights.find(i => i.role === 'salt')?.weight || 0;
+  const oilWeight = ingredientWeights.find(i => i.role === 'fat')?.weight || 0;
+  const sugarWeight = ingredientWeights.find(i => i.role === 'sugar')?.weight || 0;
+  const yeastOrStarterWeight = ingredientWeights.find(i => i.role === 'yeast' || i.role === 'starter')?.weight || 0;
+
+  result.totalWater = waterWeight;
+  result.totalSalt = saltWeight;
+  result.totalOil = oilWeight;
+  result.totalSugar = sugarWeight;
+  result.totalYeast = yeastOrStarterWeight;
+
+  // 3. PRE-FERMENT DECOMPOSITION LOGIC
+  // If using Biga/Poolish, we must subtract their flour/water from the main mix.
+
+  const isChemicalOrNoFerment = config.fermentationTechnique === FermentationTechnique.CHEMICAL || config.fermentationTechnique === FermentationTechnique.NO_FERMENT;
+
+  // CASE A: Sourdough / Levain
+  if (!isChemicalOrNoFerment && (config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN)) {
+    const starterWeight = yeastOrStarterWeight;
+
+    // Determine starter hydration (default 100% or user defined)
+    let levainHydration = 100;
+    if (config.yeastType === YeastType.USER_LEVAIN && userLevain) {
+      levainHydration = userLevain.hydration;
     }
 
-    // 2. Calculate Absolute Weights for ALL ingredients based on Total Flour
-    const ingredientWeights = ingredients.map(ing => ({
-        id: ing.id,
-        name: ing.name,
-        weight: totalFlour * (ing.bakerPercentage / 100),
-        role: ing.role,
-        bakerPercentage: ing.bakerPercentage
-    }));
+    // Math: StarterWeight = Flour + Water
+    // Water = Flour * Hydration
+    // StarterWeight = Flour + (Flour * Hydration) = Flour * (1 + Hydration)
+    // Flour = StarterWeight / (1 + Hydration)
+    const starterFlour = starterWeight / (1 + (levainHydration / 100));
+    const starterWater = starterWeight - starterFlour;
 
-    const result: DoughResult = {
-        totalFlour: totalFlour,
-        totalWater: 0,
-        totalSalt: 0,
-        totalOil: 0,
-        totalSugar: 0,
-        totalYeast: 0,
-        totalDough: totalTargetWeight,
-        ingredientWeights: ingredientWeights
+    result.preferment = {
+      flour: starterFlour,
+      water: starterWater,
+      yeast: 0 // The starter IS the yeast culture
     };
 
-    // Extract base weights for easy access
-    const waterWeight = ingredientWeights.find(i => i.role === 'water')?.weight || 0;
-    const saltWeight = ingredientWeights.find(i => i.role === 'salt')?.weight || 0;
-    const oilWeight = ingredientWeights.find(i => i.role === 'fat')?.weight || 0;
-    const sugarWeight = ingredientWeights.find(i => i.role === 'sugar')?.weight || 0;
-    const yeastOrStarterWeight = ingredientWeights.find(i => i.role === 'yeast' || i.role === 'starter')?.weight || 0;
-
-    result.totalWater = waterWeight;
-    result.totalSalt = saltWeight;
-    result.totalOil = oilWeight;
-    result.totalSugar = sugarWeight;
-    result.totalYeast = yeastOrStarterWeight;
-
-    // 3. PRE-FERMENT DECOMPOSITION LOGIC
-    // If using Biga/Poolish, we must subtract their flour/water from the main mix.
-    
-    const isChemicalOrNoFerment = config.fermentationTechnique === FermentationTechnique.CHEMICAL || config.fermentationTechnique === FermentationTechnique.NO_FERMENT;
-
-    // CASE A: Sourdough / Levain
-    if (!isChemicalOrNoFerment && (config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN)) {
-        const starterWeight = yeastOrStarterWeight;
-        
-        // Determine starter hydration (default 100% or user defined)
-        let levainHydration = 100; 
-        if (config.yeastType === YeastType.USER_LEVAIN && userLevain) {
-            levainHydration = userLevain.hydration;
-        }
-
-        // Math: StarterWeight = Flour + Water
-        // Water = Flour * Hydration
-        // StarterWeight = Flour + (Flour * Hydration) = Flour * (1 + Hydration)
-        // Flour = StarterWeight / (1 + Hydration)
-        const starterFlour = starterWeight / (1 + (levainHydration / 100));
-        const starterWater = starterWeight - starterFlour;
-
-        result.preferment = {
-            flour: starterFlour,
-            water: starterWater,
-            yeast: 0 // The starter IS the yeast culture
-        };
-
-        result.finalDough = {
-            flour: totalFlour - starterFlour, // "Reforço" flour
-            water: waterWeight - starterWater, // "Reforço" water
-            salt: saltWeight,
-            oil: oilWeight,
-            sugar: sugarWeight,
-            yeast: 0
-        };
+    result.finalDough = {
+      flour: totalFlour - starterFlour, // "Reforço" flour
+      water: waterWeight - starterWater, // "Reforço" water
+      salt: saltWeight,
+      oil: oilWeight,
+      sugar: sugarWeight,
+      yeast: 0
+    };
 
     // CASE B: Poolish or Biga (Commercial Yeast Preferments)
-    } else if (!isChemicalOrNoFerment && (config.fermentationTechnique === FermentationTechnique.POOLISH || config.fermentationTechnique === FermentationTechnique.BIGA)) {
-        
-        // How much of the Total Flour goes into the preferment?
-        // defined by prefermentFlourPercentage (e.g., 30%)
-        const prefermentFlour = totalFlour * (config.prefermentFlourPercentage / 100);
-        
-        let prefermentWater = 0;
-        
-        if (config.fermentationTechnique === FermentationTechnique.BIGA) {
-            // BIGA: Traditionally 45-50% hydration. We use 50% for calculation simplicity.
-            prefermentWater = prefermentFlour * 0.5; 
-        } else {
-            // POOLISH: Always 100% hydration (1:1 ratio)
-            prefermentWater = prefermentFlour * 1.0;
-        }
+  } else if (!isChemicalOrNoFerment && (config.fermentationTechnique === FermentationTechnique.POOLISH || config.fermentationTechnique === FermentationTechnique.BIGA)) {
 
-        // Yeast in preferment
-        // Standard practice: Use a tiny fraction (0.1% - 0.2%) of the preferment flour for the preferment,
-        // and put the rest in the final dough if needed.
-        // For this calculator, we assume a fixed small amount for the preferment to ensure it activates.
-        const prefermentYeast = prefermentFlour * 0.002; // 0.2% of preferment flour
-        
-        result.preferment = {
-            flour: prefermentFlour,
-            water: prefermentWater,
-            yeast: prefermentYeast
-        };
+    // How much of the Total Flour goes into the preferment?
+    // defined by prefermentFlourPercentage (e.g., 30%)
+    const prefermentFlour = totalFlour * (config.prefermentFlourPercentage / 100);
 
-        // Final Dough (The Mix Day)
-        result.finalDough = {
-            flour: totalFlour - prefermentFlour,
-            water: waterWeight - prefermentWater,
-            salt: saltWeight,
-            oil: oilWeight,
-            sugar: sugarWeight,
-            // Remaining yeast is added to final dough. 
-            // If yeastOrStarterWeight (total yeast) is less than what we put in preferment, we assume 0 added.
-            yeast: Math.max(0, yeastOrStarterWeight - prefermentYeast)
-        };
+    let prefermentWater = 0;
 
+    if (config.fermentationTechnique === FermentationTechnique.BIGA) {
+      // BIGA: Traditionally 45-50% hydration. We use 50% for calculation simplicity.
+      prefermentWater = prefermentFlour * 0.5;
     } else {
-        // CASE C: Direct Method (Everything mixed at once)
-        result.finalDough = {
-            flour: totalFlour,
-            water: waterWeight,
-            salt: saltWeight,
-            oil: oilWeight,
-            sugar: sugarWeight,
-            yeast: yeastOrStarterWeight
-        };
+      // POOLISH: Always 100% hydration (1:1 ratio)
+      prefermentWater = prefermentFlour * 1.0;
     }
 
-    return result;
+    // Yeast in preferment
+    // Standard practice: Use a tiny fraction (0.1% - 0.2%) of the preferment flour for the preferment,
+    // and put the rest in the final dough if needed.
+    // For this calculator, we assume a fixed small amount for the preferment to ensure it activates.
+    const prefermentYeast = prefermentFlour * 0.002; // 0.2% of preferment flour
+
+    result.preferment = {
+      flour: prefermentFlour,
+      water: prefermentWater,
+      yeast: prefermentYeast
+    };
+
+    // Final Dough (The Mix Day)
+    result.finalDough = {
+      flour: totalFlour - prefermentFlour,
+      water: waterWeight - prefermentWater,
+      salt: saltWeight,
+      oil: oilWeight,
+      sugar: sugarWeight,
+      // Remaining yeast is added to final dough. 
+      // If yeastOrStarterWeight (total yeast) is less than what we put in preferment, we assume 0 added.
+      yeast: Math.max(0, yeastOrStarterWeight - prefermentYeast)
+    };
+
+  } else {
+    // CASE C: Direct Method (Everything mixed at once)
+    result.finalDough = {
+      flour: totalFlour,
+      water: waterWeight,
+      salt: saltWeight,
+      oil: oilWeight,
+      sugar: sugarWeight,
+      yeast: yeastOrStarterWeight
+    };
+  }
+
+  return result;
 };
