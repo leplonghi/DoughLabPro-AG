@@ -1,4 +1,5 @@
-import React from 'react';
+import { MyLabLimitModal } from '@/components/mylab/MyLabLimitModal';
+import React, { useState } from 'react';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import MyLabLayout from '@/pages/mylab/MyLabLayout';
@@ -41,6 +42,18 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
     const recentBakes = [...batches]
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
         .slice(0, 3);
+
+    // Limit Logic
+    const isLimitReached = !hasProAccess && totalBakes >= 1;
+    const [showLimitModal, setShowLimitModal] = useState(false);
+
+    const handleNewBake = () => {
+        if (isLimitReached) {
+            setShowLimitModal(true);
+            return;
+        }
+        onNavigate('calculator');
+    };
 
     return (
         <MyLabLayout activePage="mylab" onNavigate={onNavigate}>
@@ -95,11 +108,11 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                     <div className="w-full md:w-auto">
                         <button
-                            onClick={() => onNavigate('calculator')}
-                            className="w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 hover:scale-105 transition-all active:scale-95"
+                            onClick={handleNewBake}
+                            className={`w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-white shadow-lg transition-all active:scale-95 ${isLimitReached ? 'bg-slate-400 cursor-not-allowed hover:bg-slate-500' : 'bg-lime-500 shadow-lime-500/20 hover:bg-lime-600 hover:scale-105'}`}
                         >
-                            <PlusCircleIcon className="h-5 w-5" />
-                            New Bake
+                            {isLimitReached ? <LockClosedIcon className="h-5 w-5" /> : <PlusCircleIcon className="h-5 w-5" />}
+                            {isLimitReached ? 'Limit Reached' : 'New Bake'}
                         </button>
                     </div>
                 </div>
@@ -321,6 +334,10 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                     </div>
                 </div>
             </div>
+            <MyLabLimitModal
+                isOpen={showLimitModal}
+                onClose={() => setShowLimitModal(false)}
+            />
         </MyLabLayout>
     );
 };

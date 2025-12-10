@@ -7,6 +7,8 @@ import { SocialShare } from '@/marketing/social/SocialShare';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 
+import { LevainMarketingPage } from './levain/LevainMarketingPage';
+
 interface MyLabLevainPetPageProps {
     onNavigate: (page: Page) => void;
 }
@@ -14,6 +16,14 @@ interface MyLabLevainPetPageProps {
 const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) => {
     const { levains, hasProAccess, openPaywall } = useUser();
     const activeLevain = levains.find(l => l.status === 'ativo');
+
+    if (!hasProAccess) {
+        return (
+            <MyLabLayout activePage="mylab/levain-pet" onNavigate={onNavigate}>
+                <LevainMarketingPage />
+            </MyLabLayout>
+        );
+    }
 
     return (
         <MyLabLayout activePage="mylab/levain-pet" onNavigate={onNavigate}>

@@ -29,6 +29,7 @@ import { ShareBatchModal } from '@/community/components/ShareBatchModal';
 import { SocialShare } from '@/marketing/social/SocialShare';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
+import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 
 interface BatchDetailPageProps {
     batchId: string | null;
@@ -393,6 +394,17 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                 </a>
                             ))}
                         </div>
+                    </div>
+                    <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
+                        <RecommendedProducts
+                            tags={[
+                                doughConfig.style?.toLowerCase() || 'general',
+                                doughConfig.yeastType?.toLowerCase() || '',
+                                doughConfig.ovenType?.toLowerCase() || '',
+                                'baking'
+                            ].filter(Boolean)}
+                            title="Tools for this Recipe"
+                        />
                     </div>
                     <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
                         <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.rating')}</h3>

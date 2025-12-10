@@ -7,6 +7,7 @@ import { useTranslation } from '@/i18n';
 import { LEARN_CATEGORIES } from '@/data/learn/categories';
 import { TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config';
 import { LEARN_TRACKS } from '@/data/learn/tracks';
+import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 
 interface LearnArticlePageProps {
     articleId?: string;
@@ -181,6 +182,12 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                                 </div>
                             )}
 
+                            {/* 3. Recommended Tools (Native Ad) */}
+                            <RecommendedProducts
+                                tags={[article.category.toLowerCase(), ...(article.tags || [])]}
+                                title="Essentials for this Technique"
+                                className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm"
+                            />
                         </div>
                     </aside>
                 </div>

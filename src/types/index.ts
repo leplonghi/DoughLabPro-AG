@@ -417,7 +417,7 @@ export interface NavLinkItem {
     requiresPro?: boolean;
 }
 
-export type PaywallOrigin = 'general' | 'calculator' | 'styles' | 'learn' | 'community' | 'mylab' | 'plans_page' | 'exports_pdf' | 'levain' | 'mylab_flours' | 'mylab_consistency' | 'mylab_timeline';
+export type PaywallOrigin = 'general' | 'calculator' | 'styles' | 'learn' | 'community' | 'mylab' | 'plans_page' | 'exports_pdf' | 'levain' | 'mylab_flours' | 'mylab_consistency' | 'mylab_timeline' | 'doughbot';
 
 export interface SmartAdjustmentSuggestion {
     key: keyof DoughConfig;

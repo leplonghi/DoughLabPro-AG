@@ -25,6 +25,7 @@ import { generateTechnicalMethod } from '@/logic/methodGenerator';
 import { useUser } from '@/contexts/UserProvider';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import SocialShareModal from '@/components/social/SocialShareModal';
+import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 
 interface ResultsDisplayProps {
     results: DoughResult | null;
@@ -359,12 +360,21 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                     </button>
                 </div>
             </div>
+
+            {/* Recommended Gear */}
+            <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border">
+                <RecommendedProducts
+                    tags={[config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']}
+                    title="Tools for this Formula"
+                />
+            </div>
+
             <SocialShareModal
                 isOpen={isShareModalOpen}
                 onClose={() => setIsShareModalOpen(false)}
                 config={config}
                 results={results}
             />
-        </div>
+        </div >
     );
 };

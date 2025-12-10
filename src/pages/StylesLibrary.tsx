@@ -5,6 +5,7 @@ import { Region, Category } from '@/types/dough';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { StyleCard } from '@/components/styles/StyleCard';
 import { Search, ChefHat, Globe2, MapPin, Calendar } from 'lucide-react';
+import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 
 interface StylesLibraryPageProps {
     onNavigateToDetail: (id: string) => void;
@@ -204,6 +205,15 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                     </button>
                 </div>
             )}
+
+            {/* --- RECOMMENDED GEAR (Contextual) --- */}
+            <div className="mt-8 mb-12">
+                <RecommendedProducts
+                    tags={[filterCategory.toLowerCase(), filterRegion.toLowerCase(), 'baking'].filter(t => t !== 'all' && t !== 'global')}
+                    title={filterCategory !== 'All' ? `Recommended Gear for ${filterCategory}` : "Professional Baking Gear"}
+                    className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm"
+                />
+            </div>
 
             {/* --- COMING SOON SECTION --- */}
             <div className="mt-16 border-t border-slate-200 pt-10 pb-8">

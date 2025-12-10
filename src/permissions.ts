@@ -52,9 +52,9 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     // Calculator
     'calculator.basic_3_styles': ['free', 'calculator_unlock', 'lab_pro'],
     'calculator.all_styles': ['calculator_unlock', 'lab_pro'],
-    'calculator.preferments_advanced': ['calculator_unlock', 'lab_pro'],
+    'calculator.preferments_advanced': ['free', 'calculator_unlock', 'lab_pro'], // Unlocked for free users (constrained by style)
     'calculator.environmental_insights': ['calculator_unlock', 'lab_pro'],
-    'calculator.advanced': ['calculator_unlock', 'lab_pro'],
+    'calculator.advanced': ['free', 'calculator_unlock', 'lab_pro'], // Unlocked for free users
     'calculator.advanced_ingredients': ['calculator_unlock', 'lab_pro'],
 
     // Styles
@@ -79,7 +79,7 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     'levain.exportPDF': ['lab_pro'],
 
     // Tools
-    'tools.doughbot': ['lab_pro'],
+    'tools.doughbot': ['free', 'lab_pro'], // Page accessible, logic restricted
     'tools.oven_analysis': ['lab_pro'],
     'export.pdf_json': ['calculator_unlock', 'lab_pro'],
     'community.share_and_clone': ['lab_pro'],
@@ -97,7 +97,7 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     'styles.specs': ['lab_pro'],
 
     // Community
-    'community.feed': ['lab_pro'],
+    'community.feed': ['free', 'lab_pro'], // View only for free (restricted by actions)
     'community.clone': ['lab_pro'],
     'community.like': ['lab_pro'],
     'community.comment': ['lab_pro'],
@@ -105,7 +105,7 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     'community.ranking': ['lab_pro'],
 
     // Marketing / FOMO Triggers
-    'calculator.hydration_advanced': ['calculator_unlock', 'lab_pro'],
+    'calculator.hydration_advanced': ['free', 'calculator_unlock', 'lab_pro'],
     'calculator.save_preset': ['calculator_unlock', 'lab_pro'],
     'consistency': ['lab_pro'],
     'return_prompt': ['lab_pro'],
