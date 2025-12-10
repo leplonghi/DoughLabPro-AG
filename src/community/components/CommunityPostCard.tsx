@@ -1,9 +1,9 @@
+
 import React, { useState } from 'react';
 import { CommunityPost } from '../types';
 import { PostHeader } from './PostHeader';
 import { PostPhotos } from './PostPhotos';
 import { PostTechnicalPanel } from './PostTechnicalPanel';
-import { PostMethod } from './PostMethod';
 import { PostActions } from './PostActions';
 import { PostComments } from './PostComments';
 import { useRouter } from '../../contexts/RouterContext';
@@ -27,7 +27,7 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
 
     return (
         <div
-            className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+            className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 group"
             onClick={handleCardClick}
         >
             <PostHeader
@@ -35,31 +35,52 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
                 username={post.username}
                 userPhotoURL={post.userPhotoURL}
                 createdAt={post.createdAt}
-                title={post.title}
+                title={post.title} // Pass title to header if we want it there, or handle below
             />
 
-            <PostPhotos photos={post.photos} />
+            {/* Photo Section - Full Bleed */}
+            <div className="relative bg-gray-100">
+                <PostPhotos photos={post.photos} />
 
-            <div className="p-4 pb-2">
-                <h3 className="font-semibold text-lg text-gray-900 mb-1">{post.title || 'Untitled Bake'}</h3>
-                <p className="text-sm text-gray-600 line-clamp-2">{post.description}</p>
+                {/* Method Badge Overlay */}
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-white/10 shadow-sm">
+                    {post.method?.replace(/_/g, ' ') || 'Direct Method'}
+                </div>
             </div>
 
-            <PostTechnicalPanel post={post} />
+            {/* Technical Specs Scrollable Row */}
+            <div className="border-b border-gray-50">
+                <PostTechnicalPanel post={post} />
+            </div>
 
-            <PostMethod post={post} />
+            {/* Content & Actions */}
+            <div className="p-4 pt-3">
 
-            <PostActions
-                post={post}
-                commentCount={commentCount}
-                onCommentClick={() => setShowComments(!showComments)}
-            />
+                {/* Title & Description */}
+                <div className="mb-4">
+                    <h3 className="font-bold text-lg text-gray-900 leading-tight mb-1.5 group-hover:text-lime-700 transition-colors">
+                        {post.title || 'Untitled Bake'}
+                    </h3>
+                    <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
+                        {post.description}
+                    </p>
+                </div>
+
+                {/* Actions Bar */}
+                <PostActions
+                    post={post}
+                    commentCount={commentCount}
+                    onCommentClick={() => setShowComments(!showComments)}
+                />
+            </div>
 
             {showComments && (
-                <PostComments
-                    postId={post.id}
-                    onCommentAdded={() => setCommentCount(prev => prev + 1)}
-                />
+                <div className="bg-gray-50/50 border-t border-gray-100">
+                    <PostComments
+                        postId={post.id}
+                        onCommentAdded={() => setCommentCount(prev => prev + 1)}
+                    />
+                </div>
             )}
         </div>
     );

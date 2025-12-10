@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { CommunityPost } from '../types';
 import { PostHeader } from './PostHeader';
-import { Lock } from 'lucide-react';
+import { Lock, Sparkles } from 'lucide-react';
 import { useUser } from '../../contexts/UserProvider';
 
 interface CommunityPostCardLockedProps {
@@ -12,46 +13,50 @@ export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = (
     const { openPaywall } = useUser();
 
     return (
-        <div className="bg-dlp-bg-card rounded-xl shadow-dlp-sm border border-dlp-border overflow-hidden relative">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative group">
             <PostHeader
                 username={post.username}
                 userPhotoURL={post.userPhotoURL}
                 createdAt={post.createdAt}
+                title={post.title} // Pass title to maintain layout consistency
             />
 
-            <div className="relative aspect-square w-full bg-dlp-bg-muted overflow-hidden">
-                {/* Blurred Image */}
+            <div className="relative aspect-[4/3] w-full bg-gray-100 overflow-hidden">
+                {/* Blurred Image - Use the actual image but blurred heavily */}
                 <img
                     src={post.photos[0]}
                     alt="Locked content"
-                    className="h-full w-full object-cover blur-xl opacity-50"
+                    className="h-full w-full object-cover blur-2xl opacity-60 scale-110"
                 />
 
-                {/* Lock Overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-dlp-bg-card/90 p-6 text-center">
-                    <div className="bg-dlp-bg-card p-4 rounded-full shadow-dlp-md mb-4">
-                        <Lock className="h-6 w-6 text-dlp-accent" />
+                {/* Lock Overlay Content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/40 backdrop-blur-sm p-6 text-center">
+                    <div className="bg-white p-4 rounded-full shadow-lg mb-4 ring-1 ring-black/5 animate-bounce-subtle">
+                        <Lock className="h-6 w-6 text-lime-600" />
                     </div>
-                    <h3 className="text-lg font-bold text-dlp-text-primary mb-2">
-                        Unlock Community Feed
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        Unlock this Formula <Sparkles className="h-4 w-4 text-yellow-500" />
                     </h3>
-                    <p className="text-sm text-dlp-text-secondary mb-6 max-w-xs">
-                        Upgrade to Lab Pro to view all community bakes, recipes, and methods.
+                    <p className="text-sm text-gray-600 mb-6 max-w-xs font-medium leading-relaxed">
+                        Join <strong>DoughLab Pro</strong> to see the exact flour blend, hydration, and process used for this bake.
                     </p>
                     <button
                         onClick={() => openPaywall('community')}
-                        className="px-6 py-2.5 bg-dlp-accent hover:bg-dlp-accent-hover text-white rounded-full font-medium transition-colors shadow-dlp-md"
+                        className="px-8 py-3 bg-lime-600 hover:bg-lime-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
                     >
                         Unlock Full Access
                     </button>
+                    <div className="mt-4 text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+                        Premium Content
+                    </div>
                 </div>
             </div>
 
-            {/* Fake Content Skeleton */}
-            <div className="p-4 space-y-3 opacity-30 pointer-events-none select-none">
-                <div className="h-6 bg-dlp-border rounded w-3/4"></div>
-                <div className="h-4 bg-dlp-border rounded w-full"></div>
-                <div className="h-4 bg-dlp-border rounded w-2/3"></div>
+            {/* Fake Content Skeleton underneath to give weight */}
+            <div className="p-4 space-y-3 opacity-20 pointer-events-none select-none blur-[2px]">
+                <div className="h-6 bg-gray-900 rounded w-3/4"></div>
+                <div className="h-4 bg-gray-400 rounded w-full"></div>
+                <div className="h-4 bg-gray-400 rounded w-2/3"></div>
             </div>
         </div>
     );
