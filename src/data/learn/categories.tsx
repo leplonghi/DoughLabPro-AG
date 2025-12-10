@@ -12,6 +12,8 @@ export interface LearnCategory {
     id: string;
     title: string;
     description: string;
+    descriptionShort?: string; // Optional shorter description for tight spaces
+    trackId: string; // Link to Parent Track
     color: string;
     icon: React.ReactNode;
     bg: string;
@@ -26,6 +28,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
         id: 'Ingredient Science',
         title: 'Ingredient Science',
         description: 'Explore the chemistry of flour, water, salts, fats and other key ingredients.',
+        trackId: 'fundamentals',
         color: 'lime',
         icon: <ScaleIcon className="w-8 h-8" />,
         bg: 'bg-white',
@@ -38,6 +41,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
         id: 'Dough Science',
         title: 'Dough & Gluten Science',
         description: 'Gluten behavior, rheology, extensibility and dough structure.',
+        trackId: 'science',
         color: 'sky',
         icon: <ChartBarIcon className="w-8 h-8" />,
         bg: 'bg-white',
@@ -50,6 +54,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
         id: 'Fermentation Science',
         title: 'Fermentation Science',
         description: 'Fermentation curves, temperature control, preferments and proofing.',
+        trackId: 'process',
         color: 'amber',
         icon: <BeakerIcon className="w-8 h-8" />,
         bg: 'bg-white',
@@ -62,6 +67,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
         id: 'Baking Science',
         title: 'Baking Science',
         description: 'Heat transfer, browning chemistry, crust formation and oven physics.',
+        trackId: 'science',
         color: 'rose',
         icon: <FireIcon className="w-8 h-8" />,
         bg: 'bg-white',
@@ -74,6 +80,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
         id: 'Process Techniques',
         title: 'Process Techniques',
         description: 'Shaping, lamination, balling and handling techniques.',
+        trackId: 'process',
         color: 'teal',
         icon: <WrenchScrewdriverIcon className="w-8 h-8" />,
         bg: 'bg-white',
@@ -86,6 +93,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
         id: 'Troubleshooting',
         title: 'Troubleshooting',
         description: 'Dough diagnostics powered by DoughBot Knowledge.',
+        trackId: 'troubleshooting',
         color: 'purple',
         icon: <ExclamationCircleIcon className="w-8 h-8" />,
         bg: 'bg-white',

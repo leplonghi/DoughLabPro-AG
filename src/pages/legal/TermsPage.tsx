@@ -4,38 +4,36 @@ import LegalPageLayout from './LegalPageLayout';
 const TermsPage: React.FC = () => {
   return (
     <LegalPageLayout title="Terms of Use" lastUpdated="August 1, 2024">
-        <h3>1. Object and Scope</h3>
-        <p>DoughLabPro is a personal, indie application designed for technical support in fermentation, baking, and pizza making. It offers tools such as dough calculators, tutorials, bake history, My Lab, and insights. The Services are informational and educational in nature and do not constitute professional, nutritional, or medical advice.</p>
-        <p><strong>Disclaimer:</strong> This application is provided by an independent developer "as is" and "as available". By using this app, you acknowledge that you do so at your own risk.</p>
-        
-        <h3>2. Eligibility</h3>
-        <p>The User declares to be over 18 years old or have authorization from a legal guardian. Minors should not use the App without supervision.</p>
-        
-        <h3>3. User Account</h3>
-        <p>To use the App, it may be necessary to create an account. The User agrees to: provide correct and updated information; keep their credentials confidential; not share their account with third parties. The Company may suspend or delete accounts that violate these Terms.</p>
-        
-        <h3>4. Usage License</h3>
-        <p>We grant the User a limited, non-exclusive, non-transferable, and revocable license to use the App exclusively for personal purposes. It is prohibited to: decompile, modify, or reverse engineer; use the App commercially without authorization; copy, distribute, or reproduce parts of the App without permission.</p>
-        
-        <h3>5. User Generated Content (UGC)</h3>
-        <p>The User may enter recipes, photos, notes, and data into My Lab. By doing so, they grant the Company a worldwide, free, non-exclusive, and revocable license to store, process, and display this content within the App. The User declares that: they own rights to the submitted content; they will not publish illegal, offensive, discriminatory content or content that violates copyright.</p>
-        
-        <h3>6. Paid Plans and Subscriptions</h3>
-        <p>If the App offers paid plans, the following rules apply: Subscriptions are billed by the official store (Google Play, App Store, or web). Automatic renewal occurs until cancellation by the User. Refunds follow store policies (Google/Apple) and applicable law.</p>
-        
-        <h3>7. Limitation of Liability</h3>
-        <p>The User acknowledges that: doughs, fermentation, and baking involve technical and environmental variables; the Developer does not guarantee specific results, yield, flavor, texture, or final performance of the dough. The Developer is not liable for: indirect damages, loss of profits, or culinary losses; failures resulting from improper use of the App; temporary service unavailability. The Services are provided "as is" without warranties of any kind.</p>
-        
-        <h3>8. Affiliate Links</h3>
-        <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 text-sm text-blue-800">
-            <p><strong>Disclosure:</strong> Some links in DoughLabPro, including in the Shop and in contextual suggestions, are affiliate links. This means that if you click on the link and purchase a product, we may receive an affiliate commission at no extra cost to you. We only recommend products that we believe are technically relevant and useful for dough and baking workflows. However, any purchase decision is entirely yours and DoughLabPro is not responsible for the performance, availability or quality of third-party products.</p>
-        </div>
+      <h3>1. Agreement to Terms</h3>
+      <p>These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and DoughLabPro ("Company", "we", "us", or "our"), concerning your access to and use of the DoughLabPro application (the "Application"). By accessing the Application, you acknowledge that you have read, understood, and agree to be bound by all of these Terms of Use.</p>
 
-        <h3>9. Modifications</h3>
-        <p>We may change these Terms at any time. Changes take effect 30 days after publication. If the User continues to use the App, it is considered that they have accepted the changes.</p>
-        
-        <h3>10. Applicable Law</h3>
-        <p>These Terms are governed by applicable laws.</p>
+      <h3>2. Intellectual Property Rights</h3>
+      <p>Unless otherwise indicated, the Application is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Application (collectively, the "Content") and the trademarks, service marks, and logos contained therein (the "Marks") are owned or controlled by us or licensed to us, and are protected by copyright and trademark laws.</p>
+
+      <h3>3. User Representations</h3>
+      <p>By using the Application, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use; and (4) you are not a minor in the jurisdiction in which you reside.</p>
+
+      <h3>4. Prohibited Activities</h3>
+      <p>You may not access or use the Application for any purpose other than that for which we make the Application available. The Application may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.</p>
+
+      <h3>5. User Generated Contributions</h3>
+      <p>The Application may invite you to chat, contribute to, or participate in blogs, message boards, online forums, and other functionality, and may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Application, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions"). Contributions may be viewable by other users of the Application and through third-party websites. As such, any Contributions you transmit may be treated as non-confidential and non-proprietary.</p>
+
+      <h3>6. Disclaimer of Warranties</h3>
+      <div className="bg-dlp-bg-soft p-4 rounded border border-dlp-border text-sm">
+        <p className="font-bold mb-2">THE APPLICATION IS PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE APPLICATION AND OUR SERVICES WILL BE AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE APPLICATION AND YOUR USE THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+      </div>
+
+      <h3>7. Limitation of Liability</h3>
+      <div className="bg-dlp-bg-soft p-4 rounded border border-dlp-border text-sm mt-4">
+        <p className="font-bold mb-2">IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE, LOSS OF DATA, OR OTHER DAMAGES ARISING FROM YOUR USE OF THE APPLICATION, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+      </div>
+
+      <h3>8. Food Safety Warning</h3>
+      <p>Recipes and techniques provided by the Application are for educational purposes. <strong>You adhere to food safety guidelines at your own risk.</strong> Consumption of raw or undercooked ingredients (eggs, flour, etc.) carries inherent health risks.</p>
+
+      <h3>9. Governing Law</h3>
+      <p>These Terms shall be governed by and defined following the laws of your jurisdiction. DoughLabPro and yourself irrevocably consent that the courts of your jurisdiction shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms.</p>
     </LegalPageLayout>
   );
 };

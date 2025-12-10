@@ -1,225 +1,202 @@
 import React, { useState } from 'react';
 import { useRouter } from '@/contexts/RouterContext';
 import { learnContent } from '@/data/learn-content';
-import { LibraryPageLayout } from './LibraryPageLayout';
 import { useTranslation } from '@/i18n';
 import {
-    BookOpenIcon,
     SparklesIcon,
     MagnifyingGlassIcon,
-    ArrowRightIcon
+    ArrowRightIcon,
+    AcademicCapIcon,
+    BeakerIcon,
+    WrenchScrewdriverIcon,
+    AlertTriangleIcon,
+    BookOpenIcon,
+    ClockIcon
 } from '@/components/ui/Icons';
-import { AdCard } from '@/marketing/ads/AdCard';
-import { LEARN_CATEGORIES, LearnCategory } from '@/data/learn/categories';
+import { LEARN_CATEGORIES } from '@/data/learn/categories';
+import { LEARN_TRACKS } from '@/data/learn/tracks';
 
-// --- Components ---
-
-const CategoryCard: React.FC<{
-    category: LearnCategory;
-    onClick: () => void
-}> = ({ category, onClick }) => {
-    const { t } = useTranslation();
-
-    return (
-        <div
-            onClick={onClick}
-            className={`
-                group relative overflow-hidden rounded-2xl border ${category.border} bg-white 
-                p-6 cursor-pointer transition-all duration-500 ease-out
-                hover:shadow-xl hover:-translate-y-1 hover:border-transparent
-            `}
-        >
-            <div className={`
-                absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 
-                group-hover:opacity-100 transition-opacity duration-500
-            `}></div>
-
-            <div className="relative z-10 flex flex-col h-full">
-                <div className={`
-                    w-14 h-14 rounded-2xl ${category.bg} border ${category.border}
-                    flex items-center justify-center mb-5 shadow-sm 
-                    group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500
-                    ${category.text}
-                `}>
-                    {category.icon}
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-slate-800">
-                    {category.title}
-                </h3>
-
-                <p className="text-sm text-slate-600 mb-6 flex-grow leading-relaxed">
-                    {category.description}
-                </p>
-
-                <div className={`
-                    flex items-center gap-2 text-xs font-bold uppercase tracking-wider 
-                    ${category.text} mt-auto group-hover:translate-x-1 transition-transform
-                `}>
-                    <span>{t('learn.view_articles', { defaultValue: 'Explore Topics' })}</span>
-                    <ArrowRightIcon className="w-4 h-4" />
-                </div>
-            </div>
-        </div>
-    );
+// Icon Map for dynamic tracks
+const TRACK_ICONS: Record<string, React.FC<any>> = {
+    'academic': AcademicCapIcon,
+    'wrench': WrenchScrewdriverIcon,
+    'beaker': BeakerIcon,
+    'alert': AlertTriangleIcon,
+    'book': BookOpenIcon
 };
 
-const FeaturedCard: React.FC<{
-    title: string;
-    subtitle: string;
-    category: string;
-    color: string;
-    onClick: () => void;
-}> = ({ title, subtitle, category, color, onClick }) => {
-    return (
-        <div
-            onClick={onClick}
-            className="bg-white rounded-xl p-5 border border-stone-100 shadow-sm hover:shadow-md hover:border-lime-200 transition-all cursor-pointer flex flex-col h-full group"
-        >
-            <div className={`text-xs font-bold uppercase tracking-wider mb-2 text-${color}-600`}>
-                {category}
-            </div>
-            <h4 className="font-bold text-stone-900 mb-2 leading-snug group-hover:text-lime-700 transition-colors">
-                {title}
-            </h4>
-            <p className="text-xs text-stone-500 line-clamp-2">
-                {subtitle}
-            </p>
-        </div>
-    );
+// Color Map for dynamic tracks (Tailwind classes)
+const TRACK_COLORS: Record<string, { bg: string, text: string, border: string, icon: string }> = {
+    'emerald': { bg: 'bg-emerald-50', text: 'text-emerald-900', border: 'border-emerald-200', icon: 'text-emerald-600' },
+    'blue': { bg: 'bg-blue-50', text: 'text-blue-900', border: 'border-blue-200', icon: 'text-blue-600' },
+    'purple': { bg: 'bg-purple-50', text: 'text-purple-900', border: 'border-purple-200', icon: 'text-purple-600' },
+    'orange': { bg: 'bg-orange-50', text: 'text-orange-900', border: 'border-orange-200', icon: 'text-orange-600' },
+    'lime': { bg: 'bg-lime-50', text: 'text-lime-900', border: 'border-lime-200', icon: 'text-lime-600' }, // Fallback
 };
-
-// --- Main Page Component ---
 
 const LearnHomePage: React.FC = () => {
     const { navigate } = useRouter();
     const { t } = useTranslation();
-
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (searchQuery.trim()) {
-            navigate('learn/search', `query=${encodeURIComponent(searchQuery)}`);
+            navigate('learn/search', { q: searchQuery });
         }
     };
 
-    // Get 3 random or specific articles for "Featured" or "Essential Reading"
-    const featuredArticles = [
-        learnContent['fermentation-basics'],
-        learnContent['gluten-network'],
-        learnContent['flours']
-    ].filter(Boolean);
-
-    const displayFeatured = featuredArticles.length >= 3
-        ? featuredArticles
-        : Object.values(learnContent).slice(0, 3);
+    // Calculate generic stats
+    const totalArticles = Object.keys(learnContent).length;
+    // Dynamic featured article selection (could be improved to rotate)
+    const featuredArticleId = 'fermentation-basics';
+    const featuredArticle = learnContent[featuredArticleId] || Object.values(learnContent)[0];
 
     return (
-        <LibraryPageLayout>
-            {/* 1. Modern Hero Section */}
-            <div className="relative rounded-3xl overflow-hidden mb-12 shadow-2xl mx-4 sm:mx-6">
-                <div className="absolute inset-0 bg-[#0f2819]">
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-lime-900/40 rounded-full blur-[100px] -mr-32 -mt-32"></div>
-                    <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-900/30 rounded-full blur-[80px] -ml-20 -mb-20"></div>
+        <div className="min-h-screen bg-stone-50 font-sans pb-20">
+            {/* 1. ACADEMY HERO */}
+            <div className="bg-slate-900 text-white relative overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10"
+                    style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #84cc16 1px, transparent 1px), radial-gradient(circle at 80% 80%, #38bdf8 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
                 </div>
 
-                <div className="relative z-10 px-6 py-16 md:py-20 text-center max-w-4xl mx-auto">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-lime-500/10 border border-lime-500/20 text-lime-300 text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-sm">
-                        <SparklesIcon className="w-4 h-4 text-lime-400" />
-                        <span>The Science of Baking</span>
-                    </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
+                    <div className="max-w-3xl">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-lime-400 text-xs font-bold uppercase tracking-wider mb-6">
+                            <AcademicCapIcon className="w-4 h-4" />
+                            DoughLab Academy
+                        </div>
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+                            Master the <span className="text-lime-400">Art & Science</span>
+                        </h1>
+                        <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+                            A complete curriculum for the modern pizzaiolo. From flour chemistry to oven thermodynamics.
+                        </p>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-                        Master the <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-400">Art & Science</span> of Dough
-                    </h1>
-
-                    <p className="text-lg text-stone-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        A definitive library of baking knowledge. Deep dive into fermentation dynamics, enzyme activity, rheology, and thermal thermodynamics.
-                    </p>
-
-                    {/* Integrated Search */}
-                    <div className="max-w-2xl mx-auto">
-                        <form onSubmit={handleSearch} className="relative group">
-                            <div className="absolute inset-0 bg-lime-500/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div className="relative flex items-center bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden shadow-lg transition-colors focus-within:bg-white/20 focus-within:border-lime-500/50">
-                                <MagnifyingGlassIcon className="w-6 h-6 text-stone-400 ml-5" />
-                                <input
-                                    type="text"
-                                    placeholder={t('learn.search_placeholder', { defaultValue: 'What do you want to learn today?' })}
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full bg-transparent border-none text-white placeholder-stone-400 px-4 py-4 focus:ring-0 text-lg outline-none"
-                                />
-                                <button
-                                    type="submit"
-                                    className="mr-2 bg-lime-500 hover:bg-lime-400 text-[#0f2819] font-bold py-2.5 px-6 rounded-xl transition-all"
-                                >
-                                    Search
-                                </button>
+                        {/* Search Bar */}
+                        <form onSubmit={handleSearch} className="relative max-w-lg">
+                            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                <MagnifyingGlassIcon className="h-5 w-5 text-slate-400" />
                             </div>
+                            <input
+                                type="text"
+                                className="block w-full pl-12 pr-4 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:bg-white/20 transition-all font-medium"
+                                placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics, science, or techniques...' })}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
                         </form>
-                        <div className="mt-4 flex flex-wrap justify-center gap-2 text-sm text-stone-400">
-                            <span>Popular:</span>
-                            <button onClick={() => navigate('learn/search', 'query=hydration')} className="hover:text-lime-400 transition-colors underline decoration-dotted">Hydration</button>
-                            <button onClick={() => navigate('learn/search', 'query=gluten')} className="hover:text-lime-400 transition-colors underline decoration-dotted">Gluten</button>
-                            <button onClick={() => navigate('learn/search', 'query=sourdough')} className="hover:text-lime-400 transition-colors underline decoration-dotted">Sourdough</button>
-                            <button onClick={() => navigate('learn/search', 'query=autolyse')} className="hover:text-lime-400 transition-colors underline decoration-dotted">Autolyse</button>
+                    </div>
+                </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-lime-500/10 to-transparent pointer-events-none hidden lg:block" />
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 space-y-16">
+
+                {/* 2. FEATURED CONTENT CARD */}
+                {featuredArticle && (
+                    <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-stone-200 group cursor-pointer"
+                        onClick={() => navigate('learn/article', featuredArticle.id)}>
+                        <div className="md:flex">
+                            <div className="md:w-2/5 h-64 md:h-auto bg-stone-200 relative">
+                                <div className="absolute inset-0 bg-gradient-to-br from-lime-100 to-stone-200 flex items-center justify-center">
+                                    <SparklesIcon className="w-16 h-16 text-lime-600/50" />
+                                </div>
+                                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm">
+                                    Featured Article
+                                </div>
+                            </div>
+                            <div className="p-8 md:w-3/5 flex flex-col justify-center">
+                                <h2 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-lime-600 transition-colors">
+                                    {featuredArticle.title}
+                                </h2>
+                                <p className="text-slate-500 mb-6 leading-relaxed line-clamp-3">
+                                    {featuredArticle.subtitle}
+                                </p>
+                                <div className="flex items-center gap-4 text-sm font-medium text-slate-600">
+                                    <span className="flex items-center gap-1.5 bg-stone-100 px-3 py-1 rounded-full">
+                                        <ClockIcon className="w-4 h-4 text-lime-600" />
+                                        10 min read
+                                    </span>
+                                    <span className="text-lime-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                        Read Now <ArrowRightIcon className="w-4 h-4" />
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                )}
 
-            {/* 2. Essentials / Featured Section */}
-            {displayFeatured.length > 0 && (
-                <div className="mb-12 mx-4 sm:mx-6">
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-bold text-stone-900 flex items-center gap-2">
-                            <BookOpenIcon className="w-5 h-5 text-lime-600" />
-                            Essential Reading
-                        </h2>
+                {/* 3. TRACKS & CURRICULUM */}
+                <div className="space-y-12">
+                    <div className="flex items-end justify-between border-b border-stone-200 pb-4">
+                        <div>
+                            <h2 className="text-3xl font-bold text-slate-900 mb-2">Curriculum Tracks</h2>
+                            <p className="text-slate-500">Structured learning paths to mastery</p>
+                        </div>
+                        <div className="hidden sm:block text-sm text-slate-400 font-medium">
+                            {LEARN_TRACKS.length} Tracks • {totalArticles} Articles
+                        </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {displayFeatured.map(article => (
-                            <FeaturedCard
-                                key={article.id}
-                                title={article.title}
-                                subtitle={article.subtitle}
-                                category={article.category || 'General'}
-                                color={
-                                    article.category === 'Ingredient Science' ? 'lime' :
-                                        article.category === 'Dough Science' ? 'sky' :
-                                            'amber'
-                                }
-                                onClick={() => navigate('learn', { articleId: article.id })}
-                            />
-                        ))}
-                    </div>
-                </div>
-            )}
 
-            {/* 3. Category Grid */}
-            <div className="mx-4 sm:mx-6 mb-16">
-                <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-stone-900">Explore by Topic</h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn">
-                    {LEARN_CATEGORIES.map(category => (
-                        <CategoryCard
-                            key={category.id}
-                            category={category}
-                            onClick={() => navigate('learn/category', encodeURIComponent(category.title))}
-                        />
-                    ))}
-                </div>
-            </div>
+                    <div className="grid gap-8">
+                        {LEARN_TRACKS.map((track) => {
+                            // Filter categories dynamically
+                            const trackCategories = LEARN_CATEGORIES.filter(cat => cat.trackId === track.id);
 
-            {/* 4. Advertisement Wrapper */}
-            <div className="mx-4 sm:mx-6 mb-8">
-                <AdCard context="learn_home" />
-            </div>
-        </LibraryPageLayout>
-    );
+                            // Resolve icons and colors
+                            const TrackIcon = TRACK_ICONS[track.iconName] || AcademicCapIcon;
+                            const colors = TRACK_COLORS[track.colorTheme] || TRACK_COLORS['lime'];
+
+                            return (
+                                <section key={track.id} className="scroll-mt-24">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <div className={`w-12 h-12 rounded-xl ${colors.bg} ${colors.icon} flex items-center justify-center border ${colors.border}`}>
+                                            <TrackIcon className="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <h3 className={`text-xl font-bold ${colors.text}`}>{track.title}</h3>
+                                            <p className="text-slate-500 text-sm">{track.description}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {trackCategories.map((category) => (
+                                            <div
+                                                key={category.id}
+                                                onClick={() => navigate('learn/category', encodeURIComponent(category.id))}
+                                                className={`bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition-all cursor-pointer group relative overflow-hidden`}
+                                            >
+                                                {/* Category styling from dynamic data */}
+                                                <div className={`absolute top-0 right-0 w-24 h-24 ${category.bg} rounded-bl-[100px] opacity-20 -mr-4 -mt-4 transition-transform group-hover:scale-110`} />
+
+                                                <div className="relative z-10">
+                                                    );
+                        })}
+                                                </div>
+                                            </div>
+
+                {/* 4. FOOTER / ALL ARTICLES CTA */ }
+                                            < div className = "bg-stone-900 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden" >
+                                            <div className="relative z-10">
+                                                <h2 className="text-3xl font-bold mb-4">Explore the Full Library</h2>
+                                                <p className="text-stone-400 mb-8 max-w-xl mx-auto">
+                                                    Browse our complete collection of scientific articles, recipes, and troubleshooting guides in one place.
+                                                </p>
+                                                <button
+                                                    onClick={() => navigate('learn/all')}
+                                                    className="bg-lime-500 text-stone-900 hover:bg-lime-400 px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-lime-900/20"
+                                                >
+                                                    View All Articles
+                                                </button>
+                                            </div>
+                </div>
+                                </div>
+        </div>
+                    );
 };
 
-export default LearnHomePage;
+                    export default LearnHomePage;

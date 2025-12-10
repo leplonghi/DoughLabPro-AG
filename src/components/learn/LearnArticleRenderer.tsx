@@ -16,6 +16,7 @@ import { useTranslation } from '@/i18n';
 interface LearnArticleRendererProps {
     articleData?: LearnArticleData;
     data?: LearnArticleData;
+    embedded?: boolean;
 }
 
 type ArticleReadingMode = LearnMode | 'summary';
@@ -40,7 +41,7 @@ const StandardSection: React.FC<{
     </div>
 );
 
-export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ articleData, data }) => {
+export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ articleData, data, embedded = false }) => {
     const finalData = articleData || data;
     if (!finalData) return null;
 
@@ -66,87 +67,92 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
     const summaryData = generateArticleSummary(finalData);
 
     return (
-        <div className="min-h-screen bg-stone-50 text-slate-900 pb-20">
-            {/* Header Section */}
-            <div className="bg-white border-b border-stone-200 pt-8 pb-12 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto">
-                    <div className="flex items-center gap-3 mb-4">
-                        {finalData.category && (
+        <div className={embedded ? "" : "min-h-screen bg-stone-50 text-slate-900 pb-20"}>
+            {/* Header Section - Hide if embedded */}
+            {!embedded && (
+                <div className="bg-white border-b border-stone-200 pt-8 pb-12 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="flex items-center gap-3 mb-4">
+                            {finalData.category && (
+                                <button
+                                    onClick={() => navigate('learn/category', encodeURIComponent(finalData.category!))}
+                                    className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-80 transition-opacity ${finalData.category === 'Ingredient Science' ? 'bg-lime-900 text-lime-300 border border-lime-700' :
+                                        finalData.category === 'Dough Science' ? 'bg-sky-900 text-sky-300 border border-sky-700' :
+                                            finalData.category === 'Fermentation Science' ? 'bg-amber-900 text-amber-300 border border-amber-700' :
+                                                'bg-stone-700 text-stone-300 border border-stone-600'
+                                        }`}
+                                >
+                                    {finalData.category}
+                                </button>
+                            )}
+                            {finalData.difficulty && (
+                                <span className="px-3 py-1 rounded-full bg-stone-700 text-stone-300 text-xs font-bold border border-stone-600">
+                                    {finalData.difficulty}
+                                </span>
+                            )}
+                        </div>
+                        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 tracking-tight leading-tight">
+                            {finalData.title}
+                        </h1>
+                        <p className="text-xl text-slate-500 font-light leading-relaxed">
+                            {finalData.subtitle}
+                        </p>
+
+                        {finalData.tags && finalData.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mt-6">
+                                {finalData.tags.map(tag => (
+                                    <span key={tag} className="text-xs text-lime-800 bg-lime-100 px-2.5 py-1 rounded-md border border-lime-200 font-medium">
+                                        #{tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+
+            {/* Mode Selector - Hide if embedded (assuming new page handles summary/modes differently, or we force technical) */}
+            {!embedded && (
+                <div className="sticky top-16 z-40 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex space-x-2 overflow-x-auto py-3 no-scrollbar justify-center">
                             <button
-                                onClick={() => navigate('learn/category', encodeURIComponent(finalData.category!))}
-                                className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-80 transition-opacity ${finalData.category === 'Ingredient Science' ? 'bg-lime-900 text-lime-300 border border-lime-700' :
-                                    finalData.category === 'Dough Science' ? 'bg-sky-900 text-sky-300 border border-sky-700' :
-                                        finalData.category === 'Fermentation Science' ? 'bg-amber-900 text-amber-300 border border-amber-700' :
-                                            'bg-stone-700 text-stone-300 border border-stone-600'
+                                onClick={() => handleModeChange('technical')}
+                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'technical'
+                                    ? 'bg-lime-600 border-lime-600 text-white shadow-lg shadow-lime-900/20 scale-105'
+                                    : 'bg-white border-stone-200 text-stone-500 hover:border-lime-500 hover:text-lime-600'
                                     }`}
                             >
-                                {finalData.category}
+                                <BookOpenIcon className="w-4 h-4" />
+                                {t('learn.technical_mode', { defaultValue: 'Technical Mode' })}
                             </button>
-                        )}
-                        {finalData.difficulty && (
-                            <span className="px-3 py-1 rounded-full bg-stone-700 text-stone-300 text-xs font-bold border border-stone-600">
-                                {finalData.difficulty}
-                            </span>
-                        )}
-                    </div>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 tracking-tight leading-tight">
-                        {finalData.title}
-                    </h1>
-                    <p className="text-xl text-slate-500 font-light leading-relaxed">
-                        {finalData.subtitle}
-                    </p>
-
-                    {finalData.tags && finalData.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-6">
-                            {finalData.tags.map(tag => (
-                                <span key={tag} className="text-xs text-lime-800 bg-lime-100 px-2.5 py-1 rounded-md border border-lime-200 font-medium">
-                                    #{tag}
-                                </span>
-                            ))}
+                            <button
+                                onClick={() => handleModeChange('grandma')}
+                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'grandma'
+                                    ? 'bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-900/20 scale-105'
+                                    : 'bg-white border-stone-200 text-stone-500 hover:border-amber-400 hover:text-amber-600'
+                                    }`}
+                            >
+                                <UserCircleIcon className="w-4 h-4" />
+                                {t('learn.grandma_mode', { defaultValue: 'Grandma Mode' })}
+                            </button>
+                            <button
+                                onClick={() => handleModeChange('summary')}
+                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'summary'
+                                    ? 'bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-900/20 scale-105'
+                                    : 'bg-white border-stone-200 text-stone-500 hover:border-purple-400 hover:text-purple-600'
+                                    }`}
+                            >
+                                <ListBulletIcon className="w-4 h-4" />
+                                {t('learn.summary_mode', { defaultValue: 'Summary Mode' })}
+                            </button>
                         </div>
-                    )}
-                </div>
-            </div>
-
-            {/* Mode Selector */}
-            <div className="sticky top-16 z-40 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex space-x-2 overflow-x-auto py-3 no-scrollbar justify-center">
-                        <button
-                            onClick={() => handleModeChange('technical')}
-                            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'technical'
-                                ? 'bg-lime-600 border-lime-600 text-white shadow-lg shadow-lime-900/20 scale-105'
-                                : 'bg-white border-stone-200 text-stone-500 hover:border-lime-500 hover:text-lime-600'
-                                }`}
-                        >
-                            <BookOpenIcon className="w-4 h-4" />
-                            {t('learn.technical_mode', { defaultValue: 'Technical Mode' })}
-                        </button>
-                        <button
-                            onClick={() => handleModeChange('grandma')}
-                            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'grandma'
-                                ? 'bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-900/20 scale-105'
-                                : 'bg-white border-stone-200 text-stone-500 hover:border-amber-400 hover:text-amber-600'
-                                }`}
-                        >
-                            <UserCircleIcon className="w-4 h-4" />
-                            {t('learn.grandma_mode', { defaultValue: 'Grandma Mode' })}
-                        </button>
-                        <button
-                            onClick={() => handleModeChange('summary')}
-                            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'summary'
-                                ? 'bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-900/20 scale-105'
-                                : 'bg-white border-stone-200 text-stone-500 hover:border-purple-400 hover:text-purple-600'
-                                }`}
-                        >
-                            <ListBulletIcon className="w-4 h-4" />
-                            {t('learn.summary_mode', { defaultValue: 'Summary Mode' })}
-                        </button>
                     </div>
                 </div>
-            </div>
+            )}
 
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+            {/* Main Content */}
+            <div className={embedded ? "" : "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8"}>
 
                 {/* MODE: GRANDMA */}
                 {localMode === 'grandma' && (

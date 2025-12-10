@@ -8,19 +8,21 @@ interface LegalPageLayoutProps {
 
 const LegalPageLayout: React.FC<LegalPageLayoutProps> = ({ title, lastUpdated, children }) => {
   return (
-    <div className="mx-auto max-w-3xl rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-10 animate-[fadeIn_0.5s_ease-in-out]">
-      <div className="border-b border-slate-200 pb-4">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h1>
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mb-8 border-b border-dlp-border pb-4">
+        <h1 className="text-3xl font-bold tracking-tight text-dlp-text-primary sm:text-4xl">{title}</h1>
         {lastUpdated && (
-            <p className="mt-2 text-sm text-slate-500">Last updated: {lastUpdated}</p>
+          <p className="mt-2 text-sm text-dlp-text-muted">Last updated: {lastUpdated}</p>
         )}
       </div>
-      <div className="prose mt-6 max-w-none text-slate-600">
+
+      <div className="prose max-w-none text-dlp-text-secondary prose-a:text-dlp-accent prose-headings:text-dlp-text-primary">
         {children}
       </div>
-      <div className="mt-10 border-t border-slate-200 pt-6">
-        <p className="text-xs text-slate-500 italic">
-            This document is provided for informational purposes. While we strive for accuracy, this is an indie project and these terms may not cover all legal jurisdictions.
+
+      <div className="mt-12 border-t border-dlp-border pt-6">
+        <p className="text-xs text-dlp-text-muted text-center">
+          &copy; {new Date().getFullYear()} DoughLabPro. All rights reserved.
         </p>
       </div>
     </div>

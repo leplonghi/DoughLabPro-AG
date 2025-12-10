@@ -15,7 +15,8 @@ import {
     Filter,
     Search,
     ArrowUpDown,
-    ChefHat
+    ChefHat,
+    Globe
 } from 'lucide-react';
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
 import { AdCard } from '@/marketing/ads/AdCard';
@@ -180,136 +181,162 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
     return (
         <LibraryPageLayout>
             <PageHero
-                title="The Global Dough Atlas"
-                subtitle="Scientific profiles, baking parameters, and regional styles across 6 global dough families."
-                backgroundClass="bg-gradient-to-br from-[#3A6B3A] to-[#558B55]"
+                title="Discover professional dough specifications from around the world."
+                subtitle="Explore our curated collection of authentic dough styles, scientific profiles, and regional specialties."
+                backgroundClass="bg-gradient-to-br from-[#1c2e1c] to-[#2d4a2d]"
                 badges={
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider shadow-sm">
-                        <BookOpen className="w-4 h-4" /> Style Library
+                        <Globe className="w-4 h-4" /> Global Library
                     </div>
                 }
             />
 
-            {/* Actions Bar */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                {/* Create / AI */}
-                <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-                    <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 to-transparent pointer-events-none" />
-                    <div className="relative z-10 flex justify-between items-center">
-                        <div>
-                            <h3 className="font-bold text-slate-900 text-lg flex items-center gap-2">
-                                <Sparkles className="h-5 w-5 text-lime-500" />
-                                Create Custom Style
-                            </h3>
-                            <p className="text-sm text-slate-600 mt-1">Define your own or ask AI to generate it.</p>
-                        </div>
-                        <div className="flex gap-2">
-                            <LockFeature featureKey="styles.ai.builder" customMessage="Unlock AI Builder" origin="styles.ai.builder">
-                                <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-xl shadow-md transition-all transform hover:scale-105 flex items-center gap-2">
-                                    <Sparkles className="w-4 h-4" /> AI Builder
-                                </button>
-                            </LockFeature>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Planner CTA */}
-                {/* Planner CTA */}
-                <div className="group relative bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm flex justify-between items-center opacity-75 cursor-not-allowed">
-                    <div>
-                        <h3 className="font-bold text-slate-500 text-lg flex items-center gap-2">
-                            <ChefHat className="h-5 w-5 text-slate-400" />
-                            Ingredients Planner
-                        </h3>
-                        <p className="text-sm text-slate-400 mt-1">Calculate toppings & fillings ratios.</p>
-                    </div>
-                    <button disabled className="bg-slate-200 text-slate-400 font-bold py-2 px-4 rounded-xl shadow-none cursor-not-allowed flex items-center gap-2">
-                        <Calculator className="h-5 w-5" /> Coming Soon
-                    </button>
-
-                    {/* Tooltip */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-4 bg-slate-900 text-white text-xs rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none shadow-xl">
-                        <p className="font-bold mb-1 text-lime-400">Coming Soon</p>
-                        Plan your formulas based on your actual pantry — with validated substitutions, hydration safety ranges, and direct integration with the Dough Calculator.
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-900"></div>
-                    </div>
+            {/* Actions Bar - Simplified for new layout */}
+            <div className="flex justify-end mb-6">
+                <div className="flex gap-2">
+                    <LockFeature featureKey="styles.ai.builder" customMessage="Unlock AI Builder" origin="styles.ai.builder">
+                        <button className="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-lg shadow-indigo-200 transition-all transform hover:scale-105 flex items-center gap-2">
+                            <Sparkles className="w-4 h-4" /> AI Style Builder
+                        </button>
+                    </LockFeature>
                 </div>
             </div>
 
-            {/* Sticky Filter Bar */}
-            <div className="sticky top-4 z-20 bg-white/90 backdrop-blur-lg p-4 rounded-2xl border border-stone-200 shadow-sm mb-8 flex flex-col gap-4 transition-all duration-300">
-                {/* Top Row: Categories & Search */}
-                <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-                    <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar mask-linear-fade">
-                        {CATEGORY_FILTERS.map(cat => (
-                            <button
-                                key={cat.id}
-                                onClick={() => setSelectedCategory(cat.id as any)}
-                                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${selectedCategory === cat.id
-                                    ? 'bg-lime-500 text-white shadow-md transform scale-105'
-                                    : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                                    }`}
-                            >
-                                {cat.label}
-                                <span className={`text-[10px] py-0.5 px-1.5 rounded-full ${selectedCategory === cat.id ? 'bg-white/20' : 'bg-slate-200'}`}>
-                                    {countByCategory(cat.id)}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
+            {/* Sticky Filter Header */}
+            <div className="sticky top-2 z-30 mb-8 transition-all duration-300">
+                <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-stone-200/80 shadow-lg shadow-stone-200/20 p-4 space-y-4">
 
-                    <div className="flex items-center gap-2 w-full md:w-auto">
-                        <button
-                            onClick={() => setShowFavorites(!showFavorites)}
-                            className={`p-2.5 rounded-xl border transition-all ${showFavorites ? 'bg-pink-50 border-pink-200 text-pink-500 shadow-sm' : 'bg-white border-slate-200 text-slate-400 hover:text-pink-400 hover:bg-slate-50'}`}
-                            title="Show Favorites"
-                        >
-                            <Heart className={`h-5 w-5 ${showFavorites ? 'fill-current' : ''}`} />
-                        </button>
-
-                        <button
-                            onClick={() => setIsDrawerOpen(true)}
-                            className={`p-2.5 rounded-xl border transition-all relative ${activeFilterCount > 0 ? 'bg-lime-50 border-lime-200 text-lime-600' : 'bg-white border-slate-200 text-slate-400 hover:text-lime-500 hover:bg-slate-50'}`}
-                            title="Advanced Filters"
-                        >
-                            <Filter className="h-5 w-5" />
-                            {activeFilterCount > 0 && (
-                                <span className="absolute -top-1 -right-1 w-4 h-4 bg-lime-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
-                                    {activeFilterCount}
-                                </span>
-                            )}
-                        </button>
-
-                        <div className="relative flex-grow md:w-64 group">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-lime-500 transition-colors" />
+                    {/* Top Row: Search & Meta Controls */}
+                    <div className="flex flex-col md:flex-row gap-4 justify-between items-center pb-4 border-b border-stone-100">
+                        {/* Search Bar */}
+                        <div className="relative w-full md:w-96 group">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-lime-600 transition-colors" />
+                            </div>
                             <input
                                 type="text"
-                                placeholder="Search styles..."
+                                placeholder="Search styles (e.g. 'Neapolitan', 'Shokupan', 'Baguette')..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full rounded-xl border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm focus:border-lime-500 focus:ring-lime-500 transition-all"
+                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-lime-500/50 focus:border-lime-500 transition-all duration-200 sm:text-sm"
                             />
                         </div>
 
-                        {/* Sort Dropdown (Desktop) */}
-                        <div className="hidden md:flex items-center gap-1 bg-slate-50 rounded-xl border border-slate-200 p-1">
-                            <select
-                                value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value as any)}
-                                className="bg-transparent border-none text-sm font-medium text-slate-600 focus:ring-0 py-1.5 pl-2 pr-8 cursor-pointer"
-                            >
-                                <option value="name">Name</option>
-                                <option value="newest">Newest</option>
-                                <option value="hydration">Hydration</option>
-                                <option value="difficulty">Difficulty</option>
-                            </select>
+                        {/* Right Side Controls */}
+                        <div className="flex items-center gap-2 w-full md:w-auto justify-end">
                             <button
-                                onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-                                className="p-1.5 hover:bg-white rounded-lg text-slate-500 transition-colors shadow-sm"
+                                onClick={() => setShowFavorites(!showFavorites)}
+                                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${showFavorites
+                                    ? 'bg-pink-50 text-pink-600 border border-pink-100'
+                                    : 'bg-white text-slate-500 border border-transparent hover:bg-slate-50'
+                                    }`}
                             >
-                                <ArrowUpDown className="h-4 w-4" />
+                                <Heart className={`w-4 h-4 ${showFavorites ? 'fill-current' : ''}`} />
+                                <span>Favorites</span>
+                            </button>
+
+                            <div className="h-6 w-px bg-slate-200 mx-1"></div>
+
+                            <button
+                                onClick={() => setIsDrawerOpen(true)}
+                                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors relative ${activeFilterCount > 0
+                                    ? 'bg-lime-50 text-lime-700 border border-lime-100'
+                                    : 'bg-white text-slate-500 border border-transparent hover:bg-slate-50'
+                                    }`}
+                            >
+                                <Filter className="w-4 h-4" />
+                                <span>Filters</span>
+                                {activeFilterCount > 0 && (
+                                    <span className="ml-1 bg-lime-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                                        {activeFilterCount}
+                                    </span>
+                                )}
                             </button>
                         </div>
+                    </div>
+
+                    {/* Filter Rows Container */}
+                    <div className="flex flex-col gap-3">
+
+                        {/* TYPE Filter Row */}
+                        <div className="flex items-center gap-4">
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">Type</span>
+                            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar mask-linear-fade flex-grow">
+                                {CATEGORY_FILTERS.map(cat => {
+                                    const isActive = selectedCategory === cat.id;
+                                    return (
+                                        <button
+                                            key={cat.id}
+                                            onClick={() => setSelectedCategory(cat.id as any)}
+                                            className={`
+                                                whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border
+                                                ${isActive
+                                                    ? 'bg-slate-900 border-slate-900 text-white shadow-md transform scale-105'
+                                                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
+                                                }
+                                            `}
+                                        >
+                                            {cat.label}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* REGION Filter Row */}
+                        <div className="flex items-center gap-4">
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">Region</span>
+                            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar mask-linear-fade flex-grow">
+                                <button
+                                    onClick={() => setSelectedRegions([])}
+                                    className={`
+                                        whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
+                                        ${selectedRegions.length === 0
+                                            ? 'bg-slate-900 border-slate-900 text-white shadow-md transform scale-105'
+                                            : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
+                                        }
+                                    `}
+                                >
+                                    <Globe className="w-3.5 h-3.5" />
+                                    Any
+                                </button>
+
+                                {availableRegions.map(region => {
+                                    const isActive = selectedRegions.includes(region); // In this simplified UI, we treat horizontal click as "select only this" or "toggle"
+                                    // Let's make the horizontal list behave like radio buttons for simplicity or toggles?
+                                    // User reference shows "Region: Any | Italy | Europe ...". Usually implies exclusive selection or easy filtering.
+                                    // Let's make it exclusive for this quick bar, but the state `selectedRegions` is an array.
+                                    // We'll toggle it.
+
+                                    return (
+                                        <button
+                                            key={region}
+                                            onClick={() => {
+                                                // Toggle behavior for the pills
+                                                if (isActive) {
+                                                    setSelectedRegions(prev => prev.filter(r => r !== region));
+                                                } else {
+                                                    // Optional: If we want single-select behavior on this bar:
+                                                    // setSelectedRegions([region]); 
+                                                    // But let's keep multi-select toggle as it's more powerful
+                                                    setSelectedRegions(prev => [...prev, region]);
+                                                }
+                                            }}
+                                            className={`
+                                                whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
+                                                ${isActive
+                                                    ? 'bg-white border-lime-500 text-lime-700 ring-1 ring-lime-500 shadow-sm'
+                                                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
+                                                }
+                                            `}
+                                        >
+                                            {region}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

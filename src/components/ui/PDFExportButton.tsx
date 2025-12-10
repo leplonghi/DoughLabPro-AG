@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { ArrowDownTrayIcon } from '@/components/ui/Icons';
 // Import the logo component directly or import the path if it's an image
-import { Logo } from '@/components/ui/Logo'; 
+import { Logo } from '@/components/ui/Logo';
 
 interface PDFExportButtonProps {
     targetId: string;
@@ -66,7 +66,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             logoContainer.style.display = 'flex';
             logoContainer.style.alignItems = 'center';
             logoContainer.style.gap = '12px';
-            
+
             // We'll insert an SVG string for the logo for reliable rendering
             const logoSvg = `
                 <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
                 </svg>
             `;
             logoContainer.innerHTML = logoSvg;
-            
+
             const titleContainer = document.createElement('div');
             titleContainer.innerHTML = `
                 <h1 style="margin:0; font-size:20px; font-weight:800; color:#365314; letter-spacing: -0.5px;">DoughLab</h1>
@@ -102,7 +102,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             const noPrintElements = clone.querySelectorAll('.no-print');
             noPrintElements.forEach(el => el.remove());
 
-             // Remove any existing buttons
+            // Remove any existing buttons
             const buttons = clone.querySelectorAll('button');
             buttons.forEach(el => el.remove());
 
@@ -217,19 +217,11 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
         <button
             onClick={handleExport}
             disabled={isGenerating}
-<<<<<<< HEAD
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dlp-bg-muted text-dlp-text-secondary hover:bg-dlp-border transition-colors font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
         >
             {isGenerating ? (
                 <>
                     <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-dlp-text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-=======
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-lime-50 text-lime-700 border border-lime-200 hover:bg-lime-100 transition-colors font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
-        >
-            {isGenerating ? (
-                <>
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
->>>>>>> ad5a9e64e26d1cde0eb3356f2ab61228d0734ff1
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
