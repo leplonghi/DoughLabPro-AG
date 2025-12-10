@@ -28,6 +28,7 @@ import {
     Upload
 } from 'lucide-react';
 import { uploadImage } from '@/services/storageService';
+import { AffiliateGrid } from '@/components/AffiliateGrid';
 
 // --- ADAPTER: Legacy/Registry (V2) -> UI (V3) ---
 // This ensures that American/European styles (V2 Definitions) can be rendered by this V3 Page.
@@ -976,6 +977,12 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
 
                                 </div>
                             </div>
+
+                            {/* Affiliate / Gear Section */}
+                            <AffiliateGrid
+                                tags={[...(styleData.tags || []), 'baking', styleData.category || 'general']}
+                                title={`Essentials for ${styleData.name}`}
+                            />
 
                         </div>
                     </div>

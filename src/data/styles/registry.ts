@@ -161,7 +161,7 @@ export const COMING_SOON_STYLES = [
         name: 'Simit',
         region: 'Turkey',
         type: 'Bread',
-        image: '/images/styles/placeholder-dough.png',
+        image: '/images/styles/simit-hero.png',
         releaseDate: 'February 2026'
     },
     {
