@@ -4,6 +4,9 @@ import { useRouter } from '@/contexts/RouterContext';
 import { LearnArticleRenderer } from '@/components/learn/LearnArticleRenderer';
 import { ArrowLeftIcon, CalculatorIcon, ClockIcon, TagIcon, BookmarkSquareIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
+import { LEARN_CATEGORIES } from '@/data/learn/categories';
+import { TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config';
+import { LEARN_TRACKS } from '@/data/learn/tracks';
 
 interface LearnArticlePageProps {
     articleId?: string;
@@ -14,6 +17,12 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
     const { t } = useTranslation();
 
     const article = articleId ? learnContent[articleId] : undefined;
+
+    // Determine Article Context (Track/Theme)
+    const categoryData = article ? LEARN_CATEGORIES.find(c => c.title === article.category) : null;
+    const track = categoryData ? LEARN_TRACKS.find(t => t.id === categoryData.trackId) : null;
+    const bgImage = track ? TRACK_IMAGES[track.id] : TRACK_IMAGES['fundamentals'];
+    const themeColor = track ? TRACK_COLORS[track.colorTheme] : TRACK_COLORS['lime'];
 
     // Scroll to top on mount
     useEffect(() => {
@@ -61,64 +70,76 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
 
     return (
         <div className="min-h-screen bg-stone-50 font-sans selection:bg-lime-200 selection:text-lime-900">
-            {/* Top Navigation Bar */}
-            <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                    <button
-                        onClick={() => navigate('learn')}
-                        className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors font-medium text-sm group"
-                    >
-                        <div className="p-1.5 rounded-lg bg-stone-100 group-hover:bg-stone-200 transition-colors">
-                            <ArrowLeftIcon className="w-4 h-4" />
-                        </div>
-                        Back to Academy
-                    </button>
+            {/* 1. HERO HEADER WITH IMAGE */}
+            <div className="relative h-[400px] w-full bg-stone-900 overflow-hidden">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center opacity-60"
+                    style={{ backgroundImage: `url(${bgImage})` }}
+                />
+                {/* Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/60 to-transparent" />
 
-                    <div className="flex items-center gap-4">
-                        <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-400 bg-stone-100 px-3 py-1.5 rounded-full">
-                            <span className="w-2 h-2 rounded-full bg-lime-500"></span>
-                            {article.category}
+                {/* Navigation Bar (Transparent on top of hero) */}
+                <div className="absolute top-0 w-full z-40 bg-gradient-to-b from-black/50 to-transparent">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between text-white">
+                        <button
+                            onClick={() => navigate('learn')}
+                            className="flex items-center gap-2 hover:text-lime-300 transition-colors font-medium text-sm group"
+                        >
+                            <div className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-white/20 transition-colors">
+                                <ArrowLeftIcon className="w-4 h-4" />
+                            </div>
+                            Back to Academy
+                        </button>
+                    </div>
+                </div>
+
+                {/* Hero Content */}
+                <div className="absolute bottom-0 w-full p-8 pb-12">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-3xl animate-slide-up-fade">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md border border-white/20 text-white ${themeColor.bg.replace('50', '500')}/80`}>
+                                    {article.category}
+                                </span>
+                                <span className="flex items-center gap-1 text-stone-300 text-xs font-medium">
+                                    <ClockIcon className="w-3.5 h-3.5" />
+                                    {estimatedReadTime} min read
+                                </span>
+                            </div>
+
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight shadow-sm">
+                                {article.title}
+                            </h1>
+
+                            <p className="text-lg md:text-xl text-stone-200 leading-relaxed max-w-2xl font-medium">
+                                {article.subtitle}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10 pb-20">
                 <div className="lg:grid lg:grid-cols-12 lg:gap-12">
                     {/* Left Column: Content (8 cols) */}
                     <article className="lg:col-span-8">
-                        {/* Article Header */}
-                        <div className="mb-10">
-                            <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-6">
-                                <span className="flex items-center gap-1.5 bg-lime-50 text-lime-700 px-3 py-1 rounded-lg font-medium border border-lime-100">
-                                    <ClockIcon className="w-4 h-4" />
-                                    {estimatedReadTime} min read
-                                </span>
-                                <span className="text-stone-300">|</span>
-                                <span>Updated recently</span>
+                        {/* Article Body Card */}
+                        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-stone-100">
+                            {/* Article content renderer */}
+                            <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:leading-loose prose-img:rounded-2xl prose-img:shadow-lg prose-a:text-lime-600 hover:prose-a:text-lime-500">
+                                {/* @ts-ignore - passing embedded prop */}
+                                <LearnArticleRenderer articleData={article} embedded={true} />
                             </div>
-
-                            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-6 leading-tight tracking-tight">
-                                {article.title}
-                            </h1>
-
-                            <p className="text-xl text-slate-600 leading-relaxed font-serif italic border-l-4 border-lime-400 pl-6">
-                                {article.subtitle}
-                            </p>
-                        </div>
-
-                        {/* Article Body */}
-                        <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:leading-loose prose-img:rounded-2xl prose-img:shadow-lg prose-a:text-lime-600 hover:prose-a:text-lime-500">
-                            {/* @ts-ignore - passing embedded prop which we will add next */}
-                            <LearnArticleRenderer articleData={article} embedded={true} />
                         </div>
                     </article>
 
                     {/* Right Column: Sidebar (4 cols) */}
-                    <aside className="hidden lg:block lg:col-span-4 space-y-8">
-                        <div className="sticky top-24 space-y-8">
+                    <aside className="hidden lg:block lg:col-span-4 space-y-8 mt-8 lg:mt-0">
+                        <div className="sticky top-8 space-y-8">
 
-                            {/* 1. Calculator CTA Card */}
+                            {/* 1. Calculator CTA Card (Contextual) */}
                             <div className="bg-slate-900 rounded-2xl p-6 shadow-xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-lime-500/20 rounded-full blur-[40px] -mr-10 -mt-10 group-hover:bg-lime-500/30 transition-colors"></div>
                                 <div className="relative z-10">
@@ -144,15 +165,15 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                                 <div className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
                                     <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
                                         <BookmarkSquareIcon className="w-4 h-4 text-lime-600" />
-                                        Key Topics
+                                        In this Article
                                     </h4>
-                                    <ul className="space-y-2">
+                                    <ul className="space-y-3">
                                         {sections.map((section, idx) => (
                                             <li
                                                 key={idx}
-                                                className="flex items-center gap-2 text-sm text-slate-600"
+                                                className="flex items-start gap-3 text-sm text-slate-600 hover:text-lime-700 transition-colors cursor-default"
                                             >
-                                                <div className="w-1.5 h-1.5 rounded-full bg-lime-500" />
+                                                <div className="w-1.5 h-1.5 rounded-full bg-stone-300 mt-1.5 group-hover:bg-lime-500" />
                                                 {section}
                                             </li>
                                         ))}

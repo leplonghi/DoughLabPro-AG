@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from '@/contexts/RouterContext';
+import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { learnContent } from '@/data/learn-content';
 import { useTranslation } from '@/i18n';
 import {
@@ -7,32 +8,11 @@ import {
     MagnifyingGlassIcon,
     ArrowRightIcon,
     AcademicCapIcon,
-    BeakerIcon,
-    WrenchScrewdriverIcon,
-    AlertTriangleIcon,
-    BookOpenIcon,
     ClockIcon
 } from '@/components/ui/Icons';
 import { LEARN_CATEGORIES } from '@/data/learn/categories';
 import { LEARN_TRACKS } from '@/data/learn/tracks';
-
-// Icon Map for dynamic tracks
-const TRACK_ICONS: Record<string, React.FC<any>> = {
-    'academic': AcademicCapIcon,
-    'wrench': WrenchScrewdriverIcon,
-    'beaker': BeakerIcon,
-    'alert': AlertTriangleIcon,
-    'book': BookOpenIcon
-};
-
-// Color Map for dynamic tracks (Tailwind classes)
-const TRACK_COLORS: Record<string, { bg: string, text: string, border: string, icon: string }> = {
-    'emerald': { bg: 'bg-emerald-50', text: 'text-emerald-900', border: 'border-emerald-200', icon: 'text-emerald-600' },
-    'blue': { bg: 'bg-blue-50', text: 'text-blue-900', border: 'border-blue-200', icon: 'text-blue-600' },
-    'purple': { bg: 'bg-purple-50', text: 'text-purple-900', border: 'border-purple-200', icon: 'text-purple-600' },
-    'orange': { bg: 'bg-orange-50', text: 'text-orange-900', border: 'border-orange-200', icon: 'text-orange-600' },
-    'lime': { bg: 'bg-lime-50', text: 'text-lime-900', border: 'border-lime-200', icon: 'text-lime-600' }, // Fallback
-};
+import { TRACK_ICONS, TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config';
 
 const LearnHomePage: React.FC = () => {
     const { navigate } = useRouter();
@@ -53,150 +33,156 @@ const LearnHomePage: React.FC = () => {
     const featuredArticle = learnContent[featuredArticleId] || Object.values(learnContent)[0];
 
     return (
-        <div className="min-h-screen bg-stone-50 font-sans pb-20">
-            {/* 1. ACADEMY HERO */}
-            <div className="bg-slate-900 text-white relative overflow-hidden">
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-10"
-                    style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #84cc16 1px, transparent 1px), radial-gradient(circle at 80% 80%, #38bdf8 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-                </div>
+        <LibraryPageLayout>
+            <div className="mx-auto max-w-7xl animate-fade-in pb-20">
+                {/* 1. STANDARD HERO SECTION (Green Gradient) */}
+                <div className="mb-8 mx-4 sm:mx-6">
+                    <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
-                    <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-lime-400 text-xs font-bold uppercase tracking-wider mb-6">
-                            <AcademicCapIcon className="w-4 h-4" />
-                            DoughLab Academy
-                        </div>
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
-                            Master the <span className="text-lime-400">Art & Science</span>
-                        </h1>
-                        <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
-                            A complete curriculum for the modern pizzaiolo. From flour chemistry to oven thermodynamics.
-                        </p>
-
-                        {/* Search Bar */}
-                        <form onSubmit={handleSearch} className="relative max-w-lg">
-                            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                                <MagnifyingGlassIcon className="h-5 w-5 text-slate-400" />
+                        <div className="relative z-10 text-center max-w-3xl mx-auto">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
+                                <AcademicCapIcon className="w-4 h-4" />
+                                DoughLab Academy
                             </div>
-                            <input
-                                type="text"
-                                className="block w-full pl-12 pr-4 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:bg-white/20 transition-all font-medium"
-                                placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics, science, or techniques...' })}
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                        </form>
+                            <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">
+                                Master the Art & Science
+                            </h1>
+                            <p className="text-base md:text-lg text-lime-100/90 mb-6 leading-relaxed">
+                                A complete curriculum for the modern pizzaiolo. From flour chemistry to oven thermodynamics.
+                            </p>
+
+                            {/* Search Bar - Integrated in Hero for Learn Page or below? keeping in hero for now as it looks good centered here, but using standard styles */}
+                            <form onSubmit={handleSearch} className="relative max-w-lg mx-auto">
+                                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                    <MagnifyingGlassIcon className="h-5 w-5 text-lime-200" />
+                                </div>
+                                <input
+                                    type="text"
+                                    className="block w-full pl-12 pr-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-lime-400/30 text-white placeholder-lime-200/70 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:bg-white/20 transition-all font-medium"
+                                    placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics...' })}
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-                {/* Decorative Elements */}
-                <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-lime-500/10 to-transparent pointer-events-none hidden lg:block" />
-            </div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 space-y-16">
-
-                {/* 2. FEATURED CONTENT CARD */}
-                {featuredArticle && (
-                    <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-stone-200 group cursor-pointer"
-                        onClick={() => navigate('learn/article', featuredArticle.id)}>
-                        <div className="md:flex">
-                            <div className="md:w-2/5 h-64 md:h-auto bg-stone-200 relative">
-                                <div className="absolute inset-0 bg-gradient-to-br from-lime-100 to-stone-200 flex items-center justify-center">
-                                    <SparklesIcon className="w-16 h-16 text-lime-600/50" />
+                <div className="px-4 sm:px-6 space-y-12">
+                    {/* 2. FEATURED CONTENT CARD (Standardized) */}
+                    {featuredArticle && (
+                        <div className="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
+                            onClick={() => navigate('learn/article', featuredArticle.id)}>
+                            <div className="md:flex">
+                                <div className="md:w-1/3 bg-stone-100 relative h-48 md:h-auto flex items-center justify-center">
+                                    <SparklesIcon className="w-12 h-12 text-stone-300" />
+                                    <div className="absolute top-4 left-4 bg-white px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider text-stone-600 shadow-sm border border-stone-100">
+                                        Featured
+                                    </div>
                                 </div>
-                                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm">
-                                    Featured Article
-                                </div>
-                            </div>
-                            <div className="p-8 md:w-3/5 flex flex-col justify-center">
-                                <h2 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-lime-600 transition-colors">
-                                    {featuredArticle.title}
-                                </h2>
-                                <p className="text-slate-500 mb-6 leading-relaxed line-clamp-3">
-                                    {featuredArticle.subtitle}
-                                </p>
-                                <div className="flex items-center gap-4 text-sm font-medium text-slate-600">
-                                    <span className="flex items-center gap-1.5 bg-stone-100 px-3 py-1 rounded-full">
-                                        <ClockIcon className="w-4 h-4 text-lime-600" />
-                                        10 min read
-                                    </span>
-                                    <span className="text-lime-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                        Read Now <ArrowRightIcon className="w-4 h-4" />
-                                    </span>
+                                <div className="p-6 md:w-2/3 flex flex-col justify-center">
+                                    <h2 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-lime-700 transition-colors">
+                                        {featuredArticle.title}
+                                    </h2>
+                                    <p className="text-sm text-slate-600 mb-4 line-clamp-2">
+                                        {featuredArticle.subtitle}
+                                    </p>
+                                    <div className="flex items-center gap-4 text-xs font-bold text-slate-500">
+                                        <div className="flex items-center gap-1">
+                                            <ClockIcon className="w-3.5 h-3.5" />
+                                            10 min
+                                        </div>
+                                        <div className="text-lime-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Read Article <ArrowRightIcon className="w-3 h-3" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                {/* 3. TRACKS & CURRICULUM */}
-                <div className="space-y-12">
-                    <div className="flex items-end justify-between border-b border-stone-200 pb-4">
-                        <div>
-                            <h2 className="text-3xl font-bold text-slate-900 mb-2">Curriculum Tracks</h2>
-                            <p className="text-slate-500">Structured learning paths to mastery</p>
-                        </div>
-                        <div className="hidden sm:block text-sm text-slate-400 font-medium">
-                            {LEARN_TRACKS.length} Tracks • {totalArticles} Articles
-                        </div>
-                    </div>
-
-                    <div className="grid gap-8">
+                    {/* 3. TRACKS */}
+                    <div className="space-y-10">
                         {LEARN_TRACKS.map((track) => {
-                            // Filter categories dynamically
                             const trackCategories = LEARN_CATEGORIES.filter(cat => cat.trackId === track.id);
-
-                            // Resolve icons and colors
                             const TrackIcon = TRACK_ICONS[track.iconName] || AcademicCapIcon;
                             const colors = TRACK_COLORS[track.colorTheme] || TRACK_COLORS['lime'];
+                            const bgImage = TRACK_IMAGES[track.id] || TRACK_IMAGES['fundamentals'];
 
                             return (
-                                <section key={track.id} className="scroll-mt-24">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className={`w-12 h-12 rounded-xl ${colors.bg} ${colors.icon} flex items-center justify-center border ${colors.border}`}>
-                                            <TrackIcon className="w-6 h-6" />
+                                <section key={track.id}>
+                                    <div className="flex items-center gap-3 mb-6 px-1">
+                                        <div className={`p-2 rounded-lg ${colors.bg} ${colors.icon} border ${colors.border}`}>
+                                            <TrackIcon className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <h3 className={`text-xl font-bold ${colors.text}`}>{track.title}</h3>
-                                            <p className="text-slate-500 text-sm">{track.description}</p>
+                                            <h3 className="text-lg font-bold text-slate-900">{track.title}</h3>
+                                            <p className="text-slate-500 text-xs">{track.description}</p>
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {trackCategories.map((category) => (
                                             <div
                                                 key={category.id}
                                                 onClick={() => navigate('learn/category', encodeURIComponent(category.id))}
-                                                className={`bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition-all cursor-pointer group relative overflow-hidden`}
+                                                className="group relative overflow-hidden rounded-xl border border-stone-200 cursor-pointer shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 aspect-[16/9] sm:aspect-[2/1] lg:aspect-[16/9]"
                                             >
-                                                {/* Category styling from dynamic data */}
-                                                <div className={`absolute top-0 right-0 w-24 h-24 ${category.bg} rounded-bl-[100px] opacity-20 -mr-4 -mt-4 transition-transform group-hover:scale-110`} />
+                                                {/* Background Image */}
+                                                <div
+                                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                                    style={{ backgroundImage: `url(${bgImage})` }}
+                                                />
 
-                                                <div className="relative z-10">
-                                                    );
-                        })}
+                                                {/* Dark Overlay Gradient */}
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 group-hover:via-black/60 transition-colors" />
+
+                                                {/* Content */}
+                                                <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                                                    <div className="mb-auto">
+                                                        <div className={`inline-flex p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white mb-2`}>
+                                                            {React.cloneElement(category.icon as React.ReactElement, { className: "w-5 h-5" })}
+                                                        </div>
+                                                    </div>
+
+                                                    <h4 className="text-lg font-bold text-white mb-1 leading-tight group-hover:text-lime-300 transition-colors">
+                                                        {category.title}
+                                                    </h4>
+                                                    <p className="text-xs text-stone-300 line-clamp-2 leading-relaxed opacity-90 group-hover:opacity-100">
+                                                        {category.description}
+                                                    </p>
+
+                                                    <div className="absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                                        <ArrowRightIcon className="w-5 h-5 text-lime-400" />
+                                                    </div>
                                                 </div>
                                             </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            );
+                        })}
+                    </div>
 
-                {/* 4. FOOTER / ALL ARTICLES CTA */ }
-                                            < div className = "bg-stone-900 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden" >
-                                            <div className="relative z-10">
-                                                <h2 className="text-3xl font-bold mb-4">Explore the Full Library</h2>
-                                                <p className="text-stone-400 mb-8 max-w-xl mx-auto">
-                                                    Browse our complete collection of scientific articles, recipes, and troubleshooting guides in one place.
-                                                </p>
-                                                <button
-                                                    onClick={() => navigate('learn/all')}
-                                                    className="bg-lime-500 text-stone-900 hover:bg-lime-400 px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-lime-900/20"
-                                                >
-                                                    View All Articles
-                                                </button>
-                                            </div>
+                    {/* 4. FOOTER CTA (Standardized) */}
+                    <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200 text-center">
+                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Explore the Full Library</h2>
+                        <p className="text-slate-500 mb-6 max-w-xl mx-auto text-sm">
+                            Browse our complete collection of scientific articles, recipes, and troubleshooting guides.
+                        </p>
+                        <button
+                            onClick={() => navigate('learn/all')}
+                            className="bg-white text-slate-900 border border-stone-300 hover:bg-stone-50 hover:border-stone-400 px-6 py-2 rounded-lg font-bold transition-all text-sm shadow-sm"
+                        >
+                            View All Articles
+                        </button>
+                    </div>
                 </div>
-                                </div>
-        </div>
-                    );
+            </div>
+        </LibraryPageLayout>
+    );
 };
 
-                    export default LearnHomePage;
+export default LearnHomePage;
