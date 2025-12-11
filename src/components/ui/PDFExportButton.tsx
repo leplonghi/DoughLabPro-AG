@@ -125,40 +125,44 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             style.innerHTML = `
                 .pdf-mode {
                     color: #1e293b;
-                    line-height: 1.5;
+                    line-height: 1.4;
+                    font-size: 9px;
                 }
                 .pdf-mode h1, .pdf-mode h2, .pdf-mode h3 {
                     color: #0f172a;
                     margin-top: 0;
                 }
-                .pdf-mode h1 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
-                .pdf-mode h2 { font-size: 16px; font-weight: 700; margin-bottom: 8px; margin-top: 24px; color: #3f6212; border-bottom: 1px solid #ecfccb; padding-bottom: 4px; }
-                .pdf-mode h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #334155; }
-                .pdf-mode p { font-size: 11px; margin-bottom: 8px; text-align: justify; }
-                .pdf-mode ul, .pdf-mode ol { margin-bottom: 12px; padding-left: 20px; }
-                .pdf-mode li { font-size: 11px; margin-bottom: 4px; }
+                .pdf-mode h1 { font-size: 18px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
+                .pdf-mode h2 { font-size: 13px; font-weight: 700; margin-bottom: 6px; margin-top: 16px; color: #3f6212; border-bottom: 1px solid #d9f99d; padding-bottom: 2px; }
+                .pdf-mode h3 { font-size: 11px; font-weight: 600; margin-bottom: 4px; color: #334155; text-transform: uppercase; letter-spacing: 0.05em; }
+                .pdf-mode p { font-size: 9px; margin-bottom: 6px; text-align: justify; color: #475569; }
+                .pdf-mode ul, .pdf-mode ol { margin-bottom: 8px; padding-left: 16px; }
+                .pdf-mode li { font-size: 9px; margin-bottom: 2px; }
                 
                 /* Table Styles for Ingredients */
-                .pdf-mode table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 11px; }
-                .pdf-mode th { text-align: left; border-bottom: 2px solid #e2e8f0; padding: 8px 4px; color: #475569; font-weight: 600; font-size: 10px; text-transform: uppercase; }
-                .pdf-mode td { border-bottom: 1px solid #f1f5f9; padding: 8px 4px; color: #1e293b; }
+                .pdf-mode table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 9px; }
+                .pdf-mode th { text-align: left; border-bottom: 1px solid #cbd5e1; padding: 4px 2px; color: #64748b; font-weight: 700; font-size: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+                .pdf-mode td { border-bottom: 1px solid #f1f5f9; padding: 4px 2px; color: #334155; vertical-align: middle; }
                 .pdf-mode tr:last-child td { border-bottom: none; }
                 
                 /* Grid adjustments */
-                .pdf-mode .grid { display: grid; gap: 16px; }
+                .pdf-mode .grid { display: grid; gap: 12px; }
                 .pdf-mode .grid-cols-2 { grid-template-columns: 1fr 1fr; }
                 .pdf-mode .grid-cols-3 { grid-template-columns: 1fr 1fr 1fr; }
                 
                 /* Card Flattening */
                 .pdf-mode .bg-white { background-color: transparent !important; }
-                .pdf-mode .shadow-sm, .pdf-mode .shadow-md, .pdf-mode .shadow-lg { box-shadow: none !important; }
+                .pdf-mode .shadow-sm, .pdf-mode .shadow-md, .pdf-mode .shadow-dlp-md { box-shadow: none !important; border: 1px solid #e2e8f0; }
                 .pdf-mode .border, .pdf-mode .border-t { border-color: #e2e8f0 !important; }
-                .pdf-mode .rounded-xl, .pdf-mode .rounded-2xl { border-radius: 8px !important; }
+                .pdf-mode .rounded-xl, .pdf-mode .rounded-2xl { border-radius: 6px !important; }
                 
                 /* Specific component tweaks */
                 .pdf-mode .text-lime-600 { color: #4d7c0f !important; }
                 .pdf-mode .bg-lime-50 { background-color: #f7fee7 !important; border: 1px solid #d9f99d; }
                 .pdf-mode .bg-slate-50 { background-color: #f8fafc !important; }
+                
+                /* Image specific */
+                .pdf-mode img { max-width: 100%; height: auto; border-radius: 4px; }
             `;
             container.appendChild(style);
             container.appendChild(wrapper);

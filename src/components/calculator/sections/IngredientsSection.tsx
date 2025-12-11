@@ -2,7 +2,7 @@ import React from 'react';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import SliderInput from "@/components/ui/SliderInput";
 import { CubeIcon } from "@/components/ui/Icons";
-import { YeastType, FormErrors, DoughConfig, Levain } from "@/types";
+import { YeastType, FormErrors, DoughConfig, Levain, DoughResult } from "@/types";
 import { getArticleById } from "@/data/learn";
 import { timeSince } from "@/utils/dateUtils";
 import { LockFeature } from "@/components/auth/LockFeature";
@@ -21,6 +21,7 @@ interface IngredientsSectionProps {
   YEAST_OPTIONS: { value: string; labelKey: string }[];
   getRange: (field: string) => [number, number] | undefined;
   getSelectClasses: () => string;
+  results?: DoughResult | null;
 }
 
 const IngredientsSection: React.FC<IngredientsSectionProps> = ({
@@ -36,7 +37,37 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
   YEAST_OPTIONS,
   getRange,
   getSelectClasses,
+  results,
 }) => {
+
+  const totalFlour = React.useMemo(() => {
+    if (!results) return 1000;
+    // Handle Direct vs Preferment flour sums
+    const finalF = results.finalDough?.flour || 0;
+    const prefF = results.preferment?.flour || 0;
+    // If Direct, preferment is likely undefined or 0.
+    // If Poolish/Biga, total = both.
+    return finalF + prefF;
+  }, [results]);
+
+  const getLabel = (ing: any) => {
+    const n = ing.name.toLowerCase();
+    if ((n.includes('egg') || n.includes('ovo')) && !n.includes('free') && !n.includes('plant')) {
+      const weight = (ing.bakerPercentage || 0) / 100 * totalFlour;
+      let unitW = 50;
+      if (n.includes('yolk') || n.includes('gema')) unitW = 18;
+      if (n.includes('white') || n.includes('clara')) unitW = 30;
+
+      // Avoid division by zero
+      if (unitW === 0) return ing.name;
+
+      const count = weight / unitW;
+      const str = Math.abs(Math.round(count) - count) < 0.1 ? Math.round(count).toString() : count.toFixed(1);
+      return `${ing.name} (~${str} un • ${Math.round(weight)}g)`;
+    }
+    return ing.name;
+  };
+
   return (
     <div className="space-y-6">
       {isBasic ? (
@@ -71,20 +102,22 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
         </>
       ) : (
         <>
-          <LockedTeaser featureKey="calculator.hydration_advanced">
-            <SliderInput
-              label={config.bakeType === 'SWEETS_PASTRY' ? "Liquids (inc. Eggs)" : "Hydration"}
-              name="hydration"
-              value={config.hydration}
-              onChange={handleNumberChange}
-              min={0} max={config.bakeType === 'SWEETS_PASTRY' ? 200 : 120} step={1} unit="%"
-              tooltip="Controls dough wetness and crust texture. Higher hydration (65%+) creates an open, airy crumb but is stickier to handle."
-              hasError={!!errors.hydration}
-              recommendedMin={getRange('hydration')?.[0]}
-              recommendedMax={getRange('hydration')?.[1]}
-              learnArticle={getArticleById('water-hydration-dynamics')}
-            />
-          </LockedTeaser>
+          {config.bakeType !== 'SWEETS_PASTRY' && (
+            <LockedTeaser featureKey="calculator.hydration_advanced">
+              <SliderInput
+                label="Hydration"
+                name="hydration"
+                value={config.hydration}
+                onChange={handleNumberChange}
+                min={0} max={120} step={1} unit="%"
+                tooltip="Controls dough wetness and crust texture. Higher hydration (65%+) creates an open, airy crumb but is stickier to handle."
+                hasError={!!errors.hydration}
+                recommendedMin={getRange('hydration')?.[0]}
+                recommendedMax={getRange('hydration')?.[1]}
+                learnArticle={getArticleById('water-hydration-dynamics')}
+              />
+            </LockedTeaser>
+          )}
           <SliderInput
             label="Salt"
             name="salt"
@@ -97,30 +130,32 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             recommendedMax={getRange('salt')?.[1]}
             learnArticle={getArticleById('salt-functionality-osmotic-effects')}
           />
-          <SliderInput
-            label={config.bakeType === 'SWEETS_PASTRY' ? "Butter/Fat" : "Oil/Fat"}
-            name="oil"
-            value={config.oil}
-            onChange={handleNumberChange}
-            min={0} max={100} step={0.5} unit="%"
-            tooltip="Softens the crumb and helps with browning. Olive oil adds flavor; lard/shortening adds tenderness."
-            hasError={!!errors.oil}
-            recommendedMin={getRange('oil')?.[0]}
-            recommendedMax={getRange('oil')?.[1]}
-            learnArticle={getArticleById('fats-oils-lubrication-oxidation')}
-          />
-          <SliderInput
-            label="Sugar"
-            name="sugar"
-            value={config.sugar || 0}
-            onChange={handleNumberChange}
-            min={0} max={100} step={0.5} unit="%"
-            tooltip="Provides food for yeast and promotes browning (Maillard reaction). Essential for short fermentation or low-temp ovens."
-            hasError={!!errors.sugar}
-            recommendedMin={getRange('sugar')?.[0]}
-            recommendedMax={getRange('sugar')?.[1]}
-            learnArticle={getArticleById('sugars-enzymatic-activity')}
-          />
+
+          {/* Dynamic Ingredient Sliders (Universal Engine) */}
+          {config.ingredients?.filter(i =>
+            !['flour', 'water', 'salt', 'yeast', 'starter'].includes(i.role || '') &&
+            // We can exclude 'other' if we want, but usually custom ingredients are 'other'.
+            // Exclude chemical leaveners if handled elsewhere? No, keep them.
+            true
+          ).map(ing => (
+            <SliderInput
+              key={ing.id}
+              label={getLabel(ing)}
+              name={`ing-${ing.id}`}
+              value={ing.bakerPercentage || 0}
+              onChange={(_, val) => {
+                const newIngs = config.ingredients?.map(Current =>
+                  Current.id === ing.id ? { ...Current, bakerPercentage: val, manualOverride: true } : Current
+                );
+                handleIngredientsUpdate(newIngs || []);
+              }}
+              min={0}
+              max={ing.role === 'sugar' ? 300 : ing.role === 'fat' ? 200 : ing.name.includes('Chocolate') ? 200 : 100}
+              step={0.1}
+              unit="%"
+              tooltip={`Adjust percentage of ${ing.name}`}
+            />
+          ))}
         </>
       )}
 
@@ -201,21 +236,23 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
           </div>
         )}
 
-        <div className="mt-8">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
-              <CubeIcon className="h-5 w-5 text-dlp-accent" />
-              Advanced Ingredients
-            </h3>
-            <LockFeature featureKey="calculator.advanced_ingredients" customMessage="Unlock Pro Ingredients">
-              <IngredientTableEditor
-                ingredients={config.ingredients || []}
-                onChange={handleIngredientsUpdate}
-                totalFlour={1000} // Placeholder, calculation handles real value
-              />
-            </LockFeature>
+        {config.bakeType !== 'SWEETS_PASTRY' && (
+          <div className="mt-8">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
+                <CubeIcon className="h-5 w-5 text-dlp-accent" />
+                Advanced Ingredients
+              </h3>
+              <LockFeature featureKey="calculator.advanced_ingredients" customMessage="Unlock Pro Ingredients">
+                <IngredientTableEditor
+                  ingredients={config.ingredients || []}
+                  onChange={handleIngredientsUpdate}
+                  totalFlour={1000} // Placeholder
+                />
+              </LockFeature>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

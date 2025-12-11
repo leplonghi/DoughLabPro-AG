@@ -302,4 +302,86 @@ export const europeStyles: DoughStyle[] = [
             crumb: '/images/styles/placeholder-dough.png',
         },
     },
+    {
+        id: 'english_muffin',
+        name: 'English Muffin',
+        region: 'Europe',
+        subRegion: 'UK',
+        category: 'Bread',
+        recipeStyle: RecipeStyle.ENGLISH_MUFFIN,
+        tags: ['Griddle', 'Nooks and Crannies', 'Breakfast'],
+        description: 'A small, round, flat yeast-leavened bread which is commonly sliced horizontally, toasted, and buttered. Famous for its "nooks and crannies" texture created by a high hydration dough cooked on a griddle.',
+        history_context: 'Invented in the US by British immigrant Samuel Bath Thomas in 1880, based on the "crumpet" but drier. It became a breakfast staple.',
+        base_formula: [
+            { name: 'Bread Flour', percentage: 100 },
+            { name: 'Water/Milk', percentage: 75 },
+            { name: 'Yeast', percentage: 1 },
+            { name: 'Salt', percentage: 2 },
+            { name: 'Sugar', percentage: 1 },
+            { name: 'Butter', percentage: 2 }
+        ],
+        specs: {
+            hydration: { ideal: 78, min: 75, max: 82 },
+            ovenTemp: { ideal: 200, min: 180, max: 220 }, // Griddle temp
+            fermentationTime: '12-24h', // Cold ferment helps nooks
+            difficulty: 'Medium'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: true,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W300+",
+                pl_ratio: "Extensible",
+                absorption_capacity: "High",
+                protein_type: "Strong Wheat",
+                science_explanation: 'High protein is needed to support the high hydration (80%ish) which creates the large bubbles (nooks) during the griddle cook.'
+            },
+            thermalProfile: {
+                oven_type: "Griddle / Skillet",
+                heat_distribution: "Conduction",
+                crust_development: "Pale, dusted with semolina",
+                crumb_structure: "Large alveoli (Nooks)"
+            },
+            fermentationScience: {
+                yeast_activity: "High",
+                ph_target: "Acidic (Sourdough/Buttermilk often used)",
+                organic_acids: "Lactic",
+                enzymatic_activity: "High"
+            },
+            processScience: 'The "Fork Split": Cutting with a knife shears the gluten strands and ruins the texture. Pulling apart (or using a fork) preserves the peaks and valleys (nooks) that hold the butter.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'High Hydration Mix',
+                duration: '15 min',
+                action: 'Mix to full windowpane.',
+                science: 'Strong gluten network required to trap the steam/CO2 in large pockets.'
+            },
+            {
+                phase: 'Bulk',
+                title: 'Cold Ferment',
+                duration: '12h',
+                action: 'Bulk in fridge.',
+                science: 'Develops flavor and allows hydration to fully penetrate.'
+            },
+            {
+                phase: 'Cook',
+                title: 'Griddle',
+                duration: '14 min',
+                action: 'Cook in rings on a medium-low griddle, flip halfway.',
+                science: 'Direct conduction heat sets the bottom and top, while the side walls remain soft.'
+            }
+        ],
+        references: ['Thomas History', 'Bread Baker\'s Apprentice'],
+        images: {
+            hero: '/images/styles/english_muffin_toasted.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    }
 ];

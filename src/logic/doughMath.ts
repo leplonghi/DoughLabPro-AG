@@ -173,6 +173,54 @@ export const calculateDoughUniversal = (
   const normalizedConfig = normalizeDoughConfigWithIngredients(config);
   const ingredients = normalizedConfig.ingredients || [];
 
+  // ============================================
+  // REACTIVE HYDRATION ENGINE (Step 2 Implementation)
+  // ============================================
+
+  // 1. Calculate water contributed by "Other" ingredients (Eggs, Milk, Butter, etc.)
+  let waterFromOthers = 0;
+
+  ingredients.forEach(ing => {
+    // Determine Hydration Factor (0 to 1)
+    let hydrationFactor = 0;
+
+    if (ing.hydrationContent !== undefined) {
+      hydrationFactor = ing.hydrationContent;
+    } else {
+      // Legacy Fallbacks
+      if (ing.role === 'water') hydrationFactor = 1.0;
+      else if (ing.type === 'liquid') hydrationFactor = 1.0; // Assume 100% for unknown liquids (e.g. Oil usually treated as fat, but if labeled liquid, safe bet?) 
+      // Note: Oil usually has role='fat', so we should check role.
+      if (ing.role === 'fat') hydrationFactor = 0; // Oil is 0% water
+    }
+
+    // Accumulate if it's NOT the primary adjustable water source
+    // (We treat the valid adjustable 'water' role as the one used to balance the equation)
+    if (ing.role !== 'water' && ing.role !== 'flour') {
+      waterFromOthers += (ing.bakerPercentage * hydrationFactor);
+    }
+  });
+
+  // 2. Adjust "Added Water" to hit Target Hydration (if controllable)
+  const waterIng = ingredients.find(i => i.role === 'water');
+
+  // Only adjust if the water ingredient exists and IS NOT locked (manualOverride)
+  // And if we have a target hydration from the config (slider)
+  if (waterIng && !waterIng.manualOverride) {
+    const targetHydration = config.hydration;
+
+    // Calculate required added water
+    // If Eggs provide 10% water and Target is 65%, we need 55% Added Water.
+    // If Eggs provide 70% water and Target is 65%, we need 0% Added Water (and result will be 70%).
+    const requiredAddedWater = Math.max(0, targetHydration - waterFromOthers);
+
+    waterIng.bakerPercentage = requiredAddedWater;
+  }
+
+  // ============================================
+  // Standard Calculation (with updated percentages)
+  // ============================================
+
   // 1. Calculate Total Target Weight
   // Standard calc: Total Dough = NumPizzas * BallWeight * Scale
   let totalTargetWeight = config.numPizzas * config.doughBallWeight * config.scale;
@@ -217,14 +265,29 @@ export const calculateDoughUniversal = (
     ingredientWeights: ingredientWeights
   };
 
-  // Extract base weights for easy access
+  // Extract base weights for easy access. 
+  // NOTE: result.totalWater should represent ACTUAL Hydration, not just "Added Water".
+  // So we sum (Weight * HydrationContent).
+
+  let actualTotalWater = 0;
+  ingredientWeights.forEach(iw => {
+    // Find orig config for hydration factor (inefficient but safe)
+    const ingDef = ingredients.find(i => i.id === iw.id);
+    let hVal = ingDef?.hydrationContent ?? 0;
+    if (ingDef?.role === 'water') hVal = 1.0;
+    else if (ingDef?.role === 'fat') hVal = 0; // Oil
+    else if (ingDef?.type === 'liquid' && ingDef?.role !== 'fat') hVal = 1.0; // Fallback
+
+    actualTotalWater += iw.weight * hVal;
+  });
+
   const waterWeight = ingredientWeights.find(i => i.role === 'water')?.weight || 0;
   const saltWeight = ingredientWeights.find(i => i.role === 'salt')?.weight || 0;
   const oilWeight = ingredientWeights.find(i => i.role === 'fat')?.weight || 0;
   const sugarWeight = ingredientWeights.find(i => i.role === 'sugar')?.weight || 0;
   const yeastOrStarterWeight = ingredientWeights.find(i => i.role === 'yeast' || i.role === 'starter')?.weight || 0;
 
-  result.totalWater = waterWeight;
+  result.totalWater = actualTotalWater; // Updated to Real Hydration
   result.totalSalt = saltWeight;
   result.totalOil = oilWeight;
   result.totalSugar = sugarWeight;
@@ -297,9 +360,13 @@ export const calculateDoughUniversal = (
     };
 
     // Final Dough (The Mix Day)
+    // NOTE: We subtract preferment water from 'waterWeight' (Added Water).
+    // If the water comes from Eggs/Milk, this might be tricky (Pre-ferments usually use PURE water).
+    // For now, assume biga/poolish use Added Water.
+
     result.finalDough = {
       flour: totalFlour - prefermentFlour,
-      water: waterWeight - prefermentWater,
+      water: Math.max(0, waterWeight - prefermentWater),
       salt: saltWeight,
       oil: oilWeight,
       sugar: sugarWeight,

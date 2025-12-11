@@ -268,6 +268,14 @@ export interface DeepDive {
     proTips: string[];
 }
 
+export interface BaseFormulaIngredient {
+    name: string;
+    percentage: number;
+    hydrationContent?: number; // 0 to 1
+    category?: 'base' | 'liquid' | 'fat' | 'sugar' | 'leaven' | 'additive';
+    role?: string;
+}
+
 export interface DoughStyleDefinition {
     id: string;
     name: string;
@@ -326,5 +334,5 @@ export interface DoughStyleDefinition {
     country?: string;
 
     // V3 Backport
-    base_formula?: any[];
+    base_formula?: BaseFormulaIngredient[];
 }

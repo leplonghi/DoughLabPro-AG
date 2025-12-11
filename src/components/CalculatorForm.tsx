@@ -9,6 +9,7 @@ import {
   Oven,
   FlourDefinition,
   OnboardingState,
+  DoughResult,
 } from '@/types';
 import {
   BookmarkSquareIcon,
@@ -45,6 +46,7 @@ interface CalculatorFormProps {
   hasProAccess: boolean;
   onOpenPaywall: () => void;
   onboardingState?: OnboardingState;
+  results: DoughResult | null;
 }
 
 const CalculatorForm: React.FC<CalculatorFormProps> = ({
@@ -66,6 +68,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   hasProAccess,
   onOpenPaywall,
   onboardingState,
+  results,
 }) => {
   const isBasic = calculatorMode === 'basic';
   const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
@@ -196,6 +199,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               YEAST_OPTIONS={YEAST_OPTIONS}
               getRange={(field) => getRange(field, config.bakeType)}
               getSelectClasses={getSelectClasses}
+              results={results}
             />
           </div>
 

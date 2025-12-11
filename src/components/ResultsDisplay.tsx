@@ -26,6 +26,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import SocialShareModal from '@/components/social/SocialShareModal';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
+import { getStyleById } from '@/data/styles';
 
 interface ResultsDisplayProps {
     results: DoughResult | null;
@@ -194,15 +195,35 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 </div>
 
                 {/* Summary Cards */}
-                <div className="mb-8 grid grid-cols-2 gap-4">
-                    <div className="rounded-xl bg-dlp-bg-muted p-4 text-center">
+                <div className="mb-8 grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
                         <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('results.total_dough')}</p>
                         <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">{displayValue(results.totalDough)}</p>
                     </div>
-                    {config.numPizzas > 1 && (
-                        <div className="rounded-xl bg-dlp-bg-muted p-4 text-center">
+                    {config.numPizzas > 1 ? (
+                        <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
                             <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('results.single_ball')}</p>
                             <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">{displayValue(results.totalDough / config.numPizzas)}</p>
+                        </div>
+                    ) : (
+                        <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
+                            <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">Baker's %</p>
+                            <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">100%</p>
+                        </div>
+                    )}
+
+                    {/* Style Image */}
+                    {getStyleById(config.selectedStyleId || '')?.images?.hero && (
+                        <div className="col-span-2 md:col-span-1 relative rounded-xl overflow-hidden aspect-video md:aspect-auto">
+                            <img
+                                src={getStyleById(config.selectedStyleId || '')?.images?.hero}
+                                alt="Style"
+                                className="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                            <span className="absolute bottom-2 left-3 text-xs font-bold text-white drop-shadow-md">
+                                {getStyleById(config.selectedStyleId || '')?.name}
+                            </span>
                         </div>
                     )}
                 </div>

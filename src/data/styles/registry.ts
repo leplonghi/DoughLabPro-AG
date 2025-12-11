@@ -6,6 +6,7 @@ import { italianStyles } from './regions/italy';
 import { europeStyles } from './regions/europe';
 import { latamStyles } from './regions/latam';
 import { asiaStyles } from './regions/asia';
+import { middleEastStyles } from './regions/middle_east';
 
 // --- REGIONAL COLLECTIONS (V1 Legacy - Old Schema) ---
 import { northAmericaStyles as americasStyles } from './regions/north_america';
@@ -100,7 +101,8 @@ const allNewStyles: DoughStyle[] = [
     ...italianStyles,
     ...europeStyles,
     ...latamStyles,
-    ...asiaStyles
+    ...asiaStyles,
+    ...middleEastStyles
 ];
 
 const adaptedStyles = allNewStyles.map(adaptNewStyleToLegacy);
@@ -119,7 +121,7 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         // Filter out ShokupanLegacy if it conflicts with new Asia Shokupan, or keep as variant
         Challah,
         BurgerBun,
-        // ShokupanLegacy, // Commented out to prefer the new Asia module version if desired, or keep both with unique IDs
+        // ShokupanLegacy, // Commented out to prefer the new Asia module version if desired
         Panettone,
 
         // Sweets & Pastry
@@ -148,22 +150,6 @@ export const getStyleById = (id: string) => STYLES_MAP.get(id);
 console.log(`[Registry] Loaded ${STYLES_DATA.length} unique dough styles.`);
 
 export const COMING_SOON_STYLES = [
-    {
-        id: 'montreal_bagel',
-        name: 'Montreal Bagel',
-        region: 'Canada',
-        type: 'Bread',
-        image: '/images/styles/montreal-bagel-hero.png',
-        releaseDate: 'January 2026'
-    },
-    {
-        id: 'simit',
-        name: 'Simit',
-        region: 'Turkey',
-        type: 'Bread',
-        image: '/images/styles/simit-hero.png',
-        releaseDate: 'February 2026'
-    },
     {
         id: 'sfogliatella',
         name: 'Sfogliatella Riccia',

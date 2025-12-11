@@ -92,17 +92,17 @@ export const cinnamon_rolls_classic: StyleDefinition = {
   "isCanonical": true,
   "source": "official",
   "base_formula": [
-    { "name": "Bread Flour", "percentage": 100 },
-    { "name": "Whole Milk", "percentage": 65 },
-    { "name": "Sugar", "percentage": 15 },
-    { "name": "Butter (Soft)", "percentage": 15 },
-    { "name": "Whole Egg", "percentage": 10 },
-    { "name": "Instant Yeast", "percentage": 1.5 },
-    { "name": "Salt", "percentage": 2 },
-    { "name": "Filling: Brown Sugar", "percentage": 25 },
-    { "name": "Filling: Cinnamon", "percentage": 2.5 },
-    { "name": "Filling: Butter", "percentage": 10 },
-    { "name": "Frosting: Cream Cheese", "percentage": 20 },
-    { "name": "Frosting: Powdered Sugar", "percentage": 15 }
+    { "name": "Bread Flour", "percentage": 100, "category": "base", "role": "flour" },
+    { "name": "Whole Milk", "percentage": 65, "hydrationContent": 0.87, "category": "liquid", "role": "other" },
+    { "name": "Sugar", "percentage": 15, "category": "sugar", "role": "sugar" },
+    { "name": "Butter (Soft)", "percentage": 15, "hydrationContent": 0.15, "category": "fat", "role": "fat" },
+    { "name": "Whole Egg", "percentage": 10, "hydrationContent": 0.74, "category": "liquid", "role": "other" },
+    { "name": "Instant Yeast", "percentage": 1.5, "role": "yeast" },
+    { "name": "Salt", "percentage": 2, "role": "salt" },
+    { "name": "Filling: Brown Sugar", "percentage": 25, "role": "other" },
+    { "name": "Filling: Cinnamon", "percentage": 2.5, "role": "other" },
+    { "name": "Filling: Butter", "percentage": 10, "role": "other" },
+    { "name": "Frosting: Cream Cheese", "percentage": 20, "role": "other" },
+    { "name": "Frosting: Powdered Sugar", "percentage": 15, "role": "other" }
   ]
 };

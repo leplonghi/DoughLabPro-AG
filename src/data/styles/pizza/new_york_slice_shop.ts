@@ -57,6 +57,12 @@ export const new_york_slice_shop: StyleDefinition = {
       "Large 18-inch pies"
     ]
   },
+  "defaults": {
+    "hydration": 60,
+    "salt": 2.2,
+    "oil": 3,
+    "sugar": 2
+  },
   "regionalVariants": [],
   "climateScenarios": [],
   "styleComparisons": [],

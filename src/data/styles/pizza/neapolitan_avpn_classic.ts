@@ -57,6 +57,12 @@ export const neapolitan_avpn_classic: StyleDefinition = {
       "Marinara"
     ]
   },
+  "defaults": {
+    "hydration": 60,
+    "salt": 2.8,
+    "oil": 0,
+    "sugar": 0
+  },
   "regionalVariants": [],
   "climateScenarios": [],
   "styleComparisons": [],

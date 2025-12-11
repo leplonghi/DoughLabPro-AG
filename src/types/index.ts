@@ -79,6 +79,9 @@ export interface IngredientConfig {
     densityKey?: string; // for volume conversion
     role?: 'flour' | 'water' | 'salt' | 'fat' | 'sugar' | 'yeast' | 'starter' | 'other';
     manualOverride?: boolean; // If true, sliders won't update this ingredient
+    // New Reactive Engine Fields
+    hydrationContent?: number; // 0 to 1 (e.g. 0.74 for Egg)
+    category?: 'base' | 'liquid' | 'fat' | 'sugar' | 'leaven' | 'additive';
 }
 
 export interface DoughConfig {

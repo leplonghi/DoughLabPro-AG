@@ -104,4 +104,20 @@ export interface StyleDefinition {
     createdBy?: string;
     /** Creation timestamp */
     createdAt?: string | Timestamp;
+    /** Default values for calculator initialization */
+    defaults?: {
+        hydration?: number;
+        salt?: number;
+        oil?: number;
+        sugar?: number;
+    };
+    /** Base formula for ingredient-driven engine */
+    base_formula?: {
+        name: string;
+        percentage: number;
+        role?: string;
+        category?: string;
+        hydrationContent?: number;
+        manualOverride?: boolean;
+    }[];
 }

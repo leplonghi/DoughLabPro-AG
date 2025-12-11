@@ -1363,6 +1363,184 @@ const chicagoTavern: DoughStyleDefinition = {
     }
 };
 
+const montrealBagel: DoughStyleDefinition = {
+    id: "montreal_bagel",
+    name: "Montreal Bagel",
+    category: "bread",
+    recipeStyle: RecipeStyle.BAGEL,
+    origin: {
+        country: "Canada",
+        region: "Montreal, Quebec",
+        period: "1919"
+    },
+    description: "Smaller, denser, and sweeter than its NY cousin. Boiled in honey-sweetened water and baked in wood-fired ovens. Contains no salt.",
+    history: "Brought to Montreal by Jewish immigrants. The rivalry between Fairmount and St-Viateur defines the city's food culture.",
+    difficulty: "Hard",
+    fermentationType: "direct",
+
+    technicalProfile: {
+        hydration: [50, 55],
+        salt: [0, 0],
+        oil: [1, 2],
+        sugar: [2, 4],
+        flourStrength: "W300-350",
+        ovenTemp: [260, 300],
+        recommendedUse: ["Cream Cheese", "Smoked Salmon"],
+        difficulty: "Hard",
+        fermentationSteps: [
+            "Mix stiff dough. [Science: Low hydration + No Salt + Sugar = Dense structure.]",
+            "Short proof. [Science: Just enough to relax gluten for rolling.]",
+            "Boil in Honey Water. [Science: Honey penetrates crust for sheen and flavor.]"
+        ]
+    },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W300-350",
+            pl_ratio: "Stiff",
+            absorption_capacity: "Low",
+            protein_type: "High Gluten",
+            science_explanation: "High gluten needed for shape retention during boil. Lack of salt weakens network, so stiff dough compensates."
+        },
+        thermalProfile: {
+            oven_type: "Wood Fired",
+            heat_distribution: "Radiant",
+            crust_development: "Crisp, shiny",
+            crumb_structure: "Dense"
+        },
+        fermentationScience: {
+            yeast_activity: "Fast (No salt)",
+            ph_target: "Normal",
+            organic_acids: "Low",
+            enzymatic_activity: "Standard"
+        }
+    },
+    tags: ["honey", "no-salt", "wood-fired", "canada"],
+    pairings: {
+        canonical: ["Cream Cheese", "Smoked Meat"],
+        modern: ["Peanut Butter"],
+        regional: ["Montreal Smoked Meat"]
+    },
+    watchouts: ["Don't add salt."],
+    notes: ["Boiling water must contain honey."],
+    isPro: false,
+    source: "official",
+    createdAt: "2025-01-01",
+    releaseDate: "2025-01-01",
+    references: [{ source: "Fairmount Bagel" }],
+    images: {
+        hero: "/images/styles/montreal-bagel-hero.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
+    },
+    education: {
+        pro_tips: [{ tip: "Honey Water", explanation: "Essential for the glaze." }],
+        what_if: [{ scenario: "Bland?", result: "It's unsalted.", correction: "Add salted toppings." }],
+        comparative_analysis: [{ target_style: "NY Bagel", difference: "Montreal is unsalted, smaller, honey-boiled.", why_choose_this: "Sweeter, crunchier." }],
+        q_and_a: [{ question: "Why no salt?", answer: "Tradition.", context: "History" }],
+        fermentation_methods: [{ method: "Direct", suitability: "Authentic", notes: "Short ferment." }]
+    },
+    deepDive: {
+        hydrationLogic: "50-55%. Very stiff.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "Standard." },
+            biga: { suitable: false, notes: "N/A" },
+            poolish: { suitable: false, notes: "N/A" }
+        },
+        whatIf: [{ scenario: "Collapses?", outcome: "Overproofed.", solution: "Proof less." }],
+        comparisons: [{ vsStyle: "NY Bagel", difference: "Montreal is denser." }],
+        proTips: ["Soak boards.", "Seed heavily."]
+    }
+};
+
+const flourTortilla: DoughStyleDefinition = {
+    id: "flour_tortilla_sonora",
+    name: "Flour Tortilla (Sonora)",
+    category: "flatbread",
+    recipeStyle: RecipeStyle.FLATBREAD,
+    origin: {
+        country: "Mexico",
+        region: "Sonora",
+        period: "16th Century"
+    },
+    description: "Translucent, elastic flour tortillas made with lard and hot water.",
+    history: "Sonoran staple, adapted from corn tortillas using European wheat.",
+    difficulty: "Medium",
+    fermentationType: "direct",
+
+    technicalProfile: {
+        hydration: [45, 55],
+        salt: [1.5, 2.0],
+        oil: [15, 20],
+        sugar: [0, 0],
+        flourStrength: "W200-240",
+        ovenTemp: [200, 230],
+        recommendedUse: ["Burritos", "Quesadillas"],
+        difficulty: "Medium",
+        fermentationSteps: [
+            "Hot water mix. [Science: Denatures proteins for extensibility.]",
+            "Rest. [Science: Relaxes gluten.]",
+            "Flash cook. [Science: Steam puff separates layers.]"
+        ]
+    },
+    scientificProfile: {
+        flourRheology: {
+            w_index: "W200-240",
+            pl_ratio: "Extensible",
+            absorption_capacity: "Medium",
+            protein_type: "Soft Wheat",
+            science_explanation: "High fat + hot water = tenderness and extensibility."
+        },
+        thermalProfile: {
+            oven_type: "Comal",
+            heat_distribution: "Conduction",
+            crust_development: "Spotted",
+            crumb_structure: "Layered"
+        },
+        fermentationScience: {
+            yeast_activity: "None",
+            ph_target: "Neutral",
+            organic_acids: "None",
+            enzymatic_activity: "None"
+        }
+    },
+    tags: ["lard", "sonora", "mexico"],
+    pairings: {
+        canonical: ["Carne Asada", "Cheese"],
+        modern: ["Nutella"],
+        regional: ["Burrito Percherón"]
+    },
+    watchouts: ["Don't overcook.", "Use hot water."],
+    notes: ["Lard is traditional."],
+    isPro: false,
+    source: "official",
+    createdAt: "2025-01-01",
+    releaseDate: "2025-01-01",
+    references: [{ source: "Sonoran Heritage" }],
+    images: {
+        hero: "/images/styles/placeholder-dough.png",
+        dough: "/images/styles/placeholder-dough.png",
+        crumb: "/images/styles/placeholder-dough.png"
+    },
+    education: {
+        pro_tips: [{ tip: "See-through", explanation: "Should be translucent." }],
+        what_if: [{ scenario: "Hard?", result: "Cooked too long.", correction: "Cook faster." }],
+        comparative_analysis: [{ target_style: "Corn Tortilla", difference: "Flour is larger, contains gluten.", why_choose_this: "Burritos." }],
+        q_and_a: [{ question: "Butter?", answer: "Lard is better.", context: "Texture" }],
+        fermentation_methods: [{ method: "Direct", suitability: "Authentic", notes: "Unleavened." }]
+    },
+    deepDive: {
+        hydrationLogic: "Low water, high fat.",
+        methodSuitability: {
+            direct: { suitable: true, notes: "Standard." },
+            biga: { suitable: false, notes: "N/A" },
+            poolish: { suitable: false, notes: "N/A" }
+        },
+        whatIf: [{ scenario: "Rubber?", outcome: "Rest longer.", solution: "Rest 30m." }],
+        comparisons: [{ vsStyle: "Pita", difference: "Tortilla is unleavened." }],
+        proTips: ["Use Manteca."]
+    }
+};
+
 export const northAmericaStyles: DoughStyleDefinition[] = [
     nycSlice,
     detroitStyle,
@@ -1372,5 +1550,7 @@ export const northAmericaStyles: DoughStyleDefinition[] = [
     brazilianGasDeck,
     nycBagel,
     grandmaPizza,
-    chicagoTavern
+    chicagoTavern,
+    montrealBagel,
+    flourTortilla
 ];

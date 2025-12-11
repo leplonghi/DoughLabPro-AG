@@ -100,10 +100,8 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
         <div className="space-y-6" ref={formRef}>
           <div className="flex items-center justify-center gap-2">
             <UiModeToggle
-              mode={props.calculatorMode}
-              onModeChange={(mode) => {
-                props.onCalculatorModeChange(mode);
-              }}
+              calculatorMode={props.calculatorMode}
+              setCalculatorMode={props.onCalculatorModeChange}
             />
             <div className="group relative">
               <InfoIcon className="h-4 w-4 cursor-help text-dlp-text-muted " />

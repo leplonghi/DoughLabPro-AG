@@ -106,7 +106,9 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
                 role,
                 type,
                 bakerPercentage: pct,
-                manualOverride: false
+                manualOverride: false,
+                hydrationContent: ing.hydrationContent,
+                category: ing.category,
             };
         });
 

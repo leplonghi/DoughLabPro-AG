@@ -1,6 +1,6 @@
 import React from 'react';
 import { getProductsForPlacement } from '@/data/affiliatePlacements';
-import { AffiliateProduct } from '@/data/affiliateLinks';
+import { AffiliateProduct } from '@/data/affiliates';
 import { WrenchScrewdriverIcon, ExternalLinkIcon } from '@/components/ui/Icons';
 
 interface LearnAffiliateBlockProps {
@@ -68,31 +68,45 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                 If you want to experiment with this concept, the following tools make it easier to get consistent results in a home kitchen.
             </p>
 
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="flex flex-col gap-3">
                 {displayProducts.map(product => (
                     <a
                         key={product.id}
-                        href={product.url}
+                        href={product.affiliateLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group block bg-dlp-bg-card rounded-lg border border-dlp-border p-4 hover:border-dlp-accent hover:shadow-dlp-md transition-all"
+                        className="group flex bg-dlp-bg-card rounded-lg border border-dlp-border overflow-hidden hover:border-dlp-accent hover:shadow-dlp-md transition-all h-20"
                     >
-                        <div className="flex justify-between items-start mb-2">
-                            <span className="text-xs font-semibold text-dlp-accent bg-dlp-accent/10 px-2 py-1 rounded-full">
-                                {product.category === 'tools' ? 'Tool' : 'Ingredient'}
-                            </span>
-                            <ExternalLinkIcon className="h-4 w-4 text-dlp-text-muted group-hover:text-dlp-accent transition-colors" />
+                        {/* Image - Fixed width */}
+                        <div className="w-20 shrink-0 bg-slate-50 relative overflow-hidden">
+                            {product.imageUrl && (
+                                <img
+                                    src={product.imageUrl}
+                                    alt={product.name}
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                />
+                            )}
                         </div>
-                        <h5 className="font-bold text-dlp-text-primary text-sm mb-1 group-hover:text-dlp-accent-hover transition-colors">
-                            {product.name}
-                        </h5>
-                        {product.description && (
-                            <p className="text-xs text-dlp-text-secondary line-clamp-2">
-                                {product.description}
-                            </p>
-                        )}
+
+                        {/* Content */}
+                        <div className="flex-1 p-2.5 flex flex-col justify-between min-w-0">
+                            <div className="flex justify-between items-start gap-2">
+                                <span className="text-xs font-semibold text-dlp-accent bg-dlp-accent/10 px-2 py-0.5 rounded-full shrink-0">
+                                    {product.category === 'equipment' ? 'Tool' : 'Ingredient'}
+                                </span>
+                                <ExternalLinkIcon className="h-3.5 w-3.5 text-dlp-text-muted group-hover:text-dlp-accent transition-colors shrink-0" />
+                            </div>
+
+                            <h5 className="font-bold text-dlp-text-primary text-sm leading-tight truncate group-hover:text-dlp-accent-hover transition-colors">
+                                {product.name}
+                            </h5>
+                        </div>
                     </a>
                 ))}
+            </div>
+
+            <div className="text-[10px] text-dlp-text-muted text-center italic mt-3">
+                As an Amazon Associate, DoughLab Pro earns from qualifying purchases.
             </div>
         </div>
     );
