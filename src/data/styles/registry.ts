@@ -158,12 +158,4 @@ export const COMING_SOON_STYLES = [
         image: '/images/styles/placeholder-dough.png',
         releaseDate: 'February 2026'
     },
-    {
-        id: 'baozi',
-        name: 'Steamed Baozi',
-        region: 'China',
-        type: 'Dim Sum',
-        image: '/images/styles/placeholder-dough.png',
-        releaseDate: 'March 2026'
-    }
 ];

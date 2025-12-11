@@ -383,5 +383,346 @@ export const europeStyles: DoughStyle[] = [
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
         }
+    },
+    {
+        id: 'khachapuri-adjaruli',
+        name: 'Khachapuri Adjaruli',
+        region: 'Europe', // Or switch to Asia/General, but culturally Georgian cuisine is often grouped with Eastern Europe/Black Sea.
+        subRegion: 'Georgia',
+        category: 'Enriched',
+        recipeStyle: RecipeStyle.FLATBREAD,
+        tags: ['Cheese Boat', 'Egg', 'Rich'],
+        description: 'The famous boat-shaped bread from the Adjara region of Georgia. It is filled with cheese (Sulguni/Imeretian), butter, and topped with a raw egg yolk before serving.',
+        history_context: 'Adjara is a coastal region. The shape is said to represent a boat, and the egg yolk the sun, reflecting the region\'s maritime culture.',
+        base_formula: [
+            { name: 'Bread Flour', percentage: 100 },
+            { name: 'Water/Milk', percentage: 60 },
+            { name: 'Yeast', percentage: 1 },
+            { name: 'Salt', percentage: 1.8 },
+            { name: 'Oil', percentage: 3 },
+            { name: 'Sugar', percentage: 1 }
+        ],
+        specs: {
+            hydration: { ideal: 60, min: 58, max: 65 },
+            ovenTemp: { ideal: 250, min: 230, max: 270 },
+            fermentationTime: '2-4h',
+            difficulty: 'Medium'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: true,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W260-280",
+                pl_ratio: "Extensible",
+                absorption_capacity: "Medium",
+                protein_type: "Strong Wheat",
+                science_explanation: 'Extensibility is needed to fold the "boat" sides without them snapping back open during baking.'
+            },
+            thermalProfile: {
+                oven_type: "Hearth / Deck",
+                heat_distribution: "Radiant",
+                crust_development: "Browned",
+                crumb_structure: "Soft, airy rim"
+            },
+            fermentationScience: {
+                yeast_activity: "Standard",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "Standard"
+            },
+            processScience: 'The boat shape ("Nave") acts as a container. The cheese mixture melts and emulsifies with the butter. The final addition of the egg yolk relies on the residual heat of the cheese to partially cook (pasteurize) it while stirring.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Soft Dough',
+                duration: '10 min',
+                action: 'Mix to windowpane.',
+                science: 'Standard enriched dough.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Shaping',
+                duration: '10 min',
+                action: 'Roll oval. Cheese in center. Roll sides up and twist ends to seal.',
+                science: 'Sealing the ends tightly is critical to prevent the cheese lava from leaking.'
+            },
+            {
+                phase: 'Bake',
+                title: 'Bake w/ Cheese',
+                duration: '15 min',
+                action: 'Bake until golden.',
+                science: 'Cheese browning adds flavor.'
+            },
+            {
+                phase: 'Cook',
+                title: 'The Egg',
+                duration: '1 min',
+                action: 'Add egg yolk and butter 2 mins before finish or right after.',
+                science: 'We want the yolk runny.'
+            }
+        ],
+        references: ['Georgian Table'],
+        images: {
+            hero: '/images/styles/khachapuri_adjarian.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: 'danish-rugbrod',
+        name: 'Danish Rugbrød (Rye Bread)',
+        region: 'Europe',
+        subRegion: 'Denmark',
+        category: 'Bread',
+        recipeStyle: RecipeStyle.RYE,
+        tags: ['Sourdough', 'Whole Grain', 'Seeds', 'Dense'],
+        description: 'The foundation of the "Smørrebrød" (open-faced sandwich). A dense, dark, sour rye bread packed with cracked rye kernels and seeds. It has very little to no wheat flour.',
+        history_context: 'Rye grows well in the cool, damp Nordic climate. Historically a peasant bread, it is now celebrated for its health benefits and deep flavor.',
+        base_formula: [
+            { name: 'Rye Flour (Dark)', percentage: 100 }, // Or split 70/30 Rye/Wheat
+            { name: 'Water', percentage: 90 }, // Rye absorbs a lot
+            { name: 'Cracked Rye Kernels', percentage: 50 },
+            { name: 'Seeds (Sunflower/Flax)', percentage: 30 },
+            { name: 'Sourdough Starter (Rye)', percentage: 30 },
+            { name: 'Salt', percentage: 2 },
+            { name: 'Malt Syrup', percentage: 3 }
+        ],
+        specs: {
+            hydration: { ideal: 90, min: 80, max: 100 },
+            ovenTemp: { ideal: 180, min: 160, max: 200 }, // Low and slow
+            fermentationTime: '12-24h',
+            difficulty: 'Hard'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: false, // Sourdough driven
+            requiresSteam: true,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "N/A (Rye)",
+                pl_ratio: "Viscous (Pentosan driven)",
+                absorption_capacity: "Very High",
+                protein_type: "Rye (Secalins)",
+                science_explanation: 'Rye contains glutenin/gliadin but they don\'t form a network like wheat. Structure comes from Pentosans (gums) and starch gelatinization. Acid (Sourdough) is MANDATORY to prevent "starch attack" (amylase destroying structure).'
+            },
+            thermalProfile: {
+                oven_type: "Pullman Pan",
+                heat_distribution: "Conduction",
+                crust_development: "Thick",
+                crumb_structure: "Dense, moist"
+            },
+            fermentationScience: {
+                yeast_activity: "Sourdough",
+                ph_target: "<4.5 (Acidic)",
+                organic_acids: "Acetic",
+                enzymatic_activity: "Inhibited by Acid"
+            },
+            processScience: 'The "Starch Attack": Rye is high in amylase enzymes. If pH is not lowered (<4.5), these enzymes will digest the starch during baking, resulting in a gummy, collapsed loaf. The sourdough is not just for flavor; it is a structural necessity.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Soak',
+                duration: '12h',
+                action: 'Soak kernels and seeds.',
+                science: 'Hydrates the hard grains so they don\'t pull water from the dough later.'
+            },
+            {
+                phase: 'Mix',
+                title: 'Paste Mix',
+                duration: '15 min',
+                action: 'Mix all ingredients. It will be a paste/mud, not a dough.',
+                science: 'No gluten development windowpane possible. Mixing is for distribution and gum hydration.'
+            },
+            {
+                phase: 'Bulk',
+                title: 'Pan Proof',
+                duration: '2-4h',
+                action: 'Proof in the tin until pinholes appear on surface.',
+                science: 'Gas production (CO2) from yeast is trapped by the viscous pentosan gel.'
+            },
+            {
+                phase: 'Bake',
+                title: 'Long Bake',
+                duration: '60-90 min',
+                action: 'Bake at 180°C to internal temp 98°C.',
+                science: 'Long bake ensures starch gelatinization all the way through the wet mass.'
+            }
+        ],
+        references: ['The Rye Baker', 'Meyers Bageri'],
+        images: {
+            hero: '/images/styles/danish_rye_slice.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: 'tiger-bread',
+        name: 'Tiger Bread (Dutch Crunch)',
+        region: 'Europe',
+        subRegion: 'Netherlands',
+        category: 'Bread',
+        recipeStyle: RecipeStyle.SANDWICH_LOAF,
+        tags: ['Topping', 'Crunchy', 'Rice Paste'],
+        description: 'Known as "Tijgerbrood" in the Netherlands and "Dutch Crunch" in SF. It is a soft white bloomer loaf coated with a rice flour paste applied before baking, which cracks into a tiger-skin pattern.',
+        history_context: 'Traded between the Netherlands and Southeast Asia (rice trade) in the early 20th century. The topping is the star.',
+        base_formula: [
+            { name: 'Bread Flour', percentage: 100 },
+            { name: 'Water', percentage: 62 },
+            { name: 'Yeast', percentage: 2 },
+            { name: 'Salt', percentage: 2 },
+            { name: 'Sugar', percentage: 2 },
+            { name: 'Oil/Butter', percentage: 2 }
+        ],
+        specs: {
+            hydration: { ideal: 62, min: 60, max: 65 },
+            ovenTemp: { ideal: 200, min: 190, max: 210 },
+            fermentationTime: '2-4h',
+            difficulty: 'Medium'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: true,
+            requiresSteam: true,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W240-260",
+                pl_ratio: "Balanced",
+                absorption_capacity: "Medium",
+                protein_type: "Strong Wheat",
+                science_explanation: 'The dough itself is a standard vibrant white bread. The science is in the topping.'
+            },
+            thermalProfile: {
+                oven_type: "Convection",
+                heat_distribution: "Even",
+                crust_development: "Cracked (Topping)",
+                crumb_structure: "Soft"
+            },
+            fermentationScience: {
+                yeast_activity: "High",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "Standard"
+            },
+            processScience: 'The "Tiger Paste" is made of Rice Flour, Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Dough Mix',
+                duration: '10 min',
+                action: 'Mix standard white dough.',
+                science: 'Standard method.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Paste Prep',
+                duration: '15 min',
+                action: 'Mix Rice Flour, Water, Yeast, Sugar, Sesame Oil. Let ferment 15 mins.',
+                science: 'Yeast in the paste aerates it slightly, aiding the crackle.'
+            },
+            {
+                phase: 'Bake',
+                title: 'Paint & Bake',
+                duration: '30 min',
+                action: 'Brush paste thickly on proofed loaf. Bake immediately.',
+                science: 'Paste must be wet when entering oven.'
+            }
+        ],
+        references: ['Dutch Baking History'],
+        images: {
+            hero: '/images/styles/tiger_bread_crackled.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: 'irish-soda-bread',
+        name: 'Irish Soda Bread',
+        region: 'Europe',
+        subRegion: 'Ireland',
+        category: 'Bread',
+        recipeStyle: RecipeStyle.COUNTRY_LOAF, // Technically chemically leavened
+        tags: ['Quick Bread', 'No Yeast', 'Buttermilk'],
+        description: 'A quick bread that uses bacteria-soured milk (Buttermilk) and sodium bicarbonate (Baking Soda) as a leavening agent instead of yeast. Dense, moist, and crusty.',
+        history_context: 'Became popular in Ireland in the 1840s when bicarbonate was introduced. Wheat was soft (low protein) in Ireland, making yeast bread difficult, so chemical leavening was a perfect adaptation.',
+        base_formula: [
+            { name: 'Soft Wheat Flour (Pastry/AP)', percentage: 100 },
+            { name: 'Buttermilk', percentage: 90 }, // Very high because it's a batter/dough hybrid
+            { name: 'Baking Soda', percentage: 2 },
+            { name: 'Salt', percentage: 1.5 }
+        ],
+        specs: {
+            hydration: { ideal: 85, min: 80, max: 95 },
+            ovenTemp: { ideal: 200, min: 190, max: 210 },
+            fermentationTime: '0 min',
+            difficulty: 'Easy'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: false,
+            requiresSteam: false,
+            allowOil: false
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W150-180 (Soft)",
+                pl_ratio: "Weak",
+                absorption_capacity: "Low",
+                protein_type: "Irish Soft Wheat",
+                science_explanation: 'Low protein flour is preferred. High protein would make it tough/rubbery because there is no fermentation to relax the gluten.'
+            },
+            thermalProfile: {
+                oven_type: "Dutch Oven / Bastible",
+                heat_distribution: "Conduction",
+                crust_development: "Thick, hard",
+                crumb_structure: "Dense, cake-like"
+            },
+            fermentationScience: {
+                yeast_activity: "None",
+                ph_target: "Acidic (Buttermilk)",
+                organic_acids: "Lactic (added directly)",
+                enzymatic_activity: "Low"
+            },
+            processScience: 'Acid-Base Reaction: Lactic Acid (Buttermilk) + Sodium Bicarbonate = CO2 + Water + Salt. This reaction is instant. The dough must be baked immediately or the gas is lost.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Gentle Mix',
+                duration: '3 min',
+                action: 'Mix dry. Add wet. Stir until just combined.',
+                science: 'Do not knead. Kneading develops gluten -> tough bread.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Score',
+                duration: '1 min',
+                action: 'Shape round. Cut a deep cross ("Blessing the bread").',
+                science: 'The deep cross allows heat to penetrate the thickest part of the dense loaf to ensure even cooking.'
+            },
+            {
+                phase: 'Bake',
+                title: 'Bake',
+                duration: '30-40 min',
+                action: 'Bake at 200°C.',
+                science: 'Immediate heat needed for the final lift.'
+            }
+        ],
+        references: ['Darina Allen', 'Ballymaloe'],
+        images: {
+            hero: '/images/styles/irish_soda_bread_rustic.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
     }
 ];

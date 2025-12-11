@@ -261,5 +261,419 @@ export const latamStyles: DoughStyle[] = [
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
         }
+    },
+    {
+        id: 'medialunas',
+        name: 'Medialunas de Manteca',
+        region: 'South America',
+        subRegion: 'Argentina',
+        category: 'Pastry',
+        recipeStyle: RecipeStyle.PASTRY_DANISH, // Laminated
+        tags: ['Laminated', 'Sweet Syrup', 'Breakfast'],
+        description: 'The Argentine croissant. Smaller, denser, and sweeter than the French version, made with a distinct "almibar" (syrup) glaze applied hot out of the oven. A staple of Buenos Aires café culture.',
+        history_context: 'Derived from the European croissant but adapted to local tastes (sweeter, moister) and ingredients (heavy syrup). The "Medialuna" (Half Moon) is a national symbol.',
+        base_formula: [
+            { name: 'Flour (0000)', percentage: 100 },
+            { name: 'Water/Milk', percentage: 45 },
+            { name: 'Butter (Lamintation)', percentage: 25 }, // Less than croissant (50%)
+            { name: 'Sugar', percentage: 15 },
+            { name: 'Eggs', percentage: 10 },
+            { name: 'Yeast', percentage: 2 },
+            { name: 'Honey', percentage: 2 }
+        ],
+        specs: {
+            hydration: { ideal: 50, min: 45, max: 55 },
+            ovenTemp: { ideal: 200, min: 190, max: 210 },
+            fermentationTime: '12-24h',
+            difficulty: 'Expert'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: true,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W300-320",
+                pl_ratio: "Extensible",
+                absorption_capacity: "Medium",
+                protein_type: "Strong Wheat",
+                science_explanation: 'Strong flour is needed to support lamination, but the dough is richer and heavier than croissant dough.'
+            },
+            thermalProfile: {
+                oven_type: "Convection",
+                heat_distribution: "Even",
+                crust_development: "Sticky (Syrup)",
+                crumb_structure: "Tight layers"
+            },
+            fermentationScience: {
+                yeast_activity: "Standard",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "Standard"
+            },
+            processScience: 'The "Almíbar" (Syrup) soak is scientifically crucial. It keeps the pastry moist for days (hygroscopic) and softens the crust, differentiating it from the shattering crispness of a French croissant.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Enriched Mix',
+                duration: '15 min',
+                action: 'Mix dough with eggs, sugar, honey. Develop moderate gluten.',
+                science: 'Sugar delays gluten development, so mixing takes longer.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Lamination',
+                duration: '1h',
+                action: 'Lock in butter (25% of dough weight). Perform 3 single turns.',
+                science: 'Fewer turns/less butter than croissant results in a denser, cake-like layer structure.'
+            },
+            {
+                phase: 'Bake',
+                title: 'Bake & Glaze',
+                duration: '15 min',
+                action: 'Bake until gold. Brush immediately with hot syrup.',
+                science: 'Hot syrup on hot pastry = Absorption. Cold syrup on hot pastry = Crystalization. We want absorption.'
+            }
+        ],
+        references: ['Instituto Argentino de Gastronomía'],
+        images: {
+            hero: '/images/styles/medialunas_argentina.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: 'conchas',
+        name: 'Conchas (Mexican Sweet Bread)',
+        region: 'North America', // Actually Mexico is NA, but usually grouped in LatAm for cultural styles in this app context? The file is latam.ts.
+        subRegion: 'Mexico',
+        category: 'Enriched',
+        recipeStyle: RecipeStyle.ENRICHED_DINNER_ROLL,
+        tags: ['Sweet Crust', 'Breakfast', 'Colorful'],
+        description: 'Mexico\'s most famous pan dulce. A soft, enriched sweet bun topped with a crumbly sugar cookie crust stamped with a shell (concha) pattern.',
+        history_context: 'Dating back to the colonial era, influenced by French brioche recipes. The shell pattern symbolizes Saint James.',
+        base_formula: [
+            { name: 'All Purpose Flour', percentage: 100 },
+            { name: 'Eggs', percentage: 20 },
+            { name: 'Butter', percentage: 15 },
+            { name: 'Sugar', percentage: 20 },
+            { name: 'Milk', percentage: 40 },
+            { name: 'Yeast', percentage: 1.5 }
+        ],
+        specs: {
+            hydration: { ideal: 60, min: 55, max: 65 },
+            ovenTemp: { ideal: 180, min: 170, max: 190 },
+            fermentationTime: '4-6h',
+            difficulty: 'Medium'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: true,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W240-260",
+                pl_ratio: "Balanced",
+                absorption_capacity: "Medium",
+                protein_type: "AP",
+                science_explanation: 'We want softness, not chew. AP flour is perfect. The strength comes from the egg/butter structure.'
+            },
+            thermalProfile: {
+                oven_type: "Convection",
+                heat_distribution: "Even",
+                crust_development: "Cookie topping",
+                crumb_structure: "Soft, cottony"
+            },
+            fermentationScience: {
+                yeast_activity: "High (Sugar)",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "Standard"
+            },
+            processScience: 'The topping is a separate "Short Dough" (1:1:1 Sugar/Fat/Flour). It has no gluten development, so it cracks as the bun expands, creating the pattern.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Bun Dough',
+                duration: '15 min',
+                action: 'Mix enriched dough to windowpane.',
+                science: 'Standard enriched dough protocol.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Topping Prep',
+                duration: '10 min',
+                action: 'Cream butter and sugar, add flour. Make a paste.',
+                science: 'Do not overmix or it becomes tough.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Assembly',
+                duration: '10 min',
+                action: 'Flatten ball of topping, place over bun. Score pattern.',
+                science: 'The scoring directs the expansion cracks.'
+            },
+            {
+                phase: 'Bake',
+                title: 'Bake',
+                duration: '20 min',
+                action: 'Bake at 180°C.',
+                science: 'Low temp preserves the color of the topping.'
+            }
+        ],
+        references: ['Panes Mexicanos'],
+        images: {
+            hero: '/images/styles/conchas_mexican.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: "brazilian_gas_deck",
+        name: "Pizza Paulistana (Gas Deck)",
+        region: "South America",
+        subRegion: "São Paulo, Brazil",
+        category: "Pizza",
+        recipeStyle: RecipeStyle.PAN_PIZZA,
+        tags: ["brazil", "heavy-toppings", "catupiry", "sao-paulo"],
+        description: "The São Paulo powerhouse. Medium thickness, capable of holding massive amounts of toppings (Catupiry, chicken, sausage). Crisp bottom, soft center.",
+        history_context: "São Paulo has more pizzerias than NYC. This style evolved in the 1970s (Vila Clementino/Bixiga) to satisfy a craving for abundance. The gas deck oven allows a slower, more penetrating heat than wood.",
+        base_formula: [
+            { name: 'Flour (W280-320)', percentage: 100 },
+            { name: 'Water', percentage: 55 },
+            { name: 'Oil (Soybean/Olive)', percentage: 3 },
+            { name: 'Sugar', percentage: 1.5 },
+            { name: 'Salt', percentage: 2.2 },
+            { name: 'Yeast', percentage: 0.5 }
+        ],
+        specs: {
+            hydration: { ideal: 58, min: 55, max: 60 },
+            ovenTemp: { ideal: 300, min: 280, max: 330 },
+            fermentationTime: '24h',
+            difficulty: 'Easy'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: true,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W280-320",
+                pl_ratio: "Balanced",
+                absorption_capacity: "Medium",
+                protein_type: "Standard Wheat",
+                science_explanation: "A 'Workhorse' flour. It needs to be strong enough to carry heavy cheese/toppings but not so tough that it fights back when rolled out."
+            },
+            thermalProfile: {
+                oven_type: "Gas Deck",
+                heat_distribution: "Conduction (Moderate)",
+                crust_development: "Crispy bottom, soft crumb",
+                crumb_structure: "Dense, supporting"
+            },
+            fermentationScience: {
+                yeast_activity: "Standard",
+                ph_target: "Normal",
+                organic_acids: "Low",
+                enzymatic_activity: "Moderate"
+            },
+            processScience: 'The dough must support 1kg+ of toppings. A short maturation (24h) balances flavor with structural integrity.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Mix',
+                duration: '10 min',
+                action: 'Mix to development.',
+                science: 'Strong gluten needed.'
+            },
+            {
+                phase: 'Bulk',
+                title: 'Proof',
+                duration: '24h',
+                action: 'Cold ferment.',
+                science: 'Flavor development.'
+            },
+            {
+                phase: 'Bake',
+                title: 'Bake',
+                duration: '4-6 min',
+                action: 'Bake at 300°C.',
+                science: 'Moderate heat for deep cooking.'
+            }
+        ],
+        references: ['Associação Pizzarias Unidas'],
+        images: {
+            hero: '/images/styles/brazilian-gas-deck-hero.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: "arepa",
+        name: "Venezuelan Arepa",
+        region: "South America",
+        subRegion: "Venezuela/Colombia",
+        category: "Flatbread",
+        recipeStyle: RecipeStyle.FLATBREAD,
+        tags: ["Corn", "Gluten Free", "Stuffed"],
+        description: "A round cornmeal cake made from pre-cooked corn flour (Harina P.A.N.). Crunchy outside, soft and steamy inside, perfect for stuffing.",
+        history_context: "Pre-Columbian staple of the Timoto-Cuica people. 'Arepa' comes from the indigenous word 'Erepa' (corn).",
+        base_formula: [
+            { name: 'Masarepa (Pre-cooked Corn Flour)', percentage: 100 },
+            { name: 'Water (Warm)', percentage: 120 },
+            { name: 'Salt', percentage: 2 },
+            { name: 'Oil/Butter', percentage: 5 }
+        ],
+        specs: {
+            hydration: { ideal: 120, min: 110, max: 130 },
+            ovenTemp: { ideal: 200, min: 180, max: 220 },
+            fermentationTime: '5m Rest',
+            difficulty: 'Easy'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: false,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "N/A",
+                pl_ratio: "N/A",
+                absorption_capacity: "Extreme",
+                protein_type: "Corn (Zein)",
+                science_explanation: 'Masarepa is pre-cooked and dried. The starch is pre-gelatinized, meaning it absorbs water instantly to form a dough without heating. No gluten network.'
+            },
+            thermalProfile: {
+                oven_type: "Budare (Griddle)",
+                heat_distribution: "Conduction",
+                crust_development: "Charred spots",
+                crumb_structure: "Dense, moist, steamy"
+            },
+            fermentationScience: {
+                yeast_activity: "None",
+                ph_target: "Neutral",
+                organic_acids: "None",
+                enzymatic_activity: "Low"
+            },
+            processScience: 'Gelatinization is already done at the factory. We are just re-hydrating the matrix. The rest period allows the water to distribute evenly into the largest particles.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Hydrate',
+                duration: '5 min',
+                action: 'Add flour to salted water gradually while mixing with hand.',
+                science: 'Prevent lumps. Agitation ensures even hydration.'
+            },
+            {
+                phase: 'Bulk',
+                title: 'Rest',
+                duration: '5 min',
+                action: 'Let sit.',
+                science: 'Allows full absorption.'
+            },
+            {
+                phase: 'Cook',
+                title: 'Sear & Bake',
+                duration: '15 min',
+                action: 'Sear on griddle for spots, then bake 10 mins to dry interior.',
+                science: 'Two-stage cooking ensures crisp shell and cooked center without burning.'
+            }
+        ],
+        references: ['Lorenzo Mendoza'],
+        images: {
+            hero: '/images/styles/arepa_corn_grill.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: "empanada-dough",
+        name: "Empanada Dough (Tapas)",
+        region: "South America",
+        subRegion: "Argentina",
+        category: "Pastry",
+        recipeStyle: RecipeStyle.MASSA_TORTA, // Fallback if no Pastry style
+        tags: ["Lard", "Fried", "Frying Dough"],
+        description: "The wrapper for the famous Argentine empanada. Known as 'Masa para Tapas'. It is a low-hydration, high-fat dough designed to bubble and blister when fried.",
+        history_context: "Came from Spain (Galicia), adapted in Argentina with beef fat (Grasa de Pella).",
+        base_formula: [
+            { name: 'AP Flour', percentage: 100 },
+            { name: 'Water (Hot)', percentage: 35 },
+            { name: 'Beef Fat (Lard)', percentage: 20 },
+            { name: 'Salt', percentage: 2 }
+        ],
+        specs: {
+            hydration: { ideal: 35, min: 30, max: 40 },
+            ovenTemp: { ideal: 180, min: 160, max: 200 },
+            fermentationTime: '30m Rest',
+            difficulty: 'Medium'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: false,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W200-240",
+                pl_ratio: "Extensible",
+                absorption_capacity: "Low",
+                protein_type: "Soft Wheat",
+                science_explanation: 'Low hydration + High Fat = Short dough. The hot water denatures some protein, reducing elasticity (snap-back) so it can be rolled very thin.'
+            },
+            thermalProfile: {
+                oven_type: "Fryer / Oven",
+                heat_distribution: "Convection/Conduction",
+                crust_development: "Blistered",
+                crumb_structure: "Flaky"
+            },
+            fermentationScience: {
+                yeast_activity: "None",
+                ph_target: "Neutral",
+                organic_acids: "None",
+                enzymatic_activity: "Low"
+            },
+            processScience: 'The high fat content creates microscopic layers (shortening). When fried, trapped steam forms blisters on the surface.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Scald',
+                duration: '10 min',
+                action: 'Melt fat in hot salted water. Add to flour.',
+                science: 'Partial gelatinization and protein denaturation.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Sheet',
+                duration: '15 min',
+                action: 'Roll to 2mm thickness. Cut discs.',
+                science: 'Thinness is key for the filling-to-dough ratio.'
+            },
+            {
+                phase: 'Cook',
+                title: 'Fry/Bake',
+                duration: '5 min',
+                action: 'Fry in hot lard or bake.',
+                science: 'Rapid heat transfer causes bubbling.'
+            }
+        ],
+        references: ['Doña Petrona'],
+        images: {
+            hero: '/images/styles/empanada_dough_raw.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
     }
 ];

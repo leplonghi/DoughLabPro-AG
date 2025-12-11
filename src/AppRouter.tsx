@@ -106,6 +106,7 @@ const HydrationConverterPage = React.lazy(() => import('@/pages/HydrationConvert
 
 // --- Placeholder Pages ---
 const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
+const UpgradePage = React.lazy(() => import('@/pages/UpgradePage'));
 
 function LandingPage() {
     return <div className="p-8 text-center">Landing Page (Coming Soon)</div>;
@@ -396,6 +397,12 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 );
             case 'community':
                 return protect(<CommunityPage />);
+            case 'upgrade':
+                return protect(<UpgradePage />);
+            case 'upgrade/success':
+                return protect(<UpgradePage success={true} />);
+            case 'upgrade/cancel':
+                return protect(<UpgradePage cancel={true} />);
             default:
                 return protect(
                     <MyLabPage

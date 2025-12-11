@@ -244,5 +244,175 @@ export const asiaStyles: DoughStyle[] = [
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
         }
+    },
+    {
+        id: 'steamed-baozi',
+        name: 'Steamed Baozi (Mantou Form)',
+        region: 'Asia',
+        subRegion: 'China',
+        category: 'Buns',
+        recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC, // Closest match
+        tags: ['Steam', 'Sourdough (Lao Mian)', 'Breakfast'],
+        description: 'The classic Northern Chinese steamed bun. Distinct from the folded "Gua Bao", this is a fully sealed bun (often filled) made with a "Lao Mian" (old dough) starter for flavor and texture.',
+        history_context: 'Attributed to Zhuge Liang in the Three Kingdoms period (3rd century AD). "Mantou" originally meant "Barbarian Head" due to its shape. It is the staple bread of Northern China where wheat dominates rice.',
+        base_formula: [
+            { name: 'Medium Protein Flour', percentage: 100 },
+            { name: 'Water', percentage: 50 },
+            { name: 'Yeast', percentage: 1 },
+            { name: 'Sugar', percentage: 5 },
+            { name: 'Lard/Oil', percentage: 5 },
+            { name: 'Baking Powder', percentage: 1 } // Modern addition for fluffiness
+        ],
+        specs: {
+            hydration: { ideal: 52, min: 48, max: 55 },
+            ovenTemp: { ideal: 100, min: 100, max: 100 },
+            fermentationTime: '4-12h (Lao Mian)',
+            difficulty: 'Medium'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: true,
+            requiresSteam: true,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "W200-240",
+                pl_ratio: "Balanced",
+                absorption_capacity: "Medium",
+                protein_type: "All Purpose / Bleached",
+                science_explanation: 'Bleached flour (Hong Kong Flour) is often preferred for the snowy white color and lower protein (tenderness). Unbleached flour results in a yellowish bun.'
+            },
+            thermalProfile: {
+                oven_type: "Bamboo Steamer",
+                heat_distribution: "Convection (Steam)",
+                crust_development: "Skin formation (No Maillard)",
+                crumb_structure: "Fine, dense, brilliant white"
+            },
+            fermentationScience: {
+                yeast_activity: "Moderate",
+                ph_target: "Neutral",
+                organic_acids: "Low",
+                enzymatic_activity: "Standard"
+            },
+            processScience: 'Steaming cooks the starch at 100°C. Since Maillard requires ~140°C, the bun stays white. The crucial step is the "Second Proof" - if effectively timed, the bun surface is smooth. If overproofed, it wrinkles upon cooling.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Smooth Mix',
+                duration: '15 min',
+                action: 'Knead until extremely smooth. Degas completely.',
+                science: 'Any large air bubble left will expand during steaming and create a pitted surface ("Zombie Skin").'
+            },
+            {
+                phase: 'Prep',
+                title: 'Shaping',
+                duration: '20 min',
+                action: 'Roll into circles, pleat to seal filling.',
+                science: 'Pleating creates a thicker top to balance the bottom thickness..'
+            },
+            {
+                phase: 'Cook',
+                title: 'Steam',
+                duration: '15 min',
+                action: 'Steam over vigorously boiling water. Do not open lid.',
+                science: 'Opening the lid causes a pressure drop and thermal shock, collapsing the structure immediately.'
+            }
+        ],
+        references: ['Wheat Flour Institute of China'],
+        images: {
+            hero: '/images/styles/baozi_steamed.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
+    },
+    {
+        id: 'paratha',
+        name: 'Lacha Paratha',
+        region: 'Asia',
+        subRegion: 'India',
+        category: 'Flatbread',
+        recipeStyle: RecipeStyle.FLATBREAD,
+        tags: ['Laminated', 'Unleavened', 'Fried'],
+        description: 'A layered North Indian flatbread made from whole wheat flour (Atta). It is laminated with ghee using a pleating technique to create flaky, crispy layers similar to puff pastry, but unleashed.',
+        history_context: 'Paratha (Parat + Atta = Processed Dough/Layers) is a staple of North Indian breakfast. The "Lacha" implies the specific ring-layered style.',
+        base_formula: [
+            { name: 'Atta Flour (Whole Wheat)', percentage: 100 },
+            { name: 'Water', percentage: 65 },
+            { name: 'Salt', percentage: 2 },
+            { name: 'Ghee (Lamination)', percentage: 20 },
+            { name: 'Oil (fry)', percentage: 10 }
+        ],
+        specs: {
+            hydration: { ideal: 65, min: 60, max: 70 },
+            ovenTemp: { ideal: 220, min: 200, max: 240 }, // Griddle temp
+            fermentationTime: '30m Rest',
+            difficulty: 'Medium'
+        },
+        calculation: {
+            method: 'baker_percentage',
+            requiresYeast: false,
+            requiresSteam: false,
+            allowOil: true
+        },
+        scientificProfile: {
+            flourRheology: {
+                w_index: "N/A (Atta)",
+                pl_ratio: "Extensible (Bran)",
+                absorption_capacity: "High",
+                protein_type: "Durum-like Wheat",
+                science_explanation: 'Atta is stone-ground whole wheat. The high bran content cuts gluten strands (low elasticity), but absorbs lots of water. 30min autolyse/rest is essential to hydrate the bran.'
+            },
+            thermalProfile: {
+                oven_type: "Tawa (Griddle)",
+                heat_distribution: "Conduction",
+                crust_development: "Crisp, fried",
+                crumb_structure: "Laminated layers"
+            },
+            fermentationScience: {
+                yeast_activity: "None",
+                ph_target: "Neutral",
+                organic_acids: "None",
+                enzymatic_activity: "Standard"
+            },
+            processScience: 'Lamination without yeast: The layers are separated by Ghee. Steam generated from the water in the dough pushes the layers apart (mechanical leavening) while the Ghee prevents them from fusing.'
+        },
+        process: [
+            {
+                phase: 'Mix',
+                title: 'Soft Dough',
+                duration: '10 min',
+                action: 'Mix Atta, salt, water. Knead well.',
+                science: 'Hydrate the bran effectively.'
+            },
+            {
+                phase: 'Bulk',
+                title: 'Rest',
+                duration: '30 min',
+                action: 'Cover and rest.',
+                science: 'Gluten relaxation is mandatory for rolling thin without tearing.'
+            },
+            {
+                phase: 'Prep',
+                title: 'Laminate',
+                duration: '15 min',
+                action: 'Roll thin. Brush Ghee. Pleat like a fan. Coil into a spiral.',
+                science: 'The fan pleat maximizes the number of layers in a vertical orientation.'
+            },
+            {
+                phase: 'Cook',
+                title: 'Fry',
+                duration: '5 min',
+                action: 'Cook on hot Tawa with Ghee until spots appear.',
+                science: 'Direct heat crisps the outer layers while steam cooks the inner layers.'
+            }
+        ],
+        references: ['Indian Breads'],
+        images: {
+            hero: '/images/styles/placeholder-dough.png',
+            dough: '/images/styles/placeholder-dough.png',
+            crumb: '/images/styles/placeholder-dough.png'
+        }
     }
 ];

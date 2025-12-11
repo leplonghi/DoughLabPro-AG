@@ -6,6 +6,8 @@ if (!admin.apps.length) {
 }
 const db = admin.firestore();
 
+export * from "./stripe";
+
 // Points System
 const POINTS = {
     LIKE: 10,

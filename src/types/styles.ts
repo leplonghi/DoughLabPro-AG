@@ -299,6 +299,18 @@ export interface DoughStyleDefinition {
 
     fermentationType: 'direct' | 'preferment' | 'levain' | 'cold';
 
+    customMethod?: {
+        phase: string;
+        title: string;
+        actionInstructions: string;
+        grandmaInstructions?: string;
+        technicalExplanation?: string;
+        proTip?: string;
+        criticalPoint?: string;
+        durationLabel?: string;
+        temperatureLabel?: string;
+    }[];
+
     technicalProfile: StyleTechnicalProfile;
 
     // Level 2.5: The Scientific Core

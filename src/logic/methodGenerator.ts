@@ -10,12 +10,32 @@ import {
     AmbientTemperature,
     BakeType
 } from '../types';
+import { getStyleById } from '../data/styles';
 
 /**
  * Generates a dynamic, scientifically-grounded step-by-step method for the dough.
  * Adapts to hydration, fermentation technique, yeast type, and environmental conditions.
  */
 export function generateTechnicalMethod(config: DoughConfig, result: DoughResult): TechnicalStep[] {
+    // 1. Check for Style-Specific Custom Method
+    const styleDef = config.selectedStyleId ? getStyleById(config.selectedStyleId) : undefined;
+
+    if (styleDef?.customMethod && styleDef.customMethod.length > 0) {
+        return styleDef.customMethod.map((step, index) => ({
+            id: `step-${index + 1}`,
+            order: index + 1,
+            phase: step.phase as TechnicalPhase,
+            title: step.title,
+            actionInstructions: step.actionInstructions,
+            grandmaInstructions: step.grandmaInstructions || step.actionInstructions,
+            technicalExplanation: step.technicalExplanation,
+            proTip: step.proTip,
+            criticalPoint: step.criticalPoint,
+            durationLabel: step.durationLabel,
+            temperatureLabel: step.temperatureLabel
+        }));
+    }
+
     const steps: TechnicalStep[] = [];
     let orderCounter = 1;
 

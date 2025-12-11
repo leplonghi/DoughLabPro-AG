@@ -120,4 +120,16 @@ export interface StyleDefinition {
         hydrationContent?: number;
         manualOverride?: boolean;
     }[];
+    /** Custom Step-by-Step Method */
+    customMethod?: {
+        phase: 'PREP' | 'MIX' | 'AUTO' | 'KNEAD' | 'BULK' | 'DIVIDE' | 'PROOF' | 'BAKE' | 'COOL';
+        title: string;
+        actionInstructions: string;
+        grandmaInstructions?: string;
+        technicalExplanation?: string;
+        proTip?: string;
+        criticalPoint?: string;
+        durationLabel?: string;
+        temperatureLabel?: string;
+    }[];
 }

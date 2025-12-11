@@ -141,14 +141,62 @@ export const FrenchCroissant = defineDoughStyle({
             { method: "Poolish", suitability: "Ideal", notes: "A poolish preferment adds extensibility to the dough, making rolling easier." }
         ]
     },
+    customMethod: [
+        {
+            phase: "MIX",
+            title: "Détrempe (Base Dough)",
+            actionInstructions: "Mix water, milk, sugar, salt, yeast, and soft butter. Add flour. deeply knead until smooth (medium gluten development). Do not overdevelop.",
+            grandmaInstructions: "Mix everything to make a smooth dough. Don't knead it too hard for too long.",
+            technicalExplanation: "We need extensibility for rolling. Too much gluten (elasticity) makes lamination impossible (shrinkage).",
+            durationLabel: "15 min"
+        },
+        {
+            phase: "BULK",
+            title: "Cold Ferment",
+            actionInstructions: "Flatten dough into a rectangle, wrap, and chill at 4°C for 6-12 hours.",
+            grandmaInstructions: "Wrap the dough and put it in the fridge overnight.",
+            technicalExplanation: "Relaxes gluten and chills the dough to match the plasticity of the butter block.",
+            durationLabel: "12h"
+        },
+        {
+            phase: "PREP",
+            title: "Lock-in (Beurrage)",
+            actionInstructions: "Roll dough to twice the size of butter block. Place butter in center, fold dough over to encase. Seal edges.",
+            grandmaInstructions: "Put the butter inside the dough and fold the dough over it like an envelope.",
+            technicalExplanation: "Ensures distinct layers of fat and dough."
+        },
+        {
+            phase: "PREP",
+            title: "Lamination (3 Simple Turns)",
+            actionInstructions: "Roll out to 8mm thick. Fold in thirds (Letter Fold). Rotate 90°. Repeat 2 more times, chilling in between if butter softens.",
+            grandmaInstructions: "Roll it out, fold it like a letter. Do this 3 times.",
+            technicalExplanation: "Creates 27 layers of butter (3^3), essential for the honeycomb structure.",
+            criticalPoint: "If butter melts, it fuses with the dough -> Brioche (no layers)."
+        },
+        {
+            phase: "PROOF",
+            title: "Final Proof",
+            actionInstructions: "Shape croissants. Proof at 26°C (max 28°C) until very wobbly and increased 2.5x in volume.",
+            grandmaInstructions: "Let them rise in a warm spot (but not too hot!) until they wobble like jelly.",
+            proTip: "If proof temperature exceeds 29°C, the butter will leak out before baking."
+        },
+        {
+            phase: "BAKE",
+            title: "Bake",
+            actionInstructions: "Bake at 200°C for 5 min, then 190°C for 12-15 min. No steam or minimal steam.",
+            grandmaInstructions: "Bake until deep golden brown."
+        }
+    ],
+    fermentationType: "preferment",
     base_formula: [
-        { name: "T55/Bread Flour", percentage: 100 },
-        { name: "Water/Milk", percentage: 58 },
+        { name: "Bread Flour", percentage: 100 },
+        { name: "Water", percentage: 28 },
+        { name: "Whole Milk", percentage: 28 },
         { name: "Sugar", percentage: 12 },
         { name: "Salt", percentage: 2 },
-        { name: "Instant Yeast", percentage: 1.2 },
-        { name: "Butter (Dough)", percentage: 8 },
-        { name: "Butter (Lamination Block)", percentage: 28 },
+        { name: "Yeast (Instant)", percentage: 1.2 },
+        { name: "Butter (Dough)", percentage: 6 },
+        { name: "Butter (Lamination Block)", percentage: 50 },
         { name: "Egg Wash", percentage: 5 }
     ]
 });

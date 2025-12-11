@@ -186,21 +186,24 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               title="Customize Ingredients"
               description="Adjust the key characteristics like hydration (water) and salt to match your taste or flour capability."
             />
-            <IngredientsSection
-              config={config}
-              errors={errors}
-              handleNumberChange={handleNumberChange}
-              handleSelectChange={handleSelectChange}
-              handleIngredientsUpdate={handleIngredientsUpdate}
-              isBasic={isBasic}
-              isAnySourdough={isAnySourdough}
-              levains={levains}
-              selectedLevain={selectedLevain}
-              YEAST_OPTIONS={YEAST_OPTIONS}
-              getRange={(field) => getRange(field, config.bakeType)}
-              getSelectClasses={getSelectClasses}
-              results={results}
-            />
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 mb-6">
+              <IngredientsSection
+                config={config}
+                errors={errors}
+                handleNumberChange={handleNumberChange}
+                handleSelectChange={handleSelectChange}
+                handleIngredientsUpdate={handleIngredientsUpdate}
+                isBasic={isBasic}
+                isAnySourdough={isAnySourdough}
+                levains={levains}
+                selectedLevain={selectedLevain}
+                YEAST_OPTIONS={YEAST_OPTIONS}
+                getRange={(field) => getRange(field, config.bakeType)}
+                getInputClasses={getInputClasses}
+                selectedFlour={selectedFlour}
+                results={results}
+              />
+            </div>
           </div>
 
           <div>

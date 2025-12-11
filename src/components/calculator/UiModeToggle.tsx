@@ -10,31 +10,26 @@ const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculat
     const isAdvanced = calculatorMode === 'advanced';
 
     return (
-        <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-2">
-                <SparklesIcon className={`h-5 w-5 ${isAdvanced ? 'text-lime-600' : 'text-slate-400'}`} />
-                <span className="text-sm font-medium text-slate-600">
-                    {isAdvanced ? 'Pro Mode' : 'Guided Mode'}
-                </span>
-            </div>
-            
-            <div className="flex items-center gap-3">
-                <span className={`${!isAdvanced ? 'text-slate-900 font-bold' : 'text-slate-500'} text-xs uppercase tracking-wide transition-colors`}>Guided</span>
-                
-                <button
-                    onClick={() => setCalculatorMode(isAdvanced ? 'basic' : 'advanced')}
-                    className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 ${isAdvanced ? 'bg-lime-500' : 'bg-slate-300'}`}
-                    role="switch"
-                    aria-checked={isAdvanced}
-                >
-                    <span
-                        aria-hidden="true"
-                        className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${isAdvanced ? 'translate-x-5' : 'translate-x-0'}`}
-                    />
-                </button>
-
-                <span className={`${isAdvanced ? 'text-slate-900 font-bold' : 'text-slate-500'} text-xs uppercase tracking-wide transition-colors`}>Pro</span>
-            </div>
+        <div className="inline-flex items-center gap-2 bg-slate-100 rounded-lg p-1 h-9">
+            <button
+                onClick={() => setCalculatorMode('basic')}
+                className={`relative px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 ${!isAdvanced
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+            >
+                Guided
+            </button>
+            <button
+                onClick={() => setCalculatorMode('advanced')}
+                className={`relative px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${isAdvanced
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+            >
+                <SparklesIcon className={`h-3 w-3 ${isAdvanced ? 'text-lime-600' : 'text-slate-400'}`} />
+                Pro
+            </button>
         </div>
     );
 };
