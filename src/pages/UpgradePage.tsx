@@ -12,7 +12,7 @@ interface UpgradePageProps {
 export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => {
     const [isLoading, setIsLoading] = useState(false);
     // TODO: Replace with your actual Price ID from Stripe Dashboard
-    const PRO_PRICE_ID = "price_1234567890";
+    const PRO_PRICE_ID = "price_1SUduf15wYiGE65Byb3Zr4QB";
 
     const handleUpgrade = async () => {
         setIsLoading(true);

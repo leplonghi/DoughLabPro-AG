@@ -187,7 +187,7 @@ export const FrenchCroissant = defineDoughStyle({
             grandmaInstructions: "Bake until deep golden brown."
         }
     ],
-    fermentationType: "preferment",
+
     base_formula: [
         { name: "Bread Flour", percentage: 100 },
         { name: "Water", percentage: 28 },

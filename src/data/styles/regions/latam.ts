@@ -511,7 +511,7 @@ export const latamStyles: DoughStyle[] = [
         ],
         references: ['Associação Pizzarias Unidas'],
         images: {
-            hero: '/images/styles/brazilian-gas-deck-hero.png',
+            hero: '/images/styles/brazilian_gas_deck_real.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
         }

@@ -22,7 +22,7 @@ const ChoiceButton: React.FC<{
 );
 
 const SettingsPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, locale, setLocale } = useTranslation();
   const {
     defaultAmbientTempC,
     setDefaultAmbientTempC,
@@ -66,6 +66,31 @@ const SettingsPage: React.FC = () => {
             <p className="mt-2 text-xs text-slate-500">
               {t('form.unit_system_tooltip')}
             </p>
+          </div>
+
+          {/* Language Selection */}
+          <div className="border-t border-slate-200 pt-6">
+            <h2 className="text-lg font-semibold text-slate-800 mb-4">Language / Idioma</h2>
+            <div className="grid grid-cols-3 gap-3">
+              <ChoiceButton
+                active={locale === 'en'}
+                onClick={() => setLocale('en')}
+              >
+                English
+              </ChoiceButton>
+              <ChoiceButton
+                active={locale === 'pt'}
+                onClick={() => setLocale('pt')}
+              >
+                Português
+              </ChoiceButton>
+              <ChoiceButton
+                active={locale === 'es'}
+                onClick={() => setLocale('es')}
+              >
+                Español
+              </ChoiceButton>
+            </div>
           </div>
 
           {/* Environment Defaults */}

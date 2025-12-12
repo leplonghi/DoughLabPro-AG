@@ -55,6 +55,8 @@ export const getDynamicPresets = (): DoughStylePreset[] => {
             defaultSalt: getAvg(tech.salt),
             defaultOil: getAvg(tech.oil || tech.fat || [0, 0]),
             defaultSugar: getAvg(tech.sugar || [0, 0]),
+            region: style.origin?.country || style.country || 'Universal',
+            description: style.description || '',
         };
     });
 };

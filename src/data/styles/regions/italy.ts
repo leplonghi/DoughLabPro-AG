@@ -1033,7 +1033,7 @@ export const italianStyles: DoughStyle[] = [
         ],
         references: ["Modernist Bread", "The Bread Baker's Apprentice"],
         images: {
-            hero: "/images/styles/ciabatta.png",
+            hero: "/images/styles/ciabatta_real.png",
             dough: "/images/styles/ciabatta.png",
             crumb: "/images/styles/ciabatta.png"
         },

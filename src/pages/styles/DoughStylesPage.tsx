@@ -16,7 +16,15 @@ import {
     Search,
     ArrowUpDown,
     ChefHat,
-    Globe
+    Globe,
+    LayoutGrid,
+    Pizza,
+    Wheat,
+    Croissant,
+    CircleDot,
+    Cookie,
+    ScrollText,
+    MoreHorizontal
 } from 'lucide-react';
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
 import { AdCard } from '@/marketing/ads/AdCard';
@@ -25,16 +33,16 @@ import { AdCard } from '@/marketing/ads/AdCard';
 // 1. CONSTANTS & CONFIG
 // ========================================================
 
-const CATEGORY_FILTERS: { id: StyleCategory | 'All', label: string }[] = [
-    { id: 'All', label: 'All Styles' },
-    { id: 'pizza', label: 'Pizza' },
-    { id: 'bread', label: 'Breads' },
-    { id: 'enriched_bread', label: 'Enriched' },
-    { id: 'burger_bun', label: 'Buns' },
-    { id: 'pastry', label: 'Pastry' },
-    { id: 'cookie', label: 'Cookies' },
-    { id: 'flatbread', label: 'Flatbreads' },
-    { id: 'other', label: 'Other' },
+const CATEGORY_FILTERS: { id: StyleCategory | 'All', label: string, iconSrc: string }[] = [
+    { id: 'All', label: 'All Styles', iconSrc: '/icons/styles/all.png' },
+    { id: 'pizza', label: 'Pizza', iconSrc: '/icons/styles/pizza.png' },
+    { id: 'bread', label: 'Breads', iconSrc: '/icons/styles/bread.png' },
+    { id: 'enriched_bread', label: 'Enriched', iconSrc: '/icons/styles/enriched.png' },
+    { id: 'burger_bun', label: 'Buns', iconSrc: '/icons/styles/bun.png' },
+    { id: 'pastry', label: 'Pastry', iconSrc: '/icons/styles/pastry.png' },
+    { id: 'cookie', label: 'Cookies', iconSrc: '/icons/styles/cookie.png' },
+    { id: 'flatbread', label: 'Flatbreads', iconSrc: '/icons/styles/flatbread.png' },
+    { id: 'other', label: 'Other', iconSrc: '/icons/styles/other.png' },
 ];
 
 const GROUP_ORDER = [
@@ -276,13 +284,18 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                             key={cat.id}
                                             onClick={() => setSelectedCategory(cat.id as any)}
                                             className={`
-                                                whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border
+                                                whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-2
                                                 ${isActive
                                                     ? activeClass
                                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                                                 }
                                             `}
                                         >
+                                            <img
+                                                src={cat.iconSrc}
+                                                alt={cat.label}
+                                                className={`w-5 h-5 object-contain ${isActive ? 'brightness-200' : ''}`}
+                                            />
                                             {cat.label}
                                         </button>
                                     );
@@ -309,23 +322,15 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                 </button>
 
                                 {availableRegions.map(region => {
-                                    const isActive = selectedRegions.includes(region); // In this simplified UI, we treat horizontal click as "select only this" or "toggle"
-                                    // Let's make the horizontal list behave like radio buttons for simplicity or toggles?
-                                    // User reference shows "Region: Any | Italy | Europe ...". Usually implies exclusive selection or easy filtering.
-                                    // Let's make it exclusive for this quick bar, but the state `selectedRegions` is an array.
-                                    // We'll toggle it.
+                                    const isActive = selectedRegions.includes(region);
 
                                     return (
                                         <button
                                             key={region}
                                             onClick={() => {
-                                                // Toggle behavior for the pills
                                                 if (isActive) {
                                                     setSelectedRegions(prev => prev.filter(r => r !== region));
                                                 } else {
-                                                    // Optional: If we want single-select behavior on this bar:
-                                                    // setSelectedRegions([region]); 
-                                                    // But let's keep multi-select toggle as it's more powerful
                                                     setSelectedRegions(prev => [...prev, region]);
                                                 }
                                             }}

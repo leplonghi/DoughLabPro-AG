@@ -2,6 +2,8 @@ import React from 'react';
 import { PaywallOrigin } from '@/types';
 import { CheckCircleIcon, StarIcon, LockClosedIcon } from './ui/Icons';
 import { useUser } from '@/contexts/UserProvider';
+import { useLocalizedPricing } from '@/hooks/useLocalizedPricing';
+import { useTranslation } from 'react-i18next';
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -17,16 +19,16 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
     origin,
 }) => {
     const { grantProAccess } = useUser();
+    const { t } = useTranslation();
 
     if (!isOpen) return null;
 
     const handleUpgrade = () => {
-        // In a real app, this would trigger Stripe/Payment flow
-        // For now, we simulate a successful upgrade
-        if (confirm("Simulate successful payment?")) {
-            grantProAccess();
-            onClose();
-        }
+        onClose();
+        // Use window.location as navigation fall back if onNavigate doesn't work 
+        // to ensure they get to the new page.
+        // Assuming your routing handles '/upgrade'
+        window.location.href = '/upgrade';
     };
 
     return (
@@ -48,9 +50,9 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
                         <div className="mx-auto w-16 h-16 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover rounded-full flex items-center justify-center mb-4 shadow-lg shadow-dlp-accent/30">
                             <StarIcon className="w-8 h-8 text-white" />
                         </div>
-                        <h2 className="text-2xl font-extrabold text-dlp-text-primary mb-2 tracking-tight">Unlock DoughLab Pro</h2>
+                        <h2 className="text-2xl font-extrabold text-dlp-text-primary mb-2 tracking-tight">{t('paywall.title')}</h2>
                         <p className="text-dlp-text-secondary text-sm max-w-xs mx-auto">
-                            Take your baking to the professional level with advanced tools and insights.
+                            {t('paywall.subtitle')}
                         </p>
                     </div>
                 </div>
@@ -58,43 +60,75 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
                 {/* Body */}
                 <div className="p-8">
                     <div className="space-y-4 mb-8">
-                        <BenefitItem text="Unlimited Recipes & Batches" />
-                        <BenefitItem text="Advanced Dough Calculator & Preferments" />
-                        <BenefitItem text="Levain Health Tracking & Analytics" />
-                        <BenefitItem text="Side-by-Side Batch Comparisons" />
-                        <BenefitItem text="AI Dough Assistant (DoughBot)" />
+                        <BenefitItem text={t('paywall.benefits.unlimited')} />
+                        <BenefitItem text={t('paywall.benefits.calculator')} />
+                        <BenefitItem text={t('paywall.benefits.levain')} />
+                        <BenefitItem text={t('paywall.benefits.compare')} />
+                        <BenefitItem text={t('paywall.benefits.ai')} />
                     </div>
 
-                    <div className="bg-dlp-bg-muted rounded-xl p-4 mb-6 border border-dlp-border text-center relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-1">
-                            <span className="bg-dlp-accent text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Best Value</span>
-                        </div>
-                        <p className="text-xs text-dlp-text-primary uppercase tracking-wider font-bold mb-1">Pro Plan</p>
-                        <div className="flex items-baseline justify-center gap-1">
-                            <span className="text-3xl font-extrabold text-dlp-text-primary">$4.99</span>
-                            <span className="text-dlp-text-secondary font-medium">/ month</span>
-                        </div>
-                        <p className="text-xs text-dlp-accent mt-2 font-medium">Cancel anytime. 7-day free trial.</p>
-                    </div>
+                    <PricingCard />
 
                     <button
                         onClick={handleUpgrade}
                         className="w-full py-3.5 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover hover:from-dlp-accent-hover hover:to-dlp-accent text-white font-bold rounded-xl shadow-lg shadow-dlp-accent/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] ring-1 ring-dlp-accent/50"
                     >
-                        Start Free Trial
+                        {t('paywall.cta_trial')}
                     </button>
 
                     <button
                         onClick={onClose}
                         className="w-full mt-3 py-2 text-sm text-dlp-text-muted hover:text-dlp-text-secondary font-medium transition-colors"
                     >
-                        Maybe later
+                        {t('paywall.cta_later')}
                     </button>
                 </div>
             </div>
         </div>
     );
 };
+
+const PricingCard: React.FC = () => {
+    const { currency, symbol, planPrices, countryCode, isLocked, isProvisional, isLoading } = useLocalizedPricing();
+    const { t } = useTranslation();
+
+    if (isLoading) {
+        return (
+            <div className="bg-dlp-bg-muted rounded-xl p-6 mb-6 border border-dlp-border text-center animate-pulse h-32 flex items-center justify-center">
+                <span className="text-dlp-text-muted text-sm">{t('paywall.pricing.loading')}</span>
+            </div>
+        );
+    }
+
+    return (
+        <div className="bg-dlp-bg-muted rounded-xl p-4 mb-6 border border-dlp-border text-center relative overflow-hidden group hover:border-dlp-accent/30 transition-colors">
+            <div className="absolute top-0 right-0 p-1">
+                <span className="bg-dlp-accent text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">{t('paywall.pricing.best_value')}</span>
+            </div>
+            <p className="text-xs text-dlp-text-primary uppercase tracking-wider font-bold mb-1">{t('paywall.pricing.plan_name')}</p>
+            <div className="flex items-baseline justify-center gap-1">
+                <span className="text-3xl font-extrabold text-dlp-text-primary">{symbol}{planPrices.standard.toFixed(2)}</span>
+                <span className="text-dlp-text-secondary font-medium">{t('paywall.pricing.per_month')}</span>
+            </div>
+            <p className="text-xs text-dlp-accent mt-2 font-medium">{t('paywall.pricing.cancel_anytime', { currency })}</p>
+
+            {/* Country Status Note */}
+            <div className="mt-3 pt-3 border-t border-dlp-border/50 text-[10px] text-dlp-text-muted leading-tight">
+                {isLocked ? (
+                    <span>
+                        <LockClosedIcon className="w-3 h-3 inline-block mr-1 -mt-0.5" />
+                        <span dangerouslySetInnerHTML={{ __html: t('paywall.pricing.locked', { country: countryCode }) }} />
+                    </span>
+                ) : (
+                    <span>
+                        <span dangerouslySetInnerHTML={{ __html: t('paywall.pricing.provisional', { country: countryCode }) }} />
+                    </span>
+                )}
+            </div>
+        </div>
+    );
+};
+
 
 const BenefitItem: React.FC<{ text: string }> = ({ text }) => (
     <div className="flex items-center gap-3">

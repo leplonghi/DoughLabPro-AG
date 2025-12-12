@@ -410,7 +410,7 @@ export const asiaStyles: DoughStyle[] = [
         ],
         references: ['Indian Breads'],
         images: {
-            hero: '/images/styles/placeholder-dough.png',
+            hero: '/images/styles/paratha_flaky_hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
         }

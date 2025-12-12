@@ -155,7 +155,7 @@ export const COMING_SOON_STYLES = [
         name: 'Sfogliatella Riccia',
         region: 'Italy',
         type: 'Pastry',
-        image: '/images/styles/placeholder-dough.png',
+        image: '/images/styles/sfogliatella_hero.png',
         releaseDate: 'February 2026'
     },
 ];

@@ -200,6 +200,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
                 YEAST_OPTIONS={YEAST_OPTIONS}
                 getRange={(field) => getRange(field, config.bakeType)}
                 getInputClasses={getInputClasses}
+                getSelectClasses={getSelectClasses}
                 selectedFlour={selectedFlour}
                 results={results}
               />

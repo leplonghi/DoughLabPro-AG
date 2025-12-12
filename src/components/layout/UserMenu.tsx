@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUser } from '@/contexts/UserProvider';
 import { Page } from '@/types';
+import { useTranslation } from 'react-i18next';
 import {
     UserCircleIcon,
     SettingsIcon,
@@ -21,6 +22,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
     const { user, isAuthenticated } = useUser();
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -40,7 +42,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                 onClick={onOpenAuthModal}
                 className="text-sm font-semibold text-dlp-text-secondary hover:text-dlp-text-primary"
             >
-                Sign In
+                {t('common.sign_in')}
             </button>
         );
     }
@@ -89,7 +91,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
                             <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                            Profile
+                            {t('nav.profile')}
                         </button>
 
                         <button
@@ -98,7 +100,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                         >
                             <div className="flex items-center">
                                 <SettingsIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                                Settings
+                                {t('nav.settings')}
                             </div>
                             <ChevronRightIcon className="h-4 w-4 text-dlp-text-muted" />
                         </button>
@@ -108,7 +110,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
                             <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                            Help
+                            {t('nav.help')}
                         </button>
 
                         <button
@@ -116,7 +118,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
                             <ClockIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                            Legal
+                            {t('nav.legal')}
                         </button>
 
                         <div className="border-t border-dlp-border my-1"></div>
@@ -126,7 +128,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="flex w-full items-center px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors group"
                         >
                             <ArrowRightOnRectangleIcon className="mr-3 h-5 w-5 text-red-500 group-hover:text-red-600" />
-                            Sign Out
+                            {t('auth.sign_out')}
                         </button>
                     </div>
                 </div>

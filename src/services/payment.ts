@@ -3,7 +3,8 @@ import { loadStripe } from "@stripe/stripe-js";
 
 // Initialize Stripe with your Publishable Key
 // TODO: Replace with your actual Publishable Key or use an env variable
-const stripePromise = loadStripe("pk_test_placeholder");
+const stripePromise = loadStripe("mk_1SdC7315wYiGE65BTazQrfp5");
+
 
 export const checkoutProSubscription = async (priceId: string) => {
     const functions = getFunctions();
@@ -27,7 +28,7 @@ export const checkoutProSubscription = async (priceId: string) => {
             throw new Error("Stripe failed to initialize.");
         }
 
-        const { error } = await stripe.redirectToCheckout({
+        const { error } = await (stripe as any).redirectToCheckout({
             sessionId,
         });
 

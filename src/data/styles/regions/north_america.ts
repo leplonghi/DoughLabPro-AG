@@ -382,7 +382,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Pizzeria Uno History" }],
     images: {
-        hero: "/images/styles/chicago-deep-dish-hero.png",
+        hero: "/images/styles/chicago_deep_dish_real.png",
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
@@ -533,7 +533,7 @@ const sfSourdough: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Boudin History" }, { source: "Microbiology of Sourdough" }],
     images: {
-        hero: "/images/styles/sf-sourdough-hero.png",
+        hero: "/images/styles/sf_sourdough_real.png",
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
@@ -687,7 +687,7 @@ const newHavenApizza: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Frank Pepe History" }, { source: "Pizza City, USA" }],
     images: {
-        hero: "/images/styles/new-haven-hero.png",
+        hero: "/images/styles/new_haven_apizza_real.png",
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
@@ -1369,7 +1369,7 @@ const flourTortilla: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [{ source: "Sonoran Heritage" }],
     images: {
-        hero: "/images/styles/placeholder-dough.png",
+        hero: "/images/styles/flour_tortilla_sonora.png",
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },

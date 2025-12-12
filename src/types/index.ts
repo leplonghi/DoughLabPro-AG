@@ -5,7 +5,7 @@ import { DoughStyleDefinition, StyleCategory, RecipeStyle } from './styles';
 export { RecipeStyle };
 export type { DoughStyleDefinition, StyleCategory };
 
-export type Locale = 'en';
+export type Locale = 'en' | 'pt' | 'es';
 
 export enum BakeType {
     PIZZAS = 'PIZZAS',
@@ -210,6 +210,12 @@ export interface User {
     website?: string;
     instagramHandle?: string;
     skillLevel?: 'beginner' | 'intermediate' | 'advanced' | 'pro';
+    // Billing & Localization
+    billingCountry?: string | null; // ISO code, locked after first payment
+    billingCurrency?: string | null;
+    priceTier?: 'A' | 'B' | 'C' | null;
+    firstPaidAt?: string | null; // ISO Date of first successful payment
+
     trials?: {
         [key: string]: string; // featureKey -> startDate (ISO)
     };
@@ -713,4 +719,6 @@ export interface DoughStylePreset {
     defaultSugar: number;
     preferredFlourProfileId?: string;
     defaultYeastPct?: number;
+    region?: string;
+    description?: string;
 }

@@ -1,0 +1,359 @@
+{
+    "common": {
+        "save": "Salvar",
+        "cancel": "Cancelar",
+        "close": "Fechar",
+        "details": "Detalhes",
+        "delete": "Excluir",
+        "edit": "Editar",
+        "add": "Adicionar",
+        "loading": "Carregando...",
+        "back": "Voltar",
+        "next": "Próximo",
+        "finish": "Finalizar",
+        "skip": "Pular",
+        "thinking": "Pensando...",
+        "save_changes": "Salvar Alterações",
+        "not_applicable": "N/A",
+        "sign_in": "Entrar"
+    },
+    "nav": {
+        "home": "Início",
+        "calculator": "Calculadora",
+        "learn": "Aprender",
+        "lab": "Meu Laboratório",
+        "profile": "Perfil",
+        "shop": "Loja",
+        "styles": "Estilos",
+        "settings": "Configurações",
+        "help": "Ajuda",
+        "legal": "Legal"
+    },
+    "dashboard": {
+        "greeting_morning": "Bom dia, {name}",
+        "greeting_afternoon": "Boa tarde, {name}",
+        "greeting_evening": "Boa noite, {name}",
+        "greeting_subtext": "Pronto para assar algo incrível hoje?",
+        "action_new_dough": "Nova Massa",
+        "recent_batches_view_all": "Ver Todas",
+        "levain_status_fed": "Alimentado há {time}",
+        "levain_empty_state": "Nenhum levain ativo.",
+        "action_open_levain": "Abrir Levain",
+        "summary_last_batch": "Última fornada"
+    },
+    "form": {
+        "recipe_style": "Estilo de Receita",
+        "dough_ball_weight": "Peso da Bola",
+        "hydration": "Hidratação",
+        "salt": "Sal",
+        "oil": "Óleo/Gordura",
+        "sugar": "Açúcar",
+        "yeast": "Fermento",
+        "yeast_type": "Tipo de Fermento",
+        "flour_type": "Tipo de Farinha",
+        "fermentation": "Fermentação",
+        "room_temp": "Temp. Ambiente",
+        "unit_system": "Sistema de Unidades",
+        "metric": "Métrico (g, °C)",
+        "us_customary": "US Customary (oz, °F)",
+        "unit_system_tooltip": "Altera as unidades de peso e temperatura.",
+        "tooltips": {
+            "ui_mode": "Modo básico usa predefinições. Modo avançado libera todos os controles."
+        },
+        "neapolitan": "Napolitana",
+        "new_york": "New York Style",
+        "pan_pizza": "Pan Pizza",
+        "chicago_deep_dish": "Chicago Style",
+        "romana_tonda": "Romana Tonda",
+        "siciliana": "Siciliana",
+        "grandma_style": "Grandma Style",
+        "pao_frances": "Pão Francês",
+        "baguette": "Baguete",
+        "ciabatta": "Ciabatta",
+        "sourdough": "Sourdough",
+        "focaccia": "Focaccia",
+        "yeast_idy": "Fermento Biológico Seco (Instantâneo)",
+        "yeast_ady": "Fermento Biológico Seco (Ativo)",
+        "yeast_fresh": "Fermento Biológico Fresco",
+        "yeast_sourdough_starter": "Levain (Fermento Natural)",
+        "yeast_user_levain": "Meu Levain",
+        "temp_cold": "Frio",
+        "temp_mild": "Ameno",
+        "temp_hot": "Quente"
+    },
+    "results": {
+        "title": "Receita da Massa",
+        "total_flour": "Farinha Total",
+        "total_water": "Água Total",
+        "total_salt": "Sal Total",
+        "total_oil": "Óleo Total",
+        "total_sugar": "Açúcar Total",
+        "total_yeast": "Fermento Total",
+        "total_dough": "Peso Total da Massa",
+        "single_ball": "Peso por Bola",
+        "final_dough_title": "Mistura Final",
+        "flour": "Farinha",
+        "water": "Água",
+        "salt": "Sal",
+        "oil": "Óleo",
+        "sugar": "Açúcar",
+        "yeast": "Fermento",
+        "share_link": "Link copiado!",
+        "share_error": "Erro ao copiar link.",
+        "export_pdf_aria": "Exportando PDF...",
+        "export_json_aria": "Exportando JSON..."
+    },
+    "auth": {
+        "modal_title": "Entrar no DoughLabPro",
+        "modal_subtitle": "Salve suas receitas, monitore seu levain e acesse recursos pro.",
+        "continue_with_google": "Continuar com Google",
+        "sign_out": "Sair",
+        "terms_notice": "Ao continuar, você concorda com nossos Termos de Serviço e Política de Privacidade."
+    },
+    "levain_pet": {
+        "title": "Monitor de Levain",
+        "status": {
+            "ativo": "Ativo",
+            "precisa_atencao": "Precisa de Atenção",
+            "descanso": "Descansando",
+            "arquivado": "Arquivado"
+        },
+        "create_button": "Criar Levain",
+        "detail_page": {
+            "assistant": {
+                "modal_title": "Assistente de Levain",
+                "placeholder": "Pergunte sobre alimentação ou saúde..."
+            }
+        }
+    },
+    "profile": {
+        "not_logged_in": "Faça login para ver seu perfil.",
+        "settings_title": "Configurações do Perfil",
+        "edit_profile": "Editar Perfil",
+        "name": "Nome",
+        "email": "E-mail",
+        "birthDate": "Data de Nascimento",
+        "gender": "Gênero",
+        "save_changes": "Salvar Alterações",
+        "cancel": "Cancelar",
+        "membership": "Assinatura",
+        "pro_member": "Membro Pro",
+        "free_member": "Membro Gratuito",
+        "genders": {
+            "male": "Masculino",
+            "female": "Feminino",
+            "other": "Outro",
+            "prefer_not_to_say": "Prefiro não dizer"
+        },
+        "resources": {
+            "title": "Recursos",
+            "tech_references": "Referências Técnicas",
+            "tech_references_desc": "Padrões e bases científicas.",
+            "flours_library": "Biblioteca de Farinhas",
+            "flours_library_desc": "Tipos, força W e especificações."
+        },
+        "ovens": {
+            "title": "Meus Fornos",
+            "add_oven": "Adicionar Forno",
+            "empty_state": "Nenhum forno registrado.",
+            "default_oven": "Padrão",
+            "set_as_default": "Definir como Padrão",
+            "types": {
+                "gas": "Gás",
+                "electric": "Elétrico",
+                "wood": "Lenha",
+                "ooni": "Portátil (Ooni)",
+                "stone_oven": "Forno de Pedra",
+                "other": "Outro"
+            }
+        },
+        "levains": {
+            "title": "Meus Levains",
+            "add_levain": "Adicionar Levain",
+            "empty_state": "Nenhum levain registrado.",
+            "default": "Padrão",
+            "hydration": "Hidratação",
+            "manage": "Gerenciar",
+            "set_as_default": "Definir como Padrão"
+        }
+    },
+    "onboarding": {
+        "welcome_title": "Bem-vindo ao DoughLab",
+        "welcome_subtitle": "Sua calculadora de massa profissional.",
+        "start_tour": "Iniciar Tour",
+        "skip_tour": "Pular",
+        "next": "Próximo",
+        "back": "Voltar",
+        "finish": "Finalizar",
+        "step1_title": "Configurar",
+        "step1_desc": "Defina seus parâmetros aqui.",
+        "step2_title": "Quantidade",
+        "step2_desc": "Ajuste o número de peças ou peso.",
+        "step3_title": "Resultados",
+        "step3_desc": "Veja sua receita exata aqui.",
+        "step4_title": "Salvar",
+        "step4_desc": "Salve sua fornada no Meu Lab."
+    },
+    "levain_onboarding": {
+        "screen1_title": "Conheça seu Levain",
+        "screen1_text": "Acompanhe alimentações e saúde.",
+        "screen1_button": "Próximo",
+        "screen2_title": "Alimentações",
+        "screen2_text": "Registre cada alimentação para criar histórico.",
+        "screen2_button": "Próximo",
+        "screen3_title": "Insights",
+        "screen3_text": "Obtenha pontuações de saúde e previsões.",
+        "screen3_button": "Próximo",
+        "screen4_title": "Receitas",
+        "screen4_text": "Use seu levain em receitas da calculadora.",
+        "screen4_button": "Próximo",
+        "screen5_title": "Pronto?",
+        "screen5_text": "Vamos criar seu primeiro fermento.",
+        "screen5_button": "Criar Levain"
+    },
+    "batch_detail": {
+        "not_found": "Fornada não encontrada",
+        "not_found_desc": "Esta fornada pode ter sido excluída.",
+        "back_to_diary": "Voltar ao Meu Lab",
+        "anonymous": "Anônimo",
+        "data_title": "Dados",
+        "hydration": "Hidratação",
+        "yeast": "Fermento",
+        "ingredients_title": "Ingredientes",
+        "process_title": "Notas do Processo",
+        "notes_placeholder": "Adicione notas aqui...",
+        "no_notes": "Nenhuma nota registrada.",
+        "rating": "Avaliação",
+        "photos_title": "Fotos",
+        "actions_title": "Ações",
+        "actions": {
+            "repeat": "Carregar na Calculadora",
+            "duplicate": "Duplicar Fornada",
+            "export_pdf": "Exportar PDF",
+            "export_json": "Exportar JSON",
+            "delete": "Excluir Fornada"
+        },
+        "badge": {
+            "great": "Excelente",
+            "good": "Bom",
+            "regular": "Regular",
+            "adjust": "Ajustar"
+        }
+    },
+    "community_page": {
+        "title": "Comunidade",
+        "subtitle": "Receitas compartilhadas por outros padeiros.",
+        "empty_title": "Nenhuma postagem ainda",
+        "empty_subtitle": "Seja o primeiro a compartilhar!",
+        "by": "por"
+    },
+    "community_detail": {
+        "not_found": "Receita não encontrada",
+        "not_found_desc": "Esta receita pode ter sido removida.",
+        "back_to_community": "Voltar à Comunidade",
+        "by": "por",
+        "on": "em",
+        "recipe_params": "Parâmetros da Receita",
+        "style": "Estilo",
+        "units": "Rendimento",
+        "hydration": "Hidratação",
+        "salt": "Sal",
+        "oil": "Óleo",
+        "sugar": "Açúcar",
+        "yeast": "Fermento",
+        "baking_temp": "Temp. Forno",
+        "env_process": "Ambiente",
+        "ambient_temp": "Temp. Ambiente",
+        "clone": "Clonar Receita"
+    },
+    "learn": {
+        "title": "Aprender",
+        "subtitle": "Domine a ciência da panificação.",
+        "why_title": "Por que importa",
+        "howto_title": "Como aplicar",
+        "tips_title": "Dicas Pro",
+        "reference_title": "Referência Técnica"
+    },
+    "flours_page": {
+        "title": "Biblioteca de Farinhas",
+        "subtitle": "Entenda as características de diferentes farinhas.",
+        "default": "Padrão",
+        "set_default": "Definir como Padrão",
+        "hydration_rec": "Hidratação Recomendada",
+        "strength": "Força (W)",
+        "back_to_calculator": "Voltar à Calculadora"
+    },
+    "diary_page": {
+        "title": "Minhas Fornadas",
+        "subtitle": "Histórico de suas produções.",
+        "empty_title": "Nenhuma fornada ainda",
+        "empty_subtitle": "Comece um novo cálculo para salvar sua primeira fornada.",
+        "create_first": "Ir para Calculadora",
+        "new_batch": "Registrar Nova",
+        "card": {
+            "hydration": "Hidratação",
+            "weight": "Peso Peça",
+            "units": "Unidades",
+            "redo": "Carregar",
+            "open": "Detalhes"
+        }
+    },
+    "info": {
+        "update_success": "Atualizado com sucesso."
+    },
+    "confirmations": {
+        "delete_batch": "Tem certeza que deseja excluir \"{name}\"?",
+        "delete_oven": "Tem certeza que deseja excluir o forno \"{name}\"?",
+        "delete_levain": "Tem certeza que deseja excluir o levain \"{name}\"?"
+    },
+    "mode_toggle": {
+        "basic": "Guiado",
+        "advanced": "Avançado"
+    },
+    "suggestions": {
+        "hot_day": {
+            "title": "Dia Quente",
+            "desc": "Tente menos fermento."
+        },
+        "cold_day": {
+            "title": "Dia Frio",
+            "desc": "Tente fermentação mais longa."
+        },
+        "steel_oven": {
+            "title": "Placa de Aço",
+            "desc": "Ótimo para crostas crocantes."
+        },
+        "default": {
+            "title": "Tente Focaccia",
+            "desc": "Uma massa indulgente."
+        }
+    },
+    "ads": {
+        "advertisement": "Anúncio"
+    },
+    "paywall": {
+        "title": "Desbloqueie o DoughLab Pro",
+        "subtitle": "Leve sua panificação ao nível profissional com ferramentas e insights avançados.",
+        "benefits": {
+            "unlimited": "Receitas e Lotes Ilimitados",
+            "calculator": "Calculadora Avançada e Pré-fermentos",
+            "levain": "Rastreamento de Saúde do Levain e Análises",
+            "compare": "Comparação de Lotes Lado a Lado",
+            "ai": "Assistente de IA (DoughBot)"
+        },
+        "cta_trial": "Começar Teste Grátis de 7 Dias",
+        "cta_later": "Talvez mais tarde",
+        "pricing": {
+            "best_value": "Melhor Valor",
+            "plan_name": "Plano Pro",
+            "per_month": "/ mês",
+            "cancel_anytime": "Cancele quando quiser. Cobrado em {currency}.",
+            "locked": "Sua região de cobrança está travada em <strong>{country}</strong>.",
+            "provisional": "Preços para <strong>{country}</strong>. País de cobrança final confirmado no checkout.",
+            "loading": "Carregando preços..."
+        }
+    },
+    "modals": {
+        "close": "Fechar"
+    }
+}

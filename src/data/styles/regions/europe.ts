@@ -297,7 +297,7 @@ export const europeStyles: DoughStyle[] = [
         ],
         references: ['German Baking Standards', 'The Rye Baker (for context on German flours)'],
         images: {
-            hero: '/images/styles/pretzel-hero.png',
+            hero: '/images/styles/pretzel_laugen_real.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png',
         },

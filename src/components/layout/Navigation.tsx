@@ -10,7 +10,8 @@ import {
     BeakerIcon,
     UsersIcon,
     WrenchScrewdriverIcon,
-    UserCircleIcon
+    UserCircleIcon,
+    BatchesIcon
 } from '@/components/ui/Icons';
 import { useUser } from '@/contexts/UserProvider';
 import { Logo } from '@/components/ui/Logo';
@@ -36,12 +37,12 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
     const { isAuthenticated, hasProAccess, openPaywall } = useUser();
 
     const navLinks = [
-        { page: 'calculator', label: 'Calculator', icon: <CalculatorIcon className="h-4 w-4" /> },
-        { page: 'mylab', label: 'My Lab', icon: <BeakerIcon className="h-4 w-4" /> },
-        { page: 'styles', label: 'Styles', icon: <BookOpenIcon className="h-4 w-4" /> },
-        { page: 'learn', label: 'Learn', icon: <AcademicCapIcon className="h-4 w-4" /> },
-        { page: 'tools', label: 'Tools', icon: <WrenchScrewdriverIcon className="h-4 w-4" /> },
-        { page: 'community', label: 'Community', icon: <UsersIcon className="h-4 w-4" /> },
+        { page: 'calculator', label: 'Calculator', icon: CalculatorIcon },
+        { page: 'mylab', label: 'My Lab', icon: BeakerIcon },
+        { page: 'styles', label: 'Styles', icon: BatchesIcon },
+        { page: 'learn', label: 'Learn', icon: AcademicCapIcon },
+        { page: 'tools', label: 'Tools', icon: WrenchScrewdriverIcon },
+        { page: 'community', label: 'Community', icon: UsersIcon },
     ];
 
     return (
@@ -54,24 +55,8 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                     </button>
                     <nav className="flex items-center gap-1">
                         {navLinks.map(link => {
-                            const isCalculator = link.page === 'calculator';
                             const isActive = activePage === link.page || activePage.startsWith(link.page + '/');
-
-                            if (isCalculator) {
-                                return (
-                                    <button
-                                        key={link.page}
-                                        onClick={() => handleNavigate(link.page as Page)}
-                                        className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 flex items-center gap-2 shadow-dlp-sm hover:shadow-dlp-md hover:scale-105 ${isActive
-                                            ? 'bg-[#84CC16] text-white ring-2 ring-[#84CC16]/50 ring-offset-2'
-                                            : 'bg-[#84CC16] text-white hover:bg-[#65A30D]'
-                                            }`}
-                                    >
-                                        {link.icon}
-                                        {link.label}
-                                    </button>
-                                );
-                            }
+                            const Icon = link.icon;
 
                             return (
                                 <button
@@ -82,7 +67,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                                         : 'text-dlp-text-secondary hover:bg-dlp-bg-muted hover:text-dlp-text-primary'
                                         }`}
                                 >
-                                    {link.icon}
+                                    <Icon className={`h-5 w-5 text-[#84CC16]`} />
                                     {link.label}
                                 </button>
                             );
@@ -121,13 +106,13 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
     const hasPro = hasProAccess;
 
     const navLinks = [
-        { id: 'calculator', page: 'calculator', label: 'Calculator', icon: <CalculatorIcon className="h-6 w-6 text-dlp-text-muted" /> } as any,
-        { id: 'mylab', page: 'mylab', label: 'My Lab', icon: <BeakerIcon className="h-6 w-6 text-dlp-text-muted" /> } as any,
-        { id: 'styles', page: 'styles', label: 'Styles', icon: <BookOpenIcon className="h-6 w-6 text-dlp-text-muted" /> } as any,
-        { id: 'learn', page: 'learn', label: 'Learn', icon: <AcademicCapIcon className="h-6 w-6 text-dlp-text-muted" /> } as any,
-        { id: 'tools', page: 'tools', label: 'Tools', icon: <WrenchScrewdriverIcon className="h-6 w-6 text-dlp-text-muted" /> } as any,
-        { id: 'community', page: 'community', label: 'Community', icon: <UsersIcon className="h-6 w-6 text-dlp-text-muted" /> } as any,
-        { id: 'profile', page: 'profile', label: 'Profile', icon: <UserCircleIcon className="h-6 w-6 text-dlp-text-muted" /> } as any,
+        { id: 'calculator', page: 'calculator', label: 'Calculator', icon: CalculatorIcon },
+        { id: 'mylab', page: 'mylab', label: 'My Lab', icon: BeakerIcon },
+        { id: 'styles', page: 'styles', label: 'Styles', icon: BatchesIcon },
+        { id: 'learn', page: 'learn', label: 'Learn', icon: AcademicCapIcon },
+        { id: 'tools', page: 'tools', label: 'Tools', icon: WrenchScrewdriverIcon },
+        { id: 'community', page: 'community', label: 'Community', icon: UsersIcon },
+        { id: 'profile', page: 'profile', label: 'Profile', icon: UserCircleIcon },
     ];
 
     const onMobileNavigate = (page: Page, requiresPro: boolean = false) => {
@@ -154,17 +139,20 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
             </div>
             {isMobileMenuOpen && (
                 <nav className="space-y-1 p-4 border-t border-dlp-border bg-dlp-bg-card shadow-dlp-md absolute w-full left-0 max-h-[80vh] overflow-y-auto">
-                    {navLinks.map((link: any) => (
-                        <button
-                            key={link.id}
-                            onClick={() => onMobileNavigate(link.page, link.requiresPro)}
-                            className="flex w-full items-center gap-3 rounded-lg p-3 text-base font-semibold text-dlp-text-primary hover:bg-dlp-bg-muted"
-                        >
-                            {link.icon}
-                            <span className="flex-grow text-left">{link.label}</span>
-                            {link.requiresPro && !hasPro && <ProBadge />}
-                        </button>
-                    ))}
+                    {navLinks.map((link: any) => {
+                        const Icon = link.icon;
+                        return (
+                            <button
+                                key={link.id}
+                                onClick={() => onMobileNavigate(link.page, link.requiresPro)}
+                                className="flex w-full items-center gap-3 rounded-lg p-3 text-base font-semibold text-dlp-text-primary hover:bg-dlp-bg-muted"
+                            >
+                                <Icon className="h-6 w-6 text-[#84CC16]" />
+                                <span className="flex-grow text-left">{link.label}</span>
+                                {link.requiresPro && !hasPro && <ProBadge />}
+                            </button>
+                        );
+                    })}
                 </nav>
             )}
         </header>
