@@ -27,7 +27,9 @@
         "styles": "Estilos",
         "settings": "Configuración",
         "help": "Ayuda",
-        "legal": "Legal"
+        "legal": "Legal",
+        "tools": "Herramientas",
+        "community": "Comunidad"
     },
     "dashboard": {
         "greeting_morning": "Buenos días, {name}",

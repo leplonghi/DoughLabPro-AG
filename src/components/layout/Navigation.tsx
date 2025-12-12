@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Page } from '@/types';
 import UserMenu from '@/components/layout/UserMenu';
+import { useTranslation } from '@/i18n';
 import {
     CalculatorIcon,
     AcademicCapIcon,
@@ -35,14 +36,15 @@ const ProBadge = () => (
 
 const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { isAuthenticated, hasProAccess, openPaywall } = useUser();
+    const { t } = useTranslation();
 
     const navLinks = [
-        { page: 'calculator', label: 'Calculator', icon: CalculatorIcon },
-        { page: 'mylab', label: 'My Lab', icon: BeakerIcon },
-        { page: 'styles', label: 'Styles', icon: BatchesIcon },
-        { page: 'learn', label: 'Learn', icon: AcademicCapIcon },
-        { page: 'tools', label: 'Tools', icon: WrenchScrewdriverIcon },
-        { page: 'community', label: 'Community', icon: UsersIcon },
+        { page: 'calculator', label: t('nav.calculator'), icon: CalculatorIcon },
+        { page: 'mylab', label: t('nav.lab'), icon: BeakerIcon },
+        { page: 'styles', label: t('nav.styles'), icon: BatchesIcon },
+        { page: 'learn', label: t('nav.learn'), icon: AcademicCapIcon },
+        { page: 'tools', label: t('nav.tools'), icon: WrenchScrewdriverIcon },
+        { page: 'community', label: t('nav.community'), icon: UsersIcon },
     ];
 
     return (
@@ -82,13 +84,13 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                             {!hasProAccess && (
                                 <>
                                     <span className="text-xs font-medium text-dlp-text-muted bg-dlp-bg-muted px-2.5 py-1 rounded-full border border-dlp-border">
-                                        Free plan
+                                        {t('profile.free_member')}
                                     </span>
                                     <button
                                         onClick={() => openPaywall('general')}
                                         className="text-sm font-semibold text-dlp-accent hover:text-dlp-accent-hover hover:underline transition-all"
                                     >
-                                        Unlock Pro
+                                        {t('paywall.title').replace('DoughLab ', '')}
                                     </button>
                                 </>
                             )}
@@ -103,16 +105,17 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
 
 const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean; setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ activePage, handleNavigate, onNavigate, onOpenAuth, isMobileMenuOpen, setIsMobileMenuOpen }) => {
     const { hasProAccess, openPaywall } = useUser();
+    const { t } = useTranslation();
     const hasPro = hasProAccess;
 
     const navLinks = [
-        { id: 'calculator', page: 'calculator', label: 'Calculator', icon: CalculatorIcon },
-        { id: 'mylab', page: 'mylab', label: 'My Lab', icon: BeakerIcon },
-        { id: 'styles', page: 'styles', label: 'Styles', icon: BatchesIcon },
-        { id: 'learn', page: 'learn', label: 'Learn', icon: AcademicCapIcon },
-        { id: 'tools', page: 'tools', label: 'Tools', icon: WrenchScrewdriverIcon },
-        { id: 'community', page: 'community', label: 'Community', icon: UsersIcon },
-        { id: 'profile', page: 'profile', label: 'Profile', icon: UserCircleIcon },
+        { id: 'calculator', page: 'calculator', label: t('nav.calculator'), icon: CalculatorIcon },
+        { id: 'mylab', page: 'mylab', label: t('nav.lab'), icon: BeakerIcon },
+        { id: 'styles', page: 'styles', label: t('nav.styles'), icon: BatchesIcon },
+        { id: 'learn', page: 'learn', label: t('nav.learn'), icon: AcademicCapIcon },
+        { id: 'tools', page: 'tools', label: t('nav.tools'), icon: WrenchScrewdriverIcon },
+        { id: 'community', page: 'community', label: t('nav.community'), icon: UsersIcon },
+        { id: 'profile', page: 'profile', label: t('nav.profile'), icon: UserCircleIcon },
     ];
 
     const onMobileNavigate = (page: Page, requiresPro: boolean = false) => {
