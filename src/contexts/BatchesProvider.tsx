@@ -8,10 +8,10 @@ import { useTranslation } from '@/i18n';
 
 interface BatchesContextType {
     batches: Batch[];
-    addBatch: (batch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) =>{t('common.promise')}<Batch>;
-    updateBatch: (id: string, updates: Partial<Batch>) =>{t('common.promise')}<void>;
-    deleteBatch: (id: string) =>{t('common.promise')}<void>;
-    createDraftBatch: () =>{t('common.promise')}<Batch>;
+    addBatch: (batch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) =>Promise<Batch>;
+    updateBatch: (id: string, updates: Partial<Batch>) =>Promise<void>;
+    deleteBatch: (id: string) =>Promise<void>;
+    createDraftBatch: () =>Promise<Batch>;
     // Memoized selectors
     lastBake: Batch | null;
     totalBakes: number;

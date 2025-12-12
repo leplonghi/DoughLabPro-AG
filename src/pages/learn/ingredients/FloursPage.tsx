@@ -15,12 +15,12 @@ const FloursPage: React.FC = () => {
       description="Decoding the technical specifications that determine dough performance."
       category={t('learn.ingredients_2')}
       references={[
-        {t('references.taste_of_bread')},
+        t('references.taste_of_bread'),
         t('learn.mulino_caputo_technical_sheets'),
-        {t('references.wheat_flour_milling')},
-        {t('references.understanding_baking')},
-        {t('references.elements_of_pizza')},
-        {t('references.italian_decree')}
+        t('references.wheat_flour_milling'),
+        t('references.understanding_baking'),
+        t('references.elements_of_pizza'),
+        t('references.italian_decree')
       ]}
     >
       <LearnHistory>

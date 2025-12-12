@@ -1,5 +1,4 @@
 import { DoughStyle, RecipeStyle } from '../../../types/dough';
-import { useTranslation } from '@/i18n';
 
 export const middleEastStyles: DoughStyle[] = [
     {
@@ -9,9 +8,9 @@ export const middleEastStyles: DoughStyle[] = [
         subRegion: 'Levant',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: [t('styles.steam_6'), t('styles.pocket'), t('styles.high_heat_3'), t('styles.vegan')],
-        description: 'The iconic "pocket bread" of the Middle East. It puffs up dramatically in a hot oven due to rapid steam expansion, creating a hollow center perfect for stuffing.',
-        history_context: 'One of the oldest breads in human history, dating back to the Natufian culture in Jordan (14,000 years ago). The "pocket" mechanism is a masterful use of thermodynamics discovered millennia ago.',
+        tags: [Steam 6, 'Pocket', 'High heat 3, 'Vegan']',
+        description: 'The iconic "pocket bread" of the Middle East. It puffs up dramatically in a hot oven due to rapid steam expansion, 'creating a hollow center perfect for stuffing.'',
+        history_context: 'One of the oldest breads in human history', dating back to the Natufian culture in Jordan (14,000 years ago). The "pocket" mechanism is a masterful use of thermodynamics discovered millennia ago.'',
         base_formula: [
             { name: 'All Purpose Flour', percentage: 100 },
             { name: 'Water', percentage: 60 },
@@ -29,24 +28,24 @@ export const middleEastStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "W240-260 (Medium)",
-                pl_ratio: t('styles.extensible_7'),
-                absorption_capacity: t('styles.medium_72'),
+                pl_ratio: 'Extensible 7',
+                absorption_capacity: 'Medium 72',
                 protein_type: "Soft/Hard Blend",
                 science_explanation: 'Requires moderate strength. If too strong, it resists expansion (no pocket). If too weak, it pops. Extensibility is key for the steam to push the layers apart.'
             },
             thermalProfile: {
                 oven_type: "Hearth/Stone",
-                heat_distribution: t('styles.conductive__radiant'),
-                crust_development: t('styles.soft_spotted'),
-                crumb_structure: t('styles.hollow_center')
+                heat_distribution: 'Conductive  radiant',
+                crust_development: 'Soft spotted',
+                crumb_structure: 'Hollow center'
             },
             fermentationScience: {
-                yeast_activity: t('styles.vigorous'),
-                ph_target: t('styles.neutral_to_slightly_acidic'),
-                organic_acids: t('styles.lactic_4'),
-                enzymatic_activity: t('styles.moderate_8')
+                yeast_activity: 'Vigorous',
+                ph_target: 'Neutral to slightly acidic',
+                organic_acids: 'Lactic 4',
+                enzymatic_activity: 'Moderate 8'
             },
-            processScience: 'The t('common.pocket_mechanism'): At 260°C+, water turns to steam instantly. The top crust sets slightly, but the internal pressure is so high (>100kPa) that it delaminates the dough structure in the weakest center plane, ballooning it.'
+            processScience: 'The Pocket mechanism: At 260°C+', water turns to steam instantly. The top crust sets slightly, but the internal pressure is so high (>100kPa) that it delaminates the dough structure in the weakest center plane, ballooning it.''
         },
         process: [
             {
@@ -68,7 +67,7 @@ export const middleEastStyles: DoughStyle[] = [
                 title: 'Rolling',
                 duration: '10 min',
                 action: 'Roll to 5mm thickness. Let rest 10 mins again.',
-                science: 'The second rest forms a slight dry skin (pellicle) which helps the top crust set faster than the inside, forcing the delamination.'
+                science: 'The second rest forms a slight dry skin (pellicle) which helps the top crust set faster than the inside', forcing the delamination.''
             },
             {
                 phase: 'Bake',
@@ -78,7 +77,7 @@ export const middleEastStyles: DoughStyle[] = [
                 science: 'Leidenfrost effect and rapid heat transfer are non-negotiable. Low temp = dense flatbread, no pocket.'
             }
         ],
-        references: [t('styles.classical_arabian_cooking'), t('styles.modernist_bread_32')],
+        references: ['Classical arabian cooking', Modernist bread 32],
         images: {
             hero: '/images/styles/pita_fresh_steam.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -92,8 +91,8 @@ export const middleEastStyles: DoughStyle[] = [
         subRegion: 'Turkey',
         category: 'Bread',
         recipeStyle: RecipeStyle.PRETZEL, // Closest profile (dipped, sesame)
-        tags: [t('styles.sesame'), t('styles.molasses'), t('styles.street_food_2'), t('styles.breakfast_6')],
-        description: 'The ubiquitous Turkish street food. A circular bread encrusted with sesame seeds, characterized by its deep golden color and unique flavor achieved by dipping in t('common.pekmez') (grape molasses) before baking.',
+        tags: ['Sesame', 'Molasses', 'Street food 2, 'Breakfast 6],
+        description: 'The ubiquitous Turkish street food. A circular bread encrusted with sesame seeds, 'characterized by its deep golden color and unique flavor achieved by dipping in Pekmez (grape molasses) before baking.'',
         history_context: 'Documented in Istanbul since 1525. Validated by the Ottoman court, it was a staple food for sultans and soldiers alike. The "Simitçi" (vendor) with a tray on their head is a cultural icon.',
         base_formula: [
             { name: 'Bread Flour', percentage: 100 },
@@ -111,23 +110,23 @@ export const middleEastStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: t('styles.w280300'),
-                pl_ratio: t('styles.balanced_10'),
-                absorption_capacity: t('styles.moderate_9'),
-                protein_type: t('styles.strong_wheat_7'),
+                w_index: 'W280300',
+                pl_ratio: 'Balanced 10',
+                absorption_capacity: 'Moderate 9',
+                protein_type: 'Strong wheat 7',
                 science_explanation: 'Requires strength to hold the twisted shape. Hydration is low (55%) to ensure the "crisp" texture, not soft like a bun.'
             },
             thermalProfile: {
                 oven_type: "Deck / Stone",
-                heat_distribution: t('styles.radiant_4'),
+                heat_distribution: 'Radiant 4',
                 crust_development: "Caramelized (Molasses)",
-                crumb_structure: t('styles.dense_tight')
+                crumb_structure: 'Dense tight'
             },
             fermentationScience: {
-                yeast_activity: t('styles.moderate_10'),
-                ph_target: t('styles.neutral_7'),
-                organic_acids: t('styles.low_20'),
-                enzymatic_activity: t('styles.standard_18')
+                yeast_activity: 'Moderate 10',
+                ph_target: 'Neutral 7',
+                organic_acids: 'Low 20',
+                enzymatic_activity: 'Standard 18'
             },
             processScience: 'The Maillard Reaction is supercharged by the Grape Molasses (Pekmez) dip. This abundance of reducing sugars on the surface creates the deep mahogany color and distinct metallic/sweet flavor at oven temperatures.'
         },
@@ -161,7 +160,7 @@ export const middleEastStyles: DoughStyle[] = [
                 science: 'The sugar-rich coating caramelizes rapidly.'
             }
         ],
-        references: [t('styles.ottoman_kitchen'), t('styles.istanbul_eats')],
+        references: [],
         images: {
             hero: '/images/styles/simit-hero.png',
             dough: '/images/styles/placeholder-dough.png',

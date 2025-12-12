@@ -20,9 +20,9 @@ interface FlourInventoryItem {
 
 interface FloursContextType {
     flours: FlourInventoryItem[];
-    addFlour: (flour: Omit<FlourInventoryItem, 'id' | 'createdAt' | 'updatedAt'>) =>{t('common.promise')}<void>;
-    updateFlour: (id: string, updates: Partial<FlourInventoryItem>) =>{t('common.promise')}<void>;
-    deleteFlour: (id: string) =>{t('common.promise')}<void>;
+    addFlour: (flour: Omit<FlourInventoryItem, 'id' | 'createdAt' | 'updatedAt'>) =>Promise<void>;
+    updateFlour: (id: string, updates: Partial<FlourInventoryItem>) =>Promise<void>;
+    deleteFlour: (id: string) =>Promise<void>;
     preferredFlourId: string | null;
     setPreferredFlour: (id: string | null) => void;
 }

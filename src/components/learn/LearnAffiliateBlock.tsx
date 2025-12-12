@@ -32,7 +32,7 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
 
         // Suggest based on fermentation temperature
         if (averageFermentationTemp !== undefined && averageFermentationTemp > 28) {
-            contextMessage ={t('learn.control_fermentation_with_proofing_tools')};
+            contextMessage = t('learn.control_fermentation_with_proofing_tools');
             // Could filter/prioritize proofing boxes, cooling tools
         }
 

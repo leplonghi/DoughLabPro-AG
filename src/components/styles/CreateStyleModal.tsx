@@ -21,10 +21,13 @@ interface CreateStyleModalProps {
 }
 
 const CATEGORIES: StyleCategory[] = ['pizza', 'bread', 'enriched_bread', 'burger_bun', 'pastry', 'cookies_confectionery', 'flatbread'];
-const DIFFICULTIES = [t('styles.easy'), t('styles.medium'), t('styles.hard'), t('styles.expert')];
 
 const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, onSave, defaultValues }) => {
     const { t } = useTranslation();
+
+    // Moved inside to access translations
+    const DIFFICULTIES = [t('styles.easy'), t('styles.medium'), t('styles.hard'), t('styles.expert')];
+
     const [activeTab, setActiveTab] = useState<'overview' | 'engineering' | 'science'>('overview');
 
     // Extended Form Data State
@@ -502,5 +505,6 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
             </div>
         </div>
     );
+};
 
-    export default CreateStyleModal;
+export default CreateStyleModal;

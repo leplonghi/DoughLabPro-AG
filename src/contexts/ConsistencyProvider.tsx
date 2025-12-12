@@ -8,10 +8,10 @@ import { useTranslation } from '@/i18n';
 
 interface ConsistencyContextType {
     testSeries: TestSeries[];
-    addTestSeries: (seriesData: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'>) =>{t('common.promise')}<TestSeries>;
-    updateTestSeries: (updatedData: any) =>{t('common.promise')}<void>;
-    deleteTestSeries: (id: string) =>{t('common.promise')}<void>;
-    attachBakeToSeries: (seriesId: string, bakeId: string) =>{t('common.promise')}<void>;
+    addTestSeries: (seriesData: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'>) =>Promise<TestSeries>;
+    updateTestSeries: (updatedData: any) =>Promise<void>;
+    deleteTestSeries: (id: string) =>Promise<void>;
+    attachBakeToSeries: (seriesId: string, bakeId: string) =>Promise<void>;
     // Memoized selectors
     activeSeries: TestSeries[];
     completedSeries: TestSeries[];

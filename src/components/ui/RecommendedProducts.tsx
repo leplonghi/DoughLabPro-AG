@@ -13,7 +13,7 @@ interface RecommendedProductsProps {
 export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
     tags,
     limit = 3,
-    title ={t('common.professional_baking_gear')},
+    title = 'Professional Baking Gear',
     className = ''
 }) => {
   const { t } = useTranslation();

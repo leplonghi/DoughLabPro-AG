@@ -1,5 +1,4 @@
 import { Timestamp } from 'firebase/firestore';
-import { useTranslation } from '@/i18n';
 
 export type StyleCategory = 'Pizza' | 'Bread' | 'Enriched' | 'Buns' | 'Pastry' | 'Cookies' | 'Flatbreads' | 'Other';
 
@@ -27,7 +26,7 @@ export interface StyleDefinition {
     subtitle: string;
     /** Broad category of the style */
     category: StyleCategory;
-    /** Family grouping (e.g., t('common.italian_pizza'), t('common.sourdough_bread')) */
+    /** Family grouping (e.g., Italian pizza, Sourdough bread) */
     family: string;
     /** Specific variant name if applicable */
     variantName: string;
@@ -41,7 +40,7 @@ export interface StyleDefinition {
     intro: string;
     /** Historical context and background */
     history: string;
-    /** Key technical foundations (e.g., t('common.high_heat'), t('common.long_fermentation')) */
+    /** Key technical foundations (e.g., High heat, Long fermentation) */
     technicalFoundations: string[];
     /** How this style impacts the dough characteristics */
     doughImpact: string[];
@@ -64,7 +63,7 @@ export interface StyleDefinition {
             temperatureC: [number, number];
             notes?: string;
         };
-        difficulty: t('styles.easy_14') | t('common.medium') | t('common.hard') | t('common.expert');
+        difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
         recommendedUse: string[];
     };
     /** List of regional variations */
@@ -73,7 +72,7 @@ export interface StyleDefinition {
     climateScenarios: string[];
     /** Comparisons with other similar styles */
     styleComparisons: string[];
-    /** Sensitivity to specific parameters (e.g., t('common.highly_sensitive_to_overproofing')) */
+    /** Sensitivity to specific parameters (e.g., Highly sensitive to overproofing) */
     parameterSensitivity: string[];
     /** Common risks or pitfalls */
     risks: string[];

@@ -20,7 +20,7 @@ import { SocialShare } from "@/marketing/social/SocialShare";
 
 interface MyLabBatchesPageProps {
     onNavigate: (page: Page, params?: string) => void;
-    onCreateDraftBatch: () =>{t('mylab.promise')}<Batch>;
+    onCreateDraftBatch: () =>Promise<Batch>;
     onLoadAndNavigate: (config: any) => void;
 }
 

@@ -6,7 +6,7 @@ import { useTranslation } from '@/i18n';
 interface ConsistencySeriesModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: (series: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'> | TestSeries) =>{t('mylab.promise')}<void>;
+    onSave: (series: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'> | TestSeries) =>Promise<void>;
     seriesToEdit: TestSeries | null;
 }
 

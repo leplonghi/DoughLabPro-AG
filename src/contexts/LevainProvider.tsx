@@ -10,12 +10,12 @@ import { useTranslation } from '@/i18n';
 
 interface LevainContextType {
     levains: Levain[];
-    addLevain: (levain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'>) =>{t('common.promise')}<void>;
-    updateLevain: (updatedData: Partial<Levain> & { id: string }) =>{t('common.promise')}<void>;
-    deleteLevain: (id: string) =>{t('common.promise')}<void>;
-    setDefaultLevain: (id: string) =>{t('common.promise')}<void>;
-    addFeedingEvent: (levainId: string, eventData: Omit<FeedingEvent, 'id' | 'date'>) =>{t('common.promise')}<void>;
-    importLevains: (levains: Levain[]) =>{t('common.promise')}<void>;
+    addLevain: (levain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'>) =>Promise<void>;
+    updateLevain: (updatedData: Partial<Levain> & { id: string }) =>Promise<void>;
+    deleteLevain: (id: string) =>Promise<void>;
+    setDefaultLevain: (id: string) =>Promise<void>;
+    addFeedingEvent: (levainId: string, eventData: Omit<FeedingEvent, 'id' | 'date'>) =>Promise<void>;
+    importLevains: (levains: Levain[]) =>Promise<void>;
     // Memoized selectors
     activeLevain: Levain | undefined;
     levainHealthScore: number;

@@ -8,10 +8,10 @@ import { useTranslation } from '@/i18n';
 
 interface GoalsContextType {
     goals: Goal[];
-    addGoal: (goalData: Omit<Goal, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'progress'>) =>{t('common.promise')}<Goal>;
-    updateGoal: (updatedData: any) =>{t('common.promise')}<void>;
-    deleteGoal: (id: string) =>{t('common.promise')}<void>;
-    completeGoal: (id: string) =>{t('common.promise')}<void>;
+    addGoal: (goalData: Omit<Goal, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'progress'>) =>Promise<Goal>;
+    updateGoal: (updatedData: any) =>Promise<void>;
+    deleteGoal: (id: string) =>Promise<void>;
+    completeGoal: (id: string) =>Promise<void>;
     // Memoized selectors
     activeGoal: Goal | undefined;
     completedGoals: Goal[];

@@ -1,10 +1,9 @@
 import { LearnArticleData } from '@/types/learn';
-import { useTranslation } from '@/i18n';
 
 export const doughAgingData: LearnArticleData = {
     id: 'dough-aging',
     title: 'Dough Aging: Maturation, Fermentation & Degradation',
-    subtitle: 'The lifecycle of dough: from the t('learn.green') phase to the t('learn.peak') and the inevitable decline into degradation.',
+    subtitle: 'The lifecycle of dough: from the Green phase to the Peak and the inevitable decline into degradation.',
     category: 'Dough Science',
     difficulty: 'Advanced',
     tags: ['aging', 'maturation', 'fermentation', 'degradation'],
@@ -15,7 +14,7 @@ export const doughAgingData: LearnArticleData = {
 
     technicalFoundations: [
         "Maturation vs. Fermentation: Two distinct clocks. Fermentation is yeast activity (fast); Maturation is enzymatic breakdown (slow).",
-        "The t('learn.peak') Window: The moment where gas retention is maximal, gluten is extensible but strong, and sugars are available.",
+        "The Peak Window: The moment where gas retention is maximal, gluten is extensible but strong, and sugars are available.",
         "Proteolytic Degradation: Protease enzymes cut gluten bonds. Initially good for extensibility, eventually destroys the network.",
         "Starch Retrogradation: Well-aged dough with acidity resists staling longer."
     ],
@@ -64,9 +63,9 @@ export const doughAgingData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_6'),
-        whatItDoes: t('learn.it_improves_texture_and_flavor'),
-        howToUse: t('learn.so_you_get_the_best_results_2'),
-        dangerSigns: t('learn.use_it_wisely_2')
+        intro: "Imagine this like a secret ingredient it helps mak 6",
+        whatItDoes: "It improves texture and flavor",
+        howToUse: "So you get the best results 2",
+        dangerSigns: "Use it wisely 2"
     }
 };

@@ -19,12 +19,12 @@ interface AuthContextType {
     firebaseUser: FirebaseUser | null;
     appUser: User | null;
     loading: boolean;
-    loginWithGoogle: () =>{t('auth.promise')}<void>;
-    loginWithEmail: (email: string, pass: string) =>{t('auth.promise')}<void>;
-    registerWithEmail: (email: string, pass: string, name?: string) =>{t('auth.promise')}<void>;
-    resetPassword: (email: string) =>{t('auth.promise')}<void>;
-    logout: () =>{t('auth.promise')}<void>;
-    loginAsGuest: () =>{t('auth.promise')}<void>;
+    loginWithGoogle: () =>Promise<void>;
+    loginWithEmail: (email: string, pass: string) =>Promise<void>;
+    registerWithEmail: (email: string, pass: string, name?: string) =>Promise<void>;
+    resetPassword: (email: string) =>Promise<void>;
+    logout: () =>Promise<void>;
+    loginAsGuest: () =>Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

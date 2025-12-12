@@ -212,7 +212,7 @@ export async function generateStyleFromDescription(description: string): Promise
       "name": "Style Name (Short)",
       "family": "General Family (e.g., 'Italian Rustic', 'Pan Pizza', 'Viennoiserie')",
       "category": "One of: 'pizza', 'bread', 'enriched_bread', 'burger_bun', 'pastry', 'cookie', 'flatbread'",
-      "origin": { "country": t('ui.string'), "region": "String (Optional)", "period": "String (Optional)" },
+      "origin": { "country": string, "region": "String (Optional)", "period": "String (Optional)" },
       "description": "Short UI description (max 140 chars)",
       "history": "Factual history and context (2-3 sentences)",
       "culturalContext": t('ui.how_it_is_eaten_or_cultural_significance'),

@@ -1,7 +1,6 @@
 
 
 import { Tutorial, TutorialSection, YeastType } from './types';
-import { useTranslation } from '@/i18n';
 
 export const TUTORIALS: Tutorial[] = [
   {
@@ -10,15 +9,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Cold Fermentation: Why and How',
     image: 'https://images.unsplash.com/photo-1627435199109-6_m8J4s_V-0?q=80&w=2070&auto=format&fit=crop',
     intro: 'Dough maturation in a refrigerated environment (typically 3-5°C for 12 to 72 hours) allows yeast to work more slowly while enzymes in the flour—amylases and proteases—break down protein and starch complexes more effectively.',
-    why: '<ul><li>{t('learn.allows_for_greater_flavor_and_aroma_development')}</li><li>{t('learn.relaxes_the_gluten_network_improving_extensibility')}</li><li>{t('learn.provides_more_consistent_and_repeatable_results_re')}</li></ul>',
-    howTo: '<ol><li>{t('learn.use_a_scale_to_weigh_ingredients_precisely')}</li><li>{t('learn.mix_and_ball_the_dough_normally')}</li><li>{t('learn.place_in_a_sealed_container_and_refrigerate_at_35c')}</li><li>{t('learn.remove_12h_before_opening_on_the_workbench_to_brin')}</li></ol>',
+    why: '<ul><li>Allows for greater flavor and aroma development</li><li>Relaxes the gluten network improving extensibility</li><li>Provides more consistent and repeatable results re</li></ul>',
+    howTo: '<ol><li>Use a scale to weigh ingredients precisely</li><li>Mix and ball the dough normally</li><li>Place in a sealed container and refrigerate at 35c</li><li>Remove 12h before opening on the workbench to brin</li></ol>',
     tips: [
       'Avoid putting warm dough boxes directly in the fridge to prevent condensation.',
       'In hot environments (>28°C), mix in the morning and refrigerate immediately.',
       'Use strong flour (W ≥ 280) for best results with long fermentation.'
     ],
     reference: {
-      name: t('learn.gozney_blog__pizza_dough_hydration_explained'),
+      name: Gozney blog  pizza dough hydration explained,
       url: "https://eu.gozney.com/blogs/news/pizza-dough-hydration-explained"
     },
     accessLevel: 'free'
@@ -29,7 +28,7 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Preferments: Biga vs Poolish – The Technical Choice',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Among the most used preferments by technical pizza makers are Poolish (~100% hydration) and Biga (~45-60% hydration). Each brings distinct characteristics to fermentation, flavor, and dough structure.',
-    why: '<ul><li>{t('learn.poolish_favors_a_light_more_open_crumb')}</li><li>{t('learn.biga_favors_a_strong_structure_and_chewy_texture')}</li><li>{t('learn.the_choice_changes_flavor_profile_texture_and_hand')}</li></ul>',
+    why: '<ul><li>Poolish favors a light more open crumb</li><li>Biga favors a strong structure and chewy texture</li><li>The choice changes flavor profile texture and hand</li></ul>',
     howTo: '<p>– For Poolish: Mix 100% flour/water + small amount of yeast, ferment 8-18h.<br>– For Biga: Low hydration (~45-55%), ferment 12-24h, incorporate as ~20% of total flour.</p>',
     tips: [
       'If kneading by hand, Poolish is easier to incorporate.',
@@ -37,7 +36,7 @@ export const TUTORIALS: Tutorial[] = [
       'Biga requires strong flour to support the fermentation structure.'
     ],
     reference: {
-      name: t('learn.pizzablab__biga_vs_poolish_for_pizza_dough'),
+      name: Pizzablab  biga vs poolish for pizza dough,
       url: "https://www.pizzablab.com/learning-and-resources/general-articles/biga-vs-poolish/"
     },
     accessLevel: 'pro'
@@ -48,15 +47,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Detroit Style Pizza: A Complete Guide',
     image: 'https://images.unsplash.com/photo-1633342537224-3c6c5233fe2a?q=80&w=2070&auto=format&fit=crop',
     intro: 'Detroit Style pizza is known for its high hydration dough baked in rectangular steel pans with high edges, cheese spread to the perimeter, and an airy texture.',
-    why: '<ul><li>{t('learn.high_hydration_yields_an_extremely_airy_crumb')}</li><li>The pan style creates caramelized cheese edges (frico).</li><li>{t('learn.differs_from_neapolitan_in_technique_and_equipment')}</li></ul>',
-    howTo: '<ol><li>{t('learn.mix_dough_with_6575_hydration')}</li><li>{t('learn.ferment_using_direct_method_or_poolish_for_1824h')}</li><li>{t('learn.place_in_oiled_pan_and_stretch_to_corners')}</li><li>Bake for 12-15 min in a hot oven (~260°C).</li></ol>',
+    why: '<ul><li>High hydration yields an extremely airy crumb</li><li>The pan style creates caramelized cheese edges (frico).</li><li>Differs from neapolitan in technique and equipment</li></ul>',
+    howTo: '<ol><li>Mix dough with 6575 hydration</li><li>Ferment using direct method or poolish for 1824h</li><li>Place in oiled pan and stretch to corners</li><li>Bake for 12-15 min in a hot oven (~260°C).</li></ol>',
     tips: [
       'Use high-protein bread flour (≥ 12.5%) for structure.',
       'Grease the pan generously with oil for a fried bottom crust.',
       'If using a home oven, bake on the bottom rack to ensure crispness.'
     ],
     reference: {
-      name: t('learn.ooni_blog__detroit_style_pizza'),
+      name: Ooni blog  detroit style pizza,
       url: "https://ooni.com/blogs/ooni-insights/pizza-dough-hydration-explained"
     },
     accessLevel: 'pro',
@@ -71,8 +70,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'High Hydration: 70%+ in Pizza Dough',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Entering the world of >70% hydration requires refined technique and sensitivity, resulting in highly aerated crumbs and light crusts.',
-    why: '<ul><li>{t('learn.higher_hydration__more_steam__more_open_alveoli')}</li><li>{t('learn.relaxed_gluten_network_favors_expansion')}</li><li>{t('learn.delivers_professionallevel_lightness')}</li></ul>',
-    howTo: '<ol><li>Select desired hydration % (e.g., 72%).</li><li>{t('learn.use_the_coil_fold_technique_during_bulk_fermentati')}</li><li>{t('learn.handle_gently_on_a_wellfloured_surface')}</li><li>{t('learn.bake_at_high_temperature_to_spring_quickly')}</li></ol>',
+    why: '<ul><li>Higher hydration  more steam  more open alveoli</li><li>Relaxed gluten network favors expansion</li><li>Delivers professionallevel lightness</li></ul>',
+    howTo: '<ol><li>Select desired hydration % (e.g., 72%).</li><li>Use the coil fold technique during bulk fermentati</li><li>Handle gently on a wellfloured surface</li><li>Bake at high temperature to spring quickly</li></ol>',
     tips: [
       'Use high absorption flour (W300+) to hold the water.',
       'In hot environments (>28°C), use cold water to slow fermentation.',
@@ -93,8 +92,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Desired Dough Temperature (DDT) Control',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'DDT is the target temperature of your dough after mixing. Controlling it ensures consistent fermentation rates regardless of the season.',
-    why: '<ul><li>{t('learn.without_temperature_control_fermentation_is_unpred')}</li><li>{t('learn.ddt_brings_consistency_and_repeatability')}</li><li>{t('learn.crucial_for_timing_your_bake_schedule_perfectly')}</li></ul>',
-    howTo: '<ol><li>{t('learn.measure_flour_and_room_temperature')}</li><li>Use the app\'s DDT logic to calculate water temp.</li><li>Adjust water temperature (use ice if needed).</li><li>{t('learn.mix_and_verify_final_temp_with_a_probe_thermometer')}</li></ol>',
+    why: '<ul><li>Without temperature control fermentation is unpred</li><li>Ddt brings consistency and repeatability</li><li>Crucial for timing your bake schedule perfectly</li></ul>',
+    howTo: '<ol><li>Measure flour and room temperature</li><li>Use the app\'s DDT logic to calculate water temp.</li><li>Adjust water temperature (use ice if needed).</li><li>Mix and verify final temp with a probe thermometer</li></ol>',
     tips: [
       'Target 23-25°C for most doughs.',
       'In summer, chill your flour or use ice water.',
@@ -115,8 +114,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Baking Surfaces: Stone vs Steel',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'The surface you bake on dictates heat transfer. Steel conducts faster (good for home ovens), while stone/biscotto is gentler (good for high heat).',
-    why: '<ul><li>{t('learn.steel_fast_heat_transfer_great_for_250300c_ovens')}</li><li>{t('learn.stone_balanced_heat_standard_for_deck_ovens')}</li><li>{t('learn.biscotto_low_conductivity_essential_for_485c_neapo')}</li></ul>',
-    howTo: '<ol><li>{t('learn.identify_your_oven_type')}</li><li>If home oven (max 250°C), get a Baking Steel.</li><li>If high-temp oven (>400°C), use a stone or Saputo biscotto.</li><li>{t('learn.preheat_the_surface_for_at_least_4560_minutes')}</li></ol>',
+    why: '<ul><li>Steel fast heat transfer great for 250300c ovens</li><li>Stone balanced heat standard for deck ovens</li><li>Biscotto low conductivity essential for 485c neapo</li></ul>',
+    howTo: '<ol><li>Identify your oven type</li><li>If home oven (max 250°C), get a Baking Steel.</li><li>If high-temp oven (>400°C), use a stone or Saputo biscotto.</li><li>Preheat the surface for at least 4560 minutes</li></ol>',
     tips: [
       'Steel can burn bottoms if used above 350°C.',
       'Thicker stones retain more heat for consecutive bakes.',
@@ -133,9 +132,9 @@ export const TUTORIALS: Tutorial[] = [
     section: TutorialSection.FERMENTATION,
     title: 'Sourdough Management & Integration',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
-    intro: 'Using natural leaven (sourdough/levain) adds complexity and digestibility. The t('learn.my_levain') module helps you track and integrate it into recipes.',
-    why: '<ul><li>{t('learn.complex_flavor_profile_from_wild_yeast_and_bacteri')}</li><li>{t('learn.improved_digestibility_and_keeping_quality')}</li><li>{t('learn.personalizes_your_product_uniquely')}</li></ul>',
-    howTo: '<ol><li>{t('learn.register_your_starter_in_levain_pet')}</li><li>{t('learn.in_calculator_select_my_levain_as_yeast_type')}</li><li>Input percentage (e.g., 20%).</li><li>App adjusts water/flour in final dough automatically.</li></ol>',
+    intro: 'Using natural leaven (sourdough/levain) adds complexity and digestibility. The My levain module helps you track and integrate it into recipes.',
+    why: '<ul><li>Complex flavor profile from wild yeast and bacteri</li><li>Improved digestibility and keeping quality</li><li>Personalizes your product uniquely</li></ul>',
+    howTo: '<ol><li>Register your starter in levain pet</li><li>In calculator select my levain as yeast type</li><li>Input percentage (e.g., 20%).</li><li>App adjusts water/flour in final dough automatically.</li></ol>',
     tips: [
       'Feed starter at peak activity for sweet, active dough.',
       'Use a stiff starter (Liebig) for panettone or strong breads.',
@@ -157,8 +156,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Toppings & Ratios: Balancing the Pizza',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'A great dough can be ruined by overloading. This guide covers ideal sauce-to-cheese ratios for different styles.',
-    why: '<ul><li>Ensures proper bake (no soggy center).</li><li>Balances flavors (salt, acid, fat).</li><li>{t('learn.professional_consistency_in_every_slice')}</li></ul>',
-    howTo: '<ol><li>{t('learn.check_the_toppings_tab_in_the_style_guide')}</li><li>{t('learn.weigh_your_cheese_and_sauce')}</li><li>Distribute evenly, leaving the rim clear (for Neapolitan).</li><li>{t('learn.for_neapolitan_80g_sauce_100g_cheese')}</li></ol>',
+    why: '<ul><li>Ensures proper bake (no soggy center).</li><li>Balances flavors (salt, acid, fat).</li><li>Professional consistency in every slice</li></ul>',
+    howTo: '<ol><li>Check the toppings tab in the style guide</li><li>Weigh your cheese and sauce</li><li>Distribute evenly, leaving the rim clear (for Neapolitan).</li><li>For neapolitan 80g sauce 100g cheese</li></ol>',
     tips: [
       'Less is more. Allow the dough flavor to shine.',
       'Drain wet mozzarella to prevent soupiness.',
@@ -176,8 +175,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Hydration & Gluten Science',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Water activates gluten. Understanding how hydration affects gluten structure is key to mastering open crumb.',
-    why: '<ul><li>{t('learn.water_allows_gluten_proteins_to_slide_and_align')}</li><li>More water = more steam = more lift (oven spring).</li><li>{t('learn.high_hydration_requires_gentle_handling_to_keep_ga')}</li></ul>',
-    howTo: '<ol><li>{t('learn.start_with_6065_hydration_to_master_kneading')}</li><li>{t('learn.move_to_70_once_comfortable_with_sticky_dough')}</li><li>{t('learn.use_autolyse_to_help_gluten_formation')}</li><li>{t('learn.use_folds_instead_of_kneading_for_wet_doughs')}</li></ol>',
+    why: '<ul><li>Water allows gluten proteins to slide and align</li><li>More water = more steam = more lift (oven spring).</li><li>High hydration requires gentle handling to keep ga</li></ul>',
+    howTo: '<ol><li>Start with 6065 hydration to master kneading</li><li>Move to 70 once comfortable with sticky dough</li><li>Use autolyse to help gluten formation</li><li>Use folds instead of kneading for wet doughs</li></ol>',
     tips: [
       'Whole wheat drinks more water; increase hydration.',
       'Salt tightens gluten; water relaxes it.',
@@ -195,8 +194,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Dough Troubleshooting: Common Faults',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Sticky dough? Dense crumb? Pale crust? Diagnose and fix common pizza problems.',
-    why: '<ul><li>Identify root causes (fermentation, hydration, heat).</li><li>{t('learn.stop_repeating_the_same_mistakes')}</li><li>{t('learn.learn_to_adjust_variables_on_the_fly')}</li></ul>',
-    howTo: '<ol><li>Identify the symptom (e.g., t('learn.dough_snaps_back')).</li><li>{t('learn.check_the_troubleshooting_guide')}</li><li>Apply the fix (e.g., "Rest dough 20 mins").</li><li>{t('learn.note_the_change_in_your_journal')}</li></ol>',
+    why: '<ul><li>Identify root causes (fermentation, hydration, heat).</li><li>Stop repeating the same mistakes</li><li>Learn to adjust variables on the fly</li></ul>',
+    howTo: '<ol><li>Identify the symptom (e.g., Dough snaps back).</li><li>Check the troubleshooting guide</li><li>Apply the fix (e.g., "Rest dough 20 mins").</li><li>Note the change in your journal</li></ol>',
     tips: [
       'Snap-back = Gluten too tight. Let it rest.',
       'Sticky = Too much water or under-kneaded.',
@@ -215,8 +214,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Flour Library & Characteristics',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Not all flours are created equal. Protein content (W), P/L ratio, and absorption vary wildly.',
-    why: '<ul><li>00 Flour is for high heat; Bread Flour for home ovens.</li><li>{t('learn.protein__dictates_gluten_potential')}</li><li>{t('learn.using_the_wrong_flour_causes_tearing_or_toughness')}</li></ul>',
-    howTo: '<ol><li>{t('learn.check_your_flour_bag_for_protein_')}</li><li>{t('learn.use_the_flours_section_to_find_your_type')}</li><li>{t('learn.adjust_hydration_based_on_flour_strength')}</li><li>{t('learn.record_the_flour_used_in_your_batches')}</li></ol>',
+    why: '<ul><li>00 Flour is for high heat; Bread Flour for home ovens.</li><li>Protein  dictates gluten potential</li><li>Using the wrong flour causes tearing or toughness</li></ul>',
+    howTo: '<ol><li>Check your flour bag for protein </li><li>Use the flours section to find your type</li><li>Adjust hydration based on flour strength</li><li>Record the flour used in your batches</li></ol>',
     tips: [
       'Caputo Pizzeria (Blue) is the gold standard for Neapolitan.',
       'High gluten flour (14%+) creates chewy NY style crust.',
@@ -234,8 +233,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Scales & Baker\'s Percentage',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Baking is chemistry. Precision is key. Baker\'s percentage makes scaling recipes easy.',
-    why: '<ul><li>Volume (cups) is inaccurate. Weight (grams) is precise.</li><li>Baker\'s % allows scaling up or down instantly.</li><li>{t('learn.flour_is_always_100_everything_else_is_a_ratio')}</li></ul>',
-    howTo: '<ol><li>Get a digital scale (0.1g precision for yeast).</li><li>{t('learn.input_your_desired_total_flour_or_dough_weight')}</li><li>{t('learn.the_app_calculates_everything_based_on_percentages')}</li><li>{t('learn.follow_the_weights_exactly')}</li></ol>',
+    why: '<ul><li>Volume (cups) is inaccurate. Weight (grams) is precise.</li><li>Baker\'s % allows scaling up or down instantly.</li><li>Flour is always 100 everything else is a ratio</li></ul>',
+    howTo: '<ol><li>Get a digital scale (0.1g precision for yeast).</li><li>Input your desired total flour or dough weight</li><li>The app calculates everything based on percentages</li><li>Follow the weights exactly</li></ol>',
     tips: [
       '1g of yeast can make a huge difference.',
       'Salt should be 2-3% of flour weight.',
@@ -253,8 +252,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Basic vs. Advanced Mode',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'DoughLab offers two ways to calculate: Guided (Basic) for quick presets, and Advanced for full control.',
-    why: '<ul><li>{t('learn.guided_best_for_beginners_or_quick_standard_recipe')}</li><li>{t('learn.advanced_unlock_every_slider_for_experimentation')}</li><li>{t('learn.grow_with_the_tool_as_you_learn')}</li></ul>',
-    howTo: '<ol><li>{t('learn.toggle_the_mode_switch_at_the_top_of_the_calculato')}</li><li>{t('learn.basic_restricts_inputs_to_safe_ranges')}</li><li>{t('learn.advanced_unlocks_fermentation_methods_oil_sugar_et')}</li></ol>',
+    why: '<ul><li>Guided best for beginners or quick standard recipe</li><li>Advanced unlock every slider for experimentation</li><li>Grow with the tool as you learn</li></ul>',
+    howTo: '<ol><li>Toggle the mode switch at the top of the calculato</li><li>Basic restricts inputs to safe ranges</li><li>Advanced unlocks fermentation methods oil sugar et</li></ol>',
     tips: [
       'Start with Basic presets to get a feel.',
       'Switch to Advanced when you want to tweak hydration or yeast.',
@@ -272,8 +271,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Reverse Calculation Mode',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Have a fixed amount of flour or starter? Use Reverse Mode to calculate the rest of the recipe around it.',
-    why: '<ul><li>{t('learn.reduce_waste_by_using_up_leftovers')}</li><li>{t('learn.calculate_based_on_available_flour_bag_size')}</li><li>{t('learn.adapt_recipes_to_specific_constraints')}</li></ul>',
-    howTo: '<ol><li>{t('learn.select_by_flour_weight_in_the_quantity_section')}</li><li>{t('learn.enter_the_amount_of_flour_you_have')}</li><li>{t('learn.the_app_calculates_total_dough_and_other_ingredien')}</li></ol>',
+    why: '<ul><li>Reduce waste by using up leftovers</li><li>Calculate based on available flour bag size</li><li>Adapt recipes to specific constraints</li></ul>',
+    howTo: '<ol><li>Select by flour weight in the quantity section</li><li>Enter the amount of flour you have</li><li>The app calculates total dough and other ingredien</li></ol>',
     tips: [
       'Great for using up discard starter.',
       'Perfect for "one bag of flour" batches.',
@@ -290,8 +289,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Technical Credibility & Sources',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Our calculator isn\'t magic; it\'s math and science. We base our logic on industry standards.',
-    why: '<ul><li>{t('learn.reliable_results_depend_on_proven_ratios')}</li><li>{t('learn.we_cite_sources_like_avpn_modernist_cuisine_and_ma')}</li><li>{t('learn.transparency_builds_trust_in_your_tools')}</li></ul>',
-    howTo: '<ol><li>{t('learn.check_the_references_page_for_our_library')}</li><li>{t('learn.read_the_why_section_in_tutorials')}</li><li>{t('learn.verify_logic_against_standard_textbooks')}</li></ol>',
+    why: '<ul><li>Reliable results depend on proven ratios</li><li>We cite sources like avpn modernist cuisine and ma</li><li>Transparency builds trust in your tools</li></ul>',
+    howTo: '<ol><li>Check the references page for our library</li><li>Read the why section in tutorials</li><li>Verify logic against standard textbooks</li></ol>',
     tips: [
       'Always question "magic" recipes.',
       'Trust ratios over absolute recipes.',
@@ -309,8 +308,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'No-Knead Method',
     image: 'https://images.unsplash.com/photo-1589301773952-79055811c47c?q=80&w=2070&auto=format&fit=crop',
     intro: 'Let time do the work. The No-Knead method uses long fermentation and high hydration to develop gluten passively.',
-    why: '<ul><li>{t('learn.effortless_dough_development')}</li><li>{t('learn.creates_complex_flavor_via_long_fermentation')}</li><li>{t('learn.requires_no_mixer_or_heavy_labor')}</li></ul>',
-    howTo: '<ol><li>Mix ingredients just until combined (shaggy mass).</li><li>{t('learn.cover_and_let_sit_for_1218_hours_at_room_temp')}</li><li>{t('learn.gluten_forms_itself_shape_and_bake')}</li></ol>',
+    why: '<ul><li>Effortless dough development</li><li>Creates complex flavor via long fermentation</li><li>Requires no mixer or heavy labor</li></ul>',
+    howTo: '<ol><li>Mix ingredients just until combined (shaggy mass).</li><li>Cover and let sit for 1218 hours at room temp</li><li>Gluten forms itself shape and bake</li></ol>',
     tips: [
       'Works best with hydration > 70%.',
       'Use a Dutch Oven to bake bread for steam retention.',
@@ -328,15 +327,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Scoring: The Art of the Cut',
     image: 'https://images.unsplash.com/photo-1585399103509-24d119a9f11f?q=80&w=2070&auto=format&fit=crop',
     intro: 'Scoring isn\'t just decoration. It controls how dough expands in the oven, preventing blowouts.',
-    why: '<ul><li>{t('learn.directs_oven_spring_expansion')}</li><li>{t('learn.prevents_uncontrolled_tearing')}</li><li>Creates the "ear" (grigne) in artisan bread.</li></ul>',
-    howTo: '<ol><li>{t('learn.use_a_lame_or_razor_blade')}</li><li>{t('learn.cut_decisively_at_a_45degree_angle')}</li><li>{t('learn.score_just_before_baking')}</li></ol>',
+    why: '<ul><li>Directs oven spring expansion</li><li>Prevents uncontrolled tearing</li><li>Creates the "ear" (grigne) in artisan bread.</li></ul>',
+    howTo: '<ol><li>Use a lame or razor blade</li><li>Cut decisively at a 45degree angle</li><li>Score just before baking</li></ol>',
     tips: [
       'Cold dough scores easier.',
       'One long slash for baguettes/batards.',
       'Deep cuts for maximum opening.'
     ],
     reference: {
-      name: t('learn.king_arthur_baking__scoring_bread'),
+      name: King arthur baking  scoring bread,
       url: "https://www.kingarthurbaking.com/blog/2017/10/20/bread-scoring-techniques"
     },
     accessLevel: 'pro'
@@ -347,8 +346,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Baking Methods Overview',
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2070&auto=format&fit=crop',
     intro: 'Straight dough, sponge & dough, sourdough. Understanding the mixing methods.',
-    why: '<ul><li>{t('learn.straight_all_ingredients_at_once_fast_simple')}</li><li>Sponge: Preferment + Final Mix. Better flavor/texture.</li><li>{t('learn.sourdough_wild_yeast_complex_sour_longest_process')}</li></ul>',
-    howTo: '<ol><li>{t('learn.choose_method_based_on_time_available')}</li><li>{t('learn.direct_is_fine_for_sameday_pizza')}</li><li>{t('learn.use_preferments_for_nextday_optimization')}</li></ol>',
+    why: '<ul><li>Straight all ingredients at once fast simple</li><li>Sponge: Preferment + Final Mix. Better flavor/texture.</li><li>Sourdough wild yeast complex sour longest process</li></ul>',
+    howTo: '<ol><li>Choose method based on time available</li><li>Direct is fine for sameday pizza</li><li>Use preferments for nextday optimization</li></ol>',
     tips: [
       'Autolyse can be added to any method.',
       'Mixing order matters (Salt last usually).',
@@ -367,14 +366,14 @@ export const TUTORIALS: Tutorial[] = [
     image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=2070&auto=format&fit=crop',
     intro: 'Thermodynamics in the oven: Conduction, Convection, and Radiation.',
     why: '<ul><li>Conduction: Heat from stone to base (crispness).</li><li>Radiation: Heat from flame/dome to top (browning).</li><li>Convection: Air movement (even cooking).</li></ul>',
-    howTo: '<ol><li>{t('learn.balance_top_and_bottom_heat')}</li><li>{t('learn.use_steel_for_conduction_in_home_ovens')}</li><li>Use broiler (grill) for radiation in home ovens.</li></ol>',
+    howTo: '<ol><li>Balance top and bottom heat</li><li>Use steel for conduction in home ovens</li><li>Use broiler (grill) for radiation in home ovens.</li></ol>',
     tips: [
       'Preheat surfaces thoroughly.',
       'Rotate pizza for even radiation exposure.',
       'Steam interferes with crust formation (except for bread).'
     ],
     reference: {
-      name: t('learn.modernist_cuisine__the_physics_of_food'),
+      name: Modernist cuisine  the physics of food,
       url: "https://modernistcuisine.com/"
     },
     accessLevel: 'pro'
@@ -385,15 +384,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Cold Retard & Flavor Development',
     image: 'https://images.unsplash.com/photo-1627435199109-6_m8J4s_V-0?q=80&w=2070&auto=format&fit=crop',
     intro: 'Retarding dough in the fridge (cold fermentation) is the secret to professional flavor.',
-    why: '<ul><li>Slows yeast, allows enzymes to create sugars/acids.</li><li>{t('learn.produces_blisters_on_crust')}</li><li>{t('learn.fits_baking_into_your_schedule')}</li></ul>',
-    howTo: '<ol><li>{t('learn.mix_and_bulk_ferment_a_bit')}</li><li>{t('learn.place_in_fridge_for_2472_hours')}</li><li>{t('learn.remove_2h_before_baking_to_warm_up')}</li></ol>',
+    why: '<ul><li>Slows yeast, allows enzymes to create sugars/acids.</li><li>Produces blisters on crust</li><li>Fits baking into your schedule</li></ul>',
+    howTo: '<ol><li>Mix and bulk ferment a bit</li><li>Place in fridge for 2472 hours</li><li>Remove 2h before baking to warm up</li></ol>',
     tips: [
       '48-72 hours is the sweet spot for pizza.',
       'Ensure airtight seal to prevent drying.',
       'Cold dough is easier to handle initially.'
     ],
     reference: {
-      name: t('learn.serious_eats__the_pizza_lab'),
+      name: Serious eats  the pizza lab,
       url: "https://www.seriouseats.com/the-pizza-lab-how-long-should-i-let-my-dough-cold-ferment"
     },
     accessLevel: 'pro'
@@ -404,15 +403,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Yeast Types & Dosage',
     image: 'https://images.unsplash.com/photo-1617470715842-9ebd65b8a03f?q=80&w=2070&auto=format&fit=crop',
     intro: 'Instant (IDY), Active Dry (ADY), Fresh (Cake). What\'s the difference?',
-    why: '<ul><li>{t('learn.idy_concentrated_mix_directly')}</li><li>{t('learn.ady_needs_activation_in_water')}</li><li>{t('learn.fresh_perishable_traditional_fast_acting')}</li></ul>',
-    howTo: '<ol><li>IDY use 1/3 of Fresh weight.</li><li>{t('learn.ady_use_4050_of_fresh_weight')}</li><li>{t('learn.use_the_app_to_convert_automatically')}</li></ol>',
+    why: '<ul><li>Idy concentrated mix directly</li><li>Ady needs activation in water</li><li>Fresh perishable traditional fast acting</li></ul>',
+    howTo: '<ol><li>IDY use 1/3 of Fresh weight.</li><li>Ady use 4050 of fresh weight</li><li>Use the app to convert automatically</li></ol>',
     tips: [
       'IDY is the most consistent for home use.',
       'Fresh yeast gives great pop but expires fast.',
       'Never kill yeast with hot water (>50°C).'
     ],
     reference: {
-      name: t('learn.the_spruce_eats__yeast_types'),
+      name: The spruce eats  yeast types,
       url: "https://www.thespruceeats.com/yeast-varieties-1328651"
     },
     accessLevel: 'free'
@@ -423,15 +422,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Stretch & Fold Technique',
     image: 'https://images.unsplash.com/photo-1614532843595-3b74b1df092b?q=80&w=2070&auto=format&fit=crop',
     intro: 'Build strength without kneading. Perfect for wet doughs.',
-    why: '<ul><li>{t('learn.organizes_gluten_strands_gently')}</li><li>{t('learn.traps_air_for_open_crumb')}</li><li>{t('learn.easy_on_the_hands')}</li></ul>',
-    howTo: '<ol><li>{t('learn.grab_edge_of_dough_stretch_up_fold_over_center')}</li><li>{t('learn.rotate_bowl_90_degrees_repeat_4_times')}</li><li>{t('learn.do_this_every_30_mins_during_bulk_fermentation')}</li></ol>',
+    why: '<ul><li>Organizes gluten strands gently</li><li>Traps air for open crumb</li><li>Easy on the hands</li></ul>',
+    howTo: '<ol><li>Grab edge of dough stretch up fold over center</li><li>Rotate bowl 90 degrees repeat 4 times</li><li>Do this every 30 mins during bulk fermentation</li></ol>',
     tips: [
       'Wet hands prevent sticking.',
       'Be gentle, don\'t tear the dough.',
       'Stop when dough holds shape.'
     ],
     reference: {
-      name: t('learn.peter_reinhart__artisan_breads_every_day'),
+      name: Peter reinhart  artisan breads every day,
       url: "#"
     },
     accessLevel: 'pro'
@@ -442,15 +441,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Oven Profiling',
     image: 'https://images.unsplash.com/photo-1579752048924-f53d5c58746b?q=80&w=2070&auto=format&fit=crop',
     intro: 'Understand your oven\'s weak and hot spots.',
-    why: '<ul><li>{t('learn.every_oven_is_different')}</li><li>{t('learn.calibration_ensures_recipe_success')}</li><li>{t('learn.adapt_baking_times_to_your_reality')}</li></ul>',
-    howTo: '<ol><li>{t('learn.use_an_oven_thermometer_to_check_real_temp')}</li><li>{t('learn.map_hot_spots_using_the_toast_test')}</li><li>{t('learn.adjust_rack_position_for_balance')}</li></ol>',
+    why: '<ul><li>Every oven is different</li><li>Calibration ensures recipe success</li><li>Adapt baking times to your reality</li></ul>',
+    howTo: '<ol><li>Use an oven thermometer to check real temp</li><li>Map hot spots using the toast test</li><li>Adjust rack position for balance</li></ol>',
     tips: [
       'Most home ovens run cooler than stated.',
       'Preheat fully (cycle on/off).',
       'Use a stone/steel to stabilize temp.'
     ],
     reference: {
-      name: t('learn.the_kitchn__oven_hot_spots'),
+      name: The kitchn  oven hot spots,
       url: "https://www.thekitchn.com/how-to-find-your-ovens-hot-spots-165634"
     },
     accessLevel: 'pro'
@@ -461,8 +460,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Logging Errors to Learn',
     image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=2070&auto=format&fit=crop',
     intro: 'Your failures are your best teachers. Log them.',
-    why: '<ul><li>Identify patterns (e.g., always over-proofing in summer).</li><li>{t('learn.finetune_variables')}</li><li>{t('learn.track_progress_over_time')}</li></ul>',
-    howTo: '<ol><li>{t('learn.use_the_notes_section_in_your_batches')}</li><li>{t('learn.record_ambient_temp_times_and_visual_results')}</li><li>{t('learn.rate_your_bake_honestly')}</li></ol>',
+    why: '<ul><li>Identify patterns (e.g., always over-proofing in summer).</li><li>Finetune variables</li><li>Track progress over time</li></ul>',
+    howTo: '<ol><li>Use the notes section in your batches</li><li>Record ambient temp times and visual results</li><li>Rate your bake honestly</li></ol>',
     tips: [
       'Take photos of crumb and crust.',
       'Note what you changed from last time.',
@@ -480,15 +479,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Recipe Scaling',
     image: 'https://images.unsplash.com/photo-1627888636881-8985b671f49b?q=80&w=2070&auto=format&fit=crop',
     intro: 'Doubling or halving recipes safely.',
-    why: '<ul><li>Baker\'s % makes scaling linear.</li><li>Yeast doesn\'t always scale linearly (thermal mass).</li><li>{t('learn.mixer_capacity_constraints')}</li></ul>',
-    howTo: '<ol><li>{t('learn.use_the_app_to_scale_based_on_flour_weight')}</li><li>{t('learn.watch_dough_temperature_in_large_batches')}</li><li>Don\'t overload your mixer.</li></ol>',
+    why: '<ul><li>Baker\'s % makes scaling linear.</li><li>Yeast doesn\'t always scale linearly (thermal mass).</li><li>Mixer capacity constraints</li></ul>',
+    howTo: '<ol><li>Use the app to scale based on flour weight</li><li>Watch dough temperature in large batches</li><li>Don\'t overload your mixer.</li></ol>',
     tips: [
       'Large batches retain heat more; use colder water.',
       'Divide dough into manageable chunks.',
       'Check fermentation earlier for large masses.'
     ],
     reference: {
-      name: t('learn.professional_baking__wayne_gisslen'),
+      name: Professional baking  wayne gisslen,
       url: "#"
     },
     accessLevel: 'pro'
@@ -499,15 +498,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Extended Fermentation',
     image: 'https://images.unsplash.com/photo-1594311242637-a2d2a4585c54?q=80&w=2070&auto=format&fit=crop',
     intro: 'Pushing fermentation to 48, 72, or 96 hours.',
-    why: '<ul><li>{t('learn.maximum_flavor_development')}</li><li>{t('learn.full_gluten_breakdown_for_tenderness')}</li><li>{t('learn.digestibility_benefits')}</li></ul>',
-    howTo: '<ol><li>{t('learn.reduce_yeast_significantly')}</li><li>Keep temp very low (fridge).</li><li>{t('learn.use_strong_flour_to_withstand_breakdown')}</li></ol>',
+    why: '<ul><li>Maximum flavor development</li><li>Full gluten breakdown for tenderness</li><li>Digestibility benefits</li></ul>',
+    howTo: '<ol><li>Reduce yeast significantly</li><li>Keep temp very low (fridge).</li><li>Use strong flour to withstand breakdown</li></ol>',
     tips: [
       'Watch for dough degradation (becoming soup).',
       'Acid load increases significantly.',
       'Sugars deplete; crust might be pale.'
     ],
     reference: {
-      name: t('learn.the_pizza_bible'),
+      name: The pizza bible,
       url: "#"
     },
     accessLevel: 'pro'
@@ -518,15 +517,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Natural Fermentation (Levain)',
     image: 'https://images.unsplash.com/photo-1560181313-a5370557e411?q=80&w=2070&auto=format&fit=crop',
     intro: 'Baking with wild yeast.',
-    why: '<ul><li>{t('learn.unique_flavor_profile')}</li><li>{t('learn.gut_health_benefits')}</li><li>{t('learn.selfsufficiency')}</li></ul>',
-    howTo: '<ol><li>{t('learn.maintain_a_healthy_starter')}</li><li>{t('learn.use_app_to_calculate_levain_amount')}</li><li>{t('learn.expect_longer_rise_times')}</li></ol>',
+    why: '<ul><li>Unique flavor profile</li><li>Gut health benefits</li><li>Selfsufficiency</li></ul>',
+    howTo: '<ol><li>Maintain a healthy starter</li><li>Use app to calculate levain amount</li><li>Expect longer rise times</li></ol>',
     tips: [
       'Starter health is key.',
       'Float test is unreliable; watch volume.',
       'Temperature control is crucial for sourness.'
     ],
     reference: {
-      name: t('learn.tartine_bread'),
+      name: Tartine bread,
       url: "#"
     },
     accessLevel: 'pro'
@@ -537,15 +536,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Micro-Batch Baking',
     image: 'https://images.unsplash.com/photo-1528731708534-816fe59f90cb?q=80&w=2070&auto=format&fit=crop',
     intro: 'Making just one pizza or loaf.',
-    why: '<ul><li>{t('learn.testing_new_flours')}</li><li>{t('learn.lunch_for_one')}</li><li>{t('learn.practicing_skills_cheaply')}</li></ul>',
-    howTo: '<ol><li>{t('learn.set_quantity_to_1')}</li><li>{t('learn.use_small_bowls')}</li><li>{t('learn.hand_mixing_is_often_easier')}</li></ol>',
+    why: '<ul><li>Testing new flours</li><li>Lunch for one</li><li>Practicing skills cheaply</li></ul>',
+    howTo: '<ol><li>Set quantity to 1</li><li>Use small bowls</li><li>Hand mixing is often easier</li></ol>',
     tips: [
       'Measuring small yeast amounts is hard; use a 0.01g scale.',
       'Small doughs cool/warm fast.',
       'Great for experiments.'
     ],
     reference: {
-      name: t('learn.doughlab_tips'),
+      name: Doughlab tips,
       url: "#"
     },
     accessLevel: 'free'
@@ -556,8 +555,8 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Visual Indicators',
     image: 'https://images.unsplash.com/photo-1513312999432-a7afa260d8a0?q=80&w=2070&auto=format&fit=crop',
     intro: 'Knowing when dough is ready by sight and touch.',
-    why: '<ul><li>{t('learn.time_is_just_an_estimate')}</li><li>Dough tells you when it\'s ready.</li><li>{t('learn.volume_jiggle_poke_test')}</li></ul>',
-    howTo: '<ol><li>{t('learn.poke_test_indentation_should_spring_back_slowly')}</li><li>Volume: Mark container to see 2x/3x rise.</li><li>{t('learn.jiggle_should_wobble_like_jelly')}</li></ol>',
+    why: '<ul><li>Time is just an estimate</li><li>Dough tells you when it\'s ready.</li><li>Volume jiggle poke test</li></ul>',
+    howTo: '<ol><li>Poke test indentation should spring back slowly</li><li>Volume: Mark container to see 2x/3x rise.</li><li>Jiggle should wobble like jelly</li></ol>',
     tips: [
       'Watch the dough, not the clock.',
       'Take photos to learn your dough\'s look.',
@@ -575,15 +574,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Poolish vs Biga vs Sponge',
     image: 'placeholder_url_prefermentos.jpg',
     intro: 'Detailed comparison of preferment types.',
-    why: '<ul><li>{t('learn.poolish_100_hydration_enzyme_activity_extensibilit')}</li><li>{t('learn.biga_50_hydration_strength_acidity')}</li><li>{t('learn.sponge_general_term_often_enriched')}</li></ul>',
-    howTo: '<ol><li>{t('learn.choose_based_on_desired_crust_texture')}</li><li>Biga = Chewy/Crispy.</li><li>Poolish = Light/Crispy.</li></ol>',
+    why: '<ul><li>Poolish 100 hydration enzyme activity extensibilit</li><li>Biga 50 hydration strength acidity</li><li>Sponge general term often enriched</li></ul>',
+    howTo: '<ol><li>Choose based on desired crust texture</li><li>Biga = Chewy/Crispy.</li><li>Poolish = Light/Crispy.</li></ol>',
     tips: [
       'Dissolve poolish in water first.',
       'Chop biga into water to incorporate.',
       'Account for preferment flour in total hydration.'
     ],
     reference: {
-      name: t('learn.king_arthur_baking'),
+      name: King arthur baking,
       url: "#"
     },
     accessLevel: 'pro'
@@ -594,15 +593,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Mixing Times & Gluten',
     image: 'placeholder_url_mistura_amassamento.jpg',
     intro: 'How long to knead?',
-    why: '<ul><li>{t('learn.undermixed_poor_structure_dense')}</li><li>{t('learn.optimally_mixed_windowpane_strong')}</li><li>{t('learn.overmixed_breakdown_sticky_white')}</li></ul>',
-    howTo: '<ol><li>{t('learn.mix_until_shaggy')}</li><li>Rest (autolyse).</li><li>{t('learn.knead_until_smooth')}</li><li>{t('learn.check_windowpane')}</li></ol>',
+    why: '<ul><li>Undermixed poor structure dense</li><li>Optimally mixed windowpane strong</li><li>Overmixed breakdown sticky white</li></ul>',
+    howTo: '<ol><li>Mix until shaggy</li><li>Rest (autolyse).</li><li>Knead until smooth</li><li>Check windowpane</li></ol>',
     tips: [
       'It\'s hard to over-mix by hand.',
       'Mixers can over-heat dough quickly.',
       'Extensibility vs Elasticity balance.'
     ],
     reference: {
-      name: t('learn.modernist_bread'),
+      name: Modernist bread,
       url: "#"
     },
     accessLevel: 'pro'
@@ -613,15 +612,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Ambient Temp & Humidity',
     image: 'placeholder_url_controle_ambiente_massa.jpg',
     intro: 'Your kitchen environment affects your dough.',
-    why: '<ul><li>{t('learn.heat_accelerates_fermentation')}</li><li>{t('learn.dry_air_forms_skin_on_dough')}</li><li>{t('learn.humidity_affects_hydration_absorption')}</li></ul>',
-    howTo: '<ol><li>{t('learn.monitor_room_temp')}</li><li>{t('learn.cover_dough_to_protect_from_dry_air')}</li><li>{t('learn.adjust_water_temp_to_compensate_for_room_temp')}</li></ol>',
+    why: '<ul><li>Heat accelerates fermentation</li><li>Dry air forms skin on dough</li><li>Humidity affects hydration absorption</li></ul>',
+    howTo: '<ol><li>Monitor room temp</li><li>Cover dough to protect from dry air</li><li>Adjust water temp to compensate for room temp</li></ol>',
     tips: [
       'Summer baking requires cold water.',
       'Winter baking needs a warm spot.',
       'Use a proofing box for consistency.'
     ],
     reference: {
-      name: t('learn.the_perfect_loaf'),
+      name: The perfect loaf,
       url: "#"
     },
     accessLevel: 'pro'
@@ -632,15 +631,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Advanced Baking Surfaces',
     image: 'placeholder_url_forno_superficie.jpg',
     intro: 'Going beyond the stone.',
-    why: '<ul><li>{t('learn.steel_maximum_conductivity')}</li><li>{t('learn.biscotto_controlled_heat_for_900f')}</li><li>{t('learn.screen_airflow_prevents_burning')}</li></ul>',
-    howTo: '<ol><li>{t('learn.match_surface_to_oven_temp_and_pizza_style')}</li><li>Season your steels/pans.</li><li>{t('learn.clean_stones_by_heat_not_water')}</li></ol>',
+    why: '<ul><li>Steel maximum conductivity</li><li>Biscotto controlled heat for 900f</li><li>Screen airflow prevents burning</li></ul>',
+    howTo: '<ol><li>Match surface to oven temp and pizza style</li><li>Season your steels/pans.</li><li>Clean stones by heat not water</li></ol>',
     tips: [
       'Thicker steel = more thermal mass.',
       'Screens help set pizza before moving to stone.',
       'Don\'t shock stones thermally.'
     ],
     reference: {
-      name: t('learn.pizza_making_forum'),
+      name: Pizza making forum,
       url: "#"
     },
     accessLevel: 'pro'
@@ -651,15 +650,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Autolyse',
     image: 'placeholder_url_autolyse.jpg',
     intro: 'The pause that refreshes dough.',
-    why: '<ul><li>{t('learn.hydrates_flour_fully')}</li><li>{t('learn.starts_enzyme_activity')}</li><li>{t('learn.relaxes_gluten_for_easier_kneading')}</li></ul>',
-    howTo: '<ol><li>{t('learn.mix_flour_and_water_only')}</li><li>{t('learn.rest_2060_mins')}</li><li>Add salt/yeast and knead.</li></ol>',
+    why: '<ul><li>Hydrates flour fully</li><li>Starts enzyme activity</li><li>Relaxes gluten for easier kneading</li></ul>',
+    howTo: '<ol><li>Mix flour and water only</li><li>Rest 2060 mins</li><li>Add salt/yeast and knead.</li></ol>',
     tips: [
       'Essential for whole wheat.',
       'Shortens kneading time.',
       'Don\'t add salt during autolyse (usually).'
     ],
     reference: {
-      name: t('learn.raymond_calvel'),
+      name: Raymond calvel,
       url: "#"
     },
     accessLevel: 'free'
@@ -670,15 +669,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Tangzhong & Yudane',
     image: 'placeholder_url_tangzhong.jpg',
     intro: 'Asian techniques for soft, fluffy bread.',
-    why: '<ul><li>{t('learn.pregelatinized_starch_holds_water')}</li><li>{t('learn.higher_hydration_without_stickiness')}</li><li>{t('learn.extends_shelf_life')}</li></ul>',
-    howTo: '<ol><li>Cook 5-10% of flour with water/milk (1:5 ratio).</li><li>{t('learn.cool_to_room_temp')}</li><li>{t('learn.add_to_dough_mix')}</li></ol>',
+    why: '<ul><li>Pregelatinized starch holds water</li><li>Higher hydration without stickiness</li><li>Extends shelf life</li></ul>',
+    howTo: '<ol><li>Cook 5-10% of flour with water/milk (1:5 ratio).</li><li>Cool to room temp</li><li>Add to dough mix</li></ol>',
     tips: [
       'Cook until lines appear in roux.',
       'Account for water in roux in total hydration.',
       'Makes incredible burger buns.'
     ],
     reference: {
-      name: t('learn.the_woks_of_life'),
+      name: The woks of life,
       url: "#"
     },
     accessLevel: 'pro'
@@ -689,14 +688,14 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Adaptive Reverse Mode',
     image: 'placeholder_url_modo_reverso_adaptativo2.jpg',
     intro: 'Advanced reverse calculations.',
-    why: '<ul><li>{t('learn.handling_complex_preferment_leftovers')}</li><li>{t('learn.balancing_multiple_flours')}</li></ul>',
-    howTo: '<ol><li>{t('learn.enter_what_you_have')}</li><li>{t('learn.app_balances_the_rest')}</li></ol>',
+    why: '<ul><li>Handling complex preferment leftovers</li><li>Balancing multiple flours</li></ul>',
+    howTo: '<ol><li>Enter what you have</li><li>App balances the rest</li></ol>',
     tips: [
       'Double check your inputs.',
       'Weigh leftovers accurately.'
     ],
     reference: {
-      name: t('learn.doughlab_pro'),
+      name: Doughlab pro,
       url: "#"
     },
     accessLevel: 'pro'
@@ -707,15 +706,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Mastering High Hydration',
     image: 'placeholder_url_alta_hidracao.jpg',
     intro: 'Handling dough like water.',
-    why: '<ul><li>{t('learn.open_crumb')}</li><li>{t('learn.crispy_crust')}</li><li>{t('learn.artisan_quality')}</li></ul>',
-    howTo: '<ol><li>Use basin/tub for bulk.</li><li>{t('learn.coil_folds_are_mandatory')}</li><li>{t('learn.gentle_shaping')}</li></ol>',
+    why: '<ul><li>Open crumb</li><li>Crispy crust</li><li>Artisan quality</li></ul>',
+    howTo: '<ol><li>Use basin/tub for bulk.</li><li>Coil folds are mandatory</li><li>Gentle shaping</li></ol>',
     tips: [
       'Don\'t add flour during shaping; use water or oil on hands.',
       'Bake dark for best flavor.',
       'Requires strong flour.'
     ],
     reference: {
-      name: t('learn.open_crumb_mastery'),
+      name: Open crumb mastery,
       url: "#"
     },
     accessLevel: 'pro'
@@ -726,15 +725,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Journaling Mastery',
     image: 'placeholder_url_diario_batches.jpg',
     intro: 'How to keep a useful baking log.',
-    why: '<ul><li>{t('learn.memory_is_fallible')}</li><li>{t('learn.data_reveals_trends')}</li><li>{t('learn.replication_requires_records')}</li></ul>',
-    howTo: '<ol><li>{t('learn.log_immediately_after_baking')}</li><li>{t('learn.be_specific_about_changes')}</li><li>{t('learn.rate_objectively')}</li></ol>',
+    why: '<ul><li>Memory is fallible</li><li>Data reveals trends</li><li>Replication requires records</li></ul>',
+    howTo: '<ol><li>Log immediately after baking</li><li>Be specific about changes</li><li>Rate objectively</li></ol>',
     tips: [
       'Note ambient temp.',
       'Note flour brand.',
       'Note feelings/texture.'
     ],
     reference: {
-      name: t('learn.doughlab'),
+      name: Doughlab,
       url: "#"
     },
     accessLevel: 'free'
@@ -745,15 +744,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Flour Substitution Logic',
     image: 'placeholder_url_cadastro_farinhas.jpg',
     intro: 'Swapping flours safely.',
-    why: '<ul><li>{t('learn.different_protein_levels')}</li><li>{t('learn.different_absorption')}</li><li>{t('learn.availability_issues')}</li></ul>',
-    howTo: '<ol><li>{t('learn.match_protein_content_closest')}</li><li>{t('learn.adjust_water_if_moving_from_white_to_whole')}</li><li>{t('learn.expect_texture_changes')}</li></ol>',
+    why: '<ul><li>Different protein levels</li><li>Different absorption</li><li>Availability issues</li></ul>',
+    howTo: '<ol><li>Match protein content closest</li><li>Adjust water if moving from white to whole</li><li>Expect texture changes</li></ol>',
     tips: [
       'AP != Bread Flour.',
       'Cake flour is too weak for pizza.',
       'Semolina adds crunch.'
     ],
     reference: {
-      name: t('learn.the_joy_of_cooking'),
+      name: The joy of cooking,
       url: "#"
     },
     accessLevel: 'pro'
@@ -764,15 +763,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Sustainable Baking',
     image: 'placeholder_url_sustentabilidade_massas.jpg',
     intro: 'Baking with the planet in mind.',
-    why: '<ul><li>{t('learn.ovens_use_energy')}</li><li>{t('learn.ingredients_have_footprints')}</li><li>{t('learn.waste_reduction')}</li></ul>',
-    howTo: '<ol><li>{t('learn.bake_multiple_items_at_once')}</li><li>{t('learn.source_local_flour')}</li><li>Don\'t waste discard.</li></ol>',
+    why: '<ul><li>Ovens use energy</li><li>Ingredients have footprints</li><li>Waste reduction</li></ul>',
+    howTo: '<ol><li>Bake multiple items at once</li><li>Source local flour</li><li>Don\'t waste discard.</li></ol>',
     tips: [
       'Preheat efficiently.',
       'Use discard for crackers/pancakes.',
       'Buy bulk.'
     ],
     reference: {
-      name: t('learn.sustainable_food_trust'),
+      name: Sustainable food trust,
       url: "#"
     },
     accessLevel: 'pro'
@@ -783,14 +782,14 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Hands-Free Baking',
     image: 'placeholder_url_assistente_voz.jpg',
     intro: 'Using voice assistants in the kitchen.',
-    why: '<ul><li>Doughy hands can\'t touch screens.</li><li>{t('learn.timers_are_essential')}</li><li>{t('learn.recipe_readback')}</li></ul>',
-    howTo: '<ol><li>"Set timer for 20 mins".</li><li>t('learn.convert_grams_to_cups').</li></ol>',
+    why: '<ul><li>Doughy hands can\'t touch screens.</li><li>Timers are essential</li><li>Recipe readback</li></ul>',
+    howTo: '<ol><li>"Set timer for 20 mins".</li><li>Convert grams to cups.</li></ol>',
     tips: [
       'Keep device clean.',
       'Use smart displays for visual aid.',
     ],
     reference: {
-      name: t('learn.tech_in_kitchen'),
+      name: Tech in kitchen,
       url: "#"
     },
     accessLevel: 'pro'
@@ -801,15 +800,15 @@ export const TUTORIALS: Tutorial[] = [
     title: 'Community Challenges',
     image: 'placeholder_url_leaderboard_desafios.jpg',
     intro: 'Gamifying your baking.',
-    why: '<ul><li>{t('learn.motivation_to_practice')}</li><li>{t('learn.learn_new_styles')}</li><li>{t('learn.connect_with_others')}</li></ul>',
-    howTo: '<ol><li>{t('learn.check_weekly_challenge')}</li><li>{t('learn.bake_and_post')}</li><li>{t('learn.earn_badges')}</li></ol>',
+    why: '<ul><li>Motivation to practice</li><li>Learn new styles</li><li>Connect with others</li></ul>',
+    howTo: '<ol><li>Check weekly challenge</li><li>Bake and post</li><li>Earn badges</li></ol>',
     tips: [
       'Be supportive of others.',
       'Try something outside your comfort zone.',
       'Have fun!'
     ],
     reference: {
-      name: t('learn.doughlab_community'),
+      name: Doughlab community,
       url: "#"
     },
     accessLevel: 'pro'

@@ -14,10 +14,10 @@ interface AffiliateGridProps {
 export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
     tags,
     limit = 3,
-    title ={t('common.recommended_gear')},
+    title = 'Recommended Gear',
     className = ""
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
     // Memoize recommendations to avoid recalc on every render
     const products = useMemo(() => getRecommendedProducts(tags, limit), [tags, limit]);
