@@ -357,5 +357,41 @@
     },
     "modals": {
         "close": "Close"
+    },
+    "styles_page": {
+        "hero_title": "Discover professional dough specifications from around the world.",
+        "hero_subtitle": "Explore our curated collection of authentic dough styles, scientific profiles, and regional specialties.",
+        "hero_badge": "Global Library",
+        "ai_builder": "AI Style Builder",
+        "search_placeholder": "Search styles (e.g. 'Neapolitan', 'Shokupan', 'Baguette')...",
+        "favorites": "Favorites",
+        "filters": "Filters",
+        "type_label": "Type",
+        "region_label": "Region",
+        "any_region": "Any",
+        "no_styles_title": "No styles found",
+        "no_styles_desc": "Try adjusting your filters or search terms.",
+        "clear_filters": "Clear all filters",
+        "categories": {
+            "all": "All Styles",
+            "pizza": "Pizza",
+            "bread": "Breads",
+            "enriched_bread": "Enriched",
+            "burger_bun": "Buns",
+            "pastry": "Pastry",
+            "cookie": "Cookies",
+            "flatbread": "Flatbreads",
+            "other": "Other"
+        },
+        "groups": {
+            "pizzas": "Pizzas",
+            "breads": "Breads & Rustic Loaves",
+            "enriched": "Enriched Breads",
+            "buns": "Burger Buns",
+            "pastry": "Pastry & Sweet Doughs",
+            "cookies": "Cookies & Confectionery",
+            "flatbreads": "Flatbreads",
+            "other": "Other Styles"
+        }
     }
 }

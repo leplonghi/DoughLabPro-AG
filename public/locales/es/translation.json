@@ -357,5 +357,41 @@
     },
     "modals": {
         "close": "Cerrar"
+    },
+    "styles_page": {
+        "hero_title": "Descubre especificaciones profesionales de masas de todo el mundo.",
+        "hero_subtitle": "Explora nuestra colección curada de estilos auténticos, perfiles científicos y especialidades regionales.",
+        "hero_badge": "Biblioteca Global",
+        "ai_builder": "Creador de Estilo IA",
+        "search_placeholder": "Buscar estilos (ej: 'Napolitana', 'Shokupan', 'Baguette')...",
+        "favorites": "Favoritos",
+        "filters": "Filtros",
+        "type_label": "Tipo",
+        "region_label": "Región",
+        "any_region": "Cualquiera",
+        "no_styles_title": "No se encontraron estilos",
+        "no_styles_desc": "Intenta ajustar tus filtros o términos de búsqueda.",
+        "clear_filters": "Limpiar todos los filtros",
+        "categories": {
+            "all": "Todos los Estilos",
+            "pizza": "Pizza",
+            "bread": "Panes",
+            "enriched_bread": "Enriquecidos",
+            "burger_bun": "Panes de Hamburguesa",
+            "pastry": "Repostería",
+            "cookie": "Galletas",
+            "flatbread": "Panes Planos",
+            "other": "Otros"
+        },
+        "groups": {
+            "pizzas": "Pizzas",
+            "breads": "Panes y Panes Rústicos",
+            "enriched": "Panes Enriquecidos",
+            "buns": "Panes de Hamburguesa",
+            "pastry": "Repostería y Masas Dulces",
+            "cookies": "Galletas y Confitería",
+            "flatbreads": "Panes Planos",
+            "other": "Otros Estilos"
+        }
     }
 }

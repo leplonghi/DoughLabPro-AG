@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { DoughStyleDefinition, StyleCategory } from '@/types/styles';
 import { useStyles } from '@/contexts/StylesProvider';
 import { useUser } from '@/contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { PageHero } from '@/components/ui/PageHero';
 import { LockFeature } from '@/components/auth/LockFeature';
@@ -33,16 +34,17 @@ import { AdCard } from '@/marketing/ads/AdCard';
 // 1. CONSTANTS & CONFIG
 // ========================================================
 
-const CATEGORY_FILTERS: { id: StyleCategory | 'All', label: string, iconSrc: string }[] = [
-    { id: 'All', label: 'All Styles', iconSrc: '/icons/styles/all.png' },
-    { id: 'pizza', label: 'Pizza', iconSrc: '/icons/styles/pizza.png' },
-    { id: 'bread', label: 'Breads', iconSrc: '/icons/styles/bread.png' },
-    { id: 'enriched_bread', label: 'Enriched', iconSrc: '/icons/styles/enriched.png' },
-    { id: 'burger_bun', label: 'Buns', iconSrc: '/icons/styles/bun.png' },
-    { id: 'pastry', label: 'Pastry', iconSrc: '/icons/styles/pastry.png' },
-    { id: 'cookie', label: 'Cookies', iconSrc: '/icons/styles/cookie.png' },
-    { id: 'flatbread', label: 'Flatbreads', iconSrc: '/icons/styles/flatbread.png' },
-    { id: 'other', label: 'Other', iconSrc: '/icons/styles/other.png' },
+// Category filters - labels will be translated dynamically
+const getCategoryFilters = (t: any): { id: StyleCategory | 'All', label: string, iconSrc: string }[] => [
+    { id: 'All', label: t('styles_page.categories.all'), iconSrc: '/icons/styles/all.png' },
+    { id: 'pizza', label: t('styles_page.categories.pizza'), iconSrc: '/icons/styles/pizza.png' },
+    { id: 'bread', label: t('styles_page.categories.bread'), iconSrc: '/icons/styles/bread.png' },
+    { id: 'enriched_bread', label: t('styles_page.categories.enriched_bread'), iconSrc: '/icons/styles/enriched.png' },
+    { id: 'burger_bun', label: t('styles_page.categories.burger_bun'), iconSrc: '/icons/styles/bun.png' },
+    { id: 'pastry', label: t('styles_page.categories.pastry'), iconSrc: '/icons/styles/pastry.png' },
+    { id: 'cookie', label: t('styles_page.categories.cookie'), iconSrc: '/icons/styles/cookie.png' },
+    { id: 'flatbread', label: t('styles_page.categories.flatbread'), iconSrc: '/icons/styles/flatbread.png' },
+    { id: 'other', label: t('styles_page.categories.other'), iconSrc: '/icons/styles/other.png' },
 ];
 
 const GROUP_ORDER = [
@@ -81,6 +83,7 @@ interface DoughStylesPageProps {
 const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, onUseInCalculator }) => {
     const { styles: stylesData } = useStyles();
     const { userStyles, isFavorite, deleteUserStyle } = useUser();
+    const { t } = useTranslation();
 
     // State
     const [searchTerm, setSearchTerm] = useState('');
