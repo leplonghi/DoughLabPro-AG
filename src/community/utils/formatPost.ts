@@ -1,4 +1,5 @@
 import { CommunityPost } from '../types';
+import { useTranslation } from '@/i18n';
 
 export const formatPostDate = (timestamp: any): string => {
     if (!timestamp) return '';

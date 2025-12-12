@@ -1,5 +1,6 @@
 import React, { createContext, useContext, ReactNode, useMemo } from 'react';
 import { useBatches } from './BatchesProvider';
+import { useTranslation } from '@/i18n';
 
 interface InsightsContextType {
     bakeConsistencyScore: number;
@@ -11,6 +12,7 @@ interface InsightsContextType {
 const InsightsContext = createContext<InsightsContextType | undefined>(undefined);
 
 export const InsightsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { batches, successRate } = useBatches();
 
     // Calculate bake consistency score

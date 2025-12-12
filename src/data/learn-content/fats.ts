@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const fatsArticle: LearnArticleData = {
     id: "fats-oils-lubrication-oxidation",
-    title: "Fats & Oils — Lubrication, Tenderness & Oxidation",
-    subtitle: "Influencing tenderness, structure lubrication and shelf-life.",
-    category: "Ingredient Science",
-    difficulty: "Intermediate",
+    title: t('learn.fats__oils__lubrication_tenderness__oxidation'),
+    subtitle: t('learn.influencing_tenderness_structure_lubrication_and_s'),
+    category: t('learn.ingredient_science_5'),
+    difficulty: t('learn.intermediate_14'),
     tags: ["fats", "oils", "tenderness", "oxidation"],
 
     intro: "Fats coat gluten strands, improving tenderness, extensibility and softness. They slow staling and influence browning, aroma and dough rheology.",
@@ -32,9 +33,9 @@ export const fatsArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Pizza Dough", notes: "Recommended: 2% (Range: 1-5%)" },
-        { label: "Focaccia", notes: "Recommended: 10% (Range: 5-15%)" },
-        { label: "Enriched Breads", notes: "Recommended: 15% (Range: 5-25%)" }
+        { label: t('learn.pizza_dough'), notes: "Recommended: 2% (Range: 1-5%)" },
+        { label: t('learn.focaccia'), notes: "Recommended: 10% (Range: 5-15%)" },
+        { label: t('learn.enriched_breads'), notes: "Recommended: 15% (Range: 5-25%)" }
     ],
 
     practicalApplications: [
@@ -65,19 +66,19 @@ export const fatsArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Olive Oil",
+            variant: t('learn.olive_oil'),
             implications: "Common in Italian doughs. Liquid, distinct aroma. Increases extensibility; makes dough more workable. Enhances crust crispness and aroma."
         },
         {
-            variant: "Butter",
+            variant: t('learn.butter'),
             implications: "Solid fat adding richness. Water content, melting behavior. Tenderizes and enriches dough. Adds aroma; softens crumb."
         },
         {
-            variant: "Lard",
+            variant: t('learn.lard'),
             implications: "Solid animal fat with unique plasticity. High saturation, stable structure. Enhances softness; improves handling. Tender bite; subtle savory notes."
         },
         {
-            variant: "Vegetable Oils",
+            variant: t('learn.vegetable_oils'),
             implications: "Neutral profile oils. Unsaturated, light flavor. Softens dough; increases extensibility. Consistent browning; mild flavor."
         }
     ],
@@ -93,8 +94,8 @@ export const fatsArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, fat is like lotion for your dough — it makes everything smooth and soft.",
-        whatItDoes: "Fat keeps the dough tender and helps it brown beautifully.",
-        howToUse: "A little oil or butter makes the dough easier to stretch and tastier when baked.",
-        dangerSigns: "But too much fat makes the dough lazy — it won’t hold its shape."
+        whatItDoes: t('learn.fat_keeps_the_dough_tender_and_helps_it_brown_beau'),
+        howToUse: t('learn.a_little_oil_or_butter_makes_the_dough_easier_to_s'),
+        dangerSigns: t('learn.but_too_much_fat_makes_the_dough_lazy__it_wont_hol')
     }
 };

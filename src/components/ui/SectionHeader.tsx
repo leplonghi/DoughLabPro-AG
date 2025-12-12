@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 interface SectionHeaderProps {
     title: string;
@@ -7,6 +8,7 @@ interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, icon, action }) => {
+  const { t } = useTranslation();
     return (
         <div className="flex items-center justify-between mb-6 border-b border-dlp-border pb-2">
             <h2 className="text-xl font-bold text-dlp-text-primary flex items-center gap-2">

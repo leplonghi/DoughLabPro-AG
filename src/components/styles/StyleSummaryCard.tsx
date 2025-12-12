@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DoughStyleDefinition } from '@/types';
 import { BookOpenIcon, ChevronDownIcon, GlobeAltIcon, SparklesIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface StyleSummaryCardProps {
     style: DoughStyleDefinition;
@@ -8,6 +9,7 @@ interface StyleSummaryCardProps {
 }
 
 const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = '' }) => {
+  const { t } = useTranslation();
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
@@ -22,9 +24,7 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
                         {style.source === 'official' ? <BookOpenIcon className="h-5 w-5" /> : <SparklesIcon className="h-5 w-5" />}
                     </div>
                     <div>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-0.5">
-                            Target Style
-                        </p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-0.5">{t('common.target_style')}</p>
                         <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
                             {style.name}
                         </h3>
@@ -49,18 +49,18 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
                     {style.technicalProfile && (
                         <div className="mb-5 grid grid-cols-2 gap-3">
                             <div className="p-3 bg-lime-50 rounded-xl border border-lime-100">
-                                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">Target Hydration</span>
+                                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">{t('general.target_hydration')}</span>
                                 <span className="text-lg font-bold text-lime-900">{style.technicalProfile.hydration[0]}-{style.technicalProfile.hydration[1]}%</span>
                             </div>
                             <div className="p-3 bg-lime-50 rounded-xl border border-lime-100">
-                                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">Salt Range</span>
+                                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">{t('general.salt_range')}</span>
                                 <span className="text-lg font-bold text-lime-900">{style.technicalProfile.salt[0]}-{style.technicalProfile.salt[1]}%</span>
                             </div>
                         </div>
                     )}
 
                     <div className="mb-4">
-                        <h4 className="text-xs font-bold uppercase text-slate-400 mb-2">Description</h4>
+                        <h4 className="text-xs font-bold uppercase text-slate-400 mb-2">{t('general.description_2')}</h4>
                         <p className="text-sm text-slate-600 leading-relaxed">{style.description}</p>
                     </div>
 

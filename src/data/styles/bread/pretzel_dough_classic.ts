@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pretzel_dough_classic: StyleDefinition = {
   "id": "pretzel_dough_classic",
   "title": "Pretzel Dough (Boiled-Alkaline)",
-  "subtitle": "Specialty Breads",
-  "category": "Bread",
-  "family": "Specialty Breads",
+  "subtitle": t('styles.specialty_breads_3'),
+  "category": t('styles.bread_23'),
+  "family": t('styles.specialty_breads_4'),
   "variantName": "Pretzel Dough (Boiled-Alkaline)",
   "origin": {
-    "country": "Germany",
-    "region": "Bavaria and others",
-    "period": "Traditional"
+    "country": t('styles.germany'),
+    "region": t('styles.bavaria_and_others'),
+    "period": t('styles.traditional_9')
   },
   "intro": "Eaten as snacks, with beer, or as street food across German-speaking regions and beyond.",
   "history": "Pretzels are shaped breads boiled briefly in alkaline solution before baking, giving a characteristic color and flavor.",
@@ -37,11 +38,11 @@ export const pretzel_dough_classic: StyleDefinition = {
       0,
       5
     ],
-    "flourStrength": "Bread flour or medium-strength wheat flour",
+    "flourStrength": t('styles.bread_flour_or_mediumstrength_wheat_flour'),
     "fermentation": {
       "bulk": "1–2 h at room temperature",
-      "proof": "Short proof before or after lye bath depending on method",
-      "coldRetard": "Frequently retarded for flavor and handling"
+      "proof": t('styles.short_proof_before_or_after_lye_bath_depending_on_'),
+      "coldRetard": t('styles.frequently_retarded_for_flavor_and_handling')
     },
     "oven": {
       "type": "deck",
@@ -51,10 +52,10 @@ export const pretzel_dough_classic: StyleDefinition = {
       ],
       "notes": "Dipped in alkaline solution (traditionally lye) before baking."
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_12'),
     "recommendedUse": [
-      "Traditional pretzels",
-      "Pretzel rolls and sticks"
+      t('common.traditional_pretzels'),
+      t('common.pretzel_rolls_and_sticks')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const pretzel_dough_classic: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Traditional pretzels",
-    "Pretzel rolls and sticks",
-    "Bread",
-    "Germany"
+    t('common.traditional_pretzels'),
+    t('common.pretzel_rolls_and_sticks'),
+    t('common.bread'),
+    t('common.germany')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const pretzel_dough_classic: StyleDefinition = {
   },
   "references": [
     {
-      "title": "German baking literature",
+      "title": t('styles.german_baking_literature'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_18'),
       "url": ""
     }
   ],

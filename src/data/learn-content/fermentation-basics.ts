@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const fermentationBasicsData: LearnArticleData = {
     id: "fermentation-basics-and-curves",
-    title: "Fermentation Basics & Curves",
-    subtitle: "How time, temperature and inoculation shape dough behaviour",
+    title: t('learn.fermentation_basics__curves'),
+    subtitle: t('learn.how_time_temperature_and_inoculation_shape_dough_b'),
     category: 'Fermentation Science',
     difficulty: 'Beginner',
     tags: ['fermentation', 'yeast', 'temperature', 'time'],
@@ -33,16 +34,16 @@ export const fermentationBasicsData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Room-temperature direct doughs",
+            label: t('learn.roomtemperature_direct_doughs'),
             notes: "1–4 hours bulk at 20–26°C. Typical for quick pizzas."
         },
         {
-            label: "Long cold fermentation",
+            label: t('learn.long_cold_fermentation_2'),
             notes: "12–72 hours at 3–6°C. Relies on low inoculation and refrigeration."
         },
         {
             label: "Mixed schedule (room + cold)",
-            notes: "Short bulk at room temp + cold retard. Offers flexibility and flavour."
+            notes: t('learn.short_bulk_at_room_temp__cold_retard_offers_flexib')
         }
     ],
 
@@ -82,9 +83,9 @@ export const fermentationBasicsData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_10'),
+        whatItDoes: t('learn.improves_texture_and_flavor_4'),
+        howToUse: t('learn.so_you_get_the_best_results_6'),
+        dangerSigns: t('learn.use_it_wisely_6')
     },
 };

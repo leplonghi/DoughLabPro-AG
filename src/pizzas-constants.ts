@@ -1,6 +1,7 @@
 
 
 import { PizzaRecipe } from './types';
+import { useTranslation } from '@/i18n';
 
 export const PIZZA_RECIPES: PizzaRecipe[] = [
   // --- Italian Classics ---
@@ -12,7 +13,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 250, hydration: 60, styleId: 'neapolitan_avpn_classic' },
     oven: { tempC: 450 },
     sauce: { type: 'Tomato', grams: 80 },
-    toppings: { main: ['Fior di Latte', 'Fresh Basil', 'Extra Virgin Olive Oil'], grams: 100 },
+    toppings: { main: [t('ui.fior_di_latte'), t('ui.fresh_basil'), t('ui.extra_virgin_olive_oil')], grams: 100 },
     techniqueNotes: 'Basil and oil added post-oven to preserve aroma.',
   },
   {
@@ -23,7 +24,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 250, hydration: 60, styleId: 'neapolitan_avpn_classic' },
     oven: { tempC: 450 },
     sauce: { type: 'Tomato', grams: 90 },
-    toppings: { main: ['Sliced Garlic', 'Oregano', 'Extra Virgin Olive Oil'], grams: 20 },
+    toppings: { main: [t('ui.sliced_garlic'), t('ui.oregano'), t('ui.extra_virgin_olive_oil_2')], grams: 20 },
     techniqueNotes: 'A cheese-less pizza highlighting sauce and garlic quality.',
   },
   {
@@ -34,7 +35,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 280, hydration: 65, styleId: 'roman_pala' },
     oven: { tempC: 320 },
     sauce: { type: 'None', grams: 0 },
-    toppings: { main: ['Mozzarella', 'Gorgonzola', 'Provolone', 'Parmesan'], grams: 180 },
+    toppings: { main: [t('ui.mozzarella'), t('ui.gorgonzola'), t('ui.provolone'), t('ui.parmesan')], grams: 180 },
     techniqueNotes: 'White base (bianca), focused on cheese complexity.',
   },
   {
@@ -45,7 +46,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 260, hydration: 62, styleId: 'pizza_napoletana_avpn' },
     oven: { tempC: 450 },
     sauce: { type: 'Tomato', grams: 70 },
-    toppings: { main: ['Mozzarella', 'Prosciutto Crudo', 'Arugula', 'Parmesan Shavings'], grams: 140 },
+    toppings: { main: [t('ui.mozzarella_2'), t('ui.prosciutto_crudo'), t('ui.arugula'), t('ui.parmesan_shavings')], grams: 140 },
     techniqueNotes: 'Prosciutto, arugula, and parmesan added post-oven.',
   },
   {
@@ -56,7 +57,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 260, hydration: 62, styleId: 'pizza_napoletana_avpn' },
     oven: { tempC: 450 },
     sauce: { type: 'Tomato', grams: 80 },
-    toppings: { main: ['Mozzarella', 'Spicy Salami (Spianata Calabra)'], grams: 150 },
+    toppings: { main: [t('ui.mozzarella_3'), ], grams: 150 },
   },
   {
     id: 'capricciosa',
@@ -66,7 +67,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 280, hydration: 64, styleId: 'roman_pala' },
     oven: { tempC: 350 },
     sauce: { type: 'Tomato', grams: 90 },
-    toppings: { main: ['Mozzarella', 'Cooked Ham', 'Mushrooms', 'Artichokes', 'Olives'], grams: 180 },
+    toppings: { main: [t('ui.mozzarella_4'), t('ui.cooked_ham'), t('ui.mushrooms'), t('ui.artichokes'), t('ui.olives')], grams: 180 },
     techniqueNotes: 'A rich and varied pizza.',
   },
 
@@ -79,7 +80,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 350, hydration: 63, styleId: 'new_york_style_pizza' },
     oven: { tempC: 290 },
     sauce: { type: 'Tomato', grams: 120 },
-    toppings: { main: ['Low-Moisture Mozzarella', 'Pepperoni'], grams: 250 },
+    toppings: { main: [t('ui.lowmoisture_mozzarella'), t('ui.pepperoni')], grams: 250 },
     techniqueNotes: 'Cooked seasoned sauce, sliced or coarse grated cheese.',
   },
   {
@@ -90,7 +91,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 400, hydration: 72, styleId: 'detroit_style' },
     oven: { tempC: 260 },
     sauce: { type: 'Tomato', grams: 150 },
-    toppings: { main: ['Wisconsin Brick Cheese', 'Pepperoni'], grams: 300 },
+    toppings: { main: [t('ui.wisconsin_brick_cheese'), t('ui.pepperoni_2')], grams: 300 },
     techniqueNotes: 'Baked in steel pan. Cheese to edges, sauce applied in stripes on top.',
   },
   {
@@ -101,7 +102,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 500, hydration: 58, styleId: 'chicago_tavern_style' },
     oven: { tempC: 220 },
     sauce: { type: 'Tomato', grams: 200 },
-    toppings: { main: ['Mozzarella (Slices)', 'Italian Sausage', 'Parmesan'], grams: 400 },
+    toppings: { main: [t('ui.italian_sausage'), t('ui.parmesan_2')], grams: 400 },
     techniqueNotes: 'Inverted assembly: dough, cheese, filling, sauce on top. Long bake time.',
   },
   {
@@ -112,7 +113,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 300, hydration: 62, styleId: 'new_york_style_pizza' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 100 },
-    toppings: { main: ['Mozzarella', 'Cooked Ham', 'Pineapple'], grams: 220 },
+    toppings: { main: [t('ui.mozzarella_5'), t('ui.cooked_ham_2'), t('ui.pineapple')], grams: 220 },
     techniqueNotes: 'Pineapple must be well drained to avoid excess moisture.',
   },
   {
@@ -123,7 +124,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 65, styleId: 'new_york_style_pizza' },
     oven: { tempC: 270 },
     sauce: { type: 'Other', grams: 100 }, // BBQ Sauce
-    toppings: { main: ['Mozzarella', 'Shredded Chicken', 'Red Onion', 'Cilantro'], grams: 240 },
+    toppings: { main: [t('ui.mozzarella_6'), t('ui.shredded_chicken'), t('ui.red_onion'), t('ui.cilantro')], grams: 240 },
     techniqueNotes: 'BBQ sauce base instead of tomato.',
   },
 
@@ -136,7 +137,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 100 },
-    toppings: { main: ['Calabresa Sausage', 'Sliced Onion', 'Black Olives'], grams: 200 },
+    toppings: { main: [t('ui.calabresa_sausage'), t('ui.sliced_onion'), t('ui.black_olives')], grams: 200 },
     techniqueNotes: 'Variations exist with or without mozzarella under calabresa.',
   },
   {
@@ -147,7 +148,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 100 },
-    toppings: { main: ['Mozzarella', 'Cooked Ham', 'Boiled Egg', 'Onion', 'Peas', 'Olives'], grams: 280 },
+    toppings: { main: [t('ui.mozzarella_7'), t('ui.cooked_ham_3'), t('ui.boiled_egg'), t('ui.onion'), t('ui.peas'), t('ui.olives_2')], grams: 280 },
     techniqueNotes: 'Heavy topping load requires sturdy dough.',
   },
   {
@@ -158,7 +159,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 90 },
-    toppings: { main: ['Mozzarella', 'Shredded Chicken', 'Catupiry Cheese'], grams: 250 },
+    toppings: { main: [t('ui.mozzarella_8'), t('ui.shredded_chicken_2'), t('ui.catupiry_cheese')], grams: 250 },
     techniqueNotes: 'Catupiry applied in drops or spirals over chicken.',
   },
   {
@@ -169,7 +170,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 80 },
-    toppings: { main: ['Mozzarella', 'Provolone', 'Gorgonzola', 'Parmesan'], grams: 220 },
+    toppings: { main: [t('ui.mozzarella_9'), t('ui.provolone_2'), t('ui.gorgonzola_2'), t('ui.parmesan_3')], grams: 220 },
     techniqueNotes: 'Often includes Catupiry as optional fifth cheese.',
   },
   {
@@ -180,7 +181,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'None', grams: 0 },
-    toppings: { main: ['Catupiry Cheese', 'Desalted Shredded Dried Meat', 'Red Onion'], grams: 260 },
+    toppings: { main: [t('ui.catupiry_cheese_2'), t('ui.desalted_shredded_dried_meat'), t('ui.red_onion_2')], grams: 260 },
     techniqueNotes: 'White base with Catupiry instead of tomato sauce.',
   },
   {
@@ -191,7 +192,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 100 },
-    toppings: { main: ['Mozzarella', 'Sliced Heart of Palm'], grams: 230 },
+    toppings: { main: [t('ui.mozzarella_10'), t('ui.sliced_heart_of_palm')], grams: 230 },
     techniqueNotes: 'Heart of palm must be well drained.',
   },
   {
@@ -202,7 +203,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 280, hydration: 65, styleId: 'massa_direta_universal' },
     oven: { tempC: 290 },
     sauce: { type: 'Tomato', grams: 90 },
-    toppings: { main: ['Mozzarella', 'Bell Pepper', 'Onion', 'Mushrooms', 'Olives'], grams: 200 },
+    toppings: { main: [t('ui.mozzarella_11'), t('ui.bell_pepper'), t('ui.onion_2'), t('ui.mushrooms_2'), t('ui.olives_3')], grams: 200 },
     techniqueNotes: 'Pre-cook mushrooms and peppers to reduce moisture.',
   },
   {
@@ -213,7 +214,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 260, hydration: 68, styleId: 'roman_pala' },
     oven: { tempC: 320 },
     sauce: { type: 'None', grams: 0 },
-    toppings: { main: ['Mozzarella', 'Thin Sliced Garlic', 'Olive Oil', 'Rosemary'], grams: 130 },
+    toppings: { main: [t('ui.mozzarella_12'), t('ui.thin_sliced_garlic'), t('ui.olive_oil'), t('ui.rosemary')], grams: 130 },
     techniqueNotes: 'Drizzle with oil before baking to infuse garlic flavor.',
   },
   {
@@ -224,7 +225,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 450, hydration: 65, styleId: 'pizza_teglia_pan_alta' },
     oven: { tempC: 250 },
     sauce: { type: 'None', grams: 0 },
-    toppings: { main: ['Mozzarella', 'Abundant Onion', 'Oregano'], grams: 350 },
+    toppings: { main: [t('ui.mozzarella_13'), t('ui.abundant_onion'), t('ui.oregano_2')], grams: 350 },
     techniqueNotes: 'High soft dough, generous onion and cheese layer on top.',
   },
   {
@@ -235,7 +236,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 300, hydration: 65, styleId: 'massa_direta_universal' },
     oven: { tempC: 280 },
     sauce: { type: 'Pesto', grams: 80 },
-    toppings: { main: ['Mozzarella', 'Grilled Chicken', 'Cherry Tomatoes'], grams: 220 },
+    toppings: { main: [t('ui.mozzarella_14'), t('ui.grilled_chicken'), t('ui.cherry_tomatoes')], grams: 220 },
     techniqueNotes: 'Pesto replaces tomato sauce creating aromatic base.',
   },
   {
@@ -246,7 +247,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 250, hydration: 60, styleId: 'neapolitan_avpn_classic' },
     oven: { tempC: 450 },
     sauce: { type: 'Tomato', grams: 80 },
-    toppings: { main: ['Buffalo Mozzarella', 'Fresh Basil'], grams: 120 },
+    toppings: { main: [t('ui.buffalo_mozzarella'), t('ui.fresh_basil_2')], grams: 120 },
     techniqueNotes: 'Buffalo mozzarella releases more water; use in very hot oven.',
   },
   {
@@ -257,7 +258,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 270, hydration: 65, styleId: 'roman_pala' },
     oven: { tempC: 320 },
     sauce: { type: 'White', grams: 60 },
-    toppings: { main: ['Mozzarella', 'Sautéed Mushroom Mix', 'Parsley'], grams: 180 },
+    toppings: { main: [t('ui.mozzarella_15'), t('ui.sautéed_mushroom_mix'), t('ui.parsley')], grams: 180 },
     techniqueNotes: 'Sautéing mushrooms before is essential to remove water.',
   },
   {
@@ -268,7 +269,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 100 },
-    toppings: { main: ['Mozzarella', 'Bacon Cubes', 'Corn'], grams: 240 },
+    toppings: { main: [t('ui.mozzarella_16'), t('ui.bacon_cubes'), t('ui.corn')], grams: 240 },
     techniqueNotes: 'Pre-frying bacon helps make it crispier.',
   },
   {
@@ -279,7 +280,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 260, hydration: 62, styleId: 'massa_direta_universal' },
     oven: { tempC: 300 },
     sauce: { type: 'Tomato', grams: 90 },
-    toppings: { main: ['Mozzarella', 'Canned Tuna', 'Red Onion'], grams: 190 },
+    toppings: { main: [t('ui.mozzarella_17'), t('ui.canned_tuna'), t('ui.red_onion_3')], grams: 190 },
     techniqueNotes: 'Drain tuna well to avoid excess oil.',
   },
   {
@@ -290,7 +291,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 380, hydration: 63, styleId: 'new_york_style_pizza' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 120 },
-    toppings: { main: ['Mozzarella', 'Pepperoni', 'Sausage', 'Bell Pepper', 'Onion', 'Olives'], grams: 300 },
+    toppings: { main: [t('ui.mozzarella_18'), t('ui.pepperoni_3'), t('ui.sausage'), t('ui.bell_pepper_2'), t('ui.onion_3'), t('ui.olives_4')], grams: 300 },
     techniqueNotes: 'Loaded pizza requiring sturdy dough.',
   },
   {
@@ -301,7 +302,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 500, hydration: 68, styleId: 'sicilian_sfincione' },
     oven: { tempC: 240 },
     sauce: { type: 'Tomato', grams: 150 },
-    toppings: { main: ['Mozzarella', 'Anchovies', 'Oregano'], grams: 250 },
+    toppings: { main: [t('ui.mozzarella_19'), t('ui.anchovies'), t('ui.oregano_3')], grams: 250 },
     techniqueNotes: 'High fluffy dough, baked in rectangular pan greased with olive oil.',
   },
   {
@@ -312,7 +313,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 280, hydration: 70, styleId: 'roman_pala' },
     oven: { tempC: 300 },
     sauce: { type: 'White', grams: 70 },
-    toppings: { main: ['Fior di Latte', 'Italian Mortadella', 'Crushed Pistachios', 'Lemon Zest'], grams: 180 },
+    toppings: { main: [t('ui.fior_di_latte_2'), t('ui.italian_mortadella'), t('ui.crushed_pistachios'), t('ui.lemon_zest')], grams: 180 },
     techniqueNotes: 'Mortadella, pistachios, and zest added post-oven.',
   },
   {
@@ -323,7 +324,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 90 },
-    toppings: { main: ['Mozzarella', 'Sautéed Escarole', 'Bacon', 'Olives'], grams: 260 },
+    toppings: { main: [t('ui.mozzarella_20'), t('ui.sautéed_escarole'), t('ui.bacon'), t('ui.olives_5')], grams: 260 },
     techniqueNotes: 'Escarole must be well sautéed and drained to remove moisture and bitterness.',
   },
   {
@@ -334,7 +335,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'Tomato', grams: 90 },
-    toppings: { main: ['Mozzarella', 'Canadian Pork Loin', 'Catupiry Cheese', 'Onion'], grams: 270 },
+    toppings: { main: [t('ui.mozzarella_21'), t('ui.canadian_pork_loin'), t('ui.catupiry_cheese_3'), t('ui.onion_4')], grams: 270 },
     techniqueNotes: 'Popular combo balancing salty loin with creamy cheese.',
   },
   {
@@ -345,7 +346,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 320, hydration: 60, styleId: 'pizza_classica_brasileira' },
     oven: { tempC: 280 },
     sauce: { type: 'White', grams: 80 },
-    toppings: { main: ['Minas Cheese', 'Smoked Turkey Breast', 'Leeks'], grams: 250 },
+    toppings: { main: [t('ui.minas_cheese'), t('ui.smoked_turkey_breast'), t('ui.leeks')], grams: 250 },
     techniqueNotes: 'Lighter version, often found with white cheese base.',
   },
 ];

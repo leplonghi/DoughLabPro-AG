@@ -34,8 +34,8 @@ const MyLabSensoryDiaryPage: React.FC<MyLabSensoryDiaryPageProps> = ({ onNavigat
         <MyLabLayout activePage="mylab/diario-sensorial" onNavigate={onNavigate}>
             <div className="animate-fade-in pb-20">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-900 ">Sensory Diary</h1>
-                    <p className="text-slate-600  mt-2">Your collection of baking notes and tasting observations.</p>
+                    <h1 className="text-3xl font-bold text-slate-900 ">{t('mylab.sensory_diary')}</h1>
+                    <p className="text-slate-600  mt-2">{t('mylab.your_collection_of_baking_notes_and_tasting_observ')}</p>
                 </div>
 
                 <LockFeature featureKey="mylab.unlimited_advanced" customMessage="Unlock your Personal Baking Journal with Lab Pro.">
@@ -44,16 +44,14 @@ const MyLabSensoryDiaryPage: React.FC<MyLabSensoryDiaryPageProps> = ({ onNavigat
                             <div className="w-16 h-16 bg-slate-100  rounded-full flex items-center justify-center mx-auto mb-4">
                                 <BookOpenIcon className="h-8 w-8 text-slate-400 " />
                             </div>
-                            <h3 className="text-lg font-semibold text-slate-900 ">Journal is empty</h3>
+                            <h3 className="text-lg font-semibold text-slate-900 ">{t('mylab.journal_is_empty')}</h3>
                             <p className="text-slate-500  mt-2 max-w-sm mx-auto">
                                 Complete a batch and add notes or a rating to see it appear here.
                             </p>
                             <button
                                 onClick={() => onNavigate('mylab/fornadas')}
                                 className="mt-6 text-lime-600  font-bold hover:underline"
-                            >
-                                Go to My Bakes
-                            </button>
+                            >{t('mylab.go_to_my_bakes')}</button>
                         </div>
                     ) : (
                         <div className="space-y-6">
@@ -86,8 +84,7 @@ const MyLabSensoryDiaryPage: React.FC<MyLabSensoryDiaryPageProps> = ({ onNavigat
                                         <button
                                             onClick={() => onNavigate(`batch/${batch.id}`)}
                                             className="text-sm font-semibold text-slate-500 hover:text-lime-600 flex items-center gap-1 transition-colors"
-                                        >
-                                            View Full Details <ArrowRightIcon className="h-4 w-4" />
+                                        >{t('mylab.view_full_details')}<ArrowRightIcon className="h-4 w-4" />
                                         </button>
                                     </div>
                                 </div>

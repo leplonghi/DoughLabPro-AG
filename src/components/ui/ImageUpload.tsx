@@ -88,7 +88,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                         <>
                             <img
                                 src={currentImage}
-                                alt="Preview"
+                                alt={t('ui.preview')}
                                 className={`h-full w-full object-cover ${circle ? 'rounded-full' : 'rounded-xl'}`}
                             />
                             {/* Overlay on hover */}
@@ -96,7 +96,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                                 <button
                                     onClick={triggerUpload}
                                     className="p-1.5 bg-white/20 hover:bg-white/40 rounded-full text-white backdrop-blur-sm transition-colors"
-                                    title="Change Image"
+                                    title={t('ui.change_image')}
                                 >
                                     <UploadIcon className="w-4 h-4" />
                                 </button>
@@ -104,7 +104,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                                     <button
                                         onClick={onDelete}
                                         className="p-1.5 bg-red-500/50 hover:bg-red-500 text-white rounded-full backdrop-blur-sm transition-colors"
-                                        title="Remove Image"
+                                        title={t('ui.remove_image')}
                                     >
                                         <TrashIcon className="w-4 h-4" />
                                     </button>
@@ -114,7 +114,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                     ) : (
                         <div className="text-center p-4">
                             <PhotoIcon className={`text-slate-400 mx-auto ${circle ? 'w-8 h-8' : 'w-10 h-10 mb-2'}`} />
-                            {!circle && <span className="text-xs text-slate-500 block">Click to upload</span>}
+                            {!circle && <span className="text-xs text-slate-500 block">{t('ui.click_to_upload')}</span>}
                         </div>
                     )}
 
@@ -141,9 +141,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                                 type="button"
                                 onClick={onDelete}
                                 className="text-sm font-medium text-red-500 hover:text-red-700 px-3 py-1.5 rounded-lg transition-colors text-left"
-                            >
-                                Remove
-                            </button>
+                            >{t('common.remove')}</button>
                         )}
                     </div>
                 )}

@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const doughScienceData: LearnArticleData = {
     id: 'dough-science',
@@ -63,9 +64,9 @@ export const doughScienceData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "It improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_8'),
+        whatItDoes: t('learn.it_improves_texture_and_flavor_2'),
+        howToUse: t('learn.so_you_get_the_best_results_4'),
+        dangerSigns: t('learn.use_it_wisely_4')
     }
 };

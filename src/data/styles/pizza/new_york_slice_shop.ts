@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const new_york_slice_shop: StyleDefinition = {
   "id": "new_york_slice_shop",
   "title": "New York Slice Shop (Classic)",
-  "subtitle": "New York Style Pizza",
-  "category": "Pizza",
-  "family": "New York Style Pizza",
+  "subtitle": t('styles.new_york_style_pizza_3'),
+  "category": t('styles.pizza_10'),
+  "family": t('styles.new_york_style_pizza_4'),
   "variantName": "New York Slice Shop (Classic)",
   "origin": {
-    "country": "United States",
-    "region": "New York City",
-    "period": "Early 20th century"
+    "country": t('styles.united_states_10'),
+    "region": t('styles.new_york_city_3'),
+    "period": t('styles.early_20th_century')
   },
   "intro": "The quintessential American street food. Cheap, fast, and eaten on the go. The 'New York Fold' is a practical necessity to keep the molten cheese and oil from sliding off.",
   "history": "Descended from Neapolitan immigrants (Lombardi's, 1905), this style evolved to suit coal and later gas deck ovens. The dough became larger (18-20 inches), lower moisture, and tougher to handle the 'slice fold'. The use of bromated high-gluten flour became a standard for that specific chew.",
@@ -41,7 +42,7 @@ export const new_york_slice_shop: StyleDefinition = {
     "fermentation": {
       "bulk": "24–48h Cold Fermentation is critical for the characteristic blistered crust",
       "proof": "2–3h warm up before stretching",
-      "coldRetard": "Mandatory for texture and flavor"
+      "coldRetard": t('styles.mandatory_for_texture_and_flavor')
     },
     "oven": {
       "type": "gas_deck",
@@ -49,9 +50,9 @@ export const new_york_slice_shop: StyleDefinition = {
         280,
         315
       ],
-      "notes": "Baked on deck for 7–12 minutes. Must be crisp enough to hold its own weight."
+      "notes": t('styles.baked_on_deck_for_712_minutes_must_be_crisp_enough')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_38'),
     "recommendedUse": [
       "By-the-slice sales",
       "Large 18-inch pies"
@@ -72,8 +73,8 @@ export const new_york_slice_shop: StyleDefinition = {
   "tags": [
     "By-the-slice sales",
     "Large 18-inch pies",
-    "Pizza",
-    "United States"
+    t('common.pizza'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -84,7 +85,7 @@ export const new_york_slice_shop: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_8'),
       "url": ""
     },
     {

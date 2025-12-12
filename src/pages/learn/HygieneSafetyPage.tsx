@@ -3,13 +3,15 @@ import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { ShieldCheckIcon, BookOpenIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 // Local Section component for structuring content
 const HygieneSafetyPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <TechnicalPageLayout
-      title="Hygiene and Food Safety in Pizza"
-      subtitle="Universal sanitary principles for safe responsible handling, based on science."
+      title={t('learn.hygiene_and_food_safety_in_pizza')}
+      subtitle={t('learn.universal_sanitary_principles_for_safe_responsible')}
       showReferencesSection={false} // Custom references section at the end
     >
       <LearnSection title="1. Introduction: Quality Base is Safety">
@@ -17,10 +19,10 @@ const HygieneSafetyPage: React.FC = () => {
           Food safety is non-negotiable. It's a system aiming for:
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Microbial control</strong> reducing pathogens.</li>
-          <li><strong>Preventing contamination</strong> (biological, chemical, physical).</li>
-          <li><strong>Responsible handling</strong> of ingredients/tools.</li>
-          <li>Maintaining <strong>clean environment</strong>.</li>
+          <li><strong>{t('learn.microbial_control')}</strong> reducing pathogens.</li>
+          <li><strong>{t('learn.preventing_contamination')}</strong> (biological, chemical, physical).</li>
+          <li><strong>{t('learn.responsible_handling')}</strong> of ingredients/tools.</li>
+          <li>{t('learn.maintaining')}<strong>clean environment</strong>.</li>
         </ul>
         <p>
           Following principles protects health and ensures sensory integrity.
@@ -32,10 +34,10 @@ const HygieneSafetyPage: React.FC = () => {
           Handler is main contamination vector.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Wash hands properly</strong> with soap/water frequently.</li>
-          <li>Keep <strong>nails short/clean</strong>.</li>
-          <li><strong>Avoid handling</strong> with open wounds unless covered.</li>
-          <li>Avoid <strong>cross contact</strong>: never touch raw meat then ready food without washing.</li>
+          <li><strong>{t('learn.wash_hands_properly')}</strong> with soap/water frequently.</li>
+          <li>{t('learn.keep')}<strong>nails short/clean</strong>.</li>
+          <li><strong>{t('learn.avoid_handling')}</strong> with open wounds unless covered.</li>
+          <li>{t('learn.avoid')}<strong>cross contact</strong>: never touch raw meat then ready food without washing.</li>
         </ul>
       </LearnSection>
 
@@ -44,9 +46,9 @@ const HygieneSafetyPage: React.FC = () => {
           Sanitary quality equals sensory quality.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>Use <strong>fresh ingredients</strong> from reliable sources.</li>
-          <li>Discard <strong>strange odors, altered colors</strong> or <strong>bloated</strong> packs.</li>
-          <li><strong>Wash vegetables</strong> well.</li>
+          <li>{t('learn.use')}<strong>fresh ingredients</strong> from reliable sources.</li>
+          <li>{t('learn.discard')}<strong>strange odors, altered colors</strong> or <strong>bloated</strong> packs.</li>
+          <li><strong>{t('learn.wash_vegetables')}</strong> well.</li>
           <li>Check appearance/smell of <strong>meats/dairy</strong> and expiry dates.</li>
         </ul>
       </LearnSection>
@@ -56,44 +58,44 @@ const HygieneSafetyPage: React.FC = () => {
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Segregate boards/knives.</strong> Use different tools for raw meats/veg.</li>
           <li><strong>Never mix raw/ready</strong> in same container.</li>
-          <li><strong>Clean surfaces rigorously</strong>.</li>
+          <li><strong>{t('learn.clean_surfaces_rigorously')}</strong>.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="5. Common Microorganisms">
         <p>Dough/ingredients are nutrient rich:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Bacteria:</strong> Can multiply fast. Some pathogenic.</li>
-          <li><strong>Molds:</strong> Visible colonies producing mycotoxins.</li>
-          <li><strong>Unwanted Yeasts:</strong> Wild yeasts producing off flavors.</li>
-          <li><strong>Biofilms:</strong> Communities on dirty surfaces.</li>
+          <li><strong>{t('learn.bacteria')}</strong> Can multiply fast. Some pathogenic.</li>
+          <li><strong>{t('learn.molds')}</strong> Visible colonies producing mycotoxins.</li>
+          <li><strong>{t('learn.unwanted_yeasts')}</strong> Wild yeasts producing off flavors.</li>
+          <li><strong>{t('learn.biofilms')}</strong> Communities on dirty surfaces.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="6. General Dough Conservation">
-        <p>Protect dough during fermentation.</p>
+        <p>{t('learn.protect_dough_during_fermentation')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>Use <strong>clean closed containers</strong>.</li>
-          <li>Avoid <strong>contaminated air</strong> contact.</li>
-          <li>Clean all <strong>tools</strong>.</li>
-          <li><strong>Avoid unnecessary handling</strong>.</li>
+          <li>{t('learn.use')}<strong>clean closed containers</strong>.</li>
+          <li>{t('learn.avoid')}<strong>contaminated air</strong> contact.</li>
+          <li>{t('learn.clean_all')}<strong>tools</strong>.</li>
+          <li><strong>{t('learn.avoid_unnecessary_handling')}</strong>.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="7. Real Risks">
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Sensory spoilage:</strong> Off flavors/odors.</li>
-          <li><strong>Foodborne illness:</strong> Pathogens causing sickness.</li>
-          <li><strong>Visible mold:</strong> Discard entirely. Mycotoxins spread beyond visible mold.</li>
+          <li><strong>{t('learn.sensory_spoilage')}</strong> Off flavors/odors.</li>
+          <li><strong>{t('learn.foodborne_illness')}</strong> Pathogens causing sickness.</li>
+          <li><strong>{t('learn.visible_mold')}</strong> Discard entirely. Mycotoxins spread beyond visible mold.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="8. Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 space-y-2">
-          <li>WHO – Five Keys to Safer Food</li>
-          <li>FDA Food Code</li>
-          <li>Modernist Cuisine – Food Safety</li>
-          <li>Wikipedia – Food safety</li>
+          <li>{t('learn.who__five_keys_to_safer_food')}</li>
+          <li>{t('learn.fda_food_code')}</li>
+          <li>{t('learn.modernist_cuisine__food_safety')}</li>
+          <li>{t('learn.wikipedia__food_safety')}</li>
         </ul>
       </LearnSection>
     </TechnicalPageLayout>

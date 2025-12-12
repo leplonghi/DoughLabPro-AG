@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext'; // Assuming this exists
 import { getCountryPricing, CountryPricing, DEFAULT_PRICING } from '../data/countryPricing';
+import { useTranslation } from '@/i18n';
 
 export interface LocalizedPricing {
     countryCode: string;

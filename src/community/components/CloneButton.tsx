@@ -3,16 +3,18 @@ import { Copy, Loader2 } from 'lucide-react';
 import { useCommunityClone } from '../hooks/useCommunityClone';
 import { CommunityPost } from '../types';
 import { LockFeature } from '../../components/auth/LockFeature';
+import { useTranslation } from '@/i18n';
 
 interface CloneButtonProps {
     post: CommunityPost;
 }
 
 export const CloneButton: React.FC<CloneButtonProps> = ({ post }) => {
+  const { t } = useTranslation();
     const { clonePost, loading } = useCommunityClone();
 
     return (
-        <LockFeature featureKey="community.clone" mode="tooltip" customMessage="Unlock full Community">
+        <LockFeature featureKey="community.clone" mode="tooltip" customMessage={t('community.unlock_full_community')}>
             <button
                 onClick={() => clonePost(post)}
                 disabled={loading}

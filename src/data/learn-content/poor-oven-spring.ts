@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const poorOvenSpringData: LearnArticleData = {
     id: "poor-oven-spring",
-    title: "Poor Oven Spring",
-    subtitle: "Diagnosing weak rise during the first minutes of baking.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    title: t('learn.poor_oven_spring'),
+    subtitle: t('learn.diagnosing_weak_rise_during_the_first_minutes_of_b'),
+    category: t('learn.troubleshooting_7'),
+    difficulty: t('learn.intermediate_23'),
     tags: ["oven-spring", "troubleshooting", "rise", "volume"],
 
     intro: "Oven spring is driven by rapid gas expansion, steam formation and gluten stretch. Weak oven spring indicates structural, fermentation or baking temperature issues.",
@@ -31,7 +32,7 @@ export const poorOvenSpringData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Optimal Oven Spring Internal Temp", notes: "Recommended: 55°C (Range: 40-70°C)" }
+        { label: t('learn.optimal_oven_spring_internal_temp'), notes: "Recommended: 55°C (Range: 40-70°C)" }
     ],
 
     practicalApplications: [
@@ -61,12 +62,12 @@ export const poorOvenSpringData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Low Heat",
+            variant: t('learn.low_heat'),
             implications: "Oven not hot enough for rapid expansion. Slow rise, weak spring. Fails to inflate. Dense bake."
         },
         {
-            variant: "Overproofed Dough",
-            implications: "Weakens gluten before baking. Soft, fragile. Collapses under heat. Minimal rise."
+            variant: t('learn.overproofed_dough_4'),
+            implications: t('learn.weakens_gluten_before_baking_soft_fragile_collapse')
         }
     ],
 
@@ -81,8 +82,8 @@ export const poorOvenSpringData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, good oven spring is like a balloon filling with warm air — but only if the balloon is strong.",
-        whatItDoes: "Makes bread tall and airy.",
-        howToUse: "The dough needs strength and heat to puff up.",
-        dangerSigns: "If the dough is weak or the oven cold, it won’t rise."
+        whatItDoes: t('learn.makes_bread_tall_and_airy'),
+        howToUse: t('learn.the_dough_needs_strength_and_heat_to_puff_up'),
+        dangerSigns: t('learn.if_the_dough_is_weak_or_the_oven_cold_it_wont_rise')
     }
 };

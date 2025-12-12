@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const ambientVsColdFermentationData: LearnArticleData = {
     id: 'ambient-vs-cold-fermentation',
@@ -7,7 +8,7 @@ export const ambientVsColdFermentationData: LearnArticleData = {
 
     category: 'Fermentation Science',
     difficulty: 'Intermediate',
-    tags: ['Temperature', 'Yeast', 'Flavor', 'Texture'],
+    tags: [t('learn.temperature'), t('learn.yeast'), t('learn.flavor'), t('learn.texture')],
 
     intro: "Temperature is the master variable in baking. It dictates not just how fast your dough rises, but what it tastes like. Ambient fermentation offers speed and simplicity, while cold fermentation (retarding) unlocks superior flavor complexity and extensibility.",
 
@@ -33,9 +34,9 @@ export const ambientVsColdFermentationData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Ambient Zone", notes: "Recommended: 24°C (Range: 20-26°C)" },
+        { label: t('learn.ambient_zone'), notes: "Recommended: 24°C (Range: 20-26°C)" },
         { label: "Cold Zone (Retarding)", notes: "Recommended: 4°C (Range: 2-6°C)" },
-        { label: "The Dead Zone", notes: "Avoid temperatures between 8-15°C. Yeast is too active for storage but too slow for predictable rising." }
+        { label: t('learn.the_dead_zone'), notes: "Avoid temperatures between 8-15°C. Yeast is too active for storage but too slow for predictable rising." }
     ],
 
     practicalApplications: [
@@ -70,16 +71,16 @@ export const ambientVsColdFermentationData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Ambient Fermentation",
-            implications: "Requires careful timing; less extensible. Standard crust; good volume."
+            variant: t('learn.ambient_fermentation'),
+            implications: t('learn.requires_careful_timing_less_extensible_standard_c')
         },
         {
-            variant: "Cold Fermentation",
-            implications: "Very relaxed; easy to open. Premium texture and aroma."
+            variant: t('learn.cold_fermentation'),
+            implications: t('learn.very_relaxed_easy_to_open_premium_texture_and_arom')
         },
         {
-            variant: "Hybrid Method",
-            implications: "Balanced strength and extensibility. Ideal for home ovens."
+            variant: t('learn.hybrid_method'),
+            implications: t('learn.balanced_strength_and_extensibility_ideal_for_home')
         }
     ],
 
@@ -93,7 +94,7 @@ export const ambientVsColdFermentationData: LearnArticleData = {
 
     faq: [
         {
-            q: "Can I switch from ambient to cold halfway?",
+            q: t('learn.can_i_switch_from_ambient_to_cold_halfway'),
             a: "Yes, this is the 'Hybrid Method'. Just ensure you account for the time it takes for the dough to cool down."
         }
     ],

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleCategory } from '@/types/styles';
+import { useTranslation } from '@/i18n';
 
 interface CategoryBadgeProps {
     category: StyleCategory;
@@ -20,6 +21,7 @@ const CATEGORY_LABELS: Record<StyleCategory, string> = {
 };
 
 export const CategoryBadge: React.FC<CategoryBadgeProps> = ({ category }) => {
+  const { t } = useTranslation();
     // Standardized badge style for consistency
     const colorClass = 'bg-dlp-bg-muted text-dlp-text-secondary border-dlp-border';
     const label = CATEGORY_LABELS[category] || 'Other';

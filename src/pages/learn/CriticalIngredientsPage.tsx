@@ -5,12 +5,14 @@ import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { FireIcon, BeakerIcon, CubeIcon, TagIcon, WaterIcon, FlourIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 interface CriticalIngredientsPageProps {
     onNavigate: (page: Page) => void;
 }
 
 const CriticalIngredientsPage: React.FC<CriticalIngredientsPageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const topics = [
         { page: 'learn/ingredients/flours', title: 'Flours', description: 'The science behind strength (W), P/L, and milling types.', icon: <FlourIcon className="h-8 w-8" /> },
         { page: 'learn/article/yeast-leavening-agents', title: 'Yeasts', description: 'Commercial yeasts, sourdough starters, and fermentation science.', icon: <BeakerIcon className="h-8 w-8" /> },
@@ -27,8 +29,8 @@ const CriticalIngredientsPage: React.FC<CriticalIngredientsPageProps> = ({ onNav
 
     return (
         <TechnicalPageLayout
-            title="Critical Ingredients"
-            subtitle="A deep dive into flours, tomatoes, cheeses, meats, and their specific impact on pizza quality."
+            title={t('learn.critical_ingredients')}
+            subtitle={t('learn.a_deep_dive_into_flours_tomatoes_cheeses_meats_and')}
         >
             <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {topics.map(topic => (

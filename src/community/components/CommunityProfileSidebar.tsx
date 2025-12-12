@@ -5,8 +5,10 @@ import { User, Award, TrendingUp, PlusCircle } from 'lucide-react';
 import { useRouter } from '../../contexts/RouterContext';
 import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
+import { useTranslation } from '@/i18n';
 
 export const CommunityProfileSidebar: React.FC = () => {
+  const { t } = useTranslation();
     const { user, hasProAccess } = useUser();
     const { navigate } = useRouter();
     const [stats, setStats] = useState({ posts: 0, likes: 0, clones: 0 });
@@ -28,7 +30,7 @@ export const CommunityProfileSidebar: React.FC = () => {
                     clones: totalClones
                 });
             } catch (err) {
-                console.error("Failed to fetch user stats", err);
+                console.error(t('community.failed_to_fetch_user_stats'), err);
             }
         };
 
@@ -52,9 +54,7 @@ export const CommunityProfileSidebar: React.FC = () => {
                         )}
                     </div>
                     {hasProAccess && (
-                        <div className="absolute bottom-0 right-0 bg-dlp-accent text-white text-[10px] font-semibold px-2 py-0.5 rounded-full shadow-dlp-sm border border-dlp-bg-card">
-                            PRO
-                        </div>
+                        <div className="absolute bottom-0 right-0 bg-dlp-accent text-white text-[10px] font-semibold px-2 py-0.5 rounded-full shadow-dlp-sm border border-dlp-bg-card">{t('community.pro')}</div>
                     )}
                 </div>
 
@@ -73,22 +73,20 @@ export const CommunityProfileSidebar: React.FC = () => {
                     onClick={() => navigate('community/create')}
                     className="mt-4 w-full flex items-center justify-center gap-2 bg-dlp-accent hover:bg-lime-700 text-white py-2 rounded-lg text-sm font-medium transition-colors"
                 >
-                    <PlusCircle className="h-4 w-4" />
-                    New Post
-                </button>
+                    <PlusCircle className="h-4 w-4" />{t('community.new_post')}</button>
 
                 <div className="mt-4 grid grid-cols-3 gap-2 border-t border-dlp-border pt-4">
                     <div className="text-center">
                         <div className="text-sm font-semibold text-dlp-text-primary">{stats.posts}</div>
-                        <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">Posts</div>
+                        <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">{t('community.posts')}</div>
                     </div>
                     <div className="text-center border-l border-dlp-border">
                         <div className="text-sm font-semibold text-dlp-text-primary">{stats.likes}</div>
-                        <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">Likes</div>
+                        <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">{t('community.likes')}</div>
                     </div>
                     <div className="text-center border-l border-dlp-border">
                         <div className="text-sm font-semibold text-dlp-text-primary">{stats.clones}</div>
-                        <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">Clones</div>
+                        <div className="text-[10px] text-dlp-text-muted uppercase tracking-wide">{t('community.clones')}</div>
                     </div>
                 </div>
             </div>
@@ -96,22 +94,20 @@ export const CommunityProfileSidebar: React.FC = () => {
             {/* Stats - Locked for Free */}
             <div className="bg-dlp-bg-card rounded-lg shadow-dlp-sm border border-dlp-border overflow-hidden">
                 <div className="p-4 border-b border-dlp-border font-semibold text-sm flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-dlp-accent" />
-                    Performance Stats
-                </div>
+                    <TrendingUp className="h-4 w-4 text-dlp-accent" />{t('community.performance_stats')}</div>
 
                 <LockFeature featureKey="community.profile_full" className="p-4">
                     <div className="space-y-4">
                         <div className="flex items-center justify-between text-sm">
-                            <span className="text-dlp-text-secondary">Weekly Rank</span>
+                            <span className="text-dlp-text-secondary">{t('community.weekly_rank')}</span>
                             <span className="font-medium text-dlp-text-primary">#42</span>
                         </div>
                         <div className="flex items-center justify-between text-sm">
-                            <span className="text-dlp-text-secondary">Total Clones</span>
+                            <span className="text-dlp-text-secondary">{t('community.total_clones')}</span>
                             <span className="font-medium text-dlp-text-primary">128</span>
                         </div>
                         <div className="flex items-center justify-between text-sm">
-                            <span className="text-dlp-text-secondary">Avg. Rating</span>
+                            <span className="text-dlp-text-secondary">{t('community.avg_rating')}</span>
                             <span className="font-medium text-dlp-text-primary">4.8/5</span>
                         </div>
                     </div>
@@ -121,9 +117,7 @@ export const CommunityProfileSidebar: React.FC = () => {
             {/* Badges - Locked for Free */}
             <div className="bg-dlp-bg-card rounded-lg shadow-dlp-sm border border-dlp-border overflow-hidden">
                 <div className="p-4 border-b border-dlp-border font-semibold text-sm flex items-center gap-2">
-                    <Award className="h-4 w-4 text-dlp-accent" />
-                    Achievements
-                </div>
+                    <Award className="h-4 w-4 text-dlp-accent" />{t('community.achievements')}</div>
 
                 <LockFeature featureKey="community.profile_full" className="p-4">
                     <div className="grid grid-cols-4 gap-2">

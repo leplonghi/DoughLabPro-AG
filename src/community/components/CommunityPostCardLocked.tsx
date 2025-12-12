@@ -4,12 +4,14 @@ import { CommunityPost } from '../types';
 import { PostHeader } from './PostHeader';
 import { Lock, Sparkles } from 'lucide-react';
 import { useUser } from '../../contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 
 interface CommunityPostCardLockedProps {
     post: CommunityPost;
 }
 
 export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = ({ post }) => {
+  const { t } = useTranslation();
     const { openPaywall } = useUser();
 
     return (
@@ -25,7 +27,7 @@ export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = (
                 {/* Blurred Image - Use the actual image but blurred heavily */}
                 <img
                     src={post.photos[0]}
-                    alt="Locked content"
+                    alt={t('community.locked_content')}
                     className="h-full w-full object-cover blur-2xl opacity-60 scale-110"
                 />
 
@@ -34,21 +36,15 @@ export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = (
                     <div className="bg-white p-4 rounded-full shadow-lg mb-4 ring-1 ring-black/5 animate-bounce-subtle">
                         <Lock className="h-6 w-6 text-lime-600" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                        Unlock this Formula <Sparkles className="h-4 w-4 text-yellow-500" />
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">{t('community.unlock_this_formula')}<Sparkles className="h-4 w-4 text-yellow-500" />
                     </h3>
-                    <p className="text-sm text-gray-600 mb-6 max-w-xs font-medium leading-relaxed">
-                        Join <strong>DoughLab Pro</strong> to see the exact flour blend, hydration, and process used for this bake.
+                    <p className="text-sm text-gray-600 mb-6 max-w-xs font-medium leading-relaxed">{t('community.join')}<strong>{t('community.doughlab_pro')}</strong> to see the exact flour blend, hydration, and process used for this bake.
                     </p>
                     <button
                         onClick={() => openPaywall('community')}
                         className="px-8 py-3 bg-lime-600 hover:bg-lime-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-                    >
-                        Unlock Full Access
-                    </button>
-                    <div className="mt-4 text-[10px] text-gray-500 uppercase tracking-widest font-bold">
-                        Premium Content
-                    </div>
+                    >{t('community.unlock_full_access')}</button>
+                    <div className="mt-4 text-[10px] text-gray-500 uppercase tracking-widest font-bold">{t('community.premium_content')}</div>
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 interface LearnTopicCardProps {
     icon: React.ReactNode;
@@ -14,9 +15,7 @@ const LearnTopicCard: React.FC<LearnTopicCardProps> = ({ icon, title, descriptio
         className="group h-full w-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 relative overflow-hidden"
     >
         {isPro && (
-            <div className="absolute top-0 right-0 bg-lime-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg shadow-sm z-10 uppercase tracking-wide">
-                PRO
-            </div>
+            <div className="absolute top-0 right-0 bg-lime-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg shadow-sm z-10 uppercase tracking-wide">{t('learn.pro')}</div>
         )}
         <div className="flex-shrink-0 text-lime-500">{icon}</div>
         <div className="mt-4 flex-grow">

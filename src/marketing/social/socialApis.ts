@@ -1,4 +1,5 @@
 import { DoughConfig, Levain, DoughStyleDefinition } from '../../types';
+import { useTranslation } from '@/i18n';
 
 export interface SharePayload {
     title: string;

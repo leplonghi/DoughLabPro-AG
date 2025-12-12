@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from '@/contexts/RouterContext';
 import { searchLearn, SearchResult } from '@/utils/learnSearch';
 import { MagnifyingGlassIcon, ArrowRightIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 const SearchResultsPage: React.FC = () => {
+  const { t } = useTranslation();
     const { routeParams, navigate } = useRouter();
 
     // Parse query from routeParams (expected format: "query=value")
@@ -29,11 +31,8 @@ const SearchResultsPage: React.FC = () => {
                     <button onClick={() => navigate('learn')} className="text-slate-500 hover:text-slate-900 mb-6 text-sm">
                         &larr; Back to Learn
                     </button>
-                    <h1 className="text-3xl font-bold text-slate-900 mb-2">
-                        Search Results
-                    </h1>
-                    <p className="text-slate-600">
-                        Showing results for <span className="text-slate-900 font-bold">"{query}"</span>
+                    <h1 className="text-3xl font-bold text-slate-900 mb-2">{t('learn.search_results')}</h1>
+                    <p className="text-slate-600">{t('learn.showing_results_for')}<span className="text-slate-900 font-bold">"{query}"</span>
                     </p>
                 </div>
             </div>
@@ -42,11 +41,9 @@ const SearchResultsPage: React.FC = () => {
                 {results.length === 0 ? (
                     <div className="text-center py-12 bg-white rounded-2xl border border-stone-200 border-dashed">
                         <MagnifyingGlassIcon className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                        <h3 className="text-xl font-bold text-slate-500 mb-2">No results found</h3>
-                        <p className="text-slate-500">Try adjusting your search terms or browse by category.</p>
-                        <button onClick={() => navigate('learn')} className="mt-6 px-6 py-2 bg-lime-600 hover:bg-lime-500 text-white rounded-lg font-bold transition-colors">
-                            Browse Library
-                        </button>
+                        <h3 className="text-xl font-bold text-slate-500 mb-2">{t('learn.no_results_found')}</h3>
+                        <p className="text-slate-500">{t('learn.try_adjusting_your_search_terms_or_browse_by_categ')}</p>
+                        <button onClick={() => navigate('learn')} className="mt-6 px-6 py-2 bg-lime-600 hover:bg-lime-500 text-white rounded-lg font-bold transition-colors">{t('learn.browse_library')}</button>
                     </div>
                 ) : (
                     <div className="space-y-4">

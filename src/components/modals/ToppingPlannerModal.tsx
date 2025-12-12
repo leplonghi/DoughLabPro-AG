@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { TrashIcon, CloseIcon, PlusCircleIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: number; }> = ({ onClose, totalBalls }) => {
+    const { t } = useTranslation();
     const [flavors, setFlavors] = useState<{ name: string, ingredients: { name: string, amount: string }[], assignedBalls: number }[]>([{ name: 'Flavor 1', ingredients: [{ name: '', amount: '' }], assignedBalls: totalBalls }]);
     const [results, setResults] = useState<Record<string, number> | null>(null);
 
@@ -68,7 +70,7 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
             <div className="relative w-full max-w-3xl bg-white rounded-2xl p-6 shadow-xl" onClick={e => e.stopPropagation()}>
-                <h2 className="text-xl font-bold mb-4">Ingredients Planner</h2>
+                <h2 className="text-xl font-bold mb-4">{t('general.ingredients_planner')}</h2>
                 <div className="p-3 rounded-lg bg-slate-100 text-center font-semibold mb-4">
                     Total Pieces in Bake: {totalBalls}
                 </div>
@@ -84,16 +86,16 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
                             <div className="space-y-2">
                                 {flavor.ingredients.map((ing, ingIndex) => (
                                     <div key={ingIndex} className="flex items-center gap-2">
-                                        <input type="text" value={ing.name} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'name', e.target.value)} placeholder="Ingredient" className="flex-grow rounded-md border-slate-300 text-sm" />
-                                        <input type="text" value={ing.amount} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'amount', e.target.value)} placeholder="Qty/unit" className="w-24 rounded-md border-slate-300 text-sm" />
+                                        <input type="text" value={ing.name} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'name', e.target.value)} placeholder={t('general.ingredient')} className="flex-grow rounded-md border-slate-300 text-sm" />
+                                        <input type="text" value={ing.amount} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'amount', e.target.value)} placeholder={t('general.qtyunit')} className="w-24 rounded-md border-slate-300 text-sm" />
                                         {flavor.ingredients.length > 1 && <button onClick={() => removeIngredient(flavorIndex, ingIndex)}><CloseIcon className="h-4 w-4 text-slate-400" /></button>}
                                     </div>
                                 ))}
-                                <button onClick={() => addIngredient(flavorIndex)} className="text-xs font-semibold text-lime-600 flex items-center gap-1"><PlusCircleIcon className="h-4 w-4" /> Add ingredient</button>
+                                <button onClick={() => addIngredient(flavorIndex)} className="text-xs font-semibold text-lime-600 flex items-center gap-1"><PlusCircleIcon className="h-4 w-4" />{t('common.add_ingredient')}</button>
                             </div>
                         </div>
                     ))}
-                    <button onClick={addFlavor} disabled={remainingBalls <= 0} className="w-full text-sm font-semibold text-lime-600 flex items-center justify-center gap-1 p-2 border-2 border-dashed rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"><PlusCircleIcon className="h-5 w-5" /> Add variation</button>
+                    <button onClick={addFlavor} disabled={remainingBalls <= 0} className="w-full text-sm font-semibold text-lime-600 flex items-center justify-center gap-1 p-2 border-2 border-dashed rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"><PlusCircleIcon className="h-5 w-5" />{t('common.add_variation')}</button>
                 </div>
 
                 <button onClick={calculateToppings} disabled={remainingBalls !== 0} className="mt-4 w-full bg-lime-500 text-white font-semibold py-2 rounded-lg disabled:bg-slate-400 disabled:cursor-not-allowed">
@@ -102,7 +104,7 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
 
                 {results && (
                     <div className="mt-6 border-t pt-4">
-                        <h3 className="font-bold">Consolidated Shopping List:</h3>
+                        <h3 className="font-bold">{t('ui.consolidated_shopping_list')}</h3>
                         <ul className="list-disc list-inside mt-2 text-sm columns-2">
                             {Object.entries(results).map(([name, total]) => (
                                 <li key={name}><strong>{name}:</strong> {total} (units)</li>

@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
 import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
+import { useTranslation } from '@/i18n';
 
 const PairingToolPage: React.FC = () => {
+  const { t } = useTranslation();
   const pairingIngredients = [
     { value: '', label: 'Select an ingredient...' },
     { value: 'mozzarella', label: 'Mozzarella' },
@@ -23,9 +25,9 @@ const PairingToolPage: React.FC = () => {
 
   return (
     <IngredientPageLayout
-      title="Flavor Pairing Tool"
+      title={t('learn.flavor_pairing_tool')}
       description="Discover classic and bold flavor combinations for your ingredients."
-      category="Tools"
+      category={t('nav.tools')}
     >
       <div className="space-y-6">
         {/* Input */}
@@ -45,38 +47,30 @@ const PairingToolPage: React.FC = () => {
             onClick={handleSearch}
             className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-lime-500 py-2.5 px-4 text-sm font-semibold text-white shadow-sm hover:bg-lime-600"
           >
-            <SparklesIcon className="h-5 w-5" />
-            Find Pairings
-          </button>
+            <SparklesIcon className="h-5 w-5" />{t('learn.find_pairings')}</button>
         </div>
 
         {/* Results */}
         <div className="space-y-6">
           <div className="rounded-lg bg-slate-50 p-6">
             <h4 className="flex items-center gap-2 text-lg font-semibold text-slate-800">
-              <BookOpenIcon className="h-5 w-5 text-slate-500" />
-              Classic Suggestions
-            </h4>
+              <BookOpenIcon className="h-5 w-5 text-slate-500" />{t('learn.classic_suggestions')}</h4>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700">
               {/* Placeholder content */}
-              <li>Classic combination suggestions for the selected ingredient will appear here.</li>
+              <li>{t('learn.classic_combination_suggestions_for_the_selected_i')}</li>
             </ul>
           </div>
           <div className="rounded-lg bg-slate-50 p-6">
             <h4 className="flex items-center gap-2 text-lg font-semibold text-slate-800">
-              <SparklesIcon className="h-5 w-5 text-yellow-400" />
-              Bold Suggestions
-            </h4>
+              <SparklesIcon className="h-5 w-5 text-yellow-400" />{t('learn.bold_suggestions')}</h4>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700">
               {/* Placeholder content */}
-              <li>Creative and bold pairing suggestions for the selected ingredient will appear here.</li>
+              <li>{t('learn.creative_and_bold_pairing_suggestions_for_the_sele')}</li>
             </ul>
           </div>
           <div className="rounded-lg bg-slate-50 p-6">
             <h4 className="flex items-center gap-2 text-lg font-semibold text-slate-800">
-              <BeakerIcon className="h-5 w-5 text-slate-500" />
-              Technical Notes
-            </h4>
+              <BeakerIcon className="h-5 w-5 text-slate-500" />{t('learn.technical_notes')}</h4>
             <p className="mt-4 text-slate-700">
               {/* Placeholder content */}
               Technical explanations on why pairings work (flavor balance, textures, etc.), based on flavor science and gastronomic literature, will appear here.

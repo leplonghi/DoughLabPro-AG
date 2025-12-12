@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const foodSafetyAndDoughHandlingData: LearnArticleData = {
     id: "food-safety-and-dough-handling",
-    title: "Food Safety & Dough Handling",
-    subtitle: "Keeping dough, toppings and people safe",
+    title: t('learn.food_safety__dough_handling'),
+    subtitle: t('learn.keeping_dough_toppings_and_people_safe'),
     category: 'Dough Science',
     difficulty: 'Beginner',
     tags: ['food-safety', 'hygiene', 'storage', 'temperature'],
@@ -32,16 +33,16 @@ export const foodSafetyAndDoughHandlingData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Cold storage",
+            label: t('learn.cold_storage'),
             notes: "≤4–5°C for perishable doughs and toppings. Keeps microbial growth slow."
         },
         {
             label: "Hot holding (professional context)",
-            notes: "Typically ≥60°C. Used for slices kept hot."
+            notes: t('learn.typically_60c_used_for_slices_kept_hot')
         },
         {
-            label: "Room-temperature handling",
-            notes: "Limit cumulative time in danger zone. Short bench times are usually safe."
+            label: t('learn.roomtemperature_handling'),
+            notes: t('learn.limit_cumulative_time_in_danger_zone_short_bench_t')
         }
     ],
 
@@ -81,9 +82,9 @@ export const foodSafetyAndDoughHandlingData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_11'),
+        whatItDoes: t('learn.improves_texture_and_flavor_5'),
+        howToUse: t('learn.so_you_get_the_best_results_7'),
+        dangerSigns: t('learn.use_it_wisely_7')
     },
 };

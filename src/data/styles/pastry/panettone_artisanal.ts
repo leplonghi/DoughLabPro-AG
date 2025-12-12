@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const panettone_artisanal: StyleDefinition = {
   "id": "panettone_artisanal",
-  "title": "Artisanal Panettone",
-  "subtitle": "Festive Breads",
-  "category": "Pastry",
-  "family": "Festive Breads",
-  "variantName": "Artisanal Panettone",
+  "title": t('styles.artisanal_panettone'),
+  "subtitle": t('styles.festive_breads_3'),
+  "category": t('styles.pastry_9'),
+  "family": t('styles.festive_breads_4'),
+  "variantName": t('styles.artisanal_panettone_2'),
   "origin": {
-    "country": "Italy",
-    "region": "Northern Italy",
+    "country": t('styles.italy_8'),
+    "region": t('styles.northern_italy_3'),
     "period": "Traditional/Modern"
   },
   "intro": "Served around Christmas and festive seasons, now produced artisanal and industrially worldwide.",
@@ -37,11 +38,11 @@ export const panettone_artisanal: StyleDefinition = {
       20,
       30
     ],
-    "flourStrength": "Very strong high-protein flour suitable for extreme enrichment",
+    "flourStrength": t('styles.very_strong_highprotein_flour_suitable_for_extreme'),
     "fermentation": {
-      "bulk": "Multiple dough stages over 12–24+ h",
+      "bulk": t('styles.multiple_dough_stages_over_1224_h'),
       "proof": "4–8 h at ~28–30°C in molds",
-      "coldRetard": "Used cautiously; temperature control is crucial"
+      "coldRetard": t('styles.used_cautiously_temperature_control_is_crucial')
     },
     "oven": {
       "type": "deck",
@@ -49,11 +50,11 @@ export const panettone_artisanal: StyleDefinition = {
         170,
         190
       ],
-      "notes": "Loaves are often cooled upside-down to prevent collapse."
+      "notes": t('styles.loaves_are_often_cooled_upsidedown_to_prevent_coll')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_19'),
     "recommendedUse": [
-      "Festive sweet bread",
+      t('common.festive_sweet_bread'),
       "High-skill project baking"
     ]
   },
@@ -64,10 +65,10 @@ export const panettone_artisanal: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Festive sweet bread",
+    t('common.festive_sweet_bread'),
     "High-skill project baking",
-    "Pastry",
-    "Italy"
+    t('common.pastry'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const panettone_artisanal: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_30'),
       "url": ""
     },
     {
-      "title": "Italian panettone master bakers",
+      "title": t('styles.italian_panettone_master_bakers'),
       "url": ""
     }
   ],

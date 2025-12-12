@@ -25,16 +25,14 @@ const MyLabDoughsPage: React.FC<MyLabDoughsPageProps> = ({ onNavigate }) => {
             <div className="animate-fade-in pb-20">
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 ">Active Doughs</h1>
-                        <p className="text-slate-600  mt-2">Monitor doughs currently in fermentation.</p>
+                        <h1 className="text-3xl font-bold text-slate-900 ">{t('mylab.active_doughs')}</h1>
+                        <p className="text-slate-600  mt-2">{t('mylab.monitor_doughs_currently_in_fermentation')}</p>
                     </div>
                     <button
                         onClick={() => onNavigate('calculator')}
                         className="flex items-center gap-2 bg-lime-500 text-white px-4 py-2 rounded-xl hover:bg-lime-600 transition-colors shadow-lg shadow-lime-500/20"
                     >
-                        <PlusCircleIcon className="h-5 w-5" />
-                        Start New Dough
-                    </button>
+                        <PlusCircleIcon className="h-5 w-5" />{t('mylab.start_new_dough')}</button>
                 </div>
 
                 {activeBatches.length === 0 ? (
@@ -42,7 +40,7 @@ const MyLabDoughsPage: React.FC<MyLabDoughsPageProps> = ({ onNavigate }) => {
                         <div className="w-16 h-16 bg-slate-100  rounded-full flex items-center justify-center mx-auto mb-4">
                             <ClockIcon className="h-8 w-8 text-slate-400 " />
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900 ">No active doughs</h3>
+                        <h3 className="text-lg font-semibold text-slate-900 ">{t('mylab.no_active_doughs')}</h3>
                         <p className="text-slate-500  mt-2 max-w-sm mx-auto">
                             You don't have any doughs currently fermenting. Start a new batch in the calculator!
                         </p>
@@ -74,17 +72,17 @@ const MyLabDoughsPage: React.FC<MyLabDoughsPageProps> = ({ onNavigate }) => {
 
                                 <div className="space-y-2 text-sm text-slate-600">
                                     <div className="flex justify-between">
-                                        <span>Hydration:</span>
+                                        <span>{t('mylab.hydration')}</span>
                                         <span className="font-mono font-medium">{batch.doughConfig.hydration}%</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>Weight:</span>
+                                        <span>{t('mylab.weight')}</span>
                                         <span className="font-mono font-medium">
                                             {batch.doughResult?.totalDough ? Math.round(batch.doughResult.totalDough) : '-'}g
                                         </span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>Created:</span>
+                                        <span>{t('mylab.created')}</span>
                                         <span className="font-mono font-medium">
                                             {new Date(batch.createdAt).toLocaleDateString()}
                                         </span>

@@ -24,6 +24,7 @@ import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { getRange } from '@/logic/validationLogic';
 import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
 import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS } from '@/constants';
+import { useTranslation } from '@/i18n';
 
 interface CalculatorFormProps {
   config: DoughConfig;
@@ -70,6 +71,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   onboardingState,
   results,
 }) => {
+  const { t } = useTranslation();
   const isBasic = calculatorMode === 'basic';
   const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
 
@@ -101,7 +103,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
   const handleSavePreset = () => {
     // Placeholder for save preset logic
-    console.log("Save preset clicked");
+    console.log(t('calculator.save_preset_clicked'));
   };
 
   const recipeStylesToShow = useMemo(() => {
@@ -115,7 +117,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   // Guided Mode Logic
   const hasStyle = !!config.stylePresetId || !!config.selectedStyleId || !!config.baseStyleName;
   // Quantity is considered "valid" if we have valid numbers. Since defaults strictly exist, this is usually true.
-  // But purely for the "Reveal" effect, it works because initially it renders, and subsequent steps depend on it.
+  // But purely for the t('calculator.reveal') effect, it works because initially it renders, and subsequent steps depend on it.
   // To truly force "choice", we rely on the fact that Style is the primary trigger.
   const hasQuantity = hasStyle && config.numPizzas > 0 && config.doughBallWeight > 0;
 
@@ -142,7 +144,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       <div className="animate-fade-in">
         <StepBanner
           step={1}
-          title="Choose Your Style"
+          title={t('general.choose_your_style')}
           description="Select the type of product (Pizza, Bread, Pastry) and the specific style you want to make."
         />
         <StyleSection
@@ -161,7 +163,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <div className="animate-fade-in-up">
           <StepBanner
             step={2}
-            title="Define Quantity"
+            title={t('general.define_quantity')}
             description="How much dough do you need? Set the number of balls/loaves and their individual weight."
           />
           <QuantitySection
@@ -183,7 +185,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <div>
             <StepBanner
               step={3}
-              title="Customize Ingredients"
+              title={t('general.customize_ingredients')}
               description="Adjust the key characteristics like hydration (water) and salt to match your taste or flour capability."
             />
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 mb-6">
@@ -210,7 +212,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <div>
             <StepBanner
               step={4}
-              title="Fermentation Strategy"
+              title={t('general.fermentation_strategy')}
               description="Choose how you want to ferment your dough (Direct, Poolish, Biga, etc)."
             />
             <FermentationSection
@@ -228,7 +230,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <div>
             <StepBanner
               step={5}
-              title="Baking Environment"
+              title={t('general.baking_environment')}
               description="Tell us about your oven temperature to fine-tune the recipe."
             />
             <EnvironmentSection
@@ -243,16 +245,14 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       {!isBasic && (
         <LockedTeaser featureKey="calculator.save_preset">
           <FormSection
-            title="Save Custom Preset"
+            title={t('general.save_custom_preset')}
             description="Save the current configuration for future use."
             icon={<BookmarkSquareIcon className="h-6 w-6" />}
           >
             <button
               onClick={handleSavePreset}
               className="w-full flex items-center justify-center gap-2 rounded-md bg-dlp-accent py-2 px-3 text-sm font-semibold text-white shadow-dlp-sm transition-colors hover:bg-dlp-accent-hover"
-            >
-              Save as Custom Style
-            </button>
+            >{t('calculator.save_as_custom_style')}</button>
           </FormSection>
         </LockedTeaser>
       )}
@@ -262,21 +262,17 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           type="button"
           onClick={onReset}
           className="w-full rounded-lg bg-dlp-bg-muted py-3 px-4 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm transition-all hover:bg-dlp-border-strong focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
-        >
-          Reset Fields
-        </button>
+        >{t('calculator.reset_fields')}</button>
       </div>
 
       {!hasProAccess && (
         <div className="mt-6 rounded-lg bg-dlp-bg-muted border border-dlp-border p-4 text-center shadow-dlp-sm">
-          <p className="text-sm font-bold text-dlp-text-primary">Stop guessing. Start mastering.</p>
-          <p className="mt-0.5 text-xs text-dlp-text-secondary">Professional tools for less than 25¢ a day.</p>
+          <p className="text-sm font-bold text-dlp-text-primary">{t('calculator.stop_guessing_start_mastering')}</p>
+          <p className="mt-0.5 text-xs text-dlp-text-secondary">{t('calculator.professional_tools_for_less_than_25_a_day')}</p>
           <button
             onClick={onOpenPaywall}
             className="mt-3 rounded-full bg-dlp-accent px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105 hover:bg-dlp-accent-hover shadow-dlp-sm"
-          >
-            Upgrade to Pro
-          </button>
+          >{t('calculator.upgrade_to_pro')}</button>
         </div>
       )}
     </div>

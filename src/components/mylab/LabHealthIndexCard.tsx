@@ -2,6 +2,7 @@ import React from 'react';
 import { useInsights } from '@/contexts/InsightsProvider';
 import { useBatches } from '@/contexts/BatchesProvider';
 import { useLevain } from '@/contexts/LevainProvider';
+import { useTranslation } from '@/i18n';
 // import { ActivityLogIcon, HeartIcon, LightningBoltIcon, CheckCircledIcon } from '@radix-ui/react-icons'; // Removed due to conflict
 
 // Fallback icons if Radix not available
@@ -13,6 +14,7 @@ import {
 } from '@/components/ui/Icons';
 
 const LabHealthIndexCard: React.FC = () => {
+  const { t } = useTranslation();
     const { bakeConsistencyScore, usageFrequency } = useInsights();
     const { successRate } = useBatches();
     const { levainHealthScore } = useLevain();
@@ -38,9 +40,7 @@ const LabHealthIndexCard: React.FC = () => {
         <div className="rounded-xl bg-white p-4 shadow-sm border border-slate-100 mb-4">
             <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                    <ActivityLogIcon className="h-4 w-4 text-indigo-500" />
-                    Lab Health Index
-                </h3>
+                    <ActivityLogIcon className="h-4 w-4 text-indigo-500" />{t('mylab.lab_health_index')}</h3>
                 <div className={`text-xs font-bold px-2 py-1 rounded-full bg-slate-100 ${getHealthColor(overallScore)}`}>
                     {overallScore}/100
                 </div>
@@ -51,7 +51,7 @@ const LabHealthIndexCard: React.FC = () => {
                 <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
                     <div className="flex items-center gap-1.5 mb-1">
                         <ChartBarIcon className="h-3 w-3 text-slate-400" />
-                        <span className="text-[10px] uppercase font-bold text-slate-500">Consistency</span>
+                        <span className="text-[10px] uppercase font-bold text-slate-500">{t('mylab.consistency')}</span>
                     </div>
                     <div className="flex items-end gap-1">
                         <span className="text-lg font-bold text-slate-900">{bakeConsistencyScore}</span>
@@ -69,7 +69,7 @@ const LabHealthIndexCard: React.FC = () => {
                 <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
                     <div className="flex items-center gap-1.5 mb-1">
                         <FireIcon className="h-3 w-3 text-slate-400" />
-                        <span className="text-[10px] uppercase font-bold text-slate-500">Levain</span>
+                        <span className="text-[10px] uppercase font-bold text-slate-500">{t('mylab.levain')}</span>
                     </div>
                     <div className="flex items-end gap-1">
                         <span className="text-lg font-bold text-slate-900">{levainHealthScore}</span>
@@ -87,7 +87,7 @@ const LabHealthIndexCard: React.FC = () => {
                 <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
                     <div className="flex items-center gap-1.5 mb-1">
                         <ClockIcon className="h-3 w-3 text-slate-400" />
-                        <span className="text-[10px] uppercase font-bold text-slate-500">Activity</span>
+                        <span className="text-[10px] uppercase font-bold text-slate-500">{t('mylab.activity')}</span>
                     </div>
                     <div className="flex items-end gap-1">
                         <span className="text-lg font-bold text-slate-900">{usageFrequency}</span>
@@ -105,7 +105,7 @@ const LabHealthIndexCard: React.FC = () => {
                 <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
                     <div className="flex items-center gap-1.5 mb-1">
                         <CheckCircleIcon className="h-3 w-3 text-slate-400" />
-                        <span className="text-[10px] uppercase font-bold text-slate-500">Success</span>
+                        <span className="text-[10px] uppercase font-bold text-slate-500">{t('mylab.success')}</span>
                     </div>
                     <div className="flex items-end gap-1">
                         <span className="text-lg font-bold text-slate-900">{successRate}%</span>

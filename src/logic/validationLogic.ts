@@ -1,4 +1,5 @@
 import { BakeType } from '../types';
+import { useTranslation } from '@/i18n';
 
 export function getRange(field: string, bakeType?: BakeType): [number, number] | undefined {
     const isPastry = bakeType === BakeType.SWEETS_PASTRY;

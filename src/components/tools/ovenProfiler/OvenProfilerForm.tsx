@@ -1,6 +1,7 @@
 import React from 'react';
 import { FireIcon, ClockIcon, InfoIcon } from '@/components/ui/Icons';
 import { OvenProfileInput } from '@/logic/ovenProfile';
+import { useTranslation } from '@/i18n';
 
 interface OvenProfilerFormProps {
     profile: OvenProfileInput;
@@ -28,6 +29,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
     onChange,
     onAnalyze
 }) => {
+  const { t } = useTranslation();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
         const finalValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked :
@@ -44,16 +46,14 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                 </div>
                 <div>
                     <h3 className="text-lg font-bold text-slate-900">1. Oven Configuration</h3>
-                    <p className="text-sm text-slate-500">Define your equipment parameters.</p>
+                    <p className="text-sm text-slate-500">{t('tools.define_your_equipment_parameters')}</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Oven Type */}
                 <div>
-                    <label htmlFor="ovenType" className="block text-sm font-medium text-slate-700 mb-1">
-                        Oven Type
-                    </label>
+                    <label htmlFor="ovenType" className="block text-sm font-medium text-slate-700 mb-1">{t('common.oven_type')}</label>
                     <select
                         id="ovenType"
                         name="ovenType"
@@ -61,11 +61,11 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                         onChange={handleChange}
                         className="block w-full rounded-xl border-slate-300 bg-slate-50 p-3 text-slate-900 focus:border-lime-500 focus:ring-lime-500 sm:text-sm transition-shadow"
                     >
-                        <option value="home_gas">Home gas oven</option>
-                        <option value="home_electric">Home electric oven</option>
-                        <option value="convection">Convection oven</option>
+                        <option value="home_gas">{t('tools.home_gas_oven')}</option>
+                        <option value="home_electric">{t('tools.home_electric_oven')}</option>
+                        <option value="convection">{t('tools.convection_oven')}</option>
                         <option value="deck">Deck/stone oven</option>
-                        <option value="wood">Wood-fired oven</option>
+                        <option value="wood">{t('tools.woodfired_oven')}</option>
                     </select>
                 </div>
 
@@ -91,9 +91,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
 
                 {/* Baking Surface */}
                 <div>
-                    <label htmlFor="surface" className="block text-sm font-medium text-slate-700 mb-1">
-                        Baking Surface
-                    </label>
+                    <label htmlFor="surface" className="block text-sm font-medium text-slate-700 mb-1">{t('common.baking_surface')}</label>
                     <select
                         id="surface"
                         name="surface"
@@ -103,15 +101,13 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                     >
                         <option value="none">No stone/steel</option>
                         <option value="stone">Baking stone (Cordierite)</option>
-                        <option value="steel">Baking steel</option>
+                        <option value="steel">{t('tools.baking_steel')}</option>
                     </select>
                 </div>
 
                 {/* Rack Position */}
                 <div>
-                    <label htmlFor="rackPosition" className="block text-sm font-medium text-slate-700 mb-1">
-                        Rack Position
-                    </label>
+                    <label htmlFor="rackPosition" className="block text-sm font-medium text-slate-700 mb-1">{t('common.rack_position')}</label>
                     <select
                         id="rackPosition"
                         name="rackPosition"
@@ -130,7 +126,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                     <label htmlFor="preheatMinutes" className="block text-sm font-medium text-slate-700 mb-1 flex items-center">
                         Preheat Time (Minutes)
                         <Tooltip
-                            label="Why preheat?"
+                            label={t('tools.why_preheat')}
                             content="Stones and steels require significant time to absorb heat (thermal mass). Without saturation, the base of your pizza will remain undercooked."
                         />
                     </label>
@@ -152,8 +148,8 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                 {/* Convection Mode Toggle */}
                 <div className="flex items-center justify-between rounded-xl border border-slate-200 p-3 bg-slate-50">
                     <div className="flex flex-col">
-                        <span className="text-sm font-medium text-slate-900">Convection Mode</span>
-                        <span className="text-xs text-slate-500">Fan-forced air circulation</span>
+                        <span className="text-sm font-medium text-slate-900">{t('tools.convection_mode')}</span>
+                        <span className="text-xs text-slate-500">{t('tools.fanforced_air_circulation')}</span>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -173,9 +169,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                     onClick={onAnalyze}
                     className="w-full flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-3.5 px-6 text-base font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
                 >
-                    <FireIcon className="h-5 w-5" />
-                    Analyze Oven Profile
-                </button>
+                    <FireIcon className="h-5 w-5" />{t('common.analyze_oven_profile')}</button>
             </div>
         </div>
     );

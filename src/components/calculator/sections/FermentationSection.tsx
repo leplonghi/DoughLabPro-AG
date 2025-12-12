@@ -7,6 +7,7 @@ import SliderInput from '@/components/ui/SliderInput';
 import { FermentationIcon, LockClosedIcon, InfoIcon } from '@/components/ui/Icons';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { getArticleById } from '@/data/learn';
+import { useTranslation } from '@/i18n';
 
 interface FermentationSectionProps {
   config: DoughConfig;
@@ -29,6 +30,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
   onOpenPaywall,
   allowedTechniques = [],
 }) => {
+  const { t } = useTranslation();
   const safeAllowedTechniques = Array.isArray(allowedTechniques) ? allowedTechniques : [];
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +54,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
   if (isChemicalOrNoFermentOnly) {
     return (
       <FormSection
-        title="Leavening"
+        title={t('calculator.leavening')}
         description="Leavening method for this style."
         icon={<FermentationIcon className="h-6 w-6" />}
       >
@@ -70,7 +72,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
 
   return (
     <FormSection
-      title="Fermentation Technique"
+      title={t('calculator.fermentation_technique')}
       description="Choose between a direct method or a preferment."
       icon={<FermentationIcon className="h-6 w-6" />}
     >
@@ -86,10 +88,10 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 active={config.fermentationTechnique === FermentationTechnique.DIRECT}
                 onClick={() => isAllowed(FermentationTechnique.DIRECT) && onConfigChange({ fermentationTechnique: FermentationTechnique.DIRECT })}
                 className={!isAllowed(FermentationTechnique.DIRECT) ? "opacity-50 cursor-not-allowed" : ""}
-                label="Direct"
+                label={t('calculator.direct')}
               />
               {!isAllowed(FermentationTechnique.DIRECT) && (
-                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title="Not applicable for this style">
+                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title={t('calculator.not_applicable_for_this_style')}>
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
                 </div>
               )}
@@ -101,11 +103,11 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                   active={config.fermentationTechnique === FermentationTechnique.POOLISH}
                   onClick={() => isAllowed(FermentationTechnique.POOLISH) && onConfigChange({ fermentationTechnique: FermentationTechnique.POOLISH, prefermentFlourPercentage: 30 })}
                   className={!isAllowed(FermentationTechnique.POOLISH) ? "opacity-50 cursor-not-allowed" : ""}
-                  label="Poolish"
+                  label={t('calculator.poolish')}
                 />
               </LockFeature>
               {!isAllowed(FermentationTechnique.POOLISH) && (
-                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
+                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title={t('calculator.not_compatible_with_selected_style')}>
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
                 </div>
               )}
@@ -117,11 +119,11 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                   active={config.fermentationTechnique === FermentationTechnique.BIGA}
                   onClick={() => isAllowed(FermentationTechnique.BIGA) && onConfigChange({ fermentationTechnique: FermentationTechnique.BIGA, prefermentFlourPercentage: 50 })}
                   className={!isAllowed(FermentationTechnique.BIGA) ? "opacity-50 cursor-not-allowed" : ""}
-                  label="Biga"
+                  label={t('calculator.biga')}
                 />
               </LockFeature>
               {!isAllowed(FermentationTechnique.BIGA) && (
-                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title="Not compatible with selected style">
+                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title={t('calculator.not_compatible_with_selected_style')}>
                   <InfoIcon className="h-2.5 w-2.5" /> N/A
                 </div>
               )}
@@ -137,7 +139,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
           {config.fermentationTechnique !== FermentationTechnique.DIRECT && (
             <div className="pt-6 border-t border-dlp-border">
               <SliderInput
-                label="% Flour in Preferment"
+                label={t('calculator._flour_in_preferment')}
                 name="prefermentFlourPercentage"
                 value={config.prefermentFlourPercentage}
                 onChange={handleNumberChange}

@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const fermentationFundamentalsArticle: LearnArticleData = {
     id: "fermentation-fundamentals",
-    title: "Fermentation Fundamentals",
-    subtitle: "How yeast, enzymes and temperature create gas, flavor and dough structure.",
-    category: "Fermentation Science",
-    difficulty: "Beginner",
+    title: t('learn.fermentation_fundamentals'),
+    subtitle: t('learn.how_yeast_enzymes_and_temperature_create_gas_flavo'),
+    category: t('learn.fermentation_science_6'),
+    difficulty: t('learn.beginner_4'),
     tags: ["fermentation", "yeast", "enzymes", "temperature"],
 
     intro: "Fermentation is the biochemical process where yeast consumes sugars, producing CO₂, ethanol and flavor compounds. This activity drives dough expansion, aroma development and structural transformation.",
@@ -65,11 +66,11 @@ export const fermentationFundamentalsArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Short Fermentation",
+            variant: t('learn.short_fermentation'),
             implications: "Fast rise with more yeast. Fast, limited flavor. Less extensible. Small spring, simple aroma."
         },
         {
-            variant: "Long Fermentation",
+            variant: t('learn.long_fermentation'),
             implications: "Slow rise with less yeast. Flavor depth, better texture. More extensible and relaxed. Open crumb and rich aroma."
         }
     ],
@@ -86,8 +87,8 @@ export const fermentationFundamentalsArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, fermentation is like the dough breathing — tiny bubbles growing inside.",
-        whatItDoes: "It gives flavor, softness and airiness.",
-        howToUse: "Yeast eats sugar and makes gas that puffs the dough up.",
-        dangerSigns: "But if you let it go too long, the dough gets tired and collapses."
+        whatItDoes: t('learn.it_gives_flavor_softness_and_airiness'),
+        howToUse: t('learn.yeast_eats_sugar_and_makes_gas_that_puffs_the_doug'),
+        dangerSigns: t('learn.but_if_you_let_it_go_too_long_the_dough_gets_tired')
     }
 };

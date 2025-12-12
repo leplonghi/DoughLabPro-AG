@@ -2,6 +2,7 @@ import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { LockClosedIcon, SparklesIcon } from '@/components/ui/Icons';
 import { canUseFeature, PlanType, PermissionKey } from '@/permissions';
+import { useTranslation } from '@/i18n';
 
 interface ProFeatureLockProps {
     children: React.ReactNode;
@@ -18,6 +19,7 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
     className = "",
     blurAmount = 'sm'
 }) => {
+  const { t } = useTranslation();
     const { user, openPaywall } = useUser();
     const currentPlan: PlanType = user?.plan as PlanType || 'free';
 
@@ -52,21 +54,17 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
                     <LockClosedIcon className="h-6 w-6 text-lime-400" />
                 </div>
                 
-                <h3 className="text-lg font-bold text-slate-900 mb-1">
-                    Pro Feature
-                </h3>
+                <h3 className="text-lg font-bold text-slate-900 mb-1">{t('common.pro_feature')}</h3>
                 
                 <p className="text-sm text-slate-600 mb-4 max-w-[250px] leading-relaxed">
-                    {customMessage || "Upgrade to DoughLab Pro to unlock this advanced tool."}
+                    {customMessage || t('ui.upgrade_to_doughlab_pro_to_unlock_this_advanced_to')}
                 </p>
                 
                 <button
                     onClick={() => openPaywall('general')}
                     className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 group-hover:scale-105"
                 >
-                    <SparklesIcon className="h-4 w-4 text-lime-400" />
-                    Unlock Now
-                </button>
+                    <SparklesIcon className="h-4 w-4 text-lime-400" />{t('common.unlock_now')}</button>
             </div>
         </div>
     );

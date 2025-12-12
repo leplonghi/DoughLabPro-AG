@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const berliner_bomboloni: StyleDefinition = {
   "id": "berliner_bomboloni",
   "title": "Berliner / Bomboloni (Filled Donuts)",
-  "subtitle": "Fried Doughs",
-  "category": "Pastry",
-  "family": "Fried Doughs",
+  "subtitle": t('styles.fried_doughs'),
+  "category": t('styles.pastry_2'),
+  "family": t('styles.fried_doughs_2'),
   "variantName": "Berliner / Bomboloni (Filled Donuts)",
   "origin": {
     "country": "Germany/Italy",
-    "region": "Europe-wide",
-    "period": "Traditional"
+    "region": t('styles.europewide'),
+    "period": t('styles.traditional_14')
   },
   "intro": "Sold in bakeries and cafes as filled pastries, often associated with festivals and holidays.",
   "history": "Berliner and bomboloni are yeast-raised, fried doughnuts without central holes, typically filled with jams or creams.",
@@ -37,11 +38,11 @@ export const berliner_bomboloni: StyleDefinition = {
       10,
       20
     ],
-    "flourStrength": "Bread or strong pastry flour",
+    "flourStrength": t('styles.bread_or_strong_pastry_flour'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "30–60 min after shaping, until light",
-      "coldRetard": "Sometimes retarded overnight"
+      "coldRetard": t('styles.sometimes_retarded_overnight')
     },
     "oven": {
       "type": "fryer",
@@ -49,12 +50,12 @@ export const berliner_bomboloni: StyleDefinition = {
         170,
         180
       ],
-      "notes": "Fried, cooled, then injected with fillings and dusted with sugar."
+      "notes": t('styles.fried_cooled_then_injected_with_fillings_and_duste')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_25'),
     "recommendedUse": [
-      "Filled donuts",
-      "Sweet fried pastries"
+      t('common.filled_donuts'),
+      t('common.sweet_fried_pastries')
     ]
   },
   "regionalVariants": [],
@@ -64,9 +65,9 @@ export const berliner_bomboloni: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Filled donuts",
-    "Sweet fried pastries",
-    "Pastry",
+    t('common.filled_donuts'),
+    t('common.sweet_fried_pastries'),
+    t('common.pastry'),
     "Germany/Italy"
   ],
   "applyInApp": {
@@ -78,11 +79,11 @@ export const berliner_bomboloni: StyleDefinition = {
   },
   "references": [
     {
-      "title": "European baking literature",
+      "title": t('styles.european_baking_literature'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_23'),
       "url": ""
     }
   ],

@@ -1,11 +1,13 @@
 import React from 'react';
 import { useRouter } from '@/contexts/RouterContext';
+import { useTranslation } from '@/i18n';
 
 interface LibraryPageLayoutProps {
     children: React.ReactNode;
 }
 
 export const LibraryPageLayout: React.FC<LibraryPageLayoutProps> = ({ children }) => {
+  const { t } = useTranslation();
     const { navigate } = useRouter();
 
     return (
@@ -22,7 +24,7 @@ export const LibraryPageLayout: React.FC<LibraryPageLayoutProps> = ({ children }
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                             </svg>
                         </button>
-                        <h1 className="text-xl font-bold tracking-tight text-slate-900">DoughLab Learning Hub</h1>
+                        <h1 className="text-xl font-bold tracking-tight text-slate-900">{t('learn.doughlab_learning_hub')}</h1>
                     </div>
                 </div>
             </header>

@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const extensibilityData: LearnArticleData = {
     id: "extensibility-vs-elasticity",
-    title: "Extensibility vs Elasticity",
-    subtitle: "How dough stretches, springs back and behaves in your hands",
+    title: t('learn.extensibility_vs_elasticity'),
+    subtitle: t('learn.how_dough_stretches_springs_back_and_behaves_in_yo'),
     category: 'Dough Science',
     difficulty: 'Intermediate',
     tags: ['extensibility', 'elasticity', 'rheology', 'shaping'],
@@ -33,7 +34,7 @@ export const extensibilityData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Neapolitan-style pizza",
+            label: t('learn.neapolitanstyle_pizza'),
             notes: "High extensibility, moderate elasticity. Dough stretches easily by hand while retaining edge strength."
         },
         {
@@ -41,7 +42,7 @@ export const extensibilityData: LearnArticleData = {
             notes: "Moderate extensibility, higher elasticity. More snap and resistance; tolerates rolling."
         },
         {
-            label: "High-hydration pan styles",
+            label: t('learn.highhydration_pan_styles'),
             notes: "Very extensible, moderate elasticity. Must stretch gently without tearing during panning."
         }
     ],
@@ -82,9 +83,9 @@ export const extensibilityData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_9'),
+        whatItDoes: t('learn.improves_texture_and_flavor_3'),
+        howToUse: t('learn.so_you_get_the_best_results_5'),
+        dangerSigns: t('learn.use_it_wisely_5')
     },
 };

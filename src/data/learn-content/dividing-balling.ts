@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const dividingBallingData: LearnArticleData = {
     id: "dividing-and-balling",
-    title: "Dividing & Balling",
-    subtitle: "Preparing individual dough pieces for shaping",
+    title: t('learn.dividing__balling'),
+    subtitle: t('learn.preparing_individual_dough_pieces_for_shaping'),
     category: 'Process Techniques',
     difficulty: 'Beginner',
     tags: ['dividing', 'balling', 'scaling', 'shaping'],
@@ -34,7 +35,7 @@ export const dividingBallingData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Typical Neapolitan pizza balls",
+            label: t('learn.typical_neapolitan_pizza_balls'),
             notes: "220–280 g. Exact weight depends on desired diameter and rim thickness."
         },
         {
@@ -42,8 +43,8 @@ export const dividingBallingData: LearnArticleData = {
             notes: "280–400 g. Higher weights for larger diameters and thicker crust styles."
         },
         {
-            label: "Pan pizza portions",
-            notes: "Dough per pan rather than individual balls. Scaling is done per pan size."
+            label: t('learn.pan_pizza_portions'),
+            notes: t('learn.dough_per_pan_rather_than_individual_balls_scaling')
         }
     ],
 
@@ -81,9 +82,9 @@ export const dividingBallingData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_5'),
+        whatItDoes: t('learn.improves_texture_and_flavor'),
+        howToUse: t('learn.so_you_get_the_best_results'),
+        dangerSigns: t('learn.use_it_wisely')
     },
 };

@@ -4,6 +4,7 @@ import { useUser } from '../../contexts/UserProvider';
 import { LockFeature } from '../../components/auth/LockFeature';
 import { Send, User } from 'lucide-react';
 import { formatPostDate } from '../utils/formatPost';
+import { useTranslation } from '@/i18n';
 
 interface PostCommentsProps {
     postId: string;
@@ -11,6 +12,7 @@ interface PostCommentsProps {
 }
 
 export const PostComments: React.FC<PostCommentsProps> = ({ postId, onCommentAdded }) => {
+  const { t } = useTranslation();
     const { comments, loading, addComment } = useCommunityComments(postId);
     const { user } = useUser();
     const [newComment, setNewComment] = useState('');
@@ -42,9 +44,9 @@ export const PostComments: React.FC<PostCommentsProps> = ({ postId, onCommentAdd
             {/* Comments List */}
             <div className="space-y-4 mb-4 max-h-60 overflow-y-auto">
                 {loading ? (
-                    <div className="text-center text-gray-400 text-sm">Loading comments...</div>
+                    <div className="text-center text-gray-400 text-sm">{t('community.loading_comments')}</div>
                 ) : comments.length === 0 ? (
-                    <div className="text-center text-gray-400 text-sm">No comments yet. Be the first!</div>
+                    <div className="text-center text-gray-400 text-sm">{t('community.no_comments_yet_be_the_first')}</div>
                 ) : (
                     comments.map((comment) => (
                         <div key={comment.id} className="flex gap-3">
@@ -70,13 +72,13 @@ export const PostComments: React.FC<PostCommentsProps> = ({ postId, onCommentAdd
             </div>
 
             {/* Add Comment Input - Locked */}
-            <LockFeature featureKey="community.comment" mode="block" customMessage="Unlock full Community">
+            <LockFeature featureKey="community.comment" mode="block" customMessage={t('community.unlock_full_community_3')}>
                 <form onSubmit={handleSubmit} className="relative">
                     <input
                         type="text"
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
-                        placeholder="Add a comment..."
+                        placeholder={t('community.add_a_comment')}
                         className="w-full pl-4 pr-12 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500"
                     />
                     <button

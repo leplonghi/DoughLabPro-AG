@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const st_louis_thin: StyleDefinition = {
   "id": "st_louis_thin",
-  "title": "St. Louis Style",
-  "subtitle": "American Cracker Thin",
-  "category": "Pizza",
-  "family": "American Cracker Thin",
-  "variantName": "St. Louis Style",
+  "title": t('styles.st_louis_style'),
+  "subtitle": t('styles.american_cracker_thin'),
+  "category": t('styles.pizza_14'),
+  "family": t('styles.american_cracker_thin_2'),
+  "variantName": t('styles.st_louis_style_2'),
   "origin": {
-    "country": "United States",
-    "region": "St. Louis",
-    "period": "Mid 20th century"
+    "country": t('styles.united_states_12'),
+    "region": t('styles.st_louis'),
+    "period": t('styles.mid_20th_century_2')
   },
   "intro": "Cut into squares ('tavern cut'), popular in the Midwest.",
   "history": "Known for its cracker-thin, unleavened (or barely leavened) crust and use of Provel cheese.",
@@ -37,11 +38,11 @@ export const st_louis_thin: StyleDefinition = {
       1,
       3
     ],
-    "flourStrength": "All-purpose or pastry flour for crispness",
+    "flourStrength": t('styles.allpurpose_or_pastry_flour_for_crispness'),
     "fermentation": {
-      "bulk": "Minimal or none",
-      "proof": "None, rolled thin immediately",
-      "coldRetard": "Not typical"
+      "bulk": t('styles.minimal_or_none'),
+      "proof": t('styles.none_rolled_thin_immediately'),
+      "coldRetard": t('styles.not_typical')
     },
     "oven": {
       "type": "electric_deck",
@@ -49,12 +50,12 @@ export const st_louis_thin: StyleDefinition = {
         230,
         260
       ],
-      "notes": "Baked on stone or screen for maximum crispness."
+      "notes": t('styles.baked_on_stone_or_screen_for_maximum_crispness')
     },
-    "difficulty": "Easy",
+    "difficulty": t('styles.easy_8'),
     "recommendedUse": [
-      "Cracker crust pizza",
-      "Party snacks"
+      t('common.cracker_crust_pizza'),
+      t('common.party_snacks')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const st_louis_thin: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Cracker crust pizza",
-    "Party snacks",
-    "Pizza",
-    "United States"
+    t('common.cracker_crust_pizza'),
+    t('common.party_snacks'),
+    t('common.pizza'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const st_louis_thin: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_12'),
       "url": ""
     },
     {
-      "title": "Midwest pizza traditions",
+      "title": t('styles.midwest_pizza_traditions'),
       "url": ""
     }
   ],

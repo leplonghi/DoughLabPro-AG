@@ -3,6 +3,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
 import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
 import { useToast } from '@/components/ToastProvider';
+import { useTranslation } from '@/i18n';
 
 // Placeholder interface - expand as needed
 interface FlourInventoryItem {
@@ -19,9 +20,9 @@ interface FlourInventoryItem {
 
 interface FloursContextType {
     flours: FlourInventoryItem[];
-    addFlour: (flour: Omit<FlourInventoryItem, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
-    updateFlour: (id: string, updates: Partial<FlourInventoryItem>) => Promise<void>;
-    deleteFlour: (id: string) => Promise<void>;
+    addFlour: (flour: Omit<FlourInventoryItem, 'id' | 'createdAt' | 'updatedAt'>) =>{t('common.promise')}<void>;
+    updateFlour: (id: string, updates: Partial<FlourInventoryItem>) =>{t('common.promise')}<void>;
+    deleteFlour: (id: string) =>{t('common.promise')}<void>;
     preferredFlourId: string | null;
     setPreferredFlour: (id: string | null) => void;
 }
@@ -29,6 +30,7 @@ interface FloursContextType {
 const FloursContext = createContext<FloursContextType | undefined>(undefined);
 
 export const FloursProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { firebaseUser } = useAuth();
     const { addToast } = useToast();
     const [flours, setFlours] = useState<FlourInventoryItem[]>([]);

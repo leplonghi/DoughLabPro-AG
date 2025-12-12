@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const bakingProfilesArticle: LearnArticleData = {
     id: "baking-profiles-by-style",
-    title: "Baking Profiles by Style",
-    subtitle: "Temperature, heat curves and timing for major global pizza and bread styles.",
-    category: "Baking Science",
-    difficulty: "Advanced",
+    title: t('learn.baking_profiles_by_style'),
+    subtitle: t('learn.temperature_heat_curves_and_timing_for_major_globa'),
+    category: t('learn.baking_science_2'),
+    difficulty: t('learn.advanced_2'),
     tags: ["baking", "temperature", "oven-spring", "styles"],
 
     intro: "Different dough styles require specific baking profiles tailored to heat intensity, timing, and oven type. These profiles define texture, oven spring, crust color and aroma.",
@@ -31,9 +32,9 @@ export const bakingProfilesArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Neapolitan Bake", notes: "Recommended: 450°C (Range: 420-480°C)" },
-        { label: "NY Style Bake", notes: "Recommended: 320°C (Range: 290-350°C)" },
-        { label: "Roman Pala Bake", notes: "Recommended: 280°C (Range: 260-300°C)" }
+        { label: t('learn.neapolitan_bake'), notes: "Recommended: 450°C (Range: 420-480°C)" },
+        { label: t('learn.ny_style_bake'), notes: "Recommended: 320°C (Range: 290-350°C)" },
+        { label: t('learn.roman_pala_bake'), notes: "Recommended: 280°C (Range: 260-300°C)" }
     ],
 
     practicalApplications: [
@@ -64,15 +65,15 @@ export const bakingProfilesArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Neapolitan",
+            variant: t('learn.neapolitan'),
             implications: "Extreme heat, 60–90 seconds. Requires soft, extensible dough. Rapid rise, blistered cornicione."
         },
         {
-            variant: "NY Style",
+            variant: t('learn.ny_style'),
             implications: "Moderate-high heat, 4–7 minutes. Slightly stronger gluten. Balanced crust development."
         },
         {
-            variant: "Roman Pala",
+            variant: t('learn.roman_pala'),
             implications: "Low-moderate heat, long bake. High hydration mandatory. Delayed crust set for expansion."
         }
     ],
@@ -89,7 +90,7 @@ export const bakingProfilesArticle: LearnArticleData = {
     grandmaVersion: {
         intro: "Sweetheart, each pizza style has its favorite oven mood — some like it super hot, others prefer slow and steady.",
         whatItDoes: "Different temperatures and times make different crusts. It creates each pizza’s unique texture and flavor.",
-        howToUse: "Use the right heat to make your pizza just like the originals.",
-        dangerSigns: "If you mismatch the temperature, the style loses its charm."
+        howToUse: t('learn.use_the_right_heat_to_make_your_pizza_just_like_th'),
+        dangerSigns: t('learn.if_you_mismatch_the_temperature_the_style_loses_it')
     }
 };

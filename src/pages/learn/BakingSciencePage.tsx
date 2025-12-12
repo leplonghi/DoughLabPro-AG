@@ -1,5 +1,6 @@
 import React from 'react';
 import { Page } from '@/types';
+import { useTranslation } from '@/i18n';
 import {
     FireIcon,
     BeakerIcon,
@@ -36,6 +37,7 @@ const LearnCategoryCard: React.FC<{
 );
 
 const BakingSciencePage: React.FC<BakingSciencePageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const categories = [
         {
             page: 'learn/article/starch-gelatinization' as Page,
@@ -73,9 +75,7 @@ const BakingSciencePage: React.FC<BakingSciencePageProps> = ({ onNavigate }) => 
         <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out]">
             <div className="text-center">
                 <FireIcon className="mx-auto h-12 w-12 text-red-500" />
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                    Baking Science
-                </h1>
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('learn.baking_science')}</h1>
                 <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-700">
                     Heat transfer, browning chemistry, crust formation and oven physics.
                 </p>

@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const tartine_country_loaf: StyleDefinition = {
   "id": "tartine_country_loaf",
   "title": "Country Sourdough (Tartine-style)",
-  "subtitle": "Levain & Country Sourdough",
-  "category": "Bread",
-  "family": "Levain & Country Sourdough",
+  "subtitle": t('styles.levain__country_sourdough_5'),
+  "category": t('styles.bread_25'),
+  "family": t('styles.levain__country_sourdough_6'),
   "variantName": "Country Sourdough (Tartine-style)",
   "origin": {
-    "country": "United States",
-    "region": "San Francisco",
-    "period": "Early 21st century"
+    "country": t('styles.united_states_3'),
+    "region": t('styles.san_francisco'),
+    "period": t('styles.early_21st_century')
   },
-  "intro": "Baked in artisan bakeries and by home enthusiasts as a benchmark sourdough loaf.",
+  "intro": t('styles.baked_in_artisan_bakeries_and_by_home_enthusiasts_'),
   "history": "The Tartine country loaf popularized naturally leavened, high-hydration, open-crumb sourdough in the modern artisan bread movement.",
   "technicalFoundations": [
     "Liquid levain 15–25% of flour.",
@@ -37,11 +38,11 @@ export const tartine_country_loaf: StyleDefinition = {
       0,
       1
     ],
-    "flourStrength": "Bread flour with 10–20% whole wheat",
+    "flourStrength": t('styles.bread_flour_with_1020_whole_wheat'),
     "fermentation": {
       "bulk": "3–4 h at 25–27°C with repeated folds",
       "proof": "2–4 h at 20–24°C or retarded overnight",
-      "coldRetard": "Commonly 8–16 h for flavor and scoring"
+      "coldRetard": t('styles.commonly_816_h_for_flavor_and_scoring')
     },
     "oven": {
       "type": "deck",
@@ -49,12 +50,12 @@ export const tartine_country_loaf: StyleDefinition = {
         230,
         250
       ],
-      "notes": "Often baked in Dutch ovens or steam-injected decks."
+      "notes": t('styles.often_baked_in_dutch_ovens_or_steaminjected_decks')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_9'),
     "recommendedUse": [
-      "Artisan sourdough",
-      "Table bread",
+      t('common.artisan_sourdough'),
+      t('common.table_bread'),
       "Toast, tartines"
     ]
   },
@@ -65,11 +66,11 @@ export const tartine_country_loaf: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Artisan sourdough",
-    "Table bread",
+    t('common.artisan_sourdough'),
+    t('common.table_bread'),
     "Toast, tartines",
-    "Bread",
-    "United States"
+    t('common.bread'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const tartine_country_loaf: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Tartine Bread – Chad Robertson",
+      "title": t('styles.tartine_bread__chad_robertson'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_19'),
       "url": ""
     }
   ],

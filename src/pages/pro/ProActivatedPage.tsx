@@ -1,3 +1,4 @@
 import React from 'react';
-const ProActivatedPage: React.FC = () => <div>Pro Activated</div>;
+import { useTranslation } from '@/i18n';
+const ProActivatedPage: React.FC = () => <div>{t('general.pro_activated')}</div>;
 export default ProActivatedPage;

@@ -5,6 +5,7 @@ import { Droplets, Clock, BarChart, Calculator, Trash2, ArrowRight, Sparkles, Us
 import { CategoryBadge } from '@/components/ui/CategoryBadge';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { useUser } from '@/contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 
 interface StyleCardProps {
     style: DoughStyleDefinition;
@@ -13,6 +14,7 @@ interface StyleCardProps {
 }
 
 export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, onDelete }) => {
+  const { t } = useTranslation();
     const { navigate } = useRouter();
     const { isFavorite, toggleFavorite } = useUser();
     const favorited = isFavorite(style.id);
@@ -58,14 +60,10 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     </div>
                     <div className="flex gap-1">
                         {style.isPro && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-lime-500 text-white shadow-sm border border-lime-400">
-                                PRO
-                            </span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-lime-500 text-white shadow-sm border border-lime-400">{t('common.pro')}</span>
                         )}
                         {isNew && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500 text-white shadow-sm border border-blue-400">
-                                NEW
-                            </span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500 text-white shadow-sm border border-blue-400">{t('common.new')}</span>
                         )}
                     </div>
                 </div>
@@ -144,7 +142,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
 
             {/* Action Bar */}
             <div className="p-3 border-t border-slate-100 mt-auto grid grid-cols-2 gap-2">
-                <LockFeature featureKey="styles.detail" customMessage="Unlock calculator" origin="styles.card">
+                <LockFeature featureKey="styles.detail" customMessage={t('general.unlock_calculator')} origin="styles.card">
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
@@ -152,9 +150,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                         }}
                         className="w-full bg-lime-50 hover:bg-lime-500 hover:text-white text-lime-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn"
                     >
-                        <Calculator className="h-3.5 w-3.5" />
-                        Use Style
-                    </button>
+                        <Calculator className="h-3.5 w-3.5" />{t('common.use_style')}</button>
                 </LockFeature>
 
                 {isUserStyle && onDelete ? (
@@ -165,9 +161,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                         }}
                         className="w-full bg-red-50 hover:bg-red-500 hover:text-white text-red-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
                     >
-                        <Trash2 className="h-3.5 w-3.5" />
-                        Delete
-                    </button>
+                        <Trash2 className="h-3.5 w-3.5" />{t('common.delete')}</button>
                 ) : (
                     <button
                         onClick={(e) => {
@@ -175,9 +169,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             handleCardClick();
                         }}
                         className="w-full bg-slate-50 hover:bg-slate-200 text-slate-600 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
-                    >
-                        Details
-                        <ArrowRight className="h-3.5 w-3.5" />
+                    >{t('common.details')}<ArrowRight className="h-3.5 w-3.5" />
                     </button>
                 )}
             </div>

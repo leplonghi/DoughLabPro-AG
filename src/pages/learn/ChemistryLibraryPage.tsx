@@ -3,12 +3,14 @@ import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { BeakerIcon, BookOpenIcon, FireIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 // Local Section component for structuring content
 const ChemistryLibraryPage: React.FC = () => {
+  const { t } = useTranslation();
     return (
-        <TechnicalPageLayout title="Pizza Chemistry Library" showReferencesSection>
-            <LearnSection title="Introduction: Pizza as a Lab">
+        <TechnicalPageLayout title={t('learn.pizza_chemistry_library')} showReferencesSection>
+            <LearnSection title={t('learn.introduction_pizza_as_a_lab')}>
                 <p>
                     Creating a pizza is a practical exercise in chemistry and physics. From the moment water touches flour, a cascade of transformations begins, involving the main building blocks of food: carbohydrates, proteins, lipids, sugars, water, and gases. Understanding these processes allows much greater control over the final result.
                 </p>
@@ -21,16 +23,16 @@ const ChemistryLibraryPage: React.FC = () => {
             <LearnSection title="2. Gluten Formation">
                 <p>Gluten is a complex protein network formed when two flour proteins, <strong>gliadin</strong> and <strong>glutenin</strong>, are hydrated and manipulated. Intermolecular bonds (disulfide bridges) form, creating a viscoelastic structure.</p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
-                    <li><strong>Gliadin:</strong> Responsible for <strong>extensibility</strong> (ability to stretch).</li>
-                    <li><strong>Glutenin:</strong> Responsible for <strong>elasticity</strong> and strength (tendency to return to original shape).</li>
+                    <li><strong>{t('learn.gliadin')}</strong>{t('learn.responsible_for')}<strong>extensibility</strong> (ability to stretch).</li>
+                    <li><strong>{t('learn.glutenin')}</strong>{t('learn.responsible_for')}<strong>elasticity</strong> and strength (tendency to return to original shape).</li>
                 </ul>
                 <p>Manipulation (kneading, folding) organizes and strengthens this network. Resting (autolyse) allows hydration to occur passively, developing gluten with less mechanical work.</p>
             </LearnSection>
 
             <LearnSection title="3. Fermentation" icon={<BeakerIcon className="h-5 w-5" />}>
-                <p>Fermentation is the metabolic process performed by yeast <em>Saccharomyces cerevisiae</em>. In a low-oxygen (anaerobic) environment, yeast consumes simple sugars and produces <strong>carbon dioxide (CO₂)</strong> and <strong>ethanol</strong>.</p>
+                <p>Fermentation is the metabolic process performed by yeast <em>{t('learn.saccharomyces_cerevisiae')}</em>. In a low-oxygen (anaerobic) environment, yeast consumes simple sugars and produces <strong>carbon dioxide (CO₂)</strong> and <strong>ethanol</strong>.</p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
-                    <li>CO₂ gets trapped in the gluten network, inflating the dough and creating volume.</li>
+                    <li>{t('learn.co₂_gets_trapped_in_the_gluten_network_inflating_t')}</li>
                     <li>Ethanol and other byproducts (esters, organic acids) are primarily responsible for developing characteristic bread flavor and aroma.</li>
                     <li>During this process, enzymes <strong>amylases</strong> (breaking starch into sugars) and <strong>proteases</strong> (breaking proteins) continue to modify the dough, making it tastier and more extensible.</li>
                 </ul>

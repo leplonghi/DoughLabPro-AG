@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const laminationLayeringTechniquesArticle: LearnArticleData = {
     id: "lamination-layering-techniques",
-    title: "Lamination & Layer Techniques",
-    subtitle: "Stretching, folding and layering dough to create structured and flaky textures.",
-    category: "Process Techniques",
-    difficulty: "Advanced",
+    title: t('learn.lamination__layer_techniques'),
+    subtitle: t('learn.stretching_folding_and_layering_dough_to_create_st'),
+    category: t('learn.process_techniques_8'),
+    difficulty: t('learn.advanced_9'),
     tags: ["lamination", "folding", "layers", "structure"],
 
     intro: "Lamination introduces layers into dough through a repeated stretch-and-fold technique. It enhances structure, creates distinct layers, and supports specialized styles such as laminated pizzas or hybrid breads.",
@@ -31,7 +32,7 @@ export const laminationLayeringTechniquesArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Folds per Lamination Cycle", notes: "Recommended: 3 folds (Range: 2-4 folds)" }
+        { label: t('learn.folds_per_lamination_cycle'), notes: "Recommended: 3 folds (Range: 2-4 folds)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const laminationLayeringTechniquesArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Full Lamination",
+            variant: t('learn.full_lamination'),
             implications: "Multiple folds, large surface expansion. Open crumb, structured layers. Stronger dough. Better oven spring."
         },
         {
-            variant: "Partial Lamination",
+            variant: t('learn.partial_lamination'),
             implications: "Light folding for minimal structure enhancement. Gentle, flexible. More extensible. Less pronounced layering."
         }
     ],
@@ -81,8 +82,8 @@ export const laminationLayeringTechniquesArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, lamination is like folding a bedsheet again and again to make it smooth.",
-        whatItDoes: "Makes big bubbles and light crumb.",
-        howToUse: "We stretch and fold dough so it becomes airy inside.",
-        dangerSigns: "Too many folds make dough stiff and tired."
+        whatItDoes: t('learn.makes_big_bubbles_and_light_crumb'),
+        howToUse: t('learn.we_stretch_and_fold_dough_so_it_becomes_airy_insid'),
+        dangerSigns: t('learn.too_many_folds_make_dough_stiff_and_tired')
     }
 };

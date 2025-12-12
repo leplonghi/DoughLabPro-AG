@@ -1,20 +1,20 @@
 import React from 'react';
 import { LearnArticleData } from '@/types/learn';
 import { HeartIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface GrandmaRendererProps {
     data: LearnArticleData['grandmaVersion'];
 }
 
 export const GrandmaRenderer: React.FC<GrandmaRendererProps> = ({ data }) => {
+  const { t } = useTranslation();
     if (!data) return null;
 
     return (
         <div className="bg-[#FFF8F0] text-stone-800 p-8 rounded-3xl shadow-xl border-4 border-amber-200 relative overflow-hidden font-serif">
             {/* Ribbon */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-8 py-2 rounded-b-xl shadow-md font-bold tracking-wide uppercase text-sm z-10">
-                Grandma Says
-            </div>
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-8 py-2 rounded-b-xl shadow-md font-bold tracking-wide uppercase text-sm z-10">{t('learn.grandma_says')}</div>
 
             {/* Decorative Background Pattern */}
             <div className="absolute top-0 right-0 -mt-10 -mr-10 text-amber-100 opacity-50 pointer-events-none">
@@ -57,7 +57,7 @@ export const GrandmaRenderer: React.FC<GrandmaRendererProps> = ({ data }) => {
                         <HeartIcon className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold text-rose-800 mb-1">Watch out for...</h3>
+                        <h3 className="text-lg font-bold text-rose-800 mb-1">{t('learn.watch_out_for')}</h3>
                         <p className="text-lg text-rose-900 italic">
                             {data.dangerSigns || data.softWarning}
                         </p>

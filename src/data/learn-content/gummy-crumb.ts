@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const gummyCrumbData: LearnArticleData = {
     id: "gummy-crumb",
-    title: "Gummy Crumb",
+    title: t('learn.gummy_crumb'),
     subtitle: "Understanding incomplete baking, hydration imbalance and starch gelatinization failure.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    category: t('learn.troubleshooting_5'),
+    difficulty: t('learn.intermediate_19'),
     tags: ["crumb", "gumminess", "troubleshooting", "baking"],
 
     intro: "Gummy crumb results when starch gelatinization is incomplete or when the crumb retains excessive moisture. It is a classic sign of underbaking or poor structural development.",
@@ -31,7 +32,7 @@ export const gummyCrumbData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Internal Temp for Complete Bake", notes: "Recommended: 94°C (Range: 92-98°C)" }
+        { label: t('learn.internal_temp_for_complete_bake'), notes: "Recommended: 94°C (Range: 92-98°C)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const gummyCrumbData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High Hydration Dough",
+            variant: t('learn.high_hydration_dough'),
             implications: "Retains moisture longer. Wet, slow-setting. Needs longer bake. Risk of gummy center."
         },
         {
-            variant: "Underbaked Dough",
+            variant: t('learn.underbaked_dough'),
             implications: "Insufficient heat exposure. Soft, sticky. Incomplete gelatinization. Gummy sections."
         }
     ],
@@ -80,9 +81,9 @@ export const gummyCrumbData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Sweetheart, gummy crumb is like cake batter in the middle — not cooked yet.",
-        whatItDoes: "Makes the bread soggy and sticky.",
-        howToUse: "Let it bake fully and cool properly before slicing.",
-        dangerSigns: "The inside didn’t heat enough to firm up."
+        intro: t('learn.sweetheart_gummy_crumb_is_like_cake_batter_in_the_'),
+        whatItDoes: t('learn.makes_the_bread_soggy_and_sticky'),
+        howToUse: t('learn.let_it_bake_fully_and_cool_properly_before_slicing'),
+        dangerSigns: t('learn.the_inside_didnt_heat_enough_to_firm_up')
     }
 };

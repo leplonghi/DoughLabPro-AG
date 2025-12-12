@@ -75,7 +75,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 <div className="mb-4 rounded-full bg-dlp-bg-card p-4 shadow-dlp-sm border border-dlp-border">
                     <BeakerIcon className="h-8 w-8 text-dlp-text-muted" />
                 </div>
-                <h3 className="text-lg font-semibold text-dlp-text-secondary">Your Formula Awaits</h3>
+                <h3 className="text-lg font-semibold text-dlp-text-secondary">{t('general.your_formula_awaits')}</h3>
                 <p className="text-sm mt-2 max-w-xs mx-auto text-dlp-text-muted">
                     Adjust the parameters on the left to generate your perfect dough recipe.
                 </p>
@@ -148,7 +148,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             addToast(t('results.export_pdf_aria', { defaultValue: 'Exporting PDF...' }), "info");
         } catch (e) {
             console.error(e);
-            addToast("Export failed", "error");
+            addToast(t('common.export_failed'), "error");
         }
     };
 
@@ -188,9 +188,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                             onClick={() => onUnitChange('volume')}
                             className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'volume' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                 }`}
-                        >
-                            Vol
-                        </button>
+                        >{t('common.vol')}</button>
                     </div>
                 </div>
 
@@ -207,7 +205,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         </div>
                     ) : (
                         <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
-                            <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">Baker's %</p>
+                            <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('ui.bakers_')}</p>
                             <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">100%</p>
                         </div>
                     )}
@@ -217,7 +215,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         <div className="col-span-2 md:col-span-1 relative rounded-xl overflow-hidden aspect-video md:aspect-auto">
                             <img
                                 src={getStyleById(config.selectedStyleId || '')?.images?.hero}
-                                alt="Style"
+                                alt={t('general.style')}
                                 className="absolute inset-0 w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -335,7 +333,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                     <div className="grid grid-cols-2 gap-3">
                         <button
                             onClick={() => setIsShareModalOpen(true)}
-                            title="Generate a social card to share"
+                            title={t('general.generate_a_social_card_to_share')}
                             className="flex items-center justify-center gap-2 rounded-lg border border-dlp-border bg-dlp-bg-card py-2.5 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm hover:bg-dlp-bg-muted transition-colors relative group"
                         >
                             <ShareIcon className="h-4 w-4" />
@@ -348,7 +346,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         </button>
                         <button
                             onClick={handleExportPDF}
-                            title="Download a professional PDF of your formula"
+                            title={t('general.download_a_professional_pdf_of_your_formula')}
                             className="flex items-center justify-center gap-2 rounded-lg border border-dlp-border bg-dlp-bg-card py-2.5 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm hover:bg-dlp-bg-muted transition-colors relative group"
                         >
                             <DownloadIcon className="h-4 w-4" />
@@ -371,14 +369,12 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         onClick={handleShare}
                         className="flex items-center gap-2 text-sm font-semibold text-dlp-accent hover:text-dlp-accent-hover transition-colors"
                     >
-                        <ShareIcon className="h-4 w-4" /> Share
-                    </button>
+                        <ShareIcon className="h-4 w-4" />{t('common.share')}</button>
                     <button
                         onClick={handleExportPDF}
                         className="flex items-center gap-2 text-sm font-semibold text-dlp-text-secondary hover:text-dlp-text-primary transition-colors"
                     >
-                        <DownloadIcon className="h-4 w-4" /> Download PDF
-                    </button>
+                        <DownloadIcon className="h-4 w-4" />{t('common.download_pdf')}</button>
                 </div>
             </div>
 
@@ -386,7 +382,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border">
                 <RecommendedProducts
                     tags={[config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']}
-                    title="Tools for this Formula"
+                    title={t('general.tools_for_this_formula')}
                 />
             </div>
 

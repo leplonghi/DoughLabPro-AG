@@ -192,23 +192,21 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
     return (
         <LibraryPageLayout>
             <PageHero
-                title="Discover professional dough specifications from around the world."
+                title={t('styles.discover_professional_dough_specifications_from_ar')}
                 subtitle="Explore our curated collection of authentic dough styles, scientific profiles, and regional specialties."
                 backgroundClass="bg-gradient-to-br from-[#1c2e1c] to-[#2d4a2d]"
                 badges={
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider shadow-sm">
-                        <Globe className="w-4 h-4" /> Global Library
-                    </div>
+                        <Globe className="w-4 h-4" />{t('common.global_library')}</div>
                 }
             />
 
             {/* Actions Bar - Simplified for new layout */}
             <div className="flex justify-end mb-6">
                 <div className="flex gap-2">
-                    <LockFeature featureKey="styles.ai.builder" customMessage="Unlock AI Builder" origin="styles.ai.builder">
+                    <LockFeature featureKey="styles.ai.builder" customMessage={t('general.unlock_ai_builder')} origin="styles.ai.builder">
                         <button className="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-lg shadow-indigo-200 transition-all transform hover:scale-105 flex items-center gap-2">
-                            <Sparkles className="w-4 h-4" /> AI Style Builder
-                        </button>
+                            <Sparkles className="w-4 h-4" />{t('common.ai_style_builder')}</button>
                     </LockFeature>
                 </div>
             </div>
@@ -243,7 +241,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                     }`}
                             >
                                 <Heart className={`w-4 h-4 ${showFavorites ? 'fill-current' : ''}`} />
-                                <span>Favorites</span>
+                                <span>{t('general.favorites')}</span>
                             </button>
 
                             <div className="h-6 w-px bg-slate-200 mx-1"></div>
@@ -256,7 +254,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                     }`}
                             >
                                 <Filter className="w-4 h-4" />
-                                <span>Filters</span>
+                                <span>{t('general.filters')}</span>
                                 {activeFilterCount > 0 && (
                                     <span className="ml-1 bg-lime-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                                         {activeFilterCount}
@@ -271,7 +269,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
 
                         {/* TYPE Filter Row */}
                         <div className="flex items-center gap-4">
-                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">Type</span>
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">{t('styles.type_2')}</span>
                             <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar mask-linear-fade flex-grow">
                                 {CATEGORY_FILTERS.map(cat => {
                                     const isActive = selectedCategory === cat.id;
@@ -308,7 +306,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
 
                         {/* REGION Filter Row */}
                         <div className="flex items-center gap-4">
-                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">Region</span>
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">{t('general.region')}</span>
                             <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar mask-linear-fade flex-grow">
                                 <button
                                     onClick={() => setSelectedRegions([])}
@@ -320,9 +318,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                         }
                                     `}
                                 >
-                                    <Globe className="w-3.5 h-3.5" />
-                                    Any
-                                </button>
+                                    <Globe className="w-3.5 h-3.5" />{t('common.any')}</button>
 
                                 {availableRegions.map(region => {
                                     const isActive = selectedRegions.includes(region);
@@ -363,8 +359,8 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                         <div className="inline-flex p-4 bg-slate-50 rounded-full mb-4">
                             <Search className="w-8 h-8 text-slate-300" />
                         </div>
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">No styles found</h3>
-                        <p className="text-slate-500 mb-6">Try adjusting your filters or search terms.</p>
+                        <h3 className="text-lg font-bold text-slate-900 mb-1">{t('general.no_styles_found')}</h3>
+                        <p className="text-slate-500 mb-6">{t('styles.try_adjusting_your_filters_or_search_terms')}</p>
                         <button
                             onClick={() => {
                                 setSearchTerm('');
@@ -374,9 +370,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                 setSelectedRegions([]);
                             }}
                             className="text-lime-600 font-bold hover:underline"
-                        >
-                            Clear all filters
-                        </button>
+                        >{t('common.clear_all_filters')}</button>
                     </div>
                 ) : (
                     GROUP_ORDER.map(groupName => {

@@ -4,13 +4,14 @@ import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
 import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
 import { useToast } from '@/components/ToastProvider';
+import { useTranslation } from '@/i18n';
 
 interface GoalsContextType {
     goals: Goal[];
-    addGoal: (goalData: Omit<Goal, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'progress'>) => Promise<Goal>;
-    updateGoal: (updatedData: any) => Promise<void>;
-    deleteGoal: (id: string) => Promise<void>;
-    completeGoal: (id: string) => Promise<void>;
+    addGoal: (goalData: Omit<Goal, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'progress'>) =>{t('common.promise')}<Goal>;
+    updateGoal: (updatedData: any) =>{t('common.promise')}<void>;
+    deleteGoal: (id: string) =>{t('common.promise')}<void>;
+    completeGoal: (id: string) =>{t('common.promise')}<void>;
     // Memoized selectors
     activeGoal: Goal | undefined;
     completedGoals: Goal[];
@@ -19,6 +20,7 @@ interface GoalsContextType {
 const GoalsContext = createContext<GoalsContextType | undefined>(undefined);
 
 export const GoalsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { firebaseUser } = useAuth();
     const { addToast } = useToast();
     const [goals, setGoals] = useState<Goal[]>([]);

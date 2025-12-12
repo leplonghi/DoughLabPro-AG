@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
+import { useTranslation } from '@/i18n';
 
 export const useCommunityPost = (postId: string) => {
     const [post, setPost] = useState<CommunityPost | null>(null);

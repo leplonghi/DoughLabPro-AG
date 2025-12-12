@@ -1,5 +1,6 @@
 import { StyleDefinition } from '../types/styleDefinition';
 import { DoughStyleDefinition } from '../types';
+import { useTranslation } from '@/i18n';
 
 export function adaptLegacyStyle(legacy: DoughStyleDefinition | any): StyleDefinition {
     // If it already looks like a new style, return it

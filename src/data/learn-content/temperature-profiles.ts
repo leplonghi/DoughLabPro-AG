@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const temperatureProfilesArticle: LearnArticleData = {
     id: "temperature-profiles",
-    title: "Temperature Profiles — Dough Temperature Management",
+    title: t('learn.temperature_profiles__dough_temperature_management'),
     subtitle: "How dough temperature (DT) controls fermentation, gluten behavior and timing.",
-    category: "Fermentation Science",
-    difficulty: "Advanced",
+    category: t('learn.fermentation_science_11'),
+    difficulty: t('learn.advanced_16'),
     tags: ["temperature", "fermentation", "dough-temperature", "timing"],
 
     intro: "Dough temperature (DT) is the primary driver of fermentation speed. Maintaining predictable DT ensures consistent flavor, timing and dough strength.",
@@ -32,9 +33,9 @@ export const temperatureProfilesArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Neapolitan DT Target", notes: "Recommended: 23°C (Range: 21-24°C)" },
-        { label: "NY Style DT Target", notes: "Recommended: 25°C (Range: 24-26°C)" },
-        { label: "Artisan Bread DT", notes: "Recommended: 24.5°C (Range: 23-26°C)" }
+        { label: t('learn.neapolitan_dt_target'), notes: "Recommended: 23°C (Range: 21-24°C)" },
+        { label: t('learn.ny_style_dt_target'), notes: "Recommended: 25°C (Range: 24-26°C)" },
+        { label: t('learn.artisan_bread_dt'), notes: "Recommended: 24.5°C (Range: 23-26°C)" }
     ],
 
     practicalApplications: [
@@ -66,11 +67,11 @@ export const temperatureProfilesArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Warm Profile",
+            variant: t('learn.warm_profile'),
             implications: "Higher DT accelerates fermentation. Fast, soft. Shorter working window. Larger bubbles; pale crust if underfermented."
         },
         {
-            variant: "Cold Profile",
+            variant: t('learn.cold_profile'),
             implications: "Low DT slows fermentation. Stable, predictable. Extended handling window. Better flavor and oven spring."
         }
     ],
@@ -86,8 +87,8 @@ export const temperatureProfilesArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, dough temperature is like the dough’s mood — warm and excited or cool and calm.",
-        whatItDoes: "It controls how fast the dough grows and how soft it feels.",
-        howToUse: "Warm dough rises quickly; cool dough rises slowly.",
-        dangerSigns: "Too warm and it rushes; too cold and it stalls."
+        whatItDoes: t('learn.it_controls_how_fast_the_dough_grows_and_how_soft_'),
+        howToUse: t('learn.warm_dough_rises_quickly_cool_dough_rises_slowly'),
+        dangerSigns: t('learn.too_warm_and_it_rushes_too_cold_and_it_stalls')
     }
 };

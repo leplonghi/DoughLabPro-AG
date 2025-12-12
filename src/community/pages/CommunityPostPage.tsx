@@ -11,12 +11,14 @@ import { PostTechnicalPanel } from '../components/PostTechnicalPanel';
 import { PostMethod } from '../components/PostMethod';
 import { PostActions } from '../components/PostActions';
 import { PostComments } from '../components/PostComments';
+import { useTranslation } from '@/i18n';
 
 interface CommunityPostPageProps {
     postId: string;
 }
 
 export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) => {
+  const { t } = useTranslation();
     const { navigate } = useRouter();
     const [post, setPost] = useState<CommunityPost | null>(null);
     const [loading, setLoading] = useState(true);
@@ -71,9 +73,7 @@ export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) 
                     <button
                         onClick={() => navigate('community')}
                         className="text-lime-600 font-medium hover:underline"
-                    >
-                        Return to Community
-                    </button>
+                    >{t('community.return_to_community')}</button>
                 </div>
             </LibraryPageLayout>
         );
@@ -87,7 +87,7 @@ export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) 
                     className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors"
                 >
                     <ArrowLeft className="h-5 w-5" />
-                    <span>Back to Community</span>
+                    <span>{t('community.back_to_community')}</span>
                 </button>
 
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">

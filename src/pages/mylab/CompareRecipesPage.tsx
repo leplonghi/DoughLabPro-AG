@@ -28,12 +28,12 @@ const RecipeDetailColumn: React.FC<{ batch: Batch; onLoad: () => void; t: (key: 
             <div className="flex-grow">
                 <h3 className="text-xl font-bold text-slate-900  mb-4">{batch.name}</h3>
                 <dl>
-                    <DetailRow label="Style" value={t(`form.${doughConfig.recipeStyle.toLowerCase()}`, { defaultValue: doughConfig.recipeStyle })} />
-                    <DetailRow label="Hydration" value={`${doughConfig.hydration}%`} />
-                    <DetailRow label="Flour" value={flour?.name} />
-                    <DetailRow label="Yeast" value={`${doughConfig.yeastPercentage}% (${t(`form.yeast_${doughConfig.yeastType.toLowerCase()}`)})`} />
-                    <DetailRow label="Preferment" value={doughConfig.fermentationTechnique === FermentationTechnique.DIRECT ? 'None' : doughConfig.fermentationTechnique} />
-                    <DetailRow label="Total Time" value={batch.bulkTimeHours || batch.proofTimeHours ? `${(batch.bulkTimeHours || 0) + (batch.proofTimeHours || 0)}h` : 'N/A'} />
+                    <DetailRow label={t('mylab.style')} value={t(`form.${doughConfig.recipeStyle.toLowerCase()}`, { defaultValue: doughConfig.recipeStyle })} />
+                    <DetailRow label={t('form.hydration')} value={`${doughConfig.hydration}%`} />
+                    <DetailRow label={t('results.flour')} value={flour?.name} />
+                    <DetailRow label={t('results.yeast')} value={`${doughConfig.yeastPercentage}% (${t(`form.yeast_${doughConfig.yeastType.toLowerCase()}`)})`} />
+                    <DetailRow label={t('mylab.preferment')} value={doughConfig.fermentationTechnique === FermentationTechnique.DIRECT ? 'None' : doughConfig.fermentationTechnique} />
+                    <DetailRow label={t('mylab.total_time')} value={batch.bulkTimeHours || batch.proofTimeHours ? `${(batch.bulkTimeHours || 0) + (batch.proofTimeHours || 0)}h` : 'N/A'} />
                     <div className="py-3">
                         <dt className="text-sm text-slate-500 ">Process (summary)</dt>
                         <dd className="mt-1 text-sm text-slate-700  whitespace-pre-wrap truncate h-20">{batch.notes || 'No notes.'}</dd>
@@ -44,9 +44,7 @@ const RecipeDetailColumn: React.FC<{ batch: Batch; onLoad: () => void; t: (key: 
                 onClick={onLoad}
                 className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-lime-500 py-2.5 px-4 font-semibold text-white shadow-sm hover:bg-lime-600"
             >
-                <CalculatorIcon className="h-5 w-5" />
-                Use Recipe in Calculator
-            </button>
+                <CalculatorIcon className="h-5 w-5" />{t('mylab.use_recipe_in_calculator')}</button>
         </div>
     );
 };
@@ -101,8 +99,8 @@ const CompareRecipesPage: React.FC<CompareRecipesPageProps> = ({ onNavigate, onL
     return (
         <div className="animate-[fadeIn_0.5s_ease-in-out]">
             <div className="mb-8">
-                <h1 className="text-2xl font-semibold tracking-tight text-slate-900 ">Compare Recipes</h1>
-                <p className="mt-1 text-sm text-slate-500">See side-by-side differences between two recipes.</p>
+                <h1 className="text-2xl font-semibold tracking-tight text-slate-900 ">{t('mylab.compare_recipes')}</h1>
+                <p className="mt-1 text-sm text-slate-500">{t('mylab.see_sidebyside_differences_between_two_recipes')}</p>
             </div>
 
             <LockFeature
@@ -114,7 +112,7 @@ const CompareRecipesPage: React.FC<CompareRecipesPageProps> = ({ onNavigate, onL
                 {error ? (
                     <div className="text-center p-8 rounded-xl bg-red-50  border border-red-200 ">
                         <ExclamationCircleIcon className="mx-auto h-10 w-10 text-red-500" />
-                        <h2 className="mt-4 text-xl font-semibold text-red-800 ">Comparison Error</h2>
+                        <h2 className="mt-4 text-xl font-semibold text-red-800 ">{t('mylab.comparison_error')}</h2>
                         <p className="mt-2 text-red-700 ">{error}</p>
                     </div>
                 ) : (
@@ -128,7 +126,7 @@ const CompareRecipesPage: React.FC<CompareRecipesPageProps> = ({ onNavigate, onL
                             // Fallback logic
                             hasProAccess ? (
                                 <div className="col-span-2 text-center p-12 border-2 border-dashed border-slate-300 rounded-xl">
-                                    <p className="text-slate-500">Select recipes to compare</p>
+                                    <p className="text-slate-500">{t('mylab.select_recipes_to_compare')}</p>
                                 </div>
                             ) : (
                                 // Teaser for free users
@@ -139,7 +137,7 @@ const CompareRecipesPage: React.FC<CompareRecipesPageProps> = ({ onNavigate, onL
                                     </>
                                 ) : (
                                     <div className="col-span-2 text-center p-12 border-2 border-dashed border-slate-300 rounded-xl">
-                                        <p className="text-slate-500">Select recipes to compare</p>
+                                        <p className="text-slate-500">{t('mylab.select_recipes_to_compare')}</p>
                                     </div>
                                 )
                             )

@@ -4,13 +4,14 @@ import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
 import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
 import { useToast } from '@/components/ToastProvider';
+import { useTranslation } from '@/i18n';
 
 interface ConsistencyContextType {
     testSeries: TestSeries[];
-    addTestSeries: (seriesData: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'>) => Promise<TestSeries>;
-    updateTestSeries: (updatedData: any) => Promise<void>;
-    deleteTestSeries: (id: string) => Promise<void>;
-    attachBakeToSeries: (seriesId: string, bakeId: string) => Promise<void>;
+    addTestSeries: (seriesData: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'>) =>{t('common.promise')}<TestSeries>;
+    updateTestSeries: (updatedData: any) =>{t('common.promise')}<void>;
+    deleteTestSeries: (id: string) =>{t('common.promise')}<void>;
+    attachBakeToSeries: (seriesId: string, bakeId: string) =>{t('common.promise')}<void>;
     // Memoized selectors
     activeSeries: TestSeries[];
     completedSeries: TestSeries[];
@@ -19,6 +20,7 @@ interface ConsistencyContextType {
 const ConsistencyContext = createContext<ConsistencyContextType | undefined>(undefined);
 
 export const ConsistencyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { firebaseUser } = useAuth();
     const { addToast } = useToast();
     const [testSeries, setTestSeries] = useState<TestSeries[]>([]);

@@ -44,7 +44,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
             try {
                 setUserFlours(JSON.parse(stored));
             } catch (e) {
-                console.error("Failed to parse user flours", e);
+                console.error(t('mylab.failed_to_parse_user_flours'), e);
             }
         }
     }, []);
@@ -117,10 +117,8 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-2">
-                            My Flour Inventory
-                        </h1>
-                        <p className="text-slate-500 mt-1">Manage your collection and set your default flour for recipes.</p>
+                        <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-2">{t('mylab.my_flour_inventory')}</h1>
+                        <p className="text-slate-500 mt-1">{t('mylab.manage_your_collection_and_set_your_default_flour_')}</p>
                     </div>
                     <div className="flex gap-2">
                         <button
@@ -159,14 +157,12 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-2 mb-2">
                                         <span className="bg-lime-500 text-white text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                                            <StarIcon className="h-3 w-3" />
-                                            Active Default
-                                        </span>
+                                            <StarIcon className="h-3 w-3" />{t('mylab.active_default')}</span>
                                     </div>
                                     <h2 className="text-2xl font-bold text-slate-800">{preferredFlour.name}</h2>
                                     <div className="flex flex-wrap gap-2 mt-3">
                                         <span className="px-3 py-1 bg-white/80 backdrop-blur rounded-lg text-xs font-bold text-slate-600 border border-lime-100">
-                                            <span className="text-slate-400 font-normal mr-1">Type:</span>
+                                            <span className="text-slate-400 font-normal mr-1">{t('mylab.type')}</span>
                                             {preferredFlour.category.toUpperCase().replace('_', ' ')}
                                         </span>
                                         {preferredFlour.strengthW && (
@@ -204,7 +200,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                                         <button
                                                             onClick={() => setPreferredFlour(flour.id)}
                                                             className="p-1.5 text-slate-300 hover:text-lime-500 hover:bg-lime-50 rounded-lg transition-colors"
-                                                            title="Set as Default"
+                                                            title={t('mylab.set_as_default')}
                                                         >
                                                             <StarIcon className="w-4 h-4" />
                                                         </button>
@@ -212,7 +208,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                                     <button
                                                         onClick={(e) => handleDeleteFlour(flour.id, e)}
                                                         className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                                        title="Remove from Inventory"
+                                                        title={t('mylab.remove_from_inventory')}
                                                     >
                                                         <TrashIcon className="w-4 h-4" />
                                                     </button>
@@ -221,9 +217,9 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
 
                                             <h3 className="font-bold text-slate-900 mb-1 line-clamp-1" title={flour.name}>{flour.name}</h3>
                                             <div className="flex gap-3 text-xs text-slate-500 mb-3">
-                                                {flour.strengthW ? <span>W <strong>{flour.strengthW}</strong></span> : <span>W --</span>}
+                                                {flour.strengthW ? <span>W <strong>{flour.strengthW}</strong></span> : <span>{t('mylab.w_')}</span>}
                                                 <span className="text-slate-300">|</span>
-                                                {flour.protein ? <span>Prot <strong>{flour.protein}%</strong></span> : <span>Prot --</span>}
+                                                {flour.protein ? <span>{t('mylab.prot')}<strong>{flour.protein}%</strong></span> : <span>{t('mylab.prot_')}</span>}
                                             </div>
 
                                             {flour.notes && (
@@ -243,21 +239,19 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                     <div className="bg-white p-3 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform">
                                         <PlusCircleIcon className="w-6 h-6 text-indigo-500" />
                                     </div>
-                                    <span className="font-bold text-slate-700">Add Custom Flour</span>
-                                    <span className="text-xs text-slate-400 mt-1">Manual Entry</span>
+                                    <span className="font-bold text-slate-700">{t('mylab.add_custom_flour')}</span>
+                                    <span className="text-xs text-slate-400 mt-1">{t('mylab.manual_entry')}</span>
                                 </button>
                             </div>
                         ) : (
                             <div className="text-center py-16 px-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
                                 <BeakerIcon className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-                                <h3 className="text-lg font-bold text-slate-900">Your inventory is empty</h3>
+                                <h3 className="text-lg font-bold text-slate-900">{t('mylab.your_inventory_is_empty')}</h3>
                                 <p className="text-slate-500 max-w-md mx-auto mt-2 mb-6">Start by adding flours to your lab. You can search our database of popular brands or add your own manually.</p>
                                 <button
                                     onClick={() => setViewMode('catalog')}
                                     className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-500/20 transition-all"
-                                >
-                                    Browse Flour Database
-                                </button>
+                                >{t('mylab.browse_flour_database')}</button>
                             </div>
                         )}
                     </div>
@@ -299,9 +293,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                         onClick={() => handleAddCatalogFlour(flour)}
                                         className="w-full mt-2 py-2 text-sm font-bold text-indigo-600 bg-indigo-50 rounded-lg hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center gap-1 group-hover:bg-indigo-600 group-hover:text-white"
                                     >
-                                        <PlusCircleIcon className="w-4 h-4" />
-                                        Add to Inventory
-                                    </button>
+                                        <PlusCircleIcon className="w-4 h-4" />{t('mylab.add_to_inventory')}</button>
                                 </div>
                             ))}
                         </div>
@@ -325,13 +317,13 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 animate-fade-in">
                         <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-slide-up">
                             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6">
-                                <h3 className="text-xl font-bold text-white">Add Custom Flour</h3>
-                                <p className="text-indigo-100 text-sm">Enter the details manually.</p>
+                                <h3 className="text-xl font-bold text-white">{t('mylab.add_custom_flour')}</h3>
+                                <p className="text-indigo-100 text-sm">{t('mylab.enter_the_details_manually')}</p>
                             </div>
 
                             <div className="p-6 space-y-4">
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-1">Flour Name</label>
+                                    <label className="block text-sm font-bold text-slate-700 mb-1">{t('mylab.flour_name')}</label>
                                     <input
                                         autoFocus
                                         type="text"
@@ -344,17 +336,17 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Category</label>
+                                        <label className="block text-sm font-bold text-slate-700 mb-1">{t('mylab.category')}</label>
                                         <select
                                             value={newFlour.category}
                                             onChange={e => setNewFlour({ ...newFlour, category: e.target.value as any })}
                                             className="w-full rounded-xl border-slate-300 bg-slate-50 p-3 outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
                                         >
                                             <option value="00">00 (Italian)</option>
-                                            <option value="bread">Bread Flour</option>
-                                            <option value="all_purpose">All Purpose</option>
-                                            <option value="whole">Whole Wheat</option>
-                                            <option value="other">Other</option>
+                                            <option value="bread">{t('mylab.bread_flour')}</option>
+                                            <option value="all_purpose">{t('mylab.all_purpose')}</option>
+                                            <option value="whole">{t('mylab.whole_wheat_2')}</option>
+                                            <option value="other">{t('mylab.other')}</option>
                                         </select>
                                     </div>
                                     <div>
@@ -364,33 +356,33 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                             value={newFlour.strengthW || ''}
                                             onChange={e => setNewFlour({ ...newFlour, strengthW: Number(e.target.value) })}
                                             className="w-full rounded-xl border-slate-300 bg-slate-50 p-3 outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                                            placeholder="Optional"
+                                            placeholder={t('mylab.optional_2')}
                                         />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Protein %</label>
+                                        <label className="block text-sm font-bold text-slate-700 mb-1">{t('mylab.protein_')}</label>
                                         <input
                                             type="number"
                                             step="0.1"
                                             value={newFlour.protein || ''}
                                             onChange={e => setNewFlour({ ...newFlour, protein: Number(e.target.value) })}
                                             className="w-full rounded-xl border-slate-300 bg-slate-50 p-3 outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                                            placeholder="Optional"
+                                            placeholder={t('mylab.optional_2')}
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-1">Notes</label>
+                                    <label className="block text-sm font-bold text-slate-700 mb-1">{t('mylab.notes_2')}</label>
                                     <textarea
                                         value={newFlour.notes}
                                         onChange={e => setNewFlour({ ...newFlour, notes: e.target.value })}
                                         className="w-full rounded-xl border-slate-300 bg-slate-50 p-3 outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                                         rows={3}
-                                        placeholder="Any special characteristics..."
+                                        placeholder={t('mylab.any_special_characteristics')}
                                     />
                                 </div>
                             </div>
@@ -399,16 +391,12 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                 <button
                                     onClick={() => setIsAddingMode('none')}
                                     className="px-5 py-2.5 rounded-xl text-slate-600 font-bold hover:bg-slate-200 transition-colors"
-                                >
-                                    Cancel
-                                </button>
+                                >{t('mylab.cancel')}</button>
                                 <button
                                     onClick={handleAddCustomFlour}
                                     disabled={!newFlour.name}
                                     className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-bold shadow-lg shadow-indigo-500/20 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                                >
-                                    Save Flour
-                                </button>
+                                >{t('mylab.save_flour')}</button>
                             </div>
                         </div>
                     </div>

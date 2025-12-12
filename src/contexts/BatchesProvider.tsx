@@ -4,13 +4,14 @@ import { useBatchManager } from '@/hooks/useBatchManager';
 import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
 import { useToast } from '@/components/ToastProvider';
+import { useTranslation } from '@/i18n';
 
 interface BatchesContextType {
     batches: Batch[];
-    addBatch: (batch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) => Promise<Batch>;
-    updateBatch: (id: string, updates: Partial<Batch>) => Promise<void>;
-    deleteBatch: (id: string) => Promise<void>;
-    createDraftBatch: () => Promise<Batch>;
+    addBatch: (batch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) =>{t('common.promise')}<Batch>;
+    updateBatch: (id: string, updates: Partial<Batch>) =>{t('common.promise')}<void>;
+    deleteBatch: (id: string) =>{t('common.promise')}<void>;
+    createDraftBatch: () =>{t('common.promise')}<Batch>;
     // Memoized selectors
     lastBake: Batch | null;
     totalBakes: number;
@@ -20,6 +21,7 @@ interface BatchesContextType {
 const BatchesContext = createContext<BatchesContextType | undefined>(undefined);
 
 export const BatchesProviderComponent: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     console.log('[BatchesProvider] Rendering');
     const { firebaseUser } = useAuth();
     const { addToast } = useToast();

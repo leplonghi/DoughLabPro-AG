@@ -1,8 +1,10 @@
 import React from 'react';
 import { useRouter } from '@/contexts/RouterContext';
 import { FeedIcon, ChevronRightIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 const CommunityCreatePost: React.FC = () => {
+  const { t } = useTranslation();
     const { navigate } = useRouter();
 
     return (
@@ -12,8 +14,8 @@ const CommunityCreatePost: React.FC = () => {
                     <FeedIcon className="h-6 w-6" />
                 </div>
                 <div>
-                    <h3 className="font-bold text-slate-900">Share your bake</h3>
-                    <p className="text-xs text-slate-500">Inspire the community</p>
+                    <h3 className="font-bold text-slate-900">{t('community.share_your_bake_2')}</h3>
+                    <p className="text-xs text-slate-500">{t('community.inspire_the_community')}</p>
                 </div>
             </div>
 
@@ -24,9 +26,7 @@ const CommunityCreatePost: React.FC = () => {
             <button
                 onClick={() => navigate('mylab/fornadas')}
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-lime-500 to-lime-700 py-3 text-sm font-bold text-white shadow-lg shadow-lime-900/10 hover:from-lime-600 hover:to-lime-800 transition-all active:scale-95"
-            >
-                Go to My Lab
-                <ChevronRightIcon className="h-4 w-4" />
+            >{t('community.go_to_my_lab')}<ChevronRightIcon className="h-4 w-4" />
             </button>
         </div>
     );

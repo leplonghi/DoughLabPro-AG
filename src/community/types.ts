@@ -1,5 +1,6 @@
 import { Timestamp } from 'firebase/firestore';
 import { DoughConfig, OvenType } from '@/types';
+import { useTranslation } from '@/i18n';
 
 export interface CommunityPost {
     id: string;

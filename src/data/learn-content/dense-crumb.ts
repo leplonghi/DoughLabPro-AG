@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const denseCrumbData: LearnArticleData = {
     id: "dense-crumb",
-    title: "Dense Crumb",
-    subtitle: "Diagnosing poor gas retention, weak fermentation and structural imbalance.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    title: t('learn.dense_crumb'),
+    subtitle: t('learn.diagnosing_poor_gas_retention_weak_fermentation_an'),
+    category: t('learn.troubleshooting_2'),
+    difficulty: t('learn.intermediate_9'),
     tags: ["crumb", "density", "troubleshooting", "fermentation"],
 
     intro: "Dense crumb occurs when the dough fails to retain gas or develop sufficient gluten structure. It can stem from fermentation, shaping, flour strength or hydration issues.",
@@ -31,7 +32,7 @@ export const denseCrumbData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Hydration for Open Crumb", notes: "Recommended: 70% (Range: 65-78%)" }
+        { label: t('learn.hydration_for_open_crumb'), notes: "Recommended: 70% (Range: 65-78%)" }
     ],
 
     practicalApplications: [
@@ -63,12 +64,12 @@ export const denseCrumbData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Underproofed Dough",
+            variant: t('learn.underproofed_dough'),
             implications: "Insufficient fermentation. Stiff, tight. Low gas, minimal extensibility. Poor spring."
         },
         {
-            variant: "Low Hydration Dough",
-            implications: "Limited expansion potential. Firm, dry. Restrictive crumb. Dense, uniform cells."
+            variant: t('learn.low_hydration_dough'),
+            implications: t('learn.limited_expansion_potential_firm_dry_restrictive_c')
         }
     ],
 
@@ -82,9 +83,9 @@ export const denseCrumbData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Sweetheart, a dense crumb is like bread that forgot to breathe.",
-        whatItDoes: "Makes the inside heavy.",
-        howToUse: "Give it time and water — dough needs both.",
-        dangerSigns: "It didn’t rise enough or doesn’t have enough moisture."
+        intro: t('learn.sweetheart_a_dense_crumb_is_like_bread_that_forgot'),
+        whatItDoes: t('learn.makes_the_inside_heavy'),
+        howToUse: t('learn.give_it_time_and_water__dough_needs_both'),
+        dangerSigns: t('learn.it_didnt_rise_enough_or_doesnt_have_enough_moistur')
     }
 };

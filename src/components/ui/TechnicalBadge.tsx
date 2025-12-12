@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 interface TechnicalBadgeProps {
     label: string;
@@ -10,6 +11,7 @@ interface TechnicalBadgeProps {
 
 
 export const TechnicalBadge: React.FC<TechnicalBadgeProps> = ({ label, value, unit, color = 'slate' }) => {
+  const { t } = useTranslation();
     // Standardized style using design tokens
     const baseClass = 'bg-dlp-bg-muted text-dlp-text-primary border-dlp-border';
 

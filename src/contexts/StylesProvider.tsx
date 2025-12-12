@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useMemo } from '
 import { DoughStyleDefinition } from '@/types/styles';
 import { STYLES_DATA } from '@/data/stylesData';
 import { fetchStyles } from '@/services/stylesService';
+import { useTranslation } from '@/i18n';
 
 interface StylesContextType {
     styles: DoughStyleDefinition[];
@@ -13,6 +14,7 @@ interface StylesContextType {
 const StylesContext = createContext<StylesContextType | undefined>(undefined);
 
 export const StylesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { t } = useTranslation();
     // Initialize with static data for instant load
     const [styles, setStyles] = useState<DoughStyleDefinition[]>(STYLES_DATA);
     const [isLoading, setIsLoading] = useState(true); // Loading remote data
@@ -25,7 +27,7 @@ export const StylesProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                 setStyles(remoteStyles);
             }
         } catch (error) {
-            console.error("Failed to load styles from service", error);
+            console.error(t('errors.failed_to_load_styles'), error);
             // Keep using fallback/static data
         } finally {
             setIsLoading(false);

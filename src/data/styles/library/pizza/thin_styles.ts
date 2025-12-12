@@ -1,19 +1,20 @@
 import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
+import { useTranslation } from '@/i18n';
 
 export const ChicagoTavern: DoughStyleDefinition = {
     id: "chicago_tavern_v2",
-    name: "Chicago Tavern Style",
+    name: t('styles.chicago_tavern_style'),
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
-    family: "Flatbreads & Pizzas",
+    family: t('styles.flatbreads__pizzas_4'),
     description: "The TRUE Chicago pizza (what locals actually eat). Ultra-thin, cracker-like crust, square-cut (party cut), and loaded with toppings under the cheese. The dough is rolled flat and cured to ensure zero rise.",
     origin: {
-        country: "USA",
+        country: t('styles.usa_8'),
         region: "Chicago / Midwest",
         period: "1940s"
     },
     history: "Developed in post-Prohibition taverns as a salty, cracker-like snack to encourage drinking. The 'party cut' allowed patrons to hold a square in one hand and a beer in the other.",
-    difficulty: "Medium",
+    difficulty: t('styles.medium_22'),
     fermentationType: "cold",
     technicalProfile: {
         hydration: [45, 50],
@@ -22,8 +23,8 @@ export const ChicagoTavern: DoughStyleDefinition = {
         sugar: [1.0, 2.0],
         flourStrength: "All Purpose or High Gluten (Variable)",
         ovenTemp: [260, 290],
-        recommendedUse: ["Sausage & Giardiniera", "Pepperoni"],
-        difficulty: "Medium",
+        recommendedUse: [t('styles.sausage__giardiniera'), t('styles.pepperoni_3')],
+        difficulty: t('styles.medium_23'),
         fermentationSteps: [
             "Mix to stiff dough. [Science: Low hydration prevents gluten mobility, ensuring potential for crispness.]",
             "Sheet/Roll flat immediately or after short rest. [Science: Mechanical degassing is key; no alveoli allowed.]",
@@ -33,9 +34,9 @@ export const ChicagoTavern: DoughStyleDefinition = {
     },
     tags: ["pizza", "american", "midwest", "thin-crust", "party-cut", "cracker"],
     pairings: {
-        canonical: ["Fennel Sausage", "Giardiniera", "Mozzarella"],
-        modern: ["Italian Beef"],
-        regional: ["Old Style Beer"]
+        canonical: [t('styles.fennel_sausage'), t('styles.giardiniera'), t('styles.mozzarella_2')],
+        modern: [t('styles.italian_beef')],
+        regional: [t('styles.old_style_beer')]
     },
     watchouts: [
         "Bubble formation: If not docked enough, it will bubble and burn.",
@@ -52,7 +53,7 @@ export const ChicagoTavern: DoughStyleDefinition = {
     createdAt: "2025-01-01",
     releaseDate: "2025-01-01",
     references: [
-        { source: "Pizza City, USA", author: "Steve Dolinsky" }
+        { source: t('styles.pizza_city_usa'), author: t('styles.steve_dolinsky') }
     ],
     images: {
         hero: "/images/styles/chicago_hero.jpg",

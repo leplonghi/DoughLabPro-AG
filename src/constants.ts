@@ -1,6 +1,7 @@
 
 
 import { RecipeStyle, YeastType, ProRecipe, BakeType, FermentationTechnique, AmbientTemperature, OvenType, DoughStylePreset, AdviceOvenType, SurfaceType, InspirationBatch, DoughConfig } from './types';
+import { useTranslation } from '@/i18n';
 
 export const YEAST_OPTIONS = [
   { value: YeastType.IDY, labelKey: 'Instant Dry Yeast (IDY)' },
@@ -94,11 +95,11 @@ export const ENVIRONMENT_TEMPERATURE_GUIDELINES = {
   },
   [AmbientTemperature.MILD]: {
     yeastAdjustment: 1.0, // No change
-    notes: "Ideal temperature for most standard recipes."
+    notes: t('ui.ideal_temperature_for_most_standard_recipes')
   },
   [AmbientTemperature.HOT]: {
     yeastAdjustment: 0.7, // Suggest ~30% less yeast
-    notes: "Fermentation will be faster. Consider using cold water and reducing bulk time."
+    notes: t('ui.fermentation_will_be_faster_consider_using_cold_wa')
   }
 };
 

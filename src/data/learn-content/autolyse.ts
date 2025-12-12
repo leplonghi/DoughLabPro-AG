@@ -1,12 +1,13 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const autolyseArticle: LearnArticleData = {
     id: "autolyse-technique",
-    title: "Autolyse — Enzymatic Relaxation & Gluten Pre-Formation",
-    subtitle: "How a simple rest improves extensibility, hydration and dough handling.",
+    title: t('learn.autolyse__enzymatic_relaxation__gluten_preformatio'),
+    subtitle: t('learn.how_a_simple_rest_improves_extensibility_hydration'),
 
-    category: "Dough Science", // Updated category
-    difficulty: "Intermediate",
+    category: t('learn.dough_science'), // Updated category
+    difficulty: t('learn.intermediate_2'),
     tags: ["autolyse", "extensibility", "hydration", "calvel"],
 
     intro: "Autolyse is the rest period where flour and water hydrate before kneading. It improves extensibility, enhances gluten alignment, reduces mixing time and develops flavor naturally.",
@@ -34,9 +35,9 @@ export const autolyseArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Short Autolyse", notes: "Recommended: 20 min (Range: 15-25 min)" },
-        { label: "Standard Autolyse", notes: "Recommended: 30 min (Range: 20-60 min)" },
-        { label: "Long Autolyse", notes: "Recommended: 90 min (Range: 60-120 min)" }
+        { label: t('learn.short_autolyse'), notes: "Recommended: 20 min (Range: 15-25 min)" },
+        { label: t('learn.standard_autolyse'), notes: "Recommended: 30 min (Range: 20-60 min)" },
+        { label: t('learn.long_autolyse'), notes: "Recommended: 90 min (Range: 60-120 min)" }
     ],
 
     practicalApplications: [
@@ -67,12 +68,12 @@ export const autolyseArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "With Whole Grain",
-            implications: "Shorter autolyse recommended. Deeper flavor."
+            variant: t('learn.with_whole_grain'),
+            implications: t('learn.shorter_autolyse_recommended_deeper_flavor')
         },
         {
-            variant: "High Protein Flour",
-            implications: "Longer autolyse beneficial. Maximizes oven spring."
+            variant: t('learn.high_protein_flour'),
+            implications: t('learn.longer_autolyse_beneficial_maximizes_oven_spring')
         }
     ],
 
@@ -86,15 +87,15 @@ export const autolyseArticle: LearnArticleData = {
 
     faq: [
         {
-            q: "Can I add salt during autolyse?",
+            q: t('learn.can_i_add_salt_during_autolyse'),
             a: "Technically no, that's called a 'fermentolyse' if yeast is added too. Salt tightens gluten, counteracting the relaxation benefit of autolyse."
         }
     ],
 
     grandmaVersion: {
         intro: "Sweetheart, autolyse is like letting the dough take a warm bath before working. Just flour and water resting together makes the dough softer and easier to handle.",
-        whatItDoes: "It helps the dough stretch without tearing and needs less mixing later.",
-        howToUse: "Your hands work less, and the dough becomes smooth and happy.",
-        dangerSigns: "But leave it too long and the dough gets weak — everything in balance."
+        whatItDoes: t('learn.it_helps_the_dough_stretch_without_tearing_and_nee'),
+        howToUse: t('learn.your_hands_work_less_and_the_dough_becomes_smooth_'),
+        dangerSigns: t('learn.but_leave_it_too_long_and_the_dough_gets_weak__eve')
     }
 };

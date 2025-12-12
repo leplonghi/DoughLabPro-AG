@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Check, Filter } from 'lucide-react';
+import { useTranslation } from '@/i18n';
 
 interface StylesFilterDrawerProps {
     isOpen: boolean;
@@ -28,6 +29,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
     availableRegions,
     onClearAll
 }) => {
+  const { t } = useTranslation();
     if (!isOpen) return null;
 
     return (
@@ -42,8 +44,8 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                             <Filter className="w-5 h-5" />
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold text-slate-900">Advanced Filters</h2>
-                            <p className="text-xs text-slate-500">Refine your style search</p>
+                            <h2 className="text-lg font-bold text-slate-900">{t('general.advanced_filters')}</h2>
+                            <p className="text-xs text-slate-500">{t('general.refine_your_style_search')}</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 transition-colors">
@@ -56,9 +58,9 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
 
                     {/* Difficulty */}
                     <section>
-                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Difficulty Level</h3>
+                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{t('general.difficulty_level')}</h3>
                         <div className="flex flex-wrap gap-2">
-                            {['Easy', 'Medium', 'Hard', 'Expert'].map(diff => {
+                            {[t('styles.easy_2'), t('styles.medium_4'), t('styles.hard_2'), t('styles.expert_2')].map(diff => {
                                 const isSelected = selectedDifficulty.includes(diff);
                                 return (
                                     <button
@@ -106,7 +108,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
 
                     {/* Tags */}
                     <section>
-                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Characteristics & Tags</h3>
+                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{t('styles.characteristics__tags')}</h3>
                         <div className="flex flex-wrap gap-2">
                             {availableTags.map(tag => {
                                 const isSelected = selectedTags.includes(tag);
@@ -132,15 +134,11 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                     <button
                         onClick={onClearAll}
                         className="flex-1 py-3 px-4 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-white hover:text-red-500 transition-colors"
-                    >
-                        Reset All
-                    </button>
+                    >{t('common.reset_all')}</button>
                     <button
                         onClick={onClose}
                         className="flex-[2] py-3 px-4 rounded-xl bg-lime-500 text-white font-bold shadow-lg hover:bg-lime-600 hover:shadow-xl transition-all"
-                    >
-                        Show Results
-                    </button>
+                    >{t('common.show_results')}</button>
                 </div>
             </div>
         </div>

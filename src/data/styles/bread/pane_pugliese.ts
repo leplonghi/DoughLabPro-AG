@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pane_pugliese: StyleDefinition = {
   "id": "pane_pugliese",
-  "title": "Pane Pugliese",
-  "subtitle": "Italian Rustic & High Hydration",
-  "category": "Bread",
-  "family": "Italian Rustic & High Hydration",
-  "variantName": "Pane Pugliese",
+  "title": t('styles.pane_pugliese'),
+  "subtitle": t('styles.italian_rustic__high_hydration_5'),
+  "category": t('styles.bread_18'),
+  "family": t('styles.italian_rustic__high_hydration_6'),
+  "variantName": t('styles.pane_pugliese_2'),
   "origin": {
-    "country": "Italy",
-    "region": "Puglia",
-    "period": "Traditional"
+    "country": t('styles.italy_4'),
+    "region": t('styles.puglia'),
+    "period": t('styles.traditional_7')
   },
   "intro": "Served as a flavorful table bread with a chewy crumb, pairing well with olive oil and hearty dishes.",
   "history": "Pane pugliese is a rustic Italian bread from Puglia, often using high hydration and durum or blended flours.",
@@ -37,11 +38,11 @@ export const pane_pugliese: StyleDefinition = {
       0,
       1
     ],
-    "flourStrength": "Blend of bread flour and durum wheat flours",
+    "flourStrength": t('styles.blend_of_bread_flour_and_durum_wheat_flours'),
     "fermentation": {
       "bulk": "2–4 h at 23–25°C with folds",
       "proof": "45–90 min at 23–25°C",
-      "coldRetard": "Optional overnight retard"
+      "coldRetard": t('styles.optional_overnight_retard')
     },
     "oven": {
       "type": "deck",
@@ -49,11 +50,11 @@ export const pane_pugliese: StyleDefinition = {
         230,
         250
       ],
-      "notes": "Often baked as large loaves with bold crust."
+      "notes": t('styles.often_baked_as_large_loaves_with_bold_crust')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_12'),
     "recommendedUse": [
-      "Rustic Italian table bread"
+      t('common.rustic_italian_table_bread')
     ]
   },
   "regionalVariants": [],
@@ -63,9 +64,9 @@ export const pane_pugliese: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Rustic Italian table bread",
-    "Bread",
-    "Italy"
+    t('common.rustic_italian_table_bread'),
+    t('common.bread'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -76,11 +77,11 @@ export const pane_pugliese: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_16'),
       "url": ""
     },
     {
-      "title": "Italian bread literature",
+      "title": t('styles.italian_bread_literature'),
       "url": ""
     }
   ],

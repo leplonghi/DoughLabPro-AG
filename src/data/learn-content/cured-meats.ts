@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const curedMeatsData: LearnArticleData = {
     id: 'cured-meats',
@@ -61,8 +62,8 @@ export const curedMeatsData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "It adds a salty, savory punch to your pizza.",
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_4'),
+        whatItDoes: t('learn.it_adds_a_salty_savory_punch_to_your_pizza'),
         howToUse: "Put the tough ones in the oven, but keep the fancy soft ones for after it's cooked.",
         dangerSigns: "Don't use too much salt in your dough if you're using lots of salty meat!"
     }

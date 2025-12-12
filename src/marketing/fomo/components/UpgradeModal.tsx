@@ -1,6 +1,7 @@
 import React from 'react';
 import { FeatureKey } from '../../../permissions';
 import { FOMO_TRIGGERS } from '../fomoTriggers';
+import { useTranslation } from '@/i18n';
 
 interface UpgradeModalProps {
     isOpen: boolean;
@@ -9,6 +10,7 @@ interface UpgradeModalProps {
 }
 
 export const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose, featureKey }) => {
+  const { t } = useTranslation();
     if (!isOpen || !featureKey) return null;
 
     const trigger = FOMO_TRIGGERS[featureKey] || {
@@ -30,23 +32,19 @@ export const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose, fea
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">Unlock Pro Features</h3>
+                        <h3 className="text-2xl font-bold text-white mb-2">{t('general.unlock_pro_features')}</h3>
                         <p className="text-zinc-400">{trigger.description}</p>
                     </div>
 
                     <div className="space-y-3 mb-8">
                         <div className="flex items-center gap-3 text-sm text-zinc-300">
-                            <span className="text-lime-400">✓</span> Unlimited Recipes
-                        </div>
+                            <span className="text-lime-400">✓</span>{t('marketing.unlimited_recipes')}</div>
                         <div className="flex items-center gap-3 text-sm text-zinc-300">
-                            <span className="text-lime-400">✓</span> Advanced Calculator
-                        </div>
+                            <span className="text-lime-400">✓</span>{t('marketing.advanced_calculator')}</div>
                         <div className="flex items-center gap-3 text-sm text-zinc-300">
-                            <span className="text-lime-400">✓</span> Community Access
-                        </div>
+                            <span className="text-lime-400">✓</span>{t('marketing.community_access')}</div>
                         <div className="flex items-center gap-3 text-sm text-zinc-300">
-                            <span className="text-lime-400">✓</span> AI Assistant
-                        </div>
+                            <span className="text-lime-400">✓</span>{t('marketing.ai_assistant')}</div>
                     </div>
 
                     <div className="space-y-3">
@@ -63,9 +61,7 @@ export const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose, fea
                         <button
                             onClick={onClose}
                             className="w-full py-3 px-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-medium rounded-xl transition-colors"
-                        >
-                            Maybe Later
-                        </button>
+                        >{t('marketing.maybe_later')}</button>
                     </div>
                 </div>
             </div>

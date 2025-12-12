@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const waterRichVegetablesData: LearnArticleData = {
     id: 'water-rich-vegetables',
@@ -10,7 +11,7 @@ export const waterRichVegetablesData: LearnArticleData = {
 
     intro: "Vegetables like zucchini, eggplant, and mushrooms are >90% water. When heated, their cell walls break down, releasing this water. If this happens on top of a pizza, the water pools in the center. Since the dough temperature cannot exceed 100°C while water is present, the crust under the vegetables never bakes—it boils. The result is a raw, gummy 'gum line'.",
 
-    history: "Historical context coming soon.",
+    history: t('learn.historical_context_coming_soon_3'),
 
     technicalFoundations: [
         "Technique 1: Pre-Cooking (Roasting/Sautéing). The most reliable method. Cook the vegetables fully BEFORE putting them on the pizza. This drives off the water and develops flavor (Maillard reaction).",
@@ -57,9 +58,9 @@ export const waterRichVegetablesData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_20'),
+        whatItDoes: t('learn.improves_texture_and_flavor_14'),
+        howToUse: t('learn.so_you_get_the_best_results_16'),
+        dangerSigns: t('learn.use_it_wisely_16')
     },
 };

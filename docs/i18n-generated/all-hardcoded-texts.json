@@ -1,0 +1,5574 @@
+{
+  "The host application may pass dynamic context.": [
+    "src\\ai\\assistantClient.ts"
+  ],
+  "Not specified": [
+    "src\\ai\\assistantClient.ts"
+  ],
+  "Sorry, I couldn't process your question right now. Please try again.": [
+    "src\\ai\\assistantClient.ts"
+  ],
+  "High Protein": [
+    "src\\ai\\assistantClient.ts"
+  ],
+  "Failed to generate style. Please try a different description.": [
+    "src\\ai\\assistantClient.ts"
+  ],
+  "Empty diagnostic response": [
+    "src\\ai\\assistantClient.ts"
+  ],
+  "Sign in to access your lab, recipes, and tools.": [
+    "src\\App.tsx"
+  ],
+  "Failed to save onboarding status to localStorage": [
+    "src\\App.tsx"
+  ],
+  "Trending": [
+    "src\\community\\components\\CommunityFilters.tsx"
+  ],
+  "Avg. Rating": [
+    "src\\community\\components\\CommunityProfileSidebar.tsx"
+  ],
+  "Failed to fetch user stats": [
+    "src\\community\\components\\CommunityProfileSidebar.tsx"
+  ],
+  "Loading comments...": [
+    "src\\community\\components\\PostComments.tsx"
+  ],
+  "No comments yet. Be the first!": [
+    "src\\community\\components\\PostComments.tsx"
+  ],
+  "Failed to upload photo": [
+    "src\\community\\components\\ShareBatchModal.tsx"
+  ],
+  "Bake shared to community successfully!": [
+    "src\\community\\components\\ShareBatchModal.tsx"
+  ],
+  "Sharing...": [
+    "src\\community\\components\\ShareBatchModal.tsx",
+    "src\\marketing\\social\\SocialShare.tsx"
+  ],
+  "You do not have permission to view this feed. Please ensure you are signed in.": [
+    "src\\community\\hooks\\useCommunityFeed.ts"
+  ],
+  "Failed to load post": [
+    "src\\community\\hooks\\useCommunityPost.ts"
+  ],
+  "How do you want to start?": [
+    "src\\community\\pages\\CommunityCreatePostPage.tsx"
+  ],
+  "Fill in your formula manually.": [
+    "src\\community\\pages\\CommunityCreatePostPage.tsx"
+  ],
+  "Select a recent bake used.": [
+    "src\\community\\pages\\CommunityCreatePostPage.tsx"
+  ],
+  "No saved batches found.": [
+    "src\\community\\pages\\CommunityCreatePostPage.tsx"
+  ],
+  "Please select a valid image file": [
+    "src\\community\\pages\\CommunityCreatePostPage.tsx"
+  ],
+  "Permission denied.": [
+    "src\\community\\pages\\CommunityCreatePostPage.tsx"
+  ],
+  "Post not found": [
+    "src\\community\\pages\\CommunityPostPage.tsx"
+  ],
+  "No bakes shared yet.": [
+    "src\\community\\pages\\CommunityUserProfilePage.tsx"
+  ],
+  "You haven't saved any posts yet.": [
+    "src\\community\\pages\\CommunityUserProfilePage.tsx"
+  ],
+  "Failed to load user posts": [
+    "src\\community\\pages\\CommunityUserProfilePage.tsx"
+  ],
+  "Failed to fetch saved posts": [
+    "src\\community\\pages\\CommunityUserProfilePage.tsx"
+  ],
+  "Bake": [
+    "src\\community\\pages\\CommunityUserProfilePage.tsx",
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Admin": [
+    "src\\components\\AdminTools.tsx"
+  ],
+  "Recommended Gear": [
+    "src\\components\\AffiliateGrid.tsx"
+  ],
+  "Unlock full Community": [
+    "src\\components\\auth\\LockFeature.tsx"
+  ],
+  "Successfully logged in with Google!', 'success": [
+    "src\\components\\AuthModal.tsx"
+  ],
+  "Sign In": [
+    "src\\components\\AuthModal.tsx"
+  ],
+  "Send Reset Link": [
+    "src\\components\\AuthModal.tsx"
+  ],
+  "Reset Password": [
+    "src\\components\\AuthModal.tsx"
+  ],
+  "Recover your access": [
+    "src\\components\\AuthModal.tsx"
+  ],
+  "Temperature affects fermentation speed.": [
+    "src\\components\\calculator\\sections\\EnvironmentSection.tsx"
+  ],
+  "Leavening method for this style.": [
+    "src\\components\\calculator\\sections\\FermentationSection.tsx"
+  ],
+  "Biga Preferment is a Pro feature.": [
+    "src\\components\\calculator\\sections\\FermentationSection.tsx"
+  ],
+  "No starters found in My Lab.": [
+    "src\\components\\calculator\\sections\\IngredientsSection.tsx"
+  ],
+  "Water content relative to flour weight.": [
+    "src\\components\\calculator\\sections\\IngredientsSection.tsx"
+  ],
+  "Salt content relative to flour weight.": [
+    "src\\components\\calculator\\sections\\IngredientsSection.tsx"
+  ],
+  "Chocolate": [
+    "src\\components\\calculator\\sections\\IngredientsSection.tsx"
+  ],
+  "Active": [
+    "src\\components\\calculator\\sections\\IngredientsSection.tsx"
+  ],
+  "Needs Attention": [
+    "src\\components\\calculator\\sections\\IngredientsSection.tsx"
+  ],
+  "Pizzas": [
+    "src\\components\\calculator\\sections\\QuantitySection.tsx",
+    "src\\components\\calculator\\sections\\StyleSection.tsx"
+  ],
+  "Other": [
+    "src\\components\\calculator\\sections\\StyleSection.tsx",
+    "src\\pizzas-constants.ts"
+  ],
+  "Step-by-Step Method": [
+    "src\\components\\calculator\\TechnicalMethodPanel.tsx"
+  ],
+  "Workflow generated for your dough.": [
+    "src\\components\\calculator\\TechnicalMethodPanel.tsx"
+  ],
+  "Stop guessing. Start mastering.": [
+    "src\\components\\CalculatorForm.tsx"
+  ],
+  "Save preset clicked": [
+    "src\\components\\CalculatorForm.tsx"
+  ],
+  "Reveal": [
+    "src\\components\\CalculatorForm.tsx"
+  ],
+  "No posts yet. Be the first to share!": [
+    "src\\components\\community\\CommunityFeed.tsx"
+  ],
+  "Sign in to share your recipes and track your progress.": [
+    "src\\components\\community\\CommunityProfileSidebar.tsx"
+  ],
+  "DoughLab ', '": [
+    "src\\components\\layout\\Navigation.tsx"
+  ],
+  "Tools that help with this technique": [
+    "src\\components\\learn\\LearnAffiliateBlock.tsx"
+  ],
+  "Tool": [
+    "src\\components\\learn\\LearnAffiliateBlock.tsx"
+  ],
+  "Technical Mode": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Grandma Mode": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Summary Mode": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Return to Main Article": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Executive Summary": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Key Takeaways": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Introduction": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Technical Foundations": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Impact on Dough": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Baking Performance": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Practical Ranges": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Practical Applications": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Pro Tips": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Critical Points": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Regional Variants": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Climate Scenarios": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Frequently Asked Questions": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "References": [
+    "src\\components\\learn\\LearnArticleRenderer.tsx"
+  ],
+  "Enter Manually...": [
+    "src\\components\\LevainModal.tsx"
+  ],
+  "Custom Interval...": [
+    "src\\components\\LevainModal.tsx"
+  ],
+  "All Purpose',\r\n        'Whole Wheat',\r\n        'Rye',\r\n        'Spelt',": [
+    "src\\components\\LevainModal.tsx"
+  ],
+  "My Levain": [
+    "src\\components\\LevainModal.tsx"
+  ],
+  "Calculate Shopping List": [
+    "src\\components\\modals\\ToppingPlannerModal.tsx"
+  ],
+  "Hydration": [
+    "src\\components\\mylab\\ConsistencySeriesModal.tsx",
+    "src\\services\\exportService.ts"
+  ],
+  "Edit Series": [
+    "src\\components\\mylab\\ConsistencySeriesModal.tsx"
+  ],
+  "Saving...": [
+    "src\\components\\mylab\\ConsistencySeriesModal.tsx"
+  ],
+  "Choose Your Style": [
+    "src\\components\\onboarding\\TourGuide.tsx"
+  ],
+  "Finish": [
+    "src\\components\\onboarding\\TourGuide.tsx"
+  ],
+  "Essential tools for home bakers.": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Advanced tools for serious pizza makers.": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Unlimited Saved Batches": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Advanced Calculator Mode": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Create Custom Styles": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Oven Analysis Tool": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Levain Management": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Export to PDF": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Basic Calculator": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Standard Presets": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Community Access": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Current Plan": [
+    "src\\components\\PlansPage.tsx"
+  ],
+  "Please log in to access this page.": [
+    "src\\components\\RequireAuth.tsx"
+  ],
+  "Link copied!": [
+    "src\\components\\ResultsDisplay.tsx"
+  ],
+  "Exporting PDF...": [
+    "src\\components\\ResultsDisplay.tsx"
+  ],
+  "Preferment": [
+    "src\\components\\ResultsDisplay.tsx"
+  ],
+  "Ingredients": [
+    "src\\components\\ResultsDisplay.tsx",
+    "src\\services\\exportService.ts"
+  ],
+  "Generating...": [
+    "src\\components\\social\\SocialShareModal.tsx"
+  ],
+  "Failed to generate image": [
+    "src\\components\\social\\SocialShareModal.tsx"
+  ],
+  "Ultra Crispy',": [
+    "src\\components\\styles\\AiStyleBuilderModal.tsx"
+  ],
+  "Thin Crust', 'Thick Crust',": [
+    "src\\components\\styles\\AiStyleBuilderModal.tsx"
+  ],
+  "Buttery', 'Neutral',": [
+    "src\\components\\styles\\AiStyleBuilderModal.tsx"
+  ],
+  "Poolish', 'Biga', 'Direct Method', 'No-Knead', 'High Hydration": [
+    "src\\components\\styles\\AiStyleBuilderModal.tsx"
+  ],
+  "Analyzing texture requirements...": [
+    "src\\components\\styles\\AiStyleBuilderModal.tsx"
+  ],
+  "Define the parameters of your custom dough.": [
+    "src\\components\\styles\\CreateStyleModal.tsx"
+  ],
+  "Easy', 'Medium', 'Hard', 'Expert": [
+    "src\\components\\styles\\CreateStyleModal.tsx",
+    "src\\components\\styles\\StylesFilterDrawer.tsx"
+  ],
+  "My Custom Styles": [
+    "src\\components\\styles\\CreateStyleModal.tsx"
+  ],
+  "Medium": [
+    "src\\components\\styles\\CreateStyleModal.tsx",
+    "src\\data\\styles\\builder.ts",
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\pizza\\neapolitan_avpn_classic.ts",
+    "src\\data\\styles\\registry.ts",
+    "src\\pages\\styles\\DoughStylesPage.tsx",
+    "src\\utils\\styleAdapter.ts"
+  ],
+  "New Step": [
+    "src\\components\\styles\\CreateStyleModal.tsx"
+  ],
+  "Complete": [
+    "src\\components\\styles\\CreateStyleModal.tsx"
+  ],
+  "Custom": [
+    "src\\components\\styles\\CreateStyleModal.tsx"
+  ],
+  "Generic": [
+    "src\\components\\styles\\CreateStyleModal.tsx"
+  ],
+  "Standard": [
+    "src\\components\\styles\\CreateStyleModal.tsx",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\registry.ts",
+    "src\\pages\\styles\\StyleDetailPage.tsx",
+    "src\\utils\\styleAdapter.ts"
+  ],
+  "Save Generated Style": [
+    "src\\components\\styles\\CreateStyleModal.tsx"
+  ],
+  "Variable": [
+    "src\\components\\styles\\StyleCard.tsx",
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Expert' ?": [
+    "src\\components\\styles\\TechnicalProfileCard.tsx",
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Diagnosis of potential causes will appear here.": [
+    "src\\components\\tools\\doughbot\\DoughbotResultsPlaceholder.tsx"
+  ],
+  "Each cause will be explained based on baking science.": [
+    "src\\components\\tools\\doughbot\\DoughbotResultsPlaceholder.tsx"
+  ],
+  "Technical suggestions for correction will appear here.": [
+    "src\\components\\tools\\doughbot\\DoughbotResultsPlaceholder.tsx"
+  ],
+  "Solutions will include recipe and process adjustments.": [
+    "src\\components\\tools\\doughbot\\DoughbotResultsPlaceholder.tsx"
+  ],
+  "Define your equipment parameters.": [
+    "src\\components\\tools\\ovenProfiler\\OvenProfilerForm.tsx"
+  ],
+  "Wood-fired oven": [
+    "src\\components\\tools\\ovenProfiler\\OvenProfilerForm.tsx"
+  ],
+  "Fan-forced air circulation": [
+    "src\\components\\tools\\ovenProfiler\\OvenProfilerForm.tsx"
+  ],
+  "Pizza": [
+    "src\\components\\ui\\CategoryBadge.tsx",
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "Something went wrong.": [
+    "src\\components\\ui\\ErrorBoundary.tsx"
+  ],
+  "Uploading...": [
+    "src\\components\\ui\\ImageUpload.tsx",
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Professional Baking Gear": [
+    "src\\components\\ui\\RecommendedProducts.tsx",
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "Copied!": [
+    "src\\components\\ui\\ShareButton.tsx"
+  ],
+  "Fresh Yeast": [
+    "src\\constants.ts",
+    "src\\data\\learn-content\\yeasts.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Gas Oven": [
+    "src\\constants.ts"
+  ],
+  "Ideal temperature for most standard recipes.": [
+    "src\\constants.ts"
+  ],
+  "The classic Italian pizza. Soft, airy crust, cooked in a very hot oven.": [
+    "src\\constants.ts"
+  ],
+  "Pizza Stone - Medium conductivity, versatile for most ovens.": [
+    "src\\constants.ts"
+  ],
+  "Classic Neapolitan": [
+    "src\\constants.ts"
+  ],
+  "New York Style": [
+    "src\\constants.ts"
+  ],
+  "User": [
+    "src\\contexts\\AuthContext.tsx"
+  ],
+  "Guest User": [
+    "src\\contexts\\AuthContext.tsx"
+  ],
+  "Failed to save mode to localStorage": [
+    "src\\contexts\\CalculatorContext.tsx"
+  ],
+  "Preset": [
+    "src\\contexts\\CalculatorContext.tsx"
+  ],
+  "Test series created.', 'success": [
+    "src\\contexts\\ConsistencyProvider.tsx"
+  ],
+  "Series updated.', 'info": [
+    "src\\contexts\\ConsistencyProvider.tsx",
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Bake associated successfully!', 'success": [
+    "src\\contexts\\ConsistencyProvider.tsx",
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Flour added to inventory', 'success": [
+    "src\\contexts\\FloursProvider.tsx"
+  ],
+  "Flour updated', 'info": [
+    "src\\contexts\\FloursProvider.tsx"
+  ],
+  "Failed to save preferred flour": [
+    "src\\contexts\\FloursProvider.tsx"
+  ],
+  "New goal created!', 'success": [
+    "src\\contexts\\GoalsProvider.tsx",
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Goal updated.', 'info": [
+    "src\\contexts\\GoalsProvider.tsx"
+  ],
+  "Goal completed!', 'success": [
+    "src\\contexts\\GoalsProvider.tsx"
+  ],
+  "Unknown": [
+    "src\\contexts\\InsightsProvider.tsx",
+    "src\\data\\styles\\builder.ts",
+    "src\\utils\\styleAdapter.ts"
+  ],
+  "Failed to load styles from service": [
+    "src\\contexts\\StylesProvider.tsx"
+  ],
+  "Auto-upgrading admin user in Firestore...": [
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Goal deleted.', 'info": [
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Style deleted.', 'info": [
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Removed from favorites', 'info": [
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Welcome to Pro! You have unlocked all features.', 'success": [
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Test series created.": [
+    "src\\contexts\\UserProvider.tsx"
+  ],
+  "Essential for measuring salt and yeast accurately.": [
+    "src\\data\\affiliateLinks.ts"
+  ],
+  "Precision is everything. Use a scale.": [
+    "src\\data\\affiliatePlacements.ts"
+  ],
+  "Oven Setup": [
+    "src\\data\\affiliatePlacements.ts"
+  ],
+  "Pro Baking Tools": [
+    "src\\data\\affiliatePlacements.ts"
+  ],
+  "Precision Digital Scale": [
+    "src\\data\\affiliateProducts.ts",
+    "src\\data\\affiliates.ts"
+  ],
+  "Baking Steel Pro": [
+    "src\\data\\affiliateProducts.ts"
+  ],
+  "Stainless Steel Bench Scraper": [
+    "src\\data\\affiliateProducts.ts"
+  ],
+  "Perforated Pizza Peel": [
+    "src\\data\\affiliateProducts.ts"
+  ],
+  "Complete Sourdough Starter Kit": [
+    "src\\data\\affiliateProducts.ts"
+  ],
+  "Reliable power for frequent large batches.": [
+    "src\\data\\affiliates.ts"
+  ],
+  "Cordierite Pizza Stone": [
+    "src\\data\\affiliates.ts"
+  ],
+  "High protein content for long fermentation.": [
+    "src\\data\\affiliates.ts"
+  ],
+  "Dough Proofing Box": [
+    "src\\data\\affiliates.ts"
+  ],
+  "Infrared Thermometer": [
+    "src\\data\\affiliates.ts"
+  ],
+  "Premium Outdoor Pizza Oven": [
+    "src\\data\\affiliates.ts"
+  ],
+  "Electric Indoor Pizza Oven": [
+    "src\\data\\affiliates.ts"
+  ],
+  "DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'PT', 'IE', 'FI', 'GR": [
+    "src\\data\\countryPricing.ts"
+  ],
+  "Ingredient Science": [
+    "src\\data\\learn\\categories.tsx"
+  ],
+  "Dough Science": [
+    "src\\data\\learn\\categories.tsx"
+  ],
+  "Fermentation Science": [
+    "src\\data\\learn\\categories.tsx"
+  ],
+  "Baking Science": [
+    "src\\data\\learn\\categories.tsx"
+  ],
+  "Process Techniques": [
+    "src\\data\\learn\\categories.tsx"
+  ],
+  "Troubleshooting": [
+    "src\\data\\learn\\categories.tsx"
+  ],
+  "Fundamentals": [
+    "src\\data\\learn\\tracks.ts"
+  ],
+  "Enzymes adjust starch and protein breakdown.": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Mild conditioners improve handling and stability.": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Improvers increase volume and uniform crumb.": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Ascorbic Acid": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Be cautious not to exceed recommended technical limits for conditioners.": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Prefer natural improvers for artisan dough.": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Excess additives alter dough flavor.": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Conditioners alter gluten, enzymes and fermentation curves.": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Natural Improvers": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Suas, M. Advanced Bread and Pastry.": [
+    "src\\data\\learn-content\\additives.ts",
+    "src\\data\\learn-content\\water.ts",
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "Are additives necessary for home baking?": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Lecithin": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Malt Powder": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Commercial Conditioners": [
+    "src\\data\\learn-content\\additives.ts"
+  ],
+  "Temperature', 'Yeast', 'Flavor', 'Texture": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "Yeasty' or 'boozy' aroma, simple crust color.": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "Ambient Zone": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "Select 'Cold Fermentation": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts",
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "The 'Hybrid Method": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "Ambient Fermentation": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "The Effect of Fermentation Temperature on Bread Microstructure - ScienceDirect": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "Can I switch from ambient to cold halfway?": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "The Dead Zone": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "Cold Fermentation": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts",
+    "src\\data\\learn-content\\fermentation.ts"
+  ],
+  "Hybrid Method": [
+    "src\\data\\learn-content\\ambient-vs-cold.ts"
+  ],
+  "Proteolytic enzymes soften gluten bonds during rest.": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Greatly increases extensibility.": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Improved oven spring from balanced strength.": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Short Autolyse": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Neapolitan and artisan bread benefit significantly from autolyse.": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Shorten autolyse when using high whole grain percentages.": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Salt and yeast restrict enzymatic relaxation.": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Hydration deeply affects autolyse effectiveness.": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "With Whole Grain": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Calvel, R. The Taste of Bread.": [
+    "src\\data\\learn-content\\autolyse.ts",
+    "src\\data\\learn-content\\fats.ts",
+    "src\\data\\learn-content\\flours.ts",
+    "src\\data\\learn-content\\high-hydration.ts",
+    "src\\data\\learn-content\\salt.ts",
+    "src\\data\\learn-content\\sugars.ts",
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Can I add salt during autolyse?": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Standard Autolyse": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Long Autolyse": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "High Protein Flour": [
+    "src\\data\\learn-content\\autolyse.ts"
+  ],
+  "Oven type determines radiant vs convective balance.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Proper profile prevents burning or underbaking.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Defines signature texture and aroma.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Neapolitan Bake": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Bake profile recommendations adjust to hydration and style.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "High hydration needs longer bake for full gelatinization.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Wrong baking profile ruins texture even if fermentation is perfect.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Temperature strongly defines style identity.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Neapolitan": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts",
+    "src\\data\\learn-content\\flours.ts",
+    "src\\data\\learn-content\\water.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Vapiano Pizza Research Reports.": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "NY Style Bake": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Roman Pala Bake": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "NY Style": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Roman Pala": [
+    "src\\data\\learn-content\\baking-profiles-by-style.ts"
+  ],
+  "Stones provide gentler heat and are more forgiving of small loading errors.": [
+    "src\\data\\learn-content\\baking-surfaces-and-heat-transfer.ts"
+  ],
+  "Pizza steel": [
+    "src\\data\\learn-content\\baking-surfaces-and-heat-transfer.ts"
+  ],
+  "Log surface type, preheat duration and rack position for each batch in MyLab.": [
+    "src\\data\\learn-content\\baking-surfaces-and-heat-transfer.ts"
+  ],
+  "Pan baking": [
+    "src\\data\\learn-content\\baking-surfaces-and-heat-transfer.ts"
+  ],
+  "Imagine this like a secret ingredient. It helps make your bread better.": [
+    "src\\data\\learn-content\\baking-surfaces-and-heat-transfer.ts",
+    "src\\data\\learn-content\\balling-technique.ts",
+    "src\\data\\learn-content\\caramelizable-vegetables.ts",
+    "src\\data\\learn-content\\cured-meats.ts",
+    "src\\data\\learn-content\\dividing-balling.ts",
+    "src\\data\\learn-content\\dough-aging.ts",
+    "src\\data\\learn-content\\dough-development.ts",
+    "src\\data\\learn-content\\dough-science.ts",
+    "src\\data\\learn-content\\extensibility.ts",
+    "src\\data\\learn-content\\fermentation-basics.ts",
+    "src\\data\\learn-content\\food-safety-and-dough-handling.ts",
+    "src\\data\\learn-content\\low-moisture-cheeses.ts",
+    "src\\data\\learn-content\\oven-spring.ts",
+    "src\\data\\learn-content\\oven-types-and-constraints.ts",
+    "src\\data\\learn-content\\proofing-timing.ts",
+    "src\\data\\learn-content\\regional-combos.ts",
+    "src\\data\\learn-content\\smoked-aromatics.ts",
+    "src\\data\\learn-content\\smoked-cheeses.ts",
+    "src\\data\\learn-content\\temperature-management-and-profiling.ts",
+    "src\\data\\learn-content\\water-rich-vegetables.ts",
+    "src\\data\\learn-content\\workflow-and-service-planning.ts"
+  ],
+  "Balling is not just about making it round. It is about creating a 'skin": [
+    "src\\data\\learn-content\\balling-technique.ts"
+  ],
+  "Proper balling ensures even fermentation and shape retention.": [
+    "src\\data\\learn-content\\balling-technique.ts"
+  ],
+  "Explosive oven spring due to pressurized gas.": [
+    "src\\data\\learn-content\\balling-technique.ts"
+  ],
+  "Practice the 'mozzeratura' or hand-rolling technique for artisan results.": [
+    "src\\data\\learn-content\\balling-technique.ts"
+  ],
+  "The 'Rest": [
+    "src\\data\\learn-content\\balling-technique.ts"
+  ],
+  "Fermentation', 'Dough Strength', 'Folds', 'Timing": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Begins when mixing ends and concludes when dough is divided.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Proper bulk yields a dough that is airy, strong, and extensible.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Influences crust color and thickness through sugar consumption.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Volume Increase": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Set bulk fermentation time in the calculator to adjust yeast dosage.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "If the dough is rising too fast, put it in the fridge to slow it down.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Volume is a better indicator than time. Watch the dough, not the clock.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Higher hydration doughs ferment faster due to increased molecular mobility.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Ambient Bulk": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "Bulk fermentation is like the dough's teenage years.": [
+    "src\\data\\learn-content\\bulk-fermentation.ts"
+  ],
+  "In Italian 'Cucina Povera": [
+    "src\\data\\learn-content\\caramelizable-vegetables.ts"
+  ],
+  "Wet vegetables release water during baking, potentially causing a 'gum line": [
+    "src\\data\\learn-content\\caramelizable-vegetables.ts"
+  ],
+  "Raw vegetables may steam the pizza, preventing crispness.": [
+    "src\\data\\learn-content\\caramelizable-vegetables.ts"
+  ],
+  "Cut vegetables thinly if applying raw to allow rapid dehydration and browning.": [
+    "src\\data\\learn-content\\caramelizable-vegetables.ts"
+  ],
+  "For onions, use the 'dry sweat": [
+    "src\\data\\learn-content\\caramelizable-vegetables.ts"
+  ],
+  "Yeast activity decreases exponentially as temperature drops.": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Improves extensibility for shaping.": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Produces strong oven spring from well-developed internal gases.": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Refrigeration Time": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Allow dough to warm slightly before final shaping.": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Overly long cold fermentation weakens gluten.": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Yeast percentage is extremely sensitive in cold fermentation.": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Short Cold Fermentation": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Hamelman, J. Bread.": [
+    "src\\data\\learn-content\\cold-fermentation.ts",
+    "src\\data\\learn-content\\dough-rheology.ts",
+    "src\\data\\learn-content\\fermentation-curves.ts",
+    "src\\data\\learn-content\\fermentation-fundamentals.ts",
+    "src\\data\\learn-content\\overproof-underproof.ts",
+    "src\\data\\learn-content\\preferments-overview.ts",
+    "src\\data\\learn-content\\stretch-and-fold.ts",
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Cold Fermentation Temperature": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Long Cold Fermentation": [
+    "src\\data\\learn-content\\cold-fermentation.ts"
+  ],
+  "Surface moisture evaporates as temperature rises.": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "Hydration influences surface drying rate.": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "High heat creates blistering and thin crust.": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "Surface Drying Threshold": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "Higher hydration delays crust set, requiring more heat.": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "Low heat causes pale crust and poor texture.": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "Hydration, oven heat and fermentation influence crust dynamics.": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "AIB Baking Process Technical Sheets.": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "Optimal Browning Start": [
+    "src\\data\\learn-content\\crust-formation-dynamics.ts"
+  ],
+  "The 'Cup": [
+    "src\\data\\learn-content\\cured-meats.ts"
+  ],
+  "High salt content in meats can impact overall pizza salinity balance.": [
+    "src\\data\\learn-content\\cured-meats.ts"
+  ],
+  "Adjust dough or sauce salinity downwards when using heavy cured meat toppings.": [
+    "src\\data\\learn-content\\cured-meats.ts"
+  ],
+  "Dense crumb indicates low gas retention.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Reduced elasticity due to inadequate gluten.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Poor oven spring.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Hydration for Open Crumb": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Increase hydration slightly to loosen crumb.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Underproofing is the most common cause of dense crumb.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Hydration, fermentation, flour strength and mixing time.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Underproofed Dough": [
+    "src\\data\\learn-content\\dense-crumb.ts",
+    "src\\data\\learn-content\\overproof-underproof.ts"
+  ],
+  "AIB Crumb Analysis Studies.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Low Hydration Dough": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Sweetheart, a dense crumb is like bread that forgot to breathe.": [
+    "src\\data\\learn-content\\dense-crumb.ts"
+  ],
+  "Inconsistent scaling leads to variable baking behaviour and portion sizes.": [
+    "src\\data\\learn-content\\dividing-balling.ts"
+  ],
+  "Consistent dough ball weights ensure even baking and predictable portioning.": [
+    "src\\data\\learn-content\\dividing-balling.ts"
+  ],
+  "Typical Neapolitan pizza balls": [
+    "src\\data\\learn-content\\dividing-balling.ts"
+  ],
+  "Choose between 'number of pieces' and 'target weight per piece": [
+    "src\\data\\learn-content\\dividing-balling.ts"
+  ],
+  "Balling extremely cold dough can produce uneven tension and encourage tearing.": [
+    "src\\data\\learn-content\\dividing-balling.ts"
+  ],
+  "Pan pizza portions": [
+    "src\\data\\learn-content\\dividing-balling.ts"
+  ],
+  "The concept of 'aging' dough is standard practice in top pizzerias. It": [
+    "src\\data\\learn-content\\dough-aging.ts"
+  ],
+  "Green dough browns poorly.": [
+    "src\\data\\learn-content\\dough-aging.ts"
+  ],
+  "Use Cold Fermentation to slow down fermentation so maturation can catch up.": [
+    "src\\data\\learn-content\\dough-aging.ts"
+  ],
+  "The 'Poke Test' is less reliable for cold dough. Instead, look for the 'doming": [
+    "src\\data\\learn-content\\dough-aging.ts"
+  ],
+  "Balling reorganizes gluten across a spherical structure.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Increases structure and elasticity.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Consistent balling improves cornicione symmetry.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Post-Balling Relaxation": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Hydration informs the correct balling tension.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Flour your hands lightly, not the dough.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Too much tension prevents stretching.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Hydration and dough temperature strongly dictate balling difficulty.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "High-Tension Balls": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Associazione Verace Pizza Napoletana Guidelines.": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Soft-Tension Balls": [
+    "src\\data\\learn-content\\dough-balling-tensioning.ts"
+  ],
+  "Improved mix": [
+    "src\\data\\learn-content\\dough-development.ts"
+  ],
+  "Compare 'more folds vs longer mix' for the same formula.": [
+    "src\\data\\learn-content\\dough-development.ts"
+  ],
+  "Trying to fix underdeveloped dough late in bulk by 'extra kneading": [
+    "src\\data\\learn-content\\dough-development.ts"
+  ],
+  "Intensive mix": [
+    "src\\data\\learn-content\\dough-development.ts"
+  ],
+  "Temperature influences rheological softness.": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "High elasticity increases shrink-back during shaping.": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "Strong rheology supports high oven spring.": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "Extensibility Index": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "Track stretch-back and resistance during shaping tests in MyLab.": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "Handle dough gently when elasticity is high.": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "Over fermentation ruins rheological structure permanently.": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "Hydration, temperature and flour quality define rheology.": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "High-Elasticity Dough": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "High-Viscosity Dough": [
+    "src\\data\\learn-content\\dough-rheology.ts"
+  ],
+  "Viscosity allows expansion.": [
+    "src\\data\\learn-content\\dough-science.ts"
+  ],
+  "Treat temperature with the same precision as flour weight.": [
+    "src\\data\\learn-content\\dough-science.ts"
+  ],
+  "The 'W": [
+    "src\\data\\learn-content\\dough-science.ts"
+  ],
+  "Lower pH weakens gluten, reducing elasticity.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Dough becomes slack and fragile.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Over-acidified dough yields limited oven spring.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Levain ratio suggestions help prevent excess acidity.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Refresh levain more frequently to reduce acidity.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Acidic dough loses gluten strength quickly.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Levain ratio, fermentation duration and temperature.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Lactic Acid Dominance": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "AIB Sour Dough Studies.": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Acetic Acid Dominance": [
+    "src\\data\\learn-content\\excess-acidity.ts"
+  ],
+  "Neapolitan-style pizza": [
+    "src\\data\\learn-content\\extensibility.ts"
+  ],
+  "Include recommendations for rest times in step-by-step modes.": [
+    "src\\data\\learn-content\\extensibility.ts"
+  ],
+  "High-hydration pan styles": [
+    "src\\data\\learn-content\\extensibility.ts"
+  ],
+  "Fats coat gluten proteins, limiting cross-linking and increasing tenderness.": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Oils make dough softer and easier to stretch.": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Fats improve browning by enhancing heat transfer.": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Pizza Dough": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Olive oil triggers Roman-style crispness adjustments in Calculator.": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Saturated vs unsaturated fats behave differently during baking.": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Olive Oil": [
+    "src\\data\\learn-content\\fats.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Focaccia": [
+    "src\\data\\learn-content\\fats.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Enriched Breads": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Butter": [
+    "src\\data\\learn-content\\fats.ts",
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Lard": [
+    "src\\data\\learn-content\\fats.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Vegetable Oils": [
+    "src\\data\\learn-content\\fats.ts"
+  ],
+  "Rate is determined by inoculation level, dough temperature and time.": [
+    "src\\data\\learn-content\\fermentation-basics.ts"
+  ],
+  "Room-temperature direct doughs": [
+    "src\\data\\learn-content\\fermentation-basics.ts"
+  ],
+  "Use inputs to suggest inoculation ranges and expected curves.": [
+    "src\\data\\learn-content\\fermentation-basics.ts"
+  ],
+  "Long cold fermentation": [
+    "src\\data\\learn-content\\fermentation-basics.ts"
+  ],
+  "Temperature accelerates every stage.": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Understanding curves helps predict optimal shaping and baking times.": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Shaping at peak activity yields maximum oven spring.": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Warm Fermentation Curve": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Neapolitan curves differ from NY due to yeast and hydration interplay.": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Use cooler dough to flatten the curve for better control.": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Decline phase ruins gluten strength.": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Temperature is the primary shaper of the curve.": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Cool Fermentation Curve": [
+    "src\\data\\learn-content\\fermentation-curves.ts"
+  ],
+  "Enzymes break starch and proteins into fermentable compounds.": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Proper fermentation gives structure, elasticity and gas retention.": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Proper fermentation gives open crumb and strong walls.": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Track fermentation time vs aroma development in MyLab.": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Long fermentation with low yeast is superior for flavor.": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Temperature is the most powerful fermentation variable.": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Short Fermentation": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Long Fermentation": [
+    "src\\data\\learn-content\\fermentation-fundamentals.ts"
+  ],
+  "Yeast', 'Bacteria', 'Metabolism', 'Flavor": [
+    "src\\data\\learn-content\\fermentation.ts"
+  ],
+  "Set fermentation time in Calculator.": [
+    "src\\data\\learn-content\\fermentation.ts"
+  ],
+  "The 'Fridge Effect": [
+    "src\\data\\learn-content\\fermentation.ts"
+  ],
+  "Direct Method": [
+    "src\\data\\learn-content\\fermentation.ts"
+  ],
+  "Microbiology of Sourdough Fermentation - NCBI": [
+    "src\\data\\learn-content\\fermentation.ts"
+  ],
+  "Proofing', 'Fermentation', 'Oven Spring', 'Timing": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Proofing balances gas production and gluten elasticity.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Underproofed dough resists stretching and bakes dense.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Correct proofing triggers optimal oven spring.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Ideal Final Proofing Temperature": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Different styles require proofing levels for characteristic texture.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Use the poke test to confirm readiness.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Overproofing is irreversible.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Temperature and yeast percentage strongly affect proofing.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Warm Proofing": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "AIB Proofing Science Notes.": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Cool Proofing": [
+    "src\\data\\learn-content\\final-proofing-control.ts"
+  ],
+  "Starch damage influences hydration, fermentation rate and softness.": [
+    "src\\data\\learn-content\\flours.ts"
+  ],
+  "Strong flours support tall oven spring and open crumb.": [
+    "src\\data\\learn-content\\flours.ts"
+  ],
+  "Hydration auto-adjusts based on flour absorption profile in Calculator.": [
+    "src\\data\\learn-content\\flours.ts"
+  ],
+  "Blending flours allows fine control over gluten strength and flavor.": [
+    "src\\data\\learn-content\\flours.ts"
+  ],
+  "Enzyme activity impacts fermentation rate and dough softness.": [
+    "src\\data\\learn-content\\flours.ts"
+  ],
+  "Bread Flour": [
+    "src\\data\\learn-content\\flours.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\pastry\\cinnamon_rolls_classic.ts",
+    "src\\data\\styles\\pastry\\croissant_classic.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "New York": [
+    "src\\data\\learn-content\\flours.ts",
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Whole Wheat": [
+    "src\\data\\learn-content\\flours.ts"
+  ],
+  "Whole Wheat Flour": [
+    "src\\data\\learn-content\\flours.ts",
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Sweetheart, think of flour like the 'skeleton": [
+    "src\\data\\learn-content\\flours.ts"
+  ],
+  "Pathogenic bacteria grow fastest in the 'danger zone": [
+    "src\\data\\learn-content\\food-safety-and-dough-handling.ts"
+  ],
+  "Cold storage": [
+    "src\\data\\learn-content\\food-safety-and-dough-handling.ts"
+  ],
+  "Monitor dough and environment when defining long room-temperature schedules.": [
+    "src\\data\\learn-content\\food-safety-and-dough-handling.ts"
+  ],
+  "Room-temperature handling": [
+    "src\\data\\learn-content\\food-safety-and-dough-handling.ts"
+  ],
+  "Gas accumulates where gluten is weaker or thinner.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Leads to fragile, thin spots that burst.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Large blisters scorch quickly.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Safe Proofing Range Before Blister Risk": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Fermentation timing and hydration influence bubble formation in Calculator.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Avoid overstretching the center of the dough.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Overproofing drastically increases blister risk.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Fermentation time, heat intensity and gluten uniformity.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Thin Spots During Stretching": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "AVPN Blister Formation Observations.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Overproofed Dough": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts",
+    "src\\data\\learn-content\\overproof-underproof.ts",
+    "src\\data\\learn-content\\pale-crust.ts",
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Sweetheart, gas blowouts are like bubbles bursting in boiling soup.": [
+    "src\\data\\learn-content\\gas-bubble-blowouts.ts"
+  ],
+  "Include explicit gluten development milestones in step-by-step recipe views.": [
+    "src\\data\\learn-content\\gluten-network.ts"
+  ],
+  "High hydration delays internal temperature rise.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Dense or wet zones trap water.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Sticky or paste-like centers.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Internal Temp for Complete Bake": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Hydration affects bake-time recommendations in Calculator.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Use a thermometer to confirm internal temperature.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Gummy crumb is almost always underbaking.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Hydration, thickness, fermentation and baking temperature.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "High Hydration Dough": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "AIB Moisture Migration Papers.": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "Underbaked Dough": [
+    "src\\data\\learn-content\\gummy-crumb.ts"
+  ],
+  "High hydration increases stickiness and fragility.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Gentle handling preserves gas and structure.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Maintaining structure ensures proper oven spring.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Hydration Threshold for Delicate Handling": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Hydration warnings assist users handling delicate doughs in Calculator.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Use wet or lightly oiled hands for control.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Flouring excessively destroys surface hydration balance.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Hydration and fermentation time strongly dictate fragility.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "High-Hydration Dough": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts",
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "AIB Dough Strength Studies.": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Over-Fermented Dough": [
+    "src\\data\\learn-content\\handling-delicate-doughs.ts"
+  ],
+  "Higher water increases enzyme activity and fermentation.": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Greater extensibility and softness.": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Open crumb with translucent walls.": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Intermediate Hydration": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Doughbot warns when hydration exceeds safe handling for flour strength.": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Use coil folds instead of kneading.": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Temperature accelerates fermentation in wet doughs.": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Hydration dramatically affects rheology and fermentation curves.": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "High Hydration with Strong Flour": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "High Hydration": [
+    "src\\data\\learn-content\\high-hydration.ts",
+    "src\\data\\learn-content\\sticky-dough.ts",
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Ultra-High": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "High Hydration with Whole Grain": [
+    "src\\data\\learn-content\\high-hydration.ts"
+  ],
+  "Lamination stretches gluten evenly across wide surfaces.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Creates an organized gluten matrix.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Produces airy, honeycomb-like crumb.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Folds per Lamination Cycle": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Roman Pala and high-hydration focaccias benefit from lamination.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Use wet hands to reduce sticking.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Over-lamination tears gluten.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Hydration level dictates how effective lamination will be.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Full Lamination": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "AIB Hydration Management Studies.": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Partial Lamination": [
+    "src\\data\\learn-content\\lamination-layering-techniques.ts"
+  ],
+  "Prevents soggy crust in longer bake times.": [
+    "src\\data\\learn-content\\low-moisture-cheeses.ts"
+  ],
+  "Use Fresh Mozzarella for Neapolitan style.": [
+    "src\\data\\learn-content\\low-moisture-cheeses.ts"
+  ],
+  "American Chemical Society - Pizza Cheese Science": [
+    "src\\data\\learn-content\\low-moisture-cheeses.ts"
+  ],
+  "Chorleywood Bread Process": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Proper mixing ensures even hydration and ingredient distribution.": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Well-developed gluten supports oven spring and volume.": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Spiral Mixer Friction": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Account for Friction Factor in water temp calculation in Calculator.": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Watch your dough temperature. If it gets too hot, stop and cool it down.": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Mixer speed and duration directly affect dough temperature.": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Spiral Mixer": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Planetary Mixer Friction": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Hand Mixing Friction": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Planetary Mixer": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Hand Mixing": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "Mixing dough is like giving it a good massage.": [
+    "src\\data\\learn-content\\mixing-techniques.ts"
+  ],
+  "The phenomenon of oven spring has always been the baker": [
+    "src\\data\\learn-content\\oven-spring.ts"
+  ],
+  "Temperature differential creates a more violent steam generation effect.": [
+    "src\\data\\learn-content\\oven-spring.ts"
+  ],
+  "In pizza, the 'cornicione": [
+    "src\\data\\learn-content\\oven-spring.ts"
+  ],
+  "Use cold dough for better spring.": [
+    "src\\data\\learn-content\\oven-spring.ts"
+  ],
+  "The Science of Baking - Bakerpedia": [
+    "src\\data\\learn-content\\oven-spring.ts"
+  ],
+  "Commercial deck ovens": [
+    "src\\data\\learn-content\\oven-types-and-constraints.ts"
+  ],
+  "Each style profile should list compatible oven types.": [
+    "src\\data\\learn-content\\oven-types-and-constraints.ts"
+  ],
+  "Ignoring oven limits is one of the fastest ways to conclude that a good formula": [
+    "src\\data\\learn-content\\oven-types-and-constraints.ts"
+  ],
+  "Domestic ovens": [
+    "src\\data\\learn-content\\oven-types-and-constraints.ts"
+  ],
+  "Underproofed dough has insufficient gas expansion and tight gluten.": [
+    "src\\data\\learn-content\\overproof-underproof.ts"
+  ],
+  "Neapolitan requires strict proofing to avoid collapse during hot baking.": [
+    "src\\data\\learn-content\\overproof-underproof.ts"
+  ],
+  "Use the finger-poke test for real-time assessment.": [
+    "src\\data\\learn-content\\overproof-underproof.ts"
+  ],
+  "Overproofing damage is irreversible.": [
+    "src\\data\\learn-content\\overproof-underproof.ts"
+  ],
+  "Hydration influences dough fragility at high proof.": [
+    "src\\data\\learn-content\\overproof-underproof.ts"
+  ],
+  "Caramelization requires sufficient sugars and heat.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Overproofed dough consumes browning sugars.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Low temperature produces pale, soft crust.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Baking Temperature for Consistent Browning": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "NY and Pala expect moderate to strong browning.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Increase heat or bake slightly longer for deeper color.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Overproofing removes sugars needed for browning.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Temperature, hydration and fermentation time strongly influence surface color.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Low Heat Baking": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "AIB Browning Reaction Notes.": [
+    "src\\data\\learn-content\\pale-crust.ts"
+  ],
+  "Gluten must be elastic enough to stretch before setting.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Underproofed dough restricts expansion.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Flat or dense result with low loft.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Optimal Oven Spring Internal Temp": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Proofing predictions connect directly to oven spring readiness in Calculator.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Avoid degassing during shaping.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Underproofing dramatically reduces oven spring.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Proofing level, gluten strength, hydration and oven heat.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Low Heat": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "AIB Oven Spring Dynamics.": [
+    "src\\data\\learn-content\\poor-oven-spring.ts"
+  ],
+  "Preferments develop organic acids, enzymes and stable gas cells.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Enhance extensibility through enzymatic action.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Better oven spring due to pre-developed gluten.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Doughbot warns for excessive preferment percentages.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Poolish adds aroma and extensibility.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Too much preferment weakens dough.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Hydration heavily influences preferment behavior.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Poolish": [
+    "src\\data\\learn-content\\preferments-overview.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Biga": [
+    "src\\data\\learn-content\\preferments-overview.ts",
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Sweetheart, preferments are like making a little head start for your dough.": [
+    "src\\data\\learn-content\\preferments-overview.ts"
+  ],
+  "Room-temperature final proof for pizza balls": [
+    "src\\data\\learn-content\\proofing-timing.ts"
+  ],
+  "Offer reminder-style hints about bringing dough out of the fridge early enough.": [
+    "src\\data\\learn-content\\proofing-timing.ts"
+  ],
+  "Cold proof in trays or pans": [
+    "src\\data\\learn-content\\proofing-timing.ts"
+  ],
+  "Temper out of the fridge": [
+    "src\\data\\learn-content\\proofing-timing.ts"
+  ],
+  "Acidity cuts through fat, cleansing the palate.": [
+    "src\\data\\learn-content\\regional-combos.ts"
+  ],
+  "Respect the 'Terroir": [
+    "src\\data\\learn-content\\regional-combos.ts"
+  ],
+  "Rolling redistributes and compresses air pockets.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Rolling reduces internal gas, producing uniform crumb.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Rolled dough bakes with flatter, denser texture.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Ideal Stretching Temp": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Extensibility predictions shift based on shaping method in Calculator.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Warm dough stretches better than cold dough.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Overstretching causes holes and weak spots.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Hydration strongly influences choice of shaping method.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Full Rolling": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "AVPN Shaping Guidelines.": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Hand Stretching": [
+    "src\\data\\learn-content\\rolling-vs-stretching.ts"
+  ],
+  "Salt tightens gluten networks by strengthening protein bonds.": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Coarse salt dissolves slower, delaying its effect on dough strength.": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Salt enhances crust color by improving Maillard balance.": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Standard Pizza": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Adjusting salt changes hydration recommendations for certain styles.": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Always measure salt by weight, not volume.": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Large-flake salts must be dissolved fully to avoid inconsistent salinity.": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Salt has high influence on fermentation speed.": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Fine Table Salt": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "High-Temp Styles": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Artisan Breads": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Sea Salt": [
+    "src\\data\\learn-content\\salt.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Kosher Salt": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "Himalayan Pink Salt": [
+    "src\\data\\learn-content\\salt.ts"
+  ],
+  "In the era of commodity bread, the definition of 'good bread": [
+    "src\\data\\learn-content\\sensory-maturation.ts"
+  ],
+  "Cold Fermentation Time": [
+    "src\\data\\learn-content\\sensory-maturation.ts"
+  ],
+  "Use the 'Cold Fermentation' setting in the Calculator to extend your process.": [
+    "src\\data\\learn-content\\sensory-maturation.ts"
+  ],
+  "The 'Biga": [
+    "src\\data\\learn-content\\sensory-maturation.ts"
+  ],
+  "Does whole wheat mature faster?": [
+    "src\\data\\learn-content\\sensory-maturation.ts"
+  ],
+  "Temperature": [
+    "src\\data\\learn-content\\sensory-maturation.ts"
+  ],
+  "Imagine making a stew. If you eat it right away, it": [
+    "src\\data\\learn-content\\sensory-maturation.ts"
+  ],
+  "Shaping organizes gluten strands to create directional tension.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Proper shaping increases dough strength and elasticity.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "A well-shaped dough achieves strong oven spring.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Ideal Dough Temp for Shaping": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Hydration level influences shaping difficulty in Calculator.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Use minimal flour during shaping to avoid drying the surface.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Over-shaping collapses bubbles.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Dough temperature, hydration and flour strength directly affect shaping.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Tight Shaping": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "AIB Dough Handling Research Papers.": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Loose Shaping": [
+    "src\\data\\learn-content\\shaping-fundamentals.ts"
+  ],
+  "Historical context coming soon.": [
+    "src\\data\\learn-content\\smoked-aromatics.ts",
+    "src\\data\\learn-content\\water-rich-vegetables.ts"
+  ],
+  "Use smoke as an accent, not a base.": [
+    "src\\data\\learn-content\\smoked-aromatics.ts"
+  ],
+  "Smoking creates a 'rind": [
+    "src\\data\\learn-content\\smoked-cheeses.ts"
+  ],
+  "Neapolitan pizza often uses Provola for a 'wet' melt.": [
+    "src\\data\\learn-content\\smoked-cheeses.ts"
+  ],
+  "Starch granules absorb water as temperature rises.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Adequate hydration ensures proper gelatinization.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Controls final crumb texture and softness.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Gelatinization Start": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Hydration levels influence gelatinization potential in Calculator.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Hydration determines how well starch gelatinizes.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Underbaked dough feels gummy due to incomplete gelatinization.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Hydration, temperature and sugar levels strongly influence gelatinization.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "AIB Cereal Science Reports.": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Full Gelatinization": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Low-Hydration Dough": [
+    "src\\data\\learn-content\\starch-gelatinization.ts"
+  ],
+  "Insufficient gluten development yields sticky, weak dough.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Sticky dough is harder to shape and prone to tearing.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Sticky dough often spreads, limiting oven spring.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Hydration Threshold for Tackiness": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Hydration warnings appear when exceeding sticky thresholds in Calculator.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Wet-hand method reduces sticking.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Too much bench flour dries the surface and alters hydration.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Hydration, fermentation time and flour strength are key drivers.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "AIB Dough Consistency Research.": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "Underdeveloped Gluten": [
+    "src\\data\\learn-content\\sticky-dough.ts"
+  ],
+  "The stretch elongates gluten strands.": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Increases dough strength without excessive elasticity.": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Results in taller oven spring.": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Basic Routine": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "High hydration triggers recommendation of coil folds in Calculator.": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Use wet hands to avoid tearing.": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Too many folds make shaping harder.": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Hydration dictates which fold technique works best.": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Coil Fold": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Interval Between Rounds": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Letter Fold": [
+    "src\\data\\learn-content\\stretch-and-fold.ts"
+  ],
+  "Added sugars increase fermentation rate and browning.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Moderate sugar enhances softness and fermentation stability.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Added sugars caramelize, improving flavor and aroma.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Enriched Doughs": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Warn users if sugar is too high for high-temperature baking.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Use malt powder for controlled browning without excessive sweetness.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Too much sugar slows yeast dramatically.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Sugars strongly affect browning.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Natural Starch Sugars": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Sweet Doughs": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Added Sugars": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Sweetheart, sugar is like a little energy snack for your dough.": [
+    "src\\data\\learn-content\\sugars.ts"
+  ],
+  "Typical DDT for most pizza and lean breads": [
+    "src\\data\\learn-content\\temperature-management-and-profiling.ts"
+  ],
+  "Allow users to tag target dough and oven temperatures per style.": [
+    "src\\data\\learn-content\\temperature-management-and-profiling.ts"
+  ],
+  "Cold fermentation fridges": [
+    "src\\data\\learn-content\\temperature-management-and-profiling.ts"
+  ],
+  "Home oven bake profiles": [
+    "src\\data\\learn-content\\temperature-management-and-profiling.ts"
+  ],
+  "Professional bakers adopted DT control through the 'desired dough temperature": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "DT determines handling and shaping windows.": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Warm dough produces higher oven spring.": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Neapolitan DT Target": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Compute water temperature to hit target DT in Calculator.": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Use cold water in hot climates.": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Warm kitchens require strict DT control.": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Temperature dominates fermentation behavior.": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Warm Profile": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "NY Style DT Target": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Artisan Bread DT": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "Cold Profile": [
+    "src\\data\\learn-content\\temperature-profiles.ts"
+  ],
+  "High gluten alignment increases elasticity.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Dough snaps back during shaping.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Tough dough bakes with reduced oven spring.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Extensibility Temperature": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Track dough temperature and extensibility across tests in MyLab.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Increase hydration slightly when dealing with strong flour.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Cold dough is significantly tougher.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Hydration, flour strength, fermentation time and temperature.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Under-Fermented Dough": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "AIB Extensibility Studies.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Low Hydration": [
+    "src\\data\\learn-content\\tough-dough.ts",
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Sweetheart, tough dough is like trying to stretch a tight rubber band.": [
+    "src\\data\\learn-content\\tough-dough.ts"
+  ],
+  "Uneven heat exposure creates color variation.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Thick spots stay pale, thin spots darken quickly.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Hotspots create burnt patches.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Target Oven Deck Variance": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Fermentation curve mismatches influence browning uniformity in Calculator.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Rotate pizza halfway through bake in home ovens.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Uneven stretching creates thin and thick areas.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Heat distribution, dough thickness, sugar levels and moisture.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "High Moisture Surface": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "AIB Browning Consistency Research.": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "Sugar Concentration Spots": [
+    "src\\data\\learn-content\\uneven-browning.ts"
+  ],
+  "The result is a raw, gummy 'gum line'.": [
+    "src\\data\\learn-content\\water-rich-vegetables.ts"
+  ],
+  "Pre-cook vegetables fully BEFORE putting them on the pizza.": [
+    "src\\data\\learn-content\\water-rich-vegetables.ts"
+  ],
+  "Water hydrates gliadin and glutenin, enabling gluten networks to form.": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Higher hydration delays crust setting, allowing stronger oven spring.": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "High hydration requires stronger flour and gentler handling.": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Hydration changes dramatically between flours. Never assume universal numbers.": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Protease and amylase activity increase with hydration and temperature.": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Temperature-Controlled Water": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Artisan Bread": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Honey, water is like the 'wake-up call": [
+    "src\\data\\learn-content\\water.ts"
+  ],
+  "Under-mixing prevents full gluten alignment.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Dough collapses under its own weight.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Reduced oven spring due to poor internal structure.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Hydration and fermentation duration should match flour W in Calculator.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Use flour matching fermentation length.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "No technique can fully compensate for flour that is too weak.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Flour strength, mixing, hydration and fermentation duration.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Under-Mixed Dough": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "AIB Flour Strength Handbook.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Over-Mixed Dough": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Sweetheart, weak gluten is like a loose net that can't hold anything.": [
+    "src\\data\\learn-content\\weak-gluten-structure.ts"
+  ],
+  "Bran increases absorption and can weaken gluten by cutting strands.": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Higher absorption requires increased hydration.": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Whole grains brown faster and produce deeper aromas.": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Spelt": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Hydration auto-adjusts upward for whole grain percentages in Calculator.": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Blend strong flour with specialty grains for structure.": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Too much bran cuts gluten strands.": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Absorption increases sharply with whole grains.": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Rye Flour": [
+    "src\\data\\learn-content\\whole-grains.ts"
+  ],
+  "Small shop workflow": [
+    "src\\data\\learn-content\\workflow-and-service-planning.ts"
+  ],
+  "Set a target 'serve time": [
+    "src\\data\\learn-content\\workflow-and-service-planning.ts"
+  ],
+  "Different yeast types require different hydration and handling.": [
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "Too little yeast slows fermentation and reduces oven spring.": [
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "Proper leavening produces strong oven spring and open crumb.": [
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "Instant Yeast": [
+    "src\\data\\learn-content\\yeasts.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Calculator suggests minimal IDY amounts for long cold fermentation.": [
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "When switching yeast types, follow established equivalences.": [
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "Excess yeast cannot fix weak gluten.": [
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "Temperature is the strongest driver of yeast speed.": [
+    "src\\data\\learn-content\\yeasts.ts"
+  ],
+  "Short rest after mixing to hydrate flour": [
+    "src\\data\\styles\\bread\\arepa_corn_flatbread.ts"
+  ],
+  "Filled arepas": [
+    "src\\data\\styles\\bread\\arepa_corn_flatbread.ts"
+  ],
+  "Latin American food literature": [
+    "src\\data\\styles\\bread\\arepa_corn_flatbread.ts"
+  ],
+  "High-gluten flour for chewy texture": [
+    "src\\data\\styles\\bread\\bagels_classic.ts"
+  ],
+  "Bagels for breakfast and sandwiches": [
+    "src\\data\\styles\\bread\\bagels_classic.ts"
+  ],
+  "Modernist Bread": [
+    "src\\data\\styles\\bread\\bagels_classic.ts",
+    "src\\data\\styles\\bread\\ciabatta_high_hydration.ts",
+    "src\\data\\styles\\bread\\focaccia_genovese.ts",
+    "src\\data\\styles\\bread\\heirloom_levain_loaf.ts",
+    "src\\data\\styles\\bread\\japanese_milk_bread.ts",
+    "src\\data\\styles\\bread\\japanese_shokupan.ts",
+    "src\\data\\styles\\bread\\mixed_grain_sourdough.ts",
+    "src\\data\\styles\\bread\\pain_de_mie_pullman.ts",
+    "src\\data\\styles\\bread\\pain_rustique.ts",
+    "src\\data\\styles\\bread\\pane_pugliese.ts",
+    "src\\data\\styles\\bread\\tartine_country_loaf.ts",
+    "src\\data\\styles\\bread\\whole_wheat_100.ts",
+    "src\\data\\styles\\pastry\\babka_sweet_bread.ts",
+    "src\\data\\styles\\pastry\\colomba_pasquale.ts",
+    "src\\data\\styles\\pastry\\croissant_classic.ts",
+    "src\\data\\styles\\pastry\\pain_aux_raisins.ts",
+    "src\\data\\styles\\pastry\\pain_au_chocolat.ts",
+    "src\\data\\styles\\pastry\\panettone_artisanal.ts",
+    "src\\data\\styles\\pastry\\stollen_german.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\learn-constants.ts"
+  ],
+  "Optional overnight retard for flavor": [
+    "src\\data\\styles\\bread\\baguette_tradition_francaise.ts"
+  ],
+  "Daily table bread": [
+    "src\\data\\styles\\bread\\baguette_tradition_francaise.ts"
+  ],
+  "Bread flour or strong all-purpose flour": [
+    "src\\data\\styles\\bread\\burger_buns_enriched.ts",
+    "src\\data\\styles\\bread\\hot_dog_buns_enriched.ts",
+    "src\\data\\styles\\pastry\\babka_sweet_bread.ts",
+    "src\\data\\styles\\pastry\\yeasted_donuts.ts"
+  ],
+  "Burger buns": [
+    "src\\data\\styles\\bread\\burger_buns_enriched.ts"
+  ],
+  "AIB guidelines": [
+    "src\\data\\styles\\bread\\burger_buns_enriched.ts",
+    "src\\data\\styles\\bread\\hot_dog_buns_enriched.ts"
+  ],
+  "Expert": [
+    "src\\data\\styles\\bread\\ciabatta_high_hydration.ts",
+    "src\\data\\styles\\bread\\mixed_grain_sourdough.ts",
+    "src\\data\\styles\\bread\\whole_wheat_100.ts",
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Sandwich bread": [
+    "src\\data\\styles\\bread\\ciabatta_high_hydration.ts",
+    "src\\data\\styles\\bread\\pain_de_mie_pullman.ts"
+  ],
+  "All-purpose or bread flour, medium strength": [
+    "src\\data\\styles\\bread\\focaccia_genovese.ts"
+  ],
+  "Flatbread snack": [
+    "src\\data\\styles\\bread\\focaccia_genovese.ts"
+  ],
+  "Common for flexibility and flavor": [
+    "src\\data\\styles\\bread\\heirloom_levain_loaf.ts"
+  ],
+  "Artisan bread expressing local grains": [
+    "src\\data\\styles\\bread\\heirloom_levain_loaf.ts"
+  ],
+  "Hot dog buns": [
+    "src\\data\\styles\\bread\\hot_dog_buns_enriched.ts"
+  ],
+  "Natural fermentation over several days with teff-based batter.": [
+    "src\\data\\styles\\bread\\injera_flatbread.ts"
+  ],
+  "Teff flour with possible blends": [
+    "src\\data\\styles\\bread\\injera_flatbread.ts"
+  ],
+  "Bread": [
+    "src\\data\\styles\\bread\\injera_flatbread.ts"
+  ],
+  "Ethiopian food literature": [
+    "src\\data\\styles\\bread\\injera_flatbread.ts"
+  ],
+  "Bread or high-quality all-purpose flour": [
+    "src\\data\\styles\\bread\\japanese_milk_bread.ts"
+  ],
+  "Soft sandwich bread": [
+    "src\\data\\styles\\bread\\japanese_milk_bread.ts"
+  ],
+  "High-protein bread flour": [
+    "src\\data\\styles\\bread\\japanese_shokupan.ts"
+  ],
+  "Sandwiches": [
+    "src\\data\\styles\\bread\\japanese_shokupan.ts"
+  ],
+  "All-purpose flour with mashed potatoes": [
+    "src\\data\\styles\\bread\\lefse_flatbread.ts"
+  ],
+  "Traditional Scandinavian flatbread": [
+    "src\\data\\styles\\bread\\lefse_flatbread.ts"
+  ],
+  "Scandinavian baking literature": [
+    "src\\data\\styles\\bread\\lefse_flatbread.ts"
+  ],
+  "Nutritious sourdough loaves": [
+    "src\\data\\styles\\bread\\mixed_grain_sourdough.ts"
+  ],
+  "All-purpose or bread flour": [
+    "src\\data\\styles\\bread\\naan_flatbread.ts",
+    "src\\data\\styles\\bread\\pita_bread_flatbread.ts",
+    "src\\data\\styles\\pizza\\california_style.ts"
+  ],
+  "Accompaniment to curries": [
+    "src\\data\\styles\\bread\\naan_flatbread.ts"
+  ],
+  "South Asian bread literature": [
+    "src\\data\\styles\\bread\\naan_flatbread.ts"
+  ],
+  "Works well in Dutch ovens or steam-injected decks.": [
+    "src\\data\\styles\\bread\\pain_de_campagne.ts"
+  ],
+  "Country loaves": [
+    "src\\data\\styles\\bread\\pain_de_campagne.ts"
+  ],
+  "French country bread literature": [
+    "src\\data\\styles\\bread\\pain_de_campagne.ts"
+  ],
+  "Bread or strong all-purpose flour": [
+    "src\\data\\styles\\bread\\pain_de_mie_pullman.ts",
+    "src\\data\\styles\\pastry\\cinnamon_rolls_classic.ts",
+    "src\\data\\styles\\pastry\\malasadas_fried_dough.ts",
+    "src\\data\\styles\\pastry\\stollen_german.ts",
+    "src\\data\\styles\\pastry\\sweet_rolls_neutral.ts"
+  ],
+  "Optional overnight for extra flavor": [
+    "src\\data\\styles\\bread\\pain_rustique.ts"
+  ],
+  "Rustic loaves": [
+    "src\\data\\styles\\bread\\pain_rustique.ts"
+  ],
+  "Levain or biga-based preferments are common.": [
+    "src\\data\\styles\\bread\\pane_pugliese.ts"
+  ],
+  "Blend of bread flour and durum wheat flours": [
+    "src\\data\\styles\\bread\\pane_pugliese.ts"
+  ],
+  "Rustic Italian table bread": [
+    "src\\data\\styles\\bread\\pane_pugliese.ts"
+  ],
+  "Brazilian bread flour or strong all-purpose": [
+    "src\\data\\styles\\bread\\pao_de_leite_brazil.ts"
+  ],
+  "Sweet rolls": [
+    "src\\data\\styles\\bread\\pao_de_leite_brazil.ts"
+  ],
+  "Brazilian bakery practice": [
+    "src\\data\\styles\\bread\\pao_de_leite_brazil.ts"
+  ],
+  "Direct dough or sponge methods depending on bakery line.": [
+    "src\\data\\styles\\bread\\pao_frances_brazil.ts"
+  ],
+  "Short to medium bulk, often in continuous processes": [
+    "src\\data\\styles\\bread\\pao_frances_brazil.ts"
+  ],
+  "Breakfast rolls": [
+    "src\\data\\styles\\bread\\pao_frances_brazil.ts"
+  ],
+  "ABIP technical materials": [
+    "src\\data\\styles\\bread\\pao_frances_brazil.ts"
+  ],
+  "Brazilian bread flour": [
+    "src\\data\\styles\\bread\\pao_sovado_brazil.ts"
+  ],
+  "Breakfast bread": [
+    "src\\data\\styles\\bread\\pao_sovado_brazil.ts"
+  ],
+  "Brazilian bakery manuals": [
+    "src\\data\\styles\\bread\\pao_sovado_brazil.ts"
+  ],
+  "Pocket flatbread": [
+    "src\\data\\styles\\bread\\pita_bread_flatbread.ts"
+  ],
+  "Flatbread and Middle Eastern baking literature": [
+    "src\\data\\styles\\bread\\pita_bread_flatbread.ts"
+  ],
+  "Bread flour or medium-strength wheat flour": [
+    "src\\data\\styles\\bread\\pretzel_dough_classic.ts"
+  ],
+  "Traditional pretzels": [
+    "src\\data\\styles\\bread\\pretzel_dough_classic.ts"
+  ],
+  "German baking literature": [
+    "src\\data\\styles\\bread\\pretzel_dough_classic.ts"
+  ],
+  "Occasional short retards possible": [
+    "src\\data\\styles\\bread\\seventy_percent_rye_sour.ts"
+  ],
+  "Traditional rye loaves": [
+    "src\\data\\styles\\bread\\seventy_percent_rye_sour.ts"
+  ],
+  "German rye bread standards": [
+    "src\\data\\styles\\bread\\seventy_percent_rye_sour.ts"
+  ],
+  "Often baked in Dutch ovens or steam-injected decks.": [
+    "src\\data\\styles\\bread\\tartine_country_loaf.ts"
+  ],
+  "Artisan sourdough": [
+    "src\\data\\styles\\bread\\tartine_country_loaf.ts"
+  ],
+  "Strong rye sourdough build is essential.": [
+    "src\\data\\styles\\bread\\vollkornbrot_100_rye.ts"
+  ],
+  "Sometimes retarded to manage scheduling": [
+    "src\\data\\styles\\bread\\vollkornbrot_100_rye.ts"
+  ],
+  "Dense wholegrain rye bread": [
+    "src\\data\\styles\\bread\\vollkornbrot_100_rye.ts"
+  ],
+  "German wholegrain bread traditions": [
+    "src\\data\\styles\\bread\\vollkornbrot_100_rye.ts"
+  ],
+  "All-purpose or soft wheat flour": [
+    "src\\data\\styles\\bread\\wheat_tortilla.ts"
+  ],
+  "Tortillas for tacos, wraps, quesadillas": [
+    "src\\data\\styles\\bread\\wheat_tortilla.ts"
+  ],
+  "Mexican flatbread literature": [
+    "src\\data\\styles\\bread\\wheat_tortilla.ts"
+  ],
+  "Can use preferments or levain to improve flavor and structure.": [
+    "src\\data\\styles\\bread\\whole_wheat_100.ts"
+  ],
+  "Wholegrain sandwich bread": [
+    "src\\data\\styles\\bread\\whole_wheat_100.ts"
+  ],
+  "Unknown Source": [
+    "src\\data\\styles\\builder.ts"
+  ],
+  "Hard": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\library\\bread\\rustic.ts",
+    "src\\data\\styles\\pizza\\neapolitan_contemporary_high_hydration.ts"
+  ],
+  "Under-proofing results in a dense, heavy crumb.": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "The Art of French Baking": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Cold Ingredients": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Dough is an oily soup": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Challah": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Why the 'Top Knot'?": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Direct": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\types\\dough.ts",
+    "src\\types\\styles.ts"
+  ],
+  "Mix to medium development": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Double Egg Wash": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Braid tears during proof": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Brioche": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Why 'Pareve'?": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Mix to full development": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Easy": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\pages\\styles\\DoughStylesPage.tsx",
+    "src\\types\\styleDefinition.ts",
+    "src\\types\\styles.ts"
+  ],
+  "Flatten the Ball": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Bun splits horizontally": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Potato Bun": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Burger Science": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Mix All": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Lid On vs Off": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Dough didn't rise": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Western Sandwich Bread": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Yudane vs Tangzhong?": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Hang upside down": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Acidity too high degrades gluten structure.": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "The Hang": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Taste is Sour": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Pandoro": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Commercial Yeast?": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Sourdough": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "France": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\library\\bread\\rustic.ts"
+  ],
+  "Windowpane First": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Jewish Diaspora": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Classic Burger Bun": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Steam is the Enemy": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Japan": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Panettone Artigianale": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Italy": [
+    "src\\data\\styles\\library\\bread\\enriched.ts",
+    "src\\data\\styles\\library\\bread\\rustic.ts",
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Tripling Rule": [
+    "src\\data\\styles\\library\\bread\\enriched.ts"
+  ],
+  "Ciabatta": [
+    "src\\data\\styles\\library\\bread\\rustic.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Deck or Home Oven": [
+    "src\\data\\styles\\library\\bread\\rustic.ts"
+  ],
+  "Arnaldo Cavallari - Molini Adriesi": [
+    "src\\data\\styles\\library\\bread\\rustic.ts"
+  ],
+  "Dutch Oven or Deck": [
+    "src\\data\\styles\\library\\bread\\rustic.ts"
+  ],
+  "San Francisco Sourdough": [
+    "src\\data\\styles\\library\\bread\\rustic.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Dutch Oven": [
+    "src\\data\\styles\\library\\bread\\rustic.ts"
+  ],
+  "Boudin Bakery History": [
+    "src\\data\\styles\\library\\bread\\rustic.ts"
+  ],
+  "Baguette de Tradition": [
+    "src\\data\\styles\\library\\bread\\rustic.ts",
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Pain de Campagne": [
+    "src\\data\\styles\\library\\bread\\rustic.ts"
+  ],
+  "Mix dry ingredients": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Levain Bakery": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Do Not Cream": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Cookie is flat": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Toll House": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Why Cornstarch?": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Brown Sugar": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Lock-in Butter": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Proofing collapse.": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Viennoiserie Disciplinare": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Plasticity Match": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Pool of butter in oven": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Puff Pastry": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "How many layers?": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Mix everything to make a smooth dough. Don't knead it too hard for too long.": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Mix Enriched Dough": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Dental Floss Cut": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Centers popped up": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Sticky Bun": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Why Bread Flour?": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Fold in Dry": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Palmer House Hotel": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "The Shiny Crust": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Cakey texture": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Chocolate Cake": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Cocoa or Chocolate?": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "AP Flour": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "NY Style Chip Cookie": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "White Sugar": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Cold Butter Cubes": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Whole Eggs": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Dark Chocolate Chips": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Cornstarch": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Baking Powder": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "French Croissant": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "The Wobble": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Water": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts",
+    "src\\services\\exportService.ts"
+  ],
+  "Whole Milk": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Sugar": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts",
+    "src\\services\\exportService.ts"
+  ],
+  "Salt": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts",
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts",
+    "src\\services\\exportService.ts"
+  ],
+  "Egg Wash": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Classic Cinnamon Roll": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "The Cream Hack": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Whole Egg": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Fudgy Brownie": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Ice Bath": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Cocoa Powder": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Vanilla Extract": [
+    "src\\data\\styles\\library\\pastry\\sweets.ts"
+  ],
+  "Cheese Slice": [
+    "src\\data\\styles\\library\\pizza\\classics.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Low-moisture Mozzarella": [
+    "src\\data\\styles\\library\\pizza\\classics.ts"
+  ],
+  "Vodka Sauce": [
+    "src\\data\\styles\\library\\pizza\\classics.ts",
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The 'screen": [
+    "src\\data\\styles\\library\\pizza\\classics.ts"
+  ],
+  "The Pizza Bible": [
+    "src\\data\\styles\\library\\pizza\\classics.ts",
+    "src\\learn-constants.ts"
+  ],
+  "PMQ Pizza Magazine": [
+    "src\\data\\styles\\library\\pizza\\classics.ts"
+  ],
+  "Classic Red Top": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts"
+  ],
+  "Brick Cheese": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts"
+  ],
+  "Burrata": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts"
+  ],
+  "Vernors Ginger Ale": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts"
+  ],
+  "Traditional pans are Blue Steel which requires seasoning.": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts"
+  ],
+  "Buddy's Pizza History": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts"
+  ],
+  "Grandma": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Garlic": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Pesto": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\pizzas-constants.ts"
+  ],
+  "None": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts",
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\pages\\mylab\\CompareRecipesPage.tsx",
+    "src\\pizzas-constants.ts"
+  ],
+  "Often lightly par-baked with sauce before adding cheese.": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Pizza Today Magazine": [
+    "src\\data\\styles\\library\\pizza\\pan_styles.ts"
+  ],
+  "Pepperoni": [
+    "src\\data\\styles\\library\\pizza\\thin_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Fennel Sausage": [
+    "src\\data\\styles\\library\\pizza\\thin_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Italian Beef": [
+    "src\\data\\styles\\library\\pizza\\thin_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Old Style Beer": [
+    "src\\data\\styles\\library\\pizza\\thin_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Use a rolling pin or pasta sheeter.": [
+    "src\\data\\styles\\library\\pizza\\thin_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Pizza City, USA": [
+    "src\\data\\styles\\library\\pizza\\thin_styles.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Sweet loaf": [
+    "src\\data\\styles\\pastry\\babka_sweet_bread.ts"
+  ],
+  "Usually straight dough or sponge-based enriched dough.": [
+    "src\\data\\styles\\pastry\\berliner_bomboloni.ts"
+  ],
+  "Bread or strong pastry flour": [
+    "src\\data\\styles\\pastry\\berliner_bomboloni.ts",
+    "src\\data\\styles\\pastry\\pain_aux_raisins.ts"
+  ],
+  "Filled donuts": [
+    "src\\data\\styles\\pastry\\berliner_bomboloni.ts"
+  ],
+  "European baking literature": [
+    "src\\data\\styles\\pastry\\berliner_bomboloni.ts"
+  ],
+  "Breakfast pastry": [
+    "src\\data\\styles\\pastry\\cinnamon_rolls_classic.ts",
+    "src\\data\\styles\\pastry\\croissant_classic.ts",
+    "src\\data\\styles\\pastry\\pain_au_chocolat.ts"
+  ],
+  "AIB sweet dough guidelines": [
+    "src\\data\\styles\\pastry\\cinnamon_rolls_classic.ts",
+    "src\\data\\styles\\pastry\\sweet_rolls_neutral.ts"
+  ],
+  "Similar multi-stage sourdough or hybrid method as panettone.": [
+    "src\\data\\styles\\pastry\\colomba_pasquale.ts"
+  ],
+  "Very strong flour suitable for rich doughs": [
+    "src\\data\\styles\\pastry\\colomba_pasquale.ts"
+  ],
+  "Festive sweet bread for Easter": [
+    "src\\data\\styles\\pastry\\colomba_pasquale.ts"
+  ],
+  "Mandatory overnight retarding for lamination": [
+    "src\\data\\styles\\pastry\\croissant_classic.ts"
+  ],
+  "Fried sweet doughnuts": [
+    "src\\data\\styles\\pastry\\malasadas_fried_dough.ts"
+  ],
+  "Regional baking literature": [
+    "src\\data\\styles\\pastry\\malasadas_fried_dough.ts"
+  ],
+  "Derived from croissant-type doughs or enriched brioche-like doughs.": [
+    "src\\data\\styles\\pastry\\pain_aux_raisins.ts"
+  ],
+  "Sweet breakfast pastry": [
+    "src\\data\\styles\\pastry\\pain_aux_raisins.ts"
+  ],
+  "Same base as croissant, usually straight dough.": [
+    "src\\data\\styles\\pastry\\pain_au_chocolat.ts"
+  ],
+  "Lamination-suitable flour": [
+    "src\\data\\styles\\pastry\\pain_au_chocolat.ts"
+  ],
+  "Multiple levain builds or stiff sourdough for structure and flavor.": [
+    "src\\data\\styles\\pastry\\panettone_artisanal.ts"
+  ],
+  "Very strong high-protein flour suitable for extreme enrichment": [
+    "src\\data\\styles\\pastry\\panettone_artisanal.ts"
+  ],
+  "Festive sweet bread": [
+    "src\\data\\styles\\pastry\\panettone_artisanal.ts"
+  ],
+  "Can use sponge or direct dough with long maturation.": [
+    "src\\data\\styles\\pastry\\stollen_german.ts"
+  ],
+  "Christmas bread": [
+    "src\\data\\styles\\pastry\\stollen_german.ts"
+  ],
+  "Generic sweet rolls": [
+    "src\\data\\styles\\pastry\\sweet_rolls_neutral.ts"
+  ],
+  "Fried donuts": [
+    "src\\data\\styles\\pastry\\yeasted_donuts.ts"
+  ],
+  "AIB fryer dough guidelines": [
+    "src\\data\\styles\\pastry\\yeasted_donuts.ts"
+  ],
+  "Designed for repeated baking cycles in commercial pizzerias.": [
+    "src\\data\\styles\\pizza\\brazilian_pizzeria_gas_deck.ts"
+  ],
+  "Brazilian pizzeria-style pizza": [
+    "src\\data\\styles\\pizza\\brazilian_pizzeria_gas_deck.ts"
+  ],
+  "Brazilian pizza trade literature": [
+    "src\\data\\styles\\pizza\\brazilian_pizzeria_gas_deck.ts"
+  ],
+  "Direct dough or sponge, often with honey and olive oil.": [
+    "src\\data\\styles\\pizza\\california_style.ts"
+  ],
+  "Gourmet personal pizzas": [
+    "src\\data\\styles\\pizza\\california_style.ts"
+  ],
+  "Modernist Pizza": [
+    "src\\data\\styles\\pizza\\california_style.ts",
+    "src\\data\\styles\\pizza\\chicago_deep_dish.ts",
+    "src\\data\\styles\\pizza\\detroit_style_classic.ts",
+    "src\\data\\styles\\pizza\\neapolitan_contemporary_high_hydration.ts",
+    "src\\data\\styles\\pizza\\new_haven_apizza.ts",
+    "src\\data\\styles\\pizza\\new_york_artisan_cold_ferment.ts",
+    "src\\data\\styles\\pizza\\new_york_slice_shop.ts",
+    "src\\data\\styles\\pizza\\roman_scrocchiarella.ts",
+    "src\\data\\styles\\pizza\\roman_teglia_pan.ts",
+    "src\\data\\styles\\pizza\\sicilian_grandma_pan.ts",
+    "src\\data\\styles\\pizza\\st_louis_thin.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Direct dough, often with cornmeal or semolina in the blend.": [
+    "src\\data\\styles\\pizza\\chicago_deep_dish.ts"
+  ],
+  "Optional overnight": [
+    "src\\data\\styles\\pizza\\chicago_deep_dish.ts"
+  ],
+  "Deep dish pizza": [
+    "src\\data\\styles\\pizza\\chicago_deep_dish.ts"
+  ],
+  "Typically direct dough with yeast and moderate fermentation.": [
+    "src\\data\\styles\\pizza\\detroit_style_classic.ts"
+  ],
+  "Optional overnight in pan": [
+    "src\\data\\styles\\pizza\\detroit_style_classic.ts"
+  ],
+  "Thick pan pizza": [
+    "src\\data\\styles\\pizza\\detroit_style_classic.ts"
+  ],
+  "Authentic Neapolitan Margherita": [
+    "src\\data\\styles\\pizza\\neapolitan_avpn_classic.ts"
+  ],
+  "AVPN International Regulations": [
+    "src\\data\\styles\\pizza\\neapolitan_avpn_classic.ts",
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Gourmet toppings": [
+    "src\\data\\styles\\pizza\\neapolitan_contemporary_high_hydration.ts"
+  ],
+  "Essential for home schedules": [
+    "src\\data\\styles\\pizza\\neapolitan_home_oven_adapted.ts"
+  ],
+  "Home baking without pizza oven": [
+    "src\\data\\styles\\pizza\\neapolitan_home_oven_adapted.ts"
+  ],
+  "Ken Forkish - The Elements of Pizza": [
+    "src\\data\\styles\\pizza\\neapolitan_home_oven_adapted.ts"
+  ],
+  "Long cold fermentation, often direct or sponge.": [
+    "src\\data\\styles\\pizza\\new_haven_apizza.ts"
+  ],
+  "High-gluten bread flour": [
+    "src\\data\\styles\\pizza\\new_haven_apizza.ts"
+  ],
+  "Charred thin crust": [
+    "src\\data\\styles\\pizza\\new_haven_apizza.ts"
+  ],
+  "The secret to the 'Artisan' flavor profile": [
+    "src\\data\\styles\\pizza\\new_york_artisan_cold_ferment.ts"
+  ],
+  "Premium slice shops": [
+    "src\\data\\styles\\pizza\\new_york_artisan_cold_ferment.ts"
+  ],
+  "Mandatory for texture and flavor": [
+    "src\\data\\styles\\pizza\\new_york_slice_shop.ts"
+  ],
+  "By-the-slice sales": [
+    "src\\data\\styles\\pizza\\new_york_slice_shop.ts"
+  ],
+  "Short proof in pans or on trays": [
+    "src\\data\\styles\\pizza\\roman_scrocchiarella.ts"
+  ],
+  "Roman thin pizza": [
+    "src\\data\\styles\\pizza\\roman_scrocchiarella.ts"
+  ],
+  "Often uses long cold ferment and sometimes preferments for better structure.": [
+    "src\\data\\styles\\pizza\\roman_teglia_pan.ts"
+  ],
+  "Common for flavor and extensibility": [
+    "src\\data\\styles\\pizza\\roman_teglia_pan.ts"
+  ],
+  "Roman pan pizza": [
+    "src\\data\\styles\\pizza\\roman_teglia_pan.ts"
+  ],
+  "Bread flour or strong all-purpose": [
+    "src\\data\\styles\\pizza\\sicilian_grandma_pan.ts"
+  ],
+  "Tray-baked pizza": [
+    "src\\data\\styles\\pizza\\sicilian_grandma_pan.ts"
+  ],
+  "None. Often uses baking powder or very low yeast.": [
+    "src\\data\\styles\\pizza\\st_louis_thin.ts"
+  ],
+  "All-purpose or pastry flour for crispness": [
+    "src\\data\\styles\\pizza\\st_louis_thin.ts"
+  ],
+  "Cracker crust pizza": [
+    "src\\data\\styles\\pizza\\st_louis_thin.ts"
+  ],
+  "Asia": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Prep": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Butter Garlic Naan": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Mixing": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Intensive Mix": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Medium Protein Flour": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Smooth Mix": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Wheat Flour Institute of China": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Laminated', 'Unleavened', 'Fried": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Soft Dough": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Indian Breads": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Convection": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "High": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Yeast": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts",
+    "src\\services\\exportService.ts"
+  ],
+  "Tandoor": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Fast": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Ball": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Steamer": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Moderate": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Cook": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Bamboo Steamer": [
+    "src\\data\\styles\\regions\\asia.ts"
+  ],
+  "Bulk": [
+    "src\\data\\styles\\regions\\asia.ts",
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Autolyse": [
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\pages\\learn\\MethodsPage.tsx",
+    "src\\pages\\learn\\TechniquesPage.tsx"
+  ],
+  "Europe": [
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "Eggs": [
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Sponge": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Larousse Gastronomique', 'Professional Baking - Wayne Gisslen": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Lye', 'Alkaline', 'Twist": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Stiff Mix": [
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "German Baking Standards',": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Griddle', 'Nooks and Crannies', 'Breakfast": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "High Hydration Mix": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Thomas History',": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Cheese Boat', 'Egg', 'Rich": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Georgian Table": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Sourdough', 'Whole Grain', 'Seeds', 'Dense": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Soak": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "The Rye Baker', 'Meyers Bageri": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Topping', 'Crunchy', 'Rice Paste": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Dough Mix": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Dutch Baking History": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Quick Bread', 'No Yeast', 'Buttermilk": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Buttermilk": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Gentle Mix": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Darina Allen', 'Ballymaloe": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Controlled": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Milk": [
+    "src\\data\\styles\\regions\\europe.ts",
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Malt Extract": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Restrained": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Cracked Rye Kernels": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Malt Syrup": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Pullman Pan": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Baking Soda": [
+    "src\\data\\styles\\regions\\europe.ts"
+  ],
+  "Pizza Napoletana STG": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Controlled Mixing": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Respect the 'Punto di Pasta'": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Dough becomes too sticky to handle and stretches into a hole immediately.": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Roman Tonda": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "AVPN Regulations": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "The dough dries out before it browns. You get a hard cracker.": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Romana Tonda": [
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Respect the 'Punto di Pasta": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Bassinage Mixing": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Angelo Iezzi Method": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Cold Water is Critical": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Dough tears during stretching": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Bonci Method": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "You added water too fast.": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Teglia is airy, crunchy, and light. Sicilian is spongy, soft, and bread-like.": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "The 'Fridge Cure": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Roman Pizza Academy": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Roll it thin... then thinner": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Dough shrinks back when rolling": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Why add oil to the dough?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Dough keeps snapping back?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Focaccia Genovese": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Soft Wheat Flour": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Short Mix": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Ezra Pound": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "The Brine is King": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Dimples disappear during baking": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Focaccia Barese": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Salt percentage seems high?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Eyes": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Pizza Teglia": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Sfincione Palermitano": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Soft Mix": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Sicilian Food History": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Strutto for Softness": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Using Oil instead of Lard": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Choose Sfincione for the authentic Palermo street food experience.": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Breadcrumbs on pizza?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Top burns before bottom is crisp?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "The 'Rusks": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "No Salt": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Biga Natural": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Consorzio del Pane Toscano DOP": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Watch the Fermentation": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Fails to brown": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Can I add salt?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Bread is completely pale?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "French Baguette": [
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "High Gluten Flour": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Biga Preparation": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Handle like Nitro": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Baguette": [
+    "src\\data\\styles\\regions\\italy.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Why Biga and not Sourdough?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Over-proofed or weak flour.": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Use Room Temp Water": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Can I use Biga or Poolish?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Dry Yeast": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Deck Oven": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "No Rolling Pins": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Bottom is pale and soft?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Dock the dough": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Crust is chewy, not crunchy": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Not crispy enough?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Blind Bake the Bottom": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "The Sauce Shield": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Vegetarian version?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Weak-Medium": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Pairing is Mandatory": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Tastes like cardboard?": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "Invert the Biga": [
+    "src\\data\\styles\\regions\\italy.ts"
+  ],
+  "South America": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Boil milk, oil, and salt. Pour over the starch and mix until crumbs form.": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Brazilian Food - Sally Butcher": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Crispy', 'Steam', 'Direct Method',": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Fugazzeta Rellena": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Dough Mixing": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "La Pizza Argentina', 'Las Cuartetas": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Laminated', 'Sweet Syrup', 'Breakfast": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Enriched Mix": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "North America": [
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "All Purpose Flour": [
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Bun Dough": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Panes Mexicanos": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Mix to development.": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Venezuelan Arepa": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Hydrate": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Lorenzo Mendoza": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Scald": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Honey": [
+    "src\\data\\styles\\regions\\latam.ts"
+  ],
+  "Gas Deck": [
+    "src\\data\\styles\\regions\\latam.ts",
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Middle East": [
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Classical Arabian Cooking', 'Modernist Bread": [
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Sesame', 'Molasses', 'Street Food', 'Breakfast": [
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Stiff Dough": [
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Ottoman Kitchen', 'Istanbul Eats": [
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Vigorous": [
+    "src\\data\\styles\\regions\\middle_east.ts"
+  ],
+  "Low Moisture Mozzarella": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Traditionally baked on screens or directly on deck stones.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Scott Wiener's Pizza History": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The Reheat Rule": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The crust dries out before browning.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Is NYC water the secret?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Crust is pale and white?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The 'Screen": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Balanced": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Wisconsin Brick Cheese": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Hot Honey": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Coney Island Hot Dog Pizza": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The unique Brick Cheese has a high fat content that fries the crust edge.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Buddy's Archives": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The Frico Edge": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Insulated by too much sauce or dough was too cold.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Sicilian": [
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Why Blue Steel pans?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Insulated by too much sauce or dough was cold.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Chicago Deep Dish": [
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Sausage Patty": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "A 'Short Dough": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Italian Sausage Layer": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Giardiniera": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Corn oil is traditional for the specific flavor and 'fried' texture.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Pizzeria Uno History": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The Biscuit Factor": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Dough shrinks when pressing": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Pan Pizza": [
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Why sauce on top?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Overmixed. You developed gluten.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Deep Dish is 'Short": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Clam Chowder Bowl": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Clam Chowder": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Avocado": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Seafood Cioppino": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Scoring is critical to handle the immense oven spring.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Boudin History": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The 'Tartine' Fold": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "No 'Ear": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Is 'Lactobacillus sanfranciscensis' only in SF?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Starter was weak or bulk fermentation was too short.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Pane Toscano": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "New Haven Apizza": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "White Clam Pie": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Extensible": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Littleneck Clams": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Bacon": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Foxon Park Soda": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "A 'plain": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Frank Pepe History": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Oblong is a Feature": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "You won't get char.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "NYC Slice": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Is 'Mozz' standard?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "It burns instantly?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "New York Bagel": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Bacon Egg Cheese": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Very Elastic": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Capers": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Everything Seasoning": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Flip halfway through bake.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Bagel Union Regulations": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Alkaline Boil": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Bagels wrinkle after baking": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Montreal Bagel": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Why Barley Malt?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Bagels look wrinkled like prunes?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Grandma Pizza": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Fried Bottom": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Dough springs back": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Why 'Grandma'?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Sticks to the pan?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Chicago Tavern Style": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "The Cure": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Crust is chewy not crisp": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Party Cut?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "It puffed up like a pita?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Deep Dish": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Cream Cheese": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Stiff": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Peanut Butter": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Montreal Smoked Meat": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Don't add salt.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Boiling water must contain honey.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Fairmount Bagel": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Honey Water": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Bland?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "NY Bagel": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Why no salt?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Collapses?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Soak boards.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Burritos": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Carne Asada": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Nutella": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Don't overcook.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Lard is traditional.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Sonoran Heritage": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "See-through": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Hard?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Corn Tortilla": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Butter?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Rubber?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Pita": [
+    "src\\data\\styles\\regions\\north_america.ts",
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Use Manteca.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Cheese Temp Matters": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Dough retracts when stretching": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Dough keeps snapping back to small size?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Blue Steel Pan": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Par-bake the Skin": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Cannot find Brick Cheese": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "No 'Frico": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Deep Pan": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Corn Oil is King": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Soggy mess?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Microbiology of Sourdough": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Steam is Non-Negotiable": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Coal Fired Deck": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Retarded": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Bake Darker": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Soggy center?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Cold Proof Shaped": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "No shine?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Short Proof": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Soggy?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Dock Aggressively": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Chewy?": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Canada": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Wood Fired": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Mexico": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Comal": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Low water, high fat.": [
+    "src\\data\\styles\\regions\\north_america.ts"
+  ],
+  "Sfogliatella Riccia": [
+    "src\\data\\styles\\registry.ts"
+  ],
+  "Great all-rounder for direct doughs and short fermentations.": [
+    "src\\flours-constants.ts"
+  ],
+  "Caputo Nuvola": [
+    "src\\flours-constants.ts"
+  ],
+  "Caputo Manitoba Oro": [
+    "src\\flours-constants.ts"
+  ],
+  "Classic whole wheat flour from Naples.": [
+    "src\\flours-constants.ts"
+  ],
+  "High protein for long maturation times.": [
+    "src\\flours-constants.ts"
+  ],
+  "Excellent stability for long fermentation.": [
+    "src\\flours-constants.ts"
+  ],
+  "Partially sprouted stone ground flour. Incredible flavor profile.": [
+    "src\\flours-constants.ts"
+  ],
+  "Designed specifically for high-quality pizza making.": [
+    "src\\flours-constants.ts"
+  ],
+  "Stronger than most AP flours, excellent for artisan baking.": [
+    "src\\flours-constants.ts"
+  ],
+  "Made from hard red spring wheat. Strong flavor.": [
+    "src\\flours-constants.ts"
+  ],
+  "High protein organic flour for structure.": [
+    "src\\flours-constants.ts"
+  ],
+  "Premium high-protein flour for rustic breads.": [
+    "src\\flours-constants.ts"
+  ],
+  "Durum wheat semolina, great for dusting or mixing into dough for bite.": [
+    "src\\flours-constants.ts"
+  ],
+  "Made from Espresso wheat varieties.": [
+    "src\\flours-constants.ts"
+  ],
+  "Low gluten, distinctive flavor. Mix with high gluten flour.": [
+    "src\\flours-constants.ts"
+  ],
+  "Yellow flour from durum wheat. Adds crunch and golden color.": [
+    "src\\flours-constants.ts"
+  ],
+  "Cannot find closest size in an empty array.": [
+    "src\\helpers.ts"
+  ],
+  "Allows for greater flavor and aroma development.": [
+    "src\\learn-constants.ts"
+  ],
+  "Relaxes the gluten network, improving extensibility and reducing tearing risk.": [
+    "src\\learn-constants.ts"
+  ],
+  "Provides more consistent and repeatable results, reducing guesswork.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use a scale to weigh ingredients precisely.": [
+    "src\\learn-constants.ts"
+  ],
+  "Mix and ball the dough normally.": [
+    "src\\learn-constants.ts"
+  ],
+  "Poolish favors a light, more open crumb.": [
+    "src\\learn-constants.ts"
+  ],
+  "Biga favors a strong structure and chewy texture.": [
+    "src\\learn-constants.ts"
+  ],
+  "The choice changes flavor profile, texture, and handling.": [
+    "src\\learn-constants.ts"
+  ],
+  "High hydration yields an extremely airy crumb.": [
+    "src\\learn-constants.ts"
+  ],
+  "Differs from Neapolitan in technique and equipment.": [
+    "src\\learn-constants.ts"
+  ],
+  "Place in oiled pan and stretch to corners.": [
+    "src\\learn-constants.ts"
+  ],
+  "Relaxed gluten network favors expansion.": [
+    "src\\learn-constants.ts"
+  ],
+  "Delivers professional-level lightness.": [
+    "src\\learn-constants.ts"
+  ],
+  "Handle gently on a well-floured surface.": [
+    "src\\learn-constants.ts"
+  ],
+  "Bake at high temperature to spring quickly.": [
+    "src\\learn-constants.ts"
+  ],
+  "Without temperature control, fermentation is unpredictable.": [
+    "src\\learn-constants.ts"
+  ],
+  "DDT brings consistency and repeatability.": [
+    "src\\learn-constants.ts"
+  ],
+  "Crucial for timing your bake schedule perfectly.": [
+    "src\\learn-constants.ts"
+  ],
+  "Measure flour and room temperature.": [
+    "src\\learn-constants.ts"
+  ],
+  "Mix and verify final temp with a probe thermometer.": [
+    "src\\learn-constants.ts"
+  ],
+  "Identify your oven type.": [
+    "src\\learn-constants.ts"
+  ],
+  "Complex flavor profile from wild yeast and bacteria.": [
+    "src\\learn-constants.ts"
+  ],
+  "Improved digestibility and keeping quality.": [
+    "src\\learn-constants.ts"
+  ],
+  "Personalizes your product uniquely.": [
+    "src\\learn-constants.ts"
+  ],
+  "Professional consistency in every slice.": [
+    "src\\learn-constants.ts"
+  ],
+  "Weigh your cheese and sauce.": [
+    "src\\learn-constants.ts"
+  ],
+  "Water allows gluten proteins to slide and align.": [
+    "src\\learn-constants.ts"
+  ],
+  "High hydration requires gentle handling to keep gas.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use autolyse to help gluten formation.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use folds instead of kneading for wet doughs.": [
+    "src\\learn-constants.ts"
+  ],
+  "Stop repeating the same mistakes.": [
+    "src\\learn-constants.ts"
+  ],
+  "Learn to adjust variables on the fly.": [
+    "src\\learn-constants.ts"
+  ],
+  "Check the Troubleshooting guide.": [
+    "src\\learn-constants.ts"
+  ],
+  "Note the change in your journal.": [
+    "src\\learn-constants.ts"
+  ],
+  "Using the wrong flour causes tearing or toughness.": [
+    "src\\learn-constants.ts"
+  ],
+  "Adjust hydration based on flour strength.": [
+    "src\\learn-constants.ts"
+  ],
+  "Record the flour used in your batches.": [
+    "src\\learn-constants.ts"
+  ],
+  "Input your desired total flour or dough weight.": [
+    "src\\learn-constants.ts"
+  ],
+  "The app calculates everything based on percentages.": [
+    "src\\learn-constants.ts"
+  ],
+  "Follow the weights exactly.": [
+    "src\\learn-constants.ts"
+  ],
+  "Grow with the tool as you learn.": [
+    "src\\learn-constants.ts"
+  ],
+  "Toggle the mode switch at the top of the calculator.": [
+    "src\\learn-constants.ts"
+  ],
+  "Basic restricts inputs to safe ranges.": [
+    "src\\learn-constants.ts"
+  ],
+  "Advanced unlocks fermentation methods, oil, sugar, etc.": [
+    "src\\learn-constants.ts"
+  ],
+  "Reduce waste by using up leftovers.": [
+    "src\\learn-constants.ts"
+  ],
+  "Calculate based on available flour bag size.": [
+    "src\\learn-constants.ts"
+  ],
+  "Adapt recipes to specific constraints.": [
+    "src\\learn-constants.ts"
+  ],
+  "Enter the amount of flour you have.": [
+    "src\\learn-constants.ts"
+  ],
+  "The app calculates total dough and other ingredients.": [
+    "src\\learn-constants.ts"
+  ],
+  "Reliable results depend on proven ratios.": [
+    "src\\learn-constants.ts"
+  ],
+  "We cite sources like AVPN, Modernist Cuisine, and master bakers.": [
+    "src\\learn-constants.ts"
+  ],
+  "Transparency builds trust in your tools.": [
+    "src\\learn-constants.ts"
+  ],
+  "Verify logic against standard textbooks.": [
+    "src\\learn-constants.ts"
+  ],
+  "Effortless dough development.": [
+    "src\\learn-constants.ts"
+  ],
+  "Creates complex flavor via long fermentation.": [
+    "src\\learn-constants.ts"
+  ],
+  "Requires no mixer or heavy labor.": [
+    "src\\learn-constants.ts"
+  ],
+  "Gluten forms itself. Shape and bake.": [
+    "src\\learn-constants.ts"
+  ],
+  "Directs oven spring expansion.": [
+    "src\\learn-constants.ts"
+  ],
+  "Prevents uncontrolled tearing.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use a lame or razor blade.": [
+    "src\\learn-constants.ts"
+  ],
+  "Score just before baking.": [
+    "src\\learn-constants.ts"
+  ],
+  "Choose method based on time available.": [
+    "src\\learn-constants.ts"
+  ],
+  "Direct is fine for same-day pizza.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use preferments for next-day optimization.": [
+    "src\\learn-constants.ts"
+  ],
+  "Balance top and bottom heat.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use steel for conduction in home ovens.": [
+    "src\\learn-constants.ts"
+  ],
+  "Produces blisters on crust.": [
+    "src\\learn-constants.ts"
+  ],
+  "Fits baking into your schedule.": [
+    "src\\learn-constants.ts"
+  ],
+  "Mix and bulk ferment a bit.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use the app to convert automatically.": [
+    "src\\learn-constants.ts"
+  ],
+  "Organizes gluten strands gently.": [
+    "src\\learn-constants.ts"
+  ],
+  "Traps air for open crumb.": [
+    "src\\learn-constants.ts"
+  ],
+  "Easy on the hands.": [
+    "src\\learn-constants.ts"
+  ],
+  "Grab edge of dough, stretch up, fold over center.": [
+    "src\\learn-constants.ts"
+  ],
+  "Every oven is different.": [
+    "src\\learn-constants.ts"
+  ],
+  "Calibration ensures recipe success.": [
+    "src\\learn-constants.ts"
+  ],
+  "Adapt baking times to your reality.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use an oven thermometer to check real temp.": [
+    "src\\learn-constants.ts"
+  ],
+  "Adjust rack position for balance.": [
+    "src\\learn-constants.ts"
+  ],
+  "Fine-tune variables.": [
+    "src\\learn-constants.ts"
+  ],
+  "Track progress over time.": [
+    "src\\learn-constants.ts"
+  ],
+  "Record ambient temp, times, and visual results.": [
+    "src\\learn-constants.ts"
+  ],
+  "Rate your bake honestly.": [
+    "src\\learn-constants.ts"
+  ],
+  "Mixer capacity constraints.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use the app to scale based on flour weight.": [
+    "src\\learn-constants.ts"
+  ],
+  "Watch dough temperature in large batches.": [
+    "src\\learn-constants.ts"
+  ],
+  "Maximum flavor development.": [
+    "src\\learn-constants.ts"
+  ],
+  "Full gluten breakdown for tenderness.": [
+    "src\\learn-constants.ts"
+  ],
+  "Digestibility benefits.": [
+    "src\\learn-constants.ts"
+  ],
+  "Reduce yeast significantly.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use strong flour to withstand breakdown.": [
+    "src\\learn-constants.ts"
+  ],
+  "Unique flavor profile.": [
+    "src\\learn-constants.ts"
+  ],
+  "Gut health benefits.": [
+    "src\\learn-constants.ts"
+  ],
+  "Self-sufficiency.": [
+    "src\\learn-constants.ts"
+  ],
+  "Maintain a healthy starter.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use app to calculate levain amount.": [
+    "src\\learn-constants.ts"
+  ],
+  "Expect longer rise times.": [
+    "src\\learn-constants.ts"
+  ],
+  "Testing new flours.": [
+    "src\\learn-constants.ts"
+  ],
+  "Lunch for one.": [
+    "src\\learn-constants.ts"
+  ],
+  "Practicing skills cheaply.": [
+    "src\\learn-constants.ts"
+  ],
+  "Use small bowls.": [
+    "src\\learn-constants.ts"
+  ],
+  "Hand mixing is often easier.": [
+    "src\\learn-constants.ts"
+  ],
+  "Time is just an estimate.": [
+    "src\\learn-constants.ts"
+  ],
+  "Volume, jiggle, poke test.": [
+    "src\\learn-constants.ts"
+  ],
+  "Choose based on desired crust texture.": [
+    "src\\learn-constants.ts"
+  ],
+  "Mix until shaggy.": [
+    "src\\learn-constants.ts"
+  ],
+  "Knead until smooth.": [
+    "src\\learn-constants.ts"
+  ],
+  "Check windowpane.": [
+    "src\\learn-constants.ts"
+  ],
+  "Heat accelerates fermentation.": [
+    "src\\learn-constants.ts"
+  ],
+  "Dry air forms skin on dough.": [
+    "src\\learn-constants.ts"
+  ],
+  "Humidity affects hydration absorption.": [
+    "src\\learn-constants.ts"
+  ],
+  "Monitor room temp.": [
+    "src\\learn-constants.ts"
+  ],
+  "Cover dough to protect from dry air.": [
+    "src\\learn-constants.ts"
+  ],
+  "Adjust water temp to compensate for room temp.": [
+    "src\\learn-constants.ts"
+  ],
+  "Match surface to oven temp and pizza style.": [
+    "src\\learn-constants.ts"
+  ],
+  "Clean stones by heat, not water.": [
+    "src\\learn-constants.ts"
+  ],
+  "Hydrates flour fully.": [
+    "src\\learn-constants.ts"
+  ],
+  "Starts enzyme activity.": [
+    "src\\learn-constants.ts"
+  ],
+  "Relaxes gluten for easier kneading.": [
+    "src\\learn-constants.ts"
+  ],
+  "Mix flour and water only.": [
+    "src\\learn-constants.ts"
+  ],
+  "Pre-gelatinized starch holds water.": [
+    "src\\learn-constants.ts"
+  ],
+  "Higher hydration without stickiness.": [
+    "src\\learn-constants.ts"
+  ],
+  "Extends shelf life.": [
+    "src\\learn-constants.ts"
+  ],
+  "Cool to room temp.": [
+    "src\\learn-constants.ts"
+  ],
+  "Add to dough mix.": [
+    "src\\learn-constants.ts"
+  ],
+  "Handling complex preferment leftovers.": [
+    "src\\learn-constants.ts"
+  ],
+  "Balancing multiple flours.": [
+    "src\\learn-constants.ts"
+  ],
+  "Enter what you have.": [
+    "src\\learn-constants.ts"
+  ],
+  "App balances the rest.": [
+    "src\\learn-constants.ts"
+  ],
+  "Open crumb.": [
+    "src\\learn-constants.ts"
+  ],
+  "Crispy crust.": [
+    "src\\learn-constants.ts"
+  ],
+  "Artisan quality.": [
+    "src\\learn-constants.ts"
+  ],
+  "Coil folds are mandatory.": [
+    "src\\learn-constants.ts"
+  ],
+  "Gentle shaping.": [
+    "src\\learn-constants.ts"
+  ],
+  "Memory is fallible.": [
+    "src\\learn-constants.ts"
+  ],
+  "Data reveals trends.": [
+    "src\\learn-constants.ts"
+  ],
+  "Replication requires records.": [
+    "src\\learn-constants.ts"
+  ],
+  "Log immediately after baking.": [
+    "src\\learn-constants.ts"
+  ],
+  "Be specific about changes.": [
+    "src\\learn-constants.ts"
+  ],
+  "Rate objectively.": [
+    "src\\learn-constants.ts"
+  ],
+  "Different protein levels.": [
+    "src\\learn-constants.ts"
+  ],
+  "Different absorption.": [
+    "src\\learn-constants.ts"
+  ],
+  "Availability issues.": [
+    "src\\learn-constants.ts"
+  ],
+  "Match protein content closest.": [
+    "src\\learn-constants.ts"
+  ],
+  "Adjust water if moving from white to whole.": [
+    "src\\learn-constants.ts"
+  ],
+  "Expect texture changes.": [
+    "src\\learn-constants.ts"
+  ],
+  "Ovens use energy.": [
+    "src\\learn-constants.ts"
+  ],
+  "Ingredients have footprints.": [
+    "src\\learn-constants.ts"
+  ],
+  "Waste reduction.": [
+    "src\\learn-constants.ts"
+  ],
+  "Bake multiple items at once.": [
+    "src\\learn-constants.ts"
+  ],
+  "Source local flour.": [
+    "src\\learn-constants.ts"
+  ],
+  "Timers are essential.": [
+    "src\\learn-constants.ts"
+  ],
+  "Recipe read-back.": [
+    "src\\learn-constants.ts"
+  ],
+  "Motivation to practice.": [
+    "src\\learn-constants.ts"
+  ],
+  "Learn new styles.": [
+    "src\\learn-constants.ts"
+  ],
+  "Connect with others.": [
+    "src\\learn-constants.ts"
+  ],
+  "Check weekly challenge.": [
+    "src\\learn-constants.ts"
+  ],
+  "Bake and post.": [
+    "src\\learn-constants.ts"
+  ],
+  "Earn badges.": [
+    "src\\learn-constants.ts"
+  ],
+  "Avoid putting warm dough boxes directly in the fridge to prevent condensation.": [
+    "src\\learn-constants.ts"
+  ],
+  "If kneading by hand, Poolish is easier to incorporate.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Grease the pan generously with oil for a fried bottom crust.',": [
+    "src\\learn-constants.ts"
+  ],
+  "In summer, chill your flour or use ice water.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Thicker stones retain more heat for consecutive bakes.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Feed starter at peak activity for sweet, active dough.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Less is more. Allow the dough flavor to shine.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Use wet hands to handle high hydration dough.": [
+    "src\\learn-constants.ts"
+  ],
+  "Flours": [
+    "src\\learn-constants.ts",
+    "src\\pages\\learn\\CriticalIngredientsPage.tsx",
+    "src\\pages\\learn\\IngredientsPage.tsx"
+  ],
+  "Basic vs. Advanced Mode": [
+    "src\\learn-constants.ts"
+  ],
+  "Great for using up discard starter.',\r\n      'Perfect for": [
+    "src\\learn-constants.ts"
+  ],
+  "Always question": [
+    "src\\learn-constants.ts"
+  ],
+  "Use a Dutch Oven to bake bread for steam retention.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Cold dough scores easier.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Autolyse can be added to any method.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Preheat surfaces thoroughly.',\r\n      'Rotate pizza for even radiation exposure.": [
+    "src\\learn-constants.ts"
+  ],
+  "Ensure airtight seal to prevent drying.',": [
+    "src\\learn-constants.ts"
+  ],
+  "IDY is the most consistent for home use.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Wet hands prevent sticking.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Most home ovens run cooler than stated.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Take photos of crumb and crust.',\r\n      'Note what you changed from last time.": [
+    "src\\learn-constants.ts"
+  ],
+  "Divide dough into manageable chunks.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Acid load increases significantly.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Starter health is key.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Great for experiments.": [
+    "src\\learn-constants.ts"
+  ],
+  "Watch the dough, not the clock.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Dissolve poolish in water first.',\r\n      'Chop biga into water to incorporate.": [
+    "src\\learn-constants.ts"
+  ],
+  "Mixers can over-heat dough quickly.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Summer baking requires cold water.',\r\n      'Winter baking needs a warm spot.": [
+    "src\\learn-constants.ts"
+  ],
+  "Screens help set pizza before moving to stone.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Essential for whole wheat.',\r\n      'Shortens kneading time.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Cook until lines appear in roux.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Double check your inputs.',\r\n      'Weigh leftovers accurately.": [
+    "src\\learn-constants.ts"
+  ],
+  "Bake dark for best flavor.',\r\n      'Requires strong flour.": [
+    "src\\learn-constants.ts"
+  ],
+  "Note ambient temp.',\r\n      'Note flour brand.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Cake flour is too weak for pizza.',\r\n      'Semolina adds crunch.": [
+    "src\\learn-constants.ts"
+  ],
+  "Preheat efficiently.',": [
+    "src\\learn-constants.ts"
+  ],
+  "Keep device clean.',\r\n      'Use smart displays for visual aid.": [
+    "src\\learn-constants.ts"
+  ],
+  "Be supportive of others.',\r\n      'Try something outside your comfort zone.": [
+    "src\\learn-constants.ts"
+  ],
+  "DoughLab User Guide": [
+    "src\\learn-constants.ts"
+  ],
+  "DoughLab Features": [
+    "src\\learn-constants.ts"
+  ],
+  "DoughLab References": [
+    "src\\learn-constants.ts"
+  ],
+  "Baker's Manual": [
+    "src\\learn-constants.ts"
+  ],
+  "The Bread Baker's Apprentice": [
+    "src\\learn-constants.ts"
+  ],
+  "Tartine Bread": [
+    "src\\learn-constants.ts"
+  ],
+  "DoughLab Tips": [
+    "src\\learn-constants.ts"
+  ],
+  "King Arthur Baking": [
+    "src\\learn-constants.ts",
+    "src\\references-constants.ts"
+  ],
+  "The Perfect Loaf": [
+    "src\\learn-constants.ts"
+  ],
+  "Pizza Making Forum": [
+    "src\\learn-constants.ts"
+  ],
+  "Raymond Calvel": [
+    "src\\learn-constants.ts"
+  ],
+  "The Woks of Life": [
+    "src\\learn-constants.ts"
+  ],
+  "DoughLab Pro": [
+    "src\\learn-constants.ts",
+    "src\\marketing\\social\\socialApis.ts"
+  ],
+  "Open Crumb Mastery": [
+    "src\\learn-constants.ts"
+  ],
+  "DoughLab": [
+    "src\\learn-constants.ts"
+  ],
+  "The Joy of Cooking": [
+    "src\\learn-constants.ts"
+  ],
+  "Sustainable Food Trust": [
+    "src\\learn-constants.ts"
+  ],
+  "Tech in Kitchen": [
+    "src\\learn-constants.ts"
+  ],
+  "DoughLab Community": [
+    "src\\learn-constants.ts"
+  ],
+  "Detroit": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Rustic Loaf": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Sandwich Loaf": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Flatbread": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Sourdough Bread": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Rye Bread": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Grandma Style": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "French Bread": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Pumpernickel": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Potato Bread": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Bagel": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "English Muffin": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Shortcrust": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Esfiha Dough": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Savory Pie Dough": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Pound Cake": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Cookies": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Pie Dough": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Simple Cake": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Burger Bun": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Hokkaido Milk Bread": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "NY Cookie": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Cinnamon Roll": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Dinner Rolls": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Sweet Rolls": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Babka": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Yeast Donut": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Shortbread": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Brownie": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Rustic Sourdough": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Classic Baguette": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Soft Sandwich Loaf": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Classic Brioche": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Dinner Roll": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Brioche Burger Bun": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Soft Burger Bun": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Danish Pastry": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Classic Choc Chip": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Brown Butter Cookie": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Pretzel": [
+    "src\\logic\\autoStyleAdvisor.ts"
+  ],
+  "Flour": [
+    "src\\logic\\doughMath.ts",
+    "src\\utils\\doughConversion.ts"
+  ],
+  "BRIOCHE', 'PANETTONE', 'CROISSANT', 'DANISH', 'DONUT', 'DOUGHNUT',": [
+    "src\\logic\\fermentationLogic.ts"
+  ],
+  "Stretch it out, put your toppings on, and bake it hot!": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "Yeast is sluggish in the cold. A warmer start helps kickstart fermentation.": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "PuffPastry": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "Prof. Raymond Calvel": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "The Windowpane Test": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "Maillard Reaction precursors": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "Dissolving the sugar into the eggs creates a shiny,": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "The": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "Initial high heat creates steam for": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "Creating a": [
+    "src\\logic\\methodGenerator.ts"
+  ],
+  "Wood-Fired Oven": [
+    "src\\logic\\ovenProfile.ts"
+  ],
+  "Your levain is at peak activity. Great time to start your dough!": [
+    "src\\logic\\smartAdjustments.ts"
+  ],
+  "Shop Ooni": [
+    "src\\marketing\\ads\\adsCatalog.ts"
+  ],
+  "Loading dashboard...": [
+    "src\\marketing\\affiliate\\AffiliateDashboard.tsx"
+  ],
+  "Earn money by sharing your passion for baking.": [
+    "src\\marketing\\affiliate\\AffiliateDashboard.tsx"
+  ],
+  "Logos, banners, and fonts": [
+    "src\\marketing\\affiliate\\AffiliateDashboard.tsx"
+  ],
+  "New Post": [
+    "src\\marketing\\community\\CommunityComposer.tsx"
+  ],
+  "Posting...": [
+    "src\\marketing\\community\\CommunityComposer.tsx"
+  ],
+  "Loading community...": [
+    "src\\marketing\\community\\CommunityFeed.tsx"
+  ],
+  "Firestore not initialized": [
+    "src\\marketing\\community\\CommunityService.ts"
+  ],
+  "Marco P.": [
+    "src\\marketing\\community\\CommunityService.ts"
+  ],
+  "Unlock this premium feature with DoughLab Pro.": [
+    "src\\marketing\\fomo\\components\\UpgradeModal.tsx"
+  ],
+  "Share your bake": [
+    "src\\marketing\\social\\socialApis.ts"
+  ],
+  "Photo uploaded successfully', 'success": [
+    "src\\pages\\BatchDetailPage.tsx"
+  ],
+  "Related Insights": [
+    "src\\pages\\BatchDetailPage.tsx"
+  ],
+  "Edit": [
+    "src\\pages\\BatchDetailPage.tsx"
+  ],
+  "Change Photo": [
+    "src\\pages\\BatchDetailPage.tsx"
+  ],
+  "Running diagnosis...": [
+    "src\\pages\\DoughbotPage.tsx"
+  ],
+  "Diagnosis Complete!": [
+    "src\\pages\\DoughbotPage.tsx"
+  ],
+  "Select a common problem...": [
+    "src\\pages\\DoughbotPage.tsx"
+  ],
+  "Still have questions?": [
+    "src\\pages\\HelpPage.tsx"
+  ],
+  "Start Bake": [
+    "src\\pages\\HelpPage.tsx"
+  ],
+  "How do I save a recipe?": [
+    "src\\pages\\HelpPage.tsx"
+  ],
+  "What is the difference between 'Direct' and": [
+    "src\\pages\\HelpPage.tsx"
+  ],
+  "Can I use my own Sourdough Starter?": [
+    "src\\pages\\HelpPage.tsx"
+  ],
+  "How do I unlock PRO features?": [
+    "src\\pages\\HelpPage.tsx"
+  ],
+  "No articles found matching your search.": [
+    "src\\pages\\learn\\AllArticlesPage.tsx"
+  ],
+  "Starch Gelatinization": [
+    "src\\pages\\learn\\BakingSciencePage.tsx"
+  ],
+  "Content brewing...": [
+    "src\\pages\\learn\\CategoryPage.tsx"
+  ],
+  "No articles found in this category yet.": [
+    "src\\pages\\learn\\CategoryPage.tsx"
+  ],
+  "Explore our comprehensive knowledge base.": [
+    "src\\pages\\learn\\CategoryPage.tsx"
+  ],
+  "Gluten is a complex protein network formed when two flour proteins,": [
+    "src\\pages\\learn\\ChemistryLibraryPage.tsx"
+  ],
+  "Fermentation is the metabolic process performed by yeast": [
+    "src\\pages\\learn\\ChemistryLibraryPage.tsx"
+  ],
+  "During this process, enzymes": [
+    "src\\pages\\learn\\ChemistryLibraryPage.tsx"
+  ],
+  "Oven Spring": [
+    "src\\pages\\learn\\FundamentalsPage.tsx"
+  ],
+  "Watch out for...": [
+    "src\\pages\\learn\\GrandmaRenderer.tsx"
+  ],
+  "Maintaining": [
+    "src\\pages\\learn\\HygieneSafetyPage.tsx"
+  ],
+  "Keep": [
+    "src\\pages\\learn\\HygieneSafetyPage.tsx"
+  ],
+  "Avoid": [
+    "src\\pages\\learn\\HygieneSafetyPage.tsx"
+  ],
+  "Use": [
+    "src\\pages\\learn\\HygieneSafetyPage.tsx"
+  ],
+  "Discard": [
+    "src\\pages\\learn\\HygieneSafetyPage.tsx"
+  ],
+  "Protect dough during fermentation.": [
+    "src\\pages\\learn\\HygieneSafetyPage.tsx"
+  ],
+  "Clean all": [
+    "src\\pages\\learn\\HygieneSafetyPage.tsx"
+  ],
+  "Honey',": [
+    "src\\pages\\learn\\ingredients\\BoldCombosPage.tsx"
+  ],
+  "Honey', 'Walnuts', 'Pear": [
+    "src\\pages\\learn\\ingredients\\BoldCombosPage.tsx"
+  ],
+  "Ricotta', 'Lemon Zest', 'Mint": [
+    "src\\pages\\learn\\ingredients\\BoldCombosPage.tsx"
+  ],
+  "Fig', 'Goat Cheese',": [
+    "src\\pages\\learn\\ingredients\\BoldCombosPage.tsx"
+  ],
+  "Science and tradition behind combos that defined pizza globally.": [
+    "src\\pages\\learn\\ingredients\\ClassicCombosPage.tsx"
+  ],
+  "Tomato', 'Pepperoni', 'Basil', 'Provolone', 'Mushroom": [
+    "src\\pages\\learn\\ingredients\\ClassicCombosPage.tsx"
+  ],
+  "Mozzarella', 'Garlic', 'Olive Oil', 'Fresh Herbs": [
+    "src\\pages\\learn\\ingredients\\ClassicCombosPage.tsx"
+  ],
+  "Sausage', 'Bacon', 'Mozzarella', 'Peppers": [
+    "src\\pages\\learn\\ingredients\\ClassicCombosPage.tsx"
+  ],
+  "Mulino Caputo Technical Sheets": [
+    "src\\pages\\learn\\ingredients\\FloursPage.tsx"
+  ],
+  "Each meat type reacts differently to intense heat.": [
+    "src\\pages\\learn\\ingredients\\MeatsPage.tsx"
+  ],
+  "The Bread Baker": [
+    "src\\pages\\learn\\ingredients\\OilsPage.tsx"
+  ],
+  "Classic combination suggestions for the selected ingredient will appear here.": [
+    "src\\pages\\learn\\ingredients\\PairingToolPage.tsx"
+  ],
+  "Select an ingredient...": [
+    "src\\pages\\learn\\ingredients\\PairingToolPage.tsx"
+  ],
+  "Sauce consistency is crucial and must adapt to pizza style.": [
+    "src\\pages\\learn\\ingredients\\SaucesPage.tsx"
+  ],
+  "Article Not Found": [
+    "src\\pages\\learn\\LearnArticlePage.tsx"
+  ],
+  "Back to Academy": [
+    "src\\pages\\learn\\LearnArticlePage.tsx"
+  ],
+  "Grandma's Wisdom": [
+    "src\\pages\\learn\\LearnComponents.tsx"
+  ],
+  "Simply Put": [
+    "src\\pages\\learn\\LearnComponents.tsx"
+  ],
+  "Why it matters": [
+    "src\\pages\\learn\\LearnComponents.tsx"
+  ],
+  "Want the fancy scientific details?": [
+    "src\\pages\\learn\\LearnComponents.tsx"
+  ],
+  "See Full Article": [
+    "src\\pages\\learn\\LearnComponents.tsx"
+  ],
+  "What it does": [
+    "src\\pages\\learn\\LearnComponents.tsx"
+  ],
+  "Search topics...": [
+    "src\\pages\\learn\\LearnHomePage.tsx"
+  ],
+  "Heat": [
+    "src\\pages\\learn\\OvenSciencePage.tsx"
+  ],
+  "Radiant heat": [
+    "src\\pages\\learn\\OvenSciencePage.tsx"
+  ],
+  "Convective heat": [
+    "src\\pages\\learn\\OvenSciencePage.tsx"
+  ],
+  "Oven Science": [
+    "src\\pages\\learn\\OvensHeatPage.tsx"
+  ],
+  "The result is a stable, cooked sponge that can be stored or frozen.": [
+    "src\\pages\\learn\\ParbakingPage.tsx"
+  ],
+  "Melting the cheese.": [
+    "src\\pages\\learn\\ParbakingPage.tsx"
+  ],
+  "Heating the toppings.": [
+    "src\\pages\\learn\\ParbakingPage.tsx"
+  ],
+  "Try adjusting your search terms or browse by category.": [
+    "src\\pages\\learn\\SearchResultsPage.tsx"
+  ],
+  "Individual boxes or dividers": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Must have": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Air": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Oxygen contact leads to": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Maintain humidity balance.": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Traditional damp cloth offers less protection.": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Dough is ideal culture medium.": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Refrigerated storage requires care.": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Cold moist fridge makes": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Preserve individual ball structure.": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Maintain": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Each ball needs space to expand without touching.": [
+    "src\\pages\\learn\\StoragePage.tsx"
+  ],
+  "Upgrade to Pro to unlock the full advanced dough theory library.": [
+    "src\\pages\\learn\\TechnicalPageLayout.tsx"
+  ],
+  "Serious bakers choose Pro for deeper knowledge.": [
+    "src\\pages\\learn\\TechnicalPageLayout.tsx"
+  ],
+  "Want to go deeper?": [
+    "src\\pages\\learn\\TechnicalPageLayout.tsx"
+  ],
+  "Pro unlocks expert-level techniques and insights.": [
+    "src\\pages\\learn\\TechnicalPageLayout.tsx"
+  ],
+  "Remove from favorites": [
+    "src\\pages\\learn\\TechnicalPageLayout.tsx"
+  ],
+  "Stiff low hydration doughs generate more friction heat.": [
+    "src\\pages\\learn\\TemperatureControlPage.tsx"
+  ],
+  "High speed mixers generate significant heat.": [
+    "src\\pages\\learn\\TemperatureControlPage.tsx"
+  ],
+  "Warm doughs ferment faster.": [
+    "src\\pages\\learn\\TemperatureControlPage.tsx"
+  ],
+  "Cold doughs ferment slower.": [
+    "src\\pages\\learn\\TemperatureControlPage.tsx"
+  ],
+  "Fermentation speed impacts flavor.": [
+    "src\\pages\\learn\\TemperatureControlPage.tsx"
+  ],
+  "Sticky Dough": [
+    "src\\pages\\learn\\TroubleshootingGuidePage.tsx"
+  ],
+  "Mailing address available upon request for formal service of process.": [
+    "src\\pages\\legal\\ContactPage.tsx"
+  ],
+  "Installation and Use.": [
+    "src\\pages\\legal\\EulaPage.tsx"
+  ],
+  "Reproduction and Distribution.": [
+    "src\\pages\\legal\\EulaPage.tsx"
+  ],
+  "Limitations on Reverse Engineering, Decompilation, and Disassembly.": [
+    "src\\pages\\legal\\EulaPage.tsx"
+  ],
+  "Separation of Components.": [
+    "src\\pages\\legal\\EulaPage.tsx"
+  ],
+  "Software Transfer.": [
+    "src\\pages\\legal\\EulaPage.tsx"
+  ],
+  "Termination.": [
+    "src\\pages\\legal\\EulaPage.tsx"
+  ],
+  "THE SERVICE DOES NOT CONSTITUTE PROFESSIONAL, CULINARY, OR HEALTH ADVICE.": [
+    "src\\pages\\legal\\LegalIndexPage.tsx"
+  ],
+  "Attempt to gain unauthorized access to the Service or its related systems.": [
+    "src\\pages\\legal\\LegalIndexPage.tsx"
+  ],
+  "DoughLabPro": [
+    "src\\pages\\legal\\LegalIndexPage.tsx",
+    "src\\services\\exportService.ts"
+  ],
+  "Legal Overview": [
+    "src\\pages\\legal\\LegalIndexPage.tsx"
+  ],
+  "Recipes and techniques provided by the Application are for educational purposes.": [
+    "src\\pages\\legal\\TermsPage.tsx"
+  ],
+  "You adhere to food safety guidelines at your own risk.": [
+    "src\\pages\\legal\\TermsPage.tsx"
+  ],
+  "See side-by-side differences between two recipes.": [
+    "src\\pages\\mylab\\CompareRecipesPage.tsx"
+  ],
+  "Could not load one of the recipes for comparison.": [
+    "src\\pages\\mylab\\CompareRecipesPage.tsx"
+  ],
+  "Test series not found.": [
+    "src\\pages\\mylab\\ConsistencyDetailPage.tsx"
+  ],
+  "Summary of your controlled test series.": [
+    "src\\pages\\mylab\\ConsistencyDetailPage.tsx"
+  ],
+  "No bakes associated yet.": [
+    "src\\pages\\mylab\\ConsistencyDetailPage.tsx"
+  ],
+  "Select a bake to associate...": [
+    "src\\pages\\mylab\\ConsistencyDetailPage.tsx"
+  ],
+  "Click to add notes...": [
+    "src\\pages\\mylab\\ConsistencyDetailPage.tsx"
+  ],
+  "Plan and track test series with controlled variables.": [
+    "src\\pages\\mylab\\ConsistencyListPage.tsx"
+  ],
+  "No test series created.": [
+    "src\\pages\\mylab\\ConsistencyListPage.tsx"
+  ],
+  "White Flour": [
+    "src\\pages\\mylab\\levain\\components\\LevainFeedingForm.tsx"
+  ],
+  "Feeding logged! Your pet is happy.": [
+    "src\\pages\\mylab\\levain\\components\\LevainFeedingForm.tsx"
+  ],
+  "Based on feeding consistency and recent activity.": [
+    "src\\pages\\mylab\\levain\\components\\LevainInsights.tsx"
+  ],
+  "Weak": [
+    "src\\pages\\mylab\\levain\\components\\LevainInsights.tsx"
+  ],
+  "No feedings recorded yet.": [
+    "src\\pages\\mylab\\levain\\LevainDetailPage.tsx"
+  ],
+  "Starter is resting.": [
+    "src\\pages\\mylab\\levain\\LevainDetailPage.tsx"
+  ],
+  "This form will be used to create a new starter or edit an existing one.": [
+    "src\\pages\\mylab\\levain\\LevainFormPage.tsx"
+  ],
+  "Summary": [
+    "src\\pages\\mylab\\levain\\LevainLayout.tsx"
+  ],
+  "Levain created successfully', 'success": [
+    "src\\pages\\mylab\\levain\\LevainListPage.tsx",
+    "src\\pages\\mylab\\MyLabLevainPetPage.tsx"
+  ],
+  "Track your baking journey and perfect your recipes.": [
+    "src\\pages\\mylab\\MyLabBatchesPage.tsx"
+  ],
+  "No completed batches found to compare.": [
+    "src\\pages\\mylab\\MyLabComparisonsPage.tsx"
+  ],
+  "Unlock Batch Comparisons with Lab Pro.": [
+    "src\\pages\\mylab\\MyLabComparisonsPage.tsx"
+  ],
+  "Monitor doughs currently in fermentation.": [
+    "src\\pages\\mylab\\MyLabDoughsPage.tsx"
+  ],
+  "Fermenting": [
+    "src\\pages\\mylab\\MyLabDoughsPage.tsx"
+  ],
+  "Manage your collection and set your default flour for recipes.": [
+    "src\\pages\\mylab\\MyLabFloursPage.tsx"
+  ],
+  "W --": [
+    "src\\pages\\mylab\\MyLabFloursPage.tsx"
+  ],
+  "Prot": [
+    "src\\pages\\mylab\\MyLabFloursPage.tsx"
+  ],
+  "Prot --": [
+    "src\\pages\\mylab\\MyLabFloursPage.tsx"
+  ],
+  "Enter the details manually.": [
+    "src\\pages\\mylab\\MyLabFloursPage.tsx"
+  ],
+  "Failed to parse user flours": [
+    "src\\pages\\mylab\\MyLabFloursPage.tsx"
+  ],
+  "Are you sure you want to delete this flour from your inventory?": [
+    "src\\pages\\mylab\\MyLabFloursPage.tsx"
+  ],
+  "Total Batches": [
+    "src\\pages\\mylab\\MyLabInsightsPage.tsx"
+  ],
+  "Avg Rating": [
+    "src\\pages\\mylab\\MyLabInsightsPage.tsx"
+  ],
+  "Success Rate": [
+    "src\\pages\\mylab\\MyLabInsightsPage.tsx"
+  ],
+  "Top Style": [
+    "src\\pages\\mylab\\MyLabInsightsPage.tsx"
+  ],
+  "Rise vs. Time": [
+    "src\\pages\\mylab\\MyLabLevainPetPage.tsx"
+  ],
+  "Your collection of favorite dough configurations.": [
+    "src\\pages\\mylab\\MyLabRecipesPage.tsx"
+  ],
+  "Your collection of baking notes and tasting observations.": [
+    "src\\pages\\mylab\\MyLabSensoryDiaryPage.tsx"
+  ],
+  "Set small challenges to evolve your baking skills.": [
+    "src\\pages\\mylab\\ObjectivesPage.tsx"
+  ],
+  "Explore the complexities of high-hydration Focaccia.": [
+    "src\\pages\\mylab\\ObjectivesPage.tsx"
+  ],
+  "No recent bakes recorded.": [
+    "src\\pages\\MyLabPage.tsx"
+  ],
+  "Limit Reached": [
+    "src\\pages\\MyLabPage.tsx"
+  ],
+  "No bio added yet.": [
+    "src\\pages\\ProfilePage.tsx"
+  ],
+  "No contact info provided.": [
+    "src\\pages\\ProfilePage.tsx"
+  ],
+  "Unit system selection is currently managed in Global Settings.": [
+    "src\\pages\\ProfilePage.tsx"
+  ],
+  "You have full access to all Lab Pro features.": [
+    "src\\pages\\ProfilePage.tsx"
+  ],
+  "Advanced Baker": [
+    "src\\pages\\ProfilePage.tsx"
+  ],
+  "Coming soon...": [
+    "src\\pages\\settings\\LanguagePage.tsx"
+  ],
+  "Try adjusting your filters or search terms.": [
+    "src\\pages\\styles\\DoughStylesPage.tsx"
+  ],
+  "Pizzas',": [
+    "src\\pages\\styles\\DoughStylesPage.tsx"
+  ],
+  "Discover professional dough specifications from around the world.": [
+    "src\\pages\\styles\\DoughStylesPage.tsx"
+  ],
+  "Neapolitan', 'Shokupan', 'Baguette": [
+    "src\\pages\\styles\\DoughStylesPage.tsx"
+  ],
+  "What's happening chemically?": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "What Happens If...?": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Why Choose This?": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Step-by-step molecular breakdown": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Parameters verified against cereal chemistry standards.": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Flour will absorb less water. Reduce hydration by": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Evaporation increases. Increase hydration by": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Adjust baking metrics for your specific equipment.": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Control of enzymatic activity and gluten development.": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Authentic": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Failed to upload image": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Radiation Dominant": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "Americas": [
+    "src\\pages\\styles\\StyleDetailPage.tsx"
+  ],
+  "No styles match your filter.": [
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "Global": [
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "Enriched": [
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "Italy', 'Europe', 'North America', 'South America', 'Asia', 'Global": [
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "All'\r\n                                        ?": [
+    "src\\pages\\StylesLibrary.tsx"
+  ],
+  "FormulaLab": [
+    "src\\pages\\ToolsPage.tsx"
+  ],
+  "Upgrade Successful!": [
+    "src\\pages\\UpgradePage.tsx"
+  ],
+  "Failed to start checkout. Please try again.": [
+    "src\\pages\\UpgradePage.tsx"
+  ],
+  "Margherita": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Sliced Garlic', 'Oregano', 'Extra Virgin Olive Oil": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Gorgonzola', 'Provolone', 'Parmesan": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Prosciutto Crudo', 'Arugula', 'Parmesan Shavings": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella',": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Cooked Ham', 'Mushrooms', 'Artichokes', 'Olives": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Low-Moisture Mozzarella', 'Pepperoni": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Wisconsin Brick Cheese', 'Pepperoni": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Italian Sausage', 'Parmesan": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Cooked Ham', 'Pineapple": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Shredded Chicken', 'Red Onion', 'Cilantro": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Calabresa Sausage', 'Sliced Onion', 'Black Olives": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Cooked Ham', 'Boiled Egg', 'Onion', 'Peas', 'Olives": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Shredded Chicken', 'Catupiry Cheese": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Provolone', 'Gorgonzola', 'Parmesan": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Catupiry Cheese', 'Desalted Shredded Dried Meat', 'Red Onion": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Sliced Heart of Palm": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Bell Pepper', 'Onion', 'Mushrooms', 'Olives": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Thin Sliced Garlic', 'Olive Oil', 'Rosemary": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Abundant Onion', 'Oregano": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Grilled Chicken', 'Cherry Tomatoes": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Buffalo Mozzarella', 'Fresh Basil": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Bacon Cubes', 'Corn": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Canned Tuna', 'Red Onion": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Pepperoni', 'Sausage', 'Bell Pepper', 'Onion', 'Olives": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Anchovies', 'Oregano": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Fior di Latte', 'Italian Mortadella', 'Crushed Pistachios', 'Lemon Zest": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Mozzarella', 'Canadian Pork Loin', 'Catupiry Cheese', 'Onion": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Minas Cheese', 'Smoked Turkey Breast', 'Leeks": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Tomato": [
+    "src\\pizzas-constants.ts",
+    "src\\types\\index.ts"
+  ],
+  "White": [
+    "src\\pizzas-constants.ts"
+  ],
+  "Associazione Verace Pizza Napoletana": [
+    "src\\references-constants.ts"
+  ],
+  "PizzaBlab": [
+    "src\\references-constants.ts"
+  ],
+  "Method": [
+    "src\\services\\exportService.ts"
+  ],
+  "Chef Notes": [
+    "src\\services\\exportService.ts"
+  ],
+  "Invalid JSON file": [
+    "src\\services\\levainDataService.ts"
+  ],
+  "Margherita D.O.C": [
+    "src\\toppings-constants.ts"
+  ],
+  "Tomato, quality mozzarella, basil, and a drizzle of oil at the end.": [
+    "src\\toppings-constants.ts"
+  ],
+  "Cheesier version, adapted for home ovens.": [
+    "src\\toppings-constants.ts"
+  ],
+  "Generous sauce, lots of cheese, thin-sliced pepperoni.": [
+    "src\\toppings-constants.ts"
+  ],
+  "Brazilian Calabresa": [
+    "src\\toppings-constants.ts"
+  ],
+  "Portuguesa": [
+    "src\\toppings-constants.ts"
+  ],
+  "Ham, boiled egg, peas, onion, and olives.": [
+    "src\\toppings-constants.ts"
+  ],
+  "Focused on the pan, more sauce, good use of olive oil.": [
+    "src\\toppings-constants.ts"
+  ],
+  "BBQ Chicken": [
+    "src\\toppings-constants.ts"
+  ],
+  "Barbecue base, chicken, cheese, and optionally red onion.": [
+    "src\\toppings-constants.ts"
+  ],
+  "Highly sensitive to overproofing": [
+    "src\\types\\styleDefinition.ts"
+  ],
+  "Very Low": [
+    "src\\types\\styles.ts"
+  ],
+  "Roman Teglia": [
+    "src\\types\\styles.ts"
+  ],
+  "Missing ID": [
+    "src\\utils\\styleValidation.ts"
+  ]
+}

@@ -1,5 +1,6 @@
 import { allLearnArticles } from '@/data/learn';
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export interface SearchResult {
     article: LearnArticleData;

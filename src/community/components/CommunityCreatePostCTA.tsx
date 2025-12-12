@@ -2,15 +2,17 @@ import React from 'react';
 import { PlusCircle, Camera } from 'lucide-react';
 import { useUser } from '../../contexts/UserProvider';
 import { useRouter } from '../../contexts/RouterContext';
+import { useTranslation } from '@/i18n';
 
 export const CommunityCreatePostCTA: React.FC = () => {
+  const { t } = useTranslation();
     const { user } = useUser();
     const { navigate } = useRouter();
 
     const handleCreate = () => {
         // Navigate to create post page or open modal
         // For now, assume a route or just a placeholder
-        // The prompt didn't ask for a CreatePostPage, but "CommunityCreatePostCTA" implies a button.
+        // The prompt didn't ask for a CreatePostPage, but t('community.communitycreatepostcta') implies a button.
         // I'll assume it navigates to a create page or opens a modal.
         // Since "CommunityCreatePost.tsx" was mentioned in conversation history, maybe it exists?
         // But I am creating "Community Module 1.0" from scratch in src/community.

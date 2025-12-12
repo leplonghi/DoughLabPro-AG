@@ -4,6 +4,7 @@ import { FeatureKey, canUseFeature, getCurrentPlan } from '@/permissions';
 import { useUser } from '@/contexts/UserProvider';
 import { LockClosedIcon } from '@/components/ui/Icons';
 import { PaywallOrigin } from '@/types';
+import { useTranslation } from '@/i18n';
 
 interface LockFeatureProps {
     featureKey: FeatureKey;
@@ -26,6 +27,7 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
     className = '',
     origin,
 }) => {
+  const { t } = useTranslation();
     const { user, openPaywall, userLoading, planLoading } = useUser();
     const { navigate } = useRouter();
 
@@ -59,13 +61,13 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
             <div
                 onClick={handleUnlockClick}
                 className={`relative group cursor-pointer ${className}`}
-                title={customMessage || "Unlock full Community"}
+                title={customMessage || t('auth.unlock_full_community')}
             >
                 <div className="pointer-events-none opacity-60 grayscale">
                     {children}
                 </div>
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-dlp-text-primary text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
-                    {customMessage || "Unlock full Community"}
+                    {customMessage || t('auth.unlock_full_community_2')}
                 </div>
             </div>
         );
@@ -87,20 +89,16 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
                         </div>
                     )}
 
-                    <h3 className="text-sm font-bold text-dlp-text-primary mb-0.5">
-                        Unlock Feature
-                    </h3>
+                    <h3 className="text-sm font-bold text-dlp-text-primary mb-0.5">{t('auth.unlock_feature')}</h3>
 
                     <p className="text-[10px] text-dlp-text-secondary mb-2 max-w-[150px] leading-tight">
-                        {customMessage || "Unlock full Community"}
+                        {customMessage || t('auth.unlock_full_community_3')}
                     </p>
 
                     <button
                         onClick={handleUnlockClick}
                         className="bg-dlp-accent hover:bg-dlp-accent-hover text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors shadow-dlp-sm"
-                    >
-                        View Plans
-                    </button>
+                    >{t('auth.view_plans')}</button>
                 </div>
             </div>
         </div>

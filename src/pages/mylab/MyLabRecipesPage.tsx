@@ -48,7 +48,7 @@ const RecipeCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, para
                             <WaterIcon className="h-3 w-3" />
                         </div>
                         <span className="block text-sm font-bold text-slate-700 ">{batch.doughConfig.hydration}%</span>
-                        <span className="block text-[10px] text-slate-500  uppercase">Hydration</span>
+                        <span className="block text-[10px] text-slate-500  uppercase">{t('form.hydration')}</span>
                     </div>
                     <div className="bg-slate-50  rounded-xl p-2">
                         <div className="flex items-center justify-center gap-1 text-slate-400  mb-1">
@@ -59,7 +59,7 @@ const RecipeCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, para
                                 ? `${(batch.bulkTimeHours || 0) + (batch.proofTimeHours || 0)}h`
                                 : '-'}
                         </span>
-                        <span className="block text-[10px] text-slate-500  uppercase">Time</span>
+                        <span className="block text-[10px] text-slate-500  uppercase">{t('mylab.time_2')}</span>
                     </div>
                     <div className="bg-slate-50  rounded-xl p-2">
                         <div className="flex items-center justify-center gap-1 text-slate-400  mb-1">
@@ -68,13 +68,13 @@ const RecipeCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, para
                         <span className="block text-sm font-bold text-slate-700  truncate px-1">
                             {batch.ovenType ? t(`profile.ovens.types.${batch.ovenType.toLowerCase()}`).split(' ')[0] : '-'}
                         </span>
-                        <span className="block text-[10px] text-slate-500  uppercase">Oven</span>
+                        <span className="block text-[10px] text-slate-500  uppercase">{t('mylab.oven_2')}</span>
                     </div>
                 </div>
 
                 <div className="mt-auto pt-3 border-t border-slate-100  flex justify-between items-center text-xs text-slate-500 ">
                     <span>{date}</span>
-                    <span className="group-hover:text-lime-600 font-medium transition-colors">View Recipe &rarr;</span>
+                    <span className="group-hover:text-lime-600 font-medium transition-colors">{t('mylab.view_recipe_rarr')}</span>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
     const { batches } = useUser();
     const { t } = useTranslation();
 
-    // Filter for favorite batches to treat as "Recipes"
+    // Filter for favorite batches to treat as t('mylab.recipes')
     const favoriteBatches = batches.filter(b => b.isFavorite);
 
     return (
@@ -93,24 +93,20 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
             <div className="animate-fade-in">
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 ">My Recipes</h1>
-                        <p className="text-slate-600  mt-2">Your collection of favorite dough configurations.</p>
+                        <h1 className="text-3xl font-bold text-slate-900 ">{t('mylab.my_recipes')}</h1>
+                        <p className="text-slate-600  mt-2">{t('mylab.your_collection_of_favorite_dough_configurations')}</p>
                     </div>
                     <div className="flex gap-3">
                         <button
                             onClick={() => onNavigate('mylab/comparisons')}
                             className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 py-2.5 px-4 font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition-all hover:scale-105 active:scale-95"
                         >
-                            <ArrowsRightLeftIcon className="h-5 w-5" />
-                            Compare
-                        </button>
+                            <ArrowsRightLeftIcon className="h-5 w-5" />{t('mylab.compare')}</button>
                         <button
                             onClick={() => onNavigate('calculator')}
                             className="inline-flex items-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all hover:scale-105 active:scale-95"
                         >
-                            <PlusCircleIcon className="h-5 w-5" />
-                            New Recipe
-                        </button>
+                            <PlusCircleIcon className="h-5 w-5" />{t('mylab.new_recipe')}</button>
                     </div>
                 </div>
 
@@ -128,16 +124,13 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
                             <div className="w-16 h-16 bg-slate-100  rounded-full flex items-center justify-center mx-auto mb-4">
                                 <DocumentTextIcon className="h-8 w-8 text-slate-400 " />
                             </div>
-                            <h3 className="text-lg font-semibold text-slate-900 ">No saved recipes yet</h3>
-                            <p className="text-slate-500  mt-2 max-w-sm mx-auto">
-                                Mark your best batches as <strong>Favorites</strong> to see them appear here as reusable recipes.
+                            <h3 className="text-lg font-semibold text-slate-900 ">{t('mylab.no_saved_recipes_yet')}</h3>
+                            <p className="text-slate-500  mt-2 max-w-sm mx-auto">{t('mylab.mark_your_best_batches_as')}<strong>{t('mylab.favorites')}</strong> to see them appear here as reusable recipes.
                             </p>
                             <button
                                 onClick={() => onNavigate('mylab/batches')}
                                 className="mt-6 text-lime-600  font-bold hover:underline"
-                            >
-                                Go to My Bakes
-                            </button>
+                            >{t('mylab.go_to_my_bakes')}</button>
                         </div>
                     )
                 }

@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const sweet_rolls_neutral: StyleDefinition = {
   "id": "sweet_rolls_neutral",
   "title": "Sweet Rolls (Neutral Enriched Base)",
-  "subtitle": "Enriched Sweet Doughs",
-  "category": "Pastry",
-  "family": "Enriched Sweet Doughs",
+  "subtitle": t('styles.enriched_sweet_doughs_5'),
+  "category": t('styles.pastry_11'),
+  "family": t('styles.enriched_sweet_doughs_6'),
   "variantName": "Sweet Rolls (Neutral Enriched Base)",
   "origin": {
-    "country": "Global",
-    "region": "Commercial and artisan bakeries",
+    "country": t('styles.global_4'),
+    "region": t('styles.commercial_and_artisan_bakeries'),
     "period": "20th century"
   },
   "intro": "Used as a versatile platform for sweet bakery products in industrial and artisan production.",
@@ -37,11 +38,11 @@ export const sweet_rolls_neutral: StyleDefinition = {
       10,
       25
     ],
-    "flourStrength": "Bread or strong all-purpose flour",
+    "flourStrength": t('styles.bread_or_strong_allpurpose_flour_5'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "45–90 min after shaping",
-      "coldRetard": "Used frequently for scheduling flexibility"
+      "coldRetard": t('styles.used_frequently_for_scheduling_flexibility')
     },
     "oven": {
       "type": "electric_home",
@@ -49,12 +50,12 @@ export const sweet_rolls_neutral: StyleDefinition = {
         175,
         190
       ],
-      "notes": "Bake to a soft crumb; toppings and glazes vary widely."
+      "notes": t('styles.bake_to_a_soft_crumb_toppings_and_glazes_vary_wide')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_20'),
     "recommendedUse": [
-      "Generic sweet rolls",
-      "Base for multiple pastry formats"
+      t('common.generic_sweet_rolls'),
+      t('common.base_for_multiple_pastry_formats')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const sweet_rolls_neutral: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Generic sweet rolls",
-    "Base for multiple pastry formats",
-    "Pastry",
-    "Global"
+    t('common.generic_sweet_rolls'),
+    t('common.base_for_multiple_pastry_formats'),
+    t('common.pastry'),
+    t('common.global')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const sweet_rolls_neutral: StyleDefinition = {
   },
   "references": [
     {
-      "title": "AIB sweet dough guidelines",
+      "title": t('styles.aib_sweet_dough_guidelines_2'),
       "url": ""
     },
     {
-      "title": "Professional pastry literature",
+      "title": t('styles.professional_pastry_literature'),
       "url": ""
     }
   ],

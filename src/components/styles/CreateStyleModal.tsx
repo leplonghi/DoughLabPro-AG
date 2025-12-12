@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { DoughStyleDefinition, StyleCategory, RecipeStyle } from '@/types';
 import { DoughStyle, ProcessStep } from '@/types/dough';
+import { useTranslation } from '@/i18n';
 
 interface CreateStyleModalProps {
     isOpen: boolean;
@@ -20,9 +21,10 @@ interface CreateStyleModalProps {
 }
 
 const CATEGORIES: StyleCategory[] = ['pizza', 'bread', 'enriched_bread', 'burger_bun', 'pastry', 'cookies_confectionery', 'flatbread'];
-const DIFFICULTIES = ['Easy', 'Medium', 'Hard', 'Expert'];
+const DIFFICULTIES = [t('styles.easy'), t('styles.medium'), t('styles.hard'), t('styles.expert')];
 
 const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, onSave, defaultValues }) => {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState<'overview' | 'engineering' | 'science'>('overview');
 
     // Extended Form Data State
@@ -124,7 +126,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
         }));
     };
 
-    // --- Submit Logic (The "Complete" Object) ---
+    // --- Submit Logic (The t('common.complete') Object) ---
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -161,12 +163,12 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                 difficulty: formData.difficulty,
 
                 // Mapped Fields
-                flourStrength: formData.flourRheology || "Custom",
+                flourStrength: formData.flourRheology || t('styles.custom'),
                 fermentationSteps: fermentationSteps,
                 recommendedUse: [],
                 fermentation: {
                     bulk: formData.fermentationTime,
-                    proof: "Custom"
+                    proof: t('styles.custom_2')
                 },
 
                 // Optional: Store raw process in notes or a specific field if supported
@@ -175,23 +177,23 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
             // Scientific Profile (Advanced Schema)
             scientificProfile: {
                 flourRheology: {
-                    w_index: "Custom",
-                    pl_ratio: "Balanced",
-                    absorption_capacity: "Medium",
-                    protein_type: "Wheat",
+                    w_index: t('styles.custom_3'),
+                    pl_ratio: t('styles.balanced'),
+                    absorption_capacity: t('styles.medium_3'),
+                    protein_type: t('styles.wheat'),
                     science_explanation: formData.flourRheology
                 },
                 thermalProfile: {
-                    oven_type: "Generic",
-                    heat_distribution: "Standard",
-                    crust_development: "Standard",
-                    crumb_structure: "Standard"
+                    oven_type: t('styles.generic'),
+                    heat_distribution: t('styles.standard'),
+                    crust_development: t('styles.standard_2'),
+                    crumb_structure: t('styles.standard_3')
                 },
                 fermentationScience: {
-                    yeast_activity: "Standard",
+                    yeast_activity: t('styles.standard_4'),
                     ph_target: "5.5",
-                    organic_acids: "Balanced",
-                    enzymatic_activity: "Standard"
+                    organic_acids: t('styles.balanced_2'),
+                    enzymatic_activity: t('styles.standard_5')
                 }
             },
 
@@ -219,11 +221,10 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                         <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                             {formData.source === 'user_ai' ? (
                                 <span className="flex items-center gap-2 text-indigo-600">
-                                    <UserCircle className="h-6 w-6" /> AI Generated Style
-                                </span>
-                            ) : 'Create New Style'}
+                                    <UserCircle className="h-6 w-6" />{t('common.ai_generated_style')}</span>
+                            ) : t('styles.create_new_style')}
                         </h2>
-                        <p className="text-sm text-gray-500">Define the parameters of your custom dough.</p>
+                        <p className="text-sm text-gray-500">{t('styles.define_the_parameters_of_your_custom_dough')}</p>
                     </div>
                     <button onClick={onClose} className="p-2 text-gray-400 hover:bg-gray-100 rounded-full transition-colors">
                         <X className="h-6 w-6" />
@@ -236,20 +237,17 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                         onClick={() => setActiveTab('overview')}
                         className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'overview' ? 'border-lime-500 text-lime-700 bg-lime-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
                     >
-                        <Info className="w-4 h-4" /> Overview
-                    </button>
+                        <Info className="w-4 h-4" />{t('common.overview')}</button>
                     <button
                         onClick={() => setActiveTab('engineering')}
                         className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'engineering' ? 'border-orange-500 text-orange-700 bg-orange-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
                     >
-                        <Beaker className="w-4 h-4" /> Engineering
-                    </button>
+                        <Beaker className="w-4 h-4" />{t('common.engineering')}</button>
                     <button
                         onClick={() => setActiveTab('science')}
                         className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'science' ? 'border-purple-500 text-purple-700 bg-purple-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
                     >
-                        <Microscope className="w-4 h-4" /> Science Lab
-                    </button>
+                        <Microscope className="w-4 h-4" />{t('common.science_lab')}</button>
                 </div>
 
                 {/* Content Area */}
@@ -257,7 +255,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                     {formData.source === 'user_ai' && (
                         <div className="m-6 mb-0 bg-indigo-50 p-4 rounded-xl border border-indigo-100 text-sm text-indigo-800 flex items-start gap-3">
                             <Info className="w-5 h-5 mt-0.5 shrink-0" />
-                            <p>This style was generated by AI. Please review the technical parameters, science logic, and description before saving to ensure accuracy.</p>
+                            <p>{t('styles.ai_generated_warning')}</p>
                         </div>
                     )}
 
@@ -266,11 +264,11 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                         <div className="p-6 space-y-6 animate-fade-in">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-1">
-                                    <label className="block text-sm font-medium text-gray-700">Style Name</label>
-                                    <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder="e.g. Grandma Square Pie" />
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.style_name')}</label>
+                                    <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder={t('styles.example_grandma_square')} />
                                 </div>
                                 <div className="space-y-1">
-                                    <label className="block text-sm font-medium text-gray-700">Category</label>
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.category')}</label>
                                     <select name="category" value={formData.category} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5 capitalize">
                                         {CATEGORIES.map(c => <option key={c} value={c}>{c.replace('_', ' ')}</option>)}
                                     </select>
@@ -278,28 +276,28 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                             </div>
 
                             <div className="space-y-1">
-                                <label className="block text-sm font-medium text-gray-700">Description</label>
-                                <textarea name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-3" placeholder="A brief, appetizing description of this dough style..." />
+                                <label className="block text-sm font-medium text-gray-700">{t('general.description')}</label>
+                                <textarea name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-3" placeholder={t('styles.a_brief_appetizing_description_of_this_dough_style')} />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
                                 <div className="space-y-1">
-                                    <label className="block text-sm font-medium text-gray-700">Country of Origin</label>
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.country_of_origin')}</label>
                                     <input type="text" name="country" value={formData.country} onChange={handleChange} className="w-full rounded-lg border-gray-300 text-sm" />
                                 </div>
                                 <div className="space-y-1">
-                                    <label className="block text-sm font-medium text-gray-700">Region / City</label>
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.region_city')}</label>
                                     <input type="text" name="region" value={formData.region} onChange={handleChange} className="w-full rounded-lg border-gray-300 text-sm" />
                                 </div>
                                 <div className="space-y-1 col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700">History / Context</label>
-                                    <input type="text" name="history" value={formData.history} onChange={handleChange} className="w-full rounded-lg border-gray-300 text-sm" placeholder="e.g. Originated in 1940s Detroit..." />
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.history_context')}</label>
+                                    <input type="text" name="history" value={formData.history} onChange={handleChange} className="w-full rounded-lg border-gray-300 text-sm" placeholder={t('styles.history_placeholder')} />
                                 </div>
                             </div>
 
                             <div className="space-y-1">
-                                <label className="block text-sm font-medium text-gray-700">Tags</label>
-                                <input type="text" name="tags" value={formData.tags} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder="e.g. pan-pizza, crispy, sourdough (comma separated)" />
+                                <label className="block text-sm font-medium text-gray-700">{t('general.tags')}</label>
+                                <input type="text" name="tags" value={formData.tags} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder={t('styles.tags_placeholder')} />
                             </div>
                         </div>
                     )}
@@ -310,32 +308,32 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                             {/* Ratios */}
                             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                                 <h3 className="text-sm font-bold uppercase text-orange-600 mb-4 flex items-center gap-2">
-                                    <Beaker className="w-4 h-4" /> Core Ratios (Bakers %)
+                                    <Beaker className="w-4 h-4" /> {t('styles.core_ratios')}
                                 </h3>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold text-gray-500 uppercase">Hydration</label>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">{t('form.hydration')}</label>
                                         <div className="flex items-center gap-2">
                                             <input type="number" name="hydration" value={formData.hydration} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
                                             <span className="text-gray-400 font-bold">%</span>
                                         </div>
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold text-gray-500 uppercase">Salt</label>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">{t('results.salt')}</label>
                                         <div className="flex items-center gap-2">
                                             <input type="number" step="0.1" name="salt" value={formData.salt} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
                                             <span className="text-gray-400 font-bold">%</span>
                                         </div>
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold text-gray-500 uppercase">Fat / Oil</label>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">{t('general.fat_oil')}</label>
                                         <div className="flex items-center gap-2">
                                             <input type="number" step="0.5" name="oil" value={formData.oil} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
                                             <span className="text-gray-400 font-bold">%</span>
                                         </div>
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold text-gray-500 uppercase">Sugar</label>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">{t('results.sugar')}</label>
                                         <div className="flex items-center gap-2">
                                             <input type="number" step="0.5" name="sugar" value={formData.sugar} onChange={handleChange} className="w-full rounded-lg border-gray-300 font-mono text-lg font-bold text-gray-800" />
                                             <span className="text-gray-400 font-bold">%</span>
@@ -347,15 +345,15 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                             {/* Execution */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="space-y-1">
-                                    <label className="block text-sm font-medium text-gray-700">Fermentation Time</label>
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.fermentation_time')}</label>
                                     <input type="text" name="fermentationTime" value={formData.fermentationTime} onChange={handleChange} className="w-full rounded-lg border-gray-300" placeholder="e.g. 24h Cold" />
                                 </div>
                                 <div className="space-y-1">
-                                    <label className="block text-sm font-medium text-gray-700">Baking Temp (°C)</label>
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.baking_temp_c')}</label>
                                     <input type="number" name="bakingTempC" value={formData.bakingTempC} onChange={handleChange} className="w-full rounded-lg border-gray-300" />
                                 </div>
                                 <div className="space-y-1">
-                                    <label className="block text-sm font-medium text-gray-700">Difficulty</label>
+                                    <label className="block text-sm font-medium text-gray-700">{t('general.difficulty')}</label>
                                     <select name="difficulty"
                                         // @ts-ignore
                                         value={formData.difficulty}
@@ -374,7 +372,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="flex items-center gap-2 text-sm font-bold text-purple-800">
-                                        <Microscope className="w-4 h-4" /> Flour Rheology & Chemistry
+                                        <Microscope className="w-4 h-4" /> {t('styles.flour_rheology_chemistry')}
                                     </label>
                                     <textarea
                                         name="flourRheology"
@@ -382,20 +380,19 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                                         onChange={handleChange}
                                         rows={4}
                                         className="w-full rounded-xl border-purple-200 focus:ring-purple-500 focus:border-purple-500 bg-purple-50/30 text-sm"
-                                        placeholder="Explain the required W index, P/L ratio, and elasticity/extensibility balance. E.g., 'Requires W320+ for 48h cold ferment...'"
+                                        placeholder={t('styles.flour_rheology_placeholder')}
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="flex items-center gap-2 text-sm font-bold text-purple-800">
-                                        <Beaker className="w-4 h-4" /> Process Chemistry Logic
-                                    </label>
+                                        <Beaker className="w-4 h-4" />{t('common.process_chemistry_logic')}</label>
                                     <textarea
                                         name="processScience"
                                         value={formData.processScience}
                                         onChange={handleChange}
                                         rows={4}
                                         className="w-full rounded-xl border-purple-200 focus:ring-purple-500 focus:border-purple-500 bg-purple-50/30 text-sm"
-                                        placeholder="Explain the scientific 'why' behind the process. E.g., 'The high hydration coupled with bassinage allows for...'"
+                                        placeholder={t('styles.process_science_placeholder')}
                                     />
                                 </div>
                             </div>
@@ -403,27 +400,26 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                             {/* Process Builder */}
                             <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
                                 <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-                                    <h3 className="font-bold text-gray-700 text-sm uppercase">Process Timeline</h3>
+                                    <h3 className="font-bold text-gray-700 text-sm uppercase">{t('general.process_timeline')}</h3>
                                     <button
                                         type="button"
                                         onClick={addProcessStep}
                                         className="flex items-center gap-1 text-xs font-bold text-white bg-purple-600 hover:bg-purple-700 px-3 py-1.5 rounded-lg transition-colors"
                                     >
-                                        <Plus className="w-3 h-3" /> Add Step
-                                    </button>
+                                        <Plus className="w-3 h-3" />{t('common.add_step')}</button>
                                 </div>
 
                                 <div className="divide-y divide-gray-100">
                                     {formData.processSteps.length === 0 ? (
                                         <div className="p-8 text-center text-gray-400 italic text-sm">
-                                            No process steps defined. Click "Add Step" to build the timeline.
+                                            {t('styles.no_process_steps')}
                                         </div>
                                     ) : (
                                         formData.processSteps.map((step, index) => (
                                             <div key={index} className="p-4 hover:bg-gray-50 transition-colors group">
                                                 <div className="grid grid-cols-12 gap-3 mb-2">
                                                     <div className="col-span-12 md:col-span-3">
-                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">Title</label>
+                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">{t('general.title')}</label>
                                                         <input
                                                             type="text"
                                                             value={step.title}
@@ -432,20 +428,20 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                                                         />
                                                     </div>
                                                     <div className="col-span-6 md:col-span-2">
-                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">Phase</label>
+                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">{t('general.phase')}</label>
                                                         <select
                                                             value={step.phase}
                                                             onChange={(e) => updateProcessStep(index, 'phase', e.target.value as any)}
                                                             className="w-full text-xs rounded border-gray-200 py-1"
                                                         >
-                                                            <option value="Mix">Mix</option>
-                                                            <option value="Bulk">Bulk</option>
-                                                            <option value="Ball">Ball</option>
-                                                            <option value="Bake">Bake</option>
+                                                            <option value={t('general.mix')}>{t('general.mix')}</option>
+                                                            <option value={t('general.bulk')}>{t('general.bulk')}</option>
+                                                            <option value={t('general.ball')}>{t('general.ball')}</option>
+                                                            <option value={t('general.bake')}>{t('general.bake')}</option>
                                                         </select>
                                                     </div>
                                                     <div className="col-span-6 md:col-span-2">
-                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">Duration</label>
+                                                        <label className="text-xs font-semibold text-gray-500 block mb-1">{t('general.duration')}</label>
                                                         <input
                                                             type="text"
                                                             value={step.duration}
@@ -465,23 +461,23 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                                                 </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                     <div>
-                                                        <label className="block text-xs font-medium text-gray-400 mb-1">Action</label>
+                                                        <label className="block text-xs font-medium text-gray-400 mb-1">{t('general.action')}</label>
                                                         <textarea
                                                             value={step.action}
                                                             onChange={(e) => updateProcessStep(index, 'action', e.target.value)}
                                                             rows={2}
                                                             className="w-full text-sm rounded-lg border-gray-200 resize-none"
-                                                            placeholder="What to do..."
+                                                            placeholder={t('general.what_to_do')}
                                                         />
                                                     </div>
                                                     <div>
-                                                        <label className="block text-xs font-medium text-purple-400 mb-1">Science (The Why)</label>
+                                                        <label className="block text-xs font-medium text-purple-400 mb-1">{t('styles.science_the_why')}</label>
                                                         <textarea
                                                             value={step.science}
                                                             onChange={(e) => updateProcessStep(index, 'science', e.target.value)}
                                                             rows={2}
                                                             className="w-full text-sm rounded-lg border-purple-100 bg-purple-50/30 resize-none focus:border-purple-300 focus:ring-purple-200"
-                                                            placeholder="Why this step matters scientifically..."
+                                                            placeholder={t('general.why_this_step_matters_scientifically')}
                                                         />
                                                     </div>
                                                 </div>
@@ -497,18 +493,14 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
 
                 {/* Footer */}
                 <div className="p-5 border-t border-gray-100 bg-white flex justify-end gap-3 z-10 box-border">
-                    <button onClick={onClose} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded-xl transition-colors">
-                        Cancel
-                    </button>
+                    <button onClick={onClose} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded-xl transition-colors">{t('common.cancel')}</button>
                     <button onClick={handleSubmit} className="px-6 py-2.5 text-sm font-bold text-white bg-slate-900 hover:bg-black rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
                         <Save className="w-4 h-4" />
-                        {formData.source === 'user_ai' ? 'Save Generated Style' : 'Save Style'}
+                        {formData.source === 'user_ai' ? t('styles.save_generated_style') : t('styles.save_style')}
                     </button>
                 </div>
             </div>
         </div>
     );
-    );
-};
 
-export default CreateStyleModal;
+    export default CreateStyleModal;

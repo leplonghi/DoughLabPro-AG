@@ -10,6 +10,7 @@ import {
     CheckCircleIcon
 } from '@/components/ui/Icons';
 import { useUser } from '@/contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 
 type AuthView = 'login' | 'signup' | 'forgot-password';
 
@@ -19,6 +20,7 @@ interface AuthModalProps {
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
     const { loginWithGoogle, loginWithEmail, registerWithEmail, resetPassword, loginAsGuest } = useAuth();
     const { addToast } = useToast();
     const { grantProAccess } = useUser();
@@ -209,18 +211,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm'
                                     : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                     }`}
-                            >
-                                Login
-                            </button>
+                            >{t('auth.login')}</button>
                             <button
                                 onClick={() => { setView('signup'); setError(null); }}
                                 className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${view === 'signup'
                                     ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm'
                                     : 'text-dlp-text-muted hover:text-dlp-text-secondary'
                                     }`}
-                            >
-                                Sign Up
-                            </button>
+                            >{t('auth.sign_up')}</button>
                         </div>
                     )}
 
@@ -236,7 +234,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     {view === 'login' && (
                         <form onSubmit={handleEmailLogin} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Email</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">{t('general.email')}</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-dlp-text-muted">
                                         <UserCircleIcon className="w-5 h-5" />
@@ -252,7 +250,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Password</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">{t('general.password')}</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-dlp-text-muted">
                                         <LockClosedIcon className="w-5 h-5" />
@@ -262,7 +260,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="block w-full pl-10 pr-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
-                                        placeholder="••••••••"
+                                        placeholder={t('general.')}
                                         required
                                     />
                                 </div>
@@ -271,9 +269,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                         type="button"
                                         onClick={() => setView('forgot-password')}
                                         className="text-xs text-dlp-accent hover:text-dlp-accent-hover font-medium"
-                                    >
-                                        Esqueci minha senha
-                                    </button>
+                                    >{t('auth.esqueci_minha_senha')}</button>
                                 </div>
                             </div>
 
@@ -290,18 +286,18 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     {view === 'signup' && (
                         <form onSubmit={handleSignup} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Name</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">{t('general.name')}</label>
                                 <input
                                     type="text"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="block w-full px-3 py-2.5 border border-dlp-border rounded-xl focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-colors bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted"
-                                    placeholder="Your Name"
+                                    placeholder={t('general.your_name')}
                                     required
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Email</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">{t('general.email')}</label>
                                 <input
                                     type="email"
                                     value={email}
@@ -312,7 +308,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Password</label>
+                                <label className="block text-sm font-medium text-dlp-text-secondary mb-1">{t('general.password')}</label>
                                 <input
                                     type="password"
                                     value={password}
@@ -341,16 +337,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     <div className="mx-auto w-12 h-12 bg-lime-100 text-dlp-accent rounded-full flex items-center justify-center mb-4">
                                         <CheckCircleIcon className="w-6 h-6" />
                                     </div>
-                                    <h3 className="text-lg font-semibold text-dlp-text-primary">Check your email</h3>
-                                    <p className="text-dlp-text-secondary mt-2 text-sm">
-                                        We sent a password reset link to <strong>{email}</strong>
+                                    <h3 className="text-lg font-semibold text-dlp-text-primary">{t('general.check_your_email')}</h3>
+                                    <p className="text-dlp-text-secondary mt-2 text-sm">{t('auth.we_sent_a_password_reset_link_to')}<strong>{email}</strong>
                                     </p>
                                     <button
                                         onClick={() => setView('login')}
                                         className="mt-6 w-full py-2.5 px-4 bg-dlp-bg-muted hover:bg-dlp-border text-dlp-text-secondary font-medium rounded-xl transition-colors"
-                                    >
-                                        Back to Login
-                                    </button>
+                                    >{t('auth.back_to_login')}</button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleResetPassword} className="space-y-4">
@@ -358,7 +351,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                         Enter your email address and we'll send you a link to reset your password.
                                     </p>
                                     <div>
-                                        <label className="block text-sm font-medium text-dlp-text-secondary mb-1">Email</label>
+                                        <label className="block text-sm font-medium text-dlp-text-secondary mb-1">{t('general.email')}</label>
                                         <input
                                             type="email"
                                             value={email}
@@ -379,9 +372,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                         type="button"
                                         onClick={() => setView('login')}
                                         className="w-full py-2.5 px-4 text-dlp-text-secondary hover:text-dlp-text-primary font-medium text-sm transition-colors"
-                                    >
-                                        Cancel
-                                    </button>
+                                    >{t('auth.cancel')}</button>
                                 </form>
                             )}
                         </div>
@@ -394,7 +385,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 <div className="w-full border-t border-dlp-border"></div>
                             </div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-2 bg-dlp-bg-card text-dlp-text-muted">Or continue with</span>
+                                <span className="px-2 bg-dlp-bg-card text-dlp-text-muted">{t('general.or_continue_with')}</span>
                             </div>
                         </div>
                     )}
@@ -408,16 +399,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 className="w-full py-2.5 px-4 bg-dlp-bg-card border border-dlp-border hover:bg-dlp-bg-muted hover:border-dlp-border-strong text-dlp-text-secondary font-medium rounded-xl transition-all flex items-center justify-center gap-3"
                             >
                                 <GoogleIcon className="w-5 h-5" />
-                                <span>Google</span>
+                                <span>{t('general.google')}</span>
                             </button>
 
                             <button
                                 onClick={handleGuestLogin}
                                 disabled={isLoading}
                                 className="w-full py-2.5 px-4 text-dlp-text-muted hover:text-dlp-text-secondary text-sm font-medium transition-colors"
-                            >
-                                Continue as Guest
-                            </button>
+                            >{t('auth.continue_as_guest')}</button>
                             
                              <button
                                 onClick={handleAdminBypass}

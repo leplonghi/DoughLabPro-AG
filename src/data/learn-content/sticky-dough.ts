@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const stickyDoughData: LearnArticleData = {
     id: "sticky-dough",
-    title: "Sticky Dough",
+    title: t('learn.sticky_dough'),
     subtitle: "Understanding hydration, gluten development and fermentation conditions behind sticky dough behavior.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    category: t('learn.troubleshooting_8'),
+    difficulty: t('learn.intermediate_29'),
     tags: ["sticky", "hydration", "troubleshooting", "handling"],
 
     intro: "Sticky dough is typically the result of excess hydration, weak gluten formation or fermentation issues. Identifying the correct cause is essential for restoring control.",
@@ -31,7 +32,7 @@ export const stickyDoughData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Hydration Threshold for Tackiness", notes: "Recommended: 72% (Range: 70-85%)" }
+        { label: t('learn.hydration_threshold_for_tackiness'), notes: "Recommended: 72% (Range: 70-85%)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const stickyDoughData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High Hydration",
+            variant: t('learn.high_hydration_2'),
             implications: "Very wet dough with naturally tacky behavior. Soft, extensible. Needs strong gluten and folds. Promotes open crumb when handled well."
         },
         {
-            variant: "Underdeveloped Gluten",
+            variant: t('learn.underdeveloped_gluten'),
             implications: "Dough remains sticky due to insufficient strength. Weak, elastic-poor. Hard to shape. Poor structural rise."
         }
     ],
@@ -80,9 +81,9 @@ export const stickyDoughData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Sweetheart, sticky dough is like trying to hold jelly — it wiggles everywhere.",
-        whatItDoes: "Makes shaping difficult.",
-        howToUse: "It’s too wet or too soft to handle easily.",
-        dangerSigns: "If too sticky, your pizza won’t hold its shape."
+        intro: t('learn.sweetheart_sticky_dough_is_like_trying_to_hold_jel'),
+        whatItDoes: t('learn.makes_shaping_difficult'),
+        howToUse: t('learn.its_too_wet_or_too_soft_to_handle_easily'),
+        dangerSigns: t('learn.if_too_sticky_your_pizza_wont_hold_its_shape')
     }
 };

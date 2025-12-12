@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { BookOpenIcon, ArrowTopRightOnSquareIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface ReferenceItemProps {
   title: string;
@@ -28,7 +29,7 @@ const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description,
           className="flex items-center gap-1 text-sm font-bold text-lime-600  hover:underline"
           aria-label={`Visit ${title}`}
         >
-          <span>Visit</span>
+          <span>{t('general.visit')}</span>
           <ArrowTopRightOnSquareIcon className="h-4 w-4" />
         </a>
       )}
@@ -39,6 +40,7 @@ const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description,
 );
 
 const ReferencesPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="mx-auto max-w-4xl animate-fade-in">
       <button
@@ -51,16 +53,14 @@ const ReferencesPage: React.FC = () => {
       <div className="rounded-2xl bg-white  p-6 shadow-lg border border-slate-200  sm:p-10">
         <div className="text-center">
           <BookOpenIcon className="mx-auto h-12 w-12 text-lime-500" />
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl">
-            Technical References
-          </h1>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl">{t('common.technical_references')}</h1>
           <p className="mt-4 text-lg text-slate-600 ">
             A curated collection of books, standards, and resources to deepen your knowledge.
           </p>
         </div>
 
         <div className="mt-10">
-          <Section title="Pizza – Official Rules and Associations">
+          <Section title={t('general.pizza__official_rules_and_associations')}>
             <ReferenceItem
               title="Associazione Verace Pizza Napoletana (AVPN)"
               type="Association / Standard"
@@ -68,54 +68,54 @@ const ReferencesPage: React.FC = () => {
               link="https://www.pizzanapoletana.org/"
             />
             <ReferenceItem
-              title="Pizza in Teglia e Pizza Tonda al Piatto"
-              type="Book"
+              title={t('general.pizza_in_teglia_e_pizza_tonda_al_piatto')}
+              type={t('general.book')}
               description="By Renato Bosco, an Italian baking master, focused on pan pizza (teglia) and plate pizza (tonda)."
             />
           </Section>
 
-          <Section title="Baking – Technical Books">
+          <Section title={t('general.baking__technical_books')}>
             <ReferenceItem
               title="Le Goût du Pain (The Taste of Bread)"
-              type="Book"
+              type={t('general.book')}
               description="By Raymond Calvel. Considered one of the pillars of modern baking, focuses on the importance of temperature control and autolyse."
             />
             <ReferenceItem
-              title="Flour Water Salt Yeast"
-              type="Book"
+              title={t('general.flour_water_salt_yeast')}
+              type={t('general.book')}
               description="By Ken Forkish. An essential book for home bakers wishing to master sourdough and artisan breads."
             />
             <ReferenceItem
-              title="Modernist Bread"
-              type="Book Collection"
+              title={t('general.modernist_bread_33')}
+              type={t('general.book_collection')}
               description="A scientific and technical encyclopedia on bread, covering history, techniques, and science exhaustively."
             />
           </Section>
 
           <Section title="Flour – Technical Data and Strength (W)">
             <ReferenceItem
-              title="Chopin Alveograph"
-              type="Technical Concept"
+              title={t('general.chopin_alveograph')}
+              type={t('general.technical_concept')}
               description="Explanation of the equipment used to measure flour strength (W), tenacity (P), and extensibility (L), crucial parameters for baking."
             />
             <ReferenceItem
-              title="Caputo Mill"
+              title={t('general.caputo_mill')}
               type="Website / Manufacturer"
               description="The website of Mulino Caputo, one of the most famous in Italy, offers detailed technical sheets for their various flours, helping to understand the use of each."
               link="https://www.mulinocaputo.it/"
             />
           </Section>
 
-          <Section title="Terminology and Concepts">
+          <Section title={t('general.terminology_and_concepts')}>
             <ReferenceItem
-              title="The Fresh Loaf"
+              title={t('general.the_fresh_loaf')}
               type="Community / Website"
               description="One of the largest and oldest baking forums on the internet. An invaluable resource for learning, asking questions, and seeing experiments from other bakers."
               link="http://www.thefreshloaf.com/"
             />
             <ReferenceItem
-              title="Autolyse, Fermentolyse, and Maturation"
-              type="Concepts"
+              title={t('general.autolyse_fermentolyse_and_maturation')}
+              type={t('general.concepts')}
               description="Definition and application of fundamental techniques for gluten development, flavor, and dough structure."
             />
           </Section>

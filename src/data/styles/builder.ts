@@ -1,4 +1,5 @@
 import { DoughStyleDefinition, StyleCategory } from '@/types/styles';
+import { useTranslation } from '@/i18n';
 
 /**
  * Partial definition allowing optional fields which will be filled with defaults

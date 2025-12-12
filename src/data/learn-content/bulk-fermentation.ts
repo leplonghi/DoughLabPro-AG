@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const bulkFermentationData: LearnArticleData = {
     id: 'bulk-fermentation-management',
@@ -6,7 +7,7 @@ export const bulkFermentationData: LearnArticleData = {
     subtitle: 'Controlling the first rise for structure and flavour.',
     category: 'Process Techniques',
     difficulty: 'Intermediate',
-    tags: ['Fermentation', 'Dough Strength', 'Folds', 'Timing'],
+    tags: [t('learn.fermentation'), t('learn.dough_strength'), t('learn.folds'), t('learn.timing')],
 
     intro: "Bulk fermentation is the 'first rise' where the entire dough mass ferments as one unit. It is the primary stage for flavor development and structural strengthening before dividing.",
 
@@ -34,7 +35,7 @@ export const bulkFermentationData: LearnArticleData = {
     practicalRanges: [
         { label: "Room Temp (24°C)", notes: "Recommended: 4h (Range: 2-6h)" },
         { label: "Cold Bulk (4°C)", notes: "Recommended: 24h (Range: 12-72h)" },
-        { label: "Volume Increase", notes: "Recommended: 50% (Range: 30-100%)" }
+        { label: t('learn.volume_increase'), notes: "Recommended: 50% (Range: 30-100%)" }
     ],
 
     practicalApplications: [
@@ -65,7 +66,7 @@ export const bulkFermentationData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Ambient Bulk",
+            variant: t('learn.ambient_bulk'),
             implications: "Fast, active, time-sensitive. Requires careful monitoring; can over-proof quickly. Standard flavor profile."
         },
         {
@@ -90,7 +91,7 @@ export const bulkFermentationData: LearnArticleData = {
     grandmaVersion: {
         intro: "Bulk fermentation is like the dough's teenage years.",
         whatItDoes: "It's growing up, getting strong, and developing its personality (flavor).",
-        howToUse: "Keep it cozy but not too hot, or it will grow too fast and get exhausted.",
+        howToUse: t('learn.keep_it_cozy_but_not_too_hot_or_it_will_grow_too_f'),
         dangerSigns: "If you rush this, your pizza will be tasteless and tough. If you wait too long, it gets old and tired."
     }
 };

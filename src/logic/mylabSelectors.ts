@@ -1,4 +1,5 @@
 import { Batch, MyLabEnvironmentSettings, Suggestion } from '../types';
+import { useTranslation } from '@/i18n';
 
 /**
  * Sorts batches by creation date in descending order (most recent first).

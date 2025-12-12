@@ -1,3 +1,4 @@
 import React from 'react';
-export const LevainProfile: React.FC = () => <div>Levain Profile Placeholder</div>;
+import { useTranslation } from '@/i18n';
+export const LevainProfile: React.FC = () => <div>{t('mylab.levain_profile_placeholder')}</div>;
 export default LevainProfile;

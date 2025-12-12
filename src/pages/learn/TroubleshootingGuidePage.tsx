@@ -5,12 +5,14 @@ import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { QuestionMarkCircleIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 interface TroubleshootingGuidePageProps {
     onNavigate: (page: Page) => void;
 }
 
 const TroubleshootingGuidePage: React.FC<TroubleshootingGuidePageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const topics = [
         { page: 'learn/article/sticky-dough', title: 'Sticky Dough', description: 'Diagnosis and solutions for dough that is too soft and hard to handle.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
         { page: 'learn/article/tough-dough', title: 'Dry or Tearing Dough', description: 'Understand why the dough is not developing elasticity.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
@@ -22,8 +24,8 @@ const TroubleshootingGuidePage: React.FC<TroubleshootingGuidePageProps> = ({ onN
 
     return (
         <TechnicalPageLayout
-            title="Troubleshooting Guide"
-            subtitle="Diagnose and fix common problems: sticky dough, pale crust, and more."
+            title={t('learn.troubleshooting_guide')}
+            subtitle={t('learn.diagnose_and_fix_common_problems_sticky_dough_pale')}
         >
             <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {topics.map(topic => (

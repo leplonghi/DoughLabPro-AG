@@ -1,5 +1,6 @@
 import React, { createContext, useContext, ReactNode, useMemo } from 'react';
 import { useBatches } from './BatchesProvider';
+import { useTranslation } from '@/i18n';
 
 interface TimelineEvent {
     id: string;
@@ -18,6 +19,7 @@ interface TimelineContextType {
 const TimelineContext = createContext<TimelineContextType | undefined>(undefined);
 
 export const TimelineProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { batches } = useBatches();
 
     // Generate timeline events from batches

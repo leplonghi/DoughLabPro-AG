@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from 'react';
 import { BeakerIcon, BookOpenIcon, ChartBarIcon, ListBulletIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 type LevainDetailTab = 'summary' | 'feedings' | 'profile' | 'insights';
 
@@ -13,6 +14,7 @@ interface LevainLayoutProps {
 }
 
 const LevainLayout: React.FC<LevainLayoutProps> = ({ children, levainName, activeTab, onTabChange }) => {
+  const { t } = useTranslation();
   const navItems: { id: LevainDetailTab; label: string; icon: React.ReactNode }[] = [
     { id: 'summary', label: 'Summary', icon: <BeakerIcon className="h-5 w-5" /> },
     { id: 'feedings', label: 'Feedings', icon: <ListBulletIcon className="h-5 w-5" /> },
@@ -32,7 +34,7 @@ const LevainLayout: React.FC<LevainLayoutProps> = ({ children, levainName, activ
       {/* Tabs Navigation */}
       <div className="mb-6">
         <div className="border-b border-slate-200 ">
-          <nav className="-mb-px flex space-x-6 overflow-x-auto no-scrollbar" aria-label="Tabs">
+          <nav className="-mb-px flex space-x-6 overflow-x-auto no-scrollbar" aria-label={t('mylab.tabs')}>
             {navItems.map(item => (
               <button
                 key={item.id}

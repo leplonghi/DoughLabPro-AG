@@ -1,14 +1,15 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const new_york_artisan_cold_ferment: StyleDefinition = {
   "id": "new_york_artisan_cold_ferment",
   "title": "New York Artisan (Modern)",
-  "subtitle": "New York Style Pizza",
-  "category": "Pizza",
-  "family": "New York Style Pizza",
+  "subtitle": t('styles.new_york_style_pizza'),
+  "category": t('styles.pizza_9'),
+  "family": t('styles.new_york_style_pizza_2'),
   "variantName": "New York Artisan (Modern)",
   "origin": {
-    "country": "United States",
+    "country": t('styles.united_states_9'),
     "region": "Brooklyn / Manhattan",
     "period": "2000s–Present"
   },
@@ -49,12 +50,12 @@ export const new_york_artisan_cold_ferment: StyleDefinition = {
         290,
         330
       ],
-      "notes": "Often baked slightly hotter and darker than classic slice shops."
+      "notes": t('styles.often_baked_slightly_hotter_and_darker_than_classi')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_37'),
     "recommendedUse": [
-      "Premium slice shops",
-      "Whole pie artisan pizzerias"
+      t('common.premium_slice_shops'),
+      t('common.whole_pie_artisan_pizzerias')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const new_york_artisan_cold_ferment: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Premium slice shops",
-    "Whole pie artisan pizzerias",
-    "Pizza",
-    "United States"
+    t('common.premium_slice_shops'),
+    t('common.whole_pie_artisan_pizzerias'),
+    t('common.pizza'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,15 +79,15 @@ export const new_york_artisan_cold_ferment: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_7'),
       "url": ""
     },
     {
-      "title": "Frank Pinello",
+      "title": t('styles.frank_pinello'),
       "url": ""
     },
     {
-      "title": "Mark Iacono",
+      "title": t('styles.mark_iacono'),
       "url": ""
     }
   ],

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 /**
  * Mandatory Amazon Affiliate Disclaimer
@@ -8,6 +9,7 @@ export const AffiliateDisclaimer: React.FC<{ className?: string, variant?: 'foot
     className = "",
     variant = 'footer'
 }) => {
+  const { t } = useTranslation();
 
     if (variant === 'inline') {
         return (

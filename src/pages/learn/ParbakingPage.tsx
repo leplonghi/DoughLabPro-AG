@@ -3,6 +3,7 @@ import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { FireIcon, BeakerIcon, ClockIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 const Section: React.FC<{ title: string; icon?: React.ReactNode; children: React.ReactNode }> = ({ title, icon, children }) => (
     <div className="mt-8 first:mt-0">
@@ -17,10 +18,11 @@ const Section: React.FC<{ title: string; icon?: React.ReactNode; children: React
 );
 
 const ParbakingPage: React.FC = () => {
+  const { t } = useTranslation();
     return (
         <TechnicalPageLayout
-            title="Parbaking & Double Baking"
-            subtitle="The thermodynamics of two-stage baking for texture control and moisture management."
+            title={t('learn.parbaking__double_baking')}
+            subtitle={t('learn.the_thermodynamics_of_twostage_baking_for_texture_')}
             showReferencesSection
         >
             <LearnSection title="1. The Logic of Two Stages">
@@ -31,12 +33,12 @@ const ParbakingPage: React.FC = () => {
 
             <LearnSection title="2. Stage 1: Structure Set and Gelatinization" icon={<FireIcon className="h-5 w-5" />}>
                 <p>
-                    The goal of the first bake (usually sauce-only or plain dough) is <strong>Starch Gelatinization</strong> and <strong>Gluten Coagulation</strong>.
+                    The goal of the first bake (usually sauce-only or plain dough) is <strong>{t('learn.starch_gelatinization_3')}</strong> and <strong>{t('learn.gluten_coagulation')}</strong>.
                 </p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li>The dough is baked until the internal temperature passes ~93°C (200°F). At this point, the crumb structure is set and will not collapse.</li>
                     <li>Without heavy cheese or wet toppings, water evaporates freely from the dough, establishing a crisp outer crust layer ("crust formation") without burning.</li>
-                    <li>The result is a stable, cooked sponge that can be stored or frozen.</li>
+                    <li>{t('learn.the_result_is_a_stable_cooked_sponge_that_can_be_s')}</li>
                 </ul>
             </LearnSection>
 
@@ -51,8 +53,8 @@ const ParbakingPage: React.FC = () => {
                     The second bake is short and intense. Since the dough is already cooked, the goal is purely:
                 </p>
                 <ol className="list-decimal pl-5 mt-2 space-y-1">
-                    <li>Melting the cheese.</li>
-                    <li>Heating the toppings.</li>
+                    <li>{t('learn.melting_the_cheese')}</li>
+                    <li>{t('learn.heating_the_toppings')}</li>
                     <li>Re-crisping the bottom (which may have softened).</li>
                 </ol>
                 <p className="mt-2">
@@ -62,15 +64,15 @@ const ParbakingPage: React.FC = () => {
 
             <LearnSection title="5. Applications by Style">
                 <ul className="list-disc pl-5 mt-2 space-y-1">
-                    <li><strong>Roman Teglia:</strong> Almost always parbaked. The high hydration (80%+) requires a long initial bake to drive out moisture.</li>
-                    <li><strong>Detroit Style:</strong> Often parbaked to ensure the center of the thick dough is fully cooked before the cheese crust (frico) burns.</li>
-                    <li><strong>Frozen Pizza:</strong> Commercial frozen pizzas are parbaked so the consumer only needs to "finish" them.</li>
+                    <li><strong>{t('learn.roman_teglia')}</strong> Almost always parbaked. The high hydration (80%+) requires a long initial bake to drive out moisture.</li>
+                    <li><strong>{t('learn.detroit_style')}</strong> Often parbaked to ensure the center of the thick dough is fully cooked before the cheese crust (frico) burns.</li>
+                    <li><strong>{t('learn.frozen_pizza')}</strong> Commercial frozen pizzas are parbaked so the consumer only needs to "finish" them.</li>
                 </ul>
             </LearnSection>
 
             <LearnSection title="6. Technical Risks">
                 <p>
-                    <strong>Drying Out:</strong> The risk of double baking is removing <em>too much</em> moisture, resulting in a hard, rusk-like texture rather than a crispy-chewy one. This is mitigated by high hydration formulas and controlling the temperature of the second bake.
+                    <strong>{t('learn.drying_out')}</strong>{t('learn.the_risk_of_double_baking_is_removing')}<em>too much</em> moisture, resulting in a hard, rusk-like texture rather than a crispy-chewy one. This is mitigated by high hydration formulas and controlling the temperature of the second bake.
                 </p>
             </LearnSection>
         </TechnicalPageLayout>

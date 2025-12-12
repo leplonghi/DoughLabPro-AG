@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pain_rustique: StyleDefinition = {
   "id": "pain_rustique",
-  "title": "Pain Rustique",
-  "subtitle": "French Lean Breads",
-  "category": "Bread",
-  "family": "French Lean Breads",
-  "variantName": "Pain Rustique",
+  "title": t('styles.pain_rustique'),
+  "subtitle": t('styles.french_lean_breads_5'),
+  "category": t('styles.bread_17'),
+  "family": t('styles.french_lean_breads_6'),
+  "variantName": t('styles.pain_rustique_2'),
   "origin": {
-    "country": "France",
-    "region": "Artisan bakeries",
-    "period": "Modern artisanal"
+    "country": t('styles.france_3'),
+    "region": t('styles.artisan_bakeries'),
+    "period": t('styles.modern_artisanal')
   },
   "intro": "Used in artisan bakeries as a rustic, irregular bread ideal for sharing and slicing.",
   "history": "Pain rustique is a very open-crumb, lean French-inspired bread, often made with high hydration and gentle handling.",
@@ -37,11 +38,11 @@ export const pain_rustique: StyleDefinition = {
       0,
       0.5
     ],
-    "flourStrength": "Bread flour or strong T65-equivalent, W ~260",
+    "flourStrength": t('styles.bread_flour_or_strong_t65equivalent_w_260'),
     "fermentation": {
       "bulk": "3–4 h at 23–25°C with gentle folds",
       "proof": "30–60 min at 23–25°C",
-      "coldRetard": "Optional overnight for extra flavor"
+      "coldRetard": t('styles.optional_overnight_for_extra_flavor')
     },
     "oven": {
       "type": "deck",
@@ -49,13 +50,13 @@ export const pain_rustique: StyleDefinition = {
         235,
         250
       ],
-      "notes": "Requires good steaming and gentle shaping to preserve open crumb."
+      "notes": t('styles.requires_good_steaming_and_gentle_shaping_to_prese')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_11'),
     "recommendedUse": [
-      "Rustic loaves",
-      "Table bread",
-      "Soup accompaniment"
+      t('common.rustic_loaves'),
+      t('common.table_bread'),
+      t('common.soup_accompaniment')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const pain_rustique: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Rustic loaves",
-    "Table bread",
-    "Soup accompaniment",
-    "Bread",
-    "France"
+    t('common.rustic_loaves'),
+    t('common.table_bread'),
+    t('common.soup_accompaniment'),
+    t('common.bread'),
+    t('common.france')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const pain_rustique: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Bread – Jeffrey Hamelman",
+      "title": t('styles.bread__jeffrey_hamelman_4'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_15'),
       "url": ""
     }
   ],

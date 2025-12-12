@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const flourArticle: LearnArticleData = {
     id: "flour-core-composition",
-    title: "Flour — Core Composition & Gluten Potential",
-    subtitle: "The foundation of structure, elasticity and dough performance.",
-    category: "Ingredient Science",
-    difficulty: "Beginner",
+    title: t('learn.flour__core_composition__gluten_potential'),
+    subtitle: t('learn.the_foundation_of_structure_elasticity_and_dough_p'),
+    category: t('learn.ingredient_science_6'),
+    difficulty: t('learn.beginner_5'),
     tags: ["flour", "gluten", "protein", "ash"],
 
     intro: "Flour provides the proteins, starches and enzymes that define dough structure. Its gluten-forming capacity determines elasticity, gas retention and final texture.",
@@ -32,10 +33,10 @@ export const flourArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Neapolitan", notes: "Recommended: 12% (Range: 11-12.5%)" },
-        { label: "New York", notes: "Recommended: 13% (Range: 12-13.5%)" },
-        { label: "Bread Flour", notes: "Recommended: 13.5% (Range: 12.5-14%)" },
-        { label: "Whole Wheat", notes: "Recommended: 14% (Range: 13-15%)" }
+        { label: t('learn.neapolitan_2'), notes: "Recommended: 12% (Range: 11-12.5%)" },
+        { label: t('learn.new_york'), notes: "Recommended: 13% (Range: 12-13.5%)" },
+        { label: t('learn.bread_flour'), notes: "Recommended: 13.5% (Range: 12.5-14%)" },
+        { label: t('learn.whole_wheat'), notes: "Recommended: 14% (Range: 13-15%)" }
     ],
 
     practicalApplications: [
@@ -72,11 +73,11 @@ export const flourArticle: LearnArticleData = {
             implications: "Highly refined Italian-milled flour with low mineral content. High extensibility, ideal for high-temperature pizza. Light color, fast charring without bitterness."
         },
         {
-            variant: "Bread Flour",
+            variant: t('learn.bread_flour_2'),
             implications: "High-protein flour commonly used for structured doughs. High elasticity; harder to stretch for beginners. Great oven spring; chewier crumb."
         },
         {
-            variant: "Whole Wheat Flour",
+            variant: t('learn.whole_wheat_flour'),
             implications: "Flour with bran and germ intact. Higher absorption; can shorten fermentation time. Nuttier flavor; denser crumb unless blended."
         }
     ],

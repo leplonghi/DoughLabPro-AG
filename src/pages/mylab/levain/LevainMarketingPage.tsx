@@ -2,8 +2,10 @@ import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { BeakerIcon, ChartBarIcon, ClockIcon, LockClosedIcon, SparklesIcon } from '@heroicons/react/24/outline';
 import { FireIcon } from '@heroicons/react/24/solid';
+import { useTranslation } from '@/i18n';
 
 export const LevainMarketingPage: React.FC = () => {
+  const { t } = useTranslation();
     const { openPaywall, startTrial } = useUser();
 
     return (
@@ -17,9 +19,7 @@ export const LevainMarketingPage: React.FC = () => {
                     <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-amber-600 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30 ring-4 ring-slate-800">
                         <span className="text-4xl">🦠</span>
                     </div>
-                    <h1 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">
-                        Master Your Sourdough
-                    </h1>
+                    <h1 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">{t('mylab.master_your_sourdough')}</h1>
                     <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
                         Your starter is a living pet. Track its health, feeding schedule, and activity peaks with our professional Levain Manager.
                     </p>
@@ -30,17 +30,17 @@ export const LevainMarketingPage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <FeatureCard
                     icon={<ClockIcon className="w-8 h-8 text-lime-500" />}
-                    title="Smart Schedule"
+                    title={t('mylab.smart_schedule')}
                     description="Never miss a feeding. Get timely notifications based on your starter's metabolic rate."
                 />
                 <FeatureCard
                     icon={<ChartBarIcon className="w-8 h-8 text-indigo-500" />}
-                    title="Health Tracking"
+                    title={t('mylab.health_tracking')}
                     description="Log rise height, pH, and aroma to visualize your culture's strength over time."
                 />
                 <FeatureCard
                     icon={<FireIcon className="w-8 h-8 text-orange-500" />}
-                    title="Multiple Starters"
+                    title={t('mylab.multiple_starters')}
                     description="Manage your Rye, Wheat, and Lievito Madre simultaneously without confusion."
                 />
             </div>
@@ -52,9 +52,8 @@ export const LevainMarketingPage: React.FC = () => {
                         <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-6">
                             <LockClosedIcon className="w-8 h-8 text-lime-600" />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">Pro Feature Locked</h3>
-                        <p className="text-slate-600 mb-8 leading-relaxed">
-                            Unlock the full <strong>Levain Manager</strong> suite. Track pH, rise logs, feeding schedules, and unlimited starters.
+                        <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">{t('mylab.pro_feature_locked')}</h3>
+                        <p className="text-slate-600 mb-8 leading-relaxed">{t('mylab.unlock_the_full')}<strong>{t('mylab.levain_manager')}</strong> suite. Track pH, rise logs, feeding schedules, and unlimited starters.
                         </p>
                         <button
                             onClick={() => startTrial('levain')}
@@ -73,7 +72,7 @@ export const LevainMarketingPage: React.FC = () => {
                 <div className="relative">
                     <img
                         src="/images/marketing/levain-pro.png"
-                        alt="Professional Levain Dashboard"
+                        alt={t('mylab.professional_levain_dashboard')}
                         className="w-full h-auto object-cover opacity-90 filter blur-[1px]"
                     />
                     {/* Gradient Overlay for blending */}

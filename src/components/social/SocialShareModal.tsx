@@ -58,9 +58,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                 </button>
 
                 <h3 className="mb-6 text-xl font-bold text-dlp-text-primary flex items-center gap-2">
-                    <ShareIcon className="h-5 w-5 text-dlp-accent" />
-                    Share Your Formula
-                </h3>
+                    <ShareIcon className="h-5 w-5 text-dlp-accent" />{t('common.share_your_formula')}</h3>
 
                 {/* The Card to be Captured */}
                 <div className="flex justify-center mb-8 overflow-hidden rounded-xl shadow-dlp-md">
@@ -77,21 +75,20 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                         <div className="relative z-10">
                             <div className="flex items-center gap-2 mb-1">
                                 <div className="h-6 w-6 rounded bg-lime-500 flex items-center justify-center font-bold text-slate-900 text-xs">DL</div>
-                                <span className="font-bold tracking-wider text-sm text-slate-300">DOUGHLAB PRO</span>
+                                <span className="font-bold tracking-wider text-sm text-slate-300">{t('general.doughlab_pro')}</span>
                             </div>
                             <h2 className="text-2xl font-black text-white mt-2 leading-tight">
-                                {styleName} <br /> Master Formula
-                            </h2>
+                                {styleName} <br />{t('common.master_formula')}</h2>
                         </div>
 
                         {/* Big Stats */}
                         <div className="relative z-10 grid grid-cols-2 gap-4 my-6">
                             <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border border-white/10">
-                                <span className="block text-xs text-slate-400 uppercase tracking-wider">Hydration</span>
+                                <span className="block text-xs text-slate-400 uppercase tracking-wider">{t('form.hydration')}</span>
                                 <span className="block text-3xl font-bold text-lime-400">{hydration}%</span>
                             </div>
                             <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border border-white/10">
-                                <span className="block text-xs text-slate-400 uppercase tracking-wider">Time</span>
+                                <span className="block text-xs text-slate-400 uppercase tracking-wider">{t('general.time')}</span>
                                 <span className="block text-3xl font-bold text-sky-400">{fermentation}h</span>
                             </div>
                         </div>
@@ -99,26 +96,26 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                         {/* Formula List */}
                         <div className="relative z-10 space-y-2 text-sm border-t border-white/10 pt-4">
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-300">Flour</span>
+                                <span className="text-slate-300">{t('results.flour')}</span>
                                 <span className="font-mono font-bold">100%</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-300">Water</span>
+                                <span className="text-slate-300">{t('results.water')}</span>
                                 <span className="font-mono font-bold text-lime-300">{config.hydration}%</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-300">Salt</span>
+                                <span className="text-slate-300">{t('results.salt')}</span>
                                 <span className="font-mono font-bold">{config.salt}%</span>
                             </div>
                             {config.yeastPercentage > 0 && (
                                 <div className="flex justify-between items-center">
-                                    <span className="text-slate-300">Yeast</span>
+                                    <span className="text-slate-300">{t('results.yeast')}</span>
                                     <span className="font-mono font-bold">{config.yeastPercentage}%</span>
                                 </div>
                             )}
                             {config.prefermentPercentage > 0 && (
                                 <div className="flex justify-between items-center mt-2 pt-2 border-t border-white/10">
-                                    <span className="text-amber-400">Preferment</span>
+                                    <span className="text-amber-400">{t('general.preferment')}</span>
                                     <span className="font-mono font-bold text-amber-400">{config.prefermentPercentage}%</span>
                                 </div>
                             )}
@@ -127,8 +124,8 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                         {/* Footer */}
                         <div className="relative z-10 mt-auto pt-6 flex justify-between items-end">
                             <div>
-                                <p className="text-[10px] text-slate-500 uppercase tracking-widest">Created by</p>
-                                <p className="font-bold text-sm">DoughLab Pro</p>
+                                <p className="text-[10px] text-slate-500 uppercase tracking-widest">{t('general.created_by')}</p>
+                                <p className="font-bold text-sm">{t('general.doughlab_pro_2')}</p>
                             </div>
                             <div className="text-right">
                                 <p className="text-[10px] text-slate-500">{new Date().toLocaleDateString()}</p>
@@ -144,12 +141,10 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                         className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-dlp-text-primary py-3 text-sm font-bold text-dlp-bg-card shadow-dlp-lg transition-transform active:scale-95 disabled:opacity-50 hover:bg-dlp-text-secondary"
                     >
                         {isGenerating ? (
-                            <span>Generating...</span>
+                            <span>{t('ui.generating')}</span>
                         ) : (
                             <>
-                                <DownloadIcon className="h-5 w-5" />
-                                Download Image
-                            </>
+                                <DownloadIcon className="h-5 w-5" />{t('common.download_image')}</>
                         )}
                     </button>
                 </div>

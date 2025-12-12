@@ -5,12 +5,14 @@ import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { SunIcon, WrenchScrewdriverIcon, CubeIcon, SparklesIcon, FireIcon, BeakerIcon, ShieldCheckIcon, ClockIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 interface MethodsPageProps {
     onNavigate: (page: Page) => void;
 }
 
 const MethodsPage: React.FC<MethodsPageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const topics = [
         { page: 'learn/article/autolyse', title: 'Autolyse', description: 'The passive rest technique for gluten development and extensibility.', icon: <ClockIcon className="h-8 w-8" /> },
         { page: 'learn/article/ambient-vs-cold', title: 'Ambient vs. Cold', description: 'A scientific comparison of fermentation methods.', icon: <SunIcon className="h-8 w-8" /> },
@@ -24,8 +26,8 @@ const MethodsPage: React.FC<MethodsPageProps> = ({ onNavigate }) => {
 
     return (
         <TechnicalPageLayout
-            title="Techniques & Methods"
-            subtitle="Master kneading, folding, balling, preferments, and temperature control."
+            title={t('learn.techniques__methods')}
+            subtitle={t('learn.master_kneading_folding_balling_preferments_and_te')}
         >
             <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {topics.map(topic => (

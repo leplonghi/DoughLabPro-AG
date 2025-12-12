@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { canUseFeature, getCurrentPlan } from '../../permissions';
 import { createPost } from './CommunityService';
+import { useTranslation } from '@/i18n';
 
 export const CommunityComposer: React.FC = () => {
+  const { t } = useTranslation();
     const { user } = useAuth();
     const [text, setText] = useState('');
     const [isPosting, setIsPosting] = useState(false);
@@ -28,8 +30,8 @@ export const CommunityComposer: React.FC = () => {
     if (!canPost) {
         return (
             <div className="p-4 bg-zinc-900 rounded-xl border border-zinc-800 text-center">
-                <p className="text-zinc-400 text-sm mb-2">Join the conversation with DoughLab Pro</p>
-                <button className="text-lime-400 text-sm font-bold">Upgrade to Post</button>
+                <p className="text-zinc-400 text-sm mb-2">{t('community.join_the_conversation_with_doughlab_pro')}</p>
+                <button className="text-lime-400 text-sm font-bold">{t('community.upgrade_to_post')}</button>
             </div>
         );
     }
@@ -39,7 +41,7 @@ export const CommunityComposer: React.FC = () => {
             <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder="Share your baking journey..."
+                placeholder={t('community.share_your_baking_journey')}
                 className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-zinc-200 focus:border-lime-500 outline-none resize-none h-24 mb-3"
             />
             <div className="flex justify-end">

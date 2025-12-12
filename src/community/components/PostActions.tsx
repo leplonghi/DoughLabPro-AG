@@ -5,6 +5,7 @@ import { useCommunityLike } from '../hooks/useCommunityLike';
 import { useUser } from '../../contexts/UserProvider';
 import { CloneButton } from './CloneButton';
 import { LockFeature } from '../../components/auth/LockFeature';
+import { useTranslation } from '@/i18n';
 
 interface PostActionsProps {
     post: CommunityPost;
@@ -13,6 +14,7 @@ interface PostActionsProps {
 }
 
 export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, commentCount }) => {
+  const { t } = useTranslation();
     const { user, isFavorite, toggleFavorite } = useUser();
     const { isLiked, toggleLike, loading: likeLoading, loaded, initialLiked } = useCommunityLike(post.id, user?.stripeCustomerId || 'unknown');
 
@@ -39,7 +41,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, 
         <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100">
             <div className="flex items-center gap-6">
                 {/* Like */}
-                <LockFeature featureKey="community.like" mode="tooltip" customMessage="Unlock full Community">
+                <LockFeature featureKey="community.like" mode="tooltip" customMessage={t('community.unlock_full_community_2')}>
                     <button
                         onClick={toggleLike}
                         disabled={likeLoading}
@@ -51,7 +53,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, 
                 </LockFeature>
 
                 {/* Comment */}
-                <LockFeature featureKey="community.comment" mode="tooltip" customMessage="Unlock full Community">
+                <LockFeature featureKey="community.comment" mode="tooltip" customMessage={t('community.unlock_full_community_2')}>
                     <button
                         onClick={onCommentClick}
                         className="flex items-center gap-1.5 text-gray-600 hover:text-lime-600 transition-colors"

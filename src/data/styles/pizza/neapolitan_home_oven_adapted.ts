@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const neapolitan_home_oven_adapted: StyleDefinition = {
   "id": "neapolitan_home_oven_adapted",
-  "title": "Neapolitan Style – Home Oven Adapted",
-  "subtitle": "Neapolitan Pizza",
-  "category": "Pizza",
-  "family": "Neapolitan Pizza",
-  "variantName": "Neapolitan Style – Home Oven Adapted",
+  "title": t('styles.neapolitan_style__home_oven_adapted'),
+  "subtitle": t('styles.neapolitan_pizza_5'),
+  "category": t('styles.pizza_7'),
+  "family": t('styles.neapolitan_pizza_6'),
+  "variantName": t('styles.neapolitan_style__home_oven_adapted_2'),
   "origin": {
-    "country": "Global",
-    "region": "Home Kitchens",
+    "country": t('styles.global_5'),
+    "region": t('styles.home_kitchens'),
     "period": "21st century"
   },
   "intro": "Fueled by internet communities (PizzaMaking.com, Reddit) and the pandemic baking boom. It bridges the gap between commercial quality and domestic equipment limits.",
@@ -41,7 +42,7 @@ export const neapolitan_home_oven_adapted: StyleDefinition = {
     "fermentation": {
       "bulk": "Cold fermentation (24–72h) is preferred for flavor and convenience",
       "proof": "2–4h at room temp",
-      "coldRetard": "Essential for home schedules"
+      "coldRetard": t('styles.essential_for_home_schedules')
     },
     "oven": {
       "type": "electric_home",
@@ -51,10 +52,10 @@ export const neapolitan_home_oven_adapted: StyleDefinition = {
       ],
       "notes": "Crucial: Use Baking Steel or Stone. Add oil/sugar/malt to dough to assist Maillard reaction."
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_23'),
     "recommendedUse": [
-      "Home baking without pizza oven",
-      "Crispier crust lovers"
+      t('common.home_baking_without_pizza_oven'),
+      t('common.crispier_crust_lovers')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const neapolitan_home_oven_adapted: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Home baking without pizza oven",
-    "Crispier crust lovers",
-    "Pizza",
-    "Global"
+    t('common.home_baking_without_pizza_oven'),
+    t('common.crispier_crust_lovers'),
+    t('common.pizza'),
+    t('common.global')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,7 +79,7 @@ export const neapolitan_home_oven_adapted: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Ken Forkish - The Elements of Pizza",
+      "title": t('styles.ken_forkish__the_elements_of_pizza'),
       "url": ""
     },
     {

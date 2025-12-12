@@ -3,6 +3,7 @@ import { DoughConfig, BakeType, DoughStylePreset } from '@/types';
 import { BookOpenIcon, MagnifyingGlassIcon, PizzaSliceIcon, FlourIcon, SparklesIcon } from '@/components/ui/Icons';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import AccordionSection from '@/components/calculator/AccordionSection';
+import { useTranslation } from '@/i18n';
 
 interface StyleSectionProps {
     config: DoughConfig;
@@ -23,6 +24,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     currentPreset,
     onResetPreset,
 }) => {
+  const { t } = useTranslation();
     const [searchTerm, setSearchTerm] = useState('');
 
     // Grouping Logic
@@ -57,7 +59,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
 
     return (
         <AccordionSection
-            title="Dough Style"
+            title={t('calculator.dough_style')}
             description="Start by choosing the result you're aiming for."
             icon={<BookOpenIcon className="h-6 w-6" />}
         >
@@ -94,7 +96,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                 <input
                     type="text"
                     className="block w-full rounded-md border-slate-200 bg-slate-50/50 py-1.5 pl-9 pr-3 text-xs placeholder-slate-400 focus:border-dlp-accent focus:bg-white focus:ring-1 focus:ring-dlp-accent transition-all"
-                    placeholder="Find a style..."
+                    placeholder={t('calculator.find_a_style')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -164,7 +166,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                     <div className="text-center py-12 bg-slate-50 rounded-xl border border-dashed border-slate-200 flex flex-col items-center justify-center">
                         <MagnifyingGlassIcon className="h-8 w-8 text-slate-300 mb-2" />
                         <p className="text-sm text-slate-500 font-medium">No styles found matching "{searchTerm}"</p>
-                        <button onClick={() => setSearchTerm('')} className="mt-2 text-xs text-lime-600 hover:underline">Clear search</button>
+                        <button onClick={() => setSearchTerm('')} className="mt-2 text-xs text-lime-600 hover:underline">{t('calculator.clear_search')}</button>
                     </div>
                 )}
             </div>
@@ -172,7 +174,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             {/* Custom/Selected Indicator if not in list */}
             {(config.baseStyleName && !recipeStylesToShow.some(p => p.id === config.stylePresetId)) && (
                 <div className="mt-4 border-t border-dashed border-slate-200 pt-4">
-                    <p className="text-xs text-slate-400 mb-2">Selected Custom Style:</p>
+                    <p className="text-xs text-slate-400 mb-2">{t('calculator.selected_custom_style')}</p>
                     <ChoiceButton
                         active={true}
                         label={config.baseStyleName}

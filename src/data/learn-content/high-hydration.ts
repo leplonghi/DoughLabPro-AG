@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const highHydrationArticle: LearnArticleData = {
     id: "high-hydration-management",
-    title: "High Hydration Management",
-    subtitle: "Handling wet doughs with confidence: strength, structure and techniques.",
-    category: "Dough Science",
-    difficulty: "Advanced",
+    title: t('learn.high_hydration_management'),
+    subtitle: t('learn.handling_wet_doughs_with_confidence_strength_struc'),
+    category: t('learn.dough_science_9'),
+    difficulty: t('learn.advanced_8'),
     tags: ["hydration", "wet-dough", "handling", "structure"],
 
     intro: "High-hydration doughs (70–90%) produce open crumb, exceptional texture and increased fermentation activity. They require specific handling strategies to avoid stickiness and structural weakness.",
@@ -32,9 +33,9 @@ export const highHydrationArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Intermediate Hydration", notes: "Recommended: 70% (Range: 65-75%)" },
-        { label: "High Hydration", notes: "Recommended: 80% (Range: 75-85%)" },
-        { label: "Ultra-High", notes: "Recommended: 88% (Range: 85-90%)" }
+        { label: t('learn.intermediate_hydration'), notes: "Recommended: 70% (Range: 65-75%)" },
+        { label: t('learn.high_hydration'), notes: "Recommended: 80% (Range: 75-85%)" },
+        { label: t('learn.ultrahigh'), notes: "Recommended: 88% (Range: 85-90%)" }
     ],
 
     practicalApplications: [
@@ -65,11 +66,11 @@ export const highHydrationArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High Hydration with Strong Flour",
+            variant: t('learn.high_hydration_with_strong_flour'),
             implications: "Better structure, less collapse risk. High protein, stability. Requires fewer folds. Better shape retention."
         },
         {
-            variant: "High Hydration with Whole Grain",
+            variant: t('learn.high_hydration_with_whole_grain'),
             implications: "Higher absorption and enzyme activity. Fast fermentation. Requires careful timing. Deeper flavor but denser crumb."
         }
     ],
@@ -85,8 +86,8 @@ export const highHydrationArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, wet dough is like trying to hold jelly — soft, wobbly and full of life.",
-        whatItDoes: "More water helps the dough grow light and airy.",
-        howToUse: "It’s stickier but makes bread full of big bubbles.",
-        dangerSigns: "But handle gently, or the dough will spread or tear."
+        whatItDoes: t('learn.more_water_helps_the_dough_grow_light_and_airy'),
+        howToUse: t('learn.its_stickier_but_makes_bread_full_of_big_bubbles'),
+        dangerSigns: t('learn.but_handle_gently_or_the_dough_will_spread_or_tear')
     }
 };

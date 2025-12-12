@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const caramelizableVegetablesData: LearnArticleData = {
     id: 'caramelizable-vegetables',
@@ -63,8 +64,8 @@ export const caramelizableVegetablesData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Cooking veggies slowly makes them sweet like candy.",
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_3'),
+        whatItDoes: t('learn.cooking_veggies_slowly_makes_them_sweet_like_candy'),
         howToUse: "Don't just throw raw onions on! Cook them first until they are soft and brown.",
         dangerSigns: "If they turn black, they taste burnt. If they stay white, they taste like raw salad."
     }

@@ -1,5 +1,6 @@
 import { DoughStyleDefinition } from '@/types/styles';
 import { STYLES_DATA as REGISTRY_STYLES } from './styles/registry';
+import { useTranslation } from '@/i18n';
 
 // The hardcoded/static styles (fallback and seed data)
 export const RAW_CANONICAL_STYLES = REGISTRY_STYLES;

@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { LockClosedIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { useUser } from '@/contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 
 interface MyLabLimitModalProps {
     isOpen: boolean;
@@ -10,6 +11,7 @@ interface MyLabLimitModalProps {
 }
 
 export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
     const { openPaywall } = useUser();
 
     const handleUpgrade = () => {
@@ -50,7 +52,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                         className="rounded-full bg-slate-100 p-1 text-slate-400 hover:text-slate-500 hover:bg-slate-200 transition-colors"
                                         onClick={onClose}
                                     >
-                                        <span className="sr-only">Close</span>
+                                        <span className="sr-only">{t('common.close')}</span>
                                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                                     </button>
                                 </div>
@@ -60,14 +62,12 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                     <div className="relative h-56 bg-slate-100 w-full overflow-hidden rounded-t-xl group">
                                         <img
                                             src="/images/marketing/mylab-pro.png"
-                                            alt="Pro Lab Analytics"
+                                            alt={t('mylab.pro_lab_analytics')}
                                             className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
                                         <div className="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-white text-xs font-bold border border-white/20">
-                                            <LockClosedIcon className="w-3 h-3 text-lime-400" />
-                                            Pro Analytics
-                                        </div>
+                                            <LockClosedIcon className="w-3 h-3 text-lime-400" />{t('mylab.pro_analytics')}</div>
                                     </div>
                                 </div>
 
@@ -76,12 +76,10 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                         <LockClosedIcon className="w-8 h-8 text-lime-600" />
                                     </div>
 
-                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">
-                                        Lab Capacity Reached
-                                    </Dialog.Title>
+                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">{t('mylab.lab_capacity_reached')}</Dialog.Title>
 
                                     <p className="text-slate-600 mb-8 leading-relaxed">
-                                        You've reached the <strong>1-batch limit</strong> for the Free plan. Upgrade to <strong>DoughLab Pro</strong> to unlock unlimited storage, advanced analytics, and historical tracking.
+                                        You've reached the <strong>1-batch limit</strong> for the Free plan. Upgrade to <strong>{t('mylab.doughlab_pro')}</strong> to unlock unlimited storage, advanced analytics, and historical tracking.
                                     </p>
 
                                     <div className="space-y-3">
@@ -91,17 +89,13 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                             onClick={handleUpgrade}
                                         >
                                             <span className="absolute inset-0 rounded-xl bg-white/20 group-hover:opacity-0 transition-opacity"></span>
-                                            <SparklesIcon className="w-5 h-5 text-lime-100" />
-                                            Unlock Unlimited Lab
-                                        </button>
+                                            <SparklesIcon className="w-5 h-5 text-lime-100" />{t('mylab.unlock_unlimited_lab')}</button>
 
                                         <button
                                             type="button"
                                             className="w-full py-3 text-sm font-bold text-slate-500 hover:text-slate-700 transition-colors"
                                             onClick={onClose}
-                                        >
-                                            Maybe Later
-                                        </button>
+                                        >{t('mylab.maybe_later')}</button>
                                     </div>
                                 </div>
                             </Dialog.Panel>

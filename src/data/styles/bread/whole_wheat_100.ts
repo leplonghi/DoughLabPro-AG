@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const whole_wheat_100: StyleDefinition = {
   "id": "whole_wheat_100",
   "title": "100% Whole Wheat Bread",
-  "subtitle": "Wholegrain & Rye",
-  "category": "Bread",
-  "family": "Wholegrain & Rye",
+  "subtitle": t('styles.wholegrain__rye_5'),
+  "category": t('styles.bread_28'),
+  "family": t('styles.wholegrain__rye_6'),
   "variantName": "100% Whole Wheat Bread",
   "origin": {
-    "country": "Global",
-    "region": "Health-focused baking",
-    "period": "Modern"
+    "country": t('styles.global_3'),
+    "region": t('styles.healthfocused_baking'),
+    "period": t('styles.modern_2')
   },
   "intro": "Used as everyday sandwich and toast bread by those seeking higher fiber and wholegrain diets.",
   "history": "100% whole wheat breads have become common in health-conscious baking, emphasizing fiber and nutrition over volume.",
@@ -41,7 +42,7 @@ export const whole_wheat_100: StyleDefinition = {
     "fermentation": {
       "bulk": "2–4 h at 24–26°C",
       "proof": "45–90 min, often in pans",
-      "coldRetard": "Optional 8–12 h to improve flavor"
+      "coldRetard": t('styles.optional_812_h_to_improve_flavor')
     },
     "oven": {
       "type": "electric_home",
@@ -49,12 +50,12 @@ export const whole_wheat_100: StyleDefinition = {
         200,
         230
       ],
-      "notes": "Careful baking to avoid dry crumb; pan loaves are common."
+      "notes": t('styles.careful_baking_to_avoid_dry_crumb_pan_loaves_are_c')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_11'),
     "recommendedUse": [
-      "Wholegrain sandwich bread",
-      "Toast"
+      t('common.wholegrain_sandwich_bread'),
+      t('common.toast')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const whole_wheat_100: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Wholegrain sandwich bread",
-    "Toast",
-    "Bread",
-    "Global"
+    t('common.wholegrain_sandwich_bread'),
+    t('common.toast'),
+    t('common.bread'),
+    t('common.global')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const whole_wheat_100: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_21'),
       "url": ""
     },
     {
-      "title": "Wholegrain baking literature",
+      "title": t('styles.wholegrain_baking_literature'),
       "url": ""
     }
   ],

@@ -7,8 +7,10 @@ import { ArrowLeft, Loader2, Image as ImageIcon, Sparkles, ChefHat, Droplets, Up
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
 import { OvenType, RecipeStyle, FermentationTechnique, Batch, YeastType } from '@/types';
 import SliderInput from '../../components/ui/SliderInput';
+import { useTranslation } from '@/i18n';
 
 export const CommunityCreatePostPage: React.FC = () => {
+  const { t } = useTranslation();
     const { navigate } = useRouter();
     const { user, batches } = useUser();
 
@@ -175,7 +177,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                         <ArrowLeft className="h-5 w-5 text-gray-600" />
                     </button>
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900">New Community Post</h1>
+                        <h1 className="text-2xl font-bold text-gray-900">{t('community.new_community_post')}</h1>
                     </div>
                 </div>
 
@@ -188,7 +190,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                 {mode === 'select' ? (
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <section>
-                            <h2 className="text-lg font-semibold text-gray-900 mb-4">How do you want to start?</h2>
+                            <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('community.how_do_you_want_to_start')}</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <button
                                     onClick={() => { setSourceBatchId(null); setMode('create'); }}
@@ -197,8 +199,8 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     <div className="h-12 w-12 bg-lime-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-lime-200 transition-colors">
                                         <Sparkles className="h-6 w-6 text-lime-700" />
                                     </div>
-                                    <h3 className="font-bold text-gray-900 mb-1">Start from Scratch</h3>
-                                    <p className="text-sm text-gray-500">Fill in your formula manually.</p>
+                                    <h3 className="font-bold text-gray-900 mb-1">{t('community.start_from_scratch')}</h3>
+                                    <p className="text-sm text-gray-500">{t('community.fill_in_your_formula_manually')}</p>
                                 </button>
 
                                 <div className="p-6 rounded-2xl bg-white border border-gray-200 shadow-sm">
@@ -207,14 +209,14 @@ export const CommunityCreatePostPage: React.FC = () => {
                                             <History className="h-6 w-6 text-blue-600" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-gray-900">From My Lab</h3>
-                                            <p className="text-sm text-gray-500">Select a recent bake used.</p>
+                                            <h3 className="font-bold text-gray-900">{t('community.from_my_lab')}</h3>
+                                            <p className="text-sm text-gray-500">{t('community.select_a_recent_bake_used')}</p>
                                         </div>
                                     </div>
 
                                     <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
                                         {batches.length === 0 ? (
-                                            <p className="text-sm text-gray-400 italic py-2">No saved batches found.</p>
+                                            <p className="text-sm text-gray-400 italic py-2">{t('community.no_saved_batches_found')}</p>
                                         ) : (
                                             batches.slice(0, 5).map(batch => (
                                                 <button
@@ -226,7 +228,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                                         {batch.photoUrl ? (
                                                             <img src={batch.photoUrl} className="h-full w-full object-cover" />
                                                         ) : (
-                                                            <div className="h-full w-full flex items-center justify-center text-xs text-gray-400">IMG</div>
+                                                            <div className="h-full w-full flex items-center justify-center text-xs text-gray-400">{t('community.img')}</div>
                                                         )}
                                                     </div>
                                                     <div className="flex-1 min-w-0">
@@ -253,15 +255,14 @@ export const CommunityCreatePostPage: React.FC = () => {
 
                                 {/* Photo Upload Section */}
                                 <div className="p-6 md:p-8 col-span-1">
-                                    <label className="block text-sm font-bold text-gray-900 mb-4">The Result</label>
+                                    <label className="block text-sm font-bold text-gray-900 mb-4">{t('community.the_result')}</label>
                                     <label className="relative aspect-square md:aspect-[3/4] rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 hover:border-lime-500 hover:bg-lime-50/10 transition-all cursor-pointer flex flex-col items-center justify-center overflow-hidden group">
                                         {previewUrl ? (
                                             <>
                                                 <img src={previewUrl} className="w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                                     <div className="bg-white/90 backdrop-blur text-xs font-bold py-2 px-4 rounded-full flex items-center gap-2">
-                                                        <ImageIcon className="h-3 w-3" /> Change
-                                                    </div>
+                                                        <ImageIcon className="h-3 w-3" />{t('community.change')}</div>
                                                 </div>
                                             </>
                                         ) : (
@@ -269,8 +270,8 @@ export const CommunityCreatePostPage: React.FC = () => {
                                                 <div className="h-12 w-12 bg-white rounded-full shadow-sm flex items-center justify-center mx-auto mb-3">
                                                     <UploadCloud className="h-6 w-6 text-lime-600" />
                                                 </div>
-                                                <p className="text-sm font-medium text-gray-900">Upload Photo</p>
-                                                <p className="text-xs text-gray-400 mt-1">Tap to browse</p>
+                                                <p className="text-sm font-medium text-gray-900">{t('community.upload_photo')}</p>
+                                                <p className="text-xs text-gray-400 mt-1">{t('community.tap_to_browse')}</p>
                                             </div>
                                         )}
                                         <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} />
@@ -280,7 +281,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                 {/* Details Section */}
                                 <div className="p-6 md:p-8 col-span-2 space-y-6">
                                     <div>
-                                        <label className="block text-sm font-bold text-gray-900 mb-2">Title</label>
+                                        <label className="block text-sm font-bold text-gray-900 mb-2">{t('community.title_2')}</label>
                                         <input
                                             type="text"
                                             value={title}
@@ -296,7 +297,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                         <textarea
                                             value={description}
                                             onChange={e => setDescription(e.target.value)}
-                                            placeholder="Share your process..."
+                                            placeholder={t('community.share_your_process')}
                                             rows={4}
                                             className="w-full rounded-xl bg-gray-50 border-transparent focus:bg-white focus:border-lime-500 focus:ring-lime-500 transition-all text-sm"
                                             required
@@ -305,7 +306,7 @@ export const CommunityCreatePostPage: React.FC = () => {
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Style</label>
+                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('community.style')}</label>
                                             <select
                                                 value={selectedStyle}
                                                 onChange={e => setSelectedStyle(e.target.value as RecipeStyle)}
@@ -317,7 +318,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Method</label>
+                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('community.method')}</label>
                                             <select
                                                 value={method}
                                                 onChange={e => setMethod(e.target.value as FermentationTechnique)}
@@ -339,33 +340,33 @@ export const CommunityCreatePostPage: React.FC = () => {
                                 <span className="h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">
                                     %
                                 </span>
-                                <h3 className="font-bold text-gray-900">Technical Details</h3>
+                                <h3 className="font-bold text-gray-900">{t('community.technical_details')}</h3>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <SliderInput
-                                    label="Hydration"
+                                    label={t('form.hydration')}
                                     name="hydration"
                                     value={hydration}
                                     min={50} max={100} unit="%"
                                     onChange={e => setHydration(Number(e.target.value))}
                                 />
                                 <SliderInput
-                                    label="Salt"
+                                    label={t('results.salt')}
                                     name="salt"
                                     value={salt}
                                     min={0} max={5} step={0.1} unit="%"
                                     onChange={e => setSalt(Number(e.target.value))}
                                 />
                                 <SliderInput
-                                    label="Fermentation"
+                                    label={t('community.fermentation')}
                                     name="fermentation"
                                     value={fermentationTime}
                                     min={1} max={96} unit="h"
                                     onChange={e => setFermentationTime(Number(e.target.value))}
                                 />
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Oven Type</label>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('community.oven_type')}</label>
                                     <div className="flex flex-wrap gap-2">
                                         {Object.values(OvenType).slice(0, 4).map(o => (
                                             <SelectionPill

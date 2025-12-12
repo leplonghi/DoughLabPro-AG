@@ -5,12 +5,14 @@ import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { FireIcon, WrenchScrewdriverIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 interface OvensHeatPageProps {
   onNavigate: (page: Page) => void;
 }
 
 const OvensHeatPage: React.FC<OvensHeatPageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const topics = [
         { page: 'learn/oven-science', title: 'Oven Science', description: 'Understand how conduction, convection, and radiation transform your dough.', icon: <FireIcon className="h-8 w-8" /> },
         { page: 'learn/equipment', title: 'Equipment', description: 'The impact of peels, stones, steel, and other tools on the final result.', icon: <WrenchScrewdriverIcon className="h-8 w-8" /> },
@@ -18,8 +20,8 @@ const OvensHeatPage: React.FC<OvensHeatPageProps> = ({ onNavigate }) => {
 
     return (
         <TechnicalPageLayout
-            title="Ovens & Heat"
-            subtitle="The physics of baking. Understand conduction, convection, radiation, and the role of your equipment."
+            title={t('learn.ovens__heat')}
+            subtitle={t('learn.the_physics_of_baking_understand_conduction_convec')}
         >
             <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {topics.map(topic => (

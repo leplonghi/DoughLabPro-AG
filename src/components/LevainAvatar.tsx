@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { LevainEmotion, getEmotionColor } from '@/logic/levainPetUtils';
+import { useTranslation } from '@/i18n';
 
 interface LevainAvatarProps {
   emotion: LevainEmotion;
@@ -9,6 +10,7 @@ interface LevainAvatarProps {
 }
 
 const LevainAvatar: React.FC<LevainAvatarProps> = ({ emotion, size = 'md', className = '' }) => {
+  const { t } = useTranslation();
   const sizeClasses = {
     sm: 'w-12 h-12',
     md: 'w-24 h-24',

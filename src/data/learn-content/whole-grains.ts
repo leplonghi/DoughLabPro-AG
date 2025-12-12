@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const wholeGrainsArticle: LearnArticleData = {
     id: "whole-grains-specialty-flours",
-    title: "Whole Grains & Specialty Flours",
-    subtitle: "Flavor, texture, absorption and enzyme activity across diverse grain types.",
-    category: "Ingredient Science",
-    difficulty: "Advanced",
+    title: t('learn.whole_grains__specialty_flours'),
+    subtitle: t('learn.flavor_texture_absorption_and_enzyme_activity_acro'),
+    category: t('learn.ingredient_science_15'),
+    difficulty: t('learn.advanced_17'),
     tags: ["whole-grains", "flour", "nutrition", "flavor"],
 
     intro: "Whole grains and specialty flours introduce bran, germ, enzymes and unique flavor compounds. They increase absorption, fermentation activity and texture complexity.",
@@ -34,7 +35,7 @@ export const wholeGrainsArticle: LearnArticleData = {
     practicalRanges: [
         { label: "Whole Wheat (blend)", notes: "Recommended: 20% (Range: 10-40%)" },
         { label: "Rye (blend)", notes: "Recommended: 10% (Range: 5-20%)" },
-        { label: "Spelt", notes: "Recommended: 25% (Range: 10-50%)" }
+        { label: t('learn.spelt'), notes: "Recommended: 25% (Range: 10-50%)" }
     ],
 
     practicalApplications: [
@@ -66,11 +67,11 @@ export const wholeGrainsArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Whole Wheat Flour",
+            variant: t('learn.whole_wheat_flour_2'),
             implications: "High fiber, high absorption, high enzyme activity. Nutty flavor, dense crumb. Requires more hydration. Rich flavor, darker crust."
         },
         {
-            variant: "Rye Flour",
+            variant: t('learn.rye_flour'),
             implications: "Low gluten; rich in pentosans. Sticky texture, strong flavor. Weak structure; best in blends. Moist, compact crumb."
         },
         {
@@ -90,8 +91,8 @@ export const wholeGrainsArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, whole grains are like adding nuts and seeds to the dough — more flavor, more personality.",
-        whatItDoes: "They add flavor, color and healthy fibers.",
-        howToUse: "They drink more water and make the dough sturdier and more rustic.",
+        whatItDoes: t('learn.they_add_flavor_color_and_healthy_fibers'),
+        howToUse: t('learn.they_drink_more_water_and_make_the_dough_sturdier_'),
         dangerSigns: "But they make the dough less stretchy, so it needs more water and a softer touch. Rye and spelt behave differently — they can’t hold as much air as regular flour."
     }
 };

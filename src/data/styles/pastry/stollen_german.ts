@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const stollen_german: StyleDefinition = {
   "id": "stollen_german",
-  "title": "German Stollen",
-  "subtitle": "Festive Breads",
-  "category": "Pastry",
-  "family": "Festive Breads",
-  "variantName": "German Stollen",
+  "title": t('styles.german_stollen'),
+  "subtitle": t('styles.festive_breads_5'),
+  "category": t('styles.pastry_10'),
+  "family": t('styles.festive_breads_6'),
+  "variantName": t('styles.german_stollen_2'),
   "origin": {
-    "country": "Germany",
-    "region": "Dresden and others",
-    "period": "Traditional"
+    "country": t('styles.germany_4'),
+    "region": t('styles.dresden_and_others'),
+    "period": t('styles.traditional_15')
   },
-  "intro": "Associated with Christmas markets and holiday celebrations in Germany and beyond.",
+  "intro": t('styles.associated_with_christmas_markets_and_holiday_cele'),
   "history": "Stollen is a rich German Christmas bread with dried fruits, nuts and often marzipan, coated in butter and sugar.",
   "technicalFoundations": [
     "Can use sponge or direct dough with long maturation.",
@@ -37,11 +38,11 @@ export const stollen_german: StyleDefinition = {
       15,
       30
     ],
-    "flourStrength": "Bread or strong all-purpose flour",
+    "flourStrength": t('styles.bread_or_strong_allpurpose_flour_4'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "60–90 min after shaping",
-      "coldRetard": "Resting after baking improves flavor; storage is part of process"
+      "coldRetard": t('styles.resting_after_baking_improves_flavor_storage_is_pa')
     },
     "oven": {
       "type": "electric_home",
@@ -49,12 +50,12 @@ export const stollen_german: StyleDefinition = {
         170,
         190
       ],
-      "notes": "Heavily buttered and sugared after baking; improves with aging."
+      "notes": t('styles.heavily_buttered_and_sugared_after_baking_improves')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_30'),
     "recommendedUse": [
-      "Christmas bread",
-      "Festive sweet loaf"
+      t('common.christmas_bread'),
+      t('common.festive_sweet_loaf')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const stollen_german: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Christmas bread",
-    "Festive sweet loaf",
-    "Pastry",
-    "Germany"
+    t('common.christmas_bread'),
+    t('common.festive_sweet_loaf'),
+    t('common.pastry'),
+    t('common.germany')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const stollen_german: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_31'),
       "url": ""
     },
     {
-      "title": "German baking traditions",
+      "title": t('styles.german_baking_traditions'),
       "url": ""
     }
   ],

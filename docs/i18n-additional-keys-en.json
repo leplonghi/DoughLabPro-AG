@@ -1,0 +1,212 @@
+{
+    "mylab_page": {
+        "hero_badge": "Production Hub",
+        "hero_title": "My Lab",
+        "hero_subtitle": "Your personal baking command center. Manage your schedule, track your cultures, and analyze your progress in one place.",
+        "lab_status": "Lab Status",
+        "operational": "Operational",
+        "total_batches": "Total Batches",
+        "success_rate": "Success Rate",
+        "new_bake": "New Bake",
+        "limit_reached": "Limit Reached",
+        "daily_operations": "Daily Operations",
+        "daily_operations_desc": "Essential tools for planning and logging your baking sessions.",
+        "analysis_lab": "Analysis Lab",
+        "analysis_lab_desc": "Advanced metrics to understand your dough biology and improve consistency.",
+        "recent_activity": "Recent Activity",
+        "view_log": "View Log",
+        "view_details": "View Details",
+        "no_recent_bakes": "No recent bakes recorded.",
+        "start_first_bake": "Start your first bake",
+        "recommended_gear": "Recommended Gear",
+        "daily_tip": "Daily Tip",
+        "read_full_article": "Read Full Article",
+        "ai_beta": "AI Beta",
+        "unlock_pro_features": "Unlock Pro Features",
+        "features": {
+            "timeline": {
+                "title": "Smart Timeline",
+                "desc": "Plan your fermentation schedule from start to finish."
+            },
+            "bakes": {
+                "title": "My Bakes",
+                "desc": "Your digital notebook. Log every detail of your bakes."
+            },
+            "levain": {
+                "title": "Levain Tracker",
+                "desc": "Monitor the health and feeding schedule of your starter."
+            },
+            "inventory": {
+                "title": "Inventory",
+                "desc": "Keep track of flour stocks and ingredients."
+            },
+            "consistency": {
+                "title": "Consistency Logic",
+                "desc": "Track variables across batches to master repeatability."
+            },
+            "comparisons": {
+                "title": "A/B Comparisons",
+                "desc": "Compare two recipes side-by-side to find the best method."
+            },
+            "insights": {
+                "title": "Deep Insights",
+                "desc": "Visual analytics of your baking trends and history."
+            },
+            "goals": {
+                "title": "Learning Goals",
+                "desc": "Set targets and track your skill progression."
+            },
+            "fermentation_engine": {
+                "title": "Fermentation Engine",
+                "desc": "Predict user-specific fermentation times based on your historical lab data."
+            }
+        }
+    },
+    "tools_page": {
+        "title": "Professional Tools",
+        "subtitle": "Precision calculators and utilities for serious bakers.",
+        "hydration_converter": {
+            "title": "Hydration Converter",
+            "desc": "Convert between different hydration percentages."
+        },
+        "oven_analysis": {
+            "title": "Oven Analysis",
+            "desc": "Analyze your oven's heat distribution and performance."
+        },
+        "doughbot": {
+            "title": "DoughBot AI",
+            "desc": "Your intelligent baking assistant."
+        }
+    },
+    "learn_home": {
+        "hero_title": "Master the Science of Baking",
+        "hero_subtitle": "From fundamental chemistry to advanced techniques.",
+        "categories": "Categories",
+        "all_articles": "All Articles",
+        "fundamentals": "Fundamentals",
+        "techniques": "Techniques",
+        "ingredients": "Ingredients",
+        "equipment": "Equipment",
+        "troubleshooting": "Troubleshooting"
+    },
+    "community": {
+        "title": "Community",
+        "subtitle": "Recipes shared by other bakers.",
+        "create_post": "Share Recipe",
+        "no_posts": "No posts yet",
+        "be_first": "Be the first to share!",
+        "post_created": "Recipe shared successfully!",
+        "post_error": "Error sharing recipe"
+    },
+    "upgrade_page": {
+        "title": "Upgrade to Pro",
+        "subtitle": "Unlock all features and take your baking to the next level.",
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "save_percent": "Save {percent}%",
+        "select_plan": "Select Plan",
+        "features_included": "Everything in Pro:",
+        "money_back": "30-day money-back guarantee",
+        "secure_payment": "Secure payment processing"
+    },
+    "help_page": {
+        "title": "Help Center",
+        "subtitle": "Find answers to common questions.",
+        "search_placeholder": "Search for help...",
+        "getting_started": "Getting Started",
+        "faq": "Frequently Asked Questions",
+        "contact_support": "Contact Support",
+        "video_tutorials": "Video Tutorials"
+    },
+    "profile_page": {
+        "tabs": {
+            "overview": "Overview",
+            "mylab": "My Lab",
+            "settings": "Settings"
+        },
+        "edit_avatar": "Edit Avatar",
+        "upload_photo": "Upload Photo",
+        "location": "Location",
+        "bio": "Bio",
+        "website": "Website",
+        "instagram": "Instagram",
+        "skill_level": "Skill Level",
+        "skill_levels": {
+            "beginner": "Beginner",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced",
+            "professional": "Professional"
+        },
+        "joined": "Joined",
+        "stats": {
+            "total_bakes": "Total Bakes",
+            "recipes_created": "Recipes Created",
+            "avg_rating": "Avg Rating"
+        }
+    },
+    "modals": {
+        "auth": {
+            "title": "Welcome Back",
+            "subtitle": "Sign in to continue",
+            "email": "Email",
+            "password": "Password",
+            "forgot_password": "Forgot password?",
+            "sign_in": "Sign In",
+            "sign_up": "Sign Up",
+            "or": "or",
+            "no_account": "Don't have an account?",
+            "have_account": "Already have an account?"
+        },
+        "levain": {
+            "create_title": "Create Levain",
+            "edit_title": "Edit Levain",
+            "name": "Name",
+            "hydration": "Hydration %",
+            "flour_type": "Flour Type",
+            "feeding_schedule": "Feeding Schedule",
+            "notes": "Notes",
+            "save": "Save Levain",
+            "delete": "Delete Levain"
+        },
+        "oven": {
+            "create_title": "Add Oven",
+            "edit_title": "Edit Oven",
+            "name": "Oven Name",
+            "type": "Type",
+            "max_temp": "Max Temperature",
+            "notes": "Notes",
+            "save": "Save Oven"
+        },
+        "goal": {
+            "create_title": "Set Learning Goal",
+            "edit_title": "Edit Goal",
+            "title": "Goal Title",
+            "description": "Description",
+            "target_date": "Target Date",
+            "category": "Category",
+            "save": "Save Goal"
+        }
+    },
+    "validations": {
+        "required": "This field is required",
+        "email_invalid": "Please enter a valid email",
+        "password_min": "Password must be at least 6 characters",
+        "number_min": "Must be at least {min}",
+        "number_max": "Must be at most {max}",
+        "url_invalid": "Please enter a valid URL"
+    },
+    "errors": {
+        "generic": "Something went wrong. Please try again.",
+        "network": "Network error. Check your connection.",
+        "unauthorized": "You need to sign in to do that.",
+        "forbidden": "You don't have permission to do that.",
+        "not_found": "Not found.",
+        "server_error": "Server error. Please try again later."
+    },
+    "success": {
+        "saved": "Saved successfully!",
+        "deleted": "Deleted successfully!",
+        "updated": "Updated successfully!",
+        "created": "Created successfully!"
+    }
+}

@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const lefse_flatbread: StyleDefinition = {
   "id": "lefse_flatbread",
   "title": "Lefse (Potato Flatbread)",
-  "subtitle": "Classic Flatbreads",
-  "category": "Bread",
-  "family": "Classic Flatbreads",
+  "subtitle": t('styles.classic_flatbreads_5'),
+  "category": t('styles.bread_12'),
+  "family": t('styles.classic_flatbreads_6'),
   "variantName": "Lefse (Potato Flatbread)",
   "origin": {
-    "country": "Norway",
-    "region": "Scandinavia",
-    "period": "Traditional"
+    "country": t('styles.norway'),
+    "region": t('styles.scandinavia'),
+    "period": t('styles.traditional_4')
   },
   "intro": "Served with butter, sugar or savory fillings, especially in Scandinavian traditions.",
   "history": "Lefse is a thin, potato-based flatbread from Norway, rolled very thin and cooked on a griddle.",
@@ -37,11 +38,11 @@ export const lefse_flatbread: StyleDefinition = {
       0,
       5
     ],
-    "flourStrength": "All-purpose flour with mashed potatoes",
+    "flourStrength": t('styles.allpurpose_flour_with_mashed_potatoes'),
     "fermentation": {
-      "bulk": "Resting of dough before rolling",
-      "proof": "No yeast fermentation in typical formulas",
-      "coldRetard": "Dough may be chilled for rolling convenience"
+      "bulk": t('styles.resting_of_dough_before_rolling'),
+      "proof": t('styles.no_yeast_fermentation_in_typical_formulas'),
+      "coldRetard": t('styles.dough_may_be_chilled_for_rolling_convenience')
     },
     "oven": {
       "type": "griddle",
@@ -49,12 +50,12 @@ export const lefse_flatbread: StyleDefinition = {
         180,
         220
       ],
-      "notes": "Cooked quickly on hot griddles, turned once."
+      "notes": t('styles.cooked_quickly_on_hot_griddles_turned_once')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_7'),
     "recommendedUse": [
-      "Traditional Scandinavian flatbread",
-      "Sweet or savory wraps"
+      t('common.traditional_scandinavian_flatbread'),
+      t('common.sweet_or_savory_wraps')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const lefse_flatbread: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Traditional Scandinavian flatbread",
-    "Sweet or savory wraps",
-    "Bread",
-    "Norway"
+    t('common.traditional_scandinavian_flatbread'),
+    t('common.sweet_or_savory_wraps'),
+    t('common.bread'),
+    t('common.norway')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const lefse_flatbread: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Scandinavian baking literature",
+      "title": t('styles.scandinavian_baking_literature'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_11'),
       "url": ""
     }
   ],

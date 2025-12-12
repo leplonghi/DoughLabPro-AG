@@ -5,6 +5,7 @@ import { shouldShowAd, getAd } from './ads/adsEngine';
 import { shareContent } from './social/socialApis';
 import { createPost, getCommunityFeed } from './community/CommunityService';
 import { trackAffiliateClick } from './affiliate/affiliateService';
+import { useTranslation } from '@/i18n';
 
 // Unified Marketing Interface
 interface MarketingContextType {
@@ -26,6 +27,7 @@ interface MarketingContextType {
 const MarketingContext = createContext<MarketingContextType | undefined>(undefined);
 
 const MarketingContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const fomo = useFomo();
     const affiliate = useAffiliate();
 

@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const workflowAndServicePlanningData: LearnArticleData = {
     id: "workflow-and-service-planning",
-    title: "Workflow & Service Planning",
-    subtitle: "Designing production that actually fits your life or business",
+    title: t('learn.workflow__service_planning'),
+    subtitle: t('learn.designing_production_that_actually_fits_your_life_'),
     category: 'Process Techniques',
     difficulty: 'Advanced',
     tags: ['workflow', 'planning', 'service', 'schedule'],
@@ -36,7 +37,7 @@ export const workflowAndServicePlanningData: LearnArticleData = {
             notes: "Mix in the morning or previous day, cold ferment, temper and bake in a defined evening window. Centred on one oven and small batch sizes."
         },
         {
-            label: "Small shop workflow",
+            label: t('learn.small_shop_workflow'),
             notes: "Daily or multi-day dough production with staggered mixing and balling. Requires alignment between prep staff and service crew."
         },
         {
@@ -80,9 +81,9 @@ export const workflowAndServicePlanningData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_21'),
+        whatItDoes: t('learn.improves_texture_and_flavor_15'),
+        howToUse: t('learn.so_you_get_the_best_results_17'),
+        dangerSigns: t('learn.use_it_wisely_17')
     },
 };

@@ -1,4 +1,5 @@
 import { FeatureKey } from '../../permissions';
+import { useTranslation } from '@/i18n';
 
 export type FomoAction = 'save_preset' | 'access_consistency' | 'inactivity' | 'share_recipe' | 'view_community_ranking';
 

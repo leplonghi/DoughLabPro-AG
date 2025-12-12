@@ -4,6 +4,7 @@ import { jsPDF } from 'jspdf';
 import { ArrowDownTrayIcon } from '@/components/ui/Icons';
 // Import the logo component directly or import the path if it's an image
 import { Logo } from '@/components/ui/Logo';
+import { useTranslation } from '@/i18n';
 
 interface PDFExportButtonProps {
     targetId: string;
@@ -18,6 +19,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
     label = 'Export PDF',
     className = ''
 }) => {
+  const { t } = useTranslation();
     const [isGenerating, setIsGenerating] = useState(false);
 
     const handleExport = async () => {
@@ -79,8 +81,8 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
 
             const titleContainer = document.createElement('div');
             titleContainer.innerHTML = `
-                <h1 style="margin:0; font-size:20px; font-weight:800; color:#365314; letter-spacing: -0.5px;">DoughLab</h1>
-                <p style="margin:0; font-size:10px; color:#65a30d; text-transform:uppercase; letter-spacing: 1px; font-weight:600;">Pro Recipe Export</p>
+                <h1 style="margin:0; font-size:20px; font-weight:800; color:#365314; letter-spacing: -0.5px;">{t('ui.doughlab')}</h1>
+                <p style="margin:0; font-size:10px; color:#65a30d; text-transform:uppercase; letter-spacing: 1px; font-weight:600;">{t('ui.pro_recipe_export')}</p>
             `;
             logoContainer.appendChild(titleContainer);
 
@@ -88,7 +90,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             const metaContainer = document.createElement('div');
             metaContainer.style.textAlign = 'right';
             metaContainer.innerHTML = `
-                <p style="margin:0; font-size:10px; color:#64748b;">Generated on</p>
+                <p style="margin:0; font-size:10px; color:#64748b;">{t('ui.generated_on')}</p>
                 <p style="margin:0; font-size:12px; font-weight:600; color:#334155;">${new Date().toLocaleDateString()}</p>
             `;
 
@@ -116,7 +118,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             footer.style.borderTop = '1px solid #e2e8f0';
             footer.style.textAlign = 'center';
             footer.innerHTML = `
-                <p style="margin:0; font-size:10px; color:#94a3b8;">Created with DoughLab Pro • www.doughlab.app</p>
+                <p style="margin:0; font-size:10px; color:#94a3b8;">{t('ui.created_with_doughlab_pro__wwwdoughlabapp')}</p>
             `;
             wrapper.appendChild(footer);
 

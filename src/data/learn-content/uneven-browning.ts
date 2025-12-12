@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const unevenBrowningData: LearnArticleData = {
     id: "uneven-browning",
-    title: "Uneven Browning",
-    subtitle: "Diagnosing hotspots, moisture pockets and ingredient-driven browning imbalance.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    title: t('learn.uneven_browning'),
+    subtitle: t('learn.diagnosing_hotspots_moisture_pockets_and_ingredien'),
+    category: t('learn.troubleshooting_10'),
+    difficulty: t('learn.intermediate_31'),
     tags: ["browning", "oven", "troubleshooting", "crust"],
 
     intro: "Uneven browning occurs when heat distribution, moisture levels or dough chemistry vary across the surface. It affects appearance and can indicate deeper process issues.",
@@ -31,7 +32,7 @@ export const unevenBrowningData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Target Oven Deck Variance", notes: "Recommended: 10°C Spread (Range: 0-15°C)" }
+        { label: t('learn.target_oven_deck_variance'), notes: "Recommended: 10°C Spread (Range: 0-15°C)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const unevenBrowningData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High Moisture Surface",
-            implications: "Wet areas brown more slowly. Pale, soft. Wetter dough edges. Uneven coloration."
+            variant: t('learn.high_moisture_surface'),
+            implications: t('learn.wet_areas_brown_more_slowly_pale_soft_wetter_dough')
         },
         {
-            variant: "Sugar Concentration Spots",
+            variant: t('learn.sugar_concentration_spots'),
             implications: "Uneven fermentation creates sugar pockets. Dark spots, irregular burn. Inconsistent browning. Local caramelization spikes."
         }
     ],
@@ -81,8 +82,8 @@ export const unevenBrowningData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, uneven browning is like cooking pancakes on a pan that’s hotter on one side.",
-        whatItDoes: "Creates light and dark patches.",
-        howToUse: "Some parts heat faster than others.",
+        whatItDoes: t('learn.creates_light_and_dark_patches'),
+        howToUse: t('learn.some_parts_heat_faster_than_others'),
         dangerSigns: "The pizza looks uneven and may taste different. Rotate or adjust heat to even things out."
     }
 };

@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const yeasted_donuts: StyleDefinition = {
   "id": "yeasted_donuts",
-  "title": "Yeasted Ring Donuts",
-  "subtitle": "Fried Doughs",
-  "category": "Pastry",
-  "family": "Fried Doughs",
-  "variantName": "Yeasted Ring Donuts",
+  "title": t('styles.yeasted_ring_donuts'),
+  "subtitle": t('styles.fried_doughs_5'),
+  "category": t('styles.pastry_12'),
+  "family": t('styles.fried_doughs_6'),
+  "variantName": t('styles.yeasted_ring_donuts_2'),
   "origin": {
-    "country": "United States",
-    "region": "Globalized",
+    "country": t('styles.united_states_4'),
+    "region": t('styles.globalized'),
     "period": "20th century"
   },
-  "intro": "Served as sweet snacks and breakfast items, often glazed or filled.",
+  "intro": t('styles.served_as_sweet_snacks_and_breakfast_items_often_g'),
   "history": "Yeasted donuts are sweet, fried rings made from enriched dough, widely popular in coffee shops and bakeries.",
   "technicalFoundations": [
     "Typically straight dough; some formulas use sponge.",
@@ -37,11 +38,11 @@ export const yeasted_donuts: StyleDefinition = {
       10,
       20
     ],
-    "flourStrength": "Bread flour or strong all-purpose flour",
+    "flourStrength": t('styles.bread_flour_or_strong_allpurpose_flour_4'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "30–60 min after cutting, until light and puffy",
-      "coldRetard": "Often retarded for production convenience"
+      "coldRetard": t('styles.often_retarded_for_production_convenience')
     },
     "oven": {
       "type": "fryer",
@@ -49,12 +50,12 @@ export const yeasted_donuts: StyleDefinition = {
         170,
         180
       ],
-      "notes": "Fried until golden on both sides, then glazed or sugared."
+      "notes": t('styles.fried_until_golden_on_both_sides_then_glazed_or_su')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_31'),
     "recommendedUse": [
-      "Fried donuts",
-      "Glazed or filled donuts"
+      t('common.fried_donuts'),
+      t('common.glazed_or_filled_donuts')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const yeasted_donuts: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Fried donuts",
-    "Glazed or filled donuts",
-    "Pastry",
-    "United States"
+    t('common.fried_donuts'),
+    t('common.glazed_or_filled_donuts'),
+    t('common.pastry'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const yeasted_donuts: StyleDefinition = {
   },
   "references": [
     {
-      "title": "AIB fryer dough guidelines",
+      "title": t('styles.aib_fryer_dough_guidelines'),
       "url": ""
     },
     {
-      "title": "Professional donut literature",
+      "title": t('styles.professional_donut_literature'),
       "url": ""
     }
   ],

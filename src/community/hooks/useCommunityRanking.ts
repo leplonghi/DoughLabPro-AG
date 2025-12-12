@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { communityRankingStore } from '../store/communityRankingStore';
 import { CommunityRanking } from '../types';
+import { useTranslation } from '@/i18n';
 
 export const useCommunityRanking = (period: 'weekly' | 'monthly' | 'all_time' = 'weekly') => {
     const [ranking, setRanking] = useState<CommunityRanking | null>(null);

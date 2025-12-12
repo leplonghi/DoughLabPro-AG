@@ -3,6 +3,7 @@ import { FeatureKey, canUseFeature, getCurrentPlan } from '../../permissions';
 import { useUser } from '../../contexts/UserProvider';
 import { evaluateFomoTrigger, FomoTriggerContext } from './FomoEngine';
 import { UpgradeModal } from './components/UpgradeModal';
+import { useTranslation } from '@/i18n';
 
 interface FomoContextType {
     triggerFomo: (context: FomoTriggerContext) => void;
@@ -14,6 +15,7 @@ interface FomoContextType {
 const FomoContext = createContext<FomoContextType | undefined>(undefined);
 
 export const FomoProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { user } = useUser();
     const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
     const [currentFeatureKey, setCurrentFeatureKey] = useState<FeatureKey | null>(null);

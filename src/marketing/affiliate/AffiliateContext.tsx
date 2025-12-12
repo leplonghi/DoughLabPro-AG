@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { AffiliateStats, generateAffiliateCode, getAffiliateStats } from './affiliateService';
+import { useTranslation } from '@/i18n';
 
 interface AffiliateContextType {
     affiliateCode: string | null;
@@ -12,6 +13,7 @@ interface AffiliateContextType {
 const AffiliateContext = createContext<AffiliateContextType | undefined>(undefined);
 
 export const AffiliateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { user } = useAuth();
     const [affiliateCode, setAffiliateCode] = useState<string | null>(null);
     const [stats, setStats] = useState<AffiliateStats | null>(null);

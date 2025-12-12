@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { trackAffiliateClick } from './affiliateService';
+import { useTranslation } from '@/i18n';
 
 export const useAffiliateTracking = () => {
     useEffect(() => {

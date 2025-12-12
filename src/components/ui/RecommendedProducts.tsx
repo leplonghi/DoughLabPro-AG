@@ -1,6 +1,7 @@
 import React from 'react';
 import { getRecommendedProducts } from '../../data/affiliates';
 import { ShoppingBag, ExternalLink } from 'lucide-react';
+import { useTranslation } from '@/i18n';
 
 interface RecommendedProductsProps {
     tags: string[];
@@ -12,9 +13,10 @@ interface RecommendedProductsProps {
 export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
     tags,
     limit = 3,
-    title = "Professional Baking Gear",
+    title ={t('common.professional_baking_gear')},
     className = ''
 }) => {
+  const { t } = useTranslation();
     const products = getRecommendedProducts(tags, limit);
 
     if (!products || products.length === 0) return null;

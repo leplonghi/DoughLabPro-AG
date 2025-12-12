@@ -3,21 +3,23 @@ import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { FireIcon, BeakerIcon, BookOpenIcon, LightBulbIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 // Local Section component for structuring content
 const OvenSciencePage: React.FC = () => {
+  const { t } = useTranslation();
   return (
-    <TechnicalPageLayout title="Baking Pizza: The Physics of the Oven" showReferencesSection>
+    <TechnicalPageLayout title={t('learn.baking_pizza_the_physics_of_the_oven')} showReferencesSection>
         <LearnSection title="1. Introduction: The Thermal Shock That Creates Pizza">
             <p>
-              Scientifically, baking is the most violent and transformative stage in the dough's life. When the pizza enters the oven, it undergoes a thermal shock triggering a cascade of physical and chemical events in seconds, as described in "Modernist Pizza":
+              Scientifically, baking is the most violent and transformative stage in the dough's life. When the pizza enters the oven, it undergoes a thermal shock triggering a cascade of physical and chemical events in seconds, as described in t('learn.modernist_pizza'):
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-                <li><strong>Thermal shock:</strong> Cold dough meets intense oven heat.</li>
-                <li><strong>Rapid water evaporation:</strong> Water on dough surface and ingredients turns to steam almost instantly.</li>
+                <li><strong>{t('learn.thermal_shock')}</strong> Cold dough meets intense oven heat.</li>
+                <li><strong>{t('learn.rapid_water_evaporation')}</strong> Water on dough surface and ingredients turns to steam almost instantly.</li>
                 <li><strong>Gas expansion (Oven Spring):</strong> CO₂ trapped in gluten and newly formed steam expand violently, causing "oven spring" and puffing the rim (cornicione).</li>
-                <li><strong>Surface coloration:</strong> Maillard reactions and caramelization occur on dry surface, developing color and flavor.</li>
-                <li><strong>Internal structure stabilization:</strong> Starch gelatinizes and gluten proteins coagulate, fixing the aerated dough structure.</li>
+                <li><strong>{t('learn.surface_coloration')}</strong> Maillard reactions and caramelization occur on dry surface, developing color and flavor.</li>
+                <li><strong>{t('learn.internal_structure_stabilization')}</strong> Starch gelatinizes and gluten proteins coagulate, fixing the aerated dough structure.</li>
             </ul>
         </LearnSection>
 
@@ -26,9 +28,9 @@ const OvenSciencePage: React.FC = () => {
               Heat isn't a single entity; it transfers in three distinct ways. Baking excellence, as Kenji López-Alt explains, depends on perfect balance between them. Different ovens drastically alter the dominance of each mechanism.
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-                <li>Heat <strong>flows from hot oven surface (deck) to pizza base</strong> (Conduction).</li>
-                <li>Radiant heat <strong>acts on upper surface</strong> of pizza, coming from ceiling and flames (Radiation).</li>
-                <li>Convective heat <strong>warms air around</strong> pizza, helping cook ingredients and remove moisture (Convection).</li>
+                <li>{t('learn.heat')}<strong>flows from hot oven surface (deck) to pizza base</strong> (Conduction).</li>
+                <li>{t('learn.radiant_heat')}<strong>acts on upper surface</strong> of pizza, coming from ceiling and flames (Radiation).</li>
+                <li>{t('learn.convective_heat')}<strong>warms air around</strong> pizza, helping cook ingredients and remove moisture (Convection).</li>
             </ul>
         </LearnSection>
         
@@ -55,8 +57,8 @@ const OvenSciencePage: React.FC = () => {
               Transformation of water to steam is one of most important events in oven.
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-                <li><strong>Rapid water evaporation</strong> in dough turns to steam. Since steam occupies much larger volume than liquid water, it violently expands existing gas bubbles, contributing to "oven spring".</li>
-                <li>Free water in ingredients (especially sauce and veg) also evaporates. <strong>Controlling this moisture is critical</strong> to avoid soggy pizza.</li>
+                <li><strong>{t('learn.rapid_water_evaporation')}</strong> in dough turns to steam. Since steam occupies much larger volume than liquid water, it violently expands existing gas bubbles, contributing to "oven spring".</li>
+                <li>Free water in ingredients (especially sauce and veg) also evaporates. <strong>{t('learn.controlling_this_moisture_is_critical')}</strong> to avoid soggy pizza.</li>
             </ul>
         </LearnSection>
 
@@ -66,8 +68,8 @@ const OvenSciencePage: React.FC = () => {
             </p>
             <ol className="list-decimal pl-5 mt-2 space-y-1">
                 <li><strong>Expansion (Oven Spring):</strong> In first 30-60 seconds, heat accelerates final yeast activity and expands CO₂ and water vapor, inflating dough.</li>
-                <li><strong>Structure Fixation:</strong> As internal dough temperature rises, starch gelatinizes and gluten proteins coagulate, solidifying aerated structure created in expansion phase.</li>
-                <li><strong>Surface Drying:</strong> Moisture on dough surface evaporates, creating dry "skin", prerequisite for coloring reactions.</li>
+                <li><strong>{t('learn.structure_fixation')}</strong> As internal dough temperature rises, starch gelatinizes and gluten proteins coagulate, solidifying aerated structure created in expansion phase.</li>
+                <li><strong>{t('learn.surface_drying')}</strong> Moisture on dough surface evaporates, creating dry "skin", prerequisite for coloring reactions.</li>
                 <li><strong>Coloration (Browning):</strong> With dry surface and high temperature, Maillard Reaction and Caramelization occur, developing color, flavor, and aroma.</li>
             </ol>
         </LearnSection>
@@ -77,10 +79,10 @@ const OvenSciencePage: React.FC = () => {
               Toppings aren't passive; they interact with heat and dough.
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-                <li><strong>Very wet sauces</strong> release steam and delay surface drying, which can inhibit coloring and lead to raw base ("gum line").</li>
-                <li><strong>Very fatty cheeses</strong> suffer "oil-out", releasing oil that can fry surface of other ingredients.</li>
-                <li><strong>Fresh meats</strong> release fat and water, impacting moisture.</li>
-                <li><strong>Raw vegetables</strong> release large amount of steam, which needs managing to not soak pizza.</li>
+                <li><strong>{t('learn.very_wet_sauces')}</strong> release steam and delay surface drying, which can inhibit coloring and lead to raw base ("gum line").</li>
+                <li><strong>{t('learn.very_fatty_cheeses')}</strong> suffer "oil-out", releasing oil that can fry surface of other ingredients.</li>
+                <li><strong>{t('learn.fresh_meats')}</strong> release fat and water, impacting moisture.</li>
+                <li><strong>{t('learn.raw_vegetables')}</strong> release large amount of steam, which needs managing to not soak pizza.</li>
             </ul>
         </LearnSection>
 
@@ -94,9 +96,9 @@ const OvenSciencePage: React.FC = () => {
         
         <LearnSection title="10. Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
           <ul className="list-disc pl-5 space-y-2">
-              <li>Modernist Pizza – Nathan Myhrvold & Francisco Migoya</li>
+              <li>{t('learn.modernist_pizza__nathan_myhrvold__francisco_migoya')}</li>
               <li>Serious Eats (J. Kenji López-Alt) – The Pizza Lab: Heat Transfer</li>
-              <li>Ooni Learn – The Science of Baking a Pizza</li>
+              <li>{t('learn.ooni_learn__the_science_of_baking_a_pizza')}</li>
               <li>Wikipedia – Conduction, Convection, Radiation (Thermodynamics)</li>
           </ul>
         </LearnSection>

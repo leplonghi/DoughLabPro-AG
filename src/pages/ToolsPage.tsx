@@ -40,14 +40,11 @@ const ToolCardView: React.FC<{
             </div>
             <div className="flex gap-2">
                 {isNew && (
-                    <span className="px-2 py-1 text-xs font-bold text-lime-700 bg-lime-100 rounded-full">
-                        NEW
-                    </span>
+                    <span className="px-2 py-1 text-xs font-bold text-lime-700 bg-lime-100 rounded-full">{t('common.new')}</span>
                 )}
                 {isLocked && (
                     <span className="px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-amber-900 bg-gradient-to-r from-amber-200 to-yellow-400 rounded-full flex items-center gap-1 shadow-sm">
-                        <LockClosedIcon className="h-3 w-3" /> PRO
-                    </span>
+                        <LockClosedIcon className="h-3 w-3" />{t('common.pro')}</span>
                 )}
             </div>
         </div>
@@ -61,7 +58,7 @@ const ToolCardView: React.FC<{
             </p>
             {isLocked && preview && (
                 <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs text-slate-500 italic">
-                    <span className="font-semibold text-slate-600 not-italic">Pro Insight:</span> {preview}
+                    <span className="font-semibold text-slate-600 not-italic">{t('tools.pro_insight')}</span> {preview}
                 </div>
             )}
         </div>
@@ -90,7 +87,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
             isPro: true,
             route: 'tools/doughbot',
             icon: <SparklesIcon />,
-            preview: "Example: Dough tearing? Gluten underdeveloped. Extend autolyse by 20 minutes.",
+            preview: t('tools.example_dough_tearing_gluten_underdeveloped_extend'),
             isNew: true,
             featureKey: 'tools.doughbot'
         },
@@ -125,12 +122,8 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
 
                     <div className="relative z-10 text-center max-w-3xl mx-auto">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
-                            <WrenchScrewdriverIcon className="w-4 h-4" />
-                            Professional Utilities
-                        </div>
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">
-                            Baking Tools
-                        </h1>
+                            <WrenchScrewdriverIcon className="w-4 h-4" />{t('common.professional_utilities')}</div>
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">{t('common.baking_tools')}</h1>
                         <p className="text-base md:text-lg text-lime-100/90 mb-4 leading-relaxed">
                             Professional-grade tools for diagnostics, analysis and optimization.
                         </p>

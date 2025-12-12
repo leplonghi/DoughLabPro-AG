@@ -1,5 +1,6 @@
 import { learnContent } from '../learn-content';
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 // Convert map to array
 const articlesArray = Object.values(learnContent);

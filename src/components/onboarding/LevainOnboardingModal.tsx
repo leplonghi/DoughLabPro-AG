@@ -1,3 +1,4 @@
 import React from 'react';
-export const LevainOnboardingModal: React.FC = () => <div className="hidden">Levain Onboarding Modal</div>;
+import { useTranslation } from '@/i18n';
+export const LevainOnboardingModal: React.FC = () => <div className="hidden">{t('general.levain_onboarding_modal')}</div>;
 export default LevainOnboardingModal;

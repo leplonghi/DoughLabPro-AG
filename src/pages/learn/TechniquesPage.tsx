@@ -64,7 +64,7 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
 
   return (
     <TechnicalPageLayout
-      title="Baking Techniques"
+      title={t('learn.baking_techniques')}
       subtitle="Master the physical manipulations that define your dough's structure."
       showReferencesSection
     >
@@ -81,7 +81,7 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
       </div>
 
       <div className="mt-12 prose prose-slate max-w-none">
-        <h3>Why Technique Matters</h3>
+        <h3>{t('learn.why_technique_matters')}</h3>
         <p>
           Even with the perfect recipe, the way you handle the dough determines the final outcome.
           Technique controls gluten development, gas retention, and the final texture of the crumb.

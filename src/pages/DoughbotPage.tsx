@@ -9,8 +9,10 @@ import { useCalculator } from '@/contexts/CalculatorContext';
 import { DoughbotResultsPlaceholder } from '@/components/tools/doughbot/DoughbotResultsPlaceholder';
 import { useUser } from '@/contexts/UserProvider';
 import { LockClosedIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 const DoughbotPage: React.FC = () => {
+  const { t } = useTranslation();
   const {
     problem,
     setProblem,
@@ -72,8 +74,8 @@ const DoughbotPage: React.FC = () => {
 
   return (
     <TechnicalPageLayout
-      title="Doughbot"
-      subtitle="AI-powered diagnostic engine. Analyze your dough faults and get instant scientific correction."
+      title={t('general.doughbot')}
+      subtitle={t('ui.aipowered_diagnostic_engine_analyze_your_dough_fau')}
       showReferencesSection
     >
       <div className="space-y-8 animate-fade-in relative min-h-[600px]">
@@ -82,9 +84,7 @@ const DoughbotPage: React.FC = () => {
         <div className={`transition-all duration-500 ${result || showFomo ? 'opacity-50 pointer-events-none blur-[2px]' : ''}`}>
           <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-6 md:p-8 shadow-sm">
             <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-900 text-white text-sm">1</span>
-              Describe your problem
-            </h3>
+              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-900 text-white text-sm">1</span>{t('common.describe_your_problem')}</h3>
 
             <div className="space-y-6">
               <div>
@@ -106,9 +106,7 @@ const DoughbotPage: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="problem-description" className="block text-sm font-bold text-slate-700 mb-2">
-                  Detailed Description
-                </label>
+                <label htmlFor="problem-description" className="block text-sm font-bold text-slate-700 mb-2">{t('common.detailed_description')}</label>
                 <textarea
                   id="problem-description"
                   rows={4}
@@ -137,9 +135,7 @@ const DoughbotPage: React.FC = () => {
                   <LoadingSpinner className="w-5 h-5 text-white" />
                 ) : (
                   <>
-                    <SparklesIcon className="h-5 w-5 animate-pulse" />
-                    Diagnose Problem
-                  </>
+                    <SparklesIcon className="h-5 w-5 animate-pulse" />{t('common.diagnose_problem')}</>
                 )}
               </button>
             </div>
@@ -151,16 +147,14 @@ const DoughbotPage: React.FC = () => {
           {(isLoading || isFomoLoading) && (
             <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10 flex flex-col items-center justify-center rounded-3xl">
               <LoadingSpinner size="lg" />
-              <p className="mt-4 text-lime-700 font-medium animate-pulse">Running diagnosis...</p>
+              <p className="mt-4 text-lime-700 font-medium animate-pulse">{t('ui.running_diagnosis')}</p>
             </div>
           )}
 
           {showFomo ? (
             <div className="relative z-20 mt-8 rounded-2xl bg-white p-8 shadow-xl border border-lime-200 animate-scale-in">
               <div className="flex justify-end mb-4">
-                <button onClick={handleReset} className="text-sm font-medium text-slate-500 hover:text-slate-800 underline">
-                  Try Again
-                </button>
+                <button onClick={handleReset} className="text-sm font-medium text-slate-500 hover:text-slate-800 underline">{t('common.try_again')}</button>
               </div>
 
               <div className="text-center max-w-lg mx-auto space-y-6">
@@ -169,7 +163,7 @@ const DoughbotPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-black text-slate-800 mb-2">Diagnosis Complete!</h3>
+                  <h3 className="text-2xl font-black text-slate-800 mb-2">{t('ui.diagnosis_complete')}</h3>
                   <p className="text-slate-600 text-lg">
                     I have analyzed your dough parameters and identified <span className="font-bold text-lime-700">3 critical factors</span> affecting your results.
                   </p>
@@ -178,7 +172,7 @@ const DoughbotPage: React.FC = () => {
                 <div className="bg-slate-50 rounded-xl p-2 border border-slate-200 text-left space-y-3 opacity-60 blur-[1px] select-none pointer-events-none overflow-hidden h-64 relative">
                   <img
                     src="/images/marketing/doughbot-pro.png"
-                    alt="Doughbot Pro Diagnosis"
+                    alt={t('general.doughbot_pro_diagnosis')}
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-white/20"></div>
@@ -187,7 +181,7 @@ const DoughbotPage: React.FC = () => {
                 <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl p-6 text-white shadow-lg transform hover:scale-[1.02] transition-transform">
                   <div className="flex items-center justify-center gap-3 mb-3">
                     <LockClosedIcon className="w-6 h-6 text-lime-400" />
-                    <span className="font-bold text-lg">Unlock Full Solution</span>
+                    <span className="font-bold text-lg">{t('general.unlock_full_solution')}</span>
                   </div>
                   <p className="text-slate-300 text-sm mb-6">
                     Get the exact scientific correction recipe to fix your dough immediately, plus access to all 40+ Advanced Dough Styles.
@@ -204,9 +198,7 @@ const DoughbotPage: React.FC = () => {
           ) : result ? (
             <div className="relative z-20 mt-8">
               <div className="flex justify-end mb-4">
-                <button onClick={handleReset} className="text-sm font-medium text-slate-500 hover:text-slate-800 underline">
-                  Start New Diagnosis
-                </button>
+                <button onClick={handleReset} className="text-sm font-medium text-slate-500 hover:text-slate-800 underline">{t('common.start_new_diagnosis')}</button>
               </div>
               <DoughbotResults result={result} />
             </div>

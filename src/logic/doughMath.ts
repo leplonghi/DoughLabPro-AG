@@ -1,5 +1,6 @@
 
 import { DoughConfig, DoughResult, IngredientConfig, YeastType, FermentationTechnique, Levain, CalculationMode } from '../types';
+import { useTranslation } from '@/i18n';
 
 // --- Helpers ---
 
@@ -177,7 +178,7 @@ export const calculateDoughUniversal = (
   // REACTIVE HYDRATION ENGINE (Step 2 Implementation)
   // ============================================
 
-  // 1. Calculate water contributed by "Other" ingredients (Eggs, Milk, Butter, etc.)
+  // 1. Calculate water contributed by t('common.other') ingredients (Eggs, Milk, Butter, etc.)
   let waterFromOthers = 0;
 
   ingredients.forEach(ing => {
@@ -201,7 +202,7 @@ export const calculateDoughUniversal = (
     }
   });
 
-  // 2. Adjust "Added Water" to hit Target Hydration (if controllable)
+  // 2. Adjust t('common.added_water') to hit Target Hydration (if controllable)
   const waterIng = ingredients.find(i => i.role === 'water');
 
   // Only adjust if the water ingredient exists and IS NOT locked (manualOverride)
@@ -228,7 +229,7 @@ export const calculateDoughUniversal = (
   // If calculating by total flour input, logic reverses
   let totalFlour = 0;
 
-  // Calculate Sum of Percentages (The "Factor")
+  // Calculate Sum of Percentages (The t('common.factor'))
   // Example: 100 (flour) + 65 (water) + 3 (salt) = 168%
   let totalPercentage = 0;
   ingredients.forEach(ing => {
@@ -236,11 +237,11 @@ export const calculateDoughUniversal = (
   });
 
   if (calculationMode === 'flour' && config.totalFlour) {
-    // Mode: "I have 1kg of flour, how much dough does it make?"
+    // Mode: t('ui.i_have_1kg_of_flour_how_much_dough_does_it_make')
     totalFlour = config.totalFlour;
     totalTargetWeight = totalFlour * (totalPercentage / 100);
   } else {
-    // Mode: "I need 1kg of dough, how much flour do I need?"
+    // Mode: t('ui.i_need_1kg_of_dough_how_much_flour_do_i_need')
     // Formula: Flour = TotalDough * (100 / SumPercentages)
     totalFlour = totalTargetWeight * (100 / totalPercentage);
   }
@@ -266,7 +267,7 @@ export const calculateDoughUniversal = (
   };
 
   // Extract base weights for easy access. 
-  // NOTE: result.totalWater should represent ACTUAL Hydration, not just "Added Water".
+  // NOTE: result.totalWater should represent ACTUAL Hydration, not just t('common.added_water').
   // So we sum (Weight * HydrationContent).
 
   let actualTotalWater = 0;

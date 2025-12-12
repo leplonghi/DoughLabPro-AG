@@ -2,6 +2,7 @@
 import React from 'react';
 import { BookOpenIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
+import { useTranslation } from '@/i18n';
 
 interface IngredientPageLayoutProps {
   title: string;
@@ -12,6 +13,7 @@ interface IngredientPageLayoutProps {
 }
 
 const IngredientPageLayout: React.FC<IngredientPageLayoutProps> = ({ title, description, category, references, children }) => {
+  const { t } = useTranslation();
   return (
     <div className="mx-auto max-w-4xl animate-[fadeIn_0.5s_ease-in-out]">
       <button
@@ -39,7 +41,7 @@ const IngredientPageLayout: React.FC<IngredientPageLayoutProps> = ({ title, desc
           <div className="mt-12 border-t border-slate-200 pt-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-slate-800">
               <BookOpenIcon className="h-6 w-6 text-lime-500" />
-              <span>Technical References</span>
+              <span>{t('learn.technical_references')}</span>
             </h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-800">
               {references.map((ref, index) => (

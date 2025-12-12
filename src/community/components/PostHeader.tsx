@@ -2,6 +2,7 @@ import React from 'react';
 import { MoreHorizontal, User } from 'lucide-react';
 import { formatPostDate } from '../utils/formatPost';
 import { useRouter } from '../../contexts/RouterContext';
+import { useTranslation } from '@/i18n';
 
 interface PostHeaderProps {
     uid?: string; // Optional for compatibility, but should be provided
@@ -12,6 +13,7 @@ interface PostHeaderProps {
 }
 
 export const PostHeader: React.FC<PostHeaderProps> = ({ uid, username, userPhotoURL, createdAt, title }) => {
+  const { t } = useTranslation();
     const { navigate } = useRouter();
 
     const handleUserClick = (e: React.MouseEvent) => {

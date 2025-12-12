@@ -2,6 +2,7 @@ import React from 'react';
 import { FeatureKey, canUseFeature, getCurrentPlan } from '../../../permissions';
 import { useUser } from '../../../contexts/UserProvider';
 import { useFomo } from '../useFomo';
+import { useTranslation } from '@/i18n';
 
 interface LockedTeaserProps {
     featureKey: FeatureKey;
@@ -10,6 +11,7 @@ interface LockedTeaserProps {
 }
 
 export const LockedTeaser: React.FC<LockedTeaserProps> = ({ featureKey, children, className = '' }) => {
+  const { t } = useTranslation();
     const { user } = useUser();
     const { triggerFomo } = useFomo();
 
@@ -37,10 +39,8 @@ export const LockedTeaser: React.FC<LockedTeaserProps> = ({ featureKey, children
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
                     </div>
-                    <h4 className="text-sm font-bold text-dlp-text-primary mb-0.5">Pro Feature</h4>
-                    <button className="mt-2 text-[10px] font-bold uppercase tracking-wider bg-dlp-accent hover:bg-dlp-accent-hover text-white px-3 py-1.5 rounded-full transition-colors shadow-dlp-sm">
-                        Unlock
-                    </button>
+                    <h4 className="text-sm font-bold text-dlp-text-primary mb-0.5">{t('general.pro_feature')}</h4>
+                    <button className="mt-2 text-[10px] font-bold uppercase tracking-wider bg-dlp-accent hover:bg-dlp-accent-hover text-white px-3 py-1.5 rounded-full transition-colors shadow-dlp-sm">{t('marketing.unlock')}</button>
                 </div>
             </div>
         </div>

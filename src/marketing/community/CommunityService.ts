@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { CommunityBatch, User, LeaderboardUser } from '../../types';
+import { useTranslation } from '@/i18n';
 
 const POSTS_COLLECTION = 'community_posts';
 const LEADERBOARD_COLLECTION = 'leaderboard';

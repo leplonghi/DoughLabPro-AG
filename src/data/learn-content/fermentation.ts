@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const fermentationData: LearnArticleData = {
     id: 'fermentation',
@@ -6,7 +7,7 @@ export const fermentationData: LearnArticleData = {
     subtitle: 'Yeast metabolism, the Crabtree Effect, and the production of flavor.',
     category: 'Fermentation Science',
     difficulty: 'Intermediate',
-    tags: ['Yeast', 'Bacteria', 'Metabolism', 'Flavor'],
+    tags: [t('learn.yeast_2'), t('learn.bacteria'), t('learn.metabolism'), t('learn.flavor_2')],
 
     intro: "Fermentation is the biological engine of bread making. It's the process where yeast and bacteria consume sugars to produce carbon dioxide (leavening), alcohol (flavor), and organic acids (strength and flavor). Understanding this process allows you to control the texture, volume, and taste of your final product.",
 
@@ -67,11 +68,11 @@ export const fermentationData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Direct Method",
+            variant: t('learn.direct_method'),
             implications: "Mixing all ingredients at once and fermenting. Requires careful time management. Standard crust and crumb."
         },
         {
-            variant: "Cold Fermentation",
+            variant: t('learn.cold_fermentation_3'),
             implications: "Retarding the dough in the refrigerator. Dough becomes firmer and easier to handle cold. More blistering on the crust."
         }
     ],
@@ -91,7 +92,7 @@ export const fermentationData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Think of yeast like a hungry little pet. It eats the sugar in the flour and burps out gas bubbles. These bubbles get trapped in the dough balloon, making it puff up.",
-        whatItDoes: "It makes the bread light, fluffy, and tasty instead of a hard rock.",
+        whatItDoes: t('learn.it_makes_the_bread_light_fluffy_and_tasty_instead_'),
         howToUse: "Without it, you're making crackers, not bread.",
         dangerSigns: "Don't let it go too long or the yeast will get tired and the dough will collapse."
     }

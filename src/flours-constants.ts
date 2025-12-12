@@ -1,5 +1,6 @@
 import { FlourDefinition } from './types';
 
+
 export const FLOURS: FlourDefinition[] = [
   // --- CAPUTO (Italy) ---
   {
@@ -329,6 +330,6 @@ export const FLOURS: FlourDefinition[] = [
       min: 70,
       max: 85,
     },
-    notes: 'Absorbs more water. Usually mixed 20-50% with white flour under "Other".',
+    notes: 'Absorbs more water. Usually mixed 20-50% with white flour.',
   },
 ];

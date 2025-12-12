@@ -2,7 +2,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app } from "@/firebase/app";
 
 export const uploadImage = async (file: File, path: string): Promise<string> => {
-    if (!app) throw new Error("Firebase not initialized");
+    if (!app) throw new Error(t('ui.firebase_not_initialized'));
 
     const storage = getStorage(app);
     const storageRef = ref(storage, path);
@@ -18,6 +18,7 @@ export const uploadImage = async (file: File, path: string): Promise<string> => 
 };
 
 import { Levain } from "@/types";
+import { useTranslation } from '@/i18n';
 
 export const exportLevains = (levains: Levain[]) => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(levains));

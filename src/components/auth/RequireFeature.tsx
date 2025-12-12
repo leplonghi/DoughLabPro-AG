@@ -3,6 +3,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { FeatureKey, canUseFeature, getCurrentPlan } from '@/permissions';
 import { useRouter } from '@/contexts/RouterContext';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { useTranslation } from '@/i18n';
 
 interface RequireFeatureProps {
     featureKey: FeatureKey;
@@ -11,6 +12,7 @@ interface RequireFeatureProps {
 }
 
 export const RequireFeature: React.FC<RequireFeatureProps> = ({ featureKey, children, fallback }) => {
+  const { t } = useTranslation();
     const { user, userLoading, planLoading, openPaywall } = useUser();
     const { navigate } = useRouter();
 
@@ -36,9 +38,7 @@ export const RequireFeature: React.FC<RequireFeatureProps> = ({ featureKey, chil
                 <div className="bg-slate-100 dark:bg-slate-800 p-4 rounded-full mb-6">
                     <span className="text-4xl">🔒</span>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-                    Feature Locked
-                </h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{t('auth.feature_locked')}</h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md">
                     This feature requires a specific plan. Upgrade your account to access it.
                 </p>
@@ -46,15 +46,11 @@ export const RequireFeature: React.FC<RequireFeatureProps> = ({ featureKey, chil
                     <button
                         onClick={() => navigate('mylab')}
                         className="px-6 py-2.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 transition-colors"
-                    >
-                        Back to Lab
-                    </button>
+                    >{t('auth.back_to_lab')}</button>
                     <button
                         onClick={() => openPaywall ? openPaywall('general') : navigate('plans')}
                         className="px-6 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-lime-500 to-green-600 hover:shadow-lg hover:scale-105 transition-all"
-                    >
-                        View Plans
-                    </button>
+                    >{t('auth.view_plans')}</button>
                 </div>
             </div>
         );

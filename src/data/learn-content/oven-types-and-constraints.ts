@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const ovenTypesAndConstraintsData: LearnArticleData = {
     id: "oven-types-and-constraints",
-    title: "Oven Types & Constraints",
-    subtitle: "What your oven can and cannot do for your dough",
+    title: t('learn.oven_types__constraints'),
+    subtitle: t('learn.what_your_oven_can_and_cannot_do_for_your_dough'),
     category: 'Baking Science',
     difficulty: 'Beginner',
     tags: ['ovens', 'equipment', 'temperature', 'heat-transfer'],
@@ -37,11 +38,11 @@ export const ovenTypesAndConstraintsData: LearnArticleData = {
             notes: "400–500°C stone temperature. Support ultra-fast bakes (60–120 seconds) and classic Neapolitan-style pizzas."
         },
         {
-            label: "Commercial deck ovens",
+            label: t('learn.commercial_deck_ovens'),
             notes: "280–350°C deck, sometimes higher. Ideal for New York slices, al taglio and many pan styles."
         },
         {
-            label: "Domestic ovens",
+            label: t('learn.domestic_ovens'),
             notes: "220–280°C, sometimes with grill/broiler. Often need stones/steels and adjusted formulas for best results."
         }
     ],
@@ -82,9 +83,9 @@ export const ovenTypesAndConstraintsData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_14'),
+        whatItDoes: t('learn.improves_texture_and_flavor_8'),
+        howToUse: t('learn.so_you_get_the_best_results_10'),
+        dangerSigns: t('learn.use_it_wisely_10')
     },
 };

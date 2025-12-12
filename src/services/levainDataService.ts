@@ -1,4 +1,5 @@
 import { Levain } from '@/types';
+import { useTranslation } from '@/i18n';
 
 export const levainDataService = {};
 export const exportLevainData = (levains: Levain[]): string => JSON.stringify(levains);

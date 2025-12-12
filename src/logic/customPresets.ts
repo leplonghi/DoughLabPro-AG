@@ -1,4 +1,5 @@
 import { DoughConfig } from '@/types';
+import { useTranslation } from '@/i18n';
 
 export const customPresets = [];
 export const listCustomPresets = (): { name: string }[] => [];

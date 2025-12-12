@@ -4,6 +4,7 @@ import { canUseFeature, getCurrentPlan } from '../../permissions';
 import { shareContent, generatePreviewImage, SharePayload } from './socialApis';
 import { DoughConfig, Levain } from '../../types';
 import { DoughStyleDefinition } from '../../types/styles';
+import { useTranslation } from '@/i18n';
 
 interface SocialShareProps {
     title: string;
@@ -13,6 +14,7 @@ interface SocialShareProps {
 }
 
 export const SocialShare: React.FC<SocialShareProps> = ({ title, data, type, className = '' }) => {
+  const { t } = useTranslation();
     const { user } = useAuth();
     const [isSharing, setIsSharing] = useState(false);
 

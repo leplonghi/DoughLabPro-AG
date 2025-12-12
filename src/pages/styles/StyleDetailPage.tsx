@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { uploadImage } from '@/services/storageService';
 import { AffiliateGrid } from '@/components/AffiliateGrid';
+import { useTranslation } from '@/i18n';
 
 // --- ADAPTER: Legacy/Registry (V2) -> UI (V3) ---
 // This ensures that American/European styles (V2 Definitions) can be rendered by this V3 Page.
@@ -37,7 +38,7 @@ function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
     const processSteps: ProcessStep[] = def.technicalProfile.fermentationSteps.map((stepStr, index) => {
         // Format assumption: "Title. [Science: Explanation]"
         const scienceMatch = stepStr.match(/\[Science: (.*?)\]/);
-        const scienceText = scienceMatch ? scienceMatch[1] : "Control of enzymatic activity and gluten development.";
+        const scienceText = scienceMatch ? scienceMatch[1] : t('styles.control_of_enzymatic_activity_and_gluten_developme');
         const cleanText = stepStr.replace(/\[Science:.*?\]/, '').trim();
 
         let phase: any = 'Bulk';
@@ -52,7 +53,7 @@ function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
         return {
             phase: phase,
             title: title,
-            duration: "Variable",
+            duration: t('styles.variable_2'),
             action: action || title, // Fallback if no dot split
             science: scienceText
         };
@@ -61,24 +62,24 @@ function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
     // 2. Construct Scientific Profile (Robust Mapping)
     const scientificProfile = def.scientificProfile || {
         flourRheology: {
-            w_index: def.technicalProfile.flourStrength || "N/A",
+            w_index: def.technicalProfile.flourStrength || t('styles.na'),
             pl_ratio: "0.55-0.65",
-            absorption_capacity: "Medium-High",
-            protein_type: "Soft Wheat",
-            science_explanation: def.notes?.[0] || "Standard flour properties apply."
+            absorption_capacity: t('styles.mediumhigh_2'),
+            protein_type: t('styles.soft_wheat_4'),
+            science_explanation: def.notes?.[0] || t('styles.standard_flour_properties_apply')
         },
         thermalProfile: {
-            oven_type: "Standard",
+            oven_type: t('styles.standard_22'),
             heat_distribution: "Conduction/Convection",
-            crust_development: "Maillard dominant",
-            crumb_structure: "Open",
+            crust_development: t('styles.maillard_dominant'),
+            crumb_structure: t('styles.open'),
             ...def.scientificProfile?.thermalProfile
         },
         fermentationScience: {
-            yeast_activity: "Standard",
+            yeast_activity: t('styles.standard_23'),
             ph_target: "5.5",
-            organic_acids: "Balanced",
-            enzymatic_activity: "Moderate",
+            organic_acids: t('styles.balanced_14'),
+            enzymatic_activity: t('styles.moderate_11'),
             ...def.scientificProfile?.fermentationScience
         }
     };
@@ -93,10 +94,10 @@ function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
         description: def.description,
         history_context: def.history,
         base_formula: def.base_formula || [
-            { name: "Flour", percentage: 100 },
-            { name: "Water", percentage: (def.technicalProfile.hydration[0] + def.technicalProfile.hydration[1]) / 2 },
-            { name: "Salt", percentage: (def.technicalProfile.salt[0] + def.technicalProfile.salt[1]) / 2 },
-            { name: "Yeast", percentage: 0.5 }
+            { name: t('results.flour'), percentage: 100 },
+            { name: t('results.water'), percentage: (def.technicalProfile.hydration[0] + def.technicalProfile.hydration[1]) / 2 },
+            { name: t('results.salt'), percentage: (def.technicalProfile.salt[0] + def.technicalProfile.salt[1]) / 2 },
+            { name: t('results.yeast'), percentage: 0.5 }
         ],
         specs: {
             hydration: {
@@ -128,6 +129,7 @@ function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
 
 // 1. Scientific Process Timeline (Improved V2)
 const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }) => {
+  const { t } = useTranslation();
     return (
         <div className="relative space-y-8 pl-6 md:pl-0">
             {/* Main Connector Line */}
@@ -170,7 +172,7 @@ const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }
                                     <Lightbulb className="w-4 h-4" />
                                 </div>
                                 <div className={isLeft ? 'text-right flex-1' : 'flex-1'}>
-                                    <span className="text-[10px] font-bold uppercase text-slate-400 block mb-1">What's happening chemically?</span>
+                                    <span className="text-[10px] font-bold uppercase text-slate-400 block mb-1">{t('styles.whats_happening_chemically')}</span>
                                     <p className="text-xs text-slate-600 italic leading-relaxed">"{step.science}"</p>
                                 </div>
                             </div>
@@ -232,7 +234,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                         <div className="p-2 bg-lime-100 rounded-lg">
                             <CheckCircle2 className="w-5 h-5 text-lime-700" />
                         </div>
-                        <h3 className="text-lg font-bold text-lime-900">Pro Tips from the Masters</h3>
+                        <h3 className="text-lg font-bold text-lime-900">{t('general.pro_tips_from_the_masters')}</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
                         {education.pro_tips.map((tip: any, i: number) => (
@@ -252,7 +254,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                         <div className="p-2 bg-amber-50 rounded-lg">
                             <AlertTriangle className="w-5 h-5 text-amber-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-slate-800">What Happens If...?</h3>
+                        <h3 className="text-lg font-bold text-slate-800">{t('styles.what_happens_if')}</h3>
                     </div>
                     <div className="space-y-3">
                         {education.what_if.map((item: any, i: number) => (
@@ -263,11 +265,11 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                                 </span>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm pl-3.5">
                                     <div>
-                                        <span className="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Consequence</span>
+                                        <span className="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">{t('general.consequence')}</span>
                                         <p className="text-slate-600">{item.result}</p>
                                     </div>
                                     <div>
-                                        <span className="text-[10px] uppercase font-bold text-emerald-500 block mb-0.5">Correction</span>
+                                        <span className="text-[10px] uppercase font-bold text-emerald-500 block mb-0.5">{t('general.correction')}</span>
                                         <p className="text-slate-600 italic">"{item.correction}"</p>
                                     </div>
                                 </div>
@@ -285,7 +287,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                         <div className="p-2 bg-white/10 rounded-lg backdrop-blur-md">
                             <ArrowRightLeft className="w-5 h-5 text-indigo-300" />
                         </div>
-                        <h3 className="text-lg font-bold">Style Comparisons</h3>
+                        <h3 className="text-lg font-bold">{t('general.style_comparisons')}</h3>
                     </div>
                     <div className="grid grid-cols-1 gap-4 relative z-10">
                         {education.comparative_analysis.map((comp: any, i: number) => (
@@ -297,7 +299,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                                     {comp.difference}
                                 </p>
                                 <div>
-                                    <span className="text-[10px] uppercase font-bold text-emerald-400 block mb-1">Why Choose This?</span>
+                                    <span className="text-[10px] uppercase font-bold text-emerald-400 block mb-1">{t('styles.why_choose_this')}</span>
                                     <p className="text-xs text-emerald-100/80 italic">{comp.why_choose_this}</p>
                                 </div>
                             </div>
@@ -313,7 +315,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                         <div className="p-2 bg-sky-50 rounded-lg">
                             <Info className="w-5 h-5 text-sky-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-slate-800">Master Class Q&A</h3>
+                        <h3 className="text-lg font-bold text-slate-800">{t('styles.master_class_qa')}</h3>
                     </div>
                     <div className="space-y-6">
                         {education.q_and_a.map((qa: any, i: number) => (
@@ -340,7 +342,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                         <div className="p-2 bg-orange-100 rounded-lg">
                             <Wind className="w-5 h-5 text-orange-600" />
                         </div>
-                        <h3 className="text-lg font-bold text-slate-800">Fermentation Strategy</h3>
+                        <h3 className="text-lg font-bold text-slate-800">{t('general.fermentation_strategy_2')}</h3>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {education.fermentation_methods.map((method: any, i: number) => (
@@ -376,7 +378,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                 </div>
                 <div>
                     <h3 className="text-xl font-bold text-slate-800">🔍 Deep Dive & Troubleshooting</h3>
-                    <p className="text-sm text-slate-500">Expert analysis and logic breakdown</p>
+                    <p className="text-sm text-slate-500">{t('general.expert_analysis_and_logic_breakdown')}</p>
                 </div>
             </div>
 
@@ -386,7 +388,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                     <Droplets className="w-32 h-32 text-indigo-300" />
                 </div>
                 <div className="relative z-10">
-                    <h4 className="text-indigo-300 font-bold uppercase tracking-wider text-xs mb-2">The Hydration Logic</h4>
+                    <h4 className="text-indigo-300 font-bold uppercase tracking-wider text-xs mb-2">{t('general.the_hydration_logic')}</h4>
                     <p className="text-lg md:text-xl font-medium leading-relaxed font-serif italic opacity-90">
                         "{deepDive.hydrationLogic}"
                     </p>
@@ -396,13 +398,12 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
             {/* 2. Method Matrix */}
             <div>
                 <h4 className="font-bold text-slate-700 mb-4 flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-slate-400" /> Method Suitability Matrix
-                </h4>
+                    <Activity className="w-4 h-4 text-slate-400" />{t('common.method_suitability_matrix')}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {/* Direct */}
                     <div className={`p-4 rounded-xl border ${deepDive.methodSuitability?.direct?.suitable ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-100 opacity-60'}`}>
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-slate-800">Direct Method</span>
+                            <span className="font-bold text-slate-800">{t('general.direct_method_2')}</span>
                             {deepDive.methodSuitability?.direct?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">N/A</span>}
                         </div>
                         <p className="text-xs text-slate-600 leading-snug">{deepDive.methodSuitability?.direct?.notes}</p>
@@ -430,8 +431,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
             {deepDive.whatIf && deepDive.whatIf.length > 0 && (
                 <div className="bg-amber-50/50 rounded-2xl p-6 border border-amber-100">
                     <h4 className="font-bold text-amber-900 mb-4 flex items-center gap-2">
-                        <AlertTriangle className="w-5 h-5 text-amber-600" /> Troubleshooting Scenarios
-                    </h4>
+                        <AlertTriangle className="w-5 h-5 text-amber-600" />{t('common.troubleshooting_scenarios')}</h4>
                     <div className="space-y-4">
                         {deepDive.whatIf.map((item: any, i: number) => (
                             <div key={i} className="bg-white p-4 rounded-xl border border-amber-100 shadow-sm">
@@ -439,8 +439,8 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                                     <span className="text-amber-500 mt-0.5">❓</span> {item.scenario}
                                 </p>
                                 <div className="pl-6 border-l-2 border-amber-200 space-y-2">
-                                    <p className="text-sm text-slate-600"><span className="font-bold text-red-500 text-xs uppercase mr-2">Consequence:</span>{item.outcome}</p>
-                                    <p className="text-sm text-slate-600"><span className="font-bold text-green-600 text-xs uppercase mr-2">Solution:</span>{item.solution}</p>
+                                    <p className="text-sm text-slate-600"><span className="font-bold text-red-500 text-xs uppercase mr-2">{t('styles.consequence')}</span>{item.outcome}</p>
+                                    <p className="text-sm text-slate-600"><span className="font-bold text-green-600 text-xs uppercase mr-2">{t('styles.solution')}</span>{item.solution}</p>
                                 </div>
                             </div>
                         ))}
@@ -452,8 +452,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
             {deepDive.comparisons && deepDive.comparisons.length > 0 && (
                 <div className="bg-white rounded-2xl p-6 border border-slate-200">
                     <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                        <Scale className="w-5 h-5 text-slate-500" /> Comparative Analysis
-                    </h4>
+                        <Scale className="w-5 h-5 text-slate-500" />{t('common.comparative_analysis')}</h4>
                     <div className="grid grid-cols-1 gap-3">
                         {deepDive.comparisons.map((comp: any, i: number) => (
                             <div key={i} className="flex flex-col md:flex-row md:items-center gap-4 p-4 bg-slate-50 rounded-xl">
@@ -526,7 +525,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                 }
 
             } catch (error) {
-                console.error("Failed to upload image", error);
+                console.error(t('common.failed_to_upload_image'), error);
                 // Add toast error handling here if toast context available
             } finally {
                 setIsUploading(false);
@@ -588,7 +587,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                         onClick={() => onLoadAndNavigate(styleData)}
                         className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-lime-500/30 transition-all hover:scale-105 active:scale-95"
                     >
-                        <Calculator className="w-4 h-4" /> <span className="hidden sm:inline">Use Formula</span>
+                        <Calculator className="w-4 h-4" /> <span className="hidden sm:inline">{t('general.use_formula')}</span>
                     </button>
                 </div>
             </div>
@@ -674,7 +673,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     <div className="p-2 bg-amber-50 rounded-lg">
                                         <BookOpen className="w-5 h-5 text-amber-600" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-slate-800">Historical & Cultural Context</h3>
+                                    <h3 className="text-xl font-bold text-slate-800">{t('styles.historical__cultural_context')}</h3>
                                 </div>
 
                                 {(() => {
@@ -687,7 +686,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                                 </p>
                                                 {styleData.global_presence && (
                                                     <div className="mt-6">
-                                                        <h4 className="font-bold text-slate-900 text-sm uppercase mb-2">Global Presence</h4>
+                                                        <h4 className="font-bold text-slate-900 text-sm uppercase mb-2">{t('general.global_presence')}</h4>
                                                         <p className="text-sm text-slate-600">{styleData.global_presence}</p>
                                                     </div>
                                                 )}
@@ -702,7 +701,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                                     <ul className="space-y-3">
                                                         {styleData.regulatory_info && (
                                                             <li className="text-xs text-amber-900/80 leading-snug">
-                                                                <span className="font-bold block text-amber-700 mb-1">Regulation:</span>
+                                                                <span className="font-bold block text-amber-700 mb-1">{t('styles.regulation')}</span>
                                                                 {styleData.regulatory_info}
                                                             </li>
                                                         )}
@@ -728,8 +727,8 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     <Activity className="w-5 h-5 text-indigo-600" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-slate-800">The Scientific Process</h3>
-                                    <p className="text-sm text-slate-500">Step-by-step molecular breakdown</p>
+                                    <h3 className="text-xl font-bold text-slate-800">{t('general.the_scientific_process')}</h3>
+                                    <p className="text-sm text-slate-500">{t('styles.stepbystep_molecular_breakdown')}</p>
                                 </div>
                             </div>
 
@@ -746,7 +745,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                         <div className="mt-8 pt-8 border-t border-slate-100">
                             <div className="flex items-center gap-2 mb-4">
                                 <BookOpen className="w-4 h-4 text-slate-400" />
-                                <h4 className="text-sm font-bold text-slate-700 uppercase">References & Validation</h4>
+                                <h4 className="text-sm font-bold text-slate-700 uppercase">{t('styles.references__validation')}</h4>
                             </div>
 
                             <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
@@ -755,14 +754,14 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                         <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                                     </div>
                                     <div>
-                                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide block">Scientifically Validated</span>
-                                        <span className="text-[10px] text-emerald-600/80">Parameters verified against cereal chemistry standards.</span>
+                                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide block">{t('general.scientifically_validated')}</span>
+                                        <span className="text-[10px] text-emerald-600/80">{t('styles.parameters_verified_against_cereal_chemistry_stand')}</span>
                                     </div>
                                 </div>
 
                                 {styleData.references && styleData.references.length > 0 && (
                                     <div className="space-y-2 mt-4 pt-4 border-t border-slate-200/50">
-                                        <span className="text-[10px] uppercase font-bold text-slate-400 block mb-2">Primary Sources</span>
+                                        <span className="text-[10px] uppercase font-bold text-slate-400 block mb-2">{t('general.primary_sources')}</span>
                                         <ul className="space-y-1">
                                             {styleData.references.map((ref, i) => (
                                                 <li key={i} className="text-xs text-slate-500 hover:text-indigo-600 transition-colors flex items-start gap-2">
@@ -793,8 +792,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                             <div className="p-1 bg-gradient-to-r from-slate-800 to-slate-900"></div>
                             <div className="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                                 <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest flex items-center gap-2">
-                                    <Calculator className="w-4 h-4 text-lime-600" /> Tech Specs
-                                </h3>
+                                    <Calculator className="w-4 h-4 text-lime-600" />{t('common.tech_specs')}</h3>
                             </div>
 
                             <div className="p-6 space-y-8">
@@ -805,8 +803,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     <div>
                                         <div className="flex justify-between items-end mb-2">
                                             <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1">
-                                                <Droplets className="w-3 h-3 text-sky-500" /> Hydration Dynamics
-                                            </label>
+                                                <Droplets className="w-3 h-3 text-sky-500" />{t('common.hydration_dynamics')}</label>
                                             <span className="text-3xl font-black text-slate-900 leading-none tracking-tighter">{styleData.specs.hydration.ideal}<span className="text-sm text-slate-400 font-bold">%</span></span>
                                         </div>
                                         <HydrationBar
@@ -847,18 +844,17 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     {/* 2. Thermodynamics (Oven & Adaptation) */}
                                     <div>
                                         <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1 mb-3">
-                                            <Thermometer className="w-3 h-3 text-orange-500" /> Thermal Engineering
-                                        </label>
+                                            <Thermometer className="w-3 h-3 text-orange-500" />{t('common.thermal_engineering')}</label>
 
                                         <div className="grid grid-cols-5 gap-2 mb-3">
                                             <div className="col-span-2 bg-lime-600 rounded-lg p-2 text-center text-white">
-                                                <span className="text-[9px] uppercase font-bold text-lime-200 block mb-1">Target</span>
+                                                <span className="text-[9px] uppercase font-bold text-lime-200 block mb-1">{t('general.target')}</span>
                                                 <span className="text-xl font-bold">{styleData.specs.ovenTemp.ideal}°C</span>
                                             </div>
                                             <div className="col-span-3 bg-slate-50 rounded-lg p-2 border border-slate-100 flex flex-col justify-center">
-                                                <span className="text-[9px] uppercase font-bold text-slate-400 block mb-0.5">Heat Transfer</span>
+                                                <span className="text-[9px] uppercase font-bold text-slate-400 block mb-0.5">{t('general.heat_transfer')}</span>
                                                 <span className="text-xs font-bold text-slate-700">
-                                                    {styleData.specs.ovenTemp.ideal > 350 ? "Radiation Dominant" : "Conduction/Convection"}
+                                                    {styleData.specs.ovenTemp.ideal > 350 ? t('styles.radiation_dominant') : "Conduction/Convection"}
                                                 </span>
                                             </div>
                                         </div>
@@ -882,12 +878,11 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     {/* 3. Rheology & W-Index */}
                                     <div>
                                         <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1 mb-3">
-                                            <Activity className="w-3 h-3 text-emerald-500" /> Flour Mechanics
-                                        </label>
+                                            <Activity className="w-3 h-3 text-emerald-500" />{t('common.flour_mechanics')}</label>
 
                                         <div className="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100/50 mb-3">
                                             <div className="flex justify-between items-center mb-2">
-                                                <span className="text-[10px] font-bold text-emerald-800 uppercase">Recommended Strength</span>
+                                                <span className="text-[10px] font-bold text-emerald-800 uppercase">{t('general.recommended_strength')}</span>
                                                 <span className="text-xs font-bold text-emerald-600 bg-white px-2 py-0.5 rounded shadow-sm border border-emerald-100">
                                                     {styleData.scientificProfile.flourRheology.w_index || (styleData.specs.difficulty === 'Expert' ? 'W 350+' : 'W 260+')}
                                                 </span>
@@ -903,7 +898,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                                 <span className="text-xs font-bold text-slate-700">{styleData.scientificProfile.flourRheology.pl_ratio || "0.55"}</span>
                                             </div>
                                             <div className="flex-1 bg-slate-50 rounded p-2 text-center border border-slate-100">
-                                                <span className="block text-[9px] uppercase text-slate-400 font-bold">Protein</span>
+                                                <span className="block text-[9px] uppercase text-slate-400 font-bold">{t('general.protein')}</span>
                                                 <span className="text-xs font-bold text-slate-700">
                                                     {styleData.specs.difficulty === 'Expert' ? '13.5%+' : '12-13%'}
                                                 </span>
@@ -925,9 +920,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                                 <button
                                                     onClick={() => setViewFormula(styleData.base_formula || [])}
                                                     className={`px-2 py-1 text-[10px] font-bold rounded shadow-sm whitespace-nowrap transition-colors ${viewFormula === styleData.base_formula ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
-                                                >
-                                                    Base Formula
-                                                </button>
+                                                >{t('common.base_formula')}</button>
                                                 {styleData.variations.map((v: any, i: number) => (
                                                     <button
                                                         key={i}
@@ -944,7 +937,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             <table className="w-full text-[11px]">
                                                 <thead className="bg-slate-50 text-slate-400 font-bold uppercase">
                                                     <tr>
-                                                        <th className="px-3 py-1.5 text-left">Ingredient</th>
+                                                        <th className="px-3 py-1.5 text-left">{t('general.ingredient_3')}</th>
                                                         <th className="px-3 py-1.5 text-right">%</th>
                                                     </tr>
                                                 </thead>
@@ -970,9 +963,8 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     {/* Oven Profiler Link (New) */}
                                     <div className="mt-6 pt-6 border-t border-slate-100">
                                         <button className="w-full py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 hover:scale-[1.02] transition-transform">
-                                            <Flame className="w-4 h-4" /> Launch Oven Profiler
-                                        </button>
-                                        <p className="text-[10px] text-center text-slate-400 mt-2">Adjust baking metrics for your specific equipment.</p>
+                                            <Flame className="w-4 h-4" />{t('common.launch_oven_profiler')}</button>
+                                        <p className="text-[10px] text-center text-slate-400 mt-2">{t('styles.adjust_baking_metrics_for_your_specific_equipment')}</p>
                                     </div>
 
                                 </div>

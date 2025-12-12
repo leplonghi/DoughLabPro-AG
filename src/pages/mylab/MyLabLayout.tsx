@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from 'react';
 import { Page } from '@/types';
+import { useTranslation } from '@/i18n';
 import {
   BeakerIcon,
   BookOpenIcon,
@@ -20,6 +21,7 @@ interface MyLabLayoutProps {
 }
 
 const MyLabLayout: React.FC<MyLabLayoutProps> = ({ children }) => {
+  const { t } = useTranslation();
   return (
     <div className="min-h-[500px] bg-slate-50/50">
       {children}

@@ -1,5 +1,6 @@
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { loadStripe } from "@stripe/stripe-js";
+import { useTranslation } from '@/i18n';
 
 // Initialize Stripe with your Publishable Key
 // TODO: Replace with your actual Publishable Key or use an env variable
@@ -25,7 +26,7 @@ export const checkoutProSubscription = async (priceId: string) => {
         const stripe = await stripePromise;
 
         if (!stripe) {
-            throw new Error("Stripe failed to initialize.");
+            throw new Error(t('ui.stripe_failed_to_initialize'));
         }
 
         const { error } = await (stripe as any).redirectToCheckout({

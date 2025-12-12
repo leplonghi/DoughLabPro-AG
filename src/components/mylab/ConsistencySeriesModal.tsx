@@ -6,7 +6,7 @@ import { useTranslation } from '@/i18n';
 interface ConsistencySeriesModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: (series: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'> | TestSeries) => Promise<void>;
+    onSave: (series: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'> | TestSeries) =>{t('mylab.promise')}<void>;
     seriesToEdit: TestSeries | null;
 }
 
@@ -92,9 +92,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-1">
-                            Series Name
-                        </label>
+                        <label className="block text-sm font-bold text-gray-700 mb-1">{t('mylab.series_name')}</label>
                         <input
                             type="text"
                             required
@@ -106,23 +104,19 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                     </div>
 
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-1">
-                            Description
-                        </label>
+                        <label className="block text-sm font-bold text-gray-700 mb-1">{t('mylab.description')}</label>
                         <textarea
                             rows={2}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Goal of this experiment..."
+                            placeholder={t('mylab.goal_of_this_experiment')}
                             className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-1">
-                                Variable
-                            </label>
+                            <label className="block text-sm font-bold text-gray-700 mb-1">{t('mylab.variable_3')}</label>
                             <select
                                 value={variable}
                                 onChange={(e) => setVariable(e.target.value as TestSeriesVariable)}
@@ -134,9 +128,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-1 flex items-center gap-1">
-                                Steps
-                                <div className="group relative">
+                            <label className="block text-sm font-bold text-gray-700 mb-1 flex items-center gap-1">{t('mylab.steps_2')}<div className="group relative">
                                     <InfoIcon className="h-4 w-4 text-gray-400 cursor-help" />
                                     <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 group-hover:opacity-100 transition-opacity z-50">
                                         <div className="bg-slate-800 text-white text-xs rounded py-1 px-2 text-center shadow-lg">
@@ -163,7 +155,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             rows={3}
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
-                            placeholder="Specific instructions or observations..."
+                            placeholder={t('mylab.specific_instructions_or_observations')}
                             className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
                         />
                     </div>
@@ -173,9 +165,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             type="button"
                             onClick={onClose}
                             className="rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-bold text-gray-600 shadow-sm hover:bg-gray-50 transition-all"
-                        >
-                            Cancel
-                        </button>
+                        >{t('mylab.cancel')}</button>
                         <button
                             type="submit"
                             disabled={loading}

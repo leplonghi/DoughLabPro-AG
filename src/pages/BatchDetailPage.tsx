@@ -87,8 +87,8 @@ const IngredientTable: React.FC<{ result: DoughResult, doughConfig: DoughConfig 
         <table className="w-full text-sm">
             <thead>
                 <tr className="border-b-2 border-slate-300 ">
-                    <th className="text-left py-2 text-slate-900 ">Ingredient</th>
-                    <th className="text-right py-2 text-slate-900 ">Quantity</th>
+                    <th className="text-left py-2 text-slate-900 ">{t('general.ingredient_2')}</th>
+                    <th className="text-right py-2 text-slate-900 ">{t('general.quantity')}</th>
                     <th className="text-right py-2"></th>
                 </tr>
             </thead>
@@ -213,7 +213,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
             isPublic: false,
         };
         const added = await addBatch(newBatchData);
-        addToast(`Batch "${editableBatch.name}" duplicated.`, 'success');
+        addToast(`${t('ui.batch_')}${editableBatch.name}" duplicated.`, 'success');
         onNavigate('batch', added.id);
     };
 
@@ -295,9 +295,9 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             <KeyStatCard label={t('batch_detail.hydration')} value={`${doughConfig.hydration}%`} icon={<InfoIcon className="h-6 w-6" />} />
                             <KeyStatCard label={t('form.flour_type')} value={flour?.name || 'N/A'} icon={<InfoIcon className="h-6 w-6" />} />
                             <KeyStatCard label={t('batch_detail.yeast')} value={t(`form.yeast_${doughConfig.yeastType.toLowerCase()}`)} icon={<YeastIcon className="h-6 w-6" />} />
-                            <KeyStatCard label="Total Time" value={`${(editableBatch.bulkTimeHours || 0) + (editableBatch.proofTimeHours || 0)}h`} icon={<ClockIcon className="h-6 w-6" />} />
-                            <KeyStatCard label="Avg Temp" value={t(`form.temp_${doughConfig.ambientTemperature.toLowerCase()}`)} icon={<InfoIcon className="h-6 w-6" />} />
-                            <KeyStatCard label="Oven" value={editableBatch.ovenType ? t(`profile.ovens.types.${editableBatch.ovenType.toLowerCase()}`) : 'N/A'} icon={<FireIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('general.total_time')} value={`${(editableBatch.bulkTimeHours || 0) + (editableBatch.proofTimeHours || 0)}h`} icon={<ClockIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('general.avg_temp')} value={t(`form.temp_${doughConfig.ambientTemperature.toLowerCase()}`)} icon={<InfoIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('general.oven_2')} value={editableBatch.ovenType ? t(`profile.ovens.types.${editableBatch.ovenType.toLowerCase()}`) : 'N/A'} icon={<FireIcon className="h-6 w-6" />} />
                         </dl>
                     </div>
 
@@ -403,7 +403,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                 doughConfig.ovenType?.toLowerCase() || '',
                                 'baking'
                             ].filter(Boolean)}
-                            title="Tools for this Recipe"
+                            title={t('general.tools_for_this_recipe')}
                         />
                     </div>
                     <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
@@ -462,9 +462,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                     onClick={handleShareClick}
                                     className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 py-3 font-bold text-white shadow-lg shadow-lime-500/20 hover:from-lime-600 hover:to-lime-700 transition-all"
                                 >
-                                    <FeedIcon className="h-5 w-5" />
-                                    Share in Community
-                                </button>
+                                    <FeedIcon className="h-5 w-5" />{t('common.share_in_community')}</button>
                             </LockedTeaser>
 
                             <SocialShare

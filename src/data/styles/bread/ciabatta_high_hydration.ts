@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const ciabatta_high_hydration: StyleDefinition = {
   "id": "ciabatta_high_hydration",
   "title": "Ciabatta (High Hydration Poolish)",
-  "subtitle": "Italian Rustic & High Hydration",
-  "category": "Bread",
-  "family": "Italian Rustic & High Hydration",
+  "subtitle": t('styles.italian_rustic__high_hydration'),
+  "category": t('styles.bread_5'),
+  "family": t('styles.italian_rustic__high_hydration_2'),
   "variantName": "Ciabatta (High Hydration Poolish)",
   "origin": {
-    "country": "Italy",
-    "region": "Northern Italy",
-    "period": "Late 20th century"
+    "country": t('styles.italy_2'),
+    "region": t('styles.northern_italy'),
+    "period": t('styles.late_20th_century')
   },
   "intro": "Used for sandwiches, bruschetta and table bread, valued for its airy internal structure.",
   "history": "Ciabatta was developed in Italy as an alternative to French baguette, featuring an open crumb and thin crust.",
@@ -37,11 +38,11 @@ export const ciabatta_high_hydration: StyleDefinition = {
       0,
       1
     ],
-    "flourStrength": "Strong bread flour, W ~260–300",
+    "flourStrength": t('styles.strong_bread_flour_w_260300'),
     "fermentation": {
       "bulk": "2–3 h at 23–25°C with multiple folds",
       "proof": "30–60 min after dividing and shaping",
-      "coldRetard": "Optional 8–12 h for flavor"
+      "coldRetard": t('styles.optional_812_h_for_flavor')
     },
     "oven": {
       "type": "deck",
@@ -49,13 +50,13 @@ export const ciabatta_high_hydration: StyleDefinition = {
         230,
         250
       ],
-      "notes": "Bake with good steam; handle gently to preserve gas structure."
+      "notes": t('styles.bake_with_good_steam_handle_gently_to_preserve_gas')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_3'),
     "recommendedUse": [
-      "Sandwich bread",
-      "Bruschetta",
-      "Rustic table bread"
+      t('common.sandwich_bread'),
+      t('common.bruschetta'),
+      t('common.rustic_table_bread')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const ciabatta_high_hydration: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Sandwich bread",
-    "Bruschetta",
-    "Rustic table bread",
-    "Bread",
-    "Italy"
+    t('common.sandwich_bread'),
+    t('common.bruschetta'),
+    t('common.rustic_table_bread'),
+    t('common.bread'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const ciabatta_high_hydration: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Bread – Jeffrey Hamelman",
+      "title": t('styles.bread__jeffrey_hamelman_2'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_4'),
       "url": ""
     }
   ],

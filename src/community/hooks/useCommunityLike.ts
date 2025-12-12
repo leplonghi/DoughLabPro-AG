@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { communityStore } from '../store/communityStore';
+import { useTranslation } from '@/i18n';
 
 export const useCommunityLike = (postId: string, uid?: string) => {
     const [isLiked, setIsLiked] = useState(false);

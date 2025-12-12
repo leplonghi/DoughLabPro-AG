@@ -1,5 +1,6 @@
 
 import { User } from './types';
+import { useTranslation } from '@/i18n';
 
 export type PlanId = 'free' | 'calculator_unlock' | 'lab_pro';
 

@@ -15,6 +15,7 @@ import {
 import { User as FirebaseUser } from '@firebase/auth';
 import { Batch, BatchStatus } from '@/types';
 import { DEFAULT_CONFIG } from '@/constants';
+import { useTranslation } from '@/i18n';
 
 const shouldUseFirestore = (user: any, db: any) => {
   return !!user && !!db && user.uid !== 'guest-123';
@@ -121,7 +122,7 @@ export function useBatchManager(
         setBatches(prev => prev.filter(b => b.id !== id));
       }
 
-      if (batchToDelete) addToast(`Bake "${batchToDelete.name}" deleted.`, 'info');
+      if (batchToDelete) addToast(`${t('ui.bake__2')}${batchToDelete.name}" deleted.`, 'info');
     },
     [firebaseUser, db, batches, addToast]
   );

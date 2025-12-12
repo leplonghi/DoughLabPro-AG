@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const baguette_tradition_francaise: StyleDefinition = {
   "id": "baguette_tradition_francaise",
-  "title": "Baguette Tradition Française",
-  "subtitle": "French Lean Breads",
-  "category": "Bread",
-  "family": "French Lean Breads",
-  "variantName": "Baguette Tradition Française",
+  "title": t('styles.baguette_tradition_française'),
+  "subtitle": t('styles.french_lean_breads'),
+  "category": t('styles.bread_3'),
+  "family": t('styles.french_lean_breads_2'),
+  "variantName": t('styles.baguette_tradition_française_2'),
   "origin": {
-    "country": "France",
-    "region": "Nationwide",
+    "country": t('styles.france'),
+    "region": t('styles.nationwide'),
     "period": "20th century"
   },
   "intro": "Consumed daily as a staple bread in France, often bought fresh from artisan boulangeries.",
@@ -41,7 +42,7 @@ export const baguette_tradition_francaise: StyleDefinition = {
     "fermentation": {
       "bulk": "2–4 h at 23–25°C with folds, or partially retarded",
       "proof": "45–75 min at 23–25°C",
-      "coldRetard": "Optional overnight retard for flavor"
+      "coldRetard": t('styles.optional_overnight_retard_for_flavor')
     },
     "oven": {
       "type": "deck",
@@ -49,13 +50,13 @@ export const baguette_tradition_francaise: StyleDefinition = {
         230,
         250
       ],
-      "notes": "Requires strong steam at the beginning of the bake."
+      "notes": t('styles.requires_strong_steam_at_the_beginning_of_the_bake')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_4'),
     "recommendedUse": [
-      "Daily table bread",
-      "Sandwiches",
-      "Toast"
+      t('common.daily_table_bread'),
+      t('common.sandwiches'),
+      t('common.toast')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const baguette_tradition_francaise: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Daily table bread",
-    "Sandwiches",
-    "Toast",
-    "Bread",
-    "France"
+    t('common.daily_table_bread'),
+    t('common.sandwiches'),
+    t('common.toast'),
+    t('common.bread'),
+    t('common.france')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const baguette_tradition_francaise: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Bread – Jeffrey Hamelman",
+      "title": t('styles.bread__jeffrey_hamelman'),
       "url": ""
     },
     {
-      "title": "The Taste of Bread – Raymond Calvel",
+      "title": t('styles.the_taste_of_bread__raymond_calvel'),
       "url": ""
     }
   ],

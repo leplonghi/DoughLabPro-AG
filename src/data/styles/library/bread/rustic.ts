@@ -1,12 +1,13 @@
 import { defineDoughStyle } from '../../builder';
+import { useTranslation } from '@/i18n';
 
 export const BaguetteTradition = defineDoughStyle({
-    name: "Baguette de Tradition",
+    name: t('styles.baguette_de_tradition'),
     category: "bread",
     description: "The iconic symbol of French baking. 'Tradition' status is strictly protected by the 1993 Décret Pain (Balladur Decree), allowing only flour, water, salt, and yeast/starter. Characterized by a crisp, golden crust and a cream-colored, open crumb.",
     origin: {
-        country: "France",
-        region: "National",
+        country: t('styles.france_5'),
+        region: t('styles.national_2'),
         period: "1993 (Decree)"
     },
     isCanonical: true,
@@ -19,7 +20,7 @@ export const BaguetteTradition = defineDoughStyle({
         },
         ovenTemp: [240, 260],
         ovenRecommendations: "Deck Oven (Steam Essential)",
-        difficulty: "Hard"
+        difficulty: t('styles.hard_15')
     },
     notes: [
         "Steam injection is critical for the crust and expansion (grigne).",
@@ -28,17 +29,17 @@ export const BaguetteTradition = defineDoughStyle({
     ],
     tags: ["bread", "french", "lean", "classic", "steam"],
     references: [
-        { source: "Décret n°93-1074", url: "https://www.legifrance.gouv.fr/" },
+        { source: t('styles.décret_n931074'), url: "https://www.legifrance.gouv.fr/" },
         { source: "The Taste of Bread (Calvel)", url: "" }
     ]
 });
 
 export const Ciabatta = defineDoughStyle({
-    name: "Ciabatta",
+    name: t('styles.ciabatta'),
     category: "bread",
     description: "Meaning 'slipper' in Italian, this high-hydration bread was invented in 1982 by Arnaldo Cavallari to combat the popularity of the French baguette. Known for its very open, irregular large holes and a floury, crisp crust.",
     origin: {
-        country: "Italy",
+        country: t('styles.italy_6'),
         region: "Veneto / Adria",
         period: "1982"
     },
@@ -52,8 +53,8 @@ export const Ciabatta = defineDoughStyle({
             proof: "45-60 min @ 24°C"
         },
         ovenTemp: [230, 250],
-        ovenRecommendations: "Deck or Home Oven",
-        difficulty: "Expert" // Handling 80% hydration is hard
+        ovenRecommendations: t('styles.deck_or_home_oven'),
+        difficulty: t('styles.expert_13') // Handling 80% hydration is hard
     },
     notes: [
         "Typically uses a Biga (stiff pre-ferment) for strength and flavor.",
@@ -62,18 +63,18 @@ export const Ciabatta = defineDoughStyle({
     ],
     tags: ["bread", "italian", "high-hydration", "biga"],
     references: [
-        { source: "Arnaldo Cavallari - Molini Adriesi", url: "https://en.wikipedia.org/wiki/Ciabatta" }
+        { source: t('styles.arnaldo_cavallari__molini_adriesi'), url: "https://en.wikipedia.org/wiki/Ciabatta" }
     ]
 });
 
 export const PainDeCampagne = defineDoughStyle({
-    name: "Pain de Campagne",
+    name: t('styles.pain_de_campagne'),
     category: "bread",
     description: "French 'Country Bread'. A large, rustic loaf typically incorporating a portion of Whole Wheat (10-20%) or Rye flour for depth, often leavened with a combination of sourdough (levain) and commercial yeast.",
     origin: {
-        country: "France",
-        region: "Rural",
-        period: "Traditional"
+        country: t('styles.france_6'),
+        region: t('styles.rural'),
+        period: t('styles.traditional_13')
     },
     technicalProfile: {
         hydration: [68, 72],
@@ -83,8 +84,8 @@ export const PainDeCampagne = defineDoughStyle({
             proof: "12-16h @ 4°C (Retard)"
         },
         ovenTemp: [230, 250],
-        ovenRecommendations: "Dutch Oven or Deck",
-        difficulty: "Medium"
+        ovenRecommendations: t('styles.dutch_oven_or_deck'),
+        difficulty: t('styles.medium_16')
     },
     notes: [
         "Adding 5-10% Rye flour improves enzymatic activity and shelf life.",
@@ -94,12 +95,12 @@ export const PainDeCampagne = defineDoughStyle({
 });
 
 export const SanFranciscoSourdough = defineDoughStyle({
-    name: "San Francisco Sourdough",
+    name: t('styles.san_francisco_sourdough'),
     category: "bread",
     description: "Famous for its distinctively sour tang, attributed to the local Lactobacillus sanfranciscensis bacteria (though found worldwide). High acidity, thick blistered crust, and chewy crumb.",
     origin: {
-        country: "USA",
-        region: "San Francisco",
+        country: t('styles.usa_2'),
+        region: t('styles.san_francisco_2'),
         period: "Gold Rush Era (1849)"
     },
     technicalProfile: {
@@ -110,8 +111,8 @@ export const SanFranciscoSourdough = defineDoughStyle({
             proof: "12-24h @ 4°C (Crucial for sourness)"
         },
         ovenTemp: [230, 260],
-        ovenRecommendations: "Dutch Oven",
-        difficulty: "Hard"
+        ovenRecommendations: t('styles.dutch_oven'),
+        difficulty: t('styles.hard_16')
     },
     notes: [
         "To increase sourness, use a stiff starter and longer cold proof.",
@@ -120,6 +121,6 @@ export const SanFranciscoSourdough = defineDoughStyle({
     ],
     tags: ["bread", "sourdough", "american", "iconic"],
     references: [
-        { source: "Boudin Bakery History", url: "https://boudinbakery.com/" }
+        { source: t('styles.boudin_bakery_history'), url: "https://boudinbakery.com/" }
     ]
 });

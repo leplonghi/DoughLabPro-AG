@@ -1,6 +1,7 @@
 import React from 'react';
 import { FireIcon, BeakerIcon, ClockIcon, InfoIcon } from '@/components/ui/Icons';
 import { OvenAnalysisResult } from '@/logic/ovenProfile';
+import { useTranslation } from '@/i18n';
 
 interface OvenProfilerAdviceGridProps {
     analysis: OvenAnalysisResult;
@@ -27,6 +28,7 @@ const Tooltip: React.FC<{ label: string; content: string }> = ({ label, content 
 );
 
 export const OvenProfilerAdviceGrid: React.FC<OvenProfilerAdviceGridProps> = ({ analysis }) => {
+  const { t } = useTranslation();
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1: Preheat */}
@@ -45,10 +47,8 @@ export const OvenProfilerAdviceGrid: React.FC<OvenProfilerAdviceGridProps> = ({ 
             {/* Card 2: Strategy */}
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm h-full flex flex-col">
                 <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                    <FireIcon className="h-5 w-5 text-red-500" />
-                    Baking Strategy
-                    <Tooltip
-                        label="Low Power Strategy"
+                    <FireIcon className="h-5 w-5 text-red-500" />{t('common.baking_strategy')}<Tooltip
+                        label={t('tools.low_power_strategy')}
                         content="Thermodynamics: Lower temps mean slower heat transfer. The dough dries out before it browns. Strategies like adding oil/sugar or using the broiler mimic high-heat results chemically."
                     />
                 </h4>
@@ -62,10 +62,8 @@ export const OvenProfilerAdviceGrid: React.FC<OvenProfilerAdviceGridProps> = ({ 
             {/* Card 3: Dough */}
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm h-full flex flex-col">
                 <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                    <BeakerIcon className="h-5 w-5 text-blue-500" />
-                    Dough Adjustments
-                    <Tooltip
-                        label="High Hydration Risks"
+                    <BeakerIcon className="h-5 w-5 text-blue-500" />{t('common.dough_adjustments')}<Tooltip
+                        label={t('tools.high_hydration_risks')}
                         content="In weak ovens, high hydration dough releases steam too slowly, creating a 'boiled' or gummy texture instead of a crispy rise. Lowering hydration helps the structure set faster."
                     />
                 </h4>

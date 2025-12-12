@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const sicilian_grandma_pan: StyleDefinition = {
   "id": "sicilian_grandma_pan",
   "title": "Sicilian / Grandma Pan Pizza",
-  "subtitle": "American Pan Pizza",
-  "category": "Pizza",
-  "family": "American Pan Pizza",
+  "subtitle": t('styles.american_pan_pizza_3'),
+  "category": t('styles.pizza_13'),
+  "family": t('styles.american_pan_pizza_4'),
   "variantName": "Sicilian / Grandma Pan Pizza",
   "origin": {
-    "country": "United States",
-    "region": "Italian-American communities",
+    "country": t('styles.united_states_11'),
+    "region": t('styles.italianamerican_communities'),
     "period": "20th century"
   },
   "intro": "Popular in Italian-American bakeries and pizzerias for family-style trays and by-the-slice service.",
@@ -37,11 +38,11 @@ export const sicilian_grandma_pan: StyleDefinition = {
       1,
       3
     ],
-    "flourStrength": "Bread flour or strong all-purpose",
+    "flourStrength": t('styles.bread_flour_or_strong_allpurpose'),
     "fermentation": {
       "bulk": "2–6 h at room temperature or partial cold ferment",
       "proof": "30–90 min in pan before baking",
-      "coldRetard": "Optional 12–24 h"
+      "coldRetard": t('styles.optional_1224_h')
     },
     "oven": {
       "type": "electric_home",
@@ -49,9 +50,9 @@ export const sicilian_grandma_pan: StyleDefinition = {
         220,
         260
       ],
-      "notes": "Baked in oiled rectangular pans; thickness depends on variant."
+      "notes": t('styles.baked_in_oiled_rectangular_pans_thickness_depends_')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_24'),
     "recommendedUse": [
       "Tray-baked pizza",
       "Family-style pan pies"
@@ -66,8 +67,8 @@ export const sicilian_grandma_pan: StyleDefinition = {
   "tags": [
     "Tray-baked pizza",
     "Family-style pan pies",
-    "Pizza",
-    "United States"
+    t('common.pizza'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const sicilian_grandma_pan: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_11'),
       "url": ""
     },
     {
-      "title": "American pizza baking practice",
+      "title": t('styles.american_pizza_baking_practice'),
       "url": ""
     }
   ],

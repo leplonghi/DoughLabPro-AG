@@ -22,6 +22,7 @@ const ChoiceButton: React.FC<{
 );
 
 const SettingsPage: React.FC = () => {
+  const { t } = useTranslation();
   const { t, locale, setLocale } = useTranslation();
   const {
     defaultAmbientTempC,
@@ -41,7 +42,7 @@ const SettingsPage: React.FC = () => {
       </button>
 
       <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-10">
-        <h1 className="text-2xl font-bold text-slate-900 mb-6">General Settings</h1>
+        <h1 className="text-2xl font-bold text-slate-900 mb-6">{t('general.general_settings')}</h1>
 
         <div className="space-y-8">
           {/* Unit System */}
@@ -75,9 +76,7 @@ const SettingsPage: React.FC = () => {
               <ChoiceButton
                 active={locale === 'en'}
                 onClick={() => setLocale('en')}
-              >
-                English
-              </ChoiceButton>
+              >{t('common.english')}</ChoiceButton>
               <ChoiceButton
                 active={locale === 'pt'}
                 onClick={() => setLocale('pt')}
@@ -95,7 +94,7 @@ const SettingsPage: React.FC = () => {
 
           {/* Environment Defaults */}
           <div className="border-t border-slate-200 pt-6">
-            <h2 className="text-lg font-semibold text-slate-800 mb-4">Environment Defaults</h2>
+            <h2 className="text-lg font-semibold text-slate-800 mb-4">{t('general.environment_defaults')}</h2>
             <div className="space-y-6">
 
               {/* Default Ambient Temperature */}
@@ -118,9 +117,7 @@ const SettingsPage: React.FC = () => {
 
               {/* Default Oven Type */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Default Oven Type
-                </label>
+                <label className="mb-2 block text-sm font-medium text-slate-700">{t('common.default_oven_type')}</label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {Object.values(OvenType).map((type) => (
                     <ChoiceButton

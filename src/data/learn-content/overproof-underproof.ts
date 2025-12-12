@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const overproofUnderproofData: LearnArticleData = {
     id: "overproof-underproof",
-    title: "Overproof vs Underproof",
-    subtitle: "Recognizing fermentation extremes and how they affect dough handling and baking.",
-    category: "Fermentation Science",
-    difficulty: "Intermediate",
+    title: t('learn.overproof_vs_underproof'),
+    subtitle: t('learn.recognizing_fermentation_extremes_and_how_they_aff'),
+    category: t('learn.fermentation_science_8'),
+    difficulty: t('learn.intermediate_21'),
     tags: ["proofing", "fermentation", "troubleshooting", "oven-spring"],
 
     intro: "Proofing is the final fermentation stage before baking. Identifying whether dough is underproofed or overproofed is essential for texture, oven spring and crumb quality.",
@@ -63,11 +64,11 @@ export const overproofUnderproofData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Underproofed Dough",
+            variant: t('learn.underproofed_dough_2'),
             implications: "Low gas buildup; structure too tight. Elastic, dense. Hard to stretch, tears easily. Low rise, compact crumb."
         },
         {
-            variant: "Overproofed Dough",
+            variant: t('learn.overproofed_dough_2'),
             implications: "Excess gas and weakened gluten. Soft, fragile. Loses shape quickly. Collapse and pale crust."
         }
     ],
@@ -83,8 +84,8 @@ export const overproofUnderproofData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, underproofed dough is like waking up too early, and overproofed dough is like staying up too long.",
-        whatItDoes: "Proofing gives the dough the perfect level of puffiness.",
-        howToUse: "If it hasn’t risen enough, it’s tight. If it rises too much, it gets floppy.",
-        dangerSigns: "Too soon or too late and the dough just won’t behave."
+        whatItDoes: t('learn.proofing_gives_the_dough_the_perfect_level_of_puff'),
+        howToUse: t('learn.if_it_hasnt_risen_enough_its_tight_if_it_rises_too'),
+        dangerSigns: t('learn.too_soon_or_too_late_and_the_dough_just_wont_behav')
     }
 };

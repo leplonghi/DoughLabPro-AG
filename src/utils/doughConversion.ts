@@ -1,5 +1,6 @@
 import { DoughStyleDefinition } from '@/types/styles';
 import { DoughConfig, FermentationTechnique, YeastType, BakeType, IngredientConfig, RecipeStyle } from '@/types';
+import { useTranslation } from '@/i18n';
 
 export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Partial<DoughConfig> {
     // Determine BakeType based on category

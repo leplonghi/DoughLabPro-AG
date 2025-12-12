@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const mixed_grain_sourdough: StyleDefinition = {
   "id": "mixed_grain_sourdough",
   "title": "Mixed Grain Sourdough (30–60% Wholegrain)",
-  "subtitle": "Levain & Country Sourdough",
-  "category": "Bread",
-  "family": "Levain & Country Sourdough",
+  "subtitle": t('styles.levain__country_sourdough_3'),
+  "category": t('styles.bread_13'),
+  "family": t('styles.levain__country_sourdough_4'),
   "variantName": "Mixed Grain Sourdough (30–60% Wholegrain)",
   "origin": {
-    "country": "Global",
-    "region": "Artisan baking",
-    "period": "Modern"
+    "country": t('styles.global_2'),
+    "region": t('styles.artisan_baking'),
+    "period": t('styles.modern')
   },
   "intro": "Common in artisan bakeries and health-conscious baking, adapted with local grain blends.",
   "history": "Mixed grain sourdough loaves incorporate significant wholegrain content for flavor, nutrition and complexity.",
@@ -41,7 +42,7 @@ export const mixed_grain_sourdough: StyleDefinition = {
     "fermentation": {
       "bulk": "3–4 h at 24–26°C with folds",
       "proof": "1–3 h or retarded overnight",
-      "coldRetard": "Very common 8–16 h for flavor"
+      "coldRetard": t('styles.very_common_816_h_for_flavor')
     },
     "oven": {
       "type": "deck",
@@ -49,13 +50,13 @@ export const mixed_grain_sourdough: StyleDefinition = {
         230,
         250
       ],
-      "notes": "Requires good steaming; scoring adapted to dough strength."
+      "notes": t('styles.requires_good_steaming_scoring_adapted_to_dough_st')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_7'),
     "recommendedUse": [
-      "Nutritious sourdough loaves",
-      "Sandwiches",
-      "Toast"
+      t('common.nutritious_sourdough_loaves'),
+      t('common.sandwiches'),
+      t('common.toast')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const mixed_grain_sourdough: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Nutritious sourdough loaves",
-    "Sandwiches",
-    "Toast",
-    "Bread",
-    "Global"
+    t('common.nutritious_sourdough_loaves'),
+    t('common.sandwiches'),
+    t('common.toast'),
+    t('common.bread'),
+    t('common.global')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const mixed_grain_sourdough: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_12'),
       "url": ""
     },
     {
-      "title": "The Sourdough School – Vanessa Kimbell",
+      "title": t('styles.the_sourdough_school__vanessa_kimbell'),
       "url": ""
     }
   ],

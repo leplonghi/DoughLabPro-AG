@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { communityStore } from '../store/communityStore';
+import { useTranslation } from '@/i18n';
 
 export const useCommunityFollow = (followerUid?: string, targetUid?: string) => {
     const [isFollowing, setIsFollowing] = useState(false);

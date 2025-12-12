@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const neapolitan_avpn_classic: StyleDefinition = {
   "id": "neapolitan_avpn_classic",
-  "title": "Neapolitan AVPN Classic",
-  "subtitle": "Neapolitan Pizza",
-  "category": "Pizza",
-  "family": "Neapolitan Pizza",
-  "variantName": "Neapolitan AVPN Classic",
+  "title": t('styles.neapolitan_avpn_classic'),
+  "subtitle": t('styles.neapolitan_pizza'),
+  "category": t('styles.pizza_5'),
+  "family": t('styles.neapolitan_pizza_2'),
+  "variantName": t('styles.neapolitan_avpn_classic_2'),
   "origin": {
-    "country": "Italy",
-    "region": "Naples",
+    "country": t('styles.italy_9'),
+    "region": t('styles.naples'),
     "period": "18th–19th century (Codified 1984)"
   },
   "intro": "A UNESCO Intangible Cultural Heritage item. It is not just food but a social ritual in Naples. Traditionally eaten with a knife and fork or folded 'a libretto' (like a booklet) as street food. It is soft, wet, and digestible, never crispy.",
@@ -41,7 +42,7 @@ export const neapolitan_avpn_classic: StyleDefinition = {
     "fermentation": {
       "bulk": "2h bulk at room temp, then balling",
       "proof": "6–24h total maturation at room temp (18–25°C)",
-      "coldRetard": "Traditionally not used; modern AVPN rules allow it"
+      "coldRetard": t('styles.traditionally_not_used_modern_avpn_rules_allow_it')
     },
     "oven": {
       "type": "wood_fired",
@@ -49,12 +50,12 @@ export const neapolitan_avpn_classic: StyleDefinition = {
         430,
         485
       ],
-      "notes": "Dome temp ~485°C, Floor ~430°C. Cook time strictly 60–90 seconds."
+      "notes": t('styles.dome_temp_485c_floor_430c_cook_time_strictly_6090_')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_35'),
     "recommendedUse": [
-      "Authentic Neapolitan Margherita",
-      "Marinara"
+      t('common.authentic_neapolitan_margherita'),
+      t('common.marinara')
     ]
   },
   "defaults": {
@@ -70,10 +71,10 @@ export const neapolitan_avpn_classic: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Authentic Neapolitan Margherita",
-    "Marinara",
-    "Pizza",
-    "Italy"
+    t('common.authentic_neapolitan_margherita'),
+    t('common.marinara'),
+    t('common.pizza'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -84,15 +85,15 @@ export const neapolitan_avpn_classic: StyleDefinition = {
   },
   "references": [
     {
-      "title": "AVPN International Regulations",
+      "title": t('styles.avpn_international_regulations'),
       "url": ""
     },
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_4'),
       "url": ""
     },
     {
-      "title": "UNESCO Intangible Cultural Heritage",
+      "title": t('styles.unesco_intangible_cultural_heritage'),
       "url": ""
     }
   ],

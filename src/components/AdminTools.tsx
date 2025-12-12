@@ -10,8 +10,10 @@ import { doc, updateDoc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { useUser } from '@/contexts/UserProvider';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTranslation } from '@/i18n';
 
 export const AdminTools: React.FC = () => {
+  const { t } = useTranslation();
     const { user } = useUser();
     const { firebaseUser } = useAuth();
     const [loading, setLoading] = useState(false);

@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const california_style: StyleDefinition = {
   "id": "california_style",
-  "title": "California Style",
-  "subtitle": "American Artisan Pizza",
-  "category": "Pizza",
-  "family": "American Artisan Pizza",
-  "variantName": "California Style",
+  "title": t('styles.california_style'),
+  "subtitle": t('styles.american_artisan_pizza'),
+  "category": t('styles.pizza_2'),
+  "family": t('styles.american_artisan_pizza_2'),
+  "variantName": t('styles.california_style_2'),
   "origin": {
-    "country": "United States",
-    "region": "California",
+    "country": t('styles.united_states_5'),
+    "region": t('styles.california'),
     "period": "1980s"
   },
   "intro": "Associated with 'California Cuisine', fresh local ingredients, and wood-fired cooking.",
@@ -37,11 +38,11 @@ export const california_style: StyleDefinition = {
       1,
       3
     ],
-    "flourStrength": "All-purpose or bread flour",
+    "flourStrength": t('styles.allpurpose_or_bread_flour_3'),
     "fermentation": {
       "bulk": "12–24 h cold retard",
       "proof": "1–2 h at room temperature",
-      "coldRetard": "Common for flavor"
+      "coldRetard": t('styles.common_for_flavor')
     },
     "oven": {
       "type": "wood_fired",
@@ -49,12 +50,12 @@ export const california_style: StyleDefinition = {
         300,
         400
       ],
-      "notes": "Wood-fired for speed and flavor, but lower temp than Neapolitan."
+      "notes": t('styles.woodfired_for_speed_and_flavor_but_lower_temp_than')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_33'),
     "recommendedUse": [
-      "Gourmet personal pizzas",
-      "Creative toppings"
+      t('common.gourmet_personal_pizzas'),
+      t('common.creative_toppings')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const california_style: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Gourmet personal pizzas",
-    "Creative toppings",
-    "Pizza",
-    "United States"
+    t('common.gourmet_personal_pizzas'),
+    t('common.creative_toppings'),
+    t('common.pizza'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const california_style: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza'),
       "url": ""
     },
     {
-      "title": "California cuisine history",
+      "title": t('styles.california_cuisine_history'),
       "url": ""
     }
   ],

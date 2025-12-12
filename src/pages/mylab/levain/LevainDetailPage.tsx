@@ -15,6 +15,7 @@ import { calculateLevainStats, getEmotionColor } from '@/logic/levainPetUtils';
 import LevainAvatar from '@/components/LevainAvatar';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { SocialShare } from '@/marketing/social/SocialShare';
+import { useTranslation } from '@/i18n';
 
 interface LevainDetailPageProps {
     levainId: string | null;
@@ -22,6 +23,7 @@ interface LevainDetailPageProps {
 }
 
 const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigate }) => {
+  const { t } = useTranslation();
     const { levains, openPaywall, user } = useUser();
     const [activeTab, setActiveTab] = useState<'summary' | 'feedings' | 'profile' | 'insights'>('summary');
     const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
@@ -51,8 +53,8 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
         return (
             <MyLabLayout activePage="mylab/levain" onNavigate={onNavigate}>
                 <div className="p-8 text-center">
-                    <h2 className="text-xl font-bold text-slate-900 ">Levain not found</h2>
-                    <button onClick={() => onNavigate('mylab/levain')} className="mt-4 text-lime-600  hover:underline">Back to list</button>
+                    <h2 className="text-xl font-bold text-slate-900 ">{t('mylab.levain_not_found')}</h2>
+                    <button onClick={() => onNavigate('mylab/levain')} className="mt-4 text-lime-600  hover:underline">{t('mylab.back_to_list')}</button>
                 </div>
             </MyLabLayout>
         );
@@ -76,7 +78,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                 {/* Health Bar */}
                 <div className="w-full max-w-xs mt-6">
                     <div className="flex justify-between text-xs font-bold text-slate-500  mb-1">
-                        <span>Health</span>
+                        <span>{t('mylab.health')}</span>
                         <span>{stats.healthScore.toFixed(0)}%</span>
                     </div>
                     <div className="h-3 w-full bg-slate-100  rounded-full overflow-hidden ring-1 ring-slate-200 ">
@@ -98,26 +100,20 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                         onClick={() => setIsFeedModalOpen(true)}
                         className="flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-3 px-8 font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-105 active:scale-95"
                     >
-                        <PlusCircleIcon className="h-5 w-5" />
-                        Feed Now
-                    </button>
+                        <PlusCircleIcon className="h-5 w-5" />{t('mylab.feed_now')}</button>
 
                     <button
                         onClick={handleUseInBake}
                         className="flex items-center justify-center gap-2 rounded-xl bg-white border border-slate-200 text-slate-700 py-3 px-6 font-bold shadow-sm hover:bg-slate-50 transition-all hover:scale-105 active:scale-95"
                     >
-                        <BeakerIcon className="h-5 w-5 text-blue-500" />
-                        Use in Bake
-                    </button>
+                        <BeakerIcon className="h-5 w-5 text-blue-500" />{t('mylab.use_in_bake')}</button>
 
                     <LockFeature featureKey="levain.lab_full" customMessage="Unlock AI Assistant with Lab Pro." className="w-full sm:w-auto">
                         <button
                             onClick={() => setIsAssistantOpen(true)}
                             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-indigo-50  text-indigo-600  border border-indigo-100  py-3 px-6 font-bold hover:bg-indigo-100 transition-colors"
                         >
-                            <SparklesIcon className="h-5 w-5" />
-                            Ask AI
-                        </button>
+                            <SparklesIcon className="h-5 w-5" />{t('mylab.ask_ai')}</button>
                     </LockFeature>
 
                     <SocialShare
@@ -132,11 +128,11 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white  p-4 rounded-2xl border border-slate-200  shadow-sm">
-                    <p className="text-xs text-slate-500  uppercase font-bold">Hydration</p>
+                    <p className="text-xs text-slate-500  uppercase font-bold">{t('form.hydration')}</p>
                     <p className="text-xl font-bold text-slate-800 ">{levain.hydration}%</p>
                 </div>
                 <div className="bg-white  p-4 rounded-2xl border border-slate-200  shadow-sm">
-                    <p className="text-xs text-slate-500  uppercase font-bold">Age</p>
+                    <p className="text-xs text-slate-500  uppercase font-bold">{t('mylab.age')}</p>
                     <p className="text-xl font-bold text-slate-800 ">{Math.floor((Date.now() - new Date(levain.createdAt).getTime()) / (1000 * 60 * 60 * 24))} days</p>
                 </div>
             </div>
@@ -144,9 +140,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
             {/* Learn About Levain Behavior */}
             <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                 <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <BookOpenIcon className="h-5 w-5 text-lime-500" />
-                    Learn About Levain Behavior
-                </h3>
+                    <BookOpenIcon className="h-5 w-5 text-lime-500" />{t('mylab.learn_about_levain_behavior')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
                         { id: 'yeast-leavening-agents', summary: 'Understand the microbiology of wild yeast and bacteria in your starter.' },
@@ -199,10 +193,10 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
         return (
             <div className="rounded-2xl border border-slate-200  bg-white  p-6 shadow-sm animate-fade-in">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-slate-900 ">Recent Feedings</h3>
+                    <h3 className="text-lg font-bold text-slate-900 ">{t('mylab.recent_feedings')}</h3>
                 </div>
                 {levain.feedingHistory.length === 0 ? (
-                    <p className="text-sm text-center py-8 text-slate-500 ">No feedings recorded yet.</p>
+                    <p className="text-sm text-center py-8 text-slate-500 ">{t('mylab.no_feedings_recorded_yet')}</p>
                 ) : (
                     <LockFeature
                         featureKey="levain.lab_full"
@@ -221,9 +215,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                                             onClick={() => openPaywall('levain')}
                                             className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-white bg-lime-500 px-5 py-2.5 rounded-full hover:bg-lime-600 shadow-lg shadow-lime-500/20 transition-transform hover:scale-105 active:scale-95"
                                         >
-                                            <StarIcon className="h-3 w-3" />
-                                            Unlock Full History
-                                        </button>
+                                            <StarIcon className="h-3 w-3" />{t('mylab.unlock_full_history')}</button>
                                     </div>
                                 )}
                             </>

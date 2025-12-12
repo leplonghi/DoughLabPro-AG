@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const babka_sweet_bread: StyleDefinition = {
   "id": "babka_sweet_bread",
   "title": "Babka (Chocolate or Cinnamon)",
-  "subtitle": "Enriched Sweet Doughs",
-  "category": "Pastry",
-  "family": "Enriched Sweet Doughs",
+  "subtitle": t('styles.enriched_sweet_doughs'),
+  "category": t('styles.pastry'),
+  "family": t('styles.enriched_sweet_doughs_2'),
   "variantName": "Babka (Chocolate or Cinnamon)",
   "origin": {
-    "country": "Eastern Europe",
-    "region": "Jewish baking traditions",
+    "country": t('styles.eastern_europe_2'),
+    "region": t('styles.jewish_baking_traditions'),
     "period": "19th–20th century"
   },
   "intro": "Popular in Jewish and artisan bakeries, often sliced as a rich dessert or sweet snack.",
@@ -37,11 +38,11 @@ export const babka_sweet_bread: StyleDefinition = {
       15,
       30
     ],
-    "flourStrength": "Bread flour or strong all-purpose flour",
+    "flourStrength": t('styles.bread_flour_or_strong_allpurpose_flour_3'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "60–120 min in pans after shaping",
-      "coldRetard": "Common overnight retard for flavor and handling"
+      "coldRetard": t('styles.common_overnight_retard_for_flavor_and_handling')
     },
     "oven": {
       "type": "electric_home",
@@ -49,12 +50,12 @@ export const babka_sweet_bread: StyleDefinition = {
         175,
         190
       ],
-      "notes": "Bake thoroughly to set rich crumb without burning filling."
+      "notes": t('styles.bake_thoroughly_to_set_rich_crumb_without_burning_')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_24'),
     "recommendedUse": [
-      "Sweet loaf",
-      "Dessert bread"
+      t('common.sweet_loaf'),
+      t('common.dessert_bread')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const babka_sweet_bread: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Sweet loaf",
-    "Dessert bread",
-    "Pastry",
-    "Eastern Europe"
+    t('common.sweet_loaf'),
+    t('common.dessert_bread'),
+    t('common.pastry'),
+    t('common.eastern_europe')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const babka_sweet_bread: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_22'),
       "url": ""
     },
     {
-      "title": "East European baking traditions",
+      "title": t('styles.east_european_baking_traditions'),
       "url": ""
     }
   ],

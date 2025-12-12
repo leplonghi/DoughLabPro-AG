@@ -56,16 +56,14 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                             {/* Header */}
                             <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
                                 <div>
-                                    <h1 className="text-3xl font-bold text-slate-900">Comparisons</h1>
-                                    <p className="text-slate-600 mt-2">Select up to 3 batches to compare side-by-side.</p>
+                                    <h1 className="text-3xl font-bold text-slate-900">{t('mylab.comparisons')}</h1>
+                                    <p className="text-slate-600 mt-2">{t('mylab.select_up_to_3_batches_to_compare_sidebyside')}</p>
                                 </div>
                                 {selectedBatchIds.length > 0 && (
                                     <button
                                         onClick={clearSelection}
                                         className="text-sm font-bold text-slate-500 hover:text-red-500"
-                                    >
-                                        Clear Selection
-                                    </button>
+                                    >{t('mylab.clear_selection')}</button>
                                 )}
                             </div>
 
@@ -75,7 +73,7 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                     <div className="mx-auto w-12 h-12 text-slate-300 mb-3">
                                         <ChartBarIcon />
                                     </div>
-                                    <p className="text-slate-500 font-medium">No completed batches found to compare.</p>
+                                    <p className="text-slate-500 font-medium">{t('mylab.no_completed_batches_found_to_compare')}</p>
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -112,17 +110,17 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                                 <div className="grid grid-cols-3 gap-2 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-200/50">
                                                     <div className="text-center">
                                                         <span className="block font-bold text-slate-700">{batch.doughConfig.hydration}%</span>
-                                                        <span className="">Hydration</span>
+                                                        <span className="">{t('form.hydration')}</span>
                                                     </div>
                                                     <div className="text-center">
                                                         <span className="block font-bold text-slate-700">{batch.doughConfig.recipeStyle}</span>
-                                                        <span className="">Style</span>
+                                                        <span className="">{t('mylab.style_2')}</span>
                                                     </div>
                                                     <div className="text-center">
                                                         <span className="block font-bold text-slate-700">
                                                             {(batch.bulkTimeHours || 0) + (batch.proofTimeHours || 0)}h
                                                         </span>
-                                                        <span className="">Total Time</span>
+                                                        <span className="">{t('mylab.total_time_2')}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,14 +150,14 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                 >
                                     <ArrowLeftIcon className="w-6 h-6 text-slate-600" />
                                 </button>
-                                <h1 className="text-2xl font-bold text-slate-900">Comparison Result</h1>
+                                <h1 className="text-2xl font-bold text-slate-900">{t('mylab.comparison_result')}</h1>
                             </div>
 
                             <div className="overflow-x-auto rounded-3xl border border-slate-200 shadow-sm bg-white">
                                 <table className="w-full border-collapse">
                                     <thead>
                                         <tr className="bg-slate-50">
-                                            <th className="p-4 text-left text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-r border-slate-200 w-32 sticky left-0 bg-slate-50 z-10">Metric</th>
+                                            <th className="p-4 text-left text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-r border-slate-200 w-32 sticky left-0 bg-slate-50 z-10">{t('mylab.metric')}</th>
                                             {selectedBatches.map(batch => (
                                                 <th key={batch.id} className="p-4 text-left border-b border-slate-200 min-w-[200px]">
                                                     <div className="font-bold text-slate-900 text-lg mb-1">{batch.name}</div>
@@ -174,21 +172,21 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-100">
-                                        <ComparisonRow label="Style" values={selectedBatches.map(b => b.doughConfig.recipeStyle)} />
-                                        <ComparisonRow label="Hydration" values={selectedBatches.map(b => `${b.doughConfig.hydration}%`)} highlight />
-                                        <ComparisonRow label="Flour" values={selectedBatches.map(b => `${b.doughConfig.flourAmount}g`)} />
-                                        <ComparisonRow label="Salt" values={selectedBatches.map(b => `${b.doughConfig.salt}%`)} />
-                                        <ComparisonRow label="Yeast" values={selectedBatches.map(b => `${b.doughConfig.yeastValue}${b.doughConfig.yeastType === 'sourdough' ? '%' : 'g'}`)} />
+                                        <ComparisonRow label={t('mylab.style_2')} values={selectedBatches.map(b => b.doughConfig.recipeStyle)} />
+                                        <ComparisonRow label={t('form.hydration')} values={selectedBatches.map(b => `${b.doughConfig.hydration}%`)} highlight />
+                                        <ComparisonRow label={t('results.flour')} values={selectedBatches.map(b => `${b.doughConfig.flourAmount}g`)} />
+                                        <ComparisonRow label={t('results.salt')} values={selectedBatches.map(b => `${b.doughConfig.salt}%`)} />
+                                        <ComparisonRow label={t('results.yeast')} values={selectedBatches.map(b => `${b.doughConfig.yeastValue}${b.doughConfig.yeastType === 'sourdough' ? '%' : 'g'}`)} />
 
-                                        <tr className="bg-slate-50/50"><td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold text-slate-400 uppercase">Process</td></tr>
+                                        <tr className="bg-slate-50/50"><td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold text-slate-400 uppercase">{t('mylab.process')}</td></tr>
 
-                                        <ComparisonRow label="Bulk Ferm." values={selectedBatches.map(b => b.bulkTimeHours ? `${b.bulkTimeHours}h` : '-')} />
-                                        <ComparisonRow label="Proofing" values={selectedBatches.map(b => b.proofTimeHours ? `${b.proofTimeHours}h` : '-')} />
-                                        <ComparisonRow label="Oven Type" values={selectedBatches.map(b => b.ovenType || '-')} />
+                                        <ComparisonRow label={t('mylab.bulk_ferm')} values={selectedBatches.map(b => b.bulkTimeHours ? `${b.bulkTimeHours}h` : '-')} />
+                                        <ComparisonRow label={t('mylab.proofing')} values={selectedBatches.map(b => b.proofTimeHours ? `${b.proofTimeHours}h` : '-')} />
+                                        <ComparisonRow label={t('mylab.oven_type')} values={selectedBatches.map(b => b.ovenType || '-')} />
 
-                                        <tr className="bg-slate-50/50"><td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold text-slate-400 uppercase">Outcome</td></tr>
+                                        <tr className="bg-slate-50/50"><td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold text-slate-400 uppercase">{t('mylab.outcome')}</td></tr>
 
-                                        <ComparisonRow label="Notes" values={selectedBatches.map(b => b.notes || '-')} isLongText />
+                                        <ComparisonRow label={t('mylab.notes')} values={selectedBatches.map(b => b.notes || '-')} isLongText />
                                     </tbody>
                                 </table>
                             </div>

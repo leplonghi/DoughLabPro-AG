@@ -27,7 +27,7 @@ const getEnv = (key: string): string | undefined => {
 
 // Updated configuration for doughlabpro-fire
 export const firebaseConfig = {
-  apiKey: "AIzaSyAANrMJdbOR6NQnkdKCamWlDmGFq9igCI4",
+  apiKey: t('ui.aizasyaanrmjdbor6nqnkdkcamwldmgfq9igci4'),
   authDomain: "doughlabpro-fire.firebaseapp.com",
   projectId: "doughlabpro-fire",
   storageBucket: "doughlabpro-fire.firebasestorage.app",

@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pain_aux_raisins: StyleDefinition = {
   "id": "pain_aux_raisins",
-  "title": "Pain aux Raisins",
-  "subtitle": "Viennoiserie Laminée",
-  "category": "Pastry",
-  "family": "Viennoiserie Laminée",
-  "variantName": "Pain aux Raisins",
+  "title": t('styles.pain_aux_raisins'),
+  "subtitle": t('styles.viennoiserie_laminée_3'),
+  "category": t('styles.pastry_7'),
+  "family": t('styles.viennoiserie_laminée_4'),
+  "variantName": t('styles.pain_aux_raisins_2'),
   "origin": {
-    "country": "France",
-    "region": "France-wide",
+    "country": t('styles.france_8'),
+    "region": t('styles.francewide'),
     "period": "20th century"
   },
-  "intro": "Served as a sweet breakfast or snack pastry in French-style bakeries.",
+  "intro": t('styles.served_as_a_sweet_breakfast_or_snack_pastry_in_fre'),
   "history": "Pain aux raisins is a laminated or enriched dough rolled with pastry cream and raisins, often using similar base dough to croissant.",
   "technicalFoundations": [
     "Derived from croissant-type doughs or enriched brioche-like doughs.",
@@ -37,11 +38,11 @@ export const pain_aux_raisins: StyleDefinition = {
       10,
       20
     ],
-    "flourStrength": "Bread or strong pastry flour",
+    "flourStrength": t('styles.bread_or_strong_pastry_flour_2'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "1.5–3 h depending on formulation",
-      "coldRetard": "Often chilled before slicing and baking"
+      "coldRetard": t('styles.often_chilled_before_slicing_and_baking')
     },
     "oven": {
       "type": "deck",
@@ -49,12 +50,12 @@ export const pain_aux_raisins: StyleDefinition = {
         185,
         200
       ],
-      "notes": "Must balance bake to avoid burning sugars."
+      "notes": t('styles.must_balance_bake_to_avoid_burning_sugars')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_28'),
     "recommendedUse": [
-      "Sweet breakfast pastry",
-      "Viennoiserie item"
+      t('common.sweet_breakfast_pastry'),
+      t('common.viennoiserie_item')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const pain_aux_raisins: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Sweet breakfast pastry",
-    "Viennoiserie item",
-    "Pastry",
-    "France"
+    t('common.sweet_breakfast_pastry'),
+    t('common.viennoiserie_item'),
+    t('common.pastry'),
+    t('common.france')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const pain_aux_raisins: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Ferrandi – Professional Baking",
+      "title": t('styles.ferrandi__professional_baking_2'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_28'),
       "url": ""
     }
   ],

@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pao_de_leite_brazil: StyleDefinition = {
   "id": "pao_de_leite_brazil",
   "title": "Pão de Leite / Pão Doce Brasileiro",
-  "subtitle": "Brazilian Professional Breads",
-  "category": "Bread",
-  "family": "Brazilian Professional Breads",
+  "subtitle": t('styles.brazilian_professional_breads'),
+  "category": t('styles.bread_19'),
+  "family": t('styles.brazilian_professional_breads_2'),
   "variantName": "Pão de Leite / Pão Doce Brasileiro",
   "origin": {
-    "country": "Brazil",
-    "region": "Nationwide",
+    "country": t('styles.brazil'),
+    "region": t('styles.nationwide_3'),
     "period": "20th century"
   },
   "intro": "Common in bakeries as rolls and loaves for breakfast, snacks and simple sandwiches.",
@@ -37,11 +38,11 @@ export const pao_de_leite_brazil: StyleDefinition = {
       8,
       20
     ],
-    "flourStrength": "Brazilian bread flour or strong all-purpose",
+    "flourStrength": t('styles.brazilian_bread_flour_or_strong_allpurpose'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "45–90 min after shaping",
-      "coldRetard": "Optional bulk or shaped retard"
+      "coldRetard": t('styles.optional_bulk_or_shaped_retard')
     },
     "oven": {
       "type": "electric_home",
@@ -49,13 +50,13 @@ export const pao_de_leite_brazil: StyleDefinition = {
         175,
         195
       ],
-      "notes": "Often finished with egg wash or sugar toppings."
+      "notes": t('styles.often_finished_with_egg_wash_or_sugar_toppings')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_13'),
     "recommendedUse": [
-      "Sweet rolls",
-      "Milk bread loaves",
-      "Snack sandwiches"
+      t('common.sweet_rolls'),
+      t('common.milk_bread_loaves'),
+      t('common.snack_sandwiches')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const pao_de_leite_brazil: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Sweet rolls",
-    "Milk bread loaves",
-    "Snack sandwiches",
-    "Bread",
-    "Brazil"
+    t('common.sweet_rolls'),
+    t('common.milk_bread_loaves'),
+    t('common.snack_sandwiches'),
+    t('common.bread'),
+    t('common.brazil')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const pao_de_leite_brazil: StyleDefinition = {
   },
   "references": [
     {
-      "title": "SENAI panificação",
+      "title": t('styles.senai_panificação'),
       "url": ""
     },
     {
-      "title": "Brazilian bakery practice",
+      "title": t('styles.brazilian_bakery_practice'),
       "url": ""
     }
   ],

@@ -1,4 +1,5 @@
 import { RecipeStyle } from './styles';
+import { useTranslation } from '@/i18n';
 
 export type Region =
     | 'North America'
@@ -81,16 +82,16 @@ export interface ScientificProfile {
     thermalProfile: {
         oven_type: string;
         heat_distribution: string; // e.g. "High conduction (floor), High radiation (dome)"
-        crust_development: string; // e.g. "Leopard spotting due to rapid gelatinization"
+        crust_development: string; // e.g. t('common.leopard_spotting_due_to_rapid_gelatinization')
         crumb_structure: string; // e.g. "Large alveoli, thin walls"
     };
 
     // The Chemistry of Fermentation
     fermentationScience: {
-        yeast_activity: string; // e.g. "Slow due to cold retard"
+        yeast_activity: string; // e.g. t('common.slow_due_to_cold_retard')
         ph_target: string; // e.g. "pH 5.5 - 5.8"
-        organic_acids: string; // e.g. "Lactic dominant over Acetic"
-        enzymatic_activity: string; // e.g. "High protease activity during autolyse"
+        organic_acids: string; // e.g. t('common.lactic_dominant_over_acetic')
+        enzymatic_activity: string; // e.g. t('common.high_protease_activity_during_autolyse')
     };
 
     // Legacy support for migration (optional)

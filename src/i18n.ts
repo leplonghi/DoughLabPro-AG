@@ -35,6 +35,7 @@ i18n
   });
 
 export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
   return React.createElement(
     Suspense,
     {

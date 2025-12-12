@@ -86,7 +86,7 @@ const TimelinePage: React.FC<{ onNavigate: (page: Page, params?: string) => void
     <MyLabLayout activePage="mylab/timeline" onNavigate={onNavigate}>
       <div className="animate-fade-in">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">Timeline</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">{t('mylab.timeline')}</h1>
           <p className="mt-2 text-slate-600 ">
             Track your baking evolution.
           </p>

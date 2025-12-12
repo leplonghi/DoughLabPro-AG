@@ -3,8 +3,10 @@ import { CommunityBatch } from '../../types';
 import { getCommunityFeed } from './CommunityService';
 import { CommunityPost } from './CommunityPost';
 import { CommunityComposer } from './CommunityComposer';
+import { useTranslation } from '@/i18n';
 
 export const CommunityFeed: React.FC = () => {
+  const { t } = useTranslation();
     const [posts, setPosts] = useState<CommunityBatch[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -20,7 +22,7 @@ export const CommunityFeed: React.FC = () => {
             <CommunityComposer />
 
             {loading ? (
-                <div className="text-center py-10 text-zinc-500">Loading community...</div>
+                <div className="text-center py-10 text-zinc-500">{t('community.loading_community')}</div>
             ) : (
                 <div className="space-y-4">
                     {posts.map(post => (

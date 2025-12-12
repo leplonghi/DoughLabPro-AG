@@ -1,4 +1,5 @@
 import React, { createContext, useContext, ReactNode, useMemo } from 'react';
+import { useTranslation } from '@/i18n';
 
 // Placeholder provider for future dough templates/presets
 interface DoughsContextType {
@@ -9,6 +10,7 @@ interface DoughsContextType {
 const DoughsContext = createContext<DoughsContextType | undefined>(undefined);
 
 export const DoughsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const value: DoughsContextType = useMemo(() => ({
         doughTemplates: [],
         savedDoughs: [],

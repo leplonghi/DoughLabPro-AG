@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const saltArticle: LearnArticleData = {
     id: "salt-functionality-osmotic-effects",
-    title: "Salt — Functionality & Osmotic Effects",
-    subtitle: "Strengthens gluten, regulates fermentation, enhances flavor.",
-    category: "Ingredient Science",
-    difficulty: "Beginner",
+    title: t('learn.salt__functionality__osmotic_effects'),
+    subtitle: t('learn.strengthens_gluten_regulates_fermentation_enhances'),
+    category: t('learn.ingredient_science_9'),
+    difficulty: t('learn.beginner_9'),
     tags: ["salt", "fermentation", "gluten", "flavor"],
 
     intro: "Salt strengthens gluten, moderates fermentation through osmotic pressure, improves dough handling and enhances flavor. Its type, granulation and purity define how it dissolves and interacts with yeast and proteins.",
@@ -33,9 +34,9 @@ export const saltArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Standard Pizza", notes: "Recommended: 2.3% (Range: 1.8-2.8%)" },
-        { label: "High-Temp Styles", notes: "Recommended: 2.5% (Range: 2.2-2.8%)" },
-        { label: "Artisan Breads", notes: "Recommended: 2.0% (Range: 1.8-2.2%)" }
+        { label: t('learn.standard_pizza'), notes: "Recommended: 2.3% (Range: 1.8-2.8%)" },
+        { label: t('learn.hightemp_styles'), notes: "Recommended: 2.5% (Range: 2.2-2.8%)" },
+        { label: t('learn.artisan_breads'), notes: "Recommended: 2.0% (Range: 1.8-2.2%)" }
     ],
 
     practicalApplications: [
@@ -67,19 +68,19 @@ export const saltArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Fine Table Salt",
+            variant: t('learn.fine_table_salt'),
             implications: "Highly refined crystals with anti-caking agents. Fast dissolution, neutral flavor, consistent. Immediate impact on gluten and yeast. Predictable flavor and browning. Recommended for All styles, Precise baking."
         },
         {
-            variant: "Sea Salt",
+            variant: t('learn.sea_salt'),
             implications: "Evaporated seawater with natural minerals. Complex flavor, varied crystal size. Slower dissolution depending on granulation; minerals may affect gluten slightly. Enhanced flavor complexity. Recommended for Artisan baking, Neapolitan blends."
         },
         {
-            variant: "Kosher Salt",
+            variant: t('learn.kosher_salt'),
             implications: "Large, airy flakes. Light density, variable salinity per volume. Dissolves slower; must measure by weight, not volume. Clean flavor; consistent crust coloration. Recommended for Hand-mixed doughs, Chefs preferring tactile control."
         },
         {
-            variant: "Himalayan Pink Salt",
+            variant: t('learn.himalayan_pink_salt'),
             implications: "Rock salt with trace minerals. Slower dissolution, distinct mineral notes. Slightly weaker initial gluten tightening; dissolves slower than fine salt. Subtle flavor complexity. Recommended for Artisan breads, Whole grain blends."
         }
     ],
@@ -95,9 +96,9 @@ export const saltArticle: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Sweetheart, salt is like the dough’s coach — it keeps everyone disciplined.",
-        whatItDoes: "Salt slows the yeast down just enough so the dough grows calmly and evenly.",
-        howToUse: "A little salt makes your dough stronger, tastier and easier to handle.",
-        dangerSigns: "Too much salt makes the yeast shy — and your dough won’t rise properly."
+        intro: t('learn.sweetheart_salt_is_like_the_doughs_coach__it_keeps'),
+        whatItDoes: t('learn.salt_slows_the_yeast_down_just_enough_so_the_dough'),
+        howToUse: t('learn.a_little_salt_makes_your_dough_stronger_tastier_an'),
+        dangerSigns: t('learn.too_much_salt_makes_the_yeast_shy__and_your_dough_')
     }
 };

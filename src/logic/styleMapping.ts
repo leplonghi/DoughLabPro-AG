@@ -1,4 +1,5 @@
 import { RecipeStyle } from '@/types';
+import { useTranslation } from '@/i18n';
 
 export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
     [RecipeStyle.NEAPOLITAN]: 'neapolitan',

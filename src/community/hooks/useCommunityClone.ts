@@ -4,6 +4,7 @@ import { CommunityPost } from '../types';
 import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
 import { DoughConfig, BatchStatus, BakeType, RecipeStyle, FermentationTechnique, YeastType, AmbientTemperature } from '@/types';
+import { useTranslation } from '@/i18n';
 
 export const useCommunityClone = () => {
     const [loading, setLoading] = useState(false);

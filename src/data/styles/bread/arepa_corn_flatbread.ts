@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const arepa_corn_flatbread: StyleDefinition = {
   "id": "arepa_corn_flatbread",
   "title": "Arepa (Corn Flatbread)",
-  "subtitle": "Classic Flatbreads",
-  "category": "Bread",
-  "family": "Classic Flatbreads",
+  "subtitle": t('styles.classic_flatbreads'),
+  "category": t('styles.bread'),
+  "family": t('styles.classic_flatbreads_2'),
   "variantName": "Arepa (Corn Flatbread)",
   "origin": {
     "country": "Venezuela/Colombia",
-    "region": "Northern South America",
-    "period": "Traditional"
+    "region": t('styles.northern_south_america'),
+    "period": t('styles.traditional')
   },
   "intro": "Griddled, baked or fried, then split and filled with a wide range of savory fillings.",
   "history": "Arepas are corn-based flatbreads made from precooked corn flour, central to Venezuelan and Colombian cuisines.",
@@ -39,9 +40,9 @@ export const arepa_corn_flatbread: StyleDefinition = {
     ],
     "flourStrength": "Precooked corn flour (masa arepa), not wheat flour",
     "fermentation": {
-      "bulk": "Short rest after mixing to hydrate flour",
-      "proof": "No fermentation in traditional formulas",
-      "coldRetard": "Optional rest in fridge for planning"
+      "bulk": t('styles.short_rest_after_mixing_to_hydrate_flour'),
+      "proof": t('styles.no_fermentation_in_traditional_formulas'),
+      "coldRetard": t('styles.optional_rest_in_fridge_for_planning')
     },
     "oven": {
       "type": "griddle_or_pan",
@@ -49,12 +50,12 @@ export const arepa_corn_flatbread: StyleDefinition = {
         160,
         220
       ],
-      "notes": "Cooked on griddle and sometimes finished in oven."
+      "notes": t('styles.cooked_on_griddle_and_sometimes_finished_in_oven')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_3'),
     "recommendedUse": [
-      "Filled arepas",
-      "Savory stuffed flatbreads"
+      t('common.filled_arepas'),
+      t('common.savory_stuffed_flatbreads')
     ]
   },
   "regionalVariants": [],
@@ -64,9 +65,9 @@ export const arepa_corn_flatbread: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Filled arepas",
-    "Savory stuffed flatbreads",
-    "Bread",
+    t('common.filled_arepas'),
+    t('common.savory_stuffed_flatbreads'),
+    t('common.bread'),
     "Venezuela/Colombia"
   ],
   "applyInApp": {
@@ -78,11 +79,11 @@ export const arepa_corn_flatbread: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Latin American food literature",
+      "title": t('styles.latin_american_food_literature'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread'),
       "url": ""
     }
   ],

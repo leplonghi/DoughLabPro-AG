@@ -3,6 +3,7 @@ import { SparklesIcon, CloseIcon, BeakerIcon, FireIcon, ClockIcon, ScaleIcon } f
 import { generateStyleFromDescription } from '@/ai/assistantClient';
 import { DoughStyleDefinition } from '@/types';
 import { useToast } from '@/components/ToastProvider';
+import { useTranslation } from '@/i18n';
 
 interface AiStyleBuilderModalProps {
   isOpen: boolean;
@@ -34,6 +35,7 @@ const LOADING_STEPS = [
 ];
 
 const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClose, onStyleGenerated }) => {
+  const { t } = useTranslation();
   const [description, setDescription] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
@@ -94,9 +96,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-white">
           <h2 className="text-lg font-bold text-indigo-900 flex items-center gap-2">
-            <SparklesIcon className="h-5 w-5 text-indigo-500" />
-            AI Style Builder
-          </h2>
+            <SparklesIcon className="h-5 w-5 text-indigo-500" />{t('common.ai_style_builder')}</h2>
           <button onClick={onClose} className="p-1 text-slate-400 hover:bg-slate-100 rounded-full">
             <CloseIcon className="h-5 w-5" />
           </button>
@@ -110,7 +110,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Describe your dough</label>
+            <label className="block text-sm font-medium text-slate-700 mb-2">{t('ui.describe_your_dough')}</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -122,10 +122,10 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <span className="text-xs text-slate-500 font-medium">Try:</span>
-            <button onClick={() => setDescription('100% Rye German Bread, dense and sour')} className="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700 transition-colors">German Rye</button>
-            <button onClick={() => setDescription('Argentine Pizza a la Piedra')} className="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700 transition-colors">Pizza a la Piedra</button>
-            <button onClick={() => setDescription('High hydration Focaccia Romana')} className="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700 transition-colors">Romana</button>
+            <span className="text-xs text-slate-500 font-medium">{t('styles.try')}</span>
+            <button onClick={() => setDescription('100% Rye German Bread, dense and sour')} className="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700 transition-colors">{t('ui.german_rye')}</button>
+            <button onClick={() => setDescription('Argentine Pizza a la Piedra')} className="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700 transition-colors">{t('ui.pizza_a_la_piedra')}</button>
+            <button onClick={() => setDescription('High hydration Focaccia Romana')} className="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700 transition-colors">{t('ui.romana')}</button>
           </div>
 
           <div className="text-xs text-slate-400 italic mt-2 border-t border-slate-100 pt-2">
@@ -134,7 +134,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
         </div>
 
         <div className="p-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50">
-          <button onClick={onClose} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-200 rounded-lg">Cancel</button>
+          <button onClick={onClose} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-200 rounded-lg">{t('common.cancel')}</button>
           <button
             onClick={handleGenerate}
             disabled={isGenerating || !description.trim()}
@@ -146,8 +146,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
               </>
             ) : (
               <>
-                <SparklesIcon className="h-4 w-4" /> Generate Style
-              </>
+                <SparklesIcon className="h-4 w-4" />{t('common.generate_style')}</>
             )}
           </button>
         </div>

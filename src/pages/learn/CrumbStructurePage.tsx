@@ -2,12 +2,14 @@ import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { BookOpenIcon } from '../../components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 const CrumbStructurePage: React.FC = () => {
+  const { t } = useTranslation();
     return (
         <TechnicalPageLayout
-            title="Crumb Structure Science"
-            subtitle="The physics of alveoli formation, gluten networks, and the quest for the perfect open crumb."
+            title={t('learn.crumb_structure_science')}
+            subtitle={t('learn.the_physics_of_alveoli_formation_gluten_networks_a')}
             showReferencesSection={true}
         >
             <div className="lead text-xl text-slate-600 mb-8 font-medium">
@@ -15,7 +17,7 @@ const CrumbStructurePage: React.FC = () => {
             </div>
 
             <LearnKeyTakeaway>
-                <strong>Core Concept:</strong> Alveoli (gas bubbles) are <em>not</em> created by yeast. Yeast only inflates existing microscopic air bubbles incorporated during mixing. Therefore, the mixing stage is the "birth" of your crumb structure.
+                <strong>{t('learn.core_concept')}</strong> Alveoli (gas bubbles) are <em>not</em> created by yeast. Yeast only inflates existing microscopic air bubbles incorporated during mixing. Therefore, the mixing stage is the "birth" of your crumb structure.
             </LearnKeyTakeaway>
 
             <LearnSection title="1. The Physics of the Gluten Network">
@@ -26,8 +28,8 @@ const CrumbStructurePage: React.FC = () => {
                     When hydrated and agitated, these proteins cross-link to form a viscoelastic web. This web must be strong enough to retain gas (CO₂) but extensible enough to expand without tearing.
                 </p>
                 <ul className="list-disc pl-5 mt-4 space-y-2">
-                    <li><strong>Elasticity:</strong> Allows the dough to hold its shape and trap gas under pressure.</li>
-                    <li><strong>Extensibility:</strong> Allows the dough to expand like a balloon as gas pressure increases.</li>
+                    <li><strong>{t('learn.elasticity')}</strong> Allows the dough to hold its shape and trap gas under pressure.</li>
+                    <li><strong>{t('learn.extensibility')}</strong> Allows the dough to expand like a balloon as gas pressure increases.</li>
                 </ul>
             </LearnSection>
 
@@ -46,15 +48,15 @@ const CrumbStructurePage: React.FC = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                     <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h4 className="font-bold text-slate-900 mb-2">Undermixing</h4>
-                        <p className="text-sm">Weak gluten network. Gas escapes easily. Result: Dense, heavy crumb with irregular, often flat shape.</p>
+                        <h4 className="font-bold text-slate-900 mb-2">{t('learn.undermixing')}</h4>
+                        <p className="text-sm">{t('learn.weak_gluten_network_gas_escapes_easily_result_dens')}</p>
                     </div>
                     <div className="bg-lime-50 p-4 rounded-lg border border-lime-200">
-                        <h4 className="font-bold text-slate-900 mb-2">Optimal Mixing</h4>
+                        <h4 className="font-bold text-slate-900 mb-2">{t('learn.optimal_mixing')}</h4>
                         <p className="text-sm">Strong, extensible network. Traps gas efficiently. Result: Open, airy crumb with thin cell walls (the "windowpane" stage).</p>
                     </div>
                     <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h4 className="font-bold text-slate-900 mb-2">Overmixing</h4>
+                        <h4 className="font-bold text-slate-900 mb-2">{t('learn.overmixing')}</h4>
                         <p className="text-sm">Gluten bonds shatter (oxidation). Dough becomes sticky and slack. Result: Gummy, dense crumb with a greyish hue.</p>
                     </div>
                 </div>
@@ -75,8 +77,8 @@ const CrumbStructurePage: React.FC = () => {
                     As yeast produces CO₂, the pressure inside the alveoli increases.
                 </p>
                 <ul className="list-disc pl-5 mt-4 space-y-2">
-                    <li><strong>Underproofed:</strong> "Fool's Crumb." Large, cavernous holes surrounded by dense, gummy dough. Caused by insufficient gas production to inflate the smaller alveoli.</li>
-                    <li><strong>Overproofed:</strong> The gluten network degrades due to acidity (protease activity) and excessive expansion. The structure collapses, leading to a flat loaf with a dense, uniform crumb.</li>
+                    <li><strong>{t('learn.underproofed')}</strong> "Fool's Crumb." Large, cavernous holes surrounded by dense, gummy dough. Caused by insufficient gas production to inflate the smaller alveoli.</li>
+                    <li><strong>{t('learn.overproofed')}</strong> The gluten network degrades due to acidity (protease activity) and excessive expansion. The structure collapses, leading to a flat loaf with a dense, uniform crumb.</li>
                 </ul>
             </LearnSection>
 
@@ -86,11 +88,11 @@ const CrumbStructurePage: React.FC = () => {
                     References & Further Reading
                 </h3>
                 <ul className="space-y-2 text-sm text-slate-600">
-                    <li>• <em>Modernist Bread</em>, Nathan Myhrvold (2017) - Vol 3: Structure and Physics.</li>
-                    <li>• <em>Bread Science: The Chemistry and Craft of Making Bread</em>, Emily Buehler (2006).</li>
-                    <li>• King Arthur Baking Company, "Gluten Development and Mixing".</li>
-                    <li>• Serious Eats, "The Science of Dough".</li>
-                    <li>• Journal of Cereal Science, "Gas Retention in Wheat Dough".</li>
+                    <li>• <em>{t('learn.modernist_bread_2')}</em>, Nathan Myhrvold (2017) - Vol 3: Structure and Physics.</li>
+                    <li>• <em>{t('learn.bread_science_the_chemistry_and_craft_of_making_br')}</em>, Emily Buehler (2006).</li>
+                    <li>• King Arthur Baking Company, t('learn.gluten_development_and_mixing').</li>
+                    <li>• Serious Eats, t('learn.the_science_of_dough').</li>
+                    <li>• Journal of Cereal Science, t('learn.gas_retention_in_wheat_dough').</li>
                 </ul>
             </div>
         </TechnicalPageLayout>

@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { useTranslation } from '@/i18n';
 
 export interface ToolCard {
     id: string;

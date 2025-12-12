@@ -7,12 +7,14 @@ import { PostTechnicalPanel } from './PostTechnicalPanel';
 import { PostActions } from './PostActions';
 import { PostComments } from './PostComments';
 import { useRouter } from '../../contexts/RouterContext';
+import { useTranslation } from '@/i18n';
 
 interface CommunityPostCardProps {
     post: CommunityPost;
 }
 
 export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) => {
+  const { t } = useTranslation();
     const [showComments, setShowComments] = useState(false);
     const [commentCount, setCommentCount] = useState(post.comments);
     const { navigate } = useRouter();

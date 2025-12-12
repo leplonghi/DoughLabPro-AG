@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { shouldShowAd, getAd, recordAdView } from './adsEngine';
 import { Ad } from './adsCatalog';
+import { useTranslation } from '@/i18n';
 
 interface AdCardProps {
     context?: string; // e.g., 'calculator_footer', 'styles_list'
@@ -9,6 +10,7 @@ interface AdCardProps {
 }
 
 export const AdCard: React.FC<AdCardProps> = ({ context = 'general', className = '' }) => {
+  const { t } = useTranslation();
     const { user } = useAuth();
     const [ad, setAd] = useState<Ad | null>(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -34,9 +36,7 @@ export const AdCard: React.FC<AdCardProps> = ({ context = 'general', className =
                     alt={ad.title}
                     className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
                 />
-                <div className="absolute top-2 right-2 bg-black/60 text-[10px] text-white/90 px-1.5 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm">
-                    Sponsored
-                </div>
+                <div className="absolute top-2 right-2 bg-black/60 text-[10px] text-white/90 px-1.5 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm">{t('marketing.sponsored')}</div>
             </div>
             <div className="p-4">
                 <h4 className="text-sm font-bold text-dlp-text-primary mb-1 line-clamp-1">{ad.title}</h4>

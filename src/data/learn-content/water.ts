@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const waterArticle: LearnArticleData = {
     id: "water-hydration-dynamics",
-    title: "Water & Hydration Dynamics",
+    title: t('learn.water__hydration_dynamics'),
     subtitle: "Hydration controls gluten formation, extensibility, fermentation speed and final texture.",
-    category: "Ingredient Science",
-    difficulty: "Beginner",
+    category: t('learn.ingredient_science_14'),
+    difficulty: t('learn.beginner_12'),
     tags: ["water", "hydration", "gluten", "fermentation"],
 
     intro: "Water activates gluten-forming proteins, drives enzymatic activity, defines dough rheology and regulates fermentation. Its temperature directly determines dough temperature (DT), which is the primary driver of fermentation speed.",
@@ -32,10 +33,10 @@ export const waterArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Neapolitan", notes: "Recommended: 62% (Range: 58-65%)" },
-        { label: "New York", notes: "Recommended: 65% (Range: 60-68%)" },
+        { label: t('learn.neapolitan_3'), notes: "Recommended: 62% (Range: 58-65%)" },
+        { label: t('learn.new_york_2'), notes: "Recommended: 65% (Range: 60-68%)" },
         { label: "Roman (Pala/Taglio)", notes: "Recommended: 78% (Range: 70-85%)" },
-        { label: "Artisan Bread", notes: "Recommended: 75% (Range: 68-85%)" }
+        { label: t('learn.artisan_bread'), notes: "Recommended: 75% (Range: 68-85%)" }
     ],
 
     practicalApplications: [
@@ -78,7 +79,7 @@ export const waterArticle: LearnArticleData = {
             implications: "High mineral content (Ca²⁺ / Mg²⁺). Strengthens gluten, firmer dough. Increases dough strength; can reduce extensibility if excessive. More chew, more structure. Recommended for NY-style, Bagels, High-strength doughs."
         },
         {
-            variant: "Temperature-Controlled Water",
+            variant: t('learn.temperaturecontrolled_water'),
             implications: "Water used to set target dough temperature (DT). Direct control of fermentation speed. Consistent fermentation curves. Predictable oven spring and crust quality."
         }
     ],

@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pain_au_chocolat: StyleDefinition = {
   "id": "pain_au_chocolat",
-  "title": "Pain au Chocolat",
-  "subtitle": "Viennoiserie Laminée",
-  "category": "Pastry",
-  "family": "Viennoiserie Laminée",
-  "variantName": "Pain au Chocolat",
+  "title": t('styles.pain_au_chocolat'),
+  "subtitle": t('styles.viennoiserie_laminée_5'),
+  "category": t('styles.pastry_8'),
+  "family": t('styles.viennoiserie_laminée_6'),
+  "variantName": t('styles.pain_au_chocolat_2'),
   "origin": {
-    "country": "France",
-    "region": "France-wide",
+    "country": t('styles.france_9'),
+    "region": t('styles.francewide_2'),
     "period": "19th–20th century"
   },
-  "intro": "Common in French and international bakeries as a breakfast and snack item.",
+  "intro": t('styles.common_in_french_and_international_bakeries_as_a_b'),
   "history": "Pain au chocolat uses the same laminated dough as croissant, shaped around chocolate sticks and baked as a rectangular pastry.",
   "technicalFoundations": [
     "Same base as croissant, usually straight dough.",
@@ -37,11 +38,11 @@ export const pain_au_chocolat: StyleDefinition = {
       5,
       12
     ],
-    "flourStrength": "Lamination-suitable flour",
+    "flourStrength": t('styles.laminationsuitable_flour'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C pre-lamination",
       "proof": "2–3 h at 24–26°C after shaping",
-      "coldRetard": "Chilling necessary between lamination steps"
+      "coldRetard": t('styles.chilling_necessary_between_lamination_steps')
     },
     "oven": {
       "type": "deck",
@@ -49,12 +50,12 @@ export const pain_au_chocolat: StyleDefinition = {
         190,
         210
       ],
-      "notes": "Baked until deep golden with visible layers."
+      "notes": t('styles.baked_until_deep_golden_with_visible_layers')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_29'),
     "recommendedUse": [
-      "Breakfast pastry",
-      "Snack pastry"
+      t('common.breakfast_pastry'),
+      t('common.snack_pastry')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const pain_au_chocolat: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Breakfast pastry",
-    "Snack pastry",
-    "Pastry",
-    "France"
+    t('common.breakfast_pastry'),
+    t('common.snack_pastry'),
+    t('common.pastry'),
+    t('common.france')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const pain_au_chocolat: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Ferrandi – Professional Baking",
+      "title": t('styles.ferrandi__professional_baking_3'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_29'),
       "url": ""
     }
   ],

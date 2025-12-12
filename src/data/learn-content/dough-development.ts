@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const doughDevelopmentData: LearnArticleData = {
     id: "dough-development",
-    title: "Dough Development & Mixing",
-    subtitle: "From initial mix to fully developed dough",
+    title: t('learn.dough_development__mixing'),
+    subtitle: t('learn.from_initial_mix_to_fully_developed_dough'),
     category: 'Dough Science',
     difficulty: 'Intermediate',
     tags: ['mixing', 'gluten-development', 'dough-strength', 'folds'],
@@ -35,14 +36,14 @@ export const doughDevelopmentData: LearnArticleData = {
     practicalRanges: [
         {
             label: "Short mix / fold-intensive methods",
-            notes: "Minimal initial mixing + 2–4 fold sessions. Favours flavour and open crumb."
+            notes: t('learn.minimal_initial_mixing__24_fold_sessions_favours_f')
         },
         {
-            label: "Improved mix",
-            notes: "Moderate mixing + occasional folds. Balanced approach for many breads and pizzas."
+            label: t('learn.improved_mix'),
+            notes: t('learn.moderate_mixing__occasional_folds_balanced_approac')
         },
         {
-            label: "Intensive mix",
+            label: t('learn.intensive_mix'),
             notes: "High-speed mixing to full development. Used for highly standardised bread or very enriched doughs."
         }
     ],
@@ -82,9 +83,9 @@ export const doughDevelopmentData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_7'),
+        whatItDoes: t('learn.improves_texture_and_flavor_2'),
+        howToUse: t('learn.so_you_get_the_best_results_3'),
+        dangerSigns: t('learn.use_it_wisely_3')
     },
 };

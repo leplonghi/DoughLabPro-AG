@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import { DoughStyleDefinition } from '@/types';
 import { BookOpenIcon, ChevronDownIcon, GlobeAltIcon, SparklesIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface StyleContextBarProps {
   style: DoughStyleDefinition;
 }
 
 const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -22,9 +24,7 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
             {style.source === 'official' ? <BookOpenIcon className="h-4 w-4" /> : <SparklesIcon className="h-4 w-4" />}
           </div>
           <div>
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
-              Target Style
-            </p>
+            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('calculator.target_style')}</p>
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
               {style.name}
               {style.origin && (
@@ -49,18 +49,18 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
           {style.technicalProfile && (
             <div className="mb-4 grid grid-cols-2 gap-4 p-3 bg-lime-50 rounded-lg border border-lime-100">
               <div>
-                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">Target Hydration</span>
+                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">{t('calculator.target_hydration')}</span>
                 <span className="text-lg font-bold text-lime-900">{style.technicalProfile.hydration[0]}-{style.technicalProfile.hydration[1]}%</span>
               </div>
               <div>
-                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">Salt Range</span>
+                <span className="block text-[10px] uppercase font-bold text-lime-700 mb-1">{t('calculator.salt_range')}</span>
                 <span className="text-lg font-bold text-lime-900">{style.technicalProfile.salt[0]}-{style.technicalProfile.salt[1]}%</span>
               </div>
             </div>
           )}
 
           <div className="mb-4">
-            <h4 className="text-xs font-bold uppercase text-slate-400 mb-1">Description</h4>
+            <h4 className="text-xs font-bold uppercase text-slate-400 mb-1">{t('calculator.description')}</h4>
             <p className="text-sm text-slate-600 leading-relaxed line-clamp-2">{style.description}</p>
           </div>
 

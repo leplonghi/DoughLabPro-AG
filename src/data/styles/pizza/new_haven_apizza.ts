@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const new_haven_apizza: StyleDefinition = {
   "id": "new_haven_apizza",
   "title": "New Haven Style (Apizza)",
-  "subtitle": "American Artisan Pizza",
-  "category": "Pizza",
-  "family": "American Artisan Pizza",
+  "subtitle": t('styles.american_artisan_pizza_3'),
+  "category": t('styles.pizza_8'),
+  "family": t('styles.american_artisan_pizza_4'),
   "variantName": "New Haven Style (Apizza)",
   "origin": {
-    "country": "United States",
-    "region": "New Haven, CT",
+    "country": t('styles.united_states_8'),
+    "region": t('styles.new_haven_ct'),
     "period": "1920s"
   },
   "intro": "Served on paper sheets, known for 'mootz' (mozzarella) being a topping, not default.",
@@ -37,11 +38,11 @@ export const new_haven_apizza: StyleDefinition = {
       0,
       2
     ],
-    "flourStrength": "High-gluten bread flour",
+    "flourStrength": t('styles.highgluten_bread_flour'),
     "fermentation": {
       "bulk": "24–48 h cold fermentation",
       "proof": "1–2 h at room temperature",
-      "coldRetard": "Essential for flavor and char"
+      "coldRetard": t('styles.essential_for_flavor_and_char')
     },
     "oven": {
       "type": "coal_fired",
@@ -49,12 +50,12 @@ export const new_haven_apizza: StyleDefinition = {
         300,
         350
       ],
-      "notes": "Coal-fired for distinct char and smokiness."
+      "notes": t('styles.coalfired_for_distinct_char_and_smokiness')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_36'),
     "recommendedUse": [
-      "Charred thin crust",
-      "Clam pie"
+      t('common.charred_thin_crust'),
+      t('common.clam_pie')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const new_haven_apizza: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Charred thin crust",
-    "Clam pie",
-    "Pizza",
-    "United States"
+    t('common.charred_thin_crust'),
+    t('common.clam_pie'),
+    t('common.pizza'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const new_haven_apizza: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_6'),
       "url": ""
     },
     {
-      "title": "New Haven pizza lore",
+      "title": t('styles.new_haven_pizza_lore'),
       "url": ""
     }
   ],

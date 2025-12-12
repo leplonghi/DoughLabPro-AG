@@ -2,6 +2,7 @@ import React from 'react';
 import { getProductsForPlacement } from '@/data/affiliatePlacements';
 import { AffiliateProduct } from '@/data/affiliates';
 import { WrenchScrewdriverIcon, ExternalLinkIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface LearnAffiliateBlockProps {
     placementKeys: string[];
@@ -13,11 +14,12 @@ interface LearnAffiliateBlockProps {
 }
 
 const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys, userContext }) => {
+  const { t } = useTranslation();
     // Aggregate products from all keys, removing duplicates
     const allProducts: AffiliateProduct[] = placementKeys.flatMap(key => getProductsForPlacement(key));
 
     // Intelligent adaptation based on user context
-    let contextMessage = "Tools that help with this technique";
+    let contextMessage = t('learn.tools_that_help_with_this_technique');
 
     if (userContext) {
         const { levainHealth, averageFermentationTemp, averageHydration } = userContext;
@@ -30,7 +32,7 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
 
         // Suggest based on fermentation temperature
         if (averageFermentationTemp !== undefined && averageFermentationTemp > 28) {
-            contextMessage = "Control fermentation with proofing tools";
+            contextMessage ={t('learn.control_fermentation_with_proofing_tools')};
             // Could filter/prioritize proofing boxes, cooling tools
         }
 
@@ -55,9 +57,7 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                     <WrenchScrewdriverIcon className="h-5 w-5" />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-dlp-text-primary uppercase tracking-wider">
-                        Recommended Equipment
-                    </h4>
+                    <h4 className="text-sm font-bold text-dlp-text-primary uppercase tracking-wider">{t('learn.recommended_equipment')}</h4>
                     <p className="text-xs text-dlp-text-secondary">
                         {contextMessage}
                     </p>

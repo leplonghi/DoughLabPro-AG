@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const doughBallingTensioningArticle: LearnArticleData = {
     id: "dough-balling-tensioning",
-    title: "Dough Balling & Tensioning",
-    subtitle: "Creating consistent dough balls with controlled gluten tension.",
-    category: "Process Techniques",
-    difficulty: "Intermediate",
+    title: t('learn.dough_balling__tensioning'),
+    subtitle: t('learn.creating_consistent_dough_balls_with_controlled_gl'),
+    category: t('learn.process_techniques_5'),
+    difficulty: t('learn.intermediate_10'),
     tags: ["balling", "tension", "shaping", "consistency"],
 
     intro: "Balling creates individual dough portions with controlled tension, consistency and gas distribution. It’s crucial for pizza styles requiring precise stretching behavior.",
@@ -30,7 +31,7 @@ export const doughBallingTensioningArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Post-Balling Relaxation", notes: "Recommended: 20 minutes (Range: 10-30 minutes)" }
+        { label: t('learn.postballing_relaxation'), notes: "Recommended: 20 minutes (Range: 10-30 minutes)" }
     ],
 
     practicalApplications: [
@@ -60,11 +61,11 @@ export const doughBallingTensioningArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High-Tension Balls",
+            variant: t('learn.hightension_balls'),
             implications: "Tight gluten alignment for structured styles. Elastic, stable. More resistant during opening. Defined crust edge."
         },
         {
-            variant: "Soft-Tension Balls",
+            variant: t('learn.softtension_balls'),
             implications: "Gentler approach for extensible styles. Relaxed, soft. Easier opening. More irregular shaping."
         }
     ],
@@ -80,8 +81,8 @@ export const doughBallingTensioningArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, balling dough is like rolling a snowball — smooth outside, soft inside.",
-        whatItDoes: "Helps the pizza open evenly.",
-        howToUse: "We round the dough so it stretches nicely later.",
-        dangerSigns: "If it’s too tight or loose, stretching becomes a battle."
+        whatItDoes: t('learn.helps_the_pizza_open_evenly'),
+        howToUse: t('learn.we_round_the_dough_so_it_stretches_nicely_later'),
+        dangerSigns: t('learn.if_its_too_tight_or_loose_stretching_becomes_a_bat')
     }
 };

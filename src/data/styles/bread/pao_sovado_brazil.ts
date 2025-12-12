@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pao_sovado_brazil: StyleDefinition = {
   "id": "pao_sovado_brazil",
-  "title": "Pão Sovado",
-  "subtitle": "Brazilian Professional Breads",
-  "category": "Bread",
-  "family": "Brazilian Professional Breads",
-  "variantName": "Pão Sovado",
+  "title": t('styles.pão_sovado'),
+  "subtitle": t('styles.brazilian_professional_breads_5'),
+  "category": t('styles.bread_21'),
+  "family": t('styles.brazilian_professional_breads_6'),
+  "variantName": t('styles.pão_sovado_2'),
   "origin": {
-    "country": "Brazil",
-    "region": "Various regions",
-    "period": "Traditional"
+    "country": t('styles.brazil_3'),
+    "region": t('styles.various_regions'),
+    "period": t('styles.traditional_8')
   },
-  "intro": "Popular in bakeries and home consumption as a breakfast and snack bread.",
+  "intro": t('styles.popular_in_bakeries_and_home_consumption_as_a_brea'),
   "history": "Pão sovado is a slightly enriched, soft Brazilian bread with a tight crumb and shiny crust, shaped as elongated loaves.",
   "technicalFoundations": [
     "Usually straight dough; some use sponge.",
@@ -37,11 +38,11 @@ export const pao_sovado_brazil: StyleDefinition = {
       5,
       12
     ],
-    "flourStrength": "Brazilian bread flour",
+    "flourStrength": t('styles.brazilian_bread_flour'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "45–90 min after shaping",
-      "coldRetard": "Optional to improve flavor and scheduling"
+      "coldRetard": t('styles.optional_to_improve_flavor_and_scheduling')
     },
     "oven": {
       "type": "electric_home",
@@ -49,13 +50,13 @@ export const pao_sovado_brazil: StyleDefinition = {
         180,
         200
       ],
-      "notes": "Often glazed for a slightly glossy crust."
+      "notes": t('styles.often_glazed_for_a_slightly_glossy_crust')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_10'),
     "recommendedUse": [
-      "Breakfast bread",
-      "Snacks",
-      "Sweet or savory fillings"
+      t('common.breakfast_bread'),
+      t('common.snacks'),
+      t('common.sweet_or_savory_fillings')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const pao_sovado_brazil: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Breakfast bread",
-    "Snacks",
-    "Sweet or savory fillings",
-    "Bread",
-    "Brazil"
+    t('common.breakfast_bread'),
+    t('common.snacks'),
+    t('common.sweet_or_savory_fillings'),
+    t('common.bread'),
+    t('common.brazil')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const pao_sovado_brazil: StyleDefinition = {
   },
   "references": [
     {
-      "title": "SENAI panificação",
+      "title": t('styles.senai_panificação_3'),
       "url": ""
     },
     {
-      "title": "Brazilian bakery manuals",
+      "title": t('styles.brazilian_bakery_manuals'),
       "url": ""
     }
   ],

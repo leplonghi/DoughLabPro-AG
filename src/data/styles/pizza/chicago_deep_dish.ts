@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const chicago_deep_dish: StyleDefinition = {
   "id": "chicago_deep_dish",
-  "title": "Chicago Deep Dish",
-  "subtitle": "American Pan Pizza",
-  "category": "Pizza",
-  "family": "American Pan Pizza",
-  "variantName": "Chicago Deep Dish",
+  "title": t('styles.chicago_deep_dish'),
+  "subtitle": t('styles.american_pan_pizza'),
+  "category": t('styles.pizza_3'),
+  "family": t('styles.american_pan_pizza_2'),
+  "variantName": t('styles.chicago_deep_dish_2'),
   "origin": {
-    "country": "United States",
-    "region": "Chicago",
+    "country": t('styles.united_states_6'),
+    "region": t('styles.chicago_2'),
     "period": "1940s"
   },
-  "intro": "A hearty, knife-and-fork meal, iconic to Chicago culinary culture.",
+  "intro": t('styles.a_hearty_knifeandfork_meal_iconic_to_chicago_culin'),
   "history": "Invented in Chicago, this style features a deep, buttery crust pressed into a pan, filled with cheese, toppings, and topped with chunky tomato sauce.",
   "technicalFoundations": [
     "Direct dough, often with cornmeal or semolina in the blend.",
@@ -41,7 +42,7 @@ export const chicago_deep_dish: StyleDefinition = {
     "fermentation": {
       "bulk": "1–2 h at room temperature",
       "proof": "20–40 min in pan",
-      "coldRetard": "Optional overnight"
+      "coldRetard": t('styles.optional_overnight')
     },
     "oven": {
       "type": "gas_deck",
@@ -51,9 +52,9 @@ export const chicago_deep_dish: StyleDefinition = {
       ],
       "notes": "Long bake time (30-45 min) due to thickness and toppings."
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_34'),
     "recommendedUse": [
-      "Deep dish pizza",
+      t('common.deep_dish_pizza'),
       "Casserole-style pizza"
     ]
   },
@@ -64,10 +65,10 @@ export const chicago_deep_dish: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Deep dish pizza",
+    t('common.deep_dish_pizza'),
     "Casserole-style pizza",
-    "Pizza",
-    "United States"
+    t('common.pizza'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const chicago_deep_dish: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_2'),
       "url": ""
     },
     {
-      "title": "Chicago pizza history",
+      "title": t('styles.chicago_pizza_history'),
       "url": ""
     }
   ],

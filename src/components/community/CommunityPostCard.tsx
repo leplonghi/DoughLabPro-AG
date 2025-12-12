@@ -37,15 +37,15 @@ const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ batch, onClone })
 
             <div className="grid grid-cols-3 gap-2 mb-4">
                 <div className="bg-slate-50 rounded-lg p-2 text-center">
-                    <span className="block text-xs text-slate-500 uppercase font-bold">Hydration</span>
+                    <span className="block text-xs text-slate-500 uppercase font-bold">{t('form.hydration')}</span>
                     <span className="block text-lg font-bold text-slate-900">{doughConfig.hydration}%</span>
                 </div>
                 <div className="bg-slate-50 rounded-lg p-2 text-center">
-                    <span className="block text-xs text-slate-500 uppercase font-bold">Salt</span>
+                    <span className="block text-xs text-slate-500 uppercase font-bold">{t('results.salt')}</span>
                     <span className="block text-lg font-bold text-slate-900">{doughConfig.salt}%</span>
                 </div>
                 <div className="bg-slate-50 rounded-lg p-2 text-center">
-                    <span className="block text-xs text-slate-500 uppercase font-bold">Time</span>
+                    <span className="block text-xs text-slate-500 uppercase font-bold">{t('community.time')}</span>
                     <span className="block text-lg font-bold text-slate-900">{doughConfig.fermentationTime}h</span>
                 </div>
             </div>
@@ -59,9 +59,7 @@ const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ batch, onClone })
                     onClick={() => onClone(batch)}
                     className="flex items-center gap-1.5 text-sm font-bold text-lime-600 hover:text-lime-700 transition-colors"
                 >
-                    <DocumentDuplicateIcon className="h-4 w-4" />
-                    Clone Recipe
-                </button>
+                    <DocumentDuplicateIcon className="h-4 w-4" />{t('community.clone_recipe')}</button>
             </div>
         </div>
     );

@@ -124,7 +124,7 @@ export async function askGeneralAssistant(input: AssistantInput): Promise<string
 
     const text = response.text;
     if (!text) {
-      throw new Error("Empty response from AI model");
+      throw new Error(t('ui.empty_response_from_ai_model'));
     }
     return text;
   } catch (error) {
@@ -191,7 +191,7 @@ export async function askLevainAssistant(levain: Levain, question: string): Prom
     });
     const text = response.text;
     if (!text) {
-      throw new Error("Empty response from AI model");
+      throw new Error(t('ui.empty_response_from_ai_model_2'));
     }
     return text;
   } catch (error) {
@@ -212,10 +212,10 @@ export async function generateStyleFromDescription(description: string): Promise
       "name": "Style Name (Short)",
       "family": "General Family (e.g., 'Italian Rustic', 'Pan Pizza', 'Viennoiserie')",
       "category": "One of: 'pizza', 'bread', 'enriched_bread', 'burger_bun', 'pastry', 'cookie', 'flatbread'",
-      "origin": { "country": "String", "region": "String (Optional)", "period": "String (Optional)" },
+      "origin": { "country": t('ui.string'), "region": "String (Optional)", "period": "String (Optional)" },
       "description": "Short UI description (max 140 chars)",
       "history": "Factual history and context (2-3 sentences)",
-      "culturalContext": "How it is eaten or cultural significance",
+      "culturalContext": t('ui.how_it_is_eaten_or_cultural_significance'),
       "technical": {
         "hydration": Number (0-120, target average),
         "salt": Number (0-5, target),
@@ -231,13 +231,13 @@ export async function generateStyleFromDescription(description: string): Promise
         "oil": [Min, Max],
         "sugar": [Min, Max],
         "flourStrength": "String (e.g. 'W300' or 'High Protein')",
-        "fermentation": { "bulk": "String", "proof": "String" },
-        "ovenRecommendations": "String",
+        "fermentation": { "bulk": t('ui.string_2'), "proof": t('ui.string_3') },
+        "ovenRecommendations": t('ui.string_4'),
         "difficulty": "One of: 'Easy', 'Medium', 'Hard', 'Expert'",
-        "recommendedUse": "String"
+        "recommendedUse": t('ui.string_5')
       },
-      "references": [ { "source": "Real source name", "url": "Optional URL" } ],
-      "recipeStyle": "NEAPOLITAN" (Map to closest enum: NEAPOLITAN, NEW_YORK, DETROIT, ROMAN, FOCACCIA, BAGUETTE, BRIOCHE, SOURDOUGH, CIABATTA, BURGER_BUN, COOKIE_NY_CHOC_CHIP)
+      "references": [ { "source": t('ui.real_source_name'), "url": t('ui.optional_url') } ],
+      "recipeStyle": t('ui.neapolitan') (Map to closest enum: NEAPOLITAN, NEW_YORK, DETROIT, ROMAN, FOCACCIA, BAGUETTE, BRIOCHE, SOURDOUGH, CIABATTA, BURGER_BUN, COOKIE_NY_CHOC_CHIP)
     }
     
     Be technically accurate. If data is missing, infer reasonable defaults based on baking science.`;
@@ -253,20 +253,21 @@ export async function generateStyleFromDescription(description: string): Promise
     });
 
     const text = response.text;
-    if (!text) throw new Error("Empty response");
+    if (!text) throw new Error(t('ui.empty_response'));
 
     const styleData = JSON.parse(text);
     return styleData;
 
   } catch (error) {
     console.error('[Style Builder] Error:', error);
-    throw new Error("Failed to generate style. Please try a different description.");
+    throw new Error(t('ui.failed_to_generate_style_please_try_a_different_de'));
   }
 }
 
 // --- DOUGHBOT DIAGNOSTIC ---
 
 import { DoughbotResult } from '../types/doughbot';
+import { useTranslation } from '@/i18n';
 
 export async function diagnoseDoughIssue(
   problem: string,
@@ -277,15 +278,15 @@ export async function diagnoseDoughIssue(
     Your task is to analyze a user's dough problem and provide structured, actionable solutions.
     
     Input:
-    1. Problem Category (e.g. "Sticky dough", "Flat loaf")
+    1. Problem Category (e.g. t('common.sticky_dough'), t('common.flat_loaf'))
     2. Detailed Description
     3. User Context (Dough config, environment, etc.)
     
     Output:
     A valid JSON object adhering to this schema:
     {
-      "causes": ["List of 1-3 probable causes"],
-      "solutions": ["List of 1-3 actionable solutions"],
+      "causes": [t('ui.list_of_13_probable_causes')],
+      "solutions": [t('ui.list_of_13_actionable_solutions')],
       "ranges": {
         "hydration": Number (optional recommended hydration if relevant),
         "fermentation": "String (optional advice, e.g. 'Shorten bulk by 30m')",
@@ -316,13 +317,13 @@ export async function diagnoseDoughIssue(
     });
 
     const text = response.text;
-    if (!text) throw new Error("Empty diagnostic response");
+    if (!text) throw new Error(t('ui.empty_diagnostic_response'));
 
     const result = JSON.parse(text) as DoughbotResult;
     return result;
 
   } catch (error) {
     console.error('[Doughbot] Error:', error);
-    throw new Error("Failed to diagnose the issue. Please try again.");
+    throw new Error(t('ui.failed_to_diagnose_the_issue_please_try_again'));
   }
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
 import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
+import { useTranslation } from '@/i18n';
 
 const Section: React.FC<{ title: string; icon?: React.ReactNode; children: React.ReactNode }> = ({ title, icon, children }) => (
   <div className="mt-8 first:mt-0">
@@ -17,20 +18,21 @@ const Section: React.FC<{ title: string; icon?: React.ReactNode; children: React
 );
 
 const ReadyToppingsPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <IngredientPageLayout
-      title="Ready-to-Use Toppings Guide"
+      title={t('learn.readytouse_toppings_guide')}
       description="Technical analysis of pre-prepared ingredients to optimize time and ensure quality."
-      category="Ingredients"
+      category={t('learn.ingredients_6')}
     >
-      <LearnSection title="Introduction: Quality Speed">
+      <LearnSection title={t('learn.introduction_quality_speed')}>
         <p>
-          "Ready toppings" are ingredients processed industrially or artisanally before your kitchen. They offer convenience but require technical evaluation to ensure quality. Includes:
+          t('learn.ready_toppings_1') are ingredients processed industrially or artisanally before your kitchen. They offer convenience but require technical evaluation to ensure quality. Includes:
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Ready sauces:</strong> Passatas, seasoned pizza sauces.</li>
-          <li><strong>Pre-cooked meats:</strong> Shredded chicken, bacon cubes, cooked sausage.</li>
-          <li><strong>Prepared vegetables:</strong> Roasted peppers, caramelized onions, sautéed mushrooms.</li>
+          <li><strong>{t('learn.ready_sauces')}</strong> Passatas, seasoned pizza sauces.</li>
+          <li><strong>{t('learn.precooked_meats')}</strong> Shredded chicken, bacon cubes, cooked sausage.</li>
+          <li><strong>{t('learn.prepared_vegetables')}</strong> Roasted peppers, caramelized onions, sautéed mushrooms.</li>
           <li><strong>Preserves/Premium:</strong> Artichokes, sun-dried tomatoes, anchovies, olives.</li>
         </ul>
         <p>
@@ -38,56 +40,56 @@ const ReadyToppingsPage: React.FC = () => {
         </p>
       </LearnSection>
 
-      <LearnSection title="Ready Sauces" icon={<BeakerIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.ready_sauces')} icon={<BeakerIcon className="h-5 w-5" />}>
         <p>
           Convenient but inspect properties.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Moisture:</strong> Many have high water content. Liquid sauce causes "gum line". <strong>Tip:</strong> If it runs easily off spoon, reduce on low heat 10-15 min.</li>
-          <li><strong>Stabilizers:</strong> Modified starch/gums give artificial viscosity. Can result in gelatinous texture.</li>
+          <li><strong>{t('learn.moisture')}</strong> Many have high water content. Liquid sauce causes "gum line". <strong>{t('learn.tip')}</strong> If it runs easily off spoon, reduce on low heat 10-15 min.</li>
+          <li><strong>{t('learn.stabilizers')}</strong> Modified starch/gums give artificial viscosity. Can result in gelatinous texture.</li>
           <li><strong>Acidity/Flavor:</strong> Often contain sugar balancing poor tomato acidity. Taste and adjust salt/acid.</li>
         </ul>
       </LearnSection>
 
-      <LearnSection title="Pre-Cooked Meats">
+      <LearnSection title={t('learn.precooked_meats')}>
         <p>
           Behave predictably in oven.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Less Water Release:</strong> Main advantage. Won't release moisture onto dough.</li>
-          <li><strong>Concentrated Flavor:</strong> Initial cooking concentrated flavors via Maillard.</li>
-          <li><strong>Rendered Fat:</strong> Bacon fat already rendered. Reduced risk of excessive oil-out.</li>
-          <li><strong>Ideal for Home Ovens:</strong> Essential for food safety in short bake times.</li>
+          <li><strong>{t('learn.less_water_release')}</strong> Main advantage. Won't release moisture onto dough.</li>
+          <li><strong>{t('learn.concentrated_flavor')}</strong> Initial cooking concentrated flavors via Maillard.</li>
+          <li><strong>{t('learn.rendered_fat')}</strong> Bacon fat already rendered. Reduced risk of excessive oil-out.</li>
+          <li><strong>{t('learn.ideal_for_home_ovens')}</strong> Essential for food safety in short bake times.</li>
         </ul>
       </LearnSection>
 
-      <LearnSection title="Prepared Vegetables">
+      <LearnSection title={t('learn.prepared_vegetables')}>
         <p>
           Raw veg is mostly water. Pre-prep controls moisture.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Roasted/Grilled:</strong> Removes water, breaks cellulose, caramelizes sugars. Deep flavor and soft texture.</li>
-          <li><strong>Pickled:</strong> Pickles/peppers bring sharp acidity cutting fat. Use moderately.</li>
+          <li><strong>{t('learn.pickled')}</strong> Pickles/peppers bring sharp acidity cutting fat. Use moderately.</li>
         </ul>
       </LearnSection>
 
-      <LearnSection title="High Quality Preserves" icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.high_quality_preserves')} icon={<SparklesIcon className="h-5 w-5" />}>
         <p>
           Professional shortcut to intense flavor.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Artichoke:</strong> Often in oil/brine. Drain well.</li>
-          <li><strong>Sun-dried Tomato:</strong> Dehydration concentrates sugar/umami. Rehydrate in warm water for softness.</li>
-          <li><strong>Roasted Pepper:</strong> Jarred, peeled, smoky sweet. Great time saver.</li>
-          <li><strong>Anchovies:</strong> Salt cured umami bomb. Use sparingly.</li>
+          <li><strong>{t('learn.artichoke')}</strong> Often in oil/brine. Drain well.</li>
+          <li><strong>{t('learn.sundried_tomato')}</strong> Dehydration concentrates sugar/umami. Rehydrate in warm water for softness.</li>
+          <li><strong>{t('learn.roasted_pepper')}</strong> Jarred, peeled, smoky sweet. Great time saver.</li>
+          <li><strong>{t('learn.anchovies')}</strong> Salt cured umami bomb. Use sparingly.</li>
         </ul>
       </LearnSection>
 
-      <LearnSection title="Technical Risks & Mitigation" icon={<BookOpenIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.technical_risks__mitigation')} icon={<BookOpenIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Excess Topping:</strong> Too many cold ingredients reduce surface temp drastically, impairing oven spring.</li>
-          <li><strong>Oily Ingredients:</strong> Drain oil preserves well to avoid greasy pizza.</li>
-          <li><strong>Watery Ingredients:</strong> Dry olives/brined items with paper towel. Moisture is enemy of crispness.</li>
+          <li><strong>{t('learn.excess_topping')}</strong> Too many cold ingredients reduce surface temp drastically, impairing oven spring.</li>
+          <li><strong>{t('learn.oily_ingredients')}</strong> Drain oil preserves well to avoid greasy pizza.</li>
+          <li><strong>{t('learn.watery_ingredients')}</strong> Dry olives/brined items with paper towel. Moisture is enemy of crispness.</li>
         </ul>
       </LearnSection>
     </IngredientPageLayout>

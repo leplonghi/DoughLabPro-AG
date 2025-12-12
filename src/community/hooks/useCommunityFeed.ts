@@ -3,6 +3,7 @@ import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
 import { DocumentSnapshot } from 'firebase/firestore';
 import { useUser } from '@/contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 
 export const useCommunityFeed = (filter: 'latest' | 'trending' | 'top' = 'latest') => {
     const { user, userLoading } = useUser();

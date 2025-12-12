@@ -1,4 +1,5 @@
 import React, { createContext, useContext, ReactNode, useMemo } from 'react';
+import { useTranslation } from '@/i18n';
 
 // Placeholder provider for future recipe management
 interface RecipesContextType {
@@ -9,6 +10,7 @@ interface RecipesContextType {
 const RecipesContext = createContext<RecipesContextType | undefined>(undefined);
 
 export const RecipesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const value: RecipesContextType = useMemo(() => ({
         recipes: [],
         favoriteRecipes: [],

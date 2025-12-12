@@ -1,4 +1,5 @@
 import React, { createContext, useContext, ReactNode, useMemo } from 'react';
+import { useTranslation } from '@/i18n';
 
 // Placeholder provider for future sensory evaluation features
 interface SensoryContextType {
@@ -9,6 +10,7 @@ interface SensoryContextType {
 const SensoryContext = createContext<SensoryContextType | undefined>(undefined);
 
 export const SensoryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const value: SensoryContextType = useMemo(() => ({
         sensoryProfiles: [],
         tastingNotes: [],

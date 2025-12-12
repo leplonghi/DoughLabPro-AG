@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const roman_teglia_pan: StyleDefinition = {
   "id": "roman_teglia_pan",
   "title": "Roman Teglia (Al Taglio – High Hydration Pan)",
-  "subtitle": "Roman Pan Pizza",
-  "category": "Pizza",
-  "family": "Roman Pan Pizza",
+  "subtitle": t('styles.roman_pan_pizza'),
+  "category": t('styles.pizza_12'),
+  "family": t('styles.roman_pan_pizza_2'),
   "variantName": "Roman Teglia (Al Taglio – High Hydration Pan)",
   "origin": {
-    "country": "Italy",
-    "region": "Rome",
-    "period": "Late 20th century"
+    "country": t('styles.italy_12'),
+    "region": t('styles.rome_2'),
+    "period": t('styles.late_20th_century_3')
   },
   "intro": "Sold by the slice by weight in Roman bakeries and pizzerias, often topped after par-bake or fully baked with toppings.",
   "history": "Roman teglia or al taglio pizza is baked in rectangular pans with very high hydration, yielding an airy crumb and crisp base.",
@@ -37,11 +38,11 @@ export const roman_teglia_pan: StyleDefinition = {
       0,
       2
     ],
-    "flourStrength": "Strong bread or pizza flour, W 300–340",
+    "flourStrength": t('styles.strong_bread_or_pizza_flour_w_300340'),
     "fermentation": {
       "bulk": "12–48 h with cold retard",
       "proof": "1–3 h in pan before baking",
-      "coldRetard": "Common for flavor and extensibility"
+      "coldRetard": t('styles.common_for_flavor_and_extensibility')
     },
     "oven": {
       "type": "electric_home",
@@ -49,11 +50,11 @@ export const roman_teglia_pan: StyleDefinition = {
         240,
         280
       ],
-      "notes": "Baked in oiled rectangular pans, sometimes in two stages."
+      "notes": t('styles.baked_in_oiled_rectangular_pans_sometimes_in_two_s')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_15'),
     "recommendedUse": [
-      "Roman pan pizza",
+      t('common.roman_pan_pizza'),
       "Tray-baked pizza sold by weight"
     ]
   },
@@ -64,10 +65,10 @@ export const roman_teglia_pan: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Roman pan pizza",
+    t('common.roman_pan_pizza'),
     "Tray-baked pizza sold by weight",
-    "Pizza",
-    "Italy"
+    t('common.pizza'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const roman_teglia_pan: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_10'),
       "url": ""
     },
     {
-      "title": "Roman pan pizza literature",
+      "title": t('styles.roman_pan_pizza_literature'),
       "url": ""
     }
   ],

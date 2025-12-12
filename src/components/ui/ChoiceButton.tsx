@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 interface ChoiceButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     active: boolean;
@@ -13,6 +14,7 @@ const ChoiceButton: React.FC<ChoiceButtonProps> = ({
     className = '',
     ...props
 }) => {
+  const { t } = useTranslation();
     return (
         <button
             type="button"

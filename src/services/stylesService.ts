@@ -2,6 +2,7 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { DoughStyleDefinition } from '@/types/styles';
 import { STYLES_DATA, mapRawStyleToDoughStyleDefinition } from '@/data/stylesData';
+import { useTranslation } from '@/i18n';
 
 const STYLES_COLLECTION = 'styles';
 

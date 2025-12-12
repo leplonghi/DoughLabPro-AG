@@ -1,12 +1,13 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const additivesArticle: LearnArticleData = {
     id: "additives-dough-conditioners",
-    title: "Additives & Dough Conditioners",
-    subtitle: "Improvers that refine gluten, fermentation behavior, softness and shelf life.",
+    title: t('learn.additives__dough_conditioners'),
+    subtitle: t('learn.improvers_that_refine_gluten_fermentation_behavior'),
 
-    category: "Ingredient Science",
-    difficulty: "Advanced",
+    category: t('learn.ingredient_science_2'),
+    difficulty: t('learn.advanced'),
     tags: ["additives", "improvers", "enzymes", "shelf-life"],
 
     intro: "Additives and dough conditioners enhance extensibility, fermentation performance, softness and shelf-life. They modify gluten bonds, pH, enzyme balance and gas retention.",
@@ -33,9 +34,9 @@ export const additivesArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Ascorbic Acid", notes: "Recommended: 0.01% (Range: 0.002-0.02%)" },
-        { label: "Lecithin", notes: "Recommended: 0.5% (Range: 0.1-1%)" },
-        { label: "Malt Powder", notes: "Recommended: 2% (Range: 0.5-3%)" }
+        { label: t('learn.ascorbic_acid'), notes: "Recommended: 0.01% (Range: 0.002-0.02%)" },
+        { label: t('learn.lecithin'), notes: "Recommended: 0.5% (Range: 0.1-1%)" },
+        { label: t('learn.malt_powder'), notes: "Recommended: 2% (Range: 0.5-3%)" }
     ],
 
     practicalApplications: [
@@ -65,12 +66,12 @@ export const additivesArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Natural Improvers",
-            implications: "Better fermentation and softness. Natural color and improved aroma."
+            variant: t('learn.natural_improvers'),
+            implications: t('learn.better_fermentation_and_softness_natural_color_and')
         },
         {
-            variant: "Commercial Conditioners",
-            implications: "More strength and tolerance. Greater loaf volume."
+            variant: t('learn.commercial_conditioners'),
+            implications: t('learn.more_strength_and_tolerance_greater_loaf_volume')
         }
     ],
 
@@ -83,15 +84,15 @@ export const additivesArticle: LearnArticleData = {
 
     faq: [
         {
-            q: "Are additives necessary for home baking?",
+            q: t('learn.are_additives_necessary_for_home_baking'),
             a: "Generally no. High-quality flour and proper fermentation usually suffice. Additives are more for correcting flour deficiencies or specific commercial needs."
         }
     ],
 
     grandmaVersion: {
         intro: "Sweetheart, additives are like vitamins for your dough — a tiny bit can help a lot. Some help the dough stay soft, others make it stronger or help it rise better.",
-        whatItDoes: "They make the dough easier to work and sometimes last longer.",
-        howToUse: "Natural options add flavor, while artificial ones need caution.",
+        whatItDoes: t('learn.they_make_the_dough_easier_to_work_and_sometimes_l'),
+        howToUse: t('learn.natural_options_add_flavor_while_artificial_ones_n'),
         dangerSigns: "But too much 'vitamin' makes the dough strange — use just a pinch."
     }
 };

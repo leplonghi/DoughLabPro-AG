@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const proofingTimingData: LearnArticleData = {
     id: "proofing-and-bake-timing",
-    title: "Proofing & Bake Timing",
-    subtitle: "From final rise to the moment dough hits the oven",
+    title: t('learn.proofing__bake_timing'),
+    subtitle: t('learn.from_final_rise_to_the_moment_dough_hits_the_oven'),
     category: 'Process Techniques',
     difficulty: 'Intermediate',
     tags: ['proofing', 'timing', 'fermentation', 'baking'],
@@ -34,15 +35,15 @@ export const proofingTimingData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Room-temperature final proof for pizza balls",
+            label: t('learn.roomtemperature_final_proof_for_pizza_balls'),
             notes: "1–4 hours at 20–26°C. Depends on prior bulk and cold fermentation; adjust by observing dough behaviour."
         },
         {
-            label: "Cold proof in trays or pans",
+            label: t('learn.cold_proof_in_trays_or_pans'),
             notes: "8–48 hours at 3–6°C. Common for pan styles; usually followed by a tempering period before baking."
         },
         {
-            label: "Temper out of the fridge",
+            label: t('learn.temper_out_of_the_fridge'),
             notes: "30–90 minutes at room temperature. Allows dough to warm, relax and reach optimal extensibility before use."
         }
     ],
@@ -84,9 +85,9 @@ export const proofingTimingData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_15'),
+        whatItDoes: t('learn.improves_texture_and_flavor_9'),
+        howToUse: t('learn.so_you_get_the_best_results_11'),
+        dangerSigns: t('learn.use_it_wisely_11')
     },
 };

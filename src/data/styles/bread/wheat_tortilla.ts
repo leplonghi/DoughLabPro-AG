@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const wheat_tortilla: StyleDefinition = {
   "id": "wheat_tortilla",
-  "title": "Wheat Flour Tortilla",
-  "subtitle": "Classic Flatbreads",
-  "category": "Bread",
-  "family": "Classic Flatbreads",
-  "variantName": "Wheat Flour Tortilla",
+  "title": t('styles.wheat_flour_tortilla'),
+  "subtitle": t('styles.classic_flatbreads_11'),
+  "category": t('styles.bread_27'),
+  "family": t('styles.classic_flatbreads_12'),
+  "variantName": t('styles.wheat_flour_tortilla_2'),
   "origin": {
-    "country": "Mexico",
-    "region": "Northern Mexico and Southwest US",
+    "country": t('styles.mexico'),
+    "region": t('styles.northern_mexico_and_southwest_us'),
     "period": "Traditional/Modern"
   },
-  "intro": "Used for tacos, burritos, quesadillas and many street-food formats.",
+  "intro": t('styles.used_for_tacos_burritos_quesadillas_and_many_stree'),
   "history": "Wheat tortillas are unleavened or lightly leavened flatbreads used as carriers for fillings in Mexican and Tex-Mex cuisines.",
   "technicalFoundations": [
     "Typically no preferment; chemical leaveners sometimes used.",
@@ -37,11 +38,11 @@ export const wheat_tortilla: StyleDefinition = {
       0,
       3
     ],
-    "flourStrength": "All-purpose or soft wheat flour",
+    "flourStrength": t('styles.allpurpose_or_soft_wheat_flour'),
     "fermentation": {
       "bulk": "Short rest after mixing (20–30 min)",
-      "proof": "No traditional yeast proofing steps",
-      "coldRetard": "Optional dough rest in fridge"
+      "proof": t('styles.no_traditional_yeast_proofing_steps'),
+      "coldRetard": t('styles.optional_dough_rest_in_fridge')
     },
     "oven": {
       "type": "griddle_or_pan",
@@ -49,9 +50,9 @@ export const wheat_tortilla: StyleDefinition = {
         180,
         250
       ],
-      "notes": "Cooked quickly on hot comal or skillet."
+      "notes": t('styles.cooked_quickly_on_hot_comal_or_skillet')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_13'),
     "recommendedUse": [
       "Tortillas for tacos, wraps, quesadillas"
     ]
@@ -64,8 +65,8 @@ export const wheat_tortilla: StyleDefinition = {
   "notes": [],
   "tags": [
     "Tortillas for tacos, wraps, quesadillas",
-    "Bread",
-    "Mexico"
+    t('common.bread'),
+    t('common.mexico')
   ],
   "applyInApp": {
     "calculator": [],
@@ -76,11 +77,11 @@ export const wheat_tortilla: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Mexican flatbread literature",
+      "title": t('styles.mexican_flatbread_literature'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_20'),
       "url": ""
     }
   ],

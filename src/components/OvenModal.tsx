@@ -97,7 +97,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                             value={formData.name}
                             onChange={handleChange}
                             className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
-                            placeholder="My Home Oven"
+                            placeholder={t('general.my_home_oven')}
                         />
                     </div>
 
@@ -178,7 +178,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                             value={formData.notes || ''}
                             onChange={handleChange}
                             className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
-                            placeholder="Optional notes about your oven..."
+                            placeholder={t('general.optional_notes_about_your_oven')}
                         />
                     </div>
 

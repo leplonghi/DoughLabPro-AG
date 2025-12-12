@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const heirloom_levain_loaf: StyleDefinition = {
   "id": "heirloom_levain_loaf",
-  "title": "Heirloom Grain Levain Loaf",
-  "subtitle": "Levain & Country Sourdough",
-  "category": "Bread",
-  "family": "Levain & Country Sourdough",
-  "variantName": "Heirloom Grain Levain Loaf",
+  "title": t('styles.heirloom_grain_levain_loaf'),
+  "subtitle": t('styles.levain__country_sourdough'),
+  "category": t('styles.bread_7'),
+  "family": t('styles.levain__country_sourdough_2'),
+  "variantName": t('styles.heirloom_grain_levain_loaf_2'),
   "origin": {
-    "country": "Global",
-    "region": "Local grain movements",
+    "country": t('styles.global'),
+    "region": t('styles.local_grain_movements'),
     "period": "21st century"
   },
   "intro": "Produced by small mills, micro-bakeries and advanced home bakers focusing on grain diversity.",
@@ -37,11 +38,11 @@ export const heirloom_levain_loaf: StyleDefinition = {
       0,
       2
     ],
-    "flourStrength": "Varies with grain blend; typically medium to strong",
+    "flourStrength": t('styles.varies_with_grain_blend_typically_medium_to_strong'),
     "fermentation": {
       "bulk": "3–5 h at 24–26°C with careful observation",
       "proof": "1–3 h or overnight retard",
-      "coldRetard": "Common for flexibility and flavor"
+      "coldRetard": t('styles.common_for_flexibility_and_flavor')
     },
     "oven": {
       "type": "deck",
@@ -49,11 +50,11 @@ export const heirloom_levain_loaf: StyleDefinition = {
         230,
         250
       ],
-      "notes": "Baker must adapt to specific grain absorption and strength."
+      "notes": t('styles.baker_must_adapt_to_specific_grain_absorption_and_')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_5'),
     "recommendedUse": [
-      "Artisan bread expressing local grains"
+      t('common.artisan_bread_expressing_local_grains')
     ]
   },
   "regionalVariants": [],
@@ -63,9 +64,9 @@ export const heirloom_levain_loaf: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Artisan bread expressing local grains",
-    "Bread",
-    "Global"
+    t('common.artisan_bread_expressing_local_grains'),
+    t('common.bread'),
+    t('common.global')
   ],
   "applyInApp": {
     "calculator": [],
@@ -76,11 +77,11 @@ export const heirloom_levain_loaf: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_6'),
       "url": ""
     },
     {
-      "title": "Contemporary grain-focused baking literature",
+      "title": t('styles.contemporary_grainfocused_baking_literature'),
       "url": ""
     }
   ],

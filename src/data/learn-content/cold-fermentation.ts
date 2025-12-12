@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const coldFermentationData: LearnArticleData = {
     id: "cold-fermentation",
-    title: "Cold Fermentation",
+    title: t('learn.cold_fermentation_2'),
     subtitle: "Slow fermentation at low temperatures for superior flavor, extensibility and structure.",
-    category: "Fermentation Science",
-    difficulty: "Intermediate",
+    category: t('learn.fermentation_science_3'),
+    difficulty: t('learn.intermediate_7'),
     tags: ["cold-fermentation", "retarding", "flavor", "extensibility"],
 
     intro: "Cold fermentation slows yeast activity, increases flavor complexity, and enhances dough extensibility. It offers long working windows and superior texture for both pizza and bread.",
@@ -32,8 +33,8 @@ export const coldFermentationData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Refrigeration Time", notes: "Recommended: 24 hours (Range: 12-72 hours)" },
-        { label: "Cold Fermentation Temperature", notes: "Recommended: 4°C (Range: 2-6°C)" }
+        { label: t('learn.refrigeration_time'), notes: "Recommended: 24 hours (Range: 12-72 hours)" },
+        { label: t('learn.cold_fermentation_temperature'), notes: "Recommended: 4°C (Range: 2-6°C)" }
     ],
 
     practicalApplications: [
@@ -64,11 +65,11 @@ export const coldFermentationData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Short Cold Fermentation",
+            variant: t('learn.short_cold_fermentation'),
             implications: "12–18 hours at 4°C. Moderate flavor, balanced extensibility. Smoother texture, workable after short warm-up."
         },
         {
-            variant: "Long Cold Fermentation",
+            variant: t('learn.long_cold_fermentation'),
             implications: "24–72 hours at 4°C. Deep flavor, high extensibility. Very relaxed dough; watch for structural weakening."
         }
     ],
@@ -84,8 +85,8 @@ export const coldFermentationData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, cold fermentation is like letting the dough sleep in the fridge so it wakes up full of flavor.",
-        whatItDoes: "Cold slows the yeast, but gives the dough time to become tastier.",
-        howToUse: "Makes the dough easier to stretch and more delicious.",
-        dangerSigns: "Don’t leave it forever or it gets too soft and tired."
+        whatItDoes: t('learn.cold_slows_the_yeast_but_gives_the_dough_time_to_b'),
+        howToUse: t('learn.makes_the_dough_easier_to_stretch_and_more_delicio'),
+        dangerSigns: t('learn.dont_leave_it_forever_or_it_gets_too_soft_and_tire')
     }
 };

@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const focaccia_genovese: StyleDefinition = {
   "id": "focaccia_genovese",
-  "title": "Focaccia Genovese",
-  "subtitle": "Italian Rustic & High Hydration",
-  "category": "Bread",
-  "family": "Italian Rustic & High Hydration",
-  "variantName": "Focaccia Genovese",
+  "title": t('styles.focaccia_genovese'),
+  "subtitle": t('styles.italian_rustic__high_hydration_3'),
+  "category": t('styles.bread_6'),
+  "family": t('styles.italian_rustic__high_hydration_4'),
+  "variantName": t('styles.focaccia_genovese_2'),
   "origin": {
-    "country": "Italy",
+    "country": t('styles.italy_3'),
     "region": "Liguria (Genoa)",
-    "period": "Traditional"
+    "period": t('styles.traditional_2')
   },
   "intro": "Eaten plain or with simple toppings, often as a snack or accompaniment to meals and drinks.",
   "history": "Focaccia genovese is a traditional Ligurian flatbread with high hydration, generous olive oil and characteristic dimpling.",
@@ -37,11 +38,11 @@ export const focaccia_genovese: StyleDefinition = {
       0,
       3
     ],
-    "flourStrength": "All-purpose or bread flour, medium strength",
+    "flourStrength": t('styles.allpurpose_or_bread_flour_medium_strength'),
     "fermentation": {
       "bulk": "2–4 h at 23–25°C, possibly including cold retard",
       "proof": "30–90 min in pan after dimpling and brine application",
-      "coldRetard": "Often 8–24 h for depth of flavor"
+      "coldRetard": t('styles.often_824_h_for_depth_of_flavor')
     },
     "oven": {
       "type": "electric_home",
@@ -49,13 +50,13 @@ export const focaccia_genovese: StyleDefinition = {
         220,
         250
       ],
-      "notes": "Baked in oiled sheet pans for crisp bottom and tender crumb."
+      "notes": t('styles.baked_in_oiled_sheet_pans_for_crisp_bottom_and_ten')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_4'),
     "recommendedUse": [
-      "Flatbread snack",
-      "Table bread",
-      "Sandwich base"
+      t('common.flatbread_snack'),
+      t('common.table_bread'),
+      t('common.sandwich_base')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const focaccia_genovese: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Flatbread snack",
-    "Table bread",
-    "Sandwich base",
-    "Bread",
-    "Italy"
+    t('common.flatbread_snack'),
+    t('common.table_bread'),
+    t('common.sandwich_base'),
+    t('common.bread'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const focaccia_genovese: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_5'),
       "url": ""
     },
     {
-      "title": "Italian focaccia traditions",
+      "title": t('styles.italian_focaccia_traditions'),
       "url": ""
     }
   ],

@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const finalProofingControlData: LearnArticleData = {
     id: 'final-proofing-control',
@@ -6,7 +7,7 @@ export const finalProofingControlData: LearnArticleData = {
     subtitle: 'Managing the dough’s last fermentation stage before baking.',
     category: 'Process Techniques',
     difficulty: 'Intermediate',
-    tags: ['Proofing', 'Fermentation', 'Oven Spring', 'Timing'],
+    tags: [t('learn.proofing'), t('learn.fermentation_2'), t('learn.oven_spring'), t('learn.timing_2')],
 
     intro: "Final proofing determines dough readiness for baking. Correct proof level ensures optimal oven spring, crumb development and crust coloration.",
     history: "Proofing control evolved from artisan bakeries monitoring tactile cues, temperature influences and fermentation curves.",
@@ -31,7 +32,7 @@ export const finalProofingControlData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Ideal Final Proofing Temperature", notes: "Recommended: 26°C (Range: 22-30°C)" }
+        { label: t('learn.ideal_final_proofing_temperature'), notes: "Recommended: 26°C (Range: 22-30°C)" }
     ],
 
     practicalApplications: [
@@ -62,11 +63,11 @@ export const finalProofingControlData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Warm Proofing",
+            variant: t('learn.warm_proofing'),
             implications: "Fast fermentation with stronger activity. Rapid rise, soft dough. Easy to overproof. Faster coloration. Recommended for Commercial Yeast Doughs, Same-day Bakes."
         },
         {
-            variant: "Cool Proofing",
+            variant: t('learn.cool_proofing'),
             implications: "Slow fermentation, tighter control. Stable, predictable. Better gas retention. Improved oven spring. Recommended for Sourdough, Long Fermentation."
         }
     ],
@@ -82,8 +83,8 @@ export const finalProofingControlData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, final proofing is like waiting for dough to take a deep breath before baking.",
-        whatItDoes: "Gives the bread its perfect rise.",
-        howToUse: "It needs to puff up just the right amount.",
-        dangerSigns: "Once overproofed, there’s no going back."
+        whatItDoes: t('learn.gives_the_bread_its_perfect_rise'),
+        howToUse: t('learn.it_needs_to_puff_up_just_the_right_amount'),
+        dangerSigns: t('learn.once_overproofed_theres_no_going_back')
     }
 };

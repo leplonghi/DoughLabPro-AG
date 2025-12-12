@@ -345,10 +345,10 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                                                 <p className="text-slate-700 text-sm">{variant.implications || variant.description}</p>
                                                 {/* Legacy Support */}
                                                 {variant.doughImplications && (
-                                                    <p className="text-xs text-slate-500"><strong>Dough:</strong> {variant.doughImplications}</p>
+                                                    <p className="text-xs text-slate-500"><strong>{t('learn.dough')}</strong> {variant.doughImplications}</p>
                                                 )}
                                                 {variant.bakingImplications && (
-                                                    <p className="text-xs text-slate-500"><strong>Baking:</strong> {variant.bakingImplications}</p>
+                                                    <p className="text-xs text-slate-500"><strong>{t('learn.baking')}</strong> {variant.bakingImplications}</p>
                                                 )}
                                             </div>
                                         </SubCollapse>

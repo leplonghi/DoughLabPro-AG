@@ -42,7 +42,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                     onClick={() => navigate('learn')}
                     className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl"
                 >
-                    {t('learn.back_to_academy', { defaultValue: 'Back to Academy' })}
+                    {t('learn.back_to_academy', { defaultValue: t('learn.back_to_academy') })}
                 </button>
             </div>
         );
@@ -57,15 +57,15 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
 
     // Derive Sections for TOC (Visual only since no anchors in renderer yet)
     const sections = [
-        article.intro && "Introduction",
+        article.intro && t('learn.introduction'),
         article.history && "History & Context",
-        (article.technicalFoundations?.length ?? 0) > 0 && "Technical Foundations",
-        (article.doughImpact?.length ?? 0) > 0 && "Impact on Dough",
-        (article.bakingImpact?.length ?? 0) > 0 && "Baking Performance",
-        (article.practicalRanges?.length ?? 0) > 0 && "Practical Ranges",
-        (article.practicalApplications?.length ?? 0) > 0 && "Practical Applications",
-        (article.proTips?.length ?? 0) > 0 && "Pro Tips",
-        (article.criticalPoints?.length ?? 0) > 0 && "Critical Points",
+        (article.technicalFoundations?.length ?? 0) > 0 && t('learn.technical_foundations'),
+        (article.doughImpact?.length ?? 0) > 0 && t('learn.impact_on_dough'),
+        (article.bakingImpact?.length ?? 0) > 0 && t('learn.baking_performance'),
+        (article.practicalRanges?.length ?? 0) > 0 && t('learn.practical_ranges'),
+        (article.practicalApplications?.length ?? 0) > 0 && t('learn.practical_applications'),
+        (article.proTips?.length ?? 0) > 0 && t('learn.pro_tips'),
+        (article.criticalPoints?.length ?? 0) > 0 && t('learn.critical_points'),
         (article.faq?.length ?? 0) > 0 && "FAQ"
     ].filter(Boolean) as string[];
 
@@ -90,9 +90,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                         >
                             <div className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-white/20 transition-colors">
                                 <ArrowLeftIcon className="w-4 h-4" />
-                            </div>
-                            Back to Academy
-                        </button>
+                            </div>{t('learn.back_to_academy')}</button>
                     </div>
                 </div>
 
@@ -147,16 +145,14 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                                     <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white mb-4 backdrop-blur-sm">
                                         <CalculatorIcon className="w-6 h-6" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Apply this Science</h3>
+                                    <h3 className="text-xl font-bold text-white mb-2">{t('learn.apply_this_science')}</h3>
                                     <p className="text-slate-400 text-sm mb-6">
                                         Put this theory into practice. Create a new formulation using the DoughLab Calculator.
                                     </p>
                                     <button
                                         onClick={() => navigate('calculator')}
                                         className="w-full bg-lime-500 hover:bg-lime-400 text-slate-900 font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-lime-500/25 flex items-center justify-center gap-2"
-                                    >
-                                        Open Calculator
-                                        <ArrowLeftIcon className="w-4 h-4 rotate-180" />
+                                    >{t('learn.open_calculator')}<ArrowLeftIcon className="w-4 h-4 rotate-180" />
                                     </button>
                                 </div>
                             </div>
@@ -165,9 +161,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                             {sections.length > 0 && (
                                 <div className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
                                     <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <BookmarkSquareIcon className="w-4 h-4 text-lime-600" />
-                                        In this Article
-                                    </h4>
+                                        <BookmarkSquareIcon className="w-4 h-4 text-lime-600" />{t('learn.in_this_article')}</h4>
                                     <ul className="space-y-3">
                                         {sections.map((section, idx) => (
                                             <li
@@ -185,7 +179,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                             {/* 3. Recommended Tools (Native Ad) */}
                             <RecommendedProducts
                                 tags={[article.category.toLowerCase(), ...(article.tags || [])]}
-                                title="Essentials for this Technique"
+                                title={t('learn.essentials_for_this_technique')}
                                 className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm"
                             />
                         </div>

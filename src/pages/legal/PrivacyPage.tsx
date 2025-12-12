@@ -1,12 +1,14 @@
 import React from 'react';
 import LegalPageLayout from './LegalPageLayout';
+import { useTranslation } from '@/i18n';
 
 const PrivacyPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
-    <LegalPageLayout title="Privacy Policy" lastUpdated="August 1, 2024">
+    <LegalPageLayout title={t('general.privacy_policy')} lastUpdated="August 1, 2024">
       <ul>
-        <li><strong>Local Storage:</strong> We store user preferences (like theme and mode) and cached data (like your last calculator configuration) directly on your device to speed up the application and allow offline functionality.</li>
-        <li><strong>Cookies:</strong> Used primarily for authentication and security purposes by our identity providers (like Google/Firebase).</li>
+        <li><strong>{t('ui.local_storage')}</strong> We store user preferences (like theme and mode) and cached data (like your last calculator configuration) directly on your device to speed up the application and allow offline functionality.</li>
+        <li><strong>{t('ui.cookies')}</strong> Used primarily for authentication and security purposes by our identity providers (like Google/Firebase).</li>
       </ul>
 
       <h3>6. Third-Party Links & Affiliates</h3>

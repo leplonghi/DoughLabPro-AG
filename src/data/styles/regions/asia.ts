@@ -1,4 +1,5 @@
 import { DoughStyle, RecipeStyle } from '../../../types/dough';
+import { useTranslation } from '@/i18n';
 
 export const asiaStyles: DoughStyle[] = [
     {
@@ -8,7 +9,7 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'Japan',
         category: 'Soft Bread',
         recipeStyle: RecipeStyle.HOKKAIDO_MILK_BREAD,
-        tags: ['Tangzhong', 'Yudane', 'Milk', 'Soft'],
+        tags: [t('styles.tangzhong'), t('styles.yudane'), t('styles.milk'), t('styles.soft')],
         description: 'Ultra-soft and fluffy Japanese milk bread, characterized by the use of Tangzhong (water roux method) for superior moisture retention and extensive shelf life.',
         history_context: 'Originating in Japan in the 20th century, Shokupan was developed to cater to the Japanese palate regarding soft and moist textures ("mochi-mochi"), adapting Western techniques.',
         base_formula: [
@@ -34,21 +35,21 @@ export const asiaStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "High Protein (W350+)",
-                pl_ratio: "Balanced",
-                absorption_capacity: "High",
-                protein_type: "Strong Wheat",
+                pl_ratio: t('styles.balanced_3'),
+                absorption_capacity: t('styles.high'),
+                protein_type: t('styles.strong_wheat'),
                 science_explanation: 'High protein is required to support enrichment (fat/sugar) and the high hydration of the Tangzhong.'
             },
             thermalProfile: {
-                oven_type: "Convection",
-                heat_distribution: "Even",
-                crust_development: "Soft, golden",
-                crumb_structure: "Feathery, shreddable"
+                oven_type: t('styles.convection'),
+                heat_distribution: t('styles.even'),
+                crust_development: t('styles.soft_golden'),
+                crumb_structure: t('styles.feathery_shreddable')
             },
             fermentationScience: {
-                yeast_activity: "High",
-                ph_target: "Normal",
-                organic_acids: "Balanced",
+                yeast_activity: t('styles.high_2'),
+                ph_target: t('styles.normal'),
+                organic_acids: t('styles.balanced_4'),
                 enzymatic_activity: "High (Starch Gelatinization)"
             },
             processScience: 'The Tangzhong method (pre-gelatinizing 5-10% of the flour at 65°C) captures water in a stable starch structure, preventing it from evaporating or migrating, resulting in prolonged softness.'
@@ -90,7 +91,7 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'India',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: ['Tandoor', 'Yogurt', 'High Heat', 'Soft'],
+        tags: [t('styles.tandoor'), t('styles.yogurt'), t('styles.high_heat'), t('styles.soft_2')],
         description: 'Traditional Indian flatbread, baked on the walls of a Tandoor oven, flavored with garlic and butter (Ghee).',
         history_context: 'A staple in North Indian and Pakistani cuisine, Naan has Persian roots and evolved with the use of yogurt and yeast to create a soft and slightly elastic texture.',
         base_formula: [
@@ -116,20 +117,20 @@ export const asiaStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "Medium (W240-260)",
                 pl_ratio: "Extensible (Low P/L)",
-                absorption_capacity: "Medium",
+                absorption_capacity: t('styles.medium_42'),
                 protein_type: "Maida / AP",
                 science_explanation: 'Extensibility is key to stretching the Naan into a teardrop shape without tearing. Gluten must be relaxed.'
             },
             thermalProfile: {
-                oven_type: "Tandoor",
+                oven_type: t('styles.tandoor_2'),
                 heat_distribution: "Radiant (Walls)",
-                crust_development: "Charred bubbles",
-                crumb_structure: "Soft, irregular"
+                crust_development: t('styles.charred_bubbles'),
+                crumb_structure: t('styles.soft_irregular')
             },
             fermentationScience: {
-                yeast_activity: "Fast",
+                yeast_activity: t('styles.fast'),
                 ph_target: "Acidic (Yogurt)",
-                organic_acids: "Lactic",
+                organic_acids: t('styles.lactic'),
                 enzymatic_activity: "Protease (Tenderizing)"
             },
             processScience: 'The yogurt in the dough provides lactic acidity which softens the gluten network, allowing the dough to be stretched into a teardrop shape without tearing before entering the Tandoor.'
@@ -171,9 +172,9 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'Taiwan/China',
         category: 'Buns',
         recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC,
-        tags: ['Steam', 'Low Protein', 'White'],
+        tags: [t('styles.steam'), t('styles.low_protein'), t('styles.white')],
         description: 'Steamed bun, soft, white and slightly sweet, traditionally filled with pork belly.',
-        history_context: 'Popular in Taiwan and Fujian, Gua Bao is often called the "Taiwanese burger". The steaming technique is ancient in China (Mantou/Baozi).',
+        history_context: 'Popular in Taiwan and Fujian, Gua Bao is often called the t('common.taiwanese_burger'). The steaming technique is ancient in China (Mantou/Baozi).',
         base_formula: [
             { name: 'Low Protein Flour (Hong Kong Flour)', percentage: 100 },
             { name: 'Hydration (Water/Milk)', percentage: 55 },
@@ -197,21 +198,21 @@ export const asiaStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "Low (Hong Kong Flour)",
                 pl_ratio: "N/A",
-                absorption_capacity: "Low",
+                absorption_capacity: t('styles.low'),
                 protein_type: "Low Protein / Bleached",
                 science_explanation: 'Low gluten content desired for "cottony" texture. Bleached flour helps with whiteness.'
             },
             thermalProfile: {
-                oven_type: "Steamer",
+                oven_type: t('styles.steamer'),
                 heat_distribution: "Steam (Convection)",
                 crust_development: "None (Skin only)",
-                crumb_structure: "Uniform, cottony"
+                crumb_structure: t('styles.uniform_cottony')
             },
             fermentationScience: {
-                yeast_activity: "Moderate",
-                ph_target: "Neutral",
-                organic_acids: "None",
-                enzymatic_activity: "Low"
+                yeast_activity: t('styles.moderate'),
+                ph_target: t('styles.neutral'),
+                organic_acids: t('styles.none_2'),
+                enzymatic_activity: t('styles.low_2')
             },
             processScience: 'Steaming (constant 100°C) prevents the Maillard reaction (which occurs above 140°C), maintaining the pure white color and smooth skin, without a crispy crust.'
         },
@@ -252,9 +253,9 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'China',
         category: 'Buns',
         recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC, // Closest match
-        tags: ['Steam', 'Sourdough (Lao Mian)', 'Breakfast'],
-        description: 'The classic Northern Chinese steamed bun. Distinct from the folded "Gua Bao", this is a fully sealed bun (often filled) made with a "Lao Mian" (old dough) starter for flavor and texture.',
-        history_context: 'Attributed to Zhuge Liang in the Three Kingdoms period (3rd century AD). "Mantou" originally meant "Barbarian Head" due to its shape. It is the staple bread of Northern China where wheat dominates rice.',
+        tags: [t('styles.steam_2'), t('styles.breakfast')],
+        description: 'The classic Northern Chinese steamed bun. Distinct from the folded t('common.gua_bao'), this is a fully sealed bun (often filled) made with a t('common.lao_mian') (old dough) starter for flavor and texture.',
+        history_context: 'Attributed to Zhuge Liang in the Three Kingdoms period (3rd century AD). t('common.mantou') originally meant t('common.barbarian_head') due to its shape. It is the staple bread of Northern China where wheat dominates rice.',
         base_formula: [
             { name: 'Medium Protein Flour', percentage: 100 },
             { name: 'Water', percentage: 50 },
@@ -277,25 +278,25 @@ export const asiaStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W200-240",
-                pl_ratio: "Balanced",
-                absorption_capacity: "Medium",
+                w_index: t('styles.w200240'),
+                pl_ratio: t('styles.balanced_5'),
+                absorption_capacity: t('styles.medium_45'),
                 protein_type: "All Purpose / Bleached",
                 science_explanation: 'Bleached flour (Hong Kong Flour) is often preferred for the snowy white color and lower protein (tenderness). Unbleached flour results in a yellowish bun.'
             },
             thermalProfile: {
-                oven_type: "Bamboo Steamer",
+                oven_type: t('styles.bamboo_steamer'),
                 heat_distribution: "Convection (Steam)",
                 crust_development: "Skin formation (No Maillard)",
-                crumb_structure: "Fine, dense, brilliant white"
+                crumb_structure: t('styles.fine_dense_brilliant_white')
             },
             fermentationScience: {
-                yeast_activity: "Moderate",
-                ph_target: "Neutral",
-                organic_acids: "Low",
-                enzymatic_activity: "Standard"
+                yeast_activity: t('styles.moderate_2'),
+                ph_target: t('styles.neutral_2'),
+                organic_acids: t('styles.low_3'),
+                enzymatic_activity: t('styles.standard_6')
             },
-            processScience: 'Steaming cooks the starch at 100°C. Since Maillard requires ~140°C, the bun stays white. The crucial step is the "Second Proof" - if effectively timed, the bun surface is smooth. If overproofed, it wrinkles upon cooling.'
+            processScience: 'Steaming cooks the starch at 100°C. Since Maillard requires ~140°C, the bun stays white. The crucial step is the t('common.second_proof') - if effectively timed, the bun surface is smooth. If overproofed, it wrinkles upon cooling.'
         },
         process: [
             {
@@ -303,7 +304,7 @@ export const asiaStyles: DoughStyle[] = [
                 title: 'Smooth Mix',
                 duration: '15 min',
                 action: 'Knead until extremely smooth. Degas completely.',
-                science: 'Any large air bubble left will expand during steaming and create a pitted surface ("Zombie Skin").'
+                science: 'Any large air bubble left will expand during steaming and create a pitted surface (t('common.zombie_skin')).'
             },
             {
                 phase: 'Prep',
@@ -320,7 +321,7 @@ export const asiaStyles: DoughStyle[] = [
                 science: 'Opening the lid causes a pressure drop and thermal shock, collapsing the structure immediately.'
             }
         ],
-        references: ['Wheat Flour Institute of China'],
+        references: [t('styles.wheat_flour_institute_of_china')],
         images: {
             hero: '/images/styles/baozi_steamed.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -334,9 +335,9 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'India',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: ['Laminated', 'Unleavened', 'Fried'],
+        tags: [t('styles.laminated'), t('styles.unleavened'), t('styles.fried')],
         description: 'A layered North Indian flatbread made from whole wheat flour (Atta). It is laminated with ghee using a pleating technique to create flaky, crispy layers similar to puff pastry, but unleashed.',
-        history_context: 'Paratha (Parat + Atta = Processed Dough/Layers) is a staple of North Indian breakfast. The "Lacha" implies the specific ring-layered style.',
+        history_context: 'Paratha (Parat + Atta = Processed Dough/Layers) is a staple of North Indian breakfast. The t('common.lacha') implies the specific ring-layered style.',
         base_formula: [
             { name: 'Atta Flour (Whole Wheat)', percentage: 100 },
             { name: 'Water', percentage: 65 },
@@ -360,21 +361,21 @@ export const asiaStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "N/A (Atta)",
                 pl_ratio: "Extensible (Bran)",
-                absorption_capacity: "High",
-                protein_type: "Durum-like Wheat",
+                absorption_capacity: t('styles.high_3'),
+                protein_type: t('styles.durumlike_wheat'),
                 science_explanation: 'Atta is stone-ground whole wheat. The high bran content cuts gluten strands (low elasticity), but absorbs lots of water. 30min autolyse/rest is essential to hydrate the bran.'
             },
             thermalProfile: {
                 oven_type: "Tawa (Griddle)",
-                heat_distribution: "Conduction",
-                crust_development: "Crisp, fried",
-                crumb_structure: "Laminated layers"
+                heat_distribution: t('styles.conduction'),
+                crust_development: t('styles.crisp_fried'),
+                crumb_structure: t('styles.laminated_layers')
             },
             fermentationScience: {
-                yeast_activity: "None",
-                ph_target: "Neutral",
-                organic_acids: "None",
-                enzymatic_activity: "Standard"
+                yeast_activity: t('styles.none_3'),
+                ph_target: t('styles.neutral_3'),
+                organic_acids: t('styles.none_4'),
+                enzymatic_activity: t('styles.standard_7')
             },
             processScience: 'Lamination without yeast: The layers are separated by Ghee. Steam generated from the water in the dough pushes the layers apart (mechanical leavening) while the Ghee prevents them from fusing.'
         },
@@ -408,7 +409,7 @@ export const asiaStyles: DoughStyle[] = [
                 science: 'Direct heat crisps the outer layers while steam cooks the inner layers.'
             }
         ],
-        references: ['Indian Breads'],
+        references: [t('styles.indian_breads')],
         images: {
             hero: '/images/styles/paratha_flaky_hero.png',
             dough: '/images/styles/placeholder-dough.png',

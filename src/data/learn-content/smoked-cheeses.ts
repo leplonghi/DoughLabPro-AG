@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const smokedCheesesData: LearnArticleData = {
     id: 'smoked-cheeses',
@@ -10,7 +11,7 @@ export const smokedCheesesData: LearnArticleData = {
 
     intro: "Smoking creates a 'rind' or skin on the cheese due to dehydration and the deposition of tars/resins from the smoke. This rind has a higher melting point than the interior paste. When baked, smoked cheese often holds its shape better (cubes stay cubes) rather than flowing into a puddle.",
 
-    history: "Historical context coming soon.",
+    history: t('learn.historical_context_coming_soon_2'),
 
     technicalFoundations: [
         "The Rind Effect: Smoking creates a 'rind' or skin on the cheese due to dehydration and the deposition of tars/resins from the smoke.",
@@ -56,9 +57,9 @@ export const smokedCheesesData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_18'),
+        whatItDoes: t('learn.improves_texture_and_flavor_12'),
+        howToUse: t('learn.so_you_get_the_best_results_14'),
+        dangerSigns: t('learn.use_it_wisely_14')
     },
 };

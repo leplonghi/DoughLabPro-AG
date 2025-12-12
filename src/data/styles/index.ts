@@ -1,4 +1,5 @@
 import { STYLES_DATA, getStyleById as registryGetById } from './registry';
+import { useTranslation } from '@/i18n';
 
 // 3. EXPORTAÇÕES (API INTERNA) - Redirecionando para o Registry Central (Single Source of Truth)
 

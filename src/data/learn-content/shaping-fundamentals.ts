@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const shapingFundamentalsArticle: LearnArticleData = {
     id: "shaping-fundamentals",
-    title: "Shaping Fundamentals",
-    subtitle: "How to structure dough before proofing for optimal oven spring and crumb.",
-    category: "Process Techniques",
-    difficulty: "Beginner",
+    title: t('learn.shaping_fundamentals'),
+    subtitle: t('learn.how_to_structure_dough_before_proofing_for_optimal'),
+    category: t('learn.process_techniques_12'),
+    difficulty: t('learn.beginner_10'),
     tags: ["shaping", "tension", "proofing", "structure"],
 
     intro: "Shaping aligns gluten, redistributes gases, and defines the dough’s final structure before proofing. Proper shaping controls tension, elasticity, and the distribution of internal bubbles.",
@@ -31,7 +32,7 @@ export const shapingFundamentalsArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Ideal Dough Temp for Shaping", notes: "Recommended: 24°C (Range: 20-26°C)" }
+        { label: t('learn.ideal_dough_temp_for_shaping'), notes: "Recommended: 24°C (Range: 20-26°C)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const shapingFundamentalsArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Tight Shaping",
+            variant: t('learn.tight_shaping'),
             implications: "Strong surface tension for structured dough. Defined form, stable rise. Better oven spring. More uniform crumb."
         },
         {
-            variant: "Loose Shaping",
+            variant: t('learn.loose_shaping'),
             implications: "Gentler shaping for soft doughs. Open crumb, delicate rise. Higher extensibility. More irregular bubble patterns."
         }
     ],
@@ -81,8 +82,8 @@ export const shapingFundamentalsArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, shaping dough is like tucking a blanket — you’re making it smooth and snug.",
-        whatItDoes: "Helps it grow tall and even.",
-        howToUse: "We gently fold and tighten the dough so it rises nicely.",
-        dangerSigns: "If you squeeze too much, you pop the bubbles."
+        whatItDoes: t('learn.helps_it_grow_tall_and_even'),
+        howToUse: t('learn.we_gently_fold_and_tighten_the_dough_so_it_rises_n'),
+        dangerSigns: t('learn.if_you_squeeze_too_much_you_pop_the_bubbles')
     }
 };

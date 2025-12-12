@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const toughDoughData: LearnArticleData = {
     id: "tough-dough",
-    title: "Tough Dough",
-    subtitle: "Diagnosing dough that resists stretching, tears or snaps back.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    title: t('learn.tough_dough'),
+    subtitle: t('learn.diagnosing_dough_that_resists_stretching_tears_or_'),
+    category: t('learn.troubleshooting_9'),
+    difficulty: t('learn.intermediate_30'),
     tags: ["tough-dough", "elasticity", "extensibility", "troubleshooting"],
 
     intro: "Tough dough is characterized by excessive elasticity and low extensibility. It resists stretching, tears easily and makes shaping difficult.",
@@ -31,7 +32,7 @@ export const toughDoughData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Extensibility Temperature", notes: "Recommended: 24°C (Range: 22-26°C)" }
+        { label: t('learn.extensibility_temperature'), notes: "Recommended: 24°C (Range: 22-26°C)" }
     ],
 
     practicalApplications: [
@@ -61,12 +62,12 @@ export const toughDoughData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Under-Fermented Dough",
+            variant: t('learn.underfermented_dough'),
             implications: "Gluten remains tight and undeveloped. Elastic, resistant. Difficult stretching. Weak spring."
         },
         {
-            variant: "Low Hydration",
-            implications: "Not enough water to soften gluten. Firm, dry. Low extensibility. Dense crumb."
+            variant: t('learn.low_hydration'),
+            implications: t('learn.not_enough_water_to_soften_gluten_firm_dry_low_ext')
         }
     ],
 
@@ -80,9 +81,9 @@ export const toughDoughData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Sweetheart, tough dough is like trying to stretch a tight rubber band.",
-        whatItDoes: "Makes shaping hard.",
-        howToUse: "It’s too stiff and keeps pulling back.",
+        intro: t('learn.sweetheart_tough_dough_is_like_trying_to_stretch_a'),
+        whatItDoes: t('learn.makes_shaping_hard'),
+        howToUse: t('learn.its_too_stiff_and_keeps_pulling_back'),
         dangerSigns: "You can’t get a nice pizza shape this way. A little rest can soften even the toughest dough."
     }
 };

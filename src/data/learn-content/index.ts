@@ -64,6 +64,7 @@ import * as WeakGlutenStructure from './weak-gluten-structure';
 import * as WholeGrains from './whole-grains';
 import * as WorkflowAndServicePlanning from './workflow-and-service-planning';
 import * as Yeasts from './yeasts';
+import { useTranslation } from '@/i18n';
 
 const modules = [
     Additives, AmbientVsCold, Autolyse, BakingProfilesByStyle, BakingSurfacesAndHeatTransfer,

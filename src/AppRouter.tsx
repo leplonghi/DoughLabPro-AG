@@ -11,6 +11,7 @@ import { useStyles } from '@/contexts/StylesProvider';
 import AuthModal from '@/components/AuthModal';
 import { LearnProvider } from '@/contexts/LearnContext';
 import { FeatureKey } from '@/permissions';
+import { useTranslation } from '@/i18n';
 
 // Lazy Load Pages
 const CalculatorPage = React.lazy(() => import('@/pages/CalculatorPage'));

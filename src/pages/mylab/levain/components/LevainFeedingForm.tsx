@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
 import { CloseIcon, FlourIcon, WaterIcon, FireIcon, WeightIcon, CalculatorIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface LevainFeedingFormProps {
     isOpen: boolean;
@@ -11,6 +12,7 @@ interface LevainFeedingFormProps {
 }
 
 const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, levainId }) => {
+  const { t } = useTranslation();
     const { addFeedingEvent } = useUser();
     const { addToast } = useToast();
 
@@ -79,9 +81,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                         <div className="p-2 bg-lime-100 rounded-lg text-lime-600">
                             <WeightIcon className="h-5 w-5" />
                         </div>
-                        <h2 className="text-lg font-bold text-slate-900">
-                            Feed Your Levain
-                        </h2>
+                        <h2 className="text-lg font-bold text-slate-900">{t('mylab.feed_your_levain')}</h2>
                     </div>
                     <button onClick={onClose} className="rounded-full p-2 text-slate-400 hover:bg-slate-200 transition-colors">
                         <CloseIcon className="h-5 w-5" />
@@ -94,7 +94,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                         <div className="flex items-center gap-2 mb-3">
                             <CalculatorIcon className="h-4 w-4 text-slate-500" />
-                            <span className="text-xs font-bold uppercase tracking-wide text-slate-500">Ratio Calculator</span>
+                            <span className="text-xs font-bold uppercase tracking-wide text-slate-500">{t('mylab.ratio_calculator')}</span>
                         </div>
 
                         <div className="flex items-center gap-4 mb-4">
@@ -104,7 +104,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                                     type="number"
                                     value={starterWeight || ''}
                                     onChange={e => setStarterWeight(Number(e.target.value))}
-                                    placeholder="Optional"
+                                    placeholder={t('mylab.optional')}
                                     className="w-full rounded-md border-slate-300 text-sm py-1.5"
                                 />
                             </div>
@@ -146,16 +146,16 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                     {/* Secondary Details */}
                     <div className="grid grid-cols-2 gap-4 pt-2">
                         <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Flour Type</label>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">{t('mylab.flour_type')}</label>
                             <select
                                 value={flourType}
                                 onChange={e => setFlourType(e.target.value)}
                                 className="w-full rounded-md border-slate-300 text-sm text-slate-700 focus:border-lime-500 focus:ring-lime-500"
                             >
-                                <option>White Flour</option>
-                                <option>Whole Wheat</option>
-                                <option>Rye</option>
-                                <option>Blend</option>
+                                <option>{t('mylab.white_flour')}</option>
+                                <option>{t('mylab.whole_wheat')}</option>
+                                <option>{t('mylab.rye')}</option>
+                                <option>{t('mylab.blend')}</option>
                             </select>
                         </div>
                         <div>
@@ -173,7 +173,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Ratio Used</label>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">{t('mylab.ratio_used')}</label>
                         <input
                             type="text"
                             value={ratio}
@@ -183,8 +183,8 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                     </div>
 
                     <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                        <button type="button" onClick={onClose} className="rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors">Cancel</button>
-                        <button type="submit" className="rounded-lg bg-gradient-to-br from-lime-500 to-lime-700 px-6 py-2 text-sm font-bold text-white shadow-md shadow-lime-200 hover:from-lime-600 hover:to-lime-800 transition-all active:scale-95">Confirm Feeding</button>
+                        <button type="button" onClick={onClose} className="rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors">{t('common.cancel')}</button>
+                        <button type="submit" className="rounded-lg bg-gradient-to-br from-lime-500 to-lime-700 px-6 py-2 text-sm font-bold text-white shadow-md shadow-lime-200 hover:from-lime-600 hover:to-lime-800 transition-all active:scale-95">{t('mylab.confirm_feeding')}</button>
                     </div>
                 </form>
             </div>

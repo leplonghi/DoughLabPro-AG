@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 interface PageHeroProps {
     title: string;
@@ -8,6 +9,7 @@ interface PageHeroProps {
 }
 
 export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, badges, backgroundClass = "bg-gradient-to-br from-dlp-accent to-dlp-accent-hover" }) => {
+  const { t } = useTranslation();
     return (
         <div className={`relative rounded-3xl p-8 md:p-12 shadow-dlp-lg mb-8 overflow-hidden ${backgroundClass}`}>
             <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>

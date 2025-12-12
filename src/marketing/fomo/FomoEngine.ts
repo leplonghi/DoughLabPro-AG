@@ -1,5 +1,6 @@
 import { FeatureKey } from '../../permissions';
 import { DoughConfig } from '../../types';
+import { useTranslation } from '@/i18n';
 
 export type FomoTriggerContext = {
     hydration?: number;

@@ -11,6 +11,7 @@ import {
     BakeType
 } from '../types';
 import { getStyleById } from '../data/styles';
+import { useTranslation } from '@/i18n';
 
 /**
  * Generates a dynamic, scientifically-grounded step-by-step method for the dough.
@@ -114,7 +115,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
                 'Whisk eggs and sugar vigorously until pale, thick, and falling in "ribbons" (approx 3-5 mins).',
                 'Beat the eggs and sugar until they look white and fluffy, like a milkshake.',
                 {
-                    technicalExplanation: 'Dissolving the sugar into the eggs creates a shiny, "papery" crust on top (meringue-like structure). Evaluating "Ribbon Stage" ensures sufficient aeration.',
+                    technicalExplanation: 'Dissolving the sugar into the eggs creates a shiny, "papery" crust on top (meringue-like structure). Evaluating t('common.ribbon_stage') ensures sufficient aeration.',
                     proTip: 'If the sugar isn\'t fully dissolved, the crust will be dull.'
                 }
             );
@@ -144,7 +145,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
                 'Beat softened butter and sugar(s) together until light, fluffy, and pale (3-5 mins).',
                 'Mix the butter and sugar until it looks like light, fluffy frosting.',
                 {
-                    technicalExplanation: 'The "Creaming Method" punches millions of micro-air bubbles into the fat. These bubbles expand during baking (leavening), creating lift and texture.',
+                    technicalExplanation: 'The t('common.creaming_method') punches millions of micro-air bubbles into the fat. These bubbles expand during baking (leavening), creating lift and texture.',
                     criticalPoint: 'Butter must be pliable (18-20°C) but not melted. Melted butter cannot hold air bubbles.'
                 }
             );
@@ -175,7 +176,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
                 {
                     durationLabel: '2-24h',
                     technicalExplanation: 'Chilling hydrates the flour (less spread), solidifies the fat (less spread), and allows enzymes to break down carbohydrates (browning/flavor).',
-                    references: ['Maillard Reaction', 'J. Kenji Lopez-Alt']
+                    references: [t('ui.maillard_reaction'), t('ui.j_kenji_lopezalt')]
                 }
             );
             addStep(
@@ -194,7 +195,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
     }
 
     // --- LAMINATED PATHWAY (Croissant, Danish, Puff) ---
-    const isLaminated = [RecipeStyle.FRENCH_CROISSANT, RecipeStyle.PASTRY_DANISH, "PuffPastry"].includes(config.recipeStyle);
+    const isLaminated = [RecipeStyle.FRENCH_CROISSANT, RecipeStyle.PASTRY_DANISH, t('common.puffpastry')].includes(config.recipeStyle);
 
     if (isLaminated) {
         addStep(
@@ -297,7 +298,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
             {
                 durationLabel: '30-60m',
                 technicalExplanation: 'Autolyse allows protease enzymes to degrade some gluten bonds, increasing extensibility. It also fully hydrates starch and protein, reducing mixing time and oxidation.',
-                references: ['Prof. Raymond Calvel']
+                references: [t('ui.prof_raymond_calvel')]
             }
         );
     }
@@ -349,7 +350,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
             {
                 durationLabel: '10-15m',
                 technicalExplanation: 'Mechanical action unfolds the protein coils (glutenin/gliadin) and encourages cross-linking (disulfide bonds), creating a viscoelastic network capable of trapping CO2.',
-                references: ['The Windowpane Test']
+                references: [t('ui.the_windowpane_test')]
             }
         );
     }
@@ -382,7 +383,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
             {
                 durationLabel: '24-72h',
                 technicalExplanation: 'Cold temperatures slow yeast activity (CO2) but allow enzymatic activity (protease/amylase) and bacterial fermentation (LAB) to continue, developing complex flavors and digestibility.',
-                references: ['Maillard Reaction precursors']
+                references: [t('ui.maillard_reaction_precursors')]
             }
         );
     }
@@ -431,7 +432,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
         bakeGrandma,
         {
             temperatureLabel: `${bakeTemp}°C / ${(bakeTemp * 9 / 5 + 32).toFixed(0)}°F`,
-            technicalExplanation: 'Rapid heat transfer causes "Oven Spring" (gas expansion) before the crust sets. Maillard reaction occurs above 140°C (284°F), creating browning and flavor.',
+            technicalExplanation: 'Rapid heat transfer causes t('common.oven_spring') (gas expansion) before the crust sets. Maillard reaction occurs above 140°C (284°F), creating browning and flavor.',
             criticalPoint: 'Do not overload with wet toppings, or the heat transfer will be blocked, resulting in a "gum line" (undercooked layer).'
         }
     );

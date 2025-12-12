@@ -1,11 +1,13 @@
 import React from 'react';
 import { CommunityPost } from '../types';
+import { useTranslation } from '@/i18n';
 
 interface PostMethodProps {
     post: CommunityPost;
 }
 
 export const PostMethod: React.FC<PostMethodProps> = ({ post }) => {
+  const { t } = useTranslation();
     if (!post.fermentationNotes && !post.method) return null;
 
     return (

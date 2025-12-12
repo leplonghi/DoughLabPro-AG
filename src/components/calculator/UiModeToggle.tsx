@@ -1,5 +1,6 @@
 import React from 'react';
 import { SparklesIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface UiModeToggleProps {
     calculatorMode: 'basic' | 'advanced';
@@ -7,6 +8,7 @@ interface UiModeToggleProps {
 }
 
 const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculatorMode }) => {
+  const { t } = useTranslation();
     const isAdvanced = calculatorMode === 'advanced';
 
     return (
@@ -17,9 +19,7 @@ const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculat
                         ? 'bg-white text-slate-900 shadow-sm'
                         : 'text-slate-600 hover:text-slate-900'
                     }`}
-            >
-                Guided
-            </button>
+            >{t('calculator.guided')}</button>
             <button
                 onClick={() => setCalculatorMode('advanced')}
                 className={`relative px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${isAdvanced
@@ -27,9 +27,7 @@ const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculat
                         : 'text-slate-600 hover:text-slate-900'
                     }`}
             >
-                <SparklesIcon className={`h-3 w-3 ${isAdvanced ? 'text-lime-600' : 'text-slate-400'}`} />
-                Pro
-            </button>
+                <SparklesIcon className={`h-3 w-3 ${isAdvanced ? 'text-lime-600' : 'text-slate-400'}`} />{t('calculator.pro')}</button>
         </div>
     );
 };

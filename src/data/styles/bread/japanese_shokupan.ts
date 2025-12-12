@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const japanese_shokupan: StyleDefinition = {
   "id": "japanese_shokupan",
   "title": "Japanese Shokupan (Milk Bread)",
-  "subtitle": "Asian Milk Bread",
-  "category": "Bread",
-  "family": "Asian Milk Bread",
+  "subtitle": t('styles.asian_milk_bread'),
+  "category": t('styles.bread_11'),
+  "family": t('styles.asian_milk_bread_2'),
   "variantName": "Japanese Shokupan (Milk Bread)",
   "origin": {
-    "country": "Japan",
-    "region": "Nationwide",
+    "country": t('styles.japan_2'),
+    "region": t('styles.nationwide_2'),
     "period": "20th century"
   },
   "intro": "The gold standard for sandwich bread in Japan, prized for its 'mochi-mochi' (chewy/soft) texture.",
@@ -37,11 +38,11 @@ export const japanese_shokupan: StyleDefinition = {
       6,
       12
     ],
-    "flourStrength": "High-protein bread flour",
+    "flourStrength": t('styles.highprotein_bread_flour'),
     "fermentation": {
       "bulk": "1–2 h at room temperature",
       "proof": "60–90 min in lidded or open pans",
-      "coldRetard": "Optional"
+      "coldRetard": t('styles.optional')
     },
     "oven": {
       "type": "electric_home",
@@ -49,13 +50,13 @@ export const japanese_shokupan: StyleDefinition = {
         180,
         200
       ],
-      "notes": "Baked gently to avoid thick crust; often lidded for square shape."
+      "notes": t('styles.baked_gently_to_avoid_thick_crust_often_lidded_for')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_6'),
     "recommendedUse": [
-      "Sandwiches",
-      "Thick toast",
-      "Dessert bread"
+      t('common.sandwiches'),
+      t('common.thick_toast'),
+      t('common.dessert_bread')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const japanese_shokupan: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Sandwiches",
-    "Thick toast",
-    "Dessert bread",
-    "Bread",
-    "Japan"
+    t('common.sandwiches'),
+    t('common.thick_toast'),
+    t('common.dessert_bread'),
+    t('common.bread'),
+    t('common.japan')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const japanese_shokupan: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_10'),
       "url": ""
     },
     {
-      "title": "Asian baking techniques",
+      "title": t('styles.asian_baking_techniques'),
       "url": ""
     }
   ],

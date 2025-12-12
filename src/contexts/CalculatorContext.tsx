@@ -23,6 +23,7 @@ import { STYLES_DATA } from '@/data/styles/registry';
 import { logEvent } from '@/services/analytics';
 import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
+import { useTranslation } from '@/i18n';
 
 interface CalculatorContextType {
     config: DoughConfig;
@@ -57,6 +58,7 @@ const isAnySourdough = (yeastType: YeastType) =>
     [YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(yeastType);
 
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const { user, levains, preferredFlourId } = useUser();
     const { addToast } = useToast();
     const previousErrorsRef = useRef<FormErrors>({});
@@ -379,7 +381,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         merged = normalizeDoughConfig(merged);
         merged.ingredients = syncIngredientsFromConfig(merged);
         setConfig(merged);
-        addToast(`Style "${configToLoad.recipeStyle || 'Preset'}" loaded.`, 'info');
+        addToast(`${t('calculator.style_')}${configToLoad.recipeStyle || 'Preset'}" loaded.`, 'info');
         navigate('calculator');
     }, [config, addToast]);
 

@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const fermentationCurvesArticle: LearnArticleData = {
     id: "fermentation-curves",
-    title: "Fermentation Curves",
-    subtitle: "Understanding the rise, plateau and decline phases of dough activity.",
-    category: "Fermentation Science",
-    difficulty: "Advanced",
+    title: t('learn.fermentation_curves'),
+    subtitle: t('learn.understanding_the_rise_plateau_and_decline_phases_'),
+    category: t('learn.fermentation_science_5'),
+    difficulty: t('learn.advanced_6'),
     tags: ["fermentation", "curves", "yeast-activity", "timing"],
 
     intro: "Fermentation follows a predictable curve: lag phase, active rise, plateau and decline. Monitoring this curve helps avoid underproofing and overproofing.",
@@ -31,8 +32,8 @@ export const fermentationCurvesArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Warm Fermentation Curve", notes: "Recommended: 2.5 hours total (Range: 2-3 hours)" },
-        { label: "Cool Fermentation Curve", notes: "Recommended: 24 hours total (Range: 12-48 hours)" }
+        { label: t('learn.warm_fermentation_curve'), notes: "Recommended: 2.5 hours total (Range: 2-3 hours)" },
+        { label: t('learn.cool_fermentation_curve'), notes: "Recommended: 24 hours total (Range: 12-48 hours)" }
     ],
 
     practicalApplications: [
@@ -82,8 +83,8 @@ export const fermentationCurvesArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, a fermentation curve is like watching a balloon inflate, stay full, and then slowly deflate.",
-        whatItDoes: "It helps you know exactly when the dough is ready.",
-        howToUse: "Catch it at the right time and your pizza blooms beautifully.",
-        dangerSigns: "Wait too long and the poor dough sags and collapses."
+        whatItDoes: t('learn.it_helps_you_know_exactly_when_the_dough_is_ready'),
+        howToUse: t('learn.catch_it_at_the_right_time_and_your_pizza_blooms_b'),
+        dangerSigns: t('learn.wait_too_long_and_the_poor_dough_sags_and_collapse')
     }
 };

@@ -10,12 +10,14 @@ import LevainModal from '@/components/LevainModal';
 import { useToast } from '@/components/ToastProvider';
 
 import { LevainMarketingPage } from './levain/LevainMarketingPage';
+import { useTranslation } from '@/i18n';
 
 interface MyLabLevainPetPageProps {
     onNavigate: (page: Page) => void;
 }
 
 const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const { levains, hasProAccess, addLevain, hasActiveTrial } = useUser();
     const { addToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,7 +62,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                         </span>
                         <div>
                             <p className="text-sm font-bold text-lime-800">7-Day Free Trial Active</p>
-                            <p className="text-xs text-lime-700/80">Enjoy full access to Levain Manager. Your trial expires in 7 days.</p>
+                            <p className="text-xs text-lime-700/80">{t('mylab.enjoy_full_access_to_levain_manager_your_trial_exp')}</p>
                         </div>
                     </div>
                 )}
@@ -68,9 +70,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex flex-col gap-1">
-                        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-                            Levain Dashboard
-                        </h1>
+                        <h1 className="text-3xl font-bold tracking-tight text-slate-900">{t('mylab.levain_dashboard')}</h1>
                         <p className="text-slate-500 text-lg">
                             Monitor your starter's health, feeding schedule, and activity.
                         </p>
@@ -79,9 +79,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                         onClick={() => setIsModalOpen(true)}
                         className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 hover:scale-105 transition-all active:scale-95"
                     >
-                        <PlusCircleIcon className="h-5 w-5" />
-                        New Starter
-                    </button>
+                        <PlusCircleIcon className="h-5 w-5" />{t('mylab.new_starter')}</button>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -100,9 +98,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                                             <div>
                                                 <h2 className="text-3xl font-black text-slate-900 tracking-tight">{activeLevain.name}</h2>
                                                 <div className="flex items-center gap-2 mt-1">
-                                                    <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-bold text-green-700 ring-1 ring-inset ring-green-600/20">
-                                                        Active
-                                                    </span>
+                                                    <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-bold text-green-700 ring-1 ring-inset ring-green-600/20">{t('mylab.active')}</span>
                                                     <span className="text-sm text-slate-500 font-medium">
                                                         Created {new Date(activeLevain.createdAt).toLocaleDateString()}
                                                     </span>
@@ -119,17 +115,17 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
 
                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                         <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                                            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Last Feeding</p>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">{t('mylab.last_feeding')}</p>
                                             <p className="text-lg font-bold text-slate-900">{new Date(activeLevain.lastFeeding).toLocaleDateString()}</p>
                                         </div>
                                         <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                                            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Age</p>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">{t('mylab.age_2')}</p>
                                             <p className="text-lg font-bold text-slate-900">
                                                 {Math.floor((Date.now() - new Date(activeLevain.createdAt).getTime()) / (1000 * 60 * 60 * 24))} days
                                             </p>
                                         </div>
                                         <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                                            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Hydration</p>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">{t('form.hydration')}</p>
                                             <p className="text-lg font-bold text-slate-900">100%</p>
                                         </div>
                                     </div>
@@ -140,7 +136,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                                 <div className="mx-auto h-16 w-16 rounded-full bg-slate-100 flex items-center justify-center mb-4">
                                     <FireIcon className="h-8 w-8 text-slate-400" />
                                 </div>
-                                <h3 className="text-lg font-bold text-slate-900">No active Levain</h3>
+                                <h3 className="text-lg font-bold text-slate-900">{t('mylab.no_active_levain')}</h3>
                                 <p className="text-slate-500 mt-2 max-w-sm mx-auto">
                                     Start your sourdough journey by creating a new starter or activating an existing one.
                                 </p>
@@ -148,20 +144,16 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                                     className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700"
                                     onClick={() => setIsModalOpen(true)}
                                 >
-                                    <PlusCircleIcon className="h-4 w-4" />
-                                    Create Starter
-                                </button>
+                                    <PlusCircleIcon className="h-4 w-4" />{t('mylab.create_starter')}</button>
                             </div>
                         )}
 
                         {/* Advanced Analytics Section */}
                         <div>
                             <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-xl font-bold text-slate-900">Fermentation Health</h3>
+                                <h3 className="text-xl font-bold text-slate-900">{t('mylab.fermentation_health')}</h3>
                                 {!hasProAccess && (
-                                    <span className="text-xs font-bold text-orange-500 bg-orange-50 px-2 py-1 rounded-full">
-                                        PRO Feature
-                                    </span>
+                                    <span className="text-xs font-bold text-orange-500 bg-orange-50 px-2 py-1 rounded-full">{t('mylab.pro_feature')}</span>
                                 )}
                             </div>
 
@@ -170,14 +162,14 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                                     <div className="h-64 bg-white rounded-3xl border border-slate-100 shadow-sm p-6 flex flex-col items-center justify-center relative overflow-hidden group">
                                         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-50"></div>
                                         <ChartBarIcon className="h-12 w-12 text-blue-200 mb-3 group-hover:scale-110 transition-transform" />
-                                        <span className="text-slate-900 font-bold relative z-10">Activity Chart</span>
-                                        <span className="text-xs text-slate-500 mt-1 relative z-10">Rise vs. Time</span>
+                                        <span className="text-slate-900 font-bold relative z-10">{t('mylab.activity_chart')}</span>
+                                        <span className="text-xs text-slate-500 mt-1 relative z-10">{t('mylab.rise_vs_time')}</span>
                                     </div>
                                     <div className="h-64 bg-white rounded-3xl border border-slate-100 shadow-sm p-6 flex flex-col items-center justify-center relative overflow-hidden group">
                                         <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent opacity-50"></div>
                                         <BeakerIcon className="h-12 w-12 text-purple-200 mb-3 group-hover:scale-110 transition-transform" />
                                         <span className="text-slate-900 font-bold relative z-10">pH History</span>
-                                        <span className="text-xs text-slate-500 mt-1 relative z-10">Acidity Tracking</span>
+                                        <span className="text-xs text-slate-500 mt-1 relative z-10">{t('mylab.acidity_tracking')}</span>
                                     </div>
                                 </div>
                             </LockedTeaser>
@@ -188,7 +180,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                     <div className="space-y-6">
                         <div className="rounded-3xl bg-slate-900 p-6 text-white shadow-xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 -mt-10 -mr-10 h-32 w-32 rounded-full bg-orange-500/20 blur-2xl"></div>
-                            <h3 className="font-bold text-lg mb-2 relative z-10">Feeding Schedule</h3>
+                            <h3 className="font-bold text-lg mb-2 relative z-10">{t('mylab.feeding_schedule')}</h3>
                             <p className="text-slate-300 text-sm mb-4 relative z-10">
                                 Next feeding recommended in:
                             </p>

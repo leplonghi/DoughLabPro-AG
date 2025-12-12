@@ -1,7 +1,9 @@
 
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 export const PostSkeleton: React.FC = () => {
+  const { t } = useTranslation();
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-pulse">
             {/* Header */}

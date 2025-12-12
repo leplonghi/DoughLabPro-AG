@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const weakGlutenStructureData: LearnArticleData = {
     id: "weak-gluten-structure",
-    title: "Weak Gluten Structure",
+    title: t('learn.weak_gluten_structure'),
     subtitle: "Understanding protein development, flour strength and dough mechanics behind weak gluten.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    category: t('learn.troubleshooting_11'),
+    difficulty: t('learn.intermediate_33'),
     tags: ["gluten", "structure", "flour", "troubleshooting"],
 
     intro: "Weak gluten structure arises when proteins fail to form a cohesive, elastic network. It affects gas retention, dough handling, fermentation tolerance and oven spring.",
@@ -61,11 +62,11 @@ export const weakGlutenStructureData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Under-Mixed Dough",
-            implications: "Gluten not fully developed. Sticky, weak. Difficult handling. Poor rise."
+            variant: t('learn.undermixed_dough'),
+            implications: t('learn.gluten_not_fully_developed_sticky_weak_difficult_h')
         },
         {
-            variant: "Over-Mixed Dough",
+            variant: t('learn.overmixed_dough'),
             implications: "Gluten broken down by excess mixing. Soft, tearing. Low gas retention. Collapsed structure."
         }
     ],
@@ -81,8 +82,8 @@ export const weakGlutenStructureData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, weak gluten is like a loose net that can't hold anything.",
-        whatItDoes: "Makes the dough spread and stay flat.",
-        howToUse: "The dough isn’t strong enough to trap air.",
+        whatItDoes: t('learn.makes_the_dough_spread_and_stay_flat'),
+        howToUse: t('learn.the_dough_isnt_strong_enough_to_trap_air'),
         dangerSigns: "Without strength, the bread won’t rise well. Too much mixing or weak flour can’t be undone."
     }
 };

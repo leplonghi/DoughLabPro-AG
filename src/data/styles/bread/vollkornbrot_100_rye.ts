@@ -1,16 +1,17 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const vollkornbrot_100_rye: StyleDefinition = {
   "id": "vollkornbrot_100_rye",
   "title": "100% Rye Vollkornbrot",
-  "subtitle": "Wholegrain & Rye",
-  "category": "Bread",
-  "family": "Wholegrain & Rye",
+  "subtitle": t('styles.wholegrain__rye_3'),
+  "category": t('styles.bread_26'),
+  "family": t('styles.wholegrain__rye_4'),
   "variantName": "100% Rye Vollkornbrot",
   "origin": {
-    "country": "Germany",
-    "region": "Central Europe",
-    "period": "Traditional"
+    "country": t('styles.germany_3'),
+    "region": t('styles.central_europe_2'),
+    "period": t('styles.traditional_11')
   },
   "intro": "Served as thin slices with butter, cheese, cured meats and spreads; popular in northern European diets.",
   "history": "Vollkornbrot is a dense, wholegrain rye bread made with coarse meals and sourdough, designed for long keeping and high nutrition.",
@@ -39,9 +40,9 @@ export const vollkornbrot_100_rye: StyleDefinition = {
     ],
     "flourStrength": "100% rye wholegrain or mixed rye meals",
     "fermentation": {
-      "bulk": "Minimal bulk; dough is more like a paste",
+      "bulk": t('styles.minimal_bulk_dough_is_more_like_a_paste'),
       "proof": "60–120 min in pans",
-      "coldRetard": "Sometimes retarded to manage scheduling"
+      "coldRetard": t('styles.sometimes_retarded_to_manage_scheduling')
     },
     "oven": {
       "type": "deck",
@@ -49,12 +50,12 @@ export const vollkornbrot_100_rye: StyleDefinition = {
         180,
         210
       ],
-      "notes": "Long, gentle bake; bread often matured 24 h before slicing."
+      "notes": t('styles.long_gentle_bake_bread_often_matured_24_h_before_s')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_10'),
     "recommendedUse": [
-      "Dense wholegrain rye bread",
-      "Long keeping breads"
+      t('common.dense_wholegrain_rye_bread'),
+      t('common.long_keeping_breads')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const vollkornbrot_100_rye: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Dense wholegrain rye bread",
-    "Long keeping breads",
-    "Bread",
-    "Germany"
+    t('common.dense_wholegrain_rye_bread'),
+    t('common.long_keeping_breads'),
+    t('common.bread'),
+    t('common.germany')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const vollkornbrot_100_rye: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Bread – Jeffrey Hamelman",
+      "title": t('styles.bread__jeffrey_hamelman_6'),
       "url": ""
     },
     {
-      "title": "German wholegrain bread traditions",
+      "title": t('styles.german_wholegrain_bread_traditions'),
       "url": ""
     }
   ],

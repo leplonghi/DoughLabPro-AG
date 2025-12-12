@@ -1,4 +1,5 @@
 import { AFFILIATE_CATALOG, AffiliateProduct } from './affiliates';
+import { useTranslation } from '@/i18n';
 
 export interface AffiliatePlacement {
     id: string;

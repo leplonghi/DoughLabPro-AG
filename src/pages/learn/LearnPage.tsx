@@ -3,8 +3,10 @@ import { useRouter } from '@/contexts/RouterContext';
 import LearnHomePage from './LearnHomePage';
 import LearnArticlePage from './LearnArticlePage';
 import { LearnProvider } from '@/contexts/LearnContext';
+import { useTranslation } from '@/i18n';
 
 const LearnPage: React.FC = () => {
+  const { t } = useTranslation();
     const { routeParams } = useRouter();
 
     // Handle case where routeParams might be the ID string directly or an object

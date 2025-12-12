@@ -3,6 +3,7 @@ import { DoughConfig, CalculationMode, FormErrors } from '@/types';
 import { ListBulletIcon, InfoIcon } from '@/components/ui/Icons';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import AccordionSection from '@/components/calculator/AccordionSection';
+import { useTranslation } from '@/i18n';
 
 interface QuantitySectionProps {
     config: DoughConfig;
@@ -23,9 +24,10 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
     getInputClasses,
     numPizzasRef,
 }) => {
+  const { t } = useTranslation();
     return (
         <AccordionSection
-            title="Quantity"
+            title={t('calculator.quantity')}
             description="Define how many pieces or the total flour weight."
             icon={<ListBulletIcon className="h-6 w-6" />}
         >
@@ -33,12 +35,12 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
             <div className="mb-4 grid grid-cols-2 gap-2 rounded-lg bg-dlp-bg-muted p-1">
                 <ChoiceButton
                     active={calculationMode === 'mass'}
-                    label="By Total Weight"
+                    label={t('calculator.by_total_weight')}
                     onClick={() => onCalculationModeChange('mass')}
                 />
                 <ChoiceButton
                     active={calculationMode === 'flour'}
-                    label="By Flour Weight"
+                    label={t('calculator.by_flour_weight')}
                     onClick={() => onCalculationModeChange('flour')}
                 />
             </div>

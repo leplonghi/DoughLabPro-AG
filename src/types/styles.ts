@@ -148,7 +148,7 @@ export interface StyleTechnicalProfile {
         description?: string;
     };
     texture?: {
-        crust: string; // e.g. "Eggshell thin"
+        crust: string; // e.g. t('common.eggshell_thin')
         crumb: string; // e.g. "Melting, moist"
     };
     flourProfile?: { // New deep flour specs
@@ -204,16 +204,16 @@ export interface AdvancedProfile {
     thermalProfile: {
         oven_type: string;
         heat_distribution: string; // e.g. "High conduction (floor), High radiation (dome)"
-        crust_development: string; // e.g. "Leopard spotting due to rapid gelatinization"
+        crust_development: string; // e.g. t('common.leopard_spotting_due_to_rapid_gelatinization')
         crumb_structure: string; // e.g. "Large alveoli, thin walls"
     };
 
     // The Chemistry of Fermentation
     fermentationScience: {
-        yeast_activity: string; // e.g. "Slow due to cold retard"
+        yeast_activity: string; // e.g. t('common.slow_due_to_cold_retard')
         ph_target: string; // e.g. "pH 5.5 - 5.8"
-        organic_acids: string; // e.g. "Lactic dominant over Acetic"
-        enzymatic_activity: string; // e.g. "High protease activity during autolyse"
+        organic_acids: string; // e.g. t('common.lactic_dominant_over_acetic')
+        enzymatic_activity: string; // e.g. t('common.high_protease_activity_during_autolyse')
     };
 }
 
@@ -226,14 +226,14 @@ export interface EducationalContent {
 
     what_if: {
         scenario: string; // e.g. "Hydration is increased to 70%"
-        result: string; // e.g. "Dough becomes too sticky to stretch"
-        correction: string; // e.g. "Use cold water or reduce autolyse"
+        result: string; // e.g. t('common.dough_becomes_too_sticky_to_stretch')
+        correction: string; // e.g. t('common.use_cold_water_or_reduce_autolyse')
     }[];
 
     comparative_analysis: {
-        target_style: string; // e.g. "Roman Teglia"
+        target_style: string; // e.g. t('common.roman_teglia')
         difference: string; // e.g. "Thicker, uses pan instead of hearth"
-        why_choose_this: string; // e.g. "Better for toppings density"
+        why_choose_this: string; // e.g. t('common.better_for_toppings_density')
     }[];
 
     q_and_a: {

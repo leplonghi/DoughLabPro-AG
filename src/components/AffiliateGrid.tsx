@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react';
 import { getRecommendedProducts, AffiliateProduct } from '@/data/affiliates';
 import { ExternalLink, ShoppingBag, Tag } from 'lucide-react';
+import { useTranslation } from '@/i18n';
 
 interface AffiliateGridProps {
     tags: string[];
@@ -13,9 +14,10 @@ interface AffiliateGridProps {
 export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
     tags,
     limit = 3,
-    title = "Recommended Gear",
+    title ={t('common.recommended_gear')},
     className = ""
 }) => {
+  const { t } = useTranslation();
 
     // Memoize recommendations to avoid recalc on every render
     const products = useMemo(() => getRecommendedProducts(tags, limit), [tags, limit]);

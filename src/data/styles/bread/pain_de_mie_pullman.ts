@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pain_de_mie_pullman: StyleDefinition = {
   "id": "pain_de_mie_pullman",
   "title": "Pain de Mie / Pullman Loaf",
-  "subtitle": "Sandwich & Enriched Breads",
-  "category": "Bread",
-  "family": "Sandwich & Enriched Breads",
+  "subtitle": t('styles.sandwich__enriched_breads_7'),
+  "category": t('styles.bread_16'),
+  "family": t('styles.sandwich__enriched_breads_8'),
   "variantName": "Pain de Mie / Pullman Loaf",
   "origin": {
     "country": "France/USA",
-    "region": "Bakery and industrial",
+    "region": t('styles.bakery_and_industrial'),
     "period": "20th century"
   },
   "intro": "Used for sandwiches, toast and canapés where a uniform crumb and shape are desired.",
@@ -37,11 +38,11 @@ export const pain_de_mie_pullman: StyleDefinition = {
       5,
       15
     ],
-    "flourStrength": "Bread or strong all-purpose flour",
+    "flourStrength": t('styles.bread_or_strong_allpurpose_flour'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "60–90 min in lidded pans",
-      "coldRetard": "Optional overnight bulk"
+      "coldRetard": t('styles.optional_overnight_bulk')
     },
     "oven": {
       "type": "electric_home",
@@ -49,12 +50,12 @@ export const pain_de_mie_pullman: StyleDefinition = {
         180,
         200
       ],
-      "notes": "Lidded pans create tight, square crumb structure."
+      "notes": t('styles.lidded_pans_create_tight_square_crumb_structure')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_10'),
     "recommendedUse": [
-      "Sandwich bread",
-      "Toast",
+      t('common.sandwich_bread'),
+      t('common.toast'),
       "Canapés"
     ]
   },
@@ -65,10 +66,10 @@ export const pain_de_mie_pullman: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Sandwich bread",
-    "Toast",
+    t('common.sandwich_bread'),
+    t('common.toast'),
     "Canapés",
-    "Bread",
+    t('common.bread'),
     "France/USA"
   ],
   "applyInApp": {
@@ -80,11 +81,11 @@ export const pain_de_mie_pullman: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_14'),
       "url": ""
     },
     {
-      "title": "Professional baking texts",
+      "title": t('styles.professional_baking_texts'),
       "url": ""
     }
   ],

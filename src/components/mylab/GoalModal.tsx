@@ -1,3 +1,4 @@
 import React from 'react';
-export const GoalModal: React.FC = () => <div className="hidden">Goal Modal</div>;
+import { useTranslation } from '@/i18n';
+export const GoalModal: React.FC = () => <div className="hidden">{t('mylab.goal_modal')}</div>;
 export default GoalModal;

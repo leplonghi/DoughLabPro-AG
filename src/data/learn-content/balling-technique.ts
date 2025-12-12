@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const ballingTechniqueData: LearnArticleData = {
     id: 'balling-technique',
@@ -63,9 +64,9 @@ export const ballingTechniqueData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "It makes the dough into a nice tight ball so it rises up high.",
-        howToUse: "Roll it smooth and tight, like making a snowball.",
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_2'),
+        whatItDoes: t('learn.it_makes_the_dough_into_a_nice_tight_ball_so_it_ri'),
+        howToUse: t('learn.roll_it_smooth_and_tight_like_making_a_snowball'),
         dangerSigns: "Don't rip the skin! Treat it gently."
     }
 };

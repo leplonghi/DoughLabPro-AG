@@ -29,9 +29,7 @@ interface HeaderComponentProps extends Omit<NavigationProps, 'activePage'> {
 }
 
 const ProBadge = () => (
-    <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">
-        PRO
-    </span>
+    <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">{t('common.pro')}</span>
 );
 
 const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
@@ -52,7 +50,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Left Section: Logo & main links */}
                 <div className="flex items-center gap-6">
-                    <button onClick={() => handleNavigate('mylab')} aria-label="Home" className="flex flex-shrink-0 items-center">
+                    <button onClick={() => handleNavigate('mylab')} aria-label={t('nav.home')} className="flex flex-shrink-0 items-center">
                         <Logo className="h-9 w-auto" />
                     </button>
                     <nav className="flex items-center gap-1">
@@ -130,7 +128,7 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
     return (
         <header className="fixed top-0 left-0 w-full z-50 border-b border-dlp-border bg-dlp-bg-card/90 backdrop-blur-md sm:hidden transition-all duration-200 shadow-dlp-sm">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-                <button onClick={() => handleNavigate('mylab')} aria-label="Home" className="flex flex-shrink-0 items-center">
+                <button onClick={() => handleNavigate('mylab')} aria-label={t('nav.home')} className="flex flex-shrink-0 items-center">
                     <Logo className="h-9 w-auto" />
                 </button>
                 <div className="flex items-center gap-2">

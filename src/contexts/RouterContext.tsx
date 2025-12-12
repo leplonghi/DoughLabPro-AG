@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { Page, PrimaryPage } from '@/types';
+import { useTranslation } from '@/i18n';
 
 interface RouterContextType {
     route: Page;
@@ -10,6 +11,7 @@ interface RouterContextType {
 const RouterContext = createContext<RouterContextType | undefined>(undefined);
 
 export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const [route, setRoute] = useState<Page>('mylab');
     const [routeParams, setRouteParams] = useState<string | null>(null);
 

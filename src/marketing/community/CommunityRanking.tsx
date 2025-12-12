@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getRankings } from './CommunityService';
+import { useTranslation } from '@/i18n';
 
 export const CommunityRanking: React.FC = () => {
+  const { t } = useTranslation();
     const [rankings, setRankings] = useState<any[]>([]);
 
     useEffect(() => {
@@ -11,7 +13,7 @@ export const CommunityRanking: React.FC = () => {
     return (
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
             <div className="p-4 border-b border-zinc-800 bg-zinc-950/50">
-                <h3 className="text-lg font-bold text-white">Baker of the Week</h3>
+                <h3 className="text-lg font-bold text-white">{t('community.baker_of_the_week')}</h3>
             </div>
             <div className="divide-y divide-zinc-800">
                 {rankings.map((user, index) => (

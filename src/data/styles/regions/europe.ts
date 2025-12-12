@@ -1,4 +1,5 @@
 import { DoughStyle, RecipeStyle } from '../../../types/dough';
+import { useTranslation } from '@/i18n';
 
 export const europeStyles: DoughStyle[] = [
     {
@@ -8,9 +9,9 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'France',
         category: 'Bread',
         recipeStyle: RecipeStyle.BAGUETTE,
-        tags: ['Steam', 'Crispy', 'Autolyse', 'Poolish'],
+        tags: [t('styles.steam_5'), t('styles.crispy'), t('styles.autolyse'), t('styles.poolish_2')],
         description: 'The symbol of French baking excellence. Defined by the 1993 "Pain de Tradition Française" decree, it contains only flour, water, salt, and yeast. The characteristic open crumb (alvéoles) and crispy, caramelized crust are achieved through high hydration, gentle handling, and proper steam injection.',
-        history_context: 'While long loaves existed earlier, the specific "Tradition" designation was codified in 1993 to protect artisanal baking from industrial additives. It revived ancient techniques like autolyse (courtesy of Prof. Calvel) and slow fermentation.',
+        history_context: 'While long loaves existed earlier, the specific t('common.tradition') designation was codified in 1993 to protect artisanal baking from industrial additives. It revived ancient techniques like autolyse (courtesy of Prof. Calvel) and slow fermentation.',
         base_formula: [
             { name: 'French Flour T65', percentage: 100 },
             { name: 'Water', percentage: 72 },
@@ -34,17 +35,17 @@ export const europeStyles: DoughStyle[] = [
                 w_index: "T65 (W220-240)",
                 pl_ratio: "0.5 (Extensible)",
                 absorption_capacity: "65-70%",
-                protein_type: "French Soft Wheat",
+                protein_type: t('styles.french_soft_wheat'),
                 science_explanation: 'Requires T65 flour with respectable protein (11-12%) but high extensibility. Unlike high-protein American flours, French flour allows for the signature extensible dough that does not shrink back when rolled.',
             },
             thermalProfile: {
                 oven_type: "Deck Oven (Steam)",
-                heat_distribution: "Conduction & Steam",
-                crust_development: "Thin, crispy, caramelized",
-                crumb_structure: "Open, irregular alveoli",
+                heat_distribution: t('styles.conduction__steam'),
+                crust_development: t('styles.thin_crispy_caramelized'),
+                crumb_structure: t('styles.open_irregular_alveoli'),
             },
             fermentationScience: {
-                yeast_activity: "Controlled",
+                yeast_activity: t('styles.controlled'),
                 ph_target: "~5.5",
                 organic_acids: "Balanced (Lactic focus)",
                 enzymatic_activity: "High (Autolyse driven)",
@@ -88,7 +89,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'Steam keeps the surface flexible, allowing maximum oven spring before crust set, and gelatinizes surface starch for shine.',
             },
         ],
-        references: ['Le Goût du Pain - Raymond Calvel', 'Décret n°93-1074 du 13 septembre 1993'],
+        references: [t('styles.le_goût_du_pain__raymond_calvel'), t('styles.décret_n931074_du_13_septembre_1993')],
         images: {
             hero: '/images/styles/baguette_hero.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -102,7 +103,7 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'France',
         category: 'Enriched',
         recipeStyle: RecipeStyle.BRIOCHE,
-        tags: ['High Fat', 'Eggs', 'Butter', 'Sponge'],
+        tags: [t('styles.high_fat'), t('styles.eggs'), t('styles.butter'), t('styles.sponge')],
         description: 'The ultimate enriched dough. A classic Brioche à Tête features a high percentage of butter and eggs, baked in a fluted mold with a small ball of dough on top (the "head"). It is rich, tender, and distinctly buttery.',
         history_context: 'Originating in Normandy or Brittany (butter-rich regions), brioche has evolved from a blessed bread used in church services to a breakfast staple. The "à tête" (with head) shape is the most recognized Parisian style.',
         base_formula: [
@@ -131,20 +132,20 @@ export const europeStyles: DoughStyle[] = [
                 w_index: "T45 (W300+)",
                 pl_ratio: "Balanced (0.55)",
                 absorption_capacity: "High (for fat)",
-                protein_type: "Strong Wheat",
+                protein_type: t('styles.strong_wheat_2'),
                 science_explanation: 'Requires strong gluten production to carry the heavy load of fat. However, T45 is preferred for its fineness.',
             },
             thermalProfile: {
                 oven_type: "Convection/Deck",
-                heat_distribution: "Even",
+                heat_distribution: t('styles.even_2'),
                 crust_development: "Soft, golden (Egg wash)",
                 crumb_structure: "Tight, cotton-like (shreddable)",
             },
             fermentationScience: {
                 yeast_activity: "High (Osmotolerant yeast often needed)",
                 ph_target: "5.0-5.4",
-                organic_acids: "Lactic",
-                enzymatic_activity: "Moderate",
+                organic_acids: t('styles.lactic_2'),
+                enzymatic_activity: t('styles.moderate_3'),
             },
             processScience: 'A stable emulsion of fat and water. The butter must be added plastic (cold/malleable) only AFTER gluten development. If added too early, it coats the proteins and prevents cross-linking (shortening effect).',
         },
@@ -192,7 +193,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'High sugar/protein content leads to rapid browning (Maillard), so lower temp than lean breads is needed.',
             },
         ],
-        references: ['Larousse Gastronomique', 'Professional Baking - Wayne Gisslen'],
+        references: [t('styles.larousse_gastronomique'), t('styles.professional_baking__wayne_gisslen')],
         images: {
             hero: '/images/styles/brioche-hero.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -206,7 +207,7 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Germany',
         category: 'Snack',
         recipeStyle: RecipeStyle.PRETZEL,
-        tags: ['Lye', 'Alkaline', 'Twist'],
+        tags: [t('styles.lye'), t('styles.alkaline'), t('styles.twist')],
         description: 'The iconic Bavarian pretzel, known for its deep nutmeg-brown skin, contrasting white scores, and distinctive lye flavor. The dough is stiff, allowing for the intricate knot shape, and the surface is chemically altered before baking.',
         history_context: 'Associated with monks in the Early Middle Ages, the shape represents arms crossed in prayer. The lye bath was likely an accidental discovery, but became the standard for "Laugengebäck" in Southern Germany.',
         base_formula: [
@@ -234,20 +235,20 @@ export const europeStyles: DoughStyle[] = [
                 w_index: "Type 550 (W210-230)",
                 pl_ratio: "Stiff (P > L)",
                 absorption_capacity: "Low (50%)",
-                protein_type: "German Wheat",
+                protein_type: t('styles.german_wheat'),
                 science_explanation: 'Stiff dough (approx 50% hydration) required to hold the intricate shape during the dip and bake.',
             },
             thermalProfile: {
-                oven_type: "Convection",
-                heat_distribution: "Radiant",
+                oven_type: t('styles.convection_2'),
+                heat_distribution: t('styles.radiant'),
                 crust_development: "Deep Mahogany (Alkaline reaction)",
-                crumb_structure: "Dense, chewy",
+                crumb_structure: t('styles.dense_chewy'),
             },
             fermentationScience: {
-                yeast_activity: "Restrained",
+                yeast_activity: t('styles.restrained'),
                 ph_target: "Surface pH > 10 (Lye)",
-                organic_acids: "Minimal",
-                enzymatic_activity: "Low",
+                organic_acids: t('styles.minimal'),
+                enzymatic_activity: t('styles.low_4'),
             },
             processScience: 'The dip in Sodium Hydroxide (Lye) solution (pH 13-14) breaks down proteins on the surface and promotes an extreme, accelerated Maillard reaction, resulting in the deep brown color and specific "pretzel" flavor.',
         },
@@ -295,7 +296,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'Score releases the pressure of the thick belly part. Salt adheres to the moist lye surface.',
             },
         ],
-        references: ['German Baking Standards', 'The Rye Baker (for context on German flours)'],
+        references: [t('styles.german_baking_standards'), ],
         images: {
             hero: '/images/styles/pretzel_laugen_real.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -309,7 +310,7 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'UK',
         category: 'Bread',
         recipeStyle: RecipeStyle.ENGLISH_MUFFIN,
-        tags: ['Griddle', 'Nooks and Crannies', 'Breakfast'],
+        tags: [t('styles.griddle'), t('styles.nooks_and_crannies'), t('styles.breakfast_2')],
         description: 'A small, round, flat yeast-leavened bread which is commonly sliced horizontally, toasted, and buttered. Famous for its "nooks and crannies" texture created by a high hydration dough cooked on a griddle.',
         history_context: 'Invented in the US by British immigrant Samuel Bath Thomas in 1880, based on the "crumpet" but drier. It became a breakfast staple.',
         base_formula: [
@@ -334,25 +335,25 @@ export const europeStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W300+",
-                pl_ratio: "Extensible",
-                absorption_capacity: "High",
-                protein_type: "Strong Wheat",
+                w_index: t('styles.w300'),
+                pl_ratio: t('styles.extensible'),
+                absorption_capacity: t('styles.high_4'),
+                protein_type: t('styles.strong_wheat_3'),
                 science_explanation: 'High protein is needed to support the high hydration (80%ish) which creates the large bubbles (nooks) during the griddle cook.'
             },
             thermalProfile: {
                 oven_type: "Griddle / Skillet",
-                heat_distribution: "Conduction",
-                crust_development: "Pale, dusted with semolina",
+                heat_distribution: t('styles.conduction_2'),
+                crust_development: t('styles.pale_dusted_with_semolina'),
                 crumb_structure: "Large alveoli (Nooks)"
             },
             fermentationScience: {
-                yeast_activity: "High",
+                yeast_activity: t('styles.high_5'),
                 ph_target: "Acidic (Sourdough/Buttermilk often used)",
-                organic_acids: "Lactic",
-                enzymatic_activity: "High"
+                organic_acids: t('styles.lactic_3'),
+                enzymatic_activity: t('styles.high_6')
             },
-            processScience: 'The "Fork Split": Cutting with a knife shears the gluten strands and ruins the texture. Pulling apart (or using a fork) preserves the peaks and valleys (nooks) that hold the butter.'
+            processScience: 'The t('common.fork_split'): Cutting with a knife shears the gluten strands and ruins the texture. Pulling apart (or using a fork) preserves the peaks and valleys (nooks) that hold the butter.'
         },
         process: [
             {
@@ -391,7 +392,7 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Georgia',
         category: 'Enriched',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: ['Cheese Boat', 'Egg', 'Rich'],
+        tags: [t('styles.cheese_boat'), t('styles.egg'), t('styles.rich')],
         description: 'The famous boat-shaped bread from the Adjara region of Georgia. It is filled with cheese (Sulguni/Imeretian), butter, and topped with a raw egg yolk before serving.',
         history_context: 'Adjara is a coastal region. The shape is said to represent a boat, and the egg yolk the sun, reflecting the region\'s maritime culture.',
         base_formula: [
@@ -416,25 +417,25 @@ export const europeStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W260-280",
-                pl_ratio: "Extensible",
-                absorption_capacity: "Medium",
-                protein_type: "Strong Wheat",
+                w_index: t('styles.w260280'),
+                pl_ratio: t('styles.extensible_2'),
+                absorption_capacity: t('styles.medium_50'),
+                protein_type: t('styles.strong_wheat_4'),
                 science_explanation: 'Extensibility is needed to fold the "boat" sides without them snapping back open during baking.'
             },
             thermalProfile: {
                 oven_type: "Hearth / Deck",
-                heat_distribution: "Radiant",
-                crust_development: "Browned",
-                crumb_structure: "Soft, airy rim"
+                heat_distribution: t('styles.radiant_2'),
+                crust_development: t('styles.browned'),
+                crumb_structure: t('styles.soft_airy_rim')
             },
             fermentationScience: {
-                yeast_activity: "Standard",
-                ph_target: "Normal",
-                organic_acids: "Low",
-                enzymatic_activity: "Standard"
+                yeast_activity: t('styles.standard_8'),
+                ph_target: t('styles.normal_2'),
+                organic_acids: t('styles.low_5'),
+                enzymatic_activity: t('styles.standard_9')
             },
-            processScience: 'The boat shape ("Nave") acts as a container. The cheese mixture melts and emulsifies with the butter. The final addition of the egg yolk relies on the residual heat of the cheese to partially cook (pasteurize) it while stirring.'
+            processScience: 'The boat shape (t('common.nave')) acts as a container. The cheese mixture melts and emulsifies with the butter. The final addition of the egg yolk relies on the residual heat of the cheese to partially cook (pasteurize) it while stirring.'
         },
         process: [
             {
@@ -466,7 +467,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'We want the yolk runny.'
             }
         ],
-        references: ['Georgian Table'],
+        references: [t('styles.georgian_table')],
         images: {
             hero: '/images/styles/khachapuri_adjarian.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -480,7 +481,7 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Denmark',
         category: 'Bread',
         recipeStyle: RecipeStyle.RYE,
-        tags: ['Sourdough', 'Whole Grain', 'Seeds', 'Dense'],
+        tags: [t('styles.sourdough_2'), t('styles.whole_grain'), t('styles.seeds'), t('styles.dense')],
         description: 'The foundation of the "Smørrebrød" (open-faced sandwich). A dense, dark, sour rye bread packed with cracked rye kernels and seeds. It has very little to no wheat flour.',
         history_context: 'Rye grows well in the cool, damp Nordic climate. Historically a peasant bread, it is now celebrated for its health benefits and deep flavor.',
         base_formula: [
@@ -508,23 +509,23 @@ export const europeStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "N/A (Rye)",
                 pl_ratio: "Viscous (Pentosan driven)",
-                absorption_capacity: "Very High",
+                absorption_capacity: t('styles.very_high'),
                 protein_type: "Rye (Secalins)",
                 science_explanation: 'Rye contains glutenin/gliadin but they don\'t form a network like wheat. Structure comes from Pentosans (gums) and starch gelatinization. Acid (Sourdough) is MANDATORY to prevent "starch attack" (amylase destroying structure).'
             },
             thermalProfile: {
-                oven_type: "Pullman Pan",
-                heat_distribution: "Conduction",
-                crust_development: "Thick",
-                crumb_structure: "Dense, moist"
+                oven_type: t('styles.pullman_pan'),
+                heat_distribution: t('styles.conduction_3'),
+                crust_development: t('styles.thick'),
+                crumb_structure: t('styles.dense_moist')
             },
             fermentationScience: {
-                yeast_activity: "Sourdough",
+                yeast_activity: t('styles.sourdough_3'),
                 ph_target: "<4.5 (Acidic)",
-                organic_acids: "Acetic",
-                enzymatic_activity: "Inhibited by Acid"
+                organic_acids: t('styles.acetic'),
+                enzymatic_activity: t('styles.inhibited_by_acid')
             },
-            processScience: 'The "Starch Attack": Rye is high in amylase enzymes. If pH is not lowered (<4.5), these enzymes will digest the starch during baking, resulting in a gummy, collapsed loaf. The sourdough is not just for flavor; it is a structural necessity.'
+            processScience: 'The t('common.starch_attack'): Rye is high in amylase enzymes. If pH is not lowered (<4.5), these enzymes will digest the starch during baking, resulting in a gummy, collapsed loaf. The sourdough is not just for flavor; it is a structural necessity.'
         },
         process: [
             {
@@ -556,7 +557,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'Long bake ensures starch gelatinization all the way through the wet mass.'
             }
         ],
-        references: ['The Rye Baker', 'Meyers Bageri'],
+        references: [t('styles.the_rye_baker'), t('styles.meyers_bageri')],
         images: {
             hero: '/images/styles/danish_rye_slice.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -570,8 +571,8 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Netherlands',
         category: 'Bread',
         recipeStyle: RecipeStyle.SANDWICH_LOAF,
-        tags: ['Topping', 'Crunchy', 'Rice Paste'],
-        description: 'Known as "Tijgerbrood" in the Netherlands and "Dutch Crunch" in SF. It is a soft white bloomer loaf coated with a rice flour paste applied before baking, which cracks into a tiger-skin pattern.',
+        tags: [t('styles.topping'), t('styles.crunchy'), t('styles.rice_paste')],
+        description: 'Known as t('common.tijgerbrood') in the Netherlands and t('common.dutch_crunch') in SF. It is a soft white bloomer loaf coated with a rice flour paste applied before baking, which cracks into a tiger-skin pattern.',
         history_context: 'Traded between the Netherlands and Southeast Asia (rice trade) in the early 20th century. The topping is the star.',
         base_formula: [
             { name: 'Bread Flour', percentage: 100 },
@@ -595,25 +596,25 @@ export const europeStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W240-260",
-                pl_ratio: "Balanced",
-                absorption_capacity: "Medium",
-                protein_type: "Strong Wheat",
+                w_index: t('styles.w240260'),
+                pl_ratio: t('styles.balanced_6'),
+                absorption_capacity: t('styles.medium_52'),
+                protein_type: t('styles.strong_wheat_5'),
                 science_explanation: 'The dough itself is a standard vibrant white bread. The science is in the topping.'
             },
             thermalProfile: {
-                oven_type: "Convection",
-                heat_distribution: "Even",
+                oven_type: t('styles.convection_3'),
+                heat_distribution: t('styles.even_3'),
                 crust_development: "Cracked (Topping)",
-                crumb_structure: "Soft"
+                crumb_structure: t('styles.soft_3')
             },
             fermentationScience: {
-                yeast_activity: "High",
-                ph_target: "Normal",
-                organic_acids: "Low",
-                enzymatic_activity: "Standard"
+                yeast_activity: t('styles.high_7'),
+                ph_target: t('styles.normal_3'),
+                organic_acids: t('styles.low_6'),
+                enzymatic_activity: t('styles.standard_10')
             },
-            processScience: 'The "Tiger Paste" is made of Rice Flour, Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.'
+            processScience: 'The t('common.tiger_paste') is made of Rice Flour, Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.'
         },
         process: [
             {
@@ -638,7 +639,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'Paste must be wet when entering oven.'
             }
         ],
-        references: ['Dutch Baking History'],
+        references: [t('styles.dutch_baking_history')],
         images: {
             hero: '/images/styles/tiger_bread_crackled.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -652,7 +653,7 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Ireland',
         category: 'Bread',
         recipeStyle: RecipeStyle.COUNTRY_LOAF, // Technically chemically leavened
-        tags: ['Quick Bread', 'No Yeast', 'Buttermilk'],
+        tags: [t('styles.quick_bread'), t('styles.no_yeast'), t('styles.buttermilk')],
         description: 'A quick bread that uses bacteria-soured milk (Buttermilk) and sodium bicarbonate (Baking Soda) as a leavening agent instead of yeast. Dense, moist, and crusty.',
         history_context: 'Became popular in Ireland in the 1840s when bicarbonate was introduced. Wheat was soft (low protein) in Ireland, making yeast bread difficult, so chemical leavening was a perfect adaptation.',
         base_formula: [
@@ -676,22 +677,22 @@ export const europeStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "W150-180 (Soft)",
-                pl_ratio: "Weak",
-                absorption_capacity: "Low",
-                protein_type: "Irish Soft Wheat",
+                pl_ratio: t('styles.weak'),
+                absorption_capacity: t('styles.low_7'),
+                protein_type: t('styles.irish_soft_wheat'),
                 science_explanation: 'Low protein flour is preferred. High protein would make it tough/rubbery because there is no fermentation to relax the gluten.'
             },
             thermalProfile: {
                 oven_type: "Dutch Oven / Bastible",
-                heat_distribution: "Conduction",
-                crust_development: "Thick, hard",
-                crumb_structure: "Dense, cake-like"
+                heat_distribution: t('styles.conduction_4'),
+                crust_development: t('styles.thick_hard'),
+                crumb_structure: t('styles.dense_cakelike')
             },
             fermentationScience: {
-                yeast_activity: "None",
+                yeast_activity: t('styles.none_5'),
                 ph_target: "Acidic (Buttermilk)",
                 organic_acids: "Lactic (added directly)",
-                enzymatic_activity: "Low"
+                enzymatic_activity: t('styles.low_8')
             },
             processScience: 'Acid-Base Reaction: Lactic Acid (Buttermilk) + Sodium Bicarbonate = CO2 + Water + Salt. This reaction is instant. The dough must be baked immediately or the gas is lost.'
         },
@@ -707,7 +708,7 @@ export const europeStyles: DoughStyle[] = [
                 phase: 'Prep',
                 title: 'Score',
                 duration: '1 min',
-                action: 'Shape round. Cut a deep cross ("Blessing the bread").',
+                action: 'Shape round. Cut a deep cross (t('common.blessing_the_bread')).',
                 science: 'The deep cross allows heat to penetrate the thickest part of the dense loaf to ensure even cooking.'
             },
             {
@@ -718,7 +719,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'Immediate heat needed for the final lift.'
             }
         ],
-        references: ['Darina Allen', 'Ballymaloe'],
+        references: [t('styles.darina_allen'), t('styles.ballymaloe')],
         images: {
             hero: '/images/styles/irish_soda_bread_rustic.png',
             dough: '/images/styles/placeholder-dough.png',

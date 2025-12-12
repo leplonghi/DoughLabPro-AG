@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 interface AccordionSectionProps {
     title: string;
@@ -15,6 +16,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
     children,
     className = '',
 }) => {
+  const { t } = useTranslation();
     return (
         <div className={`rounded-xl border border-dlp-border bg-dlp-bg-card p-5 shadow-dlp-sm transition-all hover:shadow-dlp-md ${className}`}>
             <div className="mb-4 flex items-start gap-4">

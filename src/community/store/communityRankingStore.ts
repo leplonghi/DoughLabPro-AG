@@ -8,6 +8,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../firebase/db';
 import { CommunityRanking } from '../types';
+import { useTranslation } from '@/i18n';
 
 const RANKINGS_COLLECTION = 'community_rankings';
 

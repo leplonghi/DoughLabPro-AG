@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const paleCrustData: LearnArticleData = {
     id: "pale-crust",
-    title: "Pale Crust",
-    subtitle: "Diagnosing insufficient heat, sugar depletion and moisture retention problems.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    title: t('learn.pale_crust'),
+    subtitle: t('learn.diagnosing_insufficient_heat_sugar_depletion_and_m'),
+    category: t('learn.troubleshooting_6'),
+    difficulty: t('learn.intermediate_22'),
     tags: ["crust", "browning", "troubleshooting", "maillard"],
 
     intro: "A pale crust occurs when browning reactions fail to activate. The causes include low baking temperature, excessive moisture, sugar depletion or overproofing.",
@@ -31,7 +32,7 @@ export const paleCrustData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Baking Temperature for Consistent Browning", notes: "Recommended: 320°C (Range: 280-350°C)" }
+        { label: t('learn.baking_temperature_for_consistent_browning'), notes: "Recommended: 320°C (Range: 280-350°C)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const paleCrustData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Low Heat Baking",
+            variant: t('learn.low_heat_baking'),
             implications: "Insufficient energy for browning reactions. Soft crust, pale surface. Reduced caramelization potential. Weak crust structure."
         },
         {
-            variant: "Overproofed Dough",
+            variant: t('learn.overproofed_dough_3'),
             implications: "Sugar depleted during fermentation. Fragile, wet. Surface dries slowly. Faint coloration."
         }
     ],
@@ -80,9 +81,9 @@ export const paleCrustData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Sweetheart, a pale crust is like toast you didn’t leave long enough.",
-        whatItDoes: "Makes the crust soft and light-colored.",
-        howToUse: "Heat is your friend — use enough of it.",
-        dangerSigns: "The oven wasn’t hot enough or the dough ran out of sugar."
+        intro: t('learn.sweetheart_a_pale_crust_is_like_toast_you_didnt_le'),
+        whatItDoes: t('learn.makes_the_crust_soft_and_lightcolored'),
+        howToUse: t('learn.heat_is_your_friend__use_enough_of_it'),
+        dangerSigns: t('learn.the_oven_wasnt_hot_enough_or_the_dough_ran_out_of_')
     }
 };

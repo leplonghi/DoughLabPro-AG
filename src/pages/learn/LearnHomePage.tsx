@@ -44,9 +44,7 @@ const LearnHomePage: React.FC = () => {
                         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                             <div className="text-left max-w-2xl">
                                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/30 border border-lime-500/30 text-lime-200 text-[10px] font-bold uppercase tracking-wider mb-3">
-                                    <AcademicCapIcon className="w-3.5 h-3.5" />
-                                    DoughLab Academy
-                                </div>
+                                    <AcademicCapIcon className="w-3.5 h-3.5" />{t('learn.doughlab_academy')}</div>
                                 <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-2 tracking-tight leading-tight">
                                     Master the Art & Science
                                 </h1>
@@ -92,9 +90,7 @@ const LearnHomePage: React.FC = () => {
                                     }}
                                 >
                                     <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors" />
-                                    <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider text-slate-800 shadow-sm border border-stone-100">
-                                        Featured
-                                    </div>
+                                    <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider text-slate-800 shadow-sm border border-stone-100">{t('learn.featured')}</div>
                                 </div>
                                 <div className="p-5 md:w-2/3 flex flex-col justify-center">
                                     <h2 className="text-lg font-bold text-slate-900 mb-1.5 group-hover:text-lime-700 transition-colors">
@@ -108,8 +104,7 @@ const LearnHomePage: React.FC = () => {
                                             <ClockIcon className="w-3.5 h-3.5" />
                                             10 min read
                                         </div>
-                                        <div className="text-lime-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer">
-                                            Read Article <ArrowRightIcon className="w-3 h-3" />
+                                        <div className="text-lime-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer">{t('learn.read_article')}<ArrowRightIcon className="w-3 h-3" />
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +179,7 @@ const LearnHomePage: React.FC = () => {
                     {/* 4. FOOTER CTA (Compact) */}
                     <div className="bg-stone-50 rounded-xl p-6 border border-stone-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="text-left">
-                            <h2 className="text-sm font-bold text-slate-900 mb-0.5">Explore the Full Library</h2>
+                            <h2 className="text-sm font-bold text-slate-900 mb-0.5">{t('learn.explore_the_full_library')}</h2>
                             <p className="text-slate-500 text-xs">
                                 Browse our complete collection of scientific articles and guides.
                             </p>
@@ -192,9 +187,7 @@ const LearnHomePage: React.FC = () => {
                         <button
                             onClick={() => navigate('learn/all')}
                             className="shrink-0 bg-white text-slate-700 border border-stone-300 hover:bg-stone-50 hover:border-stone-400 px-4 py-2 rounded-lg font-bold transition-all text-xs shadow-sm uppercase tracking-wide"
-                        >
-                            View All Articles
-                        </button>
+                        >{t('learn.view_all_articles')}</button>
                     </div>
                 </div>
             </div>

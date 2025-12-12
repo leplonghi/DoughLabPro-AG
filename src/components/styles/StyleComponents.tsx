@@ -1,6 +1,7 @@
 import React from 'react';
 import { Droplets, MapPin, Thermometer, Clock, ChefHat, AlertTriangle, Info } from 'lucide-react';
 import { StyleDefinition } from '../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const HydrationRangeBadge: React.FC<{ range: [number, number] }> = ({ range }) => (
     <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
@@ -17,6 +18,7 @@ export const OriginBadge: React.FC<{ origin: StyleDefinition['origin'] }> = ({ o
 );
 
 export const DifficultyBadge: React.FC<{ difficulty: string }> = ({ difficulty }) => {
+  const { t } = useTranslation();
     const colors = {
         Easy: 'bg-green-100 text-green-800',
         Medium: 'bg-yellow-100 text-yellow-800',
@@ -35,9 +37,7 @@ export const DifficultyBadge: React.FC<{ difficulty: string }> = ({ difficulty }
 export const DoughImpactList: React.FC<{ impacts: string[] }> = ({ impacts }) => (
     <div className="space-y-2">
         <h4 className="text-sm font-semibold text-stone-900 flex items-center">
-            <ChefHat className="w-4 h-4 mr-2 text-amber-600" />
-            Dough Characteristics
-        </h4>
+            <ChefHat className="w-4 h-4 mr-2 text-amber-600" />{t('common.dough_characteristics')}</h4>
         <ul className="list-disc list-inside text-sm text-stone-600 space-y-1">
             {impacts.map((impact, idx) => (
                 <li key={idx}>{impact}</li>
@@ -49,9 +49,7 @@ export const DoughImpactList: React.FC<{ impacts: string[] }> = ({ impacts }) =>
 export const BakingImpactList: React.FC<{ impacts: string[] }> = ({ impacts }) => (
     <div className="space-y-2">
         <h4 className="text-sm font-semibold text-stone-900 flex items-center">
-            <Thermometer className="w-4 h-4 mr-2 text-red-600" />
-            Baking Profile
-        </h4>
+            <Thermometer className="w-4 h-4 mr-2 text-red-600" />{t('common.baking_profile')}</h4>
         <ul className="list-disc list-inside text-sm text-stone-600 space-y-1">
             {impacts.map((impact, idx) => (
                 <li key={idx}>{impact}</li>
@@ -64,7 +62,7 @@ export const RegionalVariantsGrid: React.FC<{ variants: string[] }> = ({ variant
     if (!variants || variants.length === 0) return null;
     return (
         <div className="mt-4">
-            <h4 className="text-sm font-semibold text-stone-900 mb-2">Regional Variants</h4>
+            <h4 className="text-sm font-semibold text-stone-900 mb-2">{t('general.regional_variants')}</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {variants.map((variant, idx) => (
                     <div key={idx} className="p-2 bg-stone-50 rounded border border-stone-200 text-sm text-stone-700">

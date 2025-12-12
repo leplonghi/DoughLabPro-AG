@@ -1,6 +1,7 @@
 
 
 import { ReferenceItem } from './types';
+import { useTranslation } from '@/i18n';
 
 export const REFERENCES: ReferenceItem[] = [
   {

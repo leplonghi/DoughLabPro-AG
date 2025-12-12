@@ -1,6 +1,7 @@
 import { doc, getDoc, setDoc, updateDoc, increment, collection } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { User } from '../../types';
+import { useTranslation } from '@/i18n';
 
 export interface AffiliateStats {
     clicks: number;

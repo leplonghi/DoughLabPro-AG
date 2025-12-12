@@ -20,14 +20,14 @@ import { SocialShare } from "@/marketing/social/SocialShare";
 
 interface MyLabBatchesPageProps {
     onNavigate: (page: Page, params?: string) => void;
-    onCreateDraftBatch: () => Promise<Batch>;
+    onCreateDraftBatch: () =>{t('mylab.promise')}<Batch>;
     onLoadAndNavigate: (config: any) => void;
 }
 
 const ResultTag: React.FC<{ rating: number }> = ({ rating }) => {
-    if (rating >= 4.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-lime-100 text-lime-700 border border-lime-200">GREAT</span>;
-    if (rating >= 3.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200">GOOD</span>;
-    return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-100 text-yellow-700 border border-yellow-200">ADJUST</span>;
+    if (rating >= 4.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-lime-100 text-lime-700 border border-lime-200">{t('mylab.great')}</span>;
+    if (rating >= 3.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200">{t('mylab.good')}</span>;
+    return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-100 text-yellow-700 border border-yellow-200">{t('mylab.adjust')}</span>;
 };
 
 const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, params?: string) => void }> = ({ batch, t, onNavigate }) => {
@@ -63,7 +63,7 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
                             <WaterIcon className="h-3 w-3" />
                         </div>
                         <span className="block text-sm font-bold text-slate-700 ">{batch.doughConfig.hydration}%</span>
-                        <span className="block text-[10px] text-slate-500  uppercase">Hydration</span>
+                        <span className="block text-[10px] text-slate-500  uppercase">{t('form.hydration')}</span>
                     </div>
                     <div className="bg-slate-50  rounded-xl p-2">
                         <div className="flex items-center justify-center gap-1 text-slate-400  mb-1">
@@ -74,7 +74,7 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
                                 ? `${(batch.bulkTimeHours || 0) + (batch.proofTimeHours || 0)}h`
                                 : '-'}
                         </span>
-                        <span className="block text-[10px] text-slate-500  uppercase">Time</span>
+                        <span className="block text-[10px] text-slate-500  uppercase">{t('mylab.time')}</span>
                     </div>
                     <div className="bg-slate-50  rounded-xl p-2">
                         <div className="flex items-center justify-center gap-1 text-slate-400  mb-1">
@@ -83,7 +83,7 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
                         <span className="block text-sm font-bold text-slate-700  truncate px-1">
                             {batch.ovenType ? t(`profile.ovens.types.${batch.ovenType.toLowerCase()}`).split(' ')[0] : '-'}
                         </span>
-                        <span className="block text-[10px] text-slate-500  uppercase">Oven</span>
+                        <span className="block text-[10px] text-slate-500  uppercase">{t('mylab.oven')}</span>
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
                             <SocialShare type="batch" title={batch.name} data={batch} className="p-1 hover:bg-slate-100 rounded-full transition-colors" />
                         </div>
                     </div>
-                    <span className="group-hover:text-lime-600 font-medium transition-colors">View Details &rarr;</span>
+                    <span className="group-hover:text-lime-600 font-medium transition-colors">{t('mylab.view_details_rarr')}</span>
                 </div>
             </div>
         </div>
@@ -130,8 +130,8 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
             <div className="animate-fade-in space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-slate-900 ">My Batches</h1>
-                        <p className="text-sm text-slate-500 ">Track your baking journey and perfect your recipes.</p>
+                        <h1 className="text-2xl font-bold tracking-tight text-slate-900 ">{t('mylab.my_batches')}</h1>
+                        <p className="text-sm text-slate-500 ">{t('mylab.track_your_baking_journey_and_perfect_your_recipes')}</p>
                     </div>
 
                     {!hasReachedFreeLimit ? (
@@ -140,7 +140,7 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                             className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-105 active:scale-95"
                         >
                             <PlusCircleIcon className="h-5 w-5" />
-                            <span>New Batch</span>
+                            <span>{t('mylab.new_batch')}</span>
                         </button>
                     ) : (
                         <button
@@ -148,7 +148,7 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                             className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-100 text-slate-500 py-2.5 px-5 font-bold cursor-not-allowed opacity-75"
                         >
                             <PlusCircleIcon className="h-5 w-5" />
-                            <span>Limit Reached</span>
+                            <span>{t('mylab.limit_reached')}</span>
                         </button>
                     )}
                 </div>
@@ -159,14 +159,12 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                         <div className="bg-white  p-4 rounded-full shadow-sm mb-6">
                             <BatchesIcon className="h-12 w-12 text-lime-500" />
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900  mb-2">Your baking journey starts here</h2>
+                        <h2 className="text-xl font-bold text-slate-900  mb-2">{t('mylab.your_baking_journey_starts_here')}</h2>
                         <p className="text-slate-600  max-w-md mx-auto mb-8">
                             Record your experiments, track fermentation times, and rate your results to improve with every bake.
                         </p>
                         <button onClick={handleCreateDraft} className="inline-flex items-center gap-2 rounded-xl bg-lime-500 py-3 px-6 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 hover:shadow-xl hover:scale-105 transition-all">
-                            <PlusCircleIcon className="h-5 w-5" />
-                            Start First Bake
-                        </button>
+                            <PlusCircleIcon className="h-5 w-5" />{t('mylab.start_first_bake')}</button>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

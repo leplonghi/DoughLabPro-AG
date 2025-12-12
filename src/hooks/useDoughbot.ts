@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DoughbotResult } from "../types/doughbot";
 import { diagnoseDoughIssue } from "@/ai/assistantClient";
+import { useTranslation } from '@/i18n';
 
 export const useDoughbot = () => {
     const [problem, setProblem] = useState("");
@@ -23,7 +24,7 @@ export const useDoughbot = () => {
             const diagnosis = await diagnoseDoughIssue(problem, description, context);
             setResult(diagnosis);
         } catch (err) {
-            setError(err instanceof Error ? err.message : "An error occurred");
+            setError(err instanceof Error ? err.message : t('ui.an_error_occurred'));
         } finally {
             setIsLoading(false);
         }

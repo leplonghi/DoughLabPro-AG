@@ -155,9 +155,7 @@ export const TourGuide: React.FC = () => {
                     <button
                         onClick={handleClose}
                         className="text-xs font-semibold text-dlp-text-muted hover:text-dlp-text-primary"
-                    >
-                        Skip Tour
-                    </button>
+                    >{t('common.skip_tour')}</button>
                     <button
                         onClick={handleNext}
                         className="flex items-center gap-1 bg-dlp-accent text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-dlp-accent-hover transition-colors shadow-dlp-sm"

@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pao_frances_brazil: StyleDefinition = {
   "id": "pao_frances_brazil",
   "title": "Pão Francês / Cacetinho",
-  "subtitle": "Brazilian Professional Breads",
-  "category": "Bread",
-  "family": "Brazilian Professional Breads",
+  "subtitle": t('styles.brazilian_professional_breads_3'),
+  "category": t('styles.bread_20'),
+  "family": t('styles.brazilian_professional_breads_4'),
   "variantName": "Pão Francês / Cacetinho",
   "origin": {
-    "country": "Brazil",
-    "region": "Nationwide",
+    "country": t('styles.brazil_2'),
+    "region": t('styles.nationwide_4'),
     "period": "20th century"
   },
   "intro": "A daily staple in Brazilian bakeries, eaten with butter, fillings and used in sandwiches.",
@@ -37,11 +38,11 @@ export const pao_frances_brazil: StyleDefinition = {
       0,
       3
     ],
-    "flourStrength": "Brazilian bread flour, W ~280–330",
+    "flourStrength": t('styles.brazilian_bread_flour_w_280330'),
     "fermentation": {
-      "bulk": "Short to medium bulk, often in continuous processes",
+      "bulk": t('styles.short_to_medium_bulk_often_in_continuous_processes'),
       "proof": "40–80 min in proofing chambers",
-      "coldRetard": "Sometimes used to manage production"
+      "coldRetard": t('styles.sometimes_used_to_manage_production')
     },
     "oven": {
       "type": "deck",
@@ -49,13 +50,13 @@ export const pao_frances_brazil: StyleDefinition = {
         230,
         260
       ],
-      "notes": "Strong steam early in bake to create thin, crisp crust."
+      "notes": t('styles.strong_steam_early_in_bake_to_create_thin_crisp_cr')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_9'),
     "recommendedUse": [
-      "Breakfast rolls",
-      "Sandwiches",
-      "Everyday bread"
+      t('common.breakfast_rolls'),
+      t('common.sandwiches'),
+      t('common.everyday_bread')
     ]
   },
   "regionalVariants": [],
@@ -65,11 +66,11 @@ export const pao_frances_brazil: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Breakfast rolls",
-    "Sandwiches",
-    "Everyday bread",
-    "Bread",
-    "Brazil"
+    t('common.breakfast_rolls'),
+    t('common.sandwiches'),
+    t('common.everyday_bread'),
+    t('common.bread'),
+    t('common.brazil')
   ],
   "applyInApp": {
     "calculator": [],
@@ -80,11 +81,11 @@ export const pao_frances_brazil: StyleDefinition = {
   },
   "references": [
     {
-      "title": "SENAI panificação",
+      "title": t('styles.senai_panificação_2'),
       "url": ""
     },
     {
-      "title": "ABIP technical materials",
+      "title": t('styles.abip_technical_materials'),
       "url": ""
     }
   ],

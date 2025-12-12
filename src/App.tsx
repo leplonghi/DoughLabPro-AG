@@ -88,7 +88,7 @@ function AppContent() {
     try {
       localStorage.setItem('levain_pet_onboarding_seen_v1', 'true');
     } catch (error) {
-      console.error("Failed to save onboarding status to localStorage", error);
+      console.error(t('common.failed_to_save_onboarding_status_to_localstorage'), error);
     }
     setShowLevainOnboarding(false);
   };
@@ -124,7 +124,7 @@ function AppContent() {
         status: BatchStatus.PLANNED,
         isFavorite: false,
       });
-      addToast(`Bake "${newBatch.name}" started!`, 'success');
+      addToast(`${t('ui.bake_')}${newBatch.name}" started!`, 'success');
       navigate('mylab/fornadas');
     }
   }, [results, batches, hasProAccess, addToast, openPaywall, config, addBatch, navigate]);
@@ -147,11 +147,11 @@ function AppContent() {
             <Logo className="h-24 w-auto" />
           </div>
 
-          <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">Welcome to your digital dough lab</h1>
+          <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">{t('general.welcome_to_your_digital_dough_lab')}</h1>
           <p className="text-lg text-dlp-text-secondary mb-8 leading-relaxed">
             The ultimate precision tool for professional and home bakers.
             <br />
-            <span className="text-sm text-dlp-text-muted mt-2 block">Sign in to access your lab, recipes, and tools.</span>
+            <span className="text-sm text-dlp-text-muted mt-2 block">{t('ui.sign_in_to_access_your_lab_recipes_and_tools')}</span>
           </p>
 
           <div className="space-y-4">
@@ -213,7 +213,7 @@ function AppContent() {
       {!isAssistantOpen && (
         <FloatingActionButton
           onClick={() => setIsAssistantOpen(true)}
-          label="Doughy"
+          label={t('general.doughy')}
           isShifted={isSummaryBarVisible}
         />
       )}

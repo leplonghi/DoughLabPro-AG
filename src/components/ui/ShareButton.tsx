@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ShareIcon, CheckIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface ShareButtonProps {
     title: string;
@@ -16,6 +17,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({
     className = '',
     label = 'Share'
 }) => {
+  const { t } = useTranslation();
     const [copied, setCopied] = useState(false);
 
     const handleShare = async () => {
@@ -45,12 +47,12 @@ const ShareButton: React.FC<ShareButtonProps> = ({
         <button
             onClick={handleShare}
             className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${className}`}
-            title="Share this page"
+            title={t('ui.share_this_page')}
         >
             {copied ? (
                 <>
                     <CheckIcon className="h-4 w-4 text-dlp-success" />
-                    <span className="text-dlp-success font-medium">Copied!</span>
+                    <span className="text-dlp-success font-medium">{t('ui.copied')}</span>
                 </>
             ) : (
                 <>

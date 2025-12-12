@@ -14,6 +14,7 @@ import { northAmericaStyles as americasStyles } from './regions/north_america';
 // --- SUPPLEMENTARY LIBRARY MODULES ---
 import { Challah, BurgerBun, Shokupan as ShokupanLegacy, Panettone } from './library/bread/enriched';
 import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './library/pastry/sweets';
+import { useTranslation } from '@/i18n';
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -42,7 +43,7 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
         recommendedUse: [],
         oil: [0, 0],
         sugar: [0, 0],
-        flourStrength: style.scientificProfile?.flourRheology?.w_index || "Standard"
+        flourStrength: style.scientificProfile?.flourRheology?.w_index || t('styles.standard')
     };
 
     // Safely handle category mapping
@@ -66,7 +67,7 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
         origin: {
             country: style.region,
             region: style.subRegion || style.region,
-            period: "Classic"
+            period: t('styles.classic')
         },
         description: style.description,
         history: style.history_context,

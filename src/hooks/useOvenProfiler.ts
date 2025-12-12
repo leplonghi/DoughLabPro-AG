@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { analyzeOvenProfile, OvenProfileInput, OvenAnalysisResult, validateOvenInput } from '@/logic/ovenProfile';
+import { useTranslation } from '@/i18n';
 
 export const useOvenProfiler = () => {
     const [profile, setProfile] = useState<OvenProfileInput>({

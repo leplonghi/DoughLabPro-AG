@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const excessAcidityData: LearnArticleData = {
     id: "excess-acidity",
-    title: "Excess Acidity",
-    subtitle: "Diagnosing sourness, gluten weakening and fermentation imbalance.",
-    category: "Troubleshooting",
-    difficulty: "Intermediate",
+    title: t('learn.excess_acidity'),
+    subtitle: t('learn.diagnosing_sourness_gluten_weakening_and_fermentat'),
+    category: t('learn.troubleshooting_3'),
+    difficulty: t('learn.intermediate_12'),
     tags: ["acidity", "ph", "troubleshooting", "gluten"],
 
     intro: "Excess acidity results from prolonged fermentation, overactive levain or imbalanced bacteria-to-yeast ratio. It impacts flavor, gluten stability and dough handling.",
@@ -61,11 +62,11 @@ export const excessAcidityData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Lactic Acid Dominance",
-            implications: "Mild, creamy acidity. Smooth, soft. Gentle gluten weakening. Balanced flavor."
+            variant: t('learn.lactic_acid_dominance'),
+            implications: t('learn.mild_creamy_acidity_smooth_soft_gentle_gluten_weak')
         },
         {
-            variant: "Acetic Acid Dominance",
+            variant: t('learn.acetic_acid_dominance'),
             implications: "Sharply sour, vinegar-like profile. Sharp, intense. Stronger gluten breakdown. Irregular rise."
         }
     ],
@@ -80,9 +81,9 @@ export const excessAcidityData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Sweetheart, too much acidity is like lemonade that’s all lemon and no sugar.",
-        whatItDoes: "Makes it collapse easily.",
-        howToUse: "Balanced sourness makes delicious bread.",
-        dangerSigns: "The dough gets too sour and too soft."
+        intro: t('learn.sweetheart_too_much_acidity_is_like_lemonade_thats'),
+        whatItDoes: t('learn.makes_it_collapse_easily'),
+        howToUse: t('learn.balanced_sourness_makes_delicious_bread'),
+        dangerSigns: t('learn.the_dough_gets_too_sour_and_too_soft')
     }
 };

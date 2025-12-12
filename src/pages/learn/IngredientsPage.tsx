@@ -127,9 +127,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
         <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out]">
             <div className="text-center">
                 <AcademicCapIcon className="mx-auto h-12 w-12 text-lime-500" />
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                    Ingredient Guide
-                </h1>
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('learn.ingredient_guide')}</h1>
                 <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-700">
                     Explore the universe of flavors that go on top of your dough.
                 </p>

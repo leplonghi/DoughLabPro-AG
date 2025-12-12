@@ -1,6 +1,7 @@
 
 import { Levain, LevainStatus, LevainFeedingLog } from '../types';
 import { hoursBetween } from '../helpers';
+import { useTranslation } from '@/i18n';
 
 export type LevainEmotion = 'happy' | 'hungry' | 'sad' | 'sleeping' | 'dead';
 

@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const roman_scrocchiarella: StyleDefinition = {
   "id": "roman_scrocchiarella",
   "title": "Roman Scrocchiarella (Thin & Crispy)",
-  "subtitle": "Roman Thin Pizza",
-  "category": "Pizza",
-  "family": "Roman Thin Pizza",
+  "subtitle": t('styles.roman_thin_pizza'),
+  "category": t('styles.pizza_11'),
+  "family": t('styles.roman_thin_pizza_2'),
   "variantName": "Roman Scrocchiarella (Thin & Crispy)",
   "origin": {
-    "country": "Italy",
-    "region": "Rome",
+    "country": t('styles.italy_11'),
+    "region": t('styles.rome'),
     "period": "20th century"
   },
   "intro": "Common in Roman pizzerias as an alternative to Neapolitan, offering a crunchy, thin base suited for many toppings.",
@@ -37,11 +38,11 @@ export const roman_scrocchiarella: StyleDefinition = {
       0,
       2
     ],
-    "flourStrength": "Medium-strong flour, W 240–280",
+    "flourStrength": t('styles.mediumstrong_flour_w_240280'),
     "fermentation": {
       "bulk": "2–6 h at room temperature or partial cold ferment",
-      "proof": "Short proof in pans or on trays",
-      "coldRetard": "Optional up to 24 h"
+      "proof": t('styles.short_proof_in_pans_or_on_trays'),
+      "coldRetard": t('styles.optional_up_to_24_h')
     },
     "oven": {
       "type": "electric_home",
@@ -49,12 +50,12 @@ export const roman_scrocchiarella: StyleDefinition = {
         250,
         300
       ],
-      "notes": "Baked thin on pans or stone for crispness."
+      "notes": t('styles.baked_thin_on_pans_or_stone_for_crispness')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_39'),
     "recommendedUse": [
-      "Roman thin pizza",
-      "Crispy pizza base"
+      t('common.roman_thin_pizza'),
+      t('common.crispy_pizza_base')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const roman_scrocchiarella: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Roman thin pizza",
-    "Crispy pizza base",
-    "Pizza",
-    "Italy"
+    t('common.roman_thin_pizza'),
+    t('common.crispy_pizza_base'),
+    t('common.pizza'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const roman_scrocchiarella: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_9'),
       "url": ""
     },
     {
-      "title": "Italian pizza technical literature",
+      "title": t('styles.italian_pizza_technical_literature'),
       "url": ""
     }
   ],

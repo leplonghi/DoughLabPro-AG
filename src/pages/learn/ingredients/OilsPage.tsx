@@ -3,15 +3,17 @@ import { useRouter } from '@/contexts/RouterContext';
 import IngredientPageLayout from './IngredientPageLayout';
 import { SparklesIcon, BeakerIcon, FireIcon, CalculatorIcon, FlaskIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnProTip, LearnCriticalPoint, LearnHistory } from '../LearnComponents';
+import { useTranslation } from '@/i18n';
 
 const OilsPage: React.FC = () => {
+  const { t } = useTranslation();
   const { navigate } = useRouter();
 
   return (
     <IngredientPageLayout
-      title="Oils on Pizza"
+      title={t('learn.oils_on_pizza')}
       description="Technical analysis of how oils function as aroma vectors, heat conductors, and texture agents in pizza making."
-      category="Ingredients"
+      category={t('learn.ingredients_4')}
       references={[
         "Modernist Pizza (Nathan Myhrvold) – Lipids and heat transfer",
         "The Bread Baker's Apprentice (Peter Reinhart) – Enriched doughs",
@@ -27,7 +29,7 @@ const OilsPage: React.FC = () => {
         </p>
       </LearnHistory>
 
-      <LearnSection title="Introduction: Oils as Flavor Vectors">
+      <LearnSection title={t('learn.introduction_oils_as_flavor_vectors')}>
         <p>
           Oils play multiple roles beyond adding fat. They act as aroma vectors, flavor enhancers, texture agents, and crispness modulators. Chemically, lipids excel at absorbing and transporting volatile aromatic compounds (fat-soluble) from ingredients like garlic and herbs.
         </p>
@@ -49,7 +51,7 @@ const OilsPage: React.FC = () => {
         For high-temperature ovens (Neapolitan style, {'>'}400°C), avoid adding oil to the dough if you want classic leopard spotting. Oil encapsulates starch granules and inhibits the micro-blistering process. Use oil in the dough only for styles baked below 350°C (660°F) or for pan pizzas.
       </LearnProTip>
 
-      <LearnSection title="Neutral Oils & Pan Styles">
+      <LearnSection title={t('learn.neutral_oils__pan_styles')}>
         <p>
           While Italian tradition focuses on olive oil, American styles like Detroit and Sicilian rely on neutral oils (corn, canola, peanut) or refined olive oil for the pan.
         </p>
@@ -62,7 +64,7 @@ const OilsPage: React.FC = () => {
         Never use low-smoke point oils (like unrefined flaxseed or butter) for greasing pans in high-heat baking. They will burn before the pizza is done, creating acrid, bitter flavors and potentially toxic compounds. Stick to refined oils or high-quality olive oil for pan lubrication.
       </LearnCriticalPoint>
 
-      <LearnSection title="Thermal Behavior" icon={<FireIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.thermal_behavior')} icon={<FireIcon className="h-5 w-5" />}>
         <p>
           Oil has a lower specific heat capacity than water but does not boil off. This means it can reach temperatures far exceeding 100°C (212°F).
         </p>
@@ -71,11 +73,11 @@ const OilsPage: React.FC = () => {
         </p>
       </LearnSection>
 
-      <LearnSection title="Strategic Application" icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.strategic_application')} icon={<SparklesIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-2">
-          <li><strong>Post-Oven Drizzle:</strong> Best for maximizing aroma of expensive EVOO.</li>
-          <li><strong>Greased Pan:</strong> Essential for Detroit/Sicilian styles to conduct heat and prevent sticking.</li>
-          <li><strong>Dough Enrichment:</strong> Adding 1-3% oil to NY Style dough helps soften the crumb and improves browning in cooler home ovens (250°C-300°C).</li>
+          <li><strong>{t('learn.postoven_drizzle')}</strong> Best for maximizing aroma of expensive EVOO.</li>
+          <li><strong>{t('learn.greased_pan')}</strong> Essential for Detroit/Sicilian styles to conduct heat and prevent sticking.</li>
+          <li><strong>{t('learn.dough_enrichment')}</strong> Adding 1-3% oil to NY Style dough helps soften the crumb and improves browning in cooler home ovens (250°C-300°C).</li>
         </ul>
       </LearnSection>
 
@@ -88,7 +90,7 @@ const OilsPage: React.FC = () => {
             <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
               <CalculatorIcon className="h-6 w-6" />
             </div>
-            <h3 className="font-bold text-slate-900">Adjust Hydration</h3>
+            <h3 className="font-bold text-slate-900">{t('learn.adjust_hydration')}</h3>
           </div>
           <p className="text-sm text-slate-600">
             Oil counts as liquid but doesn't hydrate gluten. Use the Calculator to balance your formula when adding fats.
@@ -103,7 +105,7 @@ const OilsPage: React.FC = () => {
             <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
               <FlaskIcon className="h-6 w-6" />
             </div>
-            <h3 className="font-bold text-slate-900">Log an Experiment</h3>
+            <h3 className="font-bold text-slate-900">{t('learn.log_an_experiment')}</h3>
           </div>
           <p className="text-sm text-slate-600">
             Test different oil percentages (e.g., 0% vs 3%) and record the texture differences in MyLab.

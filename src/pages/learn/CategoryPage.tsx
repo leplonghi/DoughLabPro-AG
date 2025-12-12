@@ -16,7 +16,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
     const { navigate } = useRouter();
     const { t } = useTranslation();
 
-    // Decode category from URL (e.g. "Ingredient%20Science" -> "Ingredient Science")
+    // Decode category from URL (e.g. "Ingredient%20Science" -> t('learn.ingredient_science'))
     const decodedCategory = categoryId ? decodeURIComponent(categoryId) : '';
     const articles = getArticlesByCategory(decodedCategory);
 
@@ -29,7 +29,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
     const bgImage = track ? TRACK_IMAGES[track.id] : TRACK_IMAGES['fundamentals'];
     const themeColor = track ? TRACK_COLORS[track.colorTheme] : TRACK_COLORS['lime'];
 
-    if (!decodedCategory) return <div>Category not found</div>;
+    if (!decodedCategory) return <div>{t('learn.category_not_found')}</div>;
 
     return (
         <LibraryPageLayout>
@@ -50,9 +50,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                             {/* Breadcrumb */}
                             <nav className="flex items-center text-xs md:text-sm text-stone-300 mb-6 font-medium">
                                 <button onClick={() => navigate('learn')} className="hover:text-white transition-colors flex items-center gap-1">
-                                    <ArrowLeftIcon className="w-3 h-3" />
-                                    Back to Learn
-                                </button>
+                                    <ArrowLeftIcon className="w-3 h-3" />{t('learn.back_to_learn')}</button>
                                 <span className="mx-3 text-stone-500">/</span>
                                 <span className="text-lime-400 uppercase tracking-widest">{track?.title}</span>
                             </nav>
@@ -130,11 +128,9 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                     {articles.length === 0 && (
                         <div className="text-center py-20 bg-stone-50 rounded-3xl border border-dashed border-stone-300">
                             <BeakerIcon className="w-12 h-12 text-stone-300 mx-auto mb-4" />
-                            <p className="text-slate-500 text-lg font-medium">Content brewing...</p>
-                            <p className="text-slate-400 text-sm">No articles found in this category yet.</p>
-                            <button onClick={() => navigate('learn')} className="mt-6 text-lime-600 hover:text-lime-700 font-bold text-sm uppercase tracking-wide">
-                                Return to Learn Home
-                            </button>
+                            <p className="text-slate-500 text-lg font-medium">{t('learn.content_brewing')}</p>
+                            <p className="text-slate-400 text-sm">{t('learn.no_articles_found_in_this_category_yet')}</p>
+                            <button onClick={() => navigate('learn')} className="mt-6 text-lime-600 hover:text-lime-700 font-bold text-sm uppercase tracking-wide">{t('learn.return_to_learn_home')}</button>
                         </div>
                     )}
                 </div>

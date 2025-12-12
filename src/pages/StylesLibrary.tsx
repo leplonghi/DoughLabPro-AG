@@ -6,6 +6,7 @@ import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { StyleCard } from '@/components/styles/StyleCard';
 import { Search, ChefHat, Globe2, MapPin, Calendar, ChevronDown } from 'lucide-react';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
+import { useTranslation } from '@/i18n';
 
 interface StylesLibraryPageProps {
     onNavigateToDetail: (id: string) => void;
@@ -33,6 +34,7 @@ const resolveRegion = (origin: string): Region | 'Global' => {
 };
 
 export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCalculator }) => {
+  const { t } = useTranslation();
     // State
     const [filterCategory, setFilterCategory] = useState<Category | 'All'>('All');
     const [filterRegion, setFilterRegion] = useState<Region | 'All' | 'Global'>('All');
@@ -68,7 +70,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
 
     // Available Regions for Filter Tabs
     // We treat 'Global' as a specific bucket for fallback styles, distinct from 'All'
-    const regionTabs: (Region | 'Global')[] = ['Italy', 'Europe', 'North America', 'South America', 'Asia', 'Global'];
+    const regionTabs: (Region | 'Global')[] = [t('styles.italy_20'), t('styles.europe_9'), t('styles.north_america_2'), t('styles.south_america_8'), t('styles.asia_6'), t('styles.global_6')];
 
     return (
         <LibraryPageLayout>
@@ -80,12 +82,8 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
 
                     <div className="relative z-10 text-center max-w-3xl mx-auto">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
-                            <ChefHat className="w-4 h-4" />
-                            Global Dough Registry
-                        </div>
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">
-                            Explore Styles
-                        </h1>
+                            <ChefHat className="w-4 h-4" />{t('common.global_dough_registry')}</div>
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">{t('common.explore_styles')}</h1>
                         <p className="text-base md:text-lg text-lime-100/90 mb-0 leading-relaxed">
                             Discover professional dough specifications from around the world.
                         </p>
@@ -108,7 +106,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             <input
                                 type="text"
                                 className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 text-sm shadow-sm transition-all"
-                                placeholder="Search styles..."
+                                placeholder={t('general.search_styles')}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
@@ -125,10 +123,8 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                         ? 'bg-white text-slate-800 shadow-sm ring-1 ring-slate-200'
                                         : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
                                         }`}
-                                >
-                                    All Types
-                                </button>
-                                {(['Pizza', 'Bread', 'Flatbread', 'Enriched'] as Category[]).map(cat => (
+                                >{t('common.all_types')}</button>
+                                {([t('styles.pizza_21'), t('styles.bread_38'), t('styles.flatbread_6'), t('styles.enriched_4')] as Category[]).map(cat => (
                                     <button
                                         key={cat}
                                         onClick={() => setFilterCategory(current => current === cat ? 'All' : cat)}
@@ -158,7 +154,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                     onChange={(e) => setFilterRegion(e.target.value as Region | 'All' | 'Global')}
                                     className="block w-full pl-9 pr-8 py-2 text-xs font-bold border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 shadow-sm appearance-none cursor-pointer hover:bg-slate-50 transition-colors"
                                 >
-                                    <option value="All">All Regions</option>
+                                    <option value="All">{t('general.all_regions')}</option>
                                     <option disabled>──────────</option>
                                     {regionTabs.map(reg => (
                                         <option key={reg} value={reg}>
@@ -190,13 +186,11 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                 </div>
             ) : (
                 <div className="text-center py-20 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
-                    <p className="text-slate-400 text-lg">No styles match your filter.</p>
+                    <p className="text-slate-400 text-lg">{t('styles.no_styles_match_your_filter')}</p>
                     <button
                         onClick={() => { setFilterCategory('All'); setFilterRegion('All'); setSearchQuery(''); }}
                         className="mt-4 text-lime-600 font-bold hover:underline"
-                    >
-                        Clear Filters
-                    </button>
+                    >{t('common.clear_filters')}</button>
                 </div>
             )}
 
@@ -204,7 +198,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
             <div className="mt-8 mb-12">
                 <RecommendedProducts
                     tags={[filterCategory.toLowerCase(), filterRegion.toLowerCase(), 'baking'].filter(t => t !== 'all' && t !== 'global')}
-                    title={filterCategory !== 'All' ? `Recommended Gear for ${filterCategory}` : "Professional Baking Gear"}
+                    title={filterCategory !== 'All' ? `Recommended Gear for ${filterCategory}` : t('styles.professional_baking_gear')}
                     className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm"
                 />
             </div>
@@ -215,7 +209,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                     <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
                         <Calendar className="w-4 h-4" />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-800">Coming Soon: Early 2026 Roadmap</h2>
+                    <h2 className="text-2xl font-bold text-slate-800">{t('styles.coming_soon_early_2026_roadmap')}</h2>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -237,9 +231,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                                         <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-                                    </span>
-                                    In Development
-                                </div>
+                                    </span>{t('common.in_development')}</div>
                             </div>
                         </div>
                     ))}

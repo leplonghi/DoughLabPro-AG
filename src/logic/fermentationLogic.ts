@@ -1,4 +1,5 @@
 import { FermentationTechnique, RecipeStyle, BakeType } from '../types';
+import { useTranslation } from '@/i18n';
 
 export function getAllowedFermentationTechniques(style: RecipeStyle | string, bakeType: BakeType): FermentationTechnique[] {
     // All standard fermentation techniques (Direct, Poolish, Biga, Sourdough) are allowed

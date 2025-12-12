@@ -1,5 +1,6 @@
 import { UnitSystem, ToppingSizeProfile, YeastType, Unit } from './types';
 import { YEAST_EQUIVALENCIES } from './constants';
+import { useTranslation } from '@/i18n';
 
 // Grams per cup for key ingredients.
 // US Customary cup is ~236.59mL. Metric cup is 250mL.
@@ -136,7 +137,7 @@ export function weightToEstimatedSizeCm(weightInGrams: number): number {
  */
 export function findClosestToppingSize(sizes: ToppingSizeProfile[], targetSizeCm: number): ToppingSizeProfile {
     if (sizes.length === 0) {
-        throw new Error("Cannot find closest size in an empty array.");
+        throw new Error(t('ui.cannot_find_closest_size_in_an_empty_array'));
     }
     return sizes.reduce((prev, curr) => {
         const prevDiff = Math.abs(prev.sizeCm - targetSizeCm);

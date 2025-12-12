@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const glutenNetworkData: LearnArticleData = {
     id: "gluten-network",
-    title: "The Gluten Network",
-    subtitle: "Structure, gas retention and texture",
-    category: "Dough Science",
-    difficulty: "Intermediate",
+    title: t('learn.the_gluten_network'),
+    subtitle: t('learn.structure_gas_retention_and_texture'),
+    category: t('learn.dough_science_8'),
+    difficulty: t('learn.intermediate_18'),
     tags: ["gluten", "structure", "elasticity", "extensibility"],
 
     intro: "The gluten network is the structural framework of wheat-based doughs. How it forms and how strong or extensible it becomes decides volume, crumb structure and handling.",

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
 import { BeakerIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 export const HydrationConverterPage: React.FC = () => {
+  const { t } = useTranslation();
     const [flour, setFlour] = useState<number>(1000);
     const [currentHydration, setCurrentHydration] = useState<number>(60);
     const [targetHydration, setTargetHydration] = useState<number>(65);
@@ -32,7 +34,7 @@ export const HydrationConverterPage: React.FC = () => {
 
     return (
         <TechnicalPageLayout
-            title="Hydration Adjuster"
+            title={t('general.hydration_adjuster')}
             subtitle="Calculate exactly how much water or flour to add to correct your dough's hydration."
             showReferencesSection={false}
         >
@@ -54,7 +56,7 @@ export const HydrationConverterPage: React.FC = () => {
                             </div>
 
                             <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Current Hydration</label>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t('general.current_hydration')}</label>
                                 <div className="flex items-center gap-4">
                                     <input
                                         type="range"
@@ -71,7 +73,7 @@ export const HydrationConverterPage: React.FC = () => {
                             </div>
 
                             <div className="p-4 bg-lime-50/50 rounded-xl border border-lime-100">
-                                <label className="block text-xs font-bold text-lime-700 uppercase tracking-wider mb-2">Target Hydration</label>
+                                <label className="block text-xs font-bold text-lime-700 uppercase tracking-wider mb-2">{t('general.target_hydration_2')}</label>
                                 <div className="flex items-center gap-4">
                                     <input
                                         type="range"
@@ -92,12 +94,12 @@ export const HydrationConverterPage: React.FC = () => {
                             <div className="bg-slate-900 text-white rounded-3xl p-8 text-center shadow-xl relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-lime-500"></div>
 
-                                <h3 className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-4">Correction Required</h3>
+                                <h3 className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-4">{t('general.correction_required')}</h3>
 
                                 {adjustment.type === 'exact' && (
                                     <div className="text-lime-400 font-bold text-2xl flex flex-col items-center gap-2">
                                         <BeakerIcon className="w-12 h-12" />
-                                        <span>Perfect Match</span>
+                                        <span>{t('general.perfect_match')}</span>
                                     </div>
                                 )}
 
@@ -106,7 +108,7 @@ export const HydrationConverterPage: React.FC = () => {
                                         <div className="text-5xl font-extrabold text-blue-400 mb-2">
                                             +{adjustment.amount}g
                                         </div>
-                                        <span className="text-xl font-bold text-blue-200">Water</span>
+                                        <span className="text-xl font-bold text-blue-200">{t('results.water')}</span>
                                         <p className="mt-4 text-xs text-slate-500">
                                             Add water to reach {targetHydration}%.
                                         </p>
@@ -118,7 +120,7 @@ export const HydrationConverterPage: React.FC = () => {
                                         <div className="text-5xl font-extrabold text-amber-200 mb-2">
                                             +{adjustment.amount}g
                                         </div>
-                                        <span className="text-xl font-bold text-amber-100">Flour</span>
+                                        <span className="text-xl font-bold text-amber-100">{t('results.flour')}</span>
                                         <p className="mt-4 text-xs text-slate-500">
                                             Add flour to lower hydration to {targetHydration}%.
                                         </p>

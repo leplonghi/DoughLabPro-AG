@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const seventy_percent_rye_sour: StyleDefinition = {
   "id": "seventy_percent_rye_sour",
   "title": "70% Rye Sour Bread",
-  "subtitle": "Wholegrain & Rye",
-  "category": "Bread",
-  "family": "Wholegrain & Rye",
+  "subtitle": t('styles.wholegrain__rye'),
+  "category": t('styles.bread_24'),
+  "family": t('styles.wholegrain__rye_2'),
   "variantName": "70% Rye Sour Bread",
   "origin": {
-    "country": "Germany",
-    "region": "Central Europe",
-    "period": "Traditional"
+    "country": t('styles.germany_2'),
+    "region": t('styles.central_europe'),
+    "period": t('styles.traditional_10')
   },
-  "intro": "Consumed as dense, flavorful loaves, sliced thin, often with savory toppings.",
+  "intro": t('styles.consumed_as_dense_flavorful_loaves_sliced_thin_oft'),
   "history": "High-percentage rye sour breads are traditional in Central and Northern Europe, using rye sourdough for structure and flavor.",
   "technicalFoundations": [
     "Rye sour at 30–50% of total rye flour.",
@@ -39,9 +40,9 @@ export const seventy_percent_rye_sour: StyleDefinition = {
     ],
     "flourStrength": "70% rye, 30% wheat or bread flour",
     "fermentation": {
-      "bulk": "Short bulk; much development occurs in sour build",
+      "bulk": t('styles.short_bulk_much_development_occurs_in_sour_build'),
       "proof": "50–90 min in pans or forms",
-      "coldRetard": "Occasional short retards possible"
+      "coldRetard": t('styles.occasional_short_retards_possible')
     },
     "oven": {
       "type": "deck",
@@ -49,12 +50,12 @@ export const seventy_percent_rye_sour: StyleDefinition = {
         200,
         220
       ],
-      "notes": "Longer bake to set crumb; often rested before slicing."
+      "notes": t('styles.longer_bake_to_set_crumb_often_rested_before_slici')
     },
-    "difficulty": "Expert",
+    "difficulty": t('styles.expert_8'),
     "recommendedUse": [
-      "Traditional rye loaves",
-      "Cold cuts and cheese"
+      t('common.traditional_rye_loaves'),
+      t('common.cold_cuts_and_cheese')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const seventy_percent_rye_sour: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Traditional rye loaves",
-    "Cold cuts and cheese",
-    "Bread",
-    "Germany"
+    t('common.traditional_rye_loaves'),
+    t('common.cold_cuts_and_cheese'),
+    t('common.bread'),
+    t('common.germany')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const seventy_percent_rye_sour: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Bread – Jeffrey Hamelman",
+      "title": t('styles.bread__jeffrey_hamelman_5'),
       "url": ""
     },
     {
-      "title": "German rye bread standards",
+      "title": t('styles.german_rye_bread_standards'),
       "url": ""
     }
   ],

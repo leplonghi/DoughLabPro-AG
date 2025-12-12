@@ -1,5 +1,6 @@
 
 import { DoughConfig, Oven, RecipeStyle, AutoStyleInsightsResult, BakeType } from '../types';
+import { useTranslation } from '@/i18n';
 
 const STYLE_CHARACTERISTICS: Record<
   RecipeStyle,

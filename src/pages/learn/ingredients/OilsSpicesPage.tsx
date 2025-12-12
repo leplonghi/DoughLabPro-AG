@@ -3,21 +3,23 @@ import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
 import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
+import { useTranslation } from '@/i18n';
 
 const OilsSpicesPage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <IngredientPageLayout
-      title="Herbs & Spices"
+      title={t('learn.herbs__spices')}
       description="Technical analysis of finishers: how herbs and spices modulate aroma and pizza complexity."
-      category="Ingredients"
+      category={t('learn.ingredients_5')}
     >
-      <LearnSection title="Introduction: Aroma Chemistry">
+      <LearnSection title={t('learn.introduction_aroma_chemistry')}>
         <p>
           Herbs and spices are the aromatic signature of a pizza, adding layers of complexity. Their power lies in <strong>volatile organic compounds</strong> — light molecules evaporating with heat perceived by smell. Aromatic profile depends on chemical composition (terpenes, phenols, aldehydes) and ingredient state (fresh vs dry).
         </p>
       </LearnSection>
 
-      <LearnSection title="Fresh Herbs: Vibrancy and Delicacy" icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.fresh_herbs_vibrancy_and_delicacy')} icon={<SparklesIcon className="h-5 w-5" />}>
         <h4>a) Basil</h4>
         <p>
           Iconic aroma comes from compounds like linalool, extremely heat sensitive. Documented by Italian tradition and AVPN rules, fresh basil should be added <strong>post-oven</strong> to preserve scent.
@@ -34,37 +36,37 @@ const OilsSpicesPage: React.FC = () => {
         </p>
       </LearnSection>
 
-      <LearnSection title="Dried Herbs: Concentrated Flavor" icon={<BeakerIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.dried_herbs_concentrated_flavor')} icon={<BeakerIcon className="h-5 w-5" />}>
         <p>
           Drying removes water concentrating aromatics. This alters flavor profile eliminating "green" notes. Advantage is greater heat resistance.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Dried Oregano:</strong> Rich in phenols like carvacrol, heat resistant, ideal mixed in sauce or sprinkled on cheese before baking (NY style).</li>
-          <li><strong>Dried Basil:</strong> Loses freshness completely, assumes clove-like notes. Not a substitute for fresh.</li>
-          <li><strong>Dried Thyme:</strong> Main compound thymol is robust/earthy, pairs well with mushrooms/meats.</li>
+          <li><strong>{t('learn.dried_oregano')}</strong> Rich in phenols like carvacrol, heat resistant, ideal mixed in sauce or sprinkled on cheese before baking (NY style).</li>
+          <li><strong>{t('learn.dried_basil')}</strong> Loses freshness completely, assumes clove-like notes. Not a substitute for fresh.</li>
+          <li><strong>{t('learn.dried_thyme')}</strong> Main compound thymol is robust/earthy, pairs well with mushrooms/meats.</li>
         </ul>
       </LearnSection>
 
-      <LearnSection title="Classic Spices">
+      <LearnSection title={t('learn.classic_spices')}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Red Pepper Flakes:</strong> Heat comes from <strong>capsaicin</strong>, thermostable molecule keeping potency in oven heat.</li>
+          <li><strong>{t('learn.red_pepper_flakes')}</strong>{t('learn.heat_comes_from')}<strong>capsaicin</strong>, thermostable molecule keeping potency in oven heat.</li>
           <li><strong>Garlic Powder/Granulated:</strong> Dehydration gives sweeter flavor. Protect from direct heat to avoid burning.</li>
-          <li><strong>Rosemary:</strong> Rich in heat resistant terpenes. Leaves used moderately before baking release resinous aroma.</li>
+          <li><strong>{t('learn.rosemary')}</strong> Rich in heat resistant terpenes. Leaves used moderately before baking release resinous aroma.</li>
         </ul>
       </LearnSection>
 
-      <LearnSection title="Application: Pre or Post-Oven?" icon={<BookOpenIcon className="h-5 w-5" />}>
-        <p>General rule based on chemical stability of aromatics:</p>
+      <LearnSection title={t('learn.application_pre_or_postoven')} icon={<BookOpenIcon className="h-5 w-5" />}>
+        <p>{t('learn.general_rule_based_on_chemical_stability_of_aromat')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Post-Oven:</strong> Fresh delicate herbs (basil, arugula) to preserve aroma.</li>
-          <li><strong>Pre-Oven:</strong> Dried herbs (oregano) and resistant spices, as heat helps release concentrated aromas.</li>
+          <li><strong>{t('learn.postoven')}</strong> Fresh delicate herbs (basil, arugula) to preserve aroma.</li>
+          <li><strong>{t('learn.preoven')}</strong> Dried herbs (oregano) and resistant spices, as heat helps release concentrated aromas.</li>
         </ul>
       </LearnSection>
 
-      <LearnSection title="Risks and Care">
+      <LearnSection title={t('learn.risks_and_care')}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Burning:</strong> Fresh herbs burn easily in hot ovens tasting bitter. Dried spices burn if exposed directly to intense heat.</li>
-          <li><strong>Overpowering:</strong> Herbs/spices complement, shouldn't dominate. Excess masks other pizza flavors.</li>
+          <li><strong>{t('learn.burning')}</strong> Fresh herbs burn easily in hot ovens tasting bitter. Dried spices burn if exposed directly to intense heat.</li>
+          <li><strong>{t('learn.overpowering')}</strong> Herbs/spices complement, shouldn't dominate. Excess masks other pizza flavors.</li>
         </ul>
       </LearnSection>
     </IngredientPageLayout>

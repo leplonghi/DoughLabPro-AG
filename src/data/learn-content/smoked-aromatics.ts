@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const smokedAromaticsData: LearnArticleData = {
     id: 'smoked-aromatics',
@@ -10,7 +11,7 @@ export const smokedAromaticsData: LearnArticleData = {
 
     intro: "Smoke flavor comes primarily from phenolic compounds (guaiacol, syringol) and carbonyls produced during the incomplete combustion of wood. These compounds are extremely potent. Humans can detect them in parts per billion. They bind strongly to fat and proteins.",
 
-    history: "Historical context coming soon.",
+    history: t('learn.historical_context_coming_soon'),
 
     technicalFoundations: [
         "The Saturation Problem: Because smoke compounds are so volatile and potent, they quickly saturate the olfactory receptors (nose blindness).",
@@ -54,9 +55,9 @@ export const smokedAromaticsData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_17'),
+        whatItDoes: t('learn.improves_texture_and_flavor_11'),
+        howToUse: t('learn.so_you_get_the_best_results_13'),
+        dangerSigns: t('learn.use_it_wisely_13')
     },
 };

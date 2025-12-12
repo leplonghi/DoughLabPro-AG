@@ -7,12 +7,14 @@ import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
 import { ArrowLeft, Loader2, User as UserIcon, Grid, LayoutList, Bookmark, FileText } from 'lucide-react';
 import { CommunityPostCard } from '../components/CommunityPostCard';
 import { useUser } from '../../contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 
 interface CommunityUserProfilePageProps {
     uid: string;
 }
 
 export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> = ({ uid }) => {
+  const { t } = useTranslation();
     const { navigate } = useRouter();
     const { user: currentUser, favorites } = useUser();
 
@@ -74,7 +76,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                 // Filter out nulls (deleted posts)
                 setSavedPosts(results.filter((p): p is CommunityPost => p !== null));
             } catch (err) {
-                console.error("Failed to fetch saved posts", err);
+                console.error(t('community.failed_to_fetch_saved_posts'), err);
             } finally {
                 setSavedLoading(false);
             }
@@ -101,9 +103,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                     <button
                         onClick={() => navigate('community')}
                         className="text-lime-600 font-medium hover:underline"
-                    >
-                        Return to Community
-                    </button>
+                    >{t('community.return_to_community')}</button>
                 </div>
             </LibraryPageLayout>
         );
@@ -117,7 +117,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                     className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors"
                 >
                     <ArrowLeft className="h-5 w-5" />
-                    <span>Back to Community</span>
+                    <span>{t('community.back_to_community_2')}</span>
                 </button>
 
                 {/* Profile Header */}
@@ -155,14 +155,10 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                             )}
                             <div className="flex gap-4 mt-2">
                                 {currentUser.website && (
-                                    <a href={currentUser.website} target="_blank" rel="noreferrer" className="text-lime-600 hover:text-lime-700 text-sm font-medium">
-                                        Website
-                                    </a>
+                                    <a href={currentUser.website} target="_blank" rel="noreferrer" className="text-lime-600 hover:text-lime-700 text-sm font-medium">{t('community.website')}</a>
                                 )}
                                 {currentUser.instagramHandle && (
-                                    <a href={`https://instagram.com/${currentUser.instagramHandle.replace('@', '')}`} target="_blank" rel="noreferrer" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-                                        Instagram
-                                    </a>
+                                    <a href={`https://instagram.com/${currentUser.instagramHandle.replace('@', '')}`} target="_blank" rel="noreferrer" className="text-pink-600 hover:text-pink-700 text-sm font-medium">{t('community.instagram')}</a>
                                 )}
                             </div>
                         </div>
@@ -183,9 +179,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                                 : 'border-transparent text-gray-500 hover:text-gray-700'
                                 }`}
                         >
-                            <FileText className="h-4 w-4" />
-                            My Bakes
-                        </button>
+                            <FileText className="h-4 w-4" />{t('community.my_bakes')}</button>
                         <button
                             onClick={() => setActiveTab('saved')}
                             className={`pb-3 text-sm font-medium flex items-center gap-2 border-b-2 transition-colors ${activeTab === 'saved'
@@ -193,9 +187,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                                 : 'border-transparent text-gray-500 hover:text-gray-700'
                                 }`}
                         >
-                            <Bookmark className="h-4 w-4" />
-                            Saved
-                        </button>
+                            <Bookmark className="h-4 w-4" />{t('community.saved')}</button>
                     </div>
                 )}
 
@@ -203,11 +195,11 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                 <div className="px-4 pb-12">
                     {activeTab === 'posts' ? (
                         <>
-                            {!isOwnProfile && <h2 className="text-lg font-semibold text-gray-900 mb-4">Bakes</h2>}
+                            {!isOwnProfile && <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('community.bakes')}</h2>}
 
                             {posts.length === 0 ? (
                                 <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-                                    <p className="text-gray-500">No bakes shared yet.</p>
+                                    <p className="text-gray-500">{t('community.no_bakes_shared_yet')}</p>
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -226,7 +218,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                                 </div>
                             ) : savedPosts.length === 0 ? (
                                 <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-                                    <p className="text-gray-500">You haven't saved any posts yet.</p>
+                                    <p className="text-gray-500">{t('community.you_havent_saved_any_posts_yet')}</p>
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

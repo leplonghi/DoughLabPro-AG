@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const pita_bread_flatbread: StyleDefinition = {
   "id": "pita_bread_flatbread",
-  "title": "Pita Bread",
-  "subtitle": "Classic Flatbreads",
-  "category": "Bread",
-  "family": "Classic Flatbreads",
-  "variantName": "Pita Bread",
+  "title": t('styles.pita_bread'),
+  "subtitle": t('styles.classic_flatbreads_9'),
+  "category": t('styles.bread_22'),
+  "family": t('styles.classic_flatbreads_10'),
+  "variantName": t('styles.pita_bread_2'),
   "origin": {
-    "country": "Middle East",
-    "region": "Levant and Mediterranean",
+    "country": t('styles.middle_east'),
+    "region": t('styles.levant_and_mediterranean'),
     "period": "Ancient/Traditional"
   },
   "intro": "Used for sandwiches, dips and wraps across Middle Eastern and Mediterranean cuisines.",
@@ -37,11 +38,11 @@ export const pita_bread_flatbread: StyleDefinition = {
       0,
       3
     ],
-    "flourStrength": "All-purpose or bread flour",
+    "flourStrength": t('styles.allpurpose_or_bread_flour_2'),
     "fermentation": {
       "bulk": "1–2 h at room temperature",
-      "proof": "Short bench rest after shaping",
-      "coldRetard": "Optional overnight bulk"
+      "proof": t('styles.short_bench_rest_after_shaping'),
+      "coldRetard": t('styles.optional_overnight_bulk_2')
     },
     "oven": {
       "type": "deck",
@@ -49,12 +50,12 @@ export const pita_bread_flatbread: StyleDefinition = {
         260,
         320
       ],
-      "notes": "Very hot stone or deck encourages pocket formation."
+      "notes": t('styles.very_hot_stone_or_deck_encourages_pocket_formation')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_11'),
     "recommendedUse": [
-      "Pocket flatbread",
-      "Wraps and sandwiches"
+      t('common.pocket_flatbread'),
+      t('common.wraps_and_sandwiches')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const pita_bread_flatbread: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Pocket flatbread",
-    "Wraps and sandwiches",
-    "Bread",
-    "Middle East"
+    t('common.pocket_flatbread'),
+    t('common.wraps_and_sandwiches'),
+    t('common.bread'),
+    t('common.middle_east')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const pita_bread_flatbread: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Flatbread and Middle Eastern baking literature",
+      "title": t('styles.flatbread_and_middle_eastern_baking_literature'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_17'),
       "url": ""
     }
   ],

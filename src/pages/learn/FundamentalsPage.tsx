@@ -5,12 +5,14 @@ import TechnicalPageLayout from './TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { SparklesIcon, BeakerIcon, CubeIcon, FermentationIcon, WaterIcon, SaltIcon, OilIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 interface FundamentalsPageProps {
     onNavigate: (page: Page) => void;
 }
 
 const FundamentalsPage: React.FC<FundamentalsPageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const topics = [
         { page: 'learn/article/oven-spring', title: 'Oven Spring', description: 'The science of the initial dough expansion in the oven.', icon: <SparklesIcon className="h-8 w-8" /> },
         { page: 'learn/fermentation-biochemistry', title: 'Fermentation Biochemistry', description: 'Yeast, bacteria, acids, and flavor creation.', icon: <BeakerIcon className="h-8 w-8" /> },
@@ -24,8 +26,8 @@ const FundamentalsPage: React.FC<FundamentalsPageProps> = ({ onNavigate }) => {
 
     return (
         <TechnicalPageLayout
-            title="Dough Fundamentals"
-            subtitle="The science of gluten, hydration, fermentation, and the ingredients that form the foundation."
+            title={t('learn.dough_fundamentals')}
+            subtitle={t('learn.the_science_of_gluten_hydration_fermentation_and_t')}
         >
             <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {topics.map(topic => (

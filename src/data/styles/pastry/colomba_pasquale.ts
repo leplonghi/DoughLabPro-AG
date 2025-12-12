@@ -1,18 +1,19 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const colomba_pasquale: StyleDefinition = {
   "id": "colomba_pasquale",
-  "title": "Colomba Pasquale",
-  "subtitle": "Festive Breads",
-  "category": "Pastry",
-  "family": "Festive Breads",
-  "variantName": "Colomba Pasquale",
+  "title": t('styles.colomba_pasquale'),
+  "subtitle": t('styles.festive_breads'),
+  "category": t('styles.pastry_4'),
+  "family": t('styles.festive_breads_2'),
+  "variantName": t('styles.colomba_pasquale_2'),
   "origin": {
-    "country": "Italy",
-    "region": "Northern Italy",
+    "country": t('styles.italy_7'),
+    "region": t('styles.northern_italy_2'),
     "period": "20th century"
   },
-  "intro": "Consumed mainly at Easter in Italy and in Italian communities abroad.",
+  "intro": t('styles.consumed_mainly_at_easter_in_italy_and_in_italian_'),
   "history": "Colomba is an Easter festive bread similar to panettone but shaped like a dove and topped with almond glaze and sugar.",
   "technicalFoundations": [
     "Similar multi-stage sourdough or hybrid method as panettone.",
@@ -37,11 +38,11 @@ export const colomba_pasquale: StyleDefinition = {
       20,
       30
     ],
-    "flourStrength": "Very strong flour suitable for rich doughs",
+    "flourStrength": t('styles.very_strong_flour_suitable_for_rich_doughs'),
     "fermentation": {
-      "bulk": "Long multi-stage builds and first dough rise",
+      "bulk": t('styles.long_multistage_builds_and_first_dough_rise'),
       "proof": "4–8 h at warm temperature in dove-shaped molds",
-      "coldRetard": "Handled similarly to panettone with careful temperature control"
+      "coldRetard": t('styles.handled_similarly_to_panettone_with_careful_temper')
     },
     "oven": {
       "type": "deck",
@@ -49,11 +50,11 @@ export const colomba_pasquale: StyleDefinition = {
         170,
         190
       ],
-      "notes": "Topped with almond glaze and sugar before baking."
+      "notes": t('styles.topped_with_almond_glaze_and_sugar_before_baking')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_17'),
     "recommendedUse": [
-      "Festive sweet bread for Easter"
+      t('common.festive_sweet_bread_for_easter')
     ]
   },
   "regionalVariants": [],
@@ -63,9 +64,9 @@ export const colomba_pasquale: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Festive sweet bread for Easter",
-    "Pastry",
-    "Italy"
+    t('common.festive_sweet_bread_for_easter'),
+    t('common.pastry'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -76,11 +77,11 @@ export const colomba_pasquale: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_25'),
       "url": ""
     },
     {
-      "title": "Italian festive bread traditions",
+      "title": t('styles.italian_festive_bread_traditions'),
       "url": ""
     }
   ],

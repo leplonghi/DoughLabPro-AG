@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const bakingSurfacesAndHeatTransferData: LearnArticleData = {
     id: "baking-surfaces-and-heat-transfer",
-    title: "Baking Surfaces & Heat Transfer",
-    subtitle: "Stones, steels, pans and how they change your bake",
+    title: t('learn.baking_surfaces__heat_transfer'),
+    subtitle: t('learn.stones_steels_pans_and_how_they_change_your_bake'),
     category: 'Baking Science',
     difficulty: 'Intermediate',
     tags: ['baking-stone', 'pizza-steel', 'heat-transfer', 'pans'],
@@ -33,7 +34,7 @@ export const bakingSurfacesAndHeatTransferData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Pizza steel",
+            label: t('learn.pizza_steel'),
             notes: "6–10 mm carbon steel. Great for New York-style and crisp home-oven pizzas."
         },
         {
@@ -41,8 +42,8 @@ export const bakingSurfacesAndHeatTransferData: LearnArticleData = {
             notes: "10–20 mm. More forgiving; suitable for a wide range of styles."
         },
         {
-            label: "Pan baking",
-            notes: "Steel or aluminium pans. Used for Detroit style, Sicilian, focaccia."
+            label: t('learn.pan_baking'),
+            notes: t('learn.steel_or_aluminium_pans_used_for_detroit_style_sic')
         }
     ],
 
@@ -80,9 +81,9 @@ export const bakingSurfacesAndHeatTransferData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor by cooking the bottom just right.",
-        howToUse: "Use a stone or steel to get that pizzeria crunch at home.",
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak'),
+        whatItDoes: t('learn.improves_texture_and_flavor_by_cooking_the_bottom_'),
+        howToUse: t('learn.use_a_stone_or_steel_to_get_that_pizzeria_crunch_a'),
         dangerSigns: "Use it wisely! Too hot and it burns, too cold and it's soggy."
     },
 };

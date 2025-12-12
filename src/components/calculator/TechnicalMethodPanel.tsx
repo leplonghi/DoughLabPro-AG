@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { TechnicalStep, TechnicalPhase } from '@/types';
+import { useTranslation } from '@/i18n';
 import {
     ClockIcon,
     FireIcon,
@@ -20,6 +21,7 @@ interface TechnicalMethodPanelProps {
 }
 
 const PhaseIcon: React.FC<{ phase: TechnicalPhase }> = ({ phase }) => {
+  const { t } = useTranslation();
     const className = "h-5 w-5 text-white";
     let bgClass = "bg-dlp-text-muted";
 
@@ -82,8 +84,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                             </span>
                             {isPreferment && (
                                 <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-dlp-warning text-white flex items-center gap-1">
-                                    <SparklesIcon className="h-3 w-3" /> Preferment
-                                </span>
+                                    <SparklesIcon className="h-3 w-3" />{t('calculator.preferment')}</span>
                             )}
                             {step.durationLabel && !isGrandma && (
                                 <span className="inline-flex items-center gap-1 rounded-md bg-dlp-bg-muted px-2 py-0.5 text-xs font-medium text-dlp-text-secondary border border-dlp-border">
@@ -119,8 +120,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                     {!isGrandma && step.technicalExplanation && (
                         <div className="rounded-lg bg-dlp-bg-muted p-3.5 text-xs text-dlp-text-secondary border border-dlp-border">
                             <span className="flex items-center gap-1.5 font-bold text-dlp-text-primary mb-1.5 uppercase tracking-wide text-[10px]">
-                                <BeakerIcon className="h-3 w-3" /> The Science
-                            </span>
+                                <BeakerIcon className="h-3 w-3" />{t('calculator.the_science')}</span>
                             {step.technicalExplanation}
                         </div>
                     )}
@@ -129,7 +129,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                         <div className="rounded-lg bg-dlp-info/10 p-3.5 text-xs text-dlp-info border-l-4 border-dlp-info shadow-dlp-sm">
                             <div className="flex items-center gap-2 mb-1.5">
                                 <LightBulbIcon className="h-4 w-4 text-dlp-info" />
-                                <span className="font-bold uppercase tracking-wide text-[10px]">Pro Tip</span>
+                                <span className="font-bold uppercase tracking-wide text-[10px]">{t('calculator.pro_tip')}</span>
                             </div>
                             {step.proTip}
                         </div>
@@ -139,7 +139,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                         <div className="rounded-lg bg-dlp-error/10 p-3.5 text-xs text-dlp-error border-l-4 border-dlp-error shadow-dlp-sm">
                             <div className="flex items-center gap-2 mb-1.5">
                                 <ExclamationCircleIcon className="h-4 w-4 text-dlp-error" />
-                                <span className="font-bold uppercase tracking-wide text-[10px]">Critical Point</span>
+                                <span className="font-bold uppercase tracking-wide text-[10px]">{t('calculator.critical_point')}</span>
                             </div>
                             {step.criticalPoint}
                         </div>
@@ -157,13 +157,11 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                     <div className="mt-3 flex gap-2">
                         {step.criticalPoint && (
                             <span className="inline-flex items-center gap-1 rounded-md bg-dlp-error/10 border border-dlp-error/20 px-2 py-1 text-[10px] font-bold text-dlp-error uppercase tracking-wide">
-                                <ExclamationCircleIcon className="h-3 w-3" /> Critical
-                            </span>
+                                <ExclamationCircleIcon className="h-3 w-3" />{t('calculator.critical')}</span>
                         )}
                         {step.proTip && (
                             <span className="inline-flex items-center gap-1 rounded-md bg-dlp-info/10 border border-dlp-info/20 px-2 py-1 text-[10px] font-bold text-dlp-info uppercase tracking-wide">
-                                <LightBulbIcon className="h-3 w-3" /> Tip
-                            </span>
+                                <LightBulbIcon className="h-3 w-3" />{t('calculator.tip')}</span>
                         )}
                     </div>
                 )}
@@ -190,8 +188,8 @@ const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) =>
                         <BookOpenIcon className="h-6 w-6" />
                     </div>
                     <div>
-                        <h2 className="text-xl font-bold text-dlp-text-primary">Step-by-Step Method</h2>
-                        <p className="text-sm text-dlp-text-muted">Workflow generated for your dough.</p>
+                        <h2 className="text-xl font-bold text-dlp-text-primary">{t('calculator.stepbystep_method')}</h2>
+                        <p className="text-sm text-dlp-text-muted">{t('calculator.workflow_generated_for_your_dough')}</p>
                     </div>
                 </div>
 
@@ -200,14 +198,12 @@ const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) =>
                         onClick={() => setMode('technical')}
                         className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'technical' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
                     >
-                        <WrenchScrewdriverIcon className="h-3 w-3" /> Technical
-                    </button>
+                        <WrenchScrewdriverIcon className="h-3 w-3" />{t('calculator.technical')}</button>
                     <button
                         onClick={() => setMode('grandma')}
                         className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'grandma' ? 'bg-dlp-bg-card text-dlp-accent shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
                     >
-                        <UserCircleIcon className="h-3 w-3" /> Grandma
-                    </button>
+                        <UserCircleIcon className="h-3 w-3" />{t('calculator.grandma')}</button>
                 </div>
             </div>
 

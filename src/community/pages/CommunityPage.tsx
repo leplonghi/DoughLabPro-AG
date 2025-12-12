@@ -6,8 +6,10 @@ import { CommunityProfileSidebar } from '../components/CommunityProfileSidebar';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
 import { Plus, Sparkles } from 'lucide-react';
 import { useRouter } from '../../contexts/RouterContext';
+import { useTranslation } from '@/i18n';
 
 export const CommunityPage: React.FC = () => {
+  const { t } = useTranslation();
     const [activeFilter, setActiveFilter] = useState<'latest' | 'trending' | 'top'>('latest');
     const { navigate } = useRouter();
 
@@ -18,8 +20,7 @@ export const CommunityPage: React.FC = () => {
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-                            Community Feed <Sparkles className="h-6 w-6 text-yellow-500 fill-yellow-500 animate-pulse" />
+                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight flex items-center gap-2">{t('community.community_feed')}<Sparkles className="h-6 w-6 text-yellow-500 fill-yellow-500 animate-pulse" />
                         </h1>
                         <p className="text-gray-500 mt-1 text-sm sm:text-base">
                             Discover the secret formulas behind the world's best homemade pizzas.
@@ -31,7 +32,7 @@ export const CommunityPage: React.FC = () => {
                         className="group flex items-center justify-center gap-2 bg-gradient-to-r from-lime-600 to-lime-500 hover:from-lime-700 hover:to-lime-600 text-white px-6 py-3 rounded-full shadow-lg shadow-lime-600/20 transition-all hover:scale-105 active:scale-95 font-semibold text-sm"
                     >
                         <Plus className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" />
-                        <span>Share Your Bake</span>
+                        <span>{t('community.share_your_bake')}</span>
                     </button>
                 </div>
 
@@ -65,9 +66,9 @@ export const CommunityPage: React.FC = () => {
 
                             {/* Footer links */}
                             <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-400 px-2">
-                                <span className="hover:text-gray-600 cursor-pointer">Guidelines</span>
-                                <span className="hover:text-gray-600 cursor-pointer">Privacy</span>
-                                <span className="hover:text-gray-600 cursor-pointer">Terms</span>
+                                <span className="hover:text-gray-600 cursor-pointer">{t('community.guidelines')}</span>
+                                <span className="hover:text-gray-600 cursor-pointer">{t('community.privacy')}</span>
+                                <span className="hover:text-gray-600 cursor-pointer">{t('community.terms')}</span>
                                 <span>© 2024 DoughLab</span>
                             </div>
                         </div>

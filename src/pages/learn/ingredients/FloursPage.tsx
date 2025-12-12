@@ -3,22 +3,24 @@ import { useRouter } from '@/contexts/RouterContext';
 import IngredientPageLayout from './IngredientPageLayout';
 import { ScaleIcon, ChartBarIcon, BeakerIcon, CalculatorIcon, FlaskIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnProTip, LearnCriticalPoint, LearnHistory } from '../LearnComponents';
+import { useTranslation } from '@/i18n';
 
 const FloursPage: React.FC = () => {
+  const { t } = useTranslation();
   const { navigate } = useRouter();
 
   return (
     <IngredientPageLayout
       title="Flours: Strength (W), P/L & Ash Content"
       description="Decoding the technical specifications that determine dough performance."
-      category="Ingredients"
+      category={t('learn.ingredients_2')}
       references={[
-        "The Taste of Bread (Raymond Calvel)",
-        "Mulino Caputo Technical Sheets",
-        "Wheat Flour Milling (E.S. Posner)",
-        "Understanding Baking (Joseph Amendola)",
-        "The Elements of Pizza (Ken Forkish)",
-        "Italian Decree on Flours (DPR 187/2001)"
+        {t('references.taste_of_bread')},
+        t('learn.mulino_caputo_technical_sheets'),
+        {t('references.wheat_flour_milling')},
+        {t('references.understanding_baking')},
+        {t('references.elements_of_pizza')},
+        {t('references.italian_decree')}
       ]}
     >
       <LearnHistory>
@@ -83,7 +85,7 @@ const FloursPage: React.FC = () => {
             <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
               <FlaskIcon className="h-6 w-6" />
             </div>
-            <h3 className="font-bold text-slate-900">Manage My Flours</h3>
+            <h3 className="font-bold text-slate-900">{t('learn.manage_my_flours')}</h3>
           </div>
           <p className="text-sm text-slate-600">
             Save your specific flour brands and their W values in MyLab to use them in your recipes.
@@ -98,7 +100,7 @@ const FloursPage: React.FC = () => {
             <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
               <CalculatorIcon className="h-6 w-6" />
             </div>
-            <h3 className="font-bold text-slate-900">Test Hydration</h3>
+            <h3 className="font-bold text-slate-900">{t('learn.test_hydration')}</h3>
           </div>
           <p className="text-sm text-slate-600">
             Stronger flours (High W) need more water. Use the Calculator to adjust hydration based on your flour choice.

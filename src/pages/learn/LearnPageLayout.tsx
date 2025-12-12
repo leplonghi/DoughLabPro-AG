@@ -39,7 +39,7 @@ const LearnPageLayout: React.FC<LearnPageLayoutProps> = ({
                         </button>
 
                         <nav className="hidden sm:flex items-center text-sm text-stone-500">
-                            <button onClick={() => navigate('learn')} className="hover:text-lime-600 transition-colors">Learn</button>
+                            <button onClick={() => navigate('learn')} className="hover:text-lime-600 transition-colors">{t('nav.learn')}</button>
                             <span className="mx-2">/</span>
                             {category && (
                                 <>
@@ -62,18 +62,14 @@ const LearnPageLayout: React.FC<LearnPageLayoutProps> = ({
                                         ? 'bg-white text-lime-700 shadow-sm border border-stone-200'
                                         : 'text-stone-500 hover:text-stone-700'
                                     }`}
-                            >
-                                Technical
-                            </button>
+                            >{t('learn.technical')}</button>
                             <button
                                 onClick={() => onModeChange('grandma')}
                                 className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${mode === 'grandma'
                                         ? 'bg-white text-amber-700 shadow-sm border border-stone-200'
                                         : 'text-stone-500 hover:text-stone-700'
                                     }`}
-                            >
-                                Grandma
-                            </button>
+                            >{t('learn.grandma')}</button>
                         </div>
                     )}
                 </div>

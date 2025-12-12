@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const rollingVsStretchingData: LearnArticleData = {
     id: 'rolling-vs-stretching',
@@ -31,7 +32,7 @@ export const rollingVsStretchingData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Ideal Stretching Temp", notes: "Recommended: 23°C (Range: 20-25°C)" }
+        { label: t('learn.ideal_stretching_temp'), notes: "Recommended: 23°C (Range: 20-25°C)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const rollingVsStretchingData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Full Rolling",
+            variant: t('learn.full_rolling'),
             implications: "Used for thin, uniform styles. Even thickness, reduced gas. Simplified shaping. Low cornicione. Recommended for Thin Crust, Flatbreads, Crackers."
         },
         {
-            variant: "Hand Stretching",
+            variant: t('learn.hand_stretching'),
             implications: "Preferred for artisan structure. Open crumb, high cornicione. Requires practice. Irregular but beautiful texture. Recommended for Neapolitan, Artisan Bread, Focaccia."
         }
     ],
@@ -81,8 +82,8 @@ export const rollingVsStretchingData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, rolling is like flattening dough for cookies; stretching is like gently pulling pizza dough with your fingertips.",
-        whatItDoes: "Changes how the crust rises.",
-        howToUse: "Rolling squeezes the air out; stretching keeps it fluffy.",
-        dangerSigns: "Stretch slowly so you don’t rip the dough."
+        whatItDoes: t('learn.changes_how_the_crust_rises'),
+        howToUse: t('learn.rolling_squeezes_the_air_out_stretching_keeps_it_f'),
+        dangerSigns: t('learn.stretch_slowly_so_you_dont_rip_the_dough')
     }
 };

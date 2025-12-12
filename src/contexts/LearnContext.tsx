@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useTranslation } from '@/i18n';
 
 export type LearnMode = 'technical' | 'grandma';
 
@@ -10,6 +11,7 @@ interface LearnContextType {
 const LearnContext = createContext<LearnContextType | undefined>(undefined);
 
 export const LearnProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const [mode, setMode] = useState<LearnMode>('technical');
 
     useEffect(() => {

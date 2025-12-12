@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const croissant_classic: StyleDefinition = {
   "id": "croissant_classic",
-  "title": "Classic French Croissant",
-  "subtitle": "Viennoiserie Laminée",
-  "category": "Pastry",
-  "family": "Viennoiserie Laminée",
-  "variantName": "Classic French Croissant",
+  "title": t('styles.classic_french_croissant'),
+  "subtitle": t('styles.viennoiserie_laminée'),
+  "category": t('styles.pastry_5'),
+  "family": t('styles.viennoiserie_laminée_2'),
+  "variantName": t('styles.classic_french_croissant_2'),
   "origin": {
-    "country": "France",
-    "region": "Paris and beyond",
+    "country": t('styles.france_7'),
+    "region": t('styles.paris_and_beyond'),
     "period": "19th–20th century"
   },
   "intro": "Eaten at breakfast and as a snack, produced in artisan and industrial bakeries worldwide.",
@@ -41,7 +42,7 @@ export const croissant_classic: StyleDefinition = {
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "2–3 h at 24–26°C after shaping",
-      "coldRetard": "Mandatory overnight retarding for lamination"
+      "coldRetard": t('styles.mandatory_overnight_retarding_for_lamination')
     },
     "oven": {
       "type": "deck",
@@ -49,12 +50,12 @@ export const croissant_classic: StyleDefinition = {
         190,
         210
       ],
-      "notes": "Requires proper proofing and steam or humidity control."
+      "notes": t('styles.requires_proper_proofing_and_steam_or_humidity_con')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_18'),
     "recommendedUse": [
-      "Breakfast pastry",
-      "Viennoiserie display"
+      t('common.breakfast_pastry'),
+      t('common.viennoiserie_display')
     ]
   },
   "defaults": {
@@ -64,11 +65,11 @@ export const croissant_classic: StyleDefinition = {
     "sugar": 11
   },
   "base_formula": [
-    { "name": "Bread Flour", "percentage": 100, "role": "flour" },
-    { "name": "Water", "percentage": 28, "hydrationContent": 1, "role": "water" },
-    { "name": "Whole Milk", "percentage": 28, "hydrationContent": 0.87, "category": "liquid", "role": "other", "manualOverride": true },
-    { "name": "Sugar", "percentage": 11, "role": "sugar", "category": "sugar", "manualOverride": true },
-    { "name": "Salt", "percentage": 2, "role": "salt" },
+    { "name": t('styles.bread_flour_4'), "percentage": 100, "role": "flour" },
+    { "name": t('styles.water_2'), "percentage": 28, "hydrationContent": 1, "role": "water" },
+    { "name": t('styles.whole_milk_4'), "percentage": 28, "hydrationContent": 0.87, "category": "liquid", "role": "other", "manualOverride": true },
+    { "name": t('styles.sugar_4'), "percentage": 11, "role": "sugar", "category": "sugar", "manualOverride": true },
+    { "name": t('styles.salt_5'), "percentage": 2, "role": "salt" },
     { "name": "Yeast (Instant)", "percentage": 1.2, "role": "yeast" },
     { "name": "Butter (Dough)", "percentage": 5, "hydrationContent": 0.15, "role": "fat", "category": "fat", "manualOverride": true },
     { "name": "Butter (Lamination)", "percentage": 50, "hydrationContent": 0.15, "role": "fat", "category": "fat", "manualOverride": true }
@@ -80,10 +81,10 @@ export const croissant_classic: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Breakfast pastry",
-    "Viennoiserie display",
-    "Pastry",
-    "France"
+    t('common.breakfast_pastry'),
+    t('common.viennoiserie_display'),
+    t('common.pastry'),
+    t('common.france')
   ],
   "applyInApp": {
     "calculator": [],
@@ -94,11 +95,11 @@ export const croissant_classic: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Ferrandi – Professional Baking",
+      "title": t('styles.ferrandi__professional_baking'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_26'),
       "url": ""
     }
   ],

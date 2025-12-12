@@ -4,6 +4,7 @@ import App from './App';
 import './design-tokens.css';
 import './index.css';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
+import { useTranslation } from '@/i18n';
 
 // Force Light Theme
 document.documentElement.classList.remove('dark');

@@ -1,15 +1,16 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const hot_dog_buns_enriched: StyleDefinition = {
   "id": "hot_dog_buns_enriched",
   "title": "Hot Dog Buns (Enriched)",
-  "subtitle": "Sandwich & Enriched Breads",
-  "category": "Bread",
-  "family": "Sandwich & Enriched Breads",
+  "subtitle": t('styles.sandwich__enriched_breads_3'),
+  "category": t('styles.bread_8'),
+  "family": t('styles.sandwich__enriched_breads_4'),
   "variantName": "Hot Dog Buns (Enriched)",
   "origin": {
-    "country": "United States",
-    "region": "Global fast food",
+    "country": t('styles.united_states_2'),
+    "region": t('styles.global_fast_food_2'),
     "period": "20th century"
   },
   "intro": "Common in fast food and home grilling contexts, designed for softness and resilience.",
@@ -37,11 +38,11 @@ export const hot_dog_buns_enriched: StyleDefinition = {
       5,
       12
     ],
-    "flourStrength": "Bread flour or strong all-purpose flour",
+    "flourStrength": t('styles.bread_flour_or_strong_allpurpose_flour_2'),
     "fermentation": {
       "bulk": "1–2 h at 24–26°C",
       "proof": "45–75 min after shaping in pans or on trays",
-      "coldRetard": "Optional bulk retard"
+      "coldRetard": t('styles.optional_bulk_retard_2')
     },
     "oven": {
       "type": "electric_home",
@@ -49,12 +50,12 @@ export const hot_dog_buns_enriched: StyleDefinition = {
         180,
         200
       ],
-      "notes": "Baked close together for soft pull-apart texture."
+      "notes": t('styles.baked_close_together_for_soft_pullapart_texture')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.medium_8'),
     "recommendedUse": [
-      "Hot dog buns",
-      "Sausage rolls"
+      t('common.hot_dog_buns'),
+      t('common.sausage_rolls')
     ]
   },
   "regionalVariants": [],
@@ -64,10 +65,10 @@ export const hot_dog_buns_enriched: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Hot dog buns",
-    "Sausage rolls",
-    "Bread",
-    "United States"
+    t('common.hot_dog_buns'),
+    t('common.sausage_rolls'),
+    t('common.bread'),
+    t('common.united_states')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,11 +79,11 @@ export const hot_dog_buns_enriched: StyleDefinition = {
   },
   "references": [
     {
-      "title": "AIB guidelines",
+      "title": t('styles.aib_guidelines_2'),
       "url": ""
     },
     {
-      "title": "Modernist Bread",
+      "title": t('styles.modernist_bread_7'),
       "url": ""
     }
   ],

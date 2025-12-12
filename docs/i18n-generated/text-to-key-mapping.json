@@ -1,0 +1,3102 @@
+{
+  "src\\ai\\assistantClient.ts": {
+    "Empty response from AI model": "general.empty_response_from_ai_model",
+    "String": "general.string",
+    "How it is eaten or cultural significance": "general.how_it_is_eaten_or_cultural_significance",
+    "Real source name": "general.real_source_name",
+    "Optional URL": "general.optional_url",
+    "NEAPOLITAN": "general.neapolitan",
+    "Empty response": "general.empty_response",
+    "Sticky dough": "general.sticky_dough",
+    "Flat loaf": "general.flat_loaf",
+    "Empty diagnostic response": "general.empty_diagnostic_response"
+  },
+  "src\\App.tsx": {
+    "Welcome to your digital dough lab": "general.welcome_to_your_digital_dough_lab",
+    "Doughy": "general.doughy",
+    "Failed to save onboarding status to localStorage": "general.failed_to_save_onboarding_status_to_localstorage"
+  },
+  "src\\community\\components\\CloneButton.tsx": {
+    "Unlock full Community": "community.unlock_full_community"
+  },
+  "src\\community\\components\\CommunityCreatePostCTA.tsx": {
+    "CommunityCreatePostCTA": "community.communitycreatepostcta"
+  },
+  "src\\community\\components\\CommunityFeed.tsx": {
+    "Unable to load feed": "community.unable_to_load_feed",
+    "Try Again": "community.try_again",
+    "The oven is cold": "community.the_oven_is_cold",
+    "Create a Post": "community.create_a_post",
+    "Load More Bakes": "community.load_more_bakes",
+    "End of Feed": "community.end_of_feed"
+  },
+  "src\\community\\components\\CommunityFilters.tsx": {
+    "Sort By": "community.sort_by"
+  },
+  "src\\community\\components\\CommunityPostCardLocked.tsx": {
+    "Unlock this Formula": "community.unlock_this_formula",
+    "Join": "community.join",
+    "DoughLab Pro": "community.doughlab_pro",
+    "Unlock Full Access": "community.unlock_full_access",
+    "Premium Content": "community.premium_content",
+    "Locked content": "community.locked_content"
+  },
+  "src\\community\\components\\CommunityProfileSidebar.tsx": {
+    "PRO": "community.pro",
+    "New Post": "community.new_post",
+    "Posts": "community.posts",
+    "Likes": "community.likes",
+    "Clones": "community.clones",
+    "Performance Stats": "community.performance_stats",
+    "Weekly Rank": "community.weekly_rank",
+    "Total Clones": "community.total_clones",
+    "Achievements": "community.achievements",
+    "Failed to fetch user stats": "community.failed_to_fetch_user_stats"
+  },
+  "src\\community\\components\\PostActions.tsx": {
+    "Unlock full Community": "community.unlock_full_community_2"
+  },
+  "src\\community\\components\\PostComments.tsx": {
+    "Add a comment...": "community.add_a_comment",
+    "Unlock full Community": "community.unlock_full_community_3"
+  },
+  "src\\community\\components\\PostPhotos.tsx": {
+    "Bake result": "community.bake_result"
+  },
+  "src\\community\\components\\PostTechnicalPanel.tsx": {
+    "NaCl": "community.nacl"
+  },
+  "src\\community\\components\\ShareBatchModal.tsx": {
+    "Share this Bake": "community.share_this_bake",
+    "Photo": "community.photo",
+    "Click to upload photo": "community.click_to_upload_photo",
+    "Title": "community.title",
+    "Description": "community.description",
+    "Tags": "community.tags",
+    "Add": "community.add",
+    "Cancel": "community.cancel",
+    "Bake": "community.bake",
+    "Add a tag...": "community.add_a_tag",
+    "Failed to upload photo": "community.failed_to_upload_photo"
+  },
+  "src\\community\\pages\\CommunityCreatePostPage.tsx": {
+    "New Community Post": "community.new_community_post",
+    "Start from Scratch": "community.start_from_scratch",
+    "From My Lab": "community.from_my_lab",
+    "IMG": "community.img",
+    "The Result": "community.the_result",
+    "Change": "community.change",
+    "Upload Photo": "community.upload_photo",
+    "Tap to browse": "community.tap_to_browse",
+    "Title": "community.title_2",
+    "Style": "community.style",
+    "Method": "community.method",
+    "Technical Details": "community.technical_details",
+    "Oven Type": "community.oven_type",
+    "Share your process...": "community.share_your_process",
+    "Fermentation": "community.fermentation"
+  },
+  "src\\community\\pages\\CommunityPage.tsx": {
+    "Community Feed": "community.community_feed",
+    "Share Your Bake": "community.share_your_bake",
+    "Guidelines": "community.guidelines",
+    "Privacy": "community.privacy",
+    "Terms": "community.terms"
+  },
+  "src\\community\\pages\\CommunityPostPage.tsx": {
+    "Return to Community": "community.return_to_community",
+    "Back to Community": "community.back_to_community"
+  },
+  "src\\community\\pages\\CommunityUserProfilePage.tsx": {
+    "Return to Community": "community.return_to_community_2",
+    "Back to Community": "community.back_to_community_2",
+    "Website": "community.website",
+    "Instagram": "community.instagram",
+    "My Bakes": "community.my_bakes",
+    "Saved": "community.saved",
+    "Bakes": "community.bakes",
+    "Failed to fetch saved posts": "community.failed_to_fetch_saved_posts"
+  },
+  "src\\components\\AffiliateGrid.tsx": {
+    "Recommended Gear": "general.recommended_gear"
+  },
+  "src\\components\\auth\\LockFeature.tsx": {
+    "Unlock Feature": "auth.unlock_feature",
+    "View Plans": "auth.view_plans",
+    "Unlock full Community": "auth.unlock_full_community"
+  },
+  "src\\components\\auth\\RequireFeature.tsx": {
+    "Feature Locked": "auth.feature_locked",
+    "Back to Lab": "auth.back_to_lab",
+    "View Plans": "auth.view_plans_2"
+  },
+  "src\\components\\AuthModal.tsx": {
+    "Login": "general.login",
+    "Sign Up": "general.sign_up",
+    "Email": "general.email",
+    "Password": "general.password",
+    "Esqueci minha senha": "general.esqueci_minha_senha",
+    "Name": "general.name",
+    "Check your email": "general.check_your_email",
+    "We sent a password reset link to": "general.we_sent_a_password_reset_link_to",
+    "Back to Login": "general.back_to_login",
+    "Cancel": "general.cancel",
+    "Or continue with": "general.or_continue_with",
+    "Google": "general.google",
+    "Continue as Guest": "general.continue_as_guest",
+    "••••••••": "general.",
+    "Your Name": "general.your_name"
+  },
+  "src\\components\\calculator\\IngredientTableEditor.tsx": {
+    "Custom Ingredients": "calculator.custom_ingredients",
+    "Add New": "calculator.add_new",
+    "Ingredient": "calculator.ingredient",
+    "Percentage": "calculator.percentage",
+    "Weight": "calculator.weight",
+    "Other": "calculator.other",
+    "Fat": "calculator.fat",
+    "Solid": "calculator.solid",
+    "Liquid": "calculator.liquid",
+    "Name": "calculator.name",
+    "Remove": "calculator.remove",
+    "New Ingredient Name": "calculator.new_ingredient_name"
+  },
+  "src\\components\\calculator\\sections\\EnvironmentSection.tsx": {
+    "Ambient Temperature": "calculator.ambient_temperature",
+    "Environment": "calculator.environment"
+  },
+  "src\\components\\calculator\\sections\\FermentationSection.tsx": {
+    "Leavening": "calculator.leavening",
+    "Fermentation Technique": "calculator.fermentation_technique",
+    "Direct": "calculator.direct",
+    "Not applicable for this style": "calculator.not_applicable_for_this_style",
+    "Poolish": "calculator.poolish",
+    "Not compatible with selected style": "calculator.not_compatible_with_selected_style",
+    "Biga": "calculator.biga",
+    "% Flour in Preferment": "calculator._flour_in_preferment"
+  },
+  "src\\components\\calculator\\sections\\IngredientsSection.tsx": {
+    "Yeast Type": "calculator.yeast_type",
+    "Generic Starter": "calculator.generic_starter",
+    "Selected Levain": "calculator.selected_levain",
+    "Last Fed": "calculator.last_fed",
+    "Status": "calculator.status",
+    "Create Levain": "calculator.create_levain",
+    "Advanced Ingredients": "calculator.advanced_ingredients",
+    "My Starter": "calculator.my_starter",
+    "Unlock Pro Ingredients": "calculator.unlock_pro_ingredients"
+  },
+  "src\\components\\calculator\\sections\\QuantitySection.tsx": {
+    "Quantity": "calculator.quantity",
+    "By Total Weight": "calculator.by_total_weight",
+    "By Flour Weight": "calculator.by_flour_weight"
+  },
+  "src\\components\\calculator\\sections\\StyleSection.tsx": {
+    "Clear search": "calculator.clear_search",
+    "Dough Style": "calculator.dough_style",
+    "Find a style...": "calculator.find_a_style"
+  },
+  "src\\components\\calculator\\StyleContextBar.tsx": {
+    "Target Style": "calculator.target_style",
+    "Target Hydration": "calculator.target_hydration",
+    "Salt Range": "calculator.salt_range",
+    "Description": "calculator.description"
+  },
+  "src\\components\\calculator\\TechnicalMethodPanel.tsx": {
+    "Preferment": "calculator.preferment",
+    "The Science": "calculator.the_science",
+    "Pro Tip": "calculator.pro_tip",
+    "Critical Point": "calculator.critical_point",
+    "Critical": "calculator.critical",
+    "Tip": "calculator.tip",
+    "Technical": "calculator.technical",
+    "Grandma": "calculator.grandma"
+  },
+  "src\\components\\calculator\\UiModeToggle.tsx": {
+    "Guided": "calculator.guided",
+    "Pro": "calculator.pro"
+  },
+  "src\\components\\CalculatorForm.tsx": {
+    "Save as Custom Style": "general.save_as_custom_style",
+    "Reset Fields": "general.reset_fields",
+    "Upgrade to Pro": "general.upgrade_to_pro",
+    "Choose Your Style": "general.choose_your_style",
+    "Define Quantity": "general.define_quantity",
+    "Customize Ingredients": "general.customize_ingredients",
+    "Fermentation Strategy": "general.fermentation_strategy",
+    "Baking Environment": "general.baking_environment",
+    "Save Custom Preset": "general.save_custom_preset",
+    "Save preset clicked": "general.save_preset_clicked",
+    "Reveal": "general.reveal"
+  },
+  "src\\components\\community\\CommunityCreatePost.tsx": {
+    "Share your bake": "community.share_your_bake_2",
+    "Inspire the community": "community.inspire_the_community",
+    "Go to My Lab": "community.go_to_my_lab"
+  },
+  "src\\components\\community\\CommunityPostCard.tsx": {
+    "Time": "community.time",
+    "Clone Recipe": "community.clone_recipe"
+  },
+  "src\\components\\community\\CommunityProfileSidebar.tsx": {
+    "Join the Community": "community.join_the_community",
+    "Member": "community.member",
+    "Total Bakes": "community.total_bakes",
+    "Avg Rating": "community.avg_rating",
+    "Public Recipes": "community.public_recipes"
+  },
+  "src\\components\\layout\\Navigation.tsx": {
+    "PRO": "general.pro"
+  },
+  "src\\components\\learn\\LearnAffiliateBlock.tsx": {
+    "Recommended Equipment": "learn.recommended_equipment",
+    "Tools that help with this technique": "learn.tools_that_help_with_this_technique",
+    "Control fermentation with proofing tools": "learn.control_fermentation_with_proofing_tools"
+  },
+  "src\\components\\learn\\LearnTopicCard.tsx": {
+    "PRO": "learn.pro"
+  },
+  "src\\components\\LevainModal.tsx": {
+    "Base Flour Type": "general.base_flour_type",
+    "Feeding Schedule": "general.feeding_schedule",
+    "Enable Feeding Reminders": "general.enable_feeding_reminders",
+    "Enter custom flour type": "general.enter_custom_flour_type",
+    "Hours": "general.hours"
+  },
+  "src\\components\\modals\\ToppingPlannerModal.tsx": {
+    "Ingredients Planner": "general.ingredients_planner",
+    "Add ingredient": "general.add_ingredient",
+    "Add variation": "general.add_variation",
+    "Ingredient": "general.ingredient",
+    "Qty/unit": "general.qtyunit"
+  },
+  "src\\components\\mylab\\ConsistencySeriesModal.tsx": {
+    "Promise": "mylab.promise",
+    "Series Name": "mylab.series_name",
+    "Description": "mylab.description",
+    "Variable": "mylab.variable",
+    "Steps": "mylab.steps",
+    "Cancel": "mylab.cancel",
+    "Goal of this experiment...": "mylab.goal_of_this_experiment",
+    "Specific instructions or observations...": "mylab.specific_instructions_or_observations"
+  },
+  "src\\components\\mylab\\GoalModal.tsx": {
+    "Goal Modal": "mylab.goal_modal"
+  },
+  "src\\components\\mylab\\LabHealthIndexCard.tsx": {
+    "Lab Health Index": "mylab.lab_health_index",
+    "Consistency": "mylab.consistency",
+    "Levain": "mylab.levain",
+    "Activity": "mylab.activity",
+    "Success": "mylab.success"
+  },
+  "src\\components\\mylab\\MyLabLimitModal.tsx": {
+    "Pro Analytics": "mylab.pro_analytics",
+    "Lab Capacity Reached": "mylab.lab_capacity_reached",
+    "DoughLab Pro": "mylab.doughlab_pro",
+    "Unlock Unlimited Lab": "mylab.unlock_unlimited_lab",
+    "Maybe Later": "mylab.maybe_later",
+    "Pro Lab Analytics": "mylab.pro_lab_analytics"
+  },
+  "src\\components\\onboarding\\LevainOnboardingModal.tsx": {
+    "Levain Onboarding Modal": "general.levain_onboarding_modal"
+  },
+  "src\\components\\onboarding\\TourGuide.tsx": {
+    "Skip Tour": "ui.skip_tour"
+  },
+  "src\\components\\OvenModal.tsx": {
+    "My Home Oven": "general.my_home_oven",
+    "Optional notes about your oven...": "general.optional_notes_about_your_oven"
+  },
+  "src\\components\\PlansPage.tsx": {
+    "Choose Your Plan": "general.choose_your_plan",
+    "Free": "general.free",
+    "Forever free": "general.forever_free",
+    "Continue with Free": "general.continue_with_free",
+    "Most Popular": "general.most_popular",
+    "Pro": "general.pro_2"
+  },
+  "src\\components\\RequireAuth.tsx": {
+    "Authentication Required": "ui.authentication_required",
+    "Log In": "ui.log_in"
+  },
+  "src\\components\\ResultsDisplay.tsx": {
+    "Your Formula Awaits": "general.your_formula_awaits",
+    "Vol": "general.vol",
+    "Share": "general.share",
+    "Download PDF": "general.download_pdf",
+    "Style": "general.style",
+    "Generate a social card to share": "general.generate_a_social_card_to_share",
+    "Download a professional PDF of your formula": "general.download_a_professional_pdf_of_your_formula",
+    "Tools for this Formula": "general.tools_for_this_formula",
+    "Export failed": "general.export_failed"
+  },
+  "src\\components\\social\\SocialShareModal.tsx": {
+    "Share Your Formula": "general.share_your_formula",
+    "DOUGHLAB PRO": "general.doughlab_pro",
+    "Master Formula": "general.master_formula",
+    "Time": "general.time",
+    "Preferment": "general.preferment",
+    "Created by": "general.created_by",
+    "DoughLab Pro": "general.doughlab_pro_2",
+    "Download Image": "general.download_image"
+  },
+  "src\\components\\styles\\AiStyleBuilderModal.tsx": {
+    "AI Style Builder": "ui.ai_style_builder",
+    "Describe your dough": "ui.describe_your_dough",
+    "German Rye": "ui.german_rye",
+    "Pizza a la Piedra": "ui.pizza_a_la_piedra",
+    "Romana": "ui.romana",
+    "Generate Style": "ui.generate_style"
+  },
+  "src\\components\\styles\\CreateStyleModal.tsx": {
+    "AI Generated Style": "general.ai_generated_style",
+    "Overview": "general.overview",
+    "Engineering": "general.engineering",
+    "Science Lab": "general.science_lab",
+    "Style Name": "general.style_name",
+    "Category": "general.category",
+    "Description": "general.description",
+    "Country of Origin": "general.country_of_origin",
+    "Tags": "general.tags",
+    "Fermentation Time": "general.fermentation_time",
+    "Difficulty": "general.difficulty",
+    "Process Chemistry Logic": "general.process_chemistry_logic",
+    "Process Timeline": "general.process_timeline",
+    "Add Step": "general.add_step",
+    "Title": "general.title",
+    "Phase": "general.phase",
+    "Mix": "general.mix",
+    "Bulk": "general.bulk",
+    "Ball": "general.ball",
+    "Bake": "general.bake",
+    "Duration": "general.duration",
+    "Action": "general.action",
+    "Cancel": "general.cancel_2",
+    "Explain the scientific": "general.explain_the_scientific",
+    "What to do...": "general.what_to_do",
+    "Why this step matters scientifically...": "general.why_this_step_matters_scientifically",
+    "Complete": "general.complete",
+    "Custom": "general.custom",
+    "Balanced": "general.balanced",
+    "Medium": "general.medium",
+    "Wheat": "general.wheat",
+    "Generic": "general.generic",
+    "Standard": "general.standard"
+  },
+  "src\\components\\styles\\StyleCard.tsx": {
+    "PRO": "general.pro_3",
+    "NEW": "general.new",
+    "Use Style": "general.use_style",
+    "Delete": "general.delete",
+    "Details": "general.details",
+    "Unlock calculator": "general.unlock_calculator"
+  },
+  "src\\components\\styles\\StyleComponents.tsx": {
+    "Dough Characteristics": "general.dough_characteristics",
+    "Baking Profile": "general.baking_profile",
+    "Regional Variants": "general.regional_variants"
+  },
+  "src\\components\\styles\\StylesFilterDrawer.tsx": {
+    "Advanced Filters": "general.advanced_filters",
+    "Refine your style search": "general.refine_your_style_search",
+    "Difficulty Level": "general.difficulty_level",
+    "Reset All": "general.reset_all",
+    "Show Results": "general.show_results"
+  },
+  "src\\components\\styles\\StyleSummaryCard.tsx": {
+    "Target Style": "general.target_style",
+    "Target Hydration": "general.target_hydration",
+    "Salt Range": "general.salt_range",
+    "Description": "general.description_2"
+  },
+  "src\\components\\styles\\TechnicalProfileCard.tsx": {
+    "Technical Profile": "general.technical_profile",
+    "Hydration": "general.hydration",
+    "Salt": "general.salt",
+    "Fermentation": "general.fermentation",
+    "Oven": "general.oven"
+  },
+  "src\\components\\tools\\doughbot\\DoughbotResults.tsx": {
+    "Diagnostic Results": "tools.diagnostic_results",
+    "Probable Causes": "tools.probable_causes",
+    "Action Plan": "tools.action_plan",
+    "Recommended Adjustments": "tools.recommended_adjustments",
+    "Target Hydration": "tools.target_hydration",
+    "Fermentation Adjustment": "tools.fermentation_adjustment",
+    "Flour Recommendation": "tools.flour_recommendation"
+  },
+  "src\\components\\tools\\doughbot\\DoughbotResultsPlaceholder.tsx": {
+    "Possible Causes": "tools.possible_causes",
+    "Suggested Solutions": "tools.suggested_solutions"
+  },
+  "src\\components\\tools\\ovenProfiler\\OvenProfilerAdviceGrid.tsx": {
+    "Baking Strategy": "tools.baking_strategy",
+    "Dough Adjustments": "tools.dough_adjustments",
+    "Low Power Strategy": "tools.low_power_strategy",
+    "High Hydration Risks": "tools.high_hydration_risks"
+  },
+  "src\\components\\tools\\ovenProfiler\\OvenProfilerForm.tsx": {
+    "Oven Type": "tools.oven_type",
+    "Home gas oven": "tools.home_gas_oven",
+    "Home electric oven": "tools.home_electric_oven",
+    "Convection oven": "tools.convection_oven",
+    "Baking Surface": "tools.baking_surface",
+    "Baking steel": "tools.baking_steel",
+    "Rack Position": "tools.rack_position",
+    "Convection Mode": "tools.convection_mode",
+    "Analyze Oven Profile": "tools.analyze_oven_profile",
+    "Why preheat?": "tools.why_preheat"
+  },
+  "src\\components\\tools\\ovenProfiler\\OvenProfilerSummaryCard.tsx": {
+    "Analysis Summary": "tools.analysis_summary"
+  },
+  "src\\components\\ToppingsPage.tsx": {
+    "Toppings Library": "general.toppings_library",
+    "Size": "general.size"
+  },
+  "src\\components\\ui\\FloatingActionButton.tsx": {
+    "FAB": "ui.fab"
+  },
+  "src\\components\\ui\\ImageUpload.tsx": {
+    "Click to upload": "ui.click_to_upload",
+    "Remove": "ui.remove",
+    "Preview": "ui.preview",
+    "Change Image": "ui.change_image",
+    "Remove Image": "ui.remove_image"
+  },
+  "src\\components\\ui\\Logo.tsx": {
+    "DoughLab Pro Logo": "ui.doughlab_pro_logo"
+  },
+  "src\\components\\ui\\PDFExportButton.tsx": {
+    "DoughLab": "ui.doughlab",
+    "Pro Recipe Export": "ui.pro_recipe_export",
+    "Generated on": "ui.generated_on"
+  },
+  "src\\components\\ui\\ProFeatureLock.tsx": {
+    "Pro Feature": "ui.pro_feature",
+    "Unlock Now": "ui.unlock_now"
+  },
+  "src\\components\\ui\\RecommendedProducts.tsx": {
+    "Professional Baking Gear": "ui.professional_baking_gear"
+  },
+  "src\\components\\ui\\ShareButton.tsx": {
+    "Share this page": "ui.share_this_page"
+  },
+  "src\\components\\ui\\SliderInput.tsx": {
+    "PRO": "ui.pro",
+    "Click to read full article": "ui.click_to_read_full_article"
+  },
+  "src\\contexts\\AuthContext.tsx": {
+    "Promise": "general.promise",
+    "Firebase Auth not initialized": "general.firebase_auth_not_initialized"
+  },
+  "src\\contexts\\BatchesProvider.tsx": {
+    "Promise": "general.promise_2"
+  },
+  "src\\contexts\\ConsistencyProvider.tsx": {
+    "Promise": "general.promise_3"
+  },
+  "src\\contexts\\FloursProvider.tsx": {
+    "Promise": "general.promise_4"
+  },
+  "src\\contexts\\GoalsProvider.tsx": {
+    "Promise": "general.promise_5"
+  },
+  "src\\contexts\\LevainProvider.tsx": {
+    "Promise": "general.promise_6"
+  },
+  "src\\contexts\\StylesProvider.tsx": {
+    "Promise": "general.promise_7",
+    "Failed to load styles from service": "general.failed_to_load_styles_from_service"
+  },
+  "src\\data\\communityStore.ts": {
+    "Firestore not initialized": "community.firestore_not_initialized"
+  },
+  "src\\data\\learn-content\\additives.ts": {
+    "Ingredient Science": "learn.ingredient_science",
+    "Advanced": "learn.advanced",
+    "Ascorbic Acid": "learn.ascorbic_acid",
+    "Lecithin": "learn.lecithin",
+    "Malt Powder": "learn.malt_powder",
+    "Natural Improvers": "learn.natural_improvers",
+    "Commercial Conditioners": "learn.commercial_conditioners"
+  },
+  "src\\data\\learn-content\\ambient-vs-cold.ts": {
+    "Ambient Zone": "learn.ambient_zone",
+    "The Dead Zone": "learn.the_dead_zone",
+    "Ambient Fermentation": "learn.ambient_fermentation",
+    "Cold Fermentation": "learn.cold_fermentation",
+    "Hybrid Method": "learn.hybrid_method"
+  },
+  "src\\data\\learn-content\\autolyse.ts": {
+    "Dough Science": "learn.dough_science",
+    "Intermediate": "learn.intermediate",
+    "Short Autolyse": "learn.short_autolyse",
+    "Standard Autolyse": "learn.standard_autolyse",
+    "Long Autolyse": "learn.long_autolyse",
+    "With Whole Grain": "learn.with_whole_grain",
+    "High Protein Flour": "learn.high_protein_flour"
+  },
+  "src\\data\\learn-content\\baking-profiles-by-style.ts": {
+    "Baking Profiles by Style": "learn.baking_profiles_by_style",
+    "Baking Science": "learn.baking_science",
+    "Advanced": "learn.advanced_2",
+    "Neapolitan Bake": "learn.neapolitan_bake",
+    "NY Style Bake": "learn.ny_style_bake",
+    "Roman Pala Bake": "learn.roman_pala_bake",
+    "Neapolitan": "learn.neapolitan",
+    "NY Style": "learn.ny_style",
+    "Roman Pala": "learn.roman_pala"
+  },
+  "src\\data\\learn-content\\baking-surfaces-and-heat-transfer.ts": {
+    "Pizza steel": "learn.pizza_steel",
+    "Pan baking": "learn.pan_baking"
+  },
+  "src\\data\\learn-content\\bulk-fermentation.ts": {
+    "Volume Increase": "learn.volume_increase",
+    "Ambient Bulk": "learn.ambient_bulk"
+  },
+  "src\\data\\learn-content\\cold-fermentation.ts": {
+    "Cold Fermentation": "learn.cold_fermentation_2",
+    "Fermentation Science": "learn.fermentation_science",
+    "Intermediate": "learn.intermediate_2",
+    "Refrigeration Time": "learn.refrigeration_time",
+    "Cold Fermentation Temperature": "learn.cold_fermentation_temperature",
+    "Short Cold Fermentation": "learn.short_cold_fermentation",
+    "Long Cold Fermentation": "learn.long_cold_fermentation"
+  },
+  "src\\data\\learn-content\\crust-formation-dynamics.ts": {
+    "Crust Formation Dynamics": "learn.crust_formation_dynamics",
+    "Baking Science": "learn.baking_science_2",
+    "Advanced": "learn.advanced_3",
+    "Surface Drying Threshold": "learn.surface_drying_threshold",
+    "Optimal Browning Start": "learn.optimal_browning_start"
+  },
+  "src\\data\\learn-content\\dense-crumb.ts": {
+    "Dense Crumb": "learn.dense_crumb",
+    "Troubleshooting": "learn.troubleshooting",
+    "Intermediate": "learn.intermediate_3",
+    "Hydration for Open Crumb": "learn.hydration_for_open_crumb",
+    "Underproofed Dough": "learn.underproofed_dough",
+    "Low Hydration Dough": "learn.low_hydration_dough"
+  },
+  "src\\data\\learn-content\\dividing-balling.ts": {
+    "Preparing individual dough pieces for shaping": "learn.preparing_individual_dough_pieces_for_shaping",
+    "Typical Neapolitan pizza balls": "learn.typical_neapolitan_pizza_balls",
+    "Pan pizza portions": "learn.pan_pizza_portions"
+  },
+  "src\\data\\learn-content\\dough-aging.ts": {
+    "Green": "learn.green",
+    "Peak": "learn.peak"
+  },
+  "src\\data\\learn-content\\dough-balling-tensioning.ts": {
+    "Process Techniques": "learn.process_techniques",
+    "Intermediate": "learn.intermediate_4"
+  },
+  "src\\data\\learn-content\\dough-development.ts": {
+    "From initial mix to fully developed dough": "learn.from_initial_mix_to_fully_developed_dough",
+    "Improved mix": "learn.improved_mix",
+    "Intensive mix": "learn.intensive_mix"
+  },
+  "src\\data\\learn-content\\dough-rheology.ts": {
+    "Dough Science": "learn.dough_science_2",
+    "Advanced": "learn.advanced_4",
+    "Extensibility Index": "learn.extensibility_index"
+  },
+  "src\\data\\learn-content\\excess-acidity.ts": {
+    "Excess Acidity": "learn.excess_acidity",
+    "Troubleshooting": "learn.troubleshooting_2",
+    "Intermediate": "learn.intermediate_5",
+    "Lactic Acid Dominance": "learn.lactic_acid_dominance",
+    "Acetic Acid Dominance": "learn.acetic_acid_dominance"
+  },
+  "src\\data\\learn-content\\extensibility.ts": {
+    "Extensibility vs Elasticity": "learn.extensibility_vs_elasticity"
+  },
+  "src\\data\\learn-content\\fats.ts": {
+    "Ingredient Science": "learn.ingredient_science_2",
+    "Intermediate": "learn.intermediate_6",
+    "Pizza Dough": "learn.pizza_dough",
+    "Focaccia": "learn.focaccia",
+    "Enriched Breads": "learn.enriched_breads",
+    "Olive Oil": "learn.olive_oil",
+    "Butter": "learn.butter",
+    "Lard": "learn.lard",
+    "Vegetable Oils": "learn.vegetable_oils"
+  },
+  "src\\data\\learn-content\\fermentation-basics.ts": {
+    "Long cold fermentation": "learn.long_cold_fermentation_2"
+  },
+  "src\\data\\learn-content\\fermentation-curves.ts": {
+    "Fermentation Curves": "learn.fermentation_curves",
+    "Fermentation Science": "learn.fermentation_science_2",
+    "Advanced": "learn.advanced_5",
+    "Warm Fermentation Curve": "learn.warm_fermentation_curve",
+    "Cool Fermentation Curve": "learn.cool_fermentation_curve"
+  },
+  "src\\data\\learn-content\\fermentation-fundamentals.ts": {
+    "Fermentation Fundamentals": "learn.fermentation_fundamentals",
+    "Fermentation Science": "learn.fermentation_science_3",
+    "Beginner": "learn.beginner",
+    "Short Fermentation": "learn.short_fermentation",
+    "Long Fermentation": "learn.long_fermentation"
+  },
+  "src\\data\\learn-content\\fermentation.ts": {
+    "Direct Method": "learn.direct_method",
+    "Cold Fermentation": "learn.cold_fermentation_3"
+  },
+  "src\\data\\learn-content\\final-proofing-control.ts": {
+    "Ideal Final Proofing Temperature": "learn.ideal_final_proofing_temperature",
+    "Warm Proofing": "learn.warm_proofing",
+    "Cool Proofing": "learn.cool_proofing"
+  },
+  "src\\data\\learn-content\\flours.ts": {
+    "Ingredient Science": "learn.ingredient_science_3",
+    "Beginner": "learn.beginner_2",
+    "Neapolitan": "learn.neapolitan_2",
+    "New York": "learn.new_york",
+    "Bread Flour": "learn.bread_flour",
+    "Whole Wheat": "learn.whole_wheat",
+    "Whole Wheat Flour": "learn.whole_wheat_flour"
+  },
+  "src\\data\\learn-content\\food-safety-and-dough-handling.ts": {
+    "Cold storage": "learn.cold_storage"
+  },
+  "src\\data\\learn-content\\gas-bubble-blowouts.ts": {
+    "Gas Bubble Blowouts": "learn.gas_bubble_blowouts",
+    "Troubleshooting": "learn.troubleshooting_3",
+    "Intermediate": "learn.intermediate_7",
+    "Safe Proofing Range Before Blister Risk": "learn.safe_proofing_range_before_blister_risk",
+    "Thin Spots During Stretching": "learn.thin_spots_during_stretching",
+    "Overproofed Dough": "learn.overproofed_dough"
+  },
+  "src\\data\\learn-content\\gluten-network.ts": {
+    "The Gluten Network": "learn.the_gluten_network",
+    "Dough Science": "learn.dough_science_3",
+    "Intermediate": "learn.intermediate_8"
+  },
+  "src\\data\\learn-content\\gummy-crumb.ts": {
+    "Gummy Crumb": "learn.gummy_crumb",
+    "Troubleshooting": "learn.troubleshooting_4",
+    "Intermediate": "learn.intermediate_9",
+    "Internal Temp for Complete Bake": "learn.internal_temp_for_complete_bake",
+    "High Hydration Dough": "learn.high_hydration_dough",
+    "Underbaked Dough": "learn.underbaked_dough"
+  },
+  "src\\data\\learn-content\\handling-delicate-doughs.ts": {
+    "Hydration Threshold for Delicate Handling": "learn.hydration_threshold_for_delicate_handling"
+  },
+  "src\\data\\learn-content\\high-hydration.ts": {
+    "High Hydration Management": "learn.high_hydration_management",
+    "Dough Science": "learn.dough_science_4",
+    "Advanced": "learn.advanced_6",
+    "Intermediate Hydration": "learn.intermediate_hydration",
+    "High Hydration": "learn.high_hydration",
+    "High Hydration with Strong Flour": "learn.high_hydration_with_strong_flour",
+    "High Hydration with Whole Grain": "learn.high_hydration_with_whole_grain"
+  },
+  "src\\data\\learn-content\\lamination-layering-techniques.ts": {
+    "Process Techniques": "learn.process_techniques_2",
+    "Advanced": "learn.advanced_7",
+    "Folds per Lamination Cycle": "learn.folds_per_lamination_cycle",
+    "Full Lamination": "learn.full_lamination",
+    "Partial Lamination": "learn.partial_lamination"
+  },
+  "src\\data\\learn-content\\mixing-techniques.ts": {
+    "Spiral Mixer Friction": "learn.spiral_mixer_friction",
+    "Planetary Mixer Friction": "learn.planetary_mixer_friction",
+    "Hand Mixing Friction": "learn.hand_mixing_friction",
+    "Spiral Mixer": "learn.spiral_mixer",
+    "Planetary Mixer": "learn.planetary_mixer",
+    "Hand Mixing": "learn.hand_mixing"
+  },
+  "src\\data\\learn-content\\oven-types-and-constraints.ts": {
+    "What your oven can and cannot do for your dough": "learn.what_your_oven_can_and_cannot_do_for_your_dough",
+    "Commercial deck ovens": "learn.commercial_deck_ovens",
+    "Domestic ovens": "learn.domestic_ovens"
+  },
+  "src\\data\\learn-content\\overproof-underproof.ts": {
+    "Overproof vs Underproof": "learn.overproof_vs_underproof",
+    "Fermentation Science": "learn.fermentation_science_4",
+    "Intermediate": "learn.intermediate_10",
+    "Underproofed Dough": "learn.underproofed_dough_2",
+    "Overproofed Dough": "learn.overproofed_dough_2"
+  },
+  "src\\data\\learn-content\\pale-crust.ts": {
+    "Pale Crust": "learn.pale_crust",
+    "Troubleshooting": "learn.troubleshooting_5",
+    "Intermediate": "learn.intermediate_11",
+    "Baking Temperature for Consistent Browning": "learn.baking_temperature_for_consistent_browning",
+    "Low Heat Baking": "learn.low_heat_baking",
+    "Overproofed Dough": "learn.overproofed_dough_3"
+  },
+  "src\\data\\learn-content\\poor-oven-spring.ts": {
+    "Poor Oven Spring": "learn.poor_oven_spring",
+    "Troubleshooting": "learn.troubleshooting_6",
+    "Intermediate": "learn.intermediate_12",
+    "Optimal Oven Spring Internal Temp": "learn.optimal_oven_spring_internal_temp",
+    "Low Heat": "learn.low_heat",
+    "Overproofed Dough": "learn.overproofed_dough_4"
+  },
+  "src\\data\\learn-content\\preferments-overview.ts": {
+    "Fermentation Science": "learn.fermentation_science_5",
+    "Advanced": "learn.advanced_8",
+    "Poolish": "learn.poolish",
+    "Biga": "learn.biga"
+  },
+  "src\\data\\learn-content\\proofing-timing.ts": {
+    "From final rise to the moment dough hits the oven": "learn.from_final_rise_to_the_moment_dough_hits_the_oven",
+    "Cold proof in trays or pans": "learn.cold_proof_in_trays_or_pans",
+    "Temper out of the fridge": "learn.temper_out_of_the_fridge"
+  },
+  "src\\data\\learn-content\\rolling-vs-stretching.ts": {
+    "Ideal Stretching Temp": "learn.ideal_stretching_temp",
+    "Full Rolling": "learn.full_rolling",
+    "Hand Stretching": "learn.hand_stretching"
+  },
+  "src\\data\\learn-content\\salt.ts": {
+    "Ingredient Science": "learn.ingredient_science_4",
+    "Beginner": "learn.beginner_3",
+    "Standard Pizza": "learn.standard_pizza",
+    "Artisan Breads": "learn.artisan_breads",
+    "Fine Table Salt": "learn.fine_table_salt",
+    "Sea Salt": "learn.sea_salt",
+    "Kosher Salt": "learn.kosher_salt",
+    "Himalayan Pink Salt": "learn.himalayan_pink_salt"
+  },
+  "src\\data\\learn-content\\sensory-maturation.ts": {
+    "Cold Fermentation Time": "learn.cold_fermentation_time",
+    "Temperature": "learn.temperature"
+  },
+  "src\\data\\learn-content\\shaping-fundamentals.ts": {
+    "Shaping Fundamentals": "learn.shaping_fundamentals",
+    "Process Techniques": "learn.process_techniques_3",
+    "Beginner": "learn.beginner_4",
+    "Ideal Dough Temp for Shaping": "learn.ideal_dough_temp_for_shaping",
+    "Tight Shaping": "learn.tight_shaping",
+    "Loose Shaping": "learn.loose_shaping"
+  },
+  "src\\data\\learn-content\\starch-gelatinization.ts": {
+    "Starch Gelatinization": "learn.starch_gelatinization",
+    "Baking Science": "learn.baking_science_3",
+    "Advanced": "learn.advanced_9",
+    "Gelatinization Start": "learn.gelatinization_start",
+    "Full Gelatinization": "learn.full_gelatinization"
+  },
+  "src\\data\\learn-content\\sticky-dough.ts": {
+    "Sticky Dough": "learn.sticky_dough",
+    "Troubleshooting": "learn.troubleshooting_7",
+    "Intermediate": "learn.intermediate_13",
+    "Hydration Threshold for Tackiness": "learn.hydration_threshold_for_tackiness",
+    "High Hydration": "learn.high_hydration_2",
+    "Underdeveloped Gluten": "learn.underdeveloped_gluten"
+  },
+  "src\\data\\learn-content\\stretch-and-fold.ts": {
+    "Process Techniques": "learn.process_techniques_4",
+    "Beginner": "learn.beginner_5",
+    "Basic Routine": "learn.basic_routine",
+    "Interval Between Rounds": "learn.interval_between_rounds",
+    "Coil Fold": "learn.coil_fold",
+    "Letter Fold": "learn.letter_fold"
+  },
+  "src\\data\\learn-content\\sugars.ts": {
+    "Ingredient Science": "learn.ingredient_science_5",
+    "Advanced": "learn.advanced_10",
+    "Enriched Doughs": "learn.enriched_doughs",
+    "Sweet Doughs": "learn.sweet_doughs",
+    "Natural Starch Sugars": "learn.natural_starch_sugars",
+    "Added Sugars": "learn.added_sugars"
+  },
+  "src\\data\\learn-content\\temperature-management-and-profiling.ts": {
+    "From dough temperature to bake curves": "learn.from_dough_temperature_to_bake_curves",
+    "Typical DDT for most pizza and lean breads": "learn.typical_ddt_for_most_pizza_and_lean_breads",
+    "Cold fermentation fridges": "learn.cold_fermentation_fridges",
+    "Home oven bake profiles": "learn.home_oven_bake_profiles"
+  },
+  "src\\data\\learn-content\\temperature-profiles.ts": {
+    "Fermentation Science": "learn.fermentation_science_6",
+    "Advanced": "learn.advanced_11",
+    "Neapolitan DT Target": "learn.neapolitan_dt_target",
+    "NY Style DT Target": "learn.ny_style_dt_target",
+    "Artisan Bread DT": "learn.artisan_bread_dt",
+    "Warm Profile": "learn.warm_profile",
+    "Cold Profile": "learn.cold_profile"
+  },
+  "src\\data\\learn-content\\tough-dough.ts": {
+    "Tough Dough": "learn.tough_dough",
+    "Troubleshooting": "learn.troubleshooting_8",
+    "Intermediate": "learn.intermediate_14",
+    "Extensibility Temperature": "learn.extensibility_temperature",
+    "Low Hydration": "learn.low_hydration"
+  },
+  "src\\data\\learn-content\\uneven-browning.ts": {
+    "Uneven Browning": "learn.uneven_browning",
+    "Troubleshooting": "learn.troubleshooting_9",
+    "Intermediate": "learn.intermediate_15",
+    "Target Oven Deck Variance": "learn.target_oven_deck_variance",
+    "High Moisture Surface": "learn.high_moisture_surface",
+    "Sugar Concentration Spots": "learn.sugar_concentration_spots"
+  },
+  "src\\data\\learn-content\\water.ts": {
+    "Ingredient Science": "learn.ingredient_science_6",
+    "Beginner": "learn.beginner_6",
+    "Neapolitan": "learn.neapolitan_3",
+    "New York": "learn.new_york_2",
+    "Artisan Bread": "learn.artisan_bread"
+  },
+  "src\\data\\learn-content\\weak-gluten-structure.ts": {
+    "Weak Gluten Structure": "learn.weak_gluten_structure",
+    "Troubleshooting": "learn.troubleshooting_10",
+    "Intermediate": "learn.intermediate_16"
+  },
+  "src\\data\\learn-content\\whole-grains.ts": {
+    "Ingredient Science": "learn.ingredient_science_7",
+    "Advanced": "learn.advanced_12",
+    "Spelt": "learn.spelt",
+    "Whole Wheat Flour": "learn.whole_wheat_flour_2",
+    "Rye Flour": "learn.rye_flour"
+  },
+  "src\\data\\learn-content\\workflow-and-service-planning.ts": {
+    "Small shop workflow": "learn.small_shop_workflow"
+  },
+  "src\\data\\learn-content\\yeasts.ts": {
+    "Ingredient Science": "learn.ingredient_science_8",
+    "Beginner": "learn.beginner_7",
+    "Instant Yeast": "learn.instant_yeast",
+    "Fresh Yeast": "learn.fresh_yeast"
+  },
+  "src\\data\\styles\\bread\\arepa_corn_flatbread.ts": {
+    "Classic Flatbreads": "general.classic_flatbreads",
+    "Bread": "general.bread",
+    "Northern South America": "general.northern_south_america",
+    "Traditional": "general.traditional",
+    "Short rest after mixing to hydrate flour": "general.short_rest_after_mixing_to_hydrate_flour",
+    "No fermentation in traditional formulas": "general.no_fermentation_in_traditional_formulas",
+    "Optional rest in fridge for planning": "general.optional_rest_in_fridge_for_planning",
+    "Hard": "general.hard",
+    "Filled arepas": "general.filled_arepas",
+    "Savory stuffed flatbreads": "general.savory_stuffed_flatbreads",
+    "Latin American food literature": "general.latin_american_food_literature",
+    "Modernist Bread": "general.modernist_bread"
+  },
+  "src\\data\\styles\\bread\\bagels_classic.ts": {
+    "Classic Boiled Bagels": "general.classic_boiled_bagels",
+    "Specialty Breads": "general.specialty_breads",
+    "Bread": "general.bread_2",
+    "Shaped rings are often retarded cold overnight": "general.shaped_rings_are_often_retarded_cold_overnight",
+    "Common cold proof before boiling and baking": "general.common_cold_proof_before_boiling_and_baking",
+    "Medium": "general.medium_2",
+    "Bagels for breakfast and sandwiches": "general.bagels_for_breakfast_and_sandwiches",
+    "Modernist Bread": "general.modernist_bread_2",
+    "Jewish and New York baking traditions": "general.jewish_and_new_york_baking_traditions"
+  },
+  "src\\data\\styles\\bread\\baguette_tradition_francaise.ts": {
+    "French Lean Breads": "general.french_lean_breads",
+    "Bread": "general.bread_3",
+    "France": "general.france",
+    "Nationwide": "general.nationwide",
+    "Optional overnight retard for flavor": "general.optional_overnight_retard_for_flavor",
+    "Hard": "general.hard_2",
+    "Daily table bread": "general.daily_table_bread",
+    "Sandwiches": "general.sandwiches",
+    "Toast": "general.toast"
+  },
+  "src\\data\\styles\\bread\\burger_buns_enriched.ts": {
+    "Bread": "general.bread_4",
+    "United States": "general.united_states",
+    "Global fast food": "general.global_fast_food",
+    "Optional bulk retard": "general.optional_bulk_retard",
+    "Medium": "general.medium_3",
+    "Burger buns": "general.burger_buns",
+    "Sandwich rolls": "general.sandwich_rolls",
+    "AIB guidelines": "general.aib_guidelines",
+    "Modernist Bread": "general.modernist_bread_3"
+  },
+  "src\\data\\styles\\bread\\ciabatta_high_hydration.ts": {
+    "Bread": "general.bread_5",
+    "Italy": "general.italy",
+    "Northern Italy": "general.northern_italy",
+    "Expert": "general.expert",
+    "Sandwich bread": "general.sandwich_bread",
+    "Bruschetta": "general.bruschetta",
+    "Rustic table bread": "general.rustic_table_bread",
+    "Modernist Bread": "general.modernist_bread_4"
+  },
+  "src\\data\\styles\\bread\\focaccia_genovese.ts": {
+    "Focaccia Genovese": "general.focaccia_genovese",
+    "Bread": "general.bread_6",
+    "Italy": "general.italy_2",
+    "Traditional": "general.traditional_2",
+    "Expert": "general.expert_2",
+    "Flatbread snack": "general.flatbread_snack",
+    "Table bread": "general.table_bread",
+    "Sandwich base": "general.sandwich_base",
+    "Modernist Bread": "general.modernist_bread_5",
+    "Italian focaccia traditions": "general.italian_focaccia_traditions"
+  },
+  "src\\data\\styles\\bread\\heirloom_levain_loaf.ts": {
+    "Heirloom Grain Levain Loaf": "general.heirloom_grain_levain_loaf",
+    "Bread": "general.bread_7",
+    "Global": "general.global",
+    "Local grain movements": "general.local_grain_movements",
+    "Common for flexibility and flavor": "general.common_for_flexibility_and_flavor",
+    "Expert": "general.expert_3",
+    "Artisan bread expressing local grains": "general.artisan_bread_expressing_local_grains",
+    "Modernist Bread": "general.modernist_bread_6"
+  },
+  "src\\data\\styles\\bread\\hot_dog_buns_enriched.ts": {
+    "Bread": "general.bread_8",
+    "United States": "general.united_states_2",
+    "Global fast food": "general.global_fast_food_2",
+    "Optional bulk retard": "general.optional_bulk_retard_2",
+    "Medium": "general.medium_4",
+    "Hot dog buns": "general.hot_dog_buns",
+    "Sausage rolls": "general.sausage_rolls",
+    "AIB guidelines": "general.aib_guidelines_2",
+    "Modernist Bread": "general.modernist_bread_7"
+  },
+  "src\\data\\styles\\bread\\injera_flatbread.ts": {
+    "Classic Flatbreads": "general.classic_flatbreads_2",
+    "Bread": "general.bread_9",
+    "Horn of Africa": "general.horn_of_africa",
+    "Traditional": "general.traditional_3",
+    "Teff flour with possible blends": "general.teff_flour_with_possible_blends",
+    "Short rest before ladling onto hot surface": "general.short_rest_before_ladling_onto_hot_surface",
+    "Ambient fermentation is traditional": "general.ambient_fermentation_is_traditional",
+    "Expert": "general.expert_4",
+    "Ethiopian food literature": "general.ethiopian_food_literature",
+    "Modernist Bread": "general.modernist_bread_8"
+  },
+  "src\\data\\styles\\bread\\japanese_milk_bread.ts": {
+    "Bread": "general.bread_10",
+    "Japan": "general.japan",
+    "East Asia": "general.east_asia",
+    "Optional bulk retard to improve flavor": "general.optional_bulk_retard_to_improve_flavor",
+    "Hard": "general.hard_3",
+    "Soft sandwich bread": "general.soft_sandwich_bread",
+    "Toast": "general.toast_2",
+    "Breakfast bread": "general.breakfast_bread",
+    "Modernist Bread": "general.modernist_bread_9",
+    "Asian bakery literature": "general.asian_bakery_literature"
+  },
+  "src\\data\\styles\\bread\\japanese_shokupan.ts": {
+    "Asian Milk Bread": "general.asian_milk_bread",
+    "Bread": "general.bread_11",
+    "Japan": "general.japan_2",
+    "Nationwide": "general.nationwide_2",
+    "Optional": "general.optional",
+    "Hard": "general.hard_4",
+    "Sandwiches": "general.sandwiches_2",
+    "Thick toast": "general.thick_toast",
+    "Dessert bread": "general.dessert_bread",
+    "Modernist Bread": "general.modernist_bread_10",
+    "Asian baking techniques": "general.asian_baking_techniques"
+  },
+  "src\\data\\styles\\bread\\lefse_flatbread.ts": {
+    "Classic Flatbreads": "general.classic_flatbreads_3",
+    "Bread": "general.bread_12",
+    "Norway": "general.norway",
+    "Scandinavia": "general.scandinavia",
+    "Traditional": "general.traditional_4",
+    "Resting of dough before rolling": "general.resting_of_dough_before_rolling",
+    "No yeast fermentation in typical formulas": "general.no_yeast_fermentation_in_typical_formulas",
+    "Dough may be chilled for rolling convenience": "general.dough_may_be_chilled_for_rolling_convenience",
+    "Hard": "general.hard_5",
+    "Traditional Scandinavian flatbread": "general.traditional_scandinavian_flatbread",
+    "Sweet or savory wraps": "general.sweet_or_savory_wraps",
+    "Scandinavian baking literature": "general.scandinavian_baking_literature",
+    "Modernist Bread": "general.modernist_bread_11"
+  },
+  "src\\data\\styles\\bread\\mixed_grain_sourdough.ts": {
+    "Bread": "general.bread_13",
+    "Global": "general.global_2",
+    "Artisan baking": "general.artisan_baking",
+    "Modern": "general.modern",
+    "Expert": "general.expert_5",
+    "Nutritious sourdough loaves": "general.nutritious_sourdough_loaves",
+    "Sandwiches": "general.sandwiches_3",
+    "Toast": "general.toast_3",
+    "Modernist Bread": "general.modernist_bread_12"
+  },
+  "src\\data\\styles\\bread\\naan_flatbread.ts": {
+    "Classic Flatbreads": "general.classic_flatbreads_4",
+    "Bread": "general.bread_14",
+    "South and Central Asia": "general.south_and_central_asia",
+    "Traditional": "general.traditional_5",
+    "Short rest after shaping": "general.short_rest_after_shaping",
+    "Optional overnight bulk for flavor": "general.optional_overnight_bulk_for_flavor",
+    "Hard": "general.hard_6",
+    "Accompaniment to curries": "general.accompaniment_to_curries",
+    "Flatbread for dipping": "general.flatbread_for_dipping",
+    "South Asian bread literature": "general.south_asian_bread_literature",
+    "Modernist Bread": "general.modernist_bread_13"
+  },
+  "src\\data\\styles\\bread\\pain_de_campagne.ts": {
+    "French Lean Breads": "general.french_lean_breads_2",
+    "Bread": "general.bread_15",
+    "France": "general.france_2",
+    "Rural bakeries": "general.rural_bakeries",
+    "Traditional": "general.traditional_6",
+    "Hard": "general.hard_7",
+    "Country loaves": "general.country_loaves",
+    "Rustic sandwiches": "general.rustic_sandwiches",
+    "Toast": "general.toast_4",
+    "French country bread literature": "general.french_country_bread_literature"
+  },
+  "src\\data\\styles\\bread\\pain_de_mie_pullman.ts": {
+    "Bread": "general.bread_16",
+    "Bakery and industrial": "general.bakery_and_industrial",
+    "Optional overnight bulk": "general.optional_overnight_bulk",
+    "Hard": "general.hard_8",
+    "Sandwich bread": "general.sandwich_bread_2",
+    "Toast": "general.toast_5",
+    "Modernist Bread": "general.modernist_bread_14",
+    "Professional baking texts": "general.professional_baking_texts"
+  },
+  "src\\data\\styles\\bread\\pain_rustique.ts": {
+    "Pain Rustique": "general.pain_rustique",
+    "French Lean Breads": "general.french_lean_breads_3",
+    "Bread": "general.bread_17",
+    "France": "general.france_3",
+    "Artisan bakeries": "general.artisan_bakeries",
+    "Modern artisanal": "general.modern_artisanal",
+    "Optional overnight for extra flavor": "general.optional_overnight_for_extra_flavor",
+    "Hard": "general.hard_9",
+    "Rustic loaves": "general.rustic_loaves",
+    "Table bread": "general.table_bread_2",
+    "Soup accompaniment": "general.soup_accompaniment",
+    "Modernist Bread": "general.modernist_bread_15"
+  },
+  "src\\data\\styles\\bread\\pane_pugliese.ts": {
+    "Pane Pugliese": "general.pane_pugliese",
+    "Bread": "general.bread_18",
+    "Italy": "general.italy_3",
+    "Puglia": "general.puglia",
+    "Traditional": "general.traditional_7",
+    "Blend of bread flour and durum wheat flours": "general.blend_of_bread_flour_and_durum_wheat_flours",
+    "Optional overnight retard": "general.optional_overnight_retard",
+    "Hard": "general.hard_10",
+    "Rustic Italian table bread": "general.rustic_italian_table_bread",
+    "Modernist Bread": "general.modernist_bread_16",
+    "Italian bread literature": "general.italian_bread_literature"
+  },
+  "src\\data\\styles\\bread\\pao_de_leite_brazil.ts": {
+    "Brazilian Professional Breads": "general.brazilian_professional_breads",
+    "Bread": "general.bread_19",
+    "Brazil": "general.brazil",
+    "Nationwide": "general.nationwide_3",
+    "Optional bulk or shaped retard": "general.optional_bulk_or_shaped_retard",
+    "Hard": "general.hard_11",
+    "Sweet rolls": "general.sweet_rolls",
+    "Milk bread loaves": "general.milk_bread_loaves",
+    "Snack sandwiches": "general.snack_sandwiches",
+    "Brazilian bakery practice": "general.brazilian_bakery_practice"
+  },
+  "src\\data\\styles\\bread\\pao_frances_brazil.ts": {
+    "Brazilian Professional Breads": "general.brazilian_professional_breads_2",
+    "Bread": "general.bread_20",
+    "Brazil": "general.brazil_2",
+    "Nationwide": "general.nationwide_4",
+    "Sometimes used to manage production": "general.sometimes_used_to_manage_production",
+    "Medium": "general.medium_5",
+    "Breakfast rolls": "general.breakfast_rolls",
+    "Sandwiches": "general.sandwiches_4",
+    "Everyday bread": "general.everyday_bread",
+    "ABIP technical materials": "general.abip_technical_materials"
+  },
+  "src\\data\\styles\\bread\\pao_sovado_brazil.ts": {
+    "Brazilian Professional Breads": "general.brazilian_professional_breads_3",
+    "Bread": "general.bread_21",
+    "Brazil": "general.brazil_3",
+    "Various regions": "general.various_regions",
+    "Traditional": "general.traditional_8",
+    "Brazilian bread flour": "general.brazilian_bread_flour",
+    "Optional to improve flavor and scheduling": "general.optional_to_improve_flavor_and_scheduling",
+    "Medium": "general.medium_6",
+    "Breakfast bread": "general.breakfast_bread_2",
+    "Snacks": "general.snacks",
+    "Sweet or savory fillings": "general.sweet_or_savory_fillings",
+    "Brazilian bakery manuals": "general.brazilian_bakery_manuals"
+  },
+  "src\\data\\styles\\bread\\pita_bread_flatbread.ts": {
+    "Pita Bread": "general.pita_bread",
+    "Classic Flatbreads": "general.classic_flatbreads_5",
+    "Bread": "general.bread_22",
+    "Middle East": "general.middle_east",
+    "Levant and Mediterranean": "general.levant_and_mediterranean",
+    "Short bench rest after shaping": "general.short_bench_rest_after_shaping",
+    "Optional overnight bulk": "general.optional_overnight_bulk_2",
+    "Medium": "general.medium_7",
+    "Pocket flatbread": "general.pocket_flatbread",
+    "Wraps and sandwiches": "general.wraps_and_sandwiches",
+    "Flatbread and Middle Eastern baking literature": "general.flatbread_and_middle_eastern_baking_literature",
+    "Modernist Bread": "general.modernist_bread_17"
+  },
+  "src\\data\\styles\\bread\\pretzel_dough_classic.ts": {
+    "Specialty Breads": "general.specialty_breads_2",
+    "Bread": "general.bread_23",
+    "Germany": "general.germany",
+    "Bavaria and others": "general.bavaria_and_others",
+    "Traditional": "general.traditional_9",
+    "Frequently retarded for flavor and handling": "general.frequently_retarded_for_flavor_and_handling",
+    "Medium": "general.medium_8",
+    "Traditional pretzels": "general.traditional_pretzels",
+    "Pretzel rolls and sticks": "general.pretzel_rolls_and_sticks",
+    "German baking literature": "general.german_baking_literature",
+    "Modernist Bread": "general.modernist_bread_18"
+  },
+  "src\\data\\styles\\bread\\seventy_percent_rye_sour.ts": {
+    "Bread": "general.bread_24",
+    "Germany": "general.germany_2",
+    "Central Europe": "general.central_europe",
+    "Traditional": "general.traditional_10",
+    "Occasional short retards possible": "general.occasional_short_retards_possible",
+    "Expert": "general.expert_6",
+    "Traditional rye loaves": "general.traditional_rye_loaves",
+    "Cold cuts and cheese": "general.cold_cuts_and_cheese",
+    "German rye bread standards": "general.german_rye_bread_standards"
+  },
+  "src\\data\\styles\\bread\\tartine_country_loaf.ts": {
+    "Bread": "general.bread_25",
+    "United States": "general.united_states_3",
+    "San Francisco": "general.san_francisco",
+    "Expert": "general.expert_7",
+    "Artisan sourdough": "general.artisan_sourdough",
+    "Table bread": "general.table_bread_3",
+    "Modernist Bread": "general.modernist_bread_19"
+  },
+  "src\\data\\styles\\bread\\vollkornbrot_100_rye.ts": {
+    "Bread": "general.bread_26",
+    "Germany": "general.germany_3",
+    "Central Europe": "general.central_europe_2",
+    "Traditional": "general.traditional_11",
+    "Sometimes retarded to manage scheduling": "general.sometimes_retarded_to_manage_scheduling",
+    "Expert": "general.expert_8",
+    "Dense wholegrain rye bread": "general.dense_wholegrain_rye_bread",
+    "Long keeping breads": "general.long_keeping_breads",
+    "German wholegrain bread traditions": "general.german_wholegrain_bread_traditions"
+  },
+  "src\\data\\styles\\bread\\wheat_tortilla.ts": {
+    "Wheat Flour Tortilla": "general.wheat_flour_tortilla",
+    "Classic Flatbreads": "general.classic_flatbreads_6",
+    "Bread": "general.bread_27",
+    "Mexico": "general.mexico",
+    "Northern Mexico and Southwest US": "general.northern_mexico_and_southwest_us",
+    "No traditional yeast proofing steps": "general.no_traditional_yeast_proofing_steps",
+    "Optional dough rest in fridge": "general.optional_dough_rest_in_fridge",
+    "Medium": "general.medium_9",
+    "Mexican flatbread literature": "general.mexican_flatbread_literature",
+    "Modernist Bread": "general.modernist_bread_20"
+  },
+  "src\\data\\styles\\bread\\whole_wheat_100.ts": {
+    "Bread": "general.bread_28",
+    "Global": "general.global_3",
+    "Modern": "general.modern_2",
+    "Expert": "general.expert_9",
+    "Wholegrain sandwich bread": "general.wholegrain_sandwich_bread",
+    "Toast": "general.toast_6",
+    "Modernist Bread": "general.modernist_bread_21",
+    "Wholegrain baking literature": "general.wholegrain_baking_literature"
+  },
+  "src\\data\\styles\\library\\bread\\enriched.ts": {
+    "France": "general.france_4",
+    "Normandy": "general.normandy",
+    "Hard": "general.hard_12",
+    "The Art of French Baking": "general.the_art_of_french_baking",
+    "Cold Ingredients": "general.cold_ingredients",
+    "Windowpane First": "general.windowpane_first",
+    "Dough is an oily soup": "general.dough_is_an_oily_soup",
+    "Challah": "general.challah",
+    "French History": "general.french_history",
+    "Direct": "general.direct",
+    "Ideal": "general.ideal",
+    "Jewish Diaspora": "general.jewish_diaspora",
+    "Eastern Europe": "general.eastern_europe",
+    "Traditional": "general.traditional_12",
+    "Mix to medium development": "general.mix_to_medium_development",
+    "Medium": "general.medium_10",
+    "Double Egg Wash": "general.double_egg_wash",
+    "Braid tears during proof": "general.braid_tears_during_proof",
+    "Brioche": "general.brioche",
+    "Jewish Tradition": "general.jewish_tradition",
+    "Authentic": "general.authentic",
+    "Classic Burger Bun": "general.classic_burger_bun",
+    "General": "general.general",
+    "Mix to full development": "general.mix_to_full_development",
+    "Easy": "general.easy",
+    "Flatten the Ball": "general.flatten_the_ball",
+    "Steam is the Enemy": "general.steam_is_the_enemy",
+    "Bun splits horizontally": "general.bun_splits_horizontally",
+    "Potato Bun": "general.potato_bun",
+    "Burger Science": "general.burger_science",
+    "Japan": "general.japan_3",
+    "National": "general.national",
+    "Mix All": "general.mix_all",
+    "Proof in Pullman Pan": "general.proof_in_pullman_pan",
+    "Lid On vs Off": "general.lid_on_vs_off",
+    "Western Sandwich Bread": "general.western_sandwich_bread",
+    "Asian Baking": "general.asian_baking",
+    "Panettone Artigianale": "general.panettone_artigianale",
+    "Italy": "general.italy_4",
+    "Milan": "general.milan",
+    "Renaissance": "general.renaissance",
+    "Hang upside down": "general.hang_upside_down",
+    "Expert": "general.expert_10",
+    "The Hang": "general.the_hang",
+    "Tripling Rule": "general.tripling_rule",
+    "Taste is Sour": "general.taste_is_sour",
+    "Pandoro": "general.pandoro",
+    "Italian Law": "general.italian_law",
+    "Sourdough": "general.sourdough"
+  },
+  "src\\data\\styles\\library\\bread\\rustic.ts": {
+    "Baguette de Tradition": "general.baguette_de_tradition",
+    "France": "general.france_5",
+    "National": "general.national_2",
+    "Hard": "general.hard_13",
+    "Ciabatta": "general.ciabatta",
+    "Italy": "general.italy_5",
+    "Deck or Home Oven": "general.deck_or_home_oven",
+    "Expert": "general.expert_11",
+    "Pain de Campagne": "general.pain_de_campagne",
+    "Rural": "general.rural",
+    "Traditional": "general.traditional_13",
+    "Dutch Oven or Deck": "general.dutch_oven_or_deck",
+    "Medium": "general.medium_11",
+    "San Francisco Sourdough": "general.san_francisco_sourdough",
+    "San Francisco": "general.san_francisco_2",
+    "Dutch Oven": "general.dutch_oven",
+    "Boudin Bakery History": "general.boudin_bakery_history"
+  },
+  "src\\data\\styles\\library\\pastry\\sweets.ts": {
+    "NY Style Chip Cookie": "general.ny_style_chip_cookie",
+    "New York City": "general.new_york_city",
+    "Mix dry ingredients": "general.mix_dry_ingredients",
+    "Bake hot and fast": "general.bake_hot_and_fast",
+    "Easy": "general.easy_2",
+    "Levain Bakery": "general.levain_bakery",
+    "Do Not Cream": "general.do_not_cream",
+    "Cookie is flat": "general.cookie_is_flat",
+    "Toll House": "general.toll_house",
+    "Cookie Chemistry": "general.cookie_chemistry",
+    "Direct": "general.direct_2",
+    "Ideal": "general.ideal_2",
+    "Brown Sugar": "general.brown_sugar",
+    "White Sugar": "general.white_sugar",
+    "Cold Butter Cubes": "general.cold_butter_cubes",
+    "Whole Eggs": "general.whole_eggs",
+    "Dark Chocolate Chips": "general.dark_chocolate_chips",
+    "Cornstarch": "general.cornstarch",
+    "Baking Powder": "general.baking_powder",
+    "Sea Salt": "general.sea_salt",
+    "French Croissant": "general.french_croissant",
+    "Bake": "general.bake_2",
+    "Expert": "general.expert_12",
+    "Viennoiserie Disciplinare": "general.viennoiserie_disciplinare",
+    "Plasticity Match": "general.plasticity_match",
+    "The Wobble": "general.the_wobble",
+    "Pool of butter in oven": "general.pool_of_butter_in_oven",
+    "Puff Pastry": "general.puff_pastry",
+    "Lamination Math": "general.lamination_math",
+    "Poolish": "general.poolish",
+    "BULK": "general.bulk_2",
+    "Cold Ferment": "general.cold_ferment",
+    "PREP": "general.prep",
+    "PROOF": "general.proof",
+    "Final Proof": "general.final_proof",
+    "BAKE": "general.bake_3",
+    "Bread Flour": "general.bread_flour",
+    "Water": "general.water",
+    "Whole Milk": "general.whole_milk",
+    "Sugar": "general.sugar",
+    "Salt": "general.salt_2",
+    "Egg Wash": "general.egg_wash",
+    "Classic Cinnamon Roll": "general.classic_cinnamon_roll",
+    "General": "general.general_2",
+    "Mix Enriched Dough": "general.mix_enriched_dough",
+    "Medium": "general.medium_12",
+    "Dental Floss Cut": "general.dental_floss_cut",
+    "The Cream Hack": "general.the_cream_hack",
+    "Centers popped up": "general.centers_popped_up",
+    "Sticky Bun": "general.sticky_bun",
+    "Texture Balance": "general.texture_balance",
+    "Authentic": "general.authentic_2",
+    "Whole Egg": "general.whole_egg",
+    "Instant Yeast": "general.instant_yeast",
+    "Fudgy Brownie": "general.fudgy_brownie",
+    "Chicago": "general.chicago",
+    "Fold in Dry": "general.fold_in_dry",
+    "Palmer House Hotel": "general.palmer_house_hotel",
+    "The Shiny Crust": "general.the_shiny_crust",
+    "Ice Bath": "general.ice_bath",
+    "Cakey texture": "general.cakey_texture",
+    "Chocolate Cake": "general.chocolate_cake",
+    "Flavor Profiling": "general.flavor_profiling",
+    "Not Recommended": "general.not_recommended",
+    "AP Flour": "general.ap_flour",
+    "Cocoa Powder": "general.cocoa_powder",
+    "Vanilla Extract": "general.vanilla_extract"
+  },
+  "src\\data\\styles\\library\\pizza\\classics.ts": {
+    "New York Slice": "general.new_york_slice",
+    "New York City": "general.new_york_city_2",
+    "Medium": "general.medium_13",
+    "Cheese Slice": "general.cheese_slice",
+    "Pepperoni": "general.pepperoni",
+    "White Pie": "general.white_pie",
+    "Oregano": "general.oregano",
+    "Vodka Sauce": "general.vodka_sauce",
+    "Hot Honey": "general.hot_honey",
+    "The Pizza Bible": "general.the_pizza_bible",
+    "Tony Gemignani": "general.tony_gemignani",
+    "PMQ Pizza Magazine": "general.pmq_pizza_magazine"
+  },
+  "src\\data\\styles\\library\\pizza\\pan_styles.ts": {
+    "Detroit Style Pizza": "general.detroit_style_pizza",
+    "Medium": "general.medium_14",
+    "Classic Red Top": "general.classic_red_top",
+    "Brick Cheese": "general.brick_cheese",
+    "Pepperoni cups": "general.pepperoni_cups",
+    "Burrata": "general.burrata",
+    "Hot Honey": "general.hot_honey_2",
+    "Vernors Ginger Ale": "general.vernors_ginger_ale",
+    "Pizza Today Magazine": "general.pizza_today_magazine",
+    "Grandma Pizza": "general.grandma_pizza",
+    "Easy": "general.easy_3",
+    "Vodka Sauce": "general.vodka_sauce_2",
+    "Garlic": "general.garlic",
+    "Crushed Tomatoes": "general.crushed_tomatoes",
+    "Mozzarella": "general.mozzarella",
+    "Olive Oil": "general.olive_oil",
+    "Pesto": "general.pesto",
+    "Fresh Mozzarella": "general.fresh_mozzarella",
+    "None": "general.none"
+  },
+  "src\\data\\styles\\library\\pizza\\thin_styles.ts": {
+    "Chicago Tavern Style": "general.chicago_tavern_style",
+    "Medium": "general.medium_15",
+    "Pepperoni": "general.pepperoni_2",
+    "Fennel Sausage": "general.fennel_sausage",
+    "Giardiniera": "general.giardiniera",
+    "Mozzarella": "general.mozzarella_2",
+    "Italian Beef": "general.italian_beef",
+    "Old Style Beer": "general.old_style_beer",
+    "Steve Dolinsky": "general.steve_dolinsky"
+  },
+  "src\\data\\styles\\pastry\\babka_sweet_bread.ts": {
+    "Enriched Sweet Doughs": "general.enriched_sweet_doughs",
+    "Pastry": "general.pastry",
+    "Eastern Europe": "general.eastern_europe_2",
+    "Jewish baking traditions": "general.jewish_baking_traditions",
+    "Common overnight retard for flavor and handling": "general.common_overnight_retard_for_flavor_and_handling",
+    "Medium": "general.medium_16",
+    "Sweet loaf": "general.sweet_loaf",
+    "Dessert bread": "general.dessert_bread_2",
+    "Modernist Bread": "general.modernist_bread_22",
+    "East European baking traditions": "general.east_european_baking_traditions"
+  },
+  "src\\data\\styles\\pastry\\berliner_bomboloni.ts": {
+    "Fried Doughs": "general.fried_doughs",
+    "Pastry": "general.pastry_2",
+    "Traditional": "general.traditional_14",
+    "Bread or strong pastry flour": "general.bread_or_strong_pastry_flour",
+    "Sometimes retarded overnight": "general.sometimes_retarded_overnight",
+    "Medium": "general.medium_17",
+    "Filled donuts": "general.filled_donuts",
+    "Sweet fried pastries": "general.sweet_fried_pastries",
+    "European baking literature": "general.european_baking_literature",
+    "Modernist Bread": "general.modernist_bread_23"
+  },
+  "src\\data\\styles\\pastry\\cinnamon_rolls_classic.ts": {
+    "Classic Cinnamon Rolls": "general.classic_cinnamon_rolls",
+    "Enriched Sweet Doughs": "general.enriched_sweet_doughs_2",
+    "Pastry": "general.pastry_3",
+    "Multiple": "general.multiple",
+    "Frequently retarded overnight for convenience": "general.frequently_retarded_overnight_for_convenience",
+    "Medium": "general.medium_18",
+    "Breakfast pastry": "general.breakfast_pastry",
+    "AIB sweet dough guidelines": "general.aib_sweet_dough_guidelines",
+    "Modernist Bread": "general.modernist_bread_24",
+    "Bread Flour": "general.bread_flour_2",
+    "Whole Milk": "general.whole_milk_2",
+    "Sugar": "general.sugar_2",
+    "Whole Egg": "general.whole_egg_2",
+    "Instant Yeast": "general.instant_yeast_2",
+    "Salt": "general.salt_3"
+  },
+  "src\\data\\styles\\pastry\\colomba_pasquale.ts": {
+    "Colomba Pasquale": "general.colomba_pasquale",
+    "Festive Breads": "general.festive_breads",
+    "Pastry": "general.pastry_4",
+    "Italy": "general.italy_6",
+    "Northern Italy": "general.northern_italy_2",
+    "Very strong flour suitable for rich doughs": "general.very_strong_flour_suitable_for_rich_doughs",
+    "Hard": "general.hard_14",
+    "Festive sweet bread for Easter": "general.festive_sweet_bread_for_easter",
+    "Modernist Bread": "general.modernist_bread_25",
+    "Italian festive bread traditions": "general.italian_festive_bread_traditions"
+  },
+  "src\\data\\styles\\pastry\\croissant_classic.ts": {
+    "Classic French Croissant": "general.classic_french_croissant",
+    "Pastry": "general.pastry_5",
+    "France": "general.france_6",
+    "Paris and beyond": "general.paris_and_beyond",
+    "Mandatory overnight retarding for lamination": "general.mandatory_overnight_retarding_for_lamination",
+    "Hard": "general.hard_15",
+    "Breakfast pastry": "general.breakfast_pastry_2",
+    "Viennoiserie display": "general.viennoiserie_display",
+    "Bread Flour": "general.bread_flour_3",
+    "Water": "general.water_2",
+    "Whole Milk": "general.whole_milk_3",
+    "Sugar": "general.sugar_3",
+    "Salt": "general.salt_4",
+    "Modernist Bread": "general.modernist_bread_26"
+  },
+  "src\\data\\styles\\pastry\\malasadas_fried_dough.ts": {
+    "Malasadas": "general.malasadas",
+    "Fried Doughs": "general.fried_doughs_2",
+    "Pastry": "general.pastry_6",
+    "Portuguese diaspora": "general.portuguese_diaspora",
+    "Optional for scheduling": "general.optional_for_scheduling",
+    "Medium": "general.medium_19",
+    "Fried sweet doughnuts": "general.fried_sweet_doughnuts",
+    "Festive treats": "general.festive_treats",
+    "Regional baking literature": "general.regional_baking_literature",
+    "Modernist Bread": "general.modernist_bread_27"
+  },
+  "src\\data\\styles\\pastry\\pain_aux_raisins.ts": {
+    "Pain aux Raisins": "general.pain_aux_raisins",
+    "Pastry": "general.pastry_7",
+    "France": "general.france_7",
+    "Bread or strong pastry flour": "general.bread_or_strong_pastry_flour_2",
+    "Often chilled before slicing and baking": "general.often_chilled_before_slicing_and_baking",
+    "Medium": "general.medium_20",
+    "Sweet breakfast pastry": "general.sweet_breakfast_pastry",
+    "Viennoiserie item": "general.viennoiserie_item",
+    "Modernist Bread": "general.modernist_bread_28"
+  },
+  "src\\data\\styles\\pastry\\pain_au_chocolat.ts": {
+    "Pain au Chocolat": "general.pain_au_chocolat",
+    "Pastry": "general.pastry_8",
+    "France": "general.france_8",
+    "Chilling necessary between lamination steps": "general.chilling_necessary_between_lamination_steps",
+    "Medium": "general.medium_21",
+    "Breakfast pastry": "general.breakfast_pastry_3",
+    "Snack pastry": "general.snack_pastry",
+    "Modernist Bread": "general.modernist_bread_29"
+  },
+  "src\\data\\styles\\pastry\\panettone_artisanal.ts": {
+    "Artisanal Panettone": "general.artisanal_panettone",
+    "Festive Breads": "general.festive_breads_2",
+    "Pastry": "general.pastry_9",
+    "Italy": "general.italy_7",
+    "Northern Italy": "general.northern_italy_3",
+    "Hard": "general.hard_16",
+    "Festive sweet bread": "general.festive_sweet_bread",
+    "Modernist Bread": "general.modernist_bread_30",
+    "Italian panettone master bakers": "general.italian_panettone_master_bakers"
+  },
+  "src\\data\\styles\\pastry\\stollen_german.ts": {
+    "German Stollen": "general.german_stollen",
+    "Festive Breads": "general.festive_breads_3",
+    "Pastry": "general.pastry_10",
+    "Germany": "general.germany_4",
+    "Dresden and others": "general.dresden_and_others",
+    "Traditional": "general.traditional_15",
+    "Medium": "general.medium_22",
+    "Christmas bread": "general.christmas_bread",
+    "Festive sweet loaf": "general.festive_sweet_loaf",
+    "Modernist Bread": "general.modernist_bread_31",
+    "German baking traditions": "general.german_baking_traditions"
+  },
+  "src\\data\\styles\\pastry\\sweet_rolls_neutral.ts": {
+    "Enriched Sweet Doughs": "general.enriched_sweet_doughs_3",
+    "Pastry": "general.pastry_11",
+    "Global": "general.global_4",
+    "Commercial and artisan bakeries": "general.commercial_and_artisan_bakeries",
+    "Used frequently for scheduling flexibility": "general.used_frequently_for_scheduling_flexibility",
+    "Hard": "general.hard_17",
+    "Generic sweet rolls": "general.generic_sweet_rolls",
+    "Base for multiple pastry formats": "general.base_for_multiple_pastry_formats",
+    "AIB sweet dough guidelines": "general.aib_sweet_dough_guidelines_2",
+    "Professional pastry literature": "general.professional_pastry_literature"
+  },
+  "src\\data\\styles\\pastry\\yeasted_donuts.ts": {
+    "Yeasted Ring Donuts": "general.yeasted_ring_donuts",
+    "Fried Doughs": "general.fried_doughs_3",
+    "Pastry": "general.pastry_12",
+    "United States": "general.united_states_4",
+    "Globalized": "general.globalized",
+    "Often retarded for production convenience": "general.often_retarded_for_production_convenience",
+    "Medium": "general.medium_23",
+    "Fried donuts": "general.fried_donuts",
+    "Glazed or filled donuts": "general.glazed_or_filled_donuts",
+    "AIB fryer dough guidelines": "general.aib_fryer_dough_guidelines",
+    "Professional donut literature": "general.professional_donut_literature"
+  },
+  "src\\data\\styles\\pizza\\brazilian_pizzeria_gas_deck.ts": {
+    "Brazilian Pizzeria": "general.brazilian_pizzeria",
+    "Pizza": "general.pizza",
+    "Brazil": "general.brazil_4",
+    "Urban pizzerias": "general.urban_pizzerias",
+    "Medium": "general.medium_24",
+    "Brazilian pizza trade literature": "general.brazilian_pizza_trade_literature"
+  },
+  "src\\data\\styles\\pizza\\california_style.ts": {
+    "California Style": "general.california_style",
+    "American Artisan Pizza": "general.american_artisan_pizza",
+    "Pizza": "general.pizza_2",
+    "United States": "general.united_states_5",
+    "California": "general.california",
+    "Common for flavor": "general.common_for_flavor",
+    "Medium": "general.medium_25",
+    "Gourmet personal pizzas": "general.gourmet_personal_pizzas",
+    "Creative toppings": "general.creative_toppings",
+    "Modernist Pizza": "general.modernist_pizza",
+    "California cuisine history": "general.california_cuisine_history"
+  },
+  "src\\data\\styles\\pizza\\chicago_deep_dish.ts": {
+    "Chicago Deep Dish": "general.chicago_deep_dish",
+    "American Pan Pizza": "general.american_pan_pizza",
+    "Pizza": "general.pizza_3",
+    "United States": "general.united_states_6",
+    "Chicago": "general.chicago_2",
+    "Optional overnight": "general.optional_overnight",
+    "Medium": "general.medium_26",
+    "Deep dish pizza": "general.deep_dish_pizza",
+    "Modernist Pizza": "general.modernist_pizza_2",
+    "Chicago pizza history": "general.chicago_pizza_history"
+  },
+  "src\\data\\styles\\pizza\\detroit_style_classic.ts": {
+    "Detroit Pizza": "general.detroit_pizza",
+    "Pizza": "general.pizza_4",
+    "United States": "general.united_states_7",
+    "Detroit": "general.detroit",
+    "Optional overnight in pan": "general.optional_overnight_in_pan",
+    "Hard": "general.hard_18",
+    "Thick pan pizza": "general.thick_pan_pizza",
+    "Modernist Pizza": "general.modernist_pizza_3",
+    "Detroit pizza historical accounts": "general.detroit_pizza_historical_accounts"
+  },
+  "src\\data\\styles\\pizza\\neapolitan_avpn_classic.ts": {
+    "Neapolitan AVPN Classic": "general.neapolitan_avpn_classic",
+    "Neapolitan Pizza": "general.neapolitan_pizza",
+    "Pizza": "general.pizza_5",
+    "Italy": "general.italy_8",
+    "Naples": "general.naples",
+    "Medium": "general.medium_27",
+    "Authentic Neapolitan Margherita": "general.authentic_neapolitan_margherita",
+    "Marinara": "general.marinara",
+    "AVPN International Regulations": "general.avpn_international_regulations",
+    "Modernist Pizza": "general.modernist_pizza_4",
+    "UNESCO Intangible Cultural Heritage": "general.unesco_intangible_cultural_heritage"
+  },
+  "src\\data\\styles\\pizza\\neapolitan_contemporary_high_hydration.ts": {
+    "Neapolitan Pizza": "general.neapolitan_pizza_2",
+    "Pizza": "general.pizza_6",
+    "Italy": "general.italy_9",
+    "Hard": "general.hard_19",
+    "Gourmet toppings": "general.gourmet_toppings",
+    "Modernist Pizza": "general.modernist_pizza_5",
+    "Pizza Research Institute": "general.pizza_research_institute",
+    "Luciano Pignataro": "general.luciano_pignataro"
+  },
+  "src\\data\\styles\\pizza\\neapolitan_home_oven_adapted.ts": {
+    "Neapolitan Pizza": "general.neapolitan_pizza_3",
+    "Pizza": "general.pizza_7",
+    "Global": "general.global_5",
+    "Home Kitchens": "general.home_kitchens",
+    "Essential for home schedules": "general.essential_for_home_schedules",
+    "Hard": "general.hard_20",
+    "Home baking without pizza oven": "general.home_baking_without_pizza_oven",
+    "Crispier crust lovers": "general.crispier_crust_lovers"
+  },
+  "src\\data\\styles\\pizza\\new_haven_apizza.ts": {
+    "American Artisan Pizza": "general.american_artisan_pizza_2",
+    "Pizza": "general.pizza_8",
+    "United States": "general.united_states_8",
+    "Essential for flavor and char": "general.essential_for_flavor_and_char",
+    "Medium": "general.medium_28",
+    "Charred thin crust": "general.charred_thin_crust",
+    "Clam pie": "general.clam_pie",
+    "Modernist Pizza": "general.modernist_pizza_6",
+    "New Haven pizza lore": "general.new_haven_pizza_lore"
+  },
+  "src\\data\\styles\\pizza\\new_york_artisan_cold_ferment.ts": {
+    "New York Style Pizza": "general.new_york_style_pizza",
+    "Pizza": "general.pizza_9",
+    "United States": "general.united_states_9",
+    "Medium": "general.medium_29",
+    "Premium slice shops": "general.premium_slice_shops",
+    "Whole pie artisan pizzerias": "general.whole_pie_artisan_pizzerias",
+    "Modernist Pizza": "general.modernist_pizza_7",
+    "Frank Pinello": "general.frank_pinello",
+    "Mark Iacono": "general.mark_iacono"
+  },
+  "src\\data\\styles\\pizza\\new_york_slice_shop.ts": {
+    "New York Style Pizza": "general.new_york_style_pizza_2",
+    "Pizza": "general.pizza_10",
+    "United States": "general.united_states_10",
+    "New York City": "general.new_york_city_3",
+    "Mandatory for texture and flavor": "general.mandatory_for_texture_and_flavor",
+    "Medium": "general.medium_30",
+    "Modernist Pizza": "general.modernist_pizza_8"
+  },
+  "src\\data\\styles\\pizza\\roman_scrocchiarella.ts": {
+    "Roman Thin Pizza": "general.roman_thin_pizza",
+    "Pizza": "general.pizza_11",
+    "Italy": "general.italy_10",
+    "Rome": "general.rome",
+    "Short proof in pans or on trays": "general.short_proof_in_pans_or_on_trays",
+    "Medium": "general.medium_31",
+    "Roman thin pizza": "general.roman_thin_pizza_2",
+    "Crispy pizza base": "general.crispy_pizza_base",
+    "Modernist Pizza": "general.modernist_pizza_9",
+    "Italian pizza technical literature": "general.italian_pizza_technical_literature"
+  },
+  "src\\data\\styles\\pizza\\roman_teglia_pan.ts": {
+    "Roman Pan Pizza": "general.roman_pan_pizza",
+    "Pizza": "general.pizza_12",
+    "Italy": "general.italy_11",
+    "Rome": "general.rome_2",
+    "Common for flavor and extensibility": "general.common_for_flavor_and_extensibility",
+    "Expert": "general.expert_13",
+    "Roman pan pizza": "general.roman_pan_pizza_2",
+    "Modernist Pizza": "general.modernist_pizza_10",
+    "Roman pan pizza literature": "general.roman_pan_pizza_literature"
+  },
+  "src\\data\\styles\\pizza\\sicilian_grandma_pan.ts": {
+    "American Pan Pizza": "general.american_pan_pizza_2",
+    "Pizza": "general.pizza_13",
+    "United States": "general.united_states_11",
+    "Hard": "general.hard_21",
+    "Modernist Pizza": "general.modernist_pizza_11",
+    "American pizza baking practice": "general.american_pizza_baking_practice"
+  },
+  "src\\data\\styles\\pizza\\st_louis_thin.ts": {
+    "American Cracker Thin": "ui.american_cracker_thin",
+    "Pizza": "ui.pizza",
+    "United States": "ui.united_states",
+    "Minimal or none": "ui.minimal_or_none",
+    "Not typical": "ui.not_typical",
+    "Easy": "ui.easy",
+    "Cracker crust pizza": "ui.cracker_crust_pizza",
+    "Party snacks": "ui.party_snacks",
+    "Modernist Pizza": "ui.modernist_pizza",
+    "Midwest pizza traditions": "ui.midwest_pizza_traditions"
+  },
+  "src\\data\\styles\\regions\\asia.ts": {
+    "Balanced": "general.balanced_2",
+    "High": "general.high",
+    "Strong Wheat": "general.strong_wheat",
+    "Convection": "general.convection",
+    "Even": "general.even",
+    "Normal": "general.normal",
+    "Medium": "general.medium_32",
+    "Tandoor": "general.tandoor",
+    "Charred bubbles": "general.charred_bubbles",
+    "Fast": "general.fast",
+    "Lactic": "general.lactic",
+    "Taiwanese burger": "general.taiwanese_burger",
+    "Steamer": "general.steamer",
+    "Moderate": "general.moderate",
+    "Neutral": "general.neutral",
+    "None": "general.none_2",
+    "Gua Bao": "general.gua_bao",
+    "Lao Mian": "general.lao_mian",
+    "Mantou": "general.mantou",
+    "Barbarian Head": "general.barbarian_head",
+    "Bamboo Steamer": "general.bamboo_steamer",
+    "Standard": "general.standard_2",
+    "Second Proof": "general.second_proof",
+    "Zombie Skin": "general.zombie_skin",
+    "Lacha": "general.lacha",
+    "Conduction": "general.conduction",
+    "Laminated layers": "general.laminated_layers"
+  },
+  "src\\data\\styles\\regions\\europe.ts": {
+    "Tradition": "general.tradition",
+    "French Soft Wheat": "general.french_soft_wheat",
+    "Controlled": "general.controlled",
+    "Strong Wheat": "general.strong_wheat_2",
+    "Even": "general.even_2",
+    "Lactic": "general.lactic_2",
+    "Moderate": "general.moderate_2",
+    "German Wheat": "general.german_wheat",
+    "Convection": "general.convection_2",
+    "Radiant": "general.radiant",
+    "Restrained": "general.restrained",
+    "Minimal": "general.minimal",
+    "Extensible": "general.extensible",
+    "High": "general.high_2",
+    "Conduction": "general.conduction_2",
+    "Fork Split": "general.fork_split",
+    "Medium": "general.medium_33",
+    "Browned": "general.browned",
+    "Standard": "general.standard_3",
+    "Normal": "general.normal_2",
+    "Nave": "general.nave",
+    "Very High": "general.very_high",
+    "Pullman Pan": "general.pullman_pan",
+    "Thick": "general.thick",
+    "Sourdough": "general.sourdough_2",
+    "Acetic": "general.acetic",
+    "Inhibited by Acid": "general.inhibited_by_acid",
+    "Starch Attack": "general.starch_attack",
+    "Tijgerbrood": "general.tijgerbrood",
+    "Dutch Crunch": "general.dutch_crunch",
+    "Balanced": "general.balanced_3",
+    "Soft": "general.soft",
+    "Tiger Paste": "general.tiger_paste",
+    "Weak": "general.weak",
+    "Irish Soft Wheat": "general.irish_soft_wheat",
+    "None": "general.none_3",
+    "Blessing the bread": "general.blessing_the_bread"
+  },
+  "src\\data\\styles\\regions\\italy.ts": {
+    "Pizza Napoletana STG": "general.pizza_napoletana_stg",
+    "High Heat": "general.high_heat",
+    "Direct Method": "general.direct_method",
+    "Wood Fired": "general.wood_fired",
+    "Water": "general.water_3",
+    "Salt": "general.salt_5",
+    "Fresh Yeast": "general.fresh_yeast",
+    "Leopard Spotting": "general.leopard_spotting",
+    "Lactic Dominant": "general.lactic_dominant",
+    "Controlled Mixing": "general.controlled_mixing",
+    "Flash Bake": "general.flash_bake",
+    "AVPN International Regulations": "general.avpn_international_regulations_2",
+    "The Pizza Bible": "general.the_pizza_bible_2",
+    "Use Room Temp Water": "general.use_room_temp_water",
+    "Roman Tonda": "general.roman_tonda",
+    "NY Style": "general.ny_style",
+    "AVPN Regulations": "general.avpn_regulations",
+    "Modern Evolution": "general.modern_evolution",
+    "Direct": "general.direct_3",
+    "Authentic": "general.authentic_3",
+    "Poolish": "general.poolish_2",
+    "Possible": "general.possible",
+    "Biga": "general.biga",
+    "Romana Tonda": "general.romana_tonda",
+    "Pizza in Teglia Romana": "general.pizza_in_teglia_romana",
+    "High Hydration": "general.high_hydration",
+    "Pan Pizza": "general.pan_pizza",
+    "Cold Ferment": "general.cold_ferment_2",
+    "Airy Crumb": "general.airy_crumb",
+    "Olive Oil": "general.olive_oil_2",
+    "Dry Yeast": "general.dry_yeast",
+    "Deck Oven": "general.deck_oven",
+    "Bassinage Mixing": "general.bassinage_mixing",
+    "Floor then Top": "general.floor_then_top",
+    "Angelo Iezzi Method": "general.angelo_iezzi_method",
+    "Pizza Today": "general.pizza_today",
+    "Cold Water is Critical": "general.cold_water_is_critical",
+    "No Rolling Pins": "general.no_rolling_pins",
+    "Dough tears during stretching": "general.dough_tears_during_stretching",
+    "Focaccia": "general.focaccia",
+    "Bonci Method": "general.bonci_method",
+    "Ideal": "general.ideal_3",
+    "Low Hydration": "general.low_hydration",
+    "Rolling Pin": "general.rolling_pin",
+    "Crispy": "general.crispy",
+    "Medium": "general.medium_34",
+    "Consistent": "general.consistent",
+    "Standard": "general.standard_4",
+    "Normal": "general.normal_3",
+    "Moderate": "general.moderate_3",
+    "Stiff Mix": "general.stiff_mix",
+    "Short Bulk": "general.short_bulk",
+    "Roman Pizza Academy": "general.roman_pizza_academy",
+    "Dock the dough": "general.dock_the_dough",
+    "Dough shrinks back when rolling": "general.dough_shrinks_back_when_rolling",
+    "Neapolitan": "general.neapolitan_2",
+    "Roman Tradition": "general.roman_tradition",
+    "Focaccia Genovese": "general.focaccia_genovese_2",
+    "High Oil": "general.high_oil",
+    "Breakfast": "general.breakfast",
+    "Emulsion": "general.emulsion",
+    "Soft Wheat Flour": "general.soft_wheat_flour",
+    "Extensible": "general.extensible_2",
+    "Soft Wheat": "general.soft_wheat",
+    "Fast": "general.fast_2",
+    "High": "general.high_3",
+    "Short Mix": "general.short_mix",
+    "First Rise": "general.first_rise",
+    "Pan Stretch": "general.pan_stretch",
+    "Moist Bake": "general.moist_bake",
+    "The Brine is King": "general.the_brine_is_king",
+    "Blind Bake the Bottom": "general.blind_bake_the_bottom",
+    "Dimples disappear during baking": "general.dimples_disappear_during_baking",
+    "Focaccia Barese": "general.focaccia_barese",
+    "Ligurian Palate": "general.ligurian_palate",
+    "Pizza Teglia": "general.pizza_teglia",
+    "Sfincione Palermitano": "general.sfincione_palermitano",
+    "Sponge": "general.sponge",
+    "Street Food": "general.street_food",
+    "Onions": "general.onions",
+    "Protected Top": "general.protected_top",
+    "Soft Mix": "general.soft_mix",
+    "Double Rise": "general.double_rise",
+    "Topping Shield": "general.topping_shield",
+    "Sicilian Food History": "general.sicilian_food_history",
+    "Gambero Rosso": "general.gambero_rosso",
+    "Strutto for Softness": "general.strutto_for_softness",
+    "The Sauce Shield": "general.the_sauce_shield",
+    "Using Oil instead of Lard": "general.using_oil_instead_of_lard",
+    "Palermo Tradition": "general.palermo_tradition",
+    "No Salt": "general.no_salt",
+    "Sourdough": "general.sourdough_3",
+    "Ancient": "general.ancient",
+    "Radiant": "general.radiant_2",
+    "Irregular": "general.irregular",
+    "Very High": "general.very_high_2",
+    "Biga Natural": "general.biga_natural",
+    "Careful Bulk": "general.careful_bulk",
+    "Dry Bake": "general.dry_bake",
+    "Consorzio del Pane Toscano DOP": "general.consorzio_del_pane_toscano_dop",
+    "Watch the Fermentation": "general.watch_the_fermentation",
+    "Pairing is Mandatory": "general.pairing_is_mandatory",
+    "Fails to brown": "general.fails_to_brown",
+    "DOP Regulation": "general.dop_regulation",
+    "French Baguette": "general.french_baguette",
+    "Ciabatta": "general.ciabatta_2",
+    "Preferment": "general.preferment_2",
+    "Modern": "general.modern_3",
+    "High Gluten Flour": "general.high_gluten_flour",
+    "Strong but Extensible": "general.strong_but_extensible",
+    "Conduction": "general.conduction_3",
+    "Massive Alveoli": "general.massive_alveoli",
+    "Controlled": "general.controlled_2",
+    "Biga Preparation": "general.biga_preparation",
+    "Coil Folds": "general.coil_folds",
+    "Shaping": "general.shaping",
+    "Rapid": "general.rapid",
+    "Steam Bake": "general.steam_bake",
+    "Modernist Bread": "general.modernist_bread_32",
+    "Handle like Nitro": "general.handle_like_nitro",
+    "Invert the Biga": "general.invert_the_biga",
+    "Baguette": "general.baguette",
+    "Arnaldo Cavallari": "general.arnaldo_cavallari",
+    "Not Recommended": "general.not_recommended_2"
+  },
+  "src\\data\\styles\\regions\\latam.ts": {
+    "Convection": "general.convection_3",
+    "Even": "general.even_3",
+    "None": "general.none_4",
+    "Scald": "general.scald",
+    "Polvilho Azedo": "general.polvilho_azedo",
+    "Balanced": "general.balanced_4",
+    "Medium": "general.medium_35",
+    "Brazilian Wheat": "general.brazilian_wheat",
+    "High": "general.high_4",
+    "Neutral": "general.neutral_2",
+    "Pestana": "general.pestana",
+    "Extensible": "general.extensible_3",
+    "Standard": "general.standard_5",
+    "Normal": "general.normal_4",
+    "Medialuna": "general.medialuna",
+    "Strong Wheat": "general.strong_wheat_3",
+    "Tight layers": "general.tight_layers",
+    "Cookie topping": "general.cookie_topping",
+    "Short Dough": "general.short_dough",
+    "South America": "general.south_america",
+    "Pizza": "general.pizza_14",
+    "Standard Wheat": "general.standard_wheat",
+    "Gas Deck": "general.gas_deck",
+    "Moderate": "general.moderate_4",
+    "Venezuelan Arepa": "general.venezuelan_arepa",
+    "Flatbread": "general.flatbread",
+    "Corn": "general.corn",
+    "Gluten Free": "general.gluten_free",
+    "Stuffed": "general.stuffed",
+    "Extreme": "general.extreme",
+    "Conduction": "general.conduction_4",
+    "Charred spots": "general.charred_spots",
+    "Argentina": "general.argentina",
+    "Pastry": "general.pastry_13",
+    "Lard": "general.lard",
+    "Fried": "general.fried",
+    "Frying Dough": "general.frying_dough",
+    "Soft Wheat": "general.soft_wheat_2",
+    "Blistered": "general.blistered",
+    "Flaky": "general.flaky"
+  },
+  "src\\data\\styles\\regions\\middle_east.ts": {
+    "Extensible": "general.extensible_4",
+    "Medium": "general.medium_36",
+    "Hollow center": "general.hollow_center",
+    "Vigorous": "general.vigorous",
+    "Neutral to slightly acidic": "general.neutral_to_slightly_acidic",
+    "Lactic": "general.lactic_3",
+    "Moderate": "general.moderate_5",
+    "Pocket Mechanism": "general.pocket_mechanism",
+    "Pekmez": "general.pekmez",
+    "Balanced": "general.balanced_5",
+    "Strong Wheat": "general.strong_wheat_4",
+    "Radiant": "general.radiant_3",
+    "Neutral": "general.neutral_3",
+    "Standard": "general.standard_6"
+  },
+  "src\\data\\styles\\regions\\north_america.ts": {
+    "New York Slice Shop": "general.new_york_slice_shop",
+    "New York City": "general.new_york_city_4",
+    "Medium": "general.medium_37",
+    "Cheese Slice": "general.cheese_slice_2",
+    "Pepperoni": "general.pepperoni_3",
+    "Gas Deck": "general.gas_deck_2",
+    "Low Moisture Mozzarella": "general.low_moisture_mozzarella",
+    "Oregano": "general.oregano_2",
+    "Garlic Powder": "general.garlic_powder",
+    "Vodka Sauce": "general.vodka_sauce_3",
+    "Modernist Pizza": "general.modernist_pizza_12",
+    "The Reheat Rule": "general.the_reheat_rule",
+    "Cheese Temp Matters": "general.cheese_temp_matters",
+    "Dough retracts when stretching": "general.dough_retracts_when_stretching",
+    "Neapolitan": "general.neapolitan_3",
+    "Direct": "general.direct_4",
+    "Ideal": "general.ideal_4",
+    "Detroit Style": "general.detroit_style",
+    "Balanced": "general.balanced_6",
+    "Bread Flour": "general.bread_flour_4",
+    "Blue Steel Pan": "general.blue_steel_pan",
+    "High": "general.high_5",
+    "Normal": "general.normal_5",
+    "Lactic": "general.lactic_4",
+    "Wisconsin Brick Cheese": "general.wisconsin_brick_cheese",
+    "Hot Honey": "general.hot_honey_3",
+    "Coney Island Hot Dog Pizza": "general.coney_island_hot_dog_pizza",
+    "The Frico Edge": "general.the_frico_edge",
+    "Cannot find Brick Cheese": "general.cannot_find_brick_cheese",
+    "Sicilian": "general.sicilian",
+    "Automotive History": "general.automotive_history",
+    "Authentic": "general.authentic_4",
+    "Chicago Deep Dish": "general.chicago_deep_dish_2",
+    "Sausage Patty": "general.sausage_patty",
+    "Spinach": "general.spinach",
+    "Deep Pan": "general.deep_pan",
+    "Neutral": "general.neutral_4",
+    "None": "general.none_5",
+    "Italian Sausage Layer": "general.italian_sausage_layer",
+    "Chunky Tomato Sauce": "general.chunky_tomato_sauce",
+    "Giardiniera": "general.giardiniera_2",
+    "Pizzeria Uno History": "general.pizzeria_uno_history",
+    "The Biscuit Factor": "general.the_biscuit_factor",
+    "Corn Oil is King": "general.corn_oil_is_king",
+    "Dough shrinks when pressing": "general.dough_shrinks_when_pressing",
+    "Pan Pizza": "general.pan_pizza_2",
+    "Physics of Baking": "general.physics_of_baking",
+    "San Francisco Sourdough": "general.san_francisco_sourdough_2",
+    "Expert": "general.expert_14",
+    "Clam Chowder Bowl": "general.clam_chowder_bowl",
+    "Toast": "general.toast_7",
+    "Strong Wheat": "general.strong_wheat_5",
+    "Clam Chowder": "general.clam_chowder",
+    "Dungeness Crab": "general.dungeness_crab",
+    "Avocado": "general.avocado",
+    "Seafood Cioppino": "general.seafood_cioppino",
+    "Boudin History": "general.boudin_history",
+    "Microbiology of Sourdough": "general.microbiology_of_sourdough",
+    "French Baguette": "general.french_baguette_2",
+    "Modern Microbiology": "general.modern_microbiology",
+    "Sourdough": "general.sourdough_4",
+    "Pane Toscano": "general.pane_toscano",
+    "New Haven Apizza": "general.new_haven_apizza",
+    "Hard": "general.hard_22",
+    "White Clam Pie": "general.white_clam_pie",
+    "Extensible": "general.extensible_5",
+    "High Gluten": "general.high_gluten",
+    "Coal Fired Deck": "general.coal_fired_deck",
+    "Retarded": "general.retarded",
+    "Littleneck Clams": "general.littleneck_clams",
+    "Garlic": "general.garlic_2",
+    "Pecorino": "general.pecorino",
+    "Bacon": "general.bacon",
+    "Foxon Park Soda": "general.foxon_park_soda",
+    "Frank Pepe History": "general.frank_pepe_history",
+    "Oblong is a Feature": "general.oblong_is_a_feature",
+    "Bake Darker": "general.bake_darker",
+    "NYC Slice": "general.nyc_slice",
+    "Frank Pepe Menu": "general.frank_pepe_menu",
+    "New York Bagel": "general.new_york_bagel",
+    "Bacon Egg Cheese": "general.bacon_egg_cheese",
+    "Very Elastic": "general.very_elastic",
+    "High Gluten Spring Wheat": "general.high_gluten_spring_wheat",
+    "Capers": "general.capers",
+    "Red Onion": "general.red_onion",
+    "Everything Seasoning": "general.everything_seasoning",
+    "Bagel Union Regulations": "general.bagel_union_regulations",
+    "Alkaline Boil": "general.alkaline_boil",
+    "Cold Proof Shaped": "general.cold_proof_shaped",
+    "Bagels wrinkle after baking": "general.bagels_wrinkle_after_baking",
+    "Montreal Bagel": "general.montreal_bagel",
+    "Bagel Tradition": "general.bagel_tradition",
+    "Grandma Pizza": "general.grandma_pizza_2",
+    "Easy": "general.easy_4",
+    "All Purpose": "general.all_purpose",
+    "Fried bottom": "general.fried_bottom",
+    "Crushed Tomatoes": "general.crushed_tomatoes_2",
+    "Mozzarella": "general.mozzarella_3",
+    "Olive Oil": "general.olive_oil_3",
+    "Pesto": "general.pesto_2",
+    "Fresh Mozzarella": "general.fresh_mozzarella_2",
+    "Fried Bottom": "general.fried_bottom_2",
+    "Short Proof": "general.short_proof",
+    "Dough springs back": "general.dough_springs_back",
+    "History": "general.history",
+    "Chicago Tavern Style": "general.chicago_tavern_style_2",
+    "Variable": "general.variable",
+    "AP or High Gluten": "general.ap_or_high_gluten",
+    "Conduction": "general.conduction_5",
+    "Fennel Sausage": "general.fennel_sausage_2",
+    "Italian Beef": "general.italian_beef_2",
+    "Old Style Beer": "general.old_style_beer_2",
+    "Steve Dolinsky": "general.steve_dolinsky_2",
+    "The Cure": "general.the_cure",
+    "Dock Aggressively": "general.dock_aggressively",
+    "Crust is chewy not crisp": "general.crust_is_chewy_not_crisp",
+    "Tavern Culture": "general.tavern_culture",
+    "Possible": "general.possible_2",
+    "Deep Dish": "general.deep_dish",
+    "Canada": "general.canada",
+    "Cream Cheese": "general.cream_cheese",
+    "Smoked Salmon": "general.smoked_salmon",
+    "Stiff": "general.stiff",
+    "Wood Fired": "general.wood_fired_2",
+    "Radiant": "general.radiant_4",
+    "Dense": "general.dense",
+    "Standard": "general.standard_7",
+    "Smoked Meat": "general.smoked_meat",
+    "Peanut Butter": "general.peanut_butter",
+    "Montreal Smoked Meat": "general.montreal_smoked_meat",
+    "Fairmount Bagel": "general.fairmount_bagel",
+    "Honey Water": "general.honey_water",
+    "NY Bagel": "general.ny_bagel",
+    "Mexico": "general.mexico_2",
+    "Sonora": "general.sonora",
+    "Burritos": "general.burritos",
+    "Quesadillas": "general.quesadillas",
+    "Soft Wheat": "general.soft_wheat_3",
+    "Comal": "general.comal",
+    "Spotted": "general.spotted",
+    "Layered": "general.layered",
+    "Carne Asada": "general.carne_asada",
+    "Cheese": "general.cheese",
+    "Nutella": "general.nutella",
+    "Sonoran Heritage": "general.sonoran_heritage",
+    "Corn Tortilla": "general.corn_tortilla",
+    "Texture": "general.texture",
+    "Pita": "general.pita"
+  },
+  "src\\data\\styles\\registry.ts": {
+    "Standard": "general.standard_8",
+    "Classic": "general.classic"
+  },
+  "src\\firebase\\auth.ts": {
+    "Firebase Auth failed to initialize": "auth.firebase_auth_failed_to_initialize"
+  },
+  "src\\firebase\\db.ts": {
+    "Firebase Firestore failed to initialize": "general.firebase_firestore_failed_to_initialize"
+  },
+  "src\\firebase\\storage.ts": {
+    "Firebase Storage failed to initialize": "general.firebase_storage_failed_to_initialize"
+  },
+  "src\\flours-constants.ts": {
+    "Other": "general.other"
+  },
+  "src\\hooks\\useDoughbot.ts": {
+    "An error occurred": "general.an_error_occurred"
+  },
+  "src\\learn-constants.ts": {
+    "Coil Fold": "learn.coil_fold_2",
+    "My Levain": "learn.my_levain",
+    "Levain Pet": "learn.levain_pet",
+    "Toppings": "learn.toppings",
+    "Dough snaps back": "learn.dough_snaps_back",
+    "Flours": "learn.flours",
+    "By Flour Weight": "learn.by_flour_weight",
+    "References": "learn.references",
+    "Notes": "learn.notes",
+    "The Pizza Bible": "learn.the_pizza_bible",
+    "Tartine Bread": "learn.tartine_bread",
+    "DoughLab Tips": "learn.doughlab_tips",
+    "King Arthur Baking": "learn.king_arthur_baking",
+    "Modernist Bread": "learn.modernist_bread",
+    "The Perfect Loaf": "learn.the_perfect_loaf",
+    "Pizza Making Forum": "learn.pizza_making_forum",
+    "Raymond Calvel": "learn.raymond_calvel",
+    "The Woks of Life": "learn.the_woks_of_life",
+    "DoughLab Pro": "learn.doughlab_pro",
+    "Open Crumb Mastery": "learn.open_crumb_mastery",
+    "DoughLab": "learn.doughlab",
+    "The Joy of Cooking": "learn.the_joy_of_cooking",
+    "Sustainable Food Trust": "learn.sustainable_food_trust",
+    "Convert grams to cups": "learn.convert_grams_to_cups",
+    "Tech in Kitchen": "learn.tech_in_kitchen",
+    "DoughLab Community": "learn.doughlab_community"
+  },
+  "src\\logic\\doughMath.ts": {
+    "Other": "general.other_2",
+    "Added Water": "general.added_water",
+    "Factor": "general.factor"
+  },
+  "src\\logic\\methodGenerator.ts": {
+    "Ribbon Stage": "general.ribbon_stage",
+    "Creaming Method": "general.creaming_method",
+    "PuffPastry": "general.puffpastry",
+    "Oven Spring": "general.oven_spring"
+  },
+  "src\\logic\\smartAdjustments.ts": {
+    "New York": "general.new_york"
+  },
+  "src\\marketing\\ads\\AdCard.tsx": {
+    "Sponsored": "general.sponsored"
+  },
+  "src\\marketing\\affiliate\\AffiliateDashboard.tsx": {
+    "Become a DoughInfluencer": "general.become_a_doughinfluencer",
+    "Join Program": "general.join_program",
+    "Your Referral Code": "general.your_referral_code",
+    "Copy Link": "general.copy_link",
+    "Total Clicks": "general.total_clicks",
+    "Conversions": "general.conversions",
+    "Revenue": "general.revenue",
+    "Influencer Kit": "general.influencer_kit",
+    "Brand Assets": "general.brand_assets",
+    "Social Templates": "general.social_templates",
+    "Stories and post templates": "general.stories_and_post_templates"
+  },
+  "src\\marketing\\community\\CommunityComposer.tsx": {
+    "Join the conversation with DoughLab Pro": "community.join_the_conversation_with_doughlab_pro",
+    "Upgrade to Post": "community.upgrade_to_post",
+    "Share your baking journey...": "community.share_your_baking_journey"
+  },
+  "src\\marketing\\community\\CommunityPost.tsx": {
+    "Featured": "community.featured"
+  },
+  "src\\marketing\\community\\CommunityRanking.tsx": {
+    "Baker of the Week": "community.baker_of_the_week"
+  },
+  "src\\marketing\\community\\LiveEvents.tsx": {
+    "LIVE": "community.live",
+    "Mastering High Hydration": "community.mastering_high_hydration",
+    "Join Stream": "community.join_stream"
+  },
+  "src\\marketing\\fomo\\components\\FomoRibbon.tsx": {
+    "Learn More": "general.learn_more"
+  },
+  "src\\marketing\\fomo\\components\\LockedTeaser.tsx": {
+    "Pro Feature": "general.pro_feature",
+    "Unlock": "general.unlock"
+  },
+  "src\\marketing\\fomo\\components\\UpgradeModal.tsx": {
+    "Unlock Pro Features": "general.unlock_pro_features",
+    "Unlimited Recipes": "general.unlimited_recipes",
+    "Advanced Calculator": "general.advanced_calculator",
+    "Community Access": "general.community_access",
+    "AI Assistant": "general.ai_assistant",
+    "Maybe Later": "general.maybe_later"
+  },
+  "src\\pages\\BatchDetailPage.tsx": {
+    "Ingredient": "general.ingredient_2",
+    "Quantity": "general.quantity",
+    "Share in Community": "general.share_in_community",
+    "Total Time": "general.total_time",
+    "Avg Temp": "general.avg_temp",
+    "Oven": "general.oven_2",
+    "Tools for this Recipe": "general.tools_for_this_recipe"
+  },
+  "src\\pages\\DoughbotPage.tsx": {
+    "Describe your problem": "general.describe_your_problem",
+    "Detailed Description": "general.detailed_description",
+    "Diagnose Problem": "general.diagnose_problem",
+    "Try Again": "general.try_again",
+    "Unlock Full Solution": "general.unlock_full_solution",
+    "Start New Diagnosis": "general.start_new_diagnosis",
+    "Doughbot": "general.doughbot",
+    "Doughbot Pro Diagnosis": "general.doughbot_pro_diagnosis"
+  },
+  "src\\pages\\HelpPage.tsx": {
+    "The": "general.the",
+    "Switch between": "general.switch_between",
+    "Basic": "general.basic",
+    "Advanced": "general.advanced",
+    "Batches": "general.batches",
+    "Consistencies": "general.consistencies",
+    "Use the": "general.use_the",
+    "Timeline": "general.timeline",
+    "Styles Library": "general.styles_library",
+    "Connect with other bakers in the": "general.connect_with_other_bakers_in_the",
+    "Access a suite of utilities under the": "general.access_a_suite_of_utilities_under_the",
+    "Oven Profiler": "general.oven_profiler",
+    "Hydration Converter": "general.hydration_converter",
+    "Manage your app experience in": "general.manage_your_app_experience_in",
+    "User Guide": "general.user_guide",
+    "Frequently Asked Questions": "general.frequently_asked_questions",
+    "Contact Support": "general.contact_support",
+    "Search for topics...": "general.search_for_topics",
+    "Start Bake": "general.start_bake",
+    "Batch": "general.batch",
+    "Consistency Projects": "general.consistency_projects",
+    "Use in Calculator": "general.use_in_calculator"
+  },
+  "src\\pages\\HydrationConverterPage.tsx": {
+    "Current Hydration": "general.current_hydration",
+    "Target Hydration": "general.target_hydration_2",
+    "Correction Required": "general.correction_required",
+    "Perfect Match": "general.perfect_match",
+    "Hydration Adjuster": "general.hydration_adjuster"
+  },
+  "src\\pages\\learn\\AllArticlesPage.tsx": {
+    "All Articles": "learn.all_articles",
+    "Read Article": "learn.read_article",
+    "Search library...": "learn.search_library"
+  },
+  "src\\pages\\learn\\BakingSciencePage.tsx": {
+    "Baking Science": "learn.baking_science_4"
+  },
+  "src\\pages\\learn\\CategoryPage.tsx": {
+    "Category not found": "learn.category_not_found",
+    "Back to Learn": "learn.back_to_learn",
+    "Return to Learn Home": "learn.return_to_learn_home",
+    "Ingredient Science": "learn.ingredient_science_9"
+  },
+  "src\\pages\\learn\\ChemistryLibraryPage.tsx": {
+    "Responsible for": "learn.responsible_for",
+    "Saccharomyces cerevisiae": "learn.saccharomyces_cerevisiae",
+    "Pizza Chemistry Library": "learn.pizza_chemistry_library",
+    "Introduction: Pizza as a Lab": "learn.introduction_pizza_as_a_lab"
+  },
+  "src\\pages\\learn\\CriticalIngredientsPage.tsx": {
+    "Critical Ingredients": "learn.critical_ingredients"
+  },
+  "src\\pages\\learn\\CrumbStructurePage.tsx": {
+    "Undermixing": "learn.undermixing",
+    "Optimal Mixing": "learn.optimal_mixing",
+    "Overmixing": "learn.overmixing",
+    "Modernist Bread": "learn.modernist_bread_2",
+    "Crumb Structure Science": "learn.crumb_structure_science",
+    "Gluten Development and Mixing": "learn.gluten_development_and_mixing",
+    "The Science of Dough": "learn.the_science_of_dough",
+    "Gas Retention in Wheat Dough": "learn.gas_retention_in_wheat_dough"
+  },
+  "src\\pages\\learn\\EquipmentPage.tsx": {
+    "Manipulation": "learn.manipulation",
+    "Baking speed": "learn.baking_speed",
+    "Final texture": "learn.final_texture",
+    "Modernist Pizza": "learn.modernist_pizza",
+    "Essential Pizza Equipment": "learn.essential_pizza_equipment"
+  },
+  "src\\pages\\learn\\FermentationBiochemistryPage.tsx": {
+    "The primary microorganism in most baking is": "learn.the_primary_microorganism_in_most_baking_is",
+    "Saccharomyces cerevisiae": "learn.saccharomyces_cerevisiae_2",
+    "Homofermentative LAB": "learn.homofermentative_lab",
+    "Produce primarily": "learn.produce_primarily",
+    "Lactic Acid": "learn.lactic_acid",
+    "Heterofermentative LAB": "learn.heterofermentative_lab",
+    "Produce": "learn.produce",
+    "Acetic Acid": "learn.acetic_acid",
+    "Crabtree Effect": "learn.crabtree_effect",
+    "Fermentation Biochemistry": "learn.fermentation_biochemistry",
+    "The metabolic engine of bread and pizza": "learn.the_metabolic_engine_of_bread_and_pizza",
+    "Introduction: The Living Dough": "learn.introduction_the_living_dough",
+    "Yeast Metabolism: The Primary Engine": "learn.yeast_metabolism_the_primary_engine",
+    "Bacterial Activity: The Flavor Architects": "learn.bacterial_activity_the_flavor_architects",
+    "Enzymatic Hydrolysis: Breaking Down the Fuel": "learn.enzymatic_hydrolysis_breaking_down_the_fuel",
+    "The Crabtree Effect": "learn.the_crabtree_effect",
+    "Practical Application": "learn.practical_application"
+  },
+  "src\\pages\\learn\\FundamentalsPage.tsx": {
+    "Dough Fundamentals": "learn.dough_fundamentals"
+  },
+  "src\\pages\\learn\\GlossaryPage.tsx": {
+    "Gliadin": "learn.gliadin",
+    "Overproof": "learn.overproof",
+    "Underproof": "learn.underproof",
+    "Technical Baking Glossary": "learn.technical_baking_glossary",
+    "Autolyse": "learn.autolyse",
+    "Biga": "learn.biga_2",
+    "Biscotto": "learn.biscotto",
+    "Browning": "learn.browning",
+    "Caramelization": "learn.caramelization",
+    "Cornicione": "learn.cornicione",
+    "Crumb": "learn.crumb",
+    "Deck": "learn.deck",
+    "Fermentation": "learn.fermentation",
+    "Acetic Fermentation": "learn.acetic_fermentation",
+    "Lactic Fermentation": "learn.lactic_fermentation",
+    "Starch Gelatinization": "learn.starch_gelatinization_2",
+    "Locks": "learn.locks",
+    "Gliadin and Glutenin": "learn.gliadin_and_glutenin",
+    "Maillard Reaction": "learn.maillard_reaction",
+    "Poolish": "learn.poolish_2",
+    "Preferment": "learn.preferment",
+    "Rimacinata": "learn.rimacinata",
+    "Windowpane Test": "learn.windowpane_test"
+  },
+  "src\\pages\\learn\\GrandmaRenderer.tsx": {
+    "Grandma Says": "learn.grandma_says"
+  },
+  "src\\pages\\learn\\HygieneSafetyPage.tsx": {
+    "Microbial control": "learn.microbial_control",
+    "Preventing contamination": "learn.preventing_contamination",
+    "Responsible handling": "learn.responsible_handling",
+    "Maintaining": "learn.maintaining",
+    "Wash hands properly": "learn.wash_hands_properly",
+    "Keep": "learn.keep",
+    "Avoid handling": "learn.avoid_handling",
+    "Avoid": "learn.avoid",
+    "Use": "learn.use",
+    "Discard": "learn.discard",
+    "Wash vegetables": "learn.wash_vegetables",
+    "Clean surfaces rigorously": "learn.clean_surfaces_rigorously",
+    "Clean all": "learn.clean_all",
+    "Avoid unnecessary handling": "learn.avoid_unnecessary_handling",
+    "FDA Food Code": "learn.fda_food_code",
+    "Hygiene and Food Safety in Pizza": "learn.hygiene_and_food_safety_in_pizza"
+  },
+  "src\\pages\\learn\\ingredients\\BoldCombosPage.tsx": {
+    "Introduction: Innovating on Tradition": "learn.introduction_innovating_on_tradition",
+    "Ingredients and Pairings": "learn.ingredients_and_pairings",
+    "Pepperoni": "learn.pepperoni",
+    "Gorgonzola": "learn.gorgonzola",
+    "Zucchini": "learn.zucchini",
+    "Prosciutto Crudo": "learn.prosciutto_crudo",
+    "Aromatics": "learn.aromatics",
+    "Intensity": "learn.intensity",
+    "High": "learn.high",
+    "Texture": "learn.texture",
+    "Moisture Risk": "learn.moisture_risk",
+    "Creamy": "learn.creamy",
+    "Soft": "learn.soft",
+    "Very High": "learn.very_high"
+  },
+  "src\\pages\\learn\\ingredients\\CheesesPage.tsx": {
+    "Melting": "learn.melting",
+    "Water content": "learn.water_content",
+    "Fat": "learn.fat",
+    "Aged": "learn.aged",
+    "Cheese on Pizza": "learn.cheese_on_pizza",
+    "Introduction: The Sensitive Chemistry of Cheese": "learn.introduction_the_sensitive_chemistry_of_cheese",
+    "Chemical Fundamentals of Cheese Behavior": "learn.chemical_fundamentals_of_cheese_behavior",
+    "Technical Properties of Common Cheeses": "learn.technical_properties_of_common_cheeses",
+    "The Oil-Out Phenomenon": "learn.the_oilout_phenomenon",
+    "Browning: Maillard Reaction in Cheese": "learn.browning_maillard_reaction_in_cheese",
+    "Classic and Documented Blends": "learn.classic_and_documented_blends",
+    "Risks and Practical Care": "learn.risks_and_practical_care",
+    "Ingredients": "learn.ingredients"
+  },
+  "src\\pages\\learn\\ingredients\\ClassicCombosPage.tsx": {
+    "Classic Combinations": "learn.classic_combinations",
+    "Introduction: The Art of Flavor Pairing": "learn.introduction_the_art_of_flavor_pairing",
+    "Ingredients and Pairings": "learn.ingredients_and_pairings_2",
+    "Tomato": "learn.tomato",
+    "Mozzarella": "learn.mozzarella",
+    "Mushrooms": "learn.mushrooms",
+    "Onion": "learn.onion",
+    "Aromatics": "learn.aromatics_2",
+    "Intensity": "learn.intensity_2",
+    "Medium": "learn.medium",
+    "Texture": "learn.texture_2",
+    "Moisture Risk": "learn.moisture_risk_2",
+    "High": "learn.high_2",
+    "Medium to High": "learn.medium_to_high"
+  },
+  "src\\pages\\learn\\ingredients\\FloursPage.tsx": {
+    "Manage My Flours": "learn.manage_my_flours",
+    "Test Hydration": "learn.test_hydration",
+    "The": "learn.the",
+    "Ingredients": "learn.ingredients_2",
+    "Mulino Caputo Technical Sheets": "learn.mulino_caputo_technical_sheets"
+  },
+  "src\\pages\\learn\\ingredients\\IngredientPageLayout.tsx": {
+    "Technical References": "learn.technical_references"
+  },
+  "src\\pages\\learn\\ingredients\\MeatsPage.tsx": {
+    "Meats and Cured Meats": "learn.meats_and_cured_meats",
+    "Introduction: Chemical Impact of Meat": "learn.introduction_chemical_impact_of_meat",
+    "Oven Behavior": "learn.oven_behavior",
+    "Common Meat Types": "learn.common_meat_types",
+    "Risks and Common Care": "learn.risks_and_common_care",
+    "Ingredients": "learn.ingredients_3"
+  },
+  "src\\pages\\learn\\ingredients\\OilsPage.tsx": {
+    "Adjust Hydration": "learn.adjust_hydration",
+    "Log an Experiment": "learn.log_an_experiment",
+    "Oils on Pizza": "learn.oils_on_pizza",
+    "Introduction: Oils as Flavor Vectors": "learn.introduction_oils_as_flavor_vectors",
+    "Neutral Oils & Pan Styles": "learn.neutral_oils__pan_styles",
+    "Thermal Behavior": "learn.thermal_behavior",
+    "Strategic Application": "learn.strategic_application",
+    "Ingredients": "learn.ingredients_4"
+  },
+  "src\\pages\\learn\\ingredients\\OilsSpicesPage.tsx": {
+    "Heat comes from": "learn.heat_comes_from",
+    "Herbs & Spices": "learn.herbs__spices",
+    "Introduction: Aroma Chemistry": "learn.introduction_aroma_chemistry",
+    "Fresh Herbs: Vibrancy and Delicacy": "learn.fresh_herbs_vibrancy_and_delicacy",
+    "Dried Herbs: Concentrated Flavor": "learn.dried_herbs_concentrated_flavor",
+    "Classic Spices": "learn.classic_spices",
+    "Application: Pre or Post-Oven?": "learn.application_pre_or_postoven",
+    "Risks and Care": "learn.risks_and_care",
+    "Ingredients": "learn.ingredients_5"
+  },
+  "src\\pages\\learn\\ingredients\\PairingToolPage.tsx": {
+    "Find Pairings": "learn.find_pairings",
+    "Classic Suggestions": "learn.classic_suggestions",
+    "Bold Suggestions": "learn.bold_suggestions",
+    "Technical Notes": "learn.technical_notes",
+    "Flavor Pairing Tool": "learn.flavor_pairing_tool"
+  },
+  "src\\pages\\learn\\ingredients\\ReadyToppingsPage.tsx": {
+    "Ready-to-Use Toppings Guide": "learn.readytouse_toppings_guide",
+    "Introduction: Quality Speed": "learn.introduction_quality_speed",
+    "Ready Sauces": "learn.ready_sauces",
+    "Pre-Cooked Meats": "learn.precooked_meats",
+    "Prepared Vegetables": "learn.prepared_vegetables",
+    "High Quality Preserves": "learn.high_quality_preserves",
+    "Technical Risks & Mitigation": "learn.technical_risks__mitigation",
+    "Ingredients": "learn.ingredients_6",
+    "Ready toppings": "learn.ready_toppings"
+  },
+  "src\\pages\\learn\\ingredients\\SaucesPage.tsx": {
+    "Mandatory standard of AVPN": "learn.mandatory_standard_of_avpn",
+    "Pizza Sauces": "learn.pizza_sauces",
+    "Introduction: The Central Role of Sauce": "learn.introduction_the_central_role_of_sauce",
+    "Tomatoes and Moisture Chemistry": "learn.tomatoes_and_moisture_chemistry",
+    "Raw vs. Cooked Sauce: A Style Choice": "learn.raw_vs_cooked_sauce_a_style_choice",
+    "Density and Viscosity: The Sweet Spot": "learn.density_and_viscosity_the_sweet_spot",
+    "Thermal Behavior in Oven": "learn.thermal_behavior_in_oven",
+    "Classic Sauce Combinations": "learn.classic_sauce_combinations",
+    "Risks and Common Care": "learn.risks_and_common_care_2",
+    "Ingredients": "learn.ingredients_7"
+  },
+  "src\\pages\\learn\\ingredients\\VegetablesPage.tsx": {
+    "Should generally be applied": "learn.should_generally_be_applied",
+    "Vegetables on Pizza": "learn.vegetables_on_pizza",
+    "Introduction: The Moisture Challenge": "learn.introduction_the_moisture_challenge",
+    "Pre-Cooking Techniques": "learn.precooking_techniques",
+    "Raw Application: When it Works": "learn.raw_application_when_it_works",
+    "Specific Ingredient Notes": "learn.specific_ingredient_notes",
+    "Technical References": "learn.technical_references_2",
+    "Ingredients": "learn.ingredients_8",
+    "On Food and Cooking": "learn.on_food_and_cooking"
+  },
+  "src\\pages\\learn\\IngredientsPage.tsx": {
+    "Ingredient Guide": "learn.ingredient_guide"
+  },
+  "src\\pages\\learn\\LearnArticlePage.tsx": {
+    "Back to Academy": "learn.back_to_academy",
+    "Apply this Science": "learn.apply_this_science",
+    "Open Calculator": "learn.open_calculator",
+    "In this Article": "learn.in_this_article",
+    "Essentials for this Technique": "learn.essentials_for_this_technique",
+    "Introduction": "learn.introduction",
+    "Technical Foundations": "learn.technical_foundations",
+    "Impact on Dough": "learn.impact_on_dough",
+    "Baking Performance": "learn.baking_performance",
+    "Practical Ranges": "learn.practical_ranges",
+    "Practical Applications": "learn.practical_applications",
+    "Pro Tips": "learn.pro_tips",
+    "Critical Points": "learn.critical_points"
+  },
+  "src\\pages\\learn\\LearnComponents.tsx": {
+    "Quick Summary": "learn.quick_summary",
+    "Key Takeaway": "learn.key_takeaway",
+    "Pro Tip": "learn.pro_tip",
+    "Critical Point": "learn.critical_point",
+    "History": "learn.history"
+  },
+  "src\\pages\\learn\\LearnHomePage.tsx": {
+    "DoughLab Academy": "learn.doughlab_academy",
+    "Featured": "learn.featured",
+    "Read Article": "learn.read_article_2",
+    "Explore the Full Library": "learn.explore_the_full_library",
+    "View All Articles": "learn.view_all_articles"
+  },
+  "src\\pages\\learn\\LearnPageLayout.tsx": {
+    "Technical": "learn.technical",
+    "Grandma": "learn.grandma"
+  },
+  "src\\pages\\learn\\LibraryPageLayout.tsx": {
+    "DoughLab Learning Hub": "learn.doughlab_learning_hub"
+  },
+  "src\\pages\\learn\\MethodsPage.tsx": {
+    "Techniques & Methods": "learn.techniques__methods"
+  },
+  "src\\pages\\learn\\OvenSciencePage.tsx": {
+    "Heat": "learn.heat",
+    "Radiant heat": "learn.radiant_heat",
+    "Convective heat": "learn.convective_heat",
+    "Rapid water evaporation": "learn.rapid_water_evaporation",
+    "Controlling this moisture is critical": "learn.controlling_this_moisture_is_critical",
+    "Very wet sauces": "learn.very_wet_sauces",
+    "Very fatty cheeses": "learn.very_fatty_cheeses",
+    "Fresh meats": "learn.fresh_meats",
+    "Raw vegetables": "learn.raw_vegetables",
+    "Baking Pizza: The Physics of the Oven": "learn.baking_pizza_the_physics_of_the_oven",
+    "Modernist Pizza": "learn.modernist_pizza_2"
+  },
+  "src\\pages\\learn\\OvensHeatPage.tsx": {
+    "Ovens & Heat": "learn.ovens__heat"
+  },
+  "src\\pages\\learn\\ParbakingPage.tsx": {
+    "Starch Gelatinization": "learn.starch_gelatinization_3",
+    "Gluten Coagulation": "learn.gluten_coagulation",
+    "The risk of double baking is removing": "learn.the_risk_of_double_baking_is_removing",
+    "Parbaking & Double Baking": "learn.parbaking__double_baking"
+  },
+  "src\\pages\\learn\\SearchResultsPage.tsx": {
+    "Search Results": "learn.search_results",
+    "Showing results for": "learn.showing_results_for",
+    "No results found": "learn.no_results_found",
+    "Browse Library": "learn.browse_library"
+  },
+  "src\\pages\\learn\\SensoryGuidePage.tsx": {
+    "Sensory Guide": "learn.sensory_guide",
+    "Ingredient Technique": "learn.ingredient_technique"
+  },
+  "src\\pages\\learn\\SensoryProfilesPage.tsx": {
+    "Modernist Cuisine": "learn.modernist_cuisine",
+    "Sensory Profiles in Pizza": "learn.sensory_profiles_in_pizza",
+    "Balance of Fundamental Tastes": "learn.balance_of_fundamental_tastes",
+    "Umami: Taste of Satisfaction": "learn.umami_taste_of_satisfaction",
+    "Fat as Flavor Vehicle": "learn.fat_as_flavor_vehicle",
+    "Acidity for Contrast and Cleansing": "learn.acidity_for_contrast_and_cleansing",
+    "Natural Sweetness for Balance": "learn.natural_sweetness_for_balance",
+    "Crunch as Texture Element": "learn.crunch_as_texture_element",
+    "Technical References": "learn.technical_references_3",
+    "The Flavor Bible": "learn.the_flavor_bible",
+    "On Food and Cooking": "learn.on_food_and_cooking_2"
+  },
+  "src\\pages\\learn\\SpecialSaucesPage.tsx": {
+    "Modernist Pizza": "learn.modernist_pizza_3",
+    "Serious Eats": "learn.serious_eats",
+    "Special Sauces: Pesto, Ricotta & Others": "learn.special_sauces_pesto_ricotta__others",
+    "Behavior and risks of alternative pizza bases.": "learn.behavior_and_risks_of_alternative_pizza_bases",
+    "Introduction: Expanding the Palate": "learn.introduction_expanding_the_palate",
+    "Pesto: Oxidation and Green Notes": "learn.pesto_oxidation_and_green_notes",
+    "Creamy Ricotta: Moisture Vehicle": "learn.creamy_ricotta_moisture_vehicle",
+    "Bechamel and Other Dairy Bases": "learn.bechamel_and_other_dairy_bases",
+    "Qualitative Risks of Wet Sauces": "learn.qualitative_risks_of_wet_sauces",
+    "Technical References": "learn.technical_references_4",
+    "Green": "learn.green_2",
+    "The Flavor Bible": "learn.the_flavor_bible_2"
+  },
+  "src\\pages\\learn\\StoragePage.tsx": {
+    "Flavor development": "learn.flavor_development",
+    "Gluten stability": "learn.gluten_stability",
+    "Clean airtight containers": "learn.clean_airtight_containers",
+    "Individual boxes or dividers": "learn.individual_boxes_or_dividers",
+    "Must have": "learn.must_have",
+    "Air": "learn.air",
+    "Oxygen contact leads to": "learn.oxygen_contact_leads_to",
+    "Closed boxes retain natural moisture": "learn.closed_boxes_retain_natural_moisture",
+    "Excess humidity causes condensation": "learn.excess_humidity_causes_condensation",
+    "Environmental molds": "learn.environmental_molds",
+    "Bacteria": "learn.bacteria",
+    "Low temp slows yeast": "learn.low_temp_slows_yeast",
+    "Cold moist fridge makes": "learn.cold_moist_fridge_makes",
+    "Maintain": "learn.maintain",
+    "Modernist Pizza": "learn.modernist_pizza_4",
+    "Modernist Bread": "learn.modernist_bread_3",
+    "Technical Dough Storage": "learn.technical_dough_storage"
+  },
+  "src\\pages\\learn\\StyleGuidePage.tsx": {
+    "High Temperature": "learn.high_temperature",
+    "Home Oven": "learn.home_oven",
+    "Dough Style Guide": "learn.dough_style_guide",
+    "Frico": "learn.frico"
+  },
+  "src\\pages\\learn\\TechnicalPageLayout.tsx": {
+    "Advanced Dough Science": "learn.advanced_dough_science",
+    "Download PDF": "learn.download_pdf",
+    "Unlock Full Article": "learn.unlock_full_article",
+    "Check Recommendation": "learn.check_recommendation",
+    "Technical References": "learn.technical_references_5",
+    "Remove from favorites": "learn.remove_from_favorites",
+    "Save to favorites": "learn.save_to_favorites"
+  },
+  "src\\pages\\learn\\TechniquesPage.tsx": {
+    "Why Technique Matters": "learn.why_technique_matters",
+    "Baking Techniques": "learn.baking_techniques"
+  },
+  "src\\pages\\learn\\TemperatureControlPage.tsx": {
+    "Long cold fermentations": "learn.long_cold_fermentations",
+    "Fast warm fermentations": "learn.fast_warm_fermentations",
+    "King Arthur Baking": "learn.king_arthur_baking_2",
+    "Dough Temperature Control": "learn.dough_temperature_control",
+    "Modernist Bread": "learn.modernist_bread_4",
+    "Wakes up": "learn.wakes_up",
+    "Modernist Pizza": "learn.modernist_pizza_5"
+  },
+  "src\\pages\\learn\\TomatoPreservationPage.tsx": {
+    "Acidity": "learn.acidity",
+    "Sweetness": "learn.sweetness",
+    "Modernist Pizza": "learn.modernist_pizza_6",
+    "Tomato Science: Acidity, Sweetness & Preservation": "learn.tomato_science_acidity_sweetness__preservation",
+    "Introduction: The Acidic Soul of Pizza": "learn.introduction_the_acidic_soul_of_pizza",
+    "Qualitative Differences: Raw vs. Cooked": "learn.qualitative_differences_raw_vs_cooked",
+    "How Acidity and Sweetness Influence Perception": "learn.how_acidity_and_sweetness_influence_perception",
+    "Impact of Oxidation and Storage": "learn.impact_of_oxidation_and_storage",
+    "Fresh Notes vs. Cooked Notes": "learn.fresh_notes_vs_cooked_notes",
+    "Tomato Behavior in Baking": "learn.tomato_behavior_in_baking",
+    "Technical References": "learn.technical_references_6",
+    "Fresh notes": "learn.fresh_notes",
+    "Cooked notes": "learn.cooked_notes",
+    "On Food and Cooking": "learn.on_food_and_cooking_3"
+  },
+  "src\\pages\\learn\\TroubleshootingGuidePage.tsx": {
+    "Troubleshooting Guide": "learn.troubleshooting_guide"
+  },
+  "src\\pages\\learn\\TroubleshootingPage.tsx": {
+    "Modernist Pizza": "learn.modernist_pizza_7",
+    "Modernist Bread": "learn.modernist_bread_5",
+    "Diagnostics: Common Pizza Problems": "learn.diagnostics_common_pizza_problems"
+  },
+  "src\\pages\\learn\\WhiteSaucesPage.tsx": {
+    "Modernist Cuisine": "learn.modernist_cuisine_2",
+    "White Sauces & Emulsions": "learn.white_sauces__emulsions",
+    "The science of consistency in creamy pizza bases.": "learn.the_science_of_consistency_in_creamy_pizza_bases",
+    "Introduction: Emulsion Chemistry": "learn.introduction_emulsion_chemistry",
+    "Stable vs. Unstable Emulsions": "learn.stable_vs_unstable_emulsions",
+    "Role of Dairy Fat": "learn.role_of_dairy_fat",
+    "Thermal Behavior in Oven": "learn.thermal_behavior_in_oven_2",
+    "Uses in Specific Pizzas": "learn.uses_in_specific_pizzas",
+    "Technical References": "learn.technical_references_7",
+    "On Food and Cooking": "learn.on_food_and_cooking_4"
+  },
+  "src\\pages\\legal\\ContactPage.tsx": {
+    "DoughLabPro Legal Department": "general.doughlabpro_legal_department",
+    "Contact Information": "general.contact_information"
+  },
+  "src\\pages\\legal\\CookiesPage.tsx": {
+    "Cookie Policy": "general.cookie_policy"
+  },
+  "src\\pages\\legal\\EulaPage.tsx": {
+    "Agreement": "general.agreement",
+    "Licensor": "general.licensor",
+    "Software Product": "general.software_product"
+  },
+  "src\\pages\\legal\\IpPage.tsx": {
+    "Intellectual Property": "general.intellectual_property",
+    "Infringement": "general.infringement",
+    "Copyright Infringement": "general.copyright_infringement"
+  },
+  "src\\pages\\legal\\LegalIndexPage.tsx": {
+    "Navigate page": "general.navigate_page",
+    "CRITICAL NOTICE": "general.critical_notice",
+    "Legal Department": "general.legal_department",
+    "Legal Overview": "general.legal_overview",
+    "User": "general.user",
+    "Company": "general.company",
+    "Service": "general.service"
+  },
+  "src\\pages\\legal\\PrivacyPage.tsx": {
+    "Privacy Policy": "general.privacy_policy"
+  },
+  "src\\pages\\legal\\TermsPage.tsx": {
+    "Terms of Use": "general.terms_of_use",
+    "Company": "general.company_2",
+    "Application": "general.application",
+    "Content": "general.content",
+    "Marks": "general.marks",
+    "Contributions": "general.contributions"
+  },
+  "src\\pages\\mylab\\CompareRecipesPage.tsx": {
+    "Use Recipe in Calculator": "mylab.use_recipe_in_calculator",
+    "Compare Recipes": "mylab.compare_recipes",
+    "Comparison Error": "mylab.comparison_error",
+    "Select recipes to compare": "mylab.select_recipes_to_compare",
+    "Style": "mylab.style",
+    "Preferment": "mylab.preferment",
+    "Total Time": "mylab.total_time"
+  },
+  "src\\pages\\mylab\\ConsistencyDetailPage.tsx": {
+    "Associate": "mylab.associate",
+    "Series Notes": "mylab.series_notes",
+    "AI Analysis": "mylab.ai_analysis",
+    "Test Parameters": "mylab.test_parameters"
+  },
+  "src\\pages\\mylab\\ConsistencyListPage.tsx": {
+    "Consistency Mode": "mylab.consistency_mode",
+    "Create New Series": "mylab.create_new_series",
+    "View details": "mylab.view_details"
+  },
+  "src\\pages\\mylab\\levain\\components\\LevainAssistant.tsx": {
+    "Levain Assistant Placeholder": "mylab.levain_assistant_placeholder"
+  },
+  "src\\pages\\mylab\\levain\\components\\LevainFeedingForm.tsx": {
+    "Feed Your Levain": "mylab.feed_your_levain",
+    "Ratio Calculator": "mylab.ratio_calculator",
+    "Flour Type": "mylab.flour_type",
+    "White Flour": "mylab.white_flour",
+    "Whole Wheat": "mylab.whole_wheat",
+    "Rye": "mylab.rye",
+    "Blend": "mylab.blend",
+    "Ratio Used": "mylab.ratio_used",
+    "Confirm Feeding": "mylab.confirm_feeding",
+    "Optional": "mylab.optional"
+  },
+  "src\\pages\\mylab\\levain\\components\\LevainInsights.tsx": {
+    "Starter Health Score": "mylab.starter_health_score",
+    "No insights available": "mylab.no_insights_available",
+    "Recent Activity": "mylab.recent_activity",
+    "Avg Frequency": "mylab.avg_frequency",
+    "Avg Temp": "mylab.avg_temp",
+    "Total Feedings": "mylab.total_feedings",
+    "Lifetime logs": "mylab.lifetime_logs"
+  },
+  "src\\pages\\mylab\\levain\\components\\LevainProfile.tsx": {
+    "Levain Profile Placeholder": "mylab.levain_profile_placeholder"
+  },
+  "src\\pages\\mylab\\levain\\LevainDetailPage.tsx": {
+    "Levain not found": "mylab.levain_not_found",
+    "Back to list": "mylab.back_to_list",
+    "Health": "mylab.health",
+    "Feed Now": "mylab.feed_now",
+    "Use in Bake": "mylab.use_in_bake",
+    "Ask AI": "mylab.ask_ai",
+    "Age": "mylab.age",
+    "Learn About Levain Behavior": "mylab.learn_about_levain_behavior",
+    "Recent Feedings": "mylab.recent_feedings",
+    "Unlock Full History": "mylab.unlock_full_history"
+  },
+  "src\\pages\\mylab\\levain\\LevainLayout.tsx": {
+    "Tabs": "mylab.tabs"
+  },
+  "src\\pages\\mylab\\levain\\LevainListPage.tsx": {
+    "Levain Pet": "mylab.levain_pet",
+    "Add Levain": "mylab.add_levain",
+    "Import": "mylab.import",
+    "Export": "mylab.export",
+    "Create Levain": "mylab.create_levain",
+    "View Details": "mylab.view_details_2",
+    "Add another Levain": "mylab.add_another_levain"
+  },
+  "src\\pages\\mylab\\levain\\LevainMarketingPage.tsx": {
+    "Master Your Sourdough": "mylab.master_your_sourdough",
+    "Pro Feature Locked": "mylab.pro_feature_locked",
+    "Unlock the full": "mylab.unlock_the_full",
+    "Levain Manager": "mylab.levain_manager",
+    "Smart Schedule": "mylab.smart_schedule",
+    "Health Tracking": "mylab.health_tracking",
+    "Multiple Starters": "mylab.multiple_starters",
+    "Professional Levain Dashboard": "mylab.professional_levain_dashboard"
+  },
+  "src\\pages\\mylab\\MyLabBatchesPage.tsx": {
+    "Promise": "mylab.promise_2",
+    "GREAT": "mylab.great",
+    "GOOD": "mylab.good",
+    "ADJUST": "mylab.adjust",
+    "Time": "mylab.time",
+    "Oven": "mylab.oven",
+    "My Batches": "mylab.my_batches",
+    "New Batch": "mylab.new_batch",
+    "Limit Reached": "mylab.limit_reached",
+    "Your baking journey starts here": "mylab.your_baking_journey_starts_here",
+    "Start First Bake": "mylab.start_first_bake"
+  },
+  "src\\pages\\mylab\\MyLabComparisonsPage.tsx": {
+    "Comparisons": "mylab.comparisons",
+    "Clear Selection": "mylab.clear_selection",
+    "Style": "mylab.style_2",
+    "Total Time": "mylab.total_time_2",
+    "Comparison Result": "mylab.comparison_result",
+    "Metric": "mylab.metric",
+    "Process": "mylab.process",
+    "Outcome": "mylab.outcome",
+    "Bulk Ferm.": "mylab.bulk_ferm",
+    "Proofing": "mylab.proofing",
+    "Oven Type": "mylab.oven_type",
+    "Notes": "mylab.notes"
+  },
+  "src\\pages\\mylab\\MyLabDoughsPage.tsx": {
+    "Active Doughs": "mylab.active_doughs",
+    "Start New Dough": "mylab.start_new_dough",
+    "No active doughs": "mylab.no_active_doughs"
+  },
+  "src\\pages\\mylab\\MyLabFloursPage.tsx": {
+    "My Flour Inventory": "mylab.my_flour_inventory",
+    "Active Default": "mylab.active_default",
+    "Prot": "mylab.prot",
+    "Add Custom Flour": "mylab.add_custom_flour",
+    "Manual Entry": "mylab.manual_entry",
+    "Your inventory is empty": "mylab.your_inventory_is_empty",
+    "Browse Flour Database": "mylab.browse_flour_database",
+    "Add to Inventory": "mylab.add_to_inventory",
+    "Flour Name": "mylab.flour_name",
+    "Category": "mylab.category",
+    "Bread Flour": "mylab.bread_flour",
+    "All Purpose": "mylab.all_purpose",
+    "Whole Wheat": "mylab.whole_wheat_2",
+    "Other": "mylab.other",
+    "Notes": "mylab.notes_2",
+    "Cancel": "mylab.cancel_2",
+    "Save Flour": "mylab.save_flour",
+    "Set as Default": "mylab.set_as_default",
+    "Remove from Inventory": "mylab.remove_from_inventory",
+    "Optional": "mylab.optional_2",
+    "Any special characteristics...": "mylab.any_special_characteristics",
+    "Failed to parse user flours": "mylab.failed_to_parse_user_flours"
+  },
+  "src\\pages\\mylab\\MyLabInsightsPage.tsx": {
+    "Insights": "mylab.insights",
+    "No data found": "mylab.no_data_found",
+    "Start Baking": "mylab.start_baking",
+    "Style Distribution": "mylab.style_distribution",
+    "Total Batches": "mylab.total_batches",
+    "Avg Rating": "mylab.avg_rating",
+    "Success Rate": "mylab.success_rate",
+    "Top Style": "mylab.top_style"
+  },
+  "src\\pages\\mylab\\MyLabLevainPetPage.tsx": {
+    "Levain Dashboard": "mylab.levain_dashboard",
+    "New Starter": "mylab.new_starter",
+    "Active": "mylab.active",
+    "Last Feeding": "mylab.last_feeding",
+    "Age": "mylab.age_2",
+    "No active Levain": "mylab.no_active_levain",
+    "Create Starter": "mylab.create_starter",
+    "Fermentation Health": "mylab.fermentation_health",
+    "PRO Feature": "mylab.pro_feature",
+    "Activity Chart": "mylab.activity_chart",
+    "Acidity Tracking": "mylab.acidity_tracking",
+    "Feeding Schedule": "mylab.feeding_schedule"
+  },
+  "src\\pages\\mylab\\MyLabRecipesPage.tsx": {
+    "Time": "mylab.time_2",
+    "Oven": "mylab.oven_2",
+    "My Recipes": "mylab.my_recipes",
+    "Compare": "mylab.compare",
+    "New Recipe": "mylab.new_recipe",
+    "No saved recipes yet": "mylab.no_saved_recipes_yet",
+    "Mark your best batches as": "mylab.mark_your_best_batches_as",
+    "Favorites": "mylab.favorites",
+    "Go to My Bakes": "mylab.go_to_my_bakes",
+    "Recipes": "mylab.recipes"
+  },
+  "src\\pages\\mylab\\MyLabSensoryDiaryPage.tsx": {
+    "Sensory Diary": "mylab.sensory_diary",
+    "Journal is empty": "mylab.journal_is_empty",
+    "Go to My Bakes": "mylab.go_to_my_bakes_2",
+    "View Full Details": "mylab.view_full_details"
+  },
+  "src\\pages\\mylab\\ObjectivesPage.tsx": {
+    "Progress": "mylab.progress",
+    "My Goals": "mylab.my_goals",
+    "Create New Goal": "mylab.create_new_goal",
+    "AI Suggestions": "mylab.ai_suggestions",
+    "Add goal": "mylab.add_goal",
+    "Active": "mylab.active_2",
+    "Completed": "mylab.completed",
+    "Complete": "mylab.complete",
+    "Tabs": "mylab.tabs_2"
+  },
+  "src\\pages\\mylab\\TimelinePage.tsx": {
+    "Timeline": "mylab.timeline"
+  },
+  "src\\pages\\MyLabPage.tsx": {
+    "Production Hub": "general.production_hub",
+    "My Lab": "general.my_lab",
+    "Lab Status": "general.lab_status",
+    "Operational": "general.operational",
+    "Total Batches": "general.total_batches",
+    "Success Rate": "general.success_rate",
+    "Daily Operations": "general.daily_operations",
+    "Analysis Lab": "general.analysis_lab",
+    "Recent Activity": "general.recent_activity",
+    "View Log": "general.view_log",
+    "View Details": "general.view_details",
+    "Start your first bake": "general.start_your_first_bake",
+    "Daily Tip": "general.daily_tip",
+    "Autolyse Science": "general.autolyse_science",
+    "Read Full Article": "general.read_full_article",
+    "AI Beta": "general.ai_beta",
+    "Fermentation Engine": "general.fermentation_engine",
+    "Unlock Pro Features": "general.unlock_pro_features_2",
+    "Recommended Gear": "general.recommended_gear_2",
+    "Smart Timeline": "general.smart_timeline",
+    "My Bakes": "general.my_bakes",
+    "Levain Tracker": "general.levain_tracker",
+    "Inventory": "general.inventory",
+    "Consistency Logic": "general.consistency_logic",
+    "A/B Comparisons": "general.ab_comparisons",
+    "Deep Insights": "general.deep_insights",
+    "Learning Goals": "general.learning_goals"
+  },
+  "src\\pages\\OvenAnalysisPage.tsx": {
+    "Oven Profiler": "general.oven_profiler_2"
+  },
+  "src\\pages\\pro\\ProActivatedPage.tsx": {
+    "Pro Activated": "general.pro_activated"
+  },
+  "src\\pages\\ProfilePage.tsx": {
+    "PRO": "general.pro_4",
+    "Edit Profile": "general.edit_profile",
+    "Skills": "general.skills",
+    "Select Level": "general.select_level",
+    "Location": "general.location",
+    "Website": "general.website",
+    "Instagram Handle": "general.instagram_handle",
+    "Bio": "general.bio",
+    "Save Changes": "general.save_changes",
+    "About": "general.about",
+    "Activity Stats": "general.activity_stats",
+    "Batches": "general.batches_2",
+    "Levains": "general.levains",
+    "Ovens": "general.ovens",
+    "Goals": "general.goals",
+    "App Preferences": "general.app_preferences",
+    "Go to Global Settings": "general.go_to_global_settings",
+    "Legal Support": "general.legal_support",
+    "Terms of Service": "general.terms_of_service",
+    "Privacy Policy": "general.privacy_policy_2",
+    "Danger Zone": "general.danger_zone",
+    "Upgrade to Pro": "general.upgrade_to_pro_2",
+    "Go Pro Now": "general.go_pro_now",
+    "Pro Member": "general.pro_member",
+    "Resources": "general.resources",
+    "Database of flour types": "general.database_of_flour_types",
+    "Profile Photo": "general.profile_photo",
+    "City, Country": "general.city_country",
+    "Tell us about your pizza journey...": "general.tell_us_about_your_pizza_journey",
+    "Set Default": "general.set_default",
+    "Manage": "general.manage"
+  },
+  "src\\pages\\ReferencesPage.tsx": {
+    "Visit": "general.visit",
+    "Technical References": "general.technical_references",
+    "Pizza – Official Rules and Associations": "general.pizza__official_rules_and_associations",
+    "Pizza in Teglia e Pizza Tonda al Piatto": "general.pizza_in_teglia_e_pizza_tonda_al_piatto",
+    "Baking – Technical Books": "general.baking__technical_books",
+    "Flour Water Salt Yeast": "general.flour_water_salt_yeast",
+    "Modernist Bread": "general.modernist_bread_33",
+    "Chopin Alveograph": "general.chopin_alveograph",
+    "Caputo Mill": "general.caputo_mill",
+    "Terminology and Concepts": "general.terminology_and_concepts",
+    "The Fresh Loaf": "general.the_fresh_loaf",
+    "Autolyse, Fermentolyse, and Maturation": "general.autolyse_fermentolyse_and_maturation",
+    "Book": "general.book",
+    "Book Collection": "general.book_collection",
+    "Technical Concept": "general.technical_concept",
+    "Concepts": "general.concepts"
+  },
+  "src\\pages\\settings\\LanguagePage.tsx": {
+    "Language Settings": "general.language_settings"
+  },
+  "src\\pages\\SettingsPage.tsx": {
+    "General Settings": "general.general_settings",
+    "English": "general.english",
+    "Environment Defaults": "general.environment_defaults",
+    "Default Oven Type": "general.default_oven_type"
+  },
+  "src\\pages\\styles\\DoughStylesPage.tsx": {
+    "Global Library": "general.global_library",
+    "AI Style Builder": "general.ai_style_builder",
+    "Favorites": "general.favorites",
+    "Filters": "general.filters",
+    "Region": "general.region",
+    "Any": "general.any",
+    "No styles found": "general.no_styles_found",
+    "Clear all filters": "general.clear_all_filters",
+    "Unlock AI Builder": "general.unlock_ai_builder"
+  },
+  "src\\pages\\styles\\StyleDetailPage.tsx": {
+    "Pro Tips from the Masters": "general.pro_tips_from_the_masters",
+    "Consequence": "general.consequence",
+    "Correction": "general.correction",
+    "Style Comparisons": "general.style_comparisons",
+    "Fermentation Strategy": "general.fermentation_strategy_2",
+    "Expert analysis and logic breakdown": "general.expert_analysis_and_logic_breakdown",
+    "The Hydration Logic": "general.the_hydration_logic",
+    "Method Suitability Matrix": "general.method_suitability_matrix",
+    "Direct Method": "general.direct_method_2",
+    "Troubleshooting Scenarios": "general.troubleshooting_scenarios",
+    "Comparative Analysis": "general.comparative_analysis",
+    "Use Formula": "general.use_formula",
+    "Global Presence": "general.global_presence",
+    "The Scientific Process": "general.the_scientific_process",
+    "Scientifically Validated": "general.scientifically_validated",
+    "Primary Sources": "general.primary_sources",
+    "Tech Specs": "general.tech_specs",
+    "Hydration Dynamics": "general.hydration_dynamics",
+    "Thermal Engineering": "general.thermal_engineering",
+    "Target": "general.target",
+    "Heat Transfer": "general.heat_transfer",
+    "Flour Mechanics": "general.flour_mechanics",
+    "Recommended Strength": "general.recommended_strength",
+    "Protein": "general.protein",
+    "Base Formula": "general.base_formula",
+    "Ingredient": "general.ingredient_3",
+    "Launch Oven Profiler": "general.launch_oven_profiler",
+    "Variable": "general.variable_2",
+    "Soft Wheat": "general.soft_wheat_4",
+    "Standard": "general.standard_9",
+    "Maillard dominant": "general.maillard_dominant",
+    "Open": "general.open",
+    "Balanced": "general.balanced_7",
+    "Moderate": "general.moderate_6",
+    "Failed to upload image": "general.failed_to_upload_image",
+    "Radiation Dominant": "general.radiation_dominant"
+  },
+  "src\\pages\\StylesLibrary.tsx": {
+    "Global Dough Registry": "general.global_dough_registry",
+    "Explore Styles": "general.explore_styles",
+    "All Types": "general.all_types",
+    "All Regions": "general.all_regions",
+    "Clear Filters": "general.clear_filters",
+    "In Development": "general.in_development",
+    "Search styles...": "general.search_styles",
+    "Professional Baking Gear": "general.professional_baking_gear"
+  },
+  "src\\pages\\ToolsPage.tsx": {
+    "NEW": "general.new_2",
+    "PRO": "general.pro_5",
+    "Professional Utilities": "general.professional_utilities",
+    "Baking Tools": "general.baking_tools"
+  },
+  "src\\pages\\UpgradePage.tsx": {
+    "Go to Home": "general.go_to_home",
+    "Upgrade Cancelled": "general.upgrade_cancelled",
+    "Try Again": "general.try_again_2",
+    "DoughLab Pro": "general.doughlab_pro_3",
+    "Unlock the Full Potential": "general.unlock_the_full_potential",
+    "Pro Membership": "general.pro_membership",
+    "USD": "general.usd",
+    "Upgrade Now": "general.upgrade_now"
+  },
+  "src\\services\\storageService.ts": {
+    "Firebase not initialized": "general.firebase_not_initialized"
+  },
+  "src\\types\\dough.ts": {
+    "Leopard spotting due to rapid gelatinization": "general.leopard_spotting_due_to_rapid_gelatinization",
+    "Slow due to cold retard": "general.slow_due_to_cold_retard",
+    "Lactic dominant over Acetic": "general.lactic_dominant_over_acetic",
+    "High protease activity during autolyse": "general.high_protease_activity_during_autolyse"
+  },
+  "src\\types\\index.ts": {
+    "Promise": "general.promise_8"
+  },
+  "src\\types\\styleDefinition.ts": {
+    "Italian Pizza": "general.italian_pizza",
+    "Sourdough Bread": "general.sourdough_bread",
+    "High heat": "general.high_heat_2",
+    "Long fermentation": "general.long_fermentation",
+    "Easy": "general.easy_5",
+    "Medium": "general.medium_38",
+    "Hard": "general.hard_23",
+    "Expert": "general.expert_15",
+    "Highly sensitive to overproofing": "general.highly_sensitive_to_overproofing"
+  },
+  "src\\types\\styles.ts": {
+    "Eggshell thin": "general.eggshell_thin",
+    "Leopard spotting due to rapid gelatinization": "general.leopard_spotting_due_to_rapid_gelatinization_2",
+    "Slow due to cold retard": "general.slow_due_to_cold_retard_2",
+    "Lactic dominant over Acetic": "general.lactic_dominant_over_acetic_2",
+    "High protease activity during autolyse": "general.high_protease_activity_during_autolyse_2",
+    "Dough becomes too sticky to stretch": "general.dough_becomes_too_sticky_to_stretch",
+    "Use cold water or reduce autolyse": "general.use_cold_water_or_reduce_autolyse",
+    "Roman Teglia": "general.roman_teglia",
+    "Better for toppings density": "general.better_for_toppings_density"
+  }
+}

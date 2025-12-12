@@ -3,13 +3,15 @@ import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { BeakerIcon, BookOpenIcon, ShieldCheckIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
+import { useTranslation } from '@/i18n';
 
 // Local Section component for structuring content
 const StoragePage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <TechnicalPageLayout
-      title="Technical Dough Storage"
-      subtitle="The science of storing dough to control fermentation, preserve texture, and ensure safety."
+      title={t('learn.technical_dough_storage')}
+      subtitle={t('learn.the_science_of_storing_dough_to_control_fermentati')}
       showReferencesSection={false} // Custom references section at the end
     >
       <LearnSection title="1. Introduction: Storage as Control Tool">
@@ -19,9 +21,9 @@ const StoragePage: React.FC = () => {
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Fermentation speed/profile</strong> via temperature/oxygen.</li>
           <li><strong>Texture/surface hydration</strong> preventing drying.</li>
-          <li><strong>Flavor development</strong> via stable environment.</li>
+          <li><strong>{t('learn.flavor_development')}</strong> via stable environment.</li>
           <li><strong>Safety/Hygiene</strong> preventing contamination.</li>
-          <li><strong>Gluten stability</strong> maintaining gas retention.</li>
+          <li><strong>{t('learn.gluten_stability')}</strong> maintaining gas retention.</li>
         </ul>
       </LearnSection>
 
@@ -30,9 +32,9 @@ const StoragePage: React.FC = () => {
           Container choice is first defense line.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Clean airtight containers</strong> prevent contamination.</li>
-          <li>Individual boxes or dividers <strong>prevent drying and sticking</strong>.</li>
-          <li>Must have <strong>space for expansion</strong>. Inadequate space collapses gas structure.</li>
+          <li><strong>{t('learn.clean_airtight_containers')}</strong> prevent contamination.</li>
+          <li>{t('learn.individual_boxes_or_dividers')}<strong>prevent drying and sticking</strong>.</li>
+          <li>{t('learn.must_have')}<strong>space for expansion</strong>. Inadequate space collapses gas structure.</li>
         </ul>
       </LearnSection>
 
@@ -41,61 +43,61 @@ const StoragePage: React.FC = () => {
           Direct air exposure harms dough surface.
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>Air <strong>dehydrates surface</strong> creating dry skin losing elasticity causing tearing.</li>
-          <li>Oxygen contact leads to <strong>surface oxidation</strong> affecting flavor/color.</li>
+          <li>{t('learn.air')}<strong>dehydrates surface</strong> creating dry skin losing elasticity causing tearing.</li>
+          <li>{t('learn.oxygen_contact_leads_to')}<strong>surface oxidation</strong> affecting flavor/color.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="4. Internal Humidity Control">
-        <p>Maintain humidity balance.</p>
+        <p>{t('learn.maintain_humidity_balance')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Closed boxes retain natural moisture</strong> creating stable microclimate.</li>
-          <li>Traditional damp cloth offers less protection.</li>
-          <li><strong>Excess humidity causes condensation</strong> making surface sticky.</li>
+          <li><strong>{t('learn.closed_boxes_retain_natural_moisture')}</strong> creating stable microclimate.</li>
+          <li>{t('learn.traditional_damp_cloth_offers_less_protection')}</li>
+          <li><strong>{t('learn.excess_humidity_causes_condensation')}</strong> making surface sticky.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="5. Contamination: Real Risks">
-        <p>Dough is ideal culture medium.</p>
+        <p>{t('learn.dough_is_ideal_culture_medium')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Environmental molds</strong> can settle on unprotected dough.</li>
-          <li><strong>Bacteria</strong> from dirty surfaces compete with yeast.</li>
+          <li><strong>{t('learn.environmental_molds')}</strong> can settle on unprotected dough.</li>
+          <li><strong>{t('learn.bacteria')}</strong> from dirty surfaces compete with yeast.</li>
           <li>Dough absorbs odors. Store away from strong smells (onion/fish).</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="6. Storage During Cold Fermentation">
-        <p>Refrigerated storage requires care.</p>
+        <p>{t('learn.refrigerated_storage_requires_care')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Low temp slows yeast</strong> but allows slow enzyme action developing flavor.</li>
-          <li>Cold moist fridge makes <strong>clean sealed containers</strong> vital.</li>
+          <li><strong>{t('learn.low_temp_slows_yeast')}</strong> but allows slow enzyme action developing flavor.</li>
+          <li>{t('learn.cold_moist_fridge_makes')}<strong>clean sealed containers</strong> vital.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="7. Post-Balling Storage">
-        <p>Preserve individual ball structure.</p>
+        <p>{t('learn.preserve_individual_ball_structure')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>Maintain <strong>shape and surface tension</strong>.</li>
+          <li>{t('learn.maintain')}<strong>shape and surface tension</strong>.</li>
           <li><strong>Avoid stacking/squashing</strong> destroying gas structure.</li>
-          <li>Each ball needs space to expand without touching.</li>
+          <li>{t('learn.each_ball_needs_space_to_expand_without_touching')}</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="8. Common Improper Storage Risks">
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Dried dough:</strong> Surface tears, hard crust. Cause: bad seal/air exposure.</li>
-          <li><strong>Sticky dough:</strong> Hard to handle. Cause: condensation.</li>
-          <li><strong>Strong alcohol smell:</strong> Uncontrolled anaerobic fermentation.</li>
+          <li><strong>{t('learn.dried_dough')}</strong> Surface tears, hard crust. Cause: bad seal/air exposure.</li>
+          <li><strong>{t('learn.sticky_dough')}</strong> Hard to handle. Cause: condensation.</li>
+          <li><strong>{t('learn.strong_alcohol_smell')}</strong> Uncontrolled anaerobic fermentation.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title="9. Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 space-y-2">
-          <li>Modernist Pizza</li>
-          <li>Modernist Bread</li>
-          <li>King Arthur Baking – Storage Guides</li>
-          <li>Ooni Learn – Storing Dough</li>
-          <li>Wikipedia – Food safety microbiology</li>
+          <li>{t('learn.modernist_pizza_4')}</li>
+          <li>{t('learn.modernist_bread_3')}</li>
+          <li>{t('learn.king_arthur_baking__storage_guides')}</li>
+          <li>{t('learn.ooni_learn__storing_dough')}</li>
+          <li>{t('learn.wikipedia__food_safety_microbiology')}</li>
         </ul>
       </LearnSection>
     </TechnicalPageLayout>

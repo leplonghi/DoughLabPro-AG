@@ -1,9 +1,10 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const temperatureManagementAndProfilingData: LearnArticleData = {
     id: "temperature-management-and-profiling",
-    title: "Temperature Management & Profiling",
-    subtitle: "From dough temperature to bake curves",
+    title: t('learn.temperature_management__profiling'),
+    subtitle: t('learn.from_dough_temperature_to_bake_curves'),
     category: 'Process Techniques',
     difficulty: 'Advanced',
     tags: ['temperature', 'profiling', 'fermentation', 'baking'],
@@ -33,15 +34,15 @@ export const temperatureManagementAndProfilingData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Typical DDT for most pizza and lean breads",
+            label: t('learn.typical_ddt_for_most_pizza_and_lean_breads'),
             notes: "22–26°C final dough temp. Adjust up or down depending on desired fermentation speed and ambient conditions."
         },
         {
-            label: "Cold fermentation fridges",
+            label: t('learn.cold_fermentation_fridges'),
             notes: "3–6°C internal temperature. Lower end for longer ferments, higher end for shorter schedules."
         },
         {
-            label: "Home oven bake profiles",
+            label: t('learn.home_oven_bake_profiles'),
             notes: "Stone 250–300°C with optional top heat boost. Often require maximised preheat and smart rack positioning."
         }
     ],
@@ -82,9 +83,9 @@ export const temperatureManagementAndProfilingData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_19'),
+        whatItDoes: t('learn.improves_texture_and_flavor_13'),
+        howToUse: t('learn.so_you_get_the_best_results_15'),
+        dangerSigns: t('learn.use_it_wisely_15')
     },
 };

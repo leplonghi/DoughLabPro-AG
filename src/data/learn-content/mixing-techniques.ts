@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const mixingTechniquesData: LearnArticleData = {
     id: 'mixing-techniques',
@@ -32,9 +33,9 @@ export const mixingTechniquesData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Spiral Mixer Friction", notes: "Recommended: 6°C (Range: 5-8°C)" },
-        { label: "Planetary Mixer Friction", notes: "Recommended: 12°C (Range: 10-15°C)" },
-        { label: "Hand Mixing Friction", notes: "Recommended: 0°C (Range: 0-1°C)" }
+        { label: t('learn.spiral_mixer_friction'), notes: "Recommended: 6°C (Range: 5-8°C)" },
+        { label: t('learn.planetary_mixer_friction'), notes: "Recommended: 12°C (Range: 10-15°C)" },
+        { label: t('learn.hand_mixing_friction'), notes: "Recommended: 0°C (Range: 0-1°C)" }
     ],
 
     practicalApplications: [
@@ -64,15 +65,15 @@ export const mixingTechniquesData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Spiral Mixer",
+            variant: t('learn.spiral_mixer'),
             implications: "Bowl rotates with the hook. Gentle action. Low friction, efficient development, low oxidation. Preserves carotenoids (flavor/color). Creamy crumb, excellent flavor. Recommended for Pizza, Artisan Bread."
         },
         {
-            variant: "Planetary Mixer",
+            variant: t('learn.planetary_mixer'),
             implications: "Hook rotates around a stationary bowl. High friction, inefficient for dough. Heats dough rapidly; risk of over-oxidation. Good for enriched doughs, less ideal for lean doughs. Recommended for Brioche, Cookies, Cakes."
         },
         {
-            variant: "Hand Mixing",
+            variant: t('learn.hand_mixing'),
             implications: "Manual folding and squeezing. Zero friction, gentle, labor intensive. Requires autolyse and stretch & folds for strength. Open crumb, rustic texture. Recommended for High hydration, Home baking."
         }
     ],
@@ -88,8 +89,8 @@ export const mixingTechniquesData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Mixing dough is like giving it a good massage.",
-        whatItDoes: "It turns a shaggy mess into a smooth, stretchy ball.",
+        intro: t('learn.mixing_dough_is_like_giving_it_a_good_massage'),
+        whatItDoes: t('learn.it_turns_a_shaggy_mess_into_a_smooth_stretchy_ball'),
         howToUse: "You're helping the flour and water get to know each other and become strong friends.",
         dangerSigns: "If you don't mix enough, your bread will be heavy. If you mix too much, you kill the flavor."
     }

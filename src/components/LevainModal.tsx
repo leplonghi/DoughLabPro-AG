@@ -205,9 +205,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                     </div>
 
                     <div>
-                        <label className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">
-                            Base Flour Type
-                            <Tooltip text="The primary flour used to feed this starter." />
+                        <label className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">{t('common.base_flour_type')}<Tooltip text="The primary flour used to feed this starter." />
                         </label>
                         <div className="space-y-2">
                             <select
@@ -218,7 +216,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                 {PRESET_FLOURS.map(flour => (
                                     <option key={flour} value={flour}>{flour}</option>
                                 ))}
-                                <option value="custom">Enter Manually...</option>
+                                <option value="custom">{t('ui.enter_manually')}</option>
                             </select>
 
                             {isCustomFlour && (
@@ -227,7 +225,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                     name="baseFlourType"
                                     value={formData.baseFlourType || ''}
                                     onChange={handleChange}
-                                    placeholder="Enter custom flour type"
+                                    placeholder={t('general.enter_custom_flour_type')}
                                     className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 animate-fadeIn text-dlp-text-primary placeholder-dlp-text-muted"
                                     autoFocus
                                 />
@@ -236,9 +234,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                     </div>
 
                     <div>
-                        <label className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">
-                            Feeding Schedule
-                            <Tooltip text="How often does this starter need to be fed to stay active?" />
+                        <label className="flex items-center text-sm font-bold text-dlp-text-secondary mb-1">{t('common.feeding_schedule')}<Tooltip text="How often does this starter need to be fed to stay active?" />
                         </label>
                         <div className="space-y-2">
                             <select
@@ -249,7 +245,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                 {PRESET_INTERVALS.map(interval => (
                                     <option key={interval.value} value={interval.value}>{interval.label}</option>
                                 ))}
-                                <option value="custom">Custom Interval...</option>
+                                <option value="custom">{t('ui.custom_interval')}</option>
                             </select>
 
                             {isCustomInterval && (
@@ -261,7 +257,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                         value={formData.idealFeedingIntervalHours}
                                         onChange={handleChange}
                                         className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
-                                        placeholder="Hours"
+                                        placeholder={t('general.hours')}
                                     />
                                     <span className="text-sm text-dlp-text-muted font-medium">hours</span>
                                 </div>
@@ -278,9 +274,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             onChange={handleChange}
                             className="h-5 w-5 rounded border-dlp-border text-dlp-accent focus:ring-dlp-accent"
                         />
-                        <label htmlFor="notificationEnabled" className="ml-3 block text-sm font-medium text-dlp-text-secondary">
-                            Enable Feeding Reminders
-                        </label>
+                        <label htmlFor="notificationEnabled" className="ml-3 block text-sm font-medium text-dlp-text-secondary">{t('common.enable_feeding_reminders')}</label>
                     </div>
 
                     <div>
@@ -294,7 +288,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             value={formData.notes || ''}
                             onChange={handleChange}
                             className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
-                            placeholder="Origin story, flavor profile, or special instructions..."
+                            placeholder={t('ui.origin_story_flavor_profile_or_special_instruction')}
                         />
                     </div>
 

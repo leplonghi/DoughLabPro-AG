@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const yeastArticle: LearnArticleData = {
     id: "yeast-leavening-agents",
-    title: "Yeast & Leavening Agents",
-    subtitle: "Gas production, aroma development and fermentation control.",
-    category: "Ingredient Science",
-    difficulty: "Beginner",
+    title: t('learn.yeast__leavening_agents'),
+    subtitle: t('learn.gas_production_aroma_development_and_fermentation_'),
+    category: t('learn.ingredient_science_16'),
+    difficulty: t('learn.beginner_13'),
     tags: ["yeast", "leavening", "fermentation", "ingredients"],
 
     intro: "Yeast transforms dough from dense paste into an aerated structure through gas production and biochemical reactions. Its behavior depends on type, dosage, temperature and time.",
@@ -31,8 +32,8 @@ export const yeastArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Instant Yeast", notes: "Recommended: 0.3% (Range: 0.1-1.0%)" },
-        { label: "Fresh Yeast", notes: "Recommended: 1.0% (Range: 0.3-3.0%)" },
+        { label: t('learn.instant_yeast'), notes: "Recommended: 0.3% (Range: 0.1-1.0%)" },
+        { label: t('learn.fresh_yeast'), notes: "Recommended: 1.0% (Range: 0.3-3.0%)" },
         { label: "Cold Fermentation (Instant)", notes: "Recommended: 0.1% (Range: 0.05-0.2%)" }
     ],
 
@@ -73,7 +74,7 @@ export const yeastArticle: LearnArticleData = {
             implications: "Dehydrated yeast requiring rehydration. Medium granules, needs blooming. Slower start; consistent results. Balanced flavor, moderate spring. Recommended for Home baking, Direct doughs."
         },
         {
-            variant: "Fresh Yeast",
+            variant: t('learn.fresh_yeast_2'),
             implications: "High moisture content, mild flavor. Soft blocks, short shelf-life. Reliable fermentation; sensitive to temperature. Mild aroma and good spring. Recommended for Artisan baking, Short fermentations."
         },
         {
@@ -93,8 +94,8 @@ export const yeastArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, think of yeast as tiny helpers making little balloons inside your dough.",
-        whatItDoes: "More yeast means faster rise, less yeast means slower but tastier dough.",
-        howToUse: "They eat sugars and fill the dough with air, making it soft and fluffy.",
-        dangerSigns: "Too much yeast and the dough grows wild — then falls flat like a sad pancake."
+        whatItDoes: t('learn.more_yeast_means_faster_rise_less_yeast_means_slow'),
+        howToUse: t('learn.they_eat_sugars_and_fill_the_dough_with_air_making'),
+        dangerSigns: t('learn.too_much_yeast_and_the_dough_grows_wild__then_fall')
     }
 };

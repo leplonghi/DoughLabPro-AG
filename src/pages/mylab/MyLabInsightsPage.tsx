@@ -57,26 +57,26 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
 
     const statCards: Stat[] = stats ? [
         {
-            label: "Total Batches",
+            label: t('mylab.total_batches'),
             value: stats.total,
             icon: <BatchesIcon />,
             color: "bg-blue-100 text-blue-600"
         },
         {
-            label: "Avg Rating",
+            label: t('mylab.avg_rating'),
             value: stats.avgRating,
             icon: <StarIcon />,
             color: "bg-amber-100 text-amber-600"
         },
         {
-            label: "Success Rate",
+            label: t('mylab.success_rate'),
             value: `${stats.successRate}%`,
             sublabel: "> 4 Stars",
             icon: <ChartBarIcon />,
             color: "bg-emerald-100 text-emerald-600"
         },
         {
-            label: "Top Style",
+            label: t('mylab.top_style'),
             value: t(`form.${stats.topStyle.toLowerCase()}`, { defaultValue: stats.topStyle }),
             icon: <FireIcon />,
             color: "bg-orange-100 text-orange-600"
@@ -87,7 +87,7 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
         <MyLabLayout activePage="mylab/insights" onNavigate={onNavigate}>
             <div className="animate-fade-in pb-20">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">Insights</h1>
+                    <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">{t('mylab.insights')}</h1>
                     <p className="mt-2 text-slate-600 ">
                         Analyze patterns and trends in your baking.
                     </p>
@@ -102,16 +102,14 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <ChartBarIcon className="h-8 w-8 text-slate-400" />
                             </div>
-                            <h3 className="text-lg font-semibold text-slate-900">No data found</h3>
+                            <h3 className="text-lg font-semibold text-slate-900">{t('mylab.no_data_found')}</h3>
                             <p className="text-slate-500 mt-2 max-w-sm mx-auto">
                                 Complete at least one batch to generate insights.
                             </p>
                             <button
                                 onClick={() => onNavigate('calculator')}
                                 className="mt-6 text-lime-600 font-bold hover:underline"
-                            >
-                                Start Baking
-                            </button>
+                            >{t('mylab.start_baking')}</button>
                         </div>
                     ) : (
                         <div className="space-y-8">
@@ -131,7 +129,7 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
 
                             {/* Style Distribution */}
                             <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm">
-                                <h3 className="text-lg font-bold text-slate-900 mb-6">Style Distribution</h3>
+                                <h3 className="text-lg font-bold text-slate-900 mb-6">{t('mylab.style_distribution')}</h3>
                                 <div className="space-y-4">
                                     {stats.sortedStyles.map((item, index) => {
                                         const percentage = Math.round((item.count / stats.total) * 100);

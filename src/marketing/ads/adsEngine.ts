@@ -1,6 +1,7 @@
 import { Ad, ADS_CATALOG } from './adsCatalog';
 import { User } from '../../types';
 import { getCurrentPlan } from '../../permissions';
+import { useTranslation } from '@/i18n';
 
 const AD_FREQUENCY_KEY = 'doughlab_ad_views';
 const SESSION_COUNT_KEY = 'doughlab_ad_session_count';

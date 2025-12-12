@@ -1,5 +1,6 @@
 import React from 'react';
 import { CommunityBatch } from '../../types';
+import { useTranslation } from '@/i18n';
 
 interface CommunityPostProps {
     post: CommunityBatch;
@@ -8,6 +9,7 @@ interface CommunityPostProps {
 }
 
 export const CommunityPost: React.FC<CommunityPostProps> = ({ post, onLike, onComment }) => {
+  const { t } = useTranslation();
     return (
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden mb-6">
             <div className="p-4 flex items-center gap-3">
@@ -19,9 +21,7 @@ export const CommunityPost: React.FC<CommunityPostProps> = ({ post, onLike, onCo
                     <p className="text-xs text-zinc-500">{new Date(post.createdAt).toLocaleDateString()}</p>
                 </div>
                 {post.isFeatured && (
-                    <span className="ml-auto bg-yellow-500/20 text-yellow-500 text-[10px] px-2 py-0.5 rounded uppercase font-bold">
-                        Featured
-                    </span>
+                    <span className="ml-auto bg-yellow-500/20 text-yellow-500 text-[10px] px-2 py-0.5 rounded uppercase font-bold">{t('community.featured')}</span>
                 )}
             </div>
 

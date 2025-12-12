@@ -1,6 +1,7 @@
 import { DoughStyleDefinition, RecipeStyle, StyleCategory, BakeType } from '@/types';
 import { DoughStylePreset } from '@/types';
 import { STYLES_DATA } from '@/data/styles/registry';
+import { useTranslation } from '@/i18n';
 
 // Helper to calculate average of a range tuple [min, max]
 const getAvg = (range: [number, number] | undefined | null): number => {

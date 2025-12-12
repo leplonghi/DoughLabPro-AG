@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { DoughStyleDefinition, StyleCategory } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
+import { useTranslation } from '@/i18n';
 
 export type SortOption = 'name' | 'newest' | 'hydration';
 export type SortOrder = 'asc' | 'desc';

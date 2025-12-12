@@ -1,5 +1,6 @@
 
 import { User } from '../types';
+import { useTranslation } from '@/i18n';
 
 /**
  * Checks if the user has an active trial period.

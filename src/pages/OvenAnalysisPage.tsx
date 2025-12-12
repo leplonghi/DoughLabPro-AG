@@ -4,8 +4,10 @@ import { LockFeature } from '@/components/auth/LockFeature';
 import { useOvenProfiler } from '@/hooks/useOvenProfiler';
 import { OvenProfilerForm } from '@/components/tools/ovenProfiler/OvenProfilerForm';
 import { OvenProfilerResults } from '@/components/tools/ovenProfiler/OvenProfilerResults';
+import { useTranslation } from '@/i18n';
 
 export const OvenAnalysisPage: React.FC = () => {
+  const { t } = useTranslation();
   const { profile, errors, analysis, updateProfile, analyze } = useOvenProfiler();
 
   const handleAnalyze = () => {
@@ -22,7 +24,7 @@ export const OvenAnalysisPage: React.FC = () => {
 
   return (
     <TechnicalPageLayout
-      title="Oven Profiler"
+      title={t('general.oven_profiler_2')}
       subtitle="Analyze your equipment to get tailored baking strategies, hydration limits, and rack positioning advice."
       showReferencesSection
     >

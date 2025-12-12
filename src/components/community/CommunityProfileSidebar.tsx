@@ -14,8 +14,8 @@ const CommunityProfileSidebar: React.FC = () => {
                     <div className="mx-auto h-16 w-16 rounded-full bg-slate-100 flex items-center justify-center mb-4">
                         <UserCircleIcon className="h-8 w-8 text-slate-400" />
                     </div>
-                    <h3 className="font-bold text-slate-900 mb-2">Join the Community</h3>
-                    <p className="text-sm text-slate-500 mb-4">Sign in to share your recipes and track your progress.</p>
+                    <h3 className="font-bold text-slate-900 mb-2">{t('community.join_the_community')}</h3>
+                    <p className="text-sm text-slate-500 mb-4">{t('community.sign_in_to_share_your_recipes_and_track_your_progr')}</p>
                 </div>
             </div>
         );
@@ -36,7 +36,7 @@ const CommunityProfileSidebar: React.FC = () => {
                 </div>
                 <div>
                     <h3 className="font-bold text-slate-900 text-lg">{user.name || 'Baker'}</h3>
-                    <p className="text-xs text-slate-500">Member</p>
+                    <p className="text-xs text-slate-500">{t('community.member')}</p>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@ const CommunityProfileSidebar: React.FC = () => {
                         <div className="p-2 bg-white rounded-lg shadow-sm text-orange-500">
                             <FireIcon className="h-5 w-5" />
                         </div>
-                        <span className="text-sm font-medium text-slate-700">Total Bakes</span>
+                        <span className="text-sm font-medium text-slate-700">{t('community.total_bakes')}</span>
                     </div>
                     <span className="font-bold text-slate-900">{totalBatches}</span>
                 </div>
@@ -56,14 +56,14 @@ const CommunityProfileSidebar: React.FC = () => {
                         <div className="p-2 bg-white rounded-lg shadow-sm text-yellow-500">
                             <StarIcon className="h-5 w-5" />
                         </div>
-                        <span className="text-sm font-medium text-slate-700">Avg Rating</span>
+                        <span className="text-sm font-medium text-slate-700">{t('community.avg_rating')}</span>
                     </div>
                     <span className="font-bold text-slate-900">{avgRating}</span>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100">
                     <div className="flex justify-between text-sm mb-2">
-                        <span className="text-slate-500">Public Recipes</span>
+                        <span className="text-slate-500">{t('community.public_recipes')}</span>
                         <span className="font-bold text-slate-900">{publicBatches}</span>
                     </div>
                     <div className="w-full bg-slate-100 rounded-full h-2">

@@ -9,6 +9,7 @@ import { useToast } from '@/components/ToastProvider';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
+import { useTranslation } from '@/i18n';
 
 interface LevainListPageProps {
     onNavigate: (page: Page, params?: string) => void;
@@ -31,6 +32,7 @@ const formatTimeSince = (dateString: string) => {
 };
 
 const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
     const { user, levains, addLevain, updateLevain } = useUser();
     const { addToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -97,9 +99,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
             <div className="animate-[fadeIn_0.5s_ease-in_out]">
                 <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-slate-900 ">
-                            Levain Pet
-                        </h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-slate-900 ">{t('mylab.levain_pet')}</h1>
                         <p className="mt-2 text-sm text-slate-500 ">
                             Track your starters as partners in your dough lab.
                         </p>
@@ -111,7 +111,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 transition-all opacity-50 cursor-not-allowed"
                                 >
                                     <PlusCircleIcon className="h-5 w-5" />
-                                    <span>Add Levain</span>
+                                    <span>{t('mylab.add_levain')}</span>
                                 </button>
                             </LockedTeaser>
                         ) : (
@@ -120,17 +120,15 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-105 active:scale-95"
                             >
                                 <PlusCircleIcon className="h-5 w-5" />
-                                <span>Add Levain</span>
+                                <span>{t('mylab.add_levain')}</span>
                             </button>
                         )}
                         <div className="flex gap-2">
                             <button onClick={handleImportClick} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 transition-colors">
-                                <DownloadIcon className="h-5 w-5" /> Import
-                            </button>
+                                <DownloadIcon className="h-5 w-5" />{t('mylab.import')}</button>
                             <LockedTeaser featureKey="levain.exportPDF">
                                 <button onClick={handleExport} disabled={levains.length === 0} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 disabled:opacity-50 transition-colors">
-                                    <ShareIcon className="h-5 w-5" /> Export
-                                </button>
+                                    <ShareIcon className="h-5 w-5" />{t('mylab.export')}</button>
                             </LockedTeaser>
                             <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" style={{ display: 'none' }} />
                         </div>
@@ -151,9 +149,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                         <button
                             onClick={handleAddLevainClick}
                             className="mt-6 rounded-xl bg-lime-500 py-2.5 px-6 font-bold text-white shadow-lg hover:bg-lime-600 transition-all"
-                        >
-                            Create Levain
-                        </button>
+                        >{t('mylab.create_levain')}</button>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -178,9 +174,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                                         <button
                                             onClick={() => onNavigate('mylab/levain/detail', starter.id)}
                                             className="w-full py-2 rounded-lg bg-slate-50  text-sm font-semibold text-slate-700  hover:bg-lime-50 hover:text-lime-700 transition-colors"
-                                        >
-                                            View Details
-                                        </button>
+                                        >{t('mylab.view_details_3')}</button>
                                     </div>
                                 </div>
                             )
@@ -192,7 +186,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                                     <div className="p-3 bg-lime-100 rounded-full text-lime-600 mb-3">
                                         <PlusCircleIcon className="h-8 w-8" />
                                     </div>
-                                    <h3 className="font-bold text-lime-800 text-lg">Add another Levain</h3>
+                                    <h3 className="font-bold text-lime-800 text-lg">{t('mylab.add_another_levain')}</h3>
                                     <p className="mt-2 text-xs text-center text-lime-700 max-w-[200px]">
                                         Free plan includes 1 Levain Pet.
                                     </p>

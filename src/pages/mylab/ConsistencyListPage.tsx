@@ -42,13 +42,11 @@ const ConsistencyListPage: React.FC<{ onNavigate: (page: Page, params?: string) 
                     >
                         <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div>
-                                <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">Consistency Mode</h1>
-                                <p className="mt-2 text-slate-600 ">Plan and track test series with controlled variables.</p>
+                                <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">{t('mylab.consistency_mode')}</h1>
+                                <p className="mt-2 text-slate-600 ">{t('mylab.plan_and_track_test_series_with_controlled_variabl')}</p>
                             </div>
                             <button onClick={() => handleOpenModal()} className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all hover:scale-105 active:scale-95">
-                                <PlusCircleIcon className="h-5 w-5" />
-                                Create New Series
-                            </button>
+                                <PlusCircleIcon className="h-5 w-5" />{t('mylab.create_new_series')}</button>
                         </div>
 
                         {sortedSeries.length > 0 ? (
@@ -60,9 +58,7 @@ const ConsistencyListPage: React.FC<{ onNavigate: (page: Page, params?: string) 
                                                 <h4 className="font-bold text-lg text-slate-900 ">{series.name}</h4>
                                                 <p className="text-sm text-slate-600  mt-1">{series.description}</p>
                                             </div>
-                                            <button onClick={() => onNavigate(`mylab/consistency/${series.id}`)} className="text-sm font-bold text-lime-600  hover:underline uppercase tracking-wider">
-                                                View details
-                                            </button>
+                                            <button onClick={() => onNavigate(`mylab/consistency/${series.id}`)} className="text-sm font-bold text-lime-600  hover:underline uppercase tracking-wider">{t('mylab.view_details')}</button>
                                         </div>
                                         <div className="mt-4 pt-4 border-t border-slate-200  flex flex-wrap items-center gap-4 text-xs text-slate-500 ">
                                             <span className="bg-slate-100  px-2 py-1 rounded-md">Variable: <strong className="text-slate-700 ">{series.parameters.variable}</strong></span>
@@ -75,8 +71,8 @@ const ConsistencyListPage: React.FC<{ onNavigate: (page: Page, params?: string) 
                         ) : (
                             <div className="text-center py-16 rounded-2xl border-2 border-dashed border-slate-300  bg-slate-50/50 ">
                                 <FlaskIcon className="mx-auto h-12 w-12 text-slate-400 " />
-                                <p className="mt-4 font-bold text-slate-700 ">No test series created.</p>
-                                <p className="text-sm text-slate-500  mt-1">Click "Create New Series" to start your first experiment.</p>
+                                <p className="mt-4 font-bold text-slate-700 ">{t('mylab.no_test_series_created')}</p>
+                                <p className="text-sm text-slate-500  mt-1">{t('mylab.click_create_new_series_to_start_your_first_experi')}</p>
                             </div>
                         )}
                     </LockFeature>

@@ -24,9 +24,7 @@ const ToppingsPage: React.FC = () => {
         <div className="mx-auto max-w-4xl animate-[fadeIn_0.5s_ease-in-out]">
             <div className="text-center">
                 <PizzaSliceIcon className="mx-auto h-12 w-12 text-lime-500" />
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                    Toppings Library
-                </h1>
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('common.toppings_library')}</h1>
                 <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
                     Explore classic and modern pizza topping combinations, with quantity guides for different sizes.
                 </p>
@@ -48,7 +46,7 @@ const ToppingsPage: React.FC = () => {
                                             <h3 className="text-xl font-bold text-dlp-text-primary">{combo.name}</h3>
                                             <p className="mt-1 text-sm text-dlp-text-secondary">{combo.notes}</p>
                                             <div className="mt-3 flex flex-wrap gap-2">
-                                                <span className="text-xs font-semibold mr-2 text-dlp-text-secondary">Styles:</span>
+                                                <span className="text-xs font-semibold mr-2 text-dlp-text-secondary">{t('ui.styles')}</span>
                                                 {combo.compatibleStyles.map(style => (
                                                     <span key={style} className="inline-block rounded-full bg-dlp-bg-muted px-2 py-0.5 text-xs font-semibold text-dlp-text-secondary">
                                                         {t(`form.${style.toLowerCase()}`, { defaultValue: style })}
@@ -60,7 +58,7 @@ const ToppingsPage: React.FC = () => {
                                             <table className="min-w-full text-sm text-left">
                                                 <thead className="bg-dlp-bg-muted">
                                                     <tr>
-                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary">Size</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary">{t('general.size')}</th>
                                                         <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Sauce (g)</th>
                                                         <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Cheese (g)</th>
                                                         <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Topping (g)</th>

@@ -19,6 +19,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../firebase/db';
 import { CommunityPost, CommunityComment, CommunityLike, CommunityClone, CommunityFollow } from '../types';
+import { useTranslation } from '@/i18n';
 
 const POSTS_COLLECTION = 'community_posts';
 const COMMENTS_COLLECTION = 'community_comments';

@@ -1,4 +1,5 @@
 import { STYLES_DATA, STYLES_MAP } from '../data/styles/registry';
+import { useTranslation } from '@/i18n';
 
 console.log(`\n🔍 STARTING STYLE REGISTRY VALIDATION...\n`);
 

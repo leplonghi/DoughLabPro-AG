@@ -40,6 +40,7 @@ import { auth } from '@/firebase/auth';
 import { PlanId } from '@/permissions';
 import { isProUser } from '@/lib/permissions';
 import { useBatchManager } from '@/hooks/useBatchManager';
+import { useTranslation } from '@/i18n';
 
 const shouldUseFirestore = (user: User | null | any, db: any) => {
   return !!user && !!db && user.uid !== 'guest-123';
@@ -64,6 +65,7 @@ const getStatusFromLastFeeding = (levain: Levain): LevainStatus => {
 };
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
   const { addToast } = useToast();
   const { loginWithGoogle, logout: authLogout } = useAuth();
 
@@ -170,7 +172,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         // Auto-fix Firestore for admin
         if (isAdminEmail && (profileData.plan !== 'lab_pro' || !profileData.isAdmin)) {
-          console.log("Auto-upgrading admin user in Firestore...");
+          console.log(t('ui.autoupgrading_admin_user_in_firestore'));
           try {
             await updateDoc(ref, {
               isAdmin: true,
@@ -587,7 +589,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const addUserStyle = useCallback(
     async (styleData: Omit<DoughStyleDefinition, 'id' | 'createdAt'>): Promise<DoughStyleDefinition> => {
       const newStyle = await createDoc('styles', styleData, setUserStyles);
-      addToast(`Style "${styleData.name}" saved.`, 'success');
+      addToast(`${t('ui.style_')}${styleData.name}" saved.`, 'success');
       return newStyle as DoughStyleDefinition;
     },
     [createDoc, addToast]
@@ -604,7 +606,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const updateUserStyle = useCallback(
     async (style: DoughStyleDefinition) => {
       await updateDocFn('styles', style.id, style, setUserStyles);
-      addToast(`Style "${style.name}" updated.`, 'success');
+      addToast(`${t('ui.style__2')}${style.name}" updated.`, 'success');
     },
     [updateDocFn, addToast]
   );

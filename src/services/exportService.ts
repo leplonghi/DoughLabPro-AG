@@ -2,6 +2,7 @@
 import { Batch, DoughConfig, DoughResult } from '../types';
 import { FLOURS } from '../flours-constants';
 import { generateTechnicalMethod } from '../logic/methodGenerator';
+import { useTranslation } from '@/i18n';
 
 // Assuming jsPDF is loaded from a CDN as per index.html
 declare global {
@@ -253,6 +254,6 @@ export const exportBatchToPDF = (batch: Batch, t: (key: string, options?: any) =
 
     } catch (error) {
         console.error("Failed to export batch to PDF:", error);
-        throw new Error("Failed to generate PDF file.");
+        throw new Error(t('ui.failed_to_generate_pdf_file'));
     }
 };

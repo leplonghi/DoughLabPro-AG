@@ -6,6 +6,7 @@ import AccordionSection from '@/components/calculator/AccordionSection';
 import { AMBIENT_TEMPERATURE_OPTIONS, ENVIRONMENT_TEMPERATURE_GUIDELINES } from '@/constants';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import { useToast } from '@/components/ToastProvider';
+import { useTranslation } from '@/i18n';
 
 
 interface EnvironmentSectionProps {
@@ -17,6 +18,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
     config,
     onConfigChange,
 }) => {
+  const { t } = useTranslation();
     const { addToast } = useToast();
 
     const handleTempChange = (newTemp: AmbientTemperature) => {
@@ -53,15 +55,13 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 
     return (
         <AccordionSection
-            title="Environment"
+            title={t('calculator.environment')}
             description="Temperature affects fermentation speed."
             icon={<SunIcon className="h-6 w-6" />}
         >
             <div className="space-y-4">
                 <div>
-                    <label className="mb-2 block text-xs font-bold text-dlp-text-secondary">
-                        Ambient Temperature
-                    </label>
+                    <label className="mb-2 block text-xs font-bold text-dlp-text-secondary">{t('calculator.ambient_temperature')}</label>
                     <div className="grid grid-cols-3 gap-2">
                         {AMBIENT_TEMPERATURE_OPTIONS.map((option) => (
                             <ChoiceButton
@@ -79,7 +79,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                     <div className="rounded-md bg-dlp-bg-muted p-3 text-xs text-dlp-text-secondary flex gap-2 items-start border border-dlp-border">
                         <InfoIcon className="h-4 w-4 flex-shrink-0 mt-0.5 text-dlp-accent" />
                         <div>
-                            <p className="font-semibold text-dlp-text-primary">Impact on Fermentation:</p>
+                            <p className="font-semibold text-dlp-text-primary">{t('calculator.impact_on_fermentation')}</p>
                             <p>{currentGuideline.notes}</p>
                             {currentGuideline.yeastAdjustment !== 1.0 && (
                                 <p className="mt-1 font-mono text-[10px] bg-dlp-bg-card inline-block px-1 rounded border border-dlp-border">

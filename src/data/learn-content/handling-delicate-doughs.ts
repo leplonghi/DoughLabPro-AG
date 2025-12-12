@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const handlingDelicateDoughsData: LearnArticleData = {
     id: 'handling-delicate-doughs',
@@ -31,7 +32,7 @@ export const handlingDelicateDoughsData: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Hydration Threshold for Delicate Handling", notes: "Recommended: 72% (Range: 68-80%)" }
+        { label: t('learn.hydration_threshold_for_delicate_handling'), notes: "Recommended: 72% (Range: 68-80%)" }
     ],
 
     practicalApplications: [
@@ -61,11 +62,11 @@ export const handlingDelicateDoughsData: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High-Hydration Dough",
+            variant: t('learn.highhydration_dough'),
             implications: "Extremely wet and extensible. Sticky, soft. Needs careful folding. Produces large holes. Recommended for Ciabatta, Pan de Cristal, High Hydration Pizza."
         },
         {
-            variant: "Over-Fermented Dough",
+            variant: t('learn.overfermented_dough'),
             implications: "Weak gluten but high gas. Fragile, puffy. Requires minimal handling. Risk of collapse. Recommended for Rescue operations, Specific rustic styles."
         }
     ],
@@ -81,8 +82,8 @@ export const handlingDelicateDoughsData: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, handling delicate dough is like carrying a sleeping baby — gentle and careful.",
-        whatItDoes: "Keeps the bubbles inside.",
-        howToUse: "Wet, soft dough needs a soft touch.",
-        dangerSigns: "Don’t poke or squeeze too hard, or it collapses."
+        whatItDoes: t('learn.keeps_the_bubbles_inside'),
+        howToUse: t('learn.wet_soft_dough_needs_a_soft_touch'),
+        dangerSigns: t('learn.dont_poke_or_squeeze_too_hard_or_it_collapses')
     }
 };

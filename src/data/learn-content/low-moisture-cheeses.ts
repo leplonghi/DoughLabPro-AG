@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const lowMoistureCheesesData: LearnArticleData = {
     id: 'low-moisture-cheeses',
@@ -61,9 +62,9 @@ export const lowMoistureCheesesData: LearnArticleData = {
     faq: [],
 
     grandmaVersion: {
-        intro: "Imagine this like a secret ingredient. It helps make your bread better.",
-        whatItDoes: "Improves texture and flavor.",
-        howToUse: "So you get the best results.",
-        dangerSigns: "Use it wisely!"
+        intro: t('learn.imagine_this_like_a_secret_ingredient_it_helps_mak_12'),
+        whatItDoes: t('learn.improves_texture_and_flavor_6'),
+        howToUse: t('learn.so_you_get_the_best_results_8'),
+        dangerSigns: t('learn.use_it_wisely_8')
     }
 };

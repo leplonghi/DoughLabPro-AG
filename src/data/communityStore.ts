@@ -1,5 +1,6 @@
 import { db } from '@/firebase/db';
 import { CommunityBatch } from '@/types';
+import { useTranslation } from '@/i18n';
 import {
     collection,
     setDoc,
@@ -15,7 +16,7 @@ import {
 const COLLECTION_NAME = 'community_batches';
 
 export const saveCommunityBatch = async (batch: CommunityBatch): Promise<void> => {
-    if (!db) throw new Error("Firestore not initialized");
+    if (!db) throw new Error(t('community.firestore_not_initialized'));
 
     try {
         // Use setDoc with merge: true to update existing or create new with the specific ID
@@ -30,7 +31,7 @@ export const saveCommunityBatch = async (batch: CommunityBatch): Promise<void> =
 };
 
 export const deleteCommunityBatch = async (id: string): Promise<void> => {
-    if (!db) throw new Error("Firestore not initialized");
+    if (!db) throw new Error(t('community.firestore_not_initialized_2'));
 
     try {
         await deleteDoc(doc(db, COLLECTION_NAME, id));

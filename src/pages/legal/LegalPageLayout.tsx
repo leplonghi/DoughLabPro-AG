@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n';
 
 interface LegalPageLayoutProps {
   title: string;
@@ -7,6 +8,7 @@ interface LegalPageLayoutProps {
 }
 
 const LegalPageLayout: React.FC<LegalPageLayoutProps> = ({ title, lastUpdated, children }) => {
+  const { t } = useTranslation();
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="mb-8 border-b border-dlp-border pb-4">

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Levain } from '@/types';
 import { hoursBetween } from '@/helpers';
 import { ClockIcon, FireIcon, SparklesIcon, ChartBarIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface LevainInsightsProps {
     levain: Levain;
@@ -21,6 +22,7 @@ const StatCard: React.FC<{ label: string; value: string; subtext?: string; icon:
 );
 
 const HealthBar: React.FC<{ score: number }> = ({ score }) => {
+  const { t } = useTranslation();
     // Score 0-100
     let color = 'bg-red-500';
     let text = 'Weak';
@@ -32,7 +34,7 @@ const HealthBar: React.FC<{ score: number }> = ({ score }) => {
     return (
         <div className="mb-6">
             <div className="flex justify-between items-end mb-2">
-                <span className="text-sm font-bold text-slate-700">Starter Health Score</span>
+                <span className="text-sm font-bold text-slate-700">{t('mylab.starter_health_score')}</span>
                 <span className={`text-xs font-bold px-2 py-0.5 rounded-full text-white ${color}`}>{text}</span>
             </div>
             <div className="h-3 w-full bg-slate-200 rounded-full overflow-hidden">
@@ -41,7 +43,7 @@ const HealthBar: React.FC<{ score: number }> = ({ score }) => {
                     style={{ width: `${score}%` }}
                 ></div>
             </div>
-            <p className="text-xs text-slate-600 mt-2">Based on feeding consistency and recent activity.</p>
+            <p className="text-xs text-slate-600 mt-2">{t('mylab.based_on_feeding_consistency_and_recent_activity')}</p>
         </div>
     );
 }
@@ -88,8 +90,8 @@ const LevainInsights: React.FC<LevainInsightsProps> = ({ levain }) => {
         return (
             <div className="rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center">
                 <ChartBarIcon className="mx-auto h-10 w-10 text-slate-300 mb-2" />
-                <h3 className="text-slate-900 font-medium">No insights available</h3>
-                <p className="text-sm text-slate-500">Log at least 2 feedings to see analysis.</p>
+                <h3 className="text-slate-900 font-medium">{t('mylab.no_insights_available')}</h3>
+                <p className="text-sm text-slate-500">{t('mylab.log_at_least_2_feedings_to_see_analysis')}</p>
             </div>
         );
     }
@@ -106,21 +108,21 @@ const LevainInsights: React.FC<LevainInsightsProps> = ({ levain }) => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <StatCard 
-                        label="Avg Frequency" 
+                        label={t('mylab.avg_frequency')} 
                         value={`Every ${analysis.avgFrequencyHours}h`} 
                         icon={<ClockIcon className="h-5 w-5"/>}
                         colorClass="text-blue-600 bg-blue-500"
                     />
                     <StatCard 
-                        label="Avg Temp" 
+                        label={t('mylab.avg_temp')} 
                         value={`${analysis.avgTemp}°C`} 
                         icon={<FireIcon className="h-5 w-5"/>}
                         colorClass="text-orange-600 bg-orange-500"
                     />
                      <StatCard 
-                        label="Total Feedings" 
+                        label={t('mylab.total_feedings')} 
                         value={`${analysis.totalFeedings}`} 
-                        subtext="Lifetime logs"
+                        subtext={t('mylab.lifetime_logs')}
                         icon={<ChartBarIcon className="h-5 w-5"/>}
                         colorClass="text-purple-600 bg-purple-500"
                     />
@@ -129,7 +131,7 @@ const LevainInsights: React.FC<LevainInsightsProps> = ({ levain }) => {
 
             {/* Simple Activity Visualization */}
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                 <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Recent Activity</h3>
+                 <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">{t('mylab.recent_activity')}</h3>
                  <div className="flex items-end gap-1 h-24">
                     {levain.feedingHistory.slice(0, 20).reverse().map((log, idx) => (
                         <div 
@@ -143,7 +145,7 @@ const LevainInsights: React.FC<LevainInsightsProps> = ({ levain }) => {
                         </div>
                     ))}
                  </div>
-                 <p className="text-xs text-slate-400 mt-2 text-center">Last 20 feedings</p>
+                 <p className="text-xs text-slate-400 mt-2 text-center">{t('mylab.last_20_feedings')}</p>
             </div>
         </div>
     );

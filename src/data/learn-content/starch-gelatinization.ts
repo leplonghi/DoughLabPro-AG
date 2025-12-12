@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const starchGelatinizationArticle: LearnArticleData = {
     id: "starch-gelatinization",
-    title: "Starch Gelatinization",
-    subtitle: "How starch absorbs water, swells and sets the crumb structure.",
-    category: "Baking Science",
-    difficulty: "Advanced",
+    title: t('learn.starch_gelatinization'),
+    subtitle: t('learn.how_starch_absorbs_water_swells_and_sets_the_crumb'),
+    category: t('learn.baking_science_7'),
+    difficulty: t('learn.advanced_13'),
     tags: ["starch", "gelatinization", "crumb", "structure"],
 
     intro: "Starch gelatinization is the process where starch granules absorb water, swell, and solidify to create the final crumb structure. It occurs during heating and is essential for the texture and stability of bread and pizza.",
@@ -31,8 +32,8 @@ export const starchGelatinizationArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Gelatinization Start", notes: "Recommended: 58°C (Range: 55-60°C)" },
-        { label: "Full Gelatinization", notes: "Recommended: 68°C (Range: 60-72°C)" }
+        { label: t('learn.gelatinization_start'), notes: "Recommended: 58°C (Range: 55-60°C)" },
+        { label: t('learn.full_gelatinization'), notes: "Recommended: 68°C (Range: 60-72°C)" }
     ],
 
     practicalApplications: [
@@ -62,11 +63,11 @@ export const starchGelatinizationArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High-Hydration Dough",
+            variant: t('learn.highhydration_dough_2'),
             implications: "Plenty of water supports efficient gelatinization. Open crumb, soft texture. Higher rise potential. More translucent crumb walls."
         },
         {
-            variant: "Low-Hydration Dough",
+            variant: t('learn.lowhydration_dough'),
             implications: "Limited water slows gelatinization. Dense crumb, firm texture. Reduced oven spring. Tighter crumb, reduced gloss."
         }
     ],
@@ -82,8 +83,8 @@ export const starchGelatinizationArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, starch gelatinization is like cooking rice — the grains soak up water and get soft.",
-        whatItDoes: "Gives bread its tender inside.",
-        howToUse: "Inside your dough, starch warms up and absorbs water, making the crumb soft.",
-        dangerSigns: "If you underbake, the inside stays pasty."
+        whatItDoes: t('learn.gives_bread_its_tender_inside'),
+        howToUse: t('learn.inside_your_dough_starch_warms_up_and_absorbs_wate'),
+        dangerSigns: t('learn.if_you_underbake_the_inside_stays_pasty')
     }
 };

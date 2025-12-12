@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { InfoIcon, LockClosedIcon, ExclamationCircleIcon } from '@/components/ui/Icons';
+import { useTranslation } from '@/i18n';
 
 interface SliderInputProps {
   label: string;
@@ -41,6 +42,7 @@ const SliderInput: React.FC<SliderInputProps> = ({
   recommendedMax,
   learnArticle,
 }) => {
+  const { t } = useTranslation();
   const [internalValue, setInternalValue] = useState(value);
   const debounceTimeout = useRef<number | null>(null);
 
@@ -90,8 +92,7 @@ const SliderInput: React.FC<SliderInputProps> = ({
             {label}
             {isProFeature && (
               <span className="inline-flex items-center gap-0.5 rounded-full bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-bold text-dlp-accent uppercase tracking-wide border border-dlp-border">
-                <LockClosedIcon className="h-2.5 w-2.5" /> PRO
-              </span>
+                <LockClosedIcon className="h-2.5 w-2.5" />{t('common.pro')}</span>
             )}
           </label>
           {tooltip && (
@@ -125,10 +126,10 @@ const SliderInput: React.FC<SliderInputProps> = ({
               </div>
               <div className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 w-48 -translate-x-1/2 rounded-xl bg-dlp-bg-card p-3 text-xs text-dlp-text-primary opacity-0 shadow-dlp-md transition-opacity duration-300 group-hover:opacity-100 border border-dlp-border">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[10px] uppercase font-bold text-dlp-accent">Learn</span>
+                  <span className="text-[10px] uppercase font-bold text-dlp-accent">{t('nav.learn')}</span>
                 </div>
                 <p className="font-bold text-dlp-text-primary mb-1">{learnArticle.title}</p>
-                <p className="text-[10px] text-dlp-text-muted">Click to read full article</p>
+                <p className="text-[10px] text-dlp-text-muted">{t('ui.click_to_read_full_article')}</p>
                 <svg
                   className="absolute left-0 top-full h-2 w-full text-dlp-bg-card"
                   x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"

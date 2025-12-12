@@ -1,14 +1,15 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export const neapolitan_contemporary_high_hydration: StyleDefinition = {
   "id": "neapolitan_contemporary_high_hydration",
   "title": "Neapolitan Contemporary (Canotto)",
-  "subtitle": "Neapolitan Pizza",
-  "category": "Pizza",
-  "family": "Neapolitan Pizza",
+  "subtitle": t('styles.neapolitan_pizza_3'),
+  "category": t('styles.pizza_6'),
+  "family": t('styles.neapolitan_pizza_4'),
   "variantName": "Neapolitan Contemporary (Canotto)",
   "origin": {
-    "country": "Italy",
+    "country": t('styles.italy_10'),
     "region": "Caserta / Naples",
     "period": "2010s–Present"
   },
@@ -39,7 +40,7 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
     ],
     "flourStrength": "High strength (W 300–350), P/L 0.55–0.65, high protein",
     "fermentation": {
-      "bulk": "Variable; often 24–48h cold fermentation is standard",
+      "bulk": t('styles.variable_often_2448h_cold_fermentation_is_standard'),
       "proof": "2–4h at room temp before baking",
       "coldRetard": "Almost always used (24–72h)"
     },
@@ -51,9 +52,9 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
       ],
       "notes": "Slightly lower temp than AVPN to allow the larger water content to evaporate and structure to set."
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.hard_22'),
     "recommendedUse": [
-      "Gourmet toppings",
+      t('common.gourmet_toppings'),
       "Instagram-style puffy crusts"
     ]
   },
@@ -64,10 +65,10 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Gourmet toppings",
+    t('common.gourmet_toppings'),
     "Instagram-style puffy crusts",
-    "Pizza",
-    "Italy"
+    t('common.pizza'),
+    t('common.italy')
   ],
   "applyInApp": {
     "calculator": [],
@@ -78,15 +79,15 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Modernist Pizza",
+      "title": t('styles.modernist_pizza_5'),
       "url": ""
     },
     {
-      "title": "Pizza Research Institute",
+      "title": t('styles.pizza_research_institute'),
       "url": ""
     },
     {
-      "title": "Luciano Pignataro",
+      "title": t('styles.luciano_pignataro'),
       "url": ""
     }
   ],

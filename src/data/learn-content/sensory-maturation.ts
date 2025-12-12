@@ -1,4 +1,5 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const sensoryMaturationData: LearnArticleData = {
     id: 'sensory-maturation',
@@ -33,11 +34,11 @@ export const sensoryMaturationData: LearnArticleData = {
 
     practicalRanges: [
         {
-            label: "Cold Fermentation Time",
+            label: t('learn.cold_fermentation_time'),
             notes: "Recommended: 24-72 hours. <24h lacks depth; >72h risks gluten breakdown."
         },
         {
-            label: "Temperature",
+            label: t('learn.temperature_2'),
             notes: "Recommended: 4°C (39°F). Ideal for halting yeast while allowing enzymes to work."
         }
     ],
@@ -83,11 +84,11 @@ export const sensoryMaturationData: LearnArticleData = {
     diagrams: [],
     faq: [
         {
-            q: "Can I get sensory maturity in 4 hours?",
+            q: t('learn.can_i_get_sensory_maturity_in_4_hours'),
             a: "Not really. You can fake it with additives (malt, acids) or preferments, but the depth of a true long fermentation takes time."
         },
         {
-            q: "Does whole wheat mature faster?",
+            q: t('learn.does_whole_wheat_mature_faster'),
             a: "Yes. The bran contains more enzymes and nutrients, accelerating both fermentation and maturation."
         }
     ],
@@ -95,7 +96,7 @@ export const sensoryMaturationData: LearnArticleData = {
     grandmaVersion: {
         intro: "Imagine making a stew. If you eat it right away, it's okay. But if you let it sit in the fridge overnight, it tastes amazing the next day. Dough is the same.",
         whatItDoes: "It gives the ingredients time to get to know each other and create deep, yummy flavors.",
-        howToUse: "Be patient! Let your dough sleep in the fridge for a day or two.",
-        dangerSigns: "If it smells like vinegar or alcohol, you waited too long!"
+        howToUse: t('learn.be_patient_let_your_dough_sleep_in_the_fridge_for_'),
+        dangerSigns: t('learn.if_it_smells_like_vinegar_or_alcohol_you_waited_to')
     }
 };

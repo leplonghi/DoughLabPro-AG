@@ -1,4 +1,5 @@
 import { StyleDefinition } from '../types/styleDefinition';
+import { useTranslation } from '@/i18n';
 
 export interface ValidationResult {
     isValid: boolean;

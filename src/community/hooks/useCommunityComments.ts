@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { communityStore } from '../store/communityStore';
 import { CommunityComment } from '../types';
 import { Timestamp } from 'firebase/firestore';
+import { useTranslation } from '@/i18n';
 
 export const useCommunityComments = (postId: string) => {
     const [comments, setComments] = useState<CommunityComment[]>([]);

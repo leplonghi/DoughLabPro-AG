@@ -13,22 +13,24 @@ import { auth } from '@/firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { User } from '@/types';
+import { useTranslation } from '@/i18n';
 
 interface AuthContextType {
     firebaseUser: FirebaseUser | null;
     appUser: User | null;
     loading: boolean;
-    loginWithGoogle: () => Promise<void>;
-    loginWithEmail: (email: string, pass: string) => Promise<void>;
-    registerWithEmail: (email: string, pass: string, name?: string) => Promise<void>;
-    resetPassword: (email: string) => Promise<void>;
-    logout: () => Promise<void>;
-    loginAsGuest: () => Promise<void>;
+    loginWithGoogle: () =>{t('auth.promise')}<void>;
+    loginWithEmail: (email: string, pass: string) =>{t('auth.promise')}<void>;
+    registerWithEmail: (email: string, pass: string, name?: string) =>{t('auth.promise')}<void>;
+    resetPassword: (email: string) =>{t('auth.promise')}<void>;
+    logout: () =>{t('auth.promise')}<void>;
+    loginAsGuest: () =>{t('auth.promise')}<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation();
     const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
     const [appUser, setAppUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
@@ -107,7 +109,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const loginWithGoogle = async () => {
         if (!auth) {
-            console.warn("Firebase Auth not initialized");
+            console.warn(t('auth.firebase_auth_not_initialized'));
             return;
         }
         // Use the configured provider from our auth module if available, otherwise create a new one
@@ -116,12 +118,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const loginWithEmail = async (email: string, pass: string) => {
-        if (!auth) throw new Error("Firebase Auth not initialized");
+        if (!auth) throw new Error(t('auth.firebase_auth_not_initialized_2'));
         await signInWithEmailAndPassword(auth, email, pass);
     };
 
     const registerWithEmail = async (email: string, pass: string, name?: string) => {
-        if (!auth) throw new Error("Firebase Auth not initialized");
+        if (!auth) throw new Error(t('auth.firebase_auth_not_initialized_3'));
         const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
         // We can update the profile immediately if name is provided
         // But onAuthStateChanged might trigger first. 
@@ -149,7 +151,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const resetPassword = async (email: string) => {
-        if (!auth) throw new Error("Firebase Auth not initialized");
+        if (!auth) throw new Error(t('auth.firebase_auth_not_initialized'));
         await sendPasswordResetEmail(auth, email);
     };
 

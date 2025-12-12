@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const doughRheologyArticle: LearnArticleData = {
     id: "dough-rheology",
-    title: "Dough Rheology — Flow, Resistance & Deformation",
-    subtitle: "Understanding how dough behaves under stress, strain, stretching and compression.",
-    category: "Dough Science",
-    difficulty: "Advanced",
+    title: t('learn.dough_rheology__flow_resistance__deformation'),
+    subtitle: t('learn.understanding_how_dough_behaves_under_stress_strai'),
+    category: t('learn.dough_science_4'),
+    difficulty: t('learn.advanced_5'),
     tags: ["rheology", "viscoelasticity", "elasticity", "extensibility"],
 
     intro: "Dough rheology studies how dough flows and resists force. It defines stretchability, elasticity, gas retention and shaping behavior through measurable physical properties.",
@@ -33,7 +34,7 @@ export const doughRheologyArticle: LearnArticleData = {
 
     practicalRanges: [
         { label: "Elasticity Index (Pizza)", notes: "Recommended: 55 EI (Range: 45-65 EI)" },
-        { label: "Extensibility Index", notes: "Recommended: 70 XI (Range: 60-80 XI)" }
+        { label: t('learn.extensibility_index'), notes: "Recommended: 70 XI (Range: 60-80 XI)" }
     ],
 
     practicalApplications: [
@@ -65,12 +66,12 @@ export const doughRheologyArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "High-Elasticity Dough",
+            variant: t('learn.highelasticity_dough'),
             implications: "Strong gluten alignment. Resists stretching, strong rebound. Difficult to shape. Chewier, tighter crumb."
         },
         {
-            variant: "High-Viscosity Dough",
-            implications: "Dense and firm; low flow. Low extensibility. Low gas expansion. Dense crumb."
+            variant: t('learn.highviscosity_dough'),
+            implications: t('learn.dense_and_firm_low_flow_low_extensibility_low_gas_')
         }
     ],
 
@@ -85,8 +86,8 @@ export const doughRheologyArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, rheology is just how the dough behaves when you poke, stretch or press it.",
-        whatItDoes: "It tells you how the dough will shape and rise.",
-        howToUse: "When you understand the dough’s personality, you know exactly how to handle it.",
-        dangerSigns: "Cold or tired dough behaves differently — be patient with it."
+        whatItDoes: t('learn.it_tells_you_how_the_dough_will_shape_and_rise'),
+        howToUse: t('learn.when_you_understand_the_doughs_personality_you_kno'),
+        dangerSigns: t('learn.cold_or_tired_dough_behaves_differently__be_patien')
     }
 };

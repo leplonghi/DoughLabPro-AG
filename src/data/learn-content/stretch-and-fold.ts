@@ -1,11 +1,12 @@
 import { LearnArticleData } from '@/types/learn';
+import { useTranslation } from '@/i18n';
 
 export const stretchFoldArticle: LearnArticleData = {
     id: "stretch-and-fold",
-    title: "Stretch & Fold — Gentle Gluten Strengthening",
-    subtitle: "A low-effort technique to build structure, gas retention and dough tension.",
-    category: "Process Techniques",
-    difficulty: "Beginner",
+    title: t('learn.stretch__fold__gentle_gluten_strengthening'),
+    subtitle: t('learn.a_loweffort_technique_to_build_structure_gas_reten'),
+    category: t('learn.process_techniques_13'),
+    difficulty: t('learn.beginner_11'),
     tags: ["stretch-and-fold", "gluten", "structure", "technique"],
 
     intro: "Stretch & Fold strengthens gluten networks without overmixing. It improves dough strength, gas retention and extensibility by layering and reorienting gluten strands.",
@@ -32,8 +33,8 @@ export const stretchFoldArticle: LearnArticleData = {
     ],
 
     practicalRanges: [
-        { label: "Basic Routine", notes: "Recommended: 3 rounds (Range: 2-4 rounds)" },
-        { label: "Interval Between Rounds", notes: "Recommended: 30 minutes (Range: 20-40 minutes)" }
+        { label: t('learn.basic_routine'), notes: "Recommended: 3 rounds (Range: 2-4 rounds)" },
+        { label: t('learn.interval_between_rounds'), notes: "Recommended: 30 minutes (Range: 20-40 minutes)" }
     ],
 
     practicalApplications: [
@@ -64,11 +65,11 @@ export const stretchFoldArticle: LearnArticleData = {
 
     variantsAndImplications: [
         {
-            variant: "Coil Fold",
+            variant: t('learn.coil_fold'),
             implications: "Ideal for high-hydration doughs. Gentle, layering. Builds strength without tearing. Open crumb with tall spring."
         },
         {
-            variant: "Letter Fold",
+            variant: t('learn.letter_fold'),
             implications: "Classic artisan method. Directional tension. Increases structure. Great for shaping rounds."
         }
     ],
@@ -83,8 +84,8 @@ export const stretchFoldArticle: LearnArticleData = {
 
     grandmaVersion: {
         intro: "Sweetheart, stretch & fold is like gently folding a blanket — every fold makes it stronger.",
-        whatItDoes: "This builds strength without hard work.",
-        howToUse: "You stretch the dough, fold it over, and let it rest.",
-        dangerSigns: "Too many folds make it tight — gentle hands!"
+        whatItDoes: t('learn.this_builds_strength_without_hard_work'),
+        howToUse: t('learn.you_stretch_the_dough_fold_it_over_and_let_it_rest'),
+        dangerSigns: t('learn.too_many_folds_make_it_tight__gentle_hands')
     }
 };
