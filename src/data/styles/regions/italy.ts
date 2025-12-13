@@ -192,7 +192,7 @@ export const italianStyles: DoughStyle[] = [
         subRegion: 'Rome, Lazio',
         category: 'Pizza',
         recipeStyle: RecipeStyle.ROMAN,
-        tags: ['High hydration', 'Pan pizza', 'Cold ferment 3, 'Airy crumb'],
+        tags: ['High hydration', 'Pan pizza', 'Cold ferment 3', 'Airy crumb'],
         description: "A highly hydrated pan pizza known for its light, airy, open crumb and crispy bottom. Sold by weight ('al taglio') in Rome.",
         history_context: "Revolutionized in the late 80s/90s by Angelo Iezzi, shifting from a dense oily focaccia to a high-hydration, cold-fermented masterpiece that requires technique over grease.",
         base_formula: [
@@ -313,7 +313,7 @@ export const italianStyles: DoughStyle[] = [
             hydrationLogic: "80% is the magic number for the 'cloud' texture. High water creates steam pockets (alveoli) and keeps the crumb moist despite the long bake. Below 75%, it's just heavy focaccia.",
             methodSuitability: {
                 direct: { suitable: true, notes: "The 'No-Knead' cold ferment approach is effectively a direct method simplified. Very effective." },
-                biga: { suitable: false, notes: "Rarely used as the main method because the gluten needs to be fully hydrated, not stiff." }',
+                biga: { suitable: false, notes: 'notes',
                 poolish: { suitable: true, notes: 'Excellent choice a 100 poolish dough yields incred' }
             },
             whatIf: [
@@ -347,7 +347,7 @@ export const italianStyles: DoughStyle[] = [
         subRegion: 'Rome, Lazio',
         category: 'Pizza',
         recipeStyle: RecipeStyle.ROMANA_TONDA,
-        tags: ['Low hydration', 'Rolling pin', 'Crispy 2, 'Crackerthin'],
+        tags: ['Low hydration', 'Rolling pin', 'Crispy 2', 'Crackerthin'],
         description: "The 'Scrocchiarella' (The Crunchy One). Ultra-thin, borderless, and cracker-like. Often rolled with a pin to degas completely.",
         history_context: "The everyday pizzeria pizza of Rome. Unlike Naples, Rome favors a longer bake at lower temps to dry out the crust for maximum crunch.",
         base_formula: [
@@ -502,7 +502,7 @@ export const italianStyles: DoughStyle[] = [
         subRegion: 'Genoa, Liguria',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FOCACCIA,
-        tags: ['High oil', 'Breakfast 3, 'Emulsion', 'Pan'],
+        tags: ['High oil', 'Breakfast 3', 'Emulsion', 'Pan'],
         description: "The authentic 'Fugassa'. A masterpiece of olive oil and flour, characterized by its golden dimples and white, creamy 'eyes'.",
         history_context: "Historically a breakfast food for dock workers in Genoa, dipping it in cappuccino or white wine. The authentic Genovese version differs from others by its precise use of 'Salamoia' (brine) and lower height (max 2cm).",
         base_formula: [
@@ -799,7 +799,7 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Tuscany',
         category: 'Bread',
-        tags: ['No salt', 'Sourdough 4, 'Dop', 'Ancient'],
+        tags: ['No salt', 'Sourdough 4', 'Dop', 'Ancient'],
         description: "The famous 'Pane Sciocco' (Saltless Bread). Thick crunchy crust, irregular crumb, and completely bland flavor designed to pair with salty Tuscan cured meats.",
         history_context: "Dates back to the 12th century rivalry between Pisa and Florence, where Pisa blocked salt shipments. Florentines adapted by baking without it. It is now a DOP designation.",
         base_formula: [
@@ -938,7 +938,7 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Adria, Veneto',
         category: 'Bread',
-        tags: [High hydration 2, 'Preferment', 'Biga', 'Modern 3],
+        tags: [High hydration 2, 'Preferment', 'Biga', 'Modern 3'],
         description: "Meaning \'Slipper, this 1980s invention is the Italian answer to the baguette. Known for its paper-thin crust and massive, irregular alveoli (holes).",
         history_context: "Invented in 1982 by Arnaldo Cavallari to combat the popularity of French baguettes. It emphasizes high hydration and usage of Biga for flavor complexity.",
         base_formula: [

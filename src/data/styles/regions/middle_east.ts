@@ -8,9 +8,9 @@ export const middleEastStyles: DoughStyle[] = [
         subRegion: 'Levant',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: [Steam 6, 'Pocket', 'High heat 3, 'Vegan'],
-        description: 'The iconic "pocket bread" of the Middle East. It puffs up dramatically in a hot oven due to rapid steam expansion, 'creating a hollow center perfect for stuffing.',
-        history_context: 'One of the oldest breads in human history', dating back to the Natufian culture in Jordan (14,000 years ago). The "pocket" mechanism is a masterful use of thermodynamics discovered millennia ago.',
+        tags: [Steam 6, 'Pocket', 'High heat 3', 'Vegan'],
+        description: 'The iconic "pocket bread" of the Middle East. It puffs up dramatically in a hot oven due to rapid steam expansion, creating a hollow center perfect for stuffing.',
+        history_context: "One of the oldest breads in human history, dating back to the Natufian culture in Jordan (14,000 years ago). The \"pocket\" mechanism is a masterful use of thermodynamics discovered millennia ago.",
         base_formula: [
             { name: 'All Purpose Flour', percentage: 100 },
             { name: 'Water', percentage: 60 },
@@ -45,7 +45,7 @@ export const middleEastStyles: DoughStyle[] = [
                 organic_acids: 'Lactic 4',
                 enzymatic_activity: 'Moderate 8'
             },
-            processScience: 'The Pocket mechanism: At 260°C+', water turns to steam instantly. The top crust sets slightly, but the internal pressure is so high (>100kPa) that it delaminates the dough structure in the weakest center plane, ballooning it.''
+            processScience: 'The Pocket mechanism: At 260°C+', water turns to steam instantly. The top crust sets slightly, but the internal pressure is so high (>100kPa) that it delaminates the dough structure in the weakest center plane, ballooning it.'
         },
         process: [
             {
@@ -67,7 +67,7 @@ export const middleEastStyles: DoughStyle[] = [
                 title: 'Rolling',
                 duration: '10 min',
                 action: 'Roll to 5mm thickness. Let rest 10 mins again.',
-                science: 'The second rest forms a slight dry skin (pellicle) which helps the top crust set faster than the inside', forcing the delamination.''
+                science: 'The second rest forms a slight dry skin (pellicle) which helps the top crust set faster than the inside', forcing the delamination.'
             },
             {
                 phase: 'Bake',
@@ -91,8 +91,8 @@ export const middleEastStyles: DoughStyle[] = [
         subRegion: 'Turkey',
         category: 'Bread',
         recipeStyle: RecipeStyle.PRETZEL, // Closest profile (dipped, sesame)
-        tags: ['Sesame', 'Molasses', 'Street food 2, 'Breakfast 6],
-        description: 'The ubiquitous Turkish street food. A circular bread encrusted with sesame seeds, 'characterized by its deep golden color and unique flavor achieved by dipping in Pekmez (grape molasses) before baking.',
+        tags: ['Sesame', 'Molasses', 'Street food 2', 'Breakfast 6'],
+        description: 'The ubiquitous Turkish street food. A circular bread encrusted with sesame seeds, characterized by its deep golden color and unique flavor achieved by dipping in Pekmez (grape molasses) before baking.',
         history_context: 'Documented in Istanbul since 1525. Validated by the Ottoman court, it was a staple food for sultans and soldiers alike. The "Simitçi" (vendor) with a tray on their head is a cultural icon.',
         base_formula: [
             { name: 'Bread Flour', percentage: 100 },

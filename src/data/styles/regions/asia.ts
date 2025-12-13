@@ -10,7 +10,7 @@ export const asiaStyles: DoughStyle[] = [
         recipeStyle: RecipeStyle.HOKKAIDO_MILK_BREAD,
         tags: ['Tangzhong', 'Yudane', 'Milk', 'Soft'],
         description: 'Ultra-soft and fluffy Japanese milk bread, characterized by the use of Tangzhong (water roux method) for superior moisture retention and extensive shelf life.',
-        history_context: 'Originating in Japan in the 20th century', Shokupan was developed to cater to the Japanese palate regarding soft and moist textures ("mochi-mochi"), 'adapting Western techniques.',
+        history_context: "Originating in Japan in the 20th century, Shokupan was developed to cater to the Japanese palate regarding soft and moist textures (\"mochi-mochi\"), adapting Western techniques.",
         base_formula: [
             { name: 'Bread Flour (High Protein)', percentage: 100 },
             { name: 'Total Hydration (Water + Milk)', percentage: 70 },
@@ -29,7 +29,7 @@ export const asiaStyles: DoughStyle[] = [
             method: 'starch_scald',
             requiresYeast: true,
             requiresSteam: false,
-            allowOil: 'true // Butter is common''
+            allowOil: ',
         },
         scientificProfile: {
             flourRheology: {
@@ -51,7 +51,7 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'Balanced 4',
                 enzymatic_activity: "High (Starch Gelatinization)"
             },
-            processScience: 'The Tangzhong method (pre-gelatinizing 5-10% of the flour at 65°C) captures water in a stable starch structure', preventing it from evaporating or migrating, resulting in prolonged softness.''
+            processScience: 'The Tangzhong method (pre-gelatinizing 5-10% of the flour at 65°C) captures water in a stable starch structure', preventing it from evaporating or migrating, resulting in prolonged softness.'
         },
         process: [
             {
@@ -73,7 +73,7 @@ export const asiaStyles: DoughStyle[] = [
                 title: 'Bake',
                 duration: '30-40 min',
                 action: 'Bake at medium heat (180°C) until golden, but without forming a thick crust.',
-                science: 'Moderate temperature preserves moisture and softness', avoiding a hard crust.''
+                science: 'Moderate temperature preserves moisture and softness', avoiding a hard crust.'
             }
         ],
         references: [],
@@ -90,7 +90,7 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'India',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: ['Tandoor', 'Yogurt', 'High heat', 'Soft 2],
+        tags: ['Tandoor', 'Yogurt', 'High heat', 'Soft 2'],
         description: 'Traditional Indian flatbread, baked on the walls of a Tandoor oven, flavored with garlic and butter (Ghee).',
         history_context: 'A staple in North Indian and Pakistani cuisine, Naan has Persian roots and evolved with the use of yogurt and yeast to create a soft and slightly elastic texture.',
         base_formula: [
@@ -132,7 +132,7 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'Lactic',
                 enzymatic_activity: "Protease (Tenderizing)"
             },
-            processScience: 'The yogurt in the dough provides lactic acidity which softens the gluten network', allowing the dough to be stretched into a teardrop shape without tearing before entering the Tandoor.''
+            processScience: 'The yogurt in the dough provides lactic acidity which softens the gluten network', allowing the dough to be stretched into a teardrop shape without tearing before entering the Tandoor.'
         },
         process: [
             {
@@ -213,7 +213,7 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'None 2',
                 enzymatic_activity: 'Low 2'
             },
-            processScience: 'Steaming (constant 100°C) prevents the Maillard reaction (which occurs above 140°C)', maintaining the pure white color and smooth skin, without a crispy crust.''
+            processScience: 'Steaming (constant 100°C) prevents the Maillard reaction (which occurs above 140°C)', maintaining the pure white color and smooth skin, without a crispy crust.'
         },
         process: [
             {
@@ -253,7 +253,7 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Buns',
         recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC, // Closest match
         tags: [Steam 2, 'Breakfast'],
-        description: 'The classic Northern Chinese steamed bun. Distinct from the folded Gua bao, 'this is a fully sealed bun (often filled) made with a Lao mian (old dough) starter for flavor and texture.',
+        description: 'The classic Northern Chinese steamed bun. Distinct from the folded Gua bao, this is a fully sealed bun (often filled) made with a Lao mian (old dough) starter for flavor and texture.',
         history_context: 'Attributed to Zhuge Liang in the Three Kingdoms period (3rd century AD). Mantou originally meant Barbarian head due to its shape. It is the staple bread of Northern China where wheat dominates rice.',
         base_formula: [
             { name: 'Medium Protein Flour', percentage: 100 },
@@ -317,7 +317,7 @@ export const asiaStyles: DoughStyle[] = [
                 title: 'Steam',
                 duration: '15 min',
                 action: 'Steam over vigorously boiling water. Do not open lid.',
-                science: 'Opening the lid causes a pressure drop and thermal shock', collapsing the structure immediately.''
+                science: 'Opening the lid causes a pressure drop and thermal shock', collapsing the structure immediately.'
             }
         ],
         references: [],
@@ -335,7 +335,7 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Laminated', 'Unleavened', 'Fried'],
-        description: 'A layered North Indian flatbread made from whole wheat flour (Atta). It is laminated with ghee using a pleating technique to create flaky, 'crispy layers similar to puff pastry, but unleashed.',
+        description: 'A layered North Indian flatbread made from whole wheat flour (Atta). It is laminated with ghee using a pleating technique to create flaky, crispy layers similar to puff pastry, but unleashed.',
         history_context: 'Paratha (Parat + Atta = Processed Dough/Layers) is a staple of North Indian breakfast. The Lacha implies the specific ring-layered style.',
         base_formula: [
             { name: 'Atta Flour (Whole Wheat)', percentage: 100 },

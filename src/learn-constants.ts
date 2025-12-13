@@ -78,7 +78,7 @@ export const TUTORIALS: Tutorial[] = [
       'For home ovens, stick to 65-68% hydration for easier handling.'
     ],
     reference: {
-      name: '\'Ooni – Pizza Dough Hydration Explained\'',
+      name: 'Ooni – Pizza Dough Hydration Explained',
       url: 'https://ooni.com/blogs/ooni-insights/pizza-dough-hydration-explained',
     },
     accessLevel: 'free',
@@ -100,7 +100,7 @@ export const TUTORIALS: Tutorial[] = [
       'Friction from mixing adds heat; account for your mixer type.'
     ],
     reference: {
-      name: '\'The Perfect Loaf – Importance of Dough Temperature\'',
+      name: 'The Perfect Loaf – Importance of Dough Temperature',
       url: 'https://www.theperfectloaf.com/the-importance-of-dough-temperature-in-baking/',
     },
     accessLevel: 'pro',
@@ -122,7 +122,7 @@ export const TUTORIALS: Tutorial[] = [
       'Never wash a hot stone with water (it will crack).'
     ],
     reference: {
-      name: '\'PizzaBlab – Steel vs. Stone for Pizza Surfaces\'',
+      name: 'PizzaBlab – Steel vs. Stone for Pizza Surfaces',
       url: 'https://www.pizzablab.com/learning-and-resources/baking/pizza-baking-surfaces-guide/',
     },
     accessLevel: 'pro',
@@ -141,7 +141,7 @@ export const TUTORIALS: Tutorial[] = [
       'Track feeding ratios (1:2:2 vs 1:5:5) to control acidity.'
     ],
     reference: {
-      name: '\'King Arthur Baking – Sourdough Guide\'',
+      name: 'King Arthur Baking – Baker\'s Percentage',
       url: 'https://www.kingarthurbaking.com/learn/guides/sourdough',
     },
     accessLevel: 'pro',
@@ -164,7 +164,7 @@ export const TUTORIALS: Tutorial[] = [
       'Add delicate herbs (basil) post-bake.'
     ],
     reference: {
-      name: '\'Serious Eats – The Pizza Lab: Sauce-to-Cheese Ratios\'',
+      name: 'Serious Eats – The Pizza Lab: Sauce-to-Cheese Ratios',
       url: 'https://www.seriouseats.com/pizza-lab-sauce-cheese-ratios-build-tips-4167416',
     },
     accessLevel: 'pro',
@@ -183,7 +183,7 @@ export const TUTORIALS: Tutorial[] = [
       'Use wet hands to handle high hydration dough.'
     ],
     reference: {
-      name: '\'BakerPedia – Gluten Hydration\'',
+      name: 'BakerPedia – Gluten Hydration',
       url: 'https://bakerpedia.com/processes/gluten-hydration/',
     },
     accessLevel: 'free',
@@ -203,7 +203,7 @@ export const TUTORIALS: Tutorial[] = [
       'Dense = Under-fermented or dead yeast.'
     ],
     reference: {
-      name: '\'Pizza Today – Troubleshooting Pizza Dough\'',
+      name: 'Pizza Today – Troubleshooting Pizza Dough',
       url: 'https://pizzatoday.com/news/troubleshooting-your-pizza-dough-a-guide-to-making-pizza-better/147346/',
     },
     accessLevel: 'pro',
@@ -222,7 +222,7 @@ export const TUTORIALS: Tutorial[] = [
       'All-purpose is often too weak for long fermentation.'
     ],
     reference: {
-      name: '\'The Perfect Loaf – Flour Guide\'',
+      name: 'The Perfect Loaf – Flour Guide',
       url: 'https://www.theperfectloaf.com/guides/flour-guide/',
     },
     accessLevel: 'pro',
@@ -241,7 +241,7 @@ export const TUTORIALS: Tutorial[] = [
       'Water % = Hydration.'
     ],
     reference: {
-      name: '\'King Arthur Baking – Baker\\'s Percentage\'',
+      name: 'King Arthur Baking – Baker\'s Percentage',
       url: 'https://www.kingarthurbaking.com/pro/reference/bakers-percentage',
     },
     accessLevel: 'free'
@@ -260,7 +260,7 @@ export const TUTORIALS: Tutorial[] = [
       'Save your custom parameters as a user preset.'
     ],
     reference: {
-      name: '\'DoughLab User Guide\'',
+      name: 'DoughLab User Guide',
       url: '#',
     },
     accessLevel: 'free'
@@ -278,7 +278,7 @@ export const TUTORIALS: Tutorial[] = [
       'Perfect for "one bag of flour" batches.',
     ],
     reference: {
-      name: '\'DoughLab Features\'',
+      name: 'DoughLab Features',
       url: '#',
     },
     accessLevel: 'pro'
@@ -297,7 +297,7 @@ export const TUTORIALS: Tutorial[] = [
       'Experiment and log your own results.'
     ],
     reference: {
-      name: '\'DoughLab References\'',
+      name: 'DoughLab References',
       url: '#/references',
     },
     accessLevel: 'free'

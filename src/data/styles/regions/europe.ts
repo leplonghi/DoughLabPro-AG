@@ -8,8 +8,8 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'France',
         category: 'Bread',
         recipeStyle: RecipeStyle.BAGUETTE,
-        tags: [Steam 5, 'Crispy', 'Autolyse', 'Poolish 2],
-        description: 'The symbol of French baking excellence. Defined by the 1993 "Pain de Tradition Française" decree, 'it contains only flour, water, salt, and yeast. The characteristic open crumb (alvéoles) and crispy, caramelized crust are achieved through high hydration, gentle handling, and proper steam injection.',
+        tags: [Steam 5, 'Crispy', 'Autolyse', 'Poolish 2'],
+        description: 'The symbol of French baking excellence. Defined by the 1993 "Pain de Tradition Française" decree, it contains only flour, water, salt, and yeast. The characteristic open crumb (alvéoles) and crispy, caramelized crust are achieved through high hydration, gentle handling, and proper steam injection.',
         history_context: 'While long loaves existed earlier, the specific Tradition designation was codified in 1993 to protect artisanal baking from industrial additives. It revived ancient techniques like autolyse (courtesy of Prof. Calvel) and slow fermentation.',
         base_formula: [
             { name: 'French Flour T65, percentage: 100 }',
@@ -49,7 +49,7 @@ export const europeStyles: DoughStyle[] = [
                 organic_acids: "Balanced (Lactic focus)",
                 enzymatic_activity: "High (Autolyse driven)",
             },
-            processScience: 'The "Décret Pain" of 1993 prohibits additives. Crispiness and color (Maillard) depend exclusively on natural flour caramelization and steam injection which gelatinizes the surface starch, 'creating a glossy, thin, crackly crust.',
+            processScience: 'The "Décret Pain" of 1993 prohibits additives. Crispiness and color (Maillard) depend exclusively on natural flour caramelization and steam injection which gelatinizes the surface starch, creating a glossy, thin, crackly crust.',
         },
         process: [
             {
@@ -103,8 +103,8 @@ export const europeStyles: DoughStyle[] = [
         category: 'Enriched',
         recipeStyle: RecipeStyle.BRIOCHE,
         tags: ['High fat', 'Eggs', 'Butter', 'Sponge'],
-        description: 'The ultimate enriched dough. A classic Brioche à Tête features a high percentage of butter and eggs, baked in a fluted mold with a small ball of dough on top (the "head"). It is rich, 'tender, and distinctly buttery.',
-        history_context: 'Originating in Normandy or Brittany (butter-rich regions)', brioche has evolved from a blessed bread used in church services to a breakfast staple. The "à tête" (with head) shape is the most recognized Parisian style.',
+        description: 'The ultimate enriched dough. A classic Brioche à Tête features a high percentage of butter and eggs, baked in a fluted mold with a small ball of dough on top (the "head"). It is rich, tender, and distinctly buttery.',
+        history_context: "Originating in Normandy or Brittany (butter-rich regions), brioche has evolved from a blessed bread used in church services to a breakfast staple. The \"à tête\" (with head) shape is the most recognized Parisian style.",
         base_formula: [
             { name: 'Strong Flour (T45)', percentage: 100 },
             { name: 'Eggs', percentage: 50 },
@@ -123,7 +123,7 @@ export const europeStyles: DoughStyle[] = [
         calculation: {
             method: 'baker_percentage',
             requiresYeast: true,
-            allowOil: 'true', // Butter is the fat source'
+            allowOil: ',
             requiresSteam: false,
         },
         scientificProfile: {
@@ -146,7 +146,7 @@ export const europeStyles: DoughStyle[] = [
                 organic_acids: 'Lactic 2',
                 enzymatic_activity: 'Moderate 3',
             },
-            processScience: 'A stable emulsion of fat and water. The butter must be added plastic (cold/malleable) only AFTER gluten development. If added too early, 'it coats the proteins and prevents cross-linking (shortening effect).',
+            processScience: 'A stable emulsion of fat and water. The butter must be added plastic (cold/malleable) only AFTER gluten development. If added too early, it coats the proteins and prevents cross-linking (shortening effect).',
         },
         process: [
             {
@@ -181,7 +181,7 @@ export const europeStyles: DoughStyle[] = [
                 phase: 'Prep',
                 title: 'Shaping',
                 duration: '10 min',
-                action: 'Shape into balls', create neck, place "head" in fluted tins.',
+                action: "Shape into balls, create neck, place \"head\" in fluted tins.",
                 science: 'Cold dough prevents butter melting during handling.',
             },
             {
@@ -208,7 +208,7 @@ export const europeStyles: DoughStyle[] = [
         recipeStyle: RecipeStyle.PRETZEL,
         tags: ['Lye', 'Alkaline', 'Twist'],
         description: 'The iconic Bavarian pretzel, known for its deep nutmeg-brown skin, contrasting white scores, and distinctive lye flavor. The dough is stiff, allowing for the intricate knot shape, and the surface is chemically altered before baking.',
-        history_context: 'Associated with monks in the Early Middle Ages', the shape represents arms crossed in prayer. The lye bath was likely an accidental discovery, but became the standard for "Laugengebäck" in Southern Germany.',
+        history_context: "Associated with monks in the Early Middle Ages, the shape represents arms crossed in prayer. The lye bath was likely an accidental discovery, but became the standard for \"Laugengebäck\" in Southern Germany.",
         base_formula: [
             { name: 'Wheat Flour (Type 550)', percentage: 100 },
             { name: 'Water', percentage: 50 },
@@ -249,7 +249,7 @@ export const europeStyles: DoughStyle[] = [
                 organic_acids: 'Minimal',
                 enzymatic_activity: 'Low 4',
             },
-            processScience: 'The dip in Sodium Hydroxide (Lye) solution (pH 13-14) breaks down proteins on the surface and promotes an extreme', accelerated Maillard reaction, resulting in the deep brown color and specific "pretzel" flavor.',
+            processScience: "The dip in Sodium Hydroxide (Lye) solution (pH 13-14) breaks down proteins on the surface and promotes an extreme, accelerated Maillard reaction, resulting in the deep brown color and specific \"pretzel\" flavor.",
         },
         process: [
             {
@@ -257,7 +257,7 @@ export const europeStyles: DoughStyle[] = [
                 title: 'Stiff Mix',
                 duration: '5-8 min',
                 action: 'Mix all ingredients to a smooth, stiff dough.',
-                science: 'Low hydration limits gluten mobility', creating a "short" but strong structure.',
+                science: "Low hydration limits gluten mobility, creating a \"short\" but strong structure.",
             },
             {
                 phase: 'Bulk',
@@ -309,8 +309,8 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'UK',
         category: 'Bread',
         recipeStyle: RecipeStyle.ENGLISH_MUFFIN,
-        tags: ['Griddle', 'Nooks and crannies', 'Breakfast 2],
-        description: 'A small', round, flat yeast-leavened bread which is commonly sliced horizontally, toasted, and buttered. Famous for its "nooks and crannies" texture created by a high hydration dough cooked on a griddle.',
+        tags: ['Griddle', 'Nooks and crannies', 'Breakfast 2'],
+        description: "A small, round, flat yeast-leavened bread which is commonly sliced horizontally, toasted, and buttered. Famous for its \"nooks and crannies\" texture created by a high hydration dough cooked on a griddle.",
         history_context: 'Invented in the US by British immigrant Samuel Bath Thomas in 1880, based on the "crumpet" but drier. It became a breakfast staple.',
         base_formula: [
             { name: 'Bread Flour', percentage: 100 },
@@ -374,7 +374,7 @@ export const europeStyles: DoughStyle[] = [
                 title: 'Griddle',
                 duration: '14 min',
                 action: 'Cook in rings on a medium-low griddle, flip halfway.',
-                science: 'Direct conduction heat sets the bottom and top', while the side walls remain soft.''
+                science: 'Direct conduction heat sets the bottom and top', while the side walls remain soft.'
             }
         ],
         references: [],
@@ -392,7 +392,7 @@ export const europeStyles: DoughStyle[] = [
         category: 'Enriched',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Cheese boat', 'Egg', 'Rich'],
-        description: 'The famous boat-shaped bread from the Adjara region of Georgia. It is filled with cheese (Sulguni/Imeretian), 'butter, and topped with a raw egg yolk before serving.',
+        description: 'The famous boat-shaped bread from the Adjara region of Georgia. It is filled with cheese (Sulguni/Imeretian), butter, and topped with a raw egg yolk before serving.',
         history_context: 'Adjara is a coastal region. The shape is said to represent a boat, and the egg yolk the sun, reflecting the region\'s maritime culture.',
         base_formula: [
             { name: 'Bread Flour', percentage: 100 },
@@ -481,7 +481,7 @@ export const europeStyles: DoughStyle[] = [
         category: 'Bread',
         recipeStyle: RecipeStyle.RYE,
         tags: [Sourdough 2, 'Whole grain', 'Seeds', 'Dense'],
-        description: 'The foundation of the "Smørrebrød" (open-faced sandwich). A dense, 'dark, sour rye bread packed with cracked rye kernels and seeds. It has very little to no wheat flour.',
+        description: 'The foundation of the "Smørrebrød" (open-faced sandwich). A dense, dark, sour rye bread packed with cracked rye kernels and seeds. It has very little to no wheat flour.',
         history_context: 'Rye grows well in the cool, damp Nordic climate. Historically a peasant bread, it is now celebrated for its health benefits and deep flavor.',
         base_formula: [
             { name: 'Rye Flour (Dark)', percentage: 100 }, // Or split 70/30 Rye/Wheat
@@ -500,7 +500,7 @@ export const europeStyles: DoughStyle[] = [
         },
         calculation: {
             method: 'baker_percentage',
-            requiresYeast: 'false', // Sourdough driven'
+            requiresYeast: ',
             requiresSteam: true,
             allowOil: true
         },
@@ -538,7 +538,7 @@ export const europeStyles: DoughStyle[] = [
                 phase: 'Mix',
                 title: 'Paste Mix',
                 duration: '15 min',
-                action: 'Mix all ingredients. It will be a paste/mud, 'not a dough.',
+                action: 'Mix all ingredients. It will be a paste/mud, not a dough.',
                 science: 'No gluten development windowpane possible. Mixing is for distribution and gum hydration.'
             },
             {
@@ -571,7 +571,7 @@ export const europeStyles: DoughStyle[] = [
         category: 'Bread',
         recipeStyle: RecipeStyle.SANDWICH_LOAF,
         tags: ['Topping', 'Crunchy', 'Rice paste'],
-        description: 'Known as Tijgerbrood in the Netherlands and Dutch crunch in SF. It is a soft white bloomer loaf coated with a rice flour paste applied before baking, 'which cracks into a tiger-skin pattern.',
+        description: 'Known as Tijgerbrood in the Netherlands and Dutch crunch in SF. It is a soft white bloomer loaf coated with a rice flour paste applied before baking, which cracks into a tiger-skin pattern.',
         history_context: 'Traded between the Netherlands and Southeast Asia (rice trade) in the early 20th century. The topping is the star.',
         base_formula: [
             { name: 'Bread Flour', percentage: 100 },
@@ -613,7 +613,7 @@ export const europeStyles: DoughStyle[] = [
                 organic_acids: 'Low 6',
                 enzymatic_activity: 'Standard 10'
             },
-            processScience: 'The Tiger paste is made of Rice Flour', Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.''
+            processScience: 'The Tiger paste is made of Rice Flour', Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.'
         },
         process: [
             {
@@ -628,7 +628,7 @@ export const europeStyles: DoughStyle[] = [
                 title: 'Paste Prep',
                 duration: '15 min',
                 action: 'Mix Rice Flour, Water, Yeast, Sugar, Sesame Oil. Let ferment 15 mins.',
-                science: 'Yeast in the paste aerates it slightly', aiding the crackle.''
+                science: 'Yeast in the paste aerates it slightly', aiding the crackle.'
             },
             {
                 phase: 'Bake',
@@ -653,8 +653,8 @@ export const europeStyles: DoughStyle[] = [
         category: 'Bread',
         recipeStyle: RecipeStyle.COUNTRY_LOAF, // Technically chemically leavened
         tags: ['Quick bread', 'No yeast', 'Buttermilk'],
-        description: 'A quick bread that uses bacteria-soured milk (Buttermilk) and sodium bicarbonate (Baking Soda) as a leavening agent instead of yeast. Dense, 'moist, and crusty.',
-        history_context: 'Became popular in Ireland in the 1840s when bicarbonate was introduced. Wheat was soft (low protein) in Ireland, 'making yeast bread difficult, so chemical leavening was a perfect adaptation.',
+        description: 'A quick bread that uses bacteria-soured milk (Buttermilk) and sodium bicarbonate (Baking Soda) as a leavening agent instead of yeast. Dense, moist, and crusty.',
+        history_context: 'Became popular in Ireland in the 1840s when bicarbonate was introduced. Wheat was soft (low protein) in Ireland, making yeast bread difficult, so chemical leavening was a perfect adaptation.',
         base_formula: [
             { name: 'Soft Wheat Flour (Pastry/AP)', percentage: 100 },
             { name: 'Buttermilk', percentage: 90 }, // Very high because it's a batter/dough hybrid

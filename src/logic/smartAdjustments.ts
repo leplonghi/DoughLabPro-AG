@@ -88,7 +88,7 @@ export const getSmartAdjustments = (
     config.recipeStyle === RecipeStyle.NEAPOLITAN
   ) {
     result.messages.push(
-      'Home ovens (~250°C) bake pizza slower. To compensate, consider using a style like t('common.new_york'), which benefits from oil and sugar for better color and texture at lower temperatures.'
+      `Home ovens (~250°C) bake pizza slower. To compensate, consider using a style like ${t('common.new_york')}, which benefits from oil and sugar for better color and texture at lower temperatures.`
     );
     if (config.oil === 0) {
       result.suggestions.push({

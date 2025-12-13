@@ -22,7 +22,7 @@ const nycSlice: DoughStyleDefinition = {
         sugar: [1, 2],
         flourStrength: "W360-400 (High Gluten)",
         ovenTemp: [280, 300],
-        recommendedUse: [Cheese slice 2, Pepperoni 4],
+        recommendedUse: ['Cheese slice 2', 'Pepperoni 4'],
         difficulty: 'Medium 75',
         fermentationSteps: [
             "Intensive mix to windowpane. [Science: High protein flour (14%) requires significant mechanical energy to align gluten for the thin stretch.]",
@@ -54,8 +54,8 @@ const nycSlice: DoughStyleDefinition = {
     },
     tags: ["nyc", "slice", "deck-oven", "foldable"],
     pairings: {
-        canonical: ['Low moisture mozzarella', Oregano 2, Garlic powder'],
-        modern: [Vodka sauce 3],
+        canonical: ['Low moisture mozzarella', 'Oregano 2', 'Garlic powder''],
+        modern: ['Vodka sauce 3'],
         regional: []
     },
     watchouts: [
@@ -173,7 +173,7 @@ const detroitStyle: DoughStyleDefinition = {
         sugar: [0, 1],
         flourStrength: 'W300320 2',
         ovenTemp: [260, 290],
-        recommendedUse: [Pepperoni 5],
+        recommendedUse: ['Pepperoni 5'],
         difficulty: 'Medium 77',
         fermentationSteps: [
             "Mix to moderate development. [Science: Full windowpane not needed as the dough is supported by the pan.]",
@@ -204,9 +204,9 @@ const detroitStyle: DoughStyleDefinition = {
     },
     tags: ["pan", "frico", "deep-dish", "detroit"],
     pairings: {
-        canonical: ['Wisconsin brick cheese', ],
-        modern: [Hot honey 3],
-        regional: [Coney island hot dog pizza']    },
+        canonical: ['Wisconsin brick cheese'],
+        modern: ['Hot honey 3'],
+        regional: ['Coney island hot dog pizza']    },
     watchouts: [
         "Soggy center: Sauce applied before bake sinks into the proofed dough. Apply in stripes or post-bake.",
         "No Frico: 'Cheese did not touch the pan walls', or pan was not seasoned.",
@@ -325,7 +325,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
         sugar: [1, 2],
         flourStrength: "W240-280 (AP/Pastry blend)",
         ovenTemp: [220, 230],
-        recommendedUse: ['Sausage patty', Spinach'],
+        recommendedUse: ['Sausage patty', 'Spinach''],
         difficulty: 'Medium 79',
         fermentationSteps: [
             "Mix for short time (Undermixed). [Science: 'Minimizing gluten development ensures a \'short', biscuit-like texture rather than chewy bread.]",
@@ -356,8 +356,8 @@ const chicagoDeepDish: DoughStyleDefinition = {
     },
     tags: ["casserole", "biscuit-crust", "corn-oil"],
     pairings: {
-        canonical: ['Italian sausage layer', Chunky tomato sauce'],
-        modern: [Giardiniera 2],
+        canonical: ['Italian sausage layer', 'Chunky tomato sauce''],
+        modern: ['Giardiniera 2'],
         regional: ["Butter Crust (Lou\'s style)"']    },
     watchouts: [
         "Soggy bottom: Sauce drains liquid. Sauce must be thick/chunky and placed ON TOP of cheese.",
@@ -474,7 +474,7 @@ const sfSourdough: DoughStyleDefinition = {
         sugar: [0, 0],
         flourStrength: 'W300350',
         ovenTemp: [230, 260],
-        recommendedUse: ['Clam chowder bowl', Toast'],
+        recommendedUse: ['Clam chowder bowl', 'Toast''],
         difficulty: 'Expert 21',
         fermentationSteps: [
             "Maintain stiff starter. [Science: Stiff starters favor acetic acid production (sourness) and yeast vitality.]",
@@ -505,9 +505,9 @@ const sfSourdough: DoughStyleDefinition = {
     },
     tags: ["sour", "wild-yeast", "gold-rush", "san-francisco"],
     pairings: {
-        canonical: ['Clam chowder', Dungeness crab'],
-        modern: [Avocado'],
-        regional: [Seafood cioppino']    },
+        canonical: ['Clam chowder', 'Dungeness crab''],
+        modern: ['Avocado'],
+        regional: ['Seafood cioppino']    },
     watchouts: [
         "Not Sour Enough: Starter too liquid or fermented too warm (lactic bias).",
         "Flat loaf: Over-acidification degraded the gluten network (proteolysis).",
@@ -625,7 +625,7 @@ const newHavenApizza: DoughStyleDefinition = {
         sugar: [0, 1],
         flourStrength: 'W300340',
         ovenTemp: [315, 350], // Domestic adaptation target. Real ovens are 600F+
-        recommendedUse: ['White clam pie', ],
+        recommendedUse: ['White clam pie'],
         difficulty: 'Hard 29',
         fermentationSteps: [
             "Long cold fermentation (24-48h). [Science: Necessary to break down complex starches for the high-heat charring process.]",
@@ -655,9 +655,9 @@ const newHavenApizza: DoughStyleDefinition = {
     },
     tags: ["coal-fired", "char", "clam-pie", "connecticut"],
     pairings: {
-        canonical: ['Littleneck clams', Garlic 2, Oregano 3, Pecorino'],
-        modern: [Bacon'],
-        regional: [Foxon park soda']    },
+        canonical: ['Littleneck clams', 'Garlic 2', 'Oregano 3', 'Pecorino''],
+        modern: ['Bacon'],
+        regional: ['Foxon park soda']    },
     watchouts: [
         "Sooty flavor: 'In a coal oven', poor airflow. In home oven, burnt flour.",
         "Soggy Clams: Clams must be fresh and shucked directly onto the pie to mix liquor with oil/garlic.",
@@ -771,7 +771,7 @@ const nycBagel: DoughStyleDefinition = {
         sugar: [2, 4], // Malt Syrup
         flourStrength: "W380-420 (High Gluten)",
         ovenTemp: [240, 260],
-        recommendedUse: ['Cream cheese  lox', Bacon egg cheese'],
+        recommendedUse: ['Cream cheese  lox', 'Bacon egg cheese''],
         difficulty: 'Hard 31',
         fermentationSteps: [
             "Mix EXTREMELY stiff dough. [Science: Low hydration (50-55%) creates the signature dense chewiness.]",
@@ -803,9 +803,9 @@ const nycBagel: DoughStyleDefinition = {
     },
     tags: ["bagel", "boiled", "malty", "nyc"],
     pairings: {
-        canonical: ['Lox', Capers, Red onion'],
+        canonical: ['Lox', 'Capers', 'Red onion''],
         modern: [],
-        regional: [Everything seasoning']    },
+        regional: ['Everything seasoning']    },
     watchouts: [
         "Wrinkled skin: Boiled too long or water not hot enough.",
         "Flat bagel: Overproofed before boiling.",
@@ -918,7 +918,7 @@ const grandmaPizza: DoughStyleDefinition = {
         sugar: [1.0, 3.0],
         flourStrength: "All Purpose or Bread (11-12%)",
         ovenTemp: [230, 260],
-        recommendedUse: [Classic tomato  garlic 2, Vodka sauce 4],
+        recommendedUse: ['Classic tomato  garlic 2', 'Vodka sauce 4'],
         difficulty: 'Easy 13',
         fermentationSteps: [
             "Mix to moderate development. [Science: Doesn't need windowpane as it's supported by a pan.]",
@@ -949,9 +949,9 @@ const grandmaPizza: DoughStyleDefinition = {
     },
     tags: ["pizza", "pan-pizza", "italian-american", "beginner-friendly", "thin-crust"],
     pairings: {
-        canonical: [Garlic 3, Crushed tomatoes 2, Mozzarella 3, Olive oil 4],
-        modern: [Pesto 2, Fresh mozzarella 2],
-        regional: [None 12]
+        canonical: ['Garlic 3', 'Crushed tomatoes 2', 'Mozzarella 3', 'Olive oil 4'],
+        modern: ['Pesto 2', 'Fresh mozzarella 2'],
+        regional: ['None 12']
     },
     watchouts: [
         "Sticking: Use plenty of oil in the pan.",
@@ -1065,7 +1065,7 @@ const chicagoTavern: DoughStyleDefinition = {
         sugar: [1.0, 2.0],
         flourStrength: "All Purpose or High Gluten (Variable)",
         ovenTemp: [260, 290],
-        recommendedUse: [Sausage  giardiniera 2, Pepperoni 6],
+        recommendedUse: ['Sausage  giardiniera 2', 'Pepperoni 6'],
         difficulty: 'Medium 83',
         fermentationSteps: [
             "Mix to stiff dough. [Science: 'Low hydration prevents gluten mobility', ensuring potential for crispness.]",
@@ -1097,9 +1097,9 @@ const chicagoTavern: DoughStyleDefinition = {
     },
     tags: ["pizza", "american", "midwest", "thin-crust", "party-cut", "cracker"],
     pairings: {
-        canonical: [Fennel sausage 2, Giardiniera 3, Mozzarella 4],
-        modern: [Italian beef 2],
-        regional: [Old style beer 2]
+        canonical: ['Fennel sausage 2', 'Giardiniera 3', 'Mozzarella 4'],
+        modern: ['Italian beef 2'],
+        regional: ['Old style beer 2']
     },
     watchouts: [
         "Bubble formation: 'If not docked enough', it will bubble and burn.",
@@ -1216,7 +1216,7 @@ const montrealBagel: DoughStyleDefinition = {
         sugar: [2, 4],
         flourStrength: 'W300350 3',
         ovenTemp: [260, 300],
-        recommendedUse: ['Cream cheese', Smoked salmon'],
+        recommendedUse: ['Cream cheese', 'Smoked salmon''],
         difficulty: 'Hard 33',
         fermentationSteps: [
             "Mix stiff dough. [Science: Low hydration + No Salt + Sugar = Dense structure.]",
@@ -1247,11 +1247,11 @@ const montrealBagel: DoughStyleDefinition = {
     },
     tags: ["honey", "no-salt", "wood-fired", "canada"],
     pairings: {
-        canonical: [Cream cheese 2, Smoked meat'],
-        modern: [Peanut butter'],
-        regional: [Montreal smoked meat']    },
+        canonical: ['Cream cheese 2, 'Smoked meat''],
+        modern: ['Peanut butter'],
+        regional: ['Montreal smoked meat']    },
     watchouts: ["Don't add salt."],
-    notes: [Boiling water must contain honey'],
+    notes: ['Boiling water must contain honey'],
     isPro: false,
     source: "official",
     createdAt: "2025-01-01",
@@ -1263,11 +1263,11 @@ const montrealBagel: DoughStyleDefinition = {
         crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
-        pro_tips: [{ tip: Honey water', explanation: 'Essential for the glaze' }],
-        what_if: [{ scenario: Bland, result: "It's unsalted.", correction: 'Add salted toppings' }],
-        comparative_analysis: [{ target_style: Ny bagel', difference: 'Montreal is unsalted smaller honeyboiled', why_choose_this: 'Sweeter crunchier' }],
-        q_and_a: [{ question: Why no salt', answer: 'Tradition', context: 'History 2' }],
-        fermentation_methods: [{ method: Direct 21, suitability: 'Authentic 15, notes: 'Short ferment' }]    },
+        pro_tips: [{ tip: 'tip', explanation: 'Essential for the glaze' }],
+        what_if: [{ scenario: 'scenario', result: "It's unsalted.", correction: 'Add salted toppings' }],
+        comparative_analysis: [{ target_style: 'target_style', difference: 'Montreal is unsalted smaller honeyboiled', why_choose_this: 'Sweeter crunchier' }],
+        q_and_a: [{ question: 'question', answer: 'Tradition', context: 'History 2' }],
+        fermentation_methods: [{ method: 'method', suitability: 'suitability', notes: 'Short ferment' }]    },
     deepDive: {
         hydrationLogic: "50-55%. Very stiff.",
         methodSuitability: {
@@ -1275,8 +1275,8 @@ const montrealBagel: DoughStyleDefinition = {
             biga: { suitable: false, notes: "N/A" },
             poolish: { suitable: false, notes: "N/A" }
         },
-        whatIf: [{ scenario: Collapses', outcome: 'Overproofed', solution: 'Proof less' }],
-        comparisons: [{ vsStyle: Ny bagel 2, difference: 'Montreal is denser' }],
+        whatIf: [{ scenario: 'scenario', outcome: 'Overproofed', solution: 'Proof less' }],
+        comparisons: [{ vsStyle: 'vsStyle', difference: 'Montreal is denser' }],
         proTips: ['Soak boards', Seed heavily]
     }
 };
@@ -1303,7 +1303,7 @@ const flourTortilla: DoughStyleDefinition = {
         sugar: [0, 0],
         flourStrength: 'W200240 3',
         ovenTemp: [200, 230],
-        recommendedUse: ['Burritos', Quesadillas'],
+        recommendedUse: ['Burritos', 'Quesadillas''],
         difficulty: 'Medium 85',
         fermentationSteps: [
             "Hot water mix. [Science: Denatures proteins for extensibility.]",
@@ -1334,11 +1334,11 @@ const flourTortilla: DoughStyleDefinition = {
     },
     tags: ["lard", "sonora", "mexico"],
     pairings: {
-        canonical: ['Carne asada', Cheese 2],
-        modern: [Nutella'],
-        regional: [Burrito percherón']    },
+        canonical: ['Carne asada', 'Cheese 2'],
+        modern: ['Nutella'],
+        regional: ['Burrito percherón']    },
     watchouts: ["Don't overcook.", "Use hot water."],
-    notes: [Lard is traditional'],
+    notes: ['Lard is traditional'],
     isPro: false,
     source: "official",
     createdAt: "2025-01-01",
@@ -1350,11 +1350,11 @@ const flourTortilla: DoughStyleDefinition = {
         crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
-        pro_tips: [{ tip: Seethrough', explanation: 'Should be translucent' }],
-        what_if: [{ scenario: Hard 34, result: 'Cooked too long', correction: 'Cook faster' }],
-        comparative_analysis: [{ target_style: Corn tortilla', difference: 'Flour is larger contains gluten', why_choose_this: 'Burritos 2' }],
-        q_and_a: [{ question: Butter 2, answer: 'Lard is better', context: 'Texture' }],
-        fermentation_methods: [{ method: Direct 22, suitability: 'Authentic 16, notes: 'Unleavened 2' }]    },
+        pro_tips: [{ tip: 'tip', explanation: 'Should be translucent' }],
+        what_if: [{ scenario: 'scenario', result: 'Cooked too long', correction: 'Cook faster' }],
+        comparative_analysis: [{ target_style: 'target_style', difference: 'Flour is larger contains gluten', why_choose_this: 'Burritos 2' }],
+        q_and_a: [{ question: 'question', answer: 'Lard is better', context: 'Texture' }],
+        fermentation_methods: [{ method: 'method', suitability: 'suitability', notes: 'Unleavened 2' }]    },
     deepDive: {
         hydrationLogic: 'Low water high fat',
         methodSuitability: {
@@ -1362,9 +1362,9 @@ const flourTortilla: DoughStyleDefinition = {
             biga: { suitable: false, notes: "N/A" },
             poolish: { suitable: false, notes: "N/A" }
         },
-        whatIf: [{ scenario: Rubber', outcome: 'Rest longer', solution: 'Rest 30m' }],
-        comparisons: [{ vsStyle: Pita', difference: 'Tortilla is unleavened' }],
-        proTips: [Use manteca']    }
+        whatIf: [{ scenario: 'scenario', outcome: 'Rest longer', solution: 'Rest 30m' }],
+        comparisons: [{ vsStyle: 'vsStyle', difference: 'Tortilla is unleavened' }],
+        proTips: ['Use manteca']    }
 };
 
 export const northAmericaStyles: DoughStyleDefinition[] = [

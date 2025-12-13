@@ -175,7 +175,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
                 {
                     durationLabel: '2-24h',
                     technicalExplanation: 'Chilling hydrates the flour (less spread), solidifies the fat (less spread), and allows enzymes to break down carbohydrates (browning/flavor).',
-                    references: [Maillard reaction, J kenji lopezalt]
+                    references: ['Maillard reaction', 'J kenji lopezalt']
                 }
             );
             addStep(
@@ -297,7 +297,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
             {
                 durationLabel: '30-60m',
                 technicalExplanation: 'Autolyse allows protease enzymes to degrade some gluten bonds, increasing extensibility. It also fully hydrates starch and protein, reducing mixing time and oxidation.',
-                references: [Prof raymond calvel]
+                references: ['Prof raymond calvel']
             }
         );
     }
@@ -349,7 +349,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
             {
                 durationLabel: '10-15m',
                 technicalExplanation: 'Mechanical action unfolds the protein coils (glutenin/gliadin) and encourages cross-linking (disulfide bonds), creating a viscoelastic network capable of trapping CO2.',
-                references: [The windowpane test]
+                references: ['The windowpane test']
             }
         );
     }
@@ -382,7 +382,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
             {
                 durationLabel: '24-72h',
                 technicalExplanation: 'Cold temperatures slow yeast activity (CO2) but allow enzymatic activity (protease/amylase) and bacterial fermentation (LAB) to continue, developing complex flavors and digestibility.',
-                references: [Maillard reaction precursors]
+                references: ['Maillard reaction precursors']
             }
         );
     }
