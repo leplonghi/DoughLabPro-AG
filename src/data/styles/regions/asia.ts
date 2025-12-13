@@ -90,7 +90,7 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'India',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: ['Tandoor', 'Yogurt', 'High heat', 'Soft 2]',
+        tags: ['Tandoor', 'Yogurt', 'High heat', 'Soft 2],
         description: 'Traditional Indian flatbread, baked on the walls of a Tandoor oven, flavored with garlic and butter (Ghee).',
         history_context: 'A staple in North Indian and Pakistani cuisine, Naan has Persian roots and evolved with the use of yogurt and yeast to create a soft and slightly elastic texture.',
         base_formula: [
@@ -253,7 +253,7 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Buns',
         recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC, // Closest match
         tags: [Steam 2, 'Breakfast'],
-        description: 'The classic Northern Chinese steamed bun. Distinct from the folded Gua bao, 'this is a fully sealed bun (often filled) made with a Lao mian (old dough) starter for flavor and texture.'',
+        description: 'The classic Northern Chinese steamed bun. Distinct from the folded Gua bao, 'this is a fully sealed bun (often filled) made with a Lao mian (old dough) starter for flavor and texture.',
         history_context: 'Attributed to Zhuge Liang in the Three Kingdoms period (3rd century AD). Mantou originally meant Barbarian head due to its shape. It is the staple bread of Northern China where wheat dominates rice.',
         base_formula: [
             { name: 'Medium Protein Flour', percentage: 100 },
@@ -335,7 +335,7 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Laminated', 'Unleavened', 'Fried'],
-        description: 'A layered North Indian flatbread made from whole wheat flour (Atta). It is laminated with ghee using a pleating technique to create flaky, 'crispy layers similar to puff pastry, but unleashed.'',
+        description: 'A layered North Indian flatbread made from whole wheat flour (Atta). It is laminated with ghee using a pleating technique to create flaky, 'crispy layers similar to puff pastry, but unleashed.',
         history_context: 'Paratha (Parat + Atta = Processed Dough/Layers) is a staple of North Indian breakfast. The Lacha implies the specific ring-layered style.',
         base_formula: [
             { name: 'Atta Flour (Whole Wheat)', percentage: 100 },

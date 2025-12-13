@@ -5,12 +5,12 @@ export const italianStyles: DoughStyle[] = [
         id: "pizza-napoletana",
         name: 'Pizza napoletana stg',
         region: 'Italy',
-        subRegion: 'Naples, 'Campania'',
+        subRegion: 'Naples, 'Campania',
         category: 'Pizza',
         recipeStyle: RecipeStyle.NEAPOLITAN,
         tags: [High heat 2, 'Direct method', 'Stg', 'Wood fired'],
         description: "The gold standard of pizza. Soft, pliable ('a libretto'), with a distinctively airy cornicione and leoparding checks. Protected by UNESCO.",
-        history_context: "Defined by the \'Associazione Verace Pizza Napoletana\' (AVPN)', this style dates back to the 18th century. It was rigorously codified to protect the tradition against industrialization. True Neapolitan pizza is an artisanal product that requires specific hand stretching ('schiaffo') and a wood-fired oven."',
+        history_context: "Defined by the \'Associazione Verace Pizza Napoletana\' (AVPN), this style dates back to the 18th century. It was rigorously codified to protect the tradition against industrialization. True Neapolitan pizza is an artisanal product that requires specific hand stretching ('schiaffo') and a wood-fired oven.",
         base_formula: [
             { name: "Flour (Type 00)", percentage: 100 },
             { name: 'Water 3, percentage: 60 }',
@@ -50,7 +50,7 @@ export const italianStyles: DoughStyle[] = [
                 phase: 'Mix',
                 title: 'Controlled mixing',
                 duration: "15-20 min",
-                action: "Dissolve salt in water', add yeast, then flour. Mix to reach final internal temp of 23-25°C."',
+                action: "Dissolve salt in water, add yeast, then flour. Mix to reach final internal temp of 23-25°C.",
                 science: "Salt is added first in the Napoletana tradition to control yeast activity immediately for the long room-temp fermentation. Mixing is gentle to avoid excessive oxidation."
             },
             {
@@ -96,15 +96,13 @@ export const italianStyles: DoughStyle[] = [
                 },
                 {
                     tip: 'Use room temp water',
-                    explanation: "For 24h room temp fermentation', cold water can stall yeast activity initially. Use water at ~20°C unless your room is very hot."'
-                }
+                    explanation: "For 24h room temp fermentation, cold water can stall yeast activity initially. Use water at ~20°C unless your room is very hot."                }
             ],
             what_if: [
                 {
                     scenario: 'Hydration is increased to 70',
                     result: 'Dough becomes too sticky to handle and stretches i',
-                    correction: "Stick to 58-65%. If sticky, use a 'spolvero' (dusting flour) of semolina, but don't force more water."'
-                },
+                    correction: "Stick to 58-65%. If sticky, use a 'spolvero' (dusting flour) of semolina, but don't force more water."                },
                 {
                     scenario: "Oven temp is only 250°C (Home Oven)",
                     result: "The pizza dries out before it browns. The crust becomes a hard cracker instead of soft/airy.",
@@ -119,12 +117,12 @@ export const italianStyles: DoughStyle[] = [
             comparative_analysis: [
                 {
                     target_style: 'Roman tonda',
-                    difference: "Neapolitan is soft', foldable ('a libretto'), and baked fast. Roman Tonda is crispy, cracker-like, and rolled flat."',
+                    difference: "Neapolitan is soft, foldable ('a libretto'), and baked fast. Roman Tonda is crispy, cracker-like, and rolled flat.",
                     why_choose_this: 'Choose neapolitan for a light digestible and soft '
                 },
                 {
                     target_style: 'Ny style',
-                    difference: "NY Style adds oil and sugar', bakes lower/slower for a sturdy slice. Neapolitan has no oil/sugar and is floppy."',
+                    difference: "NY Style adds oil and sugar, bakes lower/slower for a sturdy slice. Neapolitan has no oil/sugar and is floppy.",
                     why_choose_this: 'Choose neapolitan for pure fermentation flavor and'
                 }
             ],
@@ -136,7 +134,7 @@ export const italianStyles: DoughStyle[] = [
                 },
                 {
                     question: 'Can i use biga or poolish',
-                    answer: "Traditionally', no (Direct method is STG). However, modern 'Canotto' (dinghy) style uses Biga/Poolish to create an exaggerated airy rim. It is delicious but technically a different sub-style."',
+                    answer: "Traditionally, no (Direct method is STG). However, modern 'Canotto' (dinghy) style uses Biga/Poolish to create an exaggerated airy rim. It is delicious but technically a different sub-style.",
                     context: 'Modern evolution'
                 }
             ],
@@ -162,8 +160,8 @@ export const italianStyles: DoughStyle[] = [
             hydrationLogic: "58-62% is the STG standard because the 485°C wood-fired oven requires rapid evaporation without burning the crust. The modern 'Canotto' style uses 70%+, but demands much stronger flour and advanced handling skills.",
             methodSuitability: {
                 direct: { suitable: true, notes: "Ideal & Traditional. Maximizes pure wheat flavor and digestibility with 24h fermentation." },
-                biga: { suitable: false, notes: "Non-traditional (STG)', but widely used in 'Neo-Neapolitan' to create extreme cornicione volume and complex flavor." }',
-                poolish: { suitable: true, notes: "Good for home ovens to boost extensibility', but can make the dough too soft/slack for classic slap stretching." }'
+                biga: { suitable: false, notes: "Non-traditional (STG), but widely used in 'Neo-Neapolitan' to create extreme cornicione volume and complex flavor." }',
+                poolish: { suitable: true, notes: "Good for home ovens to boost extensibility, but can make the dough too soft/slack for classic slap stretching." }'
             },
             whatIf: [
                 {
@@ -180,13 +178,11 @@ export const italianStyles: DoughStyle[] = [
             comparisons: [
                 {
                     vsStyle: 'Romana tonda',
-                    difference: "Neapolitan is soft', foldable ('wallet'), and moist. Romana is paper-thin, dry, and crispy."'
-                }
+                    difference: "Neapolitan is soft, foldable ('wallet'), and moist. Romana is paper-thin, dry, and crispy."                }
             ],
             proTips: [
                 "Respect the 'Punto di Pasta': Stop mixing when the dough is smooth.",
-                "Use Room Temp Water (~20°C) to simulate the Naples climate unless it's extremely hot."'
-            ]
+                "Use Room Temp Water (~20°C) to simulate the Naples climate unless it's extremely hot."            ]
         }
     },
     {
@@ -196,9 +192,9 @@ export const italianStyles: DoughStyle[] = [
         subRegion: 'Rome, Lazio',
         category: 'Pizza',
         recipeStyle: RecipeStyle.ROMAN,
-        tags: ['High hydration', 'Pan pizza', 'Cold ferment 3, 'Airy crumb']',
-        description: "A highly hydrated pan pizza known for its light', airy, open crumb and crispy bottom. Sold by weight ('al taglio') in Rome."',
-        history_context: "Revolutionized in the late 80s/90s by Angelo Iezzi', shifting from a dense oily focaccia to a high-hydration, cold-fermented masterpiece that requires technique over grease."',
+        tags: ['High hydration', 'Pan pizza', 'Cold ferment 3, 'Airy crumb'],
+        description: "A highly hydrated pan pizza known for its light, airy, open crumb and crispy bottom. Sold by weight ('al taglio') in Rome.",
+        history_context: "Revolutionized in the late 80s/90s by Angelo Iezzi, shifting from a dense oily focaccia to a high-hydration, cold-fermented masterpiece that requires technique over grease.",
         base_formula: [
             { name: "Strong Flour (Type 0/00)", percentage: 100 },
             { name: 'Water 4, percentage: 80 }',
@@ -218,8 +214,7 @@ export const italianStyles: DoughStyle[] = [
                 pl_ratio: "0.55 (High Absorption)",
                 absorption_capacity: "Very High (80%+)",
                 protein_type: "Type 0/00 Strong",
-                science_explanation: "Requires extremely strong flour (W350+', P/L 0.55). The gluten network must be powerful enough to hold 80%+ water and trap the massive CO2 bubbles during the cold ferment."'
-            },
+                science_explanation: "Requires extremely strong flour (W350+, P/L 0.55). The gluten network must be powerful enough to hold 80%+ water and trap the massive CO2 bubbles during the cold ferment."            },
             thermalProfile: {
                 oven_type: 'Deck oven',
                 heat_distribution: "Conduction (Floor)",
@@ -240,8 +235,7 @@ export const italianStyles: DoughStyle[] = [
                 title: 'Bassinage mixing',
                 duration: "20 min",
                 action: "Mix flour with 65% water until pumpkin-like skin forms. Slowly trickle in remaining cold water.",
-                science: "Bassinage prevents the dough from turning into soup. You establish the gluten structure first, then rely on the gluten's absorption capacity."'
-            },
+                science: "Bassinage prevents the dough from turning into soup. You establish the gluten structure first, then rely on the gluten's absorption capacity."            },
             {
                 phase: 'Bulk',
                 title: "Cold Bulk (Puntata)",
@@ -260,7 +254,7 @@ export const italianStyles: DoughStyle[] = [
                 phase: 'Bake',
                 title: 'Floor then top',
                 duration: "12-15 min",
-                action: "Bake on oven floor (lowest rack) to fry the bottom', then mid-rack for toppings."',
+                action: "Bake on oven floor (lowest rack) to fry the bottom, then mid-rack for toppings.",
                 science: "Conductive heat from the bottom creates the crust structure before the weight of the toppings can collapse the crumb."
             }
         ],
@@ -284,7 +278,7 @@ export const italianStyles: DoughStyle[] = [
             what_if: [
                 {
                     scenario: "Hydration is too low (<75%)",
-                    result: "The crust becomes dense and bread-like', losing its signature cloud-like lightness."',
+                    result: "The crust becomes dense and bread-like, losing its signature cloud-like lightness.",
                     correction: "Increase water gradually (Bassinage) to reach at least 75-80%."
                 },
                 {
@@ -296,7 +290,7 @@ export const italianStyles: DoughStyle[] = [
             comparative_analysis: [
                 {
                     target_style: 'Focaccia',
-                    difference: "Teglia is crispier on the bottom and airy/light', while Focaccia is oily, softer, and denser."',
+                    difference: "Teglia is crispier on the bottom and airy/light, while Focaccia is oily, softer, and denser.",
                     why_choose_this: 'Choose teglia for a lighter crunchier bite that ho'
                 }
             ],
@@ -316,10 +310,10 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "80% is the magic number for the 'cloud' texture. High water creates steam pockets (alveoli) and keeps the crumb moist despite the long bake. Below 75%, it's just heavy focaccia."',
+            hydrationLogic: "80% is the magic number for the 'cloud' texture. High water creates steam pockets (alveoli) and keeps the crumb moist despite the long bake. Below 75%, it's just heavy focaccia.",
             methodSuitability: {
                 direct: { suitable: true, notes: "The 'No-Knead' cold ferment approach is effectively a direct method simplified. Very effective." },
-                biga: { suitable: false, notes: "Rarely used as the main method because the gluten needs to be fully hydrated', not stiff." }',
+                biga: { suitable: false, notes: "Rarely used as the main method because the gluten needs to be fully hydrated, not stiff." }',
                 poolish: { suitable: true, notes: 'Excellent choice a 100 poolish dough yields incred' }
             },
             whatIf: [
@@ -330,7 +324,7 @@ export const italianStyles: DoughStyle[] = [
                 },
                 {
                     scenario: 'Bottom is pale and soft',
-                    outcome: "Oven floor wasn't hot enough."',
+                    outcome: "Oven floor wasn't hot enough.",
                     solution: "Bake on the lowest rack or directly on a stone/steel for the first 10 minutes."
                 }
             ],
@@ -353,7 +347,7 @@ export const italianStyles: DoughStyle[] = [
         subRegion: 'Rome, Lazio',
         category: 'Pizza',
         recipeStyle: RecipeStyle.ROMANA_TONDA,
-        tags: ['Low hydration', 'Rolling pin', 'Crispy 2, 'Crackerthin']',
+        tags: ['Low hydration', 'Rolling pin', 'Crispy 2, 'Crackerthin'],
         description: "The 'Scrocchiarella' (The Crunchy One). Ultra-thin, borderless, and cracker-like. Often rolled with a pin to degas completely.",
         history_context: "The everyday pizzeria pizza of Rome. Unlike Naples, Rome favors a longer bake at lower temps to dry out the crust for maximum crunch.",
         base_formula: [
@@ -375,8 +369,7 @@ export const italianStyles: DoughStyle[] = [
                 pl_ratio: "Low Elasticity (No Nerve)",
                 absorption_capacity: 'Medium 54',
                 protein_type: 'Type 00 2',
-                science_explanation: "Medium strength (W240). We don't want extreme elasticity because we manually roll it flat. Too much nerve (elasticity) makes it shrink back."'
-            },
+                science_explanation: "Medium strength (W240). We don't want extreme elasticity because we manually roll it flat. Too much nerve (elasticity) makes it shrink back."            },
             thermalProfile: {
                 oven_type: "Electric/Gas Deck",
                 heat_distribution: 'Consistent',
@@ -431,8 +424,7 @@ export const italianStyles: DoughStyle[] = [
             pro_tips: [
                 {
                     tip: 'Roll it thin then thinner',
-                    explanation: "The goal is 'Scrocchiarella' (crunchy). Roll to 2-3mm. If it looks too thin, it's probably almost right."'
-                },
+                    explanation: "The goal is 'Scrocchiarella' (crunchy). Roll to 2-3mm. If it looks too thin, it's probably almost right."                },
                 {
                     tip: 'Dock the dough',
                     explanation: "Use a fork to prick the entire surface. This prevents large bubbles from forming, ensuring a flat, even cracker crust."
@@ -453,14 +445,14 @@ export const italianStyles: DoughStyle[] = [
             comparative_analysis: [
                 {
                     target_style: 'Neapolitan',
-                    difference: "Tonda Romana is the anti-Neapolitan: thin', crispy, no raised border, and rolled flat."',
+                    difference: "Tonda Romana is the anti-Neapolitan: thin, crispy, no raised border, and rolled flat.",
                     why_choose_this: 'Choose tonda if you prefer a crackerlike crunch su'
                 }
             ],
             q_and_a: [
                 {
                     question: 'Why add oil to the dough',
-                    answer: "Oil aids in crispness (frying effect) and extensibility', helping rolling without tearing."',
+                    answer: "Oil aids in crispness (frying effect) and extensibility, helping rolling without tearing.",
                     context: 'Roman tradition'
                 }
             ],
@@ -498,7 +490,7 @@ export const italianStyles: DoughStyle[] = [
                 }
             ],
             proTips: [
-                "The Rolling Pin is a Tool: Don't be afraid to use it. It evens out the crumb for that signature crunch."',
+                "The Rolling Pin is a Tool: Don't be afraid to use it. It evens out the crumb for that signature crunch.",
                 "Docking is key: Poke holes to prevent it from turning into a pita bread balloon."
             ]
         }
@@ -510,9 +502,9 @@ export const italianStyles: DoughStyle[] = [
         subRegion: 'Genoa, Liguria',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FOCACCIA,
-        tags: ['High oil', 'Breakfast 3, 'Emulsion', 'Pan']',
+        tags: ['High oil', 'Breakfast 3, 'Emulsion', 'Pan'],
         description: "The authentic 'Fugassa'. A masterpiece of olive oil and flour, characterized by its golden dimples and white, creamy 'eyes'.",
-        history_context: "Historically a breakfast food for dock workers in Genoa', dipping it in cappuccino or white wine. The authentic Genovese version differs from others by its precise use of 'Salamoia' (brine) and lower height (max 2cm)."',
+        history_context: "Historically a breakfast food for dock workers in Genoa, dipping it in cappuccino or white wine. The authentic Genovese version differs from others by its precise use of 'Salamoia' (brine) and lower height (max 2cm).",
         base_formula: [
             { name: 'Soft wheat flour', percentage: 100 },
             { name: 'Water 6, percentage: 65 }',
@@ -533,8 +525,7 @@ export const italianStyles: DoughStyle[] = [
                 pl_ratio: 'Extensible 3',
                 absorption_capacity: 'Medium 56',
                 protein_type: 'Soft wheat',
-                science_explanation: "Uses a Medium strength flour (W260-280). We don't want extreme elasticity; the dough must be extensible enough to fill the pan corners without fighting back."'
-            },
+                science_explanation: "Uses a Medium strength flour (W260-280). We don't want extreme elasticity; the dough must be extensible enough to fill the pan corners without fighting back."            },
             thermalProfile: {
                 oven_type: "Convection/Deck",
                 heat_distribution: "Steam (Brine)",
@@ -554,7 +545,7 @@ export const italianStyles: DoughStyle[] = [
                 phase: 'Mix',
                 title: 'Short mix',
                 duration: "10-12 min",
-                action: "Mix flour', water, salt, yeast, and olive oil. Stop before full gluten development."',
+                action: "Mix flour, water, salt, yeast, and olive oil. Stop before full gluten development.",
                 science: "We avoid an overly strong gluten structure. The high oil content (6-10%) chemically lubricates the gluten strands, increasing extensibility."
             },
             {
@@ -569,8 +560,7 @@ export const italianStyles: DoughStyle[] = [
                 title: 'Pan stretch',
                 duration: "20 min",
                 action: "Transfer to oiled pan. Stretch gently to corners. If it retracts, wait 10 mins and try again.",
-                science: "Allowing the dough to sit lets the gluten relax via protease action', making the final stretch possible without tearing."'
-            },
+                science: "Allowing the dough to sit lets the gluten relax via protease action, making the final stretch possible without tearing."            },
             {
                 phase: 'Ball',
                 title: 'Dimpling  salamoia',
@@ -583,8 +573,7 @@ export const italianStyles: DoughStyle[] = [
                 title: 'Moist bake',
                 duration: "15-18 min",
                 action: 'Bake at 230c until golden brown',
-                science: "The water in the brine evaporates', steaming the focaccia from the outside in, while the oil fries the surface."'
-            }
+                science: "The water in the brine evaporates, steaming the focaccia from the outside in, while the oil fries the surface."            }
         ],
         references: ["Ezra Pound\'s Letters (Historical)", "Salt, Fat, Acid, Heat"],
         images: {
@@ -596,12 +585,10 @@ export const italianStyles: DoughStyle[] = [
             pro_tips: [
                 {
                     tip: 'The brine is king',
-                    explanation: "Don't skimp on the 'Salamoia'. The pockets of brine boil the dough while it bakes, creating the creamy interior."'
-                },
+                    explanation: "Don't skimp on the 'Salamoia'. The pockets of brine boil the dough while it bakes, creating the creamy interior."                },
                 {
                     tip: 'Blind bake the bottom',
-                    explanation: "For home ovens', place the pan on the floor for the first 5 mins to ensure the bottom fries in the oil."'
-                }
+                    explanation: "For home ovens, place the pan on the floor for the first 5 mins to ensure the bottom fries in the oil."                }
             ],
             what_if: [
                 {
@@ -633,10 +620,10 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "65% is balanced for a pan dough. The key isn't the water inside, but the oil/brine outside. The dough boils in the brine pockets."',
+            hydrationLogic: "65% is balanced for a pan dough. The key isn't the water inside, but the oil/brine outside. The dough boils in the brine pockets.",
             methodSuitability: {
                 direct: { suitable: true, notes: 'The classic way high yeast short time immediate sa' },
-                biga: { suitable: true, notes: "Adds a nice perfume', but often considered 'too fancy' for street food focaccia." }',
+                biga: { suitable: true, notes: "Adds a nice perfume, but often considered 'too fancy' for street food focaccia." }',
                 poolish: { suitable: true, notes: 'Makes for a very light almost cakelike focaccia' }
             },
             whatIf: [
@@ -671,7 +658,7 @@ export const italianStyles: DoughStyle[] = [
         category: 'Pizza',
         recipeStyle: RecipeStyle.SICILIANA,
         tags: [Sponge 3, 'Focacciastyle', 'Street food', 'Onions'],
-        description: "A thick', spongy, soft pizza topped with a sauce of onions, anchovies, tomatoes, oregano, and caciocavallo cheese. Often topped with breadcrumbs."',
+        description: "A thick, spongy, soft pizza topped with a sauce of onions, anchovies, tomatoes, oregano, and caciocavallo cheese. Often topped with breadcrumbs.",
         history_context: "The name derives from 'Spongia' (Sponge). A Christmas tradition in Palermo, traditionally sold by 'Sfincionari' on three-wheeled carts.",
         base_formula: [
             { name: "Semolina/Wheat Blend", percentage: 100 },
@@ -728,8 +715,7 @@ export const italianStyles: DoughStyle[] = [
                 title: 'Topping shield',
                 duration: "20-25 min",
                 action: 'Bake with sauce and breadcrumbs on top',
-                science: "The thick sauce and breadcrumbs protect the dough surface from drying out', keeping the 'sponge' moist while the bottom fries in the oiled pan."'
-            }
+                science: "The thick sauce and breadcrumbs protect the dough surface from drying out, keeping the 'sponge' moist while the bottom fries in the oiled pan."            }
         ],
         references: [],
         images: {
@@ -741,8 +727,7 @@ export const italianStyles: DoughStyle[] = [
             pro_tips: [
                 {
                     tip: 'Strutto for softness',
-                    explanation: "Authenitc Sfincione uses lard (Strutto)', not oil, in the dough. This creates a distinct 'short' texture that is soft but not chewy."'
-                },
+                    explanation: "Authenitc Sfincione uses lard (Strutto), not oil, in the dough. This creates a distinct 'short' texture that is soft but not chewy."                },
                 {
                     tip: 'The sauce shield',
                     explanation: "Apply the sauce thick. It protects the dough from the oven heat, keeping the top steaming/soft while the bottom fries."
@@ -751,7 +736,7 @@ export const italianStyles: DoughStyle[] = [
             what_if: [
                 {
                     scenario: 'Using oil instead of lard',
-                    result: "The texture becomes more bread-like and chewy', losing the 'spongy' cake-quality."',
+                    result: "The texture becomes more bread-like and chewy, losing the 'spongy' cake-quality.",
                     correction: 'Use butter or shortening if lard is unavailable'
                 }
             ],
@@ -792,7 +777,7 @@ export const italianStyles: DoughStyle[] = [
                 },
                 {
                     scenario: 'Vegetarian version',
-                    outcome: "Without lard', it loses the 'Sponge' texture."',
+                    outcome: "Without lard, it loses the 'Sponge' texture.",
                     solution: "Substitute with high-quality Vegetable Shortening or Butter. Oil makes it too chewy."
                 }
             ],
@@ -814,9 +799,9 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Tuscany',
         category: 'Bread',
-        tags: ['No salt', 'Sourdough 4, 'Dop', 'Ancient']',
+        tags: ['No salt', 'Sourdough 4, 'Dop', 'Ancient'],
         description: "The famous 'Pane Sciocco' (Saltless Bread). Thick crunchy crust, irregular crumb, and completely bland flavor designed to pair with salty Tuscan cured meats.",
-        history_context: "Dates back to the 12th century rivalry between Pisa and Florence', where Pisa blocked salt shipments. Florentines adapted by baking without it. It is now a DOP designation."',
+        history_context: "Dates back to the 12th century rivalry between Pisa and Florence, where Pisa blocked salt shipments. Florentines adapted by baking without it. It is now a DOP designation.",
         base_formula: [
             { name: 'Soft wheat type 0 2, percentage: 100 }',
             { name: 'Water 8, percentage: 60 }',
@@ -849,7 +834,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: "High Acetic (Biga)",
                 enzymatic_activity: 'Very high 2'
             },
-            processScience: "Yeast Kinetics: Salt is a yeast inhibitor. Removing it creates 'Running Yeast', meaning fermentation explodes rapidly. We must use a Biga or acidic Levain to control this speed and strengthen the gluten."
+            processScience: "Yeast Kinetics: Salt is a yeast inhibitor. Removing it creates 'Running Yeast, meaning fermentation explodes rapidly. We must use a Biga or acidic Levain to control this speed and strengthen the gluten."
         },
         process: [
             {
@@ -857,8 +842,7 @@ export const italianStyles: DoughStyle[] = [
                 title: 'Biga natural',
                 duration: "12h prior",
                 action: 'Prepare stiff preferment',
-                science: "Acidity is needed to give strength to the glute since salt ions aren't there to help bonding."'
-            },
+                science: "Acidity is needed to give strength to the glute since salt ions aren't there to help bonding."            },
             {
                 phase: 'Bulk',
                 title: 'Careful bulk',
@@ -871,8 +855,7 @@ export const italianStyles: DoughStyle[] = [
                 title: 'Dry bake',
                 duration: "45-50 min",
                 action: "Bake until 'hollow' sound.",
-                science: "The lack of hygroscopic salt means the bread dries out faster and stales quicker', but achieves a very thick, hard crust."'
-            }
+                science: "The lack of hygroscopic salt means the bread dries out faster and stales quicker, but achieves a very thick, hard crust."            }
         ],
         references: [],
         images: {
@@ -884,8 +867,7 @@ export const italianStyles: DoughStyle[] = [
             pro_tips: [
                 {
                     tip: 'Watch the fermentation',
-                    explanation: "Without salt to inhibit yeast', this dough creates gas explosively fast. Check it 50% sooner than salted doughs."'
-                },
+                    explanation: "Without salt to inhibit yeast, this dough creates gas explosively fast. Check it 50% sooner than salted doughs."                },
                 {
                     tip: 'Pairing is mandatory',
                     explanation: "This bread is bland on purpose. It is engineered to be eaten with salty prosciutto or strong cheese."
@@ -901,14 +883,14 @@ export const italianStyles: DoughStyle[] = [
             comparative_analysis: [
                 {
                     target_style: 'Sourdough 5',
-                    difference: "Toscano is often sourdough based but specifically lacks salt', altering the chemistry significantly."',
+                    difference: "Toscano is often sourdough based but specifically lacks salt, altering the chemistry significantly.",
                     why_choose_this: 'Choose toscano strictly for charcuterie boards'
                 }
             ],
             q_and_a: [
                 {
                     question: 'Can i add salt',
-                    answer: "You can', but then it's not Pane Toscano. It's just generic country bread."',
+                    answer: "You can, but then it's not Pane Toscano. It's just generic country bread.",
                     context: 'Dop regulation'
                 }
             ],
@@ -921,7 +903,7 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "60% is standard. The lack of salt changes the rheology - salt tightens gluten. Without it, the dough is naturally slack, so we don't need high water for extensibility."',
+            hydrationLogic: "60% is standard. The lack of salt changes the rheology - salt tightens gluten. Without it, the dough is naturally slack, so we don't need high water for extensibility.",
             methodSuitability: {
                 direct: { suitable: false, notes: 'Without salt to control yeast direct dough explode' },
                 biga: { suitable: true, notes: 'Essential the acidity of the biga strengthens the'  },
@@ -935,18 +917,17 @@ export const italianStyles: DoughStyle[] = [
                 },
                 {
                     scenario: 'Tastes like cardboard',
-                    outcome: "It's unsalted bread. By itself, it is bland."',
+                    outcome: "It's unsalted bread. By itself, it is bland.",
                     solution: 'Serve with salty prosciutto pecorino or aggressive'
                 }
             ],
             comparisons: [
                 {
                     vsStyle: 'French baguette',
-                    difference: "Toscano has a thick', hard crust and dense crumb. Baguette is thin-crusted and light."'
-                }
+                    difference: "Toscano has a thick, hard crust and dense crumb. Baguette is thin-crusted and light."                }
             ],
             proTips: [
-                "Don't add salt: Seriously. It ruins the chemistry and the tradition."',
+                "Don't add salt: Seriously. It ruins the chemistry and the tradition.",
                 "Use a Stiff Levain: 'If you have sourdough starter', use it. The acid is the flavor driver here."
             ]
         }
@@ -957,8 +938,8 @@ export const italianStyles: DoughStyle[] = [
         region: 'Italy',
         subRegion: 'Adria, Veneto',
         category: 'Bread',
-        tags: [High hydration 2, 'Preferment', 'Biga', 'Modern 3]',
-        description: "Meaning \'Slipper', this 1980s invention is the Italian answer to the baguette. Known for its paper-thin crust and massive, irregular alveoli (holes)."',
+        tags: [High hydration 2, 'Preferment', 'Biga', 'Modern 3],
+        description: "Meaning \'Slipper, this 1980s invention is the Italian answer to the baguette. Known for its paper-thin crust and massive, irregular alveoli (holes).",
         history_context: "Invented in 1982 by Arnaldo Cavallari to combat the popularity of French baguettes. It emphasizes high hydration and usage of Biga for flavor complexity.",
         base_formula: [
             { name: 'High gluten flour 2, percentage: 100 }',
@@ -999,16 +980,14 @@ export const italianStyles: DoughStyle[] = [
                 phase: 'Mix',
                 title: 'Biga preparation',
                 duration: "16-18h prior",
-                action: "Mix strong flour', water (45%), and tiny amount of yeast. Ferment at 18°C."',
-                science: "This stiff preferment promotes Acetic Acid production', which strengthens the gluten structure chemically, allowing it to hold more water later."'
-            },
+                action: "Mix strong flour, water (45%), and tiny amount of yeast. Ferment at 18°C.",
+                science: "This stiff preferment promotes Acetic Acid production, which strengthens the gluten structure chemically, allowing it to hold more water later."            },
             {
                 phase: 'Mix',
                 title: "Double Hydration (Bassinage)",
                 duration: "15-20 min",
                 action: "Mix Biga with 85% of total water. Develop full gluten. Then slowly trickle in the remaining water.",
-                science: "Adding all water at once creates 'slippage' where gluten can't link. Bassinage allows us to hydrate an established network."'
-            },
+                science: "Adding all water at once creates 'slippage' where gluten can't link. Bassinage allows us to hydrate an established network."            },
             {
                 phase: 'Bulk',
                 title: 'Coil folds',
@@ -1028,10 +1007,9 @@ export const italianStyles: DoughStyle[] = [
                 title: 'Steam bake',
                 duration: "25-30 min",
                 action: "High heat (240°C) with steam injection for first 10 mins.",
-                science: "Steam keeps the crust soft', allowing maximum expansion (Oven Spring) before gelatinization sets the final shape."'
-            }
+                science: "Steam keeps the crust soft, allowing maximum expansion (Oven Spring) before gelatinization sets the final shape."            }
         ],
-        references: ['Modernist bread', "The Bread Baker's Apprentice"]',
+        references: ['Modernist bread', "The Bread Baker's Apprentice"],
         images: {
             hero: "/images/styles/ciabatta_real.png",
             dough: "/images/styles/ciabatta.png",
@@ -1041,17 +1019,15 @@ export const italianStyles: DoughStyle[] = [
             pro_tips: [
                 {
                     tip: 'Handle like nitro',
-                    explanation: "Once fermented', the dough is a foam. Cut it and flip it with extreme care. Do not punch down. Do not shape tight."'
-                },
+                    explanation: "Once fermented, the dough is a foam. Cut it and flip it with extreme care. Do not punch down. Do not shape tight."                },
                 {
                     tip: 'Invert the biga',
-                    explanation: "To mix easily', dissolve the stiff biga in the water first (make a slurry) before adding the rest of the flour."'
-                }
+                    explanation: "To mix easily, dissolve the stiff biga in the water first (make a slurry) before adding the rest of the flour."                }
             ],
             what_if: [
                 {
                     scenario: "Hydration < 75%",
-                    result: "You get a dense bread roll', not a Ciabatta. The large holes require excess water to turn into steam."',
+                    result: "You get a dense bread roll, not a Ciabatta. The large holes require excess water to turn into steam.",
                     correction: 'Push hydration to at least 78'
                 }
             ],
@@ -1065,7 +1041,7 @@ export const italianStyles: DoughStyle[] = [
             q_and_a: [
                 {
                     question: 'Why biga and not sourdough',
-                    answer: "Authentic Ciabatta (1982) uses Biga to get a specific nutty', milky flavor profile without the sour tang of levain."',
+                    answer: "Authentic Ciabatta (1982) uses Biga to get a specific nutty, milky flavor profile without the sour tang of levain.",
                     context: 'Arnaldo cavallari'
                 }
             ],
@@ -1087,7 +1063,7 @@ export const italianStyles: DoughStyle[] = [
             methodSuitability: {
                 direct: { suitable: false, notes: 'You cannot get the open crumb or flavor without a'  },
                 biga: { suitable: true, notes: 'The original 1982 method 100 of flour in the biga'  },
-                poolish: { suitable: true, notes: "Creates a lighter', thinner crust version, but less 'meaty' crumb." }'
+                poolish: { suitable: true, notes: "Creates a lighter, thinner crust version, but less 'meaty' crumb." }'
             },
             whatIf: [
                 {
@@ -1104,8 +1080,7 @@ export const italianStyles: DoughStyle[] = [
             comparisons: [
                 {
                     vsStyle: 'Baguette 2',
-                    difference: "Ciabatta is wetter', flatter, and has larger, wilder holes. Baguette is controlled and cylindrical."'
-                }
+                    difference: "Ciabatta is wetter, flatter, and has larger, wilder holes. Baguette is controlled and cylindrical."                }
             ],
             proTips: [
                 "Invert the process: 'Dissolve the Biga in water first to make a \'milk', then add flour.",

@@ -17,7 +17,7 @@ export const TUTORIALS: Tutorial[] = [
       'Use strong flour (W ≥ 280) for best results with long fermentation.'
     ],
     reference: {
-      name: Gozney blog  pizza dough hydration explained,
+      name: 'Gozney blog  pizza dough hydration explained',
       url: "https://eu.gozney.com/blogs/news/pizza-dough-hydration-explained"
     },
     accessLevel: 'free'
@@ -36,7 +36,7 @@ export const TUTORIALS: Tutorial[] = [
       'Biga requires strong flour to support the fermentation structure.'
     ],
     reference: {
-      name: Pizzablab  biga vs poolish for pizza dough,
+      name: 'Pizzablab  biga vs poolish for pizza dough',
       url: "https://www.pizzablab.com/learning-and-resources/general-articles/biga-vs-poolish/"
     },
     accessLevel: 'pro'
@@ -55,7 +55,7 @@ export const TUTORIALS: Tutorial[] = [
       'If using a home oven, bake on the bottom rack to ensure crispness.'
     ],
     reference: {
-      name: Ooni blog  detroit style pizza,
+      name: 'Ooni blog  detroit style pizza',
       url: "https://ooni.com/blogs/ooni-insights/pizza-dough-hydration-explained"
     },
     accessLevel: 'pro',
@@ -78,7 +78,7 @@ export const TUTORIALS: Tutorial[] = [
       'For home ovens, stick to 65-68% hydration for easier handling.'
     ],
     reference: {
-      name: 'Ooni – Pizza Dough Hydration Explained',
+      name: '\'Ooni – Pizza Dough Hydration Explained\'',
       url: 'https://ooni.com/blogs/ooni-insights/pizza-dough-hydration-explained',
     },
     accessLevel: 'free',
@@ -100,7 +100,7 @@ export const TUTORIALS: Tutorial[] = [
       'Friction from mixing adds heat; account for your mixer type.'
     ],
     reference: {
-      name: 'The Perfect Loaf – Importance of Dough Temperature',
+      name: '\'The Perfect Loaf – Importance of Dough Temperature\'',
       url: 'https://www.theperfectloaf.com/the-importance-of-dough-temperature-in-baking/',
     },
     accessLevel: 'pro',
@@ -122,7 +122,7 @@ export const TUTORIALS: Tutorial[] = [
       'Never wash a hot stone with water (it will crack).'
     ],
     reference: {
-      name: 'PizzaBlab – Steel vs. Stone for Pizza Surfaces',
+      name: '\'PizzaBlab – Steel vs. Stone for Pizza Surfaces\'',
       url: 'https://www.pizzablab.com/learning-and-resources/baking/pizza-baking-surfaces-guide/',
     },
     accessLevel: 'pro',
@@ -141,7 +141,7 @@ export const TUTORIALS: Tutorial[] = [
       'Track feeding ratios (1:2:2 vs 1:5:5) to control acidity.'
     ],
     reference: {
-      name: 'King Arthur Baking – Sourdough Guide',
+      name: '\'King Arthur Baking – Sourdough Guide\'',
       url: 'https://www.kingarthurbaking.com/learn/guides/sourdough',
     },
     accessLevel: 'pro',
@@ -164,7 +164,7 @@ export const TUTORIALS: Tutorial[] = [
       'Add delicate herbs (basil) post-bake.'
     ],
     reference: {
-      name: 'Serious Eats – The Pizza Lab: Sauce-to-Cheese Ratios',
+      name: '\'Serious Eats – The Pizza Lab: Sauce-to-Cheese Ratios\'',
       url: 'https://www.seriouseats.com/pizza-lab-sauce-cheese-ratios-build-tips-4167416',
     },
     accessLevel: 'pro',
@@ -183,7 +183,7 @@ export const TUTORIALS: Tutorial[] = [
       'Use wet hands to handle high hydration dough.'
     ],
     reference: {
-      name: 'BakerPedia – Gluten Hydration',
+      name: '\'BakerPedia – Gluten Hydration\'',
       url: 'https://bakerpedia.com/processes/gluten-hydration/',
     },
     accessLevel: 'free',
@@ -203,7 +203,7 @@ export const TUTORIALS: Tutorial[] = [
       'Dense = Under-fermented or dead yeast.'
     ],
     reference: {
-      name: 'Pizza Today – Troubleshooting Pizza Dough',
+      name: '\'Pizza Today – Troubleshooting Pizza Dough\'',
       url: 'https://pizzatoday.com/news/troubleshooting-your-pizza-dough-a-guide-to-making-pizza-better/147346/',
     },
     accessLevel: 'pro',
@@ -222,7 +222,7 @@ export const TUTORIALS: Tutorial[] = [
       'All-purpose is often too weak for long fermentation.'
     ],
     reference: {
-      name: 'The Perfect Loaf – Flour Guide',
+      name: '\'The Perfect Loaf – Flour Guide\'',
       url: 'https://www.theperfectloaf.com/guides/flour-guide/',
     },
     accessLevel: 'pro',
@@ -241,7 +241,7 @@ export const TUTORIALS: Tutorial[] = [
       'Water % = Hydration.'
     ],
     reference: {
-      name: 'King Arthur Baking – Baker\'s Percentage',
+      name: '\'King Arthur Baking – Baker\\'s Percentage\'',
       url: 'https://www.kingarthurbaking.com/pro/reference/bakers-percentage',
     },
     accessLevel: 'free'
@@ -260,7 +260,7 @@ export const TUTORIALS: Tutorial[] = [
       'Save your custom parameters as a user preset.'
     ],
     reference: {
-      name: 'DoughLab User Guide',
+      name: '\'DoughLab User Guide\'',
       url: '#',
     },
     accessLevel: 'free'
@@ -278,7 +278,7 @@ export const TUTORIALS: Tutorial[] = [
       'Perfect for "one bag of flour" batches.',
     ],
     reference: {
-      name: 'DoughLab Features',
+      name: '\'DoughLab Features\'',
       url: '#',
     },
     accessLevel: 'pro'
@@ -297,7 +297,7 @@ export const TUTORIALS: Tutorial[] = [
       'Experiment and log your own results.'
     ],
     reference: {
-      name: 'DoughLab References',
+      name: '\'DoughLab References\'',
       url: '#/references',
     },
     accessLevel: 'free'
@@ -316,7 +316,7 @@ export const TUTORIALS: Tutorial[] = [
       'Great for focaccia and rustic breads.'
     ],
     reference: {
-      name: "Jim Lahey / NYT – No-Knead Bread",
+      name: '"Jim Lahey / NYT – No-Knead Bread"',
       url: "https://cooking.nytimes.com/recipes/11376-no-knead-bread"
     },
     accessLevel: 'pro'
@@ -335,7 +335,7 @@ export const TUTORIALS: Tutorial[] = [
       'Deep cuts for maximum opening.'
     ],
     reference: {
-      name: King arthur baking  scoring bread,
+      name: 'King arthur baking  scoring bread',
       url: "https://www.kingarthurbaking.com/blog/2017/10/20/bread-scoring-techniques"
     },
     accessLevel: 'pro'
@@ -354,7 +354,7 @@ export const TUTORIALS: Tutorial[] = [
       'Temperature control is vital for all.'
     ],
     reference: {
-      name: "Baker's Manual",
+      name: '"Baker\'s Manual"',
       url: "#"
     },
     accessLevel: 'free'
@@ -373,7 +373,7 @@ export const TUTORIALS: Tutorial[] = [
       'Steam interferes with crust formation (except for bread).'
     ],
     reference: {
-      name: Modernist cuisine  the physics of food,
+      name: 'Modernist cuisine  the physics of food',
       url: "https://modernistcuisine.com/"
     },
     accessLevel: 'pro'
@@ -392,7 +392,7 @@ export const TUTORIALS: Tutorial[] = [
       'Cold dough is easier to handle initially.'
     ],
     reference: {
-      name: Serious eats  the pizza lab,
+      name: 'Serious eats  the pizza lab',
       url: "https://www.seriouseats.com/the-pizza-lab-how-long-should-i-let-my-dough-cold-ferment"
     },
     accessLevel: 'pro'
@@ -411,7 +411,7 @@ export const TUTORIALS: Tutorial[] = [
       'Never kill yeast with hot water (>50°C).'
     ],
     reference: {
-      name: The spruce eats  yeast types,
+      name: 'The spruce eats  yeast types',
       url: "https://www.thespruceeats.com/yeast-varieties-1328651"
     },
     accessLevel: 'free'
@@ -430,7 +430,7 @@ export const TUTORIALS: Tutorial[] = [
       'Stop when dough holds shape.'
     ],
     reference: {
-      name: Peter reinhart  artisan breads every day,
+      name: 'Peter reinhart  artisan breads every day',
       url: "#"
     },
     accessLevel: 'pro'
@@ -449,7 +449,7 @@ export const TUTORIALS: Tutorial[] = [
       'Use a stone/steel to stabilize temp.'
     ],
     reference: {
-      name: The kitchn  oven hot spots,
+      name: 'The kitchn  oven hot spots',
       url: "https://www.thekitchn.com/how-to-find-your-ovens-hot-spots-165634"
     },
     accessLevel: 'pro'
@@ -468,7 +468,7 @@ export const TUTORIALS: Tutorial[] = [
       'Review notes before next bake.'
     ],
     reference: {
-      name: "The Bread Baker's Apprentice",
+      name: '"The Bread Baker\'s Apprentice"',
       url: "#"
     },
     accessLevel: 'pro'
@@ -487,7 +487,7 @@ export const TUTORIALS: Tutorial[] = [
       'Check fermentation earlier for large masses.'
     ],
     reference: {
-      name: Professional baking  wayne gisslen,
+      name: 'Professional baking  wayne gisslen',
       url: "#"
     },
     accessLevel: 'pro'
@@ -506,7 +506,7 @@ export const TUTORIALS: Tutorial[] = [
       'Sugars deplete; crust might be pale.'
     ],
     reference: {
-      name: The pizza bible,
+      name: 'The pizza bible',
       url: "#"
     },
     accessLevel: 'pro'
@@ -525,7 +525,7 @@ export const TUTORIALS: Tutorial[] = [
       'Temperature control is crucial for sourness.'
     ],
     reference: {
-      name: Tartine bread,
+      name: 'Tartine bread',
       url: "#"
     },
     accessLevel: 'pro'
@@ -544,7 +544,7 @@ export const TUTORIALS: Tutorial[] = [
       'Great for experiments.'
     ],
     reference: {
-      name: Doughlab tips,
+      name: 'Doughlab tips',
       url: "#"
     },
     accessLevel: 'free'
@@ -563,7 +563,7 @@ export const TUTORIALS: Tutorial[] = [
       'Different flours look different.'
     ],
     reference: {
-      name: "The Bread Baker's Apprentice",
+      name: '"The Bread Baker\'s Apprentice"',
       url: "#"
     },
     accessLevel: 'pro'
@@ -582,7 +582,7 @@ export const TUTORIALS: Tutorial[] = [
       'Account for preferment flour in total hydration.'
     ],
     reference: {
-      name: King arthur baking,
+      name: 'King arthur baking',
       url: "#"
     },
     accessLevel: 'pro'
@@ -601,7 +601,7 @@ export const TUTORIALS: Tutorial[] = [
       'Extensibility vs Elasticity balance.'
     ],
     reference: {
-      name: Modernist bread,
+      name: 'Modernist bread',
       url: "#"
     },
     accessLevel: 'pro'
@@ -620,7 +620,7 @@ export const TUTORIALS: Tutorial[] = [
       'Use a proofing box for consistency.'
     ],
     reference: {
-      name: The perfect loaf,
+      name: 'The perfect loaf',
       url: "#"
     },
     accessLevel: 'pro'
@@ -639,7 +639,7 @@ export const TUTORIALS: Tutorial[] = [
       'Don\'t shock stones thermally.'
     ],
     reference: {
-      name: Pizza making forum,
+      name: 'Pizza making forum',
       url: "#"
     },
     accessLevel: 'pro'
@@ -658,7 +658,7 @@ export const TUTORIALS: Tutorial[] = [
       'Don\'t add salt during autolyse (usually).'
     ],
     reference: {
-      name: Raymond calvel,
+      name: 'Raymond calvel',
       url: "#"
     },
     accessLevel: 'free'
@@ -677,7 +677,7 @@ export const TUTORIALS: Tutorial[] = [
       'Makes incredible burger buns.'
     ],
     reference: {
-      name: The woks of life,
+      name: 'The woks of life',
       url: "#"
     },
     accessLevel: 'pro'
@@ -695,7 +695,7 @@ export const TUTORIALS: Tutorial[] = [
       'Weigh leftovers accurately.'
     ],
     reference: {
-      name: Doughlab pro,
+      name: 'Doughlab pro',
       url: "#"
     },
     accessLevel: 'pro'
@@ -714,7 +714,7 @@ export const TUTORIALS: Tutorial[] = [
       'Requires strong flour.'
     ],
     reference: {
-      name: Open crumb mastery,
+      name: 'Open crumb mastery',
       url: "#"
     },
     accessLevel: 'pro'
@@ -733,7 +733,7 @@ export const TUTORIALS: Tutorial[] = [
       'Note feelings/texture.'
     ],
     reference: {
-      name: Doughlab,
+      name: 'Doughlab',
       url: "#"
     },
     accessLevel: 'free'
@@ -752,7 +752,7 @@ export const TUTORIALS: Tutorial[] = [
       'Semolina adds crunch.'
     ],
     reference: {
-      name: The joy of cooking,
+      name: 'The joy of cooking',
       url: "#"
     },
     accessLevel: 'pro'
@@ -771,7 +771,7 @@ export const TUTORIALS: Tutorial[] = [
       'Buy bulk.'
     ],
     reference: {
-      name: Sustainable food trust,
+      name: 'Sustainable food trust',
       url: "#"
     },
     accessLevel: 'pro'
@@ -789,7 +789,7 @@ export const TUTORIALS: Tutorial[] = [
       'Use smart displays for visual aid.',
     ],
     reference: {
-      name: Tech in kitchen,
+      name: 'Tech in kitchen',
       url: "#"
     },
     accessLevel: 'pro'
@@ -808,7 +808,7 @@ export const TUTORIALS: Tutorial[] = [
       'Have fun!'
     ],
     reference: {
-      name: Doughlab community,
+      name: 'Doughlab community',
       url: "#"
     },
     accessLevel: 'pro'

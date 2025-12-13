@@ -10,7 +10,7 @@ export const latamStyles: DoughStyle[] = [
         recipeStyle: RecipeStyle.PAO_DE_QUEIJO,
         tags: ['Gluten free', 'Cassava', 'Scalded', 'Cheese'],
         description: 'A deeply affectionate staple of Minas Gerais, Pão de Queijo is a gluten-free cheese bread with a chewy, elastic crumb and a crispy, golden crust. It relies on the gelatinization of cassava starch (polvilho) rather than gluten for structure.',
-        history_context: 'Originating in the 18th century in Minas Gerais', uses cassava—a native root—and cheese, which became abundant due to the dairy industry in the region. The modern "scalded" version creates its unique texture.'',
+        history_context: 'Originating in the 18th century in Minas Gerais', uses cassava—a native root—and cheese, which became abundant due to the dairy industry in the region. The modern "scalded" version creates its unique texture.',
         base_formula: [
             { name: 'Polvilho Azedo (Sour Cassava Starch)', percentage: 100 },
             { name: 'Milk', percentage: 40 },
@@ -22,7 +22,7 @@ export const latamStyles: DoughStyle[] = [
         specs: {
             hydration: { ideal: 40, min: 35, max: 50 }, // Liquid (Milk/Oil/Eggs) ratio varies
             ovenTemp: { ideal: 200, min: 180, max: 220 },
-            fermentationTime: '\\'N/A\'', // No fermentation'
+            fermentationTime: '\\'N/A\', // No fermentation'
             difficulty: 'Medium'
         },
         calculation: {
@@ -94,7 +94,7 @@ export const latamStyles: DoughStyle[] = [
         category: 'Bread',
         recipeStyle: RecipeStyle.PAO_FRANCES,
         tags: ['Crispy', 'Steam', 'Direct Method', '50g'],
-        description: 'The "Pão Francês" is the daily bread of Brazil. Despite the name, 'it differs from the baguette by containing a small amount of sugar and fat, yielding a thin, crackly crust and a soft, cotton-like crumb (miolo algodonoso).'',
+        description: 'The "Pão Francês" is the daily bread of Brazil. Despite the name, 'it differs from the baguette by containing a small amount of sugar and fat, yielding a thin, crackly crust and a soft, cotton-like crumb (miolo algodonoso).',
         history_context: 'Inspired by travelers returning from France in the early 20th century who wanted short, crusty rolls. Brazilian bakers adapted the recipe adding sugar/fat to suit local flour and tastes.',
         base_formula: [
             { name: 'Wheat Flour (Type 1)', percentage: 100 },
@@ -178,8 +178,8 @@ export const latamStyles: DoughStyle[] = [
         subRegion: 'Argentina',
         category: 'Pizza',
         recipeStyle: RecipeStyle.FOCACCIA,
-        tags: ['Stuffed', 'Onion', 'Pan pizza 2, 'Heavy']',
-        description: 'An iconic Buenos Aires pizza style. It is a stuffed pizza (fugazza rellena) consisting of two dough layers enclosing a massive amount of cheese, 'topped with onions (fugazza). No tomato sauce.'',
+        tags: ['Stuffed', 'Onion', 'Pan pizza 2, 'Heavy'],
+        description: 'An iconic Buenos Aires pizza style. It is a stuffed pizza (fugazza rellena) consisting of two dough layers enclosing a massive amount of cheese, 'topped with onions (fugazza). No tomato sauce.',
         history_context: 'Created by Genoese immigrants in La Boca, combining Focaccia (Fugassa) with cheese stuffing. It represents the abundance of Argentine dairy and wheat.',
         base_formula: [
             { name: 'Flour (000 or 0000)', percentage: 100 },
@@ -227,7 +227,7 @@ export const latamStyles: DoughStyle[] = [
                 title: 'Dough Mixing',
                 duration: '10 min',
                 action: 'Mix directly. Develop moderate gluten.',
-                science: 'Oil inhibits gluten slightly', creating a tender ("al molde") texture.'',
+                science: 'Oil inhibits gluten slightly', creating a tender ("al molde") texture.',
                 temperature: '23°C'
             },
             {
@@ -242,7 +242,7 @@ export const latamStyles: DoughStyle[] = [
                 phase: 'Ball',
                 title: 'Assembly',
                 duration: '15 min',
-                action: 'Divide 70/30. Place larger dough in pan, 'add cheese. Cover with smaller dough. Seal. Top with onions.'',
+                action: 'Divide 70/30. Place larger dough in pan, 'add cheese. Cover with smaller dough. Seal. Top with onions.',
                 science: 'The onion layer protects the top dough from direct heat, allowing the massive cheese filling to melt.',
                 temperature: 'RT'
             },
@@ -269,7 +269,7 @@ export const latamStyles: DoughStyle[] = [
         subRegion: 'Argentina',
         category: 'Pastry',
         recipeStyle: RecipeStyle.PASTRY_DANISH, // Laminated
-        tags: [Laminated 2, 'Sweet syrup', 'Breakfast 4]',
+        tags: [Laminated 2, 'Sweet syrup', 'Breakfast 4],
         description: 'The Argentine croissant. Smaller, denser, and sweeter than the French version, made with a distinct "almibar" (syrup) glaze applied hot out of the oven. A staple of Buenos Aires café culture.',
         history_context: 'Derived from the European croissant but adapted to local tastes (sweeter, moister) and ingredients (heavy syrup). The Medialuna (Half Moon) is a national symbol.',
         base_formula: [
@@ -352,8 +352,8 @@ export const latamStyles: DoughStyle[] = [
         subRegion: 'Mexico',
         category: 'Enriched',
         recipeStyle: RecipeStyle.ENRICHED_DINNER_ROLL,
-        tags: ['Sweet crust', 'Breakfast 5, 'Colorful']',
-        description: 'Mexico\'s most famous pan dulce. A soft, 'enriched sweet bun topped with a crumbly sugar cookie crust stamped with a shell (concha) pattern.'',
+        tags: ['Sweet crust', 'Breakfast 5, 'Colorful'],
+        description: 'Mexico\'s most famous pan dulce. A soft, 'enriched sweet bun topped with a crumbly sugar cookie crust stamped with a shell (concha) pattern.',
         history_context: 'Dating back to the colonial era, influenced by French brioche recipes. The shell pattern symbolizes Saint James.',
         base_formula: [
             { name: 'All Purpose Flour', percentage: 100 },
@@ -603,9 +603,9 @@ export const latamStyles: DoughStyle[] = [
         subRegion: 'Argentina',
         category: 'Pastry 13',
         recipeStyle: RecipeStyle.MASSA_TORTA, // Fallback if no Pastry style
-        tags: ['Lard', 'Fried 2, 'Frying dough']',
+        tags: ['Lard', 'Fried 2, 'Frying dough'],
         description: "The wrapper for the famous Argentine empanada. Known as 'Masa para Tapas'. It is a low-hydration, high-fat dough designed to bubble and blister when fried.",
-        history_context: "Came from Spain (Galicia)', adapted in Argentina with beef fat (Grasa de Pella)."',
+        history_context: "Came from Spain (Galicia), adapted in Argentina with beef fat (Grasa de Pella).",
         base_formula: [
             { name: 'AP Flour', percentage: 100 },
             { name: 'Water (Hot)', percentage: 35 },
