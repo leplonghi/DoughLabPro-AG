@@ -5,6 +5,10 @@ import { DoughConfig, DoughResult, Batch, FlourDefinition, Oven, RecipeStyle, Le
 const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 import { DOUGHY_SYSTEM_PROMPT } from './doughyPrompt';
+import i18n from '../i18n';
+
+// Helper for functions that don't receive t via arguments
+const t = i18n.t.bind(i18n);
 
 // This function builds a detailed system prompt for the AI model.
 function buildGeneralSystemPrompt(t: (key: string) => string): string {

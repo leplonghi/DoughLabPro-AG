@@ -21,7 +21,7 @@ interface TechnicalMethodPanelProps {
 }
 
 const PhaseIcon: React.FC<{ phase: TechnicalPhase }> = ({ phase }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const className = "h-5 w-5 text-white";
     let bgClass = "bg-dlp-text-muted";
 
@@ -53,6 +53,7 @@ const PhaseIcon: React.FC<{ phase: TechnicalPhase }> = ({ phase }) => {
 };
 
 const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: () => void; mode: 'technical' | 'grandma' }> = ({ step, isExpanded, onToggle, mode }) => {
+    const { t } = useTranslation();
     const isPreferment = (step.title || '').toLowerCase().includes('poolish') ||
         (step.title || '').toLowerCase().includes('biga') ||
         (step.title || '').toLowerCase().includes('sponge') ||
@@ -171,6 +172,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
 }
 
 const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) => {
+    const { t } = useTranslation();
     const [expandedStepId, setExpandedStepId] = useState<string | null>(steps[0]?.id || null);
     const [mode, setMode] = useState<'technical' | 'grandma'>('technical');
 

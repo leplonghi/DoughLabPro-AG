@@ -1,5 +1,7 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 export const malasadas_fried_dough: StyleDefinition = {
   "id": "malasadas_fried_dough",

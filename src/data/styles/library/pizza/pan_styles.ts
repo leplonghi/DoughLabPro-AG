@@ -1,5 +1,7 @@
 import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 export const DetroitStyle: DoughStyleDefinition = {
     id: "detroit_style_v2",

@@ -8,7 +8,7 @@ export const middleEastStyles: DoughStyle[] = [
         subRegion: 'Levant',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: [Steam 6, 'Pocket', 'High heat 3', 'Vegan'],
+        tags: ['Steam 6', 'Pocket', 'High heat 3', 'Vegan'],
         description: 'The iconic "pocket bread" of the Middle East. It puffs up dramatically in a hot oven due to rapid steam expansion, creating a hollow center perfect for stuffing.',
         history_context: "One of the oldest breads in human history, dating back to the Natufian culture in Jordan (14,000 years ago). The \"pocket\" mechanism is a masterful use of thermodynamics discovered millennia ago.",
         base_formula: [
@@ -45,7 +45,7 @@ export const middleEastStyles: DoughStyle[] = [
                 organic_acids: 'Lactic 4',
                 enzymatic_activity: 'Moderate 8'
             },
-            processScience: 'The Pocket mechanism: At 260°C+', water turns to steam instantly. The top crust sets slightly, but the internal pressure is so high (>100kPa) that it delaminates the dough structure in the weakest center plane, ballooning it.'
+            processScience: 'The Pocket mechanism: At 260°C+, water turns to steam instantly. The top crust sets slightly, but the internal pressure is so high (>100kPa) that it delaminates the dough structure in the weakest center plane, ballooning it.'
         },
         process: [
             {
@@ -67,7 +67,7 @@ export const middleEastStyles: DoughStyle[] = [
                 title: 'Rolling',
                 duration: '10 min',
                 action: 'Roll to 5mm thickness. Let rest 10 mins again.',
-                science: 'The second rest forms a slight dry skin (pellicle) which helps the top crust set faster than the inside', forcing the delamination.'
+                science: 'The second rest forms a slight dry skin (pellicle) which helps the top crust set faster than the inside, forcing the delamination.'
             },
             {
                 phase: 'Bake',
@@ -77,7 +77,7 @@ export const middleEastStyles: DoughStyle[] = [
                 science: 'Leidenfrost effect and rapid heat transfer are non-negotiable. Low temp = dense flatbread, no pocket.'
             }
         ],
-        references: ['Classical arabian cooking', Modernist bread 32],
+        references: ['Classical arabian cooking', 'Modernist bread 32'],
         images: {
             hero: '/images/styles/pita_fresh_steam.png',
             dough: '/images/styles/placeholder-dough.png',

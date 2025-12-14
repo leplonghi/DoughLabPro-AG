@@ -14,7 +14,7 @@ import { northAmericaStyles as americasStyles } from './regions/north_america';
 // --- SUPPLEMENTARY LIBRARY MODULES ---
 import { Challah, BurgerBun, Shokupan as ShokupanLegacy, Panettone } from './library/bread/enriched';
 import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './library/pastry/sweets';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -134,6 +134,8 @@ const RAW_STYLES: DoughStyleDefinition[] = [
 ].flat(2) as DoughStyleDefinition[];
 
 // Deduplicate by ID using a Map (Last entry wins if IDs clash)
+const t = i18n.t.bind(i18n);
+
 export const STYLES_MAP = new Map<string, DoughStyleDefinition>();
 
 RAW_STYLES.forEach(style => {

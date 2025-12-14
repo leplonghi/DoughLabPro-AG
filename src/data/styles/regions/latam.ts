@@ -22,7 +22,7 @@ export const latamStyles: DoughStyle[] = [
         specs: {
             hydration: { ideal: 40, min: 35, max: 50 }, // Liquid (Milk/Oil/Eggs) ratio varies
             ovenTemp: { ideal: 200, min: 180, max: 220 },
-            fermentationTime: '\\'N/A\', // No fermentation'
+            fermentationTime: 'N/A', // No fermentation
             difficulty: 'Medium'
         },
         calculation: {
@@ -51,7 +51,7 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: "Lactic (Fermented Starch)",
                 enzymatic_activity: 'None 7'
             },
-            processScience: 'The Scald (Escaldo) denatures the starch proteins and pre-gelatinizes the granules', allowing them to absorb more liquid and swell. The expansion in the oven is purely physical (steam expansion) trapped by the coagulated egg proteins and starch gel.'
+            processScience: 'The Scald (Escaldo) denatures the starch proteins and pre-gelatinizes the granules, allowing them to absorb more liquid and swell. The expansion in the oven is purely physical (steam expansion) trapped by the coagulated egg proteins and starch gel.'
         },
         process: [
             {
@@ -113,7 +113,7 @@ export const latamStyles: DoughStyle[] = [
         calculation: {
             method: 'baker_percentage',
             requiresYeast: true,
-            requiresSteam: ',
+            requiresSteam: true,
             allowOil: true
         },
         scientificProfile: {
@@ -219,7 +219,7 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'Low 13',
                 enzymatic_activity: 'Standard 13'
             },
-            processScience: 'The onions on top release moisture', steaming the upper crust and preventing it from burning while the interior cheese melts. The double structure acts as an insulator, requiring lower temp/longer bake than Neapolitan.'
+            processScience: 'The onions on top release moisture, steaming the upper crust and preventing it from burning while the interior cheese melts. The double structure acts as an insulator, requiring lower temp/longer bake than Neapolitan.'
         },
         process: [
             {
@@ -269,7 +269,7 @@ export const latamStyles: DoughStyle[] = [
         subRegion: 'Argentina',
         category: 'Pastry',
         recipeStyle: RecipeStyle.PASTRY_DANISH, // Laminated
-        tags: [Laminated 2, 'Sweet syrup', 'Breakfast 4'],
+        tags: ['Laminated 2', 'Sweet syrup', 'Breakfast 4'],
         description: 'The Argentine croissant. Smaller, denser, and sweeter than the French version, made with a distinct "almibar" (syrup) glaze applied hot out of the oven. A staple of Buenos Aires café culture.',
         history_context: 'Derived from the European croissant but adapted to local tastes (sweeter, moister) and ingredients (heavy syrup). The Medialuna (Half Moon) is a national symbol.',
         base_formula: [
@@ -299,7 +299,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Extensible 5',
                 absorption_capacity: 'Medium 66',
                 protein_type: 'Strong wheat 6',
-                science_explanation: 'Strong flour is needed to support lamination', but the dough is richer and heavier than croissant dough.''
+                science_explanation: 'Strong flour is needed to support lamination, but the dough is richer and heavier than croissant dough.'
             },
             thermalProfile: {
                 oven_type: 'Convection 5',
@@ -321,14 +321,14 @@ export const latamStyles: DoughStyle[] = [
                 title: 'Enriched Mix',
                 duration: '15 min',
                 action: 'Mix dough with eggs, sugar, honey. Develop moderate gluten.',
-                science: 'Sugar delays gluten development', so mixing takes longer.'
+                science: 'Sugar delays gluten development, so mixing takes longer.'
             },
             {
                 phase: 'Prep',
                 title: 'Lamination',
                 duration: '1h',
                 action: 'Lock in butter (25% of dough weight). Perform 3 single turns.',
-                science: 'Fewer turns/less butter than croissant results in a denser', cake-like layer structure.'
+                science: 'Fewer turns/less butter than croissant results in a denser, cake-like layer structure.'
             },
             {
                 phase: 'Bake',
@@ -381,7 +381,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Balanced 8',
                 absorption_capacity: 'Medium 68',
                 protein_type: "AP",
-                science_explanation: 'We want softness', not chew. AP flour is perfect. The strength comes from the egg/butter structure.''
+                science_explanation: 'We want softness, not chew. AP flour is perfect. The strength comes from the egg/butter structure.'
             },
             thermalProfile: {
                 oven_type: 'Convection 6',

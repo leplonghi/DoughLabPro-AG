@@ -8,11 +8,11 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'France',
         category: 'Bread',
         recipeStyle: RecipeStyle.BAGUETTE,
-        tags: [Steam 5, 'Crispy', 'Autolyse', 'Poolish 2'],
+        tags: ['Steam 5', 'Crispy', 'Autolyse', 'Poolish 2'],
         description: 'The symbol of French baking excellence. Defined by the 1993 "Pain de Tradition Française" decree, it contains only flour, water, salt, and yeast. The characteristic open crumb (alvéoles) and crispy, caramelized crust are achieved through high hydration, gentle handling, and proper steam injection.',
         history_context: 'While long loaves existed earlier, the specific Tradition designation was codified in 1993 to protect artisanal baking from industrial additives. It revived ancient techniques like autolyse (courtesy of Prof. Calvel) and slow fermentation.',
         base_formula: [
-            { name: 'French Flour T65, percentage: 100 }',
+            { name: 'French Flour T65', percentage: 100 },
             { name: 'Water', percentage: 72 },
             { name: 'Salt', percentage: 2 },
             { name: 'Fresh Yeast', percentage: 0.5 },
@@ -35,7 +35,7 @@ export const europeStyles: DoughStyle[] = [
                 pl_ratio: "0.5 (Extensible)",
                 absorption_capacity: "65-70%",
                 protein_type: 'French soft wheat',
-                science_explanation: 'Requires T65 flour with respectable protein (11-12%) but high extensibility. Unlike high-protein American flours, 'French flour allows for the signature extensible dough that does not shrink back when rolled.',
+                science_explanation: 'Requires T65 flour with respectable protein (11-12%) but high extensibility. Unlike high-protein American flours, French flour allows for the signature extensible dough that does not shrink back when rolled.',
             },
             thermalProfile: {
                 oven_type: "Deck Oven (Steam)",
@@ -88,7 +88,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'Steam keeps the surface flexible, allowing maximum oven spring before crust set, and gelatinizes surface starch for shine.',
             },
         ],
-        references: ['Le goût du pain  raymond calvel', Décret n931074 du 13 septembre 1993],
+        references: ['Le goût du pain  raymond calvel', 'Décret n931074 du 13 septembre 1993'],
         images: {
             hero: '/images/styles/baguette_hero.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -123,7 +123,7 @@ export const europeStyles: DoughStyle[] = [
         calculation: {
             method: 'baker_percentage',
             requiresYeast: true,
-            allowOil: ',
+            allowOil: true,
             requiresSteam: false,
         },
         scientificProfile: {
@@ -132,7 +132,7 @@ export const europeStyles: DoughStyle[] = [
                 pl_ratio: "Balanced (0.55)",
                 absorption_capacity: "High (for fat)",
                 protein_type: 'Strong wheat 2',
-                science_explanation: 'Requires strong gluten production to carry the heavy load of fat. However, 'T45 is preferred for its fineness.',
+                science_explanation: 'Requires strong gluten production to carry the heavy load of fat. However, T45 is preferred for its fineness.',
             },
             thermalProfile: {
                 oven_type: "Convection/Deck",
@@ -224,7 +224,7 @@ export const europeStyles: DoughStyle[] = [
             difficulty: 'Medium',
         },
         calculation: {
-            method: '\\'baker_percentage\', // Low hydration standard method'
+            method: 'baker_percentage', // Low hydration standard method
             requiresYeast: true,
             requiresSteam: false,
             allowOil: true,
@@ -295,7 +295,7 @@ export const europeStyles: DoughStyle[] = [
                 science: 'Score releases the pressure of the thick belly part. Salt adheres to the moist lye surface.',
             },
         ],
-        references: ['German baking standards', ],
+        references: ['German baking standards'],
         images: {
             hero: '/images/styles/pretzel_laugen_real.png',
             dough: '/images/styles/placeholder-dough.png',
@@ -323,7 +323,7 @@ export const europeStyles: DoughStyle[] = [
         specs: {
             hydration: { ideal: 78, min: 75, max: 82 },
             ovenTemp: { ideal: 200, min: 180, max: 220 }, // Griddle temp
-            fermentationTime: '\\'12-24h\', // Cold ferment helps nooks'
+            fermentationTime: '12-24h', // Cold ferment helps nooks
             difficulty: 'Medium'
         },
         calculation: {
@@ -374,7 +374,7 @@ export const europeStyles: DoughStyle[] = [
                 title: 'Griddle',
                 duration: '14 min',
                 action: 'Cook in rings on a medium-low griddle, flip halfway.',
-                science: 'Direct conduction heat sets the bottom and top', while the side walls remain soft.'
+                science: 'Direct conduction heat sets the bottom and top, while the side walls remain soft.'
             }
         ],
         references: [],
@@ -480,7 +480,7 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Denmark',
         category: 'Bread',
         recipeStyle: RecipeStyle.RYE,
-        tags: [Sourdough 2, 'Whole grain', 'Seeds', 'Dense'],
+        tags: ['Sourdough 2', 'Whole grain', 'Seeds', 'Dense'],
         description: 'The foundation of the "Smørrebrød" (open-faced sandwich). A dense, dark, sour rye bread packed with cracked rye kernels and seeds. It has very little to no wheat flour.',
         history_context: 'Rye grows well in the cool, damp Nordic climate. Historically a peasant bread, it is now celebrated for its health benefits and deep flavor.',
         base_formula: [
@@ -500,7 +500,7 @@ export const europeStyles: DoughStyle[] = [
         },
         calculation: {
             method: 'baker_percentage',
-            requiresYeast: ',
+            requiresYeast: true,
             requiresSteam: true,
             allowOil: true
         },
@@ -613,7 +613,7 @@ export const europeStyles: DoughStyle[] = [
                 organic_acids: 'Low 6',
                 enzymatic_activity: 'Standard 10'
             },
-            processScience: 'The Tiger paste is made of Rice Flour', Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.'
+            processScience: 'The Tiger paste is made of Rice Flour, Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.'
         },
         process: [
             {
@@ -628,7 +628,7 @@ export const europeStyles: DoughStyle[] = [
                 title: 'Paste Prep',
                 duration: '15 min',
                 action: 'Mix Rice Flour, Water, Yeast, Sugar, Sesame Oil. Let ferment 15 mins.',
-                science: 'Yeast in the paste aerates it slightly', aiding the crackle.'
+                science: 'Yeast in the paste aerates it slightly, aiding the crackle.'
             },
             {
                 phase: 'Bake',

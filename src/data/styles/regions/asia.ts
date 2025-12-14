@@ -29,7 +29,7 @@ export const asiaStyles: DoughStyle[] = [
             method: 'starch_scald',
             requiresYeast: true,
             requiresSteam: false,
-            allowOil: ',
+            allowOil: true,
         },
         scientificProfile: {
             flourRheology: {
@@ -51,7 +51,7 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'Balanced 4',
                 enzymatic_activity: "High (Starch Gelatinization)"
             },
-            processScience: 'The Tangzhong method (pre-gelatinizing 5-10% of the flour at 65°C) captures water in a stable starch structure', preventing it from evaporating or migrating, resulting in prolonged softness.'
+            processScience: 'The Tangzhong method (pre-gelatinizing 5-10% of the flour at 65°C) captures water in a stable starch structure, preventing it from evaporating or migrating, resulting in prolonged softness.'
         },
         process: [
             {
@@ -73,7 +73,7 @@ export const asiaStyles: DoughStyle[] = [
                 title: 'Bake',
                 duration: '30-40 min',
                 action: 'Bake at medium heat (180°C) until golden, but without forming a thick crust.',
-                science: 'Moderate temperature preserves moisture and softness', avoiding a hard crust.'
+                science: 'Moderate temperature preserves moisture and softness, avoiding a hard crust.'
             }
         ],
         references: [],
@@ -132,7 +132,7 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'Lactic',
                 enzymatic_activity: "Protease (Tenderizing)"
             },
-            processScience: 'The yogurt in the dough provides lactic acidity which softens the gluten network', allowing the dough to be stretched into a teardrop shape without tearing before entering the Tandoor.'
+            processScience: 'The yogurt in the dough provides lactic acidity which softens the gluten network, allowing the dough to be stretched into a teardrop shape without tearing before entering the Tandoor.'
         },
         process: [
             {
@@ -213,7 +213,7 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'None 2',
                 enzymatic_activity: 'Low 2'
             },
-            processScience: 'Steaming (constant 100°C) prevents the Maillard reaction (which occurs above 140°C)', maintaining the pure white color and smooth skin, without a crispy crust.'
+            processScience: 'Steaming (constant 100°C) prevents the Maillard reaction (which occurs above 140°C), maintaining the pure white color and smooth skin, without a crispy crust.'
         },
         process: [
             {
@@ -252,7 +252,7 @@ export const asiaStyles: DoughStyle[] = [
         subRegion: 'China',
         category: 'Buns',
         recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC, // Closest match
-        tags: [Steam 2, 'Breakfast'],
+        tags: ['Steam 2', 'Breakfast'],
         description: 'The classic Northern Chinese steamed bun. Distinct from the folded Gua bao, this is a fully sealed bun (often filled) made with a Lao mian (old dough) starter for flavor and texture.',
         history_context: 'Attributed to Zhuge Liang in the Three Kingdoms period (3rd century AD). Mantou originally meant Barbarian head due to its shape. It is the staple bread of Northern China where wheat dominates rice.',
         base_formula: [
@@ -317,7 +317,7 @@ export const asiaStyles: DoughStyle[] = [
                 title: 'Steam',
                 duration: '15 min',
                 action: 'Steam over vigorously boiling water. Do not open lid.',
-                science: 'Opening the lid causes a pressure drop and thermal shock', collapsing the structure immediately.'
+                science: 'Opening the lid causes a pressure drop and thermal shock, collapsing the structure immediately.'
             }
         ],
         references: [],

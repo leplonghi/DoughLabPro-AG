@@ -1,6 +1,8 @@
 import { defineDoughStyle } from '../../builder';
 import { RecipeStyle } from '@/types';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 export const NYChocolateChip = defineDoughStyle({
     name: t('styles.ny_style_chip_cookie'),

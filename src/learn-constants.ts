@@ -48,7 +48,7 @@ export const TUTORIALS: Tutorial[] = [
     image: 'https://images.unsplash.com/photo-1633342537224-3c6c5233fe2a?q=80&w=2070&auto=format&fit=crop',
     intro: 'Detroit Style pizza is known for its high hydration dough baked in rectangular steel pans with high edges, cheese spread to the perimeter, and an airy texture.',
     why: '<ul><li>High hydration yields an extremely airy crumb</li><li>The pan style creates caramelized cheese edges (frico).</li><li>Differs from neapolitan in technique and equipment</li></ul>',
-    howTo: '<ol><li>Mix dough with 6575 hydration</li><li>Ferment using direct method or poolish for 1824h</li><li>Place in oiled pan and stretch to corners</li><li>Bake for 12-15 min in a hot oven (~260°C).</li></ol>',
+    howTo: '<ol><li>Mix dough with 65-75% hydration</li><li>Ferment using direct method or poolish for 18-24h</li><li>Place in oiled pan and stretch to corners</li><li>Bake for 12-15 min in a hot oven (~260°C).</li></ol>',
     tips: [
       'Use high-protein bread flour (≥ 12.5%) for structure.',
       'Grease the pan generously with oil for a fried bottom crust.',
@@ -141,7 +141,7 @@ export const TUTORIALS: Tutorial[] = [
       'Track feeding ratios (1:2:2 vs 1:5:5) to control acidity.'
     ],
     reference: {
-      name: 'King Arthur Baking – Baker\'s Percentage',
+      name: "King Arthur Baking – Baker\'s Percentage",
       url: 'https://www.kingarthurbaking.com/learn/guides/sourdough',
     },
     accessLevel: 'pro',
@@ -241,7 +241,7 @@ export const TUTORIALS: Tutorial[] = [
       'Water % = Hydration.'
     ],
     reference: {
-      name: 'King Arthur Baking – Baker\'s Percentage',
+      name: "King Arthur Baking – Baker\'s Percentage",
       url: 'https://www.kingarthurbaking.com/pro/reference/bakers-percentage',
     },
     accessLevel: 'free'

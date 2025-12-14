@@ -1,6 +1,6 @@
 import { db } from '@/firebase/db';
 import { CommunityBatch } from '@/types';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
 import {
     collection,
     setDoc,
@@ -14,6 +14,8 @@ import {
 } from 'firebase/firestore';
 
 const COLLECTION_NAME = 'community_batches';
+
+const t = i18n.t.bind(i18n);
 
 export const saveCommunityBatch = async (batch: CommunityBatch): Promise<void> => {
     if (!db) throw new Error(t('community.firestore_not_initialized'));

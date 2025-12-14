@@ -1,5 +1,7 @@
 import { defineDoughStyle } from '../../builder';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 export const BaguetteTradition = defineDoughStyle({
     name: t('styles.baguette_de_tradition'),
