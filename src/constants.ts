@@ -68,122 +68,60 @@ export const DEFAULT_CONFIG: DoughConfig = {
   ingredients: [],
 };
 
-// Manually reconstructing essential presets to unblock build
-export const DOUGH_STYLE_PRESETS: DoughStylePreset[] = [
-  // --- PIZZA ---
-  {
-    id: 'neapolitan',
-    type: BakeType.PIZZAS,
-    recipeStyle: RecipeStyle.NEAPOLITAN,
-    name: 'Neapolitan',
-    defaultHydration: 62,
-    defaultSalt: 3.0,
-    defaultOil: 0,
-    defaultSugar: 0,
-    defaultYeastPct: 0.2,
-  },
-  {
-    id: 'ny_style',
-    type: BakeType.PIZZAS,
-    recipeStyle: RecipeStyle.NEW_YORK,
-    name: 'New York Style',
-    defaultHydration: 62,
-    defaultSalt: 2.5,
-    defaultOil: 2.0,
-    defaultSugar: 2.0,
-    defaultYeastPct: 0.4,
-  },
-  {
-    id: 'pan_pizza',
-    type: BakeType.PIZZAS,
-    recipeStyle: RecipeStyle.PAN_PIZZA,
-    name: 'Pan Pizza',
-    defaultHydration: 70,
-    defaultSalt: 2.2,
-    defaultOil: 3.0,
-    defaultSugar: 1.0,
-    defaultYeastPct: 0.5,
-  },
-  {
-    id: 'detroit',
-    type: BakeType.PIZZAS,
-    recipeStyle: RecipeStyle.DETROIT,
-    name: 'Detroit Style',
-    defaultHydration: 72,
-    defaultSalt: 2.5,
-    defaultOil: 0,
-    defaultSugar: 0,
-    defaultYeastPct: 0.6,
-  },
-  // --- BREADS ---
-  {
-    id: 'ciabatta',
-    type: BakeType.BREADS_SAVORY,
-    recipeStyle: RecipeStyle.CIABATTA,
-    name: 'Ciabatta',
-    defaultHydration: 80,
-    defaultSalt: 2.2,
-    defaultOil: 1.0,
-    defaultSugar: 0,
-    defaultYeastPct: 0.4,
-  },
-  {
-    id: 'baguette',
-    type: BakeType.BREADS_SAVORY,
-    recipeStyle: RecipeStyle.BAGUETTE,
-    name: 'Baguette',
-    defaultHydration: 68,
-    defaultSalt: 2.0,
-    defaultOil: 0,
-    defaultSugar: 0,
-    defaultYeastPct: 0.5,
-  },
-  {
-    id: 'focaccia',
-    type: BakeType.BREADS_SAVORY,
-    recipeStyle: RecipeStyle.FOCACCIA,
-    name: 'Focaccia',
-    defaultHydration: 75,
-    defaultSalt: 2.5,
-    defaultOil: 3.0,
-    defaultSugar: 0,
-    defaultYeastPct: 0.4,
-  },
-  {
-    id: 'sourdough',
-    type: BakeType.BREADS_SAVORY,
-    recipeStyle: RecipeStyle.SOURDOUGH,
-    name: 'Rustic Sourdough',
-    defaultHydration: 75,
-    defaultSalt: 2.0,
-    defaultOil: 0,
-    defaultSugar: 0,
-    defaultYeastPct: 0, // Sourdough usually implied
-  },
-  // --- PASTRY / BUNS ---
-  {
-    id: 'brioche',
-    type: BakeType.SWEETS_PASTRY,
-    recipeStyle: RecipeStyle.BRIOCHE,
-    name: 'Brioche',
-    defaultHydration: 45, // Eggs + Milk
-    defaultSalt: 2.0,
-    defaultOil: 20.0, // Butter
-    defaultSugar: 12.0,
-    defaultYeastPct: 1.0,
-  },
-  {
-    id: 'burger_bun',
-    type: BakeType.BREADS_SAVORY,
-    recipeStyle: RecipeStyle.BURGER_BUN,
-    name: 'Burger Bun',
-    defaultHydration: 55,
-    defaultSalt: 2.0,
-    defaultOil: 8.0,
-    defaultSugar: 6.0,
-    defaultYeastPct: 1.0,
-  }
-];
+// --- DYNAMIC STYLE LOADING ---
+import { STYLES_DATA } from '@/data/styles/registry';
+
+const getBakeTypeFromCategory = (catRaw: string): BakeType => {
+  const cat = catRaw.toLowerCase();
+  if (['pizza', 'calzone'].includes(cat)) return BakeType.PIZZAS;
+  if (['pastry', 'cookie', 'cookies', 'cookies_confectionery', 'enriched_bread', 'sweet'].includes(cat)) return BakeType.SWEETS_PASTRY;
+  return BakeType.BREADS_SAVORY; // bread, flatbread, burger_bun, other
+};
+
+const getIngredientPct = (style: any, keywords: string[]): number => {
+  if (!style.base_formula) return 0;
+  const ing = style.base_formula.find((i: any) =>
+    keywords.some(k => i.name.toLowerCase().includes(k))
+  );
+  return ing ? ing.percentage : 0;
+};
+
+export const DOUGH_STYLE_PRESETS: DoughStylePreset[] = STYLES_DATA.map(style => {
+  // Determine Type
+  let type = getBakeTypeFromCategory(style.category);
+
+  // Specific Overrides based on RecipeStyle if Category is ambiguous
+  if (style.recipeStyle === RecipeStyle.BRIOCHE) type = BakeType.SWEETS_PASTRY;
+  if (style.recipeStyle === RecipeStyle.BURGER_BUN) type = BakeType.BREADS_SAVORY;
+
+  // Calculate Defaults (Average of Range)
+  const hydration = (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2;
+  const salt = (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2;
+
+  // Extract or Default others
+  // If base_formula is present, priority to it. Else, legacy defaults.
+  const oilPct = getIngredientPct(style, ['oil', 'azeite', 'butter', 'fat']) ||
+    (style.technicalProfile.oil ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2 : 0);
+
+  const sugarPct = getIngredientPct(style, ['sugar', 'honey', 'malt', 'sugar']) ||
+    (style.technicalProfile.sugar ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2 : 0);
+
+  const yeastPct = getIngredientPct(style, ['yeast', 'levain', 'starter', 'fermento']) || 0.2; // Default low
+
+  return {
+    id: style.id,
+    name: style.name,
+    type: type,
+    recipeStyle: style.recipeStyle || RecipeStyle.NEAPOLITAN,
+    defaultHydration: hydration,
+    defaultSalt: salt,
+    defaultOil: oilPct,
+    defaultSugar: sugarPct,
+    defaultYeastPct: yeastPct,
+    region: style.origin.region || style.origin.country,
+    description: style.description,
+  };
+});
 
 export const ENVIRONMENT_TEMPERATURE_GUIDELINES = {
   [AmbientTemperature.COLD]: {
