@@ -139,6 +139,7 @@ export interface StyleTechnicalProfile {
     sugar?: [number, number];
     fat?: [number, number];
     cocoa?: [number, number];
+    ballWeight?: { recommended: number; min: number; max: number };
 
     flourStrength?: string;
     preferment?: string;

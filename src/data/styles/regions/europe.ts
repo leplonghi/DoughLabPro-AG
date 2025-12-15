@@ -22,6 +22,7 @@ export const europeStyles: DoughStyle[] = [
             ovenTemp: { ideal: 250, min: 240, max: 260 },
             fermentationTime: '18-24h',
             difficulty: 'Hard',
+            ballWeight: { recommended: 350, min: 300, max: 400 } // Standard baguette size
         },
         calculation: {
             method: 'baker_percentage',
@@ -119,6 +120,7 @@ export const europeStyles: DoughStyle[] = [
             ovenTemp: { ideal: 190, min: 180, max: 200 },
             fermentationTime: '12-24h',
             difficulty: 'Expert',
+            ballWeight: { recommended: 400, min: 250, max: 600 } // Nanterre or Tete
         },
         calculation: {
             method: 'baker_percentage',
@@ -222,6 +224,7 @@ export const europeStyles: DoughStyle[] = [
             ovenTemp: { ideal: 220, min: 210, max: 230 },
             fermentationTime: '2-4h',
             difficulty: 'Medium',
+            ballWeight: { recommended: 85, min: 70, max: 110 }
         },
         calculation: {
             method: 'baker_percentage', // Low hydration standard method
@@ -324,7 +327,8 @@ export const europeStyles: DoughStyle[] = [
             hydration: { ideal: 78, min: 75, max: 82 },
             ovenTemp: { ideal: 200, min: 180, max: 220 }, // Griddle temp
             fermentationTime: '12-24h', // Cold ferment helps nooks
-            difficulty: 'Medium'
+            difficulty: 'Medium',
+            ballWeight: { recommended: 65, min: 55, max: 80 }
         },
         calculation: {
             method: 'baker_percentage',
@@ -406,7 +410,8 @@ export const europeStyles: DoughStyle[] = [
             hydration: { ideal: 60, min: 58, max: 65 },
             ovenTemp: { ideal: 250, min: 230, max: 270 },
             fermentationTime: '2-4h',
-            difficulty: 'Medium'
+            difficulty: 'Medium',
+            ballWeight: { recommended: 300, min: 200, max: 450 }
         },
         calculation: {
             method: 'baker_percentage',
@@ -496,7 +501,8 @@ export const europeStyles: DoughStyle[] = [
             hydration: { ideal: 90, min: 80, max: 100 },
             ovenTemp: { ideal: 180, min: 160, max: 200 }, // Low and slow
             fermentationTime: '12-24h',
-            difficulty: 'Hard'
+            difficulty: 'Hard',
+            ballWeight: { recommended: 900, min: 700, max: 1200 } // Loaf
         },
         calculation: {
             method: 'baker_percentage',
@@ -585,7 +591,8 @@ export const europeStyles: DoughStyle[] = [
             hydration: { ideal: 62, min: 60, max: 65 },
             ovenTemp: { ideal: 200, min: 190, max: 210 },
             fermentationTime: '2-4h',
-            difficulty: 'Medium'
+            difficulty: 'Medium',
+            ballWeight: { recommended: 800, min: 500, max: 1000 }
         },
         calculation: {
             method: 'baker_percentage',
@@ -665,7 +672,8 @@ export const europeStyles: DoughStyle[] = [
             hydration: { ideal: 85, min: 80, max: 95 },
             ovenTemp: { ideal: 200, min: 190, max: 210 },
             fermentationTime: '0 min',
-            difficulty: 'Easy'
+            difficulty: 'Easy',
+            ballWeight: { recommended: 700, min: 450, max: 900 }
         },
         calculation: {
             method: 'baker_percentage',

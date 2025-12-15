@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { DoughConfig, AmbientTemperature } from '@/types';
+import { DoughConfig, AmbientTemperature, Oven } from '@/types';
 import { SunIcon, InfoIcon } from '@/components/ui/Icons';
 import AccordionSection from '@/components/calculator/AccordionSection';
 import { AMBIENT_TEMPERATURE_OPTIONS, ENVIRONMENT_TEMPERATURE_GUIDELINES } from '@/constants';
@@ -12,13 +12,15 @@ import { useTranslation } from '@/i18n';
 interface EnvironmentSectionProps {
     config: DoughConfig;
     onConfigChange: (newConfig: Partial<DoughConfig>) => void;
+    defaultOven?: Oven | undefined;
 }
 
 const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
     config,
     onConfigChange,
+    defaultOven,
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { addToast } = useToast();
 
     const handleTempChange = (newTemp: AmbientTemperature) => {
@@ -52,6 +54,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
     };
 
     const currentGuideline = ENVIRONMENT_TEMPERATURE_GUIDELINES[config.ambientTemperature];
+    const isUsingDefaultOvenMax = defaultOven && config.bakingTempC === defaultOven.maxTemperature;
 
     return (
         <AccordionSection
@@ -59,7 +62,8 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
             description="Temperature affects fermentation speed."
             icon={<SunIcon className="h-6 w-6" />}
         >
-            <div className="space-y-4">
+            <div className="space-y-6">
+                {/* Ambient Temperature */}
                 <div>
                     <label className="mb-2 block text-xs font-bold text-dlp-text-secondary">{t('calculator.ambient_temperature')}</label>
                     <div className="grid grid-cols-3 gap-2">
@@ -89,6 +93,44 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                         </div>
                     </div>
                 )}
+
+                {/* Baking Temperature */}
+                <div>
+                    <div className="flex items-center justify-between mb-2">
+                        <label className="block text-xs font-bold text-dlp-text-secondary">
+                            {t('common.baking_profile') || "Baking Temperature"} (°C)
+                        </label>
+                        {isUsingDefaultOvenMax && (
+                            <span className="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-200">
+                                {defaultOven?.name}
+                            </span>
+                        )}
+                    </div>
+                    <div className="relative">
+                        <input
+                            type="number"
+                            value={config.bakingTempC || ''}
+                            onChange={(e) => onConfigChange({ bakingTempC: parseFloat(e.target.value) })}
+                            className="block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm pl-4 pr-12 py-2"
+                            placeholder="e.g. 250"
+                            min={100}
+                            max={500}
+                        />
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <span className="text-gray-500 sm:text-sm">°C</span>
+                        </div>
+                    </div>
+                    {defaultOven && !isUsingDefaultOvenMax && (
+                        <div className="mt-1 text-right">
+                            <button
+                                onClick={() => onConfigChange({ bakingTempC: defaultOven.maxTemperature })}
+                                className="text-[10px] text-dlp-accent hover:underline font-medium"
+                            >
+                                Use {defaultOven.name} ({defaultOven.maxTemperature}°C)
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </AccordionSection>
     );

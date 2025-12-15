@@ -23,7 +23,8 @@ import EnvironmentSection from '@/components/calculator/sections/EnvironmentSect
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { getRange } from '@/logic/validationLogic';
 import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
-import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS } from '@/constants';
+import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS, DOUGH_WEIGHT_RANGES } from '@/constants';
+import { STYLES_DATA } from '@/data/styles/registry';
 import { useTranslation } from '@/i18n';
 
 interface CalculatorFormProps {
@@ -137,6 +138,24 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     );
   };
 
+  // Calculate dynamic weight limits
+  let minW = 10;
+  let maxW = 2000;
+  const fullStyle = STYLES_DATA.find(s => s.id === config.stylePresetId);
+
+  if (fullStyle?.technicalProfile?.ballWeight) {
+    minW = fullStyle.technicalProfile.ballWeight.min;
+    maxW = fullStyle.technicalProfile.ballWeight.max;
+  } else if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
+    // Fallback to legacy string parsing if needs be, or just keep strict defaults
+    const rangeStr = DOUGH_WEIGHT_RANGES[config.recipeStyle] || '';
+    const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
+    if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
+      minW = nums[0];
+      maxW = nums[1];
+    }
+  }
+
   return (
     <div className="space-y-8">
 
@@ -174,6 +193,8 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             errors={errors}
             getInputClasses={getInputClasses}
             numPizzasRef={inputRefs?.numPizzas}
+            minDoughBallWeight={minW}
+            maxDoughBallWeight={maxW}
           />
         </div>
       )}
@@ -236,6 +257,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             <EnvironmentSection
               config={config}
               onConfigChange={onConfigChange}
+              defaultOven={defaultOven}
             />
           </div>
 

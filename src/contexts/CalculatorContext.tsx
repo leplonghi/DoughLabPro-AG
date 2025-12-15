@@ -59,7 +59,7 @@ const isAnySourdough = (yeastType: YeastType) =>
 
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { t } = useTranslation();
-    const { user, levains, preferredFlourId } = useUser();
+    const { user, levains, preferredFlourId, ovens } = useUser();
     const { addToast } = useToast();
     const previousErrorsRef = useRef<FormErrors>({});
 
@@ -89,8 +89,15 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         } else if (preferredFlourId) {
             config.flourId = preferredFlourId;
         }
+
+        // Apply Default Oven Temperature
+        const defaultOven = ovens.find(o => o.isDefault) || (ovens.length > 0 ? ovens[0] : undefined);
+        if (defaultOven?.maxTemperature) {
+            config.bakingTempC = defaultOven.maxTemperature;
+        }
+
         return config;
-    }, [preferredFlourId]);
+    }, [preferredFlourId, ovens]);
 
     const [config, setConfig] = useState<DoughConfig>(initialConfig);
     const [calculationMode, setCalculationMode] = useState<CalculationMode>('mass');
@@ -98,6 +105,13 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const [unitSystem, setUnitSystem] = useState<UnitSystem>(UnitSystem.METRIC);
     const [errors, setErrors] = useState<FormErrors>({});
     const [hasInteracted, setHasInteracted] = useState(false);
+
+    // Sync initial defaults (like Oven Temp) when data loads, if user hasn't touched controls
+    useEffect(() => {
+        if (!hasInteracted) {
+            setConfig(initialConfig);
+        }
+    }, [initialConfig, hasInteracted]);
 
     // --- Validation ---
     useEffect(() => {
@@ -113,9 +127,9 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         // Try to find the full definition
         const fullStyle = STYLES_DATA.find(s => s.id === config.stylePresetId);
 
-        if (fullStyle?.specs?.ballWeight) {
-            minW = fullStyle.specs.ballWeight.min;
-            maxW = fullStyle.specs.ballWeight.max;
+        if (fullStyle?.technicalProfile?.ballWeight) {
+            minW = fullStyle.technicalProfile.ballWeight.min;
+            maxW = fullStyle.technicalProfile.ballWeight.max;
         } else if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
             const rangeStr = DOUGH_WEIGHT_RANGES[config.recipeStyle] || '';
             const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
@@ -277,8 +291,8 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                     ingredients = converted.ingredients;
                 }
                 // Use converted defaults if available explicitly
-                if (fullStyle.specs.ballWeight?.recommended) {
-                    targetWeight = fullStyle.specs.ballWeight.recommended;
+                if (fullStyle.technicalProfile?.ballWeight?.recommended) {
+                    targetWeight = fullStyle.technicalProfile.ballWeight.recommended;
                 } else if (converted.doughBallWeight) {
                     targetWeight = converted.doughBallWeight;
                 }

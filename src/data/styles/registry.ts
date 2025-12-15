@@ -45,7 +45,8 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
         recommendedUse: [],
         oil: [0, 0],
         sugar: [0, 0],
-        flourStrength: style.scientificProfile?.flourRheology?.w_index || "Standard"
+        flourStrength: style.scientificProfile?.flourRheology?.w_index || "Standard",
+        ballWeight: style.specs?.ballWeight
     };
 
     // Safely handle category mapping

@@ -13,6 +13,8 @@ interface QuantitySectionProps {
     errors: FormErrors;
     getInputClasses: (hasError: boolean) => string;
     numPizzasRef: React.Ref<HTMLInputElement>;
+    minDoughBallWeight?: number;
+    maxDoughBallWeight?: number;
 }
 
 const QuantitySection: React.FC<QuantitySectionProps> = ({
@@ -23,6 +25,8 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
     errors,
     getInputClasses,
     numPizzasRef,
+    minDoughBallWeight = 10,
+    maxDoughBallWeight = 2000,
 }) => {
     const { t } = useTranslation();
     return (
@@ -122,12 +126,15 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                                 type="number"
                                 id="doughBallWeight"
                                 name="doughBallWeight"
-                                min="10"
-                                max="2000"
+                                min={minDoughBallWeight}
+                                max={maxDoughBallWeight}
                                 value={config.doughBallWeight}
                                 onChange={(e) => onConfigChange({ doughBallWeight: parseInt(e.target.value) || 0 })}
                                 className={getInputClasses(!!errors.doughBallWeight)}
                             />
+                            <p className="mt-1 text-xs text-dlp-text-muted">
+                                {t('calculator.recommended_range')}: {minDoughBallWeight}g - {maxDoughBallWeight}g
+                            </p>
                             {errors.doughBallWeight && <p className="mt-1 text-xs text-dlp-error">{errors.doughBallWeight}</p>}
                         </div>
                     </>

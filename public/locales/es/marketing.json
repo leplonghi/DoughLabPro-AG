@@ -2112,10 +2112,10 @@
     "maybe_later": "Tal vez más tarde"
   },
   "assistant_page": {
-    "error": "Error",
-    "greeting_short": "Hola",
-    "title_short": "Título Corto",
-    "send": "Enviar",
-    "placeholder_short": "Escribe aquí..."
+    "error": "Error del Oráculo",
+    "greeting_short": "Soy Doughy, tu Oráculo de Masas. ¿Cómo puedo guiar tu horneado hoy?",
+    "title_short": "Oráculo Doughy",
+    "send": "Invocar",
+    "placeholder_short": "Pregunta sobre harina, fermentación o pide una receta..."
   }
 }

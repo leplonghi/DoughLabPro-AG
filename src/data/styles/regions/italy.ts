@@ -21,7 +21,8 @@ export const italianStyles: DoughStyle[] = [
             hydration: { ideal: 60, min: 57, max: 62.5 },
             ovenTemp: { ideal: 450, min: 430, max: 485 },
             fermentationTime: "24h",
-            difficulty: 'Expert'
+            difficulty: 'Expert',
+            ballWeight: { recommended: 260, min: 200, max: 280 }
         },
         scientificProfile: {
             flourRheology: {
@@ -209,7 +210,8 @@ export const italianStyles: DoughStyle[] = [
             hydration: { ideal: 80, min: 75, max: 90 },
             ovenTemp: { ideal: 250, min: 230, max: 270 },
             fermentationTime: "48-72h",
-            difficulty: 'Expert'
+            difficulty: 'Expert',
+            ballWeight: { recommended: 600, min: 300, max: 1200 } // Pan size dependent
         },
         scientificProfile: {
             flourRheology: {
@@ -366,7 +368,8 @@ export const italianStyles: DoughStyle[] = [
             hydration: { ideal: 56, min: 53, max: 58 },
             ovenTemp: { ideal: 300, min: 280, max: 330 },
             fermentationTime: "24h",
-            difficulty: 'Medium'
+            difficulty: 'Medium',
+            ballWeight: { recommended: 180, min: 150, max: 200 }
         },
         scientificProfile: {
             flourRheology: {

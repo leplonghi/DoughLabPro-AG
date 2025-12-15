@@ -2,6 +2,8 @@
   "common": {
     "explore": "Explorar",
     "save": "Salvar",
+    "save_as_default_oven": "Salvar como Forno Padrão",
+    "oven_saved_default": "Forno salvo como padrão!",
     "ui": {
       "an_error_occurred": "Ocorreu um erro.",
       "aipowered_diagnostic_engine_analyze_your_dough_fau": "Motor de diagnóstico por IA. Analise falhas e receba correções científicas.",

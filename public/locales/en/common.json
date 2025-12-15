@@ -1,6 +1,8 @@
 {
   "common": {
     "save": "Save",
+    "save_as_default_oven": "Save as Default Oven",
+    "oven_saved_default": "Oven saved as default!",
     "ui": {
       "an_error_occurred": "An error occurred.",
       "aipowered_diagnostic_engine_analyze_your_dough_fau": "AI-powered diagnostic engine. Analyze your dough faults and get instant scientific correction.",

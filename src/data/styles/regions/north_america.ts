@@ -24,6 +24,7 @@ const nycSlice: DoughStyleDefinition = {
         ovenTemp: [280, 300],
         recommendedUse: ['Cheese slice 2', 'Pepperoni 4'],
         difficulty: 'Medium',
+        ballWeight: { recommended: 450, min: 350, max: 600 },
         fermentationSteps: [
             "Intensive mix to windowpane. [Science: High protein flour (14%) requires significant mechanical energy to align gluten for the thin stretch.]",
             "Bulk ferment 1h. [Science: Jumpstarts yeast activity before cold shock.]",
@@ -179,6 +180,7 @@ const detroitStyle: DoughStyleDefinition = {
         ovenTemp: [260, 290],
         recommendedUse: ['Pepperoni 5'],
         difficulty: 'Medium',
+        ballWeight: { recommended: 550, min: 400, max: 700 },
         fermentationSteps: [
             "Mix to moderate development. [Science: Full windowpane not needed as the dough is supported by the pan.]",
             "Bulk ferment 1h. [Science: Initial gas generation.]",
@@ -333,6 +335,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
         ovenTemp: [220, 230],
         recommendedUse: ['Sausage patty', 'Spinach'],
         difficulty: 'Medium',
+        ballWeight: { recommended: 800, min: 600, max: 1200 },
         fermentationSteps: [
             "Mix for short time (Undermixed). [Science: 'Minimizing gluten development ensures a \'short', biscuit-like texture rather than chewy bread.]",
             "Bulk ferment 1-2h. [Science: Flavor development only; gas retention is secondary to texture.]",
@@ -484,6 +487,7 @@ const sfSourdough: DoughStyleDefinition = {
         ovenTemp: [230, 260],
         recommendedUse: ['Clam chowder bowl', 'Toast'],
         difficulty: 'Expert',
+        ballWeight: { recommended: 900, min: 700, max: 1100 },
         fermentationSteps: [
             "Maintain stiff starter. [Science: Stiff starters favor acetic acid production (sourness) and yeast vitality.]",
             "Long cold retard (12-24h). [Science: 'At low temps', bacteria produce more acid while yeast slows down, creating the signature tang.]",
@@ -638,6 +642,7 @@ const newHavenApizza: DoughStyleDefinition = {
         ovenTemp: [315, 350], // Domestic adaptation target. Real ovens are 600F+
         recommendedUse: ['White clam pie'],
         difficulty: 'Hard',
+        ballWeight: { recommended: 350, min: 300, max: 450 },
         fermentationSteps: [
             "Long cold fermentation (24-48h). [Science: Necessary to break down complex starches for the high-heat charring process.]",
             "Proof at room temp. [Science: Dough must be very extensible to stretch into the signature oblong shape without snapping back.]",
@@ -787,6 +792,7 @@ const nycBagel: DoughStyleDefinition = {
         ovenTemp: [240, 260],
         recommendedUse: ['Cream cheese  lox', 'Bacon egg cheese'],
         difficulty: 'Hard',
+        ballWeight: { recommended: 120, min: 100, max: 150 },
         fermentationSteps: [
             "Mix EXTREMELY stiff dough. [Science: Low hydration (50-55%) creates the signature dense chewiness.]",
             "Shape immediately. [Science: Shaping after proofing would Degas the dense structure too much.]",
