@@ -114,7 +114,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                     {step.temperatureLabel && !isGrandma && (
                         <div className="flex items-center gap-2 text-sm font-semibold text-dlp-warning bg-dlp-warning/10 p-2.5 rounded-lg border border-dlp-warning/20">
                             <FireIcon className="h-4 w-4" />
-                            Target Temp: {step.temperatureLabel}
+                            {t('calculator.target_temp')}{step.temperatureLabel}
                         </div>
                     )}
 
@@ -149,7 +149,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
                     {step.references && step.references.length > 0 && !isGrandma && (
                         <div className="flex items-center gap-1.5 text-[10px] text-dlp-text-muted mt-2">
                             <BookOpenIcon className="h-3 w-3" />
-                            <span>Source: {step.references.join(', ')}</span>
+                            <span>{t('calculator.source')}{step.references.join(', ')}</span>
                         </div>
                     )}
                 </div>
@@ -223,7 +223,7 @@ const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) =>
 
             <div className="mt-10 p-4 rounded-xl bg-dlp-bg-muted border border-dlp-border text-center">
                 <p className="text-xs text-dlp-text-muted italic font-medium">
-                    This workflow adapts dynamically to hydration, yeast type, and room temperature settings.
+                    {t('calculator.workflow_disclaimer')}
                 </p>
             </div>
         </div>

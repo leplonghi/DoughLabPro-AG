@@ -10,7 +10,7 @@ interface IngredientTableEditorProps {
 }
 
 export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ ingredients, onChange, totalFlour }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editForm, setEditForm] = useState<Partial<IngredientConfig>>({});
     const [isAdding, setIsAdding] = useState(false);
@@ -95,7 +95,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                 {/* Empty State */}
                 {!isAdding && ingredients.length === 0 && (
                     <div className="p-8 text-center text-dlp-text-muted italic text-sm">
-                        No custom ingredients added yet.
+                        {t('calculator.no_custom_ingredients_added_yet')}
                     </div>
                 )}
 
@@ -257,7 +257,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
             {/* Footer / Helper Text */}
             <div className="bg-dlp-bg-muted/30 p-2 text-center border-t border-dlp-border">
                 <p className="text-[10px] text-dlp-text-muted flex items-center justify-center gap-1">
-                    <AlertCircle className="w-3 h-3" /> Custom ingredients are calculated based on Total Flour weight.
+                    <AlertCircle className="w-3 h-3" /> {t('calculator.custom_ingredients_footer')}
                 </p>
             </div>
         </div>

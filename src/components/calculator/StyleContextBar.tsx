@@ -69,7 +69,7 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
               href={`#/styles/detail/${style.id}`}
               className="text-xs font-semibold text-lime-600 hover:text-lime-700 flex items-center gap-1"
             >
-              View Full Style Guide &rarr;
+              {t('calculator.view_full_style_guide')} &rarr;
             </a>
           </div>
         </div>

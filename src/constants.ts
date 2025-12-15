@@ -126,14 +126,14 @@ export const DOUGH_STYLE_PRESETS: DoughStylePreset[] = STYLES_DATA.map(style => 
 export const ENVIRONMENT_TEMPERATURE_GUIDELINES = {
   [AmbientTemperature.COLD]: {
     yeastAdjustment: 1.25,
-    notes: i18n.t('ui.fermentation_will_be_slower')
+    notes: i18n.t('calculator.fermentation_slower')
   },
   [AmbientTemperature.MILD]: {
     yeastAdjustment: 1.0,
-    notes: i18n.t('ui.ideal_temperature_for_most_standard_recipes')
+    notes: i18n.t('calculator.temp_ideal')
   },
   [AmbientTemperature.HOT]: {
     yeastAdjustment: 0.7,
-    notes: i18n.t('ui.fermentation_will_be_faster_consider_using_cold_wa')
+    notes: i18n.t('calculator.fermentation_faster')
   }
 };

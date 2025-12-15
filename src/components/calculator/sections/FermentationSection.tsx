@@ -55,15 +55,15 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
     return (
       <FormSection
         title={t('calculator.leavening')}
-        description="Leavening method for this style."
+        description={t('calculator.leavening_description')}
         icon={<FermentationIcon className="h-6 w-6" />}
       >
         <div className="p-4 bg-dlp-bg-muted rounded-lg border border-dlp-border text-center">
           <p className="text-sm font-medium text-dlp-text-secondary">
-            Chemical / Physical Leavening
+            {t('calculator.chemical_physical_leavening')}
           </p>
           <p className="text-xs text-dlp-text-muted mt-1">
-            This style uses baking powder, soda, or mechanical action instead of yeast fermentation.
+            {t('calculator.chemical_leavening_desc')}
           </p>
         </div>
       </FormSection>
@@ -73,12 +73,12 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
   return (
     <FormSection
       title={t('calculator.fermentation_technique')}
-      description="Choose between a direct method or a preferment."
+      description={t('calculator.fermentation_technique_desc')}
       icon={<FermentationIcon className="h-6 w-6" />}
     >
       {isAnySourdough ? (
         <p className="text-center text-sm text-dlp-text-secondary bg-dlp-bg-muted p-3 rounded-lg">
-          Sourdough Starter acts as the preferment. Biga/Poolish options disabled.
+          {t('calculator.sourdough_is_preferment_msg')}
         </p>
       ) : (
         <>
@@ -98,7 +98,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
             </div>
 
             <div className="relative group">
-              <LockFeature featureKey="calculator.preferments_advanced" customMessage="Poolish Preferment is a Pro feature.">
+              <LockFeature featureKey="calculator.preferments_advanced" customMessage={t('calculator.poolish_pro_msg')}>
                 <ChoiceButton
                   active={config.fermentationTechnique === FermentationTechnique.POOLISH}
                   onClick={() => isAllowed(FermentationTechnique.POOLISH) && onConfigChange({ fermentationTechnique: FermentationTechnique.POOLISH, prefermentFlourPercentage: 30 })}
@@ -114,7 +114,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
             </div>
 
             <div className="relative group">
-              <LockFeature featureKey="calculator.preferments_advanced" customMessage="Biga Preferment is a Pro feature.">
+              <LockFeature featureKey="calculator.preferments_advanced" customMessage={t('calculator.biga_pro_msg')}>
                 <ChoiceButton
                   active={config.fermentationTechnique === FermentationTechnique.BIGA}
                   onClick={() => isAllowed(FermentationTechnique.BIGA) && onConfigChange({ fermentationTechnique: FermentationTechnique.BIGA, prefermentFlourPercentage: 50 })}
@@ -132,7 +132,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
 
           {!safeAllowedTechniques.includes(FermentationTechnique.POOLISH) && !safeAllowedTechniques.includes(FermentationTechnique.BIGA) && (
             <p className="text-xs text-center text-dlp-text-muted mt-2 italic">
-              Preferments (Poolish/Biga) are not typically used for this style.
+              {t('calculator.preferments_not_typical_msg')}
             </p>
           )}
 
@@ -159,7 +159,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 }
                 step={5}
                 unit="%"
-                tooltip="Percentage of total flour to use in the preferment."
+                tooltip={t('calculator.preferment_flour_tooltip')}
                 hasError={!!errors.prefermentFlourPercentage}
                 learnArticle={getArticleById('preferments-overview')}
               />

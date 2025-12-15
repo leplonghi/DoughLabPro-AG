@@ -75,7 +75,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
       {isBasic ? (
         <>
           <SliderInput
-            label={config.bakeType === 'SWEETS_PASTRY' ? "Liquids (inc. Eggs)" : t('form.hydration')}
+            label={config.bakeType === 'SWEETS_PASTRY' ? t('calculator.liquids_eggs') : t('form.hydration')}
             name="hydration"
             value={config.hydration}
             onChange={handleNumberChange}
@@ -83,7 +83,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             max={config.bakeType === 'SWEETS_PASTRY' ? 200 : 90}
             step={1}
             unit="%"
-            tooltip="Water content relative to flour weight."
+            tooltip={t('calculator.hydration_tooltip')}
             hasError={!!errors.hydration}
             recommendedMin={getRange('hydration')?.[0]}
             recommendedMax={getRange('hydration')?.[1]}
@@ -95,7 +95,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             value={config.salt}
             onChange={handleNumberChange}
             min={0} max={5} step={0.1} unit="%"
-            tooltip="Salt content relative to flour weight."
+            tooltip={t('calculator.salt_tooltip')}
             hasError={!!errors.salt}
             recommendedMin={getRange('salt')?.[0]}
             recommendedMax={getRange('salt')?.[1]}
@@ -112,7 +112,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                 value={config.hydration}
                 onChange={handleNumberChange}
                 min={0} max={120} step={1} unit="%"
-                tooltip="Controls dough wetness and crust texture. Higher hydration (65%+) creates an open, airy crumb but is stickier to handle."
+                tooltip={t('calculator.hydration_advanced_help')}
                 hasError={!!errors.hydration}
                 recommendedMin={getRange('hydration')?.[0]}
                 recommendedMax={getRange('hydration')?.[1]}
@@ -126,7 +126,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             value={config.salt}
             onChange={handleNumberChange}
             min={0} max={5} step={0.1} unit="%"
-            tooltip="Regulates yeast activity, strengthens gluten, and enhances flavor. 2-3% is standard for most styles."
+            tooltip={t('calculator.salt_advanced_help')}
             hasError={!!errors.salt}
             recommendedMin={getRange('salt')?.[0]}
             recommendedMax={getRange('salt')?.[1]}
@@ -155,7 +155,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
               max={ing.role === 'sugar' ? 300 : ing.role === 'fat' ? 200 : ing.name.includes('Chocolate') ? 200 : 100}
               step={0.1}
               unit="%"
-              tooltip={`Adjust percentage of ${ing.name}`}
+              tooltip={`${t('calculator.adjust_percentage_of')} ${ing.name}`}
             />
           ))}
         </>
@@ -171,7 +171,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                 {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.labelKey}</option>))}
               </select>
             </div>
-            <SliderInput label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip="Determines fermentation speed. Adjust based on time and temperature. Less yeast = longer fermentation = more flavor." hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} />
+            <SliderInput label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip={t('calculator.yeast_tooltip')} hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} />
           </div>
         )}
 
@@ -188,7 +188,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                     Assumed Hydration: <strong>100%</strong>.
                   </p>
                   <p className="text-xs text-dlp-text-muted mt-2">
-                    To track your specific starter's hydration and feeding schedule, select <strong>t('calculator.my_starter')</strong>.
+                    To track your specific starter's hydration and feeding schedule, select <strong>{t('calculator.my_starter')}</strong>.
                   </p>
                 </div>
               </div>
@@ -219,7 +219,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                           <span className={`font-medium ${selectedLevain.status === 'ativo' ? 'text-dlp-success' :
                             selectedLevain.status === 'precisa_atencao' ? 'text-dlp-warning' : 'text-dlp-text-secondary'
                             }`}>
-                            {selectedLevain.status === 'ativo' ? 'Active' : selectedLevain.status === 'precisa_atencao' ? 'Needs Attention' : 'Resting'}
+                            {selectedLevain.status === 'ativo' ? t('calculator.status_active') : selectedLevain.status === 'precisa_atencao' ? t('calculator.status_needs_attention') : t('calculator.status_resting')}
                           </span>
                         </div>
                       </div>

@@ -24,11 +24,11 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
     getInputClasses,
     numPizzasRef,
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <AccordionSection
             title={t('calculator.quantity')}
-            description="Define how many pieces or the total flour weight."
+            description={t('calculator.quantity_description')}
             icon={<ListBulletIcon className="h-6 w-6" />}
         >
             {/* Calculation Mode Toggle */}
@@ -50,12 +50,12 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                     <div className="col-span-1 sm:col-span-2">
                         <div className="flex items-center gap-2 mb-1">
                             <label htmlFor="totalFlour" className="block text-xs font-bold text-dlp-text-secondary">
-                                Total Flour Weight (g)
+                                {t('calculator.total_flour_weight')}
                             </label>
                             <div className="group relative flex items-center">
                                 <InfoIcon className="h-3.5 w-3.5 cursor-help text-dlp-accent" />
                                 <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2 rounded-md bg-dlp-bg-card p-2 text-xs font-normal text-dlp-text-primary border border-dlp-border opacity-0 shadow-dlp-md transition-opacity duration-300 group-hover:opacity-100">
-                                    Start with a fixed amount of flour.
+                                    {t('calculator.total_flour_tooltip')}
                                     <svg className="absolute left-0 top-full h-2 w-full text-dlp-bg-card" x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                             className={getInputClasses(false)}
                         />
                         <p className="mt-2 text-xs text-dlp-text-muted italic">
-                            We will calculate the total dough weight based on this flour amount and your hydration settings.
+                            {t('calculator.total_flour_help')}
                         </p>
                     </div>
                 ) : (
@@ -80,12 +80,12 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                         <div>
                             <div className="flex items-center gap-2 mb-1">
                                 <label htmlFor="numPizzas" className="block text-xs font-bold text-dlp-text-secondary">
-                                    Number of {config.bakeType === 'pizzas' ? 'Pizzas' : 'Loaves/Pieces'}
+                                    {config.bakeType === 'pizzas' ? t('calculator.number_of_pizzas') : t('calculator.number_of_loaves')}
                                 </label>
                                 <div className="group relative flex items-center">
                                     <InfoIcon className="h-3.5 w-3.5 cursor-help text-dlp-accent" />
                                     <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2 rounded-md bg-dlp-bg-card p-2 text-xs font-normal text-dlp-text-primary border border-dlp-border opacity-0 shadow-dlp-md transition-opacity duration-300 group-hover:opacity-100">
-                                        Total number of pieces or loaves you want to make.
+                                        {t('calculator.number_of_pieces_tooltip')}
                                         <svg className="absolute left-0 top-full h-2 w-full text-dlp-bg-card" x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
                                     </div>
                                 </div>
@@ -108,12 +108,12 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                         <div>
                             <div className="flex items-center gap-2 mb-1">
                                 <label htmlFor="doughBallWeight" className="block text-xs font-bold text-dlp-text-secondary">
-                                    Weight per Piece (g)
+                                    {t('calculator.weight_per_piece')}
                                 </label>
                                 <div className="group relative flex items-center">
                                     <InfoIcon className="h-3.5 w-3.5 cursor-help text-dlp-accent" />
                                     <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-56 -translate-x-1/2 rounded-md bg-dlp-bg-card p-2 text-xs font-normal text-dlp-text-primary border border-dlp-border opacity-0 shadow-dlp-md transition-opacity duration-300 group-hover:opacity-100">
-                                        Target weight for each piece. ~250g for pizza, ~800g for bread loaves.
+                                        {t('calculator.weight_per_piece_tooltip')}
                                         <svg className="absolute left-0 top-full h-2 w-full text-dlp-bg-card" x="0px" y="0px" viewBox="0 0 255 255" xmlSpace="preserve"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
                                     </div>
                                 </div>

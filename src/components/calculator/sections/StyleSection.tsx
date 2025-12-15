@@ -24,7 +24,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     currentPreset,
     onResetPreset,
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const [searchTerm, setSearchTerm] = useState('');
 
     // Grouping Logic
@@ -52,15 +52,15 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     }, [recipeStylesToShow, searchTerm]);
 
     const BAKE_TYPES = [
-        { id: BakeType.PIZZAS, label: 'Pizzas', icon: <PizzaSliceIcon className="h-5 w-5" /> },
-        { id: BakeType.BREADS_SAVORY, label: 'Breads', icon: <FlourIcon className="h-5 w-5" /> },
-        { id: BakeType.SWEETS_PASTRY, label: 'Pastry', icon: <SparklesIcon className="h-5 w-5" /> },
+        { id: BakeType.PIZZAS, label: t('calculator.category_pizzas'), icon: <PizzaSliceIcon className="h-5 w-5" /> },
+        { id: BakeType.BREADS_SAVORY, label: t('calculator.category_breads'), icon: <FlourIcon className="h-5 w-5" /> },
+        { id: BakeType.SWEETS_PASTRY, label: t('calculator.category_pastry'), icon: <SparklesIcon className="h-5 w-5" /> },
     ];
 
     return (
         <AccordionSection
             title={t('calculator.dough_style')}
-            description="Start by choosing the result you're aiming for."
+            description={t('calculator.style_section_description')}
             icon={<BookOpenIcon className="h-6 w-6" />}
         >
             {/* 1. DISTINCT BAKE TYPE SELECTOR (Tabs) */}
@@ -112,7 +112,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                     <span className="w-1.5 h-1.5 rounded-full bg-lime-500 mr-2"></span>
                                     {region}
                                 </h4>
-                                <span className="text-[10px] text-slate-300 font-medium">{styles.length} styles</span>
+                                <span className="text-[10px] text-slate-300 font-medium">{styles.length} {t('calculator.styles_count')}</span>
                             </div>
 
                             {/* Content Grid - Adapts to Mode */}
@@ -165,7 +165,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                 ) : (
                     <div className="text-center py-12 bg-slate-50 rounded-xl border border-dashed border-slate-200 flex flex-col items-center justify-center">
                         <MagnifyingGlassIcon className="h-8 w-8 text-slate-300 mb-2" />
-                        <p className="text-sm text-slate-500 font-medium">No styles found matching "{searchTerm}"</p>
+                        <p className="text-sm text-slate-500 font-medium">{t('calculator.no_styles_found')} "{searchTerm}"</p>
                         <button onClick={() => setSearchTerm('')} className="mt-2 text-xs text-lime-600 hover:underline">{t('calculator.clear_search')}</button>
                     </div>
                 )}

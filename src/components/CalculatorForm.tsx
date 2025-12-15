@@ -145,7 +145,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <StepBanner
           step={1}
           title={t('general.choose_your_style')}
-          description="Select the type of product (Pizza, Bread, Pastry) and the specific style you want to make."
+          description={t('calculator.choose_style_desc')}
         />
         <StyleSection
           config={config}
@@ -164,7 +164,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <StepBanner
             step={2}
             title={t('general.define_quantity')}
-            description="How much dough do you need? Set the number of balls/loaves and their individual weight."
+            description={t('calculator.define_quantity_desc')}
           />
           <QuantitySection
             config={config}
@@ -186,7 +186,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             <StepBanner
               step={3}
               title={t('general.customize_ingredients')}
-              description="Adjust the key characteristics like hydration (water) and salt to match your taste or flour capability."
+              description={t('calculator.customize_ing_desc')}
             />
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 mb-6">
               <IngredientsSection
@@ -213,7 +213,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             <StepBanner
               step={4}
               title={t('general.fermentation_strategy')}
-              description="Choose how you want to ferment your dough (Direct, Poolish, Biga, etc)."
+              description={t('calculator.fermentation_strategy_desc')}
             />
             <FermentationSection
               config={config}
@@ -231,7 +231,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             <StepBanner
               step={5}
               title={t('general.baking_environment')}
-              description="Tell us about your oven temperature to fine-tune the recipe."
+              description={t('calculator.baking_env_desc')}
             />
             <EnvironmentSection
               config={config}
@@ -246,7 +246,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <LockedTeaser featureKey="calculator.save_preset">
           <FormSection
             title={t('general.save_custom_preset')}
-            description="Save the current configuration for future use."
+            description={t('calculator.save_preset_desc')}
             icon={<BookmarkSquareIcon className="h-6 w-6" />}
           >
             <button
