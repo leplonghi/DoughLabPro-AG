@@ -71,7 +71,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             <BeakerIcon className="w-4 h-4" />{t('mylab.production_hub')}</div>
                         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">{t('mylab.my_lab')}</h1>
                         <p className="text-base md:text-lg text-lime-100/90 mb-0 leading-relaxed">
-                            Your personal baking command center. Manage your schedule, track your cultures, and analyze your progress in one place.
+                            {t('mylab.hero_desc')}
                         </p>
                     </div>
                 </div>
@@ -83,9 +83,9 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             <ChartBarIcon className="h-5 w-5 text-emerald-600" />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('general.lab_status')}</span>
+                            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('mylab.lab_status')}</span>
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-black text-slate-800">{t('general.operational')}</span>
+                                <span className="text-sm font-black text-slate-800">{t('mylab.operational')}</span>
                                 <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
                             </div>
                         </div>
@@ -95,11 +95,11 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                     <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-start">
                         <div className="flex flex-col items-start group cursor-pointer">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-lime-600 transition-colors">{t('general.total_batches')}</span>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-lime-600 transition-colors">{t('mylab.total_batches')}</span>
                             <span className="text-lg font-black text-slate-800">{totalBakes}</span>
                         </div>
                         <div className="flex flex-col items-start group cursor-pointer">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-emerald-600 transition-colors">{t('general.success_rate')}</span>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-emerald-600 transition-colors">{t('mylab.success_rate')}</span>
                             <span className={`text-lg font-black ${successRate >= 80 ? 'text-emerald-500' : 'text-amber-500'}`}>{successRate}%</span>
                         </div>
                     </div>
@@ -110,7 +110,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             className={`w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-white shadow-lg transition-all active:scale-95 ${isLimitReached ? 'bg-slate-400 cursor-not-allowed hover:bg-slate-500' : 'bg-lime-500 shadow-lime-500/20 hover:bg-lime-600 hover:scale-105'}`}
                         >
                             {isLimitReached ? <LockClosedIcon className="h-5 w-5" /> : <PlusCircleIcon className="h-5 w-5" />}
-                            {isLimitReached ? 'Limit Reached' : 'New Bake'}
+                            {isLimitReached ? t('mylab.limit_reached') : t('mylab.new_bake')}
                         </button>
                     </div>
                 </div>
@@ -127,14 +127,14 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 <h2 className="text-base font-bold text-slate-800">{t('mylab.daily_operations')}</h2>
                             </div>
                             <p className="text-sm text-slate-500 -mt-2">
-                                Essential tools for planning and logging your baking sessions.
+                                {t('mylab.desc_daily_ops')}
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <LabFeatureCard
                                     icon={<ClockIcon className="h-6 w-6 text-lime-600" />}
-                                    title={t('general.smart_timeline')}
-                                    description="Plan your fermentation schedule from start to finish."
+                                    title={t('mylab.smart_timeline')}
+                                    description={t('mylab.desc_smart_timeline')}
                                     onClick={() => onNavigate('mylab/timeline')}
                                     bgClass="bg-lime-50"
                                     isLocked={!hasProAccess}
@@ -142,22 +142,22 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 />
                                 <LabFeatureCard
                                     icon={<BeakerIcon className="h-6 w-6 text-indigo-500" />}
-                                    title={t('general.my_bakes')}
-                                    description="Your digital notebook. Log every detail of your bakes."
+                                    title={t('mylab.my_bakes')}
+                                    description={t('mylab.desc_my_bakes')}
                                     onClick={() => onNavigate('mylab/bakes')}
                                     bgClass="bg-indigo-50"
                                 />
                                 <LabFeatureCard
                                     icon={<FireIcon className="h-6 w-6 text-orange-500" />}
-                                    title={t('general.levain_tracker')}
-                                    description="Monitor the health and feeding schedule of your starter."
+                                    title={t('mylab.levain_tracker')}
+                                    description={t('mylab.desc_levain_tracker')}
                                     onClick={() => onNavigate('mylab/levain')}
                                     bgClass="bg-orange-50"
                                 />
                                 <LabFeatureCard
                                     icon={<ScaleIcon className="h-6 w-6 text-blue-500" />}
-                                    title={t('general.inventory')}
-                                    description="Keep track of flour stocks and ingredients."
+                                    title={t('mylab.inventory')}
+                                    description={t('mylab.desc_inventory')}
                                     onClick={() => onNavigate('mylab/flours')}
                                     bgClass="bg-blue-50"
                                     isLocked={!hasProAccess}
@@ -173,14 +173,14 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 <h2 className="text-base font-bold text-slate-800">{t('mylab.analysis_lab')}</h2>
                             </div>
                             <p className="text-sm text-slate-500 -mt-2">
-                                Advanced metrics to understand your dough biology and improve consistency.
+                                {t('mylab.desc_analysis_lab')}
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <LabFeatureCard
                                     icon={<ClipboardDocumentCheckIcon className="h-6 w-6 text-emerald-500" />}
-                                    title={t('general.consistency_logic')}
-                                    description="Track variables across batches to master repeatability."
+                                    title={t('mylab.consistency_logic')}
+                                    description={t('mylab.desc_consistency')}
                                     onClick={() => onNavigate('mylab/consistency')}
                                     bgClass="bg-emerald-50"
                                     isLocked={!hasProAccess}
@@ -188,22 +188,22 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 />
                                 <LabFeatureCard
                                     icon={<ArrowsRightLeftIcon className="h-6 w-6 text-purple-500" />}
-                                    title={t('general.ab_comparisons')}
-                                    description="Compare two recipes side-by-side to find the best method."
+                                    title={t('mylab.ab_comparisons')}
+                                    description={t('mylab.desc_compare')}
                                     onClick={() => onNavigate('mylab/comparisons')}
                                     bgClass="bg-purple-50"
                                 />
                                 <LabFeatureCard
                                     icon={<ChartBarIcon className="h-6 w-6 text-pink-500" />}
-                                    title={t('general.deep_insights')}
-                                    description="Visual analytics of your baking trends and history."
+                                    title={t('mylab.deep_insights')}
+                                    description={t('mylab.desc_insights')}
                                     onClick={() => onNavigate('mylab/insights')}
                                     bgClass="bg-pink-50"
                                 />
                                 <LabFeatureCard
                                     icon={<DocumentTextIcon className="h-6 w-6 text-cyan-500" />}
-                                    title={t('general.learning_goals')}
-                                    description="Set targets and track your skill progression."
+                                    title={t('mylab.learning_goals')}
+                                    description={t('mylab.desc_goals')}
                                     onClick={() => onNavigate('mylab/goals')}
                                     bgClass="bg-cyan-50"
                                 />
@@ -240,12 +240,12 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                                     <div className="flex items-center gap-2 text-xs text-slate-500">
                                                         <span>{new Date(batch.createdAt).toLocaleDateString()}</span>
                                                         <span>•</span>
-                                                        <span>{batch.styleId || 'Custom Style'}</span>
+                                                        <span>{batch.styleId || t('mylab.custom_style')}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-2 text-slate-400 group-hover:text-lime-500 transition-colors">
-                                                <span className="text-xs font-semibold hidden sm:block">{t('general.view_details')}</span>
+                                                <span className="text-xs font-semibold hidden sm:block">{t('mylab.view_details')}</span>
                                                 <ChevronRightIcon className="h-5 w-5" />
                                             </div>
                                         </div>
@@ -275,11 +275,11 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     <div className="p-1.5 bg-lime-400/10 rounded-lg">
                                         <SparklesIcon className="h-4 w-4 text-lime-400" />
                                     </div>
-                                    <span className="text-xs font-bold uppercase tracking-wider text-lime-400">{t('general.daily_tip')}</span>
+                                    <span className="text-xs font-bold uppercase tracking-wider text-lime-400">{t('mylab.daily_tip')}</span>
                                 </div>
-                                <h3 className="font-bold text-xl mb-3">{t('general.autolyse_science')}</h3>
+                                <h3 className="font-bold text-xl mb-3">{t('mylab.autolyse_science')}</h3>
                                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                                    Did you know? Autolyse allows protease enzymes to degrade gluten bonds while amylase turns starch into sugars. This creates a more extensible dough.
+                                    {t('mylab.daily_tip_autolyse')}
                                 </p>
                                 <button
                                     onClick={() => onNavigate('learn/fundamentals')}
@@ -299,11 +299,11 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-2 mb-2">
                                         <SparklesIcon className="h-5 w-5 text-indigo-200" />
-                                        <span className="text-xs font-bold uppercase tracking-wide text-indigo-200">{t('general.ai_beta')}</span>
+                                        <span className="text-xs font-bold uppercase tracking-wide text-indigo-200">{t('mylab.ai_beta')}</span>
                                     </div>
-                                    <h3 className="font-bold text-white text-lg mb-2">{t('general.fermentation_engine')}</h3>
+                                    <h3 className="font-bold text-white text-lg mb-2">{t('mylab.fermentation_engine')}</h3>
                                     <p className="text-sm text-indigo-100 leading-relaxed mb-4">
-                                        Predict user-specific fermentation times based on your historical lab data.
+                                        {t('mylab.ai_ferment_desc')}
                                     </p>
                                     <div className="inline-flex items-center gap-1 text-xs font-bold text-white bg-white/20 px-3 py-1.5 rounded-lg">{t('mylab.unlock_pro_features')}</div>
                                 </div>
@@ -312,7 +312,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                         {/* Affiliate / Ad Block */}
                         <div className="space-y-4 pt-6 mt-2 border-t border-slate-200">
-                            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">{t('general.recommended_gear_2')}</h3>
+                            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">{t('mylab.recommended_gear_2')}</h3>
                             <LearnAffiliateBlock placementKeys={['mylab_dashboard']} />
                             <AdCard context="mylab_sidebar" />
                         </div>

@@ -1,0 +1,149 @@
+[
+    {
+        "TargetContent": "\"Ideal & Traditional. Maximizes pure wheat flavor and digestibility with 24h fermentation.\"",
+        "ReplacementContent": "\"pizza_napoletana_method_direct_notes\"",
+        "StartLine": 164,
+        "EndLine": 164,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Non-traditional (STG), but widely used in 'Neo-Neapolitan' to create extreme cornicione volume and complex flavor.\"",
+        "ReplacementContent": "\"pizza_napoletana_method_biga_notes\"",
+        "StartLine": 165,
+        "EndLine": 165,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Good for home ovens to boost extensibility, but can make the dough too soft/slack for classic slap stretching.\"",
+        "ReplacementContent": "\"pizza_napoletana_method_poolish_notes\"",
+        "StartLine": 166,
+        "EndLine": 166,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"The 'No-Knead' cold ferment approach is effectively a direct method simplified. Very effective.\"",
+        "ReplacementContent": "\"pizza_teglia_romana_method_direct_notes\"",
+        "StartLine": 320,
+        "EndLine": 320,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'notes'",
+        "ReplacementContent": "\"pizza_teglia_romana_method_biga_notes\"",
+        "StartLine": 321,
+        "EndLine": 321,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Excellent choice a 100 poolish dough yields incred'",
+        "ReplacementContent": "\"pizza_teglia_romana_method_poolish_notes\"",
+        "StartLine": 322,
+        "EndLine": 322,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Standard a simple direct dough works best for this'",
+        "ReplacementContent": "\"pizza_tonda_romana_method_direct_notes\"",
+        "StartLine": 477,
+        "EndLine": 477,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Unnecessary complexity. We don't want the volume or wild crumb that Biga provides.\"",
+        "ReplacementContent": "\"pizza_tonda_romana_method_biga_notes\"",
+        "StartLine": 478,
+        "EndLine": 478,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Too extensible. We want some resistance (nerve) to roll it thin.\"",
+        "ReplacementContent": "\"pizza_tonda_romana_method_poolish_notes\"",
+        "StartLine": 479,
+        "EndLine": 479,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'The classic way high yeast short time immediate sa'",
+        "ReplacementContent": "\"focaccia_genovese_method_direct_notes\"",
+        "StartLine": 637,
+        "EndLine": 637,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Adds a nice perfume, but often considered 'too fancy' for street food focaccia.\"",
+        "ReplacementContent": "\"focaccia_genovese_method_biga_notes\"",
+        "StartLine": 638,
+        "EndLine": 638,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Makes for a very light almost cakelike focaccia'",
+        "ReplacementContent": "\"focaccia_genovese_method_poolish_notes\"",
+        "StartLine": 639,
+        "EndLine": 639,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Authentic method the softness comes from fat not p'",
+        "ReplacementContent": "\"sfincione_palermitano_method_direct_notes\"",
+        "StartLine": 782,
+        "EndLine": 782,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Not typical for this style'",
+        "ReplacementContent": "\"sfincione_palermitano_method_biga_notes\"",
+        "StartLine": 783,
+        "EndLine": 783,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Not typical 2'",
+        "ReplacementContent": "\"sfincione_palermitano_method_poolish_notes\"",
+        "StartLine": 784,
+        "EndLine": 784,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Without salt to control yeast direct dough explode'",
+        "ReplacementContent": "\"pane_toscano_method_direct_notes\"",
+        "StartLine": 925,
+        "EndLine": 925,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Essential the acidity of the biga strengthens the'",
+        "ReplacementContent": "\"pane_toscano_method_biga_notes\"",
+        "StartLine": 926,
+        "EndLine": 926,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Too weak we need the strength of a stiff prefermen'",
+        "ReplacementContent": "\"pane_toscano_method_poolish_notes\"",
+        "StartLine": 927,
+        "EndLine": 927,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'You cannot get the open crumb or flavor without a'",
+        "ReplacementContent": "\"ciabatta_classic_method_direct_notes\"",
+        "StartLine": 1087,
+        "EndLine": 1087,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'The original 1982 method 100 of flour in the biga'",
+        "ReplacementContent": "\"ciabatta_classic_method_biga_notes\"",
+        "StartLine": 1088,
+        "EndLine": 1088,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Creates a lighter, thinner crust version, but less 'meaty' crumb.\"",
+        "ReplacementContent": "\"ciabatta_classic_method_poolish_notes\"",
+        "StartLine": 1089,
+        "EndLine": 1089,
+        "AllowMultiple": false
+    }
+]

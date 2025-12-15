@@ -1,0 +1,212 @@
+[
+    {
+        "TargetContent": "'The classic corner slice shop method often sameday'",
+        "ReplacementContent": "\"new_york_slice_v2_method_direct_notes\"",
+        "StartLine": 129,
+        "EndLine": 129,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Adds excellent flavor but can make the dough too strong/bucky for easy stretching.\"",
+        "ReplacementContent": "\"new_york_slice_v2_method_biga_notes\"",
+        "StartLine": 130,
+        "EndLine": 130,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Common in modern \\'Artisan\\' slice shops for a lighter, puffier crust.\"",
+        "ReplacementContent": "\"new_york_slice_v2_method_poolish_notes\"",
+        "StartLine": 131,
+        "EndLine": 131,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Standard. The pan supports the structure, so complex gluten dev isn't strictly needed.\"",
+        "ReplacementContent": "\"detroit_style_classic_method_direct_notes\"",
+        "StartLine": 283,
+        "EndLine": 283,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Unnecessary complexity for a pan pizza'",
+        "ReplacementContent": "\"detroit_style_classic_method_biga_notes\"",
+        "StartLine": 284,
+        "EndLine": 284,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Fantastic for an even lighter more aerated crumb'",
+        "ReplacementContent": "\"detroit_style_classic_method_poolish_notes\"",
+        "StartLine": 285,
+        "EndLine": 285,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'The only way short mix direct use'",
+        "ReplacementContent": "\"chicago_deep_dish_method_direct_notes\"",
+        "StartLine": 432,
+        "EndLine": 432,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Completely wrong style'",
+        "ReplacementContent": "\"chicago_deep_dish_method_biga_notes\"",
+        "StartLine": 433,
+        "EndLine": 433,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Completely wrong style 2'",
+        "ReplacementContent": "\"chicago_deep_dish_method_poolish_notes\"",
+        "StartLine": 434,
+        "EndLine": 434,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Impossible this is sourdough'",
+        "ReplacementContent": "\"sf_sourdough_method_direct_notes\"",
+        "StartLine": 588,
+        "EndLine": 588,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'This is sourdough'",
+        "ReplacementContent": "\"sf_sourdough_method_biga_notes\"",
+        "StartLine": 589,
+        "EndLine": 589,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'This is sourdough 2'",
+        "ReplacementContent": "\"sf_sourdough_method_poolish_notes\"",
+        "StartLine": 590,
+        "EndLine": 590,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"But needs cold fermentation (Retarding) to be authentic.\"",
+        "ReplacementContent": "\"new_haven_apizza_method_direct_notes\"",
+        "StartLine": 736,
+        "EndLine": 736,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Not typical 3'",
+        "ReplacementContent": "\"new_haven_apizza_method_biga_notes\"",
+        "StartLine": 737,
+        "EndLine": 737,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Not typical 4'",
+        "ReplacementContent": "\"new_haven_apizza_method_poolish_notes\"",
+        "StartLine": 738,
+        "EndLine": 738,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'With stiff starter or sponge'",
+        "ReplacementContent": "\"nyc_bagel_method_direct_notes\"",
+        "StartLine": 887,
+        "EndLine": 887,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Excellent for locking in flavor in a stiff dough'",
+        "ReplacementContent": "\"nyc_bagel_method_biga_notes\"",
+        "StartLine": 888,
+        "EndLine": 888,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Commonly used as the 'Sponge' phase.\"",
+        "ReplacementContent": "\"nyc_bagel_method_poolish_notes\"",
+        "StartLine": 889,
+        "EndLine": 889,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'The definition of grandma style mix short rise bak'",
+        "ReplacementContent": "\"grandma_style_v2_method_direct_notes\"",
+        "StartLine": 1035,
+        "EndLine": 1035,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Too fancy'",
+        "ReplacementContent": "\"grandma_style_v2_method_biga_notes\"",
+        "StartLine": 1036,
+        "EndLine": 1036,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Too fancy 2'",
+        "ReplacementContent": "\"grandma_style_v2_method_poolish_notes\"",
+        "StartLine": 1037,
+        "EndLine": 1037,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"Often used with a 'dead yeast' approach (long cure).\"",
+        "ReplacementContent": "\"chicago_tavern_v2_method_direct_notes\"",
+        "StartLine": 1186,
+        "EndLine": 1186,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"We don't want volume.\"",
+        "ReplacementContent": "\"chicago_tavern_v2_method_biga_notes\"",
+        "StartLine": 1187,
+        "EndLine": 1187,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"We don't want extensibility.\"",
+        "ReplacementContent": "\"chicago_tavern_v2_method_poolish_notes\"",
+        "StartLine": 1188,
+        "EndLine": 1188,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Standard 20'",
+        "ReplacementContent": "\"montreal_bagel_method_direct_notes\"",
+        "StartLine": 1294,
+        "EndLine": 1294,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"N/A\"",
+        "ReplacementContent": "\"montreal_bagel_method_biga_notes\"",
+        "StartLine": 1295,
+        "EndLine": 1295,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"N/A\"",
+        "ReplacementContent": "\"montreal_bagel_method_poolish_notes\"",
+        "StartLine": 1296,
+        "EndLine": 1296,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "'Standard 21'",
+        "ReplacementContent": "\"flour_tortilla_sonora_method_direct_notes\"",
+        "StartLine": 1383,
+        "EndLine": 1383,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"N/A\"",
+        "ReplacementContent": "\"flour_tortilla_sonora_method_biga_notes\"",
+        "StartLine": 1384,
+        "EndLine": 1384,
+        "AllowMultiple": false
+    },
+    {
+        "TargetContent": "\"N/A\"",
+        "ReplacementContent": "\"flour_tortilla_sonora_method_poolish_notes\"",
+        "StartLine": 1385,
+        "EndLine": 1385,
+        "AllowMultiple": false
+    }
+]

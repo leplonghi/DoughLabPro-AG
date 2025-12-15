@@ -12,12 +12,13 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    supportedLngs: ['en', 'pt', 'es'],
+    lng: 'en', // Force English
+    supportedLngs: ['en'],
     ns: ['common'], // Default namespace loaded initially
     defaultNS: 'common',
     // fallbackNS ensures compatibility during migration by resolving keys from all namespaces
     // even if not explicitly loaded by the component.
-    fallbackNS: ['common', 'auth', 'calculator', 'dashboard', 'marketing'],
+    fallbackNS: ['common', 'auth', 'calculator', 'dashboard', 'marketing', 'method'],
     load: 'languageOnly',
     debug: import.meta.env.DEV,
     interpolation: {
@@ -45,7 +46,8 @@ export const useTranslation = (ns?: string | string[]) => {
   const { t, i18n } = useI18nextTranslation(ns);
 
   const setLocale = (l: Locale) => {
-    i18n.changeLanguage(l);
+    // Disabled language switching
+    // i18n.changeLanguage(l);
   };
 
   const tWrapper = (key: string, replacements?: Record<string, any>): string => {
@@ -54,9 +56,8 @@ export const useTranslation = (ns?: string | string[]) => {
 
   // Ensure we return a valid Locale from types, even if detection picked an unsupported one
   let currentLanguage = (i18n.resolvedLanguage || i18n.language)?.split('-')[0];
-  if (!['en', 'pt', 'es'].includes(currentLanguage)) {
-    currentLanguage = 'en';
-  }
+  // Force English
+  currentLanguage = 'en';
 
   return {
     locale: currentLanguage as Locale,

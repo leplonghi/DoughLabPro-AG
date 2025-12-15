@@ -2,6 +2,7 @@
 import React from 'react';
 import { Timestamp } from "firebase/firestore";
 import { DoughStyleDefinition, StyleCategory, RecipeStyle } from './styles';
+import { Increment, UserIngredient } from './ingredients';
 
 export { RecipeStyle };
 export type { DoughStyleDefinition, StyleCategory };
@@ -105,6 +106,9 @@ export interface DoughConfig {
 
     // New Universal Model
     ingredients?: IngredientConfig[];
+
+    // Assembly / Increments (V4)
+    assemblyIncrements?: (Increment | UserIngredient)[];
 
     fermentationTechnique: FermentationTechnique;
     yeastType: YeastType;

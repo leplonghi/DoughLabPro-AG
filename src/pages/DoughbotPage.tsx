@@ -12,7 +12,7 @@ import { LockClosedIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
 const DoughbotPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['doughbot', 'common']);
   const {
     problem,
     setProblem,
@@ -31,16 +31,16 @@ const DoughbotPage: React.FC = () => {
   const [isFomoLoading, setIsFomoLoading] = React.useState(false);
 
   const commonProblems = [
-    { value: '', label: 'Select a common problem...' },
-    { value: 'sticky', label: 'Dough too sticky / wet' },
-    { value: 'tearing', label: 'Dough tears when stretching' },
-    { value: 'no_rise', label: 'Dough did not rise' },
-    { value: 'dense', label: 'Dense crumb / no air bubbles' },
-    { value: 'gummy', label: 'Under-cooked base / "gum line"' },
-    { value: 'shrinking', label: 'Dough snaps back / shrinks' },
-    { value: 'flat', label: 'Dough flattened out (pancake)' },
-    { value: 'pale', label: 'Crust is pale / no browning' },
-    { value: 'burnt', label: 'Bottom burnt before top is done' },
+    { value: '', label: t('doughbot.common_problems.placeholder') },
+    { value: 'sticky', label: t('doughbot.common_problems.sticky') },
+    { value: 'tearing', label: t('doughbot.common_problems.tearing') },
+    { value: 'no_rise', label: t('doughbot.common_problems.no_rise') },
+    { value: 'dense', label: t('doughbot.common_problems.dense') },
+    { value: 'gummy', label: t('doughbot.common_problems.gummy') },
+    { value: 'shrinking', label: t('doughbot.common_problems.shrinking') },
+    { value: 'flat', label: t('doughbot.common_problems.flat') },
+    { value: 'pale', label: t('doughbot.common_problems.pale') },
+    { value: 'burnt', label: t('doughbot.common_problems.burnt') },
   ];
 
   const handleDiagnose = () => {
@@ -89,7 +89,7 @@ const DoughbotPage: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <label htmlFor="problem-select" className="block text-sm font-bold text-slate-700 mb-2">
-                  Common Issue (optional)
+                  {t('doughbot.common_issue_label')}
                 </label>
                 <select
                   id="problem-select"
@@ -113,10 +113,10 @@ const DoughbotPage: React.FC = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className="block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm text-slate-900 placeholder:text-slate-400"
-                  placeholder="E.g., My 65% hydration dough sat in the fridge for 24h. When I tried to open the balls, they were super elastic and kept shrinking back..."
+                  placeholder={t('doughbot.description_placeholder')}
                 />
                 <p className="mt-2 text-xs text-slate-500">
-                  The more details you provide about temperature, time, and flour, the better the diagnosis.
+                  {t('doughbot.tips_hint')}
                 </p>
               </div>
 
@@ -164,9 +164,7 @@ const DoughbotPage: React.FC = () => {
 
                 <div>
                   <h3 className="text-2xl font-black text-slate-800 mb-2">{t('ui.diagnosis_complete')}</h3>
-                  <p className="text-slate-600 text-lg">
-                    I have analyzed your dough parameters and identified <span className="font-bold text-lime-700">3 critical factors</span> affecting your results.
-                  </p>
+                  <p className="text-slate-600 text-lg" dangerouslySetInnerHTML={{ __html: t('doughbot.analysis_result', { count: 3 }) }} />
                 </div>
 
                 <div className="bg-slate-50 rounded-xl p-2 border border-slate-200 text-left space-y-3 opacity-60 blur-[1px] select-none pointer-events-none overflow-hidden h-64 relative">
@@ -184,13 +182,13 @@ const DoughbotPage: React.FC = () => {
                     <span className="font-bold text-lg">{t('general.unlock_full_solution')}</span>
                   </div>
                   <p className="text-slate-300 text-sm mb-6">
-                    Get the exact scientific correction recipe to fix your dough immediately, plus access to all 40+ Advanced Dough Styles.
+                    {t('doughbot.upgrade_hint')}
                   </p>
                   <button
                     onClick={() => openPaywall('doughbot')}
                     className="w-full py-3 bg-lime-500 hover:bg-lime-400 text-slate-900 font-bold rounded-lg transition-colors shadow-lg shadow-lime-500/25"
                   >
-                    View Solution & Upgrade
+                    {t('doughbot.upgrade_cta')}
                   </button>
                 </div>
               </div>

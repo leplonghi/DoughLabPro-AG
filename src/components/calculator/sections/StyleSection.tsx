@@ -113,7 +113,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                     className={`
                         flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border
                         ${selectedCountry === 'All'
-                            ? 'bg-slate-800 text-white border-slate-800 shadow-md'
+                            ? 'bg-dlp-accent text-white border-dlp-accent shadow-md'
                             : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                         }
                     `}
@@ -127,7 +127,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                         className={`
                              flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border
                             ${selectedCountry === country
-                                ? 'bg-slate-800 text-white border-slate-800 shadow-md'
+                                ? 'bg-dlp-accent text-white border-dlp-accent shadow-md'
                                 : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                             }
                         `}
@@ -157,21 +157,21 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                         relative flex flex-col items-start text-left transition-all duration-200 group
                                         ${isBasic
                                             ? 'p-2.5 rounded-lg border min-h-[80px]' // Guided Styles
-                                            : 'p-1.5 rounded-md border items-center text-center justify-center min-h-[60px]' // Pro Styles
+                                            : 'p-2 rounded-lg border items-center text-center justify-center min-h-[50px]' // Pro Styles (Compact)
                                         }
                                         ${isSelected
-                                            ? 'bg-lime-50/50 border-lime-500 ring-1 ring-lime-500 shadow-sm z-10'
-                                            : 'bg-white border-slate-100 hover:border-lime-400 hover:bg-slate-50 hover:shadow-sm'
+                                            ? 'border-dlp-accent bg-dlp-accent/10 text-dlp-accent shadow-sm z-10'
+                                            : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:shadow-sm'
                                         }
                                     `}
                                 >
                                     {/* Selection Indicator (Dot) */}
                                     {isSelected && (
-                                        <div className={`absolute rounded-full bg-lime-500 ${isBasic ? 'top-2 right-2 w-1.5 h-1.5' : 'top-1 right-1 w-1 h-1'}`} />
+                                        <div className={`absolute rounded-full bg-dlp-accent ${isBasic ? 'top-2 right-2 w-1.5 h-1.5' : 'top-1 right-1 w-1 h-1'}`} />
                                     )}
 
-                                    <span className={`font-bold leading-tight w-full ${isSelected ? 'text-lime-700' : 'text-slate-600'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
-                                        {t(preset.name)}
+                                    <span className={`font-bold leading-tight w-full ${isSelected ? 'text-dlp-accent' : 'text-slate-600'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
+                                        {t(`styles.${preset.name}`)}
                                     </span>
 
                                     {/* Sub-region Tag (shown if Country is filtered or in All view) */}

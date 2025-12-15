@@ -61,7 +61,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     selectedLevain,
 }) => {
     const { addToast } = useToast();
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'calculator', 'method']);
     const { user } = useUser();
     const resultRef = useRef<HTMLDivElement>(null);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -70,8 +70,8 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     const technicalSteps = useMemo(() => {
         if (!results) return [];
-        return generateTechnicalMethod(config, results);
-    }, [config, results]);
+        return generateTechnicalMethod(config, results, t);
+    }, [config, results, t]);
 
     if (!results) {
         return (
@@ -350,7 +350,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         </button>
                         <button
                             onClick={handleExportPDF}
-                            title={t('general.download_a_professional_pdf_of_your_formula')}
+                            title={t('results.download_professional_pdf')}
                             className="flex items-center justify-center gap-2 rounded-lg border border-dlp-border bg-dlp-bg-card py-2.5 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm hover:bg-dlp-bg-muted transition-colors relative group"
                         >
                             <DownloadIcon className="h-4 w-4" />

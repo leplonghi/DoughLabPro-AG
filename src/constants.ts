@@ -18,11 +18,11 @@ export const AMBIENT_TEMPERATURE_OPTIONS = [
 ];
 
 export const YEAST_OPTIONS = [
-  { value: YeastType.IDY, label: 'Instant Dry Yeast (IDY)' },
-  { value: YeastType.ADY, label: 'Active Dry Yeast (ADY)' },
-  { value: YeastType.FRESH, label: 'Fresh Yeast (CY)' },
-  { value: YeastType.SOURDOUGH_STARTER, label: 'Sourdough Starter (Liquid)' },
-  { value: YeastType.USER_LEVAIN, label: 'My Custom Levain' },
+  { value: YeastType.IDY, labelKey: 'calculator.yeast_idy' },
+  { value: YeastType.ADY, labelKey: 'calculator.yeast_ady' },
+  { value: YeastType.FRESH, labelKey: 'calculator.yeast_fresh' },
+  { value: YeastType.SOURDOUGH_STARTER, labelKey: 'calculator.yeast_sourdough' },
+  { value: YeastType.USER_LEVAIN, labelKey: 'calculator.yeast_user' },
 ];
 
 export const YEAST_EQUIVALENCIES = {

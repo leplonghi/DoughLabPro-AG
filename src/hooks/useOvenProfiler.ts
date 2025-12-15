@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { analyzeOvenProfile, OvenProfileInput, OvenAnalysisResult, validateOvenInput } from '@/logic/ovenProfile';
 import { useTranslation } from '@/i18n';
+import { useUser } from '@/contexts/UserProvider';
+import { OvenType } from '@/types';
 
 export const useOvenProfiler = () => {
+    const { ovens } = useUser();
+
+    // Find default oven or use the first one
+    const defaultOven = ovens.find(o => o.isDefault) || ovens[0];
+
     const [profile, setProfile] = useState<OvenProfileInput>({
         ovenType: 'home_electric',
         maxTemperature: 250,
@@ -14,6 +21,27 @@ export const useOvenProfiler = () => {
 
     const [errors, setErrors] = useState<Partial<Record<keyof OvenProfileInput, string>>>({});
     const [analysis, setAnalysis] = useState<OvenAnalysisResult | null>(null);
+
+    // Load from saved oven if available
+    useEffect(() => {
+        if (defaultOven) {
+            let mappedType = 'home_electric';
+            if (defaultOven.type === OvenType.GAS) mappedType = 'home_gas';
+            if (defaultOven.type === OvenType.WOOD) mappedType = 'wood';
+            if (defaultOven.type === OvenType.STONE_OVEN) mappedType = 'deck';
+
+            let mappedSurface = 'none';
+            if (defaultOven.hasSteel) mappedSurface = 'steel';
+            else if (defaultOven.hasStone) mappedSurface = 'stone';
+
+            setProfile(prev => ({
+                ...prev,
+                ovenType: mappedType,
+                maxTemperature: defaultOven.maxTemperature || 250,
+                surface: mappedSurface
+            }));
+        }
+    }, [defaultOven]);
 
     const updateProfile = (field: keyof OvenProfileInput, value: any) => {
         setProfile(prev => ({

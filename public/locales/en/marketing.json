@@ -2109,7 +2109,31 @@
     "advanced_calculator": "Advanced Calculator",
     "community_access": "Community Access",
     "ai_assistant": "AI Assistant",
-    "maybe_later": "Maybe Later"
+    "maybe_later": "Maybe Later",
+    "ads": {
+      "catalog": {
+        "ooni_koda_16": {
+          "title": "Ooni Koda 16 Gas Powered Pizza Oven",
+          "description": "Cook stone-baked fresh pizza in just 60 seconds.",
+          "ctaText": "Shop Ooni"
+        },
+        "caputo_00_flour": {
+          "title": "Antimo Caputo Pizzeria 00 Flour",
+          "description": "The gold standard for Neapolitan pizza dough.",
+          "ctaText": "Buy Now"
+        },
+        "gozney_dome": {
+          "title": "Gozney Dome",
+          "description": "The professional outdoor oven. Roast, smoke, steam or bake.",
+          "ctaText": "Discover Dome"
+        },
+        "challenger_bread_pan": {
+          "title": "Challenger Bread Pan",
+          "description": "Bake the perfect loaf of sourdough bread at home.",
+          "ctaText": "Get the Pan"
+        }
+      }
+    }
   },
   "assistant_page": {
     "error": "Error",

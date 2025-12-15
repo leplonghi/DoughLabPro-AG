@@ -48,26 +48,26 @@ const getCategoryFilters = (t: any): { id: StyleCategory | 'All', label: string,
 ];
 
 const GROUP_ORDER = [
-    'Pizzas',
-    'Breads & Rustic Loaves',
-    'Enriched Breads',
-    'Burger Buns',
-    'Pastry & Sweet Doughs',
-    'Cookies & Confectionery',
-    'Flatbreads',
-    'Other Styles'
+    'pizzas',
+    'breads',
+    'enriched',
+    'buns',
+    'pastry',
+    'cookies',
+    'flatbreads',
+    'other'
 ];
 
 const getDisplayGroup = (category: StyleCategory): string => {
     switch (category) {
-        case 'pizza': return 'Pizzas';
-        case 'bread': return 'Breads & Rustic Loaves';
-        case 'enriched_bread': return 'Enriched Breads';
-        case 'burger_bun': return 'Burger Buns';
-        case 'pastry': return 'Pastry & Sweet Doughs';
-        case 'cookie': return 'Cookies & Confectionery';
-        case 'flatbread': return 'Flatbreads';
-        default: return 'Other Styles';
+        case 'pizza': return 'pizzas';
+        case 'bread': return 'breads';
+        case 'enriched_bread': return 'enriched';
+        case 'burger_bun': return 'buns';
+        case 'pastry': return 'pastry';
+        case 'cookie': return 'cookies';
+        case 'flatbread': return 'flatbreads';
+        default: return 'other';
     }
 };
 
@@ -194,7 +194,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
         <LibraryPageLayout>
             <PageHero
                 title={t('styles.discover_professional_dough_specifications_from_ar')}
-                subtitle="Explore our curated collection of authentic dough styles, scientific profiles, and regional specialties."
+                subtitle={t('styles_page.hero_subtitle')}
                 backgroundClass="bg-gradient-to-br from-[#1c2e1c] to-[#2d4a2d]"
                 badges={
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider shadow-sm">
@@ -225,7 +225,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                             </div>
                             <input
                                 type="text"
-                                placeholder="Search styles (e.g. 'Neapolitan', 'Shokupan', 'Baguette')..."
+                                placeholder={t('styles_page.search_placeholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-lime-500/50 focus:border-lime-500 transition-all duration-200 sm:text-sm"
@@ -381,7 +381,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                         return (
                             <section key={groupName} className="animate-fade-in">
                                 <div className="flex items-center gap-4 mb-6">
-                                    <h2 className="text-2xl font-bold text-slate-800 tracking-tight">{groupName}</h2>
+                                    <h2 className="text-2xl font-bold text-slate-800 tracking-tight">{t(`styles_page.groups.${groupName}`)}</h2>
                                     <span className="text-xs font-bold px-2.5 py-1 bg-slate-100 rounded-full text-slate-500">{styles.length}</span>
                                     <div className="h-px bg-slate-200 flex-grow"></div>
                                 </div>

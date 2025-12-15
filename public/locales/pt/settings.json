@@ -1,0 +1,18 @@
+{
+    "general": {
+        "general_settings": "Configurações Gerais",
+        "environment_defaults": "Padrões de Ambiente"
+    },
+    "settings_page": {
+        "using_temp_as_base": "Usando {{temp}}°C como base."
+    },
+    "form": {
+        "unit_system": "Sistema de Unidades",
+        "us_customary": "US Customary (lb, oz, °F)",
+        "metric": "Métrico (kg, g, °C)",
+        "unit_system_tooltip": "Isso controla como as unidades são exibidas no app."
+    },
+    "community_detail": {
+        "ambient_temp": "Temperatura Ambiente"
+    }
+}

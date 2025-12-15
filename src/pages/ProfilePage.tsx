@@ -27,6 +27,8 @@ import OvenModal from '@/components/OvenModal';
 import LevainModal from '@/components/LevainModal';
 import { LockFeature } from '@/components/auth/LockFeature';
 
+import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
+
 interface ProfilePageProps {
   onNavigate: (page: Page, params?: string) => void;
 }
@@ -50,7 +52,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     goals,
     batches
   } = useUser();
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'profile', 'auth']);
 
   const [activeTab, setActiveTab] = useState<'overview' | 'mylab' | 'settings'>('overview');
   const [isEditing, setIsEditing] = useState(false);
@@ -61,6 +63,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
   const [isLevainModalOpen, setIsLevainModalOpen] = useState(false);
   const [editingLevain, setEditingLevain] = useState<Levain | null>(null);
+
+  const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -152,10 +156,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
   }
 
   const skillLevels = [
-    { value: 'beginner', label: 'Home Baker (Beginner)' },
-    { value: 'intermediate', label: 'Enthusiast (Intermediate)' },
-    { value: 'advanced', label: 'Advanced Baker' },
-    { value: 'pro', label: 'Professional Pizzaiolo' },
+    { value: 'beginner', label: t('profile_page.skill_levels.beginner') },
+    { value: 'intermediate', label: t('profile_page.skill_levels.intermediate') },
+    { value: 'advanced', label: t('profile_page.skill_levels.advanced') },
+    { value: 'pro', label: t('profile_page.skill_levels.pro') },
   ];
 
   const genderOptions = Object.values(Gender).map((g) => ({
@@ -220,6 +224,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
           <div className="flex gap-3">
             <button
+              onClick={() => setIsWizardOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-lime-100 hover:bg-lime-200 text-lime-800 rounded-xl font-medium transition-colors text-sm"
+              title={t('auth.onboarding.title', { defaultValue: 'Update Preferences' })}
+            >
+              <SparklesIcon className="h-4 w-4" />
+              {t('common.preferences', { defaultValue: 'Preferences' })}
+            </button>
+            <button
               onClick={() => setIsEditing(!isEditing)}
               className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium transition-colors text-sm"
             >
@@ -231,9 +243,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
         {/* Navigation Tabs */}
         <div className="px-6 pb-2 sm:px-8 border-t border-slate-100 pt-2 flex gap-2 overflow-x-auto no-scrollbar">
-          {renderTabButton('overview', 'Overview', UserCircleIcon)}
-          {renderTabButton('mylab', 'My Equipment & Levains', BeakerIcon)}
-          {renderTabButton('settings', 'Settings & Legal', SettingsIcon)}
+          {renderTabButton('overview', t('profile_page.tabs.overview'), UserCircleIcon)}
+          {renderTabButton('mylab', t('profile_page.tabs.mylab'), BeakerIcon)}
+          {renderTabButton('settings', t('profile_page.tabs.settings'), SettingsIcon)}
         </div>
       </div>
 
@@ -308,7 +320,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       <input
                         type="text"
                         name="website"
-                        placeholder="https://..."
+                        placeholder={t('profile_page.placeholders.website')}
                         value={formData.website || ''}
                         onChange={handleInputChange}
                         className="w-full rounded-xl border-slate-200 focus:border-lime-500 focus:ring-lime-500"
@@ -321,7 +333,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         <input
                           type="text"
                           name="instagramHandle"
-                          placeholder="username"
+                          placeholder={t('profile_page.placeholders.instagram_username')}
                           value={formData.instagramHandle || ''}
                           onChange={handleInputChange}
                           className="w-full rounded-xl border-slate-200 pl-7 focus:border-lime-500 focus:ring-lime-500"
@@ -574,7 +586,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
               </div>
               <h3 className="text-xl font-bold mb-2 relative z-10">{t('general.upgrade_to_pro_2')}</h3>
               <p className="text-slate-300 text-sm mb-6 relative z-10">
-                Unlock unlimited recipes, advanced tools, and detailed insights.
+                {t('profile_page.unlock_pro_desc')}
               </p>
               <button
                 onClick={() => onNavigate('settings')} // Or a dedicated pro page
@@ -633,6 +645,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         onSave={handleSaveLevain}
         levainToEdit={editingLevain}
       />
+
+      {isWizardOpen && (
+        <OnboardingWizard
+          onComplete={() => setIsWizardOpen(false)}
+          onClose={() => setIsWizardOpen(false)}
+          initialStep={1}
+        />
+      )}
     </div>
   );
 };

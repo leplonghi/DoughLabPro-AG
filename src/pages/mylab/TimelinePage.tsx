@@ -32,7 +32,10 @@ const TimelinePage: React.FC<{ onNavigate: (page: Page, params?: string) => void
         id: `batch-${batch.id}`,
         type: 'BATCH',
         title: batch.name,
-        description: `${t(`form.${batch.doughConfig.recipeStyle.toLowerCase()}`, { defaultValue: batch.doughConfig.recipeStyle })} Recipe, ${batch.doughConfig.hydration}% hydration.`,
+        description: `${t(`form.${batch.doughConfig.recipeStyle.toLowerCase()}`, { defaultValue: batch.doughConfig.recipeStyle })} Recipe, ${batch.doughConfig.hydration}% hydration.${batch.doughConfig.assemblyIncrements && batch.doughConfig.assemblyIncrements.length > 0
+            ? ` w/ ${batch.doughConfig.assemblyIncrements.map(i => i.visibleName).slice(0, 2).join(', ')}${batch.doughConfig.assemblyIncrements.length > 2 ? '...' : ''}`
+            : ''
+          }`,
         date: batch.createdAt,
         link: { page: 'batch', params: batch.id },
         icon: <BatchesIcon className="h-5 w-5 text-white" />,

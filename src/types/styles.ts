@@ -349,4 +349,10 @@ export interface DoughStyleDefinition {
 
     // V3 Backport
     base_formula?: BaseFormulaIngredient[];
+
+    /**
+     * INCREMENT SYSTEM (V4)
+     * IDs of recommended increments/ingredients for this style.
+     */
+    recommendedIncrements?: string[];
 }

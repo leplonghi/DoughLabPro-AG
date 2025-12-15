@@ -58,7 +58,7 @@ const isAnySourdough = (yeastType: YeastType) =>
     [YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(yeastType);
 
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user, levains, preferredFlourId } = useUser();
     const { addToast } = useToast();
     const previousErrorsRef = useRef<FormErrors>({});
@@ -109,7 +109,14 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         // Dynamic Weight Validation based on Style
         let minW = 100;
         let maxW = 2000;
-        if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
+
+        // Try to find the full definition
+        const fullStyle = STYLES_DATA.find(s => s.id === config.stylePresetId);
+
+        if (fullStyle?.specs?.ballWeight) {
+            minW = fullStyle.specs.ballWeight.min;
+            maxW = fullStyle.specs.ballWeight.max;
+        } else if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
             const rangeStr = DOUGH_WEIGHT_RANGES[config.recipeStyle] || '';
             const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
             if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
@@ -270,7 +277,11 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                     ingredients = converted.ingredients;
                 }
                 // Use converted defaults if available explicitly
-                if (converted.doughBallWeight) targetWeight = converted.doughBallWeight;
+                if (fullStyle.specs.ballWeight?.recommended) {
+                    targetWeight = fullStyle.specs.ballWeight.recommended;
+                } else if (converted.doughBallWeight) {
+                    targetWeight = converted.doughBallWeight;
+                }
                 if (converted.numPizzas) targetCount = converted.numPizzas;
             }
 

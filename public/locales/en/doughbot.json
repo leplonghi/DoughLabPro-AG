@@ -1,0 +1,20 @@
+{
+    "common_issue_label": "Common Issue",
+    "common_problems": {
+        "placeholder": "Select a problem...",
+        "sticky": "Dough is too sticky",
+        "tearing": "Dough tears when stretching",
+        "no_rise": "Dough didn't rise",
+        "dense": "Crumb is dense/tight",
+        "gummy": "Crumb is gummy/wet",
+        "shrinking": "Dough shrinks back (elastic)",
+        "flat": "Dough flattened out (slack)",
+        "pale": "Crust is pale",
+        "burnt": "Crust burnt too fast"
+    },
+    "description_placeholder": "Describe what happened in detail (e.g., specific flour used, room temp, fermentation time...)",
+    "tips_hint": "The more detail you provide, the better the diagnosis.",
+    "analysis_result": "Analysis complete. I've identified <span class=\"font-bold text-lime-600\">{{count}} potential factors</span> affecting your dough.",
+    "upgrade_hint": "DoughBot Pro analyzes your specific recipe variables against database standards to provide precise chemical corrections.",
+    "upgrade_cta": "Upgrade to Unlock Full Diagnosis"
+}

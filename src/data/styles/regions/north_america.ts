@@ -2,7 +2,7 @@ import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
 
 const nycSlice: DoughStyleDefinition = {
     id: "new_york_slice_v2",
-    name: 'new_york_slice',
+    name: 'new_york_slice_name',
     category: "pizza",
     recipeStyle: RecipeStyle.NEW_YORK,
     origin: {
@@ -10,8 +10,8 @@ const nycSlice: DoughStyleDefinition = {
         region: 'New york city 4',
         period: 'Early 20th century 2'
     },
-    description: "The iconic street slice. Large (18-20 inch), foldable, crispy yet pliable. Characterized by a symbiotic relationship between the cheese oil and the sauce.",
-    history: "Evolved from Neapolitan immigrants adapting to coal ovens and high-gluten North American flour. The 'gas deck' era defined the modern street slice.",
+    description: "new_york_slice_desc",
+    history: "new_york_slice_history",
     difficulty: 'Medium',
     fermentationType: "cold",
 
@@ -37,7 +37,7 @@ const nycSlice: DoughStyleDefinition = {
             pl_ratio: "0.6 (Elastic)",
             absorption_capacity: "High (65%)",
             protein_type: "Spring Wheat (14%)",
-            science_explanation: "High protein requires oil/sugar (tenderizers) to allow the 'fold' without the crust cracking like a cracker. The gluten density supports the large 18-inch diameter."
+            science_explanation: "new_york_slice_v2_science_flour"
         },
         thermalProfile: {
             oven_type: 'Gas deck 2',
@@ -124,11 +124,11 @@ const nycSlice: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "62-65% is the sweet spot. It allows the dough to be extensible enough for the 18-inch stretch but provides enough structure to hold the fold ('The Fold') without flopping.",
+        hydrationLogic: "new_york_slice_v2_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: 'The classic corner slice shop method often sameday' },
-            biga: { suitable: true, notes: "Adds excellent flavor but can make the dough too strong/bucky for easy stretching." },
-            poolish: { suitable: true, notes: "Common in modern \'Artisan\' slice shops for a lighter, puffier crust." }
+            direct: { suitable: true, notes: "new_york_slice_v2_method_direct_notes" },
+            biga: { suitable: true, notes: "new_york_slice_v2_method_biga_notes" },
+            poolish: { suitable: true, notes: "new_york_slice_v2_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -157,7 +157,7 @@ const nycSlice: DoughStyleDefinition = {
 
 const detroitStyle: DoughStyleDefinition = {
     id: "detroit_style_classic",
-    name: 'detroit_style_classic',
+    name: 'detroit_style_classic_name',
     category: "pizza",
     recipeStyle: RecipeStyle.DETROIT,
     origin: {
@@ -165,8 +165,8 @@ const detroitStyle: DoughStyleDefinition = {
         region: 'Detroit michigan',
         period: "1946"
     },
-    description: "Deep dish rectangular pizza baked in blue steel automotive parts pans. Famous for the 'frico'—a caramelized cheese crown around the edges.",
-    history: "Created at Buddy's Rendezvous. Using industrial steel pans meant for carrying auto parts created a unique conduction heat that fried the crust in oil/fat.",
+    description: "detroit_style_classic_desc",
+    history: "detroit_style_classic_history",
     difficulty: 'Medium',
     fermentationType: "direct",
 
@@ -191,7 +191,7 @@ const detroitStyle: DoughStyleDefinition = {
             pl_ratio: 'Balanced',
             absorption_capacity: "High (70%+)",
             protein_type: 'Bread flour 5',
-            science_explanation: "Structure is supported by the steel pan walls, so we don't need extreme gluten strength. High hydration aids the 'focaccia-like' open crumb."
+            science_explanation: "detroit_style_classic_science_flour"
         },
         thermalProfile: {
             oven_type: 'Blue steel pan',
@@ -278,11 +278,11 @@ const detroitStyle: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "70-75% is mandatory. This is effectively a focaccia baked with cheese. The high water ensures the thick crumb remains light and airy like a sponge, not dense like a brick.",
+        hydrationLogic: "detroit_style_classic_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "Standard. The pan supports the structure, so complex gluten dev isn't strictly needed." },
-            biga: { suitable: false, notes: 'Unnecessary complexity for a pan pizza' },
-            poolish: { suitable: true, notes: 'Fantastic for an even lighter more aerated crumb' }
+            direct: { suitable: true, notes: "detroit_style_classic_method_direct_notes" },
+            biga: { suitable: false, notes: "detroit_style_classic_method_biga_notes" },
+            poolish: { suitable: true, notes: "detroit_style_classic_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -311,7 +311,7 @@ const detroitStyle: DoughStyleDefinition = {
 
 const chicagoDeepDish: DoughStyleDefinition = {
     id: "chicago_deep_dish",
-    name: 'chicago_deep_dish',
+    name: 'chicago_deep_dish_name',
     category: "pizza",
     recipeStyle: RecipeStyle.CHICAGO_DEEP_DISH,
     origin: {
@@ -319,8 +319,8 @@ const chicagoDeepDish: DoughStyleDefinition = {
         region: 'Chicago illinois',
         period: "1943"
     },
-    description: "A casserole-like pizza with high sides, eaten with a knife and fork. The crust is biscuit-like, short, and flaky due to high oil/fat content.",
-    history: "Invented at Pizzeria Uno. It inverted the pizza structure: Cheese on bottom, toppings middle, sauce on top to prevent burning during the long bake.",
+    description: "chicago_deep_dish_desc",
+    history: "chicago_deep_dish_history",
     difficulty: 'Medium',
     fermentationType: "direct",
 
@@ -345,7 +345,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
             pl_ratio: "Short (High Fat)",
             absorption_capacity: 'Low',
             protein_type: "AP/Pastry Blend",
-            science_explanation: "A 'Short Dough'. The high fat content coats the proteins, preventing long gluten chains. This creates a flaky, biscuit-like break instead of a chew."
+            science_explanation: "chicago_deep_dish_science_flour"
         },
         thermalProfile: {
             oven_type: 'Deep pan',
@@ -427,11 +427,11 @@ const chicagoDeepDish: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "50-55% plus high fat (15%+ Corn Oil/Butter). This is NOT bread. This is a savory pie crust. High hydration would develop gluten -> chewy -> wrong.",
+        hydrationLogic: "chicago_deep_dish_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: 'The only way short mix direct use' },
-            biga: { suitable: false, notes: 'Completely wrong style' },
-            poolish: { suitable: false, notes: 'Completely wrong style 2' }
+            direct: { suitable: true, notes: "chicago_deep_dish_method_direct_notes" },
+            biga: { suitable: false, notes: "chicago_deep_dish_method_biga_notes" },
+            poolish: { suitable: false, notes: "chicago_deep_dish_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -462,7 +462,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
 
 const sfSourdough: DoughStyleDefinition = {
     id: "sf_sourdough",
-    name: 'san_francisco_sourdough',
+    name: 'san_francisco_sourdough_name',
     category: "bread",
     recipeStyle: RecipeStyle.SOURDOUGH,
     origin: {
@@ -470,8 +470,8 @@ const sfSourdough: DoughStyleDefinition = {
         region: 'San francisco ca',
         period: "1849 (Gold Rush)"
     },
-    description: "The legendary West Coast sourdough. Extremely sour (acetic), thick blistered crust, and chewy crumb. Famous for the Lactobacillus sanfranciscensis bacteria.",
-    history: "Boudin Bakery (1849) kept the 'mother' alive since the Gold Rush. The cool, foggy climate promotes acetic acid production over lactic acid.",
+    description: "san_francisco_sourdough_desc",
+    history: "san_francisco_sourdough_history",
     difficulty: 'Expert',
     fermentationType: "levain",
 
@@ -492,11 +492,11 @@ const sfSourdough: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: 'W300350 2',
-            pl_ratio: "Strong/Stiff",
-            absorption_capacity: 'High',
-            protein_type: 'Strong wheat',
-            science_explanation: "Proteolysis (acid degrading gluten) is the enemy. We need very strong flour to survive the long, acidic fermentation without collapsing."
+            w_index: "W380+ (Very Strong)",
+            pl_ratio: "Balanced",
+            absorption_capacity: 'Extreme',
+            protein_type: "Malted Bread/High Gluten",
+            science_explanation: "sf_sourdough_science_flour"
         },
         thermalProfile: {
             oven_type: "Dutch Oven / Hearth",
@@ -583,11 +583,11 @@ const sfSourdough: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "75%+ is standard. The acidity from the Levain tightens the gluten structure, allowing it to hold significant water without becoming soup. The water is needed for the open crumb.",
+        hydrationLogic: "sf_sourdough_dd_hydration",
         methodSuitability: {
-            direct: { suitable: false, notes: 'Impossible this is sourdough' },
-            biga: { suitable: false, notes: 'This is sourdough' },
-            poolish: { suitable: false, notes: 'This is sourdough 2' }
+            direct: { suitable: false, notes: "sf_sourdough_method_direct_notes" },
+            biga: { suitable: false, notes: "sf_sourdough_method_biga_notes" },
+            poolish: { suitable: false, notes: "sf_sourdough_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -616,7 +616,7 @@ const sfSourdough: DoughStyleDefinition = {
 
 const newHavenApizza: DoughStyleDefinition = {
     id: "new_haven_apizza",
-    name: 'new_haven_apizza',
+    name: 'new_haven_apizza_name',
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
     origin: {
@@ -624,8 +624,8 @@ const newHavenApizza: DoughStyleDefinition = {
         region: 'New haven ct 2',
         period: "1925"
     },
-    description: "Coal-fired, oblong, thin-crust pizza known for its 'char'. Chewy, slightly smoky, and drier than Neapolitan.",
-    history: "Frank Pepe (1925) started the tradition. 'Apizza' (pronounced ah-beets) is local dialect. The hallmark is the coal oven reaching 600°F+.",
+    description: "new_haven_apizza_desc",
+    history: "new_haven_apizza_history",
     difficulty: 'Hard',
     fermentationType: "cold",
 
@@ -646,11 +646,11 @@ const newHavenApizza: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: 'W300340 2',
+            w_index: "W320-350 (High Gluten)",
             pl_ratio: 'Extensible',
-            absorption_capacity: 'Medium',
-            protein_type: 'High gluten',
-            science_explanation: "High strength is required to stretch very thin without tearing, but extended cold fermentation relaxes the gluten (extensibility)."
+            absorption_capacity: 'High',
+            protein_type: "High Gluten (e.g., All Trumps)",
+            science_explanation: "new_haven_apizza_science_flour"
         },
         thermalProfile: {
             oven_type: 'Coal fired deck',
@@ -731,11 +731,11 @@ const newHavenApizza: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "60-65% drives the char. It needs to be dry enough to crisp rapidly, but wet enough to undergo the 48h ferment without drying out in the fridge.",
+        hydrationLogic: "new_haven_apizza_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "But needs cold fermentation (Retarding) to be authentic." },
-            biga: { suitable: false, notes: 'Not typical 3' },
-            poolish: { suitable: false, notes: 'Not typical 4' }
+            direct: { suitable: true, notes: "new_haven_apizza_method_direct_notes" },
+            biga: { suitable: false, notes: "new_haven_apizza_method_biga_notes" },
+            poolish: { suitable: false, notes: "new_haven_apizza_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -765,7 +765,7 @@ const newHavenApizza: DoughStyleDefinition = {
 
 const nycBagel: DoughStyleDefinition = {
     id: "nyc_bagel",
-    name: 'nyc_bagel',
+    name: 'nyc_bagel_name',
     category: "bread",
     recipeStyle: RecipeStyle.BAGEL,
     origin: {
@@ -773,8 +773,8 @@ const nycBagel: DoughStyleDefinition = {
         region: 'New york city 5',
         period: 'Late 19th century'
     },
-    description: "Dense, chewy, malty, and boiled before baking. The shiny, blistered crust is non-negotiable.",
-    history: "Brought by Polish Jewish immigrants. The NYC water (chemistry) is often cited, but the boil + cold ferment method is the real secret.",
+    description: "nyc_bagel_desc",
+    history: "nyc_bagel_history",
     difficulty: 'Hard',
     fermentationType: "cold",
 
@@ -796,11 +796,11 @@ const nycBagel: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: "W380-420 (Very High)",
-            pl_ratio: 'Very elastic',
-            absorption_capacity: "High (but under-hydrated)",
-            protein_type: 'High gluten spring wheat',
-            science_explanation: "The highest protein flour possible is used. Because hydration is low (50%), the gluten is incredibly tight, creating the 'jaw workout' chewiness."
+            w_index: "W380+ (Specially Milled)",
+            pl_ratio: "Tenacious (Elastic)",
+            absorption_capacity: 'Moderate',
+            protein_type: "High Gluten (14.5%)",
+            science_explanation: "nyc_bagel_science_flour"
         },
         thermalProfile: {
             oven_type: "Revolving Deck / Boards",
@@ -882,11 +882,11 @@ const nycBagel: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "50-55% is stiff. Extremely stiff. This tightness + boiling is what restricts expansion, creating the dense, chewy texture. If you hydrate to 65%, you just made a circle bread roll.",
+        hydrationLogic: "nyc_bagel_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: 'With stiff starter or sponge' },
-            biga: { suitable: true, notes: 'Excellent for locking in flavor in a stiff dough' },
-            poolish: { suitable: true, notes: "Commonly used as the 'Sponge' phase." }
+            direct: { suitable: true, notes: "nyc_bagel_method_direct_notes" },
+            biga: { suitable: true, notes: "nyc_bagel_method_biga_notes" },
+            poolish: { suitable: false, notes: "nyc_bagel_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -918,13 +918,13 @@ const grandmaPizza: DoughStyleDefinition = {
     category: "pizza",
     recipeStyle: RecipeStyle.GRANDMA_STYLE,
     family: 'Flatbreads  pizzas 5',
-    description: "A thin, rectangular pan pizza that bridges the gap between home cooking and pizzeria style. Defined by a short proofing time (often no cold ferment) and being baked in an olive-oil coated sheet pan.",
     origin: {
         country: 'USA',
         region: 'Long island ny 2',
         period: "1970s"
     },
-    history: "Originated from Italian grandmothers (Nonnas) in Long Island making pizza at home with whatever they had (simple dough, crushed tomatoes, standard oven) without long fermentation times.",
+    description: "grandma_pizza_desc",
+    history: "grandma_pizza_history",
     difficulty: 'Easy',
     fermentationType: "direct",
     technicalProfile: {
@@ -944,10 +944,10 @@ const grandmaPizza: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: "Medium (AP/Bread)",
-            pl_ratio: 'Balanced',
+            w_index: "W260 (AP)",
+            pl_ratio: 'Extensible',
             absorption_capacity: 'Medium',
-            protein_type: 'All purpose',
+            protein_type: 'All-Purpose',
             science_explanation: "Does not require high protein. A softer flour helps it stretch into the corners of the pan without shrinking back."
         },
         thermalProfile: {
@@ -1030,11 +1030,11 @@ const grandmaPizza: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "60-65% ensures a crisp bottom (fried in pan oil) but a dense encough crumb to support toppings. Too airy, and it loses the 'homestyle' rusticity.",
+        hydrationLogic: "grandma_style_v2_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: 'The definition of grandma style mix short rise bak' },
-            biga: { suitable: false, notes: 'Too fancy' },
-            poolish: { suitable: false, notes: 'Too fancy 2' }
+            direct: { suitable: true, notes: "grandma_style_v2_method_direct_notes" },
+            biga: { suitable: false, notes: "grandma_style_v2_method_biga_notes" },
+            poolish: { suitable: false, notes: "grandma_style_v2_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -1066,13 +1066,13 @@ const chicagoTavern: DoughStyleDefinition = {
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
     family: 'Flatbreads  pizzas 6',
-    description: "The TRUE Chicago pizza (what locals actually eat). Ultra-thin, cracker-like crust, square-cut (party cut), and loaded with toppings under the cheese. The dough is rolled flat and cured to ensure zero rise.",
     origin: {
         country: 'Usa 16',
         region: "Chicago / Midwest",
         period: "1940s"
     },
-    history: "Developed in post-Prohibition taverns as a salty, cracker-like snack to encourage drinking. The 'party cut' allowed patrons to hold a square in one hand and a beer in the other.",
+    description: "chicago_tavern_desc",
+    history: "chicago_tavern_history",
     difficulty: 'Medium',
     fermentationType: "cold",
     technicalProfile: {
@@ -1093,10 +1093,10 @@ const chicagoTavern: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: 'Variable',
-            pl_ratio: "Dead (No Elasticity)",
+            w_index: "W220 (Low protein)",
+            pl_ratio: "Short",
             absorption_capacity: 'Low',
-            protein_type: 'Ap or high gluten',
+            protein_type: 'AP/Pastry',
             science_explanation: "The goal is 'Dead Dough'. We want zero elasticity so it rolls paper thin, and zero ovenspring (puff). Low hydration + rolling pin achieves this."
         },
         thermalProfile: {
@@ -1181,11 +1181,11 @@ const chicagoTavern: DoughStyleDefinition = {
         ]
     },
     deepDive: {
-        hydrationLogic: "45-50%. Extremely dry. We need to prevent steam. Steam creates puff. Puff creates soft. We want a dead, flat, cracker.",
+        hydrationLogic: "chicago_tavern_v2_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "Often used with a 'dead yeast' approach (long cure)." },
-            biga: { suitable: false, notes: "We don't want volume." },
-            poolish: { suitable: false, notes: "We don't want extensibility." }
+            direct: { suitable: true, notes: "chicago_tavern_v2_method_direct_notes" },
+            biga: { suitable: false, notes: "chicago_tavern_v2_method_biga_notes" },
+            poolish: { suitable: false, notes: "chicago_tavern_v2_method_poolish_notes" }
         },
         whatIf: [
             {
@@ -1222,8 +1222,8 @@ const montrealBagel: DoughStyleDefinition = {
         region: 'Montreal quebec',
         period: "1919"
     },
-    description: "Smaller, denser, and sweeter than its NY cousin. Boiled in honey-sweetened water and baked in wood-fired ovens. Contains no salt.",
-    history: "Brought to Montreal by Jewish immigrants. The rivalry between Fairmount and St-Viateur defines the city's food culture.",
+    description: "montreal_bagel_desc",
+    history: "montreal_bagel_history",
     difficulty: 'Hard',
     fermentationType: "direct",
 
@@ -1244,10 +1244,10 @@ const montrealBagel: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: 'W300350 4',
-            pl_ratio: 'Stiff',
-            absorption_capacity: 'Low',
-            protein_type: 'High gluten 2',
+            w_index: "W300+",
+            pl_ratio: "P/L > 0.6",
+            absorption_capacity: 'Moderate',
+            protein_type: 'Bread',
             science_explanation: "High gluten needed for shape retention during boil. Lack of salt weakens network, so stiff dough compensates."
         },
         thermalProfile: {
@@ -1289,11 +1289,11 @@ const montrealBagel: DoughStyleDefinition = {
         fermentation_methods: [{ method: 'Direct', suitability: 'Possible', notes: 'Short ferment' }]
     },
     deepDive: {
-        hydrationLogic: "50-55%. Very stiff.",
+        hydrationLogic: "montreal_bagel_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: 'Standard 20' },
-            biga: { suitable: false, notes: "N/A" },
-            poolish: { suitable: false, notes: "N/A" }
+            direct: { suitable: true, notes: "montreal_bagel_method_direct_notes" },
+            biga: { suitable: false, notes: "montreal_bagel_method_biga_notes" },
+            poolish: { suitable: false, notes: "montreal_bagel_method_poolish_notes" }
         },
         whatIf: [{ scenario: 'scenario', outcome: 'Overproofed', solution: 'Proof less' }],
         comparisons: [{ vsStyle: 'vsStyle', difference: 'Montreal is denser' }],
@@ -1311,8 +1311,8 @@ const flourTortilla: DoughStyleDefinition = {
         region: 'Sonora',
         period: "16th Century"
     },
-    description: 'Translucent elastic flour tortillas made with lard',
-    history: 'Sonoran staple adapted from corn tortillas using e',
+    description: "flour_tortilla_sonora_desc",
+    history: "flour_tortilla_sonora_history",
     difficulty: 'Medium',
     fermentationType: "direct",
 
@@ -1333,10 +1333,10 @@ const flourTortilla: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: 'W200240 4',
+            w_index: "W200",
             pl_ratio: 'Extensible',
-            absorption_capacity: 'Medium',
-            protein_type: 'Soft wheat',
+            absorption_capacity: 'Low',
+            protein_type: 'AP',
             science_explanation: 'High fat  hot water  tenderness and extensibility'
         },
         thermalProfile: {
@@ -1378,11 +1378,11 @@ const flourTortilla: DoughStyleDefinition = {
         fermentation_methods: [{ method: 'Direct', suitability: 'Possible', notes: 'Unleavened 2' }]
     },
     deepDive: {
-        hydrationLogic: 'Low water high fat',
+        hydrationLogic: "flour_tortilla_sonora_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: 'Standard 21' },
-            biga: { suitable: false, notes: "N/A" },
-            poolish: { suitable: false, notes: "N/A" }
+            direct: { suitable: true, notes: "flour_tortilla_sonora_method_direct_notes" },
+            biga: { suitable: false, notes: "flour_tortilla_sonora_method_biga_notes" },
+            poolish: { suitable: false, notes: "flour_tortilla_sonora_method_poolish_notes" }
         },
         whatIf: [{ scenario: 'scenario', outcome: 'Rest longer', solution: 'Rest 30m' }],
         comparisons: [{ vsStyle: 'vsStyle', difference: 'Tortilla is unleavened' }],

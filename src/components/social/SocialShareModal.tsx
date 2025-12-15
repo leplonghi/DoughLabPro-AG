@@ -124,6 +124,19 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                             )}
                         </div>
 
+
+
+                        {/* Assembly Increments Section */}
+                        {config.assemblyIncrements && config.assemblyIncrements.length > 0 && (
+                            <div className="relative z-10 border-t border-white/10 mt-3 pt-3">
+                                <p className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold mb-1">Toppings</p>
+                                <p className="text-sm font-medium text-white leading-tight">
+                                    {config.assemblyIncrements.map(i => i.visibleName).slice(0, 3).join(', ')}
+                                    {config.assemblyIncrements.length > 3 && '...'}
+                                </p>
+                            </div>
+                        )}
+
                         {/* Footer */}
                         <div className="relative z-10 mt-auto pt-8 flex justify-between items-end">
                             <div>
@@ -163,7 +176,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                     Perfect for Instagram Stories or sharing with friends.
                 </p>
             </div>
-        </div>
+        </div >
     );
 };
 

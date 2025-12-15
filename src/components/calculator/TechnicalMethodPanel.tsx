@@ -172,7 +172,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
 }
 
 const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['calculator', 'common']);
     const [expandedStepId, setExpandedStepId] = useState<string | null>(steps[0]?.id || null);
     const [mode, setMode] = useState<'technical' | 'grandma'>('technical');
 

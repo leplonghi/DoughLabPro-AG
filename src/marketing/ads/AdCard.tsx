@@ -10,7 +10,7 @@ interface AdCardProps {
 }
 
 export const AdCard: React.FC<AdCardProps> = ({ context = 'general', className = '' }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user } = useAuth();
     const [ad, setAd] = useState<Ad | null>(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -39,15 +39,19 @@ export const AdCard: React.FC<AdCardProps> = ({ context = 'general', className =
                 <div className="absolute top-2 right-2 bg-black/60 text-[10px] text-white/90 px-1.5 py-0.5 rounded uppercase tracking-wider backdrop-blur-sm">{t('marketing.sponsored')}</div>
             </div>
             <div className="p-4">
-                <h4 className="text-sm font-bold text-dlp-text-primary mb-1 line-clamp-1">{ad.title}</h4>
-                <p className="text-xs text-dlp-text-secondary mb-3 line-clamp-2">{ad.description}</p>
+                <h4 className="text-sm font-bold text-dlp-text-primary mb-1 line-clamp-1">
+                    {t(`marketing.ads.catalog.${ad.id}.title`, ad.title)}
+                </h4>
+                <p className="text-xs text-dlp-text-secondary mb-3 line-clamp-2">
+                    {t(`marketing.ads.catalog.${ad.id}.description`, ad.description)}
+                </p>
                 <a
                     href={ad.ctaLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full text-center py-2 bg-dlp-bg-muted hover:bg-dlp-border-strong text-dlp-text-primary text-xs font-bold rounded-lg transition-colors"
                 >
-                    {ad.ctaText}
+                    {t(`marketing.ads.catalog.${ad.id}.ctaText`, ad.ctaText)}
                 </a>
             </div>
         </div>

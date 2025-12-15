@@ -32,30 +32,11 @@ const ProBadge = () => (
     <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">PRO</span>
 );
 
-const LanguageSelector = () => {
-    const { locale, setLocale } = useTranslation();
 
-    const handleNextLang = () => {
-        const map: Record<string, any> = { 'en': 'pt', 'pt': 'es', 'es': 'en' };
-        const next = map[locale] || 'en';
-        setLocale(next);
-    };
-
-    return (
-        <button
-            onClick={handleNextLang}
-            className="flex items-center justify-center w-8 h-8 rounded-full border border-dlp-border text-[10px] font-bold text-dlp-text-secondary hover:bg-dlp-bg-muted hover:text-dlp-accent transition-colors"
-            aria-label={`Current language: ${locale.toUpperCase()}. Click to switch.`}
-            title="Switch Language / Mudar Idioma"
-        >
-            {locale.toUpperCase()}
-        </button>
-    );
-};
 
 const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { isAuthenticated, hasProAccess, openPaywall } = useUser();
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'profile', 'auth']);
 
     const navLinks = [
         { page: 'calculator', label: t('nav.calculator'), icon: CalculatorIcon },
@@ -115,7 +96,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                             )}
                         </div>
                     )}
-                    <LanguageSelector />
+
                     <UserMenu onNavigate={onNavigate} onOpenAuthModal={onOpenAuth} />
                 </div>
             </div>
@@ -125,7 +106,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
 
 const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean; setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ activePage, handleNavigate, onNavigate, onOpenAuth, isMobileMenuOpen, setIsMobileMenuOpen }) => {
     const { hasProAccess, openPaywall } = useUser();
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'profile', 'auth']);
     const hasPro = hasProAccess;
 
     const navLinks = [
@@ -154,7 +135,7 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
                     <Logo className="h-9 w-auto" />
                 </button>
                 <div className="flex items-center gap-2">
-                    <LanguageSelector />
+
                     <UserMenu onNavigate={onNavigate} onOpenAuthModal={onOpenAuth} />
                     <button onClick={() => setIsMobileMenuOpen(prev => !prev)} className="rounded-md p-2 text-dlp-text-muted hover:bg-dlp-bg-muted">
                         {isMobileMenuOpen ? <CloseIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}

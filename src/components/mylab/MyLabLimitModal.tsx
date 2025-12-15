@@ -4,6 +4,7 @@ import { LockClosedIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
+import { Trans } from 'react-i18next';
 
 interface MyLabLimitModalProps {
     isOpen: boolean;
@@ -11,7 +12,7 @@ interface MyLabLimitModalProps {
 }
 
 export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClose }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { openPaywall } = useUser();
 
     const handleUpgrade = () => {
@@ -79,7 +80,9 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                     <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">{t('mylab.lab_capacity_reached')}</Dialog.Title>
 
                                     <p className="text-slate-600 mb-8 leading-relaxed">
-                                        You've reached the <strong>1-batch limit</strong> for the Free plan. Upgrade to <strong>{t('mylab.doughlab_pro')}</strong> to unlock unlimited storage, advanced analytics, and historical tracking.
+                                        <Trans i18nKey="mylab.limit_reach_desc">
+                                            You've reached the <strong>1-batch limit</strong> for the Free plan. Upgrade to <strong>DoughLab Pro</strong> to unlock unlimited storage, advanced analytics, and historical tracking.
+                                        </Trans>
                                     </p>
 
                                     <div className="space-y-3">

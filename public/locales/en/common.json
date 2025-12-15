@@ -1,6 +1,18 @@
 {
   "common": {
     "save": "Save",
+    "ui": {
+      "an_error_occurred": "An error occurred.",
+      "aipowered_diagnostic_engine_analyze_your_dough_fau": "AI-powered diagnostic engine. Analyze your dough faults and get instant scientific correction.",
+      "running_diagnosis": "Running diagnosis...",
+      "diagnosis_complete": "Diagnosis Complete!",
+      "no_bio_added_yet": "No bio added yet.",
+      "contact__social": "Contact & Social",
+      "no_contact_info_provided": "No contact info provided.",
+      "unit_system_selection_is_currently_managed_in_glob": "Unit system selection is currently managed in Global Settings.",
+      "books_guides__standards": "Books, Guides & Standards",
+      "you_have_full_access_to_all_lab_pro_features": "You have full access to all Lab Pro features."
+    },
     "cancel": "Cancel",
     "close": "Close",
     "details": "Details",
@@ -254,6 +266,7 @@
     "content": "Content",
     "marks": "Marks",
     "contributions": "Contributions",
+    "preferences": "Preferences",
     "app_preferences": "App Preferences",
     "go_to_global_settings": "Go to Global Settings",
     "legal_support": "Legal Support",
@@ -326,7 +339,15 @@
       "uk": "UK",
       "other": "Other",
       "all": "All"
-    }
+    },
+    "phase": "Phase",
+    "deep_dive_title": "Deep Dive & Troubleshooting",
+    "did_you_know": "Did You Know?",
+    "level": "Level",
+    "vs": "Vs.",
+    "source": "Source",
+    "biga_stiff": "Biga (Stiff)",
+    "poolish_liquid": "Poolish (Liquid)"
   },
   "nav": {
     "home": "Home",
@@ -528,7 +549,23 @@
   "upgrade_page": {
     "upgrade_successful": "Upgrade Successful!",
     "upgrade_cancelled": "Upgrade Cancelled",
-    "doughlab_pro": "DoughLab Pro"
+    "doughlab_pro": "DoughLab Pro",
+    "thank_you_desc": "Thank you for upgrading to Pro. You now have access to all premium features.",
+    "cancelled_desc": "You have cancelled the checkout process. No charges were made.",
+    "hero_desc": "Get unlimited recipes, advanced tools, dough analysis, and more.",
+    "pro_desc": "Perfect for serious bakers who want to track every detail and perfect their craft.",
+    "whats_included": "What's included",
+    "features": {
+      "unlimited_recipes": "Unlimited Recipes",
+      "advanced_calcs": "Advanced Dough Calculations",
+      "levain_tracking": "Levain Tracking",
+      "oven_analysis": "Oven Analysis",
+      "priority_support": "Priority Support",
+      "community_badges": "Community Badges"
+    },
+    "pay_once": "Pay once, own it forever",
+    "demo_price_note": "(This is a demo price)",
+    "checkout_error": "Failed to start checkout. Please try again."
   },
   "help_page": {
     "title": "Help Center",
@@ -538,8 +575,19 @@
   "profile_page": {
     "tabs": {
       "overview": "Overview",
-      "mylab": "My Lab",
-      "settings": "Settings"
+      "mylab": "My Equipment & Levains",
+      "settings": "Settings & Legal"
+    },
+    "skill_levels": {
+      "beginner": "Home Baker (Beginner)",
+      "intermediate": "Enthusiast (Intermediate)",
+      "advanced": "Advanced Baker",
+      "pro": "Professional Pizzaiolo"
+    },
+    "unlock_pro_desc": "Unlock unlimited recipes, advanced tools, and detailed insights.",
+    "placeholders": {
+      "website": "https://...",
+      "instagram_username": "username"
     }
   },
   "validations": {
@@ -3824,5 +3872,41 @@
     "understanding_baking": "Understanding Baking (Joseph Amendola)",
     "elements_of_pizza": "The Elements of Pizza (Ken Forkish)",
     "italian_decree": "Italian Decree on Flours (DPR 187/2001)"
+  },
+  "settings_page": {
+    "language_section": "Language",
+    "using_temp_as_base": "Using {{temp}}°C as base for calculations."
+  },
+  "toasts": {
+    "photo_upload_success": "Photo uploaded successfully",
+    "photo_upload_error": "Failed to upload photo",
+    "pdf_export_error": "Could not export PDF at this time."
+  },
+  "batch_detail": {
+    "edit_notes": "Edit",
+    "add_notes": "Add",
+    "change_photo": "Change Photo",
+    "add_photo": "Add Photo",
+    "copy_suffix": " (Copy)"
+  },
+  "doughbot": {
+    "common_problems": {
+      "placeholder": "Select a common problem...",
+      "sticky": "Dough too sticky / wet",
+      "tearing": "Dough tears when stretching",
+      "no_rise": "Dough did not rise",
+      "dense": "Dense crumb / no air bubbles",
+      "gummy": "Under-cooked base / \"gum line\"",
+      "shrinking": "Dough snaps back / shrinks",
+      "flat": "Dough flattened out (pancake)",
+      "pale": "Crust is pale / no browning",
+      "burnt": "Bottom burnt before top is done"
+    },
+    "common_issue_label": "Common Issue (optional)",
+    "description_placeholder": "E.g., My 65% hydration dough sat in the fridge for 24h. When I tried to open the balls, they were super elastic and kept shrinking back...",
+    "tips_hint": "The more details you provide about temperature, time, and flour, the better the diagnosis.",
+    "analysis_result": "I have analyzed your dough parameters and identified <span class=\"font-bold text-lime-700\">{{count}} critical factors</span> affecting your results.",
+    "upgrade_hint": "Get the exact scientific correction recipe to fix your dough immediately, plus access to all 40+ Advanced Dough Styles.",
+    "upgrade_cta": "View Solution & Upgrade"
   }
 }

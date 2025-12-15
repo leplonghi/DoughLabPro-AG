@@ -25,11 +25,11 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: 'W280320',
-                pl_ratio: "0.50-0.60 (Extensible)",
-                absorption_capacity: 'Mediumhigh',
-                protein_type: 'Type 00',
-                science_explanation: "Requires '00' flour with W280-320. The key is strict P/L control (0.50-0.60): we need extensibility for easy stretching without snap-back, but enough strength to hold gas during a long 24h fermentation at room temperature."
+                w_index: "W280-320",
+                pl_ratio: "0.55-0.60 (Extensible)",
+                absorption_capacity: "Medium-High (58-65%)",
+                protein_type: "Soft Wheat Type 00",
+                science_explanation: "pizza_napoletana_science_flour"
             },
             thermalProfile: {
                 oven_type: "Wood Fired (Dome)",
@@ -43,7 +43,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: 'Lactic dominant',
                 enzymatic_activity: "High (24h Maturation)"
             },
-            processScience: "The defining physical event is 'Sudden Evaporation'. At >430°C, the moisture in the dough turns to steam almost instantly. Because the gluten is relaxed (extensible), the cornicione inflates rapidly before the crust sets, creating the signature 'voids' inside the rim."
+            processScience: "pizza_napoletana_science_process"
         },
         process: [
             {
@@ -159,11 +159,11 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "58-62% is the STG standard because the 485°C wood-fired oven requires rapid evaporation without burning the crust. The modern 'Canotto' style uses 70%+, but demands much stronger flour and advanced handling skills.",
+            hydrationLogic: "pizza_napoletana_dd_hydration",
             methodSuitability: {
-                direct: { suitable: true, notes: "Ideal & Traditional. Maximizes pure wheat flavor and digestibility with 24h fermentation." },
-                biga: { suitable: false, notes: "Non-traditional (STG), but widely used in 'Neo-Neapolitan' to create extreme cornicione volume and complex flavor." },
-                poolish: { suitable: true, notes: "Good for home ovens to boost extensibility, but can make the dough too soft/slack for classic slap stretching." }
+                direct: { suitable: true, notes: "pizza_napoletana_method_direct_notes" },
+                biga: { suitable: false, notes: "pizza_napoletana_method_biga_notes" },
+                poolish: { suitable: true, notes: "pizza_napoletana_method_poolish_notes" }
             },
             whatIf: [
                 {
@@ -213,11 +213,11 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W350+ (High Strength)",
-                pl_ratio: "0.55 (High Absorption)",
+                w_index: "W350+ (Very Strong)",
+                pl_ratio: "0.55 (Extensible but Strong)",
                 absorption_capacity: "Very High (80%+)",
-                protein_type: "Type 0/00 Strong",
-                science_explanation: "Requires extremely strong flour (W350+, P/L 0.55). The gluten network must be powerful enough to hold 80%+ water and trap the massive CO2 bubbles during the cold ferment."
+                protein_type: "Soft Wheat Type 0 or 00",
+                science_explanation: "pizza_teglia_romana_science_flour"
             },
             thermalProfile: {
                 oven_type: 'Deck oven',
@@ -231,7 +231,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: "Complex (Cold Ferment)",
                 enzymatic_activity: "High (Proteolysis)"
             },
-            processScience: "The defining science is 'Starch Gelatinization vs Gluten Structure'. High water allows full enzymatic activity (protease), creating a melt-in-the-mouth texture. The cold ferment (4°C) slows yeast but lets bacteria produce acids that strengthen the gluten, making the impossible hydration manageable."
+            processScience: "pizza_teglia_romana_science_process"
         },
         process: [
             {
@@ -315,11 +315,11 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "80% is the magic number for the 'cloud' texture. High water creates steam pockets (alveoli) and keeps the crumb moist despite the long bake. Below 75%, it's just heavy focaccia.",
+            hydrationLogic: "pizza_teglia_romana_dd_hydration",
             methodSuitability: {
-                direct: { suitable: true, notes: "The 'No-Knead' cold ferment approach is effectively a direct method simplified. Very effective." },
-                biga: { suitable: false, notes: 'notes' },
-                poolish: { suitable: true, notes: 'Excellent choice a 100 poolish dough yields incred' }
+                direct: { suitable: true, notes: "pizza_teglia_romana_method_direct_notes" },
+                biga: { suitable: false, notes: "pizza_teglia_romana_method_biga_notes" },
+                poolish: { suitable: true, notes: "pizza_teglia_romana_method_poolish_notes" }
             },
             whatIf: [
                 {
@@ -371,10 +371,10 @@ export const italianStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "W240 (Medium)",
-                pl_ratio: "Low Elasticity (No Nerve)",
-                absorption_capacity: 'Medium',
-                protein_type: 'Type 00 2',
-                science_explanation: "Medium strength (W240). We don't want extreme elasticity because we manually roll it flat. Too much nerve (elasticity) makes it shrink back."
+                pl_ratio: "0.45 (Very Extensible)",
+                absorption_capacity: "Low",
+                protein_type: "Soft Wheat Type 00",
+                science_explanation: "pizza_tonda_romana_science_flour"
             },
             thermalProfile: {
                 oven_type: "Electric/Gas Deck",
@@ -388,7 +388,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Moderate 4'
             },
-            processScience: "Evaporation is the goal. Low hydration + Oil + Rolling Pin = Dehydration. We are effectively frying the dough in its own oil and drying it out to create a biscuit structure."
+            processScience: "pizza_tonda_romana_science_process"
         },
         process: [
             {
@@ -472,11 +472,11 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "Low hydration (~56%) is critical. We want to restrict steam generation so the crust dries out and becomes a cracker. High hydration would make it chewy.",
+            hydrationLogic: "pizza_tonda_romana_dd_hydration",
             methodSuitability: {
-                direct: { suitable: true, notes: 'Standard a simple direct dough works best for this' },
-                biga: { suitable: false, notes: "Unnecessary complexity. We don't want the volume or wild crumb that Biga provides." },
-                poolish: { suitable: false, notes: "Too extensible. We want some resistance (nerve) to roll it thin." }
+                direct: { suitable: true, notes: "pizza_tonda_romana_method_direct_notes" },
+                biga: { suitable: false, notes: "pizza_tonda_romana_method_biga_notes" },
+                poolish: { suitable: false, notes: "pizza_tonda_romana_method_poolish_notes" }
             },
             whatIf: [
                 {
@@ -528,11 +528,11 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W260-280 (Medium)",
-                pl_ratio: 'Extensible',
-                absorption_capacity: 'Medium',
-                protein_type: 'Soft wheat',
-                science_explanation: "Uses a Medium strength flour (W260-280). We don't want extreme elasticity; the dough must be extensible enough to fill the pan corners without fighting back."
+                w_index: "W260-280",
+                pl_ratio: "0.50 (Extensible)",
+                absorption_capacity: "Medium (60%)",
+                protein_type: "Soft Wheat Type 00",
+                science_explanation: "focaccia_genovese_science_flour"
             },
             thermalProfile: {
                 oven_type: "Convection/Deck",
@@ -546,7 +546,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'High'
             },
-            processScience: "The Core Science is the 'Salamoia' (Brine Emulsion). Pouring a mix of water and oil over the dough before baking creates a thermal barrier. The liquid pools in the dimples, preventing the dough there from exceeding 100°C. This essentially boils the dough in the holes (keeping them white/soft) while the ridges fry in oil (becoming golden/crisp)."
+            processScience: "focaccia_genovese_science_process"
         },
         process: [
             {
@@ -632,11 +632,11 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "65% is balanced for a pan dough. The key isn't the water inside, but the oil/brine outside. The dough boils in the brine pockets.",
+            hydrationLogic: "focaccia_genovese_dd_hydration",
             methodSuitability: {
-                direct: { suitable: true, notes: 'The classic way high yeast short time immediate sa' },
-                biga: { suitable: true, notes: "Adds a nice perfume, but often considered 'too fancy' for street food focaccia." },
-                poolish: { suitable: true, notes: 'Makes for a very light almost cakelike focaccia' }
+                direct: { suitable: true, notes: "focaccia_genovese_method_direct_notes" },
+                biga: { suitable: true, notes: "focaccia_genovese_method_biga_notes" },
+                poolish: { suitable: true, notes: "focaccia_genovese_method_poolish_notes" }
             },
             whatIf: [
                 {
@@ -687,11 +687,11 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "Varies (Semolina Blend)",
-                pl_ratio: "Short (Fat)",
-                absorption_capacity: 'Medium',
-                protein_type: "Semolina/Wheat Blend",
-                science_explanation: "Semolina Remilled (Rimacinata) mixed with soft wheat. The hard grain provides a specific 'bite' and golden color."
+                w_index: "W220 (Semolina)",
+                pl_ratio: "High (Tenacious)",
+                absorption_capacity: "High (70%)",
+                protein_type: "Durum Wheat (Semola Rimacinata)",
+                science_explanation: "sfincione_palermitano_science_flour"
             },
             thermalProfile: {
                 oven_type: "Deck (Sheet Pan)",
@@ -705,7 +705,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Moderate 6'
             },
-            processScience: "Fat coating. The use of Lard (Strutto) shortens the gluten strands, creating a soft, cake-like crumb ('Sponge') rather than a chewy bread."
+            processScience: "sfincione_palermitano_science_process"
         },
         process: [
             {
@@ -777,11 +777,11 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "70% hydration plus 5% Lard creates a 'short' dough. The fat coats the gluten, preventing it from becoming tough, resulting in a sponge cake texture.",
+            hydrationLogic: "sfincione_palermitano_dd_hydration",
             methodSuitability: {
-                direct: { suitable: true, notes: 'Authentic method the softness comes from fat not p' },
-                biga: { suitable: false, notes: 'Not typical for this style' },
-                poolish: { suitable: false, notes: 'Not typical 2' }
+                direct: { suitable: true, notes: "sfincione_palermitano_method_direct_notes" },
+                biga: { suitable: false, notes: "sfincione_palermitano_method_biga_notes" },
+                poolish: { suitable: false, notes: "sfincione_palermitano_method_poolish_notes" }
             },
             whatIf: [
                 {
@@ -830,11 +830,11 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: 'Weakmedium',
-                pl_ratio: "Slack (No Salt)",
-                absorption_capacity: 'Medium',
-                protein_type: 'Soft wheat type',
-                science_explanation: "Uses weak-medium flour. Without salt to tighten the gluten network, the dough is chemically slack and ferments much faster."
+                w_index: "W180-200 (Weak)",
+                pl_ratio: "0.40 (Very Extensible)",
+                absorption_capacity: "Low",
+                protein_type: "Soft Wheat Type 0",
+                science_explanation: "pane_toscano_science_flour"
             },
             thermalProfile: {
                 oven_type: "Wood Fired/Hearth",
@@ -848,7 +848,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: "High Acetic (Biga)",
                 enzymatic_activity: 'Very high 2'
             },
-            processScience: "Yeast Kinetics: Salt is a yeast inhibitor. Removing it creates 'Running Yeast, meaning fermentation explodes rapidly. We must use a Biga or acidic Levain to control this speed and strengthen the gluten."
+            processScience: "pane_toscano_science_process"
         },
         process: [
             {
@@ -920,11 +920,11 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "60% is standard. The lack of salt changes the rheology - salt tightens gluten. Without it, the dough is naturally slack, so we don't need high water for extensibility.",
+            hydrationLogic: "pane_toscano_dd_hydration",
             methodSuitability: {
-                direct: { suitable: false, notes: 'Without salt to control yeast direct dough explode' },
-                biga: { suitable: true, notes: 'Essential the acidity of the biga strengthens the' },
-                poolish: { suitable: false, notes: 'Too weak we need the strength of a stiff prefermen' }
+                direct: { suitable: false, notes: "pane_toscano_method_direct_notes" },
+                biga: { suitable: true, notes: "pane_toscano_method_biga_notes" },
+                poolish: { suitable: false, notes: "pane_toscano_method_poolish_notes" }
             },
             whatIf: [
                 {
@@ -973,11 +973,11 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W320+ (High)",
-                pl_ratio: 'Strong but extensible',
-                absorption_capacity: 'Very high 3',
-                protein_type: 'High gluten flour',
-                science_explanation: "Requires High Protein/High W (W320+). With hydration pushing 80%, weak flour would degrade into a soup due to protease activity. Strong gluten is needed to trap the massive steam generation."
+                w_index: "W340+ (Very Strong)",
+                pl_ratio: "Balanced",
+                absorption_capacity: "Very High",
+                protein_type: "Soft Wheat Type 0",
+                science_explanation: "ciabatta_classic_science_flour"
             },
             thermalProfile: {
                 oven_type: "Deck (Steam)",
@@ -991,7 +991,7 @@ export const italianStyles: DoughStyle[] = [
                 organic_acids: "Acetic (Structure)",
                 enzymatic_activity: 'Controlled 2'
             },
-            processScience: "Structure is driven by 'Bassinage' and 'Steam Expansion'. Adding water in stages builds the gluten network first. In the oven, the high water content converts to steam rapidly. The strong gluten traps these expanding gas pockets, creating the signature 'Open Crumb'."
+            processScience: "ciabatta_classic_science_process"
         },
         process: [
             {
@@ -1082,11 +1082,11 @@ export const italianStyles: DoughStyle[] = [
             ]
         },
         deepDive: {
-            hydrationLogic: "78-85% is the definition of Ciabatta. It must be wet enough to be self-leveling. The steam expansion from this water creates the massive holes.",
+            hydrationLogic: "ciabatta_classic_dd_hydration",
             methodSuitability: {
-                direct: { suitable: false, notes: 'You cannot get the open crumb or flavor without a' },
-                biga: { suitable: true, notes: 'The original 1982 method 100 of flour in the biga' },
-                poolish: { suitable: true, notes: "Creates a lighter, thinner crust version, but less 'meaty' crumb." }
+                direct: { suitable: false, notes: "ciabatta_classic_method_direct_notes" },
+                biga: { suitable: true, notes: "ciabatta_classic_method_biga_notes" },
+                poolish: { suitable: true, notes: "ciabatta_classic_method_poolish_notes" }
             },
             whatIf: [
                 {

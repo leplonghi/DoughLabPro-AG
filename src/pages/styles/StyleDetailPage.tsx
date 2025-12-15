@@ -145,7 +145,7 @@ const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }
                             <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
                                 <div className={`absolute top-0 w-1 h-full ${isLeft ? 'right-0 bg-lime-500' : 'left-0 bg-indigo-500'} opacity-0 group-hover:opacity-100 transition-opacity`} />
 
-                                <span className="text-[10px] uppercase font-black text-slate-300 mb-1.5 block tracking-widest">Phase {index + 1}</span>
+                                <span className="text-[10px] uppercase font-black text-slate-300 mb-1.5 block tracking-widest">{t('common.phase')} {index + 1}</span>
                                 <h4 className="font-bold text-slate-800 text-base mb-1.5">{step.title}</h4>
                                 <p className="text-slate-600 text-xs leading-relaxed mb-3">{step.action}</p>
 
@@ -294,7 +294,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                         {education.comparative_analysis.map((comp: any, i: number) => (
                             <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 transition-colors">
                                 <div className="flex justify-between items-center mb-2">
-                                    <span className="font-bold text-indigo-200">Vs. {comp.target_style}</span>
+                                    <span className="font-bold text-indigo-200">{t('common.vs')} {comp.target_style}</span>
                                 </div>
                                 <p className="text-sm text-slate-300 mb-3 border-b border-white/5 pb-3">
                                     {comp.difference}
@@ -327,7 +327,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                                 </p>
                                 {qa.context && (
                                     <span className="text-[10px] font-bold text-sky-500 uppercase mt-2 block tracking-wider">
-                                        Source: {qa.context}
+                                        {t('common.source')}: {qa.context}
                                     </span>
                                 )}
                             </div>
@@ -379,7 +379,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                     <CheckCircle2 className="w-5 h-5 text-purple-600" />
                 </div>
                 <div>
-                    <h3 className="text-xl font-bold text-slate-800">🔍 Deep Dive & Troubleshooting</h3>
+                    <h3 className="text-xl font-bold text-slate-800">🔍 {t('common.deep_dive_title')}</h3>
                     <p className="text-sm text-slate-500">{t('general.expert_analysis_and_logic_breakdown')}</p>
                 </div>
             </div>
@@ -406,23 +406,23 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                     <div className={`p-4 rounded-xl border ${deepDive.methodSuitability?.direct?.suitable ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-100 opacity-60'}`}>
                         <div className="flex justify-between items-center mb-2">
                             <span className="font-bold text-slate-800">{t('general.direct_method_2')}</span>
-                            {deepDive.methodSuitability?.direct?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">N/A</span>}
+                            {deepDive.methodSuitability?.direct?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
                         </div>
                         <p className="text-xs text-slate-600 leading-snug">{deepDive.methodSuitability?.direct?.notes}</p>
                     </div>
                     {/* Biga */}
                     <div className={`p-4 rounded-xl border ${deepDive.methodSuitability?.biga?.suitable ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-100 opacity-60'}`}>
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-slate-800">Biga (Stiff)</span>
-                            {deepDive.methodSuitability?.biga?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">N/A</span>}
+                            <span className="font-bold text-slate-800">{t('common.biga_stiff')}</span>
+                            {deepDive.methodSuitability?.biga?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
                         </div>
                         <p className="text-xs text-slate-600 leading-snug">{deepDive.methodSuitability?.biga?.notes}</p>
                     </div>
                     {/* Poolish */}
                     <div className={`p-4 rounded-xl border ${deepDive.methodSuitability?.poolish?.suitable ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-100 opacity-60'}`}>
                         <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-slate-800">Poolish (Liquid)</span>
-                            {deepDive.methodSuitability?.poolish?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">N/A</span>}
+                            <span className="font-bold text-slate-800">{t('common.poolish_liquid')}</span>
+                            {deepDive.methodSuitability?.poolish?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
                         </div>
                         <p className="text-xs text-slate-600 leading-snug">{deepDive.methodSuitability?.poolish?.notes}</p>
                     </div>
@@ -624,7 +624,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                 <MapPin className="w-3 h-3 text-emerald-300" /> {styleData.subRegion}
                             </span>
                             <span className={`px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm ${styleData.specs.difficulty === 'Expert' ? 'text-purple-300 border-purple-500/30' : 'text-lime-300'}`}>
-                                {styleData.specs.difficulty} Level
+                                {styleData.specs.difficulty} {t('common.level')}
                             </span>
                         </div>
 
@@ -699,7 +699,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             {hasCuriosities && (
                                                 <div className="bg-amber-50/50 rounded-xl p-5 border border-amber-100">
                                                     <h4 className="font-bold text-amber-900 text-sm uppercase mb-3 flex items-center gap-2">
-                                                        <Lightbulb className="w-4 h-4" /> Did You Know?
+                                                        <Lightbulb className="w-4 h-4" /> {t('common.did_you_know')}
                                                     </h4>
                                                     <ul className="space-y-3">
                                                         {styleData.regulatory_info && (

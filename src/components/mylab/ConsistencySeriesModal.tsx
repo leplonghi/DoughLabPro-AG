@@ -6,7 +6,7 @@ import { useTranslation } from '@/i18n';
 interface ConsistencySeriesModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: (series: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'> | TestSeries) =>Promise<void>;
+    onSave: (series: Omit<TestSeries, 'id' | 'createdAt' | 'updatedAt' | 'relatedBakes'> | TestSeries) => Promise<void>;
     seriesToEdit: TestSeries | null;
 }
 
@@ -68,19 +68,14 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
         }
     };
 
-    const variables: { value: TestSeriesVariable; label: string }[] = [
-        { value: 'hydration', label: 'Hydration' },
-        { value: 'fermentation_time', label: 'Fermentation Time' },
-        { value: 'flour', label: 'Flour Type/Blend' },
-        { value: 'other', label: 'Other' }
-    ];
+
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fadeIn">
             <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl ring-1 ring-slate-200 overflow-hidden">
                 <div className="flex items-center justify-between border-b border-gray-100 p-4 bg-gray-50/50">
                     <h2 className="text-lg font-bold text-gray-900">
-                        {seriesToEdit ? 'Edit Series' : 'Create New Test Series'}
+                        {seriesToEdit ? t('mylab.edit_series') : t('mylab.create_new_series_title')}
                     </h2>
                     <button
                         onClick={onClose}
@@ -122,20 +117,21 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                                 onChange={(e) => setVariable(e.target.value as TestSeriesVariable)}
                                 className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
                             >
-                                {variables.map(pub => (
-                                    <option key={pub.value} value={pub.value}>{pub.label}</option>
-                                ))}
+                                <option value="hydration">{t('mylab.variable_hydration')}</option>
+                                <option value="fermentation_time">{t('mylab.variable_fermentation_time')}</option>
+                                <option value="flour">{t('mylab.variable_flour')}</option>
+                                <option value="other">{t('mylab.variable_other')}</option>
                             </select>
                         </div>
                         <div>
                             <label className="block text-sm font-bold text-gray-700 mb-1 flex items-center gap-1">{t('mylab.steps_2')}<div className="group relative">
-                                    <InfoIcon className="h-4 w-4 text-gray-400 cursor-help" />
-                                    <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 group-hover:opacity-100 transition-opacity z-50">
-                                        <div className="bg-slate-800 text-white text-xs rounded py-1 px-2 text-center shadow-lg">
-                                            Comma separated values (e.g. 60%, 65%, 70%)
-                                        </div>
+                                <InfoIcon className="h-4 w-4 text-gray-400 cursor-help" />
+                                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 group-hover:opacity-100 transition-opacity z-50">
+                                    <div className="bg-slate-800 text-white text-xs rounded py-1 px-2 text-center shadow-lg">
+                                        {t('mylab.steps_tooltip')}
                                     </div>
                                 </div>
+                            </div>
                             </label>
                             <input
                                 type="text"
@@ -149,7 +145,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
 
                     <div>
                         <label className="block text-sm font-bold text-gray-700 mb-1">
-                            Notes (Optional)
+                            {t('mylab.notes_optional')}
                         </label>
                         <textarea
                             rows={3}
@@ -171,7 +167,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             disabled={loading}
                             className="rounded-xl bg-lime-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all active:scale-95 disabled:opacity-50"
                         >
-                            {loading ? 'Saving...' : 'Save Series'}
+                            {loading ? t('mylab.saving') : t('mylab.save_series')}
                         </button>
                     </div>
                 </form>

@@ -38,7 +38,7 @@ export const OvenAnalysisPage: React.FC = () => {
           />
 
           {analysis && (
-            <OvenProfilerResults analysis={analysis} />
+            <OvenProfilerResults analysis={analysis} profile={profile} />
           )}
         </div>
       </LockFeature>

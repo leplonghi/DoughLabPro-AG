@@ -98,9 +98,9 @@ const IngredientTable: React.FC<{ result: DoughResult, doughConfig: DoughConfig 
                         <tr className="bg-slate-50 ">
                             <td colSpan={3} className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 ">{t(`form.${doughConfig.fermentationTechnique.toLowerCase()}`)}</td>
                         </tr>
-                        {renderRow('Flour', result.preferment.flour)}
-                        {renderRow('Water', result.preferment.water)}
-                        {result.preferment.yeast > 0 && renderRow('Yeast', result.preferment.yeast)}
+                        {renderRow(t('results.flour'), result.preferment.flour)}
+                        {renderRow(t('results.water'), result.preferment.water)}
+                        {result.preferment.yeast > 0 && renderRow(t('results.yeast'), result.preferment.yeast)}
                         <tr className="bg-slate-50 ">
                             <td colSpan={3} className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 ">{t('results.final_dough_title')}</td>
                         </tr>
@@ -136,7 +136,7 @@ const IngredientTable: React.FC<{ result: DoughResult, doughConfig: DoughConfig 
 
 const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, onLoadAndNavigate }) => {
     const { user, batches, updateBatch, addBatch, deleteBatch, hasProAccess, openPaywall } = useUser();
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'dashboard', 'calculator', 'method']);
     const { addToast } = useToast();
 
     const [editableBatch, setEditableBatch] = useState<Batch | null>(null);
@@ -157,10 +157,10 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 const url = await uploadImage(file, path);
 
                 setEditableBatch({ ...editableBatch, photoUrl: url });
-                addToast('Photo uploaded successfully', 'success');
+                addToast(t('toasts.photo_upload_success'), 'success');
             } catch (error) {
                 console.error(error);
-                addToast('Failed to upload photo', 'error');
+                addToast(t('toasts.photo_upload_error'), 'error');
             } finally {
                 setIsUploading(false);
             }
@@ -207,7 +207,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
 
         const newBatchData: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'> = {
             ...JSON.parse(JSON.stringify(editableBatch)),
-            name: `${editableBatch.name} (Copy)`,
+            name: `${editableBatch.name}${t('batch_detail.copy_suffix')}`,
             status: BatchStatus.DRAFT,
             rating: undefined,
             isPublic: false,
@@ -233,7 +233,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
         try {
             exportBatchToPDF(editableBatch, t);
         } catch (e) {
-            addToast('Could not export PDF at this time.', 'error');
+            addToast(t('toasts.pdf_export_error'), 'error');
         }
     };
 
@@ -314,7 +314,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             {!isEditingNotes && (
                                 <button onClick={() => setIsEditingNotes(true)} className="flex items-center gap-1.5 rounded-lg py-1.5 px-3 text-xs font-bold text-slate-600  hover:bg-slate-100 transition-colors">
                                     <PencilIcon className="h-3 w-3" />
-                                    <span>{editableBatch.notes ? 'Edit' : 'Add'}</span>
+                                    <span>{editableBatch.notes ? t('batch_detail.edit_notes') : t('batch_detail.add_notes')}</span>
                                 </button>
                             )}
                         </div>
@@ -444,7 +444,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             disabled={isUploading}
                             className="w-full mt-4 rounded-xl bg-slate-100  text-slate-700  py-2.5 text-sm font-bold hover:bg-slate-200 transition-colors disabled:opacity-50"
                         >
-                            {editableBatch.photoUrl ? 'Change Photo' : `${t('common.add')} Photo`}
+                            {editableBatch.photoUrl ? t('batch_detail.change_photo') : t('batch_detail.add_photo')}
                         </button>
                     </div>
                     <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">

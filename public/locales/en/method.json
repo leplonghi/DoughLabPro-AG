@@ -1,0 +1,226 @@
+{
+    "steps": {
+        "prep": {
+            "title": "Mise en Place & Weighing",
+            "desc": "Weigh all ingredients with a digital scale for 0.1g precision. {{waterAdvice}}",
+            "grandma": "Get all your ingredients ready on the counter. Use a scale! Cups are for coffee, not flour.",
+            "science": "Precision is key. A 5% variance in water can drastically change dough rheology (flow properties).",
+            "critical": "Do not let yeast come into direct contact with salt for prolonged periods before mixing."
+        },
+        "brownie_melt": {
+            "title": "Melt Fat & Chocolate",
+            "desc": "Melt the butter (and chocolate, if using) gently over a double boiler or in short bursts in the microwave. Let cool slightly (to <45°C).",
+            "grandma": "Melt your butter and chocolate together. Don't burn it! Let it cool down a bit so it doesn't cook the eggs.",
+            "science": "Melting the fat rather than creaming it yields a denser, fudgier texture by reducing air incorporation."
+        },
+        "brownie_ribbon": {
+            "title": "Ribbon Stage (Eggs & Sugar)",
+            "desc": "Whisk eggs and sugar vigorously until pale, thick, and falling in \"ribbons\" (approx 3-5 mins).",
+            "grandma": "Beat the eggs and sugar until they look white and fluffy, like a milkshake.",
+            "science": "Dissolving the sugar into the eggs creates a shiny, \"papery\" crust on top (meringue-like structure). Evaluating Ribbon stage ensures sufficient aeration.",
+            "tip": "If the sugar isn't fully dissolved, the crust will be dull."
+        },
+        "brownie_fold": {
+            "title": "Emulsification & Folding",
+            "desc": "Stream the cooled chocolate/butter mixture into the egg foam while whisking gently. Then, FOLD in the sifted dry ingredients just until combined.",
+            "grandma": "Pour the chocolate into the eggs and mix. Then add the flour and fold it in gently with a spatula. Don't overmix!",
+            "critical": "Do not overmix after adding flour! Developing gluten creates a tough, rubbery brownie instead of a tender/fudgy one."
+        },
+        "brownie_bake": {
+            "title": "Baking",
+            "desc": "Bake at {{temp}}°C ({{tempF}}°F). Test with a toothpick: it should come out with moist crumbs, not wet batter.",
+            "grandma": "Bake it until a toothpick comes out with a few sticky crumbs attached. If it's clean, you overbaked it!",
+            "science": "Brownies rely on egg protein coagulation and sugar crystallization for structure. Carry-over cooking is significant; pull them before they seem 100% done."
+        },
+        "cookie_cream": {
+            "title": "Creaming (Butter & Sugar)",
+            "desc": "Beat softened butter and sugar(s) together until light, fluffy, and pale (3-5 mins).",
+            "grandma": "Mix the butter and sugar until it looks like light, fluffy frosting.",
+            "science": "The Creaming method punches millions of micro-air bubbles into the fat. These bubbles expand during baking (leavening), creating lift and texture.",
+            "critical": "Butter must be pliable (18-20°C) but not melted. Melted butter cannot hold air bubbles."
+        },
+        "cookie_emulsify": {
+            "title": "Emulsification (Liquids)",
+            "desc": "Add eggs one at a time, beating well after each addition. Scrape down the bowl.",
+            "grandma": "Add the eggs one by one. Mix well so it doesn't look curdled.",
+            "science": "Eggs are mostly water; butter is fat. Incremental addition allows the lecithin in egg yolks to emulsify the water into the fat phase, preventing breaking."
+        },
+        "cookie_dry": {
+            "title": "Incorporation (Dry Ingredients)",
+            "desc": "Add dry ingredients (flour, salt, leaveners) all at once. Mix on LOW speed just until streaks of flour disappear.",
+            "grandma": "Add the flour and mix slowly. Stop as soon as the white powder is gone.",
+            "science": "Minimize mixing time after adding flour to limit gluten development. Short gluten strands = tender cookies.",
+            "tip": "Add mix-ins (chips, nuts) now."
+        },
+        "cookie_chill": {
+            "title": "Cold Maturation (Chilling)",
+            "desc": "Chill the dough for at least 2-24 hours before scooping/baking.",
+            "grandma": "Put the dough in the fridge for a few hours (or overnight). It makes better cookies!",
+            "science": "Chilling hydrates the flour (less spread), solidifies the fat (less spread), and allows enzymes to break down carbohydrates (browning/flavor)."
+        },
+        "cookie_bake": {
+            "title": "Baking",
+            "desc": "Bake at {{temp}}°C ({{tempF}}°F) until edges are set but centers are soft.",
+            "grandma": "Bake until the edges look golden brown. The center should still look a bit soft.",
+            "science": "Sugar caramelization and Maillard browning occur rapidly. The center will finish setting on the hot baking sheet out of the oven."
+        },
+        "laminated_detrempe": {
+            "title": "Detrempe (Base Dough)",
+            "desc": "Mix flour, water, yeast, salt, sugar, and the dough-portion butter until just combined. Do not overdevelop gluten (keep extensible).",
+            "grandma": "Mix the dough ingredients just until they come together. Don't knead it too hard!",
+            "science": "Keeping the gluten structure slightly underdeveloped in the detrempe ensures extensibility for the subsequent lamination process."
+        },
+        "laminated_block": {
+            "title": "Disk/Block Formation",
+            "desc": "Flatten dough into a rectangle or disk, wrap tightly in plastic, and chill for 12-24 hours.",
+            "grandma": "Flatten the dough, wrap it up, and put it in the fridge overnight.",
+            "science": "Chilling relaxes the gluten and ensures the dough matches the temperature/consistency of the butter block for lamination."
+        },
+        "laminated_lockin": {
+            "title": "Lock-in (Beurrage)",
+            "desc": "Pound the butter block until pliable but cold (10-12°C). Encase it in the dough sheet.",
+            "grandma": "Smash the butter until it bends but doesn't break. Wrap the dough around it.",
+            "critical": "Butter and dough must have the same consistency to prevent shattering (too cold) or absorption (too warm)."
+        },
+        "laminated_tourage": {
+            "title": "Lamination (Tourage)",
+            "desc": "Perform 1 Double Fold (Book) and 1 Simple Fold (Letter), resting 30m in fridge between folds.",
+            "grandma": "Fold the dough like a book, then rest. Then fold like a letter. Keep it cold!",
+            "science": "This process creates distinct alternating layers of fat and dough (55 layers for classic croissant) which puff upon baking."
+        },
+        "laminated_shape": {
+            "title": "Shaping",
+            "desc": "Roll to 4mm thickness. Cut into triangles (10cm x 25cm). Elongate gently and roll tight. Egg wash.",
+            "grandma": "Roll it out thin, cut long triangles, and roll them up tight. Brush with egg.",
+            "tip": "Cut with a decisive, downward motion (pizza cutter) to avoid sealing the layers at the edges."
+        },
+        "laminated_proof": {
+            "title": "Final Proof",
+            "desc": "Proof at 26-28°C (78-82°F) until doubled and jiggly (2-3h). Layers should separate slightly.",
+            "grandma": "Let them rise until they jiggle like jelly. Don't let it get too hot!",
+            "critical": "Avoid temperatures above 29°C (84°F) or the butter layers will melt, ruining the flaky structure."
+        },
+        "laminated_bake": {
+            "title": "Baking",
+            "desc": "Bake at 200°C (390°F) for 5-7m, then lower to 190°C (375°F) for 12-15m until deep golden brown.",
+            "grandma": "Bake hot at first for puff, then lower the heat to finish cooking.",
+            "science": "Initial high heat creates steam for \"oven spring\" and separates layers before the crust sets."
+        },
+        "poolish_prep": {
+            "title": "Prepare Poolish (Day -1)",
+            "desc": "Mix the Poolish flour and water (1:1 ratio) with the tiny amount of yeast. Cover and ferment for 12-16h at room temperature (18-20°C).",
+            "grandma": "Mix the poolish ingredients in a jar until it looks like pancake batter. Cover it and leave it on the counter overnight.",
+            "science": "Poolish is a 100% hydration preferment. It boosts protease activity (extensibility) and creates complex organic acids for flavor.",
+            "tip": "The poolish is ready when it is bubbly, doubled in size, and the center begins to collapse (the \"drop\")."
+        },
+        "biga_prep": {
+            "title": "Prepare Biga (Day -1)",
+            "desc": "Mix Biga ingredients gently. Do not knead! You want a shaggy, unmixed mass. Ferment 16-24h at 16-18°C (60-64°F).",
+            "grandma": "Mix the biga flour, water and yeast just enough so there is no dry flour. It should look lumpy and dry. Leave it overnight in a cool spot.",
+            "science": "Biga is a stiff preferment (45-50% hydration). Its low water activity favors acetic acid production, giving strength and a complex, slightly sour flavor profile.",
+            "critical": "Over-mixing the Biga will develop too much gluten too early, making it impossible to incorporate into the final dough."
+        },
+        "levain_feed": {
+            "title": "Feed Levain",
+            "desc": "Ensure your starter is active and fed 4-6 hours before mixing. It should be at peak rise.",
+            "grandma": "Feed your sourdough starter so it is bubbly and happy before you start.",
+            "science": "Using starter at peak activity ensures maximum yeast population and optimal pH balance (avoiding excessive acidity that degrades gluten)."
+        },
+        "autolyse": {
+            "title": "Autolyse",
+            "desc": "Mix only the Flour and Water until no dry flour remains. Cover and rest for 30-60 minutes. Do not add salt, yeast, or oil yet.",
+            "grandma": "Mix just the flour and water together. Let it sit for 30 mins. This helps the flour soak up the water.",
+            "science": "Autolyse allows protease enzymes to degrade some gluten bonds, increasing extensibility. It also fully hydrates starch and protein, reducing mixing time and oxidation."
+        },
+        "mix_final": {
+            "title": "Final Mixing ({{method}})",
+            "desc": "{{mixAction}}",
+            "grandma": "{{mixGrandma}}",
+            "science": "Salt is hygroscopic and strengthens gluten but dehydrates yeast. Oil coats gluten proteins and inhibits bond formation, so it must be added after the network is established.",
+            "critical": "Stop mixing if the dough exceeds 26°C (79°F) to prevent gluten degradation."
+        },
+        "fold_coil": {
+            "title": "Coil Folds (Strength Building)",
+            "desc": "Perform a set of Coil Folds every 30 minutes for the first 2 hours of bulk fermentation. Wet your hands to prevent sticking.",
+            "grandma": "Every 30 mins, lift the dough up and let it fold under itself. Do this 3-4 times. It makes the dough strong.",
+            "science": "High hydration doughs cannot be kneaded traditionally. Folding aligns gluten strands passively through gravity and extension, building structure without tearing.",
+            "tip": "If the dough tears, let it rest 10 mins longer. Extensibility comes from rest; elasticity comes from folding."
+        },
+        "knead_windowpane": {
+            "title": "Kneading & Windowpane",
+            "desc": "Knead (by hand or machine) until the dough passes the Windowpane Test: it should stretch thin enough to see light through without tearing.",
+            "grandma": "Knead the dough on the counter until it is smooth like a baby's bottom. It should bounce back when you poke it.",
+            "science": "Mechanical action unfolds the protein coils (glutenin/gliadin) and encourages cross-linking (disulfide bonds), creating a viscoelastic network capable of trapping CO2."
+        },
+        "bulk": {
+            "title": "Bulk Fermentation",
+            "desc": "Allow the entire dough mass to ferment in a covered container until {{volume}}.",
+            "grandma": "Let the dough sit in a bowl covered with plastic wrap until it looks puffy and has grown by about half.",
+            "science": "Yeast converts sugars into CO2 (rise) and ethanol (flavor). Organic acids develop. The gluten network relaxes.",
+            "tip": "Use a straight-sided container to accurately judge the volume increase."
+        },
+        "cold_maturation": {
+            "title": "Cold Maturation (Retardation)",
+            "desc": "Place the dough in the fridge (4°C/39°F) for 24-72 hours.",
+            "grandma": "Put the dough in the fridge. You can leave it there for up to 3 days. The longer, the tastier.",
+            "science": "Cold temperatures slow yeast activity (CO2) but allow enzymatic activity (protease/amylase) and bacterial fermentation (LAB) to continue, developing complex flavors and digestibility."
+        },
+        "staglio": {
+            "title": "Staglio (Divide & Ball)",
+            "desc": "Divide dough into {{count}} equal portions. Shape into tight balls using surface tension.",
+            "grandma": "Cut the dough into equal pieces. Roll them into tight, smooth balls.",
+            "science": "Creating a \"skin\" of surface tension on the dough ball forces gases to expand upward rather than outward during the final proof.",
+            "critical": "Close the bottom seam of the ball tightly to prevent gas leakage."
+        },
+        "proof": {
+            "title": "Final Proof (Apprêt)",
+            "desc": "Cover dough balls and proof at room temperature until relaxed and soft to the touch (Poke Test).",
+            "grandma": "Cover the balls and let them rest on the counter until they look soft and pillowy. If you poke it, the dent should spring back slowly.",
+            "science": "The gluten relaxes (extensibility increases), allowing the dough to be stretched without snapping back. Yeast re-inflates the structure.",
+            "tip": "If the dough springs back immediately when poked, it needs more time. If the dent stays forever, it might be over-proofed."
+        },
+        "bake": {
+            "title": "Baking & Oven Spring",
+            "desc": "{{action}}",
+            "grandma": "{{grandmaAction}}",
+            "science": "Rapid heat transfer causes Oven spring (gas expansion) before the crust sets. Maillard reaction occurs above 140°C (284°F), creating browning and flavor.",
+            "critical": "Do not overload with wet toppings, or the heat transfer will be blocked, resulting in a \"gum line\" (undercooked layer)."
+        }
+    },
+    "vars": {
+        "water": {
+            "room": "Use room temperature water (20-22°C / 68-72°F).",
+            "hot": "Use cold water (4-10°C / 39-50°F) to counteract the warm room.",
+            "cold": "Use warm water (25-28°C / 77-82°F) to wake up the yeast."
+        },
+        "water_tip": {
+            "ideal": "Ideal Desired Dough Temperature (DDT) is 24°C (75°F).",
+            "hot": "In hot environments, friction from mixing can overheat the dough. Cold water helps regulate this.",
+            "cold": "Yeast is sluggish in the cold. A warmer start helps kickstart fermentation."
+        },
+        "mix": {
+            "double_hydration": "Double Hydration (Bassinage)",
+            "direct": "Direct Mixing",
+            "action": {
+                "default": "Add yeast and mix. Then add salt. Finally, add oil (if using) once the dough has formed.",
+                "biga": "Cut the Biga into small pieces into the water. Squeeze to break it up. Gradually add the remaining flour. Add salt last.",
+                "high_hydration": "Add yeast and salt. Mix to develop structure. Then, slowly trickle in the remaining water (Bassinage) while mixing to maintain strength."
+            },
+            "grandma": {
+                "default": "Add the yeast and mix it in. Then add the salt. If the recipe has oil, add it last.",
+                "biga": "Break the stiff Biga into the water with your hands until it's milky. Then add the rest of the flour and salt.",
+                "high_hydration": "Mix the yeast and salt in. Once it looks like dough, slowly add the rest of the water bit by bit."
+            }
+        },
+        "bake": {
+            "action": {
+                "default": "Stretch gently. Top sparingly. Bake on pre-heated stone/steel.",
+                "pan": "Press dough into oiled pan. Let rise again in pan for 30m. Top and bake."
+            },
+            "grandma": {
+                "default": "Stretch it out, put your toppings on, and bake it hot!",
+                "pan": "Push the dough into the pan. Let it rest a bit. Top and bake."
+            }
+        }
+    }
+}

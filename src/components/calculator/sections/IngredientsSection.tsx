@@ -175,7 +175,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             <div>
               <label htmlFor="yeastType" className="mb-1 block text-sm font-medium text-dlp-text-secondary">{t('calculator.yeast_type')}</label>
               <select id="yeastType" name="yeastType" value={config.yeastType} onChange={handleSelectChange} className={getSelectClasses()}>
-                {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.labelKey}</option>))}
+                {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>))}
               </select>
             </div>
             <SliderInput label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip={t('calculator.yeast_tooltip')} hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} />

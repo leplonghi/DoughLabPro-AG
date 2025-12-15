@@ -2,6 +2,18 @@
   "common": {
     "explore": "Explorar",
     "save": "Salvar",
+    "ui": {
+      "an_error_occurred": "Ocorreu um erro.",
+      "aipowered_diagnostic_engine_analyze_your_dough_fau": "Motor de diagnóstico por IA. Analise falhas e receba correções científicas.",
+      "running_diagnosis": "Executando diagnóstico...",
+      "diagnosis_complete": "Diagnóstico Completo!",
+      "no_bio_added_yet": "Nenhum bio adicionado ainda.",
+      "contact__social": "Contato e Social",
+      "no_contact_info_provided": "Nenhuma informação de contato fornecida.",
+      "unit_system_selection_is_currently_managed_in_glob": "A seleção do sistema de unidades é gerenciada nas Configurações Globais.",
+      "books_guides__standards": "Livros, Guias e Padrões",
+      "you_have_full_access_to_all_lab_pro_features": "Você tem acesso total a todos os recursos Lab Pro."
+    },
     "cancel": "Cancelar",
     "close": "Fechar",
     "details": "Detalhes",
@@ -326,7 +338,15 @@
       "uk": "Reino Unido",
       "other": "Outro",
       "all": "Todos"
-    }
+    },
+    "phase": "Fase",
+    "deep_dive_title": "Aprofundamento e Solução de Problemas",
+    "did_you_know": "Você Sabia?",
+    "level": "Nível",
+    "vs": "Vs.",
+    "source": "Fonte",
+    "biga_stiff": "Biga (Dura)",
+    "poolish_liquid": "Poolish (Líquido)"
   },
   "nav": {
     "home": "Início",
@@ -528,7 +548,23 @@
   "upgrade_page": {
     "upgrade_successful": "Upgrade realizado com sucesso!",
     "upgrade_cancelled": "Upgrade cancelado",
-    "doughlab_pro": "DoughLab Pro"
+    "doughlab_pro": "DoughLab Pro",
+    "thank_you_desc": "Obrigado por atualizar para o Pro. Agora você tem acesso a todos os recursos premium.",
+    "cancelled_desc": "Você cancelou o processo de pagamento. Nenhuma cobrança foi feita.",
+    "hero_desc": "Obtenha receitas ilimitadas, ferramentas avançadas, análise de massa e muito mais.",
+    "pro_desc": "Perfeito para padeiros sérios que querem acompanhar cada detalhe e aperfeiçoar sua arte.",
+    "whats_included": "O que está incluído",
+    "features": {
+      "unlimited_recipes": "Receitas Ilimitadas",
+      "advanced_calcs": "Cálculos Avançados de Massa",
+      "levain_tracking": "Rastreamento de Levain",
+      "oven_analysis": "Análise de Forno",
+      "priority_support": "Suporte Prioritário",
+      "community_badges": "Distintivos da Comunidade"
+    },
+    "pay_once": "Pague uma vez, tenha para sempre",
+    "demo_price_note": "(Este é um preço de demonstração)",
+    "checkout_error": "Falha ao iniciar o checkout. Por favor, tente novamente."
   },
   "help_page": {
     "title": "Ajuda Center",
@@ -538,8 +574,19 @@
   "profile_page": {
     "tabs": {
       "overview": "Visão Geral",
-      "mylab": "Meu Laboratório",
-      "settings": "Configurações"
+      "mylab": "Meu Equipamento e Levains",
+      "settings": "Configurações e Legal"
+    },
+    "skill_levels": {
+      "beginner": "Padeiro Caseiro (Iniciante)",
+      "intermediate": "Entusiasta (Intermediário)",
+      "advanced": "Padeiro Avançado",
+      "pro": "Pizzaiolo Profissional"
+    },
+    "unlock_pro_desc": "Desbloqueie receitas ilimitadas, ferramentas avançadas e análises detalhadas.",
+    "placeholders": {
+      "website": "https://...",
+      "instagram_username": "usuário"
     }
   },
   "validations": {
@@ -572,16 +619,16 @@
     "baking_strategy": "Assamento Strategy",
     "dough_adjustments": "Massa Adjustments",
     "low_power_strategy": "Estratégia de Baixa Potência",
-    "high_hydration_risks": "High Hidratação Risks",
-    "oven_type": "Forno Type",
-    "home_gas_oven": "Forno a gás doméstico",
-    "home_electric_oven": "Forno elétrico doméstico",
-    "convection_oven": "Forno de convecção",
-    "baking_surface": "Assamento Surface",
-    "baking_steel": "Assamento steel",
+    "high_hydration_risks": "Riscos de Alta Hidratação",
+    "oven_type": "Tipo de Forno",
+    "home_gas_oven": "Forno a Gás Doméstico",
+    "home_electric_oven": "Forno Elétrico Doméstico",
+    "convection_oven": "Forno de Convecção",
+    "baking_surface": "Superfície de Assamento",
+    "baking_steel": "Aço de Assamento",
     "rack_position": "Posição da Prateleira",
     "convection_mode": "Modo Convecção",
-    "analyze_oven_profile": "Analyze Forno Perfil",
+    "analyze_oven_profile": "Analisar Perfil do Forno",
     "why_preheat": "Por que pré-aquecer?",
     "analysis_summary": "Resumo da Análise",
     "current_plan": "Plano Atual:",
@@ -624,11 +671,11 @@
     "pizza_official_rules_and_associations": "Pizza – Regras Oficiais e Associações",
     "associazione_verace_pizza_napoletana_avp": "Associazione Verace Pizza Napoletana (AVPN)",
     "pizza_in_teglia_e_pizza_tonda_al_piatto": "Pizza in Teglia e Pizza Tonda al Piatto",
-    "baking_technical_books": "Assamento – Technical Books",
+    "baking_technical_books": "Panificação – Livros Técnicos",
     "le_go_t_du_pain_the_taste_of_bread": "Le Goût du Pain (The Taste of Bread)",
     "flour_water_salt_yeast": "Farinha Água Sal Fermento",
     "modernist_bread": "Modernist Pão",
-    "flour_technical_data_and_strength_w": "Farinha – Technical Data and Strength (W)",
+    "flour_technical_data_and_strength_w": "Farinha – Dados Técnicos e Força (W)",
     "chopin_alveograph": "Chopin Alveograph",
     "caputo_mill": "Caputo Mill",
     "terminology_and_concepts": "Terminologia e Conceitos",
@@ -671,16 +718,16 @@
     "master_class_q_a": "Master Class Q&A",
     "fermentation_strategy": "Estratégia de Fermentação",
     "expert_analysis_and_logic_breakdown": "Análise de expert e lógica detalhada",
-    "the_hydration_logic": "The Hidratação Logic",
-    "direct_method": "Direct Método",
-    "biga_stiff": "Biga (Stiff)",
-    "poolish_liquid": "Poolish (Liquid)",
+    "the_hydration_logic": "A Lógica da Hidratação",
+    "direct_method": "Método Direto",
+    "biga_stiff": "Biga (Dura)",
+    "poolish_liquid": "Poolish (Líquido)",
     "solution": "Solução:",
     "use_formula": "Usar Fórmula",
     "historical_cultural_context": "Contexto Histórico e Cultural",
     "global_presence": "Presença Global",
     "regulation": "Regulação:",
-    "the_scientific_process": "The Scientific Processo",
+    "the_scientific_process": "O Processo Científico",
     "step_by_step_molecular_breakdown": "Detalhamento molecular passo-a-passo",
     "references_validation": "Referências e Validação",
     "scientifically_validated": "Cientificamente Validado",
@@ -689,14 +736,14 @@
     "standard_60": "Padrão (60%)",
     "high_80": "Alta (80%+)",
     "high_humidity_gt_70": "Alta Umidade (&gt;70%)",
-    "flour_will_absorb_less_water_reduce_hydr": "Farinha will absorb less water. Reduce hydration by",
+    "flour_will_absorb_less_water_reduce_hydr": "A farinha absorverá menos água. Reduza a hidratação em",
     "hot_dry_climate": "Clima Quente/Seco",
-    "evaporation_increases_increase_hydration": "Evaporação aumenta. Aumente a hidratação em",
+    "evaporation_increases_increase_hydration": "A evaporação aumenta. Aumente a hidratação em",
     "target": "Alvo",
     "heat_transfer": "Transferência de Calor",
-    "home_oven_strategy_max_250_c": "Home Forno Strategy (Max 250°C)",
-    "recommended_strength": "Recomendado Strength",
-    "p_l_ratio": "Razão P/L",
+    "home_oven_strategy_max_250_c": "Estratégia para Forno Doméstico (Máx 250°C)",
+    "recommended_strength": "Força Recomendada",
+    "p_l_ratio": "Relação P/L",
     "protein": "Proteína",
     "ingredient": "Ingrediente",
     "adjust_baking_metrics_for_your_specific_": "Ajuste métricas para seu equipamento específico."
@@ -767,9 +814,9 @@
     "levain_profile_placeholder": "Levain Perfil Placeholder"
   },
   "levaininsights": {
-    "starter_health_score": "Fermento Natural Health Score",
-    "based_on_feeding_consistency_and_recent_": "Baseado na consistência e atividade recente.",
-    "no_insights_available": "Não insights available",
+    "starter_health_score": "Pontuação de Saúde do Levain",
+    "based_on_feeding_consistency_and_recent_": "Baseado na consistência de alimentação e atividade recente.",
+    "no_insights_available": "Sem insights disponíveis",
     "log_at_least_2_feedings_to_see_analysis": "Registre ao menos 2 alimentações.",
     "recent_activity": "Atividade Recente",
     "last_20_feedings": "Últimas 20 alimentações",
@@ -3824,5 +3871,41 @@
     "understanding_baking": "Understanding Assamento (Joseph Amendola)",
     "elements_of_pizza": "Os Elementos da Pizza (Ken Forkish)",
     "italian_decree": "Decreto Italiano sobre Farinhas (DPR 187/2001)"
+  },
+  "settings_page": {
+    "language_section": "Idioma",
+    "using_temp_as_base": "Usando {{temp}}°C como base para cálculos."
+  },
+  "toasts": {
+    "photo_upload_success": "Foto enviada com sucesso",
+    "photo_upload_error": "Falha ao enviar foto",
+    "pdf_export_error": "Não foi possível exportar o PDF neste momento."
+  },
+  "batch_detail": {
+    "edit_notes": "Editar",
+    "add_notes": "Adicionar",
+    "change_photo": "Alterar Foto",
+    "add_photo": "Adicionar Foto",
+    "copy_suffix": " (Cópia)"
+  },
+  "doughbot": {
+    "common_problems": {
+      "placeholder": "Selecione um problema comum...",
+      "sticky": "Massa muito pegajosa / úmida",
+      "tearing": "Massa rasga ao esticar",
+      "no_rise": "Massa não cresceu",
+      "dense": "Miolo denso / sem bolhas de ar",
+      "gummy": "Base mal cozida / gordo",
+      "shrinking": "Massa volta ao esticar / encolhe",
+      "flat": "Massa achatada (panqueca)",
+      "pale": "Crosta pálida / sem cor",
+      "burnt": "Fundo queimado antes de assar em cima"
+    },
+    "common_issue_label": "Problema Comum (opcional)",
+    "description_placeholder": "Ex: Minha massa com 65% de hidratação ficou na geladeira por 24h. Quando tentei abrir as bolas, elas estavam super elásticas e encolhiam...",
+    "tips_hint": "Quanto mais detalhes você fornecer sobre temperatura, tempo e farinha, melhor será o diagnóstico.",
+    "analysis_result": "Analisei seus parâmetros de massa e identifiquei <span class=\"font-bold text-lime-700\">{{count}} fatores críticos</span> afetando seus resultados.",
+    "upgrade_hint": "Obtenha a receita de correção científica exata para consertar sua massa imediatamente, além de acesso a todos os mais de 40 estilos avançados.",
+    "upgrade_cta": "Ver Solução e Atualizar"
   }
 }

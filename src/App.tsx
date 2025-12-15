@@ -72,15 +72,16 @@ function AppContent() {
   const [showMainOnboarding, setShowMainOnboarding] = useState(false);
 
   // Main Onboarding Logic
-  useEffect(() => {
-    if (user && isAuthenticated && !user.onboardingCompleted) {
-      // Check if we maybe stored it locally for guests/interim
-      const localCompleted = localStorage.getItem('dlp_onboarding_completed') === 'true';
-      if (!localCompleted) {
-        setShowMainOnboarding(true);
-      }
-    }
-  }, [user, isAuthenticated]);
+  // Main Onboarding Logic - DISABLED BY USER REQUEST
+  // useEffect(() => {
+  //   if (user && isAuthenticated && !user.onboardingCompleted) {
+  //     // Check if we maybe stored it locally for guests/interim
+  //     const localCompleted = localStorage.getItem('dlp_onboarding_completed') === 'true';
+  //     if (!localCompleted) {
+  //       setShowMainOnboarding(true);
+  //     }
+  //   }
+  // }, [user, isAuthenticated]);
 
   const handleMainOnboardingComplete = () => {
     localStorage.setItem('dlp_onboarding_completed', 'true');

@@ -2109,7 +2109,31 @@
     "advanced_calculator": "Avançado Calculator",
     "community_access": "Acesso à Comunidade",
     "ai_assistant": "Assistente de IA",
-    "maybe_later": "Talvez Depois"
+    "maybe_later": "Talvez Depois",
+    "ads": {
+      "catalog": {
+        "ooni_koda_16": {
+          "title": "Forno de Pizza a Gás Ooni Koda 16",
+          "description": "Asse pizza fresca na pedra em apenas 60 segundos.",
+          "ctaText": "Comprar Ooni"
+        },
+        "caputo_00_flour": {
+          "title": "Farinha Antimo Caputo Pizzeria 00",
+          "description": "O padrão ouro para massa de pizza Napolitana.",
+          "ctaText": "Comprar Agora"
+        },
+        "gozney_dome": {
+          "title": "Gozney Dome",
+          "description": "O forno externo profissional. Asse, defume, cozinhe no vapor ou asse pães.",
+          "ctaText": "Descubra o Dome"
+        },
+        "challenger_bread_pan": {
+          "title": "Panela de Pão Challenger",
+          "description": "Asse o pão de fermentação natural perfeito em casa.",
+          "ctaText": "Comprar a Panela"
+        }
+      }
+    }
   },
   "assistant_page": {
     "error": "Erro",

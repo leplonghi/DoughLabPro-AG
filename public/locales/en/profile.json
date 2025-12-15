@@ -1,0 +1,39 @@
+{
+    "name": "Name",
+    "email": "Email",
+    "free_member": "Free Member",
+    "not_logged_in": "Please log in to view your profile.",
+    "edit_profile": "Edit Profile",
+    "cancel": "Cancel",
+    "genders": {
+        "male": "Male",
+        "female": "Female",
+        "non_binary": "Non-binary",
+        "other": "Other",
+        "prefer_not_to_say": "Prefer not to say"
+    },
+    "ovens": {
+        "title": "My Ovens",
+        "add_oven": "Add Oven",
+        "empty_state": "No ovens added yet. Configure your baking environment.",
+        "types": {
+            "electric_home": "Electric Home Oven",
+            "gas_home": "Gas Home Oven",
+            "wood_fired": "Wood Fired Oven",
+            "deck_oven": "Deck Oven",
+            "convection": "Convection Oven",
+            "ooni": "Ooni",
+            "gozney": "Gozney",
+            "breville": "Breville Pizzaiolo"
+        }
+    },
+    "levains": {
+        "title": "My Levains",
+        "add_levain": "Add Levain",
+        "empty_state": "No levains tracked. Start your culture journey."
+    },
+    "resources": {
+        "tech_references": "Technical References",
+        "flours_library": "Flours Library"
+    }
+}

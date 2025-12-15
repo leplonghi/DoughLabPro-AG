@@ -22,7 +22,7 @@ const ChoiceButton: React.FC<{
 );
 
 const SettingsPage: React.FC = () => {
-  const { t, locale, setLocale } = useTranslation();
+  const { t, locale, setLocale } = useTranslation(['settings', 'common', 'profile']);
   const {
     defaultAmbientTempC,
     setDefaultAmbientTempC,
@@ -37,7 +37,7 @@ const SettingsPage: React.FC = () => {
         onClick={() => window.history.back()}
         className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors"
       >
-        &larr; Back
+        &larr; {t('common.back')}
       </button>
 
       <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-10">
@@ -68,28 +68,7 @@ const SettingsPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Language Selection */}
-          <div className="border-t border-slate-200 pt-6">
-            <h2 className="text-lg font-semibold text-slate-800 mb-4">Language / Idioma</h2>
-            <div className="grid grid-cols-3 gap-3">
-              <ChoiceButton
-                active={locale === 'en'}
-                onClick={() => setLocale('en')}
-              >{t('common.english')}</ChoiceButton>
-              <ChoiceButton
-                active={locale === 'pt'}
-                onClick={() => setLocale('pt')}
-              >
-                Português
-              </ChoiceButton>
-              <ChoiceButton
-                active={locale === 'es'}
-                onClick={() => setLocale('es')}
-              >
-                Español
-              </ChoiceButton>
-            </div>
-          </div>
+
 
           {/* Environment Defaults */}
           <div className="border-t border-slate-200 pt-6">
@@ -109,7 +88,7 @@ const SettingsPage: React.FC = () => {
                     className="block w-32 rounded-lg border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm p-2.5 border"
                   />
                   <span className="text-sm text-slate-500">
-                    Using {defaultAmbientTempC}°C as base for calculations.
+                    {t('settings_page.using_temp_as_base', { temp: defaultAmbientTempC })}
                   </span>
                 </div>
               </div>

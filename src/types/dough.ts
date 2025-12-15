@@ -63,6 +63,7 @@ export interface DoughSpecs {
     ovenTemp: { ideal: number; min: number; max: number }; // Celsius
     fermentationTime: string; // ex: "24h"
     difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
+    ballWeight?: { recommended: number; min: number; max: number };
 }
 
 
