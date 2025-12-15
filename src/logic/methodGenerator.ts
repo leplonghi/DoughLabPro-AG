@@ -194,7 +194,7 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
     }
 
     // --- LAMINATED PATHWAY (Croissant, Danish, Puff) ---
-    const isLaminated = [RecipeStyle.FRENCH_CROISSANT, RecipeStyle.PASTRY_DANISH, Puffpastry].includes(config.recipeStyle);
+    const isLaminated = [RecipeStyle.FRENCH_CROISSANT, RecipeStyle.PASTRY_DANISH, RecipeStyle.PUFF_PASTRY].includes(config.recipeStyle);
 
     if (isLaminated) {
         addStep(

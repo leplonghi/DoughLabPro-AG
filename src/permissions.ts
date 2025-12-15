@@ -1,6 +1,5 @@
 
 import { User } from './types';
-import { useTranslation } from '@/i18n';
 
 export type PlanId = 'free' | 'calculator_unlock' | 'lab_pro';
 
@@ -48,6 +47,9 @@ export type FeatureKey =
     | 'levain.multipleLevains'
     | 'levain.exportPDF'
     | 'calculator.advanced_ingredients';
+
+export type PlanType = PlanId;
+export type PermissionKey = FeatureKey;
 
 export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     // Calculator

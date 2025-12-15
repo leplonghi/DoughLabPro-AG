@@ -22,7 +22,6 @@ const ChoiceButton: React.FC<{
 );
 
 const SettingsPage: React.FC = () => {
-  const { t } = useTranslation();
   const { t, locale, setLocale } = useTranslation();
   const {
     defaultAmbientTempC,

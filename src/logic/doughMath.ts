@@ -1,6 +1,5 @@
 
 import { DoughConfig, DoughResult, IngredientConfig, YeastType, FermentationTechnique, Levain, CalculationMode } from '../types';
-import { useTranslation } from '@/i18n';
 
 // --- Helpers ---
 
@@ -277,7 +276,7 @@ export const calculateDoughUniversal = (
     let hVal = ingDef?.hydrationContent ?? 0;
     if (ingDef?.role === 'water') hVal = 1.0;
     else if (ingDef?.role === 'fat') hVal = 0; // Oil
-    else if (ingDef?.type === 'liquid' && ingDef?.role !== 'fat') hVal = 1.0; // Fallback
+    else if (ingDef && ingDef.type === 'liquid') hVal = 1.0; // Fallback
 
     actualTotalWater += iw.weight * hVal;
   });

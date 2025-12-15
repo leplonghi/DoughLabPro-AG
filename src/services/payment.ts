@@ -1,6 +1,8 @@
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { loadStripe } from "@stripe/stripe-js";
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 // Initialize Stripe with your Publishable Key
 // TODO: Replace with your actual Publishable Key or use an env variable

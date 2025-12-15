@@ -1,5 +1,5 @@
 import { User } from '../types';
-import { useTranslation } from '@/i18n';
+// import { useTranslation } from '@/i18n'; // Removed unused import
 
 export type FeatureKey =
     | "calculator_advanced"
@@ -45,9 +45,9 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, Plan> = {
 };
 
 export function getUserPlan(user: User | null): "free" | "pro" {
-    if (!user) return t('ui.free_5');
+    if (!user) return "free";
     if (user.plan === 'pro' || user.plan === 'lab_pro') return 'pro';
-    return t('ui.free_6');
+    return "free";
 }
 
 export function canUseFeature(user: User | null, featureKey: FeatureKey): boolean {

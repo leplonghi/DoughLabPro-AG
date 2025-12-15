@@ -33,7 +33,7 @@ import { useTranslation } from '@/i18n';
 
 // --- ADAPTER: Legacy/Registry (V2) -> UI (V3) ---
 // This ensures that American/European styles (V2 Definitions) can be rendered by this V3 Page.
-function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
+function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, options?: any) => string): DoughStyle {
     // 1. Parse Fermentation Steps from Strings to Objects
     const processSteps: ProcessStep[] = def.technicalProfile.fermentationSteps.map((stepStr, index) => {
         // Format assumption: "Title. [Science: Explanation]"
@@ -129,7 +129,7 @@ function mapDefinitionToStyle(def: DoughStyleDefinition): DoughStyle {
 
 // 1. Scientific Process Timeline (Improved V2)
 const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div className="relative space-y-8 pl-6 md:pl-0">
             {/* Main Connector Line */}
@@ -219,6 +219,7 @@ interface StyleDetailPageProps {
 
 // 3. Education Section Component
 const EducationSection: React.FC<{ education: any }> = ({ education }) => {
+    const { t } = useTranslation();
     if (!education) return null;
 
     return (
@@ -368,6 +369,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
 
 // 4. Deep Dive Section Component (New Expert Module)
 const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
+    const { t } = useTranslation();
     if (!deepDive) return null;
 
     return (
@@ -472,6 +474,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
 };
 
 export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initialStyle, onLoadAndNavigate, onBack }) => {
+    const { t } = useTranslation();
     const { isFavorite, toggleFavorite, userStyles, updateUserStyle, user } = useUser();
     const [styleData, setStyleData] = useState<DoughStyle | null>(null);
     const [viewFormula, setViewFormula] = useState<any[]>([]);
@@ -548,11 +551,11 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
 
         if (foundDef) {
             // Convert Registry Definition (V2) -> Page Style (V3)
-            const adaptedStyle = mapDefinitionToStyle(foundDef);
+            const adaptedStyle = mapDefinitionToStyle(foundDef, t);
             setStyleData(adaptedStyle);
             setViewFormula(adaptedStyle.base_formula || []);
         }
-    }, [initialStyle]);
+    }, [initialStyle, t]);
 
     if (!styleData) return (
         <LibraryPageLayout>

@@ -29,7 +29,7 @@ interface HeaderComponentProps extends Omit<NavigationProps, 'activePage'> {
 }
 
 const ProBadge = () => (
-    <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">{t('common.pro')}</span>
+    <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">PRO</span>
 );
 
 const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {

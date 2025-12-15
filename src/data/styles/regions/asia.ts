@@ -34,7 +34,7 @@ export const asiaStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "High Protein (W350+)",
-                pl_ratio: 'Balanced 3',
+                pl_ratio: 'Balanced',
                 absorption_capacity: 'High',
                 protein_type: 'Strong wheat',
                 science_explanation: 'High protein is required to support enrichment (fat/sugar) and the high hydration of the Tangzhong.'
@@ -46,9 +46,9 @@ export const asiaStyles: DoughStyle[] = [
                 crumb_structure: 'Feathery shreddable'
             },
             fermentationScience: {
-                yeast_activity: 'High 2',
+                yeast_activity: 'High',
                 ph_target: 'Normal',
-                organic_acids: 'Balanced 4',
+                organic_acids: 'Balanced',
                 enzymatic_activity: "High (Starch Gelatinization)"
             },
             processScience: 'The Tangzhong method (pre-gelatinizing 5-10% of the flour at 65°C) captures water in a stable starch structure, preventing it from evaporating or migrating, resulting in prolonged softness.'
@@ -116,7 +116,7 @@ export const asiaStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "Medium (W240-260)",
                 pl_ratio: "Extensible (Low P/L)",
-                absorption_capacity: 'Medium 42',
+                absorption_capacity: 'Medium',
                 protein_type: "Maida / AP",
                 science_explanation: 'Extensibility is key to stretching the Naan into a teardrop shape without tearing. Gluten must be relaxed.'
             },
@@ -210,8 +210,8 @@ export const asiaStyles: DoughStyle[] = [
             fermentationScience: {
                 yeast_activity: 'Moderate',
                 ph_target: 'Neutral',
-                organic_acids: 'None 2',
-                enzymatic_activity: 'Low 2'
+                organic_acids: 'None',
+                enzymatic_activity: 'Low'
             },
             processScience: 'Steaming (constant 100°C) prevents the Maillard reaction (which occurs above 140°C), maintaining the pure white color and smooth skin, without a crispy crust.'
         },
@@ -278,8 +278,8 @@ export const asiaStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W200240',
-                pl_ratio: 'Balanced 5',
-                absorption_capacity: 'Medium 45',
+                pl_ratio: 'Balanced',
+                absorption_capacity: 'Medium',
                 protein_type: "All Purpose / Bleached",
                 science_explanation: 'Bleached flour (Hong Kong Flour) is often preferred for the snowy white color and lower protein (tenderness). Unbleached flour results in a yellowish bun.'
             },
@@ -292,8 +292,8 @@ export const asiaStyles: DoughStyle[] = [
             fermentationScience: {
                 yeast_activity: 'Moderate 2',
                 ph_target: 'Neutral 2',
-                organic_acids: 'Low 3',
-                enzymatic_activity: 'Standard 6'
+                organic_acids: 'Low',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'Steaming cooks the starch at 100°C. Since Maillard requires ~140°C, the bun stays white. The crucial step is the Second proof - if effectively timed, the bun surface is smooth. If overproofed, it wrinkles upon cooling.'
         },
@@ -360,7 +360,7 @@ export const asiaStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "N/A (Atta)",
                 pl_ratio: "Extensible (Bran)",
-                absorption_capacity: 'High 3',
+                absorption_capacity: 'High',
                 protein_type: 'Durumlike wheat',
                 science_explanation: 'Atta is stone-ground whole wheat. The high bran content cuts gluten strands (low elasticity), but absorbs lots of water. 30min autolyse/rest is essential to hydrate the bran.'
             },
@@ -371,10 +371,10 @@ export const asiaStyles: DoughStyle[] = [
                 crumb_structure: 'Laminated layers'
             },
             fermentationScience: {
-                yeast_activity: 'None 3',
+                yeast_activity: 'None',
                 ph_target: 'Neutral 3',
-                organic_acids: 'None 4',
-                enzymatic_activity: 'Standard 7'
+                organic_acids: 'None',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'Lamination without yeast: The layers are separated by Ghee. Steam generated from the water in the dough pushes the layers apart (mechanical leavening) while the Ghee prevents them from fusing.'
         },

@@ -40,16 +40,16 @@ export const latamStyles: DoughStyle[] = [
                 science_explanation: 'Cassava Starch (Polvilho) contains no gluten. Its structure comes from retrogradation and gelation of amylopectin/amylose networks.'
             },
             thermalProfile: {
-                oven_type: 'Convection 4',
-                heat_distribution: 'Even 4',
+                oven_type: 'Convection',
+                heat_distribution: 'Even',
                 crust_development: 'Crispy spotted',
                 crumb_structure: 'Chewy airy center'
             },
             fermentationScience: {
-                yeast_activity: 'None 6',
+                yeast_activity: 'None',
                 ph_target: "Acidic (Polvilho Azedo)",
                 organic_acids: "Lactic (Fermented Starch)",
-                enzymatic_activity: 'None 7'
+                enzymatic_activity: 'None'
             },
             processScience: 'The Scald (Escaldo) denatures the starch proteins and pre-gelatinizes the granules, allowing them to absorb more liquid and swell. The expansion in the oven is purely physical (steam expansion) trapped by the coagulated egg proteins and starch gel.'
         },
@@ -119,21 +119,21 @@ export const latamStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "Type 1 (W280)",
-                pl_ratio: 'Balanced 7',
-                absorption_capacity: 'Medium 63',
+                pl_ratio: 'Balanced',
+                absorption_capacity: 'Medium',
                 protein_type: 'Brazilian wheat',
                 science_explanation: 'Requires protein adequate for volume but extensible enough for the "pestana" (split) to open.'
             },
             thermalProfile: {
                 oven_type: "Deck (Steam)",
-                heat_distribution: 'Conduction  steam 2',
+                heat_distribution: 'Conduction  steam',
                 crust_development: 'Crackling thin',
                 crumb_structure: 'Cottonlike'
             },
             fermentationScience: {
-                yeast_activity: 'High 9',
+                yeast_activity: 'High',
                 ph_target: 'Neutral 4',
-                organic_acids: 'Low 12',
+                organic_acids: 'Low',
                 enzymatic_activity: "High (Sugar added)"
             },
             processScience: 'The Pestana is critical—a cut that allows expansion. Steam ensures the crust remains flexible initially for max volume, then gelatinizes surface starch for the signature "crackling" crispy finish.'
@@ -202,8 +202,8 @@ export const latamStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W260280 2',
-                pl_ratio: 'Extensible 4',
-                absorption_capacity: 'Medium 65',
+                pl_ratio: 'Extensible',
+                absorption_capacity: 'Medium',
                 protein_type: "Argentine Wheat (000/0000)",
                 science_explanation: 'Extensible dough needed to cover the pan and the stuffing without tearing.'
             },
@@ -214,10 +214,10 @@ export const latamStyles: DoughStyle[] = [
                 crumb_structure: "Dense/Bready"
             },
             fermentationScience: {
-                yeast_activity: 'Standard 12',
-                ph_target: 'Normal 7',
-                organic_acids: 'Low 13',
-                enzymatic_activity: 'Standard 13'
+                yeast_activity: 'Standard',
+                ph_target: 'Normal',
+                organic_acids: 'Low',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'The onions on top release moisture, steaming the upper crust and preventing it from burning while the interior cheese melts. The double structure acts as an insulator, requiring lower temp/longer bake than Neapolitan.'
         },
@@ -296,22 +296,22 @@ export const latamStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W300320',
-                pl_ratio: 'Extensible 5',
-                absorption_capacity: 'Medium 66',
-                protein_type: 'Strong wheat 6',
+                pl_ratio: 'Extensible',
+                absorption_capacity: 'Medium',
+                protein_type: 'Strong wheat',
                 science_explanation: 'Strong flour is needed to support lamination, but the dough is richer and heavier than croissant dough.'
             },
             thermalProfile: {
-                oven_type: 'Convection 5',
-                heat_distribution: 'Even 5',
+                oven_type: 'Convection',
+                heat_distribution: 'Even',
                 crust_development: "Sticky (Syrup)",
                 crumb_structure: 'Tight layers'
             },
             fermentationScience: {
-                yeast_activity: 'Standard 14',
-                ph_target: 'Normal 8',
-                organic_acids: 'Low 14',
-                enzymatic_activity: 'Standard 15'
+                yeast_activity: 'Standard',
+                ph_target: 'Normal',
+                organic_acids: 'Low',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'The "Almíbar" (Syrup) soak is scientifically crucial. It keeps the pastry moist for days (hygroscopic) and softens the crust, differentiating it from the shattering crispness of a French croissant.'
         },
@@ -378,22 +378,22 @@ export const latamStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W240260 2',
-                pl_ratio: 'Balanced 8',
-                absorption_capacity: 'Medium 68',
+                pl_ratio: 'Balanced',
+                absorption_capacity: 'Medium',
                 protein_type: "AP",
                 science_explanation: 'We want softness, not chew. AP flour is perfect. The strength comes from the egg/butter structure.'
             },
             thermalProfile: {
-                oven_type: 'Convection 6',
-                heat_distribution: 'Even 6',
+                oven_type: 'Convection',
+                heat_distribution: 'Even',
                 crust_development: 'Cookie topping',
                 crumb_structure: 'Soft cottony'
             },
             fermentationScience: {
                 yeast_activity: "High (Sugar)",
-                ph_target: 'Normal 9',
-                organic_acids: 'Low 15',
-                enzymatic_activity: 'Standard 16'
+                ph_target: 'Normal',
+                organic_acids: 'Low',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'The topping is a separate Short dough (1:1:1 Sugar/Fat/Flour). It has no gluten development, so it cracks as the bun expands, creating the pattern.'
         },
@@ -437,9 +437,9 @@ export const latamStyles: DoughStyle[] = [
     {
         id: "brazilian_gas_deck",
         name: "Pizza Paulistana (Gas Deck)",
-        region: 'South america',
+        region: 'South America',
         subRegion: 'São paulo brazil',
-        category: 'Pizza 19',
+        category: 'Pizza',
         recipeStyle: RecipeStyle.PAN_PIZZA,
         tags: ["brazil", "heavy-toppings", "catupiry", "sao-paulo"],
         description: "The São Paulo powerhouse. Medium thickness, capable of holding massive amounts of toppings (Catupiry, chicken, sausage). Crisp bottom, soft center.",
@@ -467,8 +467,8 @@ export const latamStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W280320 2',
-                pl_ratio: 'Balanced 9',
-                absorption_capacity: 'Medium 69',
+                pl_ratio: 'Balanced',
+                absorption_capacity: 'Medium',
                 protein_type: 'Standard wheat',
                 science_explanation: "A 'Workhorse' flour. It needs to be strong enough to carry heavy cheese/toppings but not so tough that it fights back when rolled out."
             },
@@ -479,9 +479,9 @@ export const latamStyles: DoughStyle[] = [
                 crumb_structure: 'Dense supporting'
             },
             fermentationScience: {
-                yeast_activity: 'Standard 17',
-                ph_target: 'Normal 10',
-                organic_acids: 'Low 16',
+                yeast_activity: 'Standard',
+                ph_target: 'Normal',
+                organic_acids: 'Low',
                 enzymatic_activity: 'Moderate 7'
             },
             processScience: 'The dough must support 1kg+ of toppings. A short maturation (24h) balances flavor with structural integrity.'
@@ -519,9 +519,9 @@ export const latamStyles: DoughStyle[] = [
     {
         id: "arepa",
         name: 'Venezuelan arepa',
-        region: 'South america 2',
+        region: 'South America',
         subRegion: "Venezuela/Colombia",
-        category: 'Flatbread 4',
+        category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Corn', 'Gluten free 2', 'Stuffed 2'],
         description: "A round cornmeal cake made from pre-cooked corn flour (Harina P.A.N.). Crunchy outside, soft and steamy inside, perfect for stuffing.",
@@ -554,15 +554,15 @@ export const latamStyles: DoughStyle[] = [
             },
             thermalProfile: {
                 oven_type: "Budare (Griddle)",
-                heat_distribution: 'Conduction 6',
+                heat_distribution: 'Conduction',
                 crust_development: 'Charred spots',
                 crumb_structure: 'Dense moist steamy'
             },
             fermentationScience: {
-                yeast_activity: 'None 8',
+                yeast_activity: 'None',
                 ph_target: 'Neutral 5',
-                organic_acids: 'None 9',
-                enzymatic_activity: 'Low 17'
+                organic_acids: 'None',
+                enzymatic_activity: 'Low'
             },
             processScience: 'Gelatinization is already done at the factory. We are just re-hydrating the matrix. The rest period allows the water to distribute evenly into the largest particles.'
         },
@@ -599,9 +599,9 @@ export const latamStyles: DoughStyle[] = [
     {
         id: "empanada-dough",
         name: "Empanada Dough (Tapas)",
-        region: 'South america 3',
+        region: 'South America',
         subRegion: 'Argentina',
-        category: 'Pastry 13',
+        category: 'Pastry',
         recipeStyle: RecipeStyle.MASSA_TORTA, // Fallback if no Pastry style
         tags: ['Lard', 'Fried 2', 'Frying dough'],
         description: "The wrapper for the famous Argentine empanada. Known as 'Masa para Tapas'. It is a low-hydration, high-fat dough designed to bubble and blister when fried.",
@@ -627,9 +627,9 @@ export const latamStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W200240 2',
-                pl_ratio: 'Extensible 6',
-                absorption_capacity: 'Low 18',
-                protein_type: 'Soft wheat 2',
+                pl_ratio: 'Extensible',
+                absorption_capacity: 'Low',
+                protein_type: 'Soft wheat',
                 science_explanation: 'Low hydration + High Fat = Short dough. The hot water denatures some protein, reducing elasticity (snap-back) so it can be rolled very thin.'
             },
             thermalProfile: {
@@ -639,10 +639,10 @@ export const latamStyles: DoughStyle[] = [
                 crumb_structure: 'Flaky'
             },
             fermentationScience: {
-                yeast_activity: 'None 10',
+                yeast_activity: 'None',
                 ph_target: 'Neutral 6',
-                organic_acids: 'None 11',
-                enzymatic_activity: 'Low 19'
+                organic_acids: 'None',
+                enzymatic_activity: 'Low'
             },
             processScience: 'The high fat content creates microscopic layers (shortening). When fried, trapped steam forms blisters on the surface.'
         },

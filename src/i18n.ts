@@ -18,8 +18,6 @@ i18n
     debug: import.meta.env.DEV, // Enable debug in dev mode
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
-      prefix: '{',
-      suffix: '}'
     },
     backend: {
       loadPath: '/locales/{{lng}}/translation.json',
@@ -30,23 +28,14 @@ i18n
       lookupLocalStorage: 'i18nextLng',
     },
     react: {
-      useSuspense: true
+      useSuspense: false
     }
   });
 
 export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
-  return React.createElement(
-    Suspense,
-    {
-      fallback: React.createElement(
-        'div',
-        { className: "flex h-screen items-center justify-center" },
-        React.createElement(LoadingSpinner)
-      )
-    },
-    children
-  );
+  // Removed unused useTranslation call which was causing root-level suspense
+  // const { t } = useTranslation();
+  return React.createElement(React.Fragment, null, children);
 };
 
 export const useTranslation = () => {

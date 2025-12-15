@@ -29,41 +29,44 @@ const ToolCardView: React.FC<{
     isLocked?: boolean;
     isNew?: boolean;
     preview?: string;
-}> = ({ icon, title, description, onClick, isLocked, isNew, preview }) => (
-    <button
-        onClick={onClick}
-        className="group h-full text-left flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative overflow-hidden hover:border-lime-500"
-    >
-        <div className="flex items-start justify-between mb-4 relative z-10">
-            <div className={`p-3 rounded-xl transition-colors duration-300 ${isLocked ? 'bg-slate-100 text-slate-400' : 'bg-lime-50 text-lime-600 group-hover:bg-lime-500 group-hover:text-white'}`}>
-                {React.cloneElement(icon as React.ReactElement, { className: "h-8 w-8" })}
-            </div>
-            <div className="flex gap-2">
-                {isNew && (
-                    <span className="px-2 py-1 text-xs font-bold text-lime-700 bg-lime-100 rounded-full">{t('common.new')}</span>
-                )}
-                {isLocked && (
-                    <span className="px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-amber-900 bg-gradient-to-r from-amber-200 to-yellow-400 rounded-full flex items-center gap-1 shadow-sm">
-                        <LockClosedIcon className="h-3 w-3" />{t('common.pro')}</span>
-                )}
-            </div>
-        </div>
-
-        <div className="relative z-10">
-            <h3 className="text-xl font-bold text-slate-900 group-hover:text-lime-700 transition-colors duration-300 mb-2">
-                {title}
-            </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-                {description}
-            </p>
-            {isLocked && preview && (
-                <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs text-slate-500 italic">
-                    <span className="font-semibold text-slate-600 not-italic">{t('tools.pro_insight')}</span> {preview}
+}> = ({ icon, title, description, onClick, isLocked, isNew, preview }) => {
+    const { t } = useTranslation();
+    return (
+        <button
+            onClick={onClick}
+            className="group h-full text-left flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative overflow-hidden hover:border-lime-500"
+        >
+            <div className="flex items-start justify-between mb-4 relative z-10">
+                <div className={`p-3 rounded-xl transition-colors duration-300 ${isLocked ? 'bg-slate-100 text-slate-400' : 'bg-lime-50 text-lime-600 group-hover:bg-lime-500 group-hover:text-white'}`}>
+                    {React.cloneElement(icon as React.ReactElement, { className: "h-8 w-8" })}
                 </div>
-            )}
-        </div>
-    </button>
-);
+                <div className="flex gap-2">
+                    {isNew && (
+                        <span className="px-2 py-1 text-xs font-bold text-lime-700 bg-lime-100 rounded-full">{t('common.new')}</span>
+                    )}
+                    {isLocked && (
+                        <span className="px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-amber-900 bg-gradient-to-r from-amber-200 to-yellow-400 rounded-full flex items-center gap-1 shadow-sm">
+                            <LockClosedIcon className="h-3 w-3" />{t('common.pro')}</span>
+                    )}
+                </div>
+            </div>
+
+            <div className="relative z-10">
+                <h3 className="text-xl font-bold text-slate-900 group-hover:text-lime-700 transition-colors duration-300 mb-2">
+                    {title}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                    {description}
+                </p>
+                {isLocked && preview && (
+                    <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs text-slate-500 italic">
+                        <span className="font-semibold text-slate-600 not-italic">{t('tools.pro_insight')}</span> {preview}
+                    </div>
+                )}
+            </div>
+        </button>
+    );
+};
 
 const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     const { t } = useTranslation();

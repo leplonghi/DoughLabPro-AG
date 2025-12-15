@@ -142,18 +142,18 @@ export const italianStyles: DoughStyle[] = [
             ],
             fermentation_methods: [
                 {
-                    method: 'Direct 8',
-                    suitability: 'Authentic 5',
+                    method: 'Direct',
+                    suitability: 'Authentic',
                     notes: 'The gold standard for stg 24h at room temp creates'
                 },
                 {
-                    method: 'Poolish 3',
+                    method: 'Poolish',
                     suitability: 'Possible',
                     notes: "Used for 'Canotto' style to get explosive cornichone. Makes dough very extensible."
                 },
                 {
-                    method: 'Biga 2',
-                    suitability: 'Possible 2',
+                    method: 'Biga',
+                    suitability: 'Possible',
                     notes: 'Adds chewiness and complex acidity harder to manag'
                 }
             ]
@@ -308,8 +308,8 @@ export const italianStyles: DoughStyle[] = [
             ],
             fermentation_methods: [
                 {
-                    method: 'Direct 9',
-                    suitability: 'Ideal 5',
+                    method: 'Direct',
+                    suitability: 'Ideal',
                     notes: "The standard Cold Ferment (4°C for 24-48h). Essential for handling 80% hydration."
                 }
             ]
@@ -372,7 +372,7 @@ export const italianStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "W240 (Medium)",
                 pl_ratio: "Low Elasticity (No Nerve)",
-                absorption_capacity: 'Medium 54',
+                absorption_capacity: 'Medium',
                 protein_type: 'Type 00 2',
                 science_explanation: "Medium strength (W240). We don't want extreme elasticity because we manually roll it flat. Too much nerve (elasticity) makes it shrink back."
             },
@@ -383,9 +383,9 @@ export const italianStyles: DoughStyle[] = [
                 crumb_structure: 'Tight dense'
             },
             fermentationScience: {
-                yeast_activity: 'Standard 11',
-                ph_target: 'Normal 4',
-                organic_acids: 'Low 9',
+                yeast_activity: 'Standard',
+                ph_target: 'Normal',
+                organic_acids: 'Low',
                 enzymatic_activity: 'Moderate 4'
             },
             processScience: "Evaporation is the goal. Low hydration + Oil + Rolling Pin = Dehydration. We are effectively frying the dough in its own oil and drying it out to create a biscuit structure."
@@ -465,8 +465,8 @@ export const italianStyles: DoughStyle[] = [
             ],
             fermentation_methods: [
                 {
-                    method: 'Direct 10',
-                    suitability: 'Authentic 6',
+                    method: 'Direct',
+                    suitability: 'Authentic',
                     notes: "Short warm fermentation (6-24h) is standard for this quick-service style."
                 }
             ]
@@ -529,8 +529,8 @@ export const italianStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "W260-280 (Medium)",
-                pl_ratio: 'Extensible 3',
-                absorption_capacity: 'Medium 56',
+                pl_ratio: 'Extensible',
+                absorption_capacity: 'Medium',
                 protein_type: 'Soft wheat',
                 science_explanation: "Uses a Medium strength flour (W260-280). We don't want extreme elasticity; the dough must be extensible enough to fill the pan corners without fighting back."
             },
@@ -542,9 +542,9 @@ export const italianStyles: DoughStyle[] = [
             },
             fermentationScience: {
                 yeast_activity: 'Fast 2',
-                ph_target: 'Normal 5',
-                organic_acids: 'Low 10',
-                enzymatic_activity: 'High 8'
+                ph_target: 'Normal',
+                organic_acids: 'Low',
+                enzymatic_activity: 'High'
             },
             processScience: "The Core Science is the 'Salamoia' (Brine Emulsion). Pouring a mix of water and oil over the dough before baking creates a thermal barrier. The liquid pools in the dimples, preventing the dough there from exceeding 100°C. This essentially boils the dough in the holes (keeping them white/soft) while the ridges fry in oil (becoming golden/crisp)."
         },
@@ -625,8 +625,8 @@ export const italianStyles: DoughStyle[] = [
             ],
             fermentation_methods: [
                 {
-                    method: 'Direct 11',
-                    suitability: 'Authentic 7',
+                    method: 'Direct',
+                    suitability: 'Authentic',
                     notes: 'Standard direct dough heavily enriched with oil'
                 }
             ]
@@ -689,7 +689,7 @@ export const italianStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "Varies (Semolina Blend)",
                 pl_ratio: "Short (Fat)",
-                absorption_capacity: 'Medium 58',
+                absorption_capacity: 'Medium',
                 protein_type: "Semolina/Wheat Blend",
                 science_explanation: "Semolina Remilled (Rimacinata) mixed with soft wheat. The hard grain provides a specific 'bite' and golden color."
             },
@@ -701,8 +701,8 @@ export const italianStyles: DoughStyle[] = [
             },
             fermentationScience: {
                 yeast_activity: 'Moderate 5',
-                ph_target: 'Normal 6',
-                organic_acids: 'Low 11',
+                ph_target: 'Normal',
+                organic_acids: 'Low',
                 enzymatic_activity: 'Moderate 6'
             },
             processScience: "Fat coating. The use of Lard (Strutto) shortens the gluten strands, creating a soft, cake-like crumb ('Sponge') rather than a chewy bread."
@@ -770,8 +770,8 @@ export const italianStyles: DoughStyle[] = [
             ],
             fermentation_methods: [
                 {
-                    method: 'Direct 12',
-                    suitability: 'Authentic 8',
+                    method: 'Direct',
+                    suitability: 'Authentic',
                     notes: 'Fast rising sponge'
                 }
             ]
@@ -832,13 +832,13 @@ export const italianStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: 'Weakmedium',
                 pl_ratio: "Slack (No Salt)",
-                absorption_capacity: 'Medium 60',
-                protein_type: 'Soft wheat type 0',
+                absorption_capacity: 'Medium',
+                protein_type: 'Soft wheat type',
                 science_explanation: "Uses weak-medium flour. Without salt to tighten the gluten network, the dough is chemically slack and ferments much faster."
             },
             thermalProfile: {
                 oven_type: "Wood Fired/Hearth",
-                heat_distribution: 'Radiant 3',
+                heat_distribution: 'Radiant',
                 crust_development: 'Thick hard pale',
                 crumb_structure: 'Irregular'
             },
@@ -899,7 +899,7 @@ export const italianStyles: DoughStyle[] = [
             ],
             comparative_analysis: [
                 {
-                    target_style: 'Sourdough 5',
+                    target_style: 'Sourdough',
                     difference: "Toscano is often sourdough based but specifically lacks salt, altering the chemistry significantly.",
                     why_choose_this: 'Choose toscano strictly for charcuterie boards'
                 }
@@ -913,8 +913,8 @@ export const italianStyles: DoughStyle[] = [
             ],
             fermentation_methods: [
                 {
-                    method: 'Sourdough 6',
-                    suitability: 'Authentic 9',
+                    method: 'Sourdough',
+                    suitability: 'Authentic',
                     notes: "Acidic preferments (Biga/Levain) are needed to strengthen the gluten in the absence of salt."
                 }
             ]
@@ -981,7 +981,7 @@ export const italianStyles: DoughStyle[] = [
             },
             thermalProfile: {
                 oven_type: "Deck (Steam)",
-                heat_distribution: 'Conduction 5',
+                heat_distribution: 'Conduction',
                 crust_development: 'Paperthin crispy',
                 crumb_structure: 'Massive alveoli'
             },
@@ -1070,13 +1070,13 @@ export const italianStyles: DoughStyle[] = [
             ],
             fermentation_methods: [
                 {
-                    method: 'Biga 3',
-                    suitability: 'Ideal 6',
+                    method: 'Biga',
+                    suitability: 'Ideal',
                     notes: 'Using a 100 biga preferment creates strength for t'
                 },
                 {
-                    method: 'Direct 13',
-                    suitability: 'Not recommended 2',
+                    method: 'Direct',
+                    suitability: 'Not Recommended',
                     notes: 'Hard to get the structure without chemical straigh'
                 }
             ]

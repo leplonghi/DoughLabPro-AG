@@ -18,7 +18,7 @@ export const OriginBadge: React.FC<{ origin: StyleDefinition['origin'] }> = ({ o
 );
 
 export const DifficultyBadge: React.FC<{ difficulty: string }> = ({ difficulty }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const colors = {
         Easy: 'bg-green-100 text-green-800',
         Medium: 'bg-yellow-100 text-yellow-800',
@@ -34,31 +34,38 @@ export const DifficultyBadge: React.FC<{ difficulty: string }> = ({ difficulty }
     );
 };
 
-export const DoughImpactList: React.FC<{ impacts: string[] }> = ({ impacts }) => (
-    <div className="space-y-2">
-        <h4 className="text-sm font-semibold text-stone-900 flex items-center">
-            <ChefHat className="w-4 h-4 mr-2 text-amber-600" />{t('common.dough_characteristics')}</h4>
-        <ul className="list-disc list-inside text-sm text-stone-600 space-y-1">
-            {impacts.map((impact, idx) => (
-                <li key={idx}>{impact}</li>
-            ))}
-        </ul>
-    </div>
-);
+export const DoughImpactList: React.FC<{ impacts: string[] }> = ({ impacts }) => {
+    const { t } = useTranslation();
+    return (
+        <div className="space-y-2">
+            <h4 className="text-sm font-semibold text-stone-900 flex items-center">
+                <ChefHat className="w-4 h-4 mr-2 text-amber-600" />{t('common.dough_characteristics')}</h4>
+            <ul className="list-disc list-inside text-sm text-stone-600 space-y-1">
+                {impacts.map((impact, idx) => (
+                    <li key={idx}>{impact}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
-export const BakingImpactList: React.FC<{ impacts: string[] }> = ({ impacts }) => (
-    <div className="space-y-2">
-        <h4 className="text-sm font-semibold text-stone-900 flex items-center">
-            <Thermometer className="w-4 h-4 mr-2 text-red-600" />{t('common.baking_profile')}</h4>
-        <ul className="list-disc list-inside text-sm text-stone-600 space-y-1">
-            {impacts.map((impact, idx) => (
-                <li key={idx}>{impact}</li>
-            ))}
-        </ul>
-    </div>
-);
+export const BakingImpactList: React.FC<{ impacts: string[] }> = ({ impacts }) => {
+    const { t } = useTranslation();
+    return (
+        <div className="space-y-2">
+            <h4 className="text-sm font-semibold text-stone-900 flex items-center">
+                <Thermometer className="w-4 h-4 mr-2 text-red-600" />{t('common.baking_profile')}</h4>
+            <ul className="list-disc list-inside text-sm text-stone-600 space-y-1">
+                {impacts.map((impact, idx) => (
+                    <li key={idx}>{impact}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
 export const RegionalVariantsGrid: React.FC<{ variants: string[] }> = ({ variants }) => {
+    const { t } = useTranslation();
     if (!variants || variants.length === 0) return null;
     return (
         <div className="mt-4">

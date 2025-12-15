@@ -4,6 +4,7 @@ import { diagnoseDoughIssue } from "@/ai/assistantClient";
 import { useTranslation } from '@/i18n';
 
 export const useDoughbot = () => {
+    const { t } = useTranslation();
     const [problem, setProblem] = useState("");
     const [description, setDescription] = useState("");
     const [result, setResult] = useState<DoughbotResult | null>(null);

@@ -20,11 +20,12 @@ import { SocialShare } from "@/marketing/social/SocialShare";
 
 interface MyLabBatchesPageProps {
     onNavigate: (page: Page, params?: string) => void;
-    onCreateDraftBatch: () =>Promise<Batch>;
+    onCreateDraftBatch: () => Promise<Batch>;
     onLoadAndNavigate: (config: any) => void;
 }
 
 const ResultTag: React.FC<{ rating: number }> = ({ rating }) => {
+    const { t } = useTranslation();
     if (rating >= 4.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-lime-100 text-lime-700 border border-lime-200">{t('mylab.great')}</span>;
     if (rating >= 3.5) return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200">{t('mylab.good')}</span>;
     return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-100 text-yellow-700 border border-yellow-200">{t('mylab.adjust')}</span>;

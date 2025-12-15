@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
-import { useTranslation } from '@/i18n';
 
 type ToastType = 'success' | 'error' | 'info' | 'warning';
 
@@ -16,7 +15,6 @@ interface ToastContextType {
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
     const [toasts, setToasts] = useState<Toast[]>([]);
 
     const addToast = useCallback((message: string, type: ToastType = 'info') => {

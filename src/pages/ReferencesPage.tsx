@@ -17,27 +17,30 @@ const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title
   </div>
 );
 
-const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description, link }) => (
-  <div className="rounded-xl bg-slate-50  p-4 border border-slate-100 ">
-    <div className="flex items-center justify-between">
-      <h3 className="text-lg font-semibold text-slate-900 ">{title}</h3>
-      {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1 text-sm font-bold text-lime-600  hover:underline"
-          aria-label={`Visit ${title}`}
-        >
-          <span>{t('general.visit')}</span>
-          <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-        </a>
-      )}
+const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description, link }) => {
+  const { t } = useTranslation();
+  return (
+    <div className="rounded-xl bg-slate-50  p-4 border border-slate-100 ">
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-slate-900 ">{title}</h3>
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-sm font-bold text-lime-600  hover:underline"
+            aria-label={`Visit ${title}`}
+          >
+            <span>{t('general.visit')}</span>
+            <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+          </a>
+        )}
+      </div>
+      <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-500 ">{type}</p>
+      <p className="mt-2 text-slate-600 ">{description}</p>
     </div>
-    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-500 ">{type}</p>
-    <p className="mt-2 text-slate-600 ">{description}</p>
-  </div>
-);
+  );
+};
 
 const ReferencesPage: React.FC = () => {
   const { t } = useTranslation();

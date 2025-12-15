@@ -19,14 +19,14 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
     className = "",
     blurAmount = 'sm'
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user, openPaywall } = useUser();
     const currentPlan: PlanType = user?.plan as PlanType || 'free';
 
     // If key is provided, check permission. If not, assume locked for non-pro.
     const isUnlocked = featureKey
         ? canUseFeature(currentPlan, featureKey)
-        : currentPlan === 'pro' || currentPlan === 'lab_pro';
+        : currentPlan === 'lab_pro';
 
     if (isUnlocked) {
         return <>{children}</>;
@@ -53,13 +53,13 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
                 <div className="rounded-full bg-slate-900 p-3 mb-3 shadow-lg group-hover:scale-110 transition-transform">
                     <LockClosedIcon className="h-6 w-6 text-lime-400" />
                 </div>
-                
+
                 <h3 className="text-lg font-bold text-slate-900 mb-1">{t('common.pro_feature')}</h3>
-                
+
                 <p className="text-sm text-slate-600 mb-4 max-w-[250px] leading-relaxed">
                     {customMessage || t('ui.upgrade_to_doughlab_pro_to_unlock_this_advanced_to')}
                 </p>
-                
+
                 <button
                     onClick={() => openPaywall('general')}
                     className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 group-hover:scale-105"

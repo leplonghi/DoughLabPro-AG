@@ -136,6 +136,7 @@ export const SummaryCard: React.FC<{
     ranges?: { min: string; max: string; optimal: string; unit: string };
     mistakes?: string[];
 }> = ({ summary }) => {
+    const { t } = useTranslation();
     return (
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-slate-100 mb-10">
             <div className="flex flex-col md:flex-row gap-8">
@@ -153,34 +154,46 @@ export const SummaryCard: React.FC<{
 // Aliases and Compatibility Components
 export const LearnSection = LearnCollapseSection;
 
-export const LearnKeyTakeaway: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <div className="bg-lime-50 border border-lime-200 rounded-xl p-6 my-6">
-        <h4 className="flex items-center gap-2 font-bold text-lime-700 mb-2">
-            <CheckCircleIcon className="h-5 w-5" />{t('learn.key_takeaway')}</h4>
-        <div className="text-slate-700">{children}</div>
-    </div>
-);
+export const LearnKeyTakeaway: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { t } = useTranslation();
+    return (
+        <div className="bg-lime-50 border border-lime-200 rounded-xl p-6 my-6">
+            <h4 className="flex items-center gap-2 font-bold text-lime-700 mb-2">
+                <CheckCircleIcon className="h-5 w-5" />{t('learn.key_takeaway')}</h4>
+            <div className="text-slate-700">{children}</div>
+        </div>
+    );
+};
 
-export const LearnProTip: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 my-6">
-        <h4 className="flex items-center gap-2 font-bold text-amber-700 mb-2">
-            <LightBulbIcon className="h-5 w-5" />{t('learn.pro_tip')}</h4>
-        <div className="text-slate-700">{children}</div>
-    </div>
-);
+export const LearnProTip: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { t } = useTranslation();
+    return (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 my-6">
+            <h4 className="flex items-center gap-2 font-bold text-amber-700 mb-2">
+                <LightBulbIcon className="h-5 w-5" />{t('learn.pro_tip')}</h4>
+            <div className="text-slate-700">{children}</div>
+        </div>
+    );
+};
 
-export const LearnCriticalPoint: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <div className="bg-rose-50 border border-rose-200 rounded-xl p-6 my-6">
-        <h4 className="flex items-center gap-2 font-bold text-rose-700 mb-2">
-            <ExclamationCircleIcon className="h-5 w-5" />{t('learn.critical_point')}</h4>
-        <div className="text-slate-700">{children}</div>
-    </div>
-);
+export const LearnCriticalPoint: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { t } = useTranslation();
+    return (
+        <div className="bg-rose-50 border border-rose-200 rounded-xl p-6 my-6">
+            <h4 className="flex items-center gap-2 font-bold text-rose-700 mb-2">
+                <ExclamationCircleIcon className="h-5 w-5" />{t('learn.critical_point')}</h4>
+            <div className="text-slate-700">{children}</div>
+        </div>
+    );
+};
 
-export const LearnHistory: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <div className="bg-stone-50 border border-stone-200 rounded-xl p-6 my-6">
-        <h4 className="flex items-center gap-2 font-bold text-stone-700 mb-2">
-            <ClockIcon className="h-5 w-5" />{t('learn.history')}</h4>
-        <div className="text-slate-700 italic">{children}</div>
-    </div>
-);
+export const LearnHistory: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { t } = useTranslation();
+    return (
+        <div className="bg-stone-50 border border-stone-200 rounded-xl p-6 my-6">
+            <h4 className="flex items-center gap-2 font-bold text-stone-700 mb-2">
+                <ClockIcon className="h-5 w-5" />{t('learn.history')}</h4>
+            <div className="text-slate-700 italic">{children}</div>
+        </div>
+    );
+};

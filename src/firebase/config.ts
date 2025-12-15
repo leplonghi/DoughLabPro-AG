@@ -21,18 +21,18 @@ const getEnv = (key: string): string | undefined => {
   } catch (e) {
     // Ignore errors
   }
-  
+
   return undefined;
 };
 
 // Updated configuration for doughlabpro-fire
 export const firebaseConfig = {
-  apiKey: t('ui.aizasyaanrmjdbor6nqnkdkcamwldmgfq9igci4'),
-  authDomain: "doughlabpro-fire.firebaseapp.com",
-  projectId: "doughlabpro-fire",
-  storageBucket: "doughlabpro-fire.firebasestorage.app",
-  messagingSenderId: "378525744520",
-  appId: "1:378525744520:web:be5f298ea65b6d28004e3d"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 export const isFirebaseConfigured = !!firebaseConfig.apiKey && !!firebaseConfig.projectId;

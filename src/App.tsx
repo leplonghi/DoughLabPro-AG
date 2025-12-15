@@ -245,9 +245,9 @@ function AppContent() {
 
 function App() {
   return (
-    <AuthProvider>
-      <ToastProvider>
-        <I18nProvider>
+    <I18nProvider>
+      <AuthProvider>
+        <ToastProvider>
           <UserProvider>
             <MarketingProvider>
               {/* Domain-specific providers */}
@@ -280,9 +280,9 @@ function App() {
               </BatchesProviderComponent>
             </MarketingProvider>
           </UserProvider>
-        </I18nProvider>
-      </ToastProvider>
-    </AuthProvider>
+        </ToastProvider>
+      </AuthProvider>
+    </I18nProvider>
   );
 }
 

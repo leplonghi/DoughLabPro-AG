@@ -70,6 +70,8 @@ export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
     [RecipeStyle.COOKIE_CLASSIC_CHOC_CHIP]: 'cookies',
     [RecipeStyle.COOKIE_BROWN_BUTTER]: 'cookies',
     [RecipeStyle.COOKIE_SHORTBREAD]: 'shortbread',
+    [RecipeStyle.FRENCH_CROISSANT]: 'croissant',
+    [RecipeStyle.PUFF_PASTRY]: 'puff_pastry',
 
     // Legacy
     [RecipeStyle.NY_STYLE]: 'nyc_thin',

@@ -26,6 +26,7 @@ export function useBatchManager(
   db: Firestore | null,
   addToast: (msg: string, type: 'success' | 'error' | 'info') => void
 ) {
+  const { t } = useTranslation();
   const [batches, setBatches] = useState<Batch[]>([]);
 
   // --- Firebase Subscription ---

@@ -188,7 +188,7 @@ const detroitStyle: DoughStyleDefinition = {
     scientificProfile: {
         flourRheology: {
             w_index: 'W300320 3',
-            pl_ratio: 'Balanced 11',
+            pl_ratio: 'Balanced',
             absorption_capacity: "High (70%+)",
             protein_type: 'Bread flour 5',
             science_explanation: "Structure is supported by the steel pan walls, so we don't need extreme gluten strength. High hydration aids the 'focaccia-like' open crumb."
@@ -200,8 +200,8 @@ const detroitStyle: DoughStyleDefinition = {
             crumb_structure: 'Spongelike airy'
         },
         fermentationScience: {
-            yeast_activity: 'High 10',
-            ph_target: 'Normal 11',
+            yeast_activity: 'High',
+            ph_target: 'Normal',
             organic_acids: 'Lactic 5',
             enzymatic_activity: "High (High water)"
         }
@@ -343,7 +343,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
         flourRheology: {
             w_index: "W240 (AP/Biscuit)",
             pl_ratio: "Short (High Fat)",
-            absorption_capacity: 'Low 21',
+            absorption_capacity: 'Low',
             protein_type: "AP/Pastry Blend",
             science_explanation: "A 'Short Dough'. The high fat content coats the proteins, preventing long gluten chains. This creates a flaky, biscuit-like break instead of a chew."
         },
@@ -354,10 +354,10 @@ const chicagoDeepDish: DoughStyleDefinition = {
             crumb_structure: 'Dense flaky'
         },
         fermentationScience: {
-            yeast_activity: 'Low 22',
+            yeast_activity: 'Low',
             ph_target: 'Neutral 8',
-            organic_acids: 'None 13',
-            enzymatic_activity: 'Low 23'
+            organic_acids: 'None',
+            enzymatic_activity: 'Low'
         }
     },
     tags: ["casserole", "biscuit-crust", "corn-oil"],
@@ -494,8 +494,8 @@ const sfSourdough: DoughStyleDefinition = {
         flourRheology: {
             w_index: 'W300350 2',
             pl_ratio: "Strong/Stiff",
-            absorption_capacity: 'High 11',
-            protein_type: 'Strong wheat 8',
+            absorption_capacity: 'High',
+            protein_type: 'Strong wheat',
             science_explanation: "Proteolysis (acid degrading gluten) is the enemy. We need very strong flour to survive the long, acidic fermentation without collapsing."
         },
         thermalProfile: {
@@ -647,7 +647,7 @@ const newHavenApizza: DoughStyleDefinition = {
     scientificProfile: {
         flourRheology: {
             w_index: 'W300340 2',
-            pl_ratio: 'Extensible 8',
+            pl_ratio: 'Extensible',
             absorption_capacity: 'Medium',
             protein_type: 'High gluten',
             science_explanation: "High strength is required to stretch very thin without tearing, but extended cold fermentation relaxes the gluten (extensibility)."
@@ -660,8 +660,8 @@ const newHavenApizza: DoughStyleDefinition = {
         },
         fermentationScience: {
             yeast_activity: 'Retarded',
-            ph_target: 'Normal 12',
-            organic_acids: 'Balanced 12',
+            ph_target: 'Normal',
+            organic_acids: 'Balanced',
             enzymatic_activity: "High (Maillard fuel)"
         }
     },
@@ -810,7 +810,7 @@ const nycBagel: DoughStyleDefinition = {
         },
         fermentationScience: {
             yeast_activity: "Retarded (Cold)",
-            ph_target: 'Normal 13',
+            ph_target: 'Normal',
             organic_acids: "Low (Direct)",
             enzymatic_activity: "Enhanced (Malt)"
         }
@@ -945,7 +945,7 @@ const grandmaPizza: DoughStyleDefinition = {
     scientificProfile: {
         flourRheology: {
             w_index: "Medium (AP/Bread)",
-            pl_ratio: 'Balanced 13',
+            pl_ratio: 'Balanced',
             absorption_capacity: 'Medium',
             protein_type: 'All purpose',
             science_explanation: "Does not require high protein. A softer flour helps it stretch into the corners of the pan without shrinking back."
@@ -958,8 +958,8 @@ const grandmaPizza: DoughStyleDefinition = {
         },
         fermentationScience: {
             yeast_activity: "Fast (Warm)",
-            ph_target: 'Normal 14',
-            organic_acids: 'None 14',
+            ph_target: 'Normal',
+            organic_acids: 'None',
             enzymatic_activity: "High (Sugar/Oil)"
         }
     },
@@ -1095,21 +1095,21 @@ const chicagoTavern: DoughStyleDefinition = {
         flourRheology: {
             w_index: 'Variable',
             pl_ratio: "Dead (No Elasticity)",
-            absorption_capacity: 'Low 24',
+            absorption_capacity: 'Low',
             protein_type: 'Ap or high gluten',
             science_explanation: "The goal is 'Dead Dough'. We want zero elasticity so it rolls paper thin, and zero ovenspring (puff). Low hydration + rolling pin achieves this."
         },
         thermalProfile: {
             oven_type: "Deck / Stone",
-            heat_distribution: 'Conduction 7',
+            heat_distribution: 'Conduction',
             crust_development: 'Crackerlike dry',
             crumb_structure: "None (Laminated/Flat)"
         },
         fermentationScience: {
             yeast_activity: "Inhibited (Dry/Cold)",
-            ph_target: 'Normal 15',
-            organic_acids: 'None 15',
-            enzymatic_activity: 'Low 25'
+            ph_target: 'Normal',
+            organic_acids: 'None',
+            enzymatic_activity: 'Low'
         }
     },
     tags: ["pizza", "american", "midwest", "thin-crust", "party-cut", "cracker"],
@@ -1246,21 +1246,21 @@ const montrealBagel: DoughStyleDefinition = {
         flourRheology: {
             w_index: 'W300350 4',
             pl_ratio: 'Stiff',
-            absorption_capacity: 'Low 26',
+            absorption_capacity: 'Low',
             protein_type: 'High gluten 2',
             science_explanation: "High gluten needed for shape retention during boil. Lack of salt weakens network, so stiff dough compensates."
         },
         thermalProfile: {
             oven_type: 'Wood fired 2',
-            heat_distribution: 'Radiant 5',
+            heat_distribution: 'Radiant',
             crust_development: 'Crisp shiny',
             crumb_structure: 'Dense 2'
         },
         fermentationScience: {
             yeast_activity: "Fast (No salt)",
-            ph_target: 'Normal 16',
-            organic_acids: 'Low 27',
-            enzymatic_activity: 'Standard 19'
+            ph_target: 'Normal',
+            organic_acids: 'Low',
+            enzymatic_activity: 'Standard'
         }
     },
     tags: ["honey", "no-salt", "wood-fired", "canada"],
@@ -1334,22 +1334,22 @@ const flourTortilla: DoughStyleDefinition = {
     scientificProfile: {
         flourRheology: {
             w_index: 'W200240 4',
-            pl_ratio: 'Extensible 9',
+            pl_ratio: 'Extensible',
             absorption_capacity: 'Medium',
-            protein_type: 'Soft wheat 3',
+            protein_type: 'Soft wheat',
             science_explanation: 'High fat  hot water  tenderness and extensibility'
         },
         thermalProfile: {
             oven_type: 'Comal',
-            heat_distribution: 'Conduction 8',
+            heat_distribution: 'Conduction',
             crust_development: 'Spotted',
             crumb_structure: 'Layered'
         },
         fermentationScience: {
-            yeast_activity: 'None 16',
+            yeast_activity: 'None',
             ph_target: 'Neutral 9',
-            organic_acids: 'None 17',
-            enzymatic_activity: 'None 18'
+            organic_acids: 'None',
+            enzymatic_activity: 'None'
         }
     },
     tags: ["lard", "sonora", "mexico"],

@@ -28,8 +28,8 @@ export const middleEastStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: "W240-260 (Medium)",
-                pl_ratio: 'Extensible 7',
-                absorption_capacity: 'Medium 72',
+                pl_ratio: 'Extensible',
+                absorption_capacity: 'Medium',
                 protein_type: "Soft/Hard Blend",
                 science_explanation: 'Requires moderate strength. If too strong, it resists expansion (no pocket). If too weak, it pops. Extensibility is key for the steam to push the layers apart.'
             },
@@ -111,22 +111,22 @@ export const middleEastStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W280300',
-                pl_ratio: 'Balanced 10',
+                pl_ratio: 'Balanced',
                 absorption_capacity: 'Moderate 9',
-                protein_type: 'Strong wheat 7',
+                protein_type: 'Strong wheat',
                 science_explanation: 'Requires strength to hold the twisted shape. Hydration is low (55%) to ensure the "crisp" texture, not soft like a bun.'
             },
             thermalProfile: {
                 oven_type: "Deck / Stone",
-                heat_distribution: 'Radiant 4',
+                heat_distribution: 'Radiant',
                 crust_development: "Caramelized (Molasses)",
                 crumb_structure: 'Dense tight'
             },
             fermentationScience: {
                 yeast_activity: 'Moderate 10',
                 ph_target: 'Neutral 7',
-                organic_acids: 'Low 20',
-                enzymatic_activity: 'Standard 18'
+                organic_acids: 'Low',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'The Maillard Reaction is supercharged by the Grape Molasses (Pekmez) dip. This abundance of reducing sugars on the surface creates the deep mahogany color and distinct metallic/sweet flavor at oven temperatures.'
         },

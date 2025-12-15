@@ -1,7 +1,9 @@
 
 
 import { PizzaRecipe } from './types';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 export const PIZZA_RECIPES: PizzaRecipe[] = [
   // --- Italian Classics ---
@@ -57,7 +59,7 @@ export const PIZZA_RECIPES: PizzaRecipe[] = [
     dough: { ballWeightG: 260, hydration: 62, styleId: 'pizza_napoletana_avpn' },
     oven: { tempC: 450 },
     sauce: { type: 'Tomato', grams: 80 },
-    toppings: { main: [t('ui.mozzarella_3'), ], grams: 150 },
+    toppings: { main: [t('ui.mozzarella_3'),], grams: 150 },
   },
   {
     id: 'capricciosa',

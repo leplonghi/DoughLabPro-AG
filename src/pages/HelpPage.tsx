@@ -60,186 +60,187 @@ const HelpSection: React.FC<HelpSectionProps> = ({ title, icon: Icon, children, 
     );
 };
 
-const guideSections = [
-    {
-        id: 'calculator',
-        title: 'Calculator & Recipes',
-        icon: Calculator,
-        content: (
-            <div className="space-y-4 text-sm md:text-base">
-                <p>{t('common.the')}<strong>{t('nav.calculator')}</strong> is the heart of DoughLab. Here you can create precise dough formulas tailored to your needs.
-                </p>
-                <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
-                    <li>
-                        <strong>{t('ui.configuration')}</strong> Start by entering your desired dough weight (Total, per Ball, or Total Flour) and the number of balls.
-                        Adjust hydration, salt, and yeast percentages.
-                    </li>
-                    <li>
-                        <strong>{t('ui.modes')}</strong>{t('common.switch_between')}<em>{t('general.basic')}</em> (simple sliders) and <em>{t('general.advanced')}</em> (detailed inputs) modes using the toggle at the top left.
-                    </li>
-                    <li>
-                        <strong>{t('ui.preferments')}</strong> Incorporate Biga, Poolish, or Sourdough (Levain) into your recipe. Enable these options to calculate complex fermentations automatically.
-                    </li>
-                    <li>
-                        <strong>{t('ui.flour__oven')}</strong> Select specific flour types and oven profiles to get tailored recommendations for baking times and temperatures.
-                    </li>
-                    <li>
-                        <strong>{t('ui.save__log')}</strong> Once you have a perfect formula, click t('common.start_bake') to save it to your history and begin tracking your process in {t('nav.lab')}.
-                    </li>
-                </ul>
-            </div>
-        )
-    },
-    {
-        id: 'mylab',
-        title: 'My Lab & Consistencies',
-        icon: FlaskConical,
-        content: (
-            <div className="space-y-4 text-sm md:text-base">
-                <p>
-                    <strong>{t('nav.lab')}</strong> is your personal digital notebook for tracking your baking journey and experiments.
-                </p>
-                <div className="grid md:grid-cols-2 gap-4">
-                    <div className="p-3 rounded-lg bg-dlp-bg-soft">
-                        <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
-                            <FileText className="w-4 h-4" />{t('common.batches')}</h4>
-                        <p className="text-sm">
-                            Every time you bake, a t('common.batch') is created. Track the status (Planned, Mixing, Bulk, Baling, Cold Ferment, Baking, Done) and add notes at each stage.
-                        </p>
-                    </div>
-                    <div className="p-3 rounded-lg bg-dlp-bg-soft">
-                        <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
-                            <Target className="w-4 h-4" />{t('common.consistencies')}</h4>
-                        <p className="text-sm">
-                            Improve your skills by running t('common.consistency_projects'). Bake the same recipe multiple times to master it, and track your metrics over time.
-                        </p>
-                    </div>
-                </div>
-                <p>{t('common.use_the')}<strong>{t('general.timeline')}</strong> view to visualize your past bakes and see how your skills have improved.
-                </p>
-            </div>
-        )
-    },
-    {
-        id: 'styles',
-        title: 'Styles Library & Science',
-        icon: BookOpen,
-        content: (
-            <div className="space-y-4 text-sm md:text-base">
-                <p>{t('common.the')}<strong>{t('general.styles_library')}</strong> is an encyclopedia of pizza styles from around the world.
-                </p>
-                <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
-                    <li>
-                        <strong>{t('ui.explore')}</strong> Browse styles by region (Italy, USA, Licensed). Each style card shows key characteristics like hydration, oven temp, and difficulty.
-                    </li>
-                    <li>
-                        <strong>{t('ui.deep_dive')}</strong> Click on a style to see its full profile, including history, recommended flour types, fermentation schedules, and detailed scientific breakdowns.
-                    </li>
-                    <li>
-                        <strong>{t('ui.oneclick_recipe')}</strong> Found a style you love? Click t('common.use_in_calculator') to instantly load that style's authentic parameters into the calculator.
-                    </li>
-                </ul>
-            </div>
-        )
-    },
-    {
-        id: 'community',
-        title: 'Community & Sharing',
-        icon: Users,
-        content: (
-            <div className="space-y-4 text-sm md:text-base">
-                <p>{t('common.connect_with_other_bakers_in_the')}<strong>{t('nav.community')}</strong> section.
-                </p>
-                <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
-                    <li>
-                        <strong>{t('ui.share_your_bakes')}</strong> Post photos and details of your latest creations. You can link directly to a Batch from My Lab to share the exact recipe and method.
-                    </li>
-                    <li>
-                        <strong>{t('ui.interact')}</strong> Like and comment on other posts. Save inspiring posts to your bookmarks for later.
-                    </li>
-                    <li>
-                        <strong>{t('ui.profiles')}</strong> Visit user profiles to see their baking history and stats.
-                    </li>
-                </ul>
-            </div>
-        )
-    },
-    {
-        id: 'tools',
-        title: 'Tools & Utilities',
-        icon: ChefHat,
-        content: (
-            <div className="space-y-4 text-sm md:text-base">
-                <p>{t('common.access_a_suite_of_utilities_under_the')}<strong>{t('nav.tools')}</strong> menu to help with specific tasks.
-                </p>
-                <div className="grid md:grid-cols-2 gap-4">
-                    <div className="p-3 rounded-lg bg-dlp-bg-soft">
-                        <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
-                            <Flame className="w-4 h-4" />{t('common.oven_profiler')}</h4>
-                        <p className="text-sm">
-                            Analyze your oven's performance. Log heating times and max temperatures to get better baking time predictions.
-                        </p>
-                    </div>
-                    <div className="p-3 rounded-lg bg-dlp-bg-soft">
-                        <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
-                            <Scale className="w-4 h-4" />{t('common.hydration_converter')}</h4>
-                        <p className="text-sm">
-                            Easily convert recipes between different hydration levels or resizing factors without losing the dough's character.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        )
-    },
-    {
-        id: 'settings',
-        title: 'Settings & account',
-        icon: Settings,
-        content: (
-            <div className="space-y-4 text-sm md:text-base">
-                <p>{t('common.manage_your_app_experience_in')}<strong>{t('nav.settings')}</strong>.
-                </p>
-                <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
-                    <li>
-                        <strong>{t('ui.profile')}</strong> Update your name, bio, and avatar.
-                    </li>
-                    <li>
-                        <strong>{t('ui.units')}</strong> Choose between Metric (g, kg, °C) and Imperial (oz, lb, °F) systems.
-                    </li>
-                    <li>
-                        <strong>{t('ui.language')}</strong> Switch the app language (English, Portuguese, Spanish, etc.).
-                    </li>
-                    <li>
-                        <strong>{t('ui.subscription')}</strong> Manage your PRO subscription status and billing.
-                    </li>
-                </ul>
-            </div>
-        )
-    }
-];
-
-const faqs = [
-    {
-        q: t('ui.how_do_i_save_a_recipe'),
-        a: "To save a recipe, first calculate your formula in the Calculator. Then, click the t('common.start_bake') button. This will create a new Batch in 'My Lab' with all your recipe details saved."
-    },
-    {
-        q: "What is the difference between 'Direct' and 'Biga/Poolish'?",
-        a: "'Direct' dough means all ingredients are mixed at once. 'Biga' and 'Poolish' are preferments—a portion of flour and water fermented beforehand to add complexity and strength. Use the 'Preferment' toggles in the Calculator to set this up."
-    },
-    {
-        q: t('ui.can_i_use_my_own_sourdough_starter'),
-        a: "Yes! In the Calculator, change the Yeast type to 'Sourdough/Levain'. You can then select from your saved Levains (manage them in My Lab > Levain) or use a generic profile."
-    },
-    {
-        q: t('ui.how_do_i_unlock_pro_features'),
-        a: "Go to the 'Plans' page or click any locked feature (marked with a lock icon). You can choose a monthly or annual subscription to unlock unlimited batches, advanced tools, and the full styles library."
-    }
-];
-
 export default function HelpPage() {
-    const { t } = useTranslation(); // Though we are hardcoding English text for now based on the request content being mixed/english, ideally this should use keys.
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState('');
+
+    const guideSections = [
+        {
+            id: 'calculator',
+            title: 'Calculator & Recipes',
+            icon: Calculator,
+            content: (
+                <div className="space-y-4 text-sm md:text-base">
+                    <p>{t('common.the')}<strong>{t('nav.calculator')}</strong> is the heart of DoughLab. Here you can create precise dough formulas tailored to your needs.
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                        <li>
+                            <strong>{t('ui.configuration')}</strong> Start by entering your desired dough weight (Total, per Ball, or Total Flour) and the number of balls.
+                            Adjust hydration, salt, and yeast percentages.
+                        </li>
+                        <li>
+                            <strong>{t('ui.modes')}</strong>{t('common.switch_between')}<em>{t('general.basic')}</em> (simple sliders) and <em>{t('general.advanced')}</em> (detailed inputs) modes using the toggle at the top left.
+                        </li>
+                        <li>
+                            <strong>{t('ui.preferments')}</strong> Incorporate Biga, Poolish, or Sourdough (Levain) into your recipe. Enable these options to calculate complex fermentations automatically.
+                        </li>
+                        <li>
+                            <strong>{t('ui.flour__oven')}</strong> Select specific flour types and oven profiles to get tailored recommendations for baking times and temperatures.
+                        </li>
+                        <li>
+                            <strong>{t('ui.save__log')}</strong> Once you have a perfect formula, click t('common.start_bake') to save it to your history and begin tracking your process in {t('nav.lab')}.
+                        </li>
+                    </ul>
+                </div>
+            )
+        },
+        {
+            id: 'mylab',
+            title: 'My Lab & Consistencies',
+            icon: FlaskConical,
+            content: (
+                <div className="space-y-4 text-sm md:text-base">
+                    <p>
+                        <strong>{t('nav.lab')}</strong> is your personal digital notebook for tracking your baking journey and experiments.
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <div className="p-3 rounded-lg bg-dlp-bg-soft">
+                            <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
+                                <FileText className="w-4 h-4" />{t('common.batches')}</h4>
+                            <p className="text-sm">
+                                Every time you bake, a t('common.batch') is created. Track the status (Planned, Mixing, Bulk, Baling, Cold Ferment, Baking, Done) and add notes at each stage.
+                            </p>
+                        </div>
+                        <div className="p-3 rounded-lg bg-dlp-bg-soft">
+                            <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
+                                <Target className="w-4 h-4" />{t('common.consistencies')}</h4>
+                            <p className="text-sm">
+                                Improve your skills by running t('common.consistency_projects'). Bake the same recipe multiple times to master it, and track your metrics over time.
+                            </p>
+                        </div>
+                    </div>
+                    <p>{t('common.use_the')}<strong>{t('general.timeline')}</strong> view to visualize your past bakes and see how your skills have improved.
+                    </p>
+                </div>
+            )
+        },
+        {
+            id: 'styles',
+            title: 'Styles Library & Science',
+            icon: BookOpen,
+            content: (
+                <div className="space-y-4 text-sm md:text-base">
+                    <p>{t('common.the')}<strong>{t('general.styles_library')}</strong> is an encyclopedia of pizza styles from around the world.
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                        <li>
+                            <strong>{t('ui.explore')}</strong> Browse styles by region (Italy, USA, Licensed). Each style card shows key characteristics like hydration, oven temp, and difficulty.
+                        </li>
+                        <li>
+                            <strong>{t('ui.deep_dive')}</strong> Click on a style to see its full profile, including history, recommended flour types, fermentation schedules, and detailed scientific breakdowns.
+                        </li>
+                        <li>
+                            <strong>{t('ui.oneclick_recipe')}</strong> Found a style you love? Click t('common.use_in_calculator') to instantly load that style's authentic parameters into the calculator.
+                        </li>
+                    </ul>
+                </div>
+            )
+        },
+        {
+            id: 'community',
+            title: 'Community & Sharing',
+            icon: Users,
+            content: (
+                <div className="space-y-4 text-sm md:text-base">
+                    <p>{t('common.connect_with_other_bakers_in_the')}<strong>{t('nav.community')}</strong> section.
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                        <li>
+                            <strong>{t('ui.share_your_bakes')}</strong> Post photos and details of your latest creations. You can link directly to a Batch from My Lab to share the exact recipe and method.
+                        </li>
+                        <li>
+                            <strong>{t('ui.interact')}</strong> Like and comment on other posts. Save inspiring posts to your bookmarks for later.
+                        </li>
+                        <li>
+                            <strong>{t('ui.profiles')}</strong> Visit user profiles to see their baking history and stats.
+                        </li>
+                    </ul>
+                </div>
+            )
+        },
+        {
+            id: 'tools',
+            title: 'Tools & Utilities',
+            icon: ChefHat,
+            content: (
+                <div className="space-y-4 text-sm md:text-base">
+                    <p>{t('common.access_a_suite_of_utilities_under_the')}<strong>{t('nav.tools')}</strong> menu to help with specific tasks.
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <div className="p-3 rounded-lg bg-dlp-bg-soft">
+                            <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
+                                <Flame className="w-4 h-4" />{t('common.oven_profiler')}</h4>
+                            <p className="text-sm">
+                                Analyze your oven's performance. Log heating times and max temperatures to get better baking time predictions.
+                            </p>
+                        </div>
+                        <div className="p-3 rounded-lg bg-dlp-bg-soft">
+                            <h4 className="font-semibold text-dlp-text-primary mb-2 flex items-center gap-2">
+                                <Scale className="w-4 h-4" />{t('common.hydration_converter')}</h4>
+                            <p className="text-sm">
+                                Easily convert recipes between different hydration levels or resizing factors without losing the dough's character.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )
+        },
+        {
+            id: 'settings',
+            title: 'Settings & account',
+            icon: Settings,
+            content: (
+                <div className="space-y-4 text-sm md:text-base">
+                    <p>{t('common.manage_your_app_experience_in')}<strong>{t('nav.settings')}</strong>.
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                        <li>
+                            <strong>{t('ui.profile')}</strong> Update your name, bio, and avatar.
+                        </li>
+                        <li>
+                            <strong>{t('ui.units')}</strong> Choose between Metric (g, kg, °C) and Imperial (oz, lb, °F) systems.
+                        </li>
+                        <li>
+                            <strong>{t('ui.language')}</strong> Switch the app language (English, Portuguese, Spanish, etc.).
+                        </li>
+                        <li>
+                            <strong>{t('ui.subscription')}</strong> Manage your PRO subscription status and billing.
+                        </li>
+                    </ul>
+                </div>
+            )
+        }
+    ];
+
+    const faqs = [
+        {
+            q: t('ui.how_do_i_save_a_recipe'),
+            a: "To save a recipe, first calculate your formula in the Calculator. Then, click the t('common.start_bake') button. This will create a new Batch in 'My Lab' with all your recipe details saved."
+        },
+        {
+            q: "What is the difference between 'Direct' and 'Biga/Poolish'?",
+            a: "'Direct' dough means all ingredients are mixed at once. 'Biga' and 'Poolish' are preferments—a portion of flour and water fermented beforehand to add complexity and strength. Use the 'Preferment' toggles in the Calculator to set this up."
+        },
+        {
+            q: t('ui.can_i_use_my_own_sourdough_starter'),
+            a: "Yes! In the Calculator, change the Yeast type to 'Sourdough/Levain'. You can then select from your saved Levains (manage them in My Lab > Levain) or use a generic profile."
+        },
+        {
+            q: t('ui.how_do_i_unlock_pro_features'),
+            a: "Go to the 'Plans' page or click any locked feature (marked with a lock icon). You can choose a monthly or annual subscription to unlock unlimited batches, advanced tools, and the full styles library."
+        }
+    ];
+
 
     const filteredSections = guideSections.filter(section =>
         section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

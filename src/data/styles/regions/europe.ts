@@ -131,12 +131,12 @@ export const europeStyles: DoughStyle[] = [
                 w_index: "T45 (W300+)",
                 pl_ratio: "Balanced (0.55)",
                 absorption_capacity: "High (for fat)",
-                protein_type: 'Strong wheat 2',
+                protein_type: 'Strong wheat',
                 science_explanation: 'Requires strong gluten production to carry the heavy load of fat. However, T45 is preferred for its fineness.',
             },
             thermalProfile: {
                 oven_type: "Convection/Deck",
-                heat_distribution: 'Even 2',
+                heat_distribution: 'Even',
                 crust_development: "Soft, golden (Egg wash)",
                 crumb_structure: "Tight, cotton-like (shreddable)",
             },
@@ -238,7 +238,7 @@ export const europeStyles: DoughStyle[] = [
                 science_explanation: 'Stiff dough (approx 50% hydration) required to hold the intricate shape during the dip and bake.',
             },
             thermalProfile: {
-                oven_type: 'Convection 2',
+                oven_type: 'Convection',
                 heat_distribution: 'Radiant',
                 crust_development: "Deep Mahogany (Alkaline reaction)",
                 crumb_structure: 'Dense chewy',
@@ -247,7 +247,7 @@ export const europeStyles: DoughStyle[] = [
                 yeast_activity: 'Restrained',
                 ph_target: "Surface pH > 10 (Lye)",
                 organic_acids: 'Minimal',
-                enzymatic_activity: 'Low 4',
+                enzymatic_activity: 'Low',
             },
             processScience: "The dip in Sodium Hydroxide (Lye) solution (pH 13-14) breaks down proteins on the surface and promotes an extreme, accelerated Maillard reaction, resulting in the deep brown color and specific \"pretzel\" flavor.",
         },
@@ -336,21 +336,21 @@ export const europeStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: 'W300',
                 pl_ratio: 'Extensible',
-                absorption_capacity: 'High 4',
-                protein_type: 'Strong wheat 3',
+                absorption_capacity: 'High',
+                protein_type: 'Strong wheat',
                 science_explanation: 'High protein is needed to support the high hydration (80%ish) which creates the large bubbles (nooks) during the griddle cook.'
             },
             thermalProfile: {
                 oven_type: "Griddle / Skillet",
-                heat_distribution: 'Conduction 2',
+                heat_distribution: 'Conduction',
                 crust_development: 'Pale dusted with semolina',
                 crumb_structure: "Large alveoli (Nooks)"
             },
             fermentationScience: {
-                yeast_activity: 'High 5',
+                yeast_activity: 'High',
                 ph_target: "Acidic (Sourdough/Buttermilk often used)",
                 organic_acids: 'Lactic 3',
-                enzymatic_activity: 'High 6'
+                enzymatic_activity: 'High'
             },
             processScience: 'The Fork split: Cutting with a knife shears the gluten strands and ruins the texture. Pulling apart (or using a fork) preserves the peaks and valleys (nooks) that hold the butter.'
         },
@@ -417,22 +417,22 @@ export const europeStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W260280',
-                pl_ratio: 'Extensible 2',
-                absorption_capacity: 'Medium 50',
-                protein_type: 'Strong wheat 4',
+                pl_ratio: 'Extensible',
+                absorption_capacity: 'Medium',
+                protein_type: 'Strong wheat',
                 science_explanation: 'Extensibility is needed to fold the "boat" sides without them snapping back open during baking.'
             },
             thermalProfile: {
                 oven_type: "Hearth / Deck",
-                heat_distribution: 'Radiant 2',
+                heat_distribution: 'Radiant',
                 crust_development: 'Browned',
                 crumb_structure: 'Soft airy rim'
             },
             fermentationScience: {
-                yeast_activity: 'Standard 8',
-                ph_target: 'Normal 2',
-                organic_acids: 'Low 5',
-                enzymatic_activity: 'Standard 9'
+                yeast_activity: 'Standard',
+                ph_target: 'Normal',
+                organic_acids: 'Low',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'The boat shape (Nave) acts as a container. The cheese mixture melts and emulsifies with the butter. The final addition of the egg yolk relies on the residual heat of the cheese to partially cook (pasteurize) it while stirring.'
         },
@@ -514,12 +514,12 @@ export const europeStyles: DoughStyle[] = [
             },
             thermalProfile: {
                 oven_type: 'Pullman pan',
-                heat_distribution: 'Conduction 3',
+                heat_distribution: 'Conduction',
                 crust_development: 'Thick',
                 crumb_structure: 'Dense moist'
             },
             fermentationScience: {
-                yeast_activity: 'Sourdough 3',
+                yeast_activity: 'Sourdough',
                 ph_target: "<4.5 (Acidic)",
                 organic_acids: 'Acetic',
                 enzymatic_activity: 'Inhibited by acid'
@@ -596,22 +596,22 @@ export const europeStyles: DoughStyle[] = [
         scientificProfile: {
             flourRheology: {
                 w_index: 'W240260',
-                pl_ratio: 'Balanced 6',
-                absorption_capacity: 'Medium 52',
-                protein_type: 'Strong wheat 5',
+                pl_ratio: 'Balanced',
+                absorption_capacity: 'Medium',
+                protein_type: 'Strong wheat',
                 science_explanation: 'The dough itself is a standard vibrant white bread. The science is in the topping.'
             },
             thermalProfile: {
-                oven_type: 'Convection 3',
-                heat_distribution: 'Even 3',
+                oven_type: 'Convection',
+                heat_distribution: 'Even',
                 crust_development: "Cracked (Topping)",
                 crumb_structure: 'Soft 3'
             },
             fermentationScience: {
-                yeast_activity: 'High 7',
-                ph_target: 'Normal 3',
-                organic_acids: 'Low 6',
-                enzymatic_activity: 'Standard 10'
+                yeast_activity: 'High',
+                ph_target: 'Normal',
+                organic_acids: 'Low',
+                enzymatic_activity: 'Standard'
             },
             processScience: 'The Tiger paste is made of Rice Flour, Yeast, Sugar, Oil, and Water. Since rice flour lacks gluten, it does not expand. As the dough loaf expands underneath (Oven Spring), the rigid rice paste cracks apart, creating the pattern and the intense crunch.'
         },
@@ -677,21 +677,21 @@ export const europeStyles: DoughStyle[] = [
             flourRheology: {
                 w_index: "W150-180 (Soft)",
                 pl_ratio: 'Weak',
-                absorption_capacity: 'Low 7',
+                absorption_capacity: 'Low',
                 protein_type: 'Irish soft wheat',
                 science_explanation: 'Low protein flour is preferred. High protein would make it tough/rubbery because there is no fermentation to relax the gluten.'
             },
             thermalProfile: {
                 oven_type: "Dutch Oven / Bastible",
-                heat_distribution: 'Conduction 4',
+                heat_distribution: 'Conduction',
                 crust_development: 'Thick hard',
                 crumb_structure: 'Dense cakelike'
             },
             fermentationScience: {
-                yeast_activity: 'None 5',
+                yeast_activity: 'None',
                 ph_target: "Acidic (Buttermilk)",
                 organic_acids: "Lactic (added directly)",
-                enzymatic_activity: 'Low 8'
+                enzymatic_activity: 'Low'
             },
             processScience: 'Acid-Base Reaction: Lactic Acid (Buttermilk) + Sodium Bicarbonate = CO2 + Water + Salt. This reaction is instant. The dough must be baked immediately or the gas is lost.'
         },

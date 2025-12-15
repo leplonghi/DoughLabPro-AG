@@ -84,6 +84,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
     const { styles: stylesData } = useStyles();
     const { userStyles, isFavorite, deleteUserStyle } = useUser();
     const { t } = useTranslation();
+    const CATEGORY_FILTERS = getCategoryFilters(t);
 
     // State
     const [searchTerm, setSearchTerm] = useState('');

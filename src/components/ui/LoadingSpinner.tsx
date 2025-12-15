@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from '@/i18n';
 
 export const LoadingSpinner: React.FC<{ className?: string }> = ({ className }) => (
     <div className={`animate-spin rounded-full border-2 border-current border-t-transparent ${className || 'h-6 w-6 text-dlp-accent'}`} />

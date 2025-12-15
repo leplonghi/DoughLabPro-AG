@@ -77,6 +77,8 @@ const STYLE_CHARACTERISTICS: Record<
   [RecipeStyle.COOKIE_BROWN_BUTTER]: { hydrationRange: [0, 10], idealW: [150, 200], idealOvenTemp: [175, 190], name: 'Brown Butter Cookie' },
   [RecipeStyle.COOKIE_SHORTBREAD]: { hydrationRange: [0, 5], idealW: [120, 160], idealOvenTemp: [160, 170], name: 'Shortbread' },
   [RecipeStyle.PRETZEL]: { hydrationRange: [50, 55], idealW: [280, 320], idealOvenTemp: [220, 240], name: 'Pretzel' },
+  [RecipeStyle.FRENCH_CROISSANT]: { hydrationRange: [50, 60], idealW: [320, 380], idealOvenTemp: [200, 220], name: 'French Croissant' },
+  [RecipeStyle.PUFF_PASTRY]: { hydrationRange: [45, 55], idealW: [300, 350], idealOvenTemp: [200, 220], name: 'Puff Pastry' },
 };
 
 

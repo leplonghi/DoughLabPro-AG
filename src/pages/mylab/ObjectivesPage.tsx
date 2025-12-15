@@ -3,9 +3,13 @@ import { Page, Goal, GoalTargetType } from '../../types';
 import MyLabLayout from './MyLabLayout';
 import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
+import i18n from '../../i18n';
 import { SparklesIcon, PlusCircleIcon, CheckCircleIcon, TrashIcon, PencilIcon } from '@/components/ui/Icons';
 import GoalModal from '../../components/mylab/GoalModal';
 import { LockFeature } from '@/components/auth/LockFeature';
+
+// Helper for static functions
+const t = i18n.t.bind(i18n);
 
 interface SuggestedGoal {
     title: string;

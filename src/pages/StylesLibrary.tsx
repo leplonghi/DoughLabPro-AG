@@ -34,7 +34,7 @@ const resolveRegion = (origin: string): Region | 'Global' => {
 };
 
 export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCalculator }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     // State
     const [filterCategory, setFilterCategory] = useState<Category | 'All'>('All');
     const [filterRegion, setFilterRegion] = useState<Region | 'All' | 'Global'>('All');
@@ -70,7 +70,14 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
 
     // Available Regions for Filter Tabs
     // We treat 'Global' as a specific bucket for fallback styles, distinct from 'All'
-    const regionTabs: (Region | 'Global')[] = [t('styles.italy_20'), t('styles.europe_9'), t('styles.north_america_2'), t('styles.south_america_8'), t('styles.asia_6'), t('styles.global_6')];
+    const regionOptions: { value: Region | 'Global'; label: string }[] = [
+        { value: 'Italy', label: t('styles.italy_20') },
+        { value: 'Europe', label: t('styles.europe_9') },
+        { value: 'North America', label: t('styles.north_america_2') },
+        { value: 'South America', label: t('styles.south_america_8') },
+        { value: 'Asia', label: t('styles.asia_6') },
+        { value: 'Global', label: t('styles.global_6') }
+    ];
 
     return (
         <LibraryPageLayout>
@@ -156,9 +163,9 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                 >
                                     <option value="All">{t('general.all_regions')}</option>
                                     <option disabled>──────────</option>
-                                    {regionTabs.map(reg => (
-                                        <option key={reg} value={reg}>
-                                            {reg}
+                                    {regionOptions.map(opt => (
+                                        <option key={opt.value} value={opt.value}>
+                                            {opt.label}
                                         </option>
                                     ))}
                                 </select>

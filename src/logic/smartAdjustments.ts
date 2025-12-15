@@ -12,7 +12,7 @@ import {
 } from '../types';
 import { ENVIRONMENT_TEMPERATURE_GUIDELINES } from '../constants';
 import { hoursBetween } from '../helpers';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
 
 // Default result structure
 const createDefaultResult = (): SmartAdjustmentResult => ({
@@ -88,7 +88,7 @@ export const getSmartAdjustments = (
     config.recipeStyle === RecipeStyle.NEAPOLITAN
   ) {
     result.messages.push(
-      `Home ovens (~250°C) bake pizza slower. To compensate, consider using a style like ${t('common.new_york')}, which benefits from oil and sugar for better color and texture at lower temperatures.`
+      `Home ovens (~250°C) bake pizza slower. To compensate, consider using a style like ${i18n.t('common.new_york')}, which benefits from oil and sugar for better color and texture at lower temperatures.`
     );
     if (config.oil === 0) {
       result.suggestions.push({
@@ -113,7 +113,7 @@ export const getSmartAdjustments = (
     }
   } else if (flour && flour.strengthW && flour.strengthW < 240 && config.hydration > 65) {
     result.riskWarnings.push(
-      `${t('ui.warning_flours_with_w_')}${flour.strengthW} (weak) might not develop a strong enough gluten network for hydration above 65%.`
+      `${i18n.t('ui.warning_flours_with_w_')}${flour.strengthW} (weak) might not develop a strong enough gluten network for hydration above 65%.`
     );
   }
 
@@ -128,7 +128,7 @@ export const getSmartAdjustments = (
       result.suggestions.push({
         key: 'yeastPercentage',
         value: suggestedYeast,
-        message: `${t('ui.suggestion_adjust_yeast_by_')}${changePct}% (to ${suggestedYeast}%) to compensate for temperature.`
+        message: `${i18n.t('ui.suggestion_adjust_yeast_by_')}${changePct}% (to ${suggestedYeast}%) to compensate for temperature.`
       });
     }
   }
