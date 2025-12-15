@@ -71,7 +71,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   onboardingState,
   results,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'calculator']);
   const isBasic = calculatorMode === 'basic';
   const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
 

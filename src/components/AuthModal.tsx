@@ -20,7 +20,7 @@ interface AuthModalProps {
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'auth']);
     const { loginWithGoogle, loginWithEmail, registerWithEmail, resetPassword, loginAsGuest } = useAuth();
     const { addToast } = useToast();
     const { grantProAccess } = useUser();
@@ -56,9 +56,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         } catch (err: any) {
             console.error(err);
             if (err.code === 'auth/unauthorized-domain') {
-                 setError('This domain is not authorized for Google Sign-In. Please contact support.');
+                setError('This domain is not authorized for Google Sign-In. Please contact support.');
             } else {
-                 setError(err.message || 'Failed to login with Google. Please try again.');
+                setError(err.message || 'Failed to login with Google. Please try again.');
             }
         } finally {
             setIsLoading(false);
@@ -154,21 +154,21 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             setIsLoading(false);
         }
     };
-    
+
     // Admin bypass function
     const handleAdminBypass = async () => {
         setIsLoading(true);
         try {
-             // 1. Log in as Guest first (to have a user session)
+            // 1. Log in as Guest first (to have a user session)
             await loginAsGuest();
-            
+
             // 2. Grant Pro Access
             grantProAccess();
 
             onClose();
             addToast('Logged in as Admin (Pro Unlocked)', 'success');
         } catch (err) {
-             console.error(err);
+            console.error(err);
             setError('Failed to login as admin.');
         } finally {
             setIsLoading(false);
@@ -407,8 +407,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 disabled={isLoading}
                                 className="w-full py-2.5 px-4 text-dlp-text-muted hover:text-dlp-text-secondary text-sm font-medium transition-colors"
                             >{t('auth.continue_as_guest')}</button>
-                            
-                             <button
+
+                            <button
                                 onClick={handleAdminBypass}
                                 disabled={isLoading}
                                 className="w-full py-2.5 px-4 text-red-500 hover:text-red-700 text-sm font-medium transition-colors border border-red-200 rounded-xl hover:bg-red-50"

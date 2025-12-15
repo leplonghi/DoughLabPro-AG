@@ -1,10 +1,9 @@
-import React, { ReactNode, Suspense } from 'react';
+import React, { ReactNode } from 'react';
 import i18n from 'i18next';
 import { initReactI18next, useTranslation as useI18nextTranslation } from 'react-i18next';
 import HttpBackend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { Locale } from './types';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 // Initialize i18next
 i18n
@@ -14,13 +13,18 @@ i18n
   .init({
     fallbackLng: 'en',
     supportedLngs: ['en', 'pt', 'es'],
-    load: 'languageOnly', // Force 'en' instead of 'en-US'
-    debug: import.meta.env.DEV, // Enable debug in dev mode
+    ns: ['common'], // Default namespace loaded initially
+    defaultNS: 'common',
+    // fallbackNS ensures compatibility during migration by resolving keys from all namespaces
+    // even if not explicitly loaded by the component.
+    fallbackNS: ['common', 'auth', 'calculator', 'dashboard', 'marketing'],
+    load: 'languageOnly',
+    debug: import.meta.env.DEV,
     interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+      escapeValue: false,
     },
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     detection: {
       order: ['localStorage', 'navigator'],
@@ -28,18 +32,17 @@ i18n
       lookupLocalStorage: 'i18nextLng',
     },
     react: {
-      useSuspense: false
+      useSuspense: false, // Prevent white screen during transition
+      nsMode: 'fallback' // Important for looking up keys in fallback namespaces
     }
   });
 
 export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Removed unused useTranslation call which was causing root-level suspense
-  // const { t } = useTranslation();
   return React.createElement(React.Fragment, null, children);
 };
 
-export const useTranslation = () => {
-  const { t, i18n } = useI18nextTranslation();
+export const useTranslation = (ns?: string | string[]) => {
+  const { t, i18n } = useI18nextTranslation(ns);
 
   const setLocale = (l: Locale) => {
     i18n.changeLanguage(l);
