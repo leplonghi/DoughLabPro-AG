@@ -1,17 +1,14 @@
 import { defineDoughStyle } from '../../builder';
 import { RecipeStyle } from '@/types';
-import i18n from '@/i18n';
-
-const t = i18n.t.bind(i18n);
 
 export const NYChocolateChip = defineDoughStyle({
-    name: t('styles.ny_style_chip_cookie'),
+    name: "ny_style_chip_cookie",
     category: "cookie",
     recipeStyle: RecipeStyle.COOKIE_NY_CHOC_CHIP,
     description: "The modern 'Levain-style' cookie: massive (170g+), tall, mountains of dough with a gooey, underbaked center and a crispy, golden exterior. Relies on cold butter cubes and minimal mixing.",
     origin: {
-        country: t('styles.usa_3'),
-        region: t('styles.new_york_city'),
+        country: "USA",
+        region: "New York City",
         period: "1990s"
     },
     technicalProfile: {
@@ -21,13 +18,13 @@ export const NYChocolateChip = defineDoughStyle({
         sugar: [30, 45], // Brown + White Sugar
         fermentationSteps: [
             "Cream cold butter (briefly)",
-            t('common.mix_dry_ingredients'),
+            "Mix Dry Ingredients",
             "Portion large (6oz)",
             "Freeze/Chill 12h (Crucial)",
-            t('common.bake_hot_and_fast')
+            "Bake Hot & Fast"
         ],
         ovenTemp: [200, 220],
-        difficulty: t('styles.easy_4'),
+        difficulty: "Easy",
     },
     fermentationType: "direct", // Chemical leavening
     notes: [
@@ -46,42 +43,42 @@ export const NYChocolateChip = defineDoughStyle({
         crumb: "/images/styles/placeholder_dough.jpg"
     },
     references: [
-        { source: t('styles.levain_bakery'), url: "" }
+        { source: "Levain Bakery", url: "" }
     ],
     education: {
         pro_tips: [
-            { tip: t('styles.do_not_cream'), explanation: "Mix butter/sugar briefly. Creaming adds air, making a 'cakey' cookie. You want dense and fudgy." },
-            { tip: t('styles.the_12h_rest'), explanation: t('styles.hydrates_the_flour_completely_and_solidifies_the_b') }
+            { tip: "Do Not Cream", explanation: "Mix butter/sugar briefly. Creaming adds air, making a 'cakey' cookie. You want dense and fudgy." },
+            { tip: "The 12h Rest", explanation: "Hydrates the flour completely and solidifies the butter, preventing spread." }
         ],
         what_if: [
-            { scenario: t('styles.cookie_is_flat'), result: t('styles.butter_was_too_warm_or_chemical_leavener_expired'), correction: t('styles.use_ice_cold_butter_chunks_and_chill_dough_before_') }
+            { scenario: "Cookie is flat", result: "Butter was too warm or chemical leavener expired.", correction: "Use ice cold butter chunks and chill dough before baking." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.toll_house'), difference: "NY Style uses cold butter, cake flour/cornstarch, and is huge. Toll House is creamed and smaller.", why_choose_this: t('styles.choose_ny_style_for_a_gooey_center') }
+            { target_style: "Toll House", difference: "NY Style uses cold butter, cake flour/cornstarch, and is huge. Toll House is creamed and smaller.", why_choose_this: "Choose NY Style for a gooey center." }
         ],
         q_and_a: [
-            { question: t('styles.why_cornstarch'), answer: "It 'cuts' the protein of the flour, making the cookie tender despite the massive size.", context: t('styles.cookie_chemistry') }
+            { question: "Why Cornstarch?", answer: "It 'cuts' the protein of the flour, making the cookie tender despite the massive size.", context: "Cookie Chemistry" }
         ],
         fermentation_methods: [
-            { method: t('styles.direct_5'), suitability: t('styles.ideal_3'), notes: "Chemical leavening (Soda/Powder) replaces yeast." }
+            { method: "Direct", suitability: "Ideal", notes: "Chemical leavening (Soda/Powder) replaces yeast." }
         ]
     },
     base_formula: [
         { name: "Bread/Cake Flour Blend", percentage: 100 },
-        { name: t('styles.brown_sugar'), percentage: 40 },
-        { name: t('styles.white_sugar'), percentage: 35 },
-        { name: t('styles.cold_butter_cubes'), percentage: 65 },
-        { name: t('styles.whole_eggs'), percentage: 40 },
-        { name: t('styles.dark_chocolate_chips'), percentage: 90 },
+        { name: "Brown Sugar", percentage: 40 },
+        { name: "White Sugar", percentage: 35 },
+        { name: "Cold Butter Cubes", percentage: 65 },
+        { name: "Whole Eggs", percentage: 40 },
+        { name: "Dark Chocolate Chips", percentage: 90 },
         { name: "Walnuts (Optional)", percentage: 40 },
-        { name: t('styles.cornstarch'), percentage: 2 },
-        { name: t('styles.baking_powder'), percentage: 1.5 },
-        { name: t('styles.sea_salt'), percentage: 1.5 }
+        { name: "Cornstarch", percentage: 2 },
+        { name: "Baking Powder", percentage: 1.5 },
+        { name: "Sea Salt", percentage: 1.5 }
     ]
 });
 
 export const FrenchCroissant = defineDoughStyle({
-    name: t('styles.french_croissant'),
+    name: "french_croissant",
     category: "pastry",
     recipeStyle: RecipeStyle.SWEETS_PASTRY,
     description: "The ultimate test of a baker's skill. A laminated yeast dough (Viennoiserie) featuring alternate layers of butter and dough (managed via 'turns'). Results in a honeycomb interior structure.",
@@ -101,10 +98,10 @@ export const FrenchCroissant = defineDoughStyle({
             "Lock-in Butter",
             "Lamination (3 turns)",
             "Proof 2-3h (wobbly)",
-            t('common.bake')
+            "Bake"
         ],
         ovenTemp: [190, 210],
-        difficulty: t('styles.expert_14'),
+        difficulty: "Expert",
     },
     fermentationType: "preferment", // Often uses Poolish or Milk starter
     notes: [
@@ -124,29 +121,29 @@ export const FrenchCroissant = defineDoughStyle({
         crumb: "/images/styles/placeholder_dough.jpg"
     },
     references: [
-        { source: t('styles.viennoiserie_disciplinare'), url: "" }
+        { source: "Viennoiserie Disciplinare", url: "" }
     ],
     education: {
         pro_tips: [
-            { tip: t('styles.plasticity_match'), explanation: "Butter and dough usually need to be the same consistency. If butter is harder, it shatters. If softer, it squirts out." },
-            { tip: t('styles.the_wobble'), explanation: "A fully proofed croissant should wobble like jelly when the tray is shaken. If it's firm, wait." }
+            { tip: "Plasticity Match", explanation: "Butter and dough usually need to be the same consistency. If butter is harder, it shatters. If softer, it squirts out." },
+            { tip: "The Wobble", explanation: "A fully proofed croissant should wobble like jelly when the tray is shaken. If it's firm, wait." }
         ],
         what_if: [
-            { scenario: t('styles.pool_of_butter_in_oven'), result: "Proofed too hot (>26°C) or underproofed.", correction: t('styles.ideally_proof_at_24c25c') }
+            { scenario: "Pool of butter in oven", result: "Proofed too hot (>26°C) or underproofed.", correction: "Ideally proof at 24°C-25°C." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.puff_pastry'), difference: "Croissant has yeast (fermented). Puff Pastry is mechanical lift only.", why_choose_this: t('styles.choose_croissant_for_the_airy_honeycomb_interior') }
+            { target_style: "Puff Pastry", difference: "Croissant has yeast (fermented). Puff Pastry is mechanical lift only.", why_choose_this: "Choose Croissant for the airy honeycomb interior." }
         ],
         q_and_a: [
-            { question: t('styles.how_many_layers'), answer: "Modern standard is often 27 layers (3 single turns). More layers = finer crumb but less open honeycomb.", context: t('styles.lamination_math') }
+            { question: "How many layers?", answer: "Modern standard is often 27 layers (3 single turns). More layers = finer crumb but less open honeycomb.", context: "Lamination Math" }
         ],
         fermentation_methods: [
-            { method: t('styles.poolish'), suitability: t('styles.ideal_4'), notes: t('styles.a_poolish_preferment_adds_extensibility_to_the_dou') }
+            { method: "Poolish", suitability: "Ideal", notes: "A Poolish preferment adds extensibility to the dough." }
         ]
     },
     customMethod: [
         {
-            phase: t('styles.mix_2'),
+            phase: "Mix",
             title: "Détrempe (Base Dough)",
             actionInstructions: "Mix water, milk, sugar, salt, yeast, and soft butter. Add flour. deeply knead until smooth (medium gluten development). Do not overdevelop.",
             grandmaInstructions: "Mix everything to make a smooth dough. Don't knead it too hard for too long.",
@@ -154,64 +151,64 @@ export const FrenchCroissant = defineDoughStyle({
             durationLabel: "15 min"
         },
         {
-            phase: t('styles.bulk'),
-            title: t('styles.cold_ferment'),
-            actionInstructions: t('styles.flatten_dough_into_a_rectangle_wrap_and_chill_at_4'),
-            grandmaInstructions: t('styles.wrap_the_dough_and_put_it_in_the_fridge_overnight'),
-            technicalExplanation: t('styles.relaxes_gluten_and_chills_the_dough_to_match_the_p'),
+            phase: "Bulk",
+            title: "Cold Ferment",
+            actionInstructions: "Flatten dough into a rectangle. Wrap and chill at 4°C for 2h - 12h.",
+            grandmaInstructions: "Wrap the dough and put it in the fridge overnight.",
+            technicalExplanation: "Relaxes gluten and chills the dough to match the plasticity of the butter block.",
             durationLabel: "12h"
         },
         {
-            phase: t('styles.prep'),
+            phase: "Prep",
             title: "Lock-in (Beurrage)",
             actionInstructions: "Roll dough to twice the size of butter block. Place butter in center, fold dough over to encase. Seal edges.",
-            grandmaInstructions: t('styles.put_the_butter_inside_the_dough_and_fold_the_dough'),
-            technicalExplanation: t('styles.ensures_distinct_layers_of_fat_and_dough')
+            grandmaInstructions: "Put the butter inside the dough and fold the dough over it like an envelope.",
+            technicalExplanation: "Ensures distinct layers of fat and dough."
         },
         {
-            phase: t('styles.prep_2'),
+            phase: "Prep",
             title: "Lamination (3 Simple Turns)",
             actionInstructions: "Roll out to 8mm thick. Fold in thirds (Letter Fold). Rotate 90°. Repeat 2 more times, chilling in between if butter softens.",
-            grandmaInstructions: t('styles.roll_it_out_fold_it_like_a_letter_do_this_3_times'),
+            grandmaInstructions: "Roll it out, fold it like a letter. Do this 3 times.",
             technicalExplanation: "Creates 27 layers of butter (3^3), essential for the honeycomb structure.",
             criticalPoint: "If butter melts, it fuses with the dough -> Brioche (no layers)."
         },
         {
-            phase: t('styles.proof'),
-            title: t('styles.final_proof'),
+            phase: "Proof",
+            title: "Final Proof",
             actionInstructions: "Shape croissants. Proof at 26°C (max 28°C) until very wobbly and increased 2.5x in volume.",
             grandmaInstructions: "Let them rise in a warm spot (but not too hot!) until they wobble like jelly.",
-            proTip: t('styles.if_proof_temperature_exceeds_29c_the_butter_will_l')
+            proTip: "If proof temperature exceeds 29°C, the butter will leak out."
         },
         {
-            phase: t('styles.bake'),
-            title: t('styles.bake_2'),
-            actionInstructions: t('styles.bake_at_200c_for_5_min_then_190c_for_1215_min_no_s'),
-            grandmaInstructions: t('styles.bake_until_deep_golden_brown')
+            phase: "Bake",
+            title: "Bake",
+            actionInstructions: "Bake at 200°C for 5 min, then 190°C for 12-15 min. No steam usually needed if egg washed.",
+            grandmaInstructions: "Bake until deep golden brown."
         }
     ],
 
     base_formula: [
-        { name: t('styles.bread_flour'), percentage: 100 },
-        { name: t('styles.water'), percentage: 28 },
-        { name: t('styles.whole_milk'), percentage: 28 },
-        { name: t('styles.sugar'), percentage: 12 },
-        { name: t('styles.salt'), percentage: 2 },
+        { name: "Bread Flour", percentage: 100 },
+        { name: "Water", percentage: 28 },
+        { name: "Whole Milk", percentage: 28 },
+        { name: "Sugar", percentage: 12 },
+        { name: "Salt", percentage: 2 },
         { name: "Yeast (Instant)", percentage: 1.2 },
         { name: "Butter (Dough)", percentage: 6 },
         { name: "Butter (Lamination Block)", percentage: 50 },
-        { name: t('styles.egg_wash'), percentage: 5 }
+        { name: "Egg Wash", percentage: 5 }
     ]
 });
 
 export const CinnamonRoll = defineDoughStyle({
-    name: t('styles.classic_cinnamon_roll'),
+    name: "classic_cinnamon_roll",
     category: "pastry", // Or Enriched Bread, but fits Pastry logic
     recipeStyle: RecipeStyle.CINNAMON_ROLL,
     description: "Soft, enriched dough rolled with a cinnamon-sugar-butter smear and cut into spirals. Topped with cream cheese icing or fondant glaze. A staple of American comfort baking.",
     origin: {
         country: "USA / Sweden",
-        region: t('styles.general_2'),
+        region: "General",
         period: "1920s"
     },
     technicalProfile: {
@@ -220,14 +217,14 @@ export const CinnamonRoll = defineDoughStyle({
         fat: [10, 15], // In dough
         sugar: [20, 30], // Including filling
         fermentationSteps: [
-            t('common.mix_enriched_dough'),
+            "Mix Enriched Dough",
             "Bulk 1.5h",
             "Sheet & Fill",
             "Roll & Cut",
             "Proof 1h"
         ],
         ovenTemp: [180, 190],
-        difficulty: t('styles.medium_17'),
+        difficulty: "Medium",
     },
     fermentationType: "direct",
     notes: [
@@ -243,46 +240,46 @@ export const CinnamonRoll = defineDoughStyle({
     },
     education: {
         pro_tips: [
-            { tip: t('styles.dental_floss_cut'), explanation: "Use unflavored floss to cut the log. Knives squash the spiral; floss cuts cleanly from the outside in." },
-            { tip: t('styles.the_cream_hack'), explanation: "Pour warm heavy cream over the rolls right before baking for Cinnabon-level gooeyness." }
+            { tip: "Dental Floss Cut", explanation: "Use unflavored floss to cut the log. Knives squash the spiral; floss cuts cleanly from the outside in." },
+            { tip: "The Cream Hack", explanation: "Pour warm heavy cream over the rolls right before baking for Cinnabon-level gooeyness." }
         ],
         what_if: [
-            { scenario: t('styles.centers_popped_up'), result: t('styles.rolled_too_tightly'), correction: t('styles.roll_the_log_loosely_to_allow_expansion') }
+            { scenario: "Centers popped up", result: "Rolled too tightly.", correction: "Roll the log loosely to allow expansion." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.sticky_bun'), difference: "Sticky buns bake on top of caramel/nuts and are flipped. Cinnamon rolls are glazed on top.", why_choose_this: t('styles.choose_cinnamon_rolls_for_cream_cheese_frosting_lo') }
+            { target_style: "Sticky Bun", difference: "Sticky buns bake on top of caramel/nuts and are flipped. Cinnamon rolls are glazed on top.", why_choose_this: "Choose Cinnamon Rolls for cream cheese frosting lovers." }
         ],
         q_and_a: [
-            { question: t('styles.why_bread_flour'), answer: "You need the chewier texture to hold the heavy filling. AP flour makes them too cakey.", context: t('styles.texture_balance') }
+            { question: "Why Bread Flour?", answer: "You need the chewier texture to hold the heavy filling. AP flour makes them too cakey.", context: "Texture Balance" }
         ],
         fermentation_methods: [
-            { method: t('styles.direct_6'), suitability: t('styles.authentic_4'), notes: t('styles.enriched_direct_dough_is_standard') }
+            { method: "Direct", suitability: "Authentic", notes: "Enriched direct dough is standard." }
         ]
     },
     base_formula: [
-        { name: t('styles.bread_flour_2'), percentage: 100 },
-        { name: t('styles.whole_milk_2'), percentage: 65 },
-        { name: t('styles.sugar_2'), percentage: 15 },
+        { name: "Bread Flour", percentage: 100 },
+        { name: "Whole Milk", percentage: 65 },
+        { name: "Sugar", percentage: 15 },
         { name: "Butter (Soft)", percentage: 15 },
-        { name: t('styles.whole_egg'), percentage: 10 },
-        { name: t('styles.instant_yeast'), percentage: 1.5 },
-        { name: t('styles.salt_2'), percentage: 2 },
-        { name: t('styles.filling_brown_sugar'), percentage: 25 },
-        { name: t('styles.filling_cinnamon'), percentage: 2.5 },
-        { name: t('styles.filling_butter'), percentage: 10 },
-        { name: t('styles.frosting_cream_cheese'), percentage: 20 },
-        { name: t('styles.frosting_powdered_sugar'), percentage: 15 }
+        { name: "Whole Egg", percentage: 10 },
+        { name: "Instant Yeast", percentage: 1.5 },
+        { name: "Salt", percentage: 2 },
+        { name: "Filling: Brown Sugar", percentage: 25 },
+        { name: "Filling: Cinnamon", percentage: 2.5 },
+        { name: "Filling: Butter", percentage: 10 },
+        { name: "Frosting: Cream Cheese", percentage: 20 },
+        { name: "Frosting: Powdered Sugar", percentage: 15 }
     ]
 });
 
 export const FudgyBrownie = defineDoughStyle({
-    name: t('styles.fudgy_brownie'),
+    name: "fudgy_brownie",
     category: "cookie", // Adapting to 'Confectionery' family
     recipeStyle: RecipeStyle.BROWNIE,
     description: "A dense, rich chocolate bar with zero leavening agents (relying on egg foam or just density). shiny crackly top (meringue skin) and a moist, truffle-like interior.",
     origin: {
-        country: t('styles.usa_4'),
-        region: t('styles.chicago'),
+        country: "USA",
+        region: "Chicago",
         period: "1893"
     },
     technicalProfile: {
@@ -293,11 +290,11 @@ export const FudgyBrownie = defineDoughStyle({
         fermentationSteps: [
             "Melt Butter + Chocolate",
             "Whip Eggs + Sugar (Ribbon stage for skin)",
-            t('common.fold_in_dry'),
-            t('common.bake')
+            "Fold in Dry",
+            "Bake"
         ],
         ovenTemp: [160, 180],
-        difficulty: t('styles.easy_5'),
+        difficulty: "Easy",
     },
     fermentationType: "direct", // None really
     notes: [
@@ -312,35 +309,35 @@ export const FudgyBrownie = defineDoughStyle({
         crumb: "/images/styles/placeholder_dough.jpg"
     },
     references: [
-        { source: t('styles.palmer_house_hotel'), url: "" }
+        { source: "Palmer House Hotel", url: "" }
     ],
     education: {
         pro_tips: [
-            { tip: t('styles.the_shiny_crust'), explanation: "Whip eggs and sugar vigorously to the 'ribbon stage' before adding chocolate/flour. This creates the meringue-like skin." },
-            { tip: t('styles.ice_bath'), explanation: "Shocking the baked brownies in an ice bath halts cooking immediately, ensuring the center stays fudgy." }
+            { tip: "The Shiny Crust", explanation: "Whip eggs and sugar vigorously to the 'ribbon stage' before adding chocolate/flour. This creates the meringue-like skin." },
+            { tip: "Ice Bath", explanation: "Shocking the baked brownies in an ice bath halts cooking immediately, ensuring the center stays fudgy." }
         ],
         what_if: [
-            { scenario: t('styles.cakey_texture'), result: t('styles.too_much_flour_or_overbaked'), correction: "Reduce flour, increase fat/sugar ratios." }
+            { scenario: "Cakey texture", result: "Too much flour or overbaked.", correction: "Reduce flour, increase fat/sugar ratios." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.chocolate_cake'), difference: "Brownies have no chemical leavening and much higher fat/sugar density.", why_choose_this: t('styles.choose_brownie_for_density') }
+            { target_style: "Chocolate Cake", difference: "Brownies have no chemical leavening and much higher fat/sugar density.", why_choose_this: "Choose Brownie for density." }
         ],
         q_and_a: [
-            { question: t('styles.cocoa_or_chocolate'), answer: t('styles.both_melted_chocolate_gives_fudge_texture_cocoa_po'), context: t('styles.flavor_profiling') }
+            { question: "Cocoa or Chocolate?", answer: "Both. Melted chocolate gives fudge texture; Cocoa powder gives deep flavor notes.", context: "Flavor Profiling" }
         ],
         fermentation_methods: [
-            { method: t('styles.direct_7'), suitability: t('styles.not_recommended'), notes: "No fermentation. It's a batter." }
+            { method: "Direct", suitability: "Not Recommended", notes: "No fermentation. It's a batter." }
         ]
     },
     base_formula: [
-        { name: t('styles.ap_flour'), percentage: 100 },
-        { name: t('styles.white_sugar_2'), percentage: 120 },
-        { name: t('styles.brown_sugar_2'), percentage: 40 },
+        { name: "AP Flour", percentage: 100 },
+        { name: "White Sugar", percentage: 120 },
+        { name: "Brown Sugar", percentage: 40 },
         { name: "Butter (Melted)", percentage: 100 },
         { name: "Dark Chocolate (70%)", percentage: 60 },
-        { name: t('styles.cocoa_powder'), percentage: 25 },
-        { name: t('styles.whole_eggs_2'), percentage: 70 },
-        { name: t('styles.vanilla_extract'), percentage: 2 },
-        { name: t('styles.salt_3'), percentage: 1 }
+        { name: "Cocoa Powder", percentage: 25 },
+        { name: "Whole Eggs", percentage: 70 },
+        { name: "Vanilla Extract", percentage: 2 },
+        { name: "Salt", percentage: 1 }
     ]
 });

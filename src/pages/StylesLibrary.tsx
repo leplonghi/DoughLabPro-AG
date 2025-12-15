@@ -60,7 +60,8 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
             const matchesRegion = filterRegion === 'All' || styleRegion === filterRegion;
 
             // Search Filter
-            const matchesSearch = style.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            const translatedName = t(style.name);
+            const matchesSearch = translatedName.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 style.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 (style.origin.country || '').toLowerCase().includes(searchQuery.toLowerCase());
 
@@ -233,7 +234,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             </div>
                             <div className="p-4">
                                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{style.region}</div>
-                                <h3 className="font-bold text-slate-800 text-sm mb-1 leading-snug">{style.name}</h3>
+                                <h3 className="font-bold text-slate-800 text-sm mb-1 leading-snug">{t(style.name)}</h3>
                                 <div className="flex items-center gap-1.5 text-xs text-amber-600 font-medium mt-2">
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>

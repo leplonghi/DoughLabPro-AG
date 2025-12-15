@@ -1,15 +1,12 @@
 import { defineDoughStyle } from '../../builder';
-import i18n from '@/i18n';
-
-const t = i18n.t.bind(i18n);
 
 export const BriocheATete = defineDoughStyle({
-    name: t('styles.brioche_à_tête'),
+    name: "brioche_a_tete",
     category: "enriched_bread",
     description: "The quintessential French enriched bread, containing a massive amount of butter (often 50%+) and eggs. The 'à Tête' shape features a small top bun (the head) nestled in a fluted round base.",
     origin: {
-        country: t('styles.france_4'),
-        region: t('styles.normandy'),
+        country: "France",
+        region: "Normandy",
         period: "1404 (First recorded)"
     },
     technicalProfile: {
@@ -24,7 +21,7 @@ export const BriocheATete = defineDoughStyle({
             "Proof 2-3h"
         ],
         ovenTemp: [180, 200],
-        difficulty: t('styles.hard_14'),
+        difficulty: "Hard",
     },
     fermentationType: "direct",
     notes: [
@@ -43,36 +40,36 @@ export const BriocheATete = defineDoughStyle({
         crumb: "/images/styles/brioche_crumb.jpg"
     },
     references: [
-        { source: t('styles.the_art_of_french_baking'), url: "" }
+        { source: "The Art of French Baking", url: "" }
     ],
     education: {
         pro_tips: [
-            { tip: t('styles.cold_ingredients'), explanation: "Everything must be cold. If butter melts during mixing, the dough becomes greasy and won't rise properly." },
-            { tip: t('styles.windowpane_first'), explanation: "Develop the gluten fully with eggs/flour BEFORE adding butter. Fat coats protein, stopping development." }
+            { tip: "Cold Ingredients", explanation: "Everything must be cold. If butter melts during mixing, the dough becomes greasy and won't rise properly." },
+            { tip: "Windowpane First", explanation: "Develop the gluten fully with eggs/flour BEFORE adding butter. Fat coats protein, stopping development." }
         ],
         what_if: [
-            { scenario: t('styles.dough_is_an_oily_soup'), result: "Emulsion broke (got too hot).", correction: "Chill bowl immediately. If that fails, it's a loss." }
+            { scenario: "Dough is an oily soup", result: "Emulsion broke (got too hot).", correction: "Chill bowl immediately. If that fails, it's a loss." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.challah'), difference: "Brioche is dairy-rich (Butter/Milk). Challah is pareve (Oil/Water).", why_choose_this: t('styles.choose_brioche_for_decadence') }
+            { target_style: "Challah", difference: "Brioche is dairy-rich (Butter/Milk). Challah is pareve (Oil/Water).", why_choose_this: "Choose Brioche for decadence." }
         ],
         q_and_a: [
-            { question: "Why the 'Top Knot'?", answer: "Tradition. It prevents the center from rising too high and provides a textural contrast.", context: t('styles.french_history') }
+            { question: "Why the 'Top Knot'?", answer: "Tradition. It prevents the center from rising too high and provides a textural contrast.", context: "French History" }
         ],
         fermentation_methods: [
-            { method: t('styles.direct'), suitability: t('styles.ideal'), notes: "Often uses a sponge/poolish to help yeast start in the fat-heavy environment." }
+            { method: "Direct", suitability: "Ideal", notes: "Often uses a sponge/poolish to help yeast start in the fat-heavy environment." }
         ]
     }
 });
 
 export const Challah = defineDoughStyle({
-    name: "Challah (Braided)",
+    name: "challah_braided",
     category: "enriched_bread",
     description: "Ashkenazi Jewish ceremonial bread, traditionally braided (3, 4, or 6 strands). Enriched with oil and eggs but dairy-free (Pareve) to be eaten with meat meals.",
     origin: {
-        country: t('styles.jewish_diaspora'),
-        region: t('styles.eastern_europe'),
-        period: t('styles.traditional_12')
+        country: "Jewish Diaspora",
+        region: "Eastern Europe",
+        period: "Traditional"
     },
     technicalProfile: {
         hydration: [35, 45], // Low water, mostly eggs/oil
@@ -80,13 +77,13 @@ export const Challah = defineDoughStyle({
         fat: [8, 12], // Vegetable Oil
         sugar: [8, 12], // Honey or Sugar
         fermentationSteps: [
-            t('common.mix_to_medium_development'),
+            "Mix to medium development",
             "Bulk 2h",
             "Shape/Braid",
             "Proof 1.5-2h"
         ],
         ovenTemp: [175, 190],
-        difficulty: t('styles.medium_14'),
+        difficulty: "Medium",
     },
     fermentationType: "direct",
     notes: [
@@ -102,31 +99,31 @@ export const Challah = defineDoughStyle({
     },
     education: {
         pro_tips: [
-            { tip: t('styles.double_egg_wash'), explanation: "Brush once after braiding, and again right before baking. This fills the gaps and creates a lacquer-like shine." },
-            { tip: t('styles.the_3strand_rule'), explanation: t('styles.start_braiding_from_the_middle_not_the_end_it_keep') }
+            { tip: "Double Egg Wash", explanation: "Brush once after braiding, and again right before baking. This fills the gaps and creates a lacquer-like shine." },
+            { tip: "The 3-Strand Rule", explanation: "Start braiding from the middle, not the end. It keeps the loaf symmetrical." }
         ],
         what_if: [
-            { scenario: t('styles.braid_tears_during_proof'), result: t('styles.braided_too_tightly'), correction: t('styles.braid_loosely_the_oven_spring_will_fill_the_gaps') }
+            { scenario: "Braid tears during proof", result: "Braided too tightly.", correction: "Braid loosely; the oven spring will fill the gaps." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.brioche'), difference: "Challah uses oil (Pareve). Brioche uses butter (Dairy).", why_choose_this: "Choose Challah for meat meals (Kosher rules)." }
+            { target_style: "Brioche", difference: "Challah uses oil (Pareve). Brioche uses butter (Dairy).", why_choose_this: "Choose Challah for meat meals (Kosher rules)." }
         ],
         q_and_a: [
-            { question: "Why 'Pareve'?", answer: "To comply with Kosher laws forbidding mixing dairy and meat. Challah is the Sabbath bread for meat dinners.", context: t('styles.jewish_tradition') }
+            { question: "Why 'Pareve'?", answer: "To comply with Kosher laws forbidding mixing dairy and meat. Challah is the Sabbath bread for meat dinners.", context: "Jewish Tradition" }
         ],
         fermentation_methods: [
-            { method: t('styles.direct_2'), suitability: t('styles.authentic'), notes: "Standard direct dough. Sourdough versions (Water Challah) exist but are niche." }
+            { method: "Direct", suitability: "Authentic", notes: "Standard direct dough. Sourdough versions (Water Challah) exist but are niche." }
         ]
     }
 });
 
 export const BurgerBun = defineDoughStyle({
-    name: t('styles.classic_burger_bun'),
+    name: "classic_burger_bun",
     category: "burger_bun",
     description: "Soft, slightly sweet, and sturdy enough to hold a juicy patty without disintegrating. Often basically a lean brioche or potato bun.",
     origin: {
-        country: t('styles.usa'),
-        region: t('styles.general'),
+        country: "USA",
+        region: "General",
         period: "20th Century"
     },
     technicalProfile: {
@@ -135,13 +132,13 @@ export const BurgerBun = defineDoughStyle({
         fat: [5, 10], // Butter or Shortening
         sugar: [5, 8],
         fermentationSteps: [
-            t('common.mix_to_full_development'),
+            "Mix to full development",
             "Bulk 1h",
             "Divide & Ball 80-100g",
             "Proof 1h (Flattened)"
         ],
         ovenTemp: [190, 210],
-        difficulty: t('styles.easy_3'),
+        difficulty: "Easy",
     },
     fermentationType: "direct",
     notes: [
@@ -157,31 +154,31 @@ export const BurgerBun = defineDoughStyle({
     },
     education: {
         pro_tips: [
-            { tip: t('styles.flatten_the_ball'), explanation: "Don't just round them. Flattening gently before proofing ensures a wide bun for the patty, rather than a tennis ball." },
-            { tip: t('styles.steam_is_the_enemy'), explanation: t('styles.do_not_use_steam_you_want_a_soft_thin_skin_not_a_c') }
+            { tip: "Flatten the ball", explanation: "Don't just round them. Flattening gently before proofing ensures a wide bun for the patty, rather than a tennis ball." },
+            { tip: "Steam is the enemy", explanation: "Do not use steam. You want a soft, thin skin, not a crust." }
         ],
         what_if: [
-            { scenario: t('styles.bun_splits_horizontally'), result: t('styles.underproofed'), correction: t('styles.let_it_proof_until_it_jiggles_like_jelly') }
+            { scenario: "Bun splits horizontally", result: "Underproofed.", correction: "Let it proof until it jiggles like jelly." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.potato_bun'), difference: t('styles.potato_starch_holds_more_water_staying_soft_longer'), why_choose_this: t('styles.choose_classic_for_structure') }
+            { target_style: "Potato Bun", difference: "Potato starch holds more water, staying soft longer.", why_choose_this: "Choose Classic for structure." }
         ],
         q_and_a: [
-            { question: t('styles.why_80g'), answer: t('styles.the_golden_ratio_8090g_bun_matches_a_standard_46oz'), context: t('styles.burger_science') }
+            { question: "Why 80g?", answer: "The Golden Ratio. 80-90g bun matches a standard 4-6oz patty perfectly.", context: "Burger Science" }
         ],
         fermentation_methods: [
-            { method: t('styles.direct_3'), suitability: t('styles.ideal_2'), notes: t('styles.fast_and_consistent_sometimes_uses_tangzhong_for_s') }
+            { method: "Direct", suitability: "Ideal", notes: "Fast and consistent. Sometimes uses Tangzhong for shelf life." }
         ]
     }
 });
 
 export const Shokupan = defineDoughStyle({
-    name: "Shokupan (Japanese Milk Bread)",
+    name: "shokupan",
     category: "enriched_bread",
     description: "Ultra-fluffy, white Japanese sandwich bread. The secret is the 'Tangzhong' or 'Yudane' method (gelatinized flour paste), which locks in moisture for days.",
     origin: {
-        country: t('styles.japan_3'),
-        region: t('styles.national'),
+        country: "Japan",
+        region: "National",
         period: "20th Century"
     },
     technicalProfile: {
@@ -191,13 +188,13 @@ export const Shokupan = defineDoughStyle({
         sugar: [6, 10],
         fermentationSteps: [
             "Prepare Tangzhong (Cook flour+water)",
-            t('common.mix_all'),
+            "Mix All",
             "Bulk 1.5h",
             "Shape (3-4 lobes)",
-            t('common.proof_in_pullman_pan')
+            "Proof in Pullman Pan"
         ],
         ovenTemp: [180, 190],
-        difficulty: t('styles.medium_15'),
+        difficulty: "Medium",
     },
     fermentationType: "direct",
     notes: [
@@ -213,32 +210,32 @@ export const Shokupan = defineDoughStyle({
     },
     education: {
         pro_tips: [
-            { tip: t('styles.the_65c_magic'), explanation: "Cook the flour/water roux (Tangzhong) exactly to 65°C. This maximizes starch gelatinization without degrading the starch." },
-            { tip: t('styles.lid_on_vs_off'), explanation: "Lid ON = Square (Pullman/Sandwich). Lid OFF = Mountain (Rustic top)." }
+            { tip: "The 65°C Magic", explanation: "Cook the flour/water roux (Tangzhong) exactly to 65°C. This maximizes starch gelatinization without degrading the starch." },
+            { tip: "Lid ON vs OFF", explanation: "Lid ON = Square (Pullman/Sandwich). Lid OFF = Mountain (Rustic top)." }
         ],
         what_if: [
-            { scenario: "Dough didn't rise", result: t('styles.tangzhong_was_too_hot_when_added'), correction: t('styles.cool_tangzhong_to_room_temp_before_adding_yeast') }
+            { scenario: "Dough didn't rise", result: "Tangzhong was too hot when added.", correction: "Cool Tangzhong to room temp before adding yeast." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.western_sandwich_bread'), difference: "Shokupan uses cooked flour (Tangzhong) for superior moisture retention.", why_choose_this: t('styles.choose_shokupan_for_the_softest_possible_texture') }
+            { target_style: "Western Sandwich Bread", difference: "Shokupan uses cooked flour (Tangzhong) for superior moisture retention.", why_choose_this: "Choose Shokupan for the softest possible texture." }
         ],
         q_and_a: [
-            { question: t('styles.yudane_vs_tangzhong'), answer: "Yudane uses boiling water (no cooking). Tangzhong uses 65°C cooking. Both achieve gelatinization.", context: t('styles.asian_baking') }
+            { question: "Yudane vs Tangzhong", answer: "Yudane uses boiling water (no cooking). Tangzhong uses 65°C cooking. Both achieve gelatinization.", context: "Asian Baking" }
         ],
         fermentation_methods: [
-            { method: t('styles.direct_4'), suitability: t('styles.authentic_2'), notes: t('styles.base_is_direct_but_modified_by_the_scalded_flour_p') }
+            { method: "Direct", suitability: "Authentic", notes: "Base is direct but modified by the scalded flour (Tangzhong)." }
         ]
     }
 });
 
 export const Panettone = defineDoughStyle({
-    name: t('styles.panettone_artigianale'),
+    name: "panettone_artigianale",
     category: "enriched_bread",
     description: "The Mount Everest of baking. A sweet Italian bread loaded with candied fruit/raisins, leavened EXCLUSIVELY by a stiff sourdough starter (Pasta Madre). Extremely complex, multistage fermentation.",
     origin: {
-        country: t('styles.italy_5'),
-        region: t('styles.milan'),
-        period: t('styles.renaissance')
+        country: "Italy",
+        region: "Milan",
+        period: "Renaissance"
     },
     technicalProfile: {
         hydration: [55, 65], // Complex calculation including yolks
@@ -250,10 +247,10 @@ export const Panettone = defineDoughStyle({
             "First Dough (Primo Impasto) 12h",
             "Second Dough (Secondo Impasto)",
             "Proof 6-8h",
-            t('common.hang_upside_down')
+            "Hang Upside Down"
         ],
         ovenTemp: [160, 175],
-        difficulty: t('styles.expert_12'), // The hardest style here
+        difficulty: "Expert", // The hardest style here
     },
     fermentationType: "levain", // Use 'levain' instead of 'sourdough' based on type def
     notes: [
@@ -277,20 +274,20 @@ export const Panettone = defineDoughStyle({
     ],
     education: {
         pro_tips: [
-            { tip: t('styles.the_hang'), explanation: "Gravity is the enemy. You MUST hang Panettone upside down for 12h immediately after baking, or it collapses under its own butter weight." },
-            { tip: t('styles.tripling_rule'), explanation: "The First Dough (Primo Impasto) MUST triple in volume. If it doesn't, do not proceed to Second Dough. Wait." }
+            { tip: "The Hang", explanation: "Gravity is the enemy. You MUST hang Panettone upside down for 12h immediately after baking, or it collapses under its own butter weight." },
+            { tip: "Tripling Rule", explanation: "The First Dough (Primo Impasto) MUST triple in volume. If it doesn't, do not proceed to Second Dough. Wait." }
         ],
         what_if: [
-            { scenario: t('styles.taste_is_sour'), result: t('styles.starter_was_too_acetic'), correction: "Wash the starter (Bagnetto) in sugar water to remove acidity before building." }
+            { scenario: "Taste is sour", result: "Starter was too acetic.", correction: "Wash the starter (Bagnetto) in sugar water to remove acidity before building." }
         ],
         comparative_analysis: [
-            { target_style: t('styles.pandoro'), difference: "Pandoro contains no fruit and is shaped like a star. Panettone has fruit and is domed.", why_choose_this: "Choose Panettone for the fruit/spice complexity." }
+            { target_style: "Pandoro", difference: "Pandoro contains no fruit and is shaped like a star. Panettone has fruit and is domed.", why_choose_this: "Choose Panettone for the fruit/spice complexity." }
         ],
         q_and_a: [
-            { question: t('styles.commercial_yeast'), answer: "Forbidden. True Panettone uses ONLY 'Pasta Madre' (stiff sourdough) for leavening and preservation.", context: t('styles.italian_law') }
+            { question: "Commercial Yeast?", answer: "Forbidden. True Panettone uses ONLY 'Pasta Madre' (stiff sourdough) for leavening and preservation.", context: "Italian Law" }
         ],
         fermentation_methods: [
-            { method: t('styles.sourdough'), suitability: t('styles.authentic_3'), notes: t('styles.the_most_complex_sourdough_challenge_in_the_world') }
+            { method: "Sourdough", suitability: "Authentic", notes: "The most complex sourdough challenge in the world." }
         ]
     }
 });

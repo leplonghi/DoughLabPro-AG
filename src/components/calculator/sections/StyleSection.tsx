@@ -24,11 +24,12 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     currentPreset,
     onResetPreset,
 }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'calculator']);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState('All');
 
-    // Grouping Logic
-    const groupedStyles = useMemo(() => {
+    // Filtering Logic
+    const { uniqueCountries, filteredStyles } = useMemo(() => {
         let styles = recipeStylesToShow;
 
         // Filter by Search
@@ -39,17 +40,20 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             );
         }
 
-        // Group by Region
-        const groups: Record<string, DoughStylePreset[]> = {};
-        styles.forEach(style => {
-            const region = style.region || 'Other';
-            if (!groups[region]) groups[region] = [];
-            groups[region].push(style);
-        });
+        // Extract Countries
+        const countries = Array.from(new Set(styles.map(s => s.country || 'Other'))).sort();
+        // Move 'Other' to end if present
+        if (countries.includes('Other')) {
+            countries.push(countries.splice(countries.indexOf('Other'), 1)[0]);
+        }
 
-        // Sort keys (International/Other last?)
-        return Object.entries(groups).sort((a, b) => a[0].localeCompare(b[0]));
-    }, [recipeStylesToShow, searchTerm]);
+        // Apply Country Filter
+        if (selectedCountry !== 'All') {
+            styles = styles.filter(s => (s.country || 'Other') === selectedCountry);
+        }
+
+        return { uniqueCountries: countries, filteredStyles: styles };
+    }, [recipeStylesToShow, searchTerm, selectedCountry]);
 
     const BAKE_TYPES = [
         { id: BakeType.PIZZAS, label: t('calculator.category_pizzas'), icon: <PizzaSliceIcon className="h-5 w-5" /> },
@@ -102,66 +106,89 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                 />
             </div>
 
-            {/* 3. STATIC GRID (No Scroll) */}
-            <div className="space-y-6 mt-4">
-                {groupedStyles.length > 0 ? (
-                    groupedStyles.map(([region, styles]) => (
-                        <div key={region} className="animate-fade-in relative group/section">
-                            <div className="flex items-center justify-between mb-2 px-1">
-                                <h4 className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">
-                                    <span className="w-1 h-1 rounded-full bg-slate-300 mr-2"></span>
-                                    {region}
-                                </h4>
-                                <span className="text-[9px] text-slate-300 font-medium">{styles.length}</span>
-                            </div>
+            {/* 3. COUNTRY FILTERING (Horizontal Scroll) */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-4 -mx-1 px-1 no-scrollbar mb-2">
+                <button
+                    onClick={() => setSelectedCountry('All')}
+                    className={`
+                        flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border
+                        ${selectedCountry === 'All'
+                            ? 'bg-slate-800 text-white border-slate-800 shadow-md'
+                            : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                        }
+                    `}
+                >
+                    All
+                </button>
+                {uniqueCountries.map(country => (
+                    <button
+                        key={country}
+                        onClick={() => setSelectedCountry(country)}
+                        className={`
+                             flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border
+                            ${selectedCountry === country
+                                ? 'bg-slate-800 text-white border-slate-800 shadow-md'
+                                : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                            }
+                        `}
+                    >
+                        {t('countries.' + country.toLowerCase(), { defaultValue: country })}
+                    </button>
+                ))}
+            </div>
 
-                            {/* Content Grid - Adapts to Mode */}
-                            <div className={`
-                                grid gap-2
-                                ${isBasic
-                                    ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5' // Guided: More compact
-                                    : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8' // Pro: Very dense
-                                }
-                            `}>
-                                {styles.map((preset) => {
-                                    const isSelected = config.stylePresetId === preset.id;
-                                    return (
-                                        <button
-                                            key={preset.id}
-                                            onClick={() => onStyleChange(preset.id)}
-                                            className={`
-                                                relative flex flex-col items-start text-left transition-all duration-200 group
-                                                ${isBasic
-                                                    ? 'p-2.5 rounded-lg border min-h-[80px]' // Guided Styles
-                                                    : 'p-1.5 rounded-md border items-center text-center justify-center min-h-[60px]' // Pro Styles
-                                                }
-                                                ${isSelected
-                                                    ? 'bg-lime-50/50 border-lime-500 ring-1 ring-lime-500 shadow-sm z-10'
-                                                    : 'bg-white border-slate-100 hover:border-lime-300 hover:bg-slate-50 hover:shadow-sm'
-                                                }
-                                            `}
-                                        >
-                                            {/* Selection Indicator (Dot) */}
-                                            {isSelected && (
-                                                <div className={`absolute rounded-full bg-lime-500 ${isBasic ? 'top-2 right-2 w-1.5 h-1.5' : 'top-1 right-1 w-1 h-1'}`} />
-                                            )}
+            {/* 4. UNIFIED GRID */}
+            <div className="animate-fade-in relative min-h-[200px]">
+                {filteredStyles.length > 0 ? (
+                    <div className={`
+                        grid gap-2
+                        ${isBasic
+                            ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5' // Guided: More compact
+                            : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8' // Pro: Very dense
+                        }
+                    `}>
+                        {filteredStyles.map((preset) => {
+                            const isSelected = config.stylePresetId === preset.id;
+                            return (
+                                <button
+                                    key={preset.id}
+                                    onClick={() => onStyleChange(preset.id)}
+                                    className={`
+                                        relative flex flex-col items-start text-left transition-all duration-200 group
+                                        ${isBasic
+                                            ? 'p-2.5 rounded-lg border min-h-[80px]' // Guided Styles
+                                            : 'p-1.5 rounded-md border items-center text-center justify-center min-h-[60px]' // Pro Styles
+                                        }
+                                        ${isSelected
+                                            ? 'bg-lime-50/50 border-lime-500 ring-1 ring-lime-500 shadow-sm z-10'
+                                            : 'bg-white border-slate-100 hover:border-lime-400 hover:bg-slate-50 hover:shadow-sm'
+                                        }
+                                    `}
+                                >
+                                    {/* Selection Indicator (Dot) */}
+                                    {isSelected && (
+                                        <div className={`absolute rounded-full bg-lime-500 ${isBasic ? 'top-2 right-2 w-1.5 h-1.5' : 'top-1 right-1 w-1 h-1'}`} />
+                                    )}
 
-                                            <span className={`font-bold leading-tight w-full ${isSelected ? 'text-lime-700' : 'text-slate-600'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
-                                                {preset.name}
-                                            </span>
+                                    <span className={`font-bold leading-tight w-full ${isSelected ? 'text-lime-700' : 'text-slate-600'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
+                                        {t(preset.name)}
+                                    </span>
 
-                                            {/* Description - ONLY IN GUIDED MODE */}
-                                            {isBasic && preset.description && (
-                                                <p className={`text-[9px] leading-tight line-clamp-2 mt-0.5 ${isSelected ? 'text-lime-600/70' : 'text-slate-400'}`}>
-                                                    {preset.description}
-                                                </p>
-                                            )}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    ))
+                                    {/* Sub-region Tag (shown if Country is filtered or in All view) */}
+                                    {/* If looking at All, show Country. If specific country, show Region if different? */}
+                                    {/* Simplification: Just show region if it exists available on card? No, cluttered. */}
+                                    {/* Just keep description or maybe a tiny tag for region? */}
+
+                                    {/* Description - ONLY IN GUIDED MODE */}
+                                    {isBasic && preset.description && (
+                                        <p className={`text-[9px] leading-tight line-clamp-2 mt-0.5 ${isSelected ? 'text-lime-600/70' : 'text-slate-400'}`}>
+                                            {t(preset.description)}
+                                        </p>
+                                    )}
+                                </button>
+                            );
+                        })}
+                    </div>
                 ) : (
                     <div className="text-center py-12 bg-slate-50 rounded-xl border border-dashed border-slate-200 flex flex-col items-center justify-center">
                         <MagnifyingGlassIcon className="h-8 w-8 text-slate-300 mb-2" />

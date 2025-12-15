@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DoughConfig } from '@/types';
+import { DoughConfig, Levain } from '@/types';
 import { calculateReverseTimeline, TimelineStep } from '@/logic/reverseTimeline';
 import { ClockIcon, CalendarIcon, ShareIcon } from '@heroicons/react/24/outline'; // Adjust import based on your icon system or use standard ones
 
@@ -16,9 +16,10 @@ const formatDate = (date: Date, locale: string) => {
 
 interface ReverseScheduleProps {
     config: DoughConfig;
+    levain?: Levain;
 }
 
-export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({ config }) => {
+export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({ config, levain }) => {
     const { t, i18n } = useTranslation();
 
     // Default target: Tonight at 20:00 or Tomorrow 20:00
@@ -33,9 +34,9 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({ config }) => {
 
     useEffect(() => {
         const target = new Date(targetDateStr);
-        const calc = calculateReverseTimeline(target, config);
+        const calc = calculateReverseTimeline(target, config, levain);
         setSchedule(calc);
-    }, [targetDateStr, config]);
+    }, [targetDateStr, config, levain]);
 
     const addToCalendar = () => {
         // Placeholder for Google Calendar URL generation

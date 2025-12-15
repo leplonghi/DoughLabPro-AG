@@ -165,9 +165,9 @@ function AppContent() {
             <Logo className="h-24 w-auto" />
           </div>
 
-          <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">{t('general.welcome_to_your_digital_dough_lab')}</h1>
+          <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">{t('ui.welcome_title')}</h1>
           <p className="text-lg text-dlp-text-secondary mb-8 leading-relaxed">
-            The ultimate precision tool for professional and home bakers.
+            {t('ui.app_tagline')}
             <br />
             <span className="text-sm text-dlp-text-muted mt-2 block">{t('ui.sign_in_to_access_your_lab_recipes_and_tools')}</span>
           </p>
@@ -177,11 +177,11 @@ function AppContent() {
               onClick={() => setIsAuthModalOpen(true)}
               className="w-full py-3.5 bg-dlp-accent hover:bg-dlp-accent-hover text-white font-semibold rounded-xl shadow-dlp-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              Sign In / Create Account
+              {t('ui.sign_in_button')}
             </button>
 
             <p className="text-xs text-dlp-text-muted mt-6">
-              By continuing, you agree to our Terms of Service and Privacy Policy.
+              {t('ui.terms_agreement')}
             </p>
           </div>
 

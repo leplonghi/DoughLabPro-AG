@@ -49,7 +49,7 @@ interface CalculatorPageProps {
 }
 
 const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'calculator', 'dashboard']);
   const { levains } = useUser();
 
   // Refs for onboarding targets

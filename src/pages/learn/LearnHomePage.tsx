@@ -16,7 +16,7 @@ import { TRACK_ICONS, TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config'
 
 const LearnHomePage: React.FC = () => {
     const { navigate } = useRouter();
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'marketing']);
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = (e: React.FormEvent) => {

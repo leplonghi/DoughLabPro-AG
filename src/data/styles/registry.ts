@@ -17,8 +17,6 @@ import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './
 import { classicStyles } from './library/pizza/classics';
 import { panStyles } from './library/pizza/pan_styles';
 import { thinStyles } from './library/pizza/thin_styles';
-import i18n from '@/i18n';
-const t = i18n.t.bind(i18n);
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -47,7 +45,7 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
         recommendedUse: [],
         oil: [0, 0],
         sugar: [0, 0],
-        flourStrength: style.scientificProfile?.flourRheology?.w_index || t('styles.standard')
+        flourStrength: style.scientificProfile?.flourRheology?.w_index || "Standard"
     };
 
     // Safely handle category mapping
@@ -71,7 +69,7 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
         origin: {
             country: style.region,
             region: style.subRegion || style.region,
-            period: t('styles.classic')
+            period: "Classic"
         },
         description: style.description,
         history: style.history_context,

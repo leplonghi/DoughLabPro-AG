@@ -29,6 +29,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
     const [skill, setSkill] = useState<'beginner' | 'intermediate' | 'advanced' | 'pro'>('beginner');
     const [interest, setInterest] = useState<'pizza' | 'bread' | 'sourdough'>('pizza');
     const [freq, setFreq] = useState<'weekly' | 'monthly' | 'occasionally'>('weekly');
+    const [enableSchedule, setEnableSchedule] = useState(false);
 
     // Demo state for the visualizer step
     const [demoHydration, setDemoHydration] = useState(60);
@@ -48,7 +49,9 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                 skillLevel: skill,
                 primaryInterest: interest,
                 bakingFrequency: freq,
-                onboardingCompleted: true
+                bakingFrequency: freq,
+                onboardingCompleted: true,
+                enableSmartSchedule: enableSchedule
             });
         }
 
@@ -141,93 +144,120 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                         </div>
                     </div>
 
+                    <div>
+                        <label className="text-sm font-medium text-slate-700 block mb-2">{t('auth.onboarding.planning_style', 'Planning Style')}</label>
+                        <div className="grid grid-cols-2 gap-2">
+                            <button
+                                onClick={() => setEnableSchedule(false)}
+                                className={`p-3 rounded-lg border text-sm font-medium transition-all ${!enableSchedule
+                                        ? 'border-amber-500 bg-amber-50 text-amber-700 ring-1 ring-amber-500'
+                                        : 'border-slate-200 bg-white text-slate-600 hover:border-amber-300'
+                                    }`}
+                            >
+                                <span className="block text-xl mb-1">🧠</span>
+                                {t('auth.onboarding.style_feeling', 'By Feel')}
+                            </button>
+                            <button
+                                onClick={() => setEnableSchedule(true)}
+                                className={`p-3 rounded-lg border text-sm font-medium transition-all ${enableSchedule
+                                        ? 'border-amber-500 bg-amber-50 text-amber-700 ring-1 ring-amber-500'
+                                        : 'border-slate-200 bg-white text-slate-600 hover:border-amber-300'
+                                    }`}
+                            >
+                                <span className="block text-xl mb-1">📅</span>
+                                {t('auth.onboarding.style_schedule', 'Smart Schedule')}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                     <button
                         onClick={() => setStep(2)}
                         className="w-full mt-4 bg-amber-600 text-white py-3 rounded-lg font-semibold hover:bg-amber-700 transition"
                     >
                         {t('auth.onboarding.continue', 'Continue')}
                     </button>
-                </div>
+                </div >
             )
         },
-        // Step 2: Visualization Demo (Value Prop)
-        {
-            id: 'demo',
-            render: () => (
-                <div className="space-y-6">
-                    <div className="text-center">
-                        <h3 className="text-xl font-bold text-slate-800">{t('auth.onboarding.magic_title', 'See before you bake')}</h3>
-                        <p className="text-sm text-slate-500">{t('auth.onboarding.magic_sub', 'DoughLab helps you visualize dough consistency.')}</p>
-                    </div>
-
-                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
-                        <label className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2 block">
-                            {t('auth.onboarding.try_slider', 'Try changing hydration:')}
-                        </label>
-                        <input
-                            type="range"
-                            min="50"
-                            max="85"
-                            value={demoHydration}
-                            onChange={(e) => setDemoHydration(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
-                        />
-                        <div className="flex justify-between text-xs text-slate-400 mt-1">
-                            <span>50% (Dry)</span>
-                            <span>85% (Wet)</span>
-                        </div>
-
-                        {/* The Component we just created */}
-                        <DoughConsistencyVisualizer hydration={demoHydration} />
-                    </div>
-
-                    <button
-                        onClick={handleFinish}
-                        className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-lg flex items-center justify-center gap-2"
-                    >
-                        {t('auth.onboarding.finish', 'Get Started')} <CheckIcon className="w-5 h-5" />
-                    </button>
+// Step 2: Visualization Demo (Value Prop)
+{
+    id: 'demo',
+        render: () => (
+            <div className="space-y-6">
+                <div className="text-center">
+                    <h3 className="text-xl font-bold text-slate-800">{t('auth.onboarding.magic_title', 'See before you bake')}</h3>
+                    <p className="text-sm text-slate-500">{t('auth.onboarding.magic_sub', 'DoughLab helps you visualize dough consistency.')}</p>
                 </div>
-            )
-        }
+
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2 block">
+                        {t('auth.onboarding.try_slider', 'Try changing hydration:')}
+                    </label>
+                    <input
+                        type="range"
+                        min="50"
+                        max="85"
+                        value={demoHydration}
+                        onChange={(e) => setDemoHydration(Number(e.target.value))}
+                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
+                    />
+                    <div className="flex justify-between text-xs text-slate-400 mt-1">
+                        <span>50% (Dry)</span>
+                        <span>85% (Wet)</span>
+                    </div>
+
+                    {/* The Component we just created */}
+                    <DoughConsistencyVisualizer hydration={demoHydration} />
+                </div>
+
+                <button
+                    onClick={handleFinish}
+                    className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-lg flex items-center justify-center gap-2"
+                >
+                    {t('auth.onboarding.finish', 'Get Started')} <CheckIcon className="w-5 h-5" />
+                </button>
+            </div>
+        )
+}
     ];
 
-    return (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden relative"
-            >
-                {/* Close button for safety */}
-                <button onClick={onClose} className="absolute top-4 right-4 text-slate-300 hover:text-slate-500">
-                    <XMarkIcon className="w-6 h-6" />
-                </button>
+return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden relative"
+        >
+            {/* Close button for safety */}
+            <button onClick={onClose} className="absolute top-4 right-4 text-slate-300 hover:text-slate-500">
+                <XMarkIcon className="w-6 h-6" />
+            </button>
 
-                {/* Progress Bar */}
-                <div className="h-1 bg-slate-100 w-full">
+            {/* Progress Bar */}
+            <div className="h-1 bg-slate-100 w-full">
+                <motion.div
+                    className="h-full bg-amber-500"
+                    initial={{ width: '0%' }}
+                    animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
+                />
+            </div>
+
+            <div className="p-8">
+                <AnimatePresence mode="wait">
                     <motion.div
-                        className="h-full bg-amber-500"
-                        initial={{ width: '0%' }}
-                        animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
-                    />
-                </div>
-
-                <div className="p-8">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={step}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            {steps[step].render()}
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-            </motion.div>
-        </div>
-    );
+                        key={step}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {steps[step].render()}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+        </motion.div>
+    </div>
+);
 };

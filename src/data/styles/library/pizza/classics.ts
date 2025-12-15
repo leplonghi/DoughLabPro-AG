@@ -1,22 +1,19 @@
 import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
-import i18n from '@/i18n';
-
-const t = i18n.t.bind(i18n);
 
 export const NewYorkSlice: DoughStyleDefinition = {
     id: "new_york_slice_v2",
-    name: t('styles.new_york_slice'),
+    name: "new_york_slice",
     category: "pizza",
     recipeStyle: RecipeStyle.NEW_YORK,
-    family: t('styles.flatbreads__pizzas'),
+    family: "Flatbreads & Pizzas",
     description: "The quintessential American street pizza. Large, wide, foldable slices with a crispy bottom, tender chew, and slight drooping tip. Characterized by the use of oil and sugar/malt for browning at lower deck oven temperatures.",
     origin: {
-        country: t('styles.usa_5'),
-        region: t('styles.new_york_city_2'),
+        country: "USA",
+        region: "New York City",
         period: "Early 1900s (Lombardi's)"
     },
-    history: " evolved from the Neapolitan pizza brought by Italian immigrants. Coal ovens turned into gas deck ovens, and the dough adapted with oil and sugar to retain moisture and brown at lower temperatures (500-550°F) for longer bakes.",
-    difficulty: t('styles.medium_18'),
+    history: "Evolved from the Neapolitan pizza brought by Italian immigrants. Coal ovens turned into gas deck ovens, and the dough adapted with oil and sugar to retain moisture and brown at lower temperatures (500-550°F) for longer bakes.",
+    difficulty: "Medium",
     fermentationType: "cold",
     technicalProfile: {
         hydration: [58, 65],
@@ -25,8 +22,8 @@ export const NewYorkSlice: DoughStyleDefinition = {
         sugar: [1.0, 2.0],
         flourStrength: "High Gluten (13-14%)",
         ovenTemp: [260, 300], // 500-575F
-        recommendedUse: [t('styles.cheese_slice'), t('styles.pepperoni'), t('styles.white_pie')],
-        difficulty: t('styles.medium_19'),
+        recommendedUse: ["Cheese Slice", "Pepperoni", "White Pie"],
+        difficulty: "Medium",
         fermentationSteps: [
             "Mix to full gluten development. [Science: Strong gluten network required to support the large surface area during stretching and baking.]",
             "Ball and cold ferment (24-72h). [Science: Cold environment slows yeast but allows protease enzymes to relax gluten for extensibility and amylase to generate sugars for browning.]",
@@ -35,8 +32,8 @@ export const NewYorkSlice: DoughStyleDefinition = {
     },
     tags: ["pizza", "american", "commercial", "foldable", "street-food"],
     pairings: {
-        canonical: [t('styles.lowmoisture_mozzarella'), t('styles.oregano'), t('styles.pepperoni_2')],
-        modern: [t('styles.vodka_sauce'), t('styles.hot_honey')],
+        canonical: ["Low Moisture Mozzarella", "Oregano", "Pepperoni"],
+        modern: ["Vodka Sauce", "Hot Honey"],
         regional: []
     },
     watchouts: [
@@ -54,8 +51,8 @@ export const NewYorkSlice: DoughStyleDefinition = {
     createdAt: "2025-01-01",
     releaseDate: "2025-01-01",
     references: [
-        { source: t('styles.the_pizza_bible'), author: t('styles.tony_gemignani') },
-        { source: t('styles.pmq_pizza_magazine') }
+        { source: "The Pizza Bible", author: "Tony Gemignani" },
+        { source: "PMQ Pizza Magazine" }
     ],
     images: {
         hero: "/images/styles/ny_hero.jpg",

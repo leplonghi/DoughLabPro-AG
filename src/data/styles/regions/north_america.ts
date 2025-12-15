@@ -1,12 +1,12 @@
 import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
 
 const nycSlice: DoughStyleDefinition = {
-    id: "nyc_slice_shop",
-    name: 'New york slice shop',
+    id: "new_york_slice_v2",
+    name: 'new_york_slice',
     category: "pizza",
     recipeStyle: RecipeStyle.NEW_YORK,
     origin: {
-        country: 'Usa 9',
+        country: 'USA',
         region: 'New york city 4',
         period: 'Early 20th century 2'
     },
@@ -157,11 +157,11 @@ const nycSlice: DoughStyleDefinition = {
 
 const detroitStyle: DoughStyleDefinition = {
     id: "detroit_style_classic",
-    name: 'Detroit style',
+    name: 'detroit_style_classic',
     category: "pizza",
     recipeStyle: RecipeStyle.DETROIT,
     origin: {
-        country: 'Usa 10',
+        country: 'USA',
         region: 'Detroit michigan',
         period: "1946"
     },
@@ -311,11 +311,11 @@ const detroitStyle: DoughStyleDefinition = {
 
 const chicagoDeepDish: DoughStyleDefinition = {
     id: "chicago_deep_dish",
-    name: 'Chicago deep dish 4',
+    name: 'chicago_deep_dish',
     category: "pizza",
     recipeStyle: RecipeStyle.CHICAGO_DEEP_DISH,
     origin: {
-        country: 'Usa 11',
+        country: 'USA',
         region: 'Chicago illinois',
         period: "1943"
     },
@@ -462,11 +462,11 @@ const chicagoDeepDish: DoughStyleDefinition = {
 
 const sfSourdough: DoughStyleDefinition = {
     id: "sf_sourdough",
-    name: 'San francisco sourdough 2',
+    name: 'san_francisco_sourdough',
     category: "bread",
     recipeStyle: RecipeStyle.SOURDOUGH,
     origin: {
-        country: 'Usa 12',
+        country: 'USA',
         region: 'San francisco ca',
         period: "1849 (Gold Rush)"
     },
@@ -616,11 +616,11 @@ const sfSourdough: DoughStyleDefinition = {
 
 const newHavenApizza: DoughStyleDefinition = {
     id: "new_haven_apizza",
-    name: 'New haven apizza',
+    name: 'new_haven_apizza',
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
     origin: {
-        country: 'Usa 13',
+        country: 'USA',
         region: 'New haven ct 2',
         period: "1925"
     },
@@ -765,11 +765,11 @@ const newHavenApizza: DoughStyleDefinition = {
 
 const nycBagel: DoughStyleDefinition = {
     id: "nyc_bagel",
-    name: 'New york bagel',
+    name: 'nyc_bagel',
     category: "bread",
     recipeStyle: RecipeStyle.BAGEL,
     origin: {
-        country: 'Usa 14',
+        country: 'USA',
         region: 'New york city 5',
         period: 'Late 19th century'
     },
@@ -914,13 +914,13 @@ const nycBagel: DoughStyleDefinition = {
 
 const grandmaPizza: DoughStyleDefinition = {
     id: "grandma_style_v2",
-    name: 'Grandma pizza 2',
+    name: 'grandma_pizza_2',
     category: "pizza",
     recipeStyle: RecipeStyle.GRANDMA_STYLE,
     family: 'Flatbreads  pizzas 5',
     description: "A thin, rectangular pan pizza that bridges the gap between home cooking and pizzeria style. Defined by a short proofing time (often no cold ferment) and being baked in an olive-oil coated sheet pan.",
     origin: {
-        country: 'Usa 15',
+        country: 'USA',
         region: 'Long island ny 2',
         period: "1970s"
     },
@@ -1062,7 +1062,7 @@ const grandmaPizza: DoughStyleDefinition = {
 
 const chicagoTavern: DoughStyleDefinition = {
     id: "chicago_tavern_v2",
-    name: 'Chicago tavern style 2',
+    name: 'chicago_tavern_style_2',
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
     family: 'Flatbreads  pizzas 6',
@@ -1214,7 +1214,7 @@ const chicagoTavern: DoughStyleDefinition = {
 
 const montrealBagel: DoughStyleDefinition = {
     id: "montreal_bagel",
-    name: 'Montreal bagel 3',
+    name: 'montreal_bagel',
     category: "bread",
     recipeStyle: RecipeStyle.BAGEL,
     origin: {
@@ -1303,7 +1303,7 @@ const montrealBagel: DoughStyleDefinition = {
 
 const flourTortilla: DoughStyleDefinition = {
     id: "flour_tortilla_sonora",
-    name: "Flour Tortilla (Sonora)",
+    name: "flour_tortilla_sonora",
     category: "flatbread",
     recipeStyle: RecipeStyle.FLATBREAD,
     origin: {

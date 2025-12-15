@@ -26,11 +26,11 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
           <div>
             <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('calculator.target_style')}</p>
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-              {style.name}
+              {t(style.name)}
               {style.origin && (
                 <span className="text-[10px] font-normal text-slate-500 flex items-center gap-1 bg-white px-2 py-0.5 rounded-full border border-slate-200">
                   <GlobeAltIcon className="h-3 w-3" />
-                  {style.origin.country}
+                  {t(style.origin.country)}
                 </span>
               )}
             </h3>
@@ -61,7 +61,7 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
 
           <div className="mb-4">
             <h4 className="text-xs font-bold uppercase text-slate-400 mb-1">{t('calculator.description')}</h4>
-            <p className="text-sm text-slate-600 leading-relaxed line-clamp-2">{style.description}</p>
+            <p className="text-sm text-slate-600 leading-relaxed line-clamp-2">{t(style.description)}</p>
           </div>
 
           <div className="flex justify-end">

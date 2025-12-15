@@ -214,6 +214,7 @@ export interface User {
     onboardingCompleted?: boolean;
     primaryInterest?: 'pizza' | 'bread' | 'sourdough' | 'other';
     bakingFrequency?: 'daily' | 'weekly' | 'monthly' | 'occasionally';
+    enableSmartSchedule?: boolean;
     // Billing & Localization
     billingCountry?: string | null; // ISO code, locked after first payment
     billingCurrency?: string | null;
@@ -724,5 +725,6 @@ export interface DoughStylePreset {
     preferredFlourProfileId?: string;
     defaultYeastPct?: number;
     region?: string;
+    country?: string;
     description?: string;
 }

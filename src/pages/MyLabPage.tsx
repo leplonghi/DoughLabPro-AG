@@ -31,7 +31,7 @@ interface MyLabPageProps {
 }
 
 const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'dashboard']);
     const { hasProAccess, openPaywall, batches } = useUser();
 
     // Stats Calculation

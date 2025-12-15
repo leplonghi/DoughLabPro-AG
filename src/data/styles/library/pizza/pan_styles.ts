@@ -1,22 +1,19 @@
 import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
-import i18n from '@/i18n';
-
-const t = i18n.t.bind(i18n);
 
 export const DetroitStyle: DoughStyleDefinition = {
     id: "detroit_style_v2",
-    name: t('styles.detroit_style_pizza'),
+    name: "detroit_style_classic",
     category: "pizza",
     recipeStyle: RecipeStyle.DETROIT,
-    family: t('styles.flatbreads__pizzas_2'),
+    family: "Flatbreads & Pizzas",
     description: "A rectangular, deep-dish pizza baked in blue steel automotive parts pans. Famous for its crispy, cheesy edges (frico) created by spreading Wisconsin Brick Cheese (or cheddar blend) all the way to the perimeter. The sauce is typically ladled on TOP of the cheese after baking or halfway through.",
     origin: {
-        country: t('styles.usa_6'),
-        region: t('styles.detroit_mi'),
+        country: "USA",
+        region: "Detroit, MI",
         period: "1946 (Buddy's Pizza)"
     },
     history: "Created by Gus Guerra at Buddy's Rendezvous in 1946 using blue steel pans from local automotive factories. The pans' conductive properties create the signature crust.",
-    difficulty: t('styles.medium_20'),
+    difficulty: "Medium",
     fermentationType: "preferment",
     technicalProfile: {
         hydration: [70, 75],
@@ -25,8 +22,8 @@ export const DetroitStyle: DoughStyleDefinition = {
         sugar: [1.0, 2.0],
         flourStrength: "Bread Flour (12-13%)",
         ovenTemp: [260, 290],
-        recommendedUse: [t('styles.classic_red_top'), ],
-        difficulty: t('styles.medium_21'),
+        recommendedUse: ["Classic Red Top"],
+        difficulty: "Medium",
         fermentationSteps: [
             "Mix to medium development. [Science: Extensibility is more important than elasticity to allow dough to fill corners.]",
             "Bulk ferment 2h or cold ferment 24h.",
@@ -35,9 +32,9 @@ export const DetroitStyle: DoughStyleDefinition = {
     },
     tags: ["pizza", "pan-pizza", "deep-dish", "american", "cheesy-crust", "frico"],
     pairings: {
-        canonical: [t('styles.brick_cheese'), t('styles.pepperoni_cups')],
-        modern: [t('styles.burrata'), t('styles.hot_honey_2')],
-        regional: [t('styles.vernors_ginger_ale')]
+        canonical: ["Brick Cheese", "Pepperoni Cups"],
+        modern: ["Burrata", "Hot Honey"],
+        regional: ["Vernors Ginger Ale"]
     },
     watchouts: [
         "Soggy center: Ensure the pan is properly seasoned and use enough oil.",
@@ -55,7 +52,7 @@ export const DetroitStyle: DoughStyleDefinition = {
     releaseDate: "2025-01-01",
     references: [
         { source: "Buddy's Pizza History", url: "https://www.buddyspizza.com/history" },
-        { source: t('styles.pizza_today_magazine') }
+        { source: "Pizza Today Magazine" }
     ],
     images: {
         hero: "/images/styles/detroit_hero.jpg",
@@ -66,18 +63,18 @@ export const DetroitStyle: DoughStyleDefinition = {
 
 export const GrandmaStyle: DoughStyleDefinition = {
     id: "grandma_style_v2",
-    name: t('styles.grandma_pizza'),
+    name: "grandma_pizza_2",
     category: "pizza",
     recipeStyle: RecipeStyle.GRANDMA_STYLE,
-    family: t('styles.flatbreads__pizzas_3'),
+    family: "Flatbreads & Pizzas",
     description: "A thin, rectangular pan pizza that bridges the gap between home cooking and pizzeria style. Defined by a short proofing time (often no cold ferment) and being baked in an olive-oil coated sheet pan.",
     origin: {
-        country: t('styles.usa_7'),
-        region: t('styles.long_island_ny'),
+        country: "USA",
+        region: "Long Island, NY",
         period: "1970s"
     },
     history: "Originated from Italian grandmothers (Nonnas) in Long Island making pizza at home with whatever they had (simple dough, crushed tomatoes, standard oven) without long fermentation times.",
-    difficulty: t('styles.easy_6'),
+    difficulty: "Easy",
     fermentationType: "direct",
     technicalProfile: {
         hydration: [60, 65],
@@ -86,8 +83,8 @@ export const GrandmaStyle: DoughStyleDefinition = {
         sugar: [1.0, 3.0],
         flourStrength: "All Purpose or Bread (11-12%)",
         ovenTemp: [230, 260],
-        recommendedUse: [t('styles.classic_tomato__garlic'), t('styles.vodka_sauce_2')],
-        difficulty: t('styles.easy_7'),
+        recommendedUse: ["Classic Tomato & Garlic", "Vodka Sauce"],
+        difficulty: "Easy",
         fermentationSteps: [
             "Mix to moderate development. [Science: Doesn't need windowpane as it's supported by a pan.]",
             "Short bulk (1-2h). [Science: 'Grandma' style implies immediacy; rapid yeast activity is key.]",
@@ -96,9 +93,9 @@ export const GrandmaStyle: DoughStyleDefinition = {
     },
     tags: ["pizza", "pan-pizza", "italian-american", "beginner-friendly", "thin-crust"],
     pairings: {
-        canonical: [t('styles.garlic'), t('styles.crushed_tomatoes'), t('styles.mozzarella'), t('styles.olive_oil')],
-        modern: [t('styles.pesto'), t('styles.fresh_mozzarella')],
-        regional: [t('styles.none')]
+        canonical: ["Garlic", "Crushed Tomatoes", "Mozzarella", "Olive Oil"],
+        modern: ["Pesto", "Fresh Mozzarella"],
+        regional: ["None"]
     },
     watchouts: [
         "Sticking: Use plenty of oil in the pan.",

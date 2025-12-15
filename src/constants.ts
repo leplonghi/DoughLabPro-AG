@@ -119,6 +119,7 @@ export const DOUGH_STYLE_PRESETS: DoughStylePreset[] = STYLES_DATA.map(style => 
     defaultSugar: sugarPct,
     defaultYeastPct: yeastPct,
     region: style.origin.region || style.origin.country,
+    country: style.origin.country,
     description: style.description,
   };
 });

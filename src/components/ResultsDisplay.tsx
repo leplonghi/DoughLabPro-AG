@@ -8,6 +8,7 @@ import {
     FlourDefinition,
     CalculationMode,
     BakeType,
+    Levain,
 } from '@/types';
 import { gramsToVolume } from '@/helpers';
 import {
@@ -44,6 +45,7 @@ interface ResultsDisplayProps {
     onOpenPaywall: (origin: any) => void;
     saveButtonRef?: React.Ref<HTMLButtonElement>;
     onboardingStep?: number;
+    selectedLevain?: Levain | null;
 }
 
 export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
@@ -56,6 +58,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     hasProAccess,
     onOpenPaywall,
     saveButtonRef,
+    selectedLevain,
 }) => {
     const { addToast } = useToast();
     const { t } = useTranslation();
@@ -364,9 +367,11 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
 
             {/* Smart Schedule */}
-            <div className="rounded-2xl bg-dlp-bg-card shadow-dlp-md border border-dlp-border overflow-hidden">
-                <ReverseSchedule config={config} />
-            </div>
+            {user?.enableSmartSchedule && (
+                <div className="rounded-2xl bg-dlp-bg-card shadow-dlp-md border border-dlp-border overflow-hidden">
+                    <ReverseSchedule config={config} levain={selectedLevain || undefined} />
+                </div>
+            )}
 
             {/* Technical Method Section */}
             <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border">

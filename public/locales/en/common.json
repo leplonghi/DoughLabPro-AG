@@ -312,6 +312,20 @@
       "time": "Time",
       "created_with": "Created with",
       "doughlab_title": "DoughLab Pro"
+    },
+    "countries": {
+      "usa": "USA",
+      "italy": "Italy",
+      "france": "France",
+      "germany": "Germany",
+      "mexico": "Mexico",
+      "brazil": "Brazil",
+      "sweden": "Sweden",
+      "austria": "Austria",
+      "switzerland": "Switzerland",
+      "uk": "UK",
+      "other": "Other",
+      "all": "All"
     }
   },
   "nav": {
@@ -3049,6 +3063,10 @@
     "baking_temp_c": "Baking Temp (°C)"
   },
   "ui": {
+    "welcome_title": "Welcome to your digital dough lab",
+    "app_tagline": "The ultimate precision tool for home bakers.",
+    "sign_in_button": "Sign In / Create Account",
+    "terms_agreement": "By continuing, you agree to our Terms of Service and Privacy Policy.",
     "skip_tour": "Skip Tour",
     "authentication_required": "Authentication Required",
     "log_in": "Log In",

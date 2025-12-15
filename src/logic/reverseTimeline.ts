@@ -1,5 +1,5 @@
 
-import { DoughConfig, BakeType, FermentationTechnique, RecipeStyle, AmbientTemperature } from '../types';
+import { DoughConfig, BakeType, FermentationTechnique, RecipeStyle, AmbientTemperature, Levain } from '../types';
 
 export interface TimelineStep {
     id: string;
@@ -24,7 +24,7 @@ export const BASE_DURATIONS = {
     FEED_LEVAIN: 4 * 60,
 };
 
-export function calculateReverseTimeline(targetDate: Date, config: DoughConfig): TimelineStep[] {
+export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, levain?: Levain): TimelineStep[] {
     const steps: TimelineStep[] = [];
     let currentTime = new Date(targetDate.getTime());
 
@@ -159,14 +159,19 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig):
         });
     }
     else if (config.yeastType === 'SOURDOUGH_STARTER') {
-        const feed = subtract(BASE_DURATIONS.FEED_LEVAIN);
+        let feedDuration = BASE_DURATIONS.FEED_LEVAIN;
+        if (levain && levain.idealFeedingIntervalHours) {
+            feedDuration = levain.idealFeedingIntervalHours * 60;
+        }
+
+        const feed = subtract(feedDuration);
         steps.push({
             id: 'feed_levain',
             title: 'Feed Levain',
-            durationMinutes: BASE_DURATIONS.FEED_LEVAIN,
+            durationMinutes: feedDuration,
             startTime: feed.start,
             endTime: feed.end,
-            description: 'Feed starter 1:2:2 or 1:1:1.'
+            description: levain?.name ? `Feed ${levain.name} (${feedDuration / 60}h peak).` : 'Feed starter 1:2:2 or 1:1:1.'
         });
     }
 
