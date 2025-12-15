@@ -67,68 +67,79 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                         id="baker-card"
                         className="w-[320px] aspect-[4/5] bg-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden"
                     >
-                        {/* Background Accents - Keeping these specific for the share card aesthetic */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-lime-500/20 blur-3xl rounded-full -mr-10 -mt-10"></div>
-                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-sky-500/20 blur-3xl rounded-full -ml-10 -mb-10"></div>
+                        {/* Background Accents - Enhanced */}
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-lime-500/20 blur-3xl rounded-full -mr-16 -mt-16 mix-blend-screen"></div>
+                        <div className="absolute bottom-0 left-0 w-48 h-48 bg-sky-500/20 blur-3xl rounded-full -ml-16 -mb-16 mix-blend-screen"></div>
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-slate-800/50 rounded-full blur-2xl"></div>
 
                         {/* Header */}
                         <div className="relative z-10">
-                            <div className="flex items-center gap-2 mb-1">
-                                <div className="h-6 w-6 rounded bg-lime-500 flex items-center justify-center font-bold text-slate-900 text-xs">DL</div>
-                                <span className="font-bold tracking-wider text-sm text-slate-300">{t('general.doughlab_pro')}</span>
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="h-6 w-6 rounded bg-lime-500 flex items-center justify-center font-black text-slate-900 text-xs shadow-lg shadow-lime-500/20">DL</div>
+                                <span className="font-bold tracking-widest text-[10px] text-slate-400 uppercase">{t('common.share_card.doughlab_title')}</span>
                             </div>
-                            <h2 className="text-2xl font-black text-white mt-2 leading-tight">
-                                {styleName} <br />{t('common.master_formula')}</h2>
+                            <h2 className="text-3xl font-black text-white mt-1 leading-none tracking-tight">
+                                {styleName}
+                            </h2>
+                            <p className="text-sm font-medium text-lime-400 mt-1 uppercase tracking-wide opacity-90">{t('common.share_card.master_formula')}</p>
                         </div>
 
                         {/* Big Stats */}
-                        <div className="relative z-10 grid grid-cols-2 gap-4 my-6">
-                            <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border border-white/10">
-                                <span className="block text-xs text-slate-400 uppercase tracking-wider">{t('form.hydration')}</span>
-                                <span className="block text-3xl font-bold text-lime-400">{hydration}%</span>
+                        <div className="relative z-10 grid grid-cols-2 gap-4 my-8">
+                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 shadow-xl">
+                                <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">{t('common.share_card.hydration')}</span>
+                                <span className="block text-4xl font-black text-white mt-1">{hydration}%</span>
                             </div>
-                            <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border border-white/10">
-                                <span className="block text-xs text-slate-400 uppercase tracking-wider">{t('general.time')}</span>
-                                <span className="block text-3xl font-bold text-sky-400">{fermentation}h</span>
+                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 shadow-xl">
+                                <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">{t('common.share_card.time')}</span>
+                                <span className="block text-4xl font-black text-white mt-1">{fermentation}h</span>
                             </div>
                         </div>
 
                         {/* Formula List */}
-                        <div className="relative z-10 space-y-2 text-sm border-t border-white/10 pt-4">
-                            <div className="flex justify-between items-center">
-                                <span className="text-slate-300">{t('results.flour')}</span>
-                                <span className="font-mono font-bold">100%</span>
+                        <div className="relative z-10 space-y-3 text-sm border-t border-white/10 pt-6">
+                            <div className="flex justify-between items-center group">
+                                <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.flour')}</span>
+                                <span className="font-mono font-bold text-white">100%</span>
                             </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-slate-300">{t('results.water')}</span>
-                                <span className="font-mono font-bold text-lime-300">{config.hydration}%</span>
+                            <div className="flex justify-between items-center group">
+                                <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.water')}</span>
+                                <span className="font-mono font-bold text-lime-400">{config.hydration}%</span>
                             </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-slate-300">{t('results.salt')}</span>
-                                <span className="font-mono font-bold">{config.salt}%</span>
+                            <div className="flex justify-between items-center group">
+                                <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.salt')}</span>
+                                <span className="font-mono font-bold text-white">{config.salt}%</span>
                             </div>
                             {config.yeastPercentage > 0 && (
-                                <div className="flex justify-between items-center">
-                                    <span className="text-slate-300">{t('results.yeast')}</span>
-                                    <span className="font-mono font-bold">{config.yeastPercentage}%</span>
+                                <div className="flex justify-between items-center group">
+                                    <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.share_card.fermentation')} (Yeast)</span>
+                                    <span className="font-mono font-bold text-white">{config.yeastPercentage}%</span>
                                 </div>
                             )}
                             {config.prefermentPercentage > 0 && (
-                                <div className="flex justify-between items-center mt-2 pt-2 border-t border-white/10">
-                                    <span className="text-amber-400">{t('general.preferment')}</span>
+                                <div className="flex justify-between items-center mt-3 pt-3 border-t border-white/5 border-dashed">
+                                    <span className="text-amber-400 font-medium">{t('general.preferment')}</span>
                                     <span className="font-mono font-bold text-amber-400">{config.prefermentPercentage}%</span>
                                 </div>
                             )}
                         </div>
 
                         {/* Footer */}
-                        <div className="relative z-10 mt-auto pt-6 flex justify-between items-end">
+                        <div className="relative z-10 mt-auto pt-8 flex justify-between items-end">
                             <div>
-                                <p className="text-[10px] text-slate-500 uppercase tracking-widest">{t('general.created_by')}</p>
-                                <p className="font-bold text-sm">{t('general.doughlab_pro_2')}</p>
+                                <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-0.5">{t('common.share_card.created_with')}</p>
+                                <p className="font-bold text-sm text-white tracking-wide">DoughLab Pro</p>
                             </div>
-                            <div className="text-right">
-                                <p className="text-[10px] text-slate-500">{new Date().toLocaleDateString()}</p>
+                            <div className="flex items-center justify-center bg-white p-1 rounded">
+                                {/* Simulated QR Code */}
+                                <div className="w-8 h-8 grid grid-cols-4 grid-rows-4 gap-0.5">
+                                    <div className="bg-black col-span-2 row-span-2"></div>
+                                    <div className="bg-black col-start-4 row-start-1"></div>
+                                    <div className="bg-black col-start-3 row-start-2"></div>
+                                    <div className="bg-black col-start-1 row-start-4"></div>
+                                    <div className="bg-black col-start-2 row-start-3"></div>
+                                    <div className="bg-black col-start-4 row-start-4"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

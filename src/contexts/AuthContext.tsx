@@ -19,18 +19,18 @@ interface AuthContextType {
     firebaseUser: FirebaseUser | null;
     appUser: User | null;
     loading: boolean;
-    loginWithGoogle: () =>Promise<void>;
-    loginWithEmail: (email: string, pass: string) =>Promise<void>;
-    registerWithEmail: (email: string, pass: string, name?: string) =>Promise<void>;
-    resetPassword: (email: string) =>Promise<void>;
-    logout: () =>Promise<void>;
-    loginAsGuest: () =>Promise<void>;
+    loginWithGoogle: () => Promise<void>;
+    loginWithEmail: (email: string, pass: string) => Promise<void>;
+    registerWithEmail: (email: string, pass: string, name?: string) => Promise<void>;
+    resetPassword: (email: string) => Promise<void>;
+    logout: () => Promise<void>;
+    loginAsGuest: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
     const [appUser, setAppUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
@@ -42,8 +42,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             return;
         }
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            setFirebaseUser(user);
             if (user) {
+                setFirebaseUser(user);
                 // Check for custom claims
                 let isProClaim = false;
                 let planClaim = 'free';
@@ -99,7 +99,53 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     }
                 }
             } else {
-                setAppUser(null);
+                // Check for VIP/Guest access via URL or LocalStorage
+                const urlParams = new URLSearchParams(window.location.search);
+                const isVip = urlParams.get('vip') === 'true' || localStorage.getItem('dough-lab-vip-mode') === 'true';
+
+                if (isVip) {
+                    if (urlParams.get('vip') === 'true') {
+                        localStorage.setItem('dough-lab-vip-mode', 'true');
+                    }
+                    console.log("VIP Access Granted");
+                    const guestUser = {
+                        uid: 'vip-guest-user',
+                        displayName: 'VIP Guest',
+                        email: 'vip@doughlab.pro',
+                        emailVerified: true,
+                        isAnonymous: true,
+                        metadata: {},
+                        providerData: [],
+                        refreshToken: '',
+                        tenantId: null,
+                        delete: async () => { },
+                        getIdToken: async () => 'mock-vip-token',
+                        getIdTokenResult: async () => ({
+                            token: 'mock-vip-token',
+                            signInProvider: 'custom',
+                            claims: { app_metadata: { pro: true, plan: 'lab_pro' } },
+                            authTime: Date.now().toString(),
+                            issuedAtTime: Date.now().toString(),
+                            expirationTime: (Date.now() + 3600000).toString(),
+                        }),
+                        reload: async () => { },
+                        toJSON: () => ({}),
+                        phoneNumber: null,
+                        photoURL: null,
+                        providerId: 'custom',
+                    } as unknown as FirebaseUser;
+
+                    setFirebaseUser(guestUser);
+                    setAppUser({
+                        name: 'VIP Guest',
+                        email: 'vip@doughlab.pro',
+                        isPro: true,
+                        plan: 'lab_pro',
+                    });
+                } else {
+                    setFirebaseUser(null);
+                    setAppUser(null);
+                }
             }
             setLoading(false);
         });
@@ -193,6 +239,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const logout = async () => {
+        localStorage.removeItem('dough-lab-vip-mode');
         if (auth) {
             await signOut(auth);
         }

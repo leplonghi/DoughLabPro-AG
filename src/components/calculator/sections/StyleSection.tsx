@@ -64,7 +64,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             icon={<BookOpenIcon className="h-6 w-6" />}
         >
             {/* 1. DISTINCT BAKE TYPE SELECTOR (Tabs) */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
+            <div className="grid grid-cols-3 gap-2 mb-4">
                 {BAKE_TYPES.map((type) => {
                     const isActive = config.bakeType === type.id;
                     return (
@@ -72,17 +72,17 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                             key={type.id}
                             onClick={() => onBakeTypeChange(type.id)}
                             className={`
-                                relative flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all duration-200
+                                relative flex items-center justify-center gap-2 p-2 rounded-lg border transition-all duration-200
                                 ${isActive
                                     ? 'border-dlp-accent bg-dlp-accent/10 text-dlp-accent shadow-sm'
-                                    : 'border-slate-100 bg-white text-slate-500 hover:border-slate-200 hover:bg-slate-50'
+                                    : 'border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50'
                                 }
                             `}
                         >
-                            <div className={`mb-1 ${isActive ? 'text-dlp-accent' : 'text-slate-400'}`}>
+                            <div className={`${isActive ? 'text-dlp-accent' : 'text-slate-400'}`}>
                                 {type.icon}
                             </div>
-                            <span className="text-sm font-bold">{type.label}</span>
+                            <span className="text-xs font-bold md:text-sm">{type.label}</span>
                         </button>
                     );
                 })}
@@ -103,24 +103,24 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             </div>
 
             {/* 3. STATIC GRID (No Scroll) */}
-            <div className="space-y-8 mt-6">
+            <div className="space-y-6 mt-4">
                 {groupedStyles.length > 0 ? (
                     groupedStyles.map(([region, styles]) => (
                         <div key={region} className="animate-fade-in relative group/section">
-                            <div className="flex items-center justify-between mb-3 px-1">
-                                <h4 className="flex items-center text-xs font-bold text-slate-500 uppercase tracking-widest">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-lime-500 mr-2"></span>
+                            <div className="flex items-center justify-between mb-2 px-1">
+                                <h4 className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">
+                                    <span className="w-1 h-1 rounded-full bg-slate-300 mr-2"></span>
                                     {region}
                                 </h4>
-                                <span className="text-[10px] text-slate-300 font-medium">{styles.length} {t('calculator.styles_count')}</span>
+                                <span className="text-[9px] text-slate-300 font-medium">{styles.length}</span>
                             </div>
 
                             {/* Content Grid - Adapts to Mode */}
                             <div className={`
-                                grid gap-3
+                                grid gap-2
                                 ${isBasic
-                                    ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' // Guided: Larger cards
-                                    : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6' // Pro: Dense chips
+                                    ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5' // Guided: More compact
+                                    : 'grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8' // Pro: Very dense
                                 }
                             `}>
                                 {styles.map((preset) => {
@@ -130,29 +130,29 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                             key={preset.id}
                                             onClick={() => onStyleChange(preset.id)}
                                             className={`
-                                                relative flex flex-col items-start text-left transition-all duration-200
+                                                relative flex flex-col items-start text-left transition-all duration-200 group
                                                 ${isBasic
-                                                    ? 'p-3 rounded-xl border' // Guided Styles
-                                                    : 'p-2 rounded-lg border items-center text-center' // Pro Styles
+                                                    ? 'p-2.5 rounded-lg border min-h-[80px]' // Guided Styles
+                                                    : 'p-1.5 rounded-md border items-center text-center justify-center min-h-[60px]' // Pro Styles
                                                 }
                                                 ${isSelected
-                                                    ? 'bg-lime-50 border-lime-500 ring-1 ring-lime-500 shadow-md transform scale-[1.02] z-10'
-                                                    : 'bg-white border-slate-200 hover:border-lime-200 hover:shadow-sm hover:-translate-y-0.5'
+                                                    ? 'bg-lime-50/50 border-lime-500 ring-1 ring-lime-500 shadow-sm z-10'
+                                                    : 'bg-white border-slate-100 hover:border-lime-300 hover:bg-slate-50 hover:shadow-sm'
                                                 }
                                             `}
                                         >
                                             {/* Selection Indicator (Dot) */}
                                             {isSelected && (
-                                                <div className={`absolute rounded-full bg-lime-500 ${isBasic ? 'top-2 right-2 w-2 h-2' : 'top-1 right-1 w-1.5 h-1.5'}`} />
+                                                <div className={`absolute rounded-full bg-lime-500 ${isBasic ? 'top-2 right-2 w-1.5 h-1.5' : 'top-1 right-1 w-1 h-1'}`} />
                                             )}
 
-                                            <span className={`font-bold leading-tight ${isSelected ? 'text-lime-800' : 'text-slate-700'} ${isBasic ? 'text-sm mb-1 line-clamp-2' : 'text-[11px] line-clamp-1'}`}>
+                                            <span className={`font-bold leading-tight w-full ${isSelected ? 'text-lime-700' : 'text-slate-600'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
                                                 {preset.name}
                                             </span>
 
                                             {/* Description - ONLY IN GUIDED MODE */}
                                             {isBasic && preset.description && (
-                                                <p className={`text-[10px] leading-tight line-clamp-3 mt-1 ${isSelected ? 'text-lime-600/80' : 'text-slate-400'}`}>
+                                                <p className={`text-[9px] leading-tight line-clamp-2 mt-0.5 ${isSelected ? 'text-lime-600/70' : 'text-slate-400'}`}>
                                                     {preset.description}
                                                 </p>
                                             )}

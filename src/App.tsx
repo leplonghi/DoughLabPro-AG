@@ -10,6 +10,7 @@ import { PaywallModal } from '@/components/PaywallModal';
 import LevainOnboardingModal from '@/components/onboarding/LevainOnboardingModal';
 import { Logo } from '@/components/ui/Logo';
 import { TourGuide } from '@/components/onboarding/TourGuide';
+import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
 
 // Contexts
 import { ToastProvider, useToast } from '@/components/ToastProvider';
@@ -68,6 +69,23 @@ function AppContent() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
   const [showLevainOnboarding, setShowLevainOnboarding] = useState(false);
+  const [showMainOnboarding, setShowMainOnboarding] = useState(false);
+
+  // Main Onboarding Logic
+  useEffect(() => {
+    if (user && isAuthenticated && !user.onboardingCompleted) {
+      // Check if we maybe stored it locally for guests/interim
+      const localCompleted = localStorage.getItem('dlp_onboarding_completed') === 'true';
+      if (!localCompleted) {
+        setShowMainOnboarding(true);
+      }
+    }
+  }, [user, isAuthenticated]);
+
+  const handleMainOnboardingComplete = () => {
+    localStorage.setItem('dlp_onboarding_completed', 'true');
+    setShowMainOnboarding(false);
+  };
 
   // Last batch calculation
   const lastBatch = useMemo(() => {
@@ -222,6 +240,13 @@ function AppContent() {
         <LevainOnboardingModal
           onComplete={handleOnboardingComplete}
           onNavigate={navigate}
+        />
+      )}
+
+      {showMainOnboarding && (
+        <OnboardingWizard
+          onComplete={handleMainOnboardingComplete}
+          onClose={() => setShowMainOnboarding(false)}
         />
       )}
 

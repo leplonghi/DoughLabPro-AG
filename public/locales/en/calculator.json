@@ -2807,6 +2807,19 @@
     "process_science_placeholder": "Explain the scientific 'why' behind the process. E.g., 'The high hydration coupled with bassinage allows for...'",
     "no_process_steps": "No process steps defined. Click 'Add Step' to build the timeline.",
     "science_the_why": "Science (The Why)",
-    "save_style": "Save Style"
+    "save_style": "Save Style",
+    "consistency": {
+      "stiff_label": "Stiff / Firm",
+      "stiff_desc": "Bagels / Dense Breads",
+      "classic_label": "Classic Balance",
+      "classic_desc": "Neapolitan Style",
+      "high_label": "High Hydration",
+      "high_desc": "Requires Technique / Open Crumb"
+    },
+    "schedule": {
+      "title": "Smart Schedule",
+      "subtitle": "Plan backwards from eating time",
+      "add_to_calendar": "Add Start to Calendar"
+    }
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { DoughConsistencyVisualizer } from '@/components/calculator/DoughConsistencyVisualizer';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import SliderInput from "@/components/ui/SliderInput";
 import { CubeIcon } from "@/components/ui/Icons";
@@ -89,6 +90,11 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             recommendedMax={getRange('hydration')?.[1]}
             learnArticle={getArticleById('water-hydration-dynamics')}
           />
+          {config.bakeType !== 'SWEETS_PASTRY' && (
+            <div className="mb-4">
+              <DoughConsistencyVisualizer hydration={config.hydration} />
+            </div>
+          )}
           <SliderInput
             label={t('results.salt')}
             name="salt"
@@ -118,6 +124,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                 recommendedMax={getRange('hydration')?.[1]}
                 learnArticle={getArticleById('water-hydration-dynamics')}
               />
+              <DoughConsistencyVisualizer hydration={config.hydration} />
             </LockedTeaser>
           )}
           <SliderInput

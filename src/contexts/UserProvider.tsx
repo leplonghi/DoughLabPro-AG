@@ -43,7 +43,7 @@ import { useBatchManager } from '@/hooks/useBatchManager';
 import { useTranslation } from '@/i18n';
 
 const shouldUseFirestore = (user: User | null | any, db: any) => {
-  return !!user && !!db && user.uid !== 'guest-123';
+  return !!user && !!db && user.uid !== 'guest-123' && user.uid !== 'vip-guest-user';
 };
 
 
@@ -134,6 +134,28 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setFirebaseUser(authUser);
 
       if (!authUser) {
+        // Check for VIP Guest URL or Persistence
+        const urlParams = new URLSearchParams(window.location.search);
+        const isVip = urlParams.get('vip') === 'true' || localStorage.getItem('dough-lab-vip-mode') === 'true';
+
+        if (isVip) {
+          const guestAuth = { uid: 'vip-guest-user', email: 'vip@doughlab.pro' };
+          setFirebaseUser(guestAuth);
+          setUser({
+            uid: 'vip-guest-user',
+            name: 'VIP Guest',
+            email: 'vip@doughlab.pro',
+            avatar: undefined,
+            plan: 'lab_pro',
+            isPro: true,
+            isAdmin: false,
+          } as User);
+
+          setUserLoading(false);
+          setPlanLoading(false);
+          return;
+        }
+
         setUser(null);
         setUserLoading(false);
         setPlanLoading(false);

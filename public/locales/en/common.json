@@ -304,7 +304,15 @@
     "roman_teglia": "Roman Teglia",
     "better_for_toppings_density": "Better for toppings density",
     "pro_2": "Pro",
-    "explore": "Explore"
+    "explore": "Explore",
+    "share_card": {
+      "hydration": "Hydration",
+      "fermentation": "Fermentation",
+      "master_formula": "Master Formula",
+      "time": "Time",
+      "created_with": "Created with",
+      "doughlab_title": "DoughLab Pro"
+    }
   },
   "nav": {
     "home": "Home",

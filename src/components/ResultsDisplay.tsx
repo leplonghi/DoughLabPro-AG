@@ -27,6 +27,7 @@ import { canUseFeature, getCurrentPlan } from '@/permissions';
 import SocialShareModal from '@/components/social/SocialShareModal';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 import { getStyleById } from '@/data/styles';
+import { ReverseSchedule } from '@/components/calculator/ReverseSchedule';
 
 interface ResultsDisplayProps {
     results: DoughResult | null;
@@ -359,6 +360,12 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         </button>
                     </div>
                 </div>
+            </div>
+
+
+            {/* Smart Schedule */}
+            <div className="rounded-2xl bg-dlp-bg-card shadow-dlp-md border border-dlp-border overflow-hidden">
+                <ReverseSchedule config={config} />
             </div>
 
             {/* Technical Method Section */}

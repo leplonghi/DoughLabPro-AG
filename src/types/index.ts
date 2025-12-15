@@ -211,6 +211,9 @@ export interface User {
     website?: string;
     instagramHandle?: string;
     skillLevel?: 'beginner' | 'intermediate' | 'advanced' | 'pro';
+    onboardingCompleted?: boolean;
+    primaryInterest?: 'pizza' | 'bread' | 'sourdough' | 'other';
+    bakingFrequency?: 'daily' | 'weekly' | 'monthly' | 'occasionally';
     // Billing & Localization
     billingCountry?: string | null; // ISO code, locked after first payment
     billingCurrency?: string | null;
