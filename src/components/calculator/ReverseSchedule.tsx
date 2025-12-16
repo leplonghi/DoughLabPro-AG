@@ -14,43 +14,75 @@ const formatDate = (date: Date, locale: string) => {
     }).format(date);
 };
 
-interface ReverseScheduleProps {
+export interface ReverseScheduleProps {
     config: DoughConfig;
     levain?: Levain;
+    targetDate?: string;
+    onTargetDateChange?: (date: string) => void;
+    onScheduleChange?: (schedule: TimelineStep[]) => void;
 }
 
-export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({ config, levain }) => {
+export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
+    config,
+    levain,
+    targetDate,
+    onTargetDateChange,
+    onScheduleChange
+}) => {
     const { t, i18n } = useTranslation();
 
     // Default target: Tonight at 20:00 or Tomorrow 20:00
-    const defaultDate = new Date();
-    defaultDate.setHours(20, 0, 0, 0);
-    if (defaultDate < new Date()) {
-        defaultDate.setDate(defaultDate.getDate() + 1);
-    }
+    // Only use default if targetDate is NOT provided
+    const [internalTargetDate, setInternalTargetDate] = useState(() => {
+        if (targetDate) return targetDate;
+        const d = new Date();
+        d.setHours(20, 0, 0, 0);
+        if (d < new Date()) {
+            d.setDate(d.getDate() + 1);
+        }
+        // Return local datetime string for input
+        // Note: datetime-local expects YYYY-MM-DDThh:mm
+        // toISOString gives UTC. We need local.
+        const offset = d.getTimezoneOffset() * 60000;
+        return new Date(d.getTime() - offset).toISOString().slice(0, 16);
+    });
 
-    const [targetDateStr, setTargetDateStr] = useState(defaultDate.toISOString().slice(0, 16));
+    const activeTargetDate = targetDate || internalTargetDate;
+
+    // Sync input value with prop if controlled
+    useEffect(() => {
+        if (targetDate) {
+            setInternalTargetDate(targetDate);
+        }
+    }, [targetDate]);
+
     const [schedule, setSchedule] = useState<TimelineStep[]>([]);
 
     useEffect(() => {
-        const target = new Date(targetDateStr);
+        const target = new Date(activeTargetDate);
         const calc = calculateReverseTimeline(target, config, levain);
         setSchedule(calc);
-    }, [targetDateStr, config, levain]);
+        if (onScheduleChange) {
+            onScheduleChange(calc);
+        }
+    }, [activeTargetDate, config, levain, onScheduleChange]);
+
+    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newVal = e.target.value;
+        setInternalTargetDate(newVal);
+        if (onTargetDateChange) {
+            onTargetDateChange(newVal);
+        }
+    };
 
     const addToCalendar = () => {
-        // Placeholder for Google Calendar URL generation
-        // Start Time = schedule[0].startTime
-        // End Time = schedule[last].endTime
-        // This is complex because it's multiple events. Usually you add the 'Eat' event or the 'Start' event.
-        // Let's make a simple google calendar link for the "Start Baking" moment.
-
+        // ... (existing logic)
         if (schedule.length === 0) return;
         const startEvent = schedule[0];
 
         const text = encodeURIComponent(`Start DoughLab: ${startEvent.title}`);
         const details = encodeURIComponent(startEvent.description || '');
-        const dates = startEvent.startTime.toISOString().replace(/-|:|\.\d\d\d/g, ""); // Basic ISO cleanup for GCal
+        const dates = startEvent.startTime.toISOString().replace(/-|:|\.\d\d\d/g, "");
         const datesEnd = startEvent.endTime.toISOString().replace(/-|:|\.\d\d\d/g, "");
 
         const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&details=${details}&dates=${dates}/${datesEnd}`;
@@ -71,8 +103,8 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({ config, levain
                 {/* Date Picker */}
                 <input
                     type="datetime-local"
-                    value={targetDateStr}
-                    onChange={(e) => setTargetDateStr(e.target.value)}
+                    value={activeTargetDate}
+                    onChange={handleDateChange}
                     className="border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 bg-slate-50 focus:ring-2 focus:ring-amber-500 focus:outline-none"
                 />
             </div>

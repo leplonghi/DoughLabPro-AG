@@ -2136,10 +2136,10 @@
     }
   },
   "assistant_page": {
-    "error": "Error with the Oracle",
-    "greeting_short": "I am Doughy, your Dough Oracle. How may I guide your bake or build a recipe today?",
-    "title_short": "Doughy Oracle",
-    "send": "Invoke",
+    "error": "Error with Doughy",
+    "greeting_short": "I am Doughy. How can I help you build a recipe or understand your dough today?",
+    "title_short": "Doughy",
+    "send": "Send",
     "placeholder_short": "Ask about flour, fermentation, or ask to build a recipe..."
   }
 }

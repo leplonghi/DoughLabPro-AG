@@ -9,7 +9,7 @@ interface StyleSummaryCardProps {
 }
 
 const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = '' }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
@@ -26,7 +26,7 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
                     <div>
                         <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-0.5">{t('common.target_style')}</p>
                         <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                            {style.name}
+                            {t(style.name)}
                         </h3>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
                     {style.origin && (
                         <div className="mb-4 flex items-center gap-2 text-xs text-slate-500">
                             <GlobeAltIcon className="h-4 w-4" />
-                            <span>{style.origin.country}, {style.origin.region} ({style.origin.period})</span>
+                            <span>{t(style.origin.country)}, {t(style.origin.region)} ({style.origin.period})</span>
                         </div>
                     )}
 
@@ -61,7 +61,7 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
 
                     <div className="mb-4">
                         <h4 className="text-xs font-bold uppercase text-slate-400 mb-2">{t('general.description_2')}</h4>
-                        <p className="text-sm text-slate-600 leading-relaxed">{style.description}</p>
+                        <p className="text-sm text-slate-600 leading-relaxed">{t(style.description)}</p>
                     </div>
 
                     <div className="flex justify-end pt-2 border-t border-slate-50">

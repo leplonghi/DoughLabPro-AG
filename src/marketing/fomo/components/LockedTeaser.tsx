@@ -1,7 +1,7 @@
 import React from 'react';
 import { FeatureKey, canUseFeature, getCurrentPlan } from '../../../permissions';
 import { useUser } from '../../../contexts/UserProvider';
-import { useFomo } from '../useFomo';
+import { useFomo } from '@/marketing/fomo/FomoContext';
 import { useTranslation } from '@/i18n';
 
 interface LockedTeaserProps {
@@ -11,7 +11,7 @@ interface LockedTeaserProps {
 }
 
 export const LockedTeaser: React.FC<LockedTeaserProps> = ({ featureKey, children, className = '' }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user } = useUser();
     const { triggerFomo } = useFomo();
 

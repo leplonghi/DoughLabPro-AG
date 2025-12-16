@@ -16,10 +16,10 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
     children,
     className = '',
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
-        <div className={`rounded-xl border border-dlp-border bg-dlp-bg-card p-5 shadow-dlp-sm transition-all hover:shadow-dlp-md ${className}`}>
-            <div className="mb-4 flex items-start gap-4">
+        <div className={`rounded-xl border border-dlp-border bg-dlp-bg-card p-4 shadow-dlp-sm transition-all hover:shadow-dlp-md ${className}`}>
+            <div className="mb-3 flex items-start gap-4">
                 {icon && (
                     <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-dlp-bg-muted text-dlp-accent">
                         {icon}
@@ -32,7 +32,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
                     )}
                 </div>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
                 {children}
             </div>
         </div>

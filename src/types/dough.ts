@@ -162,6 +162,7 @@ export interface DeepDive {
 
 export interface DoughStyle {
     id: string;
+    // For i18n, these should be translation keys (e.g. 'styles.pizza_napoletana_name')
     name: string;
 
     // Facets
@@ -171,6 +172,7 @@ export interface DoughStyle {
     recipeStyle?: RecipeStyle; // Added for Calculator/Filter logic
     tags: string[];
 
+    // Translation keys for i18n
     description: string;
     history_context: string;
 

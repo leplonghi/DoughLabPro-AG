@@ -123,7 +123,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                                         <input
                                             autoFocus
                                             type="text"
-                                            value={editForm.name}
+                                            value={t(editForm.name || '')}
                                             onChange={e => handleChange('name', e.target.value)}
                                             className="w-full px-2 py-1 text-sm border border-dlp-border rounded focus:border-dlp-accent focus:ring-1 focus:ring-dlp-accent outline-none bg-white text-dlp-text-primary"
                                             placeholder={t('calculator.name')}
@@ -174,7 +174,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                                 // View Mode
                                 <>
                                     <div className="col-span-5 pl-2">
-                                        <span className="block font-medium text-sm text-dlp-text-primary">{ing.name}</span>
+                                        <span className="block font-medium text-sm text-dlp-text-primary">{t(ing.name)}</span>
                                         {ing.role !== 'other' && <span className="inline-block text-[9px] px-1.5 py-0.5 rounded bg-dlp-bg-muted text-dlp-text-muted uppercase font-bold tracking-wider">{ing.role}</span>}
                                     </div>
                                     <div className="col-span-3 text-right">

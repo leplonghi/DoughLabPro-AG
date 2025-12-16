@@ -15,7 +15,7 @@ interface FomoContextType {
 const FomoContext = createContext<FomoContextType | undefined>(undefined);
 
 export const FomoProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user } = useUser();
     const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
     const [currentFeatureKey, setCurrentFeatureKey] = useState<FeatureKey | null>(null);

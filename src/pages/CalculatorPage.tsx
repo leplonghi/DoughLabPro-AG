@@ -21,7 +21,6 @@ import { useTranslation } from '@/i18n';
 import { InfoIcon } from '@/components/ui/Icons';
 import OnboardingTooltip from '@/components/onboarding/OnboardingTooltip';
 import { AdCard } from '@/marketing/ads/AdCard';
-import { AssemblySection } from '@/components/calculator/ingredients/AssemblySection';
 import { getStyleById } from '@/data/styles/registry';
 import { Increment, UserIngredient } from '@/types/ingredients';
 
@@ -97,18 +96,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
     );
   };
 
-  // Fetch current style definition for Assembly Lab
-  const currentStyleDefinition = useMemo(() => {
-    if (props.config.stylePresetId) {
-      return getStyleById(props.config.stylePresetId);
-    }
-    // Fallback if no specific preset (e.g. custom or default)
-    return getStyleById('new_york_slice_v2'); // Temporary fallback, or handle null
-  }, [props.config.stylePresetId]);
 
-  const handleAssemblyUpdate = (increments: (Increment | UserIngredient)[]) => {
-    props.onConfigChange({ assemblyIncrements: increments });
-  };
 
   return (
     <>
@@ -154,16 +142,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
         </div>
       </div>
 
-      {currentStyleDefinition && (
-        <div className="mt-8">
-          <AssemblySection
-            style={currentStyleDefinition}
-            selectedIncrements={props.config.assemblyIncrements || []}
-            onUpdateIncrements={handleAssemblyUpdate}
-            bakingTempC={props.config.bakingTempC}
-          />
-        </div>
-      )}
+
 
       {props.onboardingState && renderOnboardingTooltip()}
       <AdCard context="calculator_footer" className="mt-8 mb-4" />

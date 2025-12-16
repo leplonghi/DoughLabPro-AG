@@ -139,9 +139,17 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
 
         // Default Quantity Logic:
         // Pastry: 1 Batch (Tray) of 1200g (e.g. Brownies, Cinnamon Rolls)
-        // Pizza/Bread: 4 Balls of 250g
+        // Pizza/Bread: 4 Balls of default (defer to context if undefined)
         const defaultNumPizzas = (bakeType === BakeType.SWEETS_PASTRY) ? 1 : 4;
-        const defaultBallWeight = (bakeType === BakeType.SWEETS_PASTRY) ? 1200 : 250;
+
+        let specificWeightStrategy1: number | undefined = undefined;
+        if (bakeType === BakeType.SWEETS_PASTRY) {
+            specificWeightStrategy1 = 1200;
+        } else if (style.technicalProfile?.ballWeight?.recommended) {
+            specificWeightStrategy1 = style.technicalProfile.ballWeight.recommended;
+        } else if (style.specs?.ballWeight?.recommended) {
+            specificWeightStrategy1 = style.specs.ballWeight.recommended;
+        }
 
         return {
             bakeType,
@@ -159,7 +167,7 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
             prefermentFlourPercentage: (parsedFermentationTechnique !== FermentationTechnique.DIRECT) ? parsedPrefermentPercentage : undefined,
             ingredients,
             numPizzas: defaultNumPizzas,
-            doughBallWeight: defaultBallWeight,
+            doughBallWeight: specificWeightStrategy1,
             scale: 1,
             notes: `Loaded from style: ${style.name} (Formula)`
         };
@@ -270,13 +278,21 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
     }
 
     if (totalFat > 0) {
-        ingredients.push({ id: 'fat', name: fatName, type: 'solid', role: fatRole, bakerPercentage: totalFat });
+        ingredients.push({ id: 'fat', name: fatName, type: 'solid', role: 'fat', bakerPercentage: totalFat });
     }
     if (sugar > 0) {
         ingredients.push({ id: 'sugar', name: 'Sugar', type: 'solid', role: 'sugar', bakerPercentage: sugar });
     }
     if (cocoa > 0) {
         ingredients.push({ id: 'cocoa', name: 'Cocoa Powder', type: 'solid', role: 'other', bakerPercentage: cocoa });
+    }
+
+    // Determine specific weight from style, if available
+    let specificWeight: number | undefined = undefined;
+    if (style.technicalProfile?.ballWeight?.recommended) {
+        specificWeight = style.technicalProfile.ballWeight.recommended;
+    } else if (style.specs?.ballWeight?.recommended) {
+        specificWeight = style.specs.ballWeight.recommended;
     }
 
     return {
@@ -294,7 +310,7 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
         yeastPercentage,
         ingredients,
         numPizzas: 4,
-        doughBallWeight: 250,
+        doughBallWeight: specificWeight, // Allow undefined to let Context handle defaults
         scale: 1,
         prefermentFlourPercentage: 20,
         notes: `Loaded from style: ${style.name}\n\n${style.description}`

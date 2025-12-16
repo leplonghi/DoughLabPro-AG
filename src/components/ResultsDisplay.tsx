@@ -29,6 +29,8 @@ import SocialShareModal from '@/components/social/SocialShareModal';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 import { getStyleById } from '@/data/styles';
 import { ReverseSchedule } from '@/components/calculator/ReverseSchedule';
+import { AffiliateIngredientRow } from '@/components/calculator/AffiliateIngredientRow';
+import { DoughRescueModal } from '@/components/tools/DoughRescueModal';
 
 interface ResultsDisplayProps {
     results: DoughResult | null;
@@ -65,6 +67,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     const { user } = useUser();
     const resultRef = useRef<HTMLDivElement>(null);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+    const [isRescueModalOpen, setIsRescueModalOpen] = useState(false);
 
     const userPlan = getCurrentPlan(user);
 
@@ -156,48 +159,65 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         }
     };
 
-    const renderRow = (label: string, grams: number, ingredientId: string, subtext?: string) => (
-        <div className="flex items-center justify-between border-b border-dlp-border py-3 last:border-0">
-            <div>
-                <p className="font-medium text-dlp-text-secondary">{label}</p>
-                {subtext && <p className="text-xs text-dlp-text-muted">{subtext}</p>}
-            </div>
-            <span className="font-mono font-semibold text-dlp-text-primary">
-                {displayIngredient(label, grams, ingredientId)}
-            </span>
-        </div>
-    );
+    const renderIngredientRow = (label: string, grams: number, ingredientId: string, subtext?: string) => {
+        const valueDisplay = displayIngredient(label, grams, ingredientId);
+
+        return (
+            <AffiliateIngredientRow
+                key={ingredientId + label}
+                label={label}
+                grams={grams}
+                displayValue={valueDisplay}
+                hydration={config.hydration}
+                subtext={subtext}
+            />
+        );
+    }
+
+    // Fallback for simple rows if needed, or mapped within AffiliateIngredientRow
+    // We are replacing simple rows with AffiliateIngredientRow which can handle visual tweaks
 
     return (
-        <div ref={resultRef} className="space-y-8">
-            <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border animate-[fadeIn_0.3s_ease-out]">
-                <div className="mb-6 flex items-center justify-between border-b border-dlp-border pb-4">
+        <div ref={resultRef} className="space-y-5">
+            <div className="rounded-2xl bg-dlp-bg-card p-4 shadow-dlp-md border border-dlp-border animate-[fadeIn_0.3s_ease-out]">
+                <div className="mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-dlp-border pb-4 gap-4">
                     <h2 className="text-xl font-bold text-dlp-text-primary">{t('results.title')}</h2>
-                    <div className="flex rounded-lg bg-dlp-bg-muted p-1">
+
+                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                        {/* Panic Button */}
                         <button
-                            onClick={() => onUnitChange('g')}
-                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'g' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'
-                                }`}
+                            onClick={() => setIsRescueModalOpen(true)}
+                            className="flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-600 border border-red-100 rounded-lg text-xs font-bold hover:bg-red-100 transition-colors shadow-sm ml-auto sm:ml-0 order-2 sm:order-1"
                         >
-                            g
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                            {t('results.panic_button', { defaultValue: 'Rescue Dough' })}
                         </button>
-                        <button
-                            onClick={() => onUnitChange('oz')}
-                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'oz' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'
-                                }`}
-                        >
-                            oz
-                        </button>
-                        <button
-                            onClick={() => onUnitChange('volume')}
-                            className={`rounded-md px-3 py-1 text-xs font-medium transition-all ${unit === 'volume' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'
-                                }`}
-                        >{t('common.vol')}</button>
+
+                        {/* Measurement Mode Toggle */}
+                        <div className="flex bg-dlp-bg-muted p-1 rounded-lg order-1 sm:order-2">
+                            <button
+                                onClick={() => onUnitChange('g')}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${unit === 'g' || unit === 'oz' ? 'bg-white shadow-sm text-dlp-text-primary' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
+                                title="Precise measurements (Recommended)"
+                            >
+                                <span>⚖️</span> Technical
+                            </button>
+                            <button
+                                onClick={() => onUnitChange('volume')}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${unit === 'volume' ? 'bg-white shadow-sm text-dlp-text-primary' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
+                                title="Approximate volumes"
+                            >
+                                <span>🥄</span> Visual
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 {/* Summary Cards */}
-                <div className="mb-8 grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="mb-5 grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
                         <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('results.total_dough')}</p>
                         <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">{displayValue(results.totalDough)}</p>
@@ -224,7 +244,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                             <span className="absolute bottom-2 left-3 text-xs font-bold text-white drop-shadow-md">
-                                {getStyleById(config.selectedStyleId || '')?.name}
+                                {t(getStyleById(config.selectedStyleId || '')?.name || '')}
                             </span>
                         </div>
                     )}
@@ -239,27 +259,16 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                                 {t(`form.${config.fermentationTechnique.toLowerCase()}`, { defaultValue: 'Preferment' })}
                             </h3>
                         </div>
-                        <div className="space-y-2 text-sm">
-                            <div className="flex justify-between">
-                                <span>{t('results.flour')}</span>
-                                <span className="font-mono font-bold">{displayIngredient('Flour', results.preferment.flour, 'flour')}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span>{t('results.water')}</span>
-                                <span className="font-mono font-bold">{displayIngredient('Water', results.preferment.water, 'water')}</span>
-                            </div>
-                            {results.preferment.yeast > 0 && (
-                                <div className="flex justify-between">
-                                    <span>{t('results.yeast')}</span>
-                                    <span className="font-mono font-bold">{displayIngredient('Yeast', results.preferment.yeast, 'yeast')}</span>
-                                </div>
-                            )}
+                        <div className="space-y-0 divide-y divide-dlp-border">
+                            {renderIngredientRow(t('results.flour'), results.preferment.flour, 'flour')}
+                            {renderIngredientRow(t('results.water'), results.preferment.water, 'water')}
+                            {results.preferment.yeast > 0 && renderIngredientRow(t('results.yeast'), results.preferment.yeast, 'yeast')}
                         </div>
                     </div>
                 )}
 
                 {/* Final Dough / Main Ingredients */}
-                <div className="space-y-1 mb-8">
+                <div className="space-y-1 mb-5">
                     <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-dlp-text-muted">
                         {results.preferment ? t('results.final_dough_title') : t('results.ingredients_title', { defaultValue: 'Ingredients' })}
                     </h3>
@@ -267,7 +276,9 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                     {[BakeType.SWEETS_PASTRY].includes(config.bakeType) ? (
                         <div className="space-y-0 divide-y divide-dlp-border">
                             {results.ingredientWeights?.map(ing => {
-                                const n = ing.name.toLowerCase();
+                                const rawName = ing.name;
+                                const translatedName = t(rawName);
+                                const n = translatedName.toLowerCase();
                                 let subtext = `${(ing.bakerPercentage || 0).toFixed(1)}%`;
 
                                 // Unit conversion for Eggs
@@ -290,36 +301,36 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                                     subtext += ` • ~${unitStr} ${unitName}`;
                                 }
 
-                                return renderRow(ing.name, ing.weight, ing.id, subtext);
+                                return renderIngredientRow(translatedName, ing.weight, ing.id, subtext);
                             })}
                         </div>
                     ) : (
-                        <>
+                        <div className="space-y-0 divide-y divide-dlp-border">
                             {results.finalDough ? (
                                 <>
-                                    {renderRow(t('results.flour'), results.finalDough.flour, 'flour')}
-                                    {renderRow(t('results.water'), results.finalDough.water, 'water')}
-                                    {renderRow(t('results.salt'), results.finalDough.salt, 'salt', `${config.salt}%`)}
-                                    {results.finalDough.yeast > 0 && renderRow(t('results.yeast'), results.finalDough.yeast, 'yeast')}
-                                    {results.finalDough.oil > 0 && renderRow(t('results.oil'), results.finalDough.oil, 'oil', `${config.oil}%`)}
-                                    {results.finalDough.sugar > 0 && renderRow(t('results.sugar'), results.finalDough.sugar, 'sugar', `${config.sugar}%`)}
+                                    {renderIngredientRow(t('results.flour'), results.finalDough.flour, 'flour')}
+                                    {renderIngredientRow(t('results.water'), results.finalDough.water, 'water')}
+                                    {renderIngredientRow(t('results.salt'), results.finalDough.salt, 'salt', `${config.salt}%`)}
+                                    {results.finalDough.yeast > 0 && renderIngredientRow(t('results.yeast'), results.finalDough.yeast, 'yeast')}
+                                    {results.finalDough.oil > 0 && renderIngredientRow(t('results.oil'), results.finalDough.oil, 'oil', `${config.oil}%`)}
+                                    {results.finalDough.sugar > 0 && renderIngredientRow(t('results.sugar'), results.finalDough.sugar, 'sugar', `${config.sugar}%`)}
                                 </>
                             ) : (
                                 <>
-                                    {renderRow(t('results.flour'), results.totalFlour, 'flour')}
-                                    {renderRow(t('results.water'), results.totalWater, 'water', `${config.hydration}%`)}
-                                    {renderRow(t('results.salt'), results.totalSalt, 'salt', `${config.salt}%`)}
-                                    {results.totalYeast > 0 && renderRow(t('results.yeast'), results.totalYeast, 'yeast', `${config.yeastPercentage}%`)}
-                                    {results.totalOil > 0 && renderRow(t('results.oil'), results.totalOil, 'oil', `${config.oil}%`)}
-                                    {results.totalSugar > 0 && renderRow(t('results.sugar'), results.totalSugar, 'sugar', `${config.sugar}%`)}
+                                    {renderIngredientRow(t('results.flour'), results.totalFlour, 'flour')}
+                                    {renderIngredientRow(t('results.water'), results.totalWater, 'water', `${config.hydration}%`)}
+                                    {renderIngredientRow(t('results.salt'), results.totalSalt, 'salt', `${config.salt}%`)}
+                                    {results.totalYeast > 0 && renderIngredientRow(t('results.yeast'), results.totalYeast, 'yeast', `${config.yeastPercentage}%`)}
+                                    {results.totalOil > 0 && renderIngredientRow(t('results.oil'), results.totalOil, 'oil', `${config.oil}%`)}
+                                    {results.totalSugar > 0 && renderIngredientRow(t('results.sugar'), results.totalSugar, 'sugar', `${config.sugar}%`)}
                                 </>
                             )}
 
                             {/* Custom/Other ingredients from Universal model */}
                             {results.ingredientWeights?.filter(i => i.role === 'other').map(ing => (
-                                renderRow(ing.name, ing.weight, ing.id, `${ing.bakerPercentage}%`)
+                                renderIngredientRow(t(ing.name), ing.weight, ing.id, `${ing.bakerPercentage}%`)
                             ))}
-                        </>
+                        </div>
                     )}
                 </div>
 
@@ -374,7 +385,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             )}
 
             {/* Technical Method Section */}
-            <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border">
+            <div className="rounded-2xl bg-dlp-bg-card p-4 shadow-dlp-md border border-dlp-border">
                 <TechnicalMethodPanel steps={technicalSteps} />
                 <div className="mt-8 border-t border-dlp-border pt-6 flex justify-center gap-4">
                     <button
@@ -391,7 +402,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             </div>
 
             {/* Recommended Gear */}
-            <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-md border border-dlp-border">
+            <div className="rounded-2xl bg-dlp-bg-card p-4 shadow-dlp-md border border-dlp-border">
                 <RecommendedProducts
                     tags={[config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']}
                     title={t('general.tools_for_this_formula')}
@@ -403,6 +414,11 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 onClose={() => setIsShareModalOpen(false)}
                 config={config}
                 results={results}
+            />
+
+            <DoughRescueModal
+                isOpen={isRescueModalOpen}
+                onClose={() => setIsRescueModalOpen(false)}
             />
         </div >
     );

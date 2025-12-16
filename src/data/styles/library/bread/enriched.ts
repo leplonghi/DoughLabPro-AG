@@ -1,9 +1,9 @@
 import { defineDoughStyle } from '../../builder';
 
 export const BriocheATete = defineDoughStyle({
-    name: "brioche_a_tete",
+    name: "styles.brioche_a_tete_name",
     category: "enriched_bread",
-    description: "The quintessential French enriched bread, containing a massive amount of butter (often 50%+) and eggs. The 'à Tête' shape features a small top bun (the head) nestled in a fluted round base.",
+    description: "styles.brioche_a_tete_desc",
     origin: {
         country: "France",
         region: "Normandy",
@@ -15,9 +15,9 @@ export const BriocheATete = defineDoughStyle({
         fat: [40, 60], // Butter!
         sugar: [10, 15],
         fermentationSteps: [
-            "Intensive Mix (Windowpane)",
+            "styles.brioche_a_tete_mix_title",
             "Bulk 1h",
-            "Cold Retard 12h (Crucial for shaping)",
+            "styles.brioche_a_tete_bulk_title",
             "Proof 2-3h"
         ],
         ovenTemp: [180, 200],
@@ -33,7 +33,8 @@ export const BriocheATete = defineDoughStyle({
         "Breaking the emulsion (greasy dough) if mixing gets too hot (>24°C).",
         "Under-proofing results in a dense, heavy crumb."
     ],
-    tags: ["bread", "french", "enriched", "butter", "dessert"],
+    history: "styles.brioche_a_tete_history",
+    tags: ["styles.tag_bread", "styles.tag_french", "styles.tag_enriched", "styles.tag_butter", "styles.tag_dessert"],
     images: {
         hero: "/images/styles/brioche-hero.png",
         dough: "/images/styles/brioche_dough.jpg",
@@ -44,8 +45,8 @@ export const BriocheATete = defineDoughStyle({
     ],
     education: {
         pro_tips: [
-            { tip: "Cold Ingredients", explanation: "Everything must be cold. If butter melts during mixing, the dough becomes greasy and won't rise properly." },
-            { tip: "Windowpane First", explanation: "Develop the gluten fully with eggs/flour BEFORE adding butter. Fat coats protein, stopping development." }
+            { tip: "styles.brioche_a_tete_tip_1", explanation: "styles.brioche_a_tete_tip_1_exp" },
+            { tip: "styles.brioche_a_tete_tip_2", explanation: "styles.brioche_a_tete_tip_2_exp" }
         ],
         what_if: [
             { scenario: "Dough is an oily soup", result: "Emulsion broke (got too hot).", correction: "Chill bowl immediately. If that fails, it's a loss." }
@@ -63,9 +64,9 @@ export const BriocheATete = defineDoughStyle({
 });
 
 export const Challah = defineDoughStyle({
-    name: "challah_braided",
+    name: "styles.challah_name",
     category: "enriched_bread",
-    description: "Ashkenazi Jewish ceremonial bread, traditionally braided (3, 4, or 6 strands). Enriched with oil and eggs but dairy-free (Pareve) to be eaten with meat meals.",
+    description: "styles.challah_desc",
     origin: {
         country: "Jewish Diaspora",
         region: "Eastern Europe",
@@ -91,7 +92,8 @@ export const Challah = defineDoughStyle({
         "Double egg wash (once before proof, once before bake) for profound shine.",
         "Braiding dictates the final shape and structure."
     ],
-    tags: ["bread", "jewish", "braided", "dairy-free", "ceremonial"],
+    history: "styles.challah_history",
+    tags: ["styles.tag_bread", "styles.tag_jewish", "styles.tag_braided", "styles.tag_dairy_free", "styles.tag_ceremonial"],
     images: {
         hero: "/images/styles/challah-hero.png",
         dough: "/images/styles/placeholder_dough.jpg",
@@ -118,9 +120,10 @@ export const Challah = defineDoughStyle({
 });
 
 export const BurgerBun = defineDoughStyle({
-    name: "classic_burger_bun",
+    name: "styles.classic_burger_bun_name",
     category: "burger_bun",
-    description: "Soft, slightly sweet, and sturdy enough to hold a juicy patty without disintegrating. Often basically a lean brioche or potato bun.",
+    description: "styles.classic_burger_bun_desc",
+    history: "styles.classic_burger_bun_history",
     origin: {
         country: "USA",
         region: "General",
@@ -146,7 +149,7 @@ export const BurgerBun = defineDoughStyle({
         "Use a Tangzhong (water roux) for extended softness.",
         "Sesame seeds are traditional but optional."
     ],
-    tags: ["bread", "american", "soft", "sandwich"],
+    tags: ["styles.tag_bread", "styles.tag_american", "styles.tag_soft", "styles.tag_sandwich"],
     images: {
         hero: "/images/styles/burger-bun-hero.png",
         dough: "/images/styles/placeholder_dough.jpg",
@@ -154,7 +157,7 @@ export const BurgerBun = defineDoughStyle({
     },
     education: {
         pro_tips: [
-            { tip: "Flatten the ball", explanation: "Don't just round them. Flattening gently before proofing ensures a wide bun for the patty, rather than a tennis ball." },
+            { tip: "styles.classic_burger_bun_tip_flatten", explanation: "styles.classic_burger_bun_tip_flatten_exp" },
             { tip: "Steam is the enemy", explanation: "Do not use steam. You want a soft, thin skin, not a crust." }
         ],
         what_if: [
@@ -173,9 +176,10 @@ export const BurgerBun = defineDoughStyle({
 });
 
 export const Shokupan = defineDoughStyle({
-    name: "shokupan",
+    name: "styles.shokupan_name",
     category: "enriched_bread",
-    description: "Ultra-fluffy, white Japanese sandwich bread. The secret is the 'Tangzhong' or 'Yudane' method (gelatinized flour paste), which locks in moisture for days.",
+    description: "styles.shokupan_desc",
+    history: "styles.shokupan_history",
     origin: {
         country: "Japan",
         region: "National",
@@ -202,7 +206,7 @@ export const Shokupan = defineDoughStyle({
         "Shaping involves rolling up logs and placing them side-by-side in the tin.",
         "Produces 'cotton-like' shreddable crumb."
     ],
-    tags: ["bread", "japanese", "tangzhong", "soft", "sandwich"],
+    tags: ["styles.tag_bread", "styles.tag_japanese", "styles.tag_tangzhong", "styles.tag_soft", "styles.tag_sandwich"],
     images: {
         hero: "/images/styles/shokupan-hero.png",
         dough: "/images/styles/shokupan-dough.jpg",
@@ -229,9 +233,10 @@ export const Shokupan = defineDoughStyle({
 });
 
 export const Panettone = defineDoughStyle({
-    name: "panettone_artigianale",
+    name: "styles.panettone_name",
     category: "enriched_bread",
-    description: "The Mount Everest of baking. A sweet Italian bread loaded with candied fruit/raisins, leavened EXCLUSIVELY by a stiff sourdough starter (Pasta Madre). Extremely complex, multistage fermentation.",
+    description: "styles.panettone_desc",
+    history: "styles.panettone_history",
     origin: {
         country: "Italy",
         region: "Milan",
@@ -263,7 +268,7 @@ export const Panettone = defineDoughStyle({
         "Temperature drop collapses the dome.",
         "Mixing too hot separates the butter."
     ],
-    tags: ["bread", "italian", "christmas", "sourdough", "sweet"],
+    tags: ["styles.tag_bread", "styles.tag_italian", "styles.tag_christmas", "styles.tag_sourdough", "styles.tag_sweet"],
     images: {
         hero: "/images/styles/panettone-hero.png",
         dough: "/images/styles/placeholder_dough.jpg",

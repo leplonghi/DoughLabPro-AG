@@ -66,7 +66,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
     const isGrandma = mode === 'grandma';
 
     return (
-        <div className="relative pb-10 pl-8 sm:pl-12 last:pb-0">
+        <div className="relative pb-6 pl-8 sm:pl-12 last:pb-0">
             <div className="absolute left-[15px] top-8 h-full w-0.5 bg-dlp-border last:hidden" aria-hidden="true"></div>
 
             <div className="absolute left-0 top-0">
@@ -74,7 +74,7 @@ const StepCard: React.FC<{ step: TechnicalStep; isExpanded: boolean; onToggle: (
             </div>
 
             <div
-                className={`group relative flex flex-col rounded-2xl border p-5 shadow-dlp-sm transition-all cursor-pointer ${containerClasses}`}
+                className={`group relative flex flex-col rounded-2xl border p-4 shadow-dlp-sm transition-all cursor-pointer ${containerClasses}`}
                 onClick={onToggle}
             >
                 <div className="flex items-start justify-between gap-4">
@@ -183,8 +183,8 @@ const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) =>
     if (steps.length === 0) return null;
 
     return (
-        <div className="mt-8 animate-[fadeIn_0.5s_ease-out]">
-            <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="mt-5 animate-[fadeIn_0.5s_ease-out]">
+            <div className="mb-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-dlp-bg-muted text-dlp-accent rounded-lg">
                         <BookOpenIcon className="h-6 w-6" />
@@ -221,7 +221,7 @@ const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) =>
                 ))}
             </div>
 
-            <div className="mt-10 p-4 rounded-xl bg-dlp-bg-muted border border-dlp-border text-center">
+            <div className="mt-6 p-4 rounded-xl bg-dlp-bg-muted border border-dlp-border text-center">
                 <p className="text-xs text-dlp-text-muted italic font-medium">
                     {t('calculator.workflow_disclaimer')}
                 </p>

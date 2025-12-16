@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { DoughRescueModal } from '@/components/tools/DoughRescueModal';
 import { useUser } from '@/contexts/UserProvider';
 import { Batch, BatchStatus, Page, CommunityBatch, DoughConfig, DoughResult } from '@/types';
 import { useTranslation } from '@/i18n';
@@ -30,6 +31,12 @@ import { SocialShare } from '@/marketing/social/SocialShare';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
+import { ReverseSchedule } from '@/components/calculator/ReverseSchedule';
+import { useBakingNotifications } from '@/hooks/useBakingNotifications';
+import { TimelineStep } from '@/logic/reverseTimeline';
+import { AffiliateIngredientRow } from '@/components/calculator/AffiliateIngredientRow';
+import { RecipeCardGenerator } from '@/components/tools/RecipeCardGenerator';
+import { ShareIcon as ShareIconSolid } from '@heroicons/react/24/solid'; // Adjust if valid, relying on existing Icons import mostly
 
 interface BatchDetailPageProps {
     batchId: string | null;
@@ -76,61 +83,57 @@ const KeyStatCard: React.FC<{ label: string; value: React.ReactNode; icon: React
 const IngredientTable: React.FC<{ result: DoughResult, doughConfig: DoughConfig }> = ({ result, doughConfig }) => {
     const { t } = useTranslation();
     const renderRow = (label: string, value: number, note?: string) => (
-        <tr className="border-b border-slate-200 ">
-            <td className="py-2 pr-2 font-medium text-slate-700 ">{label}</td>
-            <td className="py-2 text-right font-mono text-slate-900 ">{value.toFixed(1)}g</td>
-            {note && <td className="py-2 pl-4 text-right text-xs text-slate-500 ">{note}</td>}
-        </tr>
+        <AffiliateIngredientRow
+            key={label}
+            label={label}
+            grams={value}
+            displayValue={`${value.toFixed(1)}g`}
+            hydration={doughConfig.hydration}
+            subtext={note}
+        />
     );
 
     return (
-        <table className="w-full text-sm">
-            <thead>
-                <tr className="border-b-2 border-slate-300 ">
-                    <th className="text-left py-2 text-slate-900 ">{t('general.ingredient_2')}</th>
-                    <th className="text-right py-2 text-slate-900 ">{t('general.quantity')}</th>
-                    <th className="text-right py-2"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {result.preferment && (
-                    <>
-                        <tr className="bg-slate-50 ">
-                            <td colSpan={3} className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 ">{t(`form.${doughConfig.fermentationTechnique.toLowerCase()}`)}</td>
-                        </tr>
-                        {renderRow(t('results.flour'), result.preferment.flour)}
-                        {renderRow(t('results.water'), result.preferment.water)}
-                        {result.preferment.yeast > 0 && renderRow(t('results.yeast'), result.preferment.yeast)}
-                        <tr className="bg-slate-50 ">
-                            <td colSpan={3} className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 ">{t('results.final_dough_title')}</td>
-                        </tr>
-                        {result.finalDough && renderRow(t(`form.${doughConfig.fermentationTechnique.toLowerCase()}`), result.preferment.flour + result.preferment.water + result.preferment.yeast)}
-                    </>
-                )}
-                {result.finalDough ? (
-                    <>
-                        {renderRow(t('results.flour'), result.finalDough.flour)}
-                        {renderRow(t('results.water'), result.finalDough.water)}
-                        {renderRow(t('results.salt'), result.finalDough.salt, `${doughConfig.salt.toFixed(1)}%`)}
-                        {result.finalDough.oil > 0 && renderRow(t('results.oil'), result.finalDough.oil, `${doughConfig.oil.toFixed(1)}%`)}
-                        {result.finalDough.yeast > 0 && renderRow(t('results.yeast'), result.finalDough.yeast)}
-                    </>
-                ) : (
-                    <>
-                        {renderRow(t('results.flour'), result.totalFlour)}
-                        {renderRow(t('results.water'), result.totalWater, `${doughConfig.hydration}%`)}
-                        {renderRow(t('results.salt'), result.totalSalt, `${doughConfig.salt}%`)}
-                        {result.totalOil > 0 && renderRow(t('results.oil'), result.totalOil, `${doughConfig.oil}%`)}
-                        {result.totalYeast > 0 && renderRow(t('results.yeast'), result.totalYeast)}
-                    </>
-                )}
-                <tr className="border-t-2 border-slate-300 ">
-                    <td className="py-2 font-bold text-slate-900 ">{t('results.total_dough')}</td>
-                    <td className="py-2 text-right font-bold font-mono text-slate-900 ">{result.totalDough.toFixed(0)}g</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <div className="flex flex-col">
+            <div className="grid grid-cols-2 border-b-2 border-slate-300 pb-2 mb-2">
+                <div className="text-left font-bold text-slate-900">{t('general.ingredient_2')}</div>
+                <div className="text-right font-bold text-slate-900">{t('general.quantity')}</div>
+            </div>
+
+            {result.preferment && (
+                <>
+                    <div className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 bg-slate-50 mt-2 mb-1">{t(`form.${doughConfig.fermentationTechnique.toLowerCase()}`)}</div>
+                    {renderRow(t('results.flour'), result.preferment.flour)}
+                    {renderRow(t('results.water'), result.preferment.water)}
+                    {result.preferment.yeast > 0 && renderRow(t('results.yeast'), result.preferment.yeast)}
+                    <div className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 bg-slate-50 mt-4 mb-1">{t('results.final_dough_title')}</div>
+                </>
+            )}
+
+            {/* Final Dough Ingredients */}
+            {result.finalDough ? (
+                <>
+                    {renderRow(t('results.flour'), result.finalDough.flour)}
+                    {renderRow(t('results.water'), result.finalDough.water)}
+                    {renderRow(t('results.salt'), result.finalDough.salt, `${doughConfig.salt.toFixed(1)}%`)}
+                    {result.finalDough.oil > 0 && renderRow(t('results.oil'), result.finalDough.oil, `${doughConfig.oil.toFixed(1)}%`)}
+                    {result.finalDough.yeast > 0 && renderRow(t('results.yeast'), result.finalDough.yeast)}
+                </>
+            ) : (
+                <>
+                    {renderRow(t('results.flour'), result.totalFlour)}
+                    {renderRow(t('results.water'), result.totalWater, `${doughConfig.hydration}%`)}
+                    {renderRow(t('results.salt'), result.totalSalt, `${doughConfig.salt}%`)}
+                    {result.totalOil > 0 && renderRow(t('results.oil'), result.totalOil, `${doughConfig.oil}%`)}
+                    {result.totalYeast > 0 && renderRow(t('results.yeast'), result.totalYeast)}
+                </>
+            )}
+
+            <div className="border-t-2 border-slate-300 mt-4 pt-2 flex justify-between items-center">
+                <div className="font-bold text-slate-900">{t('results.total_dough')}</div>
+                <div className="font-bold font-mono text-slate-900">{result.totalDough.toFixed(0)}g</div>
+            </div>
+        </div>
     );
 };
 
@@ -144,7 +147,13 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const [tempNotes, setTempNotes] = useState('');
     const [isUploading, setIsUploading] = useState(false);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+    const [isRescueModalOpen, setIsRescueModalOpen] = useState(false);
+    const [isShareCardOpen, setIsShareCardOpen] = useState(false);
+    const [schedule, setSchedule] = useState<TimelineStep[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    // Enable notifications for the current batch schedule
+    useBakingNotifications(schedule, true);
 
     const userPlan = getCurrentPlan(user);
 
@@ -283,6 +292,16 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                         {new Date(editableBatch.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
                     </p>
                     <ResultBadge rating={editableBatch.rating} />
+                    <button
+                        onClick={() => setIsRescueModalOpen(true)}
+                        className="flex items-center gap-1 px-3 py-1 bg-red-50 text-red-600 border border-red-100 rounded-full text-xs font-bold hover:bg-red-100 transition-colors shadow-sm"
+                    >
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        {t('results.panic_button', 'Rescue Dough')}
+                    </button>
                 </div>
             </div>
 
@@ -335,6 +354,18 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
 
                 {/* Sidebar */}
                 <div className="w-full lg:w-1/3 space-y-6 lg:sticky lg:top-24">
+
+                    {/* Reverse Schedule (Timeline) */}
+                    <div className="animate-in slide-in-from-right-4 duration-500 delay-100">
+                        <ReverseSchedule
+                            config={doughConfig}
+                            levain={null} // TODO: Add levain support if needed
+                            targetDate={editableBatch.targetBakeTime}
+                            onTargetDateChange={(date) => setEditableBatch({ ...editableBatch, targetBakeTime: date })}
+                            onScheduleChange={setSchedule}
+                        />
+                    </div>
+
                     {/* Related Learn Insights */}
                     <div className="rounded-2xl bg-gradient-to-br from-lime-50 to-white p-6 shadow-sm border border-lime-100">
                         <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-lime-900">
@@ -462,8 +493,17 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                     onClick={handleShareClick}
                                     className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 py-3 font-bold text-white shadow-lg shadow-lime-500/20 hover:from-lime-600 hover:to-lime-700 transition-all"
                                 >
-                                    <FeedIcon className="h-5 w-5" />{t('common.share_in_community')}</button>
+                                    <FeedIcon className="h-5 w-5" />{t('common.share_in_community')}
+                                </button>
                             </LockedTeaser>
+
+                            <button
+                                onClick={() => setIsShareCardOpen(true)}
+                                className="w-full flex items-center justify-center gap-2 rounded-xl bg-indigo-50 text-indigo-700 py-3 font-bold hover:bg-indigo-100 transition-colors border border-indigo-200"
+                            >
+                                <PhotoIcon className="h-5 w-5" />
+                                {t('batch_detail.actions.share_visual', 'Share Visual (Story)')}
+                            </button>
 
                             <SocialShare
                                 title={`My ${editableBatch.name} Recipe`}
@@ -492,6 +532,20 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 isOpen={isShareModalOpen}
                 onClose={() => setIsShareModalOpen(false)}
             />
+
+            <DoughRescueModal
+                isOpen={isRescueModalOpen}
+                onClose={() => setIsRescueModalOpen(false)}
+            />
+
+            {isShareCardOpen && editableBatch.doughResult && (
+                <RecipeCardGenerator
+                    config={editableBatch.doughConfig}
+                    result={editableBatch.doughResult}
+                    title={editableBatch.name}
+                    onClose={() => setIsShareCardOpen(false)}
+                />
+            )}
         </div>
     );
 };

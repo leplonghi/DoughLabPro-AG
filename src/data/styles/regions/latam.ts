@@ -9,8 +9,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Snack',
         recipeStyle: RecipeStyle.PAO_DE_QUEIJO,
         tags: ['Gluten free', 'Cassava', 'Scalded', 'Cheese'],
-        description: 'A deeply affectionate staple of Minas Gerais, Pão de Queijo is a gluten-free cheese bread with a chewy, elastic crumb and a crispy, golden crust. It relies on the gelatinization of cassava starch (polvilho) rather than gluten for structure.',
-        history_context: "Originating in the 18th century in Minas Gerais, uses cassava—a native root—and cheese, which became abundant due to the dairy industry in the region. The modern \"scalded\" version creates its unique texture.",
+        description: 'styles.pao_de_queijo_desc',
+        history_context: 'styles.pao_de_queijo_history',
         base_formula: [
             { name: 'Polvilho Azedo (Sour Cassava Starch)', percentage: 100 },
             { name: 'Milk', percentage: 40 },
@@ -37,7 +37,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: "Rubber-like (Gelatin)",
                 absorption_capacity: "High (Scalded)",
                 protein_type: "None (Cassava Starch)",
-                science_explanation: 'Cassava Starch (Polvilho) contains no gluten. Its structure comes from retrogradation and gelation of amylopectin/amylose networks.'
+                science_explanation: 'styles.pao_de_queijo_science_flour'
             },
             thermalProfile: {
                 oven_type: 'Convection',
@@ -51,31 +51,31 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: "Lactic (Fermented Starch)",
                 enzymatic_activity: 'None'
             },
-            processScience: 'The Scald (Escaldo) denatures the starch proteins and pre-gelatinizes the granules, allowing them to absorb more liquid and swell. The expansion in the oven is purely physical (steam expansion) trapped by the coagulated egg proteins and starch gel.'
+            processScience: 'styles.pao_de_queijo_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Scalding (Escaldo)',
+                title: 'styles.pao_de_queijo_proc_scald_title',
                 duration: '10 min',
-                action: 'Boil milk, oil, and salt. Pour over the starch and mix until crumbs form.',
-                science: 'Heat gelatinizes the starch immediately, creating the structural backbone.',
+                action: 'styles.pao_de_queijo_proc_scald_action',
+                science: 'styles.pao_de_queijo_proc_scald_sci',
                 temperature: '100°C (Liquids)'
             },
             {
                 phase: 'Mix',
-                title: 'Cool & Egg Addition',
+                title: 'styles.pao_de_queijo_proc_cool_title',
                 duration: '15 min',
-                action: 'Let the scald cool slightly, then knead in eggs one by one followed by cheese.',
-                science: 'Eggs emulsify the fat and provide steam for expansion. Cheese adds flavor and fat.',
+                action: 'styles.pao_de_queijo_proc_cool_action',
+                science: 'styles.pao_de_queijo_proc_cool_sci',
                 temperature: 'Warm to Touch'
             },
             {
                 phase: 'Bake',
-                title: 'Baking',
+                title: 'styles.pao_de_queijo_proc_bake_title',
                 duration: '20-25 min',
-                action: 'Bake until golden and puffed.',
-                science: 'Rapid water evaporation expands the dough. Using Polvilho azedo promotes more expansion due to its acidity breaking down starch chains.',
+                action: 'styles.pao_de_queijo_proc_bake_action',
+                science: 'styles.pao_de_queijo_proc_bake_sci',
                 temperature: '200°C'
             }
         ],
@@ -94,8 +94,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Bread',
         recipeStyle: RecipeStyle.PAO_FRANCES,
         tags: ['Crispy', 'Steam', 'Direct Method', '50g'],
-        description: 'The "Pão Francês" is the daily bread of Brazil. Despite the name, it differs from the baguette by containing a small amount of sugar and fat, yielding a thin, crackly crust and a soft, cotton-like crumb (miolo algodonoso).',
-        history_context: 'Inspired by travelers returning from France in the early 20th century who wanted short, crusty rolls. Brazilian bakers adapted the recipe adding sugar/fat to suit local flour and tastes.',
+        description: 'styles.pao_frances_desc',
+        history_context: 'styles.pao_frances_history',
         base_formula: [
             { name: 'Wheat Flour (Type 1)', percentage: 100 },
             { name: 'Water', percentage: 58 },
@@ -122,7 +122,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Balanced',
                 absorption_capacity: 'Medium',
                 protein_type: 'Brazilian wheat',
-                science_explanation: 'Requires protein adequate for volume but extensible enough for the "pestana" (split) to open.'
+                science_explanation: 'styles.pao_frances_science_flour'
             },
             thermalProfile: {
                 oven_type: "Deck (Steam)",
@@ -136,31 +136,31 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: "High (Sugar added)"
             },
-            processScience: 'The Pestana is critical—a cut that allows expansion. Steam ensures the crust remains flexible initially for max volume, then gelatinizes surface starch for the signature "crackling" crispy finish.'
+            processScience: 'styles.pao_frances_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Intensive Mix',
+                title: 'styles.pao_frances_proc_mix_title',
                 duration: '10-12 min',
-                action: 'Mix to full gluten development (Ponto de Véu).',
-                science: 'Strong gluten network is required to retain gas during the rapid oven spring.',
+                action: 'styles.pao_frances_proc_mix_action',
+                science: 'styles.pao_frances_proc_mix_sci',
                 temperature: '24°C'
             },
             {
                 phase: 'Ball',
-                title: 'Scaling & Shaping',
+                title: 'styles.pao_frances_proc_ball_title',
                 duration: '20 min',
-                action: 'Divide into 50g portions. Shape into small torpedoes.',
-                science: 'Tight shaping builds surface tension for proper opening.',
+                action: 'styles.pao_frances_proc_ball_action',
+                science: 'styles.pao_frances_proc_ball_sci',
                 temperature: 'Room Temp'
             },
             {
                 phase: 'Bake',
-                title: 'Steam Bake',
+                title: 'styles.pao_frances_proc_bake_title',
                 duration: '15-18 min',
-                action: 'Score deeply (Pestana). Bake with copious steam injection.',
-                science: 'Steam delays crust formation, allowing the cut to burst open. Sugar creates the golden golden color (Maillard reaction).',
+                action: 'styles.pao_frances_proc_bake_action',
+                science: 'styles.pao_frances_proc_bake_sci',
                 temperature: '220°C'
             }
         ],
@@ -179,8 +179,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Pizza',
         recipeStyle: RecipeStyle.FOCACCIA,
         tags: ['Stuffed', 'Onion', 'Pan pizza 2', 'Heavy'],
-        description: 'An iconic Buenos Aires pizza style. It is a stuffed pizza (fugazza rellena) consisting of two dough layers enclosing a massive amount of cheese, topped with onions (fugazza). No tomato sauce.',
-        history_context: 'Created by Genoese immigrants in La Boca, combining Focaccia (Fugassa) with cheese stuffing. It represents the abundance of Argentine dairy and wheat.',
+        description: 'styles.fugazzeta_rellena_desc',
+        history_context: 'styles.fugazzeta_rellena_history',
         base_formula: [
             { name: 'Flour (000 or 0000)', percentage: 100 },
             { name: 'Water', percentage: 60 },
@@ -205,7 +205,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Extensible',
                 absorption_capacity: 'Medium',
                 protein_type: "Argentine Wheat (000/0000)",
-                science_explanation: 'Extensible dough needed to cover the pan and the stuffing without tearing.'
+                science_explanation: 'styles.fugazzeta_rellena_science_flour'
             },
             thermalProfile: {
                 oven_type: "Deck/Pizza Oven",
@@ -219,39 +219,39 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Standard'
             },
-            processScience: 'The onions on top release moisture, steaming the upper crust and preventing it from burning while the interior cheese melts. The double structure acts as an insulator, requiring lower temp/longer bake than Neapolitan.'
+            processScience: 'styles.fugazzeta_rellena_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Dough Mixing',
+                title: 'styles.fugazzeta_rellena_proc_mix_title',
                 duration: '10 min',
-                action: 'Mix directly. Develop moderate gluten.',
-                science: "Oil inhibits gluten slightly, creating a tender (\"al molde\") texture.",
+                action: 'styles.fugazzeta_rellena_proc_mix_action',
+                science: 'styles.fugazzeta_rellena_proc_mix_sci',
                 temperature: '23°C'
             },
             {
                 phase: 'Bulk',
-                title: 'Fermentation',
+                title: 'styles.fugazzeta_rellena_proc_bulk_title',
                 duration: '2-4h',
-                action: 'Let rise until doubled.',
-                science: 'Yeast activity creates alveolar structure.',
+                action: 'styles.fugazzeta_rellena_proc_bulk_action',
+                science: 'styles.fugazzeta_rellena_proc_bulk_sci',
                 temperature: 'RT'
             },
             {
                 phase: 'Ball',
-                title: 'Assembly',
+                title: 'styles.fugazzeta_rellena_proc_asm_title',
                 duration: '15 min',
-                action: 'Divide 70/30. Place larger dough in pan, add cheese. Cover with smaller dough. Seal. Top with onions.',
-                science: 'The onion layer protects the top dough from direct heat, allowing the massive cheese filling to melt.',
+                action: 'styles.fugazzeta_rellena_proc_asm_action',
+                science: 'styles.fugazzeta_rellena_proc_asm_sci',
                 temperature: 'RT'
             },
             {
                 phase: 'Bake',
-                title: 'Baking',
+                title: 'styles.fugazzeta_rellena_proc_bake_title',
                 duration: '20-30 min',
-                action: 'Bake until onions are golden and dough pulls from sides.',
-                science: 'Heat penetration must reach the center cheese mass (often 500g+) without burning the bottom.',
+                action: 'styles.fugazzeta_rellena_proc_bake_action',
+                science: 'styles.fugazzeta_rellena_proc_bake_sci',
                 temperature: '240°C'
             }
         ],
@@ -270,8 +270,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Pastry',
         recipeStyle: RecipeStyle.PASTRY_DANISH, // Laminated
         tags: ['Laminated 2', 'Sweet syrup', 'Breakfast 4'],
-        description: 'The Argentine croissant. Smaller, denser, and sweeter than the French version, made with a distinct "almibar" (syrup) glaze applied hot out of the oven. A staple of Buenos Aires café culture.',
-        history_context: 'Derived from the European croissant but adapted to local tastes (sweeter, moister) and ingredients (heavy syrup). The Medialuna (Half Moon) is a national symbol.',
+        description: 'styles.medialunas_desc',
+        history_context: 'styles.medialunas_history',
         base_formula: [
             { name: 'Flour (0000)', percentage: 100 },
             { name: 'Water/Milk', percentage: 45 },
@@ -299,7 +299,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Extensible',
                 absorption_capacity: 'Medium',
                 protein_type: 'Strong wheat',
-                science_explanation: 'Strong flour is needed to support lamination, but the dough is richer and heavier than croissant dough.'
+                science_explanation: 'styles.medialunas_science_flour'
             },
             thermalProfile: {
                 oven_type: 'Convection',
@@ -313,29 +313,29 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Standard'
             },
-            processScience: 'The "Almíbar" (Syrup) soak is scientifically crucial. It keeps the pastry moist for days (hygroscopic) and softens the crust, differentiating it from the shattering crispness of a French croissant.'
+            processScience: 'styles.medialunas_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Enriched Mix',
+                title: 'styles.medialunas_proc_mix_title',
                 duration: '15 min',
-                action: 'Mix dough with eggs, sugar, honey. Develop moderate gluten.',
-                science: 'Sugar delays gluten development, so mixing takes longer.'
+                action: 'styles.medialunas_proc_mix_action',
+                science: 'styles.medialunas_proc_mix_sci'
             },
             {
                 phase: 'Prep',
-                title: 'Lamination',
+                title: 'styles.medialunas_proc_lam_title',
                 duration: '1h',
-                action: 'Lock in butter (25% of dough weight). Perform 3 single turns.',
-                science: 'Fewer turns/less butter than croissant results in a denser, cake-like layer structure.'
+                action: 'styles.medialunas_proc_lam_action',
+                science: 'styles.medialunas_proc_lam_sci'
             },
             {
                 phase: 'Bake',
-                title: 'Bake & Glaze',
+                title: 'styles.medialunas_proc_bake_title',
                 duration: '15 min',
-                action: 'Bake until gold. Brush immediately with hot syrup.',
-                science: 'Hot syrup on hot pastry = Absorption. Cold syrup on hot pastry = Crystalization. We want absorption.'
+                action: 'styles.medialunas_proc_bake_action',
+                science: 'styles.medialunas_proc_bake_sci'
             }
         ],
         references: [],
@@ -353,8 +353,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Enriched',
         recipeStyle: RecipeStyle.ENRICHED_DINNER_ROLL,
         tags: ['Sweet crust', 'Breakfast 5', 'Colorful'],
-        description: 'Mexico\'s most famous pan dulce. A soft, enriched sweet bun topped with a crumbly sugar cookie crust stamped with a shell (concha) pattern.',
-        history_context: 'Dating back to the colonial era, influenced by French brioche recipes. The shell pattern symbolizes Saint James.',
+        description: 'styles.conchas_desc',
+        history_context: 'styles.conchas_history',
         base_formula: [
             { name: 'All Purpose Flour', percentage: 100 },
             { name: 'Eggs', percentage: 20 },
@@ -381,7 +381,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Balanced',
                 absorption_capacity: 'Medium',
                 protein_type: "AP",
-                science_explanation: 'We want softness, not chew. AP flour is perfect. The strength comes from the egg/butter structure.'
+                science_explanation: 'styles.conchas_science_flour'
             },
             thermalProfile: {
                 oven_type: 'Convection',
@@ -395,36 +395,36 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Standard'
             },
-            processScience: 'The topping is a separate Short dough (1:1:1 Sugar/Fat/Flour). It has no gluten development, so it cracks as the bun expands, creating the pattern.'
+            processScience: 'styles.conchas_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Bun Dough',
+                title: 'styles.conchas_proc_mix_title',
                 duration: '15 min',
-                action: 'Mix enriched dough to windowpane.',
-                science: 'Standard enriched dough protocol.'
+                action: 'styles.conchas_proc_mix_action',
+                science: 'styles.conchas_proc_mix_sci'
             },
             {
                 phase: 'Prep',
-                title: 'Topping Prep',
+                title: 'styles.conchas_proc_top_title',
                 duration: '10 min',
-                action: 'Cream butter and sugar, add flour. Make a paste.',
-                science: 'Do not overmix or it becomes tough.'
+                action: 'styles.conchas_proc_top_action',
+                science: 'styles.conchas_proc_top_sci'
             },
             {
                 phase: 'Prep',
-                title: 'Assembly',
+                title: 'styles.conchas_proc_asm_title',
                 duration: '10 min',
-                action: 'Flatten ball of topping, place over bun. Score pattern.',
-                science: 'The scoring directs the expansion cracks.'
+                action: 'styles.conchas_proc_asm_action',
+                science: 'styles.conchas_proc_asm_sci'
             },
             {
                 phase: 'Bake',
-                title: 'Bake',
+                title: 'styles.conchas_proc_bake_title',
                 duration: '20 min',
-                action: 'Bake at 180°C.',
-                science: 'Low temp preserves the color of the topping.'
+                action: 'styles.conchas_proc_bake_action',
+                science: 'styles.conchas_proc_bake_sci'
             }
         ],
         references: [],
@@ -442,8 +442,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Pizza',
         recipeStyle: RecipeStyle.PAN_PIZZA,
         tags: ["brazil", "heavy-toppings", "catupiry", "sao-paulo"],
-        description: "The São Paulo powerhouse. Medium thickness, capable of holding massive amounts of toppings (Catupiry, chicken, sausage). Crisp bottom, soft center.",
-        history_context: "São Paulo has more pizzerias than NYC. This style evolved in the 1970s (Vila Clementino/Bixiga) to satisfy a craving for abundance. The gas deck oven allows a slower, more penetrating heat than wood.",
+        description: "styles.pizza_paulistana_desc",
+        history_context: "styles.pizza_paulistana_history",
         base_formula: [
             { name: 'Flour (W280-320)', percentage: 100 },
             { name: 'Water', percentage: 55 },
@@ -470,7 +470,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Balanced',
                 absorption_capacity: 'Medium',
                 protein_type: 'Standard wheat',
-                science_explanation: "A 'Workhorse' flour. It needs to be strong enough to carry heavy cheese/toppings but not so tough that it fights back when rolled out."
+                science_explanation: "styles.pizza_paulistana_science_flour"
             },
             thermalProfile: {
                 oven_type: 'Gas deck',
@@ -484,29 +484,29 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Moderate 7'
             },
-            processScience: 'The dough must support 1kg+ of toppings. A short maturation (24h) balances flavor with structural integrity.'
+            processScience: 'styles.pizza_paulistana_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Mix',
+                title: 'styles.pizza_paulistana_proc_mix_title',
                 duration: '10 min',
-                action: 'Mix to development.',
-                science: 'Strong gluten needed.'
+                action: 'styles.pizza_paulistana_proc_mix_action',
+                science: 'styles.pizza_paulistana_proc_mix_sci'
             },
             {
                 phase: 'Bulk',
-                title: 'Proof',
+                title: 'styles.pizza_paulistana_proc_proof_title',
                 duration: '24h',
-                action: 'Cold ferment.',
-                science: 'Flavor development.'
+                action: 'styles.pizza_paulistana_proc_proof_action',
+                science: 'styles.pizza_paulistana_proc_proof_sci'
             },
             {
                 phase: 'Bake',
-                title: 'Bake',
+                title: 'styles.pizza_paulistana_proc_bake_title',
                 duration: '4-6 min',
-                action: 'Bake at 300°C.',
-                science: 'Moderate heat for deep cooking.'
+                action: 'styles.pizza_paulistana_proc_bake_action',
+                science: 'styles.pizza_paulistana_proc_bake_sci'
             }
         ],
         references: [],
@@ -524,8 +524,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Corn', 'Gluten free 2', 'Stuffed 2'],
-        description: "A round cornmeal cake made from pre-cooked corn flour (Harina P.A.N.). Crunchy outside, soft and steamy inside, perfect for stuffing.",
-        history_context: "Pre-Columbian staple of the Timoto-Cuica people. 'Arepa' comes from the indigenous word 'Erepa' (corn).",
+        description: "styles.arepa_desc",
+        history_context: "styles.arepa_history",
         base_formula: [
             { name: 'Masarepa (Pre-cooked Corn Flour)', percentage: 100 },
             { name: 'Water (Warm)', percentage: 120 },
@@ -550,7 +550,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: "N/A",
                 absorption_capacity: 'Extreme',
                 protein_type: "Corn (Zein)",
-                science_explanation: 'Masarepa is pre-cooked and dried. The starch is pre-gelatinized, meaning it absorbs water instantly to form a dough without heating. No gluten network.'
+                science_explanation: 'styles.arepa_science_flour'
             },
             thermalProfile: {
                 oven_type: "Budare (Griddle)",
@@ -564,29 +564,29 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'None',
                 enzymatic_activity: 'Low'
             },
-            processScience: 'Gelatinization is already done at the factory. We are just re-hydrating the matrix. The rest period allows the water to distribute evenly into the largest particles.'
+            processScience: 'styles.arepa_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Hydrate',
+                title: 'styles.arepa_proc_hydrate_title',
                 duration: '5 min',
-                action: 'Add flour to salted water gradually while mixing with hand.',
-                science: 'Prevent lumps. Agitation ensures even hydration.'
+                action: 'styles.arepa_proc_hydrate_action',
+                science: 'styles.arepa_proc_hydrate_sci'
             },
             {
                 phase: 'Bulk',
-                title: 'Rest',
+                title: 'styles.arepa_proc_rest_title',
                 duration: '5 min',
-                action: 'Let sit.',
-                science: 'Allows full absorption.'
+                action: 'styles.arepa_proc_rest_action',
+                science: 'styles.arepa_proc_rest_sci'
             },
             {
                 phase: 'Cook',
-                title: 'Sear & Bake',
+                title: 'styles.arepa_proc_cook_title',
                 duration: '15 min',
-                action: 'Sear on griddle for spots, then bake 10 mins to dry interior.',
-                science: 'Two-stage cooking ensures crisp shell and cooked center without burning.'
+                action: 'styles.arepa_proc_cook_action',
+                science: 'styles.arepa_proc_cook_sci'
             }
         ],
         references: [],
@@ -604,8 +604,8 @@ export const latamStyles: DoughStyle[] = [
         category: 'Pastry',
         recipeStyle: RecipeStyle.MASSA_TORTA, // Fallback if no Pastry style
         tags: ['Lard', 'Fried 2', 'Frying dough'],
-        description: "The wrapper for the famous Argentine empanada. Known as 'Masa para Tapas'. It is a low-hydration, high-fat dough designed to bubble and blister when fried.",
-        history_context: "Came from Spain (Galicia), adapted in Argentina with beef fat (Grasa de Pella).",
+        description: "styles.empanada_dough_desc",
+        history_context: "styles.empanada_dough_history",
         base_formula: [
             { name: 'AP Flour', percentage: 100 },
             { name: 'Water (Hot)', percentage: 35 },
@@ -630,7 +630,7 @@ export const latamStyles: DoughStyle[] = [
                 pl_ratio: 'Extensible',
                 absorption_capacity: 'Low',
                 protein_type: 'Soft wheat',
-                science_explanation: 'Low hydration + High Fat = Short dough. The hot water denatures some protein, reducing elasticity (snap-back) so it can be rolled very thin.'
+                science_explanation: 'styles.empanada_dough_science_flour'
             },
             thermalProfile: {
                 oven_type: "Fryer / Oven",
@@ -644,29 +644,29 @@ export const latamStyles: DoughStyle[] = [
                 organic_acids: 'None',
                 enzymatic_activity: 'Low'
             },
-            processScience: 'The high fat content creates microscopic layers (shortening). When fried, trapped steam forms blisters on the surface.'
+            processScience: 'styles.empanada_dough_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Scald',
+                title: 'styles.empanada_dough_proc_scald_title',
                 duration: '10 min',
-                action: 'Melt fat in hot salted water. Add to flour.',
-                science: 'Partial gelatinization and protein denaturation.'
+                action: 'styles.empanada_dough_proc_scald_action',
+                science: 'styles.empanada_dough_proc_scald_sci'
             },
             {
                 phase: 'Prep',
-                title: 'Sheet',
+                title: 'styles.empanada_dough_proc_sheet_title',
                 duration: '15 min',
-                action: 'Roll to 2mm thickness. Cut discs.',
-                science: 'Thinness is key for the filling-to-dough ratio.'
+                action: 'styles.empanada_dough_proc_sheet_action',
+                science: 'styles.empanada_dough_proc_sheet_sci'
             },
             {
                 phase: 'Cook',
-                title: 'Fry/Bake',
+                title: 'styles.empanada_dough_proc_fry_title',
                 duration: '5 min',
-                action: 'Fry in hot lard or bake.',
-                science: 'Rapid heat transfer causes bubbling.'
+                action: 'styles.empanada_dough_proc_fry_action',
+                science: 'styles.empanada_dough_proc_fry_sci'
             }
         ],
         references: [],

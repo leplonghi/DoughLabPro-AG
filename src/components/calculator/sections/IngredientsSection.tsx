@@ -1,5 +1,6 @@
 import React from 'react';
 import { DoughConsistencyVisualizer } from '@/components/calculator/DoughConsistencyVisualizer';
+import { HydrationInput } from '@/components/calculator/HydrationInput';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import SliderInput from "@/components/ui/SliderInput";
 import { CubeIcon } from "@/components/ui/Icons";
@@ -54,7 +55,9 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
   }, [results]);
 
   const getLabel = (ing: any) => {
-    const n = ing.name.toLowerCase();
+    const rawName = ing.name;
+    const translatedName = t(rawName);
+    const n = translatedName.toLowerCase();
     if ((n.includes('egg') || n.includes('ovo')) && !n.includes('free') && !n.includes('plant')) {
       const weight = (ing.bakerPercentage || 0) / 100 * totalFlour;
       let unitW = 50;
@@ -62,39 +65,32 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
       if (n.includes('white') || n.includes('clara')) unitW = 30;
 
       // Avoid division by zero
-      if (unitW === 0) return ing.name;
+      if (unitW === 0) return translatedName;
 
       const count = weight / unitW;
       const str = Math.abs(Math.round(count) - count) < 0.1 ? Math.round(count).toString() : count.toFixed(1);
-      return `${ing.name} (~${str} un • ${Math.round(weight)}g)`;
+      return `${translatedName} (~${str} un • ${Math.round(weight)}g)`;
     }
-    return ing.name;
+    return translatedName;
   };
 
   return (
     <div className="space-y-6">
       {isBasic ? (
         <>
-          <SliderInput
+          <HydrationInput
             label={config.bakeType === 'SWEETS_PASTRY' ? t('calculator.liquids_eggs') : t('form.hydration')}
-            name="hydration"
             value={config.hydration}
-            onChange={handleNumberChange}
-            min={config.bakeType === 'SWEETS_PASTRY' ? 0 : 50}
-            max={config.bakeType === 'SWEETS_PASTRY' ? 200 : 90}
+            onChange={(e) => handleNumberChange('hydration', Number(e.target.value))}
+            min={config.bakeType === 'SWEETS_PASTRY' ? 0 : 40}
+            max={config.bakeType === 'SWEETS_PASTRY' ? 200 : 100}
             step={1}
-            unit="%"
             tooltip={t('calculator.hydration_tooltip')}
             hasError={!!errors.hydration}
             recommendedMin={getRange('hydration')?.[0]}
             recommendedMax={getRange('hydration')?.[1]}
             learnArticle={getArticleById('water-hydration-dynamics')}
           />
-          {config.bakeType !== 'SWEETS_PASTRY' && (
-            <div className="mb-4">
-              <DoughConsistencyVisualizer hydration={config.hydration} />
-            </div>
-          )}
           <SliderInput
             label={t('results.salt')}
             name="salt"
@@ -112,19 +108,19 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
         <>
           {config.bakeType !== 'SWEETS_PASTRY' && (
             <LockedTeaser featureKey="calculator.hydration_advanced">
-              <SliderInput
+              <HydrationInput
                 label={t('form.hydration')}
-                name="hydration"
                 value={config.hydration}
-                onChange={handleNumberChange}
-                min={0} max={120} step={1} unit="%"
+                onChange={(e) => handleNumberChange('hydration', Number(e.target.value))}
+                min={0}
+                max={120}
+                step={1}
                 tooltip={t('calculator.hydration_advanced_help')}
                 hasError={!!errors.hydration}
                 recommendedMin={getRange('hydration')?.[0]}
                 recommendedMax={getRange('hydration')?.[1]}
                 learnArticle={getArticleById('water-hydration-dynamics')}
               />
-              <DoughConsistencyVisualizer hydration={config.hydration} />
             </LockedTeaser>
           )}
           <SliderInput

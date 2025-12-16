@@ -73,7 +73,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
             onSave({ ...levainToEdit, ...formData } as Levain);
         } else {
             const newLevain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'> = {
-                name: formData.name || 'My Levain',
+                name: formData.name || 'LevainPet',
                 hydration: formData.hydration || 100,
                 baseFlourType: formData.baseFlourType,
                 totalWeight: formData.totalWeight || 0,

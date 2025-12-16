@@ -13,7 +13,7 @@ export function getAllowedFermentationTechniques(style: RecipeStyle | string, ba
 
     // Only restrict fermentation techniques for specific pastry items
     if (bakeType === BakeType.SWEETS_PASTRY) {
-        const styleStr = String(style).toUpperCase();
+        const styleStr = String(style || '').toUpperCase();
 
         // Whitelist: Styles that explicitly use yeast
         // Brioche, Panettone, Croissant, Danish, Donut, Savarin, Baba, Colomba, Challah, Babka

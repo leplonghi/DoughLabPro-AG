@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { DoughConfig, FermentationTechnique } from '@/types';
+import { DoughConfig, FermentationTechnique, Levain } from '@/types';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import FormSection from '@/components/calculator/AccordionSection';
 import SliderInput from '@/components/ui/SliderInput';
@@ -17,7 +17,9 @@ interface FermentationSectionProps {
   errors: any;
   hasProAccess: boolean;
   onOpenPaywall: () => void;
+
   allowedTechniques: FermentationTechnique[];
+  selectedLevain?: Levain;
 }
 
 const FermentationSection: React.FC<FermentationSectionProps> = ({
@@ -29,6 +31,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
   hasProAccess,
   onOpenPaywall,
   allowedTechniques = [],
+  selectedLevain,
 }) => {
   const { t } = useTranslation();
   const safeAllowedTechniques = Array.isArray(allowedTechniques) ? allowedTechniques : [];
@@ -44,7 +47,17 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
     }
   };
 
-  const isAllowed = (tech: FermentationTechnique) => safeAllowedTechniques.includes(tech);
+  const isAllowed = (tech: FermentationTechnique) => {
+    // Always allow if in the explicit allowed list
+    if (safeAllowedTechniques.includes(tech)) return true;
+    // If not in basic mode (Advanced/Pro), allow overriding restrictions (except for purely chemical styles)
+    if (!isBasic) {
+      // Don't allow Yeast methods for purely Chemical/No-Ferment styles (like cookies) unless explicitly allowed
+      if (isChemicalOrNoFermentOnly) return false;
+      return true;
+    }
+    return false;
+  };
 
   // If the style only allows Chemical or No Ferment, we simplify the UI
   const isChemicalOrNoFermentOnly = safeAllowedTechniques.length > 0 && safeAllowedTechniques.every(t =>
@@ -77,9 +90,51 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
       icon={<FermentationIcon className="h-6 w-6" />}
     >
       {isAnySourdough ? (
-        <p className="text-center text-sm text-dlp-text-secondary bg-dlp-bg-muted p-3 rounded-lg">
-          {t('calculator.sourdough_is_preferment_msg')}
-        </p>
+        <div className="bg-emerald-50/50 rounded-xl border border-emerald-100 p-4 animate-fade-in">
+          <div className="flex items-start gap-3">
+            <div className="p-2 bg-emerald-100 rounded-lg text-emerald-600">
+              <FermentationIcon className="h-6 w-6" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-dlp-text-primary text-sm flex items-center justify-between">
+                {t('calculator.natural_leavening')}
+                <span className="text-xs font-normal text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">
+                  {t('calculator.active')}
+                </span>
+              </h4>
+              <p className="text-xs text-dlp-text-secondary mt-1 mb-3">
+                {selectedLevain ? t('calculator.using_levain', { name: selectedLevain.name }) : t('calculator.using_generic_starter')}
+              </p>
+
+              {/* Stats Calculation */}
+              {(() => {
+                const hydration = selectedLevain?.hydration || 100;
+                const inoculation = config.yeastPercentage || 20;
+                // Math: Inoculation 20% means 20g starter per 100g flour.
+                // Starter = FlourPart + WaterPart.
+                // 20 = f + (f * hyd/100) = f * (1 + hyd/100)
+                // f = 20 / (1 + hyd/100)
+                const prefermentedFlour = inoculation / (1 + (hydration / 100));
+
+                return (
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-white/80 p-2 rounded-lg border border-emerald-100/50">
+                      <span className="block text-[10px] uppercase text-dlp-text-muted font-bold tracking-wider">{t('calculator.inoculation')}</span>
+                      <span className="block text-lg font-mono font-semibold text-dlp-text-primary">{inoculation}%</span>
+                    </div>
+                    <div className="bg-white/80 p-2 rounded-lg border border-emerald-100/50">
+                      <span className="block text-[10px] uppercase text-dlp-text-muted font-bold tracking-wider">{t('calculator.prefermented_flour')}</span>
+                      <span className="block text-lg font-mono font-semibold text-dlp-text-primary">~{prefermentedFlour.toFixed(1)}%</span>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+          <p className="text-xs text-center text-dlp-text-muted mt-3 italic">
+            {t('calculator.sourdough_is_preferment_msg')}
+          </p>
+        </div>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">

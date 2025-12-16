@@ -26,12 +26,12 @@ export function generateTechnicalMethod(config: DoughConfig, result: DoughResult
             id: `step-${index + 1}`,
             order: index + 1,
             phase: step.phase as TechnicalPhase,
-            title: step.title,
-            actionInstructions: step.actionInstructions,
-            grandmaInstructions: step.grandmaInstructions || step.actionInstructions,
-            technicalExplanation: step.technicalExplanation,
-            proTip: step.proTip,
-            criticalPoint: step.criticalPoint,
+            title: t(step.title),
+            actionInstructions: t(step.actionInstructions),
+            grandmaInstructions: step.grandmaInstructions ? t(step.grandmaInstructions) : t(step.actionInstructions),
+            technicalExplanation: step.technicalExplanation ? t(step.technicalExplanation) : undefined,
+            proTip: step.proTip ? t(step.proTip) : undefined,
+            criticalPoint: step.criticalPoint ? t(step.criticalPoint) : undefined,
             durationLabel: step.durationLabel,
             temperatureLabel: step.temperatureLabel
         }));

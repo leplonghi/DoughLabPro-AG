@@ -24,8 +24,10 @@ import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { getRange } from '@/logic/validationLogic';
 import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
 import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS, DOUGH_WEIGHT_RANGES } from '@/constants';
-import { STYLES_DATA } from '@/data/styles/registry';
+import { STYLES_DATA, getStyleById } from '@/data/styles/registry';
 import { useTranslation } from '@/i18n';
+import { AssemblySection } from '@/components/calculator/ingredients/AssemblySection';
+import { Increment, UserIngredient } from '@/types/ingredients';
 
 interface CalculatorFormProps {
   config: DoughConfig;
@@ -126,7 +128,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   const StepBanner = ({ step, title, description }: { step: number, title: string, description: string }) => {
     if (!isBasic) return null;
     return (
-      <div className="mb-4 rounded-lg bg-dlp-bg-muted border border-dlp-border p-4 animate-fade-in">
+      <div className="mb-2 rounded-lg bg-dlp-bg-muted border border-dlp-border p-3 animate-fade-in">
         <h4 className="text-sm font-bold text-dlp-text-primary flex items-center gap-2">
           <span className="flex items-center justify-center w-5 h-5 rounded-full bg-dlp-accent text-white text-[10px]">
             {step}
@@ -141,6 +143,8 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   // Calculate dynamic weight limits
   let minW = 10;
   let maxW = 2000;
+  // Use existing style lookup or fallback for Assembly
+  const assemblyStyle = config.stylePresetId ? getStyleById(config.stylePresetId) : getStyleById('new_york_slice_v2');
   const fullStyle = STYLES_DATA.find(s => s.id === config.stylePresetId);
 
   if (fullStyle?.technicalProfile?.ballWeight) {
@@ -157,7 +161,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5">
 
       {/* Step 1: Style Selection */}
       <div className="animate-fade-in">
@@ -201,7 +205,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
       {/* Step 3: Ingredients & Fermentation (Grouped for flow) */}
       {(!isBasic || hasQuantity) && (
-        <div className="space-y-8 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+        <div className="space-y-5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
 
           <div>
             <StepBanner
@@ -209,7 +213,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               title={t('general.customize_ingredients')}
               description={t('calculator.customize_ing_desc')}
             />
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 mb-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-dlp-border p-4 mb-2">
               <IngredientsSection
                 config={config}
                 errors={errors}
@@ -244,9 +248,11 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               isAnySourdough={isAnySourdough}
               hasProAccess={hasProAccess}
               onOpenPaywall={onOpenPaywall}
-              allowedTechniques={getAllowedFermentationTechniques(config.recipeStyle, config.bakeType)}
+              selectedLevain={selectedLevain}
             />
           </div>
+
+
 
           <div>
             <StepBanner
@@ -260,6 +266,24 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               defaultOven={defaultOven}
             />
           </div>
+
+          {/* Assembly Lab (Step 6) */}
+          {assemblyStyle && (
+            <div>
+              <StepBanner
+                step={6}
+                title="Assembly Lab"
+                description={t('calculator.assembly_lab_desc', { defaultValue: 'Construct your final product profile' })}
+              />
+              <AssemblySection
+                style={assemblyStyle}
+                selectedIncrements={config.assemblyIncrements || []}
+                onUpdateIncrements={(incs) => onConfigChange({ assemblyIncrements: incs })}
+                bakingTempC={config.bakingTempC}
+              />
+            </div>
+          )}
+
 
         </div>
       )}

@@ -12,6 +12,14 @@ const nycSlice: DoughStyleDefinition = {
     },
     description: "new_york_slice_desc",
     history: "new_york_slice_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_high_gluten', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 63 },
+        { name: 'styles.ingredients_salt', percentage: 2.2 },
+        { name: 'styles.ingredients_oil', percentage: 2 },
+        { name: 'styles.ingredients_sugar', percentage: 1.5 },
+        { name: 'styles.ingredients_yeast_fresh', percentage: 0.4 }
+    ],
     difficulty: 'Medium',
     fermentationType: "cold",
 
@@ -26,10 +34,10 @@ const nycSlice: DoughStyleDefinition = {
         difficulty: 'Medium',
         ballWeight: { recommended: 450, min: 350, max: 600 },
         fermentationSteps: [
-            "Intensive mix to windowpane. [Science: High protein flour (14%) requires significant mechanical energy to align gluten for the thin stretch.]",
-            "Bulk ferment 1h. [Science: Jumpstarts yeast activity before cold shock.]",
-            "Cold Maturation 24-72h. [Science: Creates micro-blisters on the crust via organic acid production and prevents over-browning by consuming excess sugars.]",
-            "Warm up 2h before bake. [Science: Cold dough in a hot oven bubbles aggressively; tempering ensures even oven spring.]"
+            "styles.new_york_slice_v2_ferm_step_1",
+            "styles.new_york_slice_v2_ferm_step_2",
+            "styles.new_york_slice_v2_ferm_step_3",
+            "styles.new_york_slice_v2_ferm_step_4"
         ]
     },
     scientificProfile: {
@@ -38,7 +46,7 @@ const nycSlice: DoughStyleDefinition = {
             pl_ratio: "0.6 (Elastic)",
             absorption_capacity: "High (65%)",
             protein_type: "Spring Wheat (14%)",
-            science_explanation: "new_york_slice_v2_science_flour"
+            science_explanation: "styles.new_york_slice_v2_science_flour"
         },
         thermalProfile: {
             oven_type: 'Gas deck 2',
@@ -53,21 +61,21 @@ const nycSlice: DoughStyleDefinition = {
             enzymatic_activity: "Controlled (Cold)"
         }
     },
-    tags: ["nyc", "slice", "deck-oven", "foldable"],
+    tags: ["styles.new_york_slice_v2_tag_nyc", "styles.new_york_slice_v2_tag_slice", "styles.new_york_slice_v2_tag_deck", "styles.new_york_slice_v2_tag_foldable"],
     pairings: {
-        canonical: ['Low moisture mozzarella', 'Oregano 2', 'Garlic powder'],
-        modern: ['Vodka sauce 3'],
+        canonical: ['Low moisture mozzarella', 'Oregano', 'Garlic powder'],
+        modern: ['Vodka sauce'],
         regional: []
     },
     watchouts: [
-        "Gummy layer: Sauce applied too cold or dough not baked long enough.",
-        "Excessive chew: Flour too strong without enough oil to tenderize.",
-        "Lack of browning: Sugar omitted in a <300°C oven (Maillard needs help at lower temps)."
+        "styles.new_york_slice_v2_watchout_gummy",
+        "styles.new_york_slice_v2_watchout_chew",
+        "styles.new_york_slice_v2_watchout_browning"
     ],
     notes: [
-        "Oil (2-3%) is crucial for tenderizing the high-gluten flour, allowing the 'fold' without cracking.",
-        "Sugar effectively feeds yeast during long cold ferments and aids crust coloration.",
-        "Traditionally baked on screens or directly on deck stones."
+        "styles.new_york_slice_v2_note_1",
+        "styles.new_york_slice_v2_note_2",
+        "styles.new_york_slice_v2_note_3"
     ],
     isPro: false,
     source: "official",
@@ -82,76 +90,76 @@ const nycSlice: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: 'The reheat rule',
-                explanation: "Never microwave. Reheat in a skillet or on a hot stone (250°C) to restore the crust without drying the cheese."
+                tip: 'styles.new_york_slice_v2_tip_reheat',
+                explanation: "styles.new_york_slice_v2_tip_reheat_exp"
             },
             {
-                tip: 'Cheese temp matters',
-                explanation: "Use cold, cubed Low Moisture Mozzarella. If it's warm, it separates into oil before the crust is done."
+                tip: 'styles.new_york_slice_v2_tip_cheese',
+                explanation: "styles.new_york_slice_v2_tip_cheese_exp"
             }
         ],
         what_if: [
             {
-                scenario: 'Home oven only reaches 250c',
-                result: 'The crust dries out before browning',
-                correction: "Add 2% sugar/malt to dough (browning aid) and use a baking steel, not a stone."
+                scenario: 'styles.new_york_slice_v2_wi_oven_scen',
+                result: 'styles.new_york_slice_v2_wi_oven_res',
+                correction: "styles.new_york_slice_v2_wi_oven_corr"
             },
             {
-                scenario: 'Dough retracts when stretching',
-                result: 'Gluten is too cold or overworked',
-                correction: "Let dough sit at room temp for 1-2h before stretching to relax the gluten 'memory'."
+                scenario: 'styles.new_york_slice_v2_wi_snap_scen',
+                result: 'styles.new_york_slice_v2_wi_snap_res',
+                correction: "styles.new_york_slice_v2_wi_snap_corr"
             }
         ],
         comparative_analysis: [
             {
-                target_style: 'Neapolitan 3',
-                difference: "NYC is larger (18inch), crisper, and has oil/sugar. Neapolitan is soft, wet, and lean.",
-                why_choose_this: "Choose NYC for the \'fold, portability, and heavy cheese/toppings capability."
+                target_style: 'Neapolitan',
+                difference: "styles.new_york_slice_v2_comp_neo_diff",
+                why_choose_this: "styles.new_york_slice_v2_comp_neo_why"
             }
         ],
         q_and_a: [
             {
-                question: 'Is nyc water the secret',
-                answer: "Myth. While mineral content affects pH, comparable bagels/pizza are made worldwide by replicating the calcium/magnesium ratio or just using good technique.",
-                context: 'Kenji lopezalt'
+                question: 'styles.new_york_slice_v2_qa_water_q',
+                answer: "styles.new_york_slice_v2_qa_water_a",
+                context: 'styles.new_york_slice_v2_qa_water_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Direct',
                 suitability: 'Ideal',
-                notes: "24-48h Cold Ferment is the definitive step for the flavor and micro-blisters."
+                notes: "styles.new_york_slice_v2_ferm_direct_notes"
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "new_york_slice_v2_dd_hydration",
+        hydrationLogic: "styles.new_york_slice_v2_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "new_york_slice_v2_method_direct_notes" },
-            biga: { suitable: true, notes: "new_york_slice_v2_method_biga_notes" },
-            poolish: { suitable: true, notes: "new_york_slice_v2_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.new_york_slice_v2_method_direct_notes" },
+            biga: { suitable: true, notes: "styles.new_york_slice_v2_method_biga_notes" },
+            poolish: { suitable: true, notes: "styles.new_york_slice_v2_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: 'Crust is pale and white',
-                outcome: "Oven temp too low (<550°F) or forgot the sugar/oil.",
-                solution: "At home temps (500°F), you MUST use 2% sugar and 3% oil to force browning."
+                scenario: 'styles.new_york_slice_v2_dd_wi_pale_scen',
+                outcome: "styles.new_york_slice_v2_dd_wi_pale_out",
+                solution: "styles.new_york_slice_v2_dd_wi_pale_sol"
             },
             {
-                scenario: 'Dough keeps snapping back to small size',
-                outcome: 'Gluten is too excited',
-                solution: "Let the dough balls rest at room temp for at least 2 hours before stretching. Cold dough = Snap back."
+                scenario: 'styles.new_york_slice_v2_dd_wi_snap_scen',
+                outcome: 'styles.new_york_slice_v2_dd_wi_snap_out',
+                solution: "styles.new_york_slice_v2_dd_wi_snap_sol"
             }
         ],
         comparisons: [
             {
-                vsStyle: 'Neapolitan 4',
-                difference: "NYC uses Oil, Sugar, and Malt. Neapolitan is lean. NYC is crispy/chewy; Neapolitan is soft/wet."
+                vsStyle: 'Neapolitan',
+                difference: "styles.new_york_slice_v2_dd_comp_neo_diff"
             }
         ],
         proTips: [
-            "The 'Screen' Trick: 'Bake on a screen for 5 mins', then slide directly onto the stone to finish. Best of both worlds.",
-            "Cure the balls: 48h cold fermentation is where the flavor lives."
+            "styles.new_york_slice_v2_dd_tip_1",
+            "styles.new_york_slice_v2_dd_tip_2"
         ]
     }
 };
@@ -168,6 +176,13 @@ const detroitStyle: DoughStyleDefinition = {
     },
     description: "detroit_style_classic_desc",
     history: "detroit_style_classic_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_bread', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 73 },
+        { name: 'styles.ingredients_salt', percentage: 2.2 },
+        { name: 'styles.ingredients_oil', percentage: 1.5 },
+        { name: 'styles.ingredients_yeast_fresh', percentage: 0.5 }
+    ],
     difficulty: 'Medium',
     fermentationType: "direct",
 
@@ -182,9 +197,9 @@ const detroitStyle: DoughStyleDefinition = {
         difficulty: 'Medium',
         ballWeight: { recommended: 550, min: 400, max: 700 },
         fermentationSteps: [
-            "Mix to moderate development. [Science: Full windowpane not needed as the dough is supported by the pan.]",
-            "Bulk ferment 1h. [Science: Initial gas generation.]",
-            "Pan proof 2-3h. [Science: The critical step. Dough must relax completely to fill corners and aerate into a sponge-like crumb.]"
+            "styles.detroit_style_classic_ferm_step_1",
+            "styles.detroit_style_classic_ferm_step_2",
+            "styles.detroit_style_classic_ferm_step_3"
         ]
     },
     scientificProfile: {
@@ -193,7 +208,7 @@ const detroitStyle: DoughStyleDefinition = {
             pl_ratio: 'Balanced',
             absorption_capacity: "High (70%+)",
             protein_type: 'Bread flour 5',
-            science_explanation: "detroit_style_classic_science_flour"
+            science_explanation: "styles.detroit_style_classic_science_flour"
         },
         thermalProfile: {
             oven_type: 'Blue steel pan',
@@ -208,21 +223,21 @@ const detroitStyle: DoughStyleDefinition = {
             enzymatic_activity: "High (High water)"
         }
     },
-    tags: ["pan", "frico", "deep-dish", "detroit"],
+    tags: ["styles.detroit_style_classic_tag_pan", "styles.detroit_style_classic_tag_frico", "styles.detroit_style_classic_tag_deep", "styles.detroit_style_classic_tag_detroit"],
     pairings: {
         canonical: ['Wisconsin brick cheese'],
-        modern: ['Hot honey 3'],
+        modern: ['Hot honey'],
         regional: ['Coney island hot dog pizza']
     },
     watchouts: [
-        "Soggy center: Sauce applied before bake sinks into the proofed dough. Apply in stripes or post-bake.",
-        "No Frico: 'Cheese did not touch the pan walls', or pan was not seasoned.",
-        "Dense crumb: Rushed pan proof. It needs to feel like a memory foam pillow."
+        "styles.detroit_style_classic_watchout_soggy",
+        "styles.detroit_style_classic_watchout_nofrico",
+        "styles.detroit_style_classic_watchout_dense"
     ],
     notes: [
-        "The unique Brick Cheese has a high fat content that fries the crust edge.",
-        "Hydration must be high (70%+) to ensure the thick crust remains light, not bread-like.",
-        "Sauce on top prevents the 'gum line' from forming under the cheese."
+        "styles.detroit_style_classic_note_1",
+        "styles.detroit_style_classic_note_2",
+        "styles.detroit_style_classic_note_3"
     ],
     isPro: false,
     source: "official",
@@ -237,76 +252,76 @@ const detroitStyle: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: 'The frico edge',
-                explanation: "Spread cheese ALL the way to the metal wall. The cheese melting down the side creates the structural 'Frico' wall."
+                tip: 'styles.detroit_style_classic_tip_frico',
+                explanation: "styles.detroit_style_classic_tip_frico_exp"
             },
             {
-                tip: 'Parbake the skin',
-                explanation: "For home ovens, bake the dough w/o toppings for 7 mins first to ensure the center cooks before the cheese burns."
+                tip: 'styles.detroit_style_classic_tip_parbake',
+                explanation: "styles.detroit_style_classic_tip_parbake_exp"
             }
         ],
         what_if: [
             {
-                scenario: "Center is raw/gummy",
-                result: 'Insulated by too much sauce or dough was too cold',
-                correction: "Apply sauce in 'Racing Stripes' ON TOP of cheese to allow heat to penetrate."
+                scenario: "styles.detroit_style_classic_wi_raw_scen",
+                result: 'styles.detroit_style_classic_wi_raw_res',
+                correction: "styles.detroit_style_classic_wi_raw_corr"
             },
             {
-                scenario: 'Cannot find brick cheese',
-                result: 'You lose the specific buttery tang',
-                correction: "Use 50% Low Moisture Mozzarella + 50% Monterey Jack (or Muenster) to simulate the fat/melt profile."
+                scenario: 'styles.detroit_style_classic_wi_cheese_scen',
+                result: 'styles.detroit_style_classic_wi_cheese_res',
+                correction: "styles.detroit_style_classic_wi_cheese_corr"
             }
         ],
         comparative_analysis: [
             {
                 target_style: 'Sicilian',
-                difference: "Detroit uses Brick cheese, sauce on top, and steel pans. Sicilian uses olive oil, often crumbs, and sheet pans.",
-                why_choose_this: "Choose Detroit for the caramelized cheese crown (Frico)."
+                difference: "styles.detroit_style_classic_comp_sicilian_diff",
+                why_choose_this: "styles.detroit_style_classic_comp_sicilian_why"
             }
         ],
         q_and_a: [
             {
-                question: 'Why blue steel pans',
-                answer: "They conduct heat faster than aluminum, frying the bottom in the oil before the top burns.",
-                context: 'Automotive history'
+                question: 'styles.detroit_style_classic_qa_pans_q',
+                answer: "styles.detroit_style_classic_qa_pans_a",
+                context: 'styles.detroit_style_classic_qa_pans_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Direct',
                 suitability: 'Authentic',
-                notes: 'Traditionally a direct dough but cold ferment adds'
+                notes: 'styles.detroit_style_classic_ferm_direct_notes'
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "detroit_style_classic_dd_hydration",
+        hydrationLogic: "styles.detroit_style_classic_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "detroit_style_classic_method_direct_notes" },
-            biga: { suitable: false, notes: "detroit_style_classic_method_biga_notes" },
-            poolish: { suitable: true, notes: "detroit_style_classic_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.detroit_style_classic_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.detroit_style_classic_method_biga_notes" },
+            poolish: { suitable: true, notes: "styles.detroit_style_classic_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: "Center is raw (Gum Line)?",
-                outcome: 'Insulated by too much sauce or dough was cold',
-                solution: 'Parbake the skin  cheese for 7 mins then add sauce'
+                scenario: "styles.detroit_style_classic_dd_wi_raw_scen",
+                outcome: 'styles.detroit_style_classic_dd_wi_raw_out',
+                solution: 'styles.detroit_style_classic_dd_wi_raw_sol'
             },
             {
-                scenario: "No \'Frico\' (Cheese Crown)?",
-                outcome: "You used Mozzarella or didn't push cheese to the edge.",
-                solution: "Use Brick Cheese or Muenster/Jack blend. It must touch the metal wall."
+                scenario: "styles.detroit_style_classic_dd_wi_nofrico_scen",
+                outcome: "styles.detroit_style_classic_dd_wi_nofrico_out",
+                solution: "styles.detroit_style_classic_dd_wi_nofrico_sol"
             }
         ],
         comparisons: [
             {
-                vsStyle: 'Chicago deep dish 3',
-                difference: 'Detroit is a light fried dough chicago is a dense '
+                vsStyle: 'Chicago Deep Dish',
+                difference: 'styles.detroit_style_classic_dd_comp_chicago_diff'
             }
         ],
         proTips: [
-            "Season your pans: Blue steel improves with age. Never wash with soap.",
-            "Sauce on Top: It prevents the gum line. Do not spread it; stripe it."
+            "styles.detroit_style_classic_dd_tip_1",
+            "styles.detroit_style_classic_dd_tip_2"
         ]
     }
 };
@@ -323,6 +338,14 @@ const chicagoDeepDish: DoughStyleDefinition = {
     },
     description: "chicago_deep_dish_desc",
     history: "chicago_deep_dish_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_ap', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 54 },
+        { name: 'styles.ingredients_salt', percentage: 1.8 },
+        { name: 'styles.ingredients_oil_corn', percentage: 20 },
+        { name: 'styles.ingredients_sugar', percentage: 1.5 },
+        { name: 'styles.ingredients_yeast_dry', percentage: 0.5 }
+    ],
     difficulty: 'Medium',
     fermentationType: "direct",
 
@@ -337,9 +360,9 @@ const chicagoDeepDish: DoughStyleDefinition = {
         difficulty: 'Medium',
         ballWeight: { recommended: 800, min: 600, max: 1200 },
         fermentationSteps: [
-            "Mix for short time (Undermixed). [Science: 'Minimizing gluten development ensures a \'short', biscuit-like texture rather than chewy bread.]",
-            "Bulk ferment 1-2h. [Science: Flavor development only; gas retention is secondary to texture.]",
-            "Laminate/Press into pan. [Science: No elasticity required; the dough should mold like pie crust.]"
+            "styles.chicago_deep_dish_ferm_step_1",
+            "styles.chicago_deep_dish_ferm_step_2",
+            "styles.chicago_deep_dish_ferm_step_3"
         ]
     },
     scientificProfile: {
@@ -348,7 +371,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
             pl_ratio: "Short (High Fat)",
             absorption_capacity: 'Low',
             protein_type: "AP/Pastry Blend",
-            science_explanation: "chicago_deep_dish_science_flour"
+            science_explanation: "styles.chicago_deep_dish_science_flour"
         },
         thermalProfile: {
             oven_type: 'Deep pan',
@@ -363,21 +386,21 @@ const chicagoDeepDish: DoughStyleDefinition = {
             enzymatic_activity: 'Low'
         }
     },
-    tags: ["casserole", "biscuit-crust", "corn-oil"],
+    tags: ["styles.chicago_deep_dish_tag_casserole", "styles.chicago_deep_dish_tag_biscuit", "styles.chicago_deep_dish_tag_corn"],
     pairings: {
         canonical: ['Italian sausage layer', 'Chunky tomato sauce'],
-        modern: ['Giardiniera 2'],
-        regional: ['"Butter Crust (Lou\'s style)"']
+        modern: ['Giardiniera'],
+        regional: ['Butter Crust (Lou\'s style)']
     },
     watchouts: [
-        "Soggy bottom: Sauce drains liquid. Sauce must be thick/chunky and placed ON TOP of cheese.",
-        "Burned Crust: Bake temp too high (>230°C). Deep dish needs a 'low and slow' bake (30-40 mins).",
-        "Toughness: Overmixing developed gluten. Treat it like pie dough."
+        "styles.chicago_deep_dish_watchout_soggy",
+        "styles.chicago_deep_dish_watchout_burned",
+        "styles.chicago_deep_dish_watchout_tough"
     ],
     notes: [
-        "Corn oil is traditional for the specific flavor and 'fried' texture.",
-        "Some variations laminate butter for flakiness.",
-        "The 'cheese seal' on the dough bottom prevents moisture penetration."
+        "styles.chicago_deep_dish_note_1",
+        "styles.chicago_deep_dish_note_2",
+        "styles.chicago_deep_dish_note_3"
     ],
     isPro: false,
     source: "official",
@@ -392,71 +415,71 @@ const chicagoDeepDish: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: 'The biscuit factor',
-                explanation: "Mix very briefly. Overmixing develops gluten, making it chewy instead of flaky. You want a 'short' dough."
+                tip: 'styles.chicago_deep_dish_tip_biscuit',
+                explanation: "styles.chicago_deep_dish_tip_biscuit_exp"
             },
             {
-                tip: 'Corn oil is king',
-                explanation: "Although butter tastes great, corn oil provides the authentic specific flavor profile and texture of the original."
+                tip: 'styles.chicago_deep_dish_tip_oil',
+                explanation: "styles.chicago_deep_dish_tip_oil_exp"
             }
         ],
         what_if: [
             {
-                scenario: 'Dough shrinks when pressing',
-                result: 'Elasticity is too high',
-                correction: 'Let it rest 20 mins if it persists you overmixed n'
+                scenario: 'styles.chicago_deep_dish_wi_shrink_scen',
+                result: 'styles.chicago_deep_dish_wi_shrink_res',
+                correction: 'styles.chicago_deep_dish_wi_shrink_corr'
             }
         ],
         comparative_analysis: [
             {
-                target_style: 'Pan pizza 3',
-                difference: "Deep Dish is a pie/casserole with a short crust. Pan pizza (like Detroit) is a fried bread.",
-                why_choose_this: 'Choose deep dish for a sitdown meal experience'
+                target_style: 'Pan Pizza',
+                difference: "styles.chicago_deep_dish_comp_pan_diff",
+                why_choose_this: 'styles.chicago_deep_dish_comp_pan_why'
             }
         ],
         q_and_a: [
             {
-                question: 'Why sauce on top',
-                answer: "Insulation. The cheese and meat would burn during the long 40-minute bake if exposed. The sauce protects them.",
-                context: 'Physics of baking'
+                question: 'styles.chicago_deep_dish_qa_sauce_q',
+                answer: "styles.chicago_deep_dish_qa_sauce_a",
+                context: 'styles.chicago_deep_dish_qa_sauce_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Direct',
                 suitability: 'Authentic',
-                notes: 'Short ferment is standard flavor comes from fat an'
+                notes: 'styles.chicago_deep_dish_ferm_direct_notes'
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "chicago_deep_dish_dd_hydration",
+        hydrationLogic: "styles.chicago_deep_dish_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "chicago_deep_dish_method_direct_notes" },
-            biga: { suitable: false, notes: "chicago_deep_dish_method_biga_notes" },
-            poolish: { suitable: false, notes: "chicago_deep_dish_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.chicago_deep_dish_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.chicago_deep_dish_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.chicago_deep_dish_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: "Crust is tough/chewy?",
-                outcome: 'Overmixed you developed gluten',
-                solution: 'Mix only until ingredients combine treat it like a'
+                scenario: "styles.chicago_deep_dish_dd_wi_tough_scen",
+                outcome: 'styles.chicago_deep_dish_dd_wi_tough_out',
+                solution: 'styles.chicago_deep_dish_dd_wi_tough_sol'
             },
             {
-                scenario: 'Soggy mess',
-                outcome: 'Sauce was too thin or veggies released water',
-                solution: "Use thick crushed tomatoes. Pre-cook spinach/mushrooms to remove water."
+                scenario: 'styles.chicago_deep_dish_dd_wi_soggy_scen',
+                outcome: 'styles.chicago_deep_dish_dd_wi_soggy_out',
+                solution: "styles.chicago_deep_dish_dd_wi_soggy_sol"
             }
         ],
         comparisons: [
             {
                 vsStyle: "Pan Pizza (Hut/Detroit)",
-                difference: "Deep Dish is 'Short' (crumbles). Pan Pizza is 'Bread' (stretches)."
+                difference: "styles.chicago_deep_dish_dd_comp_pan_diff"
             }
         ],
         proTips: [
-            "Laminate: Fold butter into the dough for a flaky layer effect (Malnati style).",
-            "Let it rest: 'After baking', let the pie sit 5 mins to set heavily. If you cut immediately, it flows like lava."
+            "styles.chicago_deep_dish_dd_tip_1",
+            "styles.chicago_deep_dish_dd_tip_2"
         ]
     }
 };
@@ -475,6 +498,12 @@ const sfSourdough: DoughStyleDefinition = {
     },
     description: "san_francisco_sourdough_desc",
     history: "san_francisco_sourdough_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_high_gluten', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 75 },
+        { name: 'styles.ingredients_salt', percentage: 2.2 },
+        { name: 'styles.ingredients_sourdough', percentage: 20 }
+    ],
     difficulty: 'Expert',
     fermentationType: "levain",
 
@@ -489,9 +518,9 @@ const sfSourdough: DoughStyleDefinition = {
         difficulty: 'Expert',
         ballWeight: { recommended: 900, min: 700, max: 1100 },
         fermentationSteps: [
-            "Maintain stiff starter. [Science: Stiff starters favor acetic acid production (sourness) and yeast vitality.]",
-            "Long cold retard (12-24h). [Science: 'At low temps', bacteria produce more acid while yeast slows down, creating the signature tang.]",
-            "Bake dark. [Science: 'Acidity inhibits Maillard reaction', so aggressive heat and time are needed for the dark chestnut color.]"
+            "styles.sf_sourdough_ferm_step_1",
+            "styles.sf_sourdough_ferm_step_2",
+            "styles.sf_sourdough_ferm_step_3"
         ]
     },
     scientificProfile: {
@@ -500,7 +529,7 @@ const sfSourdough: DoughStyleDefinition = {
             pl_ratio: "Balanced",
             absorption_capacity: 'Extreme',
             protein_type: "Malted Bread/High Gluten",
-            science_explanation: "sf_sourdough_science_flour"
+            science_explanation: "styles.sf_sourdough_science_flour"
         },
         thermalProfile: {
             oven_type: "Dutch Oven / Hearth",
@@ -515,21 +544,21 @@ const sfSourdough: DoughStyleDefinition = {
             enzymatic_activity: "Very High (Proteolysis)"
         }
     },
-    tags: ["sour", "wild-yeast", "gold-rush", "san-francisco"],
+    tags: ["styles.sf_sourdough_tag_sour", "styles.sf_sourdough_tag_wild", "styles.sf_sourdough_tag_gold", "styles.sf_sourdough_tag_sf"],
     pairings: {
         canonical: ['Clam chowder', 'Dungeness crab'],
         modern: ['Avocado'],
         regional: ['Seafood cioppino']
     },
     watchouts: [
-        "Not Sour Enough: Starter too liquid or fermented too warm (lactic bias).",
-        "Flat loaf: Over-acidification degraded the gluten network (proteolysis).",
-        "Pale crust: Acid inhibited browning; bake hotter."
+        "styles.sf_sourdough_watchout_sour",
+        "styles.sf_sourdough_watchout_flat",
+        "styles.sf_sourdough_watchout_pale"
     ],
     notes: [
-        "True SF flavor comes from the specific microbiome, but technique (stiff starter, cold proof) mimics it well anywhere.",
-        "Scoring is critical to handle the immense oven spring.",
-        "No commercial yeast allowed."
+        "styles.sf_sourdough_note_1",
+        "styles.sf_sourdough_note_2",
+        "styles.sf_sourdough_note_3"
     ],
     isPro: true,
     source: "official",
@@ -544,76 +573,76 @@ const sfSourdough: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: "The \'Tartine\' Fold",
-                explanation: "Don't knead. Perform gentle 'coil folds' every 30 mins during bulk to align gluten without degassing."
+                tip: "styles.sf_sourdough_tip_tartine",
+                explanation: "styles.sf_sourdough_tip_tartine_exp"
             },
             {
-                tip: 'Steam is nonnegotiable',
-                explanation: "Use a Dutch Oven. The trapped steam keeps the crust soft, allowing massive expansion (Oven Spring) before setting."
+                tip: 'styles.sf_sourdough_tip_steam',
+                explanation: "styles.sf_sourdough_tip_steam_exp"
             }
         ],
         what_if: [
             {
-                scenario: "Starter is too sour (Acetic)",
-                result: "Loaf is dense and tight. Acid destroys gluten structure (Proteolysis).",
-                correction: "Feed starter more frequently (1:2:2 ratio) and use it younger (sweeter/lactic)."
+                scenario: "styles.sf_sourdough_wi_sour_scen",
+                result: "styles.sf_sourdough_wi_sour_res",
+                correction: "styles.sf_sourdough_wi_sour_corr"
             },
             {
-                scenario: "No \'Ear\' (Burst)",
-                result: 'Scoring was too shallow or oven not hot enough',
-                correction: 'Score at a 45 degree angle and ensure steam is pre'
+                scenario: "styles.sf_sourdough_wi_ear_scen",
+                result: 'styles.sf_sourdough_wi_ear_res',
+                correction: 'styles.sf_sourdough_wi_ear_corr'
             }
         ],
         comparative_analysis: [
             {
                 target_style: 'French baguette 2',
-                difference: "SF Sourdough is wild yeast (Levain) and acetic. Baguette is commercial yeast and mild.",
-                why_choose_this: 'Choose sf sourdough for keeping quality and comple'
+                difference: "styles.sf_sourdough_comp_baguette_diff",
+                why_choose_this: 'styles.sf_sourdough_comp_baguette_why'
             }
         ],
         q_and_a: [
             {
-                question: "Is \'Lactobacillus sanfranciscensis\' only in SF?",
-                answer: "No. It's found worldwide. The 'SF Taste' is more about the cold fermentation technique and acetic acid balance than geography.",
-                context: 'Modern microbiology'
+                question: "styles.sf_sourdough_qa_bacteria_q",
+                answer: "styles.sf_sourdough_qa_bacteria_a",
+                context: 'styles.sf_sourdough_qa_bacteria_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Sourdough',
                 suitability: 'Authentic',
-                notes: 'Strictly pure levain no commercial yeast allowed'
+                notes: 'styles.sf_sourdough_ferm_sourdough_notes'
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "sf_sourdough_dd_hydration",
+        hydrationLogic: "styles.sf_sourdough_dd_hydration",
         methodSuitability: {
-            direct: { suitable: false, notes: "sf_sourdough_method_direct_notes" },
-            biga: { suitable: false, notes: "sf_sourdough_method_biga_notes" },
-            poolish: { suitable: false, notes: "sf_sourdough_method_poolish_notes" }
+            direct: { suitable: false, notes: "styles.sf_sourdough_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.sf_sourdough_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.sf_sourdough_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: "Bread is dense/brick-like?",
-                outcome: 'Starter was weak or bulk fermentation was too shor',
-                solution: "Ensure starter doubles in 4 hours. Push the bulk ferment until dough feels 'aerated'."
+                scenario: "styles.sf_sourdough_dd_wi_dense_scen",
+                outcome: 'styles.sf_sourdough_dd_wi_dense_out',
+                solution: "styles.sf_sourdough_dd_wi_dense_sol"
             },
             {
-                scenario: "Too sour (Vinegar)?",
-                outcome: "Fermented too warm or starter hadn't been fed.",
-                solution: "Discard more starter, and ferment bulk at a cooler temp (20-22°C)."
+                scenario: "styles.sf_sourdough_dd_wi_vinegar_scen",
+                outcome: "styles.sf_sourdough_dd_wi_vinegar_out",
+                solution: "styles.sf_sourdough_dd_wi_vinegar_sol"
             }
         ],
         comparisons: [
             {
                 vsStyle: 'Pane toscano',
-                difference: "SF is sour (Acetic) and salted. Toscano is mild and unsalted."
+                difference: "styles.sf_sourdough_dd_comp_toscano_diff"
             }
         ],
         proTips: [
-            "Feed the starter: A healthy microbiological colony is 90% of the work.",
-            "The Dutch Oven: It simulates a professional steam injection deck oven perfectly."
+            "styles.sf_sourdough_dd_tip_1",
+            "styles.sf_sourdough_dd_tip_2"
         ]
     }
 };
@@ -630,6 +659,12 @@ const newHavenApizza: DoughStyleDefinition = {
     },
     description: "new_haven_apizza_desc",
     history: "new_haven_apizza_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_bread', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 63 },
+        { name: 'styles.ingredients_salt', percentage: 2.2 },
+        { name: 'styles.ingredients_yeast_fresh', percentage: 0.3 }
+    ],
     difficulty: 'Hard',
     fermentationType: "cold",
 
@@ -644,9 +679,9 @@ const newHavenApizza: DoughStyleDefinition = {
         difficulty: 'Hard',
         ballWeight: { recommended: 350, min: 300, max: 450 },
         fermentationSteps: [
-            "Long cold fermentation (24-48h). [Science: Necessary to break down complex starches for the high-heat charring process.]",
-            "Proof at room temp. [Science: Dough must be very extensible to stretch into the signature oblong shape without snapping back.]",
-            "Coal Fired Bake. [Science: 'Intense dry heat evaporates surface moisture instantly', creating char without burning the center.]"
+            "styles.new_haven_apizza_ferm_step_1",
+            "styles.new_haven_apizza_ferm_step_2",
+            "styles.new_haven_apizza_ferm_step_3"
         ]
     },
     scientificProfile: {
@@ -655,7 +690,7 @@ const newHavenApizza: DoughStyleDefinition = {
             pl_ratio: 'Extensible',
             absorption_capacity: 'High',
             protein_type: "High Gluten (e.g., All Trumps)",
-            science_explanation: "new_haven_apizza_science_flour"
+            science_explanation: "styles.new_haven_apizza_science_flour"
         },
         thermalProfile: {
             oven_type: 'Coal fired deck',
@@ -670,20 +705,20 @@ const newHavenApizza: DoughStyleDefinition = {
             enzymatic_activity: "High (Maillard fuel)"
         }
     },
-    tags: ["coal-fired", "char", "clam-pie", "connecticut"],
+    tags: ["styles.new_haven_apizza_tag_coal", "styles.new_haven_apizza_tag_char", "styles.new_haven_apizza_tag_clam", "styles.new_haven_apizza_tag_ct"],
     pairings: {
         canonical: ['Littleneck clams', 'Garlic 2', 'Oregano 3', 'Pecorino'],
         modern: ['Bacon'],
         regional: ['Foxon park soda']
     },
     watchouts: [
-        "Sooty flavor: 'In a coal oven', poor airflow. In home oven, burnt flour.",
-        "Soggy Clams: Clams must be fresh and shucked directly onto the pie to mix liquor with oil/garlic.",
-        "Too thick: The rim should be minimal; it's about the crust surface."],
+        "styles.new_haven_apizza_watchout_sooty",
+        "styles.new_haven_apizza_watchout_soggy",
+        "styles.new_haven_apizza_watchout_thick"],
     notes: [
-        "A 'plain' pie has no cheese (mozzarella), just tomato sauce and pecorino.",
-        "The White Clam Pie is the signature masterpiece.",
-        "Char is a flavor, burnt is a mistake."
+        "styles.new_haven_apizza_note_1",
+        "styles.new_haven_apizza_note_2",
+        "styles.new_haven_apizza_note_3"
     ],
     isPro: false,
     source: "official",
@@ -698,71 +733,71 @@ const newHavenApizza: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: 'Oblong is a feature',
-                explanation: "Don't try to make it round. The 'Apizza' shape typically fills the peel. It's rustic."
+                tip: 'styles.new_haven_apizza_tip_oblong',
+                explanation: "styles.new_haven_apizza_tip_oblong_exp"
             },
             {
-                tip: 'Bake darker',
-                explanation: "Char is flavor. Pulling it early 'to be safe' ruins the style. Let the edges turn black."
+                tip: 'styles.new_haven_apizza_tip_darker',
+                explanation: "styles.new_haven_apizza_tip_darker_exp"
             }
         ],
         what_if: [
             {
-                scenario: 'Oven only goes to 260c',
-                result: "You won't get char.",
-                correction: 'Use 2 sugar in the dough to force browning at lowe'
+                scenario: 'styles.new_haven_apizza_wi_oven_scen',
+                result: "styles.new_haven_apizza_wi_oven_res",
+                correction: 'styles.new_haven_apizza_wi_oven_corr'
             }
         ],
         comparative_analysis: [
             {
                 target_style: 'Nyc slice',
-                difference: "Apizza is thinner, crispier, and much darker (charred). NYC is golden and pliable.",
-                why_choose_this: 'Choose apizza for a crunchier smoky experience'
+                difference: "styles.new_haven_apizza_comp_nyc_diff",
+                why_choose_this: 'styles.new_haven_apizza_comp_nyc_why'
             }
         ],
         q_and_a: [
             {
-                question: "Is \'Mozz\' standard?",
-                answer: "No. A 'Plain' pie in New Haven is Tomato Sauce + Oregano + Pecorino. You must ask for Mozzarella ('Mutz').",
-                context: 'Frank pepe menu'
+                question: "styles.new_haven_apizza_qa_mozz_q",
+                answer: "styles.new_haven_apizza_qa_mozz_a",
+                context: 'styles.new_haven_apizza_qa_mozz_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Direct',
                 suitability: 'Ideal',
-                notes: "Long cold proof (48h+) is needed to breakdown sugars for that intense char."
+                notes: "styles.new_haven_apizza_ferm_direct_notes"
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "new_haven_apizza_dd_hydration",
+        hydrationLogic: "styles.new_haven_apizza_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "new_haven_apizza_method_direct_notes" },
-            biga: { suitable: false, notes: "new_haven_apizza_method_biga_notes" },
-            poolish: { suitable: false, notes: "new_haven_apizza_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.new_haven_apizza_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.new_haven_apizza_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.new_haven_apizza_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: 'It burns instantly',
-                outcome: 'Oven too hot or sugar in dough',
-                solution: 'Authentic new haven has no sugar if baking at 600f'
+                scenario: 'styles.new_haven_apizza_dd_wi_burn_scen',
+                outcome: 'styles.new_haven_apizza_dd_wi_burn_out',
+                solution: 'styles.new_haven_apizza_dd_wi_burn_sol'
             },
             {
-                scenario: 'Soggy center',
-                outcome: "Clams/Toppings released water.",
-                solution: 'Shuck clams last minute bake longer char is good'
+                scenario: 'styles.new_haven_apizza_dd_wi_soggy_scen',
+                outcome: "styles.new_haven_apizza_dd_wi_soggy_out",
+                solution: 'styles.new_haven_apizza_dd_wi_soggy_sol'
             }
         ],
         comparisons: [
             {
                 vsStyle: 'Nyc slice 2',
-                difference: "New Haven is drier, thinner, oblong, and cooked darker (Charred)."
+                difference: "styles.new_haven_apizza_dd_comp_nyc_diff"
             }
         ],
         proTips: [
-            "Pecorino Romano: The 'salt' of the pizza. Apply liberally.",
-            "Don't worry about shape: 'If it\'s round', it's not Apizza."
+            "styles.new_haven_apizza_dd_tip_1",
+            "styles.new_haven_apizza_dd_tip_2"
         ]
     }
 };
@@ -780,6 +815,13 @@ const nycBagel: DoughStyleDefinition = {
     },
     description: "nyc_bagel_desc",
     history: "nyc_bagel_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_high_gluten', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 52 },
+        { name: 'styles.ingredients_salt', percentage: 2.2 },
+        { name: 'styles.ingredients_sugar_malt', percentage: 1.5 },
+        { name: 'styles.ingredients_yeast_fresh', percentage: 0.5 }
+    ],
     difficulty: 'Hard',
     fermentationType: "cold",
 
@@ -794,10 +836,10 @@ const nycBagel: DoughStyleDefinition = {
         difficulty: 'Hard',
         ballWeight: { recommended: 120, min: 100, max: 150 },
         fermentationSteps: [
-            "Mix EXTREMELY stiff dough. [Science: Low hydration (50-55%) creates the signature dense chewiness.]",
-            "Shape immediately. [Science: Shaping after proofing would Degas the dense structure too much.]",
-            "Cold retard 24-48h. [Science: Relaxes the tight gluten and develops malt flavors.]",
-            "Boil in Malt/Soda water. [Science: Gelatinizes the outer starch layer for shine and sets the crust size before baking.]"
+            "styles.nyc_bagel_ferm_step_1",
+            "styles.nyc_bagel_ferm_step_2",
+            "styles.nyc_bagel_ferm_step_3",
+            "styles.nyc_bagel_ferm_step_4"
         ]
     },
     scientificProfile: {
@@ -806,7 +848,7 @@ const nycBagel: DoughStyleDefinition = {
             pl_ratio: "Tenacious (Elastic)",
             absorption_capacity: 'Moderate',
             protein_type: "High Gluten (14.5%)",
-            science_explanation: "nyc_bagel_science_flour"
+            science_explanation: "styles.nyc_bagel_science_flour"
         },
         thermalProfile: {
             oven_type: "Revolving Deck / Boards",
@@ -821,21 +863,21 @@ const nycBagel: DoughStyleDefinition = {
             enzymatic_activity: "Enhanced (Malt)"
         }
     },
-    tags: ["bagel", "boiled", "malty", "nyc"],
+    tags: ["styles.nyc_bagel_tag_bagel", "styles.nyc_bagel_tag_boiled", "styles.nyc_bagel_tag_malty", "styles.nyc_bagel_tag_nyc"],
     pairings: {
         canonical: ['Lox', 'Capers', 'Red onion'],
         modern: [],
         regional: ['Everything seasoning']
     },
     watchouts: [
-        "Wrinkled skin: Boiled too long or water not hot enough.",
-        "Flat bagel: Overproofed before boiling.",
-        "Soft/Bun-like: Hydration too high. Keep it stiff!"
+        "styles.nyc_bagel_watchout_wrinkled",
+        "styles.nyc_bagel_watchout_flat",
+        "styles.nyc_bagel_watchout_soft"
     ],
     notes: [
-        "Barley malt syrup is essential for flavor and color; honey/sugar is a poor substitute.",
-        "Baking on burlap soaked in water (boards) is the traditional method.",
-        "Flip halfway through bake."
+        "styles.nyc_bagel_note_1",
+        "styles.nyc_bagel_note_2",
+        "styles.nyc_bagel_note_3"
     ],
     isPro: true,
     source: "official",
@@ -850,71 +892,71 @@ const nycBagel: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: 'Alkaline boil',
-                explanation: "Add Barley Malt Syrup and Baking Soda (or Lye for pros) to the water. This spikes the pH for intense Maillard browning."
+                tip: 'styles.nyc_bagel_tip_alkaline',
+                explanation: "styles.nyc_bagel_tip_alkaline_exp"
             },
             {
-                tip: 'Cold proof shaped',
-                explanation: "Shape the bagels then retard them in the fridge. Boiling cold bagels helps them hold shape."
+                tip: 'styles.nyc_bagel_tip_shape',
+                explanation: "styles.nyc_bagel_tip_shape_exp"
             }
         ],
         what_if: [
             {
-                scenario: 'Bagels wrinkle after baking',
-                result: 'Boiled too long or proofed too long before boiling',
-                correction: 'Keep boil to 3060 seconds per side'
+                scenario: 'styles.nyc_bagel_wi_wrinkle_scen',
+                result: 'styles.nyc_bagel_wi_wrinkle_res',
+                correction: 'styles.nyc_bagel_wi_wrinkle_corr'
             }
         ],
         comparative_analysis: [
             {
                 target_style: 'Montreal bagel',
-                difference: "NYC is salted + malt. Montreal is no salt + honey/sugar water (sweeter) and wood fired.",
-                why_choose_this: 'Choose nyc for the savory chew and sandwich capabi'
+                difference: "styles.nyc_bagel_comp_montreal_diff",
+                why_choose_this: 'styles.nyc_bagel_comp_montreal_why'
             }
         ],
         q_and_a: [
             {
-                question: 'Why barley malt',
-                answer: "Enzymatic actvity and specific flavor. Sugar is just sweet; Malt is savory, sweet, and improves crust color.",
-                context: 'Bagel tradition'
+                question: 'styles.nyc_bagel_qa_malt_q',
+                answer: "styles.nyc_bagel_qa_malt_a",
+                context: 'styles.nyc_bagel_qa_malt_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Direct',
                 suitability: 'Authentic',
-                notes: 'Crucial for the microblisters and flavor complexit'
+                notes: 'styles.nyc_bagel_ferm_direct_notes'
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "nyc_bagel_dd_hydration",
+        hydrationLogic: "styles.nyc_bagel_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "nyc_bagel_method_direct_notes" },
-            biga: { suitable: true, notes: "nyc_bagel_method_biga_notes" },
-            poolish: { suitable: false, notes: "nyc_bagel_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.nyc_bagel_method_direct_notes" },
+            biga: { suitable: true, notes: "styles.nyc_bagel_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.nyc_bagel_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: 'Bagels look wrinkled like prunes',
-                outcome: 'Boiled too long or overproofed',
-                solution: 'Boil 3060 secs proof less they should sink slightl'
+                scenario: 'styles.nyc_bagel_dd_wi_prune_scen',
+                outcome: 'styles.nyc_bagel_dd_wi_prune_out',
+                solution: 'styles.nyc_bagel_dd_wi_prune_sol'
             },
             {
-                scenario: 'No shine',
-                outcome: "Water wasn't alkaline.",
-                solution: 'Add barley malt syrup and baking soda to the boil '
+                scenario: 'styles.nyc_bagel_dd_wi_shine_scen',
+                outcome: "styles.nyc_bagel_dd_wi_shine_out",
+                solution: 'styles.nyc_bagel_dd_wi_shine_sol'
             }
         ],
         comparisons: [
             {
                 vsStyle: 'Montreal bagel 2',
-                difference: "NYC is saltier, bigger, and baked in standard ovens. Montreal is honey-water boiled and wood-fired."
+                difference: "styles.nyc_bagel_dd_comp_montreal_diff"
             }
         ],
         proTips: [
-            "Ice Cold Ferment: 'Shape', put on boards, and fridge for 24h. Boil directly from fridge.",
-            "Malt Syrup: Don't use sugar. The flavor is non-negotiable."]
+            "styles.nyc_bagel_dd_tip_1",
+            "styles.nyc_bagel_dd_tip_2"]
     }
 };
 
@@ -931,6 +973,13 @@ const grandmaPizza: DoughStyleDefinition = {
     },
     description: "grandma_pizza_desc",
     history: "grandma_pizza_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_bread', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 65 },
+        { name: 'styles.ingredients_salt', percentage: 2.2 },
+        { name: 'styles.ingredients_oil', percentage: 3 },
+        { name: 'styles.ingredients_yeast_fresh', percentage: 0.5 }
+    ],
     difficulty: 'Easy',
     fermentationType: "direct",
     technicalProfile: {
@@ -943,9 +992,9 @@ const grandmaPizza: DoughStyleDefinition = {
         recommendedUse: ['Classic tomato  garlic 2', 'Vodka sauce 4'],
         difficulty: 'Easy',
         fermentationSteps: [
-            "Mix to moderate development. [Science: Doesn't need windowpane as it's supported by a pan.]",
-            "Short bulk (1-2h). [Science: 'Grandma' style implies immediacy; rapid yeast activity is key.]",
-            "Stretch into oiled pan immediately. [Science: Oil conducts heat for a fried bottom texture.]"
+            "styles.grandma_style_v2_ferm_step_1",
+            "styles.grandma_style_v2_ferm_step_2",
+            "styles.grandma_style_v2_ferm_step_3"
         ]
     },
     scientificProfile: {
@@ -954,7 +1003,7 @@ const grandmaPizza: DoughStyleDefinition = {
             pl_ratio: 'Extensible',
             absorption_capacity: 'Medium',
             protein_type: 'All-Purpose',
-            science_explanation: "Does not require high protein. A softer flour helps it stretch into the corners of the pan without shrinking back."
+            science_explanation: "styles.grandma_pizza_science_flour"
         },
         thermalProfile: {
             oven_type: "Home Oven (Sheet Pan)",
@@ -969,21 +1018,21 @@ const grandmaPizza: DoughStyleDefinition = {
             enzymatic_activity: "High (Sugar/Oil)"
         }
     },
-    tags: ["pizza", "pan-pizza", "italian-american", "beginner-friendly", "thin-crust"],
+    tags: ["styles.grandma_pizza_tag_pizza", "styles.grandma_pizza_tag_pan", "styles.grandma_pizza_tag_italian_american", "styles.grandma_pizza_tag_beginner", "styles.grandma_pizza_tag_thin"],
     pairings: {
         canonical: ['Garlic 3', 'Crushed tomatoes 2', 'Mozzarella 3', 'Olive oil 4'],
         modern: ['Pesto 2', 'Fresh mozzarella 2'],
         regional: ['None 12']
     },
     watchouts: [
-        "Sticking: Use plenty of oil in the pan.",
-        "Soggy: Bake on the bottom rack of the oven.",
-        "Blandness: Heavy garlic usage in the sauce is characteristic."
+        "styles.grandma_pizza_watchout_stick",
+        "styles.grandma_pizza_watchout_soggy",
+        "styles.grandma_pizza_watchout_bland"
     ],
     notes: [
-        "Often lightly par-baked with sauce before adding cheese.",
-        "Texture should be crispy on bottom but dense/soft inside, not airy like Roman.",
-        "Garlic is usually sliced, not minced, or infused in the oil."
+        "styles.grandma_pizza_note_1",
+        "styles.grandma_pizza_note_2",
+        "styles.grandma_pizza_note_3"
     ],
     isPro: false,
     source: "official",
@@ -998,71 +1047,71 @@ const grandmaPizza: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: 'Fried bottom 2',
-                explanation: "Use way more olive oil in the pan than you think. It should essentially fry the crust bottom."
+                tip: 'styles.grandma_pizza_tip_fried',
+                explanation: "styles.grandma_pizza_tip_fried_exp"
             },
             {
-                tip: 'Short proof',
-                explanation: "Don't let it rise too much in the pan. It should be relatively dense and thin, not foccacia-like."
+                tip: 'styles.grandma_pizza_tip_short',
+                explanation: "styles.grandma_pizza_tip_short_exp"
             }
         ],
         what_if: [
             {
-                scenario: 'Dough springs back',
-                result: 'Gluten is tight',
-                correction: "Stretch, wait 10 mins, stretch again. Don't fight the gluten."
+                scenario: 'styles.grandma_pizza_wi_spring_scen',
+                result: 'styles.grandma_pizza_wi_spring_res',
+                correction: "styles.grandma_pizza_wi_spring_corr"
             }
         ],
         comparative_analysis: [
             {
                 target_style: 'Sicilian 2',
-                difference: "Grandma is thin, short proof, domestic. Sicilian is thick, long proof, bakery style.",
-                why_choose_this: 'Choose grandma for a quick weeknight sheet pan fam'
+                difference: "styles.grandma_pizza_comp_sicilian_diff",
+                why_choose_this: 'styles.grandma_pizza_comp_sicilian_why'
             }
         ],
         q_and_a: [
             {
-                question: "Why \'Grandma\'?",
-                answer: "It mimics the home cooking of Italian immigrants who didn\'t have pizza ovens, just standard sheet pans and home stoves.",
-                context: 'History'
+                question: "styles.grandma_pizza_qa_grandma_q",
+                answer: "styles.grandma_pizza_qa_grandma_a",
+                context: 'styles.grandma_pizza_qa_grandma_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Direct',
                 suitability: 'Authentic',
-                notes: "Originally a 'making it for dinner tonight' dough."
+                notes: "styles.grandma_pizza_ferm_direct_notes"
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "grandma_style_v2_dd_hydration",
+        hydrationLogic: "styles.grandma_style_v2_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "grandma_style_v2_method_direct_notes" },
-            biga: { suitable: false, notes: "grandma_style_v2_method_biga_notes" },
-            poolish: { suitable: false, notes: "grandma_style_v2_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.grandma_style_v2_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.grandma_style_v2_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.grandma_style_v2_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: 'Sticks to the pan',
-                outcome: 'Not enough oil',
-                solution: 'The pan should basically have a shallow pool of ol'
+                scenario: 'styles.grandma_pizza_dd_wi_stick_scen',
+                outcome: 'styles.grandma_pizza_dd_wi_stick_out',
+                solution: 'styles.grandma_pizza_dd_wi_stick_sol'
             },
             {
-                scenario: 'Soggy',
-                outcome: 'Bake it lower',
-                solution: 'Place pan on bottom rack for 10 mins to sear the u'
+                scenario: 'styles.grandma_pizza_dd_wi_soggy_scen',
+                outcome: 'styles.grandma_pizza_dd_wi_soggy_out',
+                solution: 'styles.grandma_pizza_dd_wi_soggy_sol'
             }
         ],
         comparisons: [
             {
                 vsStyle: 'Sicilian 3',
-                difference: 'Grandma is thin and quick sicilian is thick and sp'
+                difference: 'styles.grandma_pizza_dd_comp_sicilian_diff'
             }
         ],
         proTips: [
-            "Garlic in the Oil: Infuse the pan oil with garlic for that signature smell.",
-            "Don't crimp the edges: Let the cheese melt over the side."]
+            "styles.grandma_pizza_dd_tip_1",
+            "styles.grandma_pizza_dd_tip_2"]
     }
 };
 
@@ -1079,6 +1128,14 @@ const chicagoTavern: DoughStyleDefinition = {
     },
     description: "chicago_tavern_desc",
     history: "chicago_tavern_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_ap', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 48 },
+        { name: 'styles.ingredients_salt', percentage: 1.5 },
+        { name: 'styles.ingredients_oil', percentage: 5 },
+        { name: 'styles.ingredients_sugar', percentage: 1 },
+        { name: 'styles.ingredients_yeast_dry', percentage: 0.5 }
+    ],
     difficulty: 'Medium',
     fermentationType: "cold",
     technicalProfile: {
@@ -1091,10 +1148,10 @@ const chicagoTavern: DoughStyleDefinition = {
         recommendedUse: ['Sausage  giardiniera 2', 'Pepperoni 6'],
         difficulty: 'Medium',
         fermentationSteps: [
-            "Mix to stiff dough. [Science: 'Low hydration prevents gluten mobility', ensuring potential for crispness.]",
-            "Sheet/Roll flat immediately or after short rest. [Science: Mechanical degassing is key; no alveoli allowed.]",
-            "Cure in fridge (24-48h). [Science: 'This is a \'relieving\' phase where hydration equalizes and starch degrades', but no yeast rise is desired.]",
-            "Dock heavily and bake. [Science: Docking prevents steam pockets from separating cheese from crust.]"
+            "styles.chicago_tavern_v2_ferm_step_1",
+            "styles.chicago_tavern_v2_ferm_step_2",
+            "styles.chicago_tavern_v2_ferm_step_3",
+            "styles.chicago_tavern_v2_ferm_step_4"
         ]
     },
     scientificProfile: {
@@ -1103,7 +1160,7 @@ const chicagoTavern: DoughStyleDefinition = {
             pl_ratio: "Short",
             absorption_capacity: 'Low',
             protein_type: 'AP/Pastry',
-            science_explanation: "The goal is 'Dead Dough'. We want zero elasticity so it rolls paper thin, and zero ovenspring (puff). Low hydration + rolling pin achieves this."
+            science_explanation: "styles.chicago_tavern_science_flour"
         },
         thermalProfile: {
             oven_type: "Deck / Stone",
@@ -1118,21 +1175,21 @@ const chicagoTavern: DoughStyleDefinition = {
             enzymatic_activity: 'Low'
         }
     },
-    tags: ["pizza", "american", "midwest", "thin-crust", "party-cut", "cracker"],
+    tags: ["styles.chicago_tavern_v2_tag_pizza", "styles.chicago_tavern_v2_tag_american", "styles.chicago_tavern_v2_tag_midwest", "styles.chicago_tavern_v2_tag_thin", "styles.chicago_tavern_v2_tag_party", "styles.chicago_tavern_v2_tag_cracker"],
     pairings: {
         canonical: ['Fennel sausage 2', 'Giardiniera 3', 'Mozzarella 4'],
         modern: ['Italian beef 2'],
         regional: ['Old style beer 2']
     },
     watchouts: [
-        "Bubble formation: 'If not docked enough', it will bubble and burn.",
-        "Soggy center: Sauce must be thick; vegetables should be precooked or sliced thin.",
-        "Toughness: 'If hydration is too low without enough fat', it becomes hard hardtack instead of crisp."
+        "styles.chicago_tavern_v2_watchout_bubble",
+        "styles.chicago_tavern_v2_watchout_soggy",
+        "styles.chicago_tavern_v2_watchout_tough"
     ],
     notes: [
-        "Use a rolling pin or pasta sheeter.",
-        "The 'Party Cut' is non-negotiable.",
-        "Curing the rolled skins in the fridge uncovered can help dry them out."
+        "styles.chicago_tavern_v2_note_1",
+        "styles.chicago_tavern_v2_note_2",
+        "styles.chicago_tavern_v2_note_3"
     ],
     isPro: true,
     source: "official",
@@ -1149,71 +1206,71 @@ const chicagoTavern: DoughStyleDefinition = {
     education: {
         pro_tips: [
             {
-                tip: 'The cure',
-                explanation: "After rolling, let the skin sit uncovered in the fridge for 24h. This dries it out to create the cracker texture."
+                tip: 'styles.chicago_tavern_v2_tip_cure',
+                explanation: "styles.chicago_tavern_v2_tip_cure_exp"
             },
             {
-                tip: 'Dock aggressively',
-                explanation: "Thousands of holes are needed to prevent separation of layers (pita effect)."
+                tip: 'styles.chicago_tavern_v2_tip_dock',
+                explanation: "styles.chicago_tavern_v2_tip_dock_exp"
             }
         ],
         what_if: [
             {
-                scenario: 'Crust is chewy not crisp',
-                result: "Hydration too high or didn't cure enough.",
-                correction: 'Drop hydration to 45 and cure longer'
+                scenario: 'styles.chicago_tavern_v2_wi_chewy_scen',
+                result: "styles.chicago_tavern_v2_wi_chewy_res",
+                correction: 'styles.chicago_tavern_v2_wi_chewy_corr'
             }
         ],
         comparative_analysis: [
             {
                 target_style: 'Nyc slice 3',
-                difference: "Tavern is unleavened (dead yeast effect), cracker thin. NYC is a bread dough.",
-                why_choose_this: 'Choose tavern style for a snackable light party fo'
+                difference: "styles.chicago_tavern_v2_comp_nyc_diff",
+                why_choose_this: 'styles.chicago_tavern_v2_comp_nyc_why'
             }
         ],
         q_and_a: [
             {
-                question: 'Party cut',
-                answer: "Essential. Small squares allow you to hold a beer in one hand and a slice in the other.",
-                context: 'Tavern culture'
+                question: 'styles.chicago_tavern_v2_qa_party_q',
+                answer: "styles.chicago_tavern_v2_qa_party_a",
+                context: 'styles.chicago_tavern_v2_qa_party_ctx'
             }
         ],
         fermentation_methods: [
             {
                 method: 'Direct',
                 suitability: 'Possible',
-                notes: "Fermentation is secondary to the drying/curing process."
+                notes: "styles.chicago_tavern_v2_ferm_direct_notes"
             }
         ]
     },
     deepDive: {
-        hydrationLogic: "chicago_tavern_v2_dd_hydration",
+        hydrationLogic: "styles.chicago_tavern_v2_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "chicago_tavern_v2_method_direct_notes" },
-            biga: { suitable: false, notes: "chicago_tavern_v2_method_biga_notes" },
-            poolish: { suitable: false, notes: "chicago_tavern_v2_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.chicago_tavern_v2_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.chicago_tavern_v2_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.chicago_tavern_v2_method_poolish_notes" }
         },
         whatIf: [
             {
-                scenario: 'It puffed up like a pita',
-                outcome: "You didn't dock it.",
-                solution: 'Use a docker roller perforate the entire surface'
+                scenario: 'styles.chicago_tavern_v2_dd_wi_pita_scen',
+                outcome: "styles.chicago_tavern_v2_dd_wi_pita_out",
+                solution: 'styles.chicago_tavern_v2_dd_wi_pita_sol'
             },
             {
-                scenario: 'Chewy',
-                outcome: "Too much water or didn't cure.",
-                solution: 'Let the rolled skins sit in the fridge uncovered f'
+                scenario: 'styles.chicago_tavern_v2_dd_wi_chewy_scen',
+                outcome: "styles.chicago_tavern_v2_dd_wi_chewy_out",
+                solution: 'styles.chicago_tavern_v2_dd_wi_chewy_sol'
             }
         ],
         comparisons: [
             {
                 vsStyle: 'Deep dish',
-                difference: 'Locals eat tavern tourists eat deep dish'
+                difference: 'styles.chicago_tavern_v2_dd_comp_deep_diff'
             }
         ],
         proTips: [
-            "The Sheeter: Pros use a machine to get it paper thin. Use a rolling pin aggressively.",
-            "Cornmeal dust: Roll in cornmeal for extra crunch and release."
+            "styles.chicago_tavern_v2_dd_tip_1",
+            "styles.chicago_tavern_v2_dd_tip_2"
         ]
     }
 };
@@ -1230,6 +1287,14 @@ const montrealBagel: DoughStyleDefinition = {
     },
     description: "montreal_bagel_desc",
     history: "montreal_bagel_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_bread', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 50 },
+        { name: 'styles.ingredients_egg', percentage: 5 },
+        { name: 'styles.ingredients_sugar', percentage: 4 },
+        { name: 'styles.ingredients_oil', percentage: 2 },
+        { name: 'styles.ingredients_yeast_fresh', percentage: 0.5 }
+    ],
     difficulty: 'Hard',
     fermentationType: "direct",
 
@@ -1243,9 +1308,9 @@ const montrealBagel: DoughStyleDefinition = {
         recommendedUse: ['Cream cheese', 'Smoked salmon'],
         difficulty: 'Hard',
         fermentationSteps: [
-            "Mix stiff dough. [Science: Low hydration + No Salt + Sugar = Dense structure.]",
-            "Short proof. [Science: Just enough to relax gluten for rolling.]",
-            "Boil in Honey Water. [Science: Honey penetrates crust for sheen and flavor.]"
+            "styles.montreal_bagel_ferm_step_1",
+            "styles.montreal_bagel_ferm_step_2",
+            "styles.montreal_bagel_ferm_step_3"
         ]
     },
     scientificProfile: {
@@ -1254,7 +1319,7 @@ const montrealBagel: DoughStyleDefinition = {
             pl_ratio: "P/L > 0.6",
             absorption_capacity: 'Moderate',
             protein_type: 'Bread',
-            science_explanation: "High gluten needed for shape retention during boil. Lack of salt weakens network, so stiff dough compensates."
+            science_explanation: "styles.montreal_bagel_science_flour"
         },
         thermalProfile: {
             oven_type: 'Wood fired 2',
@@ -1269,14 +1334,14 @@ const montrealBagel: DoughStyleDefinition = {
             enzymatic_activity: 'Standard'
         }
     },
-    tags: ["honey", "no-salt", "wood-fired", "canada"],
+    tags: ["styles.montreal_bagel_tag_honey", "styles.montreal_bagel_tag_nosalt", "styles.montreal_bagel_tag_wood", "styles.montreal_bagel_tag_canada"],
     pairings: {
         canonical: ['Cream cheese 2', 'Smoked meat'],
         modern: ['Peanut butter'],
         regional: ['Montreal smoked meat']
     },
-    watchouts: ["Don't add salt."],
-    notes: ['Boiling water must contain honey'],
+    watchouts: ["styles.montreal_bagel_watchout"],
+    notes: ['styles.montreal_bagel_note'],
     isPro: false,
     source: "official",
     createdAt: "2025-01-01",
@@ -1288,22 +1353,22 @@ const montrealBagel: DoughStyleDefinition = {
         crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
-        pro_tips: [{ tip: 'tip', explanation: 'Essential for the glaze' }],
-        what_if: [{ scenario: 'scenario', result: "It's unsalted.", correction: 'Add salted toppings' }],
-        comparative_analysis: [{ target_style: 'target_style', difference: 'Montreal is unsalted smaller honeyboiled', why_choose_this: 'Sweeter crunchier' }],
-        q_and_a: [{ question: 'question', answer: 'Tradition', context: 'History 2' }],
-        fermentation_methods: [{ method: 'Direct', suitability: 'Possible', notes: 'Short ferment' }]
+        pro_tips: [{ tip: 'styles.montreal_bagel_tip_honey', explanation: 'styles.montreal_bagel_tip_honey_exp' }],
+        what_if: [{ scenario: 'styles.montreal_bagel_wi_salt_scen', result: "styles.montreal_bagel_wi_salt_res", correction: 'styles.montreal_bagel_wi_salt_corr' }],
+        comparative_analysis: [{ target_style: 'Nyc slice', difference: 'styles.montreal_bagel_comp_nyc_diff', why_choose_this: 'styles.montreal_bagel_comp_nyc_why' }],
+        q_and_a: [{ question: 'styles.montreal_bagel_qa_tradition_q', answer: 'styles.montreal_bagel_qa_tradition_a', context: 'styles.montreal_bagel_qa_tradition_ctx' }],
+        fermentation_methods: [{ method: 'Direct', suitability: 'Possible', notes: 'styles.montreal_bagel_ferm_direct_notes' }]
     },
     deepDive: {
-        hydrationLogic: "montreal_bagel_dd_hydration",
+        hydrationLogic: "styles.montreal_bagel_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "montreal_bagel_method_direct_notes" },
-            biga: { suitable: false, notes: "montreal_bagel_method_biga_notes" },
-            poolish: { suitable: false, notes: "montreal_bagel_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.montreal_bagel_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.montreal_bagel_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.montreal_bagel_method_poolish_notes" }
         },
-        whatIf: [{ scenario: 'scenario', outcome: 'Overproofed', solution: 'Proof less' }],
-        comparisons: [{ vsStyle: 'vsStyle', difference: 'Montreal is denser' }],
-        proTips: ['Soak boards', 'Seed heavily']
+        whatIf: [{ scenario: 'styles.montreal_bagel_dd_wi_proof_scen', outcome: 'styles.montreal_bagel_dd_wi_proof_out', solution: 'styles.montreal_bagel_dd_wi_proof_sol' }],
+        comparisons: [{ vsStyle: 'NYC Bagel', difference: 'styles.montreal_bagel_dd_comp_nyc_diff' }],
+        proTips: ['styles.montreal_bagel_dd_tip_1', 'styles.montreal_bagel_dd_tip_2']
     }
 };
 
@@ -1319,6 +1384,13 @@ const flourTortilla: DoughStyleDefinition = {
     },
     description: "flour_tortilla_sonora_desc",
     history: "flour_tortilla_sonora_history",
+    base_formula: [
+        { name: 'styles.ingredients_flour_ap', percentage: 100 },
+        { name: 'styles.ingredients_water', percentage: 50 },
+        { name: 'styles.ingredients_lard', percentage: 15 },
+        { name: 'styles.ingredients_salt', percentage: 1.5 },
+        { name: 'styles.ingredients_baking_powder', percentage: 0.5 }
+    ],
     difficulty: 'Medium',
     fermentationType: "direct",
 
@@ -1332,9 +1404,9 @@ const flourTortilla: DoughStyleDefinition = {
         recommendedUse: ['Burritos', 'Quesadillas'],
         difficulty: 'Medium',
         fermentationSteps: [
-            "Hot water mix. [Science: Denatures proteins for extensibility.]",
-            "Rest. [Science: Relaxes gluten.]",
-            "Flash cook. [Science: Steam puff separates layers.]"
+            "styles.flour_tortilla_sonora_ferm_step_1",
+            "styles.flour_tortilla_sonora_ferm_step_2",
+            "styles.flour_tortilla_sonora_ferm_step_3"
         ]
     },
     scientificProfile: {
@@ -1343,7 +1415,7 @@ const flourTortilla: DoughStyleDefinition = {
             pl_ratio: 'Extensible',
             absorption_capacity: 'Low',
             protein_type: 'AP',
-            science_explanation: 'High fat  hot water  tenderness and extensibility'
+            science_explanation: "styles.flour_tortilla_science_flour"
         },
         thermalProfile: {
             oven_type: 'Comal',
@@ -1358,14 +1430,14 @@ const flourTortilla: DoughStyleDefinition = {
             enzymatic_activity: 'None'
         }
     },
-    tags: ["lard", "sonora", "mexico"],
+    tags: ["styles.flour_tortilla_sonora_tag_lard", "styles.flour_tortilla_sonora_tag_sonora", "styles.flour_tortilla_sonora_tag_mexico"],
     pairings: {
         canonical: ['Carne asada', 'Cheese 2'],
         modern: ['Nutella'],
         regional: ['Burrito percherón']
     },
-    watchouts: ["Don't overcook.", "Use hot water."],
-    notes: ['Lard is traditional'],
+    watchouts: ["styles.flour_tortilla_sonora_watchout_overcook", "styles.flour_tortilla_sonora_watchout_water"],
+    notes: ['styles.flour_tortilla_sonora_note'],
     isPro: false,
     source: "official",
     createdAt: "2025-01-01",
@@ -1377,22 +1449,22 @@ const flourTortilla: DoughStyleDefinition = {
         crumb: "/images/styles/placeholder-dough.png"
     },
     education: {
-        pro_tips: [{ tip: 'tip', explanation: 'Should be translucent' }],
-        what_if: [{ scenario: 'scenario', result: 'Cooked too long', correction: 'Cook faster' }],
-        comparative_analysis: [{ target_style: 'target_style', difference: 'Flour is larger contains gluten', why_choose_this: 'Burritos 2' }],
-        q_and_a: [{ question: 'question', answer: 'Lard is better', context: 'Texture' }],
-        fermentation_methods: [{ method: 'Direct', suitability: 'Possible', notes: 'Unleavened 2' }]
+        pro_tips: [{ tip: 'styles.flour_tortilla_sonora_tip_thin', explanation: 'styles.flour_tortilla_sonora_tip_thin_exp' }],
+        what_if: [{ scenario: 'styles.flour_tortilla_sonora_wi_cracker_scen', result: 'styles.flour_tortilla_sonora_wi_cracker_res', correction: 'styles.flour_tortilla_sonora_wi_cracker_corr' }],
+        comparative_analysis: [{ target_style: 'Corn Tortilla', difference: 'styles.flour_tortilla_sonora_comp_flour_diff', why_choose_this: 'styles.flour_tortilla_sonora_comp_flour_why' }],
+        q_and_a: [{ question: 'styles.flour_tortilla_sonora_qa_lard_q', answer: 'styles.flour_tortilla_sonora_qa_lard_a', context: 'styles.flour_tortilla_sonora_qa_lard_ctx' }],
+        fermentation_methods: [{ method: 'Direct', suitability: 'Possible', notes: 'styles.flour_tortilla_sonora_ferm_direct_notes' }]
     },
     deepDive: {
-        hydrationLogic: "flour_tortilla_sonora_dd_hydration",
+        hydrationLogic: "styles.flour_tortilla_sonora_dd_hydration",
         methodSuitability: {
-            direct: { suitable: true, notes: "flour_tortilla_sonora_method_direct_notes" },
-            biga: { suitable: false, notes: "flour_tortilla_sonora_method_biga_notes" },
-            poolish: { suitable: false, notes: "flour_tortilla_sonora_method_poolish_notes" }
+            direct: { suitable: true, notes: "styles.flour_tortilla_sonora_method_direct_notes" },
+            biga: { suitable: false, notes: "styles.flour_tortilla_sonora_method_biga_notes" },
+            poolish: { suitable: false, notes: "styles.flour_tortilla_sonora_method_poolish_notes" }
         },
-        whatIf: [{ scenario: 'scenario', outcome: 'Rest longer', solution: 'Rest 30m' }],
-        comparisons: [{ vsStyle: 'vsStyle', difference: 'Tortilla is unleavened' }],
-        proTips: ['Use manteca']
+        whatIf: [{ scenario: 'styles.flour_tortilla_sonora_dd_wi_rest_scen', outcome: 'styles.flour_tortilla_sonora_dd_wi_rest_out', solution: 'styles.flour_tortilla_sonora_dd_wi_rest_sol' }],
+        comparisons: [{ vsStyle: 'Corn Tortilla', difference: 'styles.flour_tortilla_sonora_dd_comp_corn_diff' }],
+        proTips: ['styles.flour_tortilla_sonora_dd_tip_1']
     }
 };
 

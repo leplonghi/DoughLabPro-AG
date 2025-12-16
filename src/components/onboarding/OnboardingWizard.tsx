@@ -12,7 +12,7 @@ import {
     CheckIcon,
     XMarkIcon
 } from '@heroicons/react/24/outline'; // Adjust import based on your icon system or use standard ones
-import { DoughConsistencyVisualizer } from '@/components/calculator/DoughConsistencyVisualizer';
+import { HydrationInput } from '@/components/calculator/HydrationInput';
 
 interface OnboardingWizardProps {
     onComplete: () => void;
@@ -219,24 +219,14 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     </div>
 
                     <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
-                        <label className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2 block">
-                            {t('auth.onboarding.try_slider', 'Try changing hydration:')}
-                        </label>
-                        <input
-                            type="range"
-                            min="50"
-                            max="85"
+                        <HydrationInput
+                            label={t('auth.onboarding.try_slider', 'Try changing hydration:')}
                             value={demoHydration}
                             onChange={(e) => setDemoHydration(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-lime-600"
+                            min={50}
+                            max={85}
+                            step={1}
                         />
-                        <div className="flex justify-between text-xs text-slate-400 mt-1">
-                            <span>50% (Dry)</span>
-                            <span>85% (Wet)</span>
-                        </div>
-
-                        {/* The Component we just created */}
-                        <DoughConsistencyVisualizer hydration={demoHydration} />
                     </div>
 
                     <button

@@ -133,7 +133,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     <div className="px-5 py-2 border-t border-slate-50 flex flex-wrap gap-1">
                         {style.tags.slice(0, 4).map(tag => (
                             <span key={tag} className="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded-full font-medium">
-                                #{tag}
+                                #{t(tag)}
                             </span>
                         ))}
                     </div>

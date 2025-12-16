@@ -46,7 +46,8 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 
             if (newYeast !== config.yeastPercentage) {
                 updates.yeastPercentage = newYeast;
-                addToast(`Yeast adjusted to ${newYeast}% for ${newGuideline.notes.split('.')[0].toLowerCase()}.`, 'info');
+                const noteText = t(newGuideline.notesKey as any) || t('calculator.temp_ideal');
+                addToast(`${t('calculator.yeast_adjusted_to')} ${newYeast}% (${noteText})`, 'info');
             }
         }
 
@@ -59,7 +60,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
     return (
         <AccordionSection
             title={t('calculator.environment')}
-            description="Temperature affects fermentation speed."
+            description={t('calculator.impact_on_fermentation')}
             icon={<SunIcon className="h-6 w-6" />}
         >
             <div className="space-y-6">
@@ -72,7 +73,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                                 key={option.value}
                                 active={config.ambientTemperature === option.value}
                                 onClick={() => handleTempChange(option.value)}
-                                label={option.labelKey}
+                                label={t(option.labelKey)}
                                 className="text-xs"
                             />
                         ))}
@@ -84,7 +85,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                         <InfoIcon className="h-4 w-4 flex-shrink-0 mt-0.5 text-dlp-accent" />
                         <div>
                             <p className="font-semibold text-dlp-text-primary">{t('calculator.impact_on_fermentation')}</p>
-                            <p>{currentGuideline.notes}</p>
+                            <p>{t(currentGuideline.notesKey as any)}</p>
                             {currentGuideline.yeastAdjustment !== 1.0 && (
                                 <p className="mt-1 font-mono text-[10px] bg-dlp-bg-card inline-block px-1 rounded border border-dlp-border">
                                     Yeast Factor: {currentGuideline.yeastAdjustment}x

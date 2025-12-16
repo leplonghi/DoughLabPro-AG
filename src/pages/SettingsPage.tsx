@@ -22,7 +22,7 @@ const ChoiceButton: React.FC<{
 );
 
 const SettingsPage: React.FC = () => {
-  const { t, locale, setLocale } = useTranslation(['settings', 'common', 'profile']);
+  const { t } = useTranslation(['settings', 'common', 'profile']);
   const {
     defaultAmbientTempC,
     setDefaultAmbientTempC,

@@ -7,7 +7,7 @@ import { Increment, UserIngredient } from './ingredients';
 export { RecipeStyle };
 export type { DoughStyleDefinition, StyleCategory };
 
-export type Locale = 'en' | 'pt' | 'es';
+export type Locale = 'en';
 
 export enum BakeType {
     PIZZAS = 'PIZZAS',
@@ -178,6 +178,7 @@ export interface Batch {
     proofTimeHours?: number;
     ovenType?: OvenType;
     styleId?: string;
+    targetBakeTime?: string; // ISO string for Reverse Scheduling
 }
 
 export type SavedDoughConfig = Batch;

@@ -36,7 +36,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
             icon={<ListBulletIcon className="h-6 w-6" />}
         >
             {/* Calculation Mode Toggle */}
-            <div className="mb-4 grid grid-cols-2 gap-2 rounded-lg bg-dlp-bg-muted p-1">
+            <div className="mb-3 grid grid-cols-2 gap-2 rounded-lg bg-dlp-bg-muted p-1">
                 <ChoiceButton
                     active={calculationMode === 'mass'}
                     label={t('calculator.by_total_weight')}
@@ -49,7 +49,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                 />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {calculationMode === 'flour' ? (
                     <div className="col-span-1 sm:col-span-2">
                         <div className="flex items-center gap-2 mb-1">

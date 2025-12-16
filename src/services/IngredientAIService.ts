@@ -100,41 +100,100 @@ export class IngredientAIService {
         style: DoughStyleDefinition,
         increments: (Increment | UserIngredient)[],
         bakingTempC: number = 250
-    ): { status: 'healthy' | 'warning' | 'critical'; alerts: string[] } {
+    ): {
+        status: 'healthy' | 'warning' | 'critical';
+        alerts: string[];
+        aiAnalysis?: {
+            classification: 'Standard' | 'Variation' | 'Experimental';
+            impact: string[];
+            suggestions: string[];
+            freedomStatement: string;
+        }
+    } {
 
         let status: 'healthy' | 'warning' | 'critical' = 'healthy';
         const alerts: string[] = [];
+        const impact: string[] = [];
+        const suggestions: string[] = [];
+        let classification: 'Standard' | 'Variation' | 'Experimental' = 'Standard';
 
         // 1. Check Load
         const heavyItems = increments.filter(i => i.technicalProfile.weightImpact?.toLowerCase().includes('heavy'));
         if (heavyItems.length > 2) {
             status = 'warning';
-            alerts.push("Heavy Load: Too many heavy toppings may inhibit oven spring.");
+            impact.push("High Structural Load: Excessive weight may inhibit proper oven spring.");
+            suggestions.push("Consider reducing portion size of heavy ingredients.");
         }
 
         // 2. Check Moisture Sum
         const wetItems = increments.filter(i => i.technicalProfile.moistureLevel === 'high');
-        if (wetItems.length > 1 && style.recipeStyle === 'NEAPOLITAN') {
-            status = 'warning';
-            alerts.push("Hydro-Overload: Multiple high-moisture toppings on a fast-bake style.");
+        const isHighTemp = bakingTempC > 300;
+
+        if (wetItems.length >= 2) {
+            if (isHighTemp) {
+                // High Heat + Moisture = Soup
+                status = 'critical';
+                classification = 'Experimental';
+                impact.push("Hydro-Overload: High moisture ingredients in high heat will release water faster than evaporation.");
+                suggestions.push("Pre-cook ingredients to remove moisture.");
+                suggestions.push("Drain fresh cheeses thoroughly.");
+            } else {
+                // Low Heat + Moisture = Soggy
+                status = 'warning';
+                classification = 'Variation';
+                impact.push("Moisture Accumulation: Long bake times with wet ingredients risk center sogginess.");
+            }
+            alerts.push(impact[impact.length - 1]);
         }
 
         // 3. Thermal Checks (Sugar/Fat vs Temp)
         const sugaryItems = increments.filter(i => i.technicalProfile.sugarContent === 'high');
-        if (sugaryItems.length > 0 && bakingTempC > 300) {
+        const fattyItems = increments.filter(i => i.technicalProfile.fatContent === 'high');
+
+        if (sugaryItems.length > 0 && isHighTemp) {
             status = 'warning';
-            alerts.push(`Sugar Alert: ${sugaryItems.map(i => i.visibleName).join(', ')} will carbonize rapidly > 300°C.`);
+            impact.push("Carbonization Risk: High sugar ingredients will burn rapidly above 300°C.");
+            suggestions.push(`Apply ${sugaryItems.map(i => i.visibleName).join(', ')} post-bake or foil-shield.`);
+            alerts.push(`Sugar Alert: Burning risk for ${sugaryItems.map(i => i.visibleName).join(', ')}`);
         }
 
-        // 4. Check Compatibility Explicitly
+        if (fattyItems.length > 2 && isHighTemp) {
+            impact.push("Grease Separation: Multiple high-fat items may result in excessive oil pooling.");
+        }
+
+        // 4. Check Compatibility Explicitly & Determine Classification
+        let experimentalCount = 0;
+        let variationCount = 0;
+
         increments.forEach(inc => {
             const comp = inc.compatibilityByStyle[style.id];
             if (comp === 'experimental') {
-                status = 'warning'; // Don't go straight to critical, allow experimentation
-                alerts.push(`Experimental: ${inc.visibleName} is not standard for ${style.name}.`);
+                experimentalCount++;
+                classification = 'Experimental'; // Immediate trigger
+            } else if (comp === 'variation') {
+                variationCount++;
             }
         });
 
-        return { status, alerts };
+        if (classification !== 'Experimental' && variationCount > 0) {
+            classification = 'Variation';
+        }
+
+        // 5. Contextual Logic (The "Smart" part)
+        // Example: Burrata (Post-oven assumption) in pre-oven context
+        // NOTE: In a real implementation we would inspect the *applicationMoment* of the ingredient if available directly on the generic Increment type,
+        // but currently generic Increments don't strictly enforce 'applicationMoment' in the interface displayed here.
+        // We will infer valid standard behavior.
+
+        return {
+            status,
+            alerts,
+            aiAnalysis: {
+                classification,
+                impact,
+                suggestions,
+                freedomStatement: "You have full creative freedom. These technical insights help predict the outcome."
+            }
+        };
     }
 }

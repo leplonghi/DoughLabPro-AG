@@ -30,31 +30,44 @@ import {
 import { uploadImage } from '@/services/storageService';
 import { AffiliateGrid } from '@/components/AffiliateGrid';
 import { useTranslation } from '@/i18n';
+import { FLAVOR_COMPONENTS } from '@/data/flavorComponents';
+import FlavorComponentProfileModal from '@/components/FlavorComponentProfileModal';
+import { FlavorComponent } from '@/types/flavor';
 
 // --- ADAPTER: Legacy/Registry (V2) -> UI (V3) ---
 // This ensures that American/European styles (V2 Definitions) can be rendered by this V3 Page.
 function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, options?: any) => string): DoughStyle {
     // 1. Parse Fermentation Steps from Strings to Objects
     const processSteps: ProcessStep[] = def.technicalProfile.fermentationSteps.map((stepStr, index) => {
-        // Format assumption: "Title. [Science: Explanation]"
+        // Format assumption: "Title. [Science: Explanation]" or "Title: Action [Science: Explanation]"
         const scienceMatch = stepStr.match(/\[Science: (.*?)\]/);
-        const scienceText = scienceMatch ? scienceMatch[1] : t('styles.control_of_enzymatic_activity_and_gluten_developme');
+        const scienceKey = scienceMatch ? scienceMatch[1] : '';
+        // If scienceKey looks like a translation key (no spaces, has dots/underscores), translate it. 
+        // Otherwise, if it's a long text, it might be legacy text, try translating it anyway (t handles fallback).
+        const scienceText = scienceKey ? t(scienceKey) : t('styles.control_of_enzymatic_activity_and_gluten_developme');
+
         const cleanText = stepStr.replace(/\[Science:.*?\]/, '').trim();
 
         let phase: any = 'Bulk';
         if (index === 0) phase = 'Mix';
         if (index === def.technicalProfile.fermentationSteps.length - 1) phase = 'Bake';
 
-        // Extract title if possible (e.g. "Mix to Windowpane.")
-        const parts = cleanText.split('.');
-        const title = parts[0] || `Step ${index + 1}`;
-        const action = parts.slice(1).join('.').trim() || cleanText;
+        // Extract title. Support both "." (Legacy) and ":" (Registry Adapter)
+        // We look for the first occurrence of . or :
+        const separatorMatch = cleanText.match(/[:.]/);
+        let title = `Step ${index + 1}`;
+        let action = cleanText;
+
+        if (separatorMatch && separatorMatch.index) {
+            title = cleanText.substring(0, separatorMatch.index).trim();
+            action = cleanText.substring(separatorMatch.index + 1).trim();
+        }
 
         return {
             phase: phase,
-            title: title,
+            title: t(title),
             duration: t('styles.variable_2'),
-            action: action || title, // Fallback if no dot split
+            action: t(action),
             science: scienceText
         };
     });
@@ -84,16 +97,27 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
         }
     };
 
+    // Translate Scientific Profile fields if they are keys
+    if (scientificProfile.flourRheology) {
+        scientificProfile.flourRheology.science_explanation = t(scientificProfile.flourRheology.science_explanation);
+        scientificProfile.flourRheology.w_index = t(scientificProfile.flourRheology.w_index);
+        scientificProfile.flourRheology.absorption_capacity = t(scientificProfile.flourRheology.absorption_capacity);
+        scientificProfile.flourRheology.protein_type = t(scientificProfile.flourRheology.protein_type);
+    }
+    if ((scientificProfile as any).processScience) {
+        (scientificProfile as any).processScience = t((scientificProfile as any).processScience);
+    }
+
     return {
         id: def.id,
-        name: def.name,
-        region: (def.origin.country === 'Italy' ? 'Italy' : def.origin.country === 'USA' ? 'Americas' : 'Europe') as any,
-        subRegion: def.origin.region,
+        name: t(def.name),
+        region: (def.origin.country === 'Italy' ? 'Italy' : def.origin.country === 'USA' ? 'Americas' : 'Europe') as any, // Simple region mapping
+        subRegion: t(def.origin.region),
         category: 'Pizza', // Simplification for UI tags
-        tags: def.tags,
-        description: def.description,
-        history_context: def.history,
-        base_formula: def.base_formula || [
+        tags: def.tags.map(tag => t(tag)),
+        description: t(def.description),
+        history_context: t(def.history),
+        base_formula: def.base_formula ? def.base_formula.map(ing => ({ ...ing, name: t(ing.name) })) : [
             { name: t('results.flour'), percentage: 100 },
             { name: t('results.water'), percentage: (def.technicalProfile.hydration[0] + def.technicalProfile.hydration[1]) / 2 },
             { name: t('results.salt'), percentage: (def.technicalProfile.salt[0] + def.technicalProfile.salt[1]) / 2 },
@@ -114,15 +138,39 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
             difficulty: def.technicalProfile.difficulty
         },
         scientificProfile: scientificProfile,
-        regulatory_info: def.regulatoryNotes,
-        global_presence: def.globalPresence,
-        variations: def.variations,
-        education: def.education as any,
-        deepDive: def.deepDive,
+        regulatory_info: def.regulatoryNotes ? t(def.regulatoryNotes) : undefined,
+        global_presence: def.globalPresence ? t(def.globalPresence) : undefined,
+        variations: def.variations?.map((v: any) => ({ ...v, name: t(v.name) })),
+        education: {
+            ...def.education,
+            pro_tips: def.education?.pro_tips?.map((p: any) => ({ ...p, tip: t(p.tip), explanation: t(p.explanation) })),
+            what_if: def.education?.what_if?.map((w: any) => ({ ...w, scenario: t(w.scenario), result: t(w.result), correction: t(w.correction) })),
+            comparative_analysis: def.education?.comparative_analysis?.map((c: any) => ({ ...c, target_style: t(c.target_style), difference: t(c.difference), why_choose_this: t(c.why_choose_this) })),
+            q_and_a: def.education?.q_and_a?.map((q: any) => ({ ...q, question: t(q.question), answer: t(q.answer), context: q.context ? t(q.context) : undefined })),
+            fermentation_methods: def.education?.fermentation_methods?.map((f: any) => ({ ...f, method: t(f.method), suitability: t(f.suitability), notes: t(f.notes) }))
+        } as any,
+        deepDive: def.deepDive ? {
+            ...def.deepDive,
+            hydrationLogic: t(def.deepDive.hydrationLogic),
+            methodSuitability: {
+                direct: deepDiveMethodHelper(def.deepDive.methodSuitability?.direct, t),
+                biga: deepDiveMethodHelper(def.deepDive.methodSuitability?.biga, t),
+                poolish: deepDiveMethodHelper(def.deepDive.methodSuitability?.poolish, t),
+            },
+            whatIf: def.deepDive.whatIf?.map((w: any) => ({ ...w, scenario: t(w.scenario), outcome: t(w.outcome), solution: t(w.solution) })),
+            comparisons: def.deepDive.comparisons?.map((c: any) => ({ ...c, vsStyle: t(c.vsStyle), difference: t(c.difference) })),
+            proTips: def.deepDive.proTips?.map((p: string) => t(p))
+        } : undefined,
         process: processSteps,
         references: def.references.map(r => r.source),
         images: def.images
     };
+}
+
+// Helper to translate safely
+function deepDiveMethodHelper(obj: any, t: any) {
+    if (!obj) return undefined;
+    return { ...obj, notes: t(obj.notes) };
 }
 
 // --- COMPONENTS ---
@@ -281,27 +329,28 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
             )}
 
             {/* Comparative Analysis */}
+            {/* Comparative Analysis */}
             {education.comparative_analysis && (
-                <div className="bg-slate-900 rounded-2xl p-6 text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-100/50 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
                     <div className="flex items-center gap-3 mb-6 relative z-10">
-                        <div className="p-2 bg-white/10 rounded-lg backdrop-blur-md">
-                            <ArrowRightLeft className="w-5 h-5 text-indigo-300" />
+                        <div className="p-2 bg-indigo-50 rounded-lg">
+                            <ArrowRightLeft className="w-5 h-5 text-indigo-600" />
                         </div>
-                        <h3 className="text-lg font-bold">{t('general.style_comparisons')}</h3>
+                        <h3 className="text-lg font-bold text-slate-800">{t('general.style_comparisons')}</h3>
                     </div>
                     <div className="grid grid-cols-1 gap-4 relative z-10">
                         {education.comparative_analysis.map((comp: any, i: number) => (
-                            <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 transition-colors">
+                            <div key={i} className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-indigo-200 transition-colors">
                                 <div className="flex justify-between items-center mb-2">
-                                    <span className="font-bold text-indigo-200">{t('common.vs')} {comp.target_style}</span>
+                                    <span className="font-bold text-indigo-600">{t('common.vs')} {comp.target_style}</span>
                                 </div>
-                                <p className="text-sm text-slate-300 mb-3 border-b border-white/5 pb-3">
+                                <p className="text-sm text-slate-600 mb-3 border-b border-slate-200 pb-3">
                                     {comp.difference}
                                 </p>
                                 <div>
-                                    <span className="text-[10px] uppercase font-bold text-emerald-400 block mb-1">{t('styles.why_choose_this')}</span>
-                                    <p className="text-xs text-emerald-100/80 italic">{comp.why_choose_this}</p>
+                                    <span className="text-[10px] uppercase font-bold text-emerald-600 block mb-1">{t('styles.why_choose_this')}</span>
+                                    <p className="text-xs text-slate-500 italic">{comp.why_choose_this}</p>
                                 </div>
                             </div>
                         ))}
@@ -479,6 +528,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
     const [styleData, setStyleData] = useState<DoughStyle | null>(null);
     const [viewFormula, setViewFormula] = useState<any[]>([]);
     const [isUploading, setIsUploading] = useState(false);
+    const [selectedFlavorComponent, setSelectedFlavorComponent] = useState<FlavorComponent | null>(null);
 
     // Determine if the current style is user-owned
     const isOwner = useMemo(() => {
@@ -720,6 +770,44 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                         </div>
                                     );
                                 })()}
+                            </div>
+                        </section>
+
+                        {/* Recommend Flavor Components Intelligence Layer */}
+                        <section className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="p-2 bg-orange-100 rounded-lg">
+                                    <ChefHat className="w-5 h-5 text-orange-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-slate-800">Flavor Intelligence</h3>
+                                    <p className="text-sm text-slate-500">Recommended components rooted in tradition and technique.</p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                {FLAVOR_COMPONENTS.filter(c => c.commonStyles.includes(styleData.id)).length > 0 ? (
+                                    FLAVOR_COMPONENTS.filter(c => c.commonStyles.includes(styleData.id)).map(component => (
+                                        <button
+                                            key={component.id}
+                                            onClick={() => setSelectedFlavorComponent(component)}
+                                            className="flex flex-col items-start p-3 bg-white border border-slate-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all text-left group"
+                                        >
+                                            <span className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-1 group-hover:text-orange-700">{component.category}</span>
+                                            <span className="font-bold text-slate-800 group-hover:text-orange-900">{component.name}</span>
+                                            <div className="flex gap-1 mt-2">
+                                                <span className={`w-2 h-2 rounded-full ${component.applicationMoment === 'post_oven' ? 'bg-purple-400' : 'bg-orange-400'}`} title={component.applicationMoment === 'post_oven' ? 'Post-Oven' : 'Pre-Oven'} />
+                                                <span className="text-[10px] text-slate-400 font-medium">
+                                                    {component.applicationMoment === 'post_oven' ? 'Finish' : 'Cook'}
+                                                </span>
+                                            </div>
+                                        </button>
+                                    ))
+                                ) : (
+                                    <div className="col-span-full py-4 text-center text-slate-500 text-sm italic">
+                                        No specific favor components mapped to this style yet.
+                                    </div>
+                                )}
                             </div>
                         </section>
 
@@ -983,6 +1071,13 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                     </div>
                 </div>
             </div>
+            {/* Flavor Component Profile Modal */}
+            <FlavorComponentProfileModal
+                isOpen={!!selectedFlavorComponent}
+                onClose={() => setSelectedFlavorComponent(null)}
+                component={selectedFlavorComponent}
+            />
+
         </LibraryPageLayout>
     );
 };

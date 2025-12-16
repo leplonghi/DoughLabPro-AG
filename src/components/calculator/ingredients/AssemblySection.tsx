@@ -5,8 +5,11 @@ import { Increment, UserIngredient } from '@/types/ingredients';
 import { IngredientAIService } from '@/services/IngredientAIService';
 import { officialIncrements } from '@/data/ingredients/official';
 import IngredientCreatorModal from './IngredientCreatorModal';
-import { PlusIcon, TrashIcon, ExclamationTriangleIcon, CheckBadgeIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, TrashIcon, ExclamationTriangleIcon, CheckBadgeIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ShieldCheckIcon } from '@heroicons/react/24/solid';
+import { FLAVOR_COMPONENTS } from '@/data/flavorComponents';
+import FlavorComponentProfileModal from '@/components/FlavorComponentProfileModal';
+import { FlavorComponent } from '@/types/flavor';
 
 interface AssemblySectionProps {
     style: DoughStyleDefinition;
@@ -18,6 +21,21 @@ interface AssemblySectionProps {
 export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selectedIncrements, onUpdateIncrements, bakingTempC }) => {
     const [isCreatorOpen, setIsCreatorOpen] = useState(false);
     const [health, setHealth] = useState<{ status: 'healthy' | 'warning' | 'critical', alerts: string[] }>({ status: 'healthy', alerts: [] });
+    const [selectedFlavorComponent, setSelectedFlavorComponent] = useState<FlavorComponent | null>(null);
+
+    const getFlavorMatch = (ingId: string): FlavorComponent | undefined => {
+        let match = FLAVOR_COMPONENTS.find(fc => fc.id === ingId);
+        if (match) return match;
+        const mapping: Record<string, string> = {
+            'mozz_low_moisture': 'mozzarella_low_moisture',
+            'mozz_fresh': 'fior_di_latte',
+            'cup_n_char_pepperoni': 'pepperoni',
+            'tomato_sauce_classic': 'garlic_oregano',
+            'shredded_mozzarella': 'mozzarella_low_moisture'
+        };
+        if (mapping[ingId]) return FLAVOR_COMPONENTS.find(fc => fc.id === mapping[ingId]);
+        return undefined;
+    };
 
     // Validate assembly whenever selection changes
     useEffect(() => {
@@ -72,15 +90,63 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                 </div>
             </div>
 
-            {/* Alert Box */}
-            {health.alerts.length > 0 && (
-                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-800 text-sm space-y-1">
-                    {health.alerts.map((alert, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                            <ExclamationTriangleIcon className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                            <span>{alert}</span>
+            {/* AI Analysis & Alerts */}
+            {(health.aiAnalysis || health.alerts.length > 0) && (
+                <div className={`rounded-xl p-4 text-sm space-y-3 ${health.status === 'critical' ? 'bg-red-50 border border-red-200' :
+                        health.status === 'warning' ? 'bg-amber-50 border border-amber-200' :
+                            'bg-slate-50 border border-slate-200'
+                    }`}>
+                    {/* Header with Classification */}
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 font-bold opacity-80">
+                            {health.status !== 'healthy' ? <ExclamationTriangleIcon className="h-4 w-4" /> : <ShieldCheckIcon className="h-4 w-4" />}
+                            <span>AI Analysis</span>
                         </div>
-                    ))}
+                        {health.aiAnalysis && (
+                            <span className={`text-[10px] uppercase font-black px-2 py-0.5 rounded tracking-wider ${health.aiAnalysis.classification === 'Experimental' ? 'bg-purple-100 text-purple-700' :
+                                    health.aiAnalysis.classification === 'Variation' ? 'bg-blue-100 text-blue-700' :
+                                        'bg-emerald-100 text-emerald-700'
+                                }`}>
+                                {health.aiAnalysis.classification}
+                            </span>
+                        )}
+                    </div>
+
+                    {/* AI Insights */}
+                    {health.aiAnalysis ? (
+                        <>
+                            {health.aiAnalysis.impact.length > 0 && (
+                                <div className="space-y-1">
+                                    <p className="text-[10px] uppercase font-bold opacity-60">Expected Impact</p>
+                                    <ul className="list-disc pl-4 space-y-0.5 opacity-90">
+                                        {health.aiAnalysis.impact.map((txt, i) => <li key={i}>{txt}</li>)}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {health.aiAnalysis.suggestions.length > 0 && (
+                                <div className="space-y-1">
+                                    <p className="text-[10px] uppercase font-bold opacity-60">Technical Suggestions</p>
+                                    <ul className="list-disc pl-4 space-y-0.5 opacity-90">
+                                        {health.aiAnalysis.suggestions.map((txt, i) => <li key={i}>{txt}</li>)}
+                                    </ul>
+                                </div>
+                            )}
+
+                            <p className="text-xs italic opacity-60 pt-1 border-t border-black/5">
+                                {health.aiAnalysis.freedomStatement}
+                            </p>
+                        </>
+                    ) : (
+                        /* Fallback for simple alerts if AI service not fully connected */
+                        <div className="space-y-1">
+                            {health.alerts.map((alert, idx) => (
+                                <div key={idx} className="flex items-start gap-2">
+                                    <span>{alert}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -107,7 +173,6 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                                             {(() => {
                                                 const comp = item.compatibilityByStyle[style.id];
                                                 if (comp === 'experimental') return <span className="text-[10px] text-amber-600 font-bold">• Experimental</span>;
-                                                // if (comp === 'variation') return <span className="text-[10px] text-yellow-600 font-bold">• Variation</span>;
                                                 return null;
                                             })()}
                                             {/* User badge */}
@@ -115,9 +180,20 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                                         </div>
                                     </div>
                                 </div>
-                                <button onClick={() => handleRemove(item.id)} className="text-slate-300 hover:text-red-500 transition">
-                                    <TrashIcon className="h-4 w-4" />
-                                </button>
+                                <div className="flex items-center gap-1">
+                                    {getFlavorMatch(item.id) && (
+                                        <button
+                                            onClick={() => setSelectedFlavorComponent(getFlavorMatch(item.id)!)}
+                                            className="p-1 text-slate-300 hover:text-orange-500 transition"
+                                            title="View Flavor Intelligence"
+                                        >
+                                            <InformationCircleIcon className="h-5 w-5" />
+                                        </button>
+                                    )}
+                                    <button onClick={() => handleRemove(item.id)} className="p-1 text-slate-300 hover:text-red-500 transition">
+                                        <TrashIcon className="h-4 w-4" />
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -129,15 +205,25 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Recommended for {style.name}</h4>
                 <div className="flex flex-wrap gap-2">
                     {available.map(inc => (
-                        <button
-                            key={inc.id}
-                            onClick={() => handleAddOfficial(inc.id)}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition text-sm font-medium text-slate-600 hover:text-emerald-700"
-                        >
-                            <PlusIcon className="h-3 w-3" />
-                            {inc.visibleName}
-                            <CheckBadgeIcon className="h-4 w-4 text-emerald-500" />
-                        </button>
+                        <div key={inc.id} className="flex items-center gap-1">
+                            <button
+                                onClick={() => handleAddOfficial(inc.id)}
+                                className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition text-sm font-medium text-slate-600 hover:text-emerald-700"
+                            >
+                                <PlusIcon className="h-3 w-3" />
+                                {inc.visibleName}
+                                <CheckBadgeIcon className="h-4 w-4 text-emerald-500" />
+                            </button>
+                            {getFlavorMatch(inc.id) && (
+                                <button
+                                    onClick={() => setSelectedFlavorComponent(getFlavorMatch(inc.id)!)}
+                                    className="p-2 rounded-full hover:bg-orange-50 text-slate-300 hover:text-orange-500 transition"
+                                    title="Flavor Profile"
+                                >
+                                    <InformationCircleIcon className="h-5 w-5" />
+                                </button>
+                            )}
+                        </div>
                     ))}
                 </div>
             </div>
@@ -158,6 +244,13 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                 onClose={() => setIsCreatorOpen(false)}
                 currentStyle={style}
                 onSave={handleAddCustom}
+            />
+
+            {/* Flavor Intelligence Modal */}
+            <FlavorComponentProfileModal
+                isOpen={!!selectedFlavorComponent}
+                onClose={() => setSelectedFlavorComponent(null)}
+                component={selectedFlavorComponent}
             />
         </div>
     );

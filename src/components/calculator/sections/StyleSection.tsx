@@ -68,7 +68,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             icon={<BookOpenIcon className="h-6 w-6" />}
         >
             {/* 1. DISTINCT BAKE TYPE SELECTOR (Tabs) */}
-            <div className="grid grid-cols-3 gap-2 mb-4">
+            <div className="grid grid-cols-3 gap-2 mb-3">
                 {BAKE_TYPES.map((type) => {
                     const isActive = config.bakeType === type.id;
                     return (
@@ -93,7 +93,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             </div>
 
             {/* 2. STYLE SEARCH BAR */}
-            <div className="relative mb-4">
+            <div className="relative mb-3">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <MagnifyingGlassIcon className="h-4 w-4 text-slate-400" aria-hidden="true" />
                 </div>
@@ -107,7 +107,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             </div>
 
             {/* 3. COUNTRY FILTERING (Horizontal Scroll) */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-4 -mx-1 px-1 no-scrollbar mb-2">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar mb-2">
                 <button
                     onClick={() => setSelectedCountry('All')}
                     className={`
@@ -138,7 +138,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             </div>
 
             {/* 4. UNIFIED GRID */}
-            <div className="animate-fade-in relative min-h-[200px]">
+            <div className="animate-fade-in relative min-h-[150px]">
                 {filteredStyles.length > 0 ? (
                     <div className={`
                         grid gap-2
@@ -171,7 +171,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                     )}
 
                                     <span className={`font-bold leading-tight w-full ${isSelected ? 'text-dlp-accent' : 'text-slate-600'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
-                                        {t(`styles.${preset.name}`)}
+                                        {t(preset.name)}
                                     </span>
 
                                     {/* Sub-region Tag (shown if Country is filtered or in All view) */}

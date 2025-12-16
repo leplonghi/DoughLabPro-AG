@@ -9,15 +9,15 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Soft Bread',
         recipeStyle: RecipeStyle.HOKKAIDO_MILK_BREAD,
         tags: ['Tangzhong', 'Yudane', 'Milk', 'Soft'],
-        description: 'Ultra-soft and fluffy Japanese milk bread, characterized by the use of Tangzhong (water roux method) for superior moisture retention and extensive shelf life.',
-        history_context: "Originating in Japan in the 20th century, Shokupan was developed to cater to the Japanese palate regarding soft and moist textures (\"mochi-mochi\"), adapting Western techniques.",
+        description: "styles.shokupan_desc",
+        history_context: "styles.asia_shokupan_history",
         base_formula: [
-            { name: 'Bread Flour (High Protein)', percentage: 100 },
-            { name: 'Total Hydration (Water + Milk)', percentage: 70 },
-            { name: 'Sugar', percentage: 8 },
-            { name: 'Butter', percentage: 8 },
-            { name: 'Salt', percentage: 1.8 },
-            { name: 'Instant Yeast', percentage: 1.5 }
+            { name: 'styles.ingredients_flour_high_gluten', percentage: 100 },
+            { name: 'styles.ingredients_water_milk', percentage: 70 },
+            { name: 'styles.ingredients_sugar', percentage: 8 },
+            { name: 'styles.ingredients_butter', percentage: 8 },
+            { name: 'styles.ingredients_salt', percentage: 1.8 },
+            { name: 'styles.ingredients_yeast_instant', percentage: 1.5 }
         ],
         specs: {
             hydration: { ideal: 70, min: 65, max: 75 },
@@ -37,7 +37,7 @@ export const asiaStyles: DoughStyle[] = [
                 pl_ratio: 'Balanced',
                 absorption_capacity: 'High',
                 protein_type: 'Strong wheat',
-                science_explanation: 'High protein is required to support enrichment (fat/sugar) and the high hydration of the Tangzhong.'
+                science_explanation: 'styles.asia_shokupan_science_flour'
             },
             thermalProfile: {
                 oven_type: 'Convection',
@@ -51,15 +51,15 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'Balanced',
                 enzymatic_activity: "High (Starch Gelatinization)"
             },
-            processScience: 'The Tangzhong method (pre-gelatinizing 5-10% of the flour at 65°C) captures water in a stable starch structure, preventing it from evaporating or migrating, resulting in prolonged softness.'
+            processScience: 'styles.asia_shokupan_science_process'
         },
         process: [
             {
                 phase: 'Prep',
-                title: 'Prepare Tangzhong',
+                title: 'styles.asia_shokupan_process_1_title',
                 duration: '15 min',
-                action: 'Cook 1 part flour with 5 parts liquid to 65°C (paste consistency). Cool.',
-                science: 'Starch gelatinization allows for higher water absorption without making the dough sticky.'
+                action: 'styles.asia_shokupan_process_1_action',
+                science: 'styles.asia_shokupan_process_1_science'
             },
             {
                 phase: 'Mix',
@@ -91,14 +91,14 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Tandoor', 'Yogurt', 'High heat', 'Soft 2'],
-        description: 'Traditional Indian flatbread, baked on the walls of a Tandoor oven, flavored with garlic and butter (Ghee).',
-        history_context: 'A staple in North Indian and Pakistani cuisine, Naan has Persian roots and evolved with the use of yogurt and yeast to create a soft and slightly elastic texture.',
+        description: 'styles.asia_naan_desc',
+        history_context: 'styles.asia_naan_history',
         base_formula: [
-            { name: 'Wheat Flour (Maida/AP)', percentage: 100 },
-            { name: 'Hydration (Water + Yogurt)', percentage: 65 },
-            { name: 'Ghee/Oil', percentage: 5 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Yeast', percentage: 1 },
+            { name: 'styles.ingredients_flour_maida', percentage: 100 },
+            { name: 'styles.ingredients_water', percentage: 65 },
+            { name: 'styles.ingredients_ghee', percentage: 5 },
+            { name: 'styles.ingredients_salt', percentage: 2 },
+            { name: 'styles.ingredients_yeast_instant', percentage: 1 },
             { name: 'Garlic/Cilantro', percentage: 3 }
         ],
         specs: {
@@ -118,7 +118,7 @@ export const asiaStyles: DoughStyle[] = [
                 pl_ratio: "Extensible (Low P/L)",
                 absorption_capacity: 'Medium',
                 protein_type: "Maida / AP",
-                science_explanation: 'Extensibility is key to stretching the Naan into a teardrop shape without tearing. Gluten must be relaxed.'
+                science_explanation: 'styles.asia_naan_science_flour'
             },
             thermalProfile: {
                 oven_type: 'Tandoor 2',
@@ -132,15 +132,15 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'Lactic',
                 enzymatic_activity: "Protease (Tenderizing)"
             },
-            processScience: 'The yogurt in the dough provides lactic acidity which softens the gluten network, allowing the dough to be stretched into a teardrop shape without tearing before entering the Tandoor.'
+            processScience: 'styles.asia_naan_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Mixing',
+                title: 'styles.asia_naan_process_1_title',
                 duration: '10 min',
-                action: 'Mix flour, yogurt, water, and yeast. Moderate knead.',
-                science: 'Yogurt initiates acidification and hydration of proteins.'
+                action: 'styles.asia_naan_process_1_action',
+                science: 'styles.asia_naan_process_1_science'
             },
             {
                 phase: 'Ball',
@@ -172,15 +172,15 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Buns',
         recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC,
         tags: ['Steam', 'Low protein', 'White'],
-        description: 'Steamed bun, soft, white and slightly sweet, traditionally filled with pork belly.',
-        history_context: 'Popular in Taiwan and Fujian, Gua Bao is often called the Taiwanese burger. The steaming technique is ancient in China (Mantou/Baozi).',
+        description: 'styles.asia_guabao_desc',
+        history_context: 'styles.asia_guabao_history',
         base_formula: [
-            { name: 'Low Protein Flour (Hong Kong Flour)', percentage: 100 },
-            { name: 'Hydration (Water/Milk)', percentage: 55 },
-            { name: 'Sugar', percentage: 10 },
-            { name: 'Oil', percentage: 4 },
-            { name: 'Yeast', percentage: 1 },
-            { name: 'Baking Powder (Optional)', percentage: 0.5 }
+            { name: 'styles.ingredients_low_protein_flour', percentage: 100 },
+            { name: 'styles.ingredients_water_milk', percentage: 55 },
+            { name: 'styles.ingredients_sugar', percentage: 10 },
+            { name: 'styles.ingredients_oil', percentage: 4 },
+            { name: 'styles.ingredients_yeast_instant', percentage: 1 },
+            { name: 'styles.ingredients_baking_powder', percentage: 0.5 }
         ],
         specs: {
             hydration: { ideal: 55, min: 50, max: 60 },
@@ -199,7 +199,7 @@ export const asiaStyles: DoughStyle[] = [
                 pl_ratio: "N/A",
                 absorption_capacity: 'Low',
                 protein_type: "Low Protein / Bleached",
-                science_explanation: 'Low gluten content desired for "cottony" texture. Bleached flour helps with whiteness.'
+                science_explanation: 'styles.asia_guabao_science_flour'
             },
             thermalProfile: {
                 oven_type: 'Steamer',
@@ -213,15 +213,15 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'None',
                 enzymatic_activity: 'Low'
             },
-            processScience: 'Steaming (constant 100°C) prevents the Maillard reaction (which occurs above 140°C), maintaining the pure white color and smooth skin, without a crispy crust.'
+            processScience: 'styles.asia_guabao_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Intensive Mix',
+                title: 'styles.asia_guabao_process_1_title',
                 duration: '15 min',
-                action: 'Knead until dough is very smooth and white. Remove all air (degas).',
-                science: 'Uniform structure is crucial to avoid bubbles on the surface after steaming.'
+                action: 'styles.asia_guabao_process_1_action',
+                science: 'styles.asia_guabao_process_1_science'
             },
             {
                 phase: 'Prep',
@@ -253,15 +253,15 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Buns',
         recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC, // Closest match
         tags: ['Steam 2', 'Breakfast'],
-        description: 'The classic Northern Chinese steamed bun. Distinct from the folded Gua bao, this is a fully sealed bun (often filled) made with a Lao mian (old dough) starter for flavor and texture.',
-        history_context: 'Attributed to Zhuge Liang in the Three Kingdoms period (3rd century AD). Mantou originally meant Barbarian head due to its shape. It is the staple bread of Northern China where wheat dominates rice.',
+        description: 'styles.steamed_baozi_desc',
+        history_context: 'styles.steamed_baozi_history',
         base_formula: [
-            { name: 'Medium Protein Flour', percentage: 100 },
-            { name: 'Water', percentage: 50 },
-            { name: 'Yeast', percentage: 1 },
-            { name: 'Sugar', percentage: 5 },
-            { name: 'Lard/Oil', percentage: 5 },
-            { name: 'Baking Powder', percentage: 1 } // Modern addition for fluffiness
+            { name: 'styles.ingredients_flour_bread', percentage: 100 },
+            { name: 'styles.ingredients_water', percentage: 50 },
+            { name: 'styles.ingredients_yeast_instant', percentage: 1 },
+            { name: 'styles.ingredients_sugar', percentage: 5 },
+            { name: 'styles.ingredients_oil', percentage: 5 },
+            { name: 'styles.ingredients_baking_powder', percentage: 1 }
         ],
         specs: {
             hydration: { ideal: 52, min: 48, max: 55 },
@@ -281,7 +281,7 @@ export const asiaStyles: DoughStyle[] = [
                 pl_ratio: 'Balanced',
                 absorption_capacity: 'Medium',
                 protein_type: "All Purpose / Bleached",
-                science_explanation: 'Bleached flour (Hong Kong Flour) is often preferred for the snowy white color and lower protein (tenderness). Unbleached flour results in a yellowish bun.'
+                science_explanation: 'styles.steamed_baozi_science_flour'
             },
             thermalProfile: {
                 oven_type: 'Bamboo steamer',
@@ -295,15 +295,15 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Standard'
             },
-            processScience: 'Steaming cooks the starch at 100°C. Since Maillard requires ~140°C, the bun stays white. The crucial step is the Second proof - if effectively timed, the bun surface is smooth. If overproofed, it wrinkles upon cooling.'
+            processScience: 'styles.steamed_baozi_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Smooth Mix',
+                title: 'styles.steamed_baozi_process_1_title',
                 duration: '15 min',
-                action: 'Knead until extremely smooth. Degas completely.',
-                science: 'Any large air bubble left will expand during steaming and create a pitted surface (Zombie skin).'
+                action: 'styles.steamed_baozi_process_1_action',
+                science: 'styles.steamed_baozi_process_1_science'
             },
             {
                 phase: 'Prep',
@@ -335,14 +335,14 @@ export const asiaStyles: DoughStyle[] = [
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Laminated', 'Unleavened', 'Fried'],
-        description: 'A layered North Indian flatbread made from whole wheat flour (Atta). It is laminated with ghee using a pleating technique to create flaky, crispy layers similar to puff pastry, but unleashed.',
-        history_context: 'Paratha (Parat + Atta = Processed Dough/Layers) is a staple of North Indian breakfast. The Lacha implies the specific ring-layered style.',
+        description: 'styles.paratha_desc',
+        history_context: 'styles.paratha_history',
         base_formula: [
-            { name: 'Atta Flour (Whole Wheat)', percentage: 100 },
-            { name: 'Water', percentage: 65 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Ghee (Lamination)', percentage: 20 },
-            { name: 'Oil (fry)', percentage: 10 }
+            { name: 'styles.ingredients_atta', percentage: 100 },
+            { name: 'styles.ingredients_water', percentage: 65 },
+            { name: 'styles.ingredients_salt', percentage: 2 },
+            { name: 'styles.ingredients_ghee', percentage: 20 },
+            { name: 'styles.ingredients_oil', percentage: 10 }
         ],
         specs: {
             hydration: { ideal: 65, min: 60, max: 70 },
@@ -362,7 +362,7 @@ export const asiaStyles: DoughStyle[] = [
                 pl_ratio: "Extensible (Bran)",
                 absorption_capacity: 'High',
                 protein_type: 'Durumlike wheat',
-                science_explanation: 'Atta is stone-ground whole wheat. The high bran content cuts gluten strands (low elasticity), but absorbs lots of water. 30min autolyse/rest is essential to hydrate the bran.'
+                science_explanation: 'styles.paratha_science_flour'
             },
             thermalProfile: {
                 oven_type: "Tawa (Griddle)",
@@ -376,15 +376,15 @@ export const asiaStyles: DoughStyle[] = [
                 organic_acids: 'None',
                 enzymatic_activity: 'Standard'
             },
-            processScience: 'Lamination without yeast: The layers are separated by Ghee. Steam generated from the water in the dough pushes the layers apart (mechanical leavening) while the Ghee prevents them from fusing.'
+            processScience: 'styles.paratha_science_process'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Soft Dough',
+                title: 'styles.paratha_process_1_title',
                 duration: '10 min',
-                action: 'Mix Atta, salt, water. Knead well.',
-                science: 'Hydrate the bran effectively.'
+                action: 'styles.paratha_process_1_action',
+                science: 'styles.paratha_process_1_science'
             },
             {
                 phase: 'Bulk',

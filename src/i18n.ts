@@ -18,7 +18,7 @@ i18n
     defaultNS: 'common',
     // fallbackNS ensures compatibility during migration by resolving keys from all namespaces
     // even if not explicitly loaded by the component.
-    fallbackNS: ['common', 'auth', 'calculator', 'dashboard', 'marketing', 'method'],
+    fallbackNS: ['common', 'auth', 'calculator', 'dashboard', 'marketing', 'method', 'styles', 'doughbot', 'profile', 'settings'],
     load: 'languageOnly',
     debug: import.meta.env.DEV,
     interpolation: {
@@ -35,6 +35,14 @@ i18n
     react: {
       useSuspense: false, // Prevent white screen during transition
       nsMode: 'fallback' // Important for looking up keys in fallback namespaces
+    },
+    parseMissingKeyHandler: (key: string, defaultValue?: string) => {
+      if (defaultValue) return defaultValue;
+      console.warn(`[i18n] Missing key: ${key}`);
+      // Fallback to a readable version of the key's last segment
+      const parts = key.split(/[.:]/);
+      const lastPart = parts[parts.length - 1];
+      return lastPart.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
     }
   });
 

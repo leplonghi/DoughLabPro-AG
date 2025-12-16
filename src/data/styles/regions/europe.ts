@@ -8,14 +8,14 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'France',
         category: 'Bread',
         recipeStyle: RecipeStyle.BAGUETTE,
-        tags: ['Steam 5', 'Crispy', 'Autolyse', 'Poolish 2'],
+        tags: ['styles.baguette_tradition_tag_steam', 'styles.baguette_tradition_tag_crispy', 'styles.baguette_tradition_tag_autolyse', 'styles.baguette_tradition_tag_poolish'],
         description: "baguette_tradition_desc",
         history_context: "baguette_tradition_history",
         base_formula: [
-            { name: 'French Flour T65', percentage: 100 },
-            { name: 'Water', percentage: 72 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Fresh Yeast', percentage: 0.5 },
+            { name: 'styles.baguette_tradition_ing_flour', percentage: 100 },
+            { name: 'styles.baguette_tradition_ing_water', percentage: 72 },
+            { name: 'styles.baguette_tradition_ing_salt', percentage: 2 },
+            { name: 'styles.baguette_tradition_ing_yeast', percentage: 0.5 },
         ],
         specs: {
             hydration: { ideal: 72, min: 68, max: 78 },
@@ -55,38 +55,38 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'Autolyse',
+                title: 'styles.baguette_tradition_proc_mix_title',
                 duration: '30-60 min',
-                action: 'Mix flour and water only. Let sit.',
-                science: 'Allows protease enzymes to naturally degrade some gluten, increasing extensibility, and fully hydrates starch.',
+                action: 'styles.baguette_tradition_proc_mix_action',
+                science: 'styles.baguette_tradition_proc_mix_sci',
             },
             {
                 phase: 'Bulk',
-                title: 'Pointage (Bulk Ferment)',
+                title: 'styles.baguette_tradition_proc_bulk_title',
                 duration: '3-4h',
-                action: 'Fermentation at room temp with folds every 45 mins.',
-                science: 'Builds structure via folding rather than intensive mixing, preserving carotenoid pigments (creamy color) and flavor.',
+                action: 'styles.baguette_tradition_proc_bulk_action',
+                science: 'styles.baguette_tradition_proc_bulk_sci',
             },
             {
                 phase: 'Ball',
-                title: 'Division & Preshape',
+                title: 'styles.baguette_tradition_proc_ball_title',
                 duration: '20 min',
-                action: 'Divide into 350g pieces. Gentle preshape into cylinders.',
-                science: 'Standardizing thermal mass for even baking.',
+                action: 'styles.baguette_tradition_proc_ball_action',
+                science: 'styles.baguette_tradition_proc_ball_sci',
             },
             {
                 phase: 'Prep',
-                title: 'Shaping',
+                title: 'styles.baguette_tradition_proc_prep_title',
                 duration: '5 min',
-                action: 'Fold and roll into 70cm batons with pointed ends.',
-                science: 'Creating surface tension without degassing the large irregular alveoli formed during bulk.',
+                action: 'styles.baguette_tradition_proc_prep_action',
+                science: 'styles.baguette_tradition_proc_prep_sci',
             },
             {
                 phase: 'Bake',
-                title: 'Baking with Steam',
+                title: 'styles.baguette_tradition_proc_bake_title',
                 duration: '20-25 min',
-                action: 'Score with 5 cuts (La Grigne). Bake at 250°C with heavy steam.',
-                science: 'Steam keeps the surface flexible, allowing maximum oven spring before crust set, and gelatinizes surface starch for shine.',
+                action: 'styles.baguette_tradition_proc_bake_action',
+                science: 'styles.baguette_tradition_proc_bake_sci',
             },
         ],
         references: ['Le goût du pain  raymond calvel', 'Décret n931074 du 13 septembre 1993'],
@@ -103,17 +103,17 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'France',
         category: 'Enriched',
         recipeStyle: RecipeStyle.BRIOCHE,
-        tags: ['High fat', 'Eggs', 'Butter', 'Sponge'],
+        tags: ['styles.brioche_tete_tag_highfat', 'styles.brioche_tete_tag_eggs', 'styles.brioche_tete_tag_butter', 'styles.brioche_tete_tag_sponge'],
         description: "brioche_tete_desc",
         history_context: "brioche_tete_history",
         base_formula: [
-            { name: 'Strong Flour (T45)', percentage: 100 },
-            { name: 'Eggs', percentage: 50 },
-            { name: 'Butter (Unsalted)', percentage: 50 },
-            { name: 'Sugar', percentage: 12 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Fresh Yeast', percentage: 2 },
-            { name: 'Milk', percentage: 10 },
+            { name: 'styles.brioche_tete_ing_flour', percentage: 100 },
+            { name: 'styles.brioche_tete_ing_eggs', percentage: 50 },
+            { name: 'styles.brioche_tete_ing_butter', percentage: 50 },
+            { name: 'styles.brioche_tete_ing_sugar', percentage: 12 },
+            { name: 'styles.brioche_tete_ing_salt', percentage: 2 },
+            { name: 'styles.brioche_tete_ing_yeast', percentage: 2 },
+            { name: 'styles.brioche_tete_ing_milk', percentage: 10 },
         ],
         specs: {
             hydration: { ideal: 60, min: 50, max: 70 }, // Hydration is complex due to eggs/butter
@@ -153,45 +153,45 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'Sponge',
+                title: 'styles.brioche_tete_proc_sponge_title',
                 duration: '45 min',
-                action: 'Mix flour, yeast, and milk. Let rise.',
-                science: 'Activates yeast and improves flavor complexity.',
+                action: 'styles.brioche_tete_proc_sponge_action',
+                science: 'styles.brioche_tete_proc_sponge_sci',
             },
             {
                 phase: 'Mix',
-                title: 'Intensive Mix',
+                title: 'styles.brioche_tete_proc_mix_title',
                 duration: '15-20 min',
-                action: 'Add eggs, sugar, salt, remaining flour. Develop to windowpane.',
-                science: 'Full gluten development is mandatory before fat addition.',
+                action: 'styles.brioche_tete_proc_mix_action',
+                science: 'styles.brioche_tete_proc_mix_sci',
             },
             {
                 phase: 'Mix',
-                title: 'Bassionage',
+                title: 'styles.brioche_tete_proc_bass_title',
                 duration: '10 min',
-                action: 'Ideally, add butter slowly in chunks while mixing.',
-                science: 'Emulsifying the fat into the dough matrix without breaking the gluten network.',
+                action: 'styles.brioche_tete_proc_bass_action',
+                science: 'styles.brioche_tete_proc_bass_sci',
             },
             {
                 phase: 'Bulk',
-                title: 'Cold Fermentation',
+                title: 'styles.brioche_tete_proc_cold_title',
                 duration: '12h+',
-                action: 'Retard in fridge overnight.',
-                science: 'Solidifies the butter, making the dough handleable for shaping, and develops complex fermentation flavors.',
+                action: 'styles.brioche_tete_proc_cold_action',
+                science: 'styles.brioche_tete_proc_cold_sci',
             },
             {
                 phase: 'Prep',
-                title: 'Shaping',
+                title: 'styles.brioche_tete_proc_shape_title',
                 duration: '10 min',
-                action: "Shape into balls, create neck, place \"head\" in fluted tins.",
-                science: 'Cold dough prevents butter melting during handling.',
+                action: "styles.brioche_tete_proc_shape_action",
+                science: 'styles.brioche_tete_proc_shape_sci',
             },
             {
                 phase: 'Bake',
-                title: 'Bake',
+                title: 'styles.brioche_tete_proc_bake_title',
                 duration: '25-30 min',
-                action: 'Egg wash twice. Bake at 190°C.',
-                science: 'High sugar/protein content leads to rapid browning (Maillard), so lower temp than lean breads is needed.',
+                action: 'styles.brioche_tete_proc_bake_action',
+                science: 'styles.brioche_tete_proc_bake_sci',
             },
         ],
         references: [],
@@ -208,16 +208,16 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Germany',
         category: 'Snack',
         recipeStyle: RecipeStyle.PRETZEL,
-        tags: ['Lye', 'Alkaline', 'Twist'],
+        tags: ['styles.laugenbrezel_tag_lye', 'styles.laugenbrezel_tag_alkaline', 'styles.laugenbrezel_tag_twist'],
         description: "laugenbrezel_desc",
         history_context: "laugenbrezel_history",
         base_formula: [
-            { name: 'Wheat Flour (Type 550)', percentage: 100 },
-            { name: 'Water', percentage: 50 },
-            { name: 'Butter/Lard', percentage: 5 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Malt Extract', percentage: 1 },
-            { name: 'Fresh Yeast', percentage: 2 },
+            { name: 'styles.laugenbrezel_ing_flour', percentage: 100 },
+            { name: 'styles.laugenbrezel_ing_water', percentage: 50 },
+            { name: 'styles.laugenbrezel_ing_lard', percentage: 5 },
+            { name: 'styles.laugenbrezel_ing_salt', percentage: 2 },
+            { name: 'styles.laugenbrezel_ing_malt', percentage: 1 },
+            { name: 'styles.laugenbrezel_ing_yeast', percentage: 2 },
         ],
         specs: {
             hydration: { ideal: 50, min: 45, max: 55 },
@@ -257,45 +257,45 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'Stiff Mix',
+                title: 'styles.laugenbrezel_proc_mix_title',
                 duration: '5-8 min',
-                action: 'Mix all ingredients to a smooth, stiff dough.',
-                science: "Low hydration limits gluten mobility, creating a \"short\" but strong structure.",
+                action: 'styles.laugenbrezel_proc_mix_action',
+                science: "styles.laugenbrezel_proc_mix_sci",
             },
             {
                 phase: 'Bulk',
-                title: 'Short Bulk',
+                title: 'styles.laugenbrezel_proc_bulk_title',
                 duration: '30-60 min',
-                action: 'Brief rest. The dough should not double; we want tightness.',
-                science: 'Too much gas makes rolling the thin arms impossible.',
+                action: 'styles.laugenbrezel_proc_bulk_action',
+                science: 'styles.laugenbrezel_proc_bulk_sci',
             },
             {
                 phase: 'Prep',
-                title: 'Shaping',
+                title: 'styles.laugenbrezel_proc_shape_title',
                 duration: '15 min',
-                action: 'Roll belly thick and arms thin. Twist twice and press onto belly.',
-                science: 'Differential thickness provides texture contrast (soft belly, crunchy arms).',
+                action: 'styles.laugenbrezel_proc_shape_action',
+                science: 'styles.laugenbrezel_proc_shape_sci',
             },
             {
                 phase: 'Prep',
-                title: 'Skin Formation',
+                title: 'styles.laugenbrezel_proc_skin_title',
                 duration: '30 min',
-                action: 'Refrigerate uncovered.',
-                science: 'Dries the surface (pellicle) so it withstands the liquid dip without soaking up too much lye.',
+                action: 'styles.laugenbrezel_proc_skin_action',
+                science: 'styles.laugenbrezel_proc_skin_sci',
             },
             {
                 phase: 'Cook',
-                title: 'Lye Bath',
+                title: 'styles.laugenbrezel_proc_lye_title',
                 duration: '10 sec',
-                action: 'Dip in 4% NaOH solution (or boiling baking soda).',
-                science: 'Alkaline surface treatment changes pH to facilitate rapid browning.',
+                action: 'styles.laugenbrezel_proc_lye_action',
+                science: 'styles.laugenbrezel_proc_lye_sci',
             },
             {
                 phase: 'Bake',
-                title: 'Bake',
+                title: 'styles.laugenbrezel_proc_bake_title',
                 duration: '12-15 min',
-                action: 'Salting the belly, scoring the belly. Bake hot.',
-                science: 'Score releases the pressure of the thick belly part. Salt adheres to the moist lye surface.',
+                action: 'styles.laugenbrezel_proc_bake_action',
+                science: 'styles.laugenbrezel_proc_bake_sci',
             },
         ],
         references: ['German baking standards'],
@@ -312,16 +312,16 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'UK',
         category: 'Bread',
         recipeStyle: RecipeStyle.ENGLISH_MUFFIN,
-        tags: ['Griddle', 'Nooks and crannies', 'Breakfast 2'],
+        tags: ['styles.english_muffin_tag_griddle', 'styles.english_muffin_tag_nooks', 'styles.english_muffin_tag_breakfast'],
         description: "english_muffin_desc",
         history_context: "english_muffin_history",
         base_formula: [
-            { name: 'Bread Flour', percentage: 100 },
-            { name: 'Water/Milk', percentage: 75 },
-            { name: 'Yeast', percentage: 1 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Sugar', percentage: 1 },
-            { name: 'Butter', percentage: 2 }
+            { name: 'styles.english_muffin_ing_flour', percentage: 100 },
+            { name: 'styles.english_muffin_ing_milk', percentage: 75 },
+            { name: 'styles.english_muffin_ing_yeast', percentage: 1 },
+            { name: 'styles.english_muffin_ing_salt', percentage: 2 },
+            { name: 'styles.english_muffin_ing_sugar', percentage: 1 },
+            { name: 'styles.english_muffin_ing_butter', percentage: 2 }
         ],
         specs: {
             hydration: { ideal: 78, min: 75, max: 82 },
@@ -361,24 +361,24 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'High Hydration Mix',
+                title: 'styles.english_muffin_proc_mix_title',
                 duration: '15 min',
-                action: 'Mix to full windowpane.',
-                science: 'Strong gluten network required to trap the steam/CO2 in large pockets.'
+                action: 'styles.english_muffin_proc_mix_action',
+                science: 'styles.english_muffin_proc_mix_sci'
             },
             {
                 phase: 'Bulk',
-                title: 'Cold Ferment',
+                title: 'styles.english_muffin_proc_bulk_title',
                 duration: '12h',
-                action: 'Bulk in fridge.',
-                science: 'Develops flavor and allows hydration to fully penetrate.'
+                action: 'styles.english_muffin_proc_bulk_action',
+                science: 'styles.english_muffin_proc_bulk_sci'
             },
             {
                 phase: 'Cook',
-                title: 'Griddle',
+                title: 'styles.english_muffin_proc_cook_title',
                 duration: '14 min',
-                action: 'Cook in rings on a medium-low griddle, flip halfway.',
-                science: 'Direct conduction heat sets the bottom and top, while the side walls remain soft.'
+                action: 'styles.english_muffin_proc_cook_action',
+                science: 'styles.english_muffin_proc_cook_sci'
             }
         ],
         references: [],
@@ -395,16 +395,16 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Georgia',
         category: 'Enriched',
         recipeStyle: RecipeStyle.FLATBREAD,
-        tags: ['Cheese boat', 'Egg', 'Rich'],
+        tags: ['styles.khachapuri_adjaruli_tag_cheeseboat', 'styles.khachapuri_adjaruli_tag_egg', 'styles.khachapuri_adjaruli_tag_rich'],
         description: "khachapuri_adjaruli_desc",
         history_context: "khachapuri_adjaruli_history",
         base_formula: [
-            { name: 'Bread Flour', percentage: 100 },
-            { name: 'Water/Milk', percentage: 60 },
-            { name: 'Yeast', percentage: 1 },
-            { name: 'Salt', percentage: 1.8 },
-            { name: 'Oil', percentage: 3 },
-            { name: 'Sugar', percentage: 1 }
+            { name: 'styles.khachapuri_adjaruli_ing_flour', percentage: 100 },
+            { name: 'styles.khachapuri_adjaruli_ing_watermilk', percentage: 60 },
+            { name: 'styles.khachapuri_adjaruli_ing_yeast', percentage: 1 },
+            { name: 'styles.khachapuri_adjaruli_ing_salt', percentage: 1.8 },
+            { name: 'styles.khachapuri_adjaruli_ing_oil', percentage: 3 },
+            { name: 'styles.khachapuri_adjaruli_ing_sugar', percentage: 1 }
         ],
         specs: {
             hydration: { ideal: 60, min: 58, max: 65 },
@@ -444,31 +444,31 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'Soft Dough',
+                title: 'styles.khachapuri_adjaruli_proc_mix_title',
                 duration: '10 min',
-                action: 'Mix to windowpane.',
-                science: 'Standard enriched dough.'
+                action: 'styles.khachapuri_adjaruli_proc_mix_action',
+                science: 'styles.khachapuri_adjaruli_proc_mix_sci'
             },
             {
                 phase: 'Prep',
-                title: 'Shaping',
+                title: 'styles.khachapuri_adjaruli_proc_shape_title',
                 duration: '10 min',
-                action: 'Roll oval. Cheese in center. Roll sides up and twist ends to seal.',
-                science: 'Sealing the ends tightly is critical to prevent the cheese lava from leaking.'
+                action: 'styles.khachapuri_adjaruli_proc_shape_action',
+                science: 'styles.khachapuri_adjaruli_proc_shape_sci'
             },
             {
                 phase: 'Bake',
-                title: 'Bake w/ Cheese',
+                title: 'styles.khachapuri_adjaruli_proc_bake_title',
                 duration: '15 min',
-                action: 'Bake until golden.',
-                science: 'Cheese browning adds flavor.'
+                action: 'styles.khachapuri_adjaruli_proc_bake_action',
+                science: 'styles.khachapuri_adjaruli_proc_bake_sci'
             },
             {
                 phase: 'Cook',
-                title: 'The Egg',
+                title: 'styles.khachapuri_adjaruli_proc_cook_title',
                 duration: '1 min',
-                action: 'Add egg yolk and butter 2 mins before finish or right after.',
-                science: 'We want the yolk runny.'
+                action: 'styles.khachapuri_adjaruli_proc_cook_action',
+                science: 'styles.khachapuri_adjaruli_proc_cook_sci'
             }
         ],
         references: [],
@@ -485,17 +485,17 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Denmark',
         category: 'Bread',
         recipeStyle: RecipeStyle.RYE,
-        tags: ['Sourdough 2', 'Whole grain', 'Seeds', 'Dense'],
+        tags: ['styles.danish_rugbrod_tag_sourdough', 'styles.danish_rugbrod_tag_wholegrain', 'styles.danish_rugbrod_tag_seeds', 'styles.danish_rugbrod_tag_dense'],
         description: "danish_rugbrod_desc",
         history_context: "danish_rugbrod_history",
         base_formula: [
-            { name: 'Rye Flour (Dark)', percentage: 100 }, // Or split 70/30 Rye/Wheat
-            { name: 'Water', percentage: 90 }, // Rye absorbs a lot
-            { name: 'Cracked Rye Kernels', percentage: 50 },
-            { name: 'Seeds (Sunflower/Flax)', percentage: 30 },
-            { name: 'Sourdough Starter (Rye)', percentage: 30 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Malt Syrup', percentage: 3 }
+            { name: 'styles.danish_rugbrod_ing_rye', percentage: 100 }, // Or split 70/30 Rye/Wheat
+            { name: 'styles.ingredients_water', percentage: 90 }, // Rye absorbs a lot
+            { name: 'styles.danish_rugbrod_ing_kernels', percentage: 50 },
+            { name: 'styles.danish_rugbrod_ing_seeds', percentage: 30 },
+            { name: 'styles.danish_rugbrod_ing_starter', percentage: 30 },
+            { name: 'styles.ingredients_salt', percentage: 2 },
+            { name: 'styles.danish_rugbrod_ing_malt', percentage: 3 }
         ],
         specs: {
             hydration: { ideal: 90, min: 80, max: 100 },
@@ -535,31 +535,31 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'Soak',
+                title: 'styles.danish_rugbrod_proc_soak_title',
                 duration: '12h',
-                action: 'Soak kernels and seeds.',
-                science: 'Hydrates the hard grains so they don\'t pull water from the dough later.'
+                action: 'styles.danish_rugbrod_proc_soak_action',
+                science: 'styles.danish_rugbrod_proc_soak_sci'
             },
             {
                 phase: 'Mix',
-                title: 'Paste Mix',
+                title: 'styles.danish_rugbrod_proc_paste_title',
                 duration: '15 min',
-                action: 'Mix all ingredients. It will be a paste/mud, not a dough.',
-                science: 'No gluten development windowpane possible. Mixing is for distribution and gum hydration.'
+                action: 'styles.danish_rugbrod_proc_paste_action',
+                science: 'styles.danish_rugbrod_proc_paste_sci'
             },
             {
                 phase: 'Bulk',
-                title: 'Pan Proof',
+                title: 'styles.danish_rugbrod_proc_proof_title',
                 duration: '2-4h',
-                action: 'Proof in the tin until pinholes appear on surface.',
-                science: 'Gas production (CO2) from yeast is trapped by the viscous pentosan gel.'
+                action: 'styles.danish_rugbrod_proc_proof_action',
+                science: 'styles.danish_rugbrod_proc_proof_sci'
             },
             {
                 phase: 'Bake',
-                title: 'Long Bake',
+                title: 'styles.danish_rugbrod_proc_bake_title',
                 duration: '60-90 min',
-                action: 'Bake at 180°C to internal temp 98°C.',
-                science: 'Long bake ensures starch gelatinization all the way through the wet mass.'
+                action: 'styles.danish_rugbrod_proc_bake_action',
+                science: 'styles.danish_rugbrod_proc_bake_sci'
             }
         ],
         references: [],
@@ -576,16 +576,16 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Netherlands',
         category: 'Bread',
         recipeStyle: RecipeStyle.SANDWICH_LOAF,
-        tags: ['Topping', 'Crunchy', 'Rice paste'],
+        tags: ['styles.tiger_bread_tag_topping', 'styles.tiger_bread_tag_crunchy', 'styles.tiger_bread_tag_rice'],
         description: "tiger_bread_desc",
         history_context: "tiger_bread_history",
         base_formula: [
-            { name: 'Bread Flour', percentage: 100 },
-            { name: 'Water', percentage: 62 },
-            { name: 'Yeast', percentage: 2 },
-            { name: 'Salt', percentage: 2 },
-            { name: 'Sugar', percentage: 2 },
-            { name: 'Oil/Butter', percentage: 2 }
+            { name: 'styles.tiger_bread_ing_flour', percentage: 100 },
+            { name: 'styles.tiger_bread_ing_water', percentage: 62 },
+            { name: 'styles.tiger_bread_ing_yeast', percentage: 2 },
+            { name: 'styles.tiger_bread_ing_salt', percentage: 2 },
+            { name: 'styles.tiger_bread_ing_sugar', percentage: 2 },
+            { name: 'styles.tiger_bread_ing_oil', percentage: 2 }
         ],
         specs: {
             hydration: { ideal: 62, min: 60, max: 65 },
@@ -625,24 +625,24 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'Dough Mix',
+                title: 'styles.tiger_bread_proc_mix_title',
                 duration: '10 min',
-                action: 'Mix standard white dough.',
-                science: 'Standard method.'
+                action: 'styles.tiger_bread_proc_mix_action',
+                science: 'styles.tiger_bread_proc_mix_sci'
             },
             {
                 phase: 'Prep',
-                title: 'Paste Prep',
+                title: 'styles.tiger_bread_proc_prep_title',
                 duration: '15 min',
-                action: 'Mix Rice Flour, Water, Yeast, Sugar, Sesame Oil. Let ferment 15 mins.',
-                science: 'Yeast in the paste aerates it slightly, aiding the crackle.'
+                action: 'styles.tiger_bread_proc_prep_action',
+                science: 'styles.tiger_bread_proc_prep_sci'
             },
             {
                 phase: 'Bake',
-                title: 'Paint & Bake',
+                title: 'styles.tiger_bread_proc_bake_title',
                 duration: '30 min',
-                action: 'Brush paste thickly on proofed loaf. Bake immediately.',
-                science: 'Paste must be wet when entering oven.'
+                action: 'styles.tiger_bread_proc_bake_action',
+                science: 'styles.tiger_bread_proc_bake_sci'
             }
         ],
         references: [],
@@ -659,14 +659,14 @@ export const europeStyles: DoughStyle[] = [
         subRegion: 'Ireland',
         category: 'Bread',
         recipeStyle: RecipeStyle.COUNTRY_LOAF, // Technically chemically leavened
-        tags: ['Quick bread', 'No yeast', 'Buttermilk'],
+        tags: ['styles.irish_soda_bread_tag_quick', 'styles.irish_soda_bread_tag_noyeast', 'styles.irish_soda_bread_tag_buttermilk'],
         description: "irish_soda_bread_desc",
         history_context: "irish_soda_bread_history",
         base_formula: [
-            { name: 'Soft Wheat Flour (Pastry/AP)', percentage: 100 },
-            { name: 'Buttermilk', percentage: 90 }, // Very high because it's a batter/dough hybrid
-            { name: 'Baking Soda', percentage: 2 },
-            { name: 'Salt', percentage: 1.5 }
+            { name: 'styles.irish_soda_bread_ing_flour', percentage: 100 },
+            { name: 'styles.irish_soda_bread_ing_buttermilk', percentage: 90 }, // Very high because it's a batter/dough hybrid
+            { name: 'styles.irish_soda_bread_ing_soda', percentage: 2 },
+            { name: 'styles.ingredients_salt', percentage: 1.5 }
         ],
         specs: {
             hydration: { ideal: 85, min: 80, max: 95 },
@@ -706,24 +706,24 @@ export const europeStyles: DoughStyle[] = [
         process: [
             {
                 phase: 'Mix',
-                title: 'Gentle Mix',
+                title: 'styles.irish_soda_bread_proc_mix_title',
                 duration: '3 min',
-                action: 'Mix dry. Add wet. Stir until just combined.',
-                science: 'Do not knead. Kneading develops gluten -> tough bread.'
+                action: 'styles.irish_soda_bread_proc_mix_action',
+                science: 'styles.irish_soda_bread_proc_mix_sci'
             },
             {
                 phase: 'Prep',
-                title: 'Score',
+                title: 'styles.irish_soda_bread_proc_score_title',
                 duration: '1 min',
-                action: 'Shape round. Cut a deep cross (Blessing the bread).',
-                science: 'The deep cross allows heat to penetrate the thickest part of the dense loaf to ensure even cooking.'
+                action: 'styles.irish_soda_bread_proc_score_action',
+                science: 'styles.irish_soda_bread_proc_score_sci'
             },
             {
                 phase: 'Bake',
-                title: 'Bake',
+                title: 'styles.irish_soda_bread_proc_bake_title',
                 duration: '30-40 min',
-                action: 'Bake at 200°C.',
-                science: 'Immediate heat needed for the final lift.'
+                action: 'styles.irish_soda_bread_proc_bake_action',
+                science: 'styles.irish_soda_bread_proc_bake_sci'
             }
         ],
         references: [],
