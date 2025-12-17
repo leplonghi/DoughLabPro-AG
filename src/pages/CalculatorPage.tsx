@@ -23,6 +23,57 @@ import OnboardingTooltip from '@/components/onboarding/OnboardingTooltip';
 import { AdCard } from '@/marketing/ads/AdCard';
 import { ModeSelectionScreen } from '@/components/calculator/ModeSelectionScreen';
 import { ProductionTimeline } from '@/components/calculator/ProductionTimeline';
+import { SchedulerSection } from '@/components/dashboard/sections/SchedulerSection';
+import { AssemblySection } from '@/components/dashboard/sections/AssemblySection';
+import { LogisticsSection } from '@/components/dashboard/sections/LogisticsSection';
+import { Calendar, Layers, Truck } from 'lucide-react';
+
+const ProductionDashboardTabs = () => {
+  const [activeTab, setActiveTab] = useState<'scheduler' | 'assembly' | 'logistics'>('scheduler');
+
+  return (
+    <div className="flex flex-col h-full bg-transparent">
+      {/* Header */}
+      <div className="px-6 py-4 border-b border-white/20">
+        <h3 className="text-sm font-bold flex items-center gap-2 text-emerald-950 dark:text-white">
+          <Layers size={16} className="text-emerald-700 dark:text-emerald-300" />
+          Production & Logistics
+        </h3>
+        <p className="text-xs text-emerald-900/70 dark:text-emerald-100/70 mt-1 max-w-2xl font-medium">
+          Advanced tools for planning. Schedule your start time, manage variants, and check logistics.
+        </p>
+      </div>
+
+      {/* Tabs - Glassmorphic */}
+      <div className="flex border-b border-white/20 bg-white/10 backdrop-blur-md">
+        <button
+          onClick={() => setActiveTab('scheduler')}
+          className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${activeTab === 'scheduler' ? 'text-emerald-900 dark:text-white bg-white/40 border-b-2 border-emerald-600 shadow-sm' : 'text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-900 hover:bg-white/20'}`}
+        >
+          <Calendar size={14} /> Schedule
+        </button>
+        <button
+          onClick={() => setActiveTab('assembly')}
+          className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${activeTab === 'assembly' ? 'text-emerald-900 dark:text-white bg-white/40 border-b-2 border-emerald-600 shadow-sm' : 'text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-900 hover:bg-white/20'}`}
+        >
+          <Layers size={14} /> Assembly
+        </button>
+        <button
+          onClick={() => setActiveTab('logistics')}
+          className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${activeTab === 'logistics' ? 'text-emerald-900 dark:text-white bg-white/40 border-b-2 border-emerald-600 shadow-sm' : 'text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-900 hover:bg-white/20'}`}
+        >
+          <Truck size={14} /> Logistics
+        </button>
+      </div>
+
+      <div className="p-4">
+        {activeTab === 'scheduler' && <SchedulerSection />}
+        {activeTab === 'assembly' && <AssemblySection />}
+        {activeTab === 'logistics' && <LogisticsSection />}
+      </div>
+    </div>
+  );
+};
 
 interface CalculatorPageProps {
   config: DoughConfig;
@@ -151,9 +202,11 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             selectedLevain={selectedLevain}
           />
 
-          {props.calculationMode === 'TARGET_TIME' && (
-            <ProductionTimeline config={props.config} hasProAccess={props.hasProAccess} />
-          )}
+          {/* Integrated Production Tools (Advanced) */}
+          <div className="mt-8 bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-emerald-900 dark:to-teal-900 rounded-xl shadow-sm border border-emerald-100 dark:border-emerald-800/30 overflow-hidden">
+            <ProductionDashboardTabs />
+          </div>
+
         </div>
       </div>
 

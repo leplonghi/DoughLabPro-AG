@@ -109,27 +109,27 @@ export const LogisticsSection: React.FC = () => {
             </div>
 
             {/* Shopping List Table */}
-            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
-                <div className="bg-slate-50 dark:bg-slate-800/50 px-4 py-2 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+            <div className="bg-white/40 dark:bg-black/20 backdrop-blur-sm rounded-xl border border-emerald-100 dark:border-emerald-800/50 overflow-hidden">
+                <div className="bg-white/50 dark:bg-emerald-950/30 px-4 py-2 border-b border-emerald-100 dark:border-emerald-800/50 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
                         <ShoppingBag size={14} />
                         Shopping List
                     </span>
-                    <span className="text-[10px] text-slate-400 italic">Values in Grams</span>
+                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 italic">Values in Grams</span>
                 </div>
 
-                <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                <div className="divide-y divide-emerald-50 dark:divide-emerald-800/30">
                     {finalIngredients.map((ing) => (
-                        <div key={ing.id} className="flex justify-between items-center px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                        <div key={ing.id} className="flex justify-between items-center px-4 py-3 hover:bg-white/60 dark:hover:bg-emerald-900/20 transition-colors">
                             <div className="flex items-center gap-2">
-                                <span className={`w-1.5 h-1.5 rounded-full ${ing.type === 'topping' ? 'bg-orange-400' : 'bg-slate-400'}`}></span>
+                                <span className={`w-1.5 h-1.5 rounded-full ${ing.type === 'topping' ? 'bg-orange-400' : 'bg-emerald-400'}`}></span>
                                 <AffiliateIngredientLink
                                     ingredientName={ing.name}
-                                    className="text-sm font-medium text-slate-700 dark:text-slate-300"
+                                    className="text-sm font-medium text-emerald-900 dark:text-emerald-100"
                                     showIcon
                                 />
                             </div>
-                            <span className="font-mono font-bold text-slate-900 dark:text-white">
+                            <span className="font-mono font-bold text-emerald-950 dark:text-emerald-50">
                                 {Math.round(ing.weight)}g
                             </span>
                         </div>

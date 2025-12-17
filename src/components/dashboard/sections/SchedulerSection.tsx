@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
 import { useReverseScheduling } from '@/hooks/useReverseScheduling';
 import { Calendar, Clock, ArrowDown } from 'lucide-react';
@@ -62,24 +61,24 @@ export const SchedulerSection: React.FC = () => {
 
             {/* Content */}
             {!isManual && (
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div className="bg-white/40 dark:bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/40 dark:border-emerald-500/20 shadow-sm">
                     <div className="flex flex-col space-y-4">
-                        <label className="text-xs uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                        <label className="text-xs uppercase tracking-wider text-emerald-800 dark:text-emerald-200 flex items-center gap-2 font-bold">
                             <Calendar size={14} />
                             When do you want to eat?
                         </label>
                         <input
                             type="datetime-local"
-                            className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg p-3 text-lg font-mono focus:ring-2 focus:ring-orange-500 outline-none"
+                            className="bg-white/80 dark:bg-black/30 border border-emerald-100 dark:border-emerald-800/50 rounded-lg p-3 text-lg font-mono text-emerald-950 dark:text-emerald-50 focus:ring-2 focus:ring-emerald-500 outline-none placeholder-emerald-900/30 shadow-inner"
                             onChange={handleDateChange}
                             value={pickerValue}
                         />
 
                         {startTimeParams && (
-                            <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                            <div className="mt-4 pt-4 border-t border-emerald-100/50 dark:border-emerald-800/30">
                                 <div className="flex justify-between items-center mb-4">
-                                    <span className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Duration</span>
-                                    <span className="text-sm font-bold">
+                                    <span className="text-sm font-medium text-emerald-800 dark:text-emerald-300">Total Duration</span>
+                                    <span className="text-sm font-bold text-emerald-900 dark:text-white">
                                         {/* Simple diff display */}
                                         {schedule.targetDate && (
                                             Math.round((new Date(schedule.targetDate).getTime() - new Date().getTime()) / (1000 * 60 * 60))
@@ -88,14 +87,14 @@ export const SchedulerSection: React.FC = () => {
                                 </div>
 
                                 {/* Vertical Timeline Preview */}
-                                <div className="relative pl-6 space-y-6 border-l-2 border-slate-200 dark:border-slate-700 ml-2">
+                                <div className="relative pl-6 space-y-6 border-l-2 border-emerald-200 dark:border-emerald-800 ml-2">
                                     {/* Start */}
                                     <div className="relative">
-                                        <div className="absolute -left-[31px] bg-orange-500 text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs">1</div>
-                                        <span className="text-xs text-slate-500 uppercase block mb-0.5">Start Process</span>
-                                        <p className="font-mono text-sm font-bold">
+                                        <div className="absolute -left-[31px] bg-emerald-500 text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm">1</div>
+                                        <span className="text-xs text-emerald-600 dark:text-emerald-400 uppercase block mb-0.5">Start Process</span>
+                                        <p className="font-mono text-sm font-bold text-emerald-900 dark:text-emerald-100">
                                             {startTimeParams.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                            <span className="text-xs font-normal text-slate-400 ml-2">
+                                            <span className="text-xs font-normal text-emerald-600 dark:text-emerald-400 ml-2">
                                                 {startTimeParams.toLocaleDateString()}
                                             </span>
                                         </p>
@@ -105,9 +104,9 @@ export const SchedulerSection: React.FC = () => {
 
                                     {/* Eat */}
                                     <div className="relative">
-                                        <div className="absolute -left-[31px] bg-green-500 text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs">2</div>
-                                        <span className="text-xs text-slate-500 uppercase block mb-0.5">Bake & Eat</span>
-                                        <p className="font-mono text-sm font-bold">
+                                        <div className="absolute -left-[31px] bg-emerald-700 text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm">2</div>
+                                        <span className="text-xs text-emerald-600 dark:text-emerald-400 uppercase block mb-0.5">Bake & Eat</span>
+                                        <p className="font-mono text-sm font-bold text-emerald-900 dark:text-emerald-100">
                                             {new Date(schedule.targetDate!).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </p>
                                     </div>
@@ -116,7 +115,7 @@ export const SchedulerSection: React.FC = () => {
                         )}
 
                         {!startTimeParams && (
-                            <div className="text-center text-slate-400 text-sm py-4">
+                            <div className="text-center text-emerald-600/50 dark:text-emerald-400/50 text-sm py-4 italic">
                                 Pick a date to calculate schedule
                             </div>
                         )}
@@ -132,4 +131,4 @@ export const SchedulerSection: React.FC = () => {
         </div>
     );
 };
-import { useMemo } from 'react';
+

@@ -374,8 +374,27 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
 
             case 'calculator':
                 return protect(
-                    <ProductionDashboard
-                        onSave={onStartBatch}
+                    <CalculatorPage
+                        config={config}
+                        errors={errors}
+                        onConfigChange={handleConfigChange}
+                        onBakeTypeChange={handleBakeTypeChange}
+                        onStyleChange={handleStyleChange}
+                        onYeastTypeChange={handleYeastTypeChange}
+                        onReset={resetConfig}
+                        results={results}
+                        unit={unit}
+                        onUnitChange={setUnit}
+                        unitSystem={unitSystem}
+                        onStartBatch={onStartBatch}
+                        defaultOven={defaultOven}
+                        selectedFlour={selectedFlour}
+                        calculationMode={calculationMode}
+                        onCalculationModeChange={setCalculationMode}
+                        calculatorMode={calculatorMode}
+                        onCalculatorModeChange={setCalculatorMode}
+                        hasProAccess={hasProAccess}
+                        onOpenPaywall={() => openPaywall('calculator')}
                     />
                 );
             case 'community':

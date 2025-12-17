@@ -19,7 +19,7 @@ export const DashboardFooter: React.FC<DashboardFooterProps> = ({ onSave }) => {
 
     return (
         <div className="sticky bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 p-4 z-50">
-            <div className="max-w-md mx-auto flex items-center justify-between gap-4">
+            <div className="max-w-3xl mx-auto flex items-center justify-between gap-4">
                 <div className="text-xs text-slate-400">
                     {isSaving ? 'Syncing...' : `Last saved: ${new Date(session.meta.lastSaved).toLocaleTimeString()}`}
                 </div>
