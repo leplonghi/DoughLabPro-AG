@@ -4,7 +4,7 @@ import { useDoughSession } from '@/contexts/DoughSessionContext';
 import { calculateReverseSchedule } from '@/logic/scheduling';
 import { normalizeDoughConfig } from '@/logic/normalization';
 import { syncIngredientsFromConfig } from '@/logic/doughMath';
-import { DoughConfig, FermentationTechnique, YeastType, RecipeStyle, BakeType } from '@/types';
+import { DoughConfig, FermentationTechnique, YeastType, RecipeStyle, BakeType, AmbientTemperature } from '@/types';
 
 export const useReverseScheduling = () => {
     const { session, updateDough, updateSchedule } = useDoughSession();
@@ -32,7 +32,8 @@ export const useReverseScheduling = () => {
             flourId: 'generic',
             prefermentFlourPercentage: 20,
             notes: '',
-            ingredients: []
+            ingredients: [],
+            ambientTemperature: AmbientTemperature.COLD
         };
 
         const result = calculateReverseSchedule(targetDate, dummyConfig, {
