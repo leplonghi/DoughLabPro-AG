@@ -47,6 +47,19 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
                     </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80"></div>
+
+                {/* Status Badge */}
+                <div className="absolute top-2 right-2">
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${batch.status === BatchStatus.DRAFT ? 'bg-slate-100 text-slate-600 border-slate-200' :
+                            batch.status === BatchStatus.COMPLETED ? 'bg-lime-100 text-lime-700 border-lime-200' :
+                                'bg-white text-slate-700 border-slate-200'
+                        }`}>
+                        {batch.status === BatchStatus.DRAFT ? 'DRAFT' :
+                            batch.status === BatchStatus.COMPLETED ? 'DONE' :
+                                batch.status}
+                    </span>
+                </div>
+
                 <div className="absolute bottom-3 left-4 right-4 flex justify-between items-end">
                     <div>
                         <p className="text-white/90 text-xs font-medium uppercase tracking-wider mb-0.5">{t(`form.${batch.doughConfig.recipeStyle.toLowerCase()}`, { defaultValue: batch.doughConfig.recipeStyle })}</p>
@@ -114,7 +127,6 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
 
     const filteredBatches = useMemo(() => {
         return batches
-            .filter(b => b.status !== BatchStatus.DRAFT)
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     }, [batches]);
 

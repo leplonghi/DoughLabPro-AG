@@ -121,11 +121,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     setIsEditing(false);
   };
 
-  const handleSaveOven = (ovenData: Omit<Oven, 'id' | 'isDefault'> | Oven) => {
+  const handleSaveOven = async (ovenData: Omit<Oven, 'id' | 'isDefault'> | Oven) => {
     if ('id' in ovenData) {
-      updateOven(ovenData);
+      await updateOven(ovenData);
     } else {
-      addOven(ovenData);
+      await addOven(ovenData);
     }
     setIsOvenModalOpen(false);
     setEditingOven(null);
@@ -138,11 +138,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     }
   }
 
-  const handleSaveLevain = (levainData: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory'> | Levain) => {
+  const handleSaveLevain = async (levainData: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory'> | Levain) => {
     if ('id' in levainData) {
-      updateLevain(levainData);
+      await updateLevain(levainData);
     } else {
-      addLevain(levainData);
+      await addLevain(levainData);
     }
     setIsLevainModalOpen(false);
     setEditingLevain(null);
@@ -203,7 +203,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
               </div>
             )}
             {hasProAccess && (
-              <div className="absolute bottom-1 right-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white p-1.5 rounded-full shadow-sm ring-2 ring-white" title={t('general.pro_member')}>
+              <div className="absolute bottom-1 right-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white p-1.5 rounded-full shadow-sm ring-2 ring-white" title={t('common.general.pro_member')}>
                 <SparklesIcon className="h-4 w-4" />
               </div>
             )}
@@ -213,7 +213,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
             <h1 className="text-3xl font-bold text-slate-900">{user.name}</h1>
             <p className="text-slate-500 font-medium flex items-center justify-center sm:justify-start gap-2">
               {user.email}
-              {hasProAccess && <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{t('general.pro_4')}</span>}
+              {hasProAccess && <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{t('common.general.pro_4')}</span>}
             </p>
             {user.location && (
               <p className="text-sm text-slate-400 mt-1 flex items-center justify-center sm:justify-start gap-1">
@@ -257,7 +257,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
             <div className="bg-white rounded-3xl p-6 shadow-lg border border-slate-100 space-y-8 animate-fadeIn">
               {isEditing ? (
                 <div className="space-y-6">
-                  <h3 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-2">{t('general.edit_profile')}</h3>
+                  <h3 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-2">{t('common.general.edit_profile')}</h3>
 
                   <div className="flex justify-center mb-6">
                     <ImageUpload
@@ -265,7 +265,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       onUpload={(url) => setFormData(prev => ({ ...prev, avatar: url }))}
                       onDelete={() => setFormData(prev => ({ ...prev, avatar: undefined }))}
                       path={`users/${user?.uid || 'guest'}/avatar`}
-                      label={t('general.profile_photo')}
+                      label={t('common.general.profile_photo')}
                       circle
                       className="items-center"
                     />
@@ -293,30 +293,30 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('general.skills')}</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.skills')}</label>
                       <select
                         name="skillLevel"
                         value={formData.skillLevel || ''}
                         onChange={handleInputChange}
                         className="w-full rounded-xl border-slate-200 focus:border-lime-500 focus:ring-lime-500"
                       >
-                        <option value="">{t('general.select_level')}</option>
+                        <option value="">{t('common.general.select_level')}</option>
                         {skillLevels.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('general.location')}</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.location')}</label>
                       <input
                         type="text"
                         name="location"
-                        placeholder={t('general.city_country')}
+                        placeholder={t('common.general.city_country')}
                         value={formData.location || ''}
                         onChange={handleInputChange}
                         className="w-full rounded-xl border-slate-200 focus:border-lime-500 focus:ring-lime-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('general.website')}</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.website')}</label>
                       <input
                         type="text"
                         name="website"
@@ -327,7 +327,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('general.instagram_handle')}</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.instagram_handle')}</label>
                       <div className="relative">
                         <span className="absolute left-3 top-2.5 text-slate-400">@</span>
                         <input
@@ -341,11 +341,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       </div>
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('general.bio')}</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.bio')}</label>
                       <textarea
                         name="bio"
                         rows={3}
-                        placeholder={t('general.tell_us_about_your_pizza_journey')}
+                        placeholder={t('common.general.tell_us_about_your_pizza_journey')}
                         value={formData.bio || ''}
                         onChange={handleInputChange}
                         className="w-full rounded-xl border-slate-200 focus:border-lime-500 focus:ring-lime-500"
@@ -354,19 +354,19 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   </div>
                   <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                     <button onClick={handleCancel} className="px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg">{t('common.cancel')}</button>
-                    <button onClick={handleSave} className="px-6 py-2 bg-lime-500 hover:bg-lime-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all">{t('general.save_changes')}</button>
+                    <button onClick={handleSave} className="px-6 py-2 bg-lime-500 hover:bg-lime-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all">{t('common.general.save_changes')}</button>
                   </div>
                 </div>
               ) : (
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">{t('general.about')}</h4>
+                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">{t('common.general.about')}</h4>
                       <div className="space-y-3">
                         {user.bio ? (
                           <p className="text-slate-700 leading-relaxed">{user.bio}</p>
                         ) : (
-                          <p className="text-slate-400 italic">{t('ui.no_bio_added_yet')}</p>
+                          <p className="text-slate-400 italic">{t('common.ui.no_bio_added_yet')}</p>
                         )}
                         <div className="flex flex-wrap gap-2 mt-2">
                           {user.skillLevel && (
@@ -383,7 +383,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">{t('ui.contact__social')}</h4>
+                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">{t('common.ui.contact__social')}</h4>
                       <div className="space-y-2">
                         {user.website && (
                           <a href={user.website} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-lime-600 hover:text-lime-700">
@@ -396,7 +396,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                           </a>
                         )}
                         {!user.website && !user.instagramHandle && (
-                          <p className="text-slate-400 text-sm italic">{t('ui.no_contact_info_provided')}</p>
+                          <p className="text-slate-400 text-sm italic">{t('common.ui.no_contact_info_provided')}</p>
                         )}
                       </div>
                     </div>
@@ -404,23 +404,23 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
                   {/* Stats Row */}
                   <div className="border-t border-slate-100 pt-6">
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">{t('general.activity_stats')}</h4>
+                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">{t('common.general.activity_stats')}</h4>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                       <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{batches.length}</span>
-                        <span className="text-xs text-slate-500 font-medium uppercase">{t('general.batches_2')}</span>
+                        <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.batches_2')}</span>
                       </div>
                       <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{levains.length}</span>
-                        <span className="text-xs text-slate-500 font-medium uppercase">{t('general.levains')}</span>
+                        <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.levains')}</span>
                       </div>
                       <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{ovens.length}</span>
-                        <span className="text-xs text-slate-500 font-medium uppercase">{t('general.ovens')}</span>
+                        <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.ovens')}</span>
                       </div>
                       <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{goals.length}</span>
-                        <span className="text-xs text-slate-500 font-medium uppercase">{t('general.goals')}</span>
+                        <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.goals')}</span>
                       </div>
                     </div>
                   </div>
@@ -461,7 +461,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         </div>
                         <p className="text-sm text-slate-500 mb-4">{t(`profile.ovens.types.${oven.type.toLowerCase()}`)} • {oven.maxTemperature}°C</p>
                         <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <button onClick={() => setDefaultOven(oven.id)} title={t('general.set_default')} className="p-1.5 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors">
+                          <button onClick={() => setDefaultOven(oven.id)} title={t('common.general.set_default')} className="p-1.5 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors">
                             <StarIcon className="h-4 w-4" />
                           </button>
                           <button onClick={() => { setEditingOven(oven); setIsOvenModalOpen(true); }} className="p-1.5 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors">
@@ -507,10 +507,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         </div>
                         <p className="text-sm text-slate-500 mb-4">{levain.hydration}% Hydration • {levain.status}</p>
                         <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <button onClick={() => onNavigate('mylab/levain')} title={t('general.manage')} className="p-1.5 text-slate-400 hover:text-lime-500 hover:bg-lime-50 rounded-lg transition-colors">
+                          <button onClick={() => onNavigate('mylab/levain')} title={t('common.general.manage')} className="p-1.5 text-slate-400 hover:text-lime-500 hover:bg-lime-50 rounded-lg transition-colors">
                             <ArrowTopRightOnSquareIcon className="h-4 w-4" />
                           </button>
-                          <button onClick={() => setDefaultLevain(levain.id)} title={t('general.set_default')} className="p-1.5 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors">
+                          <button onClick={() => setDefaultLevain(levain.id)} title={t('common.general.set_default')} className="p-1.5 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors">
                             <StarIcon className="h-4 w-4" />
                           </button>
                           <button onClick={() => { setEditingLevain(levain); setIsLevainModalOpen(true); }} className="p-1.5 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors">
@@ -538,7 +538,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">{t('form.unit_system')}</label>
                     <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 text-center">
-                      <p className="text-slate-500 text-sm mb-3">{t('ui.unit_system_selection_is_currently_managed_in_glob')}</p>
+                      <p className="text-slate-500 text-sm mb-3">{t('common.ui.unit_system_selection_is_currently_managed_in_glob')}</p>
                       <button onClick={() => onNavigate('settings')} className="text-lime-600 font-bold text-sm hover:underline">{t('common.go_to_global_settings')}</button>
                     </div>
                   </div>
@@ -551,11 +551,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   <ShieldCheckIcon className="h-5 w-5 text-slate-500" />{t('common.legal_support')}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <button onClick={() => onNavigate('terms')} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-100 transition-colors text-left group">
-                    <span className="font-medium text-slate-700">{t('general.terms_of_service')}</span>
+                    <span className="font-medium text-slate-700">{t('common.general.terms_of_service')}</span>
                     <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 group-hover:text-slate-600" />
                   </button>
                   <button onClick={() => onNavigate('privacy')} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-100 transition-colors text-left group">
-                    <span className="font-medium text-slate-700">{t('general.privacy_policy_2')}</span>
+                    <span className="font-medium text-slate-700">{t('common.general.privacy_policy_2')}</span>
                     <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 group-hover:text-slate-600" />
                   </button>
                 </div>
@@ -584,7 +584,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
               <div className="absolute top-0 right-0 p-3 opacity-10">
                 <SparklesIcon className="h-32 w-32" />
               </div>
-              <h3 className="text-xl font-bold mb-2 relative z-10">{t('general.upgrade_to_pro_2')}</h3>
+              <h3 className="text-xl font-bold mb-2 relative z-10">{t('common.general.upgrade_to_pro_2')}</h3>
               <p className="text-slate-300 text-sm mb-6 relative z-10">
                 {t('profile_page.unlock_pro_desc')}
               </p>
@@ -599,9 +599,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                 <div className="p-2 bg-amber-200 rounded-full text-amber-700">
                   <SparklesIcon className="h-5 w-5" />
                 </div>
-                <h3 className="font-bold text-lg">{t('general.pro_member')}</h3>
+                <h3 className="font-bold text-lg">{t('common.general.pro_member')}</h3>
               </div>
-              <p className="text-sm opacity-80">{t('ui.you_have_full_access_to_all_lab_pro_features')}</p>
+              <p className="text-sm opacity-80">{t('common.ui.you_have_full_access_to_all_lab_pro_features')}</p>
             </div>
           )}
 
@@ -616,7 +616,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                 </div>
                 <div>
                   <p className="font-bold text-slate-700 text-sm">{t('profile.resources.tech_references')}</p>
-                  <p className="text-xs text-slate-500">{t('ui.books_guides__standards')}</p>
+                  <p className="text-xs text-slate-500">{t('common.ui.books_guides__standards')}</p>
                 </div>
               </button>
               <button onClick={() => onNavigate('flours')} className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-left group">
@@ -625,7 +625,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                 </div>
                 <div>
                   <p className="font-bold text-slate-700 text-sm">{t('profile.resources.flours_library')}</p>
-                  <p className="text-xs text-slate-500">{t('general.database_of_flour_types')}</p>
+                  <p className="text-xs text-slate-500">{t('common.general.database_of_flour_types')}</p>
                 </div>
               </button>
             </div>

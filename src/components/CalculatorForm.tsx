@@ -10,7 +10,9 @@ import {
   FlourDefinition,
   OnboardingState,
   DoughResult,
+  CustomPreset,
 } from '@/types';
+import { WizardMode } from '@/components/calculator/wizard/WizardMode';
 import {
   BookmarkSquareIcon,
 } from '@/components/ui/Icons';
@@ -25,6 +27,7 @@ import { getRange } from '@/logic/validationLogic';
 import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
 import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS, DOUGH_WEIGHT_RANGES } from '@/constants';
 import { STYLES_DATA, getStyleById } from '@/data/styles/registry';
+import { suggestPresetName } from '@/logic/customPresets';
 import { useTranslation } from '@/i18n';
 import { AssemblySection } from '@/components/calculator/ingredients/AssemblySection';
 import { Increment, UserIngredient } from '@/types/ingredients';
@@ -46,11 +49,14 @@ interface CalculatorFormProps {
   selectedFlour?: FlourDefinition;
   calculationMode: CalculationMode;
   onCalculationModeChange: (mode: CalculationMode) => void;
-  calculatorMode: 'basic' | 'advanced';
+  calculatorMode: 'wizard' | 'basic' | 'advanced';
   hasProAccess: boolean;
   onOpenPaywall: () => void;
   onboardingState?: OnboardingState;
   results: DoughResult | null;
+  onSavePreset?: (name: string) => Promise<void>;
+  customPresets?: CustomPreset[];
+  isFavorite: (id: string, type: string) => boolean;
 }
 
 const CalculatorForm: React.FC<CalculatorFormProps> = ({
@@ -73,10 +79,60 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   onOpenPaywall,
   onboardingState,
   results,
+  onSavePreset,
+  customPresets = [],
+  isFavorite,
 }) => {
   const { t } = useTranslation(['common', 'calculator']);
-  const isBasic = calculatorMode === 'basic';
+  const isWizard = calculatorMode === 'wizard';
+
+  const handleStyleChange = (id: string) => {
+    // Check if it's a custom preset
+    const custom = customPresets.find(p => p.id === id);
+    if (custom) {
+      // It's a custom preset! Load its config.
+      // We keep the ID so the UI shows it as selected.
+      onConfigChange({
+        ...custom.config,
+        stylePresetId: id,
+      });
+    } else {
+      // Standard behavior (Parent loads standard styles or just sets ID)
+      onStyleChange(id);
+    }
+  };
+
+  if (isWizard) {
+    return (
+      <WizardMode
+        config={config}
+        errors={errors}
+        onConfigChange={onConfigChange}
+        onBakeTypeChange={onBakeTypeChange}
+        onStyleChange={handleStyleChange}
+        onYeastTypeChange={onYeastTypeChange}
+        levains={levains}
+        selectedLevain={selectedLevain}
+        inputRefs={inputRefs}
+        defaultOven={defaultOven}
+        selectedFlour={selectedFlour}
+        calculationMode={calculationMode}
+        onCalculationModeChange={onCalculationModeChange}
+        hasProAccess={hasProAccess}
+        onOpenPaywall={onOpenPaywall}
+        results={results}
+        customPresets={customPresets}
+      />
+    );
+  }
+
+  const isBasic = calculatorMode === 'basic'; // Wizard is now separate
   const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
+
+  // Calculate allowed fermentation techniques based on selected style
+  const allowedTechniques = useMemo(() => {
+    return getAllowedFermentationTechniques(config.recipeStyle, config.bakeType, config.stylePresetId);
+  }, [config.recipeStyle, config.bakeType, config.stylePresetId]);
 
   const handleNumberChange = (name: string, value: number) => {
     onConfigChange({ [name]: value });
@@ -104,9 +160,18 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       }`;
   };
 
-  const handleSavePreset = () => {
-    // Placeholder for save preset logic
-    console.log(t('calculator.save_preset_clicked'));
+
+
+  const handleSavePreset = async () => {
+    if (!onSavePreset) return;
+
+    // Suggest a name
+    const defaultName = suggestPresetName(config);
+    const name = window.prompt(t('calculator.enter_preset_name', { defaultValue: 'Enter a name for your custom preset:' }), defaultName);
+
+    if (name) {
+      await onSavePreset(name);
+    }
   };
 
   const recipeStylesToShow = useMemo(() => {
@@ -125,17 +190,36 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   const hasQuantity = hasStyle && config.numPizzas > 0 && config.doughBallWeight > 0;
 
   // Helper for instruction banners
-  const StepBanner = ({ step, title, description }: { step: number, title: string, description: string }) => {
+  const StepBanner = ({ step, title, description, tip }: { step: number, title: string, description: string, tip?: string }) => {
     if (!isBasic) return null;
+
     return (
-      <div className="mb-2 rounded-lg bg-dlp-bg-muted border border-dlp-border p-3 animate-fade-in">
-        <h4 className="text-sm font-bold text-dlp-text-primary flex items-center gap-2">
-          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-dlp-accent text-white text-[10px]">
+      <div className={`mb-3 rounded-lg border p-4 animate-fade-in ${isWizard
+        ? 'bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200 shadow-sm'
+        : 'bg-dlp-bg-muted border-dlp-border'
+        }`}>
+        <div className="flex items-start gap-3">
+          <span className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full text-white text-sm font-bold ${isWizard ? 'bg-blue-500 shadow-md' : 'bg-dlp-accent'
+            }`}>
             {step}
           </span>
-          {title}
-        </h4>
-        <p className="text-xs text-dlp-text-secondary mt-1 ml-7">{description}</p>
+          <div className="flex-1">
+            <h4 className={`text-sm font-bold ${isWizard ? 'text-blue-900' : 'text-dlp-text-primary'
+              }`}>
+              {title}
+            </h4>
+            <p className={`text-xs mt-1 ${isWizard ? 'text-blue-700' : 'text-dlp-text-secondary'
+              }`}>
+              {description}
+            </p>
+            {isWizard && tip && (
+              <div className="mt-2 flex items-start gap-2 bg-white/60 rounded-md p-2 border border-blue-100">
+                <span className="text-sm">💡</span>
+                <p className="text-xs text-blue-800 font-medium">{tip}</p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   };
@@ -163,21 +247,37 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   return (
     <div className="space-y-5">
 
+      {/* Wizard Welcome Banner */}
+      {isWizard && (
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-6 text-white shadow-lg animate-fade-in">
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0 text-4xl">🪄</div>
+            <div>
+              <h3 className="text-lg font-bold mb-1">{t('calculator.wizard_welcome_title')}</h3>
+              <p className="text-sm text-blue-50">{t('calculator.wizard_welcome_desc')}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Step 1: Style Selection */}
       <div className="animate-fade-in">
         <StepBanner
           step={1}
-          title={t('general.choose_your_style')}
+          title={t('common.general.choose_your_style')}
           description={t('calculator.choose_style_desc')}
+          tip={t('calculator.wizard_tip_style')}
         />
         <StyleSection
           config={config}
           onBakeTypeChange={onBakeTypeChange}
-          onStyleChange={onStyleChange}
+          onStyleChange={handleStyleChange}
           recipeStylesToShow={recipeStylesToShow}
           isBasic={isBasic}
           currentPreset={currentPreset}
           onResetPreset={() => onStyleChange('')}
+          customPresets={customPresets}
+          isFavorite={isFavorite}
         />
       </div>
 
@@ -186,8 +286,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <div className="animate-fade-in-up">
           <StepBanner
             step={2}
-            title={t('general.define_quantity')}
+            title={t('common.general.define_quantity')}
             description={t('calculator.define_quantity_desc')}
+            tip={t('calculator.wizard_tip_quantity')}
           />
           <QuantitySection
             config={config}
@@ -210,8 +311,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <div>
             <StepBanner
               step={3}
-              title={t('general.customize_ingredients')}
+              title={t('common.general.customize_ingredients')}
               description={t('calculator.customize_ing_desc')}
+              tip={t('calculator.wizard_tip_ingredients')}
             />
             <div className="bg-white rounded-2xl shadow-sm border border-dlp-border p-4 mb-2">
               <IngredientsSection
@@ -237,8 +339,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <div>
             <StepBanner
               step={4}
-              title={t('general.fermentation_strategy')}
+              title={t('common.general.fermentation_strategy')}
               description={t('calculator.fermentation_strategy_desc')}
+              tip={t('calculator.wizard_tip_fermentation')}
             />
             <FermentationSection
               config={config}
@@ -249,6 +352,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               hasProAccess={hasProAccess}
               onOpenPaywall={onOpenPaywall}
               selectedLevain={selectedLevain}
+              allowedTechniques={allowedTechniques}
             />
           </div>
 
@@ -257,8 +361,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <div>
             <StepBanner
               step={5}
-              title={t('general.baking_environment')}
+              title={t('common.general.baking_environment')}
               description={t('calculator.baking_env_desc')}
+              tip={t('calculator.wizard_tip_environment')}
             />
             <EnvironmentSection
               config={config}
@@ -272,14 +377,20 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             <div>
               <StepBanner
                 step={6}
-                title="Assembly Lab"
-                description={t('calculator.assembly_lab_desc', { defaultValue: 'Construct your final product profile' })}
+                title={t('calculator.assembly_toppings')}
+                description={
+                  config.bakeType === 'PIZZAS' ? t('calculator.assembly_toppings_desc_pizza') :
+                    config.bakeType === 'BREADS_SAVORY' ? t('calculator.assembly_toppings_desc_bread') :
+                      t('calculator.assembly_toppings_desc_pastry')
+                }
+                tip={t('calculator.wizard_tip_assembly')}
               />
               <AssemblySection
                 style={assemblyStyle}
                 selectedIncrements={config.assemblyIncrements || []}
                 onUpdateIncrements={(incs) => onConfigChange({ assemblyIncrements: incs })}
                 bakingTempC={config.bakingTempC}
+                bakeType={config.bakeType}
               />
             </div>
           )}
@@ -291,7 +402,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       {!isBasic && (
         <LockedTeaser featureKey="calculator.save_preset">
           <FormSection
-            title={t('general.save_custom_preset')}
+            title={t('common.general.save_custom_preset')}
             description={t('calculator.save_preset_desc')}
             icon={<BookmarkSquareIcon className="h-6 w-6" />}
           >

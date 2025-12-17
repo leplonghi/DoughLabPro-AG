@@ -27,7 +27,7 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
     className = '',
     origin,
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user, openPaywall, userLoading, planLoading } = useUser();
     const { navigate } = useRouter();
 

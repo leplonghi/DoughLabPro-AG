@@ -91,7 +91,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
                             <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                            {t('nav.profile')}
+                            {t('common.nav.profile')}
                         </button>
 
                         <button
@@ -100,7 +100,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                         >
                             <div className="flex items-center">
                                 <SettingsIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                                {t('nav.settings')}
+                                {t('common.nav.settings')}
                             </div>
                             <ChevronRightIcon className="h-4 w-4 text-dlp-text-muted" />
                         </button>
@@ -110,7 +110,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
                             <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                            {t('nav.help')}
+                            {t('common.nav.help')}
                         </button>
 
                         <button
@@ -118,7 +118,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
                         >
                             <ClockIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
-                            {t('nav.legal')}
+                            {t('common.nav.legal')}
                         </button>
 
                         <div className="border-t border-dlp-border my-1"></div>

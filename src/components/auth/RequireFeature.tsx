@@ -12,7 +12,7 @@ interface RequireFeatureProps {
 }
 
 export const RequireFeature: React.FC<RequireFeatureProps> = ({ featureKey, children, fallback }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user, userLoading, planLoading, openPaywall } = useUser();
     const { navigate } = useRouter();
 
@@ -35,11 +35,11 @@ export const RequireFeature: React.FC<RequireFeatureProps> = ({ featureKey, chil
         // Default fallback: Upgrade UI
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh] p-8 text-center animate-fade-in">
-                <div className="bg-slate-100 dark:bg-slate-800 p-4 rounded-full mb-6">
+                <div className="bg-slate-100 p-4 rounded-full mb-6">
                     <span className="text-4xl">🔒</span>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{t('auth.feature_locked')}</h2>
-                <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md">
+                <h2 className="text-2xl font-bold text-slate-900 mb-3">{t('auth.feature_locked')}</h2>
+                <p className="text-slate-600 mb-8 max-w-md">
                     This feature requires a specific plan. Upgrade your account to access it.
                 </p>
                 <div className="flex gap-4">

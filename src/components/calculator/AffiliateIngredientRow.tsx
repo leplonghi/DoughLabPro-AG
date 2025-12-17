@@ -1,5 +1,6 @@
 import React from 'react';
-import { ExternalLink, ShoppingBag } from 'lucide-react';
+import { ExternalLink as ExternalLinkIcon, ShoppingBag } from 'lucide-react';
+import { ExternalLink } from '@/components/ui/ExternalLink';
 import { InfoTooltip } from '@/components/ui/InfoTooltip';
 
 interface AffiliateIngredientRowProps {
@@ -51,28 +52,24 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
 
             {/* Smart Suggestions */}
             {isFlour && hydration > 65 && (
-                <a
+                <ExternalLink
                     href={AFFILIATE_LINKS.strongFlour}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="mt-1 flex items-center gap-1 text-[10px] sm:text-xs text-dlp-accent hover:underline w-fit"
                 >
                     <ShoppingBag className="w-3 h-3" />
                     Recommended: High Protein Flour (W300+)
-                    <ExternalLink className="w-2.5 h-2.5 ml-0.5 opacity-70" />
-                </a>
+                    <ExternalLinkIcon className="w-2.5 h-2.5 ml-0.5 opacity-70" />
+                </ExternalLink>
             )}
 
             {isSalt && (
-                <a
+                <ExternalLink
                     href={AFFILIATE_LINKS.precisionScale}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="mt-1 flex items-center gap-1 text-[10px] sm:text-xs text-dlp-text-muted hover:text-dlp-accent transition-colors w-fit"
                 >
                     Need precision? Get a 0.01g Scale
-                    <ExternalLink className="w-2.5 h-2.5 ml-0.5 opacity-70" />
-                </a>
+                    <ExternalLinkIcon className="w-2.5 h-2.5 ml-0.5 opacity-70" />
+                </ExternalLink>
             )}
         </div>
     );

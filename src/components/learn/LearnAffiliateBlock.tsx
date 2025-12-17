@@ -3,6 +3,7 @@ import { getProductsForPlacement } from '@/data/affiliatePlacements';
 import { AffiliateProduct } from '@/data/affiliates';
 import { WrenchScrewdriverIcon, ExternalLinkIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
+import { ExternalLink } from '@/components/ui/ExternalLink';
 
 interface LearnAffiliateBlockProps {
     placementKeys: string[];
@@ -14,7 +15,7 @@ interface LearnAffiliateBlockProps {
 }
 
 const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys, userContext }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     // Aggregate products from all keys, removing duplicates
     const allProducts: AffiliateProduct[] = placementKeys.flatMap(key => getProductsForPlacement(key));
 
@@ -70,11 +71,9 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
 
             <div className="flex flex-col gap-3">
                 {displayProducts.map(product => (
-                    <a
+                    <ExternalLink
                         key={product.id}
                         href={product.affiliateLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="group flex bg-dlp-bg-card rounded-lg border border-dlp-border overflow-hidden hover:border-dlp-accent hover:shadow-dlp-md transition-all h-20"
                     >
                         {/* Image - Fixed width */}
@@ -101,7 +100,7 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                                 {product.name}
                             </h5>
                         </div>
-                    </a>
+                    </ExternalLink>
                 ))}
             </div>
 

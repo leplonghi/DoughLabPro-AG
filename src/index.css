@@ -5,6 +5,16 @@
 @tailwind utilities;
 
 
+
+/* ========================================
+   DoughLabPro Design System
+   ========================================
+   IMPORTANT: This app is LIGHT MODE ONLY
+   - NO dark mode support
+   - NO dark: classes
+   - Cards are ALWAYS white (bg-white)
+   ======================================== */
+
 :root {
   /* Base Background Colors */
   --dlp-bg: #FFFFFF;
@@ -32,8 +42,10 @@
   --dlp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --dlp-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.06);
 
+  /* Force light mode - NO dark mode support */
   color-scheme: light;
 }
+
 
 html {
   font-size: 14px;

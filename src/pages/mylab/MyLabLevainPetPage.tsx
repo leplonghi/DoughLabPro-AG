@@ -17,7 +17,7 @@ interface MyLabLevainPetPageProps {
 }
 
 const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { levains, hasProAccess, addLevain, hasActiveTrial } = useUser();
     const { addToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -178,14 +178,14 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
 
                     {/* Sidebar */}
                     <div className="space-y-6">
-                        <div className="rounded-3xl bg-slate-900 p-6 text-white shadow-xl relative overflow-hidden">
-                            <div className="absolute top-0 right-0 -mt-10 -mr-10 h-32 w-32 rounded-full bg-orange-500/20 blur-2xl"></div>
-                            <h3 className="font-bold text-lg mb-2 relative z-10">{t('mylab.feeding_schedule')}</h3>
-                            <p className="text-slate-300 text-sm mb-4 relative z-10">
+                        <div className="rounded-3xl bg-white border border-orange-200 p-6 shadow-xl relative overflow-hidden">
+                            <div className="absolute top-0 right-0 -mt-10 -mr-10 h-32 w-32 rounded-full bg-orange-500/10 blur-2xl"></div>
+                            <h3 className="font-bold text-lg mb-2 relative z-10 text-slate-900">{t('mylab.feeding_schedule')}</h3>
+                            <p className="text-slate-600 text-sm mb-4 relative z-10">
                                 Next feeding recommended in:
                             </p>
-                            <div className="text-3xl font-black text-orange-400 mb-1 relative z-10">4h 30m</div>
-                            <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden relative z-10">
+                            <div className="text-3xl font-black text-orange-600 mb-1 relative z-10">4h 30m</div>
+                            <div className="h-1.5 w-full bg-orange-100 rounded-full overflow-hidden relative z-10">
                                 <div className="h-full bg-orange-500 w-[60%]"></div>
                             </div>
                         </div>

@@ -4,12 +4,14 @@ import { HydrationInput } from '@/components/calculator/HydrationInput';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import SliderInput from "@/components/ui/SliderInput";
 import { CubeIcon } from "@/components/ui/Icons";
+import { FlourSelector } from '@/components/calculator/FlourSelector';
 import { YeastType, FormErrors, DoughConfig, Levain, DoughResult } from "@/types";
 import { getArticleById } from "@/data/learn";
 import { timeSince } from "@/utils/dateUtils";
 import { LockFeature } from "@/components/auth/LockFeature";
 import { IngredientTableEditor } from "@/components/calculator/IngredientTableEditor";
 import { useTranslation } from '@/i18n';
+import { FLOURS } from '@/flours-constants';
 
 interface IngredientsSectionProps {
   config: DoughConfig;
@@ -54,6 +56,15 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
     return finalF + prefF;
   }, [results]);
 
+  const selectedFlourDef = React.useMemo(() => FLOURS.find(f => f.id === config.flourId), [config.flourId]);
+
+  const recommendedHydrationRange = React.useMemo(() => {
+    if (selectedFlourDef?.hydrationHint?.min !== undefined && selectedFlourDef?.hydrationHint?.max !== undefined) {
+      return [selectedFlourDef.hydrationHint.min, selectedFlourDef.hydrationHint.max];
+    }
+    return getRange('hydration');
+  }, [selectedFlourDef, getRange]);
+
   const getLabel = (ing: any) => {
     const rawName = ing.name;
     const translatedName = t(rawName);
@@ -76,6 +87,13 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
 
   return (
     <div className="space-y-6">
+      {/* Flour Selector - Always visible */}
+      <FlourSelector
+        selectedFlourId={config.flourId}
+        onFlourChange={(flourId) => handleSelectChange({ target: { name: 'flourId', value: flourId } } as any)}
+        currentHydration={config.hydration}
+      />
+
       {isBasic ? (
         <>
           <HydrationInput
@@ -87,9 +105,10 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             step={1}
             tooltip={t('calculator.hydration_tooltip')}
             hasError={!!errors.hydration}
-            recommendedMin={getRange('hydration')?.[0]}
-            recommendedMax={getRange('hydration')?.[1]}
+            recommendedMin={recommendedHydrationRange?.[0]}
+            recommendedMax={recommendedHydrationRange?.[1]}
             learnArticle={getArticleById('water-hydration-dynamics')}
+            totalFlour={totalFlour}
           />
           <SliderInput
             label={t('results.salt')}
@@ -102,6 +121,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             recommendedMin={getRange('salt')?.[0]}
             recommendedMax={getRange('salt')?.[1]}
             learnArticle={getArticleById('salt-functionality-osmotic-effects')}
+            totalFlour={totalFlour}
           />
         </>
       ) : (
@@ -117,9 +137,10 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                 step={1}
                 tooltip={t('calculator.hydration_advanced_help')}
                 hasError={!!errors.hydration}
-                recommendedMin={getRange('hydration')?.[0]}
-                recommendedMax={getRange('hydration')?.[1]}
+                recommendedMin={recommendedHydrationRange?.[0]}
+                recommendedMax={recommendedHydrationRange?.[1]}
                 learnArticle={getArticleById('water-hydration-dynamics')}
+                totalFlour={totalFlour}
               />
             </LockedTeaser>
           )}
@@ -134,6 +155,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             recommendedMin={getRange('salt')?.[0]}
             recommendedMax={getRange('salt')?.[1]}
             learnArticle={getArticleById('salt-functionality-osmotic-effects')}
+            totalFlour={totalFlour}
           />
 
           {/* Dynamic Ingredient Sliders (Universal Engine) */}
@@ -159,6 +181,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
               step={0.1}
               unit="%"
               tooltip={`${t('calculator.adjust_percentage_of')} ${ing.name}`}
+              totalFlour={totalFlour}
             />
           ))}
         </>
@@ -174,7 +197,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                 {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>))}
               </select>
             </div>
-            <SliderInput label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip={t('calculator.yeast_tooltip')} hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} />
+            <SliderInput label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip={t('calculator.yeast_tooltip')} hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} totalFlour={totalFlour} />
           </div>
         )}
 
@@ -241,9 +264,23 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
 
         {config.bakeType !== 'SWEETS_PASTRY' && (
           <div className="mt-8">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
-                <CubeIcon className="h-5 w-5 text-dlp-accent" />{t('calculator.advanced_ingredients')}</h3>
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-1">
+                <CubeIcon className="h-5 w-5 text-dlp-accent" />
+                <h3 className="text-lg font-bold text-dlp-text-primary">
+                  {t('calculator.dough_composition')}
+                </h3>
+              </div>
+              <p className="text-xs text-dlp-text-secondary ml-7">
+                {config.bakeType === 'PIZZAS' && t('calculator.dough_composition_desc_pizza')}
+                {config.bakeType === 'BREADS_SAVORY' && t('calculator.dough_composition_desc_bread')}
+                {config.bakeType === 'SWEETS_PASTRY' && t('calculator.dough_composition_desc_pastry')}
+              </p>
+              <p className="text-[10px] text-dlp-text-muted italic ml-7 mt-0.5">
+                {config.bakeType === 'PIZZAS' && t('calculator.advanced_ingredients_example_pizza')}
+                {config.bakeType === 'BREADS_SAVORY' && t('calculator.advanced_ingredients_example_bread')}
+                {config.bakeType === 'SWEETS_PASTRY' && t('calculator.advanced_ingredients_example_pastry')}
+              </p>
               <LockFeature featureKey="calculator.advanced_ingredients" customMessage={t('calculator.unlock_pro_ingredients')}>
                 <IngredientTableEditor
                   ingredients={config.ingredients || []}

@@ -5,21 +5,21 @@ const t = i18n.t.bind(i18n);
 
 export const brazilian_pizzeria_gas_deck: StyleDefinition = {
   "id": "brazilian_pizzeria_gas_deck",
-  "title": "Brazilian Rodízio / Gas-Deck Style",
+  "title": t('styles.brazilian_pizzeria_title'),
   "subtitle": t('styles.brazilian_pizzeria'),
   "category": t('styles.pizza'),
   "family": t('styles.brazilian_pizzeria_2'),
-  "variantName": "Brazilian Rodízio / Gas-Deck Style",
+  "variantName": t('styles.brazilian_pizzeria_title'),
   "origin": {
     "country": t('styles.brazil_4'),
     "region": t('styles.urban_pizzerias'),
     "period": t('styles.late_20th_century_2')
   },
-  "intro": "Used in rodízio-style pizzerias and delivery-focused operations, supporting a wide range of toppings and extended service.",
-  "history": "Brazilian pizzeria-style dough adapts Italian and American influences to gas or electric deck ovens, often with slightly lower hydration and enriched dough.",
+  "intro": t('styles.brazilian_pizzeria_intro'),
+  "history": t('styles.brazilian_pizzeria_history'),
   "technicalFoundations": [
-    "Typically direct dough; some use biga or sponge.",
-    "Hydration: 55-62%"
+    t('styles.brazilian_pizzeria_tech_1'),
+    t('styles.brazilian_pizzeria_tech_2')
   ],
   "doughImpact": [],
   "bakingImpact": [],
@@ -40,10 +40,10 @@ export const brazilian_pizzeria_gas_deck: StyleDefinition = {
       1,
       3
     ],
-    "flourStrength": "Strong Brazilian bread/pizza flour, W ~280–330",
+    "flourStrength": t('styles.brazilian_pizzeria_flour'),
     "fermentation": {
-      "bulk": "2–8 h at room temperature or partially retarded",
-      "proof": "30–90 min before baking",
+      "bulk": t('styles.brazilian_pizzeria_ferm_bulk'),
+      "proof": t('styles.brazilian_pizzeria_ferm_proof'),
       "coldRetard": t('styles.optional_up_to_24_h_for_flavor')
     },
     "oven": {
@@ -56,8 +56,8 @@ export const brazilian_pizzeria_gas_deck: StyleDefinition = {
     },
     "difficulty": t('styles.medium_32'),
     "recommendedUse": [
-      "Brazilian pizzeria-style pizza",
-      "Rodízio and delivery"
+      t('styles.brazilian_pizzeria_use_1'),
+      t('styles.brazilian_pizzeria_use_2')
     ]
   },
   "regionalVariants": [],
@@ -67,8 +67,8 @@ export const brazilian_pizzeria_gas_deck: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Brazilian pizzeria-style pizza",
-    "Rodízio and delivery",
+    t('styles.brazilian_pizzeria_use_1'),
+    t('styles.brazilian_pizzeria_use_2'),
     t('common.pizza'),
     t('common.brazil')
   ],

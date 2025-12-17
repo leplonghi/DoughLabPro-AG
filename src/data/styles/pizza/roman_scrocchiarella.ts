@@ -5,21 +5,21 @@ const t = i18n.t.bind(i18n);
 
 export const roman_scrocchiarella: StyleDefinition = {
   "id": "roman_scrocchiarella",
-  "title": "Roman Scrocchiarella (Thin & Crispy)",
+  "title": t('styles.roman_scrocchiarella_title'),
   "subtitle": t('styles.roman_thin_pizza'),
   "category": t('styles.pizza_11'),
   "family": t('styles.roman_thin_pizza_2'),
-  "variantName": "Roman Scrocchiarella (Thin & Crispy)",
+  "variantName": t('styles.roman_scrocchiarella_title'),
   "origin": {
     "country": t('styles.italy_11'),
     "region": t('styles.rome'),
     "period": "20th century"
   },
-  "intro": "Common in Roman pizzerias as an alternative to Neapolitan, offering a crunchy, thin base suited for many toppings.",
-  "history": "Roman scrocchiarella is a very thin, crisp pizza style baked on pans or directly on the deck, distinct from pan-style teglia.",
+  "intro": t('styles.roman_scrocchiarella_intro'),
+  "history": t('styles.roman_scrocchiarella_history'),
   "technicalFoundations": [
-    "Often direct dough; some formulas use poolish.",
-    "Hydration: 55-60%"
+    t('styles.roman_scrocchiarella_tech_1'),
+    t('styles.roman_scrocchiarella_tech_2')
   ],
   "doughImpact": [],
   "bakingImpact": [],
@@ -42,7 +42,7 @@ export const roman_scrocchiarella: StyleDefinition = {
     ],
     "flourStrength": t('styles.mediumstrong_flour_w_240280'),
     "fermentation": {
-      "bulk": "2–6 h at room temperature or partial cold ferment",
+      "bulk": t('styles.roman_scrocchiarella_ferm_bulk'),
       "proof": t('styles.short_proof_in_pans_or_on_trays'),
       "coldRetard": t('styles.optional_up_to_24_h')
     },

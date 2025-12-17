@@ -35,7 +35,7 @@ export const HydrationVisualizer: React.FC<{ hydrationPercentage: number }> = ({
             </div>
             <div>
                 <h4 className={`font-bold text-sm ${config.color.split(' ')[0]}`}>{config.title}</h4>
-                <p className="text-xs opacity-80 font-medium text-black dark:text-white">{config.desc}</p>
+                <p className="text-xs opacity-80 font-medium text-black">{config.desc}</p>
             </div>
         </div>
     );

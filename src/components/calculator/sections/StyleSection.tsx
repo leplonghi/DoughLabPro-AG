@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { DoughConfig, BakeType, DoughStylePreset } from '@/types';
+import { DoughConfig, BakeType, DoughStylePreset, CustomPreset } from '@/types';
 import { BookOpenIcon, MagnifyingGlassIcon, PizzaSliceIcon, FlourIcon, SparklesIcon } from '@/components/ui/Icons';
+import { BookmarkIcon } from '@heroicons/react/24/outline';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import AccordionSection from '@/components/calculator/AccordionSection';
 import { useTranslation } from '@/i18n';
@@ -13,6 +14,8 @@ interface StyleSectionProps {
     isBasic: boolean;
     currentPreset?: DoughStylePreset;
     onResetPreset: () => void;
+    customPresets?: CustomPreset[];
+    isFavorite: (id: string, type: string) => boolean;
 }
 
 const StyleSection: React.FC<StyleSectionProps> = ({
@@ -23,8 +26,10 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     isBasic,
     currentPreset,
     onResetPreset,
+    customPresets = [],
+    isFavorite,
 }) => {
-    const { t } = useTranslation(['common', 'calculator']);
+    const { t } = useTranslation(['common', 'calculator', 'styles']);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('All');
 
@@ -48,7 +53,9 @@ const StyleSection: React.FC<StyleSectionProps> = ({
         }
 
         // Apply Country Filter
-        if (selectedCountry !== 'All') {
+        if (selectedCountry === 'Favorites') {
+            styles = styles.filter(s => isFavorite && isFavorite(s.id, 'style'));
+        } else if (selectedCountry !== 'All') {
             styles = styles.filter(s => (s.country || 'Other') === selectedCountry);
         }
 
@@ -63,6 +70,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
 
     return (
         <AccordionSection
+            id="style-selector"
             title={t('calculator.dough_style')}
             description={t('calculator.style_section_description')}
             icon={<BookOpenIcon className="h-6 w-6" />}
@@ -111,24 +119,37 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                 <button
                     onClick={() => setSelectedCountry('All')}
                     className={`
-                        flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border
+                        flex-shrink-0 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wide transition-all border
                         ${selectedCountry === 'All'
-                            ? 'bg-dlp-accent text-white border-dlp-accent shadow-md'
-                            : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                            ? 'bg-dlp-accent text-white border-dlp-accent shadow-md scale-105'
+                            : 'bg-white text-slate-500 border-slate-200 hover:bg-dlp-accent/5 hover:border-dlp-accent/40 hover:text-dlp-accent/80 hover:scale-105'
                         }
                     `}
                 >
                     All
+                </button>
+                <button
+                    onClick={() => setSelectedCountry('Favorites')}
+                    className={`
+                        flex-shrink-0 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wide transition-all border flex items-center gap-1
+                        ${selectedCountry === 'Favorites'
+                            ? 'bg-dlp-accent text-white border-dlp-accent shadow-md scale-105'
+                            : 'bg-white text-amber-500 border-amber-200 hover:bg-amber-50 hover:border-amber-300 hover:scale-105'
+                        }
+                    `}
+                >
+                    <BookmarkIcon className={`h-3 w-3 ${selectedCountry === 'Favorites' ? 'text-white' : 'text-amber-500'}`} />
+                    {t('ui.favorites')}
                 </button>
                 {uniqueCountries.map(country => (
                     <button
                         key={country}
                         onClick={() => setSelectedCountry(country)}
                         className={`
-                             flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border
+                             flex-shrink-0 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wide transition-all border
                             ${selectedCountry === country
-                                ? 'bg-dlp-accent text-white border-dlp-accent shadow-md'
-                                : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                                ? 'bg-dlp-accent text-white border-dlp-accent shadow-md scale-105'
+                                : 'bg-white text-slate-500 border-slate-200 hover:bg-dlp-accent/5 hover:border-dlp-accent/40 hover:text-dlp-accent/80 hover:scale-105'
                             }
                         `}
                     >
@@ -136,6 +157,43 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                     </button>
                 ))}
             </div>
+
+            {/* 3.5. CUSTOM PRESETS SECTION */}
+            {customPresets.some(p => p.config.bakeType === config.bakeType) && (
+                <div className="mb-4">
+                    <h3 className="text-xs font-bold text-dlp-text-secondary uppercase tracking-wider mb-2 flex items-center gap-1">
+                        <BookmarkIcon className="h-3 w-3" /> {t('styles.my_custom_presets', { defaultValue: 'My Custom Presets' })}
+                    </h3>
+                    <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
+                        {customPresets
+                            .filter(p => p.config.bakeType === config.bakeType)
+                            .map(preset => {
+                                // Match logic slightly different for custom presets? depends on how we ID them
+                                // Ideally stylePresetId matches custom preset ID too.
+                                const isSelected = config.stylePresetId === preset.id;
+                                return (
+                                    <button
+                                        key={preset.id}
+                                        onClick={() => onStyleChange(preset.id)} // This ID must be handled by parent
+                                        className={`
+                                            flex-shrink-0 relative flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-lg border transition-all text-left min-w-[120px]
+                                            ${isSelected
+                                                ? 'border-dlp-accent bg-dlp-accent/10 text-dlp-accent shadow-sm ring-1 ring-dlp-accent'
+                                                : 'bg-white border-slate-200 text-slate-600 hover:border-dlp-accent/40 hover:bg-dlp-accent/5'
+                                            }
+                                        `}
+                                    >
+                                        <div className={`w-2 h-2 rounded-full ${isSelected ? 'bg-dlp-accent' : 'bg-slate-300'}`} />
+                                        <div className="flex flex-col">
+                                            <span className="text-xs font-bold leading-none">{preset.name}</span>
+                                            <span className="text-[9px] text-slate-400 mt-0.5">{new Date(preset.createdAt).toLocaleDateString()}</span>
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                    </div>
+                </div>
+            )}
 
             {/* 4. UNIFIED GRID */}
             <div className="animate-fade-in relative min-h-[150px]">
@@ -157,31 +215,26 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                         relative flex flex-col items-start text-left transition-all duration-200 group
                                         ${isBasic
                                             ? 'p-2.5 rounded-lg border min-h-[80px]' // Guided Styles
-                                            : 'p-2 rounded-lg border items-center text-center justify-center min-h-[50px]' // Pro Styles (Compact)
+                                            : 'p-1.5 rounded-md border items-center text-center justify-center min-h-[36px]' // Pro Styles (Thinner & Compact)
                                         }
                                         ${isSelected
-                                            ? 'border-dlp-accent bg-dlp-accent/10 text-dlp-accent shadow-sm z-10'
-                                            : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:shadow-sm'
+                                            ? 'border-dlp-accent bg-dlp-accent/10 text-dlp-accent shadow-sm z-10 scale-[1.02]'
+                                            : 'bg-white border-slate-200 text-slate-600 hover:border-dlp-accent/40 hover:bg-dlp-accent/5 hover:shadow-sm hover:scale-[1.01]'
                                         }
                                     `}
                                 >
-                                    {/* Selection Indicator (Dot) */}
+                                    {/* Selection Indicator (Checkmark or Dot) */}
                                     {isSelected && (
-                                        <div className={`absolute rounded-full bg-dlp-accent ${isBasic ? 'top-2 right-2 w-1.5 h-1.5' : 'top-1 right-1 w-1 h-1'}`} />
+                                        <div className={`absolute rounded-full bg-dlp-accent shadow-sm ${isBasic ? 'top-2 right-2 w-1.5 h-1.5' : 'top-1 right-1 w-1.5 h-1.5'}`} />
                                     )}
 
-                                    <span className={`font-bold leading-tight w-full ${isSelected ? 'text-dlp-accent' : 'text-slate-600'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
+                                    <span className={`font-semibold leading-snug w-full transition-colors ${isSelected ? 'text-dlp-accent' : 'text-slate-700 group-hover:text-dlp-accent/80'} ${isBasic ? 'text-xs mb-0.5 line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
                                         {t(preset.name)}
                                     </span>
 
-                                    {/* Sub-region Tag (shown if Country is filtered or in All view) */}
-                                    {/* If looking at All, show Country. If specific country, show Region if different? */}
-                                    {/* Simplification: Just show region if it exists available on card? No, cluttered. */}
-                                    {/* Just keep description or maybe a tiny tag for region? */}
-
                                     {/* Description - ONLY IN GUIDED MODE */}
                                     {isBasic && preset.description && (
-                                        <p className={`text-[9px] leading-tight line-clamp-2 mt-0.5 ${isSelected ? 'text-lime-600/70' : 'text-slate-400'}`}>
+                                        <p className={`text-[9px] leading-tight line-clamp-2 mt-0.5 transition-colors ${isSelected ? 'text-dlp-accent/60' : 'text-slate-400 group-hover:text-slate-500'}`}>
                                             {t(preset.description)}
                                         </p>
                                     )}

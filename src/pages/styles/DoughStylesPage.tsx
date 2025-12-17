@@ -83,7 +83,7 @@ interface DoughStylesPageProps {
 const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, onUseInCalculator }) => {
     const { styles: stylesData } = useStyles();
     const { userStyles, isFavorite, deleteUserStyle } = useUser();
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles']);
     const CATEGORY_FILTERS = getCategoryFilters(t);
 
     // State

@@ -4,11 +4,13 @@ import { useTranslation } from '@/i18n';
 import { useUser } from '@/contexts/UserProvider';
 import { OvenType } from '@/types';
 
-export const useOvenProfiler = () => {
+export const useOvenProfiler = (ovenId?: string) => {
     const { ovens } = useUser();
 
-    // Find default oven or use the first one
-    const defaultOven = ovens.find(o => o.isDefault) || ovens[0];
+    // Find specific oven by ID, or default oven, or use the first one
+    const targetOven = ovenId
+        ? ovens.find(o => o.id === ovenId)
+        : (ovens.find(o => o.isDefault) || ovens[0]);
 
     const [profile, setProfile] = useState<OvenProfileInput>({
         ovenType: 'home_electric',
@@ -24,24 +26,24 @@ export const useOvenProfiler = () => {
 
     // Load from saved oven if available
     useEffect(() => {
-        if (defaultOven) {
+        if (targetOven) {
             let mappedType = 'home_electric';
-            if (defaultOven.type === OvenType.GAS) mappedType = 'home_gas';
-            if (defaultOven.type === OvenType.WOOD) mappedType = 'wood';
-            if (defaultOven.type === OvenType.STONE_OVEN) mappedType = 'deck';
+            if (targetOven.type === OvenType.GAS) mappedType = 'home_gas';
+            if (targetOven.type === OvenType.WOOD) mappedType = 'wood';
+            if (targetOven.type === OvenType.STONE_OVEN) mappedType = 'deck';
 
             let mappedSurface = 'none';
-            if (defaultOven.hasSteel) mappedSurface = 'steel';
-            else if (defaultOven.hasStone) mappedSurface = 'stone';
+            if (targetOven.hasSteel) mappedSurface = 'steel';
+            else if (targetOven.hasStone) mappedSurface = 'stone';
 
             setProfile(prev => ({
                 ...prev,
                 ovenType: mappedType,
-                maxTemperature: defaultOven.maxTemperature || 250,
+                maxTemperature: targetOven.maxTemperature || 250,
                 surface: mappedSurface
             }));
         }
-    }, [defaultOven]);
+    }, [targetOven]);
 
     const updateProfile = (field: keyof OvenProfileInput, value: any) => {
         setProfile(prev => ({

@@ -14,9 +14,10 @@ import {
   FavoriteItem,
   UserSettings,
   OvenType,
+  CustomPreset,
 } from '@/types';
 import { useToast } from '@/components/ToastProvider';
-import { hoursBetween } from '@/helpers';
+import { hoursBetween, sanitizeForFirestore } from '@/helpers';
 import { logEvent } from '@/services/analytics';
 import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
@@ -65,7 +66,7 @@ const getStatusFromLastFeeding = (levain: Levain): LevainStatus => {
 };
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'ui', 'styles']);
   const { addToast } = useToast();
   const { loginWithGoogle, logout: authLogout } = useAuth();
 
@@ -81,6 +82,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [testSeries, setTestSeries] = useState<TestSeries[]>([]);
   const [userStyles, setUserStyles] = useState<DoughStyleDefinition[]>([]);
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const [customPresets, setCustomPresets] = useState<CustomPreset[]>([]);
 
   // Use custom hook for batches
   const { batches, addBatch, updateBatch, deleteBatch, createDraftBatch } = useBatchManager(
@@ -136,7 +138,15 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (!authUser) {
         // Check for VIP Guest URL or Persistence
         const urlParams = new URLSearchParams(window.location.search);
-        const isVip = urlParams.get('vip') === 'true' || localStorage.getItem('dough-lab-vip-mode') === 'true';
+        const vipParam = urlParams.get('vip');
+
+        if (vipParam === 'true') {
+          localStorage.setItem('dough-lab-vip-mode', 'true');
+        } else if (vipParam === 'false') {
+          localStorage.removeItem('dough-lab-vip-mode');
+        }
+
+        const isVip = vipParam === 'true' || localStorage.getItem('dough-lab-vip-mode') === 'true';
 
         if (isVip) {
           const guestAuth = { uid: 'vip-guest-user', email: 'vip@doughlab.pro' };
@@ -166,6 +176,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setTestSeries([]);
         setUserStyles([]);
         setFavorites([]);
+        setCustomPresets([]);
         return;
       }
 
@@ -313,6 +324,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const unsubTestSeries = createCollectionSubscription('testSeries', setTestSeries);
     const unsubUserStyles = createCollectionSubscription('styles', setUserStyles);
     const unsubFavorites = createCollectionSubscription('favorites', setFavorites);
+    const unsubCustomPresets = createCollectionSubscription('customPresets', setCustomPresets);
 
     return () => {
       unsubOvens();
@@ -321,6 +333,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       unsubTestSeries();
       unsubUserStyles();
       unsubFavorites();
+      unsubCustomPresets();
     };
   }, [createCollectionSubscription]);
 
@@ -371,19 +384,33 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Helpers for CRUD - Mock Aware
   const createDoc = useCallback(
     async (collectionName: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
+      const usingFirestore = shouldUseFirestore(firebaseUser, db);
+      console.log(`[createDoc] ${collectionName} - usingFirestore: ${usingFirestore}, uid: ${firebaseUser?.uid}`);
+
       const now = new Date().toISOString();
-      const docData = {
+      const rawData = {
         ...data,
         createdAt: now,
         updatedAt: now,
       };
 
-      if (shouldUseFirestore(firebaseUser, db)) {
-        const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
-        const docRef = await addDoc(collRef, docData);
-        return { ...docData, id: docRef.id };
+      const docData = sanitizeForFirestore(rawData);
+
+      if (usingFirestore) {
+        try {
+          const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
+          const docRef = await addDoc(collRef, docData);
+          console.log(`[createDoc] Success: ${docRef.id}`);
+          return { ...docData, id: docRef.id };
+        } catch (error: any) {
+          console.error(`[createDoc] Firestore Error:`, error);
+          addToast(`Error saving to cloud: ${error.message}`, 'error');
+          // Fallback to local? No, better to let user know it failed.
+          throw error;
+        }
       } else {
         // Mock Mode
+        console.warn('[createDoc] Falling back to Mock Mode (Local State Only)');
         const newId = `mock-${collectionName}-${Date.now()}`;
         const newItem = { ...docData, id: newId };
         if (stateSetter) {
@@ -392,23 +419,35 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return newItem;
       }
     },
-    [firebaseUser]
+    [firebaseUser, addToast]
   );
 
   const updateDocFn = useCallback(
     async (collectionName: string, id: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
-      const update = { ...data, updatedAt: new Date().toISOString() };
+      const usingFirestore = shouldUseFirestore(firebaseUser, db);
+      console.log(`[updateDoc] ${collectionName}/${id} - usingFirestore: ${usingFirestore}`);
 
-      if (shouldUseFirestore(firebaseUser, db)) {
-        const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
-        await updateDoc(docRef, update);
+      const rawUpdate = { ...data, updatedAt: new Date().toISOString() };
+      const update = sanitizeForFirestore(rawUpdate);
+
+      if (usingFirestore) {
+        try {
+          const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
+          await updateDoc(docRef, update);
+          console.log(`[updateDoc] Success`);
+        } catch (error: any) {
+          console.error(`[updateDoc] Firestore Error:`, error);
+          addToast(`Error updating cloud: ${error.message}`, 'error');
+          throw error;
+        }
       } else {
+        console.warn('[updateDoc] Falling back to Mock Mode');
         if (stateSetter) {
           stateSetter(prev => prev.map(item => item.id === id ? { ...item, ...update } : item));
         }
       }
     },
-    [firebaseUser]
+    [firebaseUser, addToast]
   );
 
   const deleteDocFn = useCallback(
@@ -524,7 +563,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const batch = writeBatch(db);
         levainsToImport.forEach((levain) => {
           const docRef = doc(collection(db, 'users', firebaseUser.uid, 'levains'));
-          batch.set(docRef, levain);
+          const sanitizedLevain = sanitizeForFirestore(levain);
+          batch.set(docRef, sanitizedLevain);
         });
         await batch.commit();
       } else {
@@ -636,8 +676,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Favorites
   const toggleFavorite = useCallback(
     async (item: Omit<FavoriteItem, 'createdAt'>) => {
+      const usingFirestore = shouldUseFirestore(firebaseUser, db);
+      console.log(`[toggleFavorite] item: ${item.title} (${item.type}), usingFirestore: ${usingFirestore}`);
+
       // Guest Mode Logic
-      if (!shouldUseFirestore(firebaseUser, db)) {
+      if (!usingFirestore) {
         let newFavorites = [...favorites];
         // Use logic ID check
         const existingIndex = newFavorites.findIndex(f => (f.itemId === item.id || f.id === item.id) && f.type === item.type);
@@ -645,7 +688,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         if (existingIndex >= 0) {
           // Remove
           newFavorites.splice(existingIndex, 1);
-          addToast('Removed from favorites', 'info');
+          addToast(t('ui.removed_from_favorites'), 'info');
         } else {
           // Add
           const newItem: FavoriteItem = {
@@ -657,7 +700,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             createdAt: new Date().toISOString()
           };
           newFavorites.push(newItem);
-          addToast('Saved to favorites', 'success');
+          addToast(t('ui.saved_to_favorites'), 'success');
         }
 
         setFavorites(newFavorites);
@@ -666,34 +709,67 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
 
       // Firestore Logic (Logged In)
-      // Use 'itemId' to look for the logical ID in the favorites array
-      // Note: favorites array items have 'itemId' because we query Firestore and get all data
-      const existing = favorites.find(f => (f.itemId === item.id || f.id === item.id) && f.type === item.type);
+      try {
+        const existing = favorites.find(f => (f.itemId === item.id || f.id === item.id) && f.type === item.type);
 
-      if (existing) {
-        // Remove
-        // existing.id is the Firestore Document ID (from createCollectionSubscription)
-        await deleteDocFn('favorites', existing.id);
-        addToast('Removed from favorites', 'info');
-      } else {
-        // Add
-        await addDoc(collection(db, 'users', firebaseUser.uid, 'favorites'), {
-          itemId: item.id, // Store logical ID as itemId
-          type: item.type,
-          title: item.title,
-          metadata: item.metadata || {},
-          createdAt: new Date().toISOString()
-        });
-        addToast('Saved to favorites', 'success');
+        if (existing) {
+          // Remove
+          const docRef = doc(db, 'users', firebaseUser.uid, 'favorites', existing.id);
+          await deleteDoc(docRef);
+          addToast(t('ui.removed_from_favorites'), 'info');
+        } else {
+          // Add
+          const rawData = {
+            itemId: item.id, // Store logical ID as itemId
+            type: item.type,
+            title: item.title,
+            metadata: item.metadata || {},
+            createdAt: new Date().toISOString()
+          };
+          const data = sanitizeForFirestore(rawData);
+
+          const collRef = collection(db, 'users', firebaseUser.uid, 'favorites');
+          await addDoc(collRef, data);
+          addToast(t('ui.saved_to_favorites'), 'success');
+        }
+      } catch (error: any) {
+        console.error(`[toggleFavorite] Error:`, error);
+        addToast(`${t('ui.error_saving_favorite')}: ${error.message}`, 'error');
       }
     },
-    [favorites, firebaseUser, addToast]
+    [favorites, firebaseUser, addToast, t]
   );
 
   const isFavorite = useCallback((id: string) => {
     // Check if any favorite has itemId === id (logical) or id === id (legacy/fallback)
     return favorites.some(f => f.itemId === id || f.id === id);
   }, [favorites]);
+
+  // Custom Presets
+  const addCustomPreset = useCallback(
+    async (presetData: Omit<CustomPreset, 'id' | 'createdAt' | 'updatedAt'>): Promise<CustomPreset> => {
+      const newPreset = await createDoc('customPresets', presetData, setCustomPresets);
+      addToast(`Preset "${presetData.name}" saved to My Labs!`, 'success');
+      return newPreset as CustomPreset;
+    },
+    [createDoc, addToast]
+  );
+
+  const updateCustomPreset = useCallback(
+    async (preset: CustomPreset) => {
+      await updateDocFn('customPresets', preset.id, preset, setCustomPresets);
+      addToast(`Preset "${preset.name}" updated.`, 'success');
+    },
+    [updateDocFn, addToast]
+  );
+
+  const deleteCustomPreset = useCallback(
+    async (id: string) => {
+      await deleteDocFn('customPresets', id, setCustomPresets);
+      addToast('Preset deleted.', 'info');
+    },
+    [deleteDocFn, addToast]
+  );
 
 
   // Entitlements
@@ -790,6 +866,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     favorites,
     toggleFavorite,
     isFavorite,
+    customPresets,
+    addCustomPreset,
+    updateCustomPreset,
+    deleteCustomPreset,
     defaultAmbientTempC: userSettings.defaultAmbientTempC,
     setDefaultAmbientTempC,
     defaultOvenType: userSettings.defaultOvenType,
@@ -847,6 +927,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     favorites,
     toggleFavorite,
     isFavorite,
+    customPresets,
+    addCustomPreset,
+    updateCustomPreset,
+    deleteCustomPreset,
     userSettings.defaultAmbientTempC,
     setDefaultAmbientTempC,
     userSettings.defaultOvenType,

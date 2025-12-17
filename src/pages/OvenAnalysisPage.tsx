@@ -5,10 +5,13 @@ import { useOvenProfiler } from '@/hooks/useOvenProfiler';
 import { OvenProfilerForm } from '@/components/tools/ovenProfiler/OvenProfilerForm';
 import { OvenProfilerResults } from '@/components/tools/ovenProfiler/OvenProfilerResults';
 import { useTranslation } from '@/i18n';
+import { useRouter } from '@/contexts/RouterContext';
 
 export const OvenAnalysisPage: React.FC = () => {
   const { t } = useTranslation();
-  const { profile, errors, analysis, updateProfile, analyze } = useOvenProfiler();
+  const { routeParams } = useRouter();
+  const ovenId = routeParams || undefined;
+  const { profile, errors, analysis, updateProfile, analyze } = useOvenProfiler(ovenId);
 
   const handleAnalyze = () => {
     if (analyze()) {

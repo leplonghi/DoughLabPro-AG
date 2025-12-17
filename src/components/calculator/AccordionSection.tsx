@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from '@/i18n';
 
 interface AccordionSectionProps {
+    id?: string;
     title: string;
     description?: string;
     icon?: React.ReactNode;
@@ -10,6 +11,7 @@ interface AccordionSectionProps {
 }
 
 const AccordionSection: React.FC<AccordionSectionProps> = ({
+    id,
     title,
     description,
     icon,
@@ -18,7 +20,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
 }) => {
     const { t } = useTranslation();
     return (
-        <div className={`rounded-xl border border-dlp-border bg-dlp-bg-card p-4 shadow-dlp-sm transition-all hover:shadow-dlp-md ${className}`}>
+        <div id={id} className={`rounded-xl border border-dlp-border bg-dlp-bg-card p-4 shadow-dlp-sm transition-all hover:shadow-dlp-md ${className}`}>
             <div className="mb-3 flex items-start gap-4">
                 {icon && (
                     <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-dlp-bg-muted text-dlp-accent">

@@ -111,6 +111,8 @@ export interface StyleDefinition {
         oil?: number;
         sugar?: number;
     };
+    /** Recommended flavor components (IDs) for this style */
+    recommendedFlavorComponents?: string[];
     /** Base formula for ingredient-driven engine */
     base_formula?: {
         name: string;

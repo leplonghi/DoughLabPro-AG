@@ -7,9 +7,17 @@ import ErrorBoundary from '@/components/ui/ErrorBoundary';
 // Import i18n for side-effect initialization
 import '@/i18n';
 
-// Force Light Theme
+// ========================================
+// DoughLabPro Design System Enforcement
+// ========================================
+// IMPORTANT: This app is LIGHT MODE ONLY
+// - Force remove any dark mode classes
+// - Clear any theme preferences
+// - This is a PERMANENT design decision
+// ========================================
 document.documentElement.classList.remove('dark');
 localStorage.removeItem('theme');
+
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

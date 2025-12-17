@@ -3,7 +3,7 @@ import { DoughStyle, RecipeStyle } from '../../../types/dough';
 export const latamStyles: DoughStyle[] = [
     {
         id: 'pao-de-queijo',
-        name: 'pao_de_queijo_name',
+        name: 'styles.pao_de_queijo_name',
         region: 'South America',
         subRegion: 'Minas Gerais, Brazil',
         category: 'Snack',
@@ -88,7 +88,7 @@ export const latamStyles: DoughStyle[] = [
     },
     {
         id: 'pao-frances',
-        name: 'pao_frances_name',
+        name: 'styles.pao_frances_name',
         region: 'South America',
         subRegion: 'Brazil',
         category: 'Bread',
@@ -173,7 +173,7 @@ export const latamStyles: DoughStyle[] = [
     },
     {
         id: 'fugazzeta-rellena',
-        name: 'fugazzeta_rellena_name',
+        name: 'styles.fugazzeta_rellena_name',
         region: 'South America',
         subRegion: 'Argentina',
         category: 'Pizza',
@@ -264,7 +264,7 @@ export const latamStyles: DoughStyle[] = [
     },
     {
         id: 'medialunas',
-        name: 'medialunas_name',
+        name: 'styles.medialunas_name',
         region: 'South America',
         subRegion: 'Argentina',
         category: 'Pastry',
@@ -347,7 +347,7 @@ export const latamStyles: DoughStyle[] = [
     },
     {
         id: 'conchas',
-        name: 'conchas_name',
+        name: 'styles.conchas_name',
         region: 'North America', // Actually Mexico is NA, but usually grouped in LatAm for cultural styles in this app context? The file is latam.ts.
         subRegion: 'Mexico',
         category: 'Enriched',
@@ -436,7 +436,7 @@ export const latamStyles: DoughStyle[] = [
     },
     {
         id: "brazilian_gas_deck",
-        name: 'pizza_paulistana_name',
+        name: 'styles.pizza_paulistana_name',
         region: 'South America',
         subRegion: 'São paulo brazil',
         category: 'Pizza',
@@ -518,7 +518,7 @@ export const latamStyles: DoughStyle[] = [
     },
     {
         id: "arepa",
-        name: 'arepa_name',
+        name: 'styles.arepa_name',
         region: 'South America',
         subRegion: "Venezuela/Colombia",
         category: 'Flatbread',
@@ -598,7 +598,7 @@ export const latamStyles: DoughStyle[] = [
     },
     {
         id: "empanada-dough",
-        name: 'empanada_dough_name',
+        name: 'styles.empanada_dough_name',
         region: 'South America',
         subRegion: 'Argentina',
         category: 'Pastry',

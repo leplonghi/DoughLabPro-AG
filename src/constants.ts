@@ -62,7 +62,7 @@ export const DEFAULT_CONFIG: DoughConfig = {
   ambientTemperature: AmbientTemperature.MILD,
   bakingTempC: 430,
   scale: 1,
-  flourId: 'generic',
+  flourId: 'generic_all_purpose',
   prefermentFlourPercentage: 20, // Default for Biga/Poolish
   notes: '',
   ingredients: [],

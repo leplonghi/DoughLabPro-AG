@@ -2,17 +2,16 @@ import React, { ReactNode } from 'react';
 import i18n from 'i18next';
 import { initReactI18next, useTranslation as useI18nextTranslation } from 'react-i18next';
 import HttpBackend from 'i18next-http-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
+
 import { Locale } from './types';
 
 // Initialize i18next
 i18n
   .use(HttpBackend)
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: 'en', // Hardcoded English
     fallbackLng: 'en',
-    lng: 'en', // Force English
     supportedLngs: ['en'],
     ns: ['common'], // Default namespace loaded initially
     defaultNS: 'common',
@@ -26,11 +25,6 @@ i18n
     },
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
-    },
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'i18nextLng',
     },
     react: {
       useSuspense: false, // Prevent white screen during transition

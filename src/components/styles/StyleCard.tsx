@@ -14,7 +14,7 @@ interface StyleCardProps {
 }
 
 export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, onDelete }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles']);
     const { navigate } = useRouter();
     const { isFavorite, toggleFavorite } = useUser();
     const favorited = isFavorite(style.id);
@@ -91,9 +91,9 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                 <h3 className="text-xl font-semibold text-slate-900 mb-1 group-hover:text-lime-600 transition-colors line-clamp-1">{t(style.name)}</h3>
                 <div className="flex items-center gap-2 text-xs text-slate-500 font-medium uppercase tracking-wide">
                     <span className="flex items-center gap-1">
-                        <Globe className="w-3 h-3" /> {t(style.origin.country || '')}
+                        <Globe className="w-3 h-3" /> {style.origin.country || ''}
                     </span>
-                    {style.origin.region && <span>• {t(style.origin.region)}</span>}
+                    {style.origin.region && <span>• {style.origin.region}</span>}
                 </div>
             </div>
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { InfoIcon, LockClosedIcon, ExclamationCircleIcon } from '@/components/ui/Icons';
-import { HydrationVisualizer } from './HydrationVisualizer';
 import { InfoTooltip } from '@/components/ui/InfoTooltip';
 
 interface HydrationInputProps {
@@ -19,6 +18,7 @@ interface HydrationInputProps {
     disabled?: boolean;
     tooltip?: string;
     learnArticle?: any;
+    totalFlour?: number;
 }
 
 export const HydrationInput: React.FC<HydrationInputProps> = ({
@@ -34,15 +34,21 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
     recommendedMax,
     disabled = false,
     tooltip,
-    learnArticle
+    learnArticle,
+    totalFlour
 }) => {
     const { t } = useTranslation(['calculator', 'common']);
     const [internalValue, setInternalValue] = useState(value);
+    const [gramsValue, setGramsValue] = useState<string>('');
     const debounceTimeout = useRef<number | null>(null);
 
+    // Sync internal state with props
     useEffect(() => {
         setInternalValue(value);
-    }, [value]);
+        if (totalFlour) {
+            setGramsValue(Math.round((value / 100) * totalFlour).toString());
+        }
+    }, [value, totalFlour]);
 
     useEffect(() => {
         return () => {
@@ -50,38 +56,60 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
         };
     }, []);
 
-    const handleDebouncedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = Number(e.target.value);
-        setInternalValue(newValue);
-
+    const triggerChange = (newValue: number) => {
         if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
 
+        const syntheticEvent = {
+            target: {
+                value: String(newValue),
+                name: 'hydration' // Default name, though often unused by parent's direct handler which might expect event
+            }
+        } as React.ChangeEvent<HTMLInputElement>;
+
+        debounceTimeout.current = window.setTimeout(() => {
+            onChange(syntheticEvent);
+        }, 300); // Slightly longer debounce for text inputs
+    };
+
+    const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = Number(e.target.value);
+        setInternalValue(newValue);
+        if (totalFlour) {
+            setGramsValue(Math.round((newValue / 100) * totalFlour).toString());
+        }
+
+        if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
         debounceTimeout.current = window.setTimeout(() => {
             onChange(e);
         }, 50);
     };
 
-    const visualState = useMemo(() => {
-        const h = Math.min(Math.max(internalValue, 45), 95);
-        const factor = (h - 50) / 40;
+    const handlePercentageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const strVal = e.target.value;
+        setInternalValue(Number(strVal)); // Update UI immediately for responsiveness
 
-        let scaleX = 1 + (factor * 0.6);
-        let scaleY = 1 - (factor * 0.5);
-
-        if (h < 50) {
-            scaleX = 0.9;
-            scaleY = 1.1;
+        const val = parseFloat(strVal);
+        if (!isNaN(val)) {
+            if (totalFlour) {
+                setGramsValue(Math.round((val / 100) * totalFlour).toString());
+            }
+            triggerChange(val);
         }
+    };
 
-        return {
-            scaleX,
-            scaleY,
-            borderRadius: h > 65 ? '50% 50% 45% 45%' : '50%',
-            backgroundColor: '#f6e6b4',
-            shadowOpacity: 0.1 + (factor * 0.2),
-            spreadRadius: 10 + (factor * 20),
-        };
-    }, [internalValue]);
+    const handleGramsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const strVal = e.target.value;
+        setGramsValue(strVal);
+
+        if (totalFlour) {
+            const grams = parseFloat(strVal);
+            if (!isNaN(grams)) {
+                const percent = (grams / totalFlour) * 100;
+                setInternalValue(Number(percent.toFixed(1)));
+                triggerChange(Number(percent.toFixed(1)));
+            }
+        }
+    };
 
     const isOutOfRange = (recommendedMin !== undefined && internalValue < recommendedMin) ||
         (recommendedMax !== undefined && internalValue > recommendedMax);
@@ -100,9 +128,40 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
                 </label>
                 <div className="flex items-center gap-2">
                     {isOutOfRange && <ExclamationCircleIcon className="h-4 w-4 text-dlp-warning" />}
-                    <span className={`text-base font-bold font-mono ${hasError ? 'text-dlp-error' : 'text-dlp-text-primary'}`}>
-                        {internalValue}%
-                    </span>
+
+                    {/* Inputs Container */}
+                    <div className="flex items-center gap-2">
+                        {/* Percentage Input */}
+                        <div className="relative">
+                            <input
+                                type="number"
+                                value={internalValue}
+                                onChange={handlePercentageChange}
+                                className={`w-16 rounded-md border-dlp-border py-1 px-2 text-right text-sm font-bold font-mono focus:border-dlp-accent focus:ring-dlp-accent ${hasError ? 'text-dlp-error border-dlp-error' : 'text-dlp-text-primary'}`}
+                                min={0}
+                                max={200}
+                                step={0.1}
+                            />
+                            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs text-dlp-text-muted pointer-events-none">%</span>
+                        </div>
+
+                        {/* Grams Input (if totalFlour available) */}
+                        {totalFlour && (
+                            <>
+                                <span className="text-dlp-text-muted text-xs">=</span>
+                                <div className="relative">
+                                    <input
+                                        type="number"
+                                        value={gramsValue}
+                                        onChange={handleGramsChange}
+                                        className="w-20 rounded-md border-dlp-border py-1 px-2 text-right text-sm font-bold font-mono focus:border-dlp-accent focus:ring-dlp-accent text-dlp-text-secondary bg-slate-50/50"
+                                        placeholder="g"
+                                    />
+                                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-dlp-text-muted pointer-events-none">g</span>
+                                </div>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -115,7 +174,7 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
                         max={max}
                         step={step}
                         value={internalValue}
-                        onChange={handleDebouncedChange}
+                        onChange={handleSliderChange}
                         disabled={disabled}
                         className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-dlp-accent/50"
                         style={{
@@ -137,9 +196,6 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
                         </div>
                     )}
                 </div>
-
-                {/* New Visualizer Component */}
-                <HydrationVisualizer hydrationPercentage={internalValue} />
 
                 {/* Footer Link */}
                 {learnArticle && (

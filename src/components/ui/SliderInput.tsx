@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { InfoIcon, LockClosedIcon, ExclamationCircleIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
@@ -21,6 +20,7 @@ interface SliderInputProps {
   recommendedMin?: number;
   recommendedMax?: number;
   learnArticle?: { id: string; title: string; category: string };
+  totalFlour?: number;
 }
 
 const SliderInput: React.FC<SliderInputProps> = ({
@@ -41,14 +41,20 @@ const SliderInput: React.FC<SliderInputProps> = ({
   recommendedMin,
   recommendedMax,
   learnArticle,
+  totalFlour,
 }) => {
   const { t } = useTranslation();
   const [internalValue, setInternalValue] = useState(value);
+  const [gramsValue, setGramsValue] = useState<string>('');
   const debounceTimeout = useRef<number | null>(null);
 
   useEffect(() => {
     setInternalValue(value);
-  }, [value]);
+    if (totalFlour && unit === '%') {
+      const grams = (value / 100) * totalFlour;
+      setGramsValue(Math.abs(Math.round(grams) - grams) < 0.1 ? Math.round(grams).toString() : grams.toFixed(1));
+    }
+  }, [value, totalFlour, unit]);
 
   useEffect(() => {
     return () => {
@@ -58,9 +64,29 @@ const SliderInput: React.FC<SliderInputProps> = ({
     };
   }, []);
 
-  const handleDebouncedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const triggerChange = (newValue: number) => {
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+
+    debounceTimeout.current = window.setTimeout(() => {
+      const syntheticEvent = {
+        target: {
+          name: name,
+          value: String(newValue),
+        },
+      } as React.ChangeEvent<HTMLInputElement>;
+      onChange(syntheticEvent);
+    }, 300);
+  };
+
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value);
     setInternalValue(newValue);
+    if (totalFlour && unit === '%') {
+      const grams = (newValue / 100) * totalFlour;
+      setGramsValue(Math.abs(Math.round(grams) - grams) < 0.1 ? Math.round(grams).toString() : grams.toFixed(1));
+    }
 
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
@@ -74,13 +100,40 @@ const SliderInput: React.FC<SliderInputProps> = ({
         },
       } as React.ChangeEvent<HTMLInputElement>;
       onChange(syntheticEvent);
-    }, 150);
+    }, 50);
+  };
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const strVal = e.target.value;
+    const val = parseFloat(strVal);
+    setInternalValue(val); // UI update
+
+    if (!isNaN(val)) {
+      if (totalFlour && unit === '%') {
+        const grams = (val / 100) * totalFlour;
+        setGramsValue(Math.abs(Math.round(grams) - grams) < 0.1 ? Math.round(grams).toString() : grams.toFixed(1));
+      }
+      triggerChange(val);
+    }
+  };
+
+  const handleGramsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const strVal = e.target.value;
+    setGramsValue(strVal);
+
+    if (totalFlour && unit === '%') {
+      const grams = parseFloat(strVal);
+      if (!isNaN(grams)) {
+        const percent = (grams / totalFlour) * 100;
+        setInternalValue(Number(percent.toFixed(2)));
+        triggerChange(Number(percent.toFixed(2)));
+      }
+    }
   };
 
   const isOutOfRange = (recommendedMin !== undefined && value < recommendedMin) ||
     (recommendedMax !== undefined && value > recommendedMax);
 
-  const formattedValue = internalValue.toFixed(2).replace(/\.00$/, '').replace(/\.([1-9])0$/, '.$1');
   const wrapperClasses = `relative ${disabled ? 'opacity-70' : ''}`;
   const inputContainerClasses = `flex items-center gap-4 ${disabled ? 'rounded-lg border-2 border-dashed border-dlp-border bg-dlp-bg-muted p-2' : ''}`;
 
@@ -149,12 +202,39 @@ const SliderInput: React.FC<SliderInputProps> = ({
               </div>
             </div>
           )}
-          <span className={`rounded-md px-2 py-0.5 text-lg font-bold transition-colors ${hasError
-            ? 'bg-dlp-error/10 text-dlp-error'
-            : isOutOfRange ? 'text-dlp-warning' : 'text-dlp-text-primary'
-            }`}>
-            {formattedValue}{unit}
-          </span>
+
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <input
+                type="number"
+                value={internalValue}
+                onChange={handleTextChange}
+                className={`w-16 rounded-md border-dlp-border py-0.5 px-2 text-right text-sm font-bold focus:border-dlp-accent focus:ring-dlp-accent ${hasError ? 'text-dlp-error border-dlp-error' : 'text-dlp-text-primary'} ${disabled ? 'bg-transparent' : ''}`}
+                disabled={disabled}
+                min={min}
+                max={max}
+                step={step}
+              />
+              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs text-dlp-text-muted pointer-events-none">{unit}</span>
+            </div>
+
+            {totalFlour && unit === '%' && (
+              <>
+                <span className="text-dlp-text-muted text-xs">=</span>
+                <div className="relative">
+                  <input
+                    type="number"
+                    value={gramsValue}
+                    onChange={handleGramsChange}
+                    className="w-20 rounded-md border-dlp-border py-0.5 px-2 text-right text-sm font-bold focus:border-dlp-accent focus:ring-dlp-accent text-dlp-text-secondary bg-slate-50/50"
+                    placeholder="g"
+                    disabled={disabled}
+                  />
+                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-dlp-text-muted pointer-events-none">g</span>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
@@ -164,13 +244,15 @@ const SliderInput: React.FC<SliderInputProps> = ({
           id={name}
           name={name}
           value={internalValue}
-          onChange={handleDebouncedChange}
+          onChange={handleSliderChange}
           min={min}
           max={max}
           step={step}
           disabled={disabled}
-          className={`h-2 w-full appearance-none rounded-lg ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-            }`}
+          className={`h-2 w-full appearance-none rounded-lg ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+          style={{
+            backgroundImage: `linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) ${(internalValue - min) / (max - min) * 100}%, #e2e8f0 ${(internalValue - min) / (max - min) * 100}%, #e2e8f0 100%)`
+          }}
         />
         {disabled && presetValue !== undefined && (
           <span className="flex-shrink-0 rounded-md bg-dlp-bg-muted px-2 py-1 text-sm font-semibold text-dlp-text-primary">

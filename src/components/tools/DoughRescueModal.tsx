@@ -66,9 +66,9 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl max-w-md w-full overflow-hidden border border-dlp-border"
+                            className="bg-white rounded-2xl shadow-xl max-w-md w-full overflow-hidden border border-dlp-border"
                         >
-                            <div className="p-5 border-b border-dlp-border flex justify-between items-center bg-slate-50 dark:bg-slate-800/50">
+                            <div className="p-5 border-b border-dlp-border flex justify-between items-center bg-slate-50">
                                 <div>
                                     <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
                                         <AlertCircle className="w-5 h-5 text-dlp-accent" />
@@ -76,7 +76,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                                     </h3>
                                     <p className="text-xs text-dlp-text-muted">Don't panic. Everything is fixable.</p>
                                 </div>
-                                <button onClick={onClose} className="p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+                                <button onClick={onClose} className="p-1 rounded-full hover:bg-black/5 transition-colors">
                                     <X className="w-5 h-5 text-dlp-text-secondary" />
                                 </button>
                             </div>
@@ -116,7 +116,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                                                 <selectedIssue.icon className={`w-8 h-8 ${selectedIssue.color.split(' ')[0]}`} />
                                                 <h4 className="text-xl font-bold text-dlp-text-primary">{selectedIssue.label}</h4>
                                             </div>
-                                            <div className="bg-white/60 dark:bg-black/20 p-4 rounded-lg backdrop-blur-sm">
+                                            <div className="bg-white/60 p-4 rounded-lg backdrop-blur-sm">
                                                 <p className="font-semibold text-sm text-dlp-text-secondary mb-1 uppercase tracking-wider">The Fix</p>
                                                 <p className="text-base text-dlp-text-primary leading-relaxed">
                                                     {selectedIssue.fix}
@@ -124,7 +124,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                                             </div>
                                         </div>
 
-                                        <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-dlp-border text-center">
+                                        <div className="bg-slate-50 p-4 rounded-xl border border-dlp-border text-center">
                                             <p className="text-sm text-dlp-text-secondary italic">
                                                 "Dough is alive. It responds to time and patience better than force."
                                             </p>

@@ -165,7 +165,7 @@ export function syncIngredientsFromConfig(config: DoughConfig): IngredientConfig
  */
 export const calculateDoughUniversal = (
   config: DoughConfig,
-  calculatorMode: 'basic' | 'advanced',
+  calculatorMode: 'wizard' | 'basic' | 'advanced',
   calculationMode: CalculationMode,
   userLevain?: Levain | null
 ): DoughResult => {

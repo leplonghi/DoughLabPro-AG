@@ -10,7 +10,7 @@ import { useTranslation } from '@/i18n';
  * - Ensures YeastType consistency if technique is Sourdough.
  */
 export function normalizeDoughConfig(config: DoughConfig): DoughConfig {
-  const allowedTechniques = getAllowedFermentationTechniques(config.recipeStyle, config.bakeType) || [];
+  const allowedTechniques = getAllowedFermentationTechniques(config.recipeStyle, config.bakeType, config.stylePresetId) || [];
 
   let newTechnique = config.fermentationTechnique;
   let newYeastType = config.yeastType;

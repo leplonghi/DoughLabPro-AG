@@ -5,21 +5,21 @@ const t = i18n.t.bind(i18n);
 
 export const sicilian_grandma_pan: StyleDefinition = {
   "id": "sicilian_grandma_pan",
-  "title": "Sicilian / Grandma Pan Pizza",
+  "title": t('styles.sicilian_grandma_pan_title'),
   "subtitle": t('styles.american_pan_pizza_3'),
   "category": t('styles.pizza_13'),
   "family": t('styles.american_pan_pizza_4'),
-  "variantName": "Sicilian / Grandma Pan Pizza",
+  "variantName": t('styles.sicilian_grandma_pan_variant'),
   "origin": {
     "country": t('styles.united_states_11'),
     "region": t('styles.italianamerican_communities'),
     "period": "20th century"
   },
-  "intro": "Popular in Italian-American bakeries and pizzerias for family-style trays and by-the-slice service.",
-  "history": "Sicilian and grandma-style pan pizzas interpret Italian focaccia and bakery pizzas into thick or medium-thickness pan-baked pies.",
+  "intro": t('styles.sicilian_grandma_pan_intro'),
+  "history": t('styles.sicilian_grandma_pan_history'),
   "technicalFoundations": [
-    "Often direct yeast dough; some formulas use sponge or poolish.",
-    "Hydration: 65-75%"
+    t('styles.sicilian_grandma_pan_tech_1'),
+    t('styles.sicilian_grandma_pan_tech_2')
   ],
   "doughImpact": [],
   "bakingImpact": [],
@@ -42,8 +42,8 @@ export const sicilian_grandma_pan: StyleDefinition = {
     ],
     "flourStrength": t('styles.bread_flour_or_strong_allpurpose'),
     "fermentation": {
-      "bulk": "2–6 h at room temperature or partial cold ferment",
-      "proof": "30–90 min in pan before baking",
+      "bulk": t('styles.sicilian_grandma_pan_fermentation_bulk'),
+      "proof": t('styles.sicilian_grandma_pan_fermentation_proof'),
       "coldRetard": t('styles.optional_1224_h')
     },
     "oven": {
@@ -56,8 +56,8 @@ export const sicilian_grandma_pan: StyleDefinition = {
     },
     "difficulty": t('styles.hard_24'),
     "recommendedUse": [
-      "Tray-baked pizza",
-      "Family-style pan pies"
+      t('styles.sicilian_grandma_pan_use_1'),
+      t('styles.sicilian_grandma_pan_use_2')
     ]
   },
   "regionalVariants": [],
@@ -67,8 +67,8 @@ export const sicilian_grandma_pan: StyleDefinition = {
   "risks": [],
   "notes": [],
   "tags": [
-    "Tray-baked pizza",
-    "Family-style pan pies",
+    t('styles.sicilian_grandma_pan_tag_1'),
+    t('styles.sicilian_grandma_pan_tag_2'),
     t('common.pizza'),
     t('common.united_states')
   ],

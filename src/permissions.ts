@@ -46,7 +46,8 @@ export type FeatureKey =
     | 'calculator.advanced'
     | 'levain.multipleLevains'
     | 'levain.exportPDF'
-    | 'calculator.advanced_ingredients';
+    | 'calculator.advanced_ingredients'
+    | 'calculator.flour_blend';
 
 export type PlanType = PlanId;
 export type PermissionKey = FeatureKey;
@@ -59,6 +60,7 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     'calculator.environmental_insights': ['calculator_unlock', 'lab_pro'],
     'calculator.advanced': ['free', 'calculator_unlock', 'lab_pro'], // Unlocked for free users
     'calculator.advanced_ingredients': ['calculator_unlock', 'lab_pro'],
+    'calculator.flour_blend': ['lab_pro'],
 
     // Styles
     'styles.pick_3_full': ['free', 'calculator_unlock', 'lab_pro'],

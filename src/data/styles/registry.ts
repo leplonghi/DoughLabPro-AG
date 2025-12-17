@@ -14,9 +14,6 @@ import { northAmericaStyles as americasStyles } from './regions/north_america';
 // --- SUPPLEMENTARY LIBRARY MODULES ---
 import { Challah, BurgerBun, Shokupan as ShokupanLegacy, Panettone } from './library/bread/enriched';
 import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './library/pastry/sweets';
-import { classicStyles } from './library/pizza/classics';
-import { panStyles } from './library/pizza/pan_styles';
-import { thinStyles } from './library/pizza/thin_styles';
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -127,11 +124,6 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         BurgerBun,
         // ShokupanLegacy, // Commented out to prefer the new Asia module version if desired
         Panettone,
-
-        // Pizza Library (V2 Localized)
-        ...classicStyles,
-        ...panStyles,
-        ...thinStyles,
 
         // Sweets & Pastry
         NYChocolateChip,

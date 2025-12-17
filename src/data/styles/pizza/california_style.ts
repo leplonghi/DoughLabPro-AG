@@ -15,11 +15,11 @@ export const california_style: StyleDefinition = {
     "region": t('styles.california'),
     "period": "1980s"
   },
-  "intro": "Associated with 'California Cuisine', fresh local ingredients, and wood-fired cooking.",
-  "history": "Popularized by chefs like Wolfgang Puck, focusing on gourmet, non-traditional toppings and a light, airy single-serving crust.",
+  "intro": t('styles.california_intro'),
+  "history": t('styles.california_history'),
   "technicalFoundations": [
-    "Direct dough or sponge, often with honey and olive oil.",
-    "Hydration: 60-68%"
+    t('styles.california_tech_1'),
+    t('styles.california_tech_2')
   ],
   "doughImpact": [],
   "bakingImpact": [],
@@ -42,8 +42,8 @@ export const california_style: StyleDefinition = {
     ],
     "flourStrength": t('styles.allpurpose_or_bread_flour_3'),
     "fermentation": {
-      "bulk": "12–24 h cold retard",
-      "proof": "1–2 h at room temperature",
+      "bulk": t('styles.california_fermentation_bulk'),
+      "proof": t('styles.california_fermentation_proof'),
       "coldRetard": t('styles.common_for_flavor')
     },
     "oven": {

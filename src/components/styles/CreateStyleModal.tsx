@@ -23,7 +23,7 @@ interface CreateStyleModalProps {
 const CATEGORIES: StyleCategory[] = ['pizza', 'bread', 'enriched_bread', 'burger_bun', 'pastry', 'cookies_confectionery', 'flatbread'];
 
 const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, onSave, defaultValues }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles', 'general', 'calculator']);
 
     // Moved inside to access translations
     const DIFFICULTIES = [t('styles.easy'), t('styles.medium'), t('styles.hard'), t('styles.expert')];
@@ -497,7 +497,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                 {/* Footer */}
                 <div className="p-5 border-t border-gray-100 bg-white flex justify-end gap-3 z-10 box-border">
                     <button onClick={onClose} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded-xl transition-colors">{t('common.cancel')}</button>
-                    <button onClick={handleSubmit} className="px-6 py-2.5 text-sm font-bold text-white bg-slate-900 hover:bg-black rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
+                    <button onClick={handleSubmit} className="px-6 py-2.5 text-sm font-bold text-white bg-lime-600 hover:bg-lime-700 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
                         <Save className="w-4 h-4" />
                         {formData.source === 'user_ai' ? t('styles.save_generated_style') : t('styles.save_style')}
                     </button>

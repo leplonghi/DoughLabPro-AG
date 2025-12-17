@@ -8,6 +8,7 @@ import { FermentationIcon, LockClosedIcon, InfoIcon } from '@/components/ui/Icon
 import { LockFeature } from '@/components/auth/LockFeature';
 import { getArticleById } from '@/data/learn';
 import { useTranslation } from '@/i18n';
+import { getTechniqueRecommendation } from '@/logic/fermentationLogic';
 
 interface FermentationSectionProps {
   config: DoughConfig;
@@ -47,16 +48,25 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
     }
   };
 
-  const isAllowed = (tech: FermentationTechnique) => {
-    // Always allow if in the explicit allowed list
-    if (safeAllowedTechniques.includes(tech)) return true;
-    // If not in basic mode (Advanced/Pro), allow overriding restrictions (except for purely chemical styles)
-    if (!isBasic) {
-      // Don't allow Yeast methods for purely Chemical/No-Ferment styles (like cookies) unless explicitly allowed
-      if (isChemicalOrNoFermentOnly) return false;
-      return true;
+  // Helper to get recommendation badge for a technique
+  const getRecommendationBadge = (tech: FermentationTechnique) => {
+    const recommendation = getTechniqueRecommendation(tech, config.stylePresetId);
+
+    if (recommendation.recommended) {
+      if (recommendation.suitability === 'authentic') {
+        return { label: '✓ Authentic', color: 'bg-green-100 text-green-700 border-green-200' };
+      }
+      return null; // No badge for suitable techniques
     }
-    return false;
+
+    // Not recommended - show variation badge
+    return { label: '⚠ Variation', color: 'bg-amber-100 text-amber-700 border-amber-200' };
+  };
+
+  const isAllowed = (tech: FermentationTechnique) => {
+    // Always allow all techniques (except for chemical-only styles)
+    if (isChemicalOrNoFermentOnly) return false;
+    return true;
   };
 
   // If the style only allows Chemical or No Ferment, we simplify the UI
@@ -145,11 +155,14 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 className={!isAllowed(FermentationTechnique.DIRECT) ? "opacity-50 cursor-not-allowed" : ""}
                 label={t('calculator.direct')}
               />
-              {!isAllowed(FermentationTechnique.DIRECT) && (
-                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title={t('calculator.not_applicable_for_this_style')}>
-                  <InfoIcon className="h-2.5 w-2.5" /> N/A
-                </div>
-              )}
+              {(() => {
+                const badge = getRecommendationBadge(FermentationTechnique.DIRECT);
+                return badge ? (
+                  <div className={`absolute -top-2 -right-2 text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-sm z-10 border ${badge.color}`}>
+                    {badge.label}
+                  </div>
+                ) : null;
+              })()}
             </div>
 
             <div className="relative group">
@@ -161,11 +174,14 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                   label={t('calculator.poolish')}
                 />
               </LockFeature>
-              {!isAllowed(FermentationTechnique.POOLISH) && (
-                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title={t('calculator.not_compatible_with_selected_style')}>
-                  <InfoIcon className="h-2.5 w-2.5" /> N/A
-                </div>
-              )}
+              {(() => {
+                const badge = getRecommendationBadge(FermentationTechnique.POOLISH);
+                return badge ? (
+                  <div className={`absolute -top-2 -right-2 text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-sm z-10 border ${badge.color}`}>
+                    {badge.label}
+                  </div>
+                ) : null;
+              })()}
             </div>
 
             <div className="relative group">
@@ -177,19 +193,16 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                   label={t('calculator.biga')}
                 />
               </LockFeature>
-              {!isAllowed(FermentationTechnique.BIGA) && (
-                <div className="absolute -top-2 -right-2 bg-dlp-bg-muted text-dlp-text-muted border border-dlp-border text-[10px] font-bold px-1.5 rounded-full shadow-dlp-sm z-10 flex items-center gap-0.5" title={t('calculator.not_compatible_with_selected_style')}>
-                  <InfoIcon className="h-2.5 w-2.5" /> N/A
-                </div>
-              )}
+              {(() => {
+                const badge = getRecommendationBadge(FermentationTechnique.BIGA);
+                return badge ? (
+                  <div className={`absolute -top-2 -right-2 text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-sm z-10 border ${badge.color}`}>
+                    {badge.label}
+                  </div>
+                ) : null;
+              })()}
             </div>
           </div>
-
-          {!safeAllowedTechniques.includes(FermentationTechnique.POOLISH) && !safeAllowedTechniques.includes(FermentationTechnique.BIGA) && (
-            <p className="text-xs text-center text-dlp-text-muted mt-2 italic">
-              {t('calculator.preferments_not_typical_msg')}
-            </p>
-          )}
 
           {config.fermentationTechnique !== FermentationTechnique.DIRECT && (
             <div className="pt-6 border-t border-dlp-border">

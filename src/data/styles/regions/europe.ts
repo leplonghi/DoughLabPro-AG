@@ -3,13 +3,13 @@ import { DoughStyle, RecipeStyle } from '../../../types/dough';
 export const europeStyles: DoughStyle[] = [
     {
         id: 'baguette-tradition',
-        name: "baguette_tradition_name",
+        name: "styles.baguette_tradition_name",
         region: 'Europe',
         subRegion: 'France',
         category: 'Bread',
         recipeStyle: RecipeStyle.BAGUETTE,
         tags: ['styles.baguette_tradition_tag_steam', 'styles.baguette_tradition_tag_crispy', 'styles.baguette_tradition_tag_autolyse', 'styles.baguette_tradition_tag_poolish'],
-        description: "baguette_tradition_desc",
+        description: "styles.baguette_tradition_desc",
         history_context: "baguette_tradition_history",
         base_formula: [
             { name: 'styles.baguette_tradition_ing_flour', percentage: 100 },
@@ -98,13 +98,13 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'brioche-tete',
-        name: "brioche_tete_name",
+        name: "styles.brioche_tete_name",
         region: 'Europe',
         subRegion: 'France',
         category: 'Enriched',
         recipeStyle: RecipeStyle.BRIOCHE,
         tags: ['styles.brioche_tete_tag_highfat', 'styles.brioche_tete_tag_eggs', 'styles.brioche_tete_tag_butter', 'styles.brioche_tete_tag_sponge'],
-        description: "brioche_tete_desc",
+        description: "styles.brioche_tete_desc",
         history_context: "brioche_tete_history",
         base_formula: [
             { name: 'styles.brioche_tete_ing_flour', percentage: 100 },
@@ -203,13 +203,13 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'laugenbrezel',
-        name: "laugenbrezel_name",
+        name: "styles.laugenbrezel_name",
         region: 'Europe',
         subRegion: 'Germany',
         category: 'Snack',
         recipeStyle: RecipeStyle.PRETZEL,
         tags: ['styles.laugenbrezel_tag_lye', 'styles.laugenbrezel_tag_alkaline', 'styles.laugenbrezel_tag_twist'],
-        description: "laugenbrezel_desc",
+        description: "styles.laugenbrezel_desc",
         history_context: "laugenbrezel_history",
         base_formula: [
             { name: 'styles.laugenbrezel_ing_flour', percentage: 100 },
@@ -307,13 +307,13 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'english_muffin',
-        name: "english_muffin_name",
+        name: "styles.english_muffin_name",
         region: 'Europe',
         subRegion: 'UK',
         category: 'Bread',
         recipeStyle: RecipeStyle.ENGLISH_MUFFIN,
         tags: ['styles.english_muffin_tag_griddle', 'styles.english_muffin_tag_nooks', 'styles.english_muffin_tag_breakfast'],
-        description: "english_muffin_desc",
+        description: "styles.english_muffin_desc",
         history_context: "english_muffin_history",
         base_formula: [
             { name: 'styles.english_muffin_ing_flour', percentage: 100 },
@@ -390,13 +390,13 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'khachapuri-adjaruli',
-        name: "khachapuri_adjaruli_name",
+        name: "styles.khachapuri_adjaruli_name",
         region: 'Europe', // Or switch to Asia/General, but culturally Georgian cuisine is often grouped with Eastern Europe/Black Sea.
         subRegion: 'Georgia',
         category: 'Enriched',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['styles.khachapuri_adjaruli_tag_cheeseboat', 'styles.khachapuri_adjaruli_tag_egg', 'styles.khachapuri_adjaruli_tag_rich'],
-        description: "khachapuri_adjaruli_desc",
+        description: "styles.khachapuri_adjaruli_desc",
         history_context: "khachapuri_adjaruli_history",
         base_formula: [
             { name: 'styles.khachapuri_adjaruli_ing_flour', percentage: 100 },
@@ -480,13 +480,13 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'danish-rugbrod',
-        name: "danish_rugbrod_name",
+        name: "styles.danish_rugbrod_name",
         region: 'Europe',
         subRegion: 'Denmark',
         category: 'Bread',
         recipeStyle: RecipeStyle.RYE,
         tags: ['styles.danish_rugbrod_tag_sourdough', 'styles.danish_rugbrod_tag_wholegrain', 'styles.danish_rugbrod_tag_seeds', 'styles.danish_rugbrod_tag_dense'],
-        description: "danish_rugbrod_desc",
+        description: "styles.danish_rugbrod_desc",
         history_context: "danish_rugbrod_history",
         base_formula: [
             { name: 'styles.danish_rugbrod_ing_rye', percentage: 100 }, // Or split 70/30 Rye/Wheat
@@ -571,13 +571,13 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'tiger-bread',
-        name: "tiger_bread_name",
+        name: "styles.tiger_bread_name",
         region: 'Europe',
         subRegion: 'Netherlands',
         category: 'Bread',
         recipeStyle: RecipeStyle.SANDWICH_LOAF,
         tags: ['styles.tiger_bread_tag_topping', 'styles.tiger_bread_tag_crunchy', 'styles.tiger_bread_tag_rice'],
-        description: "tiger_bread_desc",
+        description: "styles.tiger_bread_desc",
         history_context: "tiger_bread_history",
         base_formula: [
             { name: 'styles.tiger_bread_ing_flour', percentage: 100 },
@@ -654,13 +654,13 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'irish-soda-bread',
-        name: "irish_soda_bread_name",
+        name: "styles.irish_soda_bread_name",
         region: 'Europe',
         subRegion: 'Ireland',
         category: 'Bread',
         recipeStyle: RecipeStyle.COUNTRY_LOAF, // Technically chemically leavened
         tags: ['styles.irish_soda_bread_tag_quick', 'styles.irish_soda_bread_tag_noyeast', 'styles.irish_soda_bread_tag_buttermilk'],
-        description: "irish_soda_bread_desc",
+        description: "styles.irish_soda_bread_desc",
         history_context: "irish_soda_bread_history",
         base_formula: [
             { name: 'styles.irish_soda_bread_ing_flour', percentage: 100 },

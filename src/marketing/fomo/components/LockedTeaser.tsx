@@ -19,6 +19,7 @@ export const LockedTeaser: React.FC<LockedTeaserProps> = ({ featureKey, children
     const plan = getCurrentPlan(user);
     const hasAccess = canUseFeature(plan, featureKey);
 
+    // If user has access, render children without lock
     if (hasAccess) {
         return <>{children}</>;
     }

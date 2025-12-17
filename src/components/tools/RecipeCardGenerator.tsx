@@ -39,16 +39,16 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
-                <div className="p-4 border-b border-gray-100 dark:border-slate-800 flex justify-between items-center bg-gray-50 dark:bg-slate-800">
-                    <h3 className="font-bold text-gray-800 dark:text-white flex items-center gap-2">
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
+                <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                    <h3 className="font-bold text-gray-800 flex items-center gap-2">
                         <ShareIcon className="w-5 h-5 text-indigo-500" />
                         Share Recipe
                     </h3>
-                    <button onClick={onClose} className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">✕</button>
+                    <button onClick={onClose} className="text-gray-500 hover:text-gray-900">✕</button>
                 </div>
 
-                <div className="overflow-y-auto p-6 flex-1 bg-gray-100/50 dark:bg-black/20 flex justify-center">
+                <div className="overflow-y-auto p-6 flex-1 bg-gray-100/50 flex justify-center">
                     {/* The Canvas Area */}
                     <div
                         ref={cardRef}
@@ -130,7 +130,7 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
                     </div>
                 </div>
 
-                <div className="p-4 border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex gap-3">
+                <div className="p-4 border-t border-gray-100 bg-white flex gap-3">
                     <button
                         onClick={onClose}
                         className="flex-1 py-3 text-slate-600 font-bold hover:bg-slate-50 rounded-xl transition-colors"

@@ -2141,5 +2141,21 @@
     "title_short": "Doughy",
     "send": "Send",
     "placeholder_short": "Ask about flour, fermentation, or ask to build a recipe..."
+  },
+  "sponsored": "Sponsored",
+  "unlock": "Unlock",
+  "ads": {
+    "catalog": {
+      "ooni_koda_16": {
+        "title": "Ooni Koda 16 Gas Pizza Oven",
+        "description": "Reach 950°F in 20 minutes. Perfect for authentic Neapolitan pizza at home.",
+        "ctaText": "Learn More"
+      },
+      "challenger_bread_pan": {
+        "title": "Challenger Bread Pan",
+        "description": "Professional-grade bread baking pan for artisan loaves at home.",
+        "ctaText": "Shop Now"
+      }
+    }
   }
 }

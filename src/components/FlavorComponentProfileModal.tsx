@@ -101,8 +101,8 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                             </h3>
                             <div className="flex items-center gap-2">
                                 <span className={`px-3 py-1 rounded-lg text-sm font-bold ${component.applicationMoment === 'post_oven'
-                                        ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300'
-                                        : 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300'
+                                    ? 'bg-purple-100 text-purple-700'
+                                    : 'bg-orange-100 text-orange-700'
                                     }`}>
                                     {component.applicationMoment === 'post_oven' ? 'Post-Oven (Finish)' : 'Pre-Oven (Cooked)'}
                                 </span>
@@ -140,11 +140,11 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                         <div className="md:col-span-2 space-y-6">
 
                             {/* Technical Alert Box */}
-                            <div className="bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-900/30 rounded-lg p-4">
-                                <h4 className="flex items-center gap-2 text-sm font-bold text-yellow-800 dark:text-yellow-200 uppercase mb-2">
+                            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                <h4 className="flex items-center gap-2 text-sm font-bold text-yellow-800 uppercase mb-2">
                                     <AlertTriangleIcon className="w-4 h-4" /> Technical Notes
                                 </h4>
-                                <p className="text-sm text-yellow-900 dark:text-yellow-100/80 leading-relaxed">
+                                <p className="text-sm text-yellow-900 leading-relaxed">
                                     {component.technicalNotes}
                                 </p>
                             </div>
@@ -186,10 +186,10 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                                             <p className="text-xs text-dlp-text-secondary mt-1">{ref.summary}</p>
                                         </div>
                                         <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide border ${ref.sourceType === 'authority'
-                                                ? 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800'
-                                                : ref.sourceType === 'scientific'
-                                                    ? 'bg-purple-50 text-purple-600 border-purple-100 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800'
-                                                    : 'bg-gray-50 text-gray-600 border-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700'
+                                            ? 'bg-blue-50 text-blue-600 border-blue-100'
+                                            : ref.sourceType === 'scientific'
+                                                ? 'bg-purple-50 text-purple-600 border-purple-100'
+                                                : 'bg-gray-50 text-gray-600 border-gray-100'
                                             }`}>
                                             {ref.sourceType}
                                         </span>

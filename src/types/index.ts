@@ -7,6 +7,56 @@ import { Increment, UserIngredient } from './ingredients';
 export { RecipeStyle };
 export type { DoughStyleDefinition, StyleCategory };
 
+// --- V2 Architecture Types ---
+export type PrefermentType = 'DIRECT' | 'POOLISH' | 'BIGA';
+export type ScheduleMode = 'MANUAL_TIME' | 'TARGET_TIME';
+
+export interface DoughSessionVariant {
+    id: string;
+    name: string;
+    count: number;
+    addOns: Array<{ id: string; qty: number }>;
+}
+
+export interface DoughSessionSettings {
+    safetyBuffer: 0 | 10 | 20;
+}
+
+export interface DoughSessionState {
+    meta: {
+        version: 2;
+        sessionId: string;
+        lastSaved: number;
+    };
+    // The Physics
+    dough: {
+        flour: number;
+        water: number;
+        salt: number;
+        yeast: number;
+        hydration: number;
+        yieldCount: number;
+        ballWeight: number;
+        prefermentType: PrefermentType;
+        // Expanded fields for DoughConfig compatibility
+        oil?: number;
+        sugar?: number;
+        notes?: string;
+        [key: string]: any; // Allow extensibility for legacy props
+    };
+    // The Logistics
+    schedule: {
+        mode: ScheduleMode;
+        targetDate: string | null; // Stored as ISO string for persistence
+        computedStartTime: string | null; // Stored as ISO string
+    };
+    // The Assembly
+    variants: Array<DoughSessionVariant>;
+    // The Output
+    settings: DoughSessionSettings;
+}
+
+
 export type Locale = 'en';
 
 export enum BakeType {
@@ -71,7 +121,7 @@ export enum UnitSystem {
     US_CUSTOMARY = 'US_CUSTOMARY',
 }
 
-export type CalculationMode = 'mass' | 'flour';
+export type CalculationMode = 'mass' | 'flour' | 'TARGET_TIME';
 
 export interface IngredientConfig {
     id: string;
@@ -117,6 +167,7 @@ export interface DoughConfig {
     scale: number;
     notes: string;
     levainId?: string | null;
+    targetTime?: string; // ISO string for Reverse Scheduling
     bakingTempC: number;
 }
 
@@ -287,6 +338,11 @@ export interface UserContextType {
     favorites: FavoriteItem[];
     toggleFavorite: (item: Omit<FavoriteItem, 'createdAt'>) => Promise<void>;
     isFavorite: (id: string) => boolean;
+    customPresets: CustomPreset[];
+    addCustomPreset: (preset: Omit<CustomPreset, 'id' | 'createdAt' | 'updatedAt'>) => Promise<CustomPreset>;
+    updateCustomPreset: (preset: CustomPreset) => Promise<void>;
+    deleteCustomPreset: (id: string) => Promise<void>;
+    loadPresetToCalculator?: (preset: CustomPreset) => void;
     defaultAmbientTempC: number; // Global default
     setDefaultAmbientTempC: (temp: number) => void;
     defaultOvenType: OvenType; // Global default
@@ -732,4 +788,14 @@ export interface DoughStylePreset {
     region?: string;
     country?: string;
     description?: string;
+}
+
+export interface CustomPreset {
+    id: string;
+    name: string;
+    description?: string;
+    config: DoughConfig;
+    createdAt: string;
+    updatedAt: string;
+    isFavorite?: boolean;
 }

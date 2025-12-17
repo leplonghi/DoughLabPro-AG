@@ -199,7 +199,12 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
 
     const handleSave = async () => {
         if (editableBatch) {
-            await updateBatch(editableBatch);
+            const updated = { ...editableBatch };
+            // Auto-complete if rated
+            if (updated.rating && updated.rating > 0 && updated.status === BatchStatus.DRAFT) {
+                updated.status = BatchStatus.COMPLETED;
+            }
+            await updateBatch(updated);
             addToast(t('info.update_success'), 'success');
         }
     };

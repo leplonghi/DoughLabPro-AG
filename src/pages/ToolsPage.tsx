@@ -60,7 +60,7 @@ const ToolCardView: React.FC<{
                 </p>
                 {isLocked && preview && (
                     <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs text-slate-500 italic">
-                        <span className="font-semibold text-slate-600 not-italic">{t('tools.pro_insight')}</span> {preview}
+                        <span className="font-semibold text-slate-600 not-italic">{t('common.tools_page.pro_insight')}</span> {preview}
                     </div>
                 )}
             </div>
@@ -90,7 +90,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
             isPro: true,
             route: 'tools/doughbot',
             icon: <SparklesIcon />,
-            preview: t('tools.example_dough_tearing_gluten_underdeveloped_extend'),
+            preview: t('common.tools_page.example_dough_tearing_gluten_underdeveloped_extend'),
             isNew: true,
             featureKey: 'tools.doughbot'
         },

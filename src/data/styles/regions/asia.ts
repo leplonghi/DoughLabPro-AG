@@ -3,7 +3,7 @@ import { DoughStyle, RecipeStyle } from '../../../types/dough';
 export const asiaStyles: DoughStyle[] = [
     {
         id: 'asia_shokupan',
-        name: 'shokupan_name',
+        name: 'styles.shokupan_name',
         region: 'Asia',
         subRegion: 'Japan',
         category: 'Soft Bread',
@@ -63,17 +63,17 @@ export const asiaStyles: DoughStyle[] = [
             },
             {
                 phase: 'Mix',
-                title: 'Mix and Knead',
+                title: 'styles.asia_shokupan_process_2_title',
                 duration: '20-30 min',
-                action: 'Incorporate Tangzhong with dry and liquid ingredients. Knead to a very thin windowpane.',
-                science: 'Full gluten development is crucial for the airy structure and shreddability.'
+                action: 'styles.asia_shokupan_process_2_action',
+                science: 'styles.asia_shokupan_process_2_science'
             },
             {
                 phase: 'Bake',
-                title: 'Bake',
+                title: 'styles.asia_shokupan_process_3_title',
                 duration: '30-40 min',
-                action: 'Bake at medium heat (180°C) until golden, but without forming a thick crust.',
-                science: 'Moderate temperature preserves moisture and softness, avoiding a hard crust.'
+                action: 'styles.asia_shokupan_process_3_action',
+                science: 'styles.asia_shokupan_process_3_science'
             }
         ],
         references: [],
@@ -85,7 +85,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'asia_naan',
-        name: 'naan_name',
+        name: 'styles.naan_name',
         region: 'Asia',
         subRegion: 'India',
         category: 'Flatbread',
@@ -144,17 +144,17 @@ export const asiaStyles: DoughStyle[] = [
             },
             {
                 phase: 'Ball',
-                title: 'Ball and Relax',
+                title: 'styles.asia_naan_process_2_title',
                 duration: '1-2h',
-                action: 'Divide and let relax well.',
-                science: 'Relaxation is vital for extensibility (teardrop shape).'
+                action: 'styles.asia_naan_process_2_action',
+                science: 'styles.asia_naan_process_2_science'
             },
             {
                 phase: 'Bake',
-                title: 'Bake (Tandoor/Oven)',
+                title: 'styles.asia_naan_process_3_title',
                 duration: '2-3 min',
-                action: 'Extreme and unilateral heat (oven wall) creates characteristic charred bubbles.',
-                science: 'Rapid gas expansion (oven spring) due to thermal shock.'
+                action: 'styles.asia_naan_process_3_action',
+                science: 'styles.asia_naan_process_3_science'
             }
         ],
         references: [],
@@ -166,7 +166,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'asia_guabao',
-        name: 'gua_bao_name',
+        name: 'styles.gua_bao_name',
         region: 'Asia',
         subRegion: 'Taiwan/China',
         category: 'Buns',
@@ -225,17 +225,17 @@ export const asiaStyles: DoughStyle[] = [
             },
             {
                 phase: 'Prep',
-                title: 'Shaping',
+                title: 'styles.asia_guabao_process_2_title',
                 duration: '20 min',
-                action: 'Roll out disc, brush with oil, fold in half (tongue).',
-                science: 'Oil prevents the halves from sticking together during cooking.'
+                action: 'styles.asia_guabao_process_2_action',
+                science: 'styles.asia_guabao_process_2_science'
             },
             {
                 phase: 'Cook',
-                title: 'Steam',
+                title: 'styles.asia_guabao_process_3_title',
                 duration: '10-12 min',
-                action: 'Steam cook. Turn off and wait before opening to prevent collapsing.',
-                science: 'Sudden change in pressure/temperature can collapse the delicate structure.'
+                action: 'styles.asia_guabao_process_3_action',
+                science: 'styles.asia_guabao_process_3_science'
             }
         ],
         references: [],
@@ -247,7 +247,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'steamed-baozi',
-        name: 'baozi_name',
+        name: 'styles.baozi_name',
         region: 'Asia',
         subRegion: 'China',
         category: 'Buns',
@@ -307,17 +307,17 @@ export const asiaStyles: DoughStyle[] = [
             },
             {
                 phase: 'Prep',
-                title: 'Shaping',
+                title: 'styles.steamed_baozi_process_2_title',
                 duration: '20 min',
-                action: 'Roll into circles, pleat to seal filling.',
-                science: 'Pleating creates a thicker top to balance the bottom thickness..'
+                action: 'styles.steamed_baozi_process_2_action',
+                science: 'styles.steamed_baozi_process_2_science'
             },
             {
                 phase: 'Cook',
-                title: 'Steam',
+                title: 'styles.steamed_baozi_process_3_title',
                 duration: '15 min',
-                action: 'Steam over vigorously boiling water. Do not open lid.',
-                science: 'Opening the lid causes a pressure drop and thermal shock, collapsing the structure immediately.'
+                action: 'styles.steamed_baozi_process_3_action',
+                science: 'styles.steamed_baozi_process_3_science'
             }
         ],
         references: [],
@@ -329,7 +329,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'paratha',
-        name: 'paratha_name',
+        name: 'styles.paratha_name',
         region: 'Asia',
         subRegion: 'India',
         category: 'Flatbread',
@@ -388,24 +388,24 @@ export const asiaStyles: DoughStyle[] = [
             },
             {
                 phase: 'Bulk',
-                title: 'Rest',
+                title: 'styles.paratha_process_2_title',
                 duration: '30 min',
-                action: 'Cover and rest.',
-                science: 'Gluten relaxation is mandatory for rolling thin without tearing.'
+                action: 'styles.paratha_process_2_action',
+                science: 'styles.paratha_process_2_science'
             },
             {
                 phase: 'Prep',
-                title: 'Laminate',
+                title: 'styles.paratha_process_3_title',
                 duration: '15 min',
-                action: 'Roll thin. Brush Ghee. Pleat like a fan. Coil into a spiral.',
-                science: 'The fan pleat maximizes the number of layers in a vertical orientation.'
+                action: 'styles.paratha_process_3_action',
+                science: 'styles.paratha_process_3_science'
             },
             {
                 phase: 'Cook',
-                title: 'Fry',
+                title: 'styles.paratha_process_4_title',
                 duration: '5 min',
-                action: 'Cook on hot Tawa with Ghee until spots appear.',
-                science: 'Direct heat crisps the outer layers while steam cooks the inner layers.'
+                action: 'styles.paratha_process_4_action',
+                science: 'styles.paratha_process_4_science'
             }
         ],
         references: [],

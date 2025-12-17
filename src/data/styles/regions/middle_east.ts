@@ -3,14 +3,14 @@ import { DoughStyle, RecipeStyle } from '../../../types/dough';
 export const middleEastStyles: DoughStyle[] = [
     {
         id: 'pita-bread',
-        name: 'pita_bread_name',
+        name: 'styles.pita_bread_name',
         region: 'Middle East',
         subRegion: 'Levant',
         category: 'Flatbread',
         recipeStyle: RecipeStyle.FLATBREAD,
         tags: ['Steam 6', 'Pocket', 'High heat 3', 'Vegan'],
-        description: 'The iconic "pocket bread" of the Middle East. It puffs up dramatically in a hot oven due to rapid steam expansion, creating a hollow center perfect for stuffing.',
-        history_context: "One of the oldest breads in human history, dating back to the Natufian culture in Jordan (14,000 years ago). The \"pocket\" mechanism is a masterful use of thermodynamics discovered millennia ago.",
+        description: 'styles.pita_bread_desc',
+        history_context: "styles.pita_bread_history",
         base_formula: [
             { name: 'All Purpose Flour', percentage: 100 },
             { name: 'Water', percentage: 60 },
@@ -31,7 +31,7 @@ export const middleEastStyles: DoughStyle[] = [
                 pl_ratio: 'Extensible',
                 absorption_capacity: 'Medium',
                 protein_type: "Soft/Hard Blend",
-                science_explanation: 'Requires moderate strength. If too strong, it resists expansion (no pocket). If too weak, it pops. Extensibility is key for the steam to push the layers apart.'
+                science_explanation: 'styles.pita_bread_science_flour'
             },
             thermalProfile: {
                 oven_type: "Hearth/Stone",
@@ -45,36 +45,36 @@ export const middleEastStyles: DoughStyle[] = [
                 organic_acids: 'Lactic 4',
                 enzymatic_activity: 'Moderate 8'
             },
-            processScience: 'The Pocket mechanism: At 260°C+, water turns to steam instantly. The top crust sets slightly, but the internal pressure is so high (>100kPa) that it delaminates the dough structure in the weakest center plane, ballooning it.'
+            processScience: 'styles.pita_bread_proc_science'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Smooth Mix',
+                title: 'styles.pita_bread_proc_step_1_title',
                 duration: '10 min',
-                action: 'Knead to full windowpane.',
-                science: 'Gluten network must be air-tight to trap the steam. A weak network will leak gas and not puff.'
+                action: 'styles.pita_bread_proc_step_1_action',
+                science: 'styles.pita_bread_proc_step_1_science'
             },
             {
                 phase: 'Ball',
-                title: 'Scaling & Resting',
+                title: 'styles.pita_bread_proc_step_2_title',
                 duration: '30 min',
-                action: 'Divide into 80g balls. Rest covered.',
-                science: 'Resting relaxes gluten (extensibility) so you can roll them flat without them shrinking back.'
+                action: 'styles.pita_bread_proc_step_2_action',
+                science: 'styles.pita_bread_proc_step_2_science'
             },
             {
                 phase: 'Prep',
-                title: 'Rolling',
+                title: 'styles.pita_bread_proc_step_3_title',
                 duration: '10 min',
-                action: 'Roll to 5mm thickness. Let rest 10 mins again.',
-                science: 'The second rest forms a slight dry skin (pellicle) which helps the top crust set faster than the inside, forcing the delamination.'
+                action: 'styles.pita_bread_proc_step_3_action',
+                science: 'styles.pita_bread_proc_step_3_science'
             },
             {
                 phase: 'Bake',
-                title: 'Flash Bake',
+                title: 'styles.pita_bread_proc_step_4_title',
                 duration: '2-3 min',
-                action: 'Bake on scorching hot stone.',
-                science: 'Leidenfrost effect and rapid heat transfer are non-negotiable. Low temp = dense flatbread, no pocket.'
+                action: 'styles.pita_bread_proc_step_4_action',
+                science: 'styles.pita_bread_proc_step_4_science'
             }
         ],
         references: ['Classical arabian cooking', 'Modernist bread 32'],
@@ -86,14 +86,14 @@ export const middleEastStyles: DoughStyle[] = [
     },
     {
         id: 'simit',
-        name: 'simit_name',
+        name: 'styles.simit_name',
         region: 'Middle East',
         subRegion: 'Turkey',
         category: 'Bread',
         recipeStyle: RecipeStyle.PRETZEL, // Closest profile (dipped, sesame)
         tags: ['Sesame', 'Molasses', 'Street food 2', 'Breakfast 6'],
-        description: 'The ubiquitous Turkish street food. A circular bread encrusted with sesame seeds, characterized by its deep golden color and unique flavor achieved by dipping in Pekmez (grape molasses) before baking.',
-        history_context: 'Documented in Istanbul since 1525. Validated by the Ottoman court, it was a staple food for sultans and soldiers alike. The "Simitçi" (vendor) with a tray on their head is a cultural icon.',
+        description: 'styles.simit_desc',
+        history_context: 'styles.simit_history',
         base_formula: [
             { name: 'Bread Flour', percentage: 100 },
             { name: 'Water', percentage: 55 },
@@ -114,7 +114,7 @@ export const middleEastStyles: DoughStyle[] = [
                 pl_ratio: 'Balanced',
                 absorption_capacity: 'Moderate 9',
                 protein_type: 'Strong wheat',
-                science_explanation: 'Requires strength to hold the twisted shape. Hydration is low (55%) to ensure the "crisp" texture, not soft like a bun.'
+                science_explanation: 'styles.simit_science_flour'
             },
             thermalProfile: {
                 oven_type: "Deck / Stone",
@@ -128,36 +128,36 @@ export const middleEastStyles: DoughStyle[] = [
                 organic_acids: 'Low',
                 enzymatic_activity: 'Standard'
             },
-            processScience: 'The Maillard Reaction is supercharged by the Grape Molasses (Pekmez) dip. This abundance of reducing sugars on the surface creates the deep mahogany color and distinct metallic/sweet flavor at oven temperatures.'
+            processScience: 'styles.simit_proc_science'
         },
         process: [
             {
                 phase: 'Mix',
-                title: 'Stiff Dough',
+                title: 'styles.simit_proc_step_1_title',
                 duration: '10 min',
-                action: 'Mix flour, water, salt, yeast to a stiff dough.',
-                science: 'Low hydration ensures the twisted strands stay defined.'
+                action: 'styles.simit_proc_step_1_action',
+                science: 'styles.simit_proc_step_1_science'
             },
             {
                 phase: 'Prep',
-                title: 'Twisting',
+                title: 'styles.simit_proc_step_2_title',
                 duration: '15 min',
-                action: 'Roll two strands, twist them together (rope), and seal into a ring.',
-                science: 'Twisting increases surface area for maximum sesame coverage and crunch.'
+                action: 'styles.simit_proc_step_2_action',
+                science: 'styles.simit_proc_step_2_science'
             },
             {
                 phase: 'Cook',
-                title: 'Pekmez Dip',
+                title: 'styles.simit_proc_step_3_title',
                 duration: '1 min',
-                action: 'Dip ring into water/molasses solution, then into sesame seeds.',
-                science: 'Molasses adds sugar for browning. The liquid helps seeds adhere (glue) and delays crust set slightly.'
+                action: 'styles.simit_proc_step_3_action',
+                science: 'styles.simit_proc_step_3_science'
             },
             {
                 phase: 'Bake',
-                title: 'Bake',
+                title: 'styles.simit_proc_step_4_title',
                 duration: '15-18 min',
-                action: 'Bake until deep golden brown.',
-                science: 'The sugar-rich coating caramelizes rapidly.'
+                action: 'styles.simit_proc_step_4_action',
+                science: 'styles.simit_proc_step_4_science'
             }
         ],
         references: [],

@@ -15,11 +15,11 @@ export const st_louis_thin: StyleDefinition = {
     "region": t('styles.st_louis'),
     "period": t('styles.mid_20th_century_2')
   },
-  "intro": "Cut into squares ('tavern cut'), popular in the Midwest.",
-  "history": "Known for its cracker-thin, unleavened (or barely leavened) crust and use of Provel cheese.",
+  "intro": t('styles.st_louis_intro'),
+  "history": t('styles.st_louis_history'),
   "technicalFoundations": [
-    "None. Often uses baking powder or very low yeast.",
-    "Hydration: 40-50%"
+    t('styles.st_louis_tech_1'),
+    t('styles.st_louis_tech_2')
   ],
   "doughImpact": [],
   "bakingImpact": [],

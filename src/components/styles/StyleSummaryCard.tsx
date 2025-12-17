@@ -9,7 +9,7 @@ interface StyleSummaryCardProps {
 }
 
 const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = '' }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'general', 'styles']);
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (

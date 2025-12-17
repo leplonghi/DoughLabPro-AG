@@ -32,7 +32,7 @@ interface MyLabPageProps {
 
 const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch }) => {
     const { t } = useTranslation(['common', 'dashboard']);
-    const { hasProAccess, openPaywall, batches } = useUser();
+    const { hasProAccess, openPaywall, batches, customPresets } = useUser();
 
     // Stats Calculation
     const totalBakes = batches.length;
@@ -78,15 +78,54 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                 {/* Quick Stats & Actions Toolbar */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                    <div className="flex items-center gap-3 w-full md:w-auto">
-                        <div className="h-10 w-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <ChartBarIcon className="h-5 w-5 text-emerald-600" />
+                    {/* Level / Gamification Section */}
+                    <div className="flex items-center gap-3 w-full md:w-auto min-w-[200px]">
+                        <div className="h-12 w-12 bg-gradient-to-br from-lime-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-black text-lg shadow-lg shadow-lime-500/30 border-2 border-white">
+                            {(() => {
+                                if (totalBakes >= 50) return '4';
+                                if (totalBakes >= 20) return '3';
+                                if (totalBakes >= 5) return '2';
+                                return '1';
+                            })()}
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('mylab.lab_status')}</span>
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-black text-slate-800">{t('mylab.operational')}</span>
-                                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <div className="flex flex-col w-full">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                                {(() => {
+                                    if (totalBakes >= 50) return 'Master Pizzaiolo';
+                                    if (totalBakes >= 20) return 'Pizzaiolo';
+                                    if (totalBakes >= 5) return 'Enthusiast';
+                                    return 'Home Baker'; // Level 1
+                                })()}
+                            </span>
+                            <div className="flex items-center justify-between text-xs font-bold text-slate-800 mb-0.5">
+                                <span>Level {(() => {
+                                    if (totalBakes >= 50) return '4';
+                                    if (totalBakes >= 20) return '3';
+                                    if (totalBakes >= 5) return '2';
+                                    return '1';
+                                })()}</span>
+                                <span className="text-[10px] text-slate-400">{totalBakes} Bakes</span>
+                            </div>
+                            {/* Progress Bar to Next Level */}
+                            <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                                {(() => {
+                                    let progress = 0;
+                                    let nextLevel = 5;
+                                    if (totalBakes < 5) {
+                                        progress = (totalBakes / 5) * 100;
+                                    } else if (totalBakes < 20) {
+                                        progress = ((totalBakes - 5) / (20 - 5)) * 100;
+                                        nextLevel = 20;
+                                    } else if (totalBakes < 50) {
+                                        progress = ((totalBakes - 20) / (50 - 20)) * 100;
+                                        nextLevel = 50;
+                                    } else {
+                                        progress = 100;
+                                    }
+                                    return (
+                                        <div className="h-full bg-lime-500 rounded-full transition-all duration-1000" style={{ width: `${progress}%` }}></div>
+                                    );
+                                })()}
                             </div>
                         </div>
                     </div>
@@ -94,13 +133,17 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                     <div className="hidden md:block h-10 w-px bg-slate-100"></div>
 
                     <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-start">
-                        <div className="flex flex-col items-start group cursor-pointer">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-lime-600 transition-colors">{t('mylab.total_batches')}</span>
-                            <span className="text-lg font-black text-slate-800">{totalBakes}</span>
-                        </div>
+                        {/* Removed Total Batches as it's now in the Level Badge */}
                         <div className="flex flex-col items-start group cursor-pointer">
                             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-emerald-600 transition-colors">{t('mylab.success_rate')}</span>
                             <span className={`text-lg font-black ${successRate >= 80 ? 'text-emerald-500' : 'text-amber-500'}`}>{successRate}%</span>
+                        </div>
+                        <div className="flex flex-col items-start px-4 border-l border-slate-100">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{t('mylab.lab_status')}</span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm font-black text-slate-800">{t('mylab.operational')}</span>
+                                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -262,6 +305,51 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 </div>
                             )}
                         </div>
+
+                        {/* Custom Presets Feed */}
+                        <div className="space-y-4 pt-4 border-t border-slate-100">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
+                                    <ArchiveBoxIcon className="h-5 w-5 text-slate-500" />{t('mylab.custom_presets', { defaultValue: 'Saved Presets' })}
+                                </h2>
+                            </div>
+
+                            {customPresets && customPresets.length > 0 ? (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {customPresets.slice(0, 4).map((preset) => (
+                                        <div
+                                            key={preset.id}
+                                            onClick={() => {
+                                                // Ideally navigate to calculator with this preset loaded
+                                                // Since we don't have a direct link handler yet, we go to calculator
+                                                onNavigate('calculator');
+                                                // In a real app we'd pass ?presetId=custom_id or similar
+                                            }}
+                                            className="group flex items-center justify-between p-3 rounded-xl border border-slate-100 bg-white hover:border-lime-200 hover:shadow-md transition-all cursor-pointer"
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                <div className="h-8 w-8 rounded-lg bg-lime-50 text-lime-600 flex items-center justify-center font-bold text-xs">
+                                                    CP
+                                                </div>
+                                                <div>
+                                                    <h4 className="text-sm font-bold text-slate-800 group-hover:text-lime-700 transition-colors">
+                                                        {preset.name}
+                                                    </h4>
+                                                    <p className="text-[10px] text-slate-500">
+                                                        {new Date(preset.createdAt).toLocaleDateString()}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <ChevronRightIcon className="h-4 w-4 text-slate-300 group-hover:text-lime-500" />
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="text-center p-4 bg-slate-50 rounded-xl text-xs text-slate-500">
+                                    No custom presets yet. Save one in the Calculator!
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* Right Column: Sidebar - Span 4 */}
@@ -289,11 +377,12 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             </div>
                         </div>
 
-                        {/* Locked AI Feature Teaser */}
-                        <LockedTeaser featureKey="mylab.quickAction">
-                            <div className="bg-gradient-to-br from-indigo-600 to-violet-700 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden group cursor-pointer hover:shadow-indigo-500/25 transition-all">
-                                <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
-                                    <LockClosedIcon className="h-5 w-5 text-white/70" />
+                        {/* AI Feature Card */}
+                        {hasProAccess ? (
+                            <div className="bg-gradient-to-br from-indigo-600 to-violet-700 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden group cursor-pointer hover:shadow-indigo-500/25 transition-all"
+                                onClick={() => onNavigate('tools/doughbot')}>
+                                <div className="absolute top-0 right-0 p-4">
+                                    <SparklesIcon className="h-5 w-5 text-indigo-200 animate-pulse" />
                                 </div>
 
                                 <div className="relative z-10">
@@ -305,10 +394,32 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     <p className="text-sm text-indigo-100 leading-relaxed mb-4">
                                         {t('mylab.ai_ferment_desc')}
                                     </p>
-                                    <div className="inline-flex items-center gap-1 text-xs font-bold text-white bg-white/20 px-3 py-1.5 rounded-lg">{t('mylab.unlock_pro_features')}</div>
+                                    <div className="inline-flex items-center gap-1 text-xs font-bold text-white bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-lg transition-colors">
+                                        {t('mylab.open_ai_assistant')} →
+                                    </div>
                                 </div>
                             </div>
-                        </LockedTeaser>
+                        ) : (
+                            <LockedTeaser featureKey="mylab.quickAction">
+                                <div className="bg-gradient-to-br from-indigo-600 to-violet-700 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden group cursor-pointer hover:shadow-indigo-500/25 transition-all">
+                                    <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                                        <LockClosedIcon className="h-5 w-5 text-white/70" />
+                                    </div>
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <SparklesIcon className="h-5 w-5 text-indigo-200" />
+                                            <span className="text-xs font-bold uppercase tracking-wide text-indigo-200">{t('mylab.ai_beta')}</span>
+                                        </div>
+                                        <h3 className="font-bold text-white text-lg mb-2">{t('mylab.fermentation_engine')}</h3>
+                                        <p className="text-sm text-indigo-100 leading-relaxed mb-4">
+                                            {t('mylab.ai_ferment_desc')}
+                                        </p>
+                                        <div className="inline-flex items-center gap-1 text-xs font-bold text-white bg-white/20 px-3 py-1.5 rounded-lg">{t('mylab.unlock_pro_features')}</div>
+                                    </div>
+                                </div>
+                            </LockedTeaser>
+                        )}
 
                         {/* Affiliate / Ad Block */}
                         <div className="space-y-4 pt-6 mt-2 border-t border-slate-200">

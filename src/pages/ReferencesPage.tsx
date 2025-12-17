@@ -2,6 +2,7 @@
 import React from 'react';
 import { BookOpenIcon, ArrowTopRightOnSquareIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
+import { ExternalLink } from '@/components/ui/ExternalLink';
 
 interface ReferenceItemProps {
   title: string;
@@ -24,16 +25,14 @@ const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description,
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-slate-900 ">{title}</h3>
         {link && (
-          <a
+          <ExternalLink
             href={link}
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex items-center gap-1 text-sm font-bold text-lime-600  hover:underline"
             aria-label={`Visit ${title}`}
           >
             <span>{t('general.visit')}</span>
             <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-          </a>
+          </ExternalLink>
         )}
       </div>
       <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-500 ">{type}</p>

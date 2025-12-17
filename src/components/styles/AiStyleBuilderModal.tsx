@@ -35,7 +35,7 @@ const LOADING_STEPS = [
 ];
 
 const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClose, onStyleGenerated }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'ui', 'styles']);
   const [description, setDescription] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);

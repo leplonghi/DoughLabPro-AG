@@ -104,6 +104,7 @@ const ProActivatedPage = React.lazy(() => import('@/pages/pro/ProActivatedPage')
 const DoughbotPage = React.lazy(() => import('@/pages/DoughbotPage'));
 const ToolsPage = React.lazy(() => import('@/pages/ToolsPage'));
 const HydrationConverterPage = React.lazy(() => import('@/pages/HydrationConverterPage'));
+const ProductionDashboard = React.lazy(() => import('@/pages/ProductionDashboard'));
 
 // --- Placeholder Pages ---
 const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
@@ -373,27 +374,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
 
             case 'calculator':
                 return protect(
-                    <CalculatorPage
-                        config={config}
-                        errors={errors}
-                        onConfigChange={handleConfigChange}
-                        onBakeTypeChange={handleBakeTypeChange}
-                        onStyleChange={handleStyleChange}
-                        onYeastTypeChange={handleYeastTypeChange}
-                        onReset={resetConfig}
-                        results={results}
-                        unit={unit}
-                        onUnitChange={setUnit}
-                        unitSystem={unitSystem}
-                        onStartBatch={onStartBatch}
-                        defaultOven={defaultOven}
-                        selectedFlour={selectedFlour}
-                        calculationMode={calculationMode}
-                        onCalculationModeChange={setCalculationMode}
-                        calculatorMode={calculatorMode}
-                        onCalculatorModeChange={setCalculatorMode}
-                        hasProAccess={hasProAccess}
-                        onOpenPaywall={() => openPaywall('calculator')}
+                    <ProductionDashboard
+                        onSave={onStartBatch}
                     />
                 );
             case 'community':

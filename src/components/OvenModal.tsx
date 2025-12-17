@@ -6,7 +6,7 @@ import { useTranslation } from '@/i18n';
 interface OvenModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: (oven: Omit<Oven, 'id' | 'isDefault'> | Oven) => void;
+    onSave: (oven: Omit<Oven, 'id' | 'isDefault'> | Oven) => void | Promise<void>;
     ovenToEdit: Oven | null;
 }
 
@@ -43,13 +43,13 @@ const OvenModal: React.FC<OvenModalProps> = ({
 
     if (!isOpen) return null;
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         // Validation could go here
         if (ovenToEdit) {
-            onSave({ ...ovenToEdit, ...formData } as Oven);
+            await onSave({ ...ovenToEdit, ...formData } as Oven);
         } else {
-            onSave(formData as Omit<Oven, 'id' | 'isDefault'>);
+            await onSave(formData as Omit<Oven, 'id' | 'isDefault'>);
         }
     };
 

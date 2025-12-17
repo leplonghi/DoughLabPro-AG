@@ -84,64 +84,61 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                             <p className="text-sm font-medium text-lime-400 mt-1 uppercase tracking-wide opacity-90">{t('common.share_card.master_formula')}</p>
                         </div>
 
-                        {/* Big Stats */}
-                        <div className="relative z-10 grid grid-cols-2 gap-4 my-8">
-                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 shadow-xl">
-                                <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">{t('common.share_card.hydration')}</span>
-                                <span className="block text-4xl font-black text-white mt-1">{hydration}%</span>
+                        {/* Donut Chart Visualization */}
+                        <div className="relative z-10 flex flex-col items-center justify-center my-6">
+                            <div className="relative w-40 h-40">
+                                {/* Chart */}
+                                <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90 drop-shadow-2xl">
+                                    {/* Background Circle */}
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.1)" strokeWidth="12" />
+
+                                    {/* Flour Segment (White) */}
+                                    <circle
+                                        cx="50" cy="50" r="40"
+                                        fill="transparent"
+                                        stroke="white"
+                                        strokeWidth="12"
+                                        strokeDasharray={`${(100 / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2} 251.2`}
+                                        className="opacity-90"
+                                    />
+
+                                    {/* Water Segment (Lime) - Offset by Flour */}
+                                    <circle
+                                        cx="50" cy="50" r="40"
+                                        fill="transparent"
+                                        stroke="#84cc16" // lime-500
+                                        strokeWidth="12"
+                                        strokeDasharray={`${(config.hydration / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2} 251.2`}
+                                        strokeDashoffset={`-${(100 / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2}`}
+                                        className="opacity-90"
+                                    />
+                                </svg>
+
+                                {/* Center Text */}
+                                <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                    <span className="text-3xl font-black text-white tracking-tighter shadow-black drop-shadow-md">{hydration}%</span>
+                                    <span className="text-[9px] font-bold text-lime-400 uppercase tracking-widest">Hydration</span>
+                                </div>
                             </div>
-                            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 shadow-xl">
+                        </div>
+
+                        {/* Stats Row */}
+                        <div className="relative z-10 grid grid-cols-2 gap-4 mb-6">
+                            <div className="text-center">
                                 <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">{t('common.share_card.time')}</span>
-                                <span className="block text-4xl font-black text-white mt-1">{fermentation}h</span>
+                                <span className="block text-xl font-bold text-white mt-1">{fermentation}h</span>
+                            </div>
+                            <div className="text-center">
+                                <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">{t('common.salt')}</span>
+                                <span className="block text-xl font-bold text-white mt-1">{config.salt}%</span>
                             </div>
                         </div>
-
-                        {/* Formula List */}
-                        <div className="relative z-10 space-y-3 text-sm border-t border-white/10 pt-6">
-                            <div className="flex justify-between items-center group">
-                                <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.flour')}</span>
-                                <span className="font-mono font-bold text-white">100%</span>
-                            </div>
-                            <div className="flex justify-between items-center group">
-                                <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.water')}</span>
-                                <span className="font-mono font-bold text-lime-400">{config.hydration}%</span>
-                            </div>
-                            <div className="flex justify-between items-center group">
-                                <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.salt')}</span>
-                                <span className="font-mono font-bold text-white">{config.salt}%</span>
-                            </div>
-                            {config.yeastPercentage > 0 && (
-                                <div className="flex justify-between items-center group">
-                                    <span className="text-slate-400 font-medium group-hover:text-slate-300 transition-colors">{t('common.share_card.fermentation')} (Yeast)</span>
-                                    <span className="font-mono font-bold text-white">{config.yeastPercentage}%</span>
-                                </div>
-                            )}
-                            {config.prefermentPercentage > 0 && (
-                                <div className="flex justify-between items-center mt-3 pt-3 border-t border-white/5 border-dashed">
-                                    <span className="text-amber-400 font-medium">{t('general.preferment')}</span>
-                                    <span className="font-mono font-bold text-amber-400">{config.prefermentPercentage}%</span>
-                                </div>
-                            )}
-                        </div>
-
-
-
-                        {/* Assembly Increments Section */}
-                        {config.assemblyIncrements && config.assemblyIncrements.length > 0 && (
-                            <div className="relative z-10 border-t border-white/10 mt-3 pt-3">
-                                <p className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold mb-1">Toppings</p>
-                                <p className="text-sm font-medium text-white leading-tight">
-                                    {config.assemblyIncrements.map(i => i.visibleName).slice(0, 3).join(', ')}
-                                    {config.assemblyIncrements.length > 3 && '...'}
-                                </p>
-                            </div>
-                        )}
 
                         {/* Footer */}
-                        <div className="relative z-10 mt-auto pt-8 flex justify-between items-end">
+                        <div className="relative z-10 mt-auto pt-4 flex justify-between items-end border-t border-white/10">
                             <div>
                                 <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-0.5">{t('common.share_card.created_with')}</p>
-                                <p className="font-bold text-sm text-white tracking-wide">DoughLab Pro</p>
+                                <p className="font-extrabold text-sm text-lime-400 tracking-wide uppercase">Calculated by DoughLab Pro</p>
                             </div>
                             <div className="flex items-center justify-center bg-white p-1 rounded">
                                 {/* Simulated QR Code */}

@@ -66,6 +66,13 @@ export const neapolitan_avpn_classic: StyleDefinition = {
     "oil": 0,
     "sugar": 0
   },
+  "recommendedFlavorComponents": [
+    "fior_di_latte",
+    "garlic_oregano",
+    "parmesan",
+    "anchovies",
+    "cherry_tomatoes"
+  ],
   "regionalVariants": [],
   "climateScenarios": [],
   "styleComparisons": [],

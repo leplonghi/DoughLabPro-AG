@@ -24,12 +24,13 @@ import { logEvent } from '@/services/analytics';
 import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { useDoughSession } from '@/contexts/DoughSessionContext';
 
 interface CalculatorContextType {
     config: DoughConfig;
     setConfig: React.Dispatch<React.SetStateAction<DoughConfig>>;
-    calculatorMode: 'basic' | 'advanced';
-    setCalculatorMode: (mode: 'basic' | 'advanced') => void;
+    calculatorMode: 'wizard' | 'basic' | 'advanced';
+    setCalculatorMode: (mode: 'wizard' | 'basic' | 'advanced') => void;
     calculationMode: CalculationMode;
     setCalculationMode: React.Dispatch<React.SetStateAction<CalculationMode>>;
     unit: Unit;
@@ -58,18 +59,21 @@ const isAnySourdough = (yeastType: YeastType) =>
     [YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(yeastType);
 
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'calculator', 'styles']);
     const { user, levains, preferredFlourId, ovens } = useUser();
     const { addToast } = useToast();
     const previousErrorsRef = useRef<FormErrors>({});
 
     // --- State ---
-    const [calculatorMode, setCalculatorMode] = useState<'basic' | 'advanced'>(() => {
+    const [calculatorMode, setCalculatorMode] = useState<'wizard' | 'basic' | 'advanced'>(() => {
         try {
             const storedMode = localStorage.getItem('doughlab_mode');
-            return storedMode === 'advanced' ? 'advanced' : 'basic';
+            if (storedMode === 'wizard' || storedMode === 'basic' || storedMode === 'advanced') {
+                return storedMode;
+            }
+            return 'wizard'; // Default to wizard mode for most didactic experience
         } catch {
-            return 'basic';
+            return 'wizard';
         }
     });
 
@@ -81,7 +85,12 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         }
     }, [calculatorMode]);
 
-    const initialConfig = useMemo(() => {
+    const { session, updateSession, updateDough, isSaving } = useDoughSession();
+
+    const [hasInteracted, setHasInteracted] = useState(false);
+
+    // Smart Defaults (formerly initialConfig)
+    const smartDefaults = useMemo(() => {
         let config = { ...DEFAULT_CONFIG, stylePresetId: undefined };
         const preset = DOUGH_STYLE_PRESETS.find(p => p.id === DEFAULT_CONFIG.stylePresetId);
         if (preset?.preferredFlourProfileId) {
@@ -99,19 +108,100 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         return config;
     }, [preferredFlourId, ovens]);
 
-    const [config, setConfig] = useState<DoughConfig>(initialConfig);
+    // --- State Mapping ---
+    // Map Session State to DoughConfig
+    const config = useMemo<DoughConfig>(() => {
+        const d = session.dough;
+        // Basic mapping
+        const mappedConfig: DoughConfig = {
+            ...DEFAULT_CONFIG,
+            // Explicit Mappings
+            hydration: d.hydration,
+            salt: d.salt,
+            doughBallWeight: d.ballWeight,
+            numPizzas: d.yieldCount,
+            fermentationTechnique: d.prefermentType as FermentationTechnique,
+
+            // Spread other fields that match (e.g. oil, sugar, notes, yeastType, etc)
+            ...d,
+
+            // Ensure types match
+            yeastType: (d.yeastType as YeastType) || DEFAULT_CONFIG.yeastType,
+            bakeType: (d.bakeType as BakeType) || DEFAULT_CONFIG.bakeType,
+            recipeStyle: (d.recipeStyle as RecipeStyle) || DEFAULT_CONFIG.recipeStyle,
+
+            // If ingredients array is in session, use it, else generic normalization deals with it
+            ingredients: (d as any).ingredients || undefined,
+        };
+
+        let normalized = normalizeDoughConfig(mappedConfig);
+        normalized.ingredients = syncIngredientsFromConfig(normalized);
+        return normalized;
+    }, [session.dough]);
+
+    // setConfig Wrapper to update Session
+    const setConfig = useCallback((action: React.SetStateAction<DoughConfig>) => {
+        // Resolve value
+        // Note: we can't easily access 'prev' config inside updateDough if we use the function form of setConfig 
+        // derived from the *current* session. 
+        // Use the 'config' dependency which is derived from session.
+
+        let newConfig: DoughConfig;
+        if (typeof action === 'function') {
+            newConfig = action(config);
+        } else {
+            newConfig = action;
+        }
+
+        // Map DoughConfig back to Session Dough
+        const sessionUpdate: Partial<typeof session.dough> = {
+            hydration: newConfig.hydration,
+            salt: newConfig.salt,
+            ballWeight: newConfig.doughBallWeight,
+            yieldCount: newConfig.numPizzas,
+            prefermentType: newConfig.fermentationTechnique as any,
+            // Spread likely fields
+            oil: newConfig.oil,
+            sugar: newConfig.sugar,
+            yeastType: newConfig.yeastType,
+            bakeType: newConfig.bakeType,
+            recipeStyle: newConfig.recipeStyle,
+            ingredients: newConfig.ingredients,
+            scale: newConfig.scale,
+            notes: newConfig.notes,
+            flourId: newConfig.flourId,
+            ambientTemperature: newConfig.ambientTemperature,
+            bakingTempC: newConfig.bakingTempC,
+            // Add any other fields from DoughConfig that need persistence
+            ...newConfig
+        };
+
+        updateDough(sessionUpdate);
+        setHasInteracted(true);
+    }, [config, updateDough, session.dough]);
+
+
+    // Initialization Logic (Ported)
+    // Runs when we have User Data but session might be fresh/default
+    useEffect(() => {
+        if (!hasInteracted && !session.dough.flourId && user) {
+            // Logic to inject defaults if session seems empty/default
+            let defaults: Partial<DoughConfig> = {};
+            // Use smartDefaults
+            if (smartDefaults.flourId) defaults.flourId = smartDefaults.flourId;
+            if (smartDefaults.bakingTempC) defaults.bakingTempC = smartDefaults.bakingTempC;
+
+            if (Object.keys(defaults).length > 0) {
+                // Update the session directly
+                updateDough(defaults);
+            }
+        }
+    }, [user, hasInteracted, updateDough, session.dough.flourId, smartDefaults]);
+
     const [calculationMode, setCalculationMode] = useState<CalculationMode>('mass');
     const [unit, setUnit] = useState<Unit>('g');
     const [unitSystem, setUnitSystem] = useState<UnitSystem>(UnitSystem.METRIC);
     const [errors, setErrors] = useState<FormErrors>({});
-    const [hasInteracted, setHasInteracted] = useState(false);
-
-    // Sync initial defaults (like Oven Temp) when data loads, if user hasn't touched controls
-    useEffect(() => {
-        if (!hasInteracted) {
-            setConfig(initialConfig);
-        }
-    }, [initialConfig, hasInteracted]);
 
     // --- Validation ---
     useEffect(() => {
@@ -200,7 +290,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         let updatedConfig = {
             ...config,
             ...newConfig,
-            stylePresetId: calculatorMode === 'basic' ? config.stylePresetId : undefined
+            stylePresetId: (calculatorMode === 'wizard' || calculatorMode === 'basic') ? config.stylePresetId : undefined
         };
 
         updatedConfig = normalizeDoughConfig(updatedConfig);
@@ -235,7 +325,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 }
 
                 let newConf = {
-                    ...initialConfig,
+                    ...smartDefaults,
                     ...config,
                     bakeType,
                     recipeStyle: recipeStyle,
@@ -252,7 +342,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 setConfig(newConf);
             }
         },
-        [initialConfig, config.yeastType, config],
+        [smartDefaults, config.yeastType, config],
     );
 
     const handleStyleChange = useCallback((presetId: string) => {
@@ -465,14 +555,15 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }, [config, handleLoadAndNavigate]);
 
     const resetConfig = useCallback(() => {
-        setConfig({ ...initialConfig, stylePresetId: undefined, ingredients: syncIngredientsFromConfig(initialConfig) });
+        setConfig({ ...smartDefaults, stylePresetId: undefined, ingredients: syncIngredientsFromConfig(smartDefaults) });
         setHasInteracted(false);
-    }, [initialConfig]);
+    }, [smartDefaults]);
 
-    // Mode switching logic (basic <-> advanced)
-    const setCalculatorModeWrapper = useCallback((newMode: 'basic' | 'advanced') => {
+    // Mode switching logic (wizard <-> basic <-> advanced)
+    const setCalculatorModeWrapper = useCallback((newMode: 'wizard' | 'basic' | 'advanced') => {
         setCalculatorMode(newMode);
-        if (newMode === 'basic') {
+        // Both wizard and basic modes reset to preset values
+        if (newMode === 'wizard' || newMode === 'basic') {
             const preset = DOUGH_STYLE_PRESETS.find(p => p.recipeStyle === config.recipeStyle);
             if (preset) {
                 const { defaultHydration, defaultSalt, defaultOil, defaultSugar } = preset;

@@ -11,7 +11,7 @@ interface ConsistencyDetailPageProps {
 }
 
 const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId, onNavigate }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { testSeries, batches, attachBakeToSeries, updateTestSeries } = useUser();
     const [notes, setNotes] = useState('');
     const [isEditingNotes, setIsEditingNotes] = useState(false);
@@ -58,7 +58,7 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
         return (
             <MyLabLayout activePage="mylab/consistency" onNavigate={onNavigate}>
                 <div className="p-8 text-center">
-                    <p className="text-slate-600 ">{t('mylab.test_series_not_found')}</p>
+                    <p className="text-slate-600 ">{t('common.mylab.test_series_not_found')}</p>
                 </div>
             </MyLabLayout>
         );
@@ -75,7 +75,7 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
                         &larr; Back to Series
                     </button>
                     <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">{series.name}</h1>
-                    <p className="mt-2 text-slate-600 ">{t('mylab.summary_of_your_controlled_test_series')}</p>
+                    <p className="mt-2 text-slate-600 ">{t('common.mylab.summary_of_your_controlled_test_series')}</p>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Main Content */}
@@ -92,21 +92,21 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
                                         </div>
                                     ))}
                                 </div>
-                            ) : <p className="text-sm text-center text-slate-500  py-6">{t('mylab.no_bakes_associated_yet')}</p>}
+                            ) : <p className="text-sm text-center text-slate-500  py-6">{t('common.mylab.no_bakes_associated_yet')}</p>}
 
                             <div className="mt-6 pt-6 border-t border-slate-200  flex flex-col sm:flex-row items-center gap-3">
                                 <select value={selectedBake} onChange={e => setSelectedBake(e.target.value)} className="w-full flex-grow rounded-xl border-slate-300  bg-white  text-sm py-2.5 px-3 text-slate-700  focus:ring-2 focus:ring-lime-500 focus:border-transparent">
-                                    <option value="">{t('mylab.select_a_bake_to_associate')}</option>
+                                    <option value="">{t('common.mylab.select_a_bake_to_associate')}</option>
                                     {unattachedBakes.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                                 </select>
                                 <button onClick={handleAttachBake} disabled={!selectedBake} className="w-full sm:w-auto flex-shrink-0 flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-4 text-sm font-bold text-white shadow-lg shadow-lime-500/20 disabled:bg-slate-300 disabled:shadow-none transition-all hover:bg-lime-600">
-                                    <PlusCircleIcon className="h-5 w-5" />{t('mylab.associate')}</button>
+                                    <PlusCircleIcon className="h-5 w-5" />{t('common.mylab.associate')}</button>
                             </div>
                         </div>
 
                         {/* Notes */}
                         <div className="rounded-2xl border border-slate-200  bg-white  p-6 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900  mb-4">{t('mylab.series_notes')}</h3>
+                            <h3 className="text-lg font-bold text-slate-900  mb-4">{t('common.mylab.series_notes')}</h3>
                             {isEditingNotes ? (
                                 <div>
                                     <textarea rows={5} value={notes} onChange={e => setNotes(e.target.value)} className="w-full rounded-xl border-slate-300  bg-white  text-sm text-slate-700  p-3 focus:ring-2 focus:ring-lime-500 focus:border-transparent" />
@@ -117,7 +117,7 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
                                 </div>
                             ) : (
                                 <div onClick={() => setIsEditingNotes(true)} className="cursor-pointer prose-sm text-slate-600  min-h-[5rem] p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                                    {notes || <p className="italic text-slate-400 ">{t('mylab.click_to_add_notes')}</p>}
+                                    {notes || <p className="italic text-slate-400 ">{t('common.mylab.click_to_add_notes')}</p>}
                                 </div>
                             )}
                         </div>
@@ -125,19 +125,19 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
                         {/* AI Analysis Placeholder */}
                         <div className="rounded-2xl border-2 border-dashed border-slate-300  p-8 text-center bg-slate-50/50 ">
                             <SparklesIcon className="mx-auto h-10 w-10 text-slate-400 " />
-                            <h3 className="mt-3 text-lg font-bold text-slate-800 ">{t('mylab.ai_analysis')}</h3>
-                            <p className="mt-2 text-sm text-slate-600 ">{t('mylab.coming_soon_ai_will_analyze_your_bake_results_and_')}</p>
+                            <h3 className="mt-3 text-lg font-bold text-slate-800 ">{t('common.mylab.ai_analysis')}</h3>
+                            <p className="mt-2 text-sm text-slate-600 ">{t('common.mylab.coming_soon_ai_will_analyze_your_bake_results_and_')}</p>
                         </div>
                     </div>
 
                     {/* Sidebar */}
                     <div className="lg:col-span-1">
                         <div className="rounded-2xl border border-slate-200  bg-slate-50  p-6 shadow-sm sticky top-24">
-                            <h3 className="text-lg font-bold text-slate-900  mb-4">{t('mylab.test_parameters')}</h3>
+                            <h3 className="text-lg font-bold text-slate-900  mb-4">{t('common.mylab.test_parameters')}</h3>
                             <div className="space-y-4 text-sm">
-                                <p className="text-slate-700 "><strong className="text-slate-900 ">{t('mylab.variable')}</strong> {series.parameters.variable}</p>
+                                <p className="text-slate-700 "><strong className="text-slate-900 ">{t('common.mylab.variable')}</strong> {series.parameters.variable}</p>
                                 <div>
-                                    <strong className="text-slate-900  block mb-2">{t('mylab.steps_tested')}</strong>
+                                    <strong className="text-slate-900  block mb-2">{t('common.mylab.steps_tested')}</strong>
                                     <ul className="space-y-2">
                                         {series.parameters.steps.map((step, i) => (
                                             <li key={i} className="flex items-center gap-2 text-slate-700  bg-white  px-3 py-2 rounded-lg border border-slate-200 ">

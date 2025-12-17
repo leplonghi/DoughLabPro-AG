@@ -295,3 +295,32 @@ if (typeof crypto === 'undefined') {
     });
   }) as any;
 }
+
+/**
+ * Recursively removes undefined values from an object to make it Firestore-compatible.
+ * Arrays are mapped, objects are traversed.
+ * Firestore does not support 'undefined' as a value.
+ */
+export function sanitizeForFirestore(obj: any): any {
+  if (obj === undefined) return null; // Convert explicit undefined to null if passed directly, though keys are usually stripped
+  if (obj === null) return null;
+  if (typeof obj !== 'object') return obj;
+  if (obj instanceof Date) return obj;
+  if (Array.isArray(obj)) return obj.map(sanitizeForFirestore);
+
+  // Check for Firestore specific types (simplistic check to avoid breaking Timestamps etc if passed)
+  // If it has a 'toMillis' function, assume it's a Timestamp or similar and return as is.
+  if (typeof (obj as any).toMillis === 'function') return obj;
+
+  const newObj: any = {};
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const val = obj[key];
+      if (val !== undefined) {
+        newObj[key] = sanitizeForFirestore(val);
+      }
+      // If undefined, it is omitted from the new object
+    }
+  }
+  return newObj;
+}

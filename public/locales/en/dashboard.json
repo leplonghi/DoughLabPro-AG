@@ -490,6 +490,20 @@
         "steps_tooltip": "Comma separated values (e.g. 60%, 65%, 70%)",
         "notes_optional": "Notes (Optional)",
         "save_series": "Save Series",
-        "limit_reach_desc": "You've reached the <1>1-batch limit</1> for the Free plan. Upgrade to <3>DoughLab Pro</3> to unlock unlimited storage, advanced analytics, and historical tracking."
+        "limit_reach_desc": "You've reached the <1>1-batch limit</1> for the Free plan. Upgrade to <3>DoughLab Pro</3> to unlock unlimited storage, advanced analytics, and historical tracking.",
+        "open_ai_assistant": "Open AI Assistant",
+        "my_presets": "My Presets",
+        "custom_presets": "Custom Presets",
+        "desc_custom_presets": "Your saved dough configurations ready to use.",
+        "no_presets_saved": "No presets saved yet.",
+        "save_current_config": "Save your favorite configurations from the calculator.",
+        "preset_saved": "Preset saved!",
+        "preset_deleted": "Preset deleted",
+        "load_preset": "Load Preset",
+        "delete_preset": "Delete Preset",
+        "preset_name": "Preset Name",
+        "preset_description": "Description (optional)",
+        "save_preset": "Save Preset",
+        "edit_preset": "Edit Preset"
     }
 }

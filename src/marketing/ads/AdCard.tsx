@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { shouldShowAd, getAd, recordAdView } from './adsEngine';
 import { Ad } from './adsCatalog';
 import { useTranslation } from '@/i18n';
+import { ExternalLink } from '@/components/ui/ExternalLink';
 
 interface AdCardProps {
     context?: string; // e.g., 'calculator_footer', 'styles_list'
@@ -45,14 +46,12 @@ export const AdCard: React.FC<AdCardProps> = ({ context = 'general', className =
                 <p className="text-xs text-dlp-text-secondary mb-3 line-clamp-2">
                     {t(`marketing.ads.catalog.${ad.id}.description`, ad.description)}
                 </p>
-                <a
+                <ExternalLink
                     href={ad.ctaLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="block w-full text-center py-2 bg-dlp-bg-muted hover:bg-dlp-border-strong text-dlp-text-primary text-xs font-bold rounded-lg transition-colors"
                 >
                     {t(`marketing.ads.catalog.${ad.id}.ctaText`, ad.ctaText)}
-                </a>
+                </ExternalLink>
             </div>
         </div>
     );

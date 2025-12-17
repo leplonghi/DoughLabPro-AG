@@ -9,7 +9,7 @@ interface StyleContextBarProps {
 }
 
 const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['calculator', 'styles']);
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (

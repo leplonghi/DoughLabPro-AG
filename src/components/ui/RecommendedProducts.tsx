@@ -1,6 +1,7 @@
 import React from 'react';
 import { getRecommendedProducts } from '../../data/affiliates';
-import { ShoppingBag, ExternalLink } from 'lucide-react';
+import { ShoppingBag, ExternalLink as ExternalLinkIcon } from 'lucide-react';
+import { ExternalLink } from '@/components/ui/ExternalLink';
 import { useTranslation } from '@/i18n';
 
 interface RecommendedProductsProps {
@@ -16,7 +17,7 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
     title = 'Professional Baking Gear',
     className = ''
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const products = getRecommendedProducts(tags, limit);
 
     if (!products || products.length === 0) return null;
@@ -32,11 +33,9 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
 
             <div className="flex flex-col gap-3">
                 {products.map(product => (
-                    <a
+                    <ExternalLink
                         key={product.id}
                         href={product.affiliateLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="group flex bg-white rounded-lg border border-slate-200 overflow-hidden hover:border-dlp-primary-500 hover:shadow-md transition-all duration-300 h-20"
                     >
                         {/* Image - Fixed width */}
@@ -54,7 +53,7 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
                                 <h4 className="text-sm font-bold text-slate-900 leading-tight truncate group-hover:text-dlp-primary-600 transition-colors">
                                     {product.name}
                                 </h4>
-                                <ExternalLink className="w-3 h-3 text-slate-300 group-hover:text-dlp-primary-500 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <ExternalLinkIcon className="w-3 h-3 text-slate-300 group-hover:text-dlp-primary-500 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
 
                             <div className="flex items-center justify-between mt-1">
@@ -66,7 +65,7 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({
                                 </span>
                             </div>
                         </div>
-                    </a>
+                    </ExternalLink>
                 ))}
             </div>
 

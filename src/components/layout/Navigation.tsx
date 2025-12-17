@@ -39,12 +39,12 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
     const { t } = useTranslation(['common', 'profile', 'auth']);
 
     const navLinks = [
-        { page: 'calculator', label: t('nav.calculator'), icon: CalculatorIcon },
-        { page: 'mylab', label: t('nav.lab'), icon: BeakerIcon },
-        { page: 'styles', label: t('nav.styles'), icon: BatchesIcon },
-        { page: 'learn', label: t('nav.learn'), icon: AcademicCapIcon },
-        { page: 'tools', label: t('nav.tools'), icon: WrenchScrewdriverIcon },
-        { page: 'community', label: t('nav.community'), icon: UsersIcon },
+        { page: 'calculator', label: t('common.nav.calculator'), icon: CalculatorIcon },
+        { page: 'mylab', label: t('common.nav.lab'), icon: BeakerIcon },
+        { page: 'styles', label: t('common.nav.styles'), icon: BatchesIcon },
+        { page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
+        { page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
+        { page: 'community', label: t('common.nav.community'), icon: UsersIcon },
     ];
 
     return (
@@ -52,7 +52,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Left Section: Logo & main links */}
                 <div className="flex items-center gap-6">
-                    <button onClick={() => handleNavigate('mylab')} aria-label={t('nav.home')} className="flex flex-shrink-0 items-center">
+                    <button onClick={() => handleNavigate('mylab')} aria-label={t('common.nav.home')} className="flex flex-shrink-0 items-center">
                         <Logo className="h-9 w-auto" />
                     </button>
                     <nav className="flex items-center gap-1">
@@ -110,13 +110,13 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
     const hasPro = hasProAccess;
 
     const navLinks = [
-        { id: 'calculator', page: 'calculator', label: t('nav.calculator'), icon: CalculatorIcon },
-        { id: 'mylab', page: 'mylab', label: t('nav.lab'), icon: BeakerIcon },
-        { id: 'styles', page: 'styles', label: t('nav.styles'), icon: BatchesIcon },
-        { id: 'learn', page: 'learn', label: t('nav.learn'), icon: AcademicCapIcon },
-        { id: 'tools', page: 'tools', label: t('nav.tools'), icon: WrenchScrewdriverIcon },
-        { id: 'community', page: 'community', label: t('nav.community'), icon: UsersIcon },
-        { id: 'profile', page: 'profile', label: t('nav.profile'), icon: UserCircleIcon },
+        { id: 'calculator', page: 'calculator', label: t('common.nav.calculator'), icon: CalculatorIcon },
+        { id: 'mylab', page: 'mylab', label: t('common.nav.lab'), icon: BeakerIcon },
+        { id: 'styles', page: 'styles', label: t('common.nav.styles'), icon: BatchesIcon },
+        { id: 'learn', page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
+        { id: 'tools', page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
+        { id: 'community', page: 'community', label: t('common.nav.community'), icon: UsersIcon },
+        { id: 'profile', page: 'profile', label: t('common.nav.profile'), icon: UserCircleIcon },
     ];
 
     const onMobileNavigate = (page: Page, requiresPro: boolean = false) => {
@@ -131,7 +131,7 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
     return (
         <header className="fixed top-0 left-0 w-full z-50 border-b border-dlp-border bg-dlp-bg-card/90 backdrop-blur-md sm:hidden transition-all duration-200 shadow-dlp-sm">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-                <button onClick={() => handleNavigate('mylab')} aria-label={t('nav.home')} className="flex flex-shrink-0 items-center">
+                <button onClick={() => handleNavigate('mylab')} aria-label={t('common.nav.home')} className="flex flex-shrink-0 items-center">
                     <Logo className="h-9 w-auto" />
                 </button>
                 <div className="flex items-center gap-2">

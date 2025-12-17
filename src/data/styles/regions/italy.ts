@@ -149,12 +149,12 @@ export const italianStyles: DoughStyle[] = [
                 },
                 {
                     method: 'Poolish',
-                    suitability: 'Possible',
+                    suitability: 'Not Recommended',
                     notes: "styles.pizza_napoletana_ferm_poolish_notes"
                 },
                 {
                     method: 'Biga',
-                    suitability: 'Possible',
+                    suitability: 'Not Recommended',
                     notes: 'styles.pizza_napoletana_ferm_biga_notes'
                 }
             ]
@@ -164,7 +164,7 @@ export const italianStyles: DoughStyle[] = [
             methodSuitability: {
                 direct: { suitable: true, notes: "styles.pizza_napoletana_method_direct_notes" },
                 biga: { suitable: false, notes: "styles.pizza_napoletana_method_biga_notes" },
-                poolish: { suitable: true, notes: "styles.pizza_napoletana_method_poolish_notes" }
+                poolish: { suitable: false, notes: "styles.pizza_napoletana_method_poolish_notes" }
             },
             whatIf: [
                 {
@@ -349,13 +349,13 @@ export const italianStyles: DoughStyle[] = [
     },
     {
         id: "pizza-tonda-romana",
-        name: "pizza_tonda_romana_name",
+        name: "styles.pizza_tonda_romana_name",
         region: 'Italy',
         subRegion: 'Rome, Lazio',
         category: 'Pizza',
         recipeStyle: RecipeStyle.ROMANA_TONDA,
         tags: ['styles.pizza_tonda_romana_tag_low_hyd', 'styles.pizza_tonda_romana_tag_rolling', 'styles.pizza_tonda_romana_tag_crispy', 'styles.pizza_tonda_romana_tag_cracker'],
-        description: "pizza_tonda_romana_desc",
+        description: "styles.pizza_tonda_romana_desc",
         history_context: "pizza_tonda_romana_history",
         base_formula: [
             { name: "styles.ingredients_flour_00", percentage: 100 },

@@ -18,6 +18,7 @@ import { UserProvider, useUser } from '@/contexts/UserProvider';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { I18nProvider, useTranslation } from '@/i18n';
 import { CalculatorProvider, useCalculator } from '@/contexts/CalculatorContext';
+import { DoughSessionProvider, useDoughSession } from '@/contexts/DoughSessionContext';
 import { StylesProvider } from '@/contexts/StylesProvider';
 import { RouterProvider, useRouter } from '@/contexts/RouterContext';
 
@@ -41,6 +42,7 @@ import { FLOURS } from '@/flours-constants';
 // Lazy Load Assistant
 const AssistantPage = React.lazy(() => import('@/components/AssistantPage'));
 
+
 console.log('[App] BatchesProvider imported:', BatchesProviderComponent);
 
 function AppContent() {
@@ -63,6 +65,8 @@ function AppContent() {
   } = useUser();
 
   const { config, results, hasInteracted } = useCalculator();
+  const { session, isSaving } = useDoughSession();
+  const lastSaved = session.meta.lastSaved;
   const { addToast } = useToast();
   const { t } = useTranslation();
 
@@ -144,7 +148,8 @@ function AppContent() {
         isFavorite: false,
       });
       addToast(`${t('ui.bake_')}${newBatch.name}" started!`, 'success');
-      navigate('mylab/fornadas');
+      // Deep Linking: Navigate to the specific batch so the URL updates
+      navigate(`batch/${newBatch.id}`);
     }
   }, [results, batches, hasProAccess, addToast, openPaywall, config, addBatch, navigate]);
 
@@ -265,6 +270,14 @@ function AppContent() {
         onClose={() => setIsAuthModalOpen(false)}
       />
       <TourGuide />
+
+      {/* Persistence Indicator */}
+      {lastSaved && (
+        <div className="fixed bottom-4 right-4 bg-dlp-bg-surface border border-dlp-border shadow-lg rounded-full px-4 py-2 text-xs text-dlp-text-muted transition-opacity duration-1000 animate-fade-in-out pointer-events-none z-50 flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-green-500"></div>
+          {t('ui.changes_saved')}
+        </div>
+      )}
     </div>
   );
 }
@@ -288,11 +301,13 @@ function App() {
                               <SensoryProvider>
                                 <TimelineProvider>
                                   <RouterProvider>
-                                    <CalculatorProvider>
-                                      <StylesProvider>
-                                        <AppContent />
-                                      </StylesProvider>
-                                    </CalculatorProvider>
+                                    <DoughSessionProvider>
+                                      <CalculatorProvider>
+                                        <StylesProvider>
+                                          <AppContent />
+                                        </StylesProvider>
+                                      </CalculatorProvider>
+                                    </DoughSessionProvider>
                                   </RouterProvider>
                                 </TimelineProvider>
                               </SensoryProvider>

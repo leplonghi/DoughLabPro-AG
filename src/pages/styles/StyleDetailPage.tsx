@@ -177,7 +177,7 @@ function deepDiveMethodHelper(obj: any, t: any) {
 
 // 1. Scientific Process Timeline (Improved V2)
 const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles', 'general']);
     return (
         <div className="relative space-y-8 pl-6 md:pl-0">
             {/* Main Connector Line */}
@@ -267,7 +267,7 @@ interface StyleDetailPageProps {
 
 // 3. Education Section Component
 const EducationSection: React.FC<{ education: any }> = ({ education }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles', 'general']);
     if (!education) return null;
 
     return (
@@ -418,7 +418,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
 
 // 4. Deep Dive Section Component (New Expert Module)
 const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles', 'general']);
     if (!deepDive) return null;
 
     return (
@@ -523,7 +523,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
 };
 
 export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initialStyle, onLoadAndNavigate, onBack }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles', 'general']);
     const { isFavorite, toggleFavorite, userStyles, updateUserStyle, user } = useUser();
     const [styleData, setStyleData] = useState<DoughStyle | null>(null);
     const [viewFormula, setViewFormula] = useState<any[]>([]);

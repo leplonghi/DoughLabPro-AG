@@ -1,9 +1,10 @@
 import React from 'react';
 import { DoughConfig, CalculationMode, FormErrors } from '@/types';
-import { ListBulletIcon, InfoIcon } from '@/components/ui/Icons';
+import { ListBulletIcon, InfoIcon, ClockIcon } from '@/components/ui/Icons';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import AccordionSection from '@/components/calculator/AccordionSection';
 import { useTranslation } from '@/i18n';
+import TargetTimeInput from '../TargetTimeInput';
 
 interface QuantitySectionProps {
     config: DoughConfig;
@@ -36,7 +37,8 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
             icon={<ListBulletIcon className="h-6 w-6" />}
         >
             {/* Calculation Mode Toggle */}
-            <div className="mb-3 grid grid-cols-2 gap-2 rounded-lg bg-dlp-bg-muted p-1">
+            <div className={`mb-3 grid gap-2 rounded-lg bg-dlp-bg-muted p-1 ${'grid-cols-1 sm:grid-cols-3'
+                }`}>
                 <ChoiceButton
                     active={calculationMode === 'mass'}
                     label={t('calculator.by_total_weight')}
@@ -47,6 +49,12 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                     label={t('calculator.by_flour_weight')}
                     onClick={() => onCalculationModeChange('flour')}
                 />
+                <ChoiceButton
+                    active={calculationMode === 'TARGET_TIME'}
+                    label={t('calculator.by_target_time')}
+                    icon={<ClockIcon className="h-4 w-4" />}
+                    onClick={() => onCalculationModeChange('TARGET_TIME')}
+                />
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -56,6 +64,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                             <label htmlFor="totalFlour" className="block text-xs font-bold text-dlp-text-secondary">
                                 {t('calculator.total_flour_weight')}
                             </label>
+                            {/* ... Info Icon ... */}
                             <div className="group relative flex items-center">
                                 <InfoIcon className="h-3.5 w-3.5 cursor-help text-dlp-accent" />
                                 <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2 rounded-md bg-dlp-bg-card p-2 text-xs font-normal text-dlp-text-primary border border-dlp-border opacity-0 shadow-dlp-md transition-opacity duration-300 group-hover:opacity-100">
@@ -78,13 +87,28 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                             {t('calculator.total_flour_help')}
                         </p>
                     </div>
+                ) : calculationMode === 'TARGET_TIME' ? (
+                    <div className="col-span-1 sm:col-span-2">
+                        <TargetTimeInput
+                            targetTime={config.targetTime}
+                            onTargetTimeChange={(iso) => onConfigChange({ targetTime: iso })}
+                            numPizzas={config.numPizzas}
+                            onNumPizzasChange={(n) => onConfigChange({ numPizzas: n })}
+                            ballWeight={config.doughBallWeight}
+                            onBallWeightChange={(n) => onConfigChange({ doughBallWeight: n })}
+                            minWeight={minDoughBallWeight}
+                            maxWeight={maxDoughBallWeight}
+                            errors={errors}
+                            getInputClasses={getInputClasses}
+                        />
+                    </div>
                 ) : (
                     <>
                         {/* Number of Balls */}
                         <div>
                             <div className="flex items-center gap-2 mb-1">
                                 <label htmlFor="numPizzas" className="block text-xs font-bold text-dlp-text-secondary">
-                                    {config.bakeType === 'pizzas' ? t('calculator.number_of_pizzas') : t('calculator.number_of_loaves')}
+                                    {config.bakeType === 'PIZZAS' ? t('calculator.number_of_pizzas') : t('calculator.number_of_loaves')}
                                 </label>
                                 <div className="group relative flex items-center">
                                     <InfoIcon className="h-3.5 w-3.5 cursor-help text-dlp-accent" />

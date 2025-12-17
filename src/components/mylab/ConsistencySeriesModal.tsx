@@ -75,7 +75,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
             <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl ring-1 ring-slate-200 overflow-hidden">
                 <div className="flex items-center justify-between border-b border-gray-100 p-4 bg-gray-50/50">
                     <h2 className="text-lg font-bold text-gray-900">
-                        {seriesToEdit ? t('mylab.edit_series') : t('mylab.create_new_series_title')}
+                        {seriesToEdit ? t('common.mylab.edit_series') : t('common.mylab.create_new_series_title')}
                     </h2>
                     <button
                         onClick={onClose}
@@ -87,7 +87,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-1">{t('mylab.series_name')}</label>
+                        <label className="block text-sm font-bold text-gray-700 mb-1">{t('common.mylab.series_name')}</label>
                         <input
                             type="text"
                             required
@@ -99,36 +99,36 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                     </div>
 
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-1">{t('mylab.description')}</label>
+                        <label className="block text-sm font-bold text-gray-700 mb-1">{t('common.mylab.description')}</label>
                         <textarea
                             rows={2}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder={t('mylab.goal_of_this_experiment')}
+                            placeholder={t('common.mylab.goal_of_this_experiment')}
                             className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-1">{t('mylab.variable_3')}</label>
+                            <label className="block text-sm font-bold text-gray-700 mb-1">{t('common.mylab.variable_3')}</label>
                             <select
                                 value={variable}
                                 onChange={(e) => setVariable(e.target.value as TestSeriesVariable)}
                                 className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
                             >
-                                <option value="hydration">{t('mylab.variable_hydration')}</option>
-                                <option value="fermentation_time">{t('mylab.variable_fermentation_time')}</option>
-                                <option value="flour">{t('mylab.variable_flour')}</option>
-                                <option value="other">{t('mylab.variable_other')}</option>
+                                <option value="hydration">{t('common.mylab.variable_hydration')}</option>
+                                <option value="fermentation_time">{t('common.mylab.variable_fermentation_time')}</option>
+                                <option value="flour">{t('common.mylab.variable_flour')}</option>
+                                <option value="other">{t('common.mylab.variable_other')}</option>
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-1 flex items-center gap-1">{t('mylab.steps_2')}<div className="group relative">
+                            <label className="block text-sm font-bold text-gray-700 mb-1 flex items-center gap-1">{t('common.mylab.steps_2')}<div className="group relative">
                                 <InfoIcon className="h-4 w-4 text-gray-400 cursor-help" />
                                 <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 group-hover:opacity-100 transition-opacity z-50">
                                     <div className="bg-slate-800 text-white text-xs rounded py-1 px-2 text-center shadow-lg">
-                                        {t('mylab.steps_tooltip')}
+                                        {t('common.mylab.steps_tooltip')}
                                     </div>
                                 </div>
                             </div>
@@ -145,13 +145,13 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
 
                     <div>
                         <label className="block text-sm font-bold text-gray-700 mb-1">
-                            {t('mylab.notes_optional')}
+                            {t('common.mylab.notes_optional')}
                         </label>
                         <textarea
                             rows={3}
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
-                            placeholder={t('mylab.specific_instructions_or_observations')}
+                            placeholder={t('common.mylab.specific_instructions_or_observations')}
                             className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
                         />
                     </div>
@@ -161,13 +161,13 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             type="button"
                             onClick={onClose}
                             className="rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-bold text-gray-600 shadow-sm hover:bg-gray-50 transition-all"
-                        >{t('mylab.cancel')}</button>
+                        >{t('common.mylab.cancel')}</button>
                         <button
                             type="submit"
                             disabled={loading}
                             className="rounded-xl bg-lime-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all active:scale-95 disabled:opacity-50"
                         >
-                            {loading ? t('mylab.saving') : t('mylab.save_series')}
+                            {loading ? t('common.mylab.saving') : t('common.mylab.save_series')}
                         </button>
                     </div>
                 </form>

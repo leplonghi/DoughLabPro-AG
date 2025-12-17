@@ -11,6 +11,7 @@ interface UseStyleSearchProps {
 }
 
 export function useStyleSearch({ styles }: UseStyleSearchProps) {
+    const { t } = useTranslation(['styles', 'common']);
     const { isFavorite } = useUser();
 
     // Filter States
@@ -32,21 +33,26 @@ export function useStyleSearch({ styles }: UseStyleSearchProps) {
     const availableTags = useMemo(() => {
         const tags = new Set<string>();
         styles.forEach(style => {
-            style.tags?.forEach(t => tags.add(t));
+            if (style.tags) {
+                style.tags.forEach(tag => tags.add(t(tag)));
+            }
         });
         return Array.from(tags).sort();
-    }, [styles]);
+    }, [styles, t]);
 
     // Derived Data: Filtered & Sorted Styles
     const filteredStyles = useMemo(() => {
         const filtered = styles.filter(style => {
             const searchLower = searchTerm.toLowerCase();
-            const matchesSearch = style.name.toLowerCase().includes(searchLower) ||
-                style.description.toLowerCase().includes(searchLower) ||
-                (style.tags && style.tags.some(t => t.toLowerCase().includes(searchLower)));
+            const translatedName = t(style.name).toLowerCase();
+            const translatedDesc = t(style.description).toLowerCase();
+
+            const matchesSearch = translatedName.includes(searchLower) ||
+                translatedDesc.includes(searchLower) ||
+                (style.tags && style.tags.some(tag => t(tag).toLowerCase().includes(searchLower)));
 
             const matchesCategory = selectedCategory === 'All' || style.category === selectedCategory;
-            const matchesTag = selectedTag ? style.tags?.includes(selectedTag) : true;
+            const matchesTag = selectedTag ? (style.tags && style.tags.map(tag => t(tag)).includes(selectedTag)) : true;
             const matchesFavorite = showFavorites ? isFavorite(style.id) : true;
 
             // Advanced Filters (safely checking properties that might be optional on legacy types)
@@ -62,7 +68,7 @@ export function useStyleSearch({ styles }: UseStyleSearchProps) {
             let comparison = 0;
             switch (sortBy) {
                 case 'name':
-                    comparison = a.name.localeCompare(b.name);
+                    comparison = t(a.name).localeCompare(t(b.name));
                     break;
                 case 'newest':
                     const dateA = new Date(a.releaseDate || 0).getTime();

@@ -6,7 +6,7 @@ import { useTranslation } from '@/i18n';
 interface LevainModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: (levain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'> | Levain) => void;
+    onSave: (levain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'> | Levain) => void | Promise<void>;
     levainToEdit: Levain | null;
 }
 
@@ -67,10 +67,10 @@ const LevainModal: React.FC<LevainModalProps> = ({
 
     if (!isOpen) return null;
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (levainToEdit) {
-            onSave({ ...levainToEdit, ...formData } as Levain);
+            await onSave({ ...levainToEdit, ...formData } as Levain);
         } else {
             const newLevain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'> = {
                 name: formData.name || 'LevainPet',
@@ -83,7 +83,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                 lastFeeding: new Date().toISOString(),
                 typicalUse: formData.typicalUse
             };
-            onSave(newLevain);
+            await onSave(newLevain);
         }
     };
 

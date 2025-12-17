@@ -109,8 +109,43 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, 
         durationMinutes: BASE_DURATIONS.BULK_AMBIENT,
         startTime: bulk.start,
         endTime: bulk.end,
-        description: 'Initial rise at room temperature.'
+        description: 'Initial rise at room temperature. Cover well.'
     });
+
+    // 5b. FOLDS (Insert during Bulk)
+    // Logic: If hydration > 65%, add folds during the first phase of bulk
+    const hydration = config.hydration || 60;
+    let numFolds = 0;
+    if (hydration >= 65) numFolds = 1;
+    if (hydration >= 70) numFolds = 2;
+    if (hydration >= 75) numFolds = 3;
+    if (hydration >= 80) numFolds = 4;
+
+    // Additional check for Panettone or specific complex styles could happen here
+    if (config.recipeStyle === RecipeStyle.PANETTONE) numFolds = 3; // Example
+
+    if (numFolds > 0) {
+        // Start folds 30 mins after mix (or start of bulk)
+        // Note: Bulk start is 'bulk.start'.
+        let foldTime = new Date(bulk.start.getTime());
+
+        for (let i = 1; i <= numFolds; i++) {
+            // Add 30 mins for each fold interval
+            foldTime = new Date(foldTime.getTime() + 30 * 60000);
+
+            // Only add if it falls within bulk time (safety check)
+            if (foldTime < bulk.end) {
+                steps.push({
+                    id: `fold_${i}`,
+                    title: `Stretch & Fold #${i}`,
+                    durationMinutes: 5, // Active time
+                    startTime: new Date(foldTime.getTime()), // Point in time
+                    endTime: new Date(foldTime.getTime() + 5 * 60000),
+                    description: 'Strengthen the gluten network. Perform a set of folds.'
+                });
+            }
+        }
+    }
 
     // 6. MIXING (+ Autolyse)
     if (config.hydration >= 70) {
@@ -121,7 +156,7 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, 
             durationMinutes: BASE_DURATIONS.AUTOLYSE,
             startTime: auto.start,
             endTime: auto.end,
-            description: 'Flour + Water rest.'
+            description: 'Mix flour and water only. Let rest.'
         });
     }
 
@@ -132,7 +167,7 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, 
         durationMinutes: BASE_DURATIONS.MIX,
         startTime: mix.start,
         endTime: mix.end,
-        description: 'Combine ingredients and develop gluten.'
+        description: 'Combine all ingredients and develop gluten windowpane.'
     });
 
     // 7. PRE-FERMENTS
@@ -144,7 +179,7 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, 
             durationMinutes: BASE_DURATIONS.POOLISH,
             startTime: poolish.start,
             endTime: poolish.end,
-            description: 'Mix flour, water, yeast. Let sit overnight.'
+            description: 'Mix equal parts flour and water with pinch of yeast. Ferment 14-16h.'
         });
     }
     else if (config.fermentationTechnique === FermentationTechnique.BIGA) {
@@ -155,7 +190,7 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, 
             durationMinutes: BASE_DURATIONS.BIGA,
             startTime: biga.start,
             endTime: biga.end,
-            description: 'Mix stiff pre-ferment. Let sit 18h.'
+            description: 'Mix stiff pre-ferment (45-50% hydration). Ferment 18h at 16-18°C.'
         });
     }
     else if (config.yeastType === 'SOURDOUGH_STARTER') {
@@ -171,9 +206,10 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, 
             durationMinutes: feedDuration,
             startTime: feed.start,
             endTime: feed.end,
-            description: levain?.name ? `Feed ${levain.name} (${feedDuration / 60}h peak).` : 'Feed starter 1:2:2 or 1:1:1.'
+            description: levain?.name ? `Feed ${levain.name} to reach peak in ${feedDuration / 60}h.` : `Feed starter to peak in ${feedDuration / 60}h.`
         });
     }
 
-    return steps.reverse(); // Return in chronological order
+    // Sort chronologically (since Folds were added out of "subtract" order)
+    return steps.sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
 }

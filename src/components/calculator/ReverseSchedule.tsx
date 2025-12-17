@@ -1,9 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { DoughConfig, Levain } from '@/types';
-import { calculateReverseTimeline, TimelineStep } from '@/logic/reverseTimeline';
-import { ClockIcon, CalendarIcon, ShareIcon } from '@heroicons/react/24/outline'; // Adjust import based on your icon system or use standard ones
+import { useBakingNotifications } from '@/hooks/useBakingNotifications';
+import { ClockIcon, CalendarIcon, ShareIcon, BellIcon } from '@heroicons/react/24/outline'; // Adjust import based on your icon system or use standard ones
+import { BellIcon as BellIconSolid } from '@heroicons/react/24/solid';
 
 // Simple formatter
 const formatDate = (date: Date, locale: string) => {
@@ -48,6 +46,7 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
     });
 
     const activeTargetDate = targetDate || internalTargetDate;
+    const [notificationsEnabled, setNotificationsEnabled] = useState(false);
 
     // Sync input value with prop if controlled
     useEffect(() => {
@@ -66,6 +65,26 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
             onScheduleChange(calc);
         }
     }, [activeTargetDate, config, levain, onScheduleChange]);
+
+    // Enable Notifications Hook
+    useBakingNotifications(schedule, notificationsEnabled);
+
+    const toggleNotifications = () => {
+        if (!notificationsEnabled) {
+            // Request permission immediately on click
+            if (Notification.permission === 'default') {
+                Notification.requestPermission().then(perm => {
+                    if (perm === 'granted') setNotificationsEnabled(true);
+                });
+            } else if (Notification.permission === 'granted') {
+                setNotificationsEnabled(true);
+            } else {
+                alert(t('common.notifications_blocked', 'Notifications are blocked. Please enable them in your browser settings.'));
+            }
+        } else {
+            setNotificationsEnabled(false);
+        }
+    };
 
     const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newVal = e.target.value;
@@ -91,7 +110,7 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
 
     return (
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
                 <div>
                     <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
                         <ClockIcon className="w-5 h-5 text-amber-600" />
@@ -100,13 +119,24 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
                     <p className="text-xs text-slate-500">{t('calc.schedule.subtitle', 'Plan backwards from eating time')}</p>
                 </div>
 
-                {/* Date Picker */}
-                <input
-                    type="datetime-local"
-                    value={activeTargetDate}
-                    onChange={handleDateChange}
-                    className="border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 bg-slate-50 focus:ring-2 focus:ring-amber-500 focus:outline-none"
-                />
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                    {/* Notification Toggle */}
+                    <button
+                        onClick={toggleNotifications}
+                        title={notificationsEnabled ? "Disable Alerts" : "Enable Live Alerts"}
+                        className={`p-2 rounded-lg transition-colors ${notificationsEnabled ? 'bg-amber-100 text-amber-600' : 'bg-slate-100 text-slate-400 hover:text-slate-600'}`}
+                    >
+                        {notificationsEnabled ? <BellIconSolid className="w-5 h-5" /> : <BellIcon className="w-5 h-5" />}
+                    </button>
+
+                    {/* Date Picker */}
+                    <input
+                        type="datetime-local"
+                        value={activeTargetDate}
+                        onChange={handleDateChange}
+                        className="flex-1 sm:flex-none border border-slate-300 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 bg-slate-50 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                    />
+                </div>
             </div>
 
             <div className="relative border-l-2 border-slate-200 ml-3 space-y-6">

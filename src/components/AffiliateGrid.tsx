@@ -1,7 +1,8 @@
 
 import React, { useMemo } from 'react';
 import { getRecommendedProducts, AffiliateProduct } from '@/data/affiliates';
-import { ExternalLink, ShoppingBag, Tag } from 'lucide-react';
+import { ShoppingBag, Tag, ExternalLink as ExternalLinkIcon } from 'lucide-react';
+import { ExternalLink } from '@/components/ui/ExternalLink';
 import { useTranslation } from '@/i18n';
 
 interface AffiliateGridProps {
@@ -37,11 +38,9 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
 
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-3">
                 {products.map(product => (
-                    <a
+                    <ExternalLink
                         key={product.id}
                         href={product.affiliateLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="group flex flex-col bg-white rounded-lg border border-slate-200 overflow-hidden hover:border-dlp-primary-500 hover:shadow-md transition-all duration-300"
                     >
                         {/* Compact layout: Image + Content */}
@@ -62,7 +61,7 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
                                         <span className="text-[10px] font-bold text-dlp-primary-600 uppercase tracking-tight mb-1">
                                             {product.category}
                                         </span>
-                                        <ExternalLink className="w-3 h-3 text-slate-300 group-hover:text-dlp-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <ExternalLinkIcon className="w-3 h-3 text-slate-300 group-hover:text-dlp-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </div>
 
                                     <h4 className="text-sm font-bold text-slate-900 leading-tight line-clamp-2 group-hover:text-dlp-primary-600 transition-colors">
@@ -77,7 +76,7 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </ExternalLink>
                 ))}
             </div>
 

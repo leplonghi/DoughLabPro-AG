@@ -34,7 +34,7 @@ const resolveRegion = (origin: string): Region | 'Global' => {
 };
 
 export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCalculator }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'styles']);
     // State
     const [filterCategory, setFilterCategory] = useState<Category | 'All'>('All');
     const [filterRegion, setFilterRegion] = useState<Region | 'All' | 'Global'>('All');
@@ -114,7 +114,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             <input
                                 type="text"
                                 className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 text-sm shadow-sm transition-all"
-                                placeholder={t('general.search_styles')}
+                                placeholder={t('common.general.search_styles')}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
@@ -162,7 +162,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                     onChange={(e) => setFilterRegion(e.target.value as Region | 'All' | 'Global')}
                                     className="block w-full pl-9 pr-8 py-2 text-xs font-bold border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 shadow-sm appearance-none cursor-pointer hover:bg-slate-50 transition-colors"
                                 >
-                                    <option value="All">{t('general.all_regions')}</option>
+                                    <option value="All">{t('common.general.all_regions')}</option>
                                     <option disabled>──────────</option>
                                     {regionOptions.map(opt => (
                                         <option key={opt.value} value={opt.value}>

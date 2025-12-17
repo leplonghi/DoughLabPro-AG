@@ -41,7 +41,7 @@ interface ResultsDisplayProps {
     onConfigChange: (newConfig: Partial<DoughConfig>) => void;
     onStartBatch: () => void;
     selectedFlour?: FlourDefinition;
-    calculatorMode: 'basic' | 'advanced';
+    calculatorMode: 'wizard' | 'basic' | 'advanced';
     calculationMode: CalculationMode;
     hasProAccess: boolean;
     onOpenPaywall: (origin: any) => void;
@@ -82,7 +82,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 <div className="mb-4 rounded-full bg-dlp-bg-card p-4 shadow-dlp-sm border border-dlp-border">
                     <BeakerIcon className="h-8 w-8 text-dlp-text-muted" />
                 </div>
-                <h3 className="text-lg font-semibold text-dlp-text-secondary">{t('general.your_formula_awaits')}</h3>
+                <h3 className="text-lg font-semibold text-dlp-text-secondary">{t('common.general.your_formula_awaits')}</h3>
                 <p className="text-sm mt-2 max-w-xs mx-auto text-dlp-text-muted">
                     Adjust the parameters on the left to generate your perfect dough recipe.
                 </p>
@@ -219,6 +219,10 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 {/* Summary Cards */}
                 <div className="mb-5 grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
+                        <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('results.total_flour', { defaultValue: 'Total Flour' })}</p>
+                        <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">{displayValue(results.totalFlour)}</p>
+                    </div>
+                    <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
                         <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('results.total_dough')}</p>
                         <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">{displayValue(results.totalDough)}</p>
                     </div>
@@ -229,7 +233,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         </div>
                     ) : (
                         <div className="rounded-xl bg-dlp-bg-muted p-4 text-center flex flex-col justify-center">
-                            <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('ui.bakers_')}</p>
+                            <p className="text-xs font-bold uppercase tracking-wider text-dlp-text-secondary">{t('common.ui.bakers_')}</p>
                             <p className="mt-1 text-2xl font-extrabold text-dlp-text-primary">100%</p>
                         </div>
                     )}
@@ -239,7 +243,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         <div className="col-span-2 md:col-span-1 relative rounded-xl overflow-hidden aspect-video md:aspect-auto">
                             <img
                                 src={getStyleById(config.selectedStyleId || '')?.images?.hero}
-                                alt={t('general.style')}
+                                alt={t('common.general.style')}
                                 className="absolute inset-0 w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -342,13 +346,13 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-accent py-3.5 text-base font-bold text-white shadow-dlp-md transition-all hover:bg-dlp-accent-hover hover:shadow-dlp-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-dlp-sm"
                     >
                         <BatchesIcon className="h-5 w-5" />
-                        {t('diary_page.new_batch')}
+                        {t('common.diary_page.new_batch')}
                     </button>
 
                     <div className="grid grid-cols-2 gap-3">
                         <button
                             onClick={() => setIsShareModalOpen(true)}
-                            title={t('general.generate_a_social_card_to_share')}
+                            title={t('common.general.generate_a_social_card_to_share')}
                             className="flex items-center justify-center gap-2 rounded-lg border border-dlp-border bg-dlp-bg-card py-2.5 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm hover:bg-dlp-bg-muted transition-colors relative group"
                         >
                             <ShareIcon className="h-4 w-4" />
@@ -405,7 +409,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             <div className="rounded-2xl bg-dlp-bg-card p-4 shadow-dlp-md border border-dlp-border">
                 <RecommendedProducts
                     tags={[config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']}
-                    title={t('general.tools_for_this_formula')}
+                    title={t('common.general.tools_for_this_formula')}
                 />
             </div>
 

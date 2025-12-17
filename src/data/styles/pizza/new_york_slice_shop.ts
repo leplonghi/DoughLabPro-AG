@@ -66,6 +66,14 @@ export const new_york_slice_shop: StyleDefinition = {
     "oil": 3,
     "sugar": 2
   },
+  "recommendedFlavorComponents": [
+    "mozzarella_low_moisture",
+    "pepperoni",
+    "italian_sausage",
+    "bell_pepper",
+    "cogumelos",
+    "pecorino_romano"
+  ],
   "regionalVariants": [],
   "climateScenarios": [],
   "styleComparisons": [],

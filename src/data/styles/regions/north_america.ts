@@ -2,16 +2,16 @@ import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
 
 const nycSlice: DoughStyleDefinition = {
     id: "new_york_slice_v2",
-    name: 'new_york_slice_name',
+    name: 'styles.new_york_slice_name',
     category: "pizza",
     recipeStyle: RecipeStyle.NEW_YORK,
     origin: {
         country: 'USA',
-        region: 'New york city 4',
-        period: 'Early 20th century 2'
+        region: 'New York City',
+        period: 'Early 20th century'
     },
-    description: "new_york_slice_desc",
-    history: "new_york_slice_history",
+    description: "styles.new_york_slice_desc",
+    history: "styles.new_york_slice_history",
     base_formula: [
         { name: 'styles.ingredients_flour_high_gluten', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 63 },
@@ -30,7 +30,7 @@ const nycSlice: DoughStyleDefinition = {
         sugar: [1, 2],
         flourStrength: "W360-400 (High Gluten)",
         ovenTemp: [280, 300],
-        recommendedUse: ['Cheese slice 2', 'Pepperoni 4'],
+        recommendedUse: ['Cheese slice', 'Pepperoni'],
         difficulty: 'Medium',
         ballWeight: { recommended: 450, min: 350, max: 600 },
         fermentationSteps: [
@@ -49,7 +49,7 @@ const nycSlice: DoughStyleDefinition = {
             science_explanation: "styles.new_york_slice_v2_science_flour"
         },
         thermalProfile: {
-            oven_type: 'Gas deck 2',
+            oven_type: 'Gas deck',
             heat_distribution: "Conduction (Stone)",
             crust_development: 'Crispy pliable golden',
             crumb_structure: 'Thin dense but airy rim'
@@ -81,7 +81,7 @@ const nycSlice: DoughStyleDefinition = {
     source: "official",
     createdAt: "2025-01-01",
     releaseDate: "2025-01-01",
-    references: [{ source: "Scott Wiener's Pizza History" }, { source: 'Modernist pizza 13' }],
+    references: [{ source: "Scott Wiener's Pizza History" }, { source: 'Modernist Pizza' }],
     images: {
         hero: "/images/styles/nyc-slice-hero.png",
         dough: "/images/styles/placeholder-dough.png",
@@ -166,16 +166,16 @@ const nycSlice: DoughStyleDefinition = {
 
 const detroitStyle: DoughStyleDefinition = {
     id: "detroit_style_classic",
-    name: 'detroit_style_classic_name',
+    name: 'styles.detroit_style_classic_name',
     category: "pizza",
     recipeStyle: RecipeStyle.DETROIT,
     origin: {
         country: 'USA',
-        region: 'Detroit michigan',
+        region: 'Detroit, Michigan',
         period: "1946"
     },
-    description: "detroit_style_classic_desc",
-    history: "detroit_style_classic_history",
+    description: "styles.detroit_style_classic_desc",
+    history: "styles.detroit_style_classic_history",
     base_formula: [
         { name: 'styles.ingredients_flour_bread', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 73 },
@@ -191,9 +191,9 @@ const detroitStyle: DoughStyleDefinition = {
         salt: [2.0, 2.5],
         oil: [1, 2],
         sugar: [0, 1],
-        flourStrength: 'W300320 2',
+        flourStrength: 'W300-320',
         ovenTemp: [260, 290],
-        recommendedUse: ['Pepperoni 5'],
+        recommendedUse: ['Pepperoni'],
         difficulty: 'Medium',
         ballWeight: { recommended: 550, min: 400, max: 700 },
         fermentationSteps: [
@@ -204,10 +204,10 @@ const detroitStyle: DoughStyleDefinition = {
     },
     scientificProfile: {
         flourRheology: {
-            w_index: 'W300320 3',
+            w_index: 'W300-320',
             pl_ratio: 'Balanced',
             absorption_capacity: "High (70%+)",
-            protein_type: 'Bread flour 5',
+            protein_type: 'Bread flour',
             science_explanation: "styles.detroit_style_classic_science_flour"
         },
         thermalProfile: {
@@ -219,7 +219,7 @@ const detroitStyle: DoughStyleDefinition = {
         fermentationScience: {
             yeast_activity: 'High',
             ph_target: 'Normal',
-            organic_acids: 'Lactic 5',
+            organic_acids: 'Lactic',
             enzymatic_activity: "High (High water)"
         }
     },
@@ -328,16 +328,16 @@ const detroitStyle: DoughStyleDefinition = {
 
 const chicagoDeepDish: DoughStyleDefinition = {
     id: "chicago_deep_dish",
-    name: 'chicago_deep_dish_name',
+    name: 'styles.chicago_deep_dish_name',
     category: "pizza",
     recipeStyle: RecipeStyle.CHICAGO_DEEP_DISH,
     origin: {
         country: 'USA',
-        region: 'Chicago illinois',
+        region: 'Chicago, Illinois',
         period: "1943"
     },
-    description: "chicago_deep_dish_desc",
-    history: "chicago_deep_dish_history",
+    description: "styles.chicago_deep_dish_desc",
+    history: "styles.chicago_deep_dish_history",
     base_formula: [
         { name: 'styles.ingredients_flour_ap', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 54 },
@@ -381,7 +381,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
         },
         fermentationScience: {
             yeast_activity: 'Low',
-            ph_target: 'Neutral 8',
+            ph_target: 'Neutral',
             organic_acids: 'None',
             enzymatic_activity: 'Low'
         }
@@ -488,16 +488,16 @@ const chicagoDeepDish: DoughStyleDefinition = {
 
 const sfSourdough: DoughStyleDefinition = {
     id: "sf_sourdough",
-    name: 'san_francisco_sourdough_name',
+    name: 'styles.san_francisco_sourdough_name',
     category: "bread",
     recipeStyle: RecipeStyle.SOURDOUGH,
     origin: {
         country: 'USA',
-        region: 'San francisco ca',
+        region: 'San Francisco, CA',
         period: "1849 (Gold Rush)"
     },
-    description: "san_francisco_sourdough_desc",
-    history: "san_francisco_sourdough_history",
+    description: "styles.san_francisco_sourdough_desc",
+    history: "styles.san_francisco_sourdough_history",
     base_formula: [
         { name: 'styles.ingredients_flour_high_gluten', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 75 },
@@ -595,7 +595,7 @@ const sfSourdough: DoughStyleDefinition = {
         ],
         comparative_analysis: [
             {
-                target_style: 'French baguette 2',
+                target_style: 'French baguette',
                 difference: "styles.sf_sourdough_comp_baguette_diff",
                 why_choose_this: 'styles.sf_sourdough_comp_baguette_why'
             }
@@ -649,16 +649,16 @@ const sfSourdough: DoughStyleDefinition = {
 
 const newHavenApizza: DoughStyleDefinition = {
     id: "new_haven_apizza",
-    name: 'new_haven_apizza_name',
+    name: 'styles.new_haven_apizza_name',
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
     origin: {
         country: 'USA',
-        region: 'New haven ct 2',
+        region: 'New Haven, CT',
         period: "1925"
     },
-    description: "new_haven_apizza_desc",
-    history: "new_haven_apizza_history",
+    description: "styles.new_haven_apizza_desc",
+    history: "styles.new_haven_apizza_history",
     base_formula: [
         { name: 'styles.ingredients_flour_bread', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 63 },
@@ -673,7 +673,7 @@ const newHavenApizza: DoughStyleDefinition = {
         salt: [2.0, 2.5],
         oil: [1, 2],
         sugar: [0, 1],
-        flourStrength: 'W300340',
+        flourStrength: 'W300-340',
         ovenTemp: [315, 350], // Domestic adaptation target. Real ovens are 600F+
         recommendedUse: ['White clam pie'],
         difficulty: 'Hard',
@@ -707,7 +707,7 @@ const newHavenApizza: DoughStyleDefinition = {
     },
     tags: ["styles.new_haven_apizza_tag_coal", "styles.new_haven_apizza_tag_char", "styles.new_haven_apizza_tag_clam", "styles.new_haven_apizza_tag_ct"],
     pairings: {
-        canonical: ['Littleneck clams', 'Garlic 2', 'Oregano 3', 'Pecorino'],
+        canonical: ['Littleneck clams', 'Garlic', 'Oregano', 'Pecorino'],
         modern: ['Bacon'],
         regional: ['Foxon park soda']
     },
@@ -724,7 +724,7 @@ const newHavenApizza: DoughStyleDefinition = {
     source: "official",
     createdAt: "2025-01-01",
     releaseDate: "2025-01-01",
-    references: [{ source: 'Frank pepe history' }, { source: 'Pizza city usa 2' }],
+    references: [{ source: 'Frank pepe history' }, { source: 'Pizza City USA' }],
     images: {
         hero: "/images/styles/new_haven_apizza_real.png",
         dough: "/images/styles/placeholder-dough.png",
@@ -791,7 +791,7 @@ const newHavenApizza: DoughStyleDefinition = {
         ],
         comparisons: [
             {
-                vsStyle: 'Nyc slice 2',
+                vsStyle: 'NYC slice',
                 difference: "styles.new_haven_apizza_dd_comp_nyc_diff"
             }
         ],
@@ -805,7 +805,7 @@ const newHavenApizza: DoughStyleDefinition = {
 
 const nycBagel: DoughStyleDefinition = {
     id: "nyc_bagel",
-    name: 'nyc_bagel_name',
+    name: 'styles.nyc_bagel_name',
     category: "bread",
     recipeStyle: RecipeStyle.BAGEL,
     origin: {
@@ -813,8 +813,8 @@ const nycBagel: DoughStyleDefinition = {
         region: 'New york city 5',
         period: 'Late 19th century'
     },
-    description: "nyc_bagel_desc",
-    history: "nyc_bagel_history",
+    description: "styles.nyc_bagel_desc",
+    history: "styles.nyc_bagel_history",
     base_formula: [
         { name: 'styles.ingredients_flour_high_gluten', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 52 },
@@ -962,7 +962,7 @@ const nycBagel: DoughStyleDefinition = {
 
 const grandmaPizza: DoughStyleDefinition = {
     id: "grandma_style_v2",
-    name: 'grandma_pizza_2',
+    name: 'styles.grandma_pizza_2',
     category: "pizza",
     recipeStyle: RecipeStyle.GRANDMA_STYLE,
     family: 'Flatbreads  pizzas 5',
@@ -971,8 +971,8 @@ const grandmaPizza: DoughStyleDefinition = {
         region: 'Long island ny 2',
         period: "1970s"
     },
-    description: "grandma_pizza_desc",
-    history: "grandma_pizza_history",
+    description: "styles.grandma_pizza_desc",
+    history: "styles.grandma_pizza_history",
     base_formula: [
         { name: 'styles.ingredients_flour_bread', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 65 },
@@ -1117,7 +1117,7 @@ const grandmaPizza: DoughStyleDefinition = {
 
 const chicagoTavern: DoughStyleDefinition = {
     id: "chicago_tavern_v2",
-    name: 'chicago_tavern_style_2',
+    name: 'styles.chicago_tavern_style_2',
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
     family: 'Flatbreads  pizzas 6',
@@ -1126,8 +1126,8 @@ const chicagoTavern: DoughStyleDefinition = {
         region: "Chicago / Midwest",
         period: "1940s"
     },
-    description: "chicago_tavern_desc",
-    history: "chicago_tavern_history",
+    description: "styles.chicago_tavern_desc",
+    history: "styles.chicago_tavern_history",
     base_formula: [
         { name: 'styles.ingredients_flour_ap', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 48 },
@@ -1277,7 +1277,7 @@ const chicagoTavern: DoughStyleDefinition = {
 
 const montrealBagel: DoughStyleDefinition = {
     id: "montreal_bagel",
-    name: 'montreal_bagel',
+    name: 'styles.montreal_bagel',
     category: "bread",
     recipeStyle: RecipeStyle.BAGEL,
     origin: {
@@ -1285,8 +1285,8 @@ const montrealBagel: DoughStyleDefinition = {
         region: 'Montreal quebec',
         period: "1919"
     },
-    description: "montreal_bagel_desc",
-    history: "montreal_bagel_history",
+    description: "styles.montreal_bagel_desc",
+    history: "styles.montreal_bagel_history",
     base_formula: [
         { name: 'styles.ingredients_flour_bread', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 50 },
@@ -1374,7 +1374,7 @@ const montrealBagel: DoughStyleDefinition = {
 
 const flourTortilla: DoughStyleDefinition = {
     id: "flour_tortilla_sonora",
-    name: "flour_tortilla_sonora",
+    name: "styles.flour_tortilla_sonora",
     category: "flatbread",
     recipeStyle: RecipeStyle.FLATBREAD,
     origin: {
@@ -1382,8 +1382,8 @@ const flourTortilla: DoughStyleDefinition = {
         region: 'Sonora',
         period: "16th Century"
     },
-    description: "flour_tortilla_sonora_desc",
-    history: "flour_tortilla_sonora_history",
+    description: "styles.flour_tortilla_sonora_desc",
+    history: "styles.flour_tortilla_sonora_history",
     base_formula: [
         { name: 'styles.ingredients_flour_ap', percentage: 100 },
         { name: 'styles.ingredients_water', percentage: 50 },
