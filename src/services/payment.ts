@@ -1,6 +1,7 @@
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { loadStripe } from "@stripe/stripe-js";
 import i18n from '@/i18n';
+import { monitor } from '@/infrastructure/monitoring';
 
 const t = i18n.t.bind(i18n);
 
@@ -9,7 +10,7 @@ const t = i18n.t.bind(i18n);
 const stripePromise = loadStripe("mk_1SdC7315wYiGE65BTazQrfp5");
 
 
-export const checkoutProSubscription = async (priceId: string) => {
+export const checkoutProSubscription = async (planKey: string = 'standard') => {
     const functions = getFunctions();
     const createCheckoutSession = httpsCallable(functions, "createCheckoutSession");
 
@@ -18,10 +19,13 @@ export const checkoutProSubscription = async (priceId: string) => {
     const cancelUrl = `${window.location.origin}/upgrade/cancel`;
 
     try {
+        monitor.trackEvent('checkout_started', { planKey });
+
         const result: any = await createCheckoutSession({
-            priceId,
+            planKey,
             successUrl,
             cancelUrl,
+            countryHint: navigator.language.split('-')[1] // Optional hint
         });
 
         const { sessionId } = result.data;
@@ -37,10 +41,12 @@ export const checkoutProSubscription = async (priceId: string) => {
 
         if (error) {
             console.error("Stripe Redirect Error:", error);
+            monitor.trackError(error, { phase: 'stripe_redirect' });
             throw error;
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error("Payment Error:", error);
+        monitor.trackError(error, { phase: 'checkout_session_creation' });
         throw error;
     }
 };

@@ -22,6 +22,8 @@ if (!admin.apps.length) {
 }
 const db = admin.firestore();
 __exportStar(require("./stripe"), exports);
+__exportStar(require("./infrastructure/backup"), exports);
+__exportStar(require("./infrastructure/monitoring"), exports);
 // Points System
 const POINTS = {
     LIKE: 10,
