@@ -201,21 +201,21 @@ export const california_style: StyleDefinition = {
       "year": 2021
     },
     {
-      "title": "The California Pizza Kitchen Cookbook",
+      "title": t('styles.california_pizza_kitchen_cookbook'),
       "url": "https://www.amazon.com/California-Pizza-Kitchen-Cookbook/dp/0025405417",
-      "author": "Larry Flax, Rick Rosenfield",
+      "author": t('styles.larry_flax_rick_rosenfield'),
       "year": 1996
     },
     {
-      "title": "Chez Panisse Menu Cookbook",
+      "title": t('styles.chez_panisse_menu_cookbook'),
       "url": "https://www.amazon.com/Chez-Panisse-Menu-Cookbook-Alice/dp/0679720141",
-      "author": "Alice Waters",
+      "author": t('styles.alice_waters'),
       "year": 1982
     },
     {
-      "title": "Wolfgang Puck Adventures in the Kitchen",
+      "title": t('styles.wolfgang_puck_adventures'),
       "url": "https://www.amazon.com/Wolfgang-Puck-Adventures-Kitchen/dp/039453965X",
-      "author": "Wolfgang Puck",
+      "author": t('styles.wolfgang_puck'),
       "year": 1991
     }
   ],

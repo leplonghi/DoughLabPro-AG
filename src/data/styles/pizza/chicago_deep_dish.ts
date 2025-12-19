@@ -206,15 +206,15 @@ export const chicago_deep_dish: StyleDefinition = {
       "year": 2023
     },
     {
-      "title": "The Pizza Bible",
+      "title": t('styles.pizza_bible'),
       "url": "https://www.amazon.com/Pizza-Bible-Worlds-Favorite-Styles/dp/1607746267",
-      "author": "Tony Gemignani",
+      "author": t('styles.tony_gemignani'),
       "year": 2014
     },
     {
-      "title": "Pizza: A Slice of American History",
+      "title": t('styles.pizza_american_history'),
       "url": "https://www.smithsonianmag.com/arts-culture/pizza-a-slice-of-american-history-21474158/",
-      "author": "Liz Ronk",
+      "author": t('styles.liz_ronk'),
       "year": 2012
     }
   ],

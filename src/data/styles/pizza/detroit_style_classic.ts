@@ -206,15 +206,15 @@ export const detroit_style_classic: StyleDefinition = {
       "year": 2020
     },
     {
-      "title": "The Pizza Bible",
+      "title": t('styles.pizza_bible'),
       "url": "https://www.amazon.com/Pizza-Bible-Worlds-Favorite-Styles/dp/1607746267",
-      "author": "Tony Gemignani",
+      "author": t('styles.tony_gemignani'),
       "year": 2014
     },
     {
-      "title": "Detroit Pizza: A Slice of Motor City History",
+      "title": t('styles.detroit_pizza_history_motor_city'),
       "url": "https://www.detroitnews.com/story/entertainment/dining/2019/06/13/detroit-style-pizza-history/1440564001/",
-      "author": "Detroit News",
+      "author": t('styles.detroit_news'),
       "year": 2019
     }
   ],
