@@ -15,7 +15,7 @@ export const chicago_deep_dish: StyleDefinition = {
     "region": t('styles.chicago_2'),
     "period": t('styles.1940s_mid_20th_century')
   },
-  "intro": t('styles.a_hearty_knifeandfork_meal_iconic_to_chicago_culin'),
+  "intro": t('styles.chicago_intro'),
   "history": t('styles.chicago_history'),
   "culturalContext": {
     "significance": [

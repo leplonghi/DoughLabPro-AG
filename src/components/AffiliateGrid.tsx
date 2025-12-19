@@ -1,7 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { getRecommendedProducts, AffiliateProduct } from '@/data/affiliates';
-import { getProductsForPlacement } from '@/data/affiliatePlacements';
+import { getProductsForPlacement, getCategoryPlacement, AFFILIATE_PLACEMENTS } from '@/data/affiliatePlacements';
 import { ShoppingBag, Tag, ExternalLink as ExternalLinkIcon } from 'lucide-react';
 import { ExternalLink } from '@/components/ui/ExternalLink';
 import { useTranslation } from '@/i18n';
@@ -12,27 +12,45 @@ interface AffiliateGridProps {
     title?: string;
     className?: string;
     placementId?: string;
+    category?: string;
 }
 
 export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
     tags,
     limit = 3,
-    title = 'Recommended Gear',
+    title,
     className = "",
-    placementId
+    placementId,
+    category
 }) => {
     const { t } = useTranslation();
 
     // Memoize recommendations to avoid recalc on every render
-    const products = useMemo(() => {
-        if (placementId) {
-            const placedProducts = getProductsForPlacement(placementId);
+    const { products, displayTitle } = useMemo(() => {
+        let activePlacementId = placementId;
+
+        // Auto-detect placement from category if not explicitly provided
+        if (!activePlacementId && category) {
+            activePlacementId = getCategoryPlacement(category);
+        }
+
+        if (activePlacementId) {
+            const placedProducts = getProductsForPlacement(activePlacementId);
+            const placement = AFFILIATE_PLACEMENTS[activePlacementId];
+
             if (placedProducts && placedProducts.length > 0) {
-                return placedProducts.slice(0, limit);
+                return {
+                    products: placedProducts.slice(0, limit),
+                    displayTitle: title || (placement ? placement.title : 'Recommended Gear')
+                };
             }
         }
-        return getRecommendedProducts(tags, limit);
-    }, [tags, limit, placementId]);
+
+        return {
+            products: getRecommendedProducts(tags, limit),
+            displayTitle: title || 'Recommended Gear'
+        };
+    }, [tags, limit, placementId, category, title]);
 
     if (!products || products.length === 0) {
         return null; // Don't render empty sections
@@ -43,7 +61,7 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
             <div className="flex items-center gap-2 mb-3">
                 <ShoppingBag className="w-4 h-4 text-dlp-primary-600" />
                 <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide">
-                    {title}
+                    {displayTitle}
                 </h3>
             </div>
 

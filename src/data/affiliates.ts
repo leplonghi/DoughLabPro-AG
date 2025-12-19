@@ -223,6 +223,50 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         priceRange: 'low',
         tags: ['burger buns', 'sandwich rolls', 'topping', 'seeds', 'ingredients'],
         imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Sesame+Seeds'
+    },
+
+    // --- BREAD TOOLS ---
+    {
+        id: 'bread-lame',
+        name: 'Professional Bread Lame',
+        category: 'accessory',
+        description: 'Sharp scoring tool for beautiful artisan crust control.',
+        affiliateLink: 'https://amzn.to/3TKgP0d',
+        priceRange: 'low',
+        tags: ['bread', 'tools', 'scoring', 'artisan'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Lame'
+    },
+    {
+        id: 'banneton',
+        name: 'Round Banneton Proofing Basket',
+        category: 'accessory',
+        description: 'Natural rattan for perfect moisture wicking during proofing.',
+        affiliateLink: 'https://amzn.to/3vIeZ6r',
+        priceRange: 'medium',
+        tags: ['bread', 'tools', 'proofing', 'sourdough'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Banneton'
+    },
+    {
+        id: 'dutch-oven',
+        name: 'Enameled Cast Iron Dutch Oven',
+        category: 'equipment',
+        description: 'Traps steam for the ultimate bakery-style oven spring.',
+        affiliateLink: 'https://amzn.to/499tDaX',
+        priceRange: 'high',
+        tags: ['bread', 'baking', 'oven', 'artisan', 'sourdough'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Dutch+Oven'
+    },
+
+    // --- PASTRY & COOKIE TOOLS ---
+    {
+        id: 'rolling-pin',
+        name: 'Professional French Rolling Pin',
+        category: 'accessory',
+        description: 'Tapered design for maximum control and tactile feedback.',
+        affiliateLink: 'https://amzn.to/3MEsekR',
+        priceRange: 'low',
+        tags: ['pastry', 'cookies', 'tools', 'rolling', 'flatbreads'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Rolling+Pin'
     }
 ];
 

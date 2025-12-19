@@ -134,7 +134,7 @@ export const new_york_artisan_cold_ferment: StyleDefinition = {
       ],
       "notes": t('styles.often_baked_slightly_hotter_and_darker_than_classi')
     },
-    "difficulty": t('styles.medium_37'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.premium_slice_shops'),
       t('common.whole_pie_artisan_pizzerias')

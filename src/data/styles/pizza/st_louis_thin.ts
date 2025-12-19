@@ -134,7 +134,7 @@ export const st_louis_thin: StyleDefinition = {
       ],
       "notes": t('styles.baked_on_stone_or_screen_for_maximum_crispness')
     },
-    "difficulty": "Easy",
+    "difficulty": t('styles.difficulty_easy'),
     "recommendedUse": [
       t('common.cracker_crust_pizza'),
       t('common.party_snacks')

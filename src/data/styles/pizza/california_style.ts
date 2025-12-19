@@ -134,7 +134,7 @@ export const california_style: StyleDefinition = {
       ],
       "notes": t('styles.woodfired_for_speed_and_flavor_but_lower_temp_than')
     },
-    "difficulty": t('styles.medium_33'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.gourmet_personal_pizzas'),
       t('common.creative_toppings')

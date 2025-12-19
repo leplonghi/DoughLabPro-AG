@@ -134,7 +134,7 @@ export const new_haven_apizza: StyleDefinition = {
       ],
       "notes": t('styles.coalfired_for_distinct_char_and_smokiness')
     },
-    "difficulty": t('styles.medium_36'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.charred_thin_crust'),
       t('common.clam_pie')

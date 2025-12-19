@@ -134,7 +134,7 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
       ],
       "notes": t('styles.neapolitan_contemporary_oven_notes')
     },
-    "difficulty": t('styles.hard_22'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.gourmet_toppings'),
       t('styles.instagram_style_puffy_crusts')

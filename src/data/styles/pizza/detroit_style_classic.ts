@@ -134,7 +134,7 @@ export const detroit_style_classic: StyleDefinition = {
       ],
       "notes": t('styles.bluesteel_or_similar_pans_heavily_oiled_for_fried_')
     },
-    "difficulty": t('styles.hard_21'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.thick_pan_pizza'),
       t('styles.cheese_edge_caramelized_pizzas')

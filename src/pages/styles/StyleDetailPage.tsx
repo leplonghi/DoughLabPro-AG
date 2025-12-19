@@ -1076,7 +1076,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                             {/* Affiliate / Gear Section */}
                             <AffiliateGrid
                                 tags={[...(styleData.tags || []), 'baking', styleData.category || 'general']}
-                                title={`Essentials for ${styleData.name}`}
+                                category={styleData.category}
                                 placementId={styleData.affiliatePlacementId}
                             />
 

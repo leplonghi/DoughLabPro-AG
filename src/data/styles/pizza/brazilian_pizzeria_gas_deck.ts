@@ -134,7 +134,7 @@ export const brazilian_pizzeria_gas_deck: StyleDefinition = {
       ],
       "notes": t('styles.designed_for_repeated_baking_cycles_in_commercial_')
     },
-    "difficulty": t('styles.medium_32'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('styles.brazilian_pizzeria_use_1'),
       t('styles.brazilian_pizzeria_use_2')
