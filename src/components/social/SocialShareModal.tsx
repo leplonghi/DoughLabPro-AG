@@ -65,49 +65,47 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                     <div
                         ref={cardRef}
                         id="baker-card"
-                        className="w-[320px] aspect-[4/5] bg-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden"
+                        className="w-[320px] aspect-[4/5] bg-gradient-to-br from-[#144225] to-[#1e5c35] text-white p-6 flex flex-col justify-between relative overflow-hidden ring-1 ring-white/10"
                     >
                         {/* Background Accents - Enhanced */}
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-dlp-brand/20 blur-3xl rounded-full -mr-16 -mt-16 mix-blend-screen"></div>
-                        <div className="absolute bottom-0 left-0 w-48 h-48 bg-sky-500/20 blur-3xl rounded-full -ml-16 -mb-16 mix-blend-screen"></div>
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-slate-800/50 rounded-full blur-2xl"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#51a145]/20 blur-3xl rounded-full -mr-20 -mt-20 mix-blend-screen animate-pulse-slow"></div>
+                        <div className="absolute bottom-0 left-0 w-56 h-56 bg-lime-500/10 blur-3xl rounded-full -ml-16 -mb-16 mix-blend-screen"></div>
 
                         {/* Header */}
-                        <div className="relative z-10">
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="h-6 w-6 rounded bg-dlp-brand flex items-center justify-center font-black text-slate-900 text-xs shadow-lg shadow-dlp-brand/20">DL</div>
-                                <span className="font-bold tracking-widest text-[10px] text-slate-400 uppercase">{t('common.share_card.doughlab_title')}</span>
+                        <div className="relative z-10 text-center mt-2">
+                            <div className="inline-flex items-center gap-1.5 mb-2 px-2 py-0.5 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm">
+                                <span className="font-bold tracking-[0.2em] text-[8px] text-lime-300 uppercase">{t('common.share_card.doughlab_title', { defaultValue: 'DoughLab Pro' })}</span>
                             </div>
-                            <h2 className="text-3xl font-black text-white mt-1 leading-none tracking-tight">
+                            <h2 className="text-3xl font-black text-white leading-none tracking-tight drop-shadow-sm uppercase">
                                 {styleName}
                             </h2>
-                            <p className="text-sm font-medium text-lime-400 mt-1 uppercase tracking-wide opacity-90">{t('common.share_card.master_formula')}</p>
+                            <p className="text-[10px] font-bold text-slate-200 mt-1 uppercase tracking-[0.2em] opacity-80">{t('common.share_card.master_formula')}</p>
                         </div>
 
                         {/* Donut Chart Visualization */}
-                        <div className="relative z-10 flex flex-col items-center justify-center my-6">
-                            <div className="relative w-40 h-40">
+                        <div className="relative z-10 flex flex-col items-center justify-center my-4">
+                            <div className="relative w-36 h-36">
                                 {/* Chart */}
-                                <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90 drop-shadow-2xl">
+                                <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90 drop-shadow-xl">
                                     {/* Background Circle */}
-                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.1)" strokeWidth="12" />
+                                    <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
 
                                     {/* Flour Segment (White) */}
                                     <circle
                                         cx="50" cy="50" r="40"
                                         fill="transparent"
                                         stroke="white"
-                                        strokeWidth="12"
+                                        strokeWidth="8"
                                         strokeDasharray={`${(100 / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2} 251.2`}
                                         className="opacity-90"
                                     />
 
-                                    {/* Water Segment (Lime) - Offset by Flour */}
+                                    {/* Water Segment (Lime) */}
                                     <circle
                                         cx="50" cy="50" r="40"
                                         fill="transparent"
-                                        stroke="#51a145" // Earthier Green
-                                        strokeWidth="12"
+                                        stroke="#a3e635"
+                                        strokeWidth="8"
                                         strokeDasharray={`${(config.hydration / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2} 251.2`}
                                         strokeDashoffset={`-${(100 / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2}`}
                                         className="opacity-90"
@@ -116,40 +114,40 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
 
                                 {/* Center Text */}
                                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                                    <span className="text-3xl font-black text-white tracking-tighter shadow-black drop-shadow-md">{hydration}%</span>
-                                    <span className="text-[9px] font-bold text-lime-400 uppercase tracking-widest">Hydration</span>
+                                    <span className="text-3xl font-black text-white tracking-tighter drop-shadow-md">{hydration}%</span>
+                                    <span className="text-[8px] font-bold text-lime-300 uppercase tracking-widest">Hydration</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Stats Row */}
-                        <div className="relative z-10 grid grid-cols-2 gap-4 mb-6">
-                            <div className="text-center">
-                                <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">{t('common.share_card.time')}</span>
-                                <span className="block text-xl font-bold text-white mt-1">{fermentation}h</span>
+                        {/* Stats Grid */}
+                        <div className="relative z-10 grid grid-cols-2 gap-3 mb-4 bg-white/5 rounded-xl p-3 border border-white/5 backdrop-blur-sm">
+                            <div className="text-center p-1 border-r border-white/10">
+                                <span className="block text-[8px] text-lime-200/70 uppercase tracking-widest font-bold mb-0.5">{t('common.share_card.time')}</span>
+                                <span className="block text-lg font-bold text-white">{fermentation}h</span>
                             </div>
-                            <div className="text-center">
-                                <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">{t('common.salt')}</span>
-                                <span className="block text-xl font-bold text-white mt-1">{config.salt}%</span>
+                            <div className="text-center p-1">
+                                <span className="block text-[8px] text-lime-200/70 uppercase tracking-widest font-bold mb-0.5">{t('common.salt')}</span>
+                                <span className="block text-lg font-bold text-white">{config.salt}%</span>
+                            </div>
+                            <div className="text-center p-1 border-r border-t border-white/10 pt-2">
+                                <span className="block text-[8px] text-lime-200/70 uppercase tracking-widest font-bold mb-0.5">{t('results.yield', { defaultValue: 'Yield' })}</span>
+                                <span className="block text-lg font-bold text-white">{config.bakeType === 'PIZZAS' ? `${config.numPizzas}x` : `${config.numPizzas} Pcs`}</span>
+                            </div>
+                            <div className="text-center p-1 border-t border-white/10 pt-2">
+                                <span className="block text-[8px] text-lime-200/70 uppercase tracking-widest font-bold mb-0.5">{t('results.total_mass', { defaultValue: 'Mass' })}</span>
+                                <span className="block text-lg font-bold text-white">{Number(results.totalDough || 0).toFixed(0)}g</span>
                             </div>
                         </div>
 
                         {/* Footer */}
-                        <div className="relative z-10 mt-auto pt-4 flex justify-between items-end border-t border-white/10">
+                        <div className="relative z-10 mt-auto pt-3 flex justify-between items-center border-t border-white/10">
                             <div>
-                                <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-0.5">{t('common.share_card.created_with')}</p>
-                                <p className="font-extrabold text-sm text-lime-400 tracking-wide uppercase">Calculated by DoughLab Pro</p>
+                                <p className="text-[8px] text-slate-300 uppercase tracking-widest font-semibold mb-0.5 opacity-70">{t('common.share_card.created_with')}</p>
+                                <p className="font-bold text-xs text-white tracking-wider uppercase">DOUGHLAB PRO</p>
                             </div>
-                            <div className="flex items-center justify-center bg-white p-1 rounded">
-                                {/* Simulated QR Code */}
-                                <div className="w-8 h-8 grid grid-cols-4 grid-rows-4 gap-0.5">
-                                    <div className="bg-black col-span-2 row-span-2"></div>
-                                    <div className="bg-black col-start-4 row-start-1"></div>
-                                    <div className="bg-black col-start-3 row-start-2"></div>
-                                    <div className="bg-black col-start-1 row-start-4"></div>
-                                    <div className="bg-black col-start-2 row-start-3"></div>
-                                    <div className="bg-black col-start-4 row-start-4"></div>
-                                </div>
+                            <div className="bg-white/10 p-1.5 rounded-lg backdrop-blur-md">
+                                <img src="/app-logo.png" alt="DoughLab" className="h-6 w-auto invert brightness-0" />
                             </div>
                         </div>
                     </div>

@@ -29,10 +29,21 @@ export const getCommunityFeed = async (): Promise<CommunityBatch[]> => {
         );
 
         const snapshot = await getDocs(q);
-        return snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        } as CommunityBatch));
+        return snapshot.docs.map(doc => {
+            const data = doc.data();
+            // Handle Timestamp objects if present
+            let createdAt = data.createdAt;
+            if (createdAt && typeof createdAt === 'object' && 'toDate' in createdAt) {
+                createdAt = createdAt.toDate().toISOString();
+            }
+
+            return {
+                id: doc.id,
+                ...data,
+                ownerDisplayName: data.ownerDisplayName || 'Baker',
+                createdAt: createdAt || new Date().toISOString(),
+            } as CommunityBatch;
+        });
     } catch (error) {
         console.error('Error fetching community feed:', error);
         return [];
