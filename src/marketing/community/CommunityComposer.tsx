@@ -42,13 +42,13 @@ export const CommunityComposer: React.FC = () => {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder={t('community.share_your_baking_journey')}
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-zinc-200 focus:border-lime-500 outline-none resize-none h-24 mb-3"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-zinc-200 focus:border-dlp-brand outline-none resize-none h-24 mb-3"
             />
             <div className="flex justify-end">
                 <button
                     onClick={handlePost}
                     disabled={isPosting || !text.trim()}
-                    className="px-4 py-2 bg-lime-500 text-black font-bold rounded-lg hover:bg-lime-400 disabled:opacity-50"
+                    className="px-4 py-2 bg-dlp-brand text-black font-bold rounded-lg hover:bg-lime-400 disabled:opacity-50"
                 >
                     {isPosting ? 'Posting...' : 'Post'}
                 </button>
@@ -56,3 +56,5 @@ export const CommunityComposer: React.FC = () => {
         </div>
     );
 };
+
+

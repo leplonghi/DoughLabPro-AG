@@ -94,7 +94,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="e.g. Hydration Test 60-80%"
-                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
@@ -105,7 +105,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             placeholder={t('common.mylab.goal_of_this_experiment')}
-                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
@@ -115,7 +115,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             <select
                                 value={variable}
                                 onChange={(e) => setVariable(e.target.value as TestSeriesVariable)}
-                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
                             >
                                 <option value="hydration">{t('common.mylab.variable_hydration')}</option>
                                 <option value="fermentation_time">{t('common.mylab.variable_fermentation_time')}</option>
@@ -127,7 +127,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             <label className="block text-sm font-bold text-gray-700 mb-1 flex items-center gap-1">{t('common.mylab.steps_2')}<div className="group relative">
                                 <InfoIcon className="h-4 w-4 text-gray-400 cursor-help" />
                                 <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 group-hover:opacity-100 transition-opacity z-50">
-                                    <div className="bg-slate-800 text-white text-xs rounded py-1 px-2 text-center shadow-lg">
+                                    <div className="bg-white text-slate-700 text-xs rounded py-1 px-2 text-center shadow-lg border border-slate-200">
                                         {t('common.mylab.steps_tooltip')}
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                                 value={stepsString}
                                 onChange={(e) => setStepsString(e.target.value)}
                                 placeholder="e.g. 60%, 65%, 70%"
-                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
                             />
                         </div>
                     </div>
@@ -152,7 +152,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
                             placeholder={t('common.mylab.specific_instructions_or_observations')}
-                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
@@ -165,7 +165,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                         <button
                             type="submit"
                             disabled={loading}
-                            className="rounded-xl bg-lime-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all active:scale-95 disabled:opacity-50"
+                            className="rounded-xl bg-dlp-brand px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all active:scale-95 disabled:opacity-50"
                         >
                             {loading ? t('common.mylab.saving') : t('common.mylab.save_series')}
                         </button>
@@ -177,3 +177,5 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
 };
 
 export default ConsistencySeriesModal;
+
+

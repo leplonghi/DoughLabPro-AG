@@ -15,13 +15,14 @@
   --dlp-text-muted: #6B7280;
 
   /* Accent */
-  --dlp-accent: #84CC16;
-  --dlp-accent-hover: #65A30D;
-  --dlp-accent-light: #A3E635;
+  --dlp-accent: #51a145;
+  --dlp-accent-hover: #36782c;
+  --dlp-accent-light: #b0eca6;
+  --dlp-accent-dark: #36782c;
 
   /* Shadows */
-  --dlp-shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-  --dlp-shadow-md: 0 4px 6px rgba(0,0,0,0.06);
+  --dlp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --dlp-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.06);
 
   /* Spacing */
   --dlp-space-xxs: 2px;

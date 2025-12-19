@@ -7,7 +7,7 @@ interface HydrationVisualizerProps {
 
 export const HydrationVisualizer: React.FC<HydrationVisualizerProps> = ({ hydration }) => {
     const { color, label, widthPct } = useMemo(() => {
-        let color = 'bg-green-500';
+        let color = 'bg-dlp-brand';
         let label = 'Standard';
 
         // Cap visual width between 50% and 100% for better UI scaling
@@ -50,3 +50,4 @@ export const HydrationVisualizer: React.FC<HydrationVisualizerProps> = ({ hydrat
         </div>
     );
 };
+

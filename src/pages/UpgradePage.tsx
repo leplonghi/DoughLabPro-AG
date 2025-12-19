@@ -30,14 +30,14 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
     if (success) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
-                <CheckCircleIcon className="h-16 w-16 text-green-500 mb-4" />
+                <CheckCircleIcon className="h-16 w-16 text-dlp-brand mb-4" />
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('ui.upgrade_successful')}</h1>
                 <p className="text-lg text-gray-600 mb-8 text-center">
                     {t('upgrade_page.thank_you_desc')}
                 </p>
                 <button
                     onClick={() => window.location.href = '/'} // Reload to refresh permissions if needed
-                    className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                    className="px-6 py-3 bg-dlp-brand-hover text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
                 >{t('common.go_to_home')}</button>
             </div>
         );
@@ -128,3 +128,5 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
 };
 
 export default UpgradePage;
+
+

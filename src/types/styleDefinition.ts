@@ -40,6 +40,30 @@ export interface StyleDefinition {
     intro: string;
     /** Historical context and background */
     history: string;
+    /** Historical & Cultural Context - Deep dive into cultural significance */
+    culturalContext?: {
+        /** Cultural significance and traditions */
+        significance: string[];
+        /** Traditional consumption occasions and contexts */
+        consumptionContext: string[];
+        /** Evolution and modern adaptations */
+        evolution: string[];
+        /** Cultural rituals or customs associated with this style */
+        rituals?: string[];
+    };
+    /** Flavor Intelligence - Sensory profile and pairing recommendations */
+    flavorProfile?: {
+        /** Primary flavor characteristics */
+        primaryFlavors: string[];
+        /** Aroma profile descriptors */
+        aromaProfile: string[];
+        /** Texture characteristics */
+        textureNotes: string[];
+        /** Recommended flavor pairings and combinations */
+        pairingRecommendations: string[];
+        /** Flavor development timeline (e.g., fresh vs aged) */
+        flavorEvolution?: string[];
+    };
     /** Key technical foundations (e.g., High heat, Long fermentation) */
     technicalFoundations: string[];
     /** How this style impacts the dough characteristics */

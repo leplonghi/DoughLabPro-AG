@@ -3,7 +3,7 @@ import { DoughStyle, RecipeStyle } from '../../../types/dough';
 export const middleEastStyles: DoughStyle[] = [
     {
         id: 'pita-bread',
-        name: 'styles.pita_bread_name',
+        name: 'styles.pita_bread',
         region: 'Middle East',
         subRegion: 'Levant',
         category: 'Flatbread',
@@ -86,7 +86,7 @@ export const middleEastStyles: DoughStyle[] = [
     },
     {
         id: 'simit',
-        name: 'styles.simit_name',
+        name: 'styles.simit',
         region: 'Middle East',
         subRegion: 'Turkey',
         category: 'Bread',

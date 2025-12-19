@@ -961,5 +961,97 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
         variations: 'Fresh Oregano (milder, peppery).',
         references: [],
         isStandard: true
+    },
+    {
+        id: 'malt_powder',
+        name: 'Diastatic Malt Powder',
+        category: 'Finish',
+        description: 'Enzymatic additive that helps with browning and fermentation in long-cold-fermented doughs.',
+        flavorProfile: {
+            intensity: 2,
+            fat: 0,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Promotes Maillard reaction and sugar conversion during baking.'
+        },
+        origin: 'Global / Industrial.',
+        historyContext: 'Modern additive for controlling crust color in low-temperature home ovens.',
+        commonStyles: ['new-york', 'baguette'],
+        ovenCompatibility: ['home_oven', 'low_temp'],
+        classicCombinations: ['Flour', 'Water'],
+        technicalNotes: 'Dosage is critical (0.5% - 1%). Over-dosing leads to gummy, overly dark crust.',
+        applicationMoment: 'pre_oven',
+        variations: 'Non-diastatic malt (flavor only), Honey.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'vanilla_madagascar',
+        name: 'Madagascar Vanilla Bean',
+        category: 'Spice',
+        description: 'Quality vanilla extract or bean paste. The defining aroma of professional pastry.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'Volatile. Alcohol-based extracts lose intensity if baked long; beans are more stable.'
+        },
+        origin: 'Madagascar / Reunion Island.',
+        historyContext: 'The standard for high-end patisserie since the 19th century.',
+        commonStyles: ['ny-style-chip-cookie', 'fudgy-brownie', 'classic-cinnamon-roll'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Chocolate', 'Cream Cheese'],
+        technicalNotes: 'Always add vanilla to the fat/butter phase to "lock" the aroma before baking.',
+        applicationMoment: 'pre_oven',
+        variations: 'Tahitian (floral), Mexican (spicy).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'cinnamon_ceylon',
+        name: 'Ceylon Cinnamon',
+        category: 'Spice',
+        description: 'True cinnamon, delicate and sweet. High essential oil content.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 3,
+            thermalBehavior: 'Heat-stable. Releases oils when baked with sugar and butter.'
+        },
+        origin: 'Sri Lanka.',
+        historyContext: 'Prized for centuries as "true cinnamon" compared to the harsher Cassia variety.',
+        commonStyles: ['classic-cinnamon-roll'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Brown Sugar', 'Apple', 'Dough'],
+        technicalNotes: 'Mixing with fat prevents the "dry dust" mouthfeel and promotes even distribution.',
+        applicationMoment: 'pre_oven',
+        variations: 'Cassia (sharper, cheaper), Korintje.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'dark_chocolate_70',
+        name: 'Dark Chocolate (70%)',
+        category: 'Pastry Filling',
+        description: 'Bittersweet chocolate with high cocoa butter content. Ideal for melting and structure.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 4,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Melts at 34°C. Crystallizes when cooled unless tempered or mixed in dough.'
+        },
+        origin: 'Ecuador / Central America.',
+        historyContext: 'Modern artisanal chocolate movement favors higher cocoa percentages for intense flavor.',
+        commonStyles: ['ny-style-chip-cookie', 'fudgy-brownie'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Sea Salt', 'Vanilla', 'Butter'],
+        technicalNotes: 'Use "chunks" for cookies to get distinct pools; finely chop for brownies for integration.',
+        applicationMoment: 'pre_oven',
+        variations: 'Milk Chocolate (sweeter), White Chocolate.',
+        references: [],
+        isStandard: true
     }
 ];

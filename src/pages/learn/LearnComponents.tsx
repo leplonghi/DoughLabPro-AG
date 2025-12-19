@@ -17,11 +17,11 @@ export const LearnCollapseSection: React.FC<{
                 onClick={() => setIsExpanded(!isExpanded)}
                 className="w-full flex items-center justify-between py-6 px-6 sm:px-8 text-left group hover:bg-slate-50/50 transition-colors"
             >
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-lime-600 transition-colors flex items-center gap-3">
-                    {icon && <span className="text-lime-500">{icon}</span>}
+                <h3 className="text-xl font-bold text-slate-900 group-hover:text-dlp-brand-hover transition-colors flex items-center gap-3">
+                    {icon && <span className="text-dlp-brand">{icon}</span>}
                     {title}
                 </h3>
-                <div className={`p-2 rounded-full transition-all duration-300 ${isExpanded ? 'bg-lime-100 text-lime-600 rotate-180' : 'bg-slate-50 text-slate-400 group-hover:bg-lime-50 group-hover:text-lime-500'}`}>
+                <div className={`p-2 rounded-full transition-all duration-300 ${isExpanded ? 'bg-lime-100 text-dlp-brand-hover rotate-180' : 'bg-slate-50 text-slate-400 group-hover:bg-lime-50 group-hover:text-dlp-brand'}`}>
                     <ChevronDownIcon className="h-5 w-5" />
                 </div>
             </button>
@@ -197,3 +197,5 @@ export const LearnHistory: React.FC<{ children: React.ReactNode }> = ({ children
         </div>
     );
 };
+
+

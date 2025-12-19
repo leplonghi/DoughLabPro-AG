@@ -122,7 +122,7 @@ export function calculateReverseTimeline(targetDate: Date, config: DoughConfig, 
     if (hydration >= 80) numFolds = 4;
 
     // Additional check for Panettone or specific complex styles could happen here
-    if (config.recipeStyle === RecipeStyle.PANETTONE) numFolds = 3; // Example
+    // if (config.recipeStyle === RecipeStyle.PANETTONE) numFolds = 3; // Example - PANETTONE not yet in enum
 
     if (numFolds > 0) {
         // Start folds 30 mins after mix (or start of bulk)

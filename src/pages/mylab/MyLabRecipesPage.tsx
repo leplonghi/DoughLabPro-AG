@@ -22,7 +22,7 @@ const RecipeCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, para
             <div className={`h-32 w-full bg-cover bg-center relative ${!batch.photoUrl ? 'bg-gradient-to-br from-lime-50 to-lime-100  ' : ''}`} style={batch.photoUrl ? { backgroundImage: `url(${batch.photoUrl})` } : {}}>
                 {!batch.photoUrl && (
                     <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                        <BatchesIcon className="h-16 w-16 text-lime-600 " />
+                        <BatchesIcon className="h-16 w-16 text-dlp-brand-hover " />
                     </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80"></div>
@@ -74,7 +74,7 @@ const RecipeCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, para
 
                 <div className="mt-auto pt-3 border-t border-slate-100  flex justify-between items-center text-xs text-slate-500 ">
                     <span>{date}</span>
-                    <span className="group-hover:text-lime-600 font-medium transition-colors">{t('mylab.view_recipe_rarr')}</span>
+                    <span className="group-hover:text-dlp-brand-hover font-medium transition-colors">{t('mylab.view_recipe_rarr')}</span>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
                             <ArrowsRightLeftIcon className="h-5 w-5" />{t('mylab.compare')}</button>
                         <button
                             onClick={() => onNavigate('calculator')}
-                            className="inline-flex items-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all hover:scale-105 active:scale-95"
+                            className="inline-flex items-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all hover:scale-105 active:scale-95"
                         >
                             <PlusCircleIcon className="h-5 w-5" />{t('mylab.new_recipe')}</button>
                     </div>
@@ -129,7 +129,7 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
                             </p>
                             <button
                                 onClick={() => onNavigate('mylab/batches')}
-                                className="mt-6 text-lime-600  font-bold hover:underline"
+                                className="mt-6 text-dlp-brand-hover  font-bold hover:underline"
                             >{t('mylab.go_to_my_bakes')}</button>
                         </div>
                     )
@@ -140,3 +140,6 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
 };
 
 export default MyLabRecipesPage;
+
+
+

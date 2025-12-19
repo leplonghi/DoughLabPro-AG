@@ -29,7 +29,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
     availableRegions,
     onClearAll
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     if (!isOpen) return null;
 
     return (
@@ -40,7 +40,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                 {/* Header */}
                 <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-white z-10">
                     <div className="flex items-center gap-2">
-                        <div className="p-2 bg-lime-50 rounded-lg text-lime-600">
+                        <div className="p-2 bg-lime-50 rounded-lg text-dlp-brand-hover">
                             <Filter className="w-5 h-5" />
                         </div>
                         <div>
@@ -60,19 +60,24 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                     <section>
                         <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{t('general.difficulty_level')}</h3>
                         <div className="flex flex-wrap gap-2">
-                            {[t('styles.easy_2'), t('styles.medium_4'), t('styles.hard_2'), t('styles.expert_2')].map(diff => {
-                                const isSelected = selectedDifficulty.includes(diff);
+                            {[
+                                { id: 'Easy', label: t('common.easy', { defaultValue: 'Easy' }) },
+                                { id: 'Medium', label: t('common.medium', { defaultValue: 'Medium' }) },
+                                { id: 'Hard', label: t('common.hard', { defaultValue: 'Hard' }) },
+                                { id: 'Expert', label: t('common.expert', { defaultValue: 'Expert' }) }
+                            ].map(diff => {
+                                const isSelected = selectedDifficulty.includes(diff.id);
                                 return (
                                     <button
-                                        key={diff}
-                                        onClick={() => onToggleDifficulty(diff)}
+                                        key={diff.id}
+                                        onClick={() => onToggleDifficulty(diff.id)}
                                         className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all flex items-center gap-2 ${isSelected
-                                                ? 'bg-lime-500 text-white border-lime-600 shadow-md'
-                                                : 'bg-white text-slate-600 border-slate-200 hover:border-lime-300 hover:bg-lime-50'
+                                            ? 'bg-dlp-brand text-white border-dlp-brand-hover shadow-md'
+                                            : 'bg-white text-slate-600 border-slate-200 hover:border-lime-300 hover:bg-lime-50'
                                             }`}
                                     >
                                         {isSelected && <Check className="w-3.5 h-3.5" />}
-                                        {diff}
+                                        {diff.label}
                                     </button>
                                 );
                             })}
@@ -92,8 +97,8 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                                         key={region}
                                         onClick={() => onToggleRegion(region)}
                                         className={`px-3 py-2 rounded-lg text-xs font-medium border text-left transition-all flex items-center justify-between ${isSelected
-                                                ? 'bg-sky-50 text-sky-700 border-sky-200'
-                                                : 'bg-white text-slate-600 border-slate-200 hover:border-sky-200 hover:bg-sky-50/50'
+                                            ? 'bg-sky-50 text-sky-700 border-sky-200'
+                                            : 'bg-white text-slate-600 border-slate-200 hover:border-sky-200 hover:bg-sky-50/50'
                                             }`}
                                     >
                                         <span className="truncate">{region}</span>
@@ -117,8 +122,8 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                                         key={tag}
                                         onClick={() => onToggleTag(tag)}
                                         className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${isSelected
-                                                ? 'bg-slate-800 text-white border-slate-900'
-                                                : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300'
+                                            ? 'bg-slate-800 text-white border-slate-900'
+                                            : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300'
                                             }`}
                                     >
                                         {tag}
@@ -137,10 +142,13 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                     >{t('common.reset_all')}</button>
                     <button
                         onClick={onClose}
-                        className="flex-[2] py-3 px-4 rounded-xl bg-lime-500 text-white font-bold shadow-lg hover:bg-lime-600 hover:shadow-xl transition-all"
+                        className="flex-[2] py-3 px-4 rounded-xl bg-dlp-brand text-white font-bold shadow-lg hover:bg-dlp-brand hover:text-white-hover hover:shadow-xl transition-all"
                     >{t('common.show_results')}</button>
                 </div>
             </div>
         </div>
     );
 };
+
+
+

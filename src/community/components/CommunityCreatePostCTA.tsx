@@ -42,10 +42,12 @@ export const CommunityCreatePostCTA: React.FC = () => {
 
             <button
                 onClick={handleCreate}
-                className="flex-shrink-0 p-2.5 bg-lime-600 hover:bg-lime-700 text-white rounded-full transition-colors shadow-lg shadow-lime-600/20"
+                className="flex-shrink-0 p-2.5 bg-dlp-brand-hover hover:bg-lime-700 text-white rounded-full transition-colors shadow-lg shadow-dlp-brand-hover/20"
             >
                 <PlusCircle className="h-5 w-5" />
             </button>
         </div>
     );
 };
+
+

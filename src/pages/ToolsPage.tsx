@@ -34,10 +34,10 @@ const ToolCardView: React.FC<{
     return (
         <button
             onClick={onClick}
-            className="group h-full text-left flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative overflow-hidden hover:border-lime-500"
+            className="group h-full text-left flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative overflow-hidden hover:border-dlp-brand"
         >
             <div className="flex items-start justify-between mb-4 relative z-10">
-                <div className={`p-3 rounded-xl transition-colors duration-300 ${isLocked ? 'bg-slate-100 text-slate-400' : 'bg-lime-50 text-lime-600 group-hover:bg-lime-500 group-hover:text-white'}`}>
+                <div className={`p-3 rounded-xl transition-colors duration-300 ${isLocked ? 'bg-slate-100 text-slate-400' : 'bg-lime-50 text-dlp-brand-hover group-hover:bg-dlp-brand group-hover:text-white'}`}>
                     {React.cloneElement(icon as React.ReactElement, { className: "h-8 w-8" })}
                 </div>
                 <div className="flex gap-2">
@@ -120,7 +120,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
             <div className="mx-auto max-w-7xl animate-fade-in pb-20">
                 {/* Hero Section */}
                 <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-8 mb-8 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-dlp-brand/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
                     <div className="relative z-10 text-center max-w-3xl mx-auto">
@@ -186,3 +186,5 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
 };
 
 export default ToolsPage;
+
+

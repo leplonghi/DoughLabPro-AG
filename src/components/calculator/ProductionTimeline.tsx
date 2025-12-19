@@ -6,10 +6,12 @@ import {
     ClockIcon,
     BeakerIcon,
     FireIcon,
-    ExclamationTriangleIcon,
-    ArrowDownIcon
-} from '@heroicons/react/24/outline';
-import { PizzaSliceIcon } from '@/components/ui/Icons';
+    AlertTriangleIcon,
+    ArrowDownIcon,
+    PizzaSliceIcon,
+    BowlIcon,
+    ShapingIcon
+} from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
 interface ProductionTimelineProps {
@@ -25,9 +27,9 @@ const TimelineStep: React.FC<{ step: ScheduleStep; index: number; isLast: boolea
             case 'preheat': return <FireIcon className="h-6 w-6 text-orange-500" />;
             case 'mix_poolish':
             case 'mix_biga': return <BeakerIcon className="h-6 w-6 text-indigo-500" />;
-            case 'mix_final': return <span className="text-xl">🥣</span>;
-            case 'ball': return <span className="text-xl">⚪</span>;
-            default: return <ClockIcon className="h-6 w-6 text-gray-500" />;
+            case 'mix_final': return <BowlIcon className="h-6 w-6 text-indigo-500" />;
+            case 'ball': return <ShapingIcon className="h-6 w-6 text-dlp-brand" />;
+            default: return <ClockIcon className="h-6 w-6 text-slate-400" />;
         }
     };
 
@@ -87,7 +89,7 @@ export const ProductionTimeline: React.FC<ProductionTimelineProps> = ({ config, 
         return (
             <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 animate-shake">
                 <div className="flex items-start gap-3">
-                    <ExclamationTriangleIcon className="h-6 w-6 text-red-500 shrink-0" />
+                    <AlertTriangleIcon className="h-6 w-6 text-red-500 shrink-0" />
                     <div>
                         <h3 className="text-sm font-bold text-red-800">Mission Impossible</h3>
                         <p className="text-xs text-red-600 mt-1">

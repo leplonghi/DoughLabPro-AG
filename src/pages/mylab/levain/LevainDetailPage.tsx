@@ -54,7 +54,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
             <MyLabLayout activePage="mylab/levain" onNavigate={onNavigate}>
                 <div className="p-8 text-center">
                     <h2 className="text-xl font-bold text-slate-900 ">{t('mylab.levain_not_found')}</h2>
-                    <button onClick={() => onNavigate('mylab/levain')} className="mt-4 text-lime-600  hover:underline">{t('mylab.back_to_list')}</button>
+                    <button onClick={() => onNavigate('mylab/levain')} className="mt-4 text-dlp-brand-hover  hover:underline">{t('mylab.back_to_list')}</button>
                 </div>
             </MyLabLayout>
         );
@@ -83,7 +83,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                     </div>
                     <div className="h-3 w-full bg-slate-100  rounded-full overflow-hidden ring-1 ring-slate-200 ">
                         <div
-                            className={`h-full transition-all duration-1000 ease-out ${stats.healthScore > 50 ? 'bg-lime-500' : stats.healthScore > 20 ? 'bg-amber-500' : 'bg-red-500'}`}
+                            className={`h-full transition-all duration-1000 ease-out ${stats.healthScore > 50 ? 'bg-dlp-brand' : stats.healthScore > 20 ? 'bg-amber-500' : 'bg-red-500'}`}
                             style={{ width: `${stats.healthScore}%` }}
                         ></div>
                     </div>
@@ -98,7 +98,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                 <div className="mt-8 w-full flex flex-col sm:flex-row gap-3 justify-center">
                     <button
                         onClick={() => setIsFeedModalOpen(true)}
-                        className="flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-3 px-8 font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-105 active:scale-95"
+                        className="flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-3 px-8 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95"
                     >
                         <PlusCircleIcon className="h-5 w-5" />{t('mylab.feed_now')}</button>
 
@@ -140,7 +140,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
             {/* Learn About Levain Behavior */}
             <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                 <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <BookOpenIcon className="h-5 w-5 text-lime-500" />{t('mylab.learn_about_levain_behavior')}</h3>
+                    <BookOpenIcon className="h-5 w-5 text-dlp-brand" />{t('mylab.learn_about_levain_behavior')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
                         { id: 'yeast-leavening-agents', summary: 'Understand the microbiology of wild yeast and bacteria in your starter.' },
@@ -155,9 +155,9 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                                 href={`#/learn/article/${article.id}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-lime-500 hover:shadow-md transition-all group"
+                                className="block p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-dlp-brand hover:shadow-md transition-all group"
                             >
-                                <h4 className="font-bold text-slate-800 group-hover:text-lime-600 transition-colors mb-2 line-clamp-1">
+                                <h4 className="font-bold text-slate-800 group-hover:text-dlp-brand-hover transition-colors mb-2 line-clamp-1">
                                     {article.title}
                                 </h4>
                                 <p className="text-xs text-slate-600 line-clamp-3">
@@ -205,7 +205,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                                 {renderHistoryList(levain.feedingHistory.slice(0, 3))}
                                 {levain.feedingHistory.length > 3 && (
                                     <div className="p-6 text-center bg-gradient-to-b from-slate-50 to-white   rounded-2xl border border-dashed border-lime-200  mt-6">
-                                        <div className="flex justify-center mb-3 text-lime-600 ">
+                                        <div className="flex justify-center mb-3 text-dlp-brand-hover ">
                                             <LockClosedIcon className="h-8 w-8" />
                                         </div>
                                         <p className="text-sm font-bold text-slate-800  mb-1">
@@ -213,7 +213,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                                         </p>
                                         <button
                                             onClick={() => openPaywall('levain')}
-                                            className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-white bg-lime-500 px-5 py-2.5 rounded-full hover:bg-lime-600 shadow-lg shadow-lime-500/20 transition-transform hover:scale-105 active:scale-95"
+                                            className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-white bg-dlp-brand px-5 py-2.5 rounded-full hover:bg-dlp-brand hover:text-white-hover shadow-lg shadow-dlp-brand/20 transition-transform hover:scale-105 active:scale-95"
                                         >
                                             <StarIcon className="h-3 w-3" />{t('mylab.unlock_full_history')}</button>
                                     </div>
@@ -266,3 +266,6 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
 };
 
 export default LevainDetailPage;
+
+
+

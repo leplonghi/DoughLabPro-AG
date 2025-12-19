@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
+import jsPDF from 'jspdf';
 import { ArrowDownTrayIcon } from '@/components/ui/Icons';
 // Import the logo component directly or import the path if it's an image
 import { Logo } from '@/components/ui/Logo';
@@ -19,7 +19,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
     label = 'Export PDF',
     className = ''
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const [isGenerating, setIsGenerating] = useState(false);
 
     const handleExport = async () => {
@@ -59,7 +59,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             header.style.display = 'flex';
             header.style.justifyContent = 'space-between';
             header.style.alignItems = 'center';
-            header.style.borderBottom = '2px solid #84cc16'; // Lime-500
+            header.style.borderBottom = '2px solid #51a145'; // dlp-brand
             header.style.paddingBottom = '20px';
             header.style.marginBottom = '30px';
 
@@ -72,17 +72,17 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             // We'll insert an SVG string for the logo for reliable rendering
             const logoSvg = `
                 <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M50 95C74.8528 95 95 74.8528 95 50C95 25.1472 74.8528 5 50 5C25.1472 5 5 25.1472 5 50C5 74.8528 25.1472 95 50 95Z" fill="#84cc16" fill-opacity="0.2"/>
-                  <path d="M50 85C69.33 85 85 69.33 85 50C85 30.67 69.33 15 50 15C30.67 15 15 30.67 15 50C15 69.33 30.67 85 50 85Z" stroke="#65a30d" stroke-width="3"/>
-                  <path d="M35 55C35 45 40 35 50 35C60 35 65 45 65 55" stroke="#4d7c0f" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M50 95C74.8528 95 95 74.8528 95 50C95 25.1472 74.8528 5 50 5C25.1472 5 5 25.1472 5 50C5 74.8528 25.1472 95 50 95Z" fill="#51a145" fill-opacity="0.2"/>
+                  <path d="M50 85C69.33 85 85 69.33 85 50C85 30.67 69.33 15 50 15C30.67 15 15 30.67 15 50C15 69.33 30.67 85 50 85Z" stroke="#1B4332" stroke-width="3"/>
+                  <path d="M35 55C35 45 40 35 50 35C60 35 65 45 65 55" stroke="#1B4332" stroke-width="4" stroke-linecap="round"/>
                 </svg>
             `;
             logoContainer.innerHTML = logoSvg;
 
             const titleContainer = document.createElement('div');
             titleContainer.innerHTML = `
-                <h1 style="margin:0; font-size:20px; font-weight:800; color:#365314; letter-spacing: -0.5px;">{t('ui.doughlab')}</h1>
-                <p style="margin:0; font-size:10px; color:#65a30d; text-transform:uppercase; letter-spacing: 1px; font-weight:600;">{t('ui.pro_recipe_export')}</p>
+                <h1 style="margin:0; font-size:20px; font-weight:800; color:#1B4332; letter-spacing: -0.5px;">{t('ui.doughlab')}</h1>
+                <p style="margin:0; font-size:10px; color:#1B4332; text-transform:uppercase; letter-spacing: 1px; font-weight:600;">{t('ui.pro_recipe_export')}</p>
             `;
             logoContainer.appendChild(titleContainer);
 
@@ -159,7 +159,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
                 .pdf-mode .rounded-xl, .pdf-mode .rounded-2xl { border-radius: 6px !important; }
                 
                 /* Specific component tweaks */
-                .pdf-mode .text-lime-600 { color: #4d7c0f !important; }
+                .pdf-mode .text-dlp-brand-hover { color: #1B4332 !important; }
                 .pdf-mode .bg-lime-50 { background-color: #f7fee7 !important; border: 1px solid #d9f99d; }
                 .pdf-mode .bg-slate-50 { background-color: #f8fafc !important; }
                 
@@ -244,3 +244,5 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
 };
 
 export default PDFExportButton;
+
+

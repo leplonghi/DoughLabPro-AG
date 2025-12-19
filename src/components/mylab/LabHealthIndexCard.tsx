@@ -25,13 +25,13 @@ const LabHealthIndexCard: React.FC = () => {
     );
 
     const getHealthColor = (score: number) => {
-        if (score >= 80) return 'text-emerald-500';
+        if (score >= 80) return 'text-dlp-brand';
         if (score >= 60) return 'text-yellow-500';
         return 'text-rose-500';
     };
 
     const getHealthBg = (score: number) => {
-        if (score >= 80) return 'bg-emerald-500';
+        if (score >= 80) return 'bg-dlp-brand';
         if (score >= 60) return 'bg-yellow-500';
         return 'bg-rose-500';
     };
@@ -130,3 +130,4 @@ function ActivityLogIcon(props: any) {
 }
 
 export default LabHealthIndexCard;
+

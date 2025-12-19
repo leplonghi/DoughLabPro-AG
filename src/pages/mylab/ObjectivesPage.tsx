@@ -89,7 +89,7 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0 ml-4">
                     <button onClick={() => handleOpenModal(goal)} title={t('common.edit')} className="p-2 rounded-full hover:bg-slate-100 transition-colors"><PencilIcon className="h-5 w-5 text-slate-400 hover:text-slate-600 " /></button>
-                    {goal.status === 'ativo' && <button onClick={() => completeGoal(goal.id)} title={t('common.mylab.complete')} className="p-2 rounded-full hover:bg-green-50 transition-colors"><CheckCircleIcon className="h-5 w-5 text-green-500 hover:text-green-600" /></button>}
+                    {goal.status === 'ativo' && <button onClick={() => completeGoal(goal.id)} title={t('common.mylab.complete')} className="p-2 rounded-full hover:bg-green-50 transition-colors"><CheckCircleIcon className="h-5 w-5 text-dlp-brand hover:text-dlp-brand-hover" /></button>}
                     <button onClick={() => deleteGoal(goal.id)} title={t('common.delete')} className="p-2 rounded-full hover:bg-red-50 transition-colors"><TrashIcon className="h-5 w-5 text-red-400 hover:text-red-600" /></button>
                 </div>
             </div>
@@ -97,10 +97,10 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                 <div className="mt-4">
                     <div className="flex justify-between items-center text-xs mb-2">
                         <span className="text-slate-600  font-medium">{t('common.mylab.progress')}</span>
-                        <span className="font-bold text-lime-600 ">{goal.progress}%</span>
+                        <span className="font-bold text-dlp-brand-hover ">{goal.progress}%</span>
                     </div>
                     <div className="h-2.5 w-full rounded-full bg-slate-100  overflow-hidden">
-                        <div className="h-full rounded-full bg-lime-500 transition-all duration-500 ease-out" style={{ width: `${goal.progress}%` }} />
+                        <div className="h-full rounded-full bg-dlp-brand transition-all duration-500 ease-out" style={{ width: `${goal.progress}%` }} />
                     </div>
                 </div>
             )}
@@ -120,7 +120,7 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                                 <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">{t('common.mylab.my_goals')}</h1>
                                 <p className="mt-2 text-slate-600 ">{t('common.mylab.set_small_challenges_to_evolve_your_baking_skills')}</p>
                             </div>
-                            <button onClick={() => handleOpenModal()} className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all hover:scale-105 active:scale-95">
+                            <button onClick={() => handleOpenModal()} className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all hover:scale-105 active:scale-95">
                                 <PlusCircleIcon className="h-5 w-5" />{t('common.mylab.create_new_goal')}</button>
                         </div>
 
@@ -128,13 +128,13 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                             {/* AI Suggestions */}
                             <div>
                                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-slate-900 ">
-                                    <SparklesIcon className="h-5 w-5 text-lime-500" />{t('common.mylab.ai_suggestions')}</h3>
+                                    <SparklesIcon className="h-5 w-5 text-dlp-brand" />{t('common.mylab.ai_suggestions')}</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     {suggestions.map(sugg => (
                                         <div key={sugg.title} className="rounded-2xl bg-slate-50  p-5 border border-slate-200  hover:border-lime-300 transition-colors">
                                             <h4 className="font-bold text-sm text-slate-900 ">{sugg.title}</h4>
                                             <p className="text-xs text-slate-600  mt-2 leading-relaxed">{sugg.description}</p>
-                                            <button onClick={() => handleQuickAddSuggestion(sugg)} className="mt-4 text-xs font-bold text-lime-600  hover:underline uppercase tracking-wider">{t('common.mylab.add_goal')}</button>
+                                            <button onClick={() => handleQuickAddSuggestion(sugg)} className="mt-4 text-xs font-bold text-dlp-brand-hover  hover:underline uppercase tracking-wider">{t('common.mylab.add_goal')}</button>
                                         </div>
                                     ))}
                                 </div>
@@ -144,8 +144,8 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                             <div>
                                 <div className="border-b border-slate-200  mb-6">
                                     <nav className="-mb-px flex space-x-6" aria-label={t('common.mylab.tabs_2')}>
-                                        <button onClick={() => setFilter('ativo')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'ativo' ? 'border-lime-500 text-lime-600 ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>{t('common.mylab.active_2')}</button>
-                                        <button onClick={() => setFilter('concluido')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'concluido' ? 'border-lime-500 text-lime-600 ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>{t('common.mylab.completed')}</button>
+                                        <button onClick={() => setFilter('ativo')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'ativo' ? 'border-dlp-brand text-dlp-brand-hover ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>{t('common.mylab.active_2')}</button>
+                                        <button onClick={() => setFilter('concluido')} className={`whitespace-nowrap py-3 px-1 border-b-2 font-bold text-sm transition-colors ${filter === 'concluido' ? 'border-dlp-brand text-dlp-brand-hover ' : 'border-transparent text-slate-500 hover:text-slate-700 '}`}>{t('common.mylab.completed')}</button>
                                     </nav>
                                 </div>
 
@@ -174,3 +174,6 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 };
 
 export default ObjectivesPage;
+
+
+

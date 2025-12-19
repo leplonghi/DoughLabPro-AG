@@ -95,7 +95,7 @@ const DoughbotPage: React.FC = () => {
                   id="problem-select"
                   value={problem}
                   onChange={(e) => setProblem(e.target.value)}
-                  className="block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm text-slate-900"
+                  className="block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-dlp-brand focus:outline-none focus:ring-dlp-brand sm:text-sm text-slate-900"
                 >
                   {commonProblems.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -112,7 +112,7 @@ const DoughbotPage: React.FC = () => {
                   rows={4}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm text-slate-900 placeholder:text-slate-400"
+                  className="block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-dlp-brand focus:outline-none focus:ring-dlp-brand sm:text-sm text-slate-900 placeholder:text-slate-400"
                   placeholder={t('doughbot.description_placeholder')}
                 />
                 <p className="mt-2 text-xs text-slate-500">
@@ -129,7 +129,7 @@ const DoughbotPage: React.FC = () => {
               <button
                 onClick={handleDiagnose}
                 disabled={isLoading || isFomoLoading}
-                className="group relative flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-lime-600 to-lime-500 py-4 px-6 text-base font-bold text-white shadow-lg shadow-lime-500/30 hover:shadow-xl hover:from-lime-500 hover:to-lime-400 hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:pointer-events-none"
+                className="group relative flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-dlp-brand-hover to-dlp-brand py-4 px-6 text-base font-bold text-white shadow-lg shadow-dlp-brand/30 hover:shadow-xl hover:from-dlp-brand hover:to-lime-400 hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:pointer-events-none"
               >
                 {isLoading || isFomoLoading ? (
                   <LoadingSpinner className="w-5 h-5 text-white" />
@@ -159,7 +159,7 @@ const DoughbotPage: React.FC = () => {
 
               <div className="text-center max-w-lg mx-auto space-y-6">
                 <div className="w-20 h-20 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <SparklesIcon className="w-10 h-10 text-lime-600" />
+                  <SparklesIcon className="w-10 h-10 text-dlp-brand-hover" />
                 </div>
 
                 <div>
@@ -186,7 +186,7 @@ const DoughbotPage: React.FC = () => {
                   </p>
                   <button
                     onClick={() => openPaywall('doughbot')}
-                    className="w-full py-3 bg-lime-500 hover:bg-lime-400 text-slate-900 font-bold rounded-lg transition-colors shadow-lg shadow-lime-500/25"
+                    className="w-full py-3 bg-dlp-brand hover:bg-lime-400 text-slate-900 font-bold rounded-lg transition-colors shadow-lg shadow-dlp-brand/25"
                   >
                     {t('doughbot.upgrade_cta')}
                   </button>
@@ -213,3 +213,5 @@ const DoughbotPage: React.FC = () => {
 };
 
 export default DoughbotPage;
+
+

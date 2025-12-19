@@ -95,11 +95,11 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
                             ) : <p className="text-sm text-center text-slate-500  py-6">{t('common.mylab.no_bakes_associated_yet')}</p>}
 
                             <div className="mt-6 pt-6 border-t border-slate-200  flex flex-col sm:flex-row items-center gap-3">
-                                <select value={selectedBake} onChange={e => setSelectedBake(e.target.value)} className="w-full flex-grow rounded-xl border-slate-300  bg-white  text-sm py-2.5 px-3 text-slate-700  focus:ring-2 focus:ring-lime-500 focus:border-transparent">
+                                <select value={selectedBake} onChange={e => setSelectedBake(e.target.value)} className="w-full flex-grow rounded-xl border-slate-300  bg-white  text-sm py-2.5 px-3 text-slate-700  focus:ring-2 focus:ring-dlp-brand focus:border-transparent">
                                     <option value="">{t('common.mylab.select_a_bake_to_associate')}</option>
                                     {unattachedBakes.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                                 </select>
-                                <button onClick={handleAttachBake} disabled={!selectedBake} className="w-full sm:w-auto flex-shrink-0 flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-4 text-sm font-bold text-white shadow-lg shadow-lime-500/20 disabled:bg-slate-300 disabled:shadow-none transition-all hover:bg-lime-600">
+                                <button onClick={handleAttachBake} disabled={!selectedBake} className="w-full sm:w-auto flex-shrink-0 flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-4 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 disabled:bg-slate-300 disabled:shadow-none transition-all hover:bg-dlp-brand hover:text-white-hover">
                                     <PlusCircleIcon className="h-5 w-5" />{t('common.mylab.associate')}</button>
                             </div>
                         </div>
@@ -109,10 +109,10 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
                             <h3 className="text-lg font-bold text-slate-900  mb-4">{t('common.mylab.series_notes')}</h3>
                             {isEditingNotes ? (
                                 <div>
-                                    <textarea rows={5} value={notes} onChange={e => setNotes(e.target.value)} className="w-full rounded-xl border-slate-300  bg-white  text-sm text-slate-700  p-3 focus:ring-2 focus:ring-lime-500 focus:border-transparent" />
+                                    <textarea rows={5} value={notes} onChange={e => setNotes(e.target.value)} className="w-full rounded-xl border-slate-300  bg-white  text-sm text-slate-700  p-3 focus:ring-2 focus:ring-dlp-brand focus:border-transparent" />
                                     <div className="flex justify-end gap-2 mt-3">
                                         <button onClick={() => setIsEditingNotes(false)} className="text-sm font-semibold text-slate-600  hover:text-slate-800 px-3 py-2">{t('common.cancel')}</button>
-                                        <button onClick={handleSaveNotes} className="text-sm font-bold text-white bg-lime-500 hover:bg-lime-600 px-4 py-2 rounded-lg">{t('common.save')}</button>
+                                        <button onClick={handleSaveNotes} className="text-sm font-bold text-white bg-dlp-brand hover:bg-dlp-brand hover:text-white-hover px-4 py-2 rounded-lg">{t('common.save')}</button>
                                     </div>
                                 </div>
                             ) : (
@@ -141,7 +141,7 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
                                     <ul className="space-y-2">
                                         {series.parameters.steps.map((step, i) => (
                                             <li key={i} className="flex items-center gap-2 text-slate-700  bg-white  px-3 py-2 rounded-lg border border-slate-200 ">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-lime-500"></span>
+                                                <span className="w-1.5 h-1.5 rounded-full bg-dlp-brand"></span>
                                                 {step}
                                             </li>
                                         ))}
@@ -157,3 +157,5 @@ const ConsistencyDetailPage: React.FC<ConsistencyDetailPageProps> = ({ seriesId,
 };
 
 export default ConsistencyDetailPage;
+
+

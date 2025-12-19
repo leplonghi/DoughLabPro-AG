@@ -1,7 +1,7 @@
 import { defineDoughStyle } from '../../builder';
 
 export const BriocheATete = defineDoughStyle({
-    name: "styles.brioche_a_tete_name",
+    name: "styles.brioche_a_tete",
     category: "enriched_bread",
     description: "styles.brioche_a_tete_desc",
     origin: {
@@ -64,7 +64,7 @@ export const BriocheATete = defineDoughStyle({
 });
 
 export const Challah = defineDoughStyle({
-    name: "styles.challah_name",
+    name: "styles.challah",
     category: "enriched_bread",
     description: "styles.challah_desc",
     origin: {
@@ -120,7 +120,7 @@ export const Challah = defineDoughStyle({
 });
 
 export const BurgerBun = defineDoughStyle({
-    name: "styles.classic_burger_bun_name",
+    name: "styles.classic_burger_bun",
     category: "burger_bun",
     description: "styles.classic_burger_bun_desc",
     history: "styles.classic_burger_bun_history",
@@ -176,7 +176,7 @@ export const BurgerBun = defineDoughStyle({
 });
 
 export const Shokupan = defineDoughStyle({
-    name: "styles.shokupan_name",
+    name: "styles.shokupan",
     category: "enriched_bread",
     description: "styles.shokupan_desc",
     history: "styles.shokupan_history",
@@ -233,7 +233,7 @@ export const Shokupan = defineDoughStyle({
 });
 
 export const Panettone = defineDoughStyle({
-    name: "styles.panettone_name",
+    name: "styles.panettone",
     category: "enriched_bread",
     description: "styles.panettone_desc",
     history: "styles.panettone_history",

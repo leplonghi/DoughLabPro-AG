@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
-import { CalendarIcon, ClockIcon, PizzaSliceIcon, ArchiveBoxIcon } from '@heroicons/react/24/outline'; // Using heroicons as standard in project
+import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'; // Using heroicons as standard in project
 import { format } from '@/logic/dateUtils';
 
 interface TargetTimeInputProps {

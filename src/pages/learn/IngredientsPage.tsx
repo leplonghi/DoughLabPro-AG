@@ -15,6 +15,11 @@ import {
     FireIcon,
     OilIcon,
     FlourIcon,
+    YeastIcon,
+    MeatIcon,
+    VegetableIcon,
+    CheeseIcon,
+    BowlIcon
 } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 
@@ -32,14 +37,14 @@ const LearnCategoryCard: React.FC<{
         onClick={onClick}
         className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
     >
-        <div className="flex-shrink-0 text-lime-500">{icon}</div>
+        <div className="flex-shrink-0 text-dlp-brand">{icon}</div>
         <div className="mt-4 flex-grow">
-            <h3 className="text-lg font-bold text-slate-800 group-hover:text-lime-600 transition-colors">
+            <h3 className="text-lg font-bold text-slate-800 group-hover:text-dlp-brand-hover transition-colors">
                 {title}
             </h3>
             <p className="mt-2 text-sm text-slate-900 leading-relaxed">{description}</p>
         </div>
-        <p className="mt-4 text-sm font-semibold text-slate-600 group-hover:text-lime-600 transition-colors">
+        <p className="mt-4 text-sm font-semibold text-slate-600 group-hover:text-dlp-brand-hover transition-colors">
             Explore &rarr;
         </p>
     </button>
@@ -59,25 +64,25 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
             page: 'learn/article/yeast-leavening-agents' as Page,
             title: 'Yeasts',
             description: 'Commercial yeasts, sourdough starters, and fermentation science.',
-            icon: <BeakerIcon className="h-8 w-8" />,
+            icon: <YeastIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/cheeses' as Page,
             title: 'Cheeses',
             description: 'All about mozzarella, parmesan, provolone, and more. Moisture, melting, and flavor.',
-            icon: <CubeIcon className="h-8 w-8" />,
+            icon: <CheeseIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/meats' as Page,
             title: 'Meats & Cured Meats',
             description: 'From pepperoni to prosciutto. Tips on prep, curing, and pairing.',
-            icon: <TagIcon className="h-8 w-8" />,
+            icon: <MeatIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/vegetables' as Page,
             title: 'Vegetables',
             description: 'How to prepare vegetables for pizza, avoiding excess moisture and maximizing flavor.',
-            icon: <SparklesIcon className="h-8 w-8" />,
+            icon: <VegetableIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/sauces' as Page,
@@ -126,7 +131,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
     return (
         <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out]">
             <div className="text-center">
-                <AcademicCapIcon className="mx-auto h-12 w-12 text-lime-500" />
+                <AcademicCapIcon className="mx-auto h-12 w-12 text-dlp-brand" />
                 <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('learn.ingredient_guide')}</h1>
                 <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-700">
                     Explore the universe of flavors that go on top of your dough.
@@ -149,3 +154,4 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
 };
 
 export default IngredientsPage;
+

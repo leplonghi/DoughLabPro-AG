@@ -238,7 +238,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                 <div className="flex border-b border-gray-100 bg-gray-50/50">
                     <button
                         onClick={() => setActiveTab('overview')}
-                        className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'overview' ? 'border-lime-500 text-lime-700 bg-lime-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+                        className={`px-6 py-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition-all ${activeTab === 'overview' ? 'border-dlp-brand text-lime-700 bg-lime-50/50' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
                     >
                         <Info className="w-4 h-4" />{t('common.overview')}</button>
                     <button
@@ -268,11 +268,11 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-1">
                                     <label className="block text-sm font-medium text-gray-700">{t('general.style_name')}</label>
-                                    <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder={t('styles.example_grandma_square')} />
+                                    <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-dlp-brand focus:border-dlp-brand p-2.5" placeholder={t('styles.example_grandma_square')} />
                                 </div>
                                 <div className="space-y-1">
                                     <label className="block text-sm font-medium text-gray-700">{t('general.category')}</label>
-                                    <select name="category" value={formData.category} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5 capitalize">
+                                    <select name="category" value={formData.category} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-dlp-brand focus:border-dlp-brand p-2.5 capitalize">
                                         {CATEGORIES.map(c => <option key={c} value={c}>{c.replace('_', ' ')}</option>)}
                                     </select>
                                 </div>
@@ -280,7 +280,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
 
                             <div className="space-y-1">
                                 <label className="block text-sm font-medium text-gray-700">{t('general.description')}</label>
-                                <textarea name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-3" placeholder={t('styles.a_brief_appetizing_description_of_this_dough_style')} />
+                                <textarea name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full rounded-xl border-gray-300 focus:ring-dlp-brand focus:border-dlp-brand p-3" placeholder={t('styles.a_brief_appetizing_description_of_this_dough_style')} />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
@@ -300,7 +300,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
 
                             <div className="space-y-1">
                                 <label className="block text-sm font-medium text-gray-700">{t('general.tags')}</label>
-                                <input type="text" name="tags" value={formData.tags} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-lime-500 focus:border-lime-500 p-2.5" placeholder={t('styles.tags_placeholder')} />
+                                <input type="text" name="tags" value={formData.tags} onChange={handleChange} className="w-full rounded-xl border-gray-300 focus:ring-dlp-brand focus:border-dlp-brand p-2.5" placeholder={t('styles.tags_placeholder')} />
                             </div>
                         </div>
                     )}
@@ -497,7 +497,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
                 {/* Footer */}
                 <div className="p-5 border-t border-gray-100 bg-white flex justify-end gap-3 z-10 box-border">
                     <button onClick={onClose} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded-xl transition-colors">{t('common.cancel')}</button>
-                    <button onClick={handleSubmit} className="px-6 py-2.5 text-sm font-bold text-white bg-lime-600 hover:bg-lime-700 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
+                    <button onClick={handleSubmit} className="px-6 py-2.5 text-sm font-bold text-white bg-dlp-brand-hover hover:bg-lime-700 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
                         <Save className="w-4 h-4" />
                         {formData.source === 'user_ai' ? t('styles.save_generated_style') : t('styles.save_style')}
                     </button>
@@ -508,3 +508,5 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
 };
 
 export default CreateStyleModal;
+
+

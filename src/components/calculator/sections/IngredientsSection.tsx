@@ -1,9 +1,8 @@
 import React from 'react';
-import { DoughConsistencyVisualizer } from '@/components/calculator/DoughConsistencyVisualizer';
 import { HydrationInput } from '@/components/calculator/HydrationInput';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import SliderInput from "@/components/ui/SliderInput";
-import { CubeIcon } from "@/components/ui/Icons";
+import { CubeIcon, InfoIcon } from "@/components/ui/Icons";
 import { FlourSelector } from '@/components/calculator/FlourSelector';
 import { YeastType, FormErrors, DoughConfig, Levain, DoughResult } from "@/types";
 import { getArticleById } from "@/data/learn";
@@ -48,12 +47,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
 
   const totalFlour = React.useMemo(() => {
     if (!results) return 1000;
-    // Handle Direct vs Preferment flour sums
-    const finalF = results.finalDough?.flour || 0;
-    const prefF = results.preferment?.flour || 0;
-    // If Direct, preferment is likely undefined or 0.
-    // If Poolish/Biga, total = both.
-    return finalF + prefF;
+    return (results.finalDough?.flour || 0) + (results.preferment?.flour || 0);
   }, [results]);
 
   const selectedFlourDef = React.useMemo(() => FLOURS.find(f => f.id === config.flourId), [config.flourId]);
@@ -74,10 +68,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
       let unitW = 50;
       if (n.includes('yolk') || n.includes('gema')) unitW = 18;
       if (n.includes('white') || n.includes('clara')) unitW = 30;
-
-      // Avoid division by zero
       if (unitW === 0) return translatedName;
-
       const count = weight / unitW;
       const str = Math.abs(Math.round(count) - count) < 0.1 ? Math.round(count).toString() : count.toFixed(1);
       return `${translatedName} (~${str} un • ${Math.round(weight)}g)`;
@@ -86,22 +77,25 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Flour Selector - Always visible */}
-      <FlourSelector
-        selectedFlourId={config.flourId}
-        onFlourChange={(flourId) => handleSelectChange({ target: { name: 'flourId', value: flourId } } as any)}
-        currentHydration={config.hydration}
-      />
+    <div className="space-y-10 animate-slide-up">
+      {/* 1. Primary Flour Selection */}
+      <div className="bg-white rounded-3xl p-1 border border-slate-100 shadow-sm">
+        <FlourSelector
+          selectedFlourId={config.flourId}
+          onFlourChange={(flourId) => handleSelectChange({ target: { name: 'flourId', value: flourId } } as any)}
+          currentHydration={config.hydration}
+        />
+      </div>
 
-      {isBasic ? (
-        <>
+      <div className="space-y-8">
+        {/* 2. Core Ratios */}
+        <div className="grid grid-cols-1 gap-8">
           <HydrationInput
             label={config.bakeType === 'SWEETS_PASTRY' ? t('calculator.liquids_eggs') : t('form.hydration')}
             value={config.hydration}
             onChange={(e) => handleNumberChange('hydration', Number(e.target.value))}
             min={config.bakeType === 'SWEETS_PASTRY' ? 0 : 40}
-            max={config.bakeType === 'SWEETS_PASTRY' ? 200 : 100}
+            max={isBasic ? 100 : 120}
             step={1}
             tooltip={t('calculator.hydration_tooltip')}
             hasError={!!errors.hydration}
@@ -110,6 +104,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             learnArticle={getArticleById('water-hydration-dynamics')}
             totalFlour={totalFlour}
           />
+
           <SliderInput
             label={t('results.salt')}
             name="salt"
@@ -123,172 +118,130 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             learnArticle={getArticleById('salt-functionality-osmotic-effects')}
             totalFlour={totalFlour}
           />
-        </>
-      ) : (
-        <>
-          {config.bakeType !== 'SWEETS_PASTRY' && (
-            <LockedTeaser featureKey="calculator.hydration_advanced">
-              <HydrationInput
-                label={t('form.hydration')}
-                value={config.hydration}
-                onChange={(e) => handleNumberChange('hydration', Number(e.target.value))}
-                min={0}
-                max={120}
-                step={1}
-                tooltip={t('calculator.hydration_advanced_help')}
-                hasError={!!errors.hydration}
-                recommendedMin={recommendedHydrationRange?.[0]}
-                recommendedMax={recommendedHydrationRange?.[1]}
-                learnArticle={getArticleById('water-hydration-dynamics')}
-                totalFlour={totalFlour}
-              />
-            </LockedTeaser>
-          )}
-          <SliderInput
-            label={t('results.salt')}
-            name="salt"
-            value={config.salt}
-            onChange={handleNumberChange}
-            min={0} max={5} step={0.1} unit="%"
-            tooltip={t('calculator.salt_advanced_help')}
-            hasError={!!errors.salt}
-            recommendedMin={getRange('salt')?.[0]}
-            recommendedMax={getRange('salt')?.[1]}
-            learnArticle={getArticleById('salt-functionality-osmotic-effects')}
-            totalFlour={totalFlour}
-          />
 
-          {/* Dynamic Ingredient Sliders (Universal Engine) */}
-          {config.ingredients?.filter(i =>
-            !['flour', 'water', 'salt', 'yeast', 'starter'].includes(i.role || '') &&
-            // We can exclude 'other' if we want, but usually custom ingredients are 'other'.
-            // Exclude chemical leaveners if handled elsewhere? No, keep them.
-            true
-          ).map(ing => (
+          {/* Logic for Dynamic Ingredient Sliders */}
+          {!isBasic && config.ingredients?.filter(i => !['flour', 'water', 'salt', 'yeast', 'starter'].includes(i.role || '')).map(ing => (
             <SliderInput
               key={ing.id}
               label={getLabel(ing)}
               name={`ing-${ing.id}`}
               value={ing.bakerPercentage || 0}
               onChange={(_, val) => {
-                const newIngs = config.ingredients?.map(Current =>
-                  Current.id === ing.id ? { ...Current, bakerPercentage: val, manualOverride: true } : Current
-                );
+                const newIngs = config.ingredients?.map(Current => Current.id === ing.id ? { ...Current, bakerPercentage: val, manualOverride: true } : Current);
                 handleIngredientsUpdate(newIngs || []);
               }}
               min={0}
-              max={ing.role === 'sugar' ? 300 : ing.role === 'fat' ? 200 : ing.name.includes('Chocolate') ? 200 : 100}
+              max={ing.role === 'sugar' ? 300 : ing.role === 'fat' ? 200 : 100}
               step={0.1}
               unit="%"
               tooltip={`${t('calculator.adjust_percentage_of')} ${ing.name}`}
               totalFlour={totalFlour}
             />
           ))}
-        </>
-      )}
+        </div>
 
-      <div className="pt-6 border-t border-dlp-border">
-        {/* Hide Yeast controls if style is Chemical/No-Ferment (e.g. Brownies, Cookies) */}
+        {/* 3. Fermentation & Yeast */}
         {!(config.fermentationTechnique === 'CHEMICAL' || config.fermentationTechnique === 'NO_FERMENT') && (
-          <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2">
-            <div>
-              <label htmlFor="yeastType" className="mb-1 block text-sm font-medium text-dlp-text-secondary">{t('calculator.yeast_type')}</label>
-              <select id="yeastType" name="yeastType" value={config.yeastType} onChange={handleSelectChange} className={getSelectClasses()}>
-                {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>))}
-              </select>
-            </div>
-            <SliderInput label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')} name="yeastPercentage" value={config.yeastPercentage} onChange={handleNumberChange} min={0} max={isAnySourdough ? (isBasic ? 30 : 200) : (isBasic ? 2 : 5)} step={isAnySourdough ? 1 : 0.1} unit="%" tooltip={t('calculator.yeast_tooltip')} hasError={!!errors.yeastPercentage} learnArticle={getArticleById('yeast-leavening-agents')} totalFlour={totalFlour} />
-          </div>
-        )}
-
-        {isAnySourdough && (
-          <div className="mt-4 rounded-lg border border-dlp-border bg-dlp-bg-muted p-4">
-            {config.yeastType === YeastType.SOURDOUGH_STARTER && (
-              <div className="flex items-start gap-3">
-                <div className="p-2 bg-dlp-bg-card rounded-full shadow-dlp-sm text-dlp-text-muted border border-dlp-border">
-                  <CubeIcon className="h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-dlp-text-primary">{t('calculator.generic_starter')}</h4>
-                  <p className="text-xs text-dlp-text-secondary mt-1">
-                    Assumed Hydration: <strong>100%</strong>.
-                  </p>
-                  <p className="text-xs text-dlp-text-muted mt-2">
-                    To track your specific starter's hydration and feeding schedule, select <strong>{t('calculator.my_starter')}</strong>.
-                  </p>
-                </div>
+          <div className="pt-8 border-t border-slate-100 space-y-8">
+            <div className="flex flex-col md:flex-row gap-8 items-end">
+              <div className="w-full md:w-1/3 group">
+                <label htmlFor="yeastType" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#065F46] mb-3 block">{t('calculator.yeast_type')}</label>
+                <select id="yeastType" name="yeastType" value={config.yeastType} onChange={handleSelectChange}
+                  className="w-full bg-slate-50 border-none rounded-2xl py-3 px-4 font-bold text-slate-700 focus:ring-4 focus:ring-dlp-brand/10 transition-all outline-none cursor-pointer">
+                  {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>))}
+                </select>
               </div>
-            )}
+              <div className="flex-grow w-full">
+                <SliderInput
+                  label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')}
+                  name="yeastPercentage"
+                  value={config.yeastPercentage}
+                  onChange={handleNumberChange}
+                  min={0}
+                  max={isAnySourdough ? (isBasic ? 40 : 200) : (isBasic ? 3 : 5)}
+                  step={isAnySourdough ? 1 : 0.1}
+                  unit="%"
+                  tooltip={t('calculator.yeast_tooltip')}
+                  hasError={!!errors.yeastPercentage}
+                  learnArticle={getArticleById('yeast-leavening-agents')}
+                  totalFlour={totalFlour}
+                />
+              </div>
+            </div>
 
-            {config.yeastType === YeastType.USER_LEVAIN && (
-              <>
-                {levains.length > 0 ? (
-                  <div className="space-y-3">
-                    <div>
-                      <label htmlFor="levainId" className="block text-xs font-bold uppercase tracking-wide text-dlp-text-muted mb-1">{t('calculator.selected_levain')}</label>
-                      <select id="levainId" name="levainId" value={config.levainId || ''} onChange={handleSelectChange} className={getSelectClasses()}>
-                        {levains.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
-                      </select>
+            {isAnySourdough && (
+              <div className="p-6 bg-[#D8F3DC]/30 rounded-3xl border border-[#D8F3DC]/50">
+                {config.yeastType === YeastType.SOURDOUGH_STARTER ? (
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#065F46] shadow-sm">
+                      <CubeIcon size={20} />
                     </div>
-                    {selectedLevain && (
-                      <div className="bg-dlp-bg-card rounded-md border border-dlp-border p-3 shadow-dlp-sm grid grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="text-sm font-bold font-heading text-[#065F46]">{t('calculator.generic_starter')}</h4>
+                      <p className="text-[11px] text-[#065F46]/60 mt-1 leading-relaxed">
+                        Calibrated for a <strong>balanced 100% hydration</strong>. For specific strain adjustments or feeding windows, use <strong>"My Lab"</strong>.
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {levains.length > 0 ? (
+                      <>
                         <div>
-                          <span className="block text-xs text-dlp-text-muted uppercase">{t('form.hydration')}</span>
-                          <span className="block text-lg font-bold text-dlp-text-primary">{selectedLevain.hydration}%</span>
+                          <label htmlFor="levainId" className="text-[9px] font-bold uppercase tracking-widest text-[#065F46] mb-2 block">{t('calculator.selected_levain')}</label>
+                          <select id="levainId" name="levainId" value={config.levainId || ''} onChange={handleSelectChange} className="w-full bg-white rounded-xl py-2.5 px-3 text-xs font-bold border-none shadow-sm outline-none ring-offset-2 focus:ring-2 focus:ring-[#065F46]">
+                            {levains.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
+                          </select>
                         </div>
-                        <div>
-                          <span className="block text-xs text-dlp-text-muted uppercase">{t('calculator.last_fed')}</span>
-                          <span className="block text-lg font-bold text-dlp-text-primary">{timeSince(selectedLevain.lastFeeding)} ago</span>
-                        </div>
-                        <div className="col-span-2 border-t border-dlp-border pt-2 mt-1">
-                          <span className="block text-xs text-dlp-text-muted">{t('calculator.status')}</span>
-                          <span className={`font-medium ${selectedLevain.status === 'ativo' ? 'text-dlp-success' :
-                            selectedLevain.status === 'precisa_atencao' ? 'text-dlp-warning' : 'text-dlp-text-secondary'
-                            }`}>
-                            {selectedLevain.status === 'ativo' ? t('calculator.status_active') : selectedLevain.status === 'precisa_atencao' ? t('calculator.status_needs_attention') : t('calculator.status_resting')}
-                          </span>
-                        </div>
+                        {selectedLevain && (
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="bg-white/80 p-3 rounded-2xl">
+                              <span className="text-[9px] uppercase font-bold text-slate-400 block mb-1">Status</span>
+                              <span className={`text-[11px] font-bold ${selectedLevain.status === 'ativo' ? 'text-dlp-brand-hover' : 'text-amber-600'}`}>
+                                {selectedLevain.status === 'ativo' ? 'Active & Ready' : 'Needs Attention'}
+                              </span>
+                            </div>
+                            <div className="bg-white/80 p-3 rounded-2xl">
+                              <span className="text-[9px] uppercase font-bold text-slate-400 block mb-1">Consistency</span>
+                              <span className="text-[11px] font-bold text-slate-700">{selectedLevain.hydration}% Hydration</span>
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="text-center py-4">
+                        <p className="text-xs text-[#1B4332] font-bold font-heading mb-4">{t('calculator.no_starters_found_in_my_lab')}</p>
+                        <a href="#/mylab/levain" className="inline-block bg-[#1B4332] text-white py-2.5 px-6 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-[#51a145] hover:text-white transition-all shadow-lg active:scale-95">{t('calculator.create_levain')}</a>
                       </div>
                     )}
                   </div>
-                ) : (
-                  <div className="text-center py-2">
-                    <p className="text-sm text-dlp-text-secondary mb-3">{t('calculator.no_starters_found_in_my_lab')}</p>
-                    <a href="#/mylab/levain" className="inline-flex items-center justify-center gap-2 rounded-md bg-dlp-accent px-4 py-2 text-sm font-semibold text-white shadow-dlp-sm hover:bg-dlp-accent-hover transition-colors">{t('calculator.create_levain')}</a>
-                  </div>
                 )}
-              </>
+              </div>
             )}
           </div>
         )}
 
-        {config.bakeType !== 'SWEETS_PASTRY' && (
-          <div className="mt-8">
-            <div className="mb-4">
-              <div className="flex items-center gap-2 mb-1">
-                <CubeIcon className="h-5 w-5 text-dlp-accent" />
-                <h3 className="text-lg font-bold text-dlp-text-primary">
-                  {t('calculator.dough_composition')}
-                </h3>
+        {/* 4. Advanced Composition Editor */}
+        {!isBasic && (
+          <div className="pt-10 border-t border-slate-100">
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded bg-emerald-100 flex items-center justify-center">
+                  <CubeIcon size={12} className="text-[#1B4332]" />
+                </div>
+                <h3 className="text-lg font-bold font-heading text-slate-800">{t('calculator.dough_composition')}</h3>
               </div>
-              <p className="text-xs text-dlp-text-secondary ml-7">
-                {config.bakeType === 'PIZZAS' && t('calculator.dough_composition_desc_pizza')}
-                {config.bakeType === 'BREADS_SAVORY' && t('calculator.dough_composition_desc_bread')}
-                {config.bakeType === 'SWEETS_PASTRY' && t('calculator.dough_composition_desc_pastry')}
-              </p>
-              <p className="text-[10px] text-dlp-text-muted italic ml-7 mt-0.5">
-                {config.bakeType === 'PIZZAS' && t('calculator.advanced_ingredients_example_pizza')}
-                {config.bakeType === 'BREADS_SAVORY' && t('calculator.advanced_ingredients_example_bread')}
-                {config.bakeType === 'SWEETS_PASTRY' && t('calculator.advanced_ingredients_example_pastry')}
-              </p>
-              <LockFeature featureKey="calculator.advanced_ingredients" customMessage={t('calculator.unlock_pro_ingredients')}>
+            </div>
+
+            <LockFeature featureKey="calculator.advanced_ingredients" customMessage={t('calculator.unlock_pro_ingredients')}>
+              <div className="bg-slate-50 rounded-[2rem] p-6 border border-slate-100">
                 <IngredientTableEditor
                   ingredients={config.ingredients || []}
                   onChange={handleIngredientsUpdate}
-                  totalFlour={1000} // Placeholder
+                  totalFlour={1000}
                 />
-              </LockFeature>
-            </div>
+              </div>
+            </LockFeature>
           </div>
         )}
       </div>
@@ -297,3 +250,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
 };
 
 export default IngredientsSection;
+
+
+
+

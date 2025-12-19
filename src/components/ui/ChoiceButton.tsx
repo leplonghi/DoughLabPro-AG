@@ -14,7 +14,7 @@ const ChoiceButton: React.FC<ChoiceButtonProps> = ({
     className = '',
     ...props
 }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <button
             type="button"

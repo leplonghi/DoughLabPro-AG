@@ -41,7 +41,7 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
                     <ExternalLink
                         key={product.id}
                         href={product.affiliateLink}
-                        className="group flex flex-col bg-white rounded-lg border border-slate-200 overflow-hidden hover:border-dlp-primary-500 hover:shadow-md transition-all duration-300"
+                        className="group flex flex-col bg-white rounded-lg border border-slate-200 overflow-hidden hover:border-dlp-primary-500 hover:shadow-lg transition-all duration-300"
                     >
                         {/* Compact layout: Image + Content */}
                         <div className="flex flex-row h-24">

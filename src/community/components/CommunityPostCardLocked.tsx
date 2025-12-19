@@ -34,7 +34,7 @@ export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = (
                 {/* Lock Overlay Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/40 backdrop-blur-sm p-6 text-center">
                     <div className="bg-white p-4 rounded-full shadow-lg mb-4 ring-1 ring-black/5 animate-bounce-subtle">
-                        <Lock className="h-6 w-6 text-lime-600" />
+                        <Lock className="h-6 w-6 text-dlp-brand-hover" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">{t('community.unlock_this_formula')}<Sparkles className="h-4 w-4 text-yellow-500" />
                     </h3>
@@ -42,7 +42,7 @@ export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = (
                     </p>
                     <button
                         onClick={() => openPaywall('community')}
-                        className="px-8 py-3 bg-lime-600 hover:bg-lime-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+                        className="px-8 py-3 bg-dlp-brand-hover hover:bg-lime-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
                     >{t('community.unlock_full_access')}</button>
                     <div className="mt-4 text-[10px] text-gray-500 uppercase tracking-widest font-bold">{t('community.premium_content')}</div>
                 </div>
@@ -57,3 +57,5 @@ export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = (
         </div>
     );
 };
+
+

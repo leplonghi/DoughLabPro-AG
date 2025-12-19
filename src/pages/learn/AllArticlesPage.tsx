@@ -49,7 +49,7 @@ export const AllArticlesPage: React.FC = () => {
                             placeholder={t('learn.search_library')}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:border-lime-500 focus:ring-2 focus:ring-lime-200 outline-none transition-all"
+                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:border-dlp-brand focus:ring-2 focus:ring-lime-200 outline-none transition-all"
                         />
                         <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                     </div>
@@ -83,7 +83,7 @@ export const AllArticlesPage: React.FC = () => {
                                     {articles.map(article => (
                                         <div key={article.id} className="p-6 hover:bg-slate-50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                                             <div>
-                                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-lime-600 transition-colors">
+                                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-dlp-brand-hover transition-colors">
                                                     {article.title}
                                                 </h3>
                                                 <p className="text-slate-600 mt-1 text-sm">
@@ -92,7 +92,7 @@ export const AllArticlesPage: React.FC = () => {
                                             </div>
                                             <button
                                                 onClick={() => navigate('learn/article', article.id)}
-                                                className="shrink-0 px-4 py-2 bg-white border border-slate-200 text-slate-700 font-bold text-sm rounded-lg hover:border-lime-500 hover:text-lime-600 transition-all shadow-sm"
+                                                className="shrink-0 px-4 py-2 bg-white border border-slate-200 text-slate-700 font-bold text-sm rounded-lg hover:border-dlp-brand hover:text-dlp-brand-hover transition-all shadow-sm"
                                             >{t('learn.read_article')}</button>
                                         </div>
                                     ))}
@@ -113,3 +113,5 @@ export const AllArticlesPage: React.FC = () => {
 };
 
 export default AllArticlesPage;
+
+

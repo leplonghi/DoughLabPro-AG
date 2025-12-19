@@ -3,7 +3,7 @@ import { DoughStyle, RecipeStyle } from '../../../types/dough';
 export const asiaStyles: DoughStyle[] = [
     {
         id: 'asia_shokupan',
-        name: 'styles.shokupan_name',
+        name: 'styles.shokupan',
         region: 'Asia',
         subRegion: 'Japan',
         category: 'Soft Bread',
@@ -85,7 +85,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'asia_naan',
-        name: 'styles.naan_name',
+        name: 'styles.naan',
         region: 'Asia',
         subRegion: 'India',
         category: 'Flatbread',
@@ -166,7 +166,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'asia_guabao',
-        name: 'styles.gua_bao_name',
+        name: 'styles.gua_bao',
         region: 'Asia',
         subRegion: 'Taiwan/China',
         category: 'Buns',
@@ -247,7 +247,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'steamed-baozi',
-        name: 'styles.baozi_name',
+        name: 'styles.baozi',
         region: 'Asia',
         subRegion: 'China',
         category: 'Buns',
@@ -329,7 +329,7 @@ export const asiaStyles: DoughStyle[] = [
     },
     {
         id: 'paratha',
-        name: 'styles.paratha_name',
+        name: 'styles.paratha',
         region: 'Asia',
         subRegion: 'India',
         category: 'Flatbread',

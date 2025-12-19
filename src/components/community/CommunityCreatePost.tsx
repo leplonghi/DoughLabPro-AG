@@ -10,7 +10,7 @@ const CommunityCreatePost: React.FC = () => {
     return (
         <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
             <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-lime-100 flex items-center justify-center text-lime-600">
+                <div className="h-10 w-10 rounded-full bg-lime-100 flex items-center justify-center text-dlp-brand-hover">
                     <FeedIcon className="h-6 w-6" />
                 </div>
                 <div>
@@ -25,7 +25,7 @@ const CommunityCreatePost: React.FC = () => {
 
             <button
                 onClick={() => navigate('mylab/fornadas')}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-lime-500 to-lime-700 py-3 text-sm font-bold text-white shadow-lg shadow-lime-900/10 hover:from-lime-600 hover:to-lime-800 transition-all active:scale-95"
+                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-dlp-brand to-lime-700 py-3 text-sm font-bold text-white shadow-lg shadow-lime-900/10 hover:from-dlp-brand-hover hover:to-lime-800 transition-all active:scale-95"
             >{t('community.go_to_my_lab')}<ChevronRightIcon className="h-4 w-4" />
             </button>
         </div>
@@ -33,3 +33,5 @@ const CommunityCreatePost: React.FC = () => {
 };
 
 export default CommunityCreatePost;
+
+

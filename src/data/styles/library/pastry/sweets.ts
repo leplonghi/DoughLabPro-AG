@@ -2,20 +2,22 @@ import { defineDoughStyle } from '../../builder';
 import { RecipeStyle } from '@/types';
 
 export const NYChocolateChip = defineDoughStyle({
-    name: "styles.ny_style_chip_cookie_name",
+    id: "ny-style-chip-cookie",
+    name: "styles.ny_style_chip_cookie",
     category: "cookie",
     recipeStyle: RecipeStyle.COOKIE_NY_CHOC_CHIP,
     description: "styles.ny_style_chip_cookie_desc",
+    history: "styles.ny_style_chip_cookie_history",
     origin: {
         country: "USA",
         region: "New York City",
         period: "1990s"
     },
     technicalProfile: {
-        hydration: [0, 0], // Not applicable in traditional sense, but low
+        hydration: [10, 15],
         salt: [0.8, 1.2],
-        fat: [20, 30], // Butter
-        sugar: [30, 45], // Brown + White Sugar
+        fat: [20, 30],
+        sugar: [30, 45],
         fermentationSteps: [
             "styles.ny_style_chip_cookie_ferm_step_1",
             "styles.ny_style_chip_cookie_ferm_step_2",
@@ -26,7 +28,7 @@ export const NYChocolateChip = defineDoughStyle({
         ovenTemp: [200, 220],
         difficulty: "Easy",
     },
-    fermentationType: "direct", // Chemical leavening
+    fermentationType: "direct",
     notes: [
         "styles.ny_style_chip_cookie_note_1",
         "styles.ny_style_chip_cookie_note_2",
@@ -36,14 +38,15 @@ export const NYChocolateChip = defineDoughStyle({
         "styles.ny_style_chip_cookie_watchout_1",
         "styles.ny_style_chip_cookie_watchout_2"
     ],
-    tags: ["styles.tag_cookies", "styles.tag_american", "styles.tag_chocolate", "styles.tag_gooey", "styles.tag_sweet"],
+    tags: ["styles.tag_cookies", "styles.tag_american", "styles.tag_chocolate", "styles.tag_gooey"],
     images: {
         hero: "/images/styles/ny-cookie-hero.png",
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_dough.jpg"
     },
     references: [
-        { source: "Levain Bakery", url: "" }
+        { source: "The Secret to Levain Bakery Cookies", url: "https://www.seriouseats.com/levain-bakery-style-chocolate-chip-cookies-recipe", author: "Stella Parks", year: "2019" },
+        { source: "Baking Science: Fats and Sugars", url: "https://vickypham.com/blog/science-behind-chocolate-chip-cookies", author: "Vicky Pham", year: "2020" }
     ],
     education: {
         pro_tips: [
@@ -54,7 +57,7 @@ export const NYChocolateChip = defineDoughStyle({
             { scenario: "styles.ny_style_chip_cookie_wi_flat_scen", result: "styles.ny_style_chip_cookie_wi_flat_res", correction: "styles.ny_style_chip_cookie_wi_flat_corr" }
         ],
         comparative_analysis: [
-            { target_style: "Toll House", difference: "styles.ny_style_chip_cookie_comp_toll_diff", why_choose_this: "styles.ny_style_chip_cookie_comp_toll_why" }
+            { target_style: "Classic Toll House", difference: "styles.ny_style_chip_cookie_comp_toll_diff", why_choose_this: "styles.ny_style_chip_cookie_comp_toll_why" }
         ],
         q_and_a: [
             { question: "styles.ny_style_chip_cookie_qa_corn_q", answer: "styles.ny_style_chip_cookie_qa_corn_a", context: "styles.ny_style_chip_cookie_qa_corn_ctx" }
@@ -78,10 +81,12 @@ export const NYChocolateChip = defineDoughStyle({
 });
 
 export const FrenchCroissant = defineDoughStyle({
-    name: "styles.french_croissant_name",
+    id: "french-croissant",
+    name: "styles.french_croissant",
     category: "pastry",
     recipeStyle: RecipeStyle.SWEETS_PASTRY,
     description: "styles.french_croissant_desc",
+    history: "styles.french_croissant_history",
     origin: {
         country: "France / Austria",
         region: "Paris (via Vienna)",
@@ -103,7 +108,7 @@ export const FrenchCroissant = defineDoughStyle({
         ovenTemp: [190, 210],
         difficulty: "Expert",
     },
-    fermentationType: "preferment", // Often uses Poolish or Milk starter
+    fermentationType: "preferment",
     notes: [
         "styles.french_croissant_note_1",
         "styles.french_croissant_note_2",
@@ -121,7 +126,8 @@ export const FrenchCroissant = defineDoughStyle({
         crumb: "/images/styles/placeholder_dough.jpg"
     },
     references: [
-        { source: "Viennoiserie Disciplinare", url: "" }
+        { source: "Viennoiserie: The Art of Lamination", url: "https://www.kingarthurbaking.com/blog/2021/04/19/viennoiserie-at-home", author: "King Arthur Baking", year: "2021" },
+        { source: "The Science of Croissants", url: "https://www.finecooking.com/article/the-science-of-croissants", author: "Fine Cooking", year: "2018" }
     ],
     education: {
         pro_tips: [
@@ -143,7 +149,7 @@ export const FrenchCroissant = defineDoughStyle({
     },
     customMethod: [
         {
-            phase: "Mix",
+            phase: 'MIX',
             title: "styles.french_croissant_cm_mix_title",
             actionInstructions: "styles.french_croissant_cm_mix_action",
             grandmaInstructions: "styles.french_croissant_cm_mix_grandma",
@@ -151,7 +157,7 @@ export const FrenchCroissant = defineDoughStyle({
             durationLabel: "15 min"
         },
         {
-            phase: "Bulk",
+            phase: 'BULK',
             title: "styles.french_croissant_cm_bulk_title",
             actionInstructions: "styles.french_croissant_cm_bulk_action",
             grandmaInstructions: "styles.french_croissant_cm_bulk_grandma",
@@ -159,14 +165,14 @@ export const FrenchCroissant = defineDoughStyle({
             durationLabel: "12h"
         },
         {
-            phase: "Prep",
+            phase: 'PREP',
             title: "styles.french_croissant_cm_lock_title",
             actionInstructions: "styles.french_croissant_cm_lock_action",
             grandmaInstructions: "styles.french_croissant_cm_lock_grandma",
             technicalExplanation: "styles.french_croissant_cm_lock_tech"
         },
         {
-            phase: "Prep",
+            phase: 'KNEAD',
             title: "styles.french_croissant_cm_lam_title",
             actionInstructions: "styles.french_croissant_cm_lam_action",
             grandmaInstructions: "styles.french_croissant_cm_lam_grandma",
@@ -174,20 +180,19 @@ export const FrenchCroissant = defineDoughStyle({
             criticalPoint: "styles.french_croissant_cm_lam_crit"
         },
         {
-            phase: "Proof",
+            phase: 'PROOF',
             title: "styles.french_croissant_cm_proof_title",
             actionInstructions: "styles.french_croissant_cm_proof_action",
             grandmaInstructions: "styles.french_croissant_cm_proof_grandma",
             proTip: "styles.french_croissant_cm_proof_protip"
         },
         {
-            phase: "Bake",
+            phase: 'BAKE',
             title: "styles.french_croissant_cm_bake_title",
             actionInstructions: "styles.french_croissant_cm_bake_action",
             grandmaInstructions: "styles.french_croissant_cm_bake_grandma"
         }
     ],
-
     base_formula: [
         { name: "styles.ingredients_flour_bread", percentage: 100 },
         { name: "styles.ingredients_water", percentage: 28 },
@@ -202,10 +207,12 @@ export const FrenchCroissant = defineDoughStyle({
 });
 
 export const CinnamonRoll = defineDoughStyle({
-    name: "styles.classic_cinnamon_roll_name",
-    category: "pastry", // Or Enriched Bread, but fits Pastry logic
+    id: "classic-cinnamon-roll",
+    name: "styles.classic_cinnamon_roll",
+    category: "pastry",
     recipeStyle: RecipeStyle.CINNAMON_ROLL,
     description: "styles.classic_cinnamon_roll_desc",
+    history: "styles.classic_cinnamon_roll_history",
     origin: {
         country: "USA / Sweden",
         region: "General",
@@ -214,8 +221,8 @@ export const CinnamonRoll = defineDoughStyle({
     technicalProfile: {
         hydration: [60, 68],
         salt: [1.5, 2.0],
-        fat: [10, 15], // In dough
-        sugar: [20, 30], // Including filling
+        fat: [10, 15],
+        sugar: [20, 30],
         fermentationSteps: [
             "styles.classic_cinnamon_roll_ferm_step_1",
             "styles.classic_cinnamon_roll_ferm_step_2",
@@ -238,6 +245,9 @@ export const CinnamonRoll = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_dough.jpg"
     },
+    references: [
+        { source: "The Ultimate Cinnamon Roll", url: "https://www.kingarthurbaking.com/recipes/ultimate-cinnamon-rolls-recipe", author: "King Arthur Baking", year: "2021" }
+    ],
     education: {
         pro_tips: [
             { tip: "styles.classic_cinnamon_roll_tip_1", explanation: "styles.classic_cinnamon_roll_tip_1_exp" },
@@ -273,20 +283,22 @@ export const CinnamonRoll = defineDoughStyle({
 });
 
 export const FudgyBrownie = defineDoughStyle({
-    name: "styles.fudgy_brownie_name",
-    category: "cookie", // Adapting to 'Confectionery' family
+    id: "fudgy-brownie",
+    name: "styles.fudgy_brownie",
+    category: "cookie",
     recipeStyle: RecipeStyle.BROWNIE,
     description: "styles.fudgy_brownie_desc",
+    history: "styles.fudgy_brownie_history",
     origin: {
         country: "USA",
         region: "Chicago",
         period: "1893"
     },
     technicalProfile: {
-        hydration: [10, 20], // Very low water content
+        hydration: [10, 20],
         salt: [0.5, 1.0],
-        fat: [25, 35], // Butter + Chocolate fat
-        sugar: [40, 60], // Sugar dictates texture
+        fat: [25, 35],
+        sugar: [40, 60],
         fermentationSteps: [
             "styles.fudgy_brownie_ferm_step_1",
             "styles.fudgy_brownie_ferm_step_2",
@@ -296,7 +308,7 @@ export const FudgyBrownie = defineDoughStyle({
         ovenTemp: [160, 180],
         difficulty: "Easy",
     },
-    fermentationType: "direct", // None really
+    fermentationType: "direct",
     notes: [
         "styles.fudgy_brownie_note_1",
         "styles.fudgy_brownie_note_2",
@@ -309,7 +321,7 @@ export const FudgyBrownie = defineDoughStyle({
         crumb: "/images/styles/placeholder_dough.jpg"
     },
     references: [
-        { source: "Palmer House Hotel", url: "" }
+        { source: "The History of the Brownie", url: "https://www.palmerhousehiltonhotel.com/about-hotel/brownie-history/", author: "Palmer House Hotel", year: "2021" }
     ],
     education: {
         pro_tips: [

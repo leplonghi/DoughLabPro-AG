@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import { DownloadIcon, ShareIcon } from 'lucide-react';
 import { DoughConfig, DoughResult } from '@/types';
-import { DoughRescueModal } from '@/components/tools/DoughRescueModal';
 
 interface RecipeCardGeneratorProps {
     config: DoughConfig;

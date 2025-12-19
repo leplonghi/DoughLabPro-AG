@@ -127,7 +127,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                         {/* Article Body Card */}
                         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-stone-100">
                             {/* Article content renderer */}
-                            <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:leading-loose prose-img:rounded-2xl prose-img:shadow-lg prose-a:text-lime-600 hover:prose-a:text-lime-500">
+                            <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:leading-loose prose-img:rounded-2xl prose-img:shadow-lg prose-a:text-dlp-brand-hover hover:prose-a:text-dlp-brand">
                                 {/* @ts-ignore - passing embedded prop */}
                                 <LearnArticleRenderer articleData={article} embedded={true} />
                             </div>
@@ -140,7 +140,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
 
                             {/* 1. Calculator CTA Card (Contextual) */}
                             <div className="bg-slate-900 rounded-2xl p-6 shadow-xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-lime-500/20 rounded-full blur-[40px] -mr-10 -mt-10 group-hover:bg-lime-500/30 transition-colors"></div>
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-dlp-brand/20 rounded-full blur-[40px] -mr-10 -mt-10 group-hover:bg-dlp-brand group-hover:text-white hover:text-white/30 transition-colors"></div>
                                 <div className="relative z-10">
                                     <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white mb-4 backdrop-blur-sm">
                                         <CalculatorIcon className="w-6 h-6" />
@@ -151,7 +151,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                                     </p>
                                     <button
                                         onClick={() => navigate('calculator')}
-                                        className="w-full bg-lime-500 hover:bg-lime-400 text-slate-900 font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-lime-500/25 flex items-center justify-center gap-2"
+                                        className="w-full bg-dlp-brand hover:bg-lime-400 text-slate-900 font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-dlp-brand/25 flex items-center justify-center gap-2"
                                     >{t('learn.open_calculator')}<ArrowLeftIcon className="w-4 h-4 rotate-180" />
                                     </button>
                                 </div>
@@ -161,14 +161,14 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                             {sections.length > 0 && (
                                 <div className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
                                     <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <BookmarkSquareIcon className="w-4 h-4 text-lime-600" />{t('learn.in_this_article')}</h4>
+                                        <BookmarkSquareIcon className="w-4 h-4 text-dlp-brand-hover" />{t('learn.in_this_article')}</h4>
                                     <ul className="space-y-3">
                                         {sections.map((section, idx) => (
                                             <li
                                                 key={idx}
                                                 className="flex items-start gap-3 text-sm text-slate-600 hover:text-lime-700 transition-colors cursor-default"
                                             >
-                                                <div className="w-1.5 h-1.5 rounded-full bg-stone-300 mt-1.5 group-hover:bg-lime-500" />
+                                                <div className="w-1.5 h-1.5 rounded-full bg-stone-300 mt-1.5 group-hover:bg-dlp-brand group-hover:text-white hover:text-white" />
                                                 {section}
                                             </li>
                                         ))}
@@ -191,3 +191,6 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
 };
 
 export default LearnArticlePage;
+
+
+

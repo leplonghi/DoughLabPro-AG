@@ -15,8 +15,8 @@ const ChoiceButton: React.FC<{
   <button
     type="button"
     onClick={onClick}
-    className={`w-full rounded-lg px-4 py-2 text-center text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 ${active
-      ? 'bg-lime-500 text-white font-semibold shadow-md'
+    className={`w-full rounded-lg px-4 py-2 text-center text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-dlp-brand focus:ring-offset-2 ${active
+      ? 'bg-dlp-brand text-white font-semibold shadow-md'
       : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
       }`}
   >
@@ -126,7 +126,7 @@ const SettingsPage: React.FC = () => {
                     type="number"
                     value={defaultAmbientTempC}
                     onChange={(e) => setDefaultAmbientTempC(Number(e.target.value))}
-                    className="block w-32 rounded-lg border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm p-2.5 border"
+                    className="block w-32 rounded-lg border-slate-300 shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm p-2.5 border"
                   />
                   <span className="text-sm text-slate-500">
                     {t('settings_page.using_temp_as_base', { temp: defaultAmbientTempC })}
@@ -159,7 +159,7 @@ const SettingsPage: React.FC = () => {
               <h2 className="text-lg font-semibold text-slate-800">{t('profile.ovens.title')}</h2>
               <button
                 onClick={() => navigate('/profile')}
-                className="text-sm text-lime-600 hover:text-lime-700 font-medium transition-colors"
+                className="text-sm text-dlp-brand-hover hover:text-lime-700 font-medium transition-colors"
               >
                 {t('common.manage')}
               </button>
@@ -171,7 +171,7 @@ const SettingsPage: React.FC = () => {
                 <p className="text-sm text-slate-500">{t('profile.ovens.empty_state')}</p>
                 <button
                   onClick={() => navigate('/profile')}
-                  className="mt-3 text-sm text-lime-600 hover:text-lime-700 font-medium"
+                  className="mt-3 text-sm text-dlp-brand-hover hover:text-lime-700 font-medium"
                 >
                   {t('profile.ovens.add_oven')}
                 </button>
@@ -190,7 +190,7 @@ const SettingsPage: React.FC = () => {
                     )}
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-white rounded-lg border border-slate-200">
-                        <FireIcon className="h-5 w-5 text-lime-600" />
+                        <FireIcon className="h-5 w-5 text-dlp-brand-hover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-semibold text-slate-900 truncate">{oven.name}</h3>
@@ -203,7 +203,7 @@ const SettingsPage: React.FC = () => {
                         </div>
                         <button
                           onClick={() => handleAnalyzeOven(oven.id)}
-                          className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-lg bg-lime-500 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-lime-600 transition-colors"
+                          className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-lg bg-dlp-brand px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-dlp-brand hover:text-white-hover transition-colors"
                         >
                           <FireIcon className="h-3.5 w-3.5" />
                           {t('common.analyze_oven_profile')}
@@ -227,3 +227,6 @@ const SettingsPage: React.FC = () => {
 };
 
 export default SettingsPage;
+
+
+

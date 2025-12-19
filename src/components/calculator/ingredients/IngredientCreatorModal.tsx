@@ -158,7 +158,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                             <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                 <div className="flex justify-between items-center mb-4">
                                     <Dialog.Title as="h3" className="text-lg font-bold leading-6 text-slate-900 flex items-center gap-2">
-                                        <BeakerIcon className="h-5 w-5 text-lime-600" />
+                                        <BeakerIcon className="h-5 w-5 text-dlp-brand-hover" />
                                         {step === 'result' ? 'AI Validation Complete' : 'Add Ingredient'}
                                     </Dialog.Title>
                                     <button onClick={reset}><XMarkIcon className="h-5 w-5 text-slate-400" /></button>
@@ -206,7 +206,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                         placeholder="Search ingredients..."
                                                         value={searchTerm}
                                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                                        className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:border-lime-500 focus:ring-1 focus:ring-lime-500 text-sm"
+                                                        className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:border-dlp-brand focus:ring-1 focus:ring-dlp-brand text-sm"
                                                     />
 
                                                     <div className="flex gap-2 flex-wrap">
@@ -215,7 +215,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                                 key={cat}
                                                                 onClick={() => setSelectedCategory(cat)}
                                                                 className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${selectedCategory === cat
-                                                                    ? 'bg-lime-500 text-white'
+                                                                    ? 'bg-dlp-brand text-white'
                                                                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                                                     }`}
                                                             >
@@ -261,7 +261,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                                             )}
                                                                         </div>
                                                                     </div>
-                                                                    <PlusCircleIcon className="h-5 w-5 text-slate-300 group-hover:text-lime-600 transition-colors flex-shrink-0 ml-2" />
+                                                                    <PlusCircleIcon className="h-5 w-5 text-slate-300 group-hover:text-dlp-brand-hover transition-colors flex-shrink-0 ml-2" />
                                                                 </div>
                                                             </button>
                                                         ))
@@ -278,7 +278,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                             type="text"
                                                             value={formData.name}
                                                             onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                                            className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                                                            className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm"
                                                             placeholder="e.g. Spicy Honey"
                                                         />
                                                     </div>
@@ -288,12 +288,12 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                         <select
                                                             value={formData.category}
                                                             onChange={e => setFormData({ ...formData, category: e.target.value as any })}
-                                                            className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                                                            className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm"
                                                         >
                                                             <option value="topping">Topping</option>
                                                             <option value="sauce">Sauce</option>
                                                             <option value="filling">Filling</option>
-                                                            <option value="glaze">Glaze/Finish</option>
+                                                            <option value="finish">Glaze/Finish</option>
                                                         </select>
                                                     </div>
 
@@ -333,7 +333,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                                     type="radio"
                                                                     checked={formData.applicationTime === 'pre_bake'}
                                                                     onChange={() => setFormData({ ...formData, applicationTime: 'pre_bake' })}
-                                                                    className="text-lime-600 focus:ring-lime-500"
+                                                                    className="text-dlp-brand-hover focus:ring-dlp-brand"
                                                                 />
                                                                 Pre-Bake
                                                             </label>
@@ -342,7 +342,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                                     type="radio"
                                                                     checked={formData.applicationTime === 'post_bake'}
                                                                     onChange={() => setFormData({ ...formData, applicationTime: 'post_bake' })}
-                                                                    className="text-lime-600 focus:ring-lime-500"
+                                                                    className="text-dlp-brand-hover focus:ring-dlp-brand"
                                                                 />
                                                                 Post-Bake
                                                             </label>
@@ -354,7 +354,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                                     type="checkbox"
                                                                     checked={formData.creamyBase}
                                                                     onChange={e => setFormData({ ...formData, creamyBase: e.target.checked })}
-                                                                    className="rounded text-lime-600 focus:ring-lime-500"
+                                                                    className="rounded text-dlp-brand-hover focus:ring-dlp-brand"
                                                                 />
                                                                 Has Creamy/Fatty Base?
                                                             </label>
@@ -364,7 +364,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                     <button
                                                         onClick={handleSubmit}
                                                         disabled={!formData.name}
-                                                        className="w-full mt-4 bg-lime-600 text-white py-2 rounded-xl font-bold shadow-lg shadow-lime-500/20 hover:bg-lime-700 transition disabled:opacity-50"
+                                                        className="w-full mt-4 bg-dlp-brand-hover text-white py-2 rounded-xl font-bold shadow-lg shadow-dlp-brand/20 hover:bg-lime-700 transition disabled:opacity-50"
                                                     >
                                                         Analyze with AI
                                                     </button>
@@ -376,7 +376,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
 
                                 {step === 'processing' && (
                                     <div className="py-12 text-center space-y-4">
-                                        <SparklesIcon className="h-12 w-12 text-lime-500 animate-pulse mx-auto" />
+                                        <SparklesIcon className="h-12 w-12 text-dlp-brand animate-pulse mx-auto" />
                                         <p className="text-slate-500 font-medium">Analyzing molecular properties...</p>
                                     </div>
                                 )}
@@ -399,7 +399,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                                 <span className="text-xs font-bold text-slate-400">Compatibility:</span>
                                                 {(() => {
                                                     const status = aiResult.compatibilityByStyle[currentStyle.id] || 'experimental';
-                                                    if (status === 'validated') return <span className="text-xs font-bold text-white bg-emerald-500 px-2 py-0.5 rounded-full">Validated</span>;
+                                                    if (status === 'validated') return <span className="text-xs font-bold text-white bg-dlp-brand px-2 py-0.5 rounded-full">Validated</span>;
                                                     if (status === 'variation') return <span className="text-xs font-bold text-slate-800 bg-yellow-400 px-2 py-0.5 rounded-full">Variation</span>;
                                                     return <span className="text-xs font-bold text-white bg-slate-500 px-2 py-0.5 rounded-full">Experimental</span>;
                                                 })()}
@@ -434,7 +434,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                             </button>
                                             <button
                                                 onClick={handleConfirm}
-                                                className="flex-1 bg-lime-600 text-white py-2 rounded-xl font-bold shadow-lg hover:bg-lime-700 transition"
+                                                className="flex-1 bg-dlp-brand-hover text-white py-2 rounded-xl font-bold shadow-lg hover:bg-lime-700 transition"
                                             >
                                                 Save to Lab
                                             </button>
@@ -449,3 +449,5 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
         </Transition>
     );
 }
+
+

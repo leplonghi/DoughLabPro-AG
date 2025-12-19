@@ -120,7 +120,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
 
                     {uploading && (
                         <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
-                            <SpinnerIcon className="w-6 h-6 text-lime-600 animate-spin" />
+                            <SpinnerIcon className="w-6 h-6 text-dlp-brand-hover animate-spin" />
                         </div>
                     )}
                 </div>
@@ -132,7 +132,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                             type="button"
                             onClick={triggerUpload}
                             disabled={uploading}
-                            className="text-sm font-medium text-lime-600 hover:text-lime-700 border border-lime-200 bg-lime-50 hover:bg-lime-100 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-2"
+                            className="text-sm font-medium text-dlp-brand-hover hover:text-lime-700 border border-lime-200 bg-lime-50 hover:bg-lime-100 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-2"
                         >
                             {uploading ? 'Uploading...' : 'Change Photo'}
                         </button>
@@ -163,3 +163,5 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
         </div>
     );
 };
+
+

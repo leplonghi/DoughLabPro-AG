@@ -127,7 +127,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
                     <p className="text-slate-700 text-sm mb-4">{t('learn.serious_bakers_choose_pro_for_deeper_knowledge')}</p>
                     <button
                       onClick={() => openPaywall('learn')}
-                      className="bg-lime-500 text-white font-bold py-2 px-6 rounded-full hover:bg-lime-600 transition-colors flex items-center justify-center gap-2 mx-auto shadow-md"
+                      className="bg-dlp-brand text-white font-bold py-2 px-6 rounded-full hover:bg-dlp-brand hover:text-white-hover transition-colors flex items-center justify-center gap-2 mx-auto shadow-md"
                     >
                       <StarIcon className="h-4 w-4" />{t('learn.unlock_full_article')}</button>
                   </div>
@@ -154,7 +154,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
             </div>
             <button
               onClick={() => openPaywall('learn')}
-              className="text-sm font-bold text-lime-600 hover:underline whitespace-nowrap"
+              className="text-sm font-bold text-dlp-brand-hover hover:underline whitespace-nowrap"
             >
               Learn about Pro &rarr;
             </button>
@@ -165,7 +165,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
         {suggestion && (
           <div className="mt-12 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-lime-200 bg-lime-50/50 p-6 no-print">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 rounded-full bg-white p-2 shadow-sm text-lime-600">
+              <div className="flex-shrink-0 rounded-full bg-white p-2 shadow-sm text-dlp-brand-hover">
                 <ShoppingBagIcon className="h-6 w-6" />
               </div>
               <div>
@@ -180,7 +180,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center gap-2 rounded-lg bg-white border border-lime-200 py-2.5 px-4 text-sm font-semibold text-lime-700 shadow-sm hover:bg-lime-50 transition-colors"
-            >{t('learn.check_recommendation')}<ExternalLinkIcon className="h-4 w-4 text-lime-500" />
+            >{t('learn.check_recommendation')}<ExternalLinkIcon className="h-4 w-4 text-dlp-brand" />
             </a>
           </div>
         )}
@@ -188,7 +188,7 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
         {showReferencesSection && (
           <div className="mt-12 border-t border-slate-200 pt-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900">
-              <BookOpenIcon className="h-6 w-6 text-lime-500" />
+              <BookOpenIcon className="h-6 w-6 text-dlp-brand" />
               <span>{t('learn.technical_references_5')}</span>
             </h2>
             <p className="mt-4 text-sm text-slate-600 italic">
@@ -202,3 +202,6 @@ const TechnicalPageLayout: React.FC<TechnicalPageLayoutProps> = ({ title, subtit
 };
 
 export default TechnicalPageLayout;
+
+
+

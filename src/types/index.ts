@@ -7,6 +7,17 @@ import { Increment, UserIngredient } from './ingredients';
 export { RecipeStyle };
 export type { DoughStyleDefinition, StyleCategory };
 
+// Timeline types
+export interface TimelineStep {
+    id: string;
+    title: string;
+    durationMinutes: number;
+    startTime: Date;
+    endTime: Date;
+    isActive?: boolean;
+    description?: string;
+}
+
 // --- V2 Architecture Types ---
 export type PrefermentType = 'DIRECT' | 'POOLISH' | 'BIGA';
 export type ScheduleMode = 'MANUAL_TIME' | 'TARGET_TIME';
@@ -343,6 +354,9 @@ export interface UserContextType {
     updateCustomPreset: (preset: CustomPreset) => Promise<void>;
     deleteCustomPreset: (id: string) => Promise<void>;
     loadPresetToCalculator?: (preset: CustomPreset) => void;
+    customToppings: ToppingCombination[];
+    addCustomTopping: (topping: Omit<ToppingCombination, 'id'>) => Promise<ToppingCombination>;
+    deleteCustomTopping: (id: string) => Promise<void>;
     defaultAmbientTempC: number; // Global default
     setDefaultAmbientTempC: (temp: number) => void;
     defaultOvenType: OvenType; // Global default

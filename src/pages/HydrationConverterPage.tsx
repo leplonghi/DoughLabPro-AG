@@ -51,7 +51,7 @@ export const HydrationConverterPage: React.FC = () => {
                                     type="number"
                                     value={flour}
                                     onChange={(e) => setFlour(Number(e.target.value))}
-                                    className="block w-full rounded-xl border-slate-300 py-3 px-4 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-lg font-mono font-bold text-slate-900"
+                                    className="block w-full rounded-xl border-slate-300 py-3 px-4 shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-lg font-mono font-bold text-slate-900"
                                 />
                             </div>
 
@@ -65,7 +65,7 @@ export const HydrationConverterPage: React.FC = () => {
                                         step="1"
                                         value={currentHydration}
                                         onChange={(e) => setCurrentHydration(Number(e.target.value))}
-                                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-lime-600"
+                                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-dlp-brand-hover"
                                     />
                                     <span className="text-xl font-bold text-slate-900 w-16 text-right">{currentHydration}%</span>
                                 </div>
@@ -82,7 +82,7 @@ export const HydrationConverterPage: React.FC = () => {
                                         step="1"
                                         value={targetHydration}
                                         onChange={(e) => setTargetHydration(Number(e.target.value))}
-                                        className="w-full h-2 bg-lime-200 rounded-lg appearance-none cursor-pointer accent-lime-600"
+                                        className="w-full h-2 bg-lime-200 rounded-lg appearance-none cursor-pointer accent-dlp-brand-hover"
                                     />
                                     <span className="text-xl font-bold text-lime-700 w-16 text-right">{targetHydration}%</span>
                                 </div>
@@ -92,7 +92,7 @@ export const HydrationConverterPage: React.FC = () => {
                         {/* Results */}
                         <div className="flex flex-col justify-center">
                             <div className="bg-slate-900 text-white rounded-3xl p-8 text-center shadow-xl relative overflow-hidden">
-                                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-lime-500"></div>
+                                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-dlp-brand"></div>
 
                                 <h3 className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-4">{t('general.correction_required')}</h3>
 
@@ -140,3 +140,5 @@ export const HydrationConverterPage: React.FC = () => {
 };
 
 export default HydrationConverterPage;
+
+

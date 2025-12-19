@@ -9,24 +9,25 @@ import { LockFeature } from '@/components/auth/LockFeature';
 import { StyleCard } from '@/components/styles/StyleCard';
 import { StylesFilterDrawer } from '@/components/styles/StylesFilterDrawer';
 import {
-    BookOpen,
-    Sparkles,
-    Calculator,
-    Heart,
-    Filter,
-    Search,
-    ArrowUpDown,
-    ChefHat,
-    Globe,
-    LayoutGrid,
-    Pizza,
-    Wheat,
-    Croissant,
-    CircleDot,
-    Cookie,
-    ScrollText,
-    MoreHorizontal
-} from 'lucide-react';
+    PizzaSliceIcon,
+    BreadIcon,
+    PastryIcon,
+    CookieIcon,
+    FlatbreadIcon,
+    PuzzlePieceIcon,
+    LayoutGridIcon as AllIcon,
+    SparklesIcon as Sparkles,
+    CalculatorIcon as Calculator,
+    HeartIcon as Heart,
+    FunnelIcon as Filter,
+    MagnifyingGlassIcon as Search,
+    BarsArrowDownIcon as ArrowUpDown, // or similar
+    ChefHatIcon as ChefHat,
+    GlobeAltIcon as Globe,
+    LayoutGridIcon as LayoutGrid,
+    BookOpenIcon as BookOpen
+} from '@/components/ui/Icons';
+import { ScrollText, MoreHorizontal } from 'lucide-react'; // Those missing from reg
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
 import { AdCard } from '@/marketing/ads/AdCard';
 
@@ -35,16 +36,16 @@ import { AdCard } from '@/marketing/ads/AdCard';
 // ========================================================
 
 // Category filters - labels will be translated dynamically
-const getCategoryFilters = (t: any): { id: StyleCategory | 'All', label: string, iconSrc: string }[] => [
-    { id: 'All', label: t('styles_page.categories.all'), iconSrc: '/icons/styles/all.png' },
-    { id: 'pizza', label: t('styles_page.categories.pizza'), iconSrc: '/icons/styles/pizza.png' },
-    { id: 'bread', label: t('styles_page.categories.bread'), iconSrc: '/icons/styles/bread.png' },
-    { id: 'enriched_bread', label: t('styles_page.categories.enriched_bread'), iconSrc: '/icons/styles/enriched.png' },
-    { id: 'burger_bun', label: t('styles_page.categories.burger_bun'), iconSrc: '/icons/styles/bun.png' },
-    { id: 'pastry', label: t('styles_page.categories.pastry'), iconSrc: '/icons/styles/pastry.png' },
-    { id: 'cookie', label: t('styles_page.categories.cookie'), iconSrc: '/icons/styles/cookie.png' },
-    { id: 'flatbread', label: t('styles_page.categories.flatbread'), iconSrc: '/icons/styles/flatbread.png' },
-    { id: 'other', label: t('styles_page.categories.other'), iconSrc: '/icons/styles/other.png' },
+const getCategoryFilters = (t: any): { id: StyleCategory | 'All', label: string, Icon: any }[] => [
+    { id: 'All', label: t('styles_page.categories.all'), Icon: AllIcon },
+    { id: 'pizza', label: t('styles_page.categories.pizza'), Icon: PizzaSliceIcon },
+    { id: 'bread', label: t('styles_page.categories.bread'), Icon: BreadIcon },
+    { id: 'enriched_bread', label: t('styles_page.categories.enriched_bread'), Icon: BreadIcon },
+    { id: 'burger_bun', label: t('styles_page.categories.burger_bun'), Icon: BreadIcon },
+    { id: 'pastry', label: t('styles_page.categories.pastry'), Icon: PastryIcon },
+    { id: 'cookie', label: t('styles_page.categories.cookie'), Icon: CookieIcon },
+    { id: 'flatbread', label: t('styles_page.categories.flatbread'), Icon: FlatbreadIcon },
+    { id: 'other', label: t('styles_page.categories.other'), Icon: PuzzlePieceIcon },
 ];
 
 const GROUP_ORDER = [
@@ -126,8 +127,10 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
     const filteredStyles = useMemo(() => {
         let result = allStyles.filter(style => {
             const searchLower = searchTerm.toLowerCase();
-            const matchesSearch = style.name.toLowerCase().includes(searchLower) ||
-                style.description.toLowerCase().includes(searchLower);
+            const translatedName = t(style.name).toLowerCase();
+            const translatedDesc = t(style.description).toLowerCase();
+            const matchesSearch = translatedName.includes(searchLower) ||
+                translatedDesc.includes(searchLower);
 
             const matchesCategory = selectedCategory === 'All' || style.category === selectedCategory;
 
@@ -221,14 +224,14 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                         {/* Search Bar */}
                         <div className="relative w-full md:w-96 group">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-lime-600 transition-colors" />
+                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-dlp-brand-hover transition-colors" />
                             </div>
                             <input
                                 type="text"
                                 placeholder={t('styles_page.search_placeholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-lime-500/50 focus:border-lime-500 transition-all duration-200 sm:text-sm"
+                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-dlp-brand/50 focus:border-dlp-brand transition-all duration-200 sm:text-sm"
                             />
                         </div>
 
@@ -257,7 +260,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                 <Filter className="w-4 h-4" />
                                 <span>{t('general.filters')}</span>
                                 {activeFilterCount > 0 && (
-                                    <span className="ml-1 bg-lime-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                                    <span className="ml-1 bg-dlp-brand-hover text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                                         {activeFilterCount}
                                     </span>
                                 )}
@@ -293,10 +296,8 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                                 }
                                             `}
                                         >
-                                            <img
-                                                src={cat.iconSrc}
-                                                alt={cat.label}
-                                                className={`w-5 h-5 object-contain ${isActive ? 'brightness-200' : ''}`}
+                                            <cat.Icon
+                                                className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`}
                                             />
                                             {cat.label}
                                         </button>
@@ -337,7 +338,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                             className={`
                                                 whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
                                                 ${isActive
-                                                    ? 'bg-white border-lime-500 text-lime-700 ring-1 ring-lime-500 shadow-sm'
+                                                    ? 'bg-white border-dlp-brand text-lime-700 ring-1 ring-dlp-brand shadow-sm'
                                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                                                 }
                                             `}
@@ -370,7 +371,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                 setSelectedDifficulty([]);
                                 setSelectedRegions([]);
                             }}
-                            className="text-lime-600 font-bold hover:underline"
+                            className="text-dlp-brand-hover font-bold hover:underline"
                         >{t('common.clear_all_filters')}</button>
                     </div>
                 ) : (
@@ -425,3 +426,5 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
 };
 
 export default DoughStylesPage;
+
+

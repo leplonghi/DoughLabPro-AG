@@ -57,7 +57,7 @@ const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ batch, onClone })
                 </div>
                 <button
                     onClick={() => onClone(batch)}
-                    className="flex items-center gap-1.5 text-sm font-bold text-lime-600 hover:text-lime-700 transition-colors"
+                    className="flex items-center gap-1.5 text-sm font-bold text-dlp-brand-hover hover:text-lime-700 transition-colors"
                 >
                     <DocumentDuplicateIcon className="h-4 w-4" />{t('community.clone_recipe')}</button>
             </div>
@@ -66,3 +66,5 @@ const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ batch, onClone })
 };
 
 export default CommunityPostCard;
+
+

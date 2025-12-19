@@ -1,13 +1,10 @@
-
 import React from 'react';
 import { DoughConfig, AmbientTemperature, Oven } from '@/types';
-import { SunIcon, InfoIcon } from '@/components/ui/Icons';
+import { SunIcon, InfoIcon, TargetIcon } from '@/components/ui/Icons';
 import AccordionSection from '@/components/calculator/AccordionSection';
 import { AMBIENT_TEMPERATURE_OPTIONS, ENVIRONMENT_TEMPERATURE_GUIDELINES } from '@/constants';
-import ChoiceButton from '@/components/ui/ChoiceButton';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
-
 
 interface EnvironmentSectionProps {
     config: DoughConfig;
@@ -25,8 +22,6 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 
     const handleTempChange = (newTemp: AmbientTemperature) => {
         const oldTemp = config.ambientTemperature;
-
-        // If no change, do nothing
         if (oldTemp === newTemp) return;
 
         const oldGuideline = ENVIRONMENT_TEMPERATURE_GUIDELINES[oldTemp];
@@ -34,14 +29,8 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 
         let updates: Partial<DoughConfig> = { ambientTemperature: newTemp };
 
-        // Calculate yeast adjustment
         if (oldGuideline && newGuideline && config.yeastPercentage > 0) {
-            // Calculate relative factor: New / Old
-            // e.g. Mild(1.0) -> Cold(1.25) = 1.25
-            // e.g. Cold(1.25) -> Mild(1.0) = 0.8
             const factor = newGuideline.yeastAdjustment / oldGuideline.yeastAdjustment;
-
-            // Apply factor and round to 2 decimals
             const newYeast = Math.round((config.yeastPercentage * factor) * 100) / 100;
 
             if (newYeast !== config.yeastPercentage) {
@@ -50,7 +39,6 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                 addToast(`${t('calculator.yeast_adjusted_to')} ${newYeast}% (${noteText})`, 'info');
             }
         }
-
         onConfigChange(updates);
     };
 
@@ -61,73 +49,87 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
         <AccordionSection
             title={t('calculator.environment')}
             description={t('calculator.impact_on_fermentation')}
-            icon={<SunIcon className="h-6 w-6" />}
+            icon={<SunIcon />}
         >
-            <div className="space-y-6">
-                {/* Ambient Temperature */}
+            <div className="space-y-10 animate-slide-up">
+                {/* 1. Ambient Thermal Profile */}
                 <div>
-                    <label className="mb-2 block text-xs font-bold text-dlp-text-secondary">{t('calculator.ambient_temperature')}</label>
-                    <div className="grid grid-cols-3 gap-2">
-                        {AMBIENT_TEMPERATURE_OPTIONS.map((option) => (
-                            <ChoiceButton
-                                key={option.value}
-                                active={config.ambientTemperature === option.value}
-                                onClick={() => handleTempChange(option.value)}
-                                label={t(option.labelKey)}
-                                className="text-xs"
-                            />
-                        ))}
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332] mb-4 block">{t('calculator.ambient_temperature')}</label>
+                    <div className="bg-slate-100/80 p-1.5 rounded-2xl border border-slate-100 grid grid-cols-3 gap-2">
+                        {AMBIENT_TEMPERATURE_OPTIONS.map((option) => {
+                            const isActive = config.ambientTemperature === option.value;
+                            return (
+                                <button
+                                    key={option.value}
+                                    onClick={() => handleTempChange(option.value)}
+                                    className={`flex items-center justify-center py-2.5 px-4 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-300
+                                        ${isActive
+                                            ? 'bg-[#51a145] text-white shadow-lg shadow-[#51a145]/20 scale-[1.02]'
+                                            : 'bg-transparent text-slate-500 hover:text-[#51a145] hover:bg-emerald-50/50'}
+                                    `}
+                                >
+                                    {t(option.labelKey)}
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
 
+                {/* 2. Fermentation Insight Panel */}
                 {currentGuideline && (
-                    <div className="rounded-md bg-dlp-bg-muted p-3 text-xs text-dlp-text-secondary flex gap-2 items-start border border-dlp-border">
-                        <InfoIcon className="h-4 w-4 flex-shrink-0 mt-0.5 text-dlp-accent" />
+                    <div className="bg-[#D8F3DC]/30 rounded-[2rem] border border-[#D8F3DC]/60 p-6 flex gap-4 items-start">
+                        <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#51a145] shadow-sm shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+                            <InfoIcon size={20} />
+                        </div>
                         <div>
-                            <p className="font-semibold text-dlp-text-primary">{t('calculator.impact_on_fermentation')}</p>
-                            <p>{t(currentGuideline.notesKey as any)}</p>
+                            <p className="text-xs font-bold font-heading text-[#1B4332] mb-1">{t('calculator.impact_on_fermentation')}</p>
+                            <p className="text-[11px] text-[#1B4332]/70 leading-relaxed italic mb-3">"{t(currentGuideline.notesKey as any)}"</p>
                             {currentGuideline.yeastAdjustment !== 1.0 && (
-                                <p className="mt-1 font-mono text-[10px] bg-dlp-bg-card inline-block px-1 rounded border border-dlp-border">
-                                    Yeast Factor: {currentGuideline.yeastAdjustment}x
-                                </p>
+                                <div className="inline-flex items-center gap-2 bg-white/60 px-3 py-1 rounded-full border border-white/40 transition-all duration-300 group-hover:bg-white">
+                                    <TargetIcon size={10} className="text-[#51a145]" />
+                                    <span className="text-[9px] font-bold uppercase tracking-widest text-[#1B4332]">Yeast Adjustment: {currentGuideline.yeastAdjustment}x</span>
+                                </div>
                             )}
                         </div>
                     </div>
                 )}
 
-                {/* Baking Temperature */}
-                <div>
-                    <div className="flex items-center justify-between mb-2">
-                        <label className="block text-xs font-bold text-dlp-text-secondary">
-                            {t('common.baking_profile') || "Baking Temperature"} (°C)
+                {/* 3. Baking Specification */}
+                <div className="pt-8 border-t border-slate-100">
+                    <div className="flex items-center justify-between mb-4">
+                        <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332]">
+                            {t('common.baking_profile') || "Baking Specification"}
                         </label>
                         {isUsingDefaultOvenMax && (
-                            <span className="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-200">
-                                {defaultOven?.name}
-                            </span>
+                            <div className="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border border-emerald-100">
+                                <div className="w-1 h-1 rounded-full bg-dlp-brand animate-pulse" />
+                                {defaultOven?.name} PROfILE
+                            </div>
                         )}
                     </div>
+
                     <div className="relative">
                         <input
                             type="number"
                             value={config.bakingTempC || ''}
                             onChange={(e) => onConfigChange({ bakingTempC: parseFloat(e.target.value) })}
-                            className="block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm pl-4 pr-12 py-2"
-                            placeholder="e.g. 250"
+                            className="block w-full rounded-2xl border-slate-200 bg-slate-50 py-4 px-6 text-xl font-bold text-slate-800 focus:border-[#1B4332] focus:bg-white focus:ring-4 focus:ring-dlp-brand/5 transition-all outline-none"
+                            placeholder="250"
                             min={100}
                             max={500}
                         />
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <span className="text-gray-500 sm:text-sm">°C</span>
+                        <div className="absolute inset-y-0 right-6 flex items-center pointer-events-none">
+                            <span className="text-sm font-bold text-slate-400">°CELSIUS</span>
                         </div>
                     </div>
+
                     {defaultOven && !isUsingDefaultOvenMax && (
-                        <div className="mt-1 text-right">
+                        <div className="mt-3 text-right">
                             <button
                                 onClick={() => onConfigChange({ bakingTempC: defaultOven.maxTemperature })}
-                                className="text-[10px] text-dlp-accent hover:underline font-medium"
+                                className="text-[10px] text-[#1B4332] font-bold uppercase tracking-widest hover:underline decoration-dlp-brand decoration-2 underline-offset-4"
                             >
-                                Use {defaultOven.name} ({defaultOven.maxTemperature}°C)
+                                Revert to {defaultOven.name} ({defaultOven.maxTemperature}°C)
                             </button>
                         </div>
                     )}
@@ -138,3 +140,5 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 };
 
 export default EnvironmentSection;
+
+

@@ -73,8 +73,8 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                 </div>
 
                                 <div className="px-6 pb-8 pt-2 text-center">
-                                    <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-lime-500/20 ring-4 ring-white">
-                                        <LockClosedIcon className="w-8 h-8 text-lime-600" />
+                                    <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-dlp-brand/20 ring-4 ring-white">
+                                        <LockClosedIcon className="w-8 h-8 text-dlp-brand-hover" />
                                     </div>
 
                                     <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">{t('common.mylab.lab_capacity_reached')}</Dialog.Title>
@@ -88,7 +88,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                     <div className="space-y-3">
                                         <button
                                             type="button"
-                                            className="group relative flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-lime-600 to-lime-500 py-4 px-6 text-base font-bold text-white shadow-lg shadow-lime-500/30 hover:shadow-xl hover:from-lime-500 hover:to-lime-400 hover:-translate-y-0.5 transition-all"
+                                            className="group relative flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-dlp-brand-hover to-dlp-brand py-4 px-6 text-base font-bold text-white shadow-lg shadow-dlp-brand/30 hover:shadow-xl hover:from-dlp-brand hover:to-lime-400 hover:-translate-y-0.5 transition-all"
                                             onClick={handleUpgrade}
                                         >
                                             <span className="absolute inset-0 rounded-xl bg-white/20 group-hover:opacity-0 transition-opacity"></span>
@@ -109,3 +109,5 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
         </Transition.Root>
     );
 };
+
+

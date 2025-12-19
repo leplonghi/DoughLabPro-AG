@@ -105,11 +105,11 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                         <h3 className="text-base font-bold text-slate-800">
                             {t('calculator.assembly_components')}
                         </h3>
-                        {health.status === 'healthy' && <ShieldCheckIcon className="h-4 w-4 text-emerald-500" />}
+                        {health.status === 'healthy' && <ShieldCheckIcon className="h-4 w-4 text-dlp-brand" />}
                         {health.status !== 'healthy' && <ExclamationTriangleIcon className="h-4 w-4 text-amber-500" />}
                         {/* Ultra-Didactic Info Tooltip */}
                         <div className="group relative">
-                            <InformationCircleIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-lime-500 transition-colors" />
+                            <InformationCircleIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-dlp-brand transition-colors" />
                             <DidacticTooltip
                                 title={t('calculator.what_are_assembly_components')}
                                 description={t('calculator.assembly_components_simple')}
@@ -143,21 +143,21 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                 </div>
             </div>
 
-            {/* AI Analysis - Condensed */}
+            {/* AI Analysis - Styled like Fermentation Technique */}
             {(health.aiAnalysis || health.alerts.length > 0) && (
-                <div className={`rounded-lg p-3 text-xs space-y-2 ${health.status === 'critical' ? 'bg-red-50 border border-red-200' :
-                    health.status === 'warning' ? 'bg-amber-50 border border-amber-200' :
-                        'bg-slate-50 border border-slate-200'
+                <div className={`rounded-2xl p-4 text-sm space-y-3 transition-all ${health.status === 'critical' ? 'bg-red-50 border-2 border-red-200' :
+                    health.status === 'warning' ? 'bg-amber-50 border-2 border-amber-200' :
+                        'bg-[#51a145] border-2 border-[#36782c] text-white'
                     }`}>
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1.5 font-bold text-slate-700">
-                            <InformationCircleIcon className="h-3.5 w-3.5" />
+                        <div className={`flex items-center gap-2 font-bold ${health.status === 'healthy' ? 'text-white' : 'text-slate-700'}`}>
+                            <InformationCircleIcon className="h-4 w-4" />
                             <span>AI Analysis</span>
                         </div>
                         {health.aiAnalysis && (
-                            <span className={`text-[10px] uppercase font-black px-1.5 py-0.5 rounded ${health.aiAnalysis.classification === 'Experimental' ? 'bg-purple-100 text-purple-700' :
+                            <span className={`text-xs uppercase font-black px-2 py-1 rounded-lg ${health.aiAnalysis.classification === 'Experimental' ? 'bg-purple-100 text-purple-700' :
                                 health.aiAnalysis.classification === 'Variation' ? 'bg-blue-100 text-blue-700' :
-                                    'bg-emerald-100 text-emerald-700'
+                                    'bg-white/20 text-white backdrop-blur-sm'
                                 }`}>
                                 {health.aiAnalysis.classification}
                             </span>
@@ -167,24 +167,24 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                     {health.aiAnalysis && (
                         <>
                             {health.aiAnalysis.impact.length > 0 && (
-                                <div className="space-y-1">
-                                    <p className="text-[10px] uppercase font-bold opacity-60">Impact</p>
-                                    <ul className="list-disc pl-4 space-y-0.5 opacity-90 text-[11px]">
+                                <div className="space-y-1.5">
+                                    <p className={`text-xs uppercase font-bold ${health.status === 'healthy' ? 'text-white/80' : 'opacity-60'}`}>Impact</p>
+                                    <ul className={`list-disc pl-5 space-y-1 text-sm ${health.status === 'healthy' ? 'text-white/95' : 'opacity-90'}`}>
                                         {health.aiAnalysis.impact.slice(0, 2).map((txt, i) => <li key={i}>{txt}</li>)}
                                     </ul>
                                 </div>
                             )}
 
                             {health.aiAnalysis.suggestions.length > 0 && (
-                                <div className="space-y-1">
-                                    <p className="text-[10px] uppercase font-bold opacity-60">Suggestions</p>
-                                    <ul className="list-disc pl-4 space-y-0.5 opacity-90 text-[11px]">
+                                <div className="space-y-1.5">
+                                    <p className={`text-xs uppercase font-bold ${health.status === 'healthy' ? 'text-white/80' : 'opacity-60'}`}>Suggestions</p>
+                                    <ul className={`list-disc pl-5 space-y-1 text-sm ${health.status === 'healthy' ? 'text-white/95' : 'opacity-90'}`}>
                                         {health.aiAnalysis.suggestions.slice(0, 2).map((txt, i) => <li key={i}>{txt}</li>)}
                                     </ul>
                                 </div>
                             )}
 
-                            <p className="text-[10px] italic opacity-60 pt-1 border-t border-black/5">
+                            <p className={`text-xs italic pt-2 border-t ${health.status === 'healthy' ? 'border-white/20 text-white/75' : 'border-black/5 opacity-60'}`}>
                                 {health.aiAnalysis.freedomStatement}
                             </p>
                         </>
@@ -205,7 +205,7 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                             const flavorMatch = getFlavorMatch(item.id);
                             return (
                                 <div key={item.id} className="relative group">
-                                    <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-lime-200 transition">
+                                    <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg border border-slate-100 group-hover:border-[#51a145] transition">
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center gap-2">
                                                 <p className="font-bold text-slate-700 text-xs truncate">{item.visibleName}</p>
@@ -224,7 +224,7 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                                                     type="number"
                                                     value={quantities[item.id] || getSuggestedQuantity(item)}
                                                     onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value) || 0)}
-                                                    className="w-16 px-2 py-1 text-xs border border-slate-200 rounded focus:border-lime-500 focus:ring-1 focus:ring-lime-500"
+                                                    className="w-16 px-2 py-1 text-xs border border-slate-200 rounded focus:border-dlp-brand focus:ring-1 focus:ring-dlp-brand"
                                                     min="0"
                                                     step="10"
                                                 />
@@ -354,7 +354,7 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                         content={t('calculator.try_these_first')}
                         icon="⭐"
                     >
-                        <InformationCircleIcon className="h-3.5 w-3.5 text-slate-300 cursor-help hover:text-lime-500 transition-colors" />
+                        <InformationCircleIcon className="h-3.5 w-3.5 text-slate-300 cursor-help hover:text-dlp-brand transition-colors" />
                     </SimpleTooltip>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
@@ -362,7 +362,7 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                         <div key={inc.id} className="flex items-center gap-1">
                             <button
                                 onClick={() => handleAddOfficial(inc.id)}
-                                className="flex items-center gap-1.5 px-2 py-1 rounded-md border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition text-xs font-medium text-slate-600 hover:text-emerald-700"
+                                className="flex items-center gap-1.5 px-2 py-1 rounded-md border border-slate-200 hover:border-[#51a145] hover:bg-emerald-50 transition text-xs font-medium text-slate-600 hover:text-[#51a145]"
                             >
                                 <PlusIcon className="h-3 w-3" />
                                 {inc.visibleName}
@@ -386,7 +386,7 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                 <div className="group relative">
                     <button
                         onClick={() => setIsCreatorOpen(true)}
-                        className="w-full py-2.5 bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700 text-white rounded-lg font-bold text-sm shadow-lg shadow-lime-500/25 hover:shadow-lime-500/40 transition-all flex items-center justify-center gap-2 group-hover:scale-[1.02]"
+                        className="w-full py-2.5 bg-[#51a145] hover:bg-[#36782c] border border-[#36782c] text-white rounded-lg font-bold text-sm shadow-lg shadow-[#51a145]/25 hover:shadow-[#51a145]/40 transition-all flex items-center justify-center gap-2 group-hover:scale-[1.02]"
                     >
                         <BeakerIcon className="h-4 w-4 group-hover:scale-110 transition-transform" />
                         {t('calculator.create_custom_ingredient')}
@@ -420,3 +420,5 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
         </div>
     );
 };
+
+

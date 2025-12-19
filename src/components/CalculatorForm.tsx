@@ -15,6 +15,8 @@ import {
 import { WizardMode } from '@/components/calculator/wizard/WizardMode';
 import {
   BookmarkSquareIcon,
+  SparklesIcon,
+  RotateCcwIcon,
 } from '@/components/ui/Icons';
 import FormSection from '@/components/calculator/AccordionSection';
 import IngredientsSection from '@/components/calculator/sections/IngredientsSection';
@@ -30,7 +32,8 @@ import { STYLES_DATA, getStyleById } from '@/data/styles/registry';
 import { suggestPresetName } from '@/logic/customPresets';
 import { useTranslation } from '@/i18n';
 import { AssemblySection } from '@/components/calculator/ingredients/AssemblySection';
-import { Increment, UserIngredient } from '@/types/ingredients';
+
+import { LockFeature } from "@/components/auth/LockFeature";
 
 interface CalculatorFormProps {
   config: DoughConfig;
@@ -85,19 +88,31 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 }) => {
   const { t } = useTranslation(['common', 'calculator']);
   const isWizard = calculatorMode === 'wizard';
+  const isBasic = calculatorMode === 'basic';
+  const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
+
+  const allowedTechniques = useMemo(() => {
+    return getAllowedFermentationTechniques(config.recipeStyle, config.bakeType, config.stylePresetId);
+  }, [config.recipeStyle, config.bakeType, config.stylePresetId]);
+
+  const recipeStylesToShow = useMemo(() => {
+    return DOUGH_STYLE_PRESETS.filter(p => p.type === config.bakeType);
+  }, [config.bakeType]);
+
+  const currentPreset = useMemo(() => {
+    return DOUGH_STYLE_PRESETS.find(p => p.id === config.stylePresetId);
+  }, [config.stylePresetId]);
+
+  const hasStyle = !!config.stylePresetId || !!config.selectedStyleId || !!config.baseStyleName;
+  const hasQuantity = hasStyle && config.numPizzas > 0 && config.doughBallWeight > 0;
+  const minW = 10, maxW = 2000;
+  const assemblyStyle = config.stylePresetId ? getStyleById(config.stylePresetId) : getStyleById('new_york_slice_v2');
 
   const handleStyleChange = (id: string) => {
-    // Check if it's a custom preset
     const custom = customPresets.find(p => p.id === id);
     if (custom) {
-      // It's a custom preset! Load its config.
-      // We keep the ID so the UI shows it as selected.
-      onConfigChange({
-        ...custom.config,
-        stylePresetId: id,
-      });
+      onConfigChange({ ...custom.config, stylePresetId: id });
     } else {
-      // Standard behavior (Parent loads standard styles or just sets ID)
       onStyleChange(id);
     }
   };
@@ -126,14 +141,6 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     );
   }
 
-  const isBasic = calculatorMode === 'basic'; // Wizard is now separate
-  const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
-
-  // Calculate allowed fermentation techniques based on selected style
-  const allowedTechniques = useMemo(() => {
-    return getAllowedFermentationTechniques(config.recipeStyle, config.bakeType, config.stylePresetId);
-  }, [config.recipeStyle, config.bakeType, config.stylePresetId]);
-
   const handleNumberChange = (name: string, value: number) => {
     onConfigChange({ [name]: value });
   };
@@ -151,123 +158,34 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     onConfigChange({ ingredients });
   };
 
-  const getSelectClasses = () => {
-    return "block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm";
-  };
-
-  const getInputClasses = (hasError: boolean) => {
-    return `block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm ${hasError ? 'border-dlp-error focus:border-dlp-error focus:ring-dlp-error' : ''
-      }`;
-  };
-
-
-
   const handleSavePreset = async () => {
     if (!onSavePreset) return;
-
-    // Suggest a name
     const defaultName = suggestPresetName(config);
     const name = window.prompt(t('calculator.enter_preset_name', { defaultValue: 'Enter a name for your custom preset:' }), defaultName);
-
-    if (name) {
-      await onSavePreset(name);
-    }
+    if (name) await onSavePreset(name);
   };
 
-  const recipeStylesToShow = useMemo(() => {
-    return DOUGH_STYLE_PRESETS.filter(p => p.type === config.bakeType);
-  }, [config.bakeType]);
-
-  const currentPreset = useMemo(() => {
-    return DOUGH_STYLE_PRESETS.find(p => p.id === config.stylePresetId);
-  }, [config.stylePresetId]);
-
-  // Guided Mode Logic
-  const hasStyle = !!config.stylePresetId || !!config.selectedStyleId || !!config.baseStyleName;
-  // Quantity is considered "valid" if we have valid numbers. Since defaults strictly exist, this is usually true.
-  // But purely for the t('calculator.reveal') effect, it works because initially it renders, and subsequent steps depend on it.
-  // To truly force "choice", we rely on the fact that Style is the primary trigger.
-  const hasQuantity = hasStyle && config.numPizzas > 0 && config.doughBallWeight > 0;
-
-  // Helper for instruction banners
-  const StepBanner = ({ step, title, description, tip }: { step: number, title: string, description: string, tip?: string }) => {
+  const StepBanner = ({ step, title, description }: { step: number, title: string, description: string }) => {
     if (!isBasic) return null;
-
     return (
-      <div className={`mb-3 rounded-lg border p-4 animate-fade-in ${isWizard
-        ? 'bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200 shadow-sm'
-        : 'bg-dlp-bg-muted border-dlp-border'
-        }`}>
-        <div className="flex items-start gap-3">
-          <span className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full text-white text-sm font-bold ${isWizard ? 'bg-blue-500 shadow-md' : 'bg-dlp-accent'
-            }`}>
-            {step}
-          </span>
-          <div className="flex-1">
-            <h4 className={`text-sm font-bold ${isWizard ? 'text-blue-900' : 'text-dlp-text-primary'
-              }`}>
-              {title}
-            </h4>
-            <p className={`text-xs mt-1 ${isWizard ? 'text-blue-700' : 'text-dlp-text-secondary'
-              }`}>
-              {description}
-            </p>
-            {isWizard && tip && (
-              <div className="mt-2 flex items-start gap-2 bg-white/60 rounded-md p-2 border border-blue-100">
-                <span className="text-sm">💡</span>
-                <p className="text-xs text-blue-800 font-medium">{tip}</p>
-              </div>
-            )}
-          </div>
+      <div className="mb-5 flex items-start gap-3 animate-slide-up">
+        <div className="flex-shrink-0 w-7 h-7 rounded-full bg-white border-2 border-[#51a145] text-[#51a145] flex items-center justify-center text-[10px] font-bold shadow-sm">
+          {step}
+        </div>
+        <div>
+          <h4 className="text-[13px] font-bold font-heading text-slate-800 uppercase tracking-wide">{title}</h4>
+          <p className="text-[10px] text-slate-500 mt-0.5">{description}</p>
         </div>
       </div>
     );
   };
 
-  // Calculate dynamic weight limits
-  let minW = 10;
-  let maxW = 2000;
-  // Use existing style lookup or fallback for Assembly
-  const assemblyStyle = config.stylePresetId ? getStyleById(config.stylePresetId) : getStyleById('new_york_slice_v2');
-  const fullStyle = STYLES_DATA.find(s => s.id === config.stylePresetId);
-
-  if (fullStyle?.technicalProfile?.ballWeight) {
-    minW = fullStyle.technicalProfile.ballWeight.min;
-    maxW = fullStyle.technicalProfile.ballWeight.max;
-  } else if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
-    // Fallback to legacy string parsing if needs be, or just keep strict defaults
-    const rangeStr = DOUGH_WEIGHT_RANGES[config.recipeStyle] || '';
-    const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
-    if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
-      minW = nums[0];
-      maxW = nums[1];
-    }
-  }
 
   return (
-    <div className="space-y-5">
-
-      {/* Wizard Welcome Banner */}
-      {isWizard && (
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-6 text-white shadow-lg animate-fade-in">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 text-4xl">🪄</div>
-            <div>
-              <h3 className="text-lg font-bold mb-1">{t('calculator.wizard_welcome_title')}</h3>
-              <p className="text-sm text-blue-50">{t('calculator.wizard_welcome_desc')}</p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Step 1: Style Selection */}
-      <div className="animate-fade-in">
-        <StepBanner
-          step={1}
-          title={t('common.general.choose_your_style')}
-          description={t('calculator.choose_style_desc')}
-          tip={t('calculator.wizard_tip_style')}
-        />
+    <div className="space-y-6 max-w-4xl mx-auto px-1 py-8">
+      {/* 1. Style Selection */}
+      <div className="animate-slide-up">
+        <StepBanner step={1} title={t('common.general.choose_your_style')} description={t('calculator.choose_style_desc')} />
         <StyleSection
           config={config}
           onBakeTypeChange={onBakeTypeChange}
@@ -281,22 +199,16 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         />
       </div>
 
-      {/* Step 2: Quantity */}
+      {/* 2. Quantity */}
       {(!isBasic || hasStyle) && (
-        <div className="animate-fade-in-up">
-          <StepBanner
-            step={2}
-            title={t('common.general.define_quantity')}
-            description={t('calculator.define_quantity_desc')}
-            tip={t('calculator.wizard_tip_quantity')}
-          />
+        <div className="animate-slide-up">
+          <StepBanner step={2} title={t('common.general.define_quantity')} description={t('calculator.define_quantity_desc')} />
           <QuantitySection
             config={config}
             onConfigChange={onConfigChange}
             calculationMode={calculationMode}
             onCalculationModeChange={onCalculationModeChange}
             errors={errors}
-            getInputClasses={getInputClasses}
             numPizzasRef={inputRefs?.numPizzas}
             minDoughBallWeight={minW}
             maxDoughBallWeight={maxW}
@@ -304,45 +216,30 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         </div>
       )}
 
-      {/* Step 3: Ingredients & Fermentation (Grouped for flow) */}
+      {/* 3+ Flow */}
       {(!isBasic || hasQuantity) && (
-        <div className="space-y-5 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-
-          <div>
-            <StepBanner
-              step={3}
-              title={t('common.general.customize_ingredients')}
-              description={t('calculator.customize_ing_desc')}
-              tip={t('calculator.wizard_tip_ingredients')}
+        <div className="space-y-6">
+          <div className="animate-slide-up">
+            <StepBanner step={3} title={t('common.general.customize_ingredients')} description={t('calculator.customize_ing_desc')} />
+            <IngredientsSection
+              config={config}
+              errors={errors}
+              handleNumberChange={handleNumberChange}
+              handleSelectChange={handleSelectChange}
+              handleIngredientsUpdate={handleIngredientsUpdate}
+              isBasic={isBasic}
+              isAnySourdough={isAnySourdough}
+              levains={levains}
+              selectedLevain={selectedLevain}
+              YEAST_OPTIONS={YEAST_OPTIONS}
+              getRange={(field) => getRange(field, config.bakeType)}
+              getSelectClasses={() => "w-full bg-slate-100 border-none rounded-xl py-2 px-3 text-sm font-bold text-slate-700 outline-none"}
+              results={results}
             />
-            <div className="bg-white rounded-2xl shadow-sm border border-dlp-border p-4 mb-2">
-              <IngredientsSection
-                config={config}
-                errors={errors}
-                handleNumberChange={handleNumberChange}
-                handleSelectChange={handleSelectChange}
-                handleIngredientsUpdate={handleIngredientsUpdate}
-                isBasic={isBasic}
-                isAnySourdough={isAnySourdough}
-                levains={levains}
-                selectedLevain={selectedLevain}
-                YEAST_OPTIONS={YEAST_OPTIONS}
-                getRange={(field) => getRange(field, config.bakeType)}
-                getInputClasses={getInputClasses}
-                getSelectClasses={getSelectClasses}
-                selectedFlour={selectedFlour}
-                results={results}
-              />
-            </div>
           </div>
 
-          <div>
-            <StepBanner
-              step={4}
-              title={t('common.general.fermentation_strategy')}
-              description={t('calculator.fermentation_strategy_desc')}
-              tip={t('calculator.wizard_tip_fermentation')}
-            />
+          <div className="animate-slide-up">
+            <StepBanner step={4} title={t('common.general.fermentation_strategy')} description={t('calculator.fermentation_strategy_desc')} />
             <FermentationSection
               config={config}
               onConfigChange={onConfigChange}
@@ -356,15 +253,8 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             />
           </div>
 
-
-
-          <div>
-            <StepBanner
-              step={5}
-              title={t('common.general.baking_environment')}
-              description={t('calculator.baking_env_desc')}
-              tip={t('calculator.wizard_tip_environment')}
-            />
+          <div className="animate-slide-up">
+            <StepBanner step={5} title={t('common.general.baking_environment')} description={t('calculator.baking_env_desc')} />
             <EnvironmentSection
               config={config}
               onConfigChange={onConfigChange}
@@ -372,19 +262,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             />
           </div>
 
-          {/* Assembly Lab (Step 6) */}
           {assemblyStyle && (
-            <div>
-              <StepBanner
-                step={6}
-                title={t('calculator.assembly_toppings')}
-                description={
-                  config.bakeType === 'PIZZAS' ? t('calculator.assembly_toppings_desc_pizza') :
-                    config.bakeType === 'BREADS_SAVORY' ? t('calculator.assembly_toppings_desc_bread') :
-                      t('calculator.assembly_toppings_desc_pastry')
-                }
-                tip={t('calculator.wizard_tip_assembly')}
-              />
+            <div className="animate-slide-up">
+              <StepBanner step={6} title={t('calculator.assembly_toppings')} description={t('calculator.assembly_toppings_desc_pizza')} />
               <AssemblySection
                 style={assemblyStyle}
                 selectedIncrements={config.assemblyIncrements || []}
@@ -394,42 +274,49 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               />
             </div>
           )}
-
-
         </div>
       )}
 
-      {!isBasic && (
-        <LockedTeaser featureKey="calculator.save_preset">
-          <FormSection
-            title={t('common.general.save_custom_preset')}
-            description={t('calculator.save_preset_desc')}
-            icon={<BookmarkSquareIcon className="h-6 w-6" />}
-          >
+      {/* Action Area */}
+      <div className="pt-12 border-t border-slate-100 space-y-4">
+        {!isBasic && (
+          <LockFeature featureKey="calculator.save_preset">
             <button
               onClick={handleSavePreset}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-dlp-accent py-2 px-3 text-sm font-semibold text-white shadow-dlp-sm transition-colors hover:bg-dlp-accent-hover"
-            >{t('calculator.save_as_custom_style')}</button>
-          </FormSection>
-        </LockedTeaser>
-      )}
+              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white border border-slate-200 py-4 px-6 text-sm font-bold text-[#1B4332] shadow-sm hover:border-[#1B4332] hover:bg-emerald-50/30 transition-all active:scale-[0.98]"
+            >
+              <BookmarkSquareIcon size={18} />
+              {t('calculator.save_as_custom_style')}
+            </button>
+          </LockFeature>
+        )}
 
-      <div>
         <button
           type="button"
           onClick={onReset}
-          className="w-full rounded-lg bg-dlp-bg-muted py-3 px-4 text-sm font-semibold text-dlp-text-secondary shadow-dlp-sm transition-all hover:bg-dlp-border-strong focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
-        >{t('calculator.reset_fields')}</button>
+          className="w-full flex items-center justify-center gap-3 rounded-2xl bg-slate-50 py-4 px-6 text-sm font-bold text-slate-500 hover:bg-slate-100 transition-all active:scale-[0.98]"
+        >
+          <RotateCcwIcon size={18} />
+          {t('calculator.reset_fields')}
+        </button>
       </div>
 
+      {/* Pro Teaser */}
       {!hasProAccess && (
-        <div className="mt-6 rounded-lg bg-dlp-bg-muted border border-dlp-border p-4 text-center shadow-dlp-sm">
-          <p className="text-sm font-bold text-dlp-text-primary">{t('calculator.stop_guessing_start_mastering')}</p>
-          <p className="mt-0.5 text-xs text-dlp-text-secondary">{t('calculator.professional_tools_for_less_than_25_a_day')}</p>
-          <button
-            onClick={onOpenPaywall}
-            className="mt-3 rounded-full bg-dlp-accent px-4 py-1.5 text-xs font-bold text-white transition-transform hover:scale-105 hover:bg-dlp-accent-hover shadow-dlp-sm"
-          >{t('calculator.upgrade_to_pro')}</button>
+        <div className="mt-12 group relative overflow-hidden rounded-[2.5rem] bg-[#1B4332] p-8 text-white shadow-2xl transition-all hover:scale-[1.01]">
+          <div className="absolute top-0 right-0 p-12 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-700">
+            <SparklesIcon size={120} />
+          </div>
+          <div className="relative z-10 text-center max-w-sm mx-auto">
+            <h3 className="text-xl font-bold font-heading mb-2">{t('calculator.stop_guessing_start_mastering')}</h3>
+            <p className="text-sm text-emerald-100/70 mb-8 leading-relaxed">{t('calculator.professional_tools_for_less_than_25_a_day')}</p>
+            <button
+              onClick={onOpenPaywall}
+              className="bg-gradient-to-br from-[#51a145] to-[#10B981] hover:brightness-110 text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl transition-all hover:shadow-[#51a145]/20"
+            >
+              {t('calculator.upgrade_to_pro')}
+            </button>
+          </div>
         </div>
       )}
     </div>
@@ -437,3 +324,5 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 };
 
 export default CalculatorForm;
+
+

@@ -24,7 +24,7 @@ const FloursPage: React.FC<FloursPageProps> = ({ onNavigate }) => {
       </button>
 
       <div className="text-center">
-        <FlourIcon className="mx-auto h-12 w-12 text-lime-500" />
+        <FlourIcon className="mx-auto h-12 w-12 text-dlp-brand" />
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl">
           {t('flours_page.title')}
         </h1>
@@ -40,7 +40,7 @@ const FloursPage: React.FC<FloursPageProps> = ({ onNavigate }) => {
             <div
               key={flour.id}
               className={`rounded-2xl border bg-white  shadow-md transition-all ${isPreferred
-                ? 'border-lime-500 ring-2 ring-lime-500/50 '
+                ? 'border-dlp-brand ring-2 ring-dlp-brand/50 '
                 : 'border-slate-200 '
                 }`}
             >
@@ -50,7 +50,7 @@ const FloursPage: React.FC<FloursPageProps> = ({ onNavigate }) => {
                     <h3 className="text-lg font-bold text-slate-900 ">
                       {flour.name}
                     </h3>
-                    <p className="mt-1 text-sm font-semibold text-lime-600  capitalize">
+                    <p className="mt-1 text-sm font-semibold text-dlp-brand-hover  capitalize">
                       {flour.category.replace('_', ' ')}
                     </p>
                   </div>
@@ -93,7 +93,7 @@ const FloursPage: React.FC<FloursPageProps> = ({ onNavigate }) => {
                 <button
                   onClick={() => setPreferredFlour(flour.id)}
                   disabled={isPreferred}
-                  className="w-full rounded-xl bg-lime-500 py-3 px-4 text-sm font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none disabled:hover:scale-100"
+                  className="w-full rounded-xl bg-dlp-brand py-3 px-4 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none disabled:hover:scale-100"
                 >
                   {isPreferred ? t('flours_page.default') : t('flours_page.set_default')}
                 </button>
@@ -105,7 +105,7 @@ const FloursPage: React.FC<FloursPageProps> = ({ onNavigate }) => {
       <div className="mt-8 text-center">
         <button
           onClick={() => onNavigate('calculator')}
-          className="text-sm font-bold text-lime-600  hover:underline"
+          className="text-sm font-bold text-dlp-brand-hover  hover:underline"
         >
           {t('flours_page.back_to_calculator')}
         </button>
@@ -115,3 +115,6 @@ const FloursPage: React.FC<FloursPageProps> = ({ onNavigate }) => {
 };
 
 export default FloursPage;
+
+
+

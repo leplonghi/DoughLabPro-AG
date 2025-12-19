@@ -2,7 +2,7 @@ import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
 
 const nycSlice: DoughStyleDefinition = {
     id: "new_york_slice_v2",
-    name: 'styles.new_york_slice_name',
+    name: 'styles.new_york_slice',
     category: "pizza",
     recipeStyle: RecipeStyle.NEW_YORK,
     origin: {
@@ -166,7 +166,7 @@ const nycSlice: DoughStyleDefinition = {
 
 const detroitStyle: DoughStyleDefinition = {
     id: "detroit_style_classic",
-    name: 'styles.detroit_style_classic_name',
+    name: 'styles.detroit_style_classic',
     category: "pizza",
     recipeStyle: RecipeStyle.DETROIT,
     origin: {
@@ -328,7 +328,7 @@ const detroitStyle: DoughStyleDefinition = {
 
 const chicagoDeepDish: DoughStyleDefinition = {
     id: "chicago_deep_dish",
-    name: 'styles.chicago_deep_dish_name',
+    name: 'styles.chicago_deep_dish',
     category: "pizza",
     recipeStyle: RecipeStyle.CHICAGO_DEEP_DISH,
     origin: {
@@ -488,7 +488,7 @@ const chicagoDeepDish: DoughStyleDefinition = {
 
 const sfSourdough: DoughStyleDefinition = {
     id: "sf_sourdough",
-    name: 'styles.san_francisco_sourdough_name',
+    name: 'styles.san_francisco_sourdough',
     category: "bread",
     recipeStyle: RecipeStyle.SOURDOUGH,
     origin: {
@@ -649,7 +649,7 @@ const sfSourdough: DoughStyleDefinition = {
 
 const newHavenApizza: DoughStyleDefinition = {
     id: "new_haven_apizza",
-    name: 'styles.new_haven_apizza_name',
+    name: 'styles.new_haven_apizza',
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST,
     origin: {
@@ -805,7 +805,7 @@ const newHavenApizza: DoughStyleDefinition = {
 
 const nycBagel: DoughStyleDefinition = {
     id: "nyc_bagel",
-    name: 'styles.nyc_bagel_name',
+    name: 'styles.nyc_bagel',
     category: "bread",
     recipeStyle: RecipeStyle.BAGEL,
     origin: {

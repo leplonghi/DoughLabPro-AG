@@ -50,7 +50,7 @@ const MyLabSensoryDiaryPage: React.FC<MyLabSensoryDiaryPageProps> = ({ onNavigat
                             </p>
                             <button
                                 onClick={() => onNavigate('mylab/fornadas')}
-                                className="mt-6 text-lime-600  font-bold hover:underline"
+                                className="mt-6 text-dlp-brand-hover  font-bold hover:underline"
                             >{t('mylab.go_to_my_bakes')}</button>
                         </div>
                     ) : (
@@ -64,7 +64,7 @@ const MyLabSensoryDiaryPage: React.FC<MyLabSensoryDiaryPageProps> = ({ onNavigat
                                                     {new Date(batch.createdAt).toLocaleDateString()}
                                                 </span>
                                                 <span className="text-slate-300">•</span>
-                                                <span className="text-xs font-bold uppercase text-lime-600 tracking-wider">
+                                                <span className="text-xs font-bold uppercase text-dlp-brand-hover tracking-wider">
                                                     {t(`form.${batch.doughConfig.recipeStyle.toLowerCase()}`, { defaultValue: batch.doughConfig.recipeStyle })}
                                                 </span>
                                             </div>
@@ -83,7 +83,7 @@ const MyLabSensoryDiaryPage: React.FC<MyLabSensoryDiaryPageProps> = ({ onNavigat
                                     <div className="flex justify-end">
                                         <button
                                             onClick={() => onNavigate(`batch/${batch.id}`)}
-                                            className="text-sm font-semibold text-slate-500 hover:text-lime-600 flex items-center gap-1 transition-colors"
+                                            className="text-sm font-semibold text-slate-500 hover:text-dlp-brand-hover flex items-center gap-1 transition-colors"
                                         >{t('mylab.view_full_details')}<ArrowRightIcon className="h-4 w-4" />
                                         </button>
                                     </div>
@@ -98,3 +98,4 @@ const MyLabSensoryDiaryPage: React.FC<MyLabSensoryDiaryPageProps> = ({ onNavigat
 };
 
 export default MyLabSensoryDiaryPage;
+

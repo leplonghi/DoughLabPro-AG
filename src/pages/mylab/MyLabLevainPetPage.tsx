@@ -55,10 +55,10 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
             <div className="space-y-8 animate-fade-in max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-6">
 
                 {isTrial && (
-                    <div className="bg-gradient-to-r from-lime-500/10 to-transparent border border-lime-500/20 p-4 rounded-xl flex items-center gap-3">
+                    <div className="bg-gradient-to-r from-dlp-brand/10 to-transparent border border-dlp-brand/20 p-4 rounded-xl flex items-center gap-3">
                         <span className="flex h-3 w-3 relative">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-lime-500"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-dlp-brand"></span>
                         </span>
                         <div>
                             <p className="text-sm font-bold text-lime-800">7-Day Free Trial Active</p>
@@ -98,7 +98,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                                             <div>
                                                 <h2 className="text-3xl font-black text-slate-900 tracking-tight">{activeLevain.name}</h2>
                                                 <div className="flex items-center gap-2 mt-1">
-                                                    <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-bold text-green-700 ring-1 ring-inset ring-green-600/20">{t('mylab.active')}</span>
+                                                    <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-bold text-green-700 ring-1 ring-inset ring-dlp-brand-hover/20">{t('mylab.active')}</span>
                                                     <span className="text-sm text-slate-500 font-medium">
                                                         Created {new Date(activeLevain.createdAt).toLocaleDateString()}
                                                     </span>
@@ -206,3 +206,5 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
 };
 
 export default MyLabLevainPetPage;
+
+

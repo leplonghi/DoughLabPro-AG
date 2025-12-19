@@ -8,7 +8,6 @@ import {
     FireIcon,
     GlobeAltIcon,
     ClockIcon,
-    LinkIcon,
     CheckCircleIcon
 } from '@/components/ui/Icons';
 
@@ -56,7 +55,7 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                                 {component.category}
                             </span>
                             {component.isStandard && (
-                                <span className="px-2 py-0.5 rounded-full bg-green-500/10 text-green-600 text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                                <span className="px-2 py-0.5 rounded-full bg-dlp-brand/10 text-dlp-brand-hover text-xs font-bold uppercase tracking-wide flex items-center gap-1">
                                     <CheckCircleIcon className="w-3 h-3" /> Standard
                                 </span>
                             )}
@@ -206,3 +205,4 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
 };
 
 export default FlavorComponentProfileModal;
+

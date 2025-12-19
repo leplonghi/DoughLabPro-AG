@@ -3,7 +3,7 @@ import { DoughStyle, RecipeStyle } from '../../../types/dough';
 export const europeStyles: DoughStyle[] = [
     {
         id: 'baguette-tradition',
-        name: "styles.baguette_tradition_name",
+        name: "styles.baguette_tradition",
         region: 'Europe',
         subRegion: 'France',
         category: 'Bread',
@@ -98,7 +98,7 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'brioche-tete',
-        name: "styles.brioche_tete_name",
+        name: "styles.brioche_tete",
         region: 'Europe',
         subRegion: 'France',
         category: 'Enriched',
@@ -203,7 +203,7 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'laugenbrezel',
-        name: "styles.laugenbrezel_name",
+        name: "styles.laugenbrezel",
         region: 'Europe',
         subRegion: 'Germany',
         category: 'Snack',
@@ -307,7 +307,7 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'english_muffin',
-        name: "styles.english_muffin_name",
+        name: "styles.english_muffin",
         region: 'Europe',
         subRegion: 'UK',
         category: 'Bread',
@@ -390,7 +390,7 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'khachapuri-adjaruli',
-        name: "styles.khachapuri_adjaruli_name",
+        name: "styles.khachapuri_adjaruli",
         region: 'Europe', // Or switch to Asia/General, but culturally Georgian cuisine is often grouped with Eastern Europe/Black Sea.
         subRegion: 'Georgia',
         category: 'Enriched',
@@ -480,7 +480,7 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'danish-rugbrod',
-        name: "styles.danish_rugbrod_name",
+        name: "styles.danish_rugbrod",
         region: 'Europe',
         subRegion: 'Denmark',
         category: 'Bread',
@@ -571,7 +571,7 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'tiger-bread',
-        name: "styles.tiger_bread_name",
+        name: "styles.tiger_bread",
         region: 'Europe',
         subRegion: 'Netherlands',
         category: 'Bread',
@@ -654,7 +654,7 @@ export const europeStyles: DoughStyle[] = [
     },
     {
         id: 'irish-soda-bread',
-        name: "styles.irish_soda_bread_name",
+        name: "styles.irish_soda_bread",
         region: 'Europe',
         subRegion: 'Ireland',
         category: 'Bread',

@@ -15,14 +15,14 @@ export const AffiliateDashboard: React.FC = () => {
             <div className="p-8 text-center bg-zinc-900 rounded-xl border border-zinc-800">
                 <h2 className="text-2xl font-bold text-white mb-4">{t('general.become_a_doughinfluencer')}</h2>
                 <p className="text-zinc-400 mb-6">{t('ui.earn_money_by_sharing_your_passion_for_baking')}</p>
-                <button className="px-6 py-3 bg-lime-500 text-black font-bold rounded-xl hover:bg-lime-400">{t('marketing.join_program')}</button>
+                <button className="px-6 py-3 bg-dlp-brand text-black font-bold rounded-xl hover:bg-lime-400">{t('marketing.join_program')}</button>
             </div>
         );
     }
 
     return (
         <div className="space-y-6">
-            <div className="bg-gradient-to-r from-lime-900/40 to-zinc-900 border border-lime-500/20 rounded-xl p-6">
+            <div className="bg-gradient-to-r from-lime-900/40 to-zinc-900 border border-dlp-brand/20 rounded-xl p-6">
                 <h3 className="text-zinc-400 text-sm uppercase tracking-wider mb-2">{t('general.your_referral_code')}</h3>
                 <div className="flex items-center gap-4">
                     <code className="text-3xl font-mono font-bold text-lime-400">{affiliateCode}</code>
@@ -48,11 +48,11 @@ export const AffiliateDashboard: React.FC = () => {
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
                 <h3 className="text-lg font-bold text-white mb-4">{t('general.influencer_kit')}</h3>
                 <div className="grid grid-cols-2 gap-4">
-                    <button className="p-4 bg-zinc-950 rounded-lg border border-zinc-800 hover:border-lime-500/50 transition-colors text-left">
+                    <button className="p-4 bg-zinc-950 rounded-lg border border-zinc-800 hover:border-dlp-brand/50 transition-colors text-left">
                         <span className="block text-white font-bold mb-1">{t('general.brand_assets')}</span>
                         <span className="text-xs text-zinc-500">{t('ui.logos_banners_and_fonts')}</span>
                     </button>
-                    <button className="p-4 bg-zinc-950 rounded-lg border border-zinc-800 hover:border-lime-500/50 transition-colors text-left">
+                    <button className="p-4 bg-zinc-950 rounded-lg border border-zinc-800 hover:border-dlp-brand/50 transition-colors text-left">
                         <span className="block text-white font-bold mb-1">{t('general.social_templates')}</span>
                         <span className="text-xs text-zinc-500">{t('general.stories_and_post_templates')}</span>
                     </button>
@@ -61,3 +61,5 @@ export const AffiliateDashboard: React.FC = () => {
         </div>
     );
 };
+
+

@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { InfoIcon, LockClosedIcon, ExclamationCircleIcon } from '@/components/ui/Icons';
-import { InfoTooltip } from '@/components/ui/InfoTooltip';
 
 interface HydrationInputProps {
     label?: string;
@@ -62,13 +60,13 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
         const syntheticEvent = {
             target: {
                 value: String(newValue),
-                name: 'hydration' // Default name, though often unused by parent's direct handler which might expect event
+                name: 'hydration'
             }
         } as React.ChangeEvent<HTMLInputElement>;
 
         debounceTimeout.current = window.setTimeout(() => {
             onChange(syntheticEvent);
-        }, 300); // Slightly longer debounce for text inputs
+        }, 300);
     };
 
     const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,9 +84,9 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
 
     const handlePercentageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const strVal = e.target.value;
-        setInternalValue(Number(strVal)); // Update UI immediately for responsiveness
-
         const val = parseFloat(strVal);
+        setInternalValue(val || 0);
+
         if (!isNaN(val)) {
             if (totalFlour) {
                 setGramsValue(Math.round((val / 100) * totalFlour).toString());
@@ -105,8 +103,9 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
             const grams = parseFloat(strVal);
             if (!isNaN(grams)) {
                 const percent = (grams / totalFlour) * 100;
-                setInternalValue(Number(percent.toFixed(1)));
-                triggerChange(Number(percent.toFixed(1)));
+                const roundedPercent = Number(percent.toFixed(1));
+                setInternalValue(roundedPercent);
+                triggerChange(roundedPercent);
             }
         }
     };
@@ -115,49 +114,65 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
         (recommendedMax !== undefined && internalValue > recommendedMax);
 
     return (
-        <div className={`rounded-xl border border-dlp-border bg-white shadow-sm transition-all overflow-hidden ${disabled ? 'opacity-70' : ''}`}>
+        <div className={`rounded-3xl border border-slate-100 bg-white shadow-sm transition-all overflow-hidden ${disabled ? 'opacity-70' : ''} ${hasError ? 'border-rose-200' : ''}`}>
 
-            {/* Header Bar */}
-            <div className="flex items-center justify-between px-4 py-3 bg-slate-50 border-b border-dlp-border/50">
-                <label className="text-sm font-bold text-dlp-text-secondary flex items-center gap-2">
-                    {label || t('form.hydration')}
-                    {isProFeature && <LockClosedIcon className="h-3 w-3 text-dlp-accent" />}
-                    {tooltip && (
-                        <InfoTooltip content={tooltip.replace(/<[^>]*>?/gm, "")} />
-                    )}
-                </label>
-                <div className="flex items-center gap-2">
-                    {isOutOfRange && <ExclamationCircleIcon className="h-4 w-4 text-dlp-warning" />}
-
-                    {/* Inputs Container */}
+            {/* Control Header */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-5 bg-slate-50/50 border-b border-slate-100 gap-4">
+                <div className="flex flex-col">
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-dlp-brand-dark flex items-center gap-2 mb-1">
+                        {label || t('form.hydration')}
+                        {isProFeature && <LockClosedIcon size={12} className="text-amber-500" />}
+                        {tooltip && (
+                            <div className="group relative cursor-help">
+                                <InfoIcon size={12} className="text-slate-300" />
+                                <div className="pointer-events-none absolute bottom-full left-0 z-50 mb-3 w-64 p-4 rounded-2xl bg-dlp-brand-dark text-white text-[11px] opacity-0 group-hover:opacity-100 transition-all shadow-xl leading-relaxed italic border border-white/10">
+                                    {tooltip.replace(/<[^>]*>?/gm, "")}
+                                    <div className="absolute -bottom-1 left-4 w-2 h-2 bg-dlp-brand-dark rotate-45 border-r border-b border-white/10" />
+                                </div>
+                            </div>
+                        )}
+                    </label>
                     <div className="flex items-center gap-2">
-                        {/* Percentage Input */}
-                        <div className="relative">
+                        {isOutOfRange && (
+                            <div className="flex items-center gap-1.5 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-100">
+                                <ExclamationCircleIcon size={10} className="text-amber-500" />
+                                <span className="text-[9px] font-bold text-amber-600 uppercase tracking-tighter">Variations Lab</span>
+                            </div>
+                        )}
+                        {recommendedMin && recommendedMax && (
+                            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest italic">Rec: {recommendedMin}-{recommendedMax}%</span>
+                        )}
+                    </div>
+                </div>
+
+                {/* Micro Input Matrix */}
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center bg-white border border-slate-100 rounded-xl overflow-hidden shadow-sm">
+                        <div className="relative group/pct">
                             <input
                                 type="number"
                                 value={internalValue}
                                 onChange={handlePercentageChange}
-                                className={`w-16 rounded-md border-dlp-border py-1 px-2 text-right text-sm font-bold font-mono focus:border-dlp-accent focus:ring-dlp-accent ${hasError ? 'text-dlp-error border-dlp-error' : 'text-dlp-text-primary'}`}
+                                className={`w-16 py-2 px-3 text-right text-sm font-black font-heading focus:bg-emerald-50 focus:text-dlp-brand-dark transition-colors outline-none h-10 ${hasError ? 'text-rose-500' : 'text-slate-700'}`}
                                 min={0}
                                 max={200}
                                 step={0.1}
                             />
-                            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs text-dlp-text-muted pointer-events-none">%</span>
+                            <span className="absolute right-0 top-0 bottom-0 flex items-center pr-1 text-[9px] font-bold text-slate-300 pointer-events-none group-focus-within/pct:text-dlp-brand-dark transition-colors">%</span>
                         </div>
 
-                        {/* Grams Input (if totalFlour available) */}
                         {totalFlour && (
                             <>
-                                <span className="text-dlp-text-muted text-xs">=</span>
-                                <div className="relative">
+                                <div className="w-[1px] h-4 bg-slate-100" />
+                                <div className="relative group/gms">
                                     <input
                                         type="number"
                                         value={gramsValue}
                                         onChange={handleGramsChange}
-                                        className="w-20 rounded-md border-dlp-border py-1 px-2 text-right text-sm font-bold font-mono focus:border-dlp-accent focus:ring-dlp-accent text-dlp-text-secondary bg-slate-50/50"
+                                        className="w-20 py-2 px-3 text-right text-sm font-black font-heading text-slate-500 focus:bg-emerald-50 focus:text-dlp-brand-dark transition-colors outline-none h-10 bg-slate-50/20"
                                         placeholder="g"
                                     />
-                                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-dlp-text-muted pointer-events-none">g</span>
+                                    <span className="absolute right-0 top-0 bottom-0 flex items-center pr-1 text-[9px] font-bold text-slate-300 pointer-events-none group-focus-within/gms:text-dlp-brand-dark transition-colors">g</span>
                                 </div>
                             </>
                         )}
@@ -165,9 +180,20 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
                 </div>
             </div>
 
-            <div className="flex flex-col p-4">
-                {/* Controls */}
-                <div className="relative z-20">
+            {/* Slider Deck */}
+            <div className="p-6 pt-8">
+                <div className="relative h-2">
+                    {/* Recommendation Zone Overlay */}
+                    {recommendedMin && recommendedMax && (
+                        <div
+                            className="absolute top-1/2 -translate-y-1/2 h-4 sm:h-6 bg-emerald-50/50 border border-emerald-100 rounded-full z-0 pointer-events-none opacity-40"
+                            style={{
+                                left: `${((recommendedMin - min) / (max - min)) * 100}%`,
+                                width: `${((recommendedMax - recommendedMin) / (max - min)) * 100}%`
+                            }}
+                        />
+                    )}
+
                     <input
                         type="range"
                         min={min}
@@ -176,32 +202,22 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
                         value={internalValue}
                         onChange={handleSliderChange}
                         disabled={disabled}
-                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-dlp-accent/50"
+                        className="absolute inset-0 w-full h-2 bg-slate-100 rounded-full appearance-none cursor-pointer focus:outline-none z-10 accent-dlp-brand"
                         style={{
-                            backgroundImage: `linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) ${(internalValue - min) / (max - min) * 100}%, #e2e8f0 ${(internalValue - min) / (max - min) * 100}%, #e2e8f0 100%)`
+                            background: `linear-gradient(to right, var(--dlp-brand) 0%, var(--dlp-brand) ${((internalValue - min) / (max - min)) * 100}%, #f1f5f9 ${((internalValue - min) / (max - min)) * 100}%, #f1f5f9 100%)`
                         }}
                     />
-
-                    {/* Ticks/Rec Range Overlay */}
-                    {recommendedMin && recommendedMax && (
-                        <div className="relative w-full h-1 mt-1">
-                            <div
-                                className="absolute top-0 h-1 bg-green-500/30 rounded-full"
-                                style={{
-                                    left: `${(recommendedMin - min) / (max - min) * 100}%`,
-                                    width: `${(recommendedMax - recommendedMin) / (max - min) * 100}%`
-                                }}
-                                title={`Recommended: ${recommendedMin}-${recommendedMax}%`}
-                            />
-                        </div>
-                    )}
                 </div>
 
-                {/* Footer Link */}
+                {/* Footer Insight */}
                 {learnArticle && (
-                    <div className="text-right mt-2">
-                        <a href={`#/learn/article/${learnArticle.id}`} className="text-[10px] text-dlp-text-muted hover:text-dlp-accent underline">
-                            {t('calculator.learn_hydration_science', 'Water Science')}
+                    <div className="mt-8 flex items-center justify-between border-t border-slate-50 pt-4">
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t('calculator.science_of')} {label || t('form.hydration')}</span>
+                        <a href={`#/learn/article/${learnArticle.id}`} className="flex items-center gap-2 group">
+                            <span className="text-[10px] font-bold text-dlp-brand-dark/60 group-hover:text-dlp-brand-dark transition-colors">{t('ui.dive_into_technical_details')}</span>
+                            <div className="w-5 h-5 rounded-full bg-slate-50 flex items-center justify-center text-dlp-brand-dark/40 group-hover:bg-dlp-brand-dark group-hover:text-white transition-all shadow-sm">
+                                <InfoIcon size={10} />
+                            </div>
                         </a>
                     </div>
                 )}
@@ -209,3 +225,5 @@ export const HydrationInput: React.FC<HydrationInputProps> = ({
         </div>
     );
 };
+
+

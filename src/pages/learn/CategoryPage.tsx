@@ -87,7 +87,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                                 `}
                             >
                                 {/* Top Color Bar */}
-                                <div className={`h-1.5 w-full ${themeColor.bg.replace('50', '500')}`} /> {/* e.g. bg-emerald-500 */}
+                                <div className={`h-1.5 w-full ${themeColor.bg.replace('50', '500')}`} /> {/* e.g. bg-dlp-brand */}
 
                                 <div className="p-6 flex-1 flex flex-col">
                                     <div className="flex items-center justify-between mb-4">
@@ -130,7 +130,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                             <BeakerIcon className="w-12 h-12 text-stone-300 mx-auto mb-4" />
                             <p className="text-slate-500 text-lg font-medium">{t('learn.content_brewing')}</p>
                             <p className="text-slate-400 text-sm">{t('learn.no_articles_found_in_this_category_yet')}</p>
-                            <button onClick={() => navigate('learn')} className="mt-6 text-lime-600 hover:text-lime-700 font-bold text-sm uppercase tracking-wide">{t('learn.return_to_learn_home')}</button>
+                            <button onClick={() => navigate('learn')} className="mt-6 text-dlp-brand-hover hover:text-lime-700 font-bold text-sm uppercase tracking-wide">{t('learn.return_to_learn_home')}</button>
                         </div>
                     )}
                 </div>
@@ -140,3 +140,5 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
 };
 
 export default CategoryPage;
+
+

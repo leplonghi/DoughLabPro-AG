@@ -43,7 +43,7 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
             <div className={`h-32 w-full bg-cover bg-center relative ${!batch.photoUrl ? 'bg-gradient-to-br from-lime-50 to-lime-100  ' : ''}`} style={batch.photoUrl ? { backgroundImage: `url(${batch.photoUrl})` } : {}}>
                 {!batch.photoUrl && (
                     <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                        <BatchesIcon className="h-16 w-16 text-lime-600 " />
+                        <BatchesIcon className="h-16 w-16 text-dlp-brand-hover " />
                     </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80"></div>
@@ -108,7 +108,7 @@ const BatchCard: React.FC<{ batch: Batch; t: any; onNavigate: (page: Page, param
                             <SocialShare type="batch" title={batch.name} data={batch} className="p-1 hover:bg-slate-100 rounded-full transition-colors" />
                         </div>
                     </div>
-                    <span className="group-hover:text-lime-600 font-medium transition-colors">{t('mylab.view_details_rarr')}</span>
+                    <span className="group-hover:text-dlp-brand-hover font-medium transition-colors">{t('mylab.view_details_rarr')}</span>
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                     {!hasReachedFreeLimit ? (
                         <button
                             onClick={handleCreateDraft}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-lime-500 py-2.5 px-5 font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-105 active:scale-95"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95"
                         >
                             <PlusCircleIcon className="h-5 w-5" />
                             <span>{t('mylab.new_batch')}</span>
@@ -170,13 +170,13 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                 {batches.filter(b => b.status !== BatchStatus.DRAFT).length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20 px-4 rounded-3xl border-2 border-dashed border-slate-200  bg-slate-50/50  text-center">
                         <div className="bg-white  p-4 rounded-full shadow-sm mb-6">
-                            <BatchesIcon className="h-12 w-12 text-lime-500" />
+                            <BatchesIcon className="h-12 w-12 text-dlp-brand" />
                         </div>
                         <h2 className="text-xl font-bold text-slate-900  mb-2">{t('mylab.your_baking_journey_starts_here')}</h2>
                         <p className="text-slate-600  max-w-md mx-auto mb-8">
                             Record your experiments, track fermentation times, and rate your results to improve with every bake.
                         </p>
-                        <button onClick={handleCreateDraft} className="inline-flex items-center gap-2 rounded-xl bg-lime-500 py-3 px-6 font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 hover:shadow-xl hover:scale-105 transition-all">
+                        <button onClick={handleCreateDraft} className="inline-flex items-center gap-2 rounded-xl bg-dlp-brand py-3 px-6 font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover hover:shadow-xl hover:scale-105 transition-all">
                             <PlusCircleIcon className="h-5 w-5" />{t('mylab.start_first_bake')}</button>
                     </div>
                 ) : (
@@ -206,3 +206,6 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
 };
 
 export default MyLabBatchesPage;
+
+
+

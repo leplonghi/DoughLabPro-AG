@@ -35,7 +35,7 @@ const PairingToolPage: React.FC = () => {
           <select
             value={selectedIngredient}
             onChange={(e) => setSelectedIngredient(e.target.value)}
-            className="block w-full rounded-md border-slate-300 bg-white py-2 px-3 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-lime-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-300 bg-white py-2 px-3 shadow-sm focus:border-dlp-brand focus:outline-none focus:ring-dlp-brand sm:text-sm"
           >
             {pairingIngredients.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -45,7 +45,7 @@ const PairingToolPage: React.FC = () => {
           </select>
           <button
             onClick={handleSearch}
-            className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-lime-500 py-2.5 px-4 text-sm font-semibold text-white shadow-sm hover:bg-lime-600"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-dlp-brand py-2.5 px-4 text-sm font-semibold text-white shadow-sm hover:bg-dlp-brand hover:text-white-hover"
           >
             <SparklesIcon className="h-5 w-5" />{t('learn.find_pairings')}</button>
         </div>
@@ -83,3 +83,5 @@ const PairingToolPage: React.FC = () => {
 };
 
 export default PairingToolPage;
+
+

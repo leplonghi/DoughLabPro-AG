@@ -57,7 +57,7 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({ filter = 'latest' 
                 </p>
                 <button
                     onClick={() => window.location.hash = '#/community/create'}
-                    className="text-lime-600 font-semibold hover:text-lime-700 hover:underline"
+                    className="text-dlp-brand-hover font-semibold hover:text-lime-700 hover:underline"
                 >{t('community.create_a_post')}</button>
             </div>
         );
@@ -87,7 +87,7 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({ filter = 'latest' 
                         className="group flex flex-col items-center gap-2 mx-auto text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50"
                     >
                         {loading ? (
-                            <Loader2 className="h-6 w-6 animate-spin text-lime-600" />
+                            <Loader2 className="h-6 w-6 animate-spin text-dlp-brand-hover" />
                         ) : (
                             <>
                                 <span className="font-medium text-sm">{t('community.load_more_bakes')}</span>
@@ -105,3 +105,5 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({ filter = 'latest' 
         </div>
     );
 };
+
+

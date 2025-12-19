@@ -86,7 +86,7 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                                 className={`
                                                     relative p-4 rounded-xl border cursor-pointer transition-all hover:shadow-md
                                                     ${isSelected
-                                                        ? 'border-lime-500 bg-lime-50 ring-2 ring-lime-500 ring-offset-2'
+                                                        ? 'border-dlp-brand bg-lime-50 ring-2 ring-dlp-brand ring-offset-2'
                                                         : 'border-slate-200 bg-white hover:border-lime-300'
                                                     }
                                                 `}
@@ -104,7 +104,7 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                                             <span className="text-xs text-slate-500">{new Date(batch.createdAt).toLocaleDateString()}</span>
                                                         </div>
                                                     </div>
-                                                    {isSelected && <CheckCircleIcon className="w-6 h-6 text-lime-600" />}
+                                                    {isSelected && <CheckCircleIcon className="w-6 h-6 text-dlp-brand-hover" />}
                                                 </div>
 
                                                 <div className="grid grid-cols-3 gap-2 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-200/50">
@@ -133,7 +133,7 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                             <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-300 ${selectedBatchIds.length >= 2 ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
                                 <button
                                     onClick={handleCompare}
-                                    className="flex items-center gap-2 bg-lime-600 hover:bg-lime-500 text-white px-8 py-3 rounded-full shadow-xl font-bold text-lg transition-colors"
+                                    className="flex items-center gap-2 bg-dlp-brand-hover hover:bg-dlp-brand hover:text-white text-white px-8 py-3 rounded-full shadow-xl font-bold text-lg transition-colors"
                                 >
                                     <ChartBarIcon className="w-5 h-5" />
                                     Compare {selectedBatchIds.length} Batches
@@ -210,3 +210,6 @@ const ComparisonRow: React.FC<{ label: string; values: string[]; highlight?: boo
 );
 
 export default MyLabComparisonsPage;
+
+
+

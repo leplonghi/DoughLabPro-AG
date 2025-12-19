@@ -76,6 +76,7 @@ export const FOMO_TRIGGERS: Record<FeatureKey, FomoTriggerConfig> = {
     'levain.multipleLevains': { key: 'levain.multipleLevains', description: 'Multiple Levains', cta: 'Unlock' },
     'levain.exportPDF': { key: 'levain.exportPDF', description: 'Export PDF', cta: 'Unlock' },
     'calculator.advanced_ingredients': { key: 'calculator.advanced_ingredients', description: 'Dough Composition - Add custom ingredients to your dough', cta: 'Unlock' },
+    'calculator.flour_blend': { key: 'calculator.flour_blend', description: 'Blend multiple flours for custom recipes', cta: 'Unlock Flour Blending' },
     'styles.advancedSpecs': { key: 'styles.advancedSpecs', description: 'Advanced Specs', cta: 'Unlock' },
     'calculator.advanced': { key: 'calculator.advanced', description: 'Advanced Calculator', cta: 'Unlock' },
 };

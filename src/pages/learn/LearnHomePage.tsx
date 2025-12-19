@@ -38,12 +38,12 @@ const LearnHomePage: React.FC = () => {
                 {/* 1. COMPACT HERO SECTION */}
                 <div className="mb-6 mx-4 sm:mx-6">
                     <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-dlp-brand/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
                         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                             <div className="text-left max-w-2xl">
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/30 border border-lime-500/30 text-lime-200 text-[10px] font-bold uppercase tracking-wider mb-3">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/30 border border-dlp-brand/30 text-lime-200 text-[10px] font-bold uppercase tracking-wider mb-3">
                                     <AcademicCapIcon className="w-3.5 h-3.5" />{t('learn.doughlab_academy')}</div>
                                 <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-2 tracking-tight leading-tight">
                                     Master the Art & Science
@@ -104,7 +104,7 @@ const LearnHomePage: React.FC = () => {
                                             <ClockIcon className="w-3.5 h-3.5" />
                                             10 min read
                                         </div>
-                                        <div className="text-lime-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer">{t('learn.read_article')}<ArrowRightIcon className="w-3 h-3" />
+                                        <div className="text-dlp-brand-hover flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer">{t('learn.read_article')}<ArrowRightIcon className="w-3 h-3" />
                                         </div>
                                     </div>
                                 </div>
@@ -196,3 +196,5 @@ const LearnHomePage: React.FC = () => {
 };
 
 export default LearnHomePage;
+
+

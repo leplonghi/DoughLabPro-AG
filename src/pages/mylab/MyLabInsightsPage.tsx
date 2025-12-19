@@ -73,7 +73,7 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             value: `${stats.successRate}%`,
             sublabel: "> 4 Stars",
             icon: <ChartBarIcon />,
-            color: "bg-emerald-100 text-emerald-600"
+            color: "bg-emerald-100 text-dlp-brand-hover"
         },
         {
             label: t('mylab.top_style'),
@@ -108,7 +108,7 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                             </p>
                             <button
                                 onClick={() => onNavigate('calculator')}
-                                className="mt-6 text-lime-600 font-bold hover:underline"
+                                className="mt-6 text-dlp-brand-hover font-bold hover:underline"
                             >{t('mylab.start_baking')}</button>
                         </div>
                     ) : (
@@ -141,7 +141,7 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                                                 </div>
                                                 <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                                                     <div
-                                                        className="bg-lime-500 h-2.5 rounded-full"
+                                                        className="bg-dlp-brand h-2.5 rounded-full"
                                                         style={{ width: `${percentage}%` }}
                                                     ></div>
                                                 </div>
@@ -159,3 +159,5 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
 };
 
 export default MyLabInsightsPage;
+
+

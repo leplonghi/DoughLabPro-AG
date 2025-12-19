@@ -64,12 +64,12 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                                 <button
                                     key={link.page}
                                     onClick={() => handleNavigate(link.page as Page)}
-                                    className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors flex items-center gap-2 ${isActive
-                                        ? 'text-dlp-accent bg-dlp-bg-muted'
-                                        : 'text-dlp-text-secondary hover:bg-dlp-bg-muted hover:text-dlp-text-primary'
+                                    className={`group rounded-xl px-4 py-2 text-sm font-bold tracking-tight transition-all flex items-center gap-2 border ${isActive
+                                        ? 'text-dlp-brand bg-slate-50/80 border-slate-100 shadow-sm'
+                                        : 'text-slate-500 border-transparent hover:bg-slate-50 hover:text-slate-800'
                                         }`}
                                 >
-                                    <Icon className={`h-5 w-5 text-[#84CC16]`} />
+                                    <Icon className={`h-5 w-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${isActive ? 'text-dlp-brand' : 'text-dlp-brand/60 group-hover:text-dlp-brand'}`} />
                                     {link.label}
                                 </button>
                             );
@@ -152,7 +152,7 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
                                 onClick={() => onMobileNavigate(link.page, link.requiresPro)}
                                 className="flex w-full items-center gap-3 rounded-lg p-3 text-base font-semibold text-dlp-text-primary hover:bg-dlp-bg-muted"
                             >
-                                <Icon className="h-6 w-6 text-[#84CC16]" />
+                                <Icon className="h-6 w-6 text-dlp-brand" />
                                 <span className="flex-grow text-left">{link.label}</span>
                                 {link.requiresPro && !hasPro && <ProBadge />}
                             </button>

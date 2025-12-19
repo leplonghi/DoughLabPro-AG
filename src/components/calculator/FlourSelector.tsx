@@ -106,7 +106,8 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                         onChange={(e) => onFlourChange(e.target.value)}
                         className="block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2"
                     >
-                        {Object.entries(floursByCategory).map(([category, flours]) => {
+                        {Object.entries(floursByCategory).map(([category, items]) => {
+                            const flours = items as FlourDefinition[];
                             if (flours.length === 0) return null;
                             return (
                                 <optgroup key={category} label={getCategoryLabel(category)}>
@@ -119,7 +120,7 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                                 </optgroup>
                             );
                         })}
-                        <option value="blend">✨ Custom Flour Blend (Pro)</option>
+                        <option value="blend">Custom Flour Blend (Pro)</option>
                     </select>
                 </div>
 
@@ -225,7 +226,7 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                                 <InfoIcon className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                             )}
                             {hydrationWarning.icon === 'check' && (
-                                <CheckCircleIcon className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                <CheckCircleIcon className="h-5 w-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
                             )}
                             <div className="flex-1">
                                 <p
@@ -236,9 +237,9 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                                             : 'text-green-900'
                                         }`}
                                 >
-                                    {hydrationWarning.level === 'high' && '⚠️ ' + t('calculator.flour_warning_title')}
-                                    {hydrationWarning.level === 'low' && 'ℹ️ ' + t('calculator.flour_info_title')}
-                                    {hydrationWarning.level === 'ok' && '✓ ' + t('calculator.flour_optimal_title')}
+                                    {hydrationWarning.level === 'high' && t('calculator.flour_warning_title')}
+                                    {hydrationWarning.level === 'low' && t('calculator.flour_info_title')}
+                                    {hydrationWarning.level === 'ok' && t('calculator.flour_optimal_title')}
                                 </p>
                                 <p
                                     className={`text-xs mt-1 ${hydrationWarning.level === 'high'
@@ -258,3 +259,5 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
         </div >
     );
 };
+
+

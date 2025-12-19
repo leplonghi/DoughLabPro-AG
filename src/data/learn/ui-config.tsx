@@ -22,7 +22,7 @@ export const TRACK_COLORS: Record<string, { bg: string, text: string, border: st
         bg: 'bg-emerald-50',
         text: 'text-emerald-900',
         border: 'border-emerald-200',
-        icon: 'text-emerald-600',
+        icon: 'text-dlp-brand-hover',
         hoverBg: 'hover:bg-emerald-50/50',
         ring: 'hover:ring-emerald-400'
     },
@@ -54,7 +54,7 @@ export const TRACK_COLORS: Record<string, { bg: string, text: string, border: st
         bg: 'bg-lime-50',
         text: 'text-lime-900',
         border: 'border-lime-200',
-        icon: 'text-lime-600',
+        icon: 'text-dlp-brand-hover',
         hoverBg: 'hover:bg-lime-50/50',
         ring: 'hover:ring-lime-400'
     },
@@ -68,3 +68,5 @@ export const TRACK_ICONS: Record<string, React.FC<any>> = {
     'alert': AlertTriangleIcon,
     'book': BookOpenIcon
 };
+
+

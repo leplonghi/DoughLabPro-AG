@@ -27,8 +27,8 @@ const HealthBar: React.FC<{ score: number }> = ({ score }) => {
     let color = 'bg-red-500';
     let text = 'Weak';
 
-    if (score > 80) { color = 'bg-green-500'; text = 'Peak Health'; }
-    else if (score > 50) { color = 'bg-lime-500'; text = 'Good'; }
+    if (score > 80) { color = 'bg-dlp-brand'; text = 'Peak Health'; }
+    else if (score > 50) { color = 'bg-dlp-brand'; text = 'Good'; }
     else if (score > 30) { color = 'bg-yellow-500'; text = 'Fair'; }
 
     return (
@@ -101,7 +101,7 @@ const LevainInsights: React.FC<LevainInsightsProps> = ({ levain }) => {
         <div className="space-y-6">
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
                 <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-                    <SparklesIcon className="h-5 w-5 text-lime-500" />
+                    <SparklesIcon className="h-5 w-5 text-dlp-brand" />
                     Performance & Health
                 </h3>
 
@@ -137,10 +137,10 @@ const LevainInsights: React.FC<LevainInsightsProps> = ({ levain }) => {
                     {levain.feedingHistory.slice(0, 20).reverse().map((log, idx) => (
                         <div
                             key={idx}
-                            className="flex-1 bg-lime-400 rounded-t-sm hover:bg-lime-500 transition-colors relative group"
+                            className="flex-1 bg-lime-400 rounded-t-sm hover:bg-dlp-brand hover:text-white transition-colors relative group"
                             style={{ height: '60%' }} // Placeholder height, real logic would map ratio or amount
                         >
-                            <div className="opacity-0 group-hover:opacity-100 absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-slate-800 text-white text-xs rounded whitespace-nowrap pointer-events-none z-10">
+                            <div className="opacity-0 group-hover:opacity-100 absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-white text-slate-700 text-xs rounded whitespace-nowrap pointer-events-none z-10 border border-slate-200 shadow-lg">
                                 {new Date(log.date).toLocaleDateString()}
                             </div>
                         </div>
@@ -153,3 +153,6 @@ const LevainInsights: React.FC<LevainInsightsProps> = ({ levain }) => {
 };
 
 export default LevainInsights;
+
+
+

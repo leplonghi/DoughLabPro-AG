@@ -12,7 +12,7 @@ export const LevainMarketingPage: React.FC = () => {
         <div className="max-w-4xl mx-auto p-6 space-y-8 animate-fade-in pb-20">
             {/* Header Hero */}
             <div className="relative overflow-hidden rounded-3xl bg-slate-900 text-white p-8 md:p-12 text-center shadow-2xl ring-1 ring-white/10">
-                <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-lime-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-dlp-brand/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-64 h-64 bg-orange-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div className="relative z-10 flex flex-col items-center">
@@ -29,7 +29,7 @@ export const LevainMarketingPage: React.FC = () => {
             {/* Feature Demo Section */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <FeatureCard
-                    icon={<ClockIcon className="w-8 h-8 text-lime-500" />}
+                    icon={<ClockIcon className="w-8 h-8 text-dlp-brand" />}
                     title={t('mylab.smart_schedule')}
                     description="Never miss a feeding. Get timely notifications based on your starter's metabolic rate."
                 />
@@ -50,14 +50,14 @@ export const LevainMarketingPage: React.FC = () => {
                 <div className="absolute inset-0 z-20 bg-black/40 backdrop-blur-[2px] flex items-center justify-center p-6">
                     <div className="text-center p-8 bg-white/95 rounded-3xl shadow-2xl border border-white/50 max-w-sm mx-auto backdrop-blur-md transform transition-transform hover:scale-105 duration-300">
                         <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <LockClosedIcon className="w-8 h-8 text-lime-600" />
+                            <LockClosedIcon className="w-8 h-8 text-dlp-brand-hover" />
                         </div>
                         <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">{t('mylab.pro_feature_locked')}</h3>
                         <p className="text-slate-600 mb-8 leading-relaxed">{t('mylab.unlock_the_full')}<strong>{t('mylab.levain_manager')}</strong> suite. Track pH, rise logs, feeding schedules, and unlimited starters.
                         </p>
                         <button
                             onClick={() => startTrial('levain')}
-                            className="w-full py-4 px-6 bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-400 hover:to-lime-500 text-white font-bold rounded-xl shadow-lg shadow-lime-500/30 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
+                            className="w-full py-4 px-6 bg-gradient-to-r from-dlp-brand to-dlp-brand-hover hover:from-lime-400 hover:to-dlp-brand text-white font-bold rounded-xl shadow-lg shadow-dlp-brand/30 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
                         >
                             <SparklesIcon className="w-5 h-5" />
                             Start 7-Day Free Trial
@@ -92,3 +92,5 @@ const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description:
         <p className="text-slate-500 text-sm leading-relaxed">{description}</p>
     </div>
 );
+
+

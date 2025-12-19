@@ -11,6 +11,7 @@ import LevainOnboardingModal from '@/components/onboarding/LevainOnboardingModal
 import { Logo } from '@/components/ui/Logo';
 import { TourGuide } from '@/components/onboarding/TourGuide';
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
+import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
 
 // Contexts
 import { ToastProvider, useToast } from '@/components/ToastProvider';
@@ -181,7 +182,7 @@ function AppContent() {
           <div className="space-y-4">
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="w-full py-3.5 bg-dlp-accent hover:bg-dlp-accent-hover text-white font-semibold rounded-xl shadow-dlp-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full py-3.5 bg-dlp-accent hover:bg-dlp-accent-hover text-[#065F46] font-bold rounded-xl shadow-dlp-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]"
             >
               {t('ui.sign_in_button')}
             </button>
@@ -209,7 +210,7 @@ function AppContent() {
         onOpenAuth={() => setIsAuthModalOpen(true)}
       />
 
-      <main className="flex-grow container mx-auto px-4 py-8 md:py-10 mt-20">
+      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 py-8 md:py-10 mt-20">
         {isAssistantOpen ? (
           <Suspense fallback={<LoadingSpinner />}>
             <RequireAuth onOpenAuth={() => setIsAuthModalOpen(true)}>
@@ -234,13 +235,7 @@ function AppContent() {
 
       <Footer onNavigate={navigate} />
 
-      {!isAssistantOpen && (
-        <FloatingActionButton
-          onClick={() => setIsAssistantOpen(true)}
-          label={t('general.doughy')}
-          isShifted={isSummaryBarVisible}
-        />
-      )}
+      <DoughyAssistant />
 
       {showLevainOnboarding && (
         <LevainOnboardingModal
@@ -274,7 +269,7 @@ function AppContent() {
       {/* Persistence Indicator */}
       {lastSaved && (
         <div className="fixed bottom-4 right-4 bg-dlp-bg-surface border border-dlp-border shadow-lg rounded-full px-4 py-2 text-xs text-dlp-text-muted transition-opacity duration-1000 animate-fade-in-out pointer-events-none z-50 flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-500"></div>
+          <div className="w-2 h-2 rounded-full bg-dlp-brand"></div>
           {t('ui.changes_saved')}
         </div>
       )}
@@ -328,3 +323,4 @@ function App() {
 }
 
 export default App;
+

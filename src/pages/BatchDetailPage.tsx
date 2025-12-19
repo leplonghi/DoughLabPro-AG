@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { DoughRescueModal } from '@/components/tools/DoughRescueModal';
+import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
 import { useUser } from '@/contexts/UserProvider';
 import { Batch, BatchStatus, Page, CommunityBatch, DoughConfig, DoughResult } from '@/types';
 import { useTranslation } from '@/i18n';
@@ -147,7 +147,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const [tempNotes, setTempNotes] = useState('');
     const [isUploading, setIsUploading] = useState(false);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-    const [isRescueModalOpen, setIsRescueModalOpen] = useState(false);
+
     const [isShareCardOpen, setIsShareCardOpen] = useState(false);
     const [schedule, setSchedule] = useState<TimelineStep[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -264,7 +264,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
             <div className="text-center p-8">
                 <h2 className="text-xl font-bold text-slate-900 ">{t('batch_detail.not_found')}</h2>
                 <p className="mt-2 text-slate-600 ">{t('batch_detail.not_found_desc')}</p>
-                <button onClick={() => onNavigate('mylab/fornadas')} className="mt-4 rounded-xl bg-lime-500 py-2.5 px-5 text-sm font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all">
+                <button onClick={() => onNavigate('mylab/fornadas')} className="mt-4 rounded-xl bg-dlp-brand py-2.5 px-5 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">
                     {t('batch_detail.back_to_diary')}
                 </button>
             </div>
@@ -297,16 +297,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                         {new Date(editableBatch.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
                     </p>
                     <ResultBadge rating={editableBatch.rating} />
-                    <button
-                        onClick={() => setIsRescueModalOpen(true)}
-                        className="flex items-center gap-1 px-3 py-1 bg-red-50 text-red-600 border border-red-100 rounded-full text-xs font-bold hover:bg-red-100 transition-colors shadow-sm"
-                    >
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                        </span>
-                        {t('results.panic_button', 'Rescue Dough')}
-                    </button>
+
                 </div>
             </div>
 
@@ -344,10 +335,10 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                         </div>
                         {isEditingNotes ? (
                             <div>
-                                <textarea rows={10} value={tempNotes} onChange={(e) => setTempNotes(e.target.value)} placeholder={t('batch_detail.notes_placeholder')} className="block w-full rounded-xl border-slate-300  bg-white  text-slate-900  shadow-sm focus:border-lime-500 focus:ring-lime-500" autoFocus />
+                                <textarea rows={10} value={tempNotes} onChange={(e) => setTempNotes(e.target.value)} placeholder={t('batch_detail.notes_placeholder')} className="block w-full rounded-xl border-slate-300  bg-white  text-slate-900  shadow-sm focus:border-dlp-brand focus:ring-dlp-brand" autoFocus />
                                 <div className="mt-2 flex justify-end gap-2">
                                     <button onClick={() => setIsEditingNotes(false)} className="rounded-xl py-2 px-4 text-sm font-bold text-slate-600  hover:bg-slate-100 transition-colors">{t('common.cancel')}</button>
-                                    <button onClick={handleSaveNotesClick} className="rounded-xl bg-lime-500 py-2 px-4 text-sm font-bold text-white shadow-lg shadow-lime-500/20 hover:bg-lime-600 transition-all">{t('common.save')}</button>
+                                    <button onClick={handleSaveNotesClick} className="rounded-xl bg-dlp-brand py-2 px-4 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">{t('common.save')}</button>
                                 </div>
                             </div>
                         ) : (
@@ -374,8 +365,8 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                     {/* Related Learn Insights */}
                     <div className="rounded-2xl bg-gradient-to-br from-lime-50 to-white p-6 shadow-sm border border-lime-100">
                         <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-lime-900">
-                            <BookOpenIcon className="h-5 w-5 text-lime-600" />
-                            {t('batch_detail.learn_insights', { defaultValue: 'Related Insights' })}
+                            <BookOpenIcon className="h-5 w-5 text-dlp-brand-hover" />
+                            {t('batch_detail.learn_insights')}
                         </h3>
                         <div className="space-y-3">
                             {allLearnArticles.filter(article => {
@@ -496,7 +487,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             <LockedTeaser featureKey="community.feed">
                                 <button
                                     onClick={handleShareClick}
-                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 py-3 font-bold text-white shadow-lg shadow-lime-500/20 hover:from-lime-600 hover:to-lime-700 transition-all"
+                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-dlp-brand to-dlp-brand-hover py-3 font-bold text-white shadow-lg shadow-dlp-brand/20 hover:from-dlp-brand-hover hover:to-lime-700 transition-all"
                                 >
                                     <FeedIcon className="h-5 w-5" />{t('common.share_in_community')}
                                 </button>
@@ -507,7 +498,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-indigo-50 text-indigo-700 py-3 font-bold hover:bg-indigo-100 transition-colors border border-indigo-200"
                             >
                                 <PhotoIcon className="h-5 w-5" />
-                                {t('batch_detail.actions.share_visual', 'Share Visual (Story)')}
+                                {t('batch_detail.actions.share_visual')}
                             </button>
 
                             <SocialShare
@@ -523,10 +514,10 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 </div>
             </div>
             <div className="mt-8 flex items-center justify-between border-t border-slate-200  pt-6">
-                <button onClick={() => onNavigate('mylab/fornadas')} className="text-sm font-bold text-lime-600  hover:underline">
+                <button onClick={() => onNavigate('mylab/fornadas')} className="text-sm font-bold text-dlp-brand-hover  hover:underline">
                     &larr; {t('batch_detail.back_to_diary')}
                 </button>
-                <button onClick={handleSave} className="flex items-center gap-2 rounded-xl bg-lime-500 py-3 px-6 text-sm font-bold text-white shadow-lg shadow-lime-500/20 transition-all hover:bg-lime-600 hover:scale-105 active:scale-95">
+                <button onClick={handleSave} className="flex items-center gap-2 rounded-xl bg-dlp-brand py-3 px-6 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95">
                     <SaveIcon className="h-5 w-5" />
                     {t('common.save_changes')}
                 </button>
@@ -538,10 +529,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 onClose={() => setIsShareModalOpen(false)}
             />
 
-            <DoughRescueModal
-                isOpen={isRescueModalOpen}
-                onClose={() => setIsRescueModalOpen(false)}
-            />
+            <DoughyAssistant />
 
             {isShareCardOpen && editableBatch.doughResult && (
                 <RecipeCardGenerator
@@ -556,3 +544,6 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
 };
 
 export default BatchDetailPage;
+
+
+

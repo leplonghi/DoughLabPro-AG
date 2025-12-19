@@ -20,7 +20,7 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
         className="flex items-center justify-between p-3 cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors"
       >
         <div className="flex items-center gap-3">
-          <div className="p-1.5 bg-white rounded-full border border-slate-200 shadow-sm text-lime-600">
+          <div className="p-1.5 bg-white rounded-full border border-slate-200 shadow-sm text-dlp-brand-hover">
             {style.source === 'official' ? <BookOpenIcon className="h-4 w-4" /> : <SparklesIcon className="h-4 w-4" />}
           </div>
           <div>
@@ -67,7 +67,7 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
           <div className="flex justify-end">
             <a
               href={`#/styles/detail/${style.id}`}
-              className="text-xs font-semibold text-lime-600 hover:text-lime-700 flex items-center gap-1"
+              className="text-xs font-semibold text-dlp-brand-hover hover:text-lime-700 flex items-center gap-1"
             >
               {t('calculator.view_full_style_guide')} &rarr;
             </a>
@@ -79,3 +79,5 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
 };
 
 export default StyleContextBar;
+
+

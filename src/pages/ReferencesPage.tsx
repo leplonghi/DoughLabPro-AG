@@ -27,7 +27,7 @@ const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description,
         {link && (
           <ExternalLink
             href={link}
-            className="flex items-center gap-1 text-sm font-bold text-lime-600  hover:underline"
+            className="flex items-center gap-1 text-sm font-bold text-dlp-brand-hover  hover:underline"
             aria-label={`Visit ${title}`}
           >
             <span>{t('general.visit')}</span>
@@ -54,7 +54,7 @@ const ReferencesPage: React.FC = () => {
 
       <div className="rounded-2xl bg-white  p-6 shadow-lg border border-slate-200  sm:p-10">
         <div className="text-center">
-          <BookOpenIcon className="mx-auto h-12 w-12 text-lime-500" />
+          <BookOpenIcon className="mx-auto h-12 w-12 text-dlp-brand" />
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl">{t('common.technical_references')}</h1>
           <p className="mt-4 text-lg text-slate-600 ">
             A curated collection of books, standards, and resources to deepen your knowledge.
@@ -128,3 +128,4 @@ const ReferencesPage: React.FC = () => {
 };
 
 export default ReferencesPage;
+

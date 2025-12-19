@@ -5,28 +5,28 @@ import { DoughStyleDefinition } from '@/types/styles';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { useUser } from '@/contexts/UserProvider';
 import {
-    ArrowLeft,
-    Heart,
-    Calculator,
-    Clock,
-    Thermometer,
-    Activity,
-    Lightbulb,
-    ChefHat,
-    MapPin,
-    Info,
-    BookOpen,
-    Droplets,
-    CheckCircle2,
-    Wind,
-    CloudRain,
-    Flame,
-    ArrowRightLeft,
-    Scale,
-    AlertTriangle,
-    Camera,
-    Upload
-} from 'lucide-react';
+    ArrowLeftIcon as ArrowLeft,
+    HeartIcon as Heart,
+    CalculatorIcon as Calculator,
+    ClockIcon as Clock,
+    ThermometerIcon as Thermometer,
+    YeastIcon as Activity,
+    LightBulbIcon as Lightbulb,
+    ChefHatIcon as ChefHat,
+    GlobeAltIcon as MapPin, // or GlobeAmericas
+    InfoIcon as Info,
+    BookOpenIcon as BookOpen,
+    WaterIcon as Droplets,
+    CheckCircleIcon as CheckCircle2,
+    FermentationIcon as Wind, // using fermentation icon for wind-like activity
+    LightBulbIcon as CloudRain, // Placeholder or add more specific
+    FireIcon as Flame,
+    ArrowsRightLeftIcon as ArrowRightLeft,
+    WeightIcon as Scale,
+    AlertTriangleIcon as AlertTriangle,
+    PhotoIcon as Camera,
+    UploadIcon as Upload
+} from '@/components/ui/Icons';
 import { uploadImage } from '@/services/storageService';
 import { AffiliateGrid } from '@/components/AffiliateGrid';
 import { useTranslation } from '@/i18n';
@@ -46,19 +46,19 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
         // Otherwise, if it's a long text, it might be legacy text, try translating it anyway (t handles fallback).
         const scienceText = scienceKey ? t(scienceKey) : t('styles.control_of_enzymatic_activity_and_gluten_developme');
 
-        const cleanText = stepStr.replace(/\[Science:.*?\]/, '').trim();
+        const cleanText = (stepStr.startsWith('styles.') || stepStr.startsWith('common.')) ? t(stepStr) : stepStr.replace(/\[Science:.*?\]/, '').trim();
 
         let phase: any = 'Bulk';
         if (index === 0) phase = 'Mix';
         if (index === def.technicalProfile.fermentationSteps.length - 1) phase = 'Bake';
 
-        // Extract title. Support both "." (Legacy) and ":" (Registry Adapter)
-        // We look for the first occurrence of . or :
-        const separatorMatch = cleanText.match(/[:.]/);
+        // Extract title. Support both "." (Legacy) and ":" (Registry Adapter) and "-"
+        // We look for the first occurrence of ., :, or -
+        const separatorMatch = cleanText.match(/[:.\-]/);
         let title = `Step ${index + 1}`;
         let action = cleanText;
 
-        if (separatorMatch && separatorMatch.index) {
+        if (separatorMatch && separatorMatch.index !== undefined && separatorMatch.index !== -1) {
             title = cleanText.substring(0, separatorMatch.index).trim();
             action = cleanText.substring(separatorMatch.index + 1).trim();
         }
@@ -162,7 +162,10 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
             proTips: def.deepDive.proTips?.map((p: string) => t(p))
         } : undefined,
         process: processSteps,
-        references: def.references.map(r => r.source),
+        references: (def.references || []).map((r: any) => {
+            if (typeof r === 'string') return r;
+            return r?.source || r?.url || '';
+        }).filter(Boolean),
         images: def.images
     };
 }
@@ -191,7 +194,7 @@ const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }
                         {/* Content Card */}
                         <div className={`flex-1 md:w-1/2 ${isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'} relative`}>
                             <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
-                                <div className={`absolute top-0 w-1 h-full ${isLeft ? 'right-0 bg-lime-500' : 'left-0 bg-indigo-500'} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                                <div className={`absolute top-0 w-1 h-full ${isLeft ? 'right-0 bg-dlp-brand' : 'left-0 bg-indigo-500'} opacity-0 group-hover:opacity-100 transition-opacity`} />
 
                                 <span className="text-[10px] uppercase font-black text-slate-300 mb-1.5 block tracking-widest">{t('common.phase')} {index + 1}</span>
                                 <h4 className="font-bold text-slate-800 text-base mb-1.5">{step.title}</h4>
@@ -209,14 +212,14 @@ const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }
                         <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center z-10 hidden md:flex">
                             <div className="w-10 h-10 rounded-full bg-white border-4 border-slate-200 shadow-sm flex items-center justify-center font-bold text-slate-400 text-xs relative">
                                 {index + 1}
-                                <div className="absolute inset-0 bg-lime-500 rounded-full opacity-0 hover:opacity-100 transition-opacity blur-md" />
+                                <div className="absolute inset-0 bg-dlp-brand rounded-full opacity-0 hover:opacity-100 transition-opacity blur-md" />
                             </div>
                         </div>
 
                         {/* Science Insight (Opposite Side) */}
                         <div className={`flex-1 md:w-1/2 ${!isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'} hidden md:block opacity-60 hover:opacity-100 transition-opacity`}>
                             <div className="flex items-start gap-4 h-full p-4 rounded-xl hover:bg-slate-50 transition-colors cursor-help">
-                                <div className={`mt-1 p-2 rounded-lg ${isLeft ? 'order-2 bg-indigo-50 text-indigo-500' : 'bg-lime-50 text-lime-500'}`}>
+                                <div className={`mt-1 p-2 rounded-lg ${isLeft ? 'order-2 bg-indigo-50 text-indigo-500' : 'bg-lime-50 text-dlp-brand'}`}>
                                     <Lightbulb className="w-4 h-4" />
                                 </div>
                                 <div className={isLeft ? 'text-right flex-1' : 'flex-1'}>
@@ -228,7 +231,7 @@ const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }
                     </div>
                 );
             })}
-        </div>
+        </div >
     );
 };
 
@@ -263,6 +266,7 @@ interface StyleDetailPageProps {
     style?: any;
     onLoadAndNavigate: (style: any) => void;
     onBack: () => void;
+    onNavigate?: (page: string) => void;
 }
 
 // 3. Education Section Component
@@ -318,7 +322,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                                         <p className="text-slate-600">{item.result}</p>
                                     </div>
                                     <div>
-                                        <span className="text-[10px] uppercase font-bold text-emerald-500 block mb-0.5">{t('general.correction')}</span>
+                                        <span className="text-[10px] uppercase font-bold text-dlp-brand block mb-0.5">{t('general.correction')}</span>
                                         <p className="text-slate-600 italic">"{item.correction}"</p>
                                     </div>
                                 </div>
@@ -349,7 +353,7 @@ const EducationSection: React.FC<{ education: any }> = ({ education }) => {
                                     {comp.difference}
                                 </p>
                                 <div>
-                                    <span className="text-[10px] uppercase font-bold text-emerald-600 block mb-1">{t('styles.why_choose_this')}</span>
+                                    <span className="text-[10px] uppercase font-bold text-dlp-brand-hover block mb-1">{t('styles.why_choose_this')}</span>
                                     <p className="text-xs text-slate-500 italic">{comp.why_choose_this}</p>
                                 </div>
                             </div>
@@ -455,7 +459,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                     <div className={`p-4 rounded-xl border ${deepDive.methodSuitability?.direct?.suitable ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-100 opacity-60'}`}>
                         <div className="flex justify-between items-center mb-2">
                             <span className="font-bold text-slate-800">{t('general.direct_method_2')}</span>
-                            {deepDive.methodSuitability?.direct?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
+                            {deepDive.methodSuitability?.direct?.suitable ? <CheckCircle2 className="w-5 h-5 text-dlp-brand-hover" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
                         </div>
                         <p className="text-xs text-slate-600 leading-snug">{deepDive.methodSuitability?.direct?.notes}</p>
                     </div>
@@ -463,7 +467,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                     <div className={`p-4 rounded-xl border ${deepDive.methodSuitability?.biga?.suitable ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-100 opacity-60'}`}>
                         <div className="flex justify-between items-center mb-2">
                             <span className="font-bold text-slate-800">{t('common.biga_stiff')}</span>
-                            {deepDive.methodSuitability?.biga?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
+                            {deepDive.methodSuitability?.biga?.suitable ? <CheckCircle2 className="w-5 h-5 text-dlp-brand-hover" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
                         </div>
                         <p className="text-xs text-slate-600 leading-snug">{deepDive.methodSuitability?.biga?.notes}</p>
                     </div>
@@ -471,7 +475,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                     <div className={`p-4 rounded-xl border ${deepDive.methodSuitability?.poolish?.suitable ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-100 opacity-60'}`}>
                         <div className="flex justify-between items-center mb-2">
                             <span className="font-bold text-slate-800">{t('common.poolish_liquid')}</span>
-                            {deepDive.methodSuitability?.poolish?.suitable ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
+                            {deepDive.methodSuitability?.poolish?.suitable ? <CheckCircle2 className="w-5 h-5 text-dlp-brand-hover" /> : <span className="text-xs font-bold text-slate-400">{t('common.not_applicable')}</span>}
                         </div>
                         <p className="text-xs text-slate-600 leading-snug">{deepDive.methodSuitability?.poolish?.notes}</p>
                     </div>
@@ -491,7 +495,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
                                 </p>
                                 <div className="pl-6 border-l-2 border-amber-200 space-y-2">
                                     <p className="text-sm text-slate-600"><span className="font-bold text-red-500 text-xs uppercase mr-2">{t('styles.consequence')}</span>{item.outcome}</p>
-                                    <p className="text-sm text-slate-600"><span className="font-bold text-green-600 text-xs uppercase mr-2">{t('styles.solution')}</span>{item.solution}</p>
+                                    <p className="text-sm text-slate-600"><span className="font-bold text-dlp-brand-hover text-xs uppercase mr-2">{t('styles.solution')}</span>{item.solution}</p>
                                 </div>
                             </div>
                         ))}
@@ -522,7 +526,7 @@ const DeepDiveSection: React.FC<{ deepDive: any }> = ({ deepDive }) => {
     );
 };
 
-export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initialStyle, onLoadAndNavigate, onBack }) => {
+export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initialStyle, onLoadAndNavigate, onBack, onNavigate }) => {
     const { t } = useTranslation(['common', 'styles', 'general']);
     const { isFavorite, toggleFavorite, userStyles, updateUserStyle, user } = useUser();
     const [styleData, setStyleData] = useState<DoughStyle | null>(null);
@@ -610,7 +614,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
     if (!styleData) return (
         <LibraryPageLayout>
             <div className="flex h-screen items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lime-500"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dlp-brand"></div>
             </div>
         </LibraryPageLayout>
     );
@@ -638,7 +642,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                     </button>
                     <button
                         onClick={() => onLoadAndNavigate(styleData)}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-lime-500/30 transition-all hover:scale-105 active:scale-95"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-dlp-brand to-dlp-brand-hover hover:from-dlp-brand-hover hover:to-lime-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-dlp-brand/30 transition-all hover:scale-105 active:scale-95"
                     >
                         <Calculator className="w-4 h-4" /> <span className="hidden sm:inline">{t('general.use_formula')}</span>
                     </button>
@@ -842,11 +846,11 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                             <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="bg-emerald-100 p-1.5 rounded-full">
-                                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                                        <CheckCircle2 className="w-4 h-4 text-dlp-brand-hover" />
                                     </div>
                                     <div>
                                         <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide block">{t('general.scientifically_validated')}</span>
-                                        <span className="text-[10px] text-emerald-600/80">{t('styles.parameters_verified_against_cereal_chemistry_stand')}</span>
+                                        <span className="text-[10px] text-dlp-brand-hover/80">{t('styles.parameters_verified_against_cereal_chemistry_stand')}</span>
                                     </div>
                                 </div>
 
@@ -854,16 +858,20 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     <div className="space-y-2 mt-4 pt-4 border-t border-slate-200/50">
                                         <span className="text-[10px] uppercase font-bold text-slate-400 block mb-2">{t('general.primary_sources')}</span>
                                         <ul className="space-y-1">
-                                            {styleData.references.map((ref, i) => (
-                                                <li key={i} className="text-xs text-slate-500 hover:text-indigo-600 transition-colors flex items-start gap-2">
-                                                    <span className="mt-1 w-1 h-1 rounded-full bg-slate-300"></span>
-                                                    {ref.startsWith('http') ? (
-                                                        <a href={ref} target="_blank" rel="noopener noreferrer" className="underline decoration-slate-300 hover:decoration-indigo-300 underline-offset-2 break-all">
-                                                            {ref}
-                                                        </a>
-                                                    ) : ref}
-                                                </li>
-                                            ))}
+                                            {styleData.references.map((ref: any, i: number) => {
+                                                if (!ref) return null;
+                                                const isUrl = typeof ref === 'string' && ref.startsWith('http');
+                                                return (
+                                                    <li key={i} className="text-xs text-slate-500 hover:text-indigo-600 transition-colors flex items-start gap-2">
+                                                        <span className="mt-1 w-1 h-1 rounded-full bg-slate-300"></span>
+                                                        {isUrl ? (
+                                                            <a href={ref} target="_blank" rel="noopener noreferrer" className="underline decoration-slate-300 hover:decoration-indigo-300 underline-offset-2 break-all">
+                                                                {ref}
+                                                            </a>
+                                                        ) : (typeof ref === 'string' ? ref : JSON.stringify(ref))}
+                                                    </li>
+                                                );
+                                            })}
                                         </ul>
                                     </div>
                                 )}
@@ -883,7 +891,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                             <div className="p-1 bg-gradient-to-r from-slate-800 to-slate-900"></div>
                             <div className="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                                 <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest flex items-center gap-2">
-                                    <Calculator className="w-4 h-4 text-lime-600" />{t('common.tech_specs')}</h3>
+                                    <Calculator className="w-4 h-4 text-dlp-brand-hover" />{t('common.tech_specs')}</h3>
                             </div>
 
                             <div className="p-6 space-y-8">
@@ -938,7 +946,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             <Thermometer className="w-3 h-3 text-orange-500" />{t('common.thermal_engineering')}</label>
 
                                         <div className="grid grid-cols-5 gap-2 mb-3">
-                                            <div className="col-span-2 bg-lime-600 rounded-lg p-2 text-center text-white">
+                                            <div className="col-span-2 bg-dlp-brand-hover rounded-lg p-2 text-center text-white">
                                                 <span className="text-[9px] uppercase font-bold text-lime-200 block mb-1">{t('general.target')}</span>
                                                 <span className="text-xl font-bold">{styleData.specs.ovenTemp.ideal}°C</span>
                                             </div>
@@ -969,12 +977,12 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                     {/* 3. Rheology & W-Index */}
                                     <div>
                                         <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1 mb-3">
-                                            <Activity className="w-3 h-3 text-emerald-500" />{t('common.flour_mechanics')}</label>
+                                            <Activity className="w-3 h-3 text-dlp-brand" />{t('common.flour_mechanics')}</label>
 
                                         <div className="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100/50 mb-3">
                                             <div className="flex justify-between items-center mb-2">
                                                 <span className="text-[10px] font-bold text-emerald-800 uppercase">{t('general.recommended_strength')}</span>
-                                                <span className="text-xs font-bold text-emerald-600 bg-white px-2 py-0.5 rounded shadow-sm border border-emerald-100">
+                                                <span className="text-xs font-bold text-dlp-brand-hover bg-white px-2 py-0.5 rounded shadow-sm border border-emerald-100">
                                                     {styleData.scientificProfile.flourRheology.w_index || (styleData.specs.difficulty === 'Expert' ? 'W 350+' : 'W 260+')}
                                                 </span>
                                             </div>
@@ -1053,8 +1061,12 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
 
                                     {/* Oven Profiler Link (New) */}
                                     <div className="mt-6 pt-6 border-t border-slate-100">
-                                        <button className="w-full py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 hover:scale-[1.02] transition-transform">
-                                            <Flame className="w-4 h-4" />{t('common.launch_oven_profiler')}</button>
+                                        <button
+                                            onClick={() => onNavigate?.('tools/oven-profiler')}
+                                            className="w-full py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 hover:shadow-xl transition-shadow"
+                                        >
+                                            <Flame className="w-4 h-4" />{t('common.launch_oven_profiler')}
+                                        </button>
                                         <p className="text-[10px] text-center text-slate-400 mt-2">{t('styles.adjust_baking_metrics_for_your_specific_equipment')}</p>
                                     </div>
 
@@ -1081,3 +1093,5 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
         </LibraryPageLayout>
     );
 };
+
+

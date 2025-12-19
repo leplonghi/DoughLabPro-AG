@@ -29,7 +29,7 @@ export const CommunityPage: React.FC = () => {
 
                     <button
                         onClick={() => navigate('community/create')}
-                        className="group flex items-center justify-center gap-2 bg-gradient-to-r from-lime-600 to-lime-500 hover:from-lime-700 hover:to-lime-600 text-white px-6 py-3 rounded-full shadow-lg shadow-lime-600/20 transition-all hover:scale-105 active:scale-95 font-semibold text-sm"
+                        className="group flex items-center justify-center gap-2 bg-gradient-to-r from-dlp-brand-hover to-dlp-brand hover:from-lime-700 hover:to-dlp-brand-hover text-white px-6 py-3 rounded-full shadow-lg shadow-dlp-brand-hover/20 transition-all hover:scale-105 active:scale-95 font-semibold text-sm"
                     >
                         <Plus className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" />
                         <span>{t('community.share_your_bake')}</span>
@@ -78,3 +78,5 @@ export const CommunityPage: React.FC = () => {
         </LibraryPageLayout>
     );
 };
+
+

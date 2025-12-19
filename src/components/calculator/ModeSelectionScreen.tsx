@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
-import { SparklesIcon, MagicWandIcon, GraduationCapIcon } from '@/components/ui/Icons'; // Assuming icons exist or map to existing
+import { SparklesIcon } from '@/components/ui/Icons';
 
 interface ModeSelectionScreenProps {
     onSelectMode: (mode: 'wizard' | 'basic' | 'advanced') => void;
@@ -14,75 +14,99 @@ export const ModeSelectionScreen: React.FC<ModeSelectionScreenProps> = ({ onSele
         {
             id: 'wizard',
             title: t('calculator.wizard_mode_title', { defaultValue: 'Dough Wizard' }),
-            description: t('calculator.wizard_desc', { defaultValue: 'Step-by-step guidance. Perfect for beginners who want great results without the math.' }),
-            icon: <span className="text-4xl">🪄</span>,
-            color: 'bg-blue-50 border-blue-200 hover:border-blue-300 text-blue-900',
+            description: t('calculator.wizard_desc', { defaultValue: 'Step-by-step guidance for beginners.' }),
+            icon: "🪄",
+            activeStyle: 'bg-blue-900 shadow-lg shadow-blue-500/20',
+            textColor: 'text-blue-50',
+            descColor: 'text-blue-200/80',
+            hoverTextColor: 'group-hover:text-blue-700',
+            hoverDescColor: 'group-hover:text-blue-600/80',
+            checkBg: 'bg-blue-800',
+            hoverBorder: '',
+            hoverBg: 'hover:bg-blue-50/50',
+            groupHoverText: 'group-hover:text-blue-700',
             tag: t('calculator.easiest', { defaultValue: 'Easiest' }),
-            tagColor: 'bg-blue-100 text-blue-700'
         },
         {
-            id: 'basic', // Maps to "Guided" in UI
+            id: 'basic',
             title: t('calculator.guided_mode_title', { defaultValue: 'Guided Mode' }),
-            description: t('calculator.guided_desc', { defaultValue: 'Classic calculator with helpful tooltips and safety rails. Good for everyday baking.' }),
-            icon: <span className="text-4xl">🧭</span>,
-            color: 'bg-emerald-50 border-emerald-200 hover:border-emerald-300 text-emerald-900',
+            description: t('calculator.guided_desc', { defaultValue: 'Classic calculator with safety rails.' }),
+            icon: "🧭",
+            activeStyle: 'bg-[#18540e] shadow-lg shadow-[#18540e]/20',
+            textColor: 'text-emerald-50',
+            descColor: 'text-emerald-200/80',
+            hoverTextColor: 'group-hover:text-[#18540e]',
+            hoverDescColor: 'group-hover:text-[#18540e]/80',
+            checkBg: 'bg-[#2d8a1a]',
+            hoverBorder: '',
+            hoverBg: 'hover:bg-[#18540e]/5',
+            groupHoverText: 'group-hover:text-[#18540e]',
             tag: t('calculator.standard', { defaultValue: 'Standard' }),
-            tagColor: 'bg-emerald-100 text-emerald-700'
         },
         {
-            id: 'advanced', // Maps to "Pro"
+            id: 'advanced',
             title: t('calculator.pro_mode_title', { defaultValue: 'Pro Mode' }),
-            description: t('calculator.pro_desc', { defaultValue: 'Full control. Complex ingredients, preferments, and technical details. For experts.' }),
-            icon: <span className="text-4xl">⚡</span>,
-            color: 'bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-900',
+            description: t('calculator.pro_desc', { defaultValue: 'Full control for technical experts.' }),
+            icon: "⚡",
+            activeStyle: 'bg-[#51a145] shadow-lg shadow-[#51a145]/20',
+            textColor: 'text-white',
+            descColor: 'text-white/80',
+            hoverTextColor: 'group-hover:text-[#51a145]',
+            hoverDescColor: 'group-hover:text-[#51a145]/80',
+            checkBg: 'bg-[#36782c]',
+            hoverBorder: '',
+            hoverBg: 'hover:bg-[#51a145]/5',
+            groupHoverText: 'group-hover:text-[#51a145]',
             tag: t('calculator.advanced', { defaultValue: 'Advanced' }),
-            tagColor: 'bg-slate-200 text-slate-700'
         }
     ] as const;
 
     return (
-        <div className="w-full animate-fade-in">
-            <div className="flex items-center gap-2 mb-3">
-                <h2 className="text-sm font-bold text-dlp-text-secondary uppercase tracking-wider">
-                    {t('calculator.experience_mode', { defaultValue: 'Mode:' })}
-                </h2>
+        <div className="">
+            <div className="flex items-center gap-2 mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332] opacity-60">MODE:</span>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {modes.map((mode) => {
                     const isSelected = selectedMode === mode.id;
-                    // Colors for "High Contrast" selection
-                    const activeClass = isSelected
-                        ? mode.id === 'wizard' ? 'bg-blue-600 border-blue-700 text-white ring-2 ring-blue-300'
-                            : mode.id === 'basic' ? 'bg-emerald-600 border-emerald-700 text-white ring-2 ring-emerald-300'
-                                : 'bg-slate-800 border-slate-900 text-white ring-2 ring-slate-400'
-                        : 'bg-white border-slate-200 text-dlp-text-secondary hover:border-slate-300 hover:bg-slate-50';
-
-                    const textClass = isSelected ? 'text-white' : 'text-dlp-text-primary';
-                    const descClass = isSelected ? 'text-blue-100' : 'text-slate-400'; // Light text on dark bg
 
                     return (
                         <button
                             key={mode.id}
                             onClick={() => onSelectMode(mode.id)}
                             className={`
-                                relative flex items-center gap-3 p-3 rounded-lg border text-left transition-all duration-200 shadow-sm
-                                ${activeClass}
+                                relative group flex flex-row items-center p-3 rounded-xl transition-all duration-300 text-left gap-3 h-[60px]
+                                ${isSelected
+                                    ? mode.activeStyle
+                                    : `bg-white shadow-sm hover:shadow-md text-slate-600 ${mode.hoverBorder} ${mode.hoverBg}`
+                                }
                             `}
                         >
-                            <div className="flex-shrink-0 text-2xl">
+                            <div className={`
+                                w-8 h-8 rounded-lg flex items-center justify-center text-lg transition-all duration-300
+                                ${isSelected ? 'bg-white shadow-sm' : `bg-slate-50 text-slate-400 ${mode.groupHoverText}`}
+                            `}>
                                 {mode.icon}
                             </div>
 
-                            <div className="flex-1 min-w-0">
-                                <div className="flex items-center justify-between mb-0.5">
-                                    <h3 className={`text-sm font-bold truncate ${textClass}`}>{mode.title}</h3>
-                                    {isSelected && <span className="flex-shrink-0 text-current">✓</span>}
-                                </div>
-                                <p className={`text-[10px] leading-tight line-clamp-2 ${isSelected ? 'opacity-90' : 'text-slate-500'}`}>
+                            <div className="flex-grow min-w-0 flex flex-col justify-center">
+                                <h3 className={`text-xs font-bold font-heading truncate transition-colors ${isSelected ? mode.textColor : `text-slate-700 ${mode.hoverTextColor}`}`}>
+                                    {mode.title}
+                                </h3>
+                                <p className={`text-[10px] leading-tight truncate transition-colors ${isSelected ? mode.descColor : `text-slate-400 ${mode.hoverDescColor}`}`}>
                                     {mode.description}
                                 </p>
                             </div>
+
+                            {isSelected ? (
+                                <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center shadow-md transition-all duration-500 animate-in zoom-in-50 ${mode.checkBg}`}>
+                                    <CheckIcon className="w-3 h-3 text-white" />
+                                </div>
+                            ) : (
+                                <span className="flex-shrink-0 px-2 py-0.5 rounded text-[9px] font-bold text-slate-400 bg-slate-100 uppercase tracking-widest border border-slate-200/50">
+                                    {mode.id === 'basic' ? 'Standard' : mode.id === 'advanced' ? 'Advanced' : ''}
+                                </span>
+                            )}
                         </button>
                     );
                 })}
@@ -90,3 +114,12 @@ export const ModeSelectionScreen: React.FC<ModeSelectionScreenProps> = ({ onSele
         </div>
     );
 };
+// Helper for the check icon which might not be imported as CheckIcon
+const CheckIcon = ({ className }: { className?: string }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+    </svg>
+);
+
+
+

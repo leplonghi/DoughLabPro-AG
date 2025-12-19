@@ -91,14 +91,14 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
                                         {flavor.ingredients.length > 1 && <button onClick={() => removeIngredient(flavorIndex, ingIndex)}><CloseIcon className="h-4 w-4 text-slate-400" /></button>}
                                     </div>
                                 ))}
-                                <button onClick={() => addIngredient(flavorIndex)} className="text-xs font-semibold text-lime-600 flex items-center gap-1"><PlusCircleIcon className="h-4 w-4" />{t('common.add_ingredient')}</button>
+                                <button onClick={() => addIngredient(flavorIndex)} className="text-xs font-semibold text-dlp-brand-hover flex items-center gap-1"><PlusCircleIcon className="h-4 w-4" />{t('common.add_ingredient')}</button>
                             </div>
                         </div>
                     ))}
-                    <button onClick={addFlavor} disabled={remainingBalls <= 0} className="w-full text-sm font-semibold text-lime-600 flex items-center justify-center gap-1 p-2 border-2 border-dashed rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"><PlusCircleIcon className="h-5 w-5" />{t('common.add_variation')}</button>
+                    <button onClick={addFlavor} disabled={remainingBalls <= 0} className="w-full text-sm font-semibold text-dlp-brand-hover flex items-center justify-center gap-1 p-2 border-2 border-dashed rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"><PlusCircleIcon className="h-5 w-5" />{t('common.add_variation')}</button>
                 </div>
 
-                <button onClick={calculateToppings} disabled={remainingBalls !== 0} className="mt-4 w-full bg-lime-500 text-white font-semibold py-2 rounded-lg disabled:bg-slate-400 disabled:cursor-not-allowed">
+                <button onClick={calculateToppings} disabled={remainingBalls !== 0} className="mt-4 w-full bg-dlp-brand text-white font-semibold py-2 rounded-lg disabled:bg-slate-400 disabled:cursor-not-allowed">
                     {remainingBalls !== 0 ? `${remainingBalls} piece(s) remaining to allocate` : 'Calculate Shopping List'}
                 </button>
 
@@ -116,3 +116,4 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
         </div>
     );
 };
+

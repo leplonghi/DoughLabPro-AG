@@ -31,7 +31,7 @@ const CommunityProfileSidebar: React.FC = () => {
     return (
         <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
             <div className="flex items-center gap-4 mb-6">
-                <div className="h-16 w-16 rounded-full bg-lime-100 flex items-center justify-center text-lime-600 font-bold text-2xl">
+                <div className="h-16 w-16 rounded-full bg-lime-100 flex items-center justify-center text-dlp-brand-hover font-bold text-2xl">
                     {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
                 </div>
                 <div>
@@ -68,7 +68,7 @@ const CommunityProfileSidebar: React.FC = () => {
                     </div>
                     <div className="w-full bg-slate-100 rounded-full h-2">
                         <div
-                            className="bg-lime-500 h-2 rounded-full transition-all duration-500"
+                            className="bg-dlp-brand h-2 rounded-full transition-all duration-500"
                             style={{ width: `${totalBatches > 0 ? (publicBatches / totalBatches) * 100 : 0}%` }}
                         />
                     </div>
@@ -79,3 +79,5 @@ const CommunityProfileSidebar: React.FC = () => {
 };
 
 export default CommunityProfileSidebar;
+
+

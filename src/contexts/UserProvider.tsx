@@ -15,6 +15,7 @@ import {
   UserSettings,
   OvenType,
   CustomPreset,
+  ToppingCombination,
 } from '@/types';
 import { useToast } from '@/components/ToastProvider';
 import { hoursBetween, sanitizeForFirestore } from '@/helpers';
@@ -83,6 +84,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [userStyles, setUserStyles] = useState<DoughStyleDefinition[]>([]);
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
   const [customPresets, setCustomPresets] = useState<CustomPreset[]>([]);
+  const [customToppings, setCustomToppings] = useState<ToppingCombination[]>([]);
 
   // Use custom hook for batches
   const { batches, addBatch, updateBatch, deleteBatch, createDraftBatch } = useBatchManager(
@@ -176,7 +178,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setTestSeries([]);
         setUserStyles([]);
         setFavorites([]);
+        setFavorites([]);
         setCustomPresets([]);
+        setCustomToppings([]);
         return;
       }
 
@@ -325,6 +329,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const unsubUserStyles = createCollectionSubscription('styles', setUserStyles);
     const unsubFavorites = createCollectionSubscription('favorites', setFavorites);
     const unsubCustomPresets = createCollectionSubscription('customPresets', setCustomPresets);
+    const unsubCustomToppings = createCollectionSubscription('customToppings', setCustomToppings);
 
     return () => {
       unsubOvens();
@@ -334,6 +339,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       unsubUserStyles();
       unsubFavorites();
       unsubCustomPresets();
+      unsubCustomToppings();
     };
   }, [createCollectionSubscription]);
 
@@ -771,6 +777,24 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     [deleteDocFn, addToast]
   );
 
+  // Custom Toppings
+  const addCustomTopping = useCallback(
+    async (toppingData: Omit<ToppingCombination, 'id'>): Promise<ToppingCombination> => {
+      const newTopping = await createDoc('customToppings', toppingData, setCustomToppings);
+      addToast(`Topping "${toppingData.name}" saved!`, 'success');
+      return newTopping as ToppingCombination;
+    },
+    [createDoc, addToast]
+  );
+
+  const deleteCustomTopping = useCallback(
+    async (id: string) => {
+      await deleteDocFn('customToppings', id, setCustomToppings);
+      addToast('Topping deleted.', 'info');
+    },
+    [deleteDocFn, addToast]
+  );
+
 
   // Entitlements
   const grantProAccess = useCallback(async () => {
@@ -870,6 +894,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addCustomPreset,
     updateCustomPreset,
     deleteCustomPreset,
+    customToppings,
+    addCustomTopping,
+    deleteCustomTopping,
     defaultAmbientTempC: userSettings.defaultAmbientTempC,
     setDefaultAmbientTempC,
     defaultOvenType: userSettings.defaultOvenType,

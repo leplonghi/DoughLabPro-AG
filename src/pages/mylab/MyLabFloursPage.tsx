@@ -156,7 +156,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
 
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="bg-lime-500 text-white text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                                        <span className="bg-dlp-brand text-white text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
                                             <StarIcon className="h-3 w-3" />{t('mylab.active_default')}</span>
                                     </div>
                                     <h2 className="text-2xl font-bold text-slate-800">{preferredFlour.name}</h2>
@@ -188,7 +188,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                     return (
                                         <div
                                             key={flour.id}
-                                            className={`relative bg-white rounded-xl border p-5 transition-all hover:shadow-md group ${isPreferred ? 'border-lime-500 ring-1 ring-lime-500 shadow-sm' : 'border-slate-200 hover:border-slate-300'
+                                            className={`relative bg-white rounded-xl border p-5 transition-all hover:shadow-md group ${isPreferred ? 'border-dlp-brand ring-1 ring-dlp-brand shadow-sm' : 'border-slate-200 hover:border-slate-300'
                                                 }`}
                                         >
                                             <div className="flex justify-between items-start mb-2">
@@ -199,7 +199,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                                     {!isPreferred && (
                                                         <button
                                                             onClick={() => setPreferredFlour(flour.id)}
-                                                            className="p-1.5 text-slate-300 hover:text-lime-500 hover:bg-lime-50 rounded-lg transition-colors"
+                                                            className="p-1.5 text-slate-300 hover:text-dlp-brand hover:bg-lime-50 rounded-lg transition-colors"
                                                             title={t('mylab.set_as_default')}
                                                         >
                                                             <StarIcon className="w-4 h-4" />
@@ -407,3 +407,5 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
 };
 
 export default MyLabFloursPage;
+
+

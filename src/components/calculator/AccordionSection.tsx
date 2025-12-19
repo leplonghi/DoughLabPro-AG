@@ -20,21 +20,21 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
 }) => {
     const { t } = useTranslation();
     return (
-        <div id={id} className={`rounded-xl border border-dlp-border bg-dlp-bg-card p-4 shadow-dlp-sm transition-all hover:shadow-dlp-md ${className}`}>
-            <div className="mb-3 flex items-start gap-4">
+        <div id={id} className={`dlp-card p-4 animate-slide-up bg-white/70 backdrop-blur-sm transition-all duration-300 hover:shadow-premium group ${className}`}>
+            <div className="mb-4 flex items-start gap-3">
                 {icon && (
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-dlp-bg-muted text-dlp-accent">
-                        {icon}
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#2D6A4F] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-[#2D6A4F]/10">
+                        {React.cloneElement(icon as React.ReactElement, { size: 16, strokeWidth: 2.5 })}
                     </div>
                 )}
-                <div>
-                    <h3 className="text-lg font-bold text-dlp-text-primary">{title}</h3>
+                <div className="pt-0.5">
+                    <h3 className="text-lg font-bold font-heading text-slate-900 leading-tight">{title}</h3>
                     {description && (
-                        <p className="text-sm text-dlp-text-secondary">{description}</p>
+                        <p className="text-[11px] text-slate-500 mt-1 max-w-lg leading-relaxed">{description}</p>
                     )}
                 </div>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
                 {children}
             </div>
         </div>
@@ -42,3 +42,4 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
 };
 
 export default AccordionSection;
+

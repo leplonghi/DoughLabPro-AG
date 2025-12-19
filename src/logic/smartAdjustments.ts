@@ -121,7 +121,7 @@ export const getSmartAdjustments = (
   // --- Rule 4: Ambient Temperature Adjustments ---
   const tempGuidelines = ENVIRONMENT_TEMPERATURE_GUIDELINES[config.ambientTemperature];
   if (tempGuidelines && tempGuidelines.yeastAdjustment !== 1.0) {
-    result.messages.push(tempGuidelines.notes);
+    result.messages.push(i18n.t(tempGuidelines.notesKey));
     if (config.yeastType !== YeastType.SOURDOUGH_STARTER && config.yeastType !== YeastType.USER_LEVAIN) {
       const suggestedYeast = parseFloat((config.yeastPercentage * tempGuidelines.yeastAdjustment).toFixed(2));
       const changePct = Math.round((tempGuidelines.yeastAdjustment - 1) * 100);

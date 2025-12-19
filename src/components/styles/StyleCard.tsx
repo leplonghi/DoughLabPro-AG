@@ -1,7 +1,18 @@
 import React from 'react';
 import { DoughStyleDefinition } from '@/types/styles';
 import { useRouter } from '@/contexts/RouterContext';
-import { Droplets, Clock, BarChart, Calculator, Trash2, ArrowRight, Sparkles, User, Globe, Pizza as PizzaSliceIcon } from 'lucide-react';
+import {
+    WaterIcon as Droplets,
+    ClockIcon as Clock,
+    InsightsIcon as BarChart,
+    CalculatorIcon as Calculator,
+    TrashIcon as Trash2,
+    ArrowRightIcon as ArrowRight,
+    SparklesIcon as Sparkles,
+    UserCircleIcon as User,
+    GlobeAltIcon as Globe,
+    PizzaSliceIcon
+} from '@/components/ui/Icons';
 import { CategoryBadge } from '@/components/ui/CategoryBadge';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { useUser } from '@/contexts/UserProvider';
@@ -60,7 +71,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     </div>
                     <div className="flex gap-1">
                         {style.isPro && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-lime-500 text-white shadow-sm border border-lime-400">{t('common.pro')}</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-dlp-brand text-white shadow-sm border border-lime-400">{t('common.pro')}</span>
                         )}
                         {isNew && (
                             <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500 text-white shadow-sm border border-blue-400">{t('common.new')}</span>
@@ -88,7 +99,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     </svg>
                 </button>
 
-                <h3 className="text-xl font-semibold text-slate-900 mb-1 group-hover:text-lime-600 transition-colors line-clamp-1">{t(style.name)}</h3>
+                <h3 className="text-xl font-semibold text-slate-900 mb-1 group-hover:text-dlp-brand-hover transition-colors line-clamp-1">{t(style.name)}</h3>
                 <div className="flex items-center gap-2 text-xs text-slate-500 font-medium uppercase tracking-wide">
                     <span className="flex items-center gap-1">
                         <Globe className="w-3 h-3" /> {style.origin.country || ''}
@@ -123,7 +134,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                         'bg-red-50 text-red-700 border-red-100'
                     }`}>
                     <BarChart className="w-3 h-3 mr-1.5" />
-                    {style.technicalProfile?.difficulty || 'Medium'}
+                    {t(`common.${(style.technicalProfile?.difficulty || 'Medium').toLowerCase()}`, { defaultValue: style.technicalProfile?.difficulty || 'Medium' })}
                 </div>
             </div>
 
@@ -148,7 +159,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             e.stopPropagation();
                             onUseInCalculator(style);
                         }}
-                        className="w-full bg-lime-50 hover:bg-lime-500 hover:text-white text-lime-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn"
+                        className="w-full bg-lime-50 hover:bg-dlp-brand hover:text-white text-lime-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn"
                     >
                         <Calculator className="h-3.5 w-3.5" />{t('common.use_style')}</button>
                 </LockFeature>
@@ -176,3 +187,5 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
         </div >
     );
 };
+
+

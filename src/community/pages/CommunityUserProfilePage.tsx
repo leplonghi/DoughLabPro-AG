@@ -89,7 +89,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
         return (
             <LibraryPageLayout>
                 <div className="flex items-center justify-center min-h-[50vh]">
-                    <Loader2 className="h-8 w-8 animate-spin text-lime-600" />
+                    <Loader2 className="h-8 w-8 animate-spin text-dlp-brand-hover" />
                 </div>
             </LibraryPageLayout>
         );
@@ -102,7 +102,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                     <p className="text-gray-500 mb-4">{error}</p>
                     <button
                         onClick={() => navigate('community')}
-                        className="text-lime-600 font-medium hover:underline"
+                        className="text-dlp-brand-hover font-medium hover:underline"
                     >{t('community.return_to_community')}</button>
                 </div>
             </LibraryPageLayout>
@@ -155,7 +155,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                             )}
                             <div className="flex gap-4 mt-2">
                                 {currentUser.website && (
-                                    <a href={currentUser.website} target="_blank" rel="noreferrer" className="text-lime-600 hover:text-lime-700 text-sm font-medium">{t('community.website')}</a>
+                                    <a href={currentUser.website} target="_blank" rel="noreferrer" className="text-dlp-brand-hover hover:text-lime-700 text-sm font-medium">{t('community.website')}</a>
                                 )}
                                 {currentUser.instagramHandle && (
                                     <a href={`https://instagram.com/${currentUser.instagramHandle.replace('@', '')}`} target="_blank" rel="noreferrer" className="text-pink-600 hover:text-pink-700 text-sm font-medium">{t('community.instagram')}</a>
@@ -175,7 +175,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                         <button
                             onClick={() => setActiveTab('posts')}
                             className={`pb-3 text-sm font-medium flex items-center gap-2 border-b-2 transition-colors ${activeTab === 'posts'
-                                ? 'border-lime-600 text-lime-600'
+                                ? 'border-dlp-brand-hover text-dlp-brand-hover'
                                 : 'border-transparent text-gray-500 hover:text-gray-700'
                                 }`}
                         >
@@ -183,7 +183,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
                         <button
                             onClick={() => setActiveTab('saved')}
                             className={`pb-3 text-sm font-medium flex items-center gap-2 border-b-2 transition-colors ${activeTab === 'saved'
-                                ? 'border-lime-600 text-lime-600'
+                                ? 'border-dlp-brand-hover text-dlp-brand-hover'
                                 : 'border-transparent text-gray-500 hover:text-gray-700'
                                 }`}
                         >
@@ -234,3 +234,5 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
         </LibraryPageLayout>
     );
 };
+
+

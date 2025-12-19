@@ -40,7 +40,7 @@ const LevainLayout: React.FC<LevainLayoutProps> = ({ children, levainName, activ
                 key={item.id}
                 onClick={() => onTabChange(item.id)}
                 className={`whitespace-nowrap flex items-center gap-2 py-3 px-1 border-b-2 font-bold text-sm transition-all ${activeTab === item.id
-                    ? 'border-lime-500 text-lime-600 '
+                    ? 'border-dlp-brand text-dlp-brand-hover '
                     : 'border-transparent text-slate-500 hover:text-slate-700  hover:border-slate-300'
                   }`}
               >
@@ -60,3 +60,4 @@ const LevainLayout: React.FC<LevainLayoutProps> = ({ children, levainName, activ
 };
 
 export default LevainLayout;
+

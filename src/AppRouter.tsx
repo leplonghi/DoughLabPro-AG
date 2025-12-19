@@ -176,7 +176,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
         }
         if (route === 'styles/detail' && routeParams) {
             const style = getStyleById(routeParams);
-            return protect(<StyleDetailPage style={style || null} onLoadAndNavigate={(s) => handleLoadStyleFromModule(s, navigate)} onBack={() => navigate('styles')} />);
+            return protect(<StyleDetailPage style={style || null} onLoadAndNavigate={(s) => handleLoadStyleFromModule(s, navigate)} onBack={() => navigate('styles')} onNavigate={navigate} />);
         }
 
         if ((route === 'community/detail' || route === 'community/post') && routeParams) {

@@ -43,7 +43,7 @@ const SearchResultsPage: React.FC = () => {
                         <MagnifyingGlassIcon className="w-12 h-12 text-slate-400 mx-auto mb-4" />
                         <h3 className="text-xl font-bold text-slate-500 mb-2">{t('learn.no_results_found')}</h3>
                         <p className="text-slate-500">{t('learn.try_adjusting_your_search_terms_or_browse_by_categ')}</p>
-                        <button onClick={() => navigate('learn')} className="mt-6 px-6 py-2 bg-lime-600 hover:bg-lime-500 text-white rounded-lg font-bold transition-colors">{t('learn.browse_library')}</button>
+                        <button onClick={() => navigate('learn')} className="mt-6 px-6 py-2 bg-dlp-brand-hover hover:bg-dlp-brand hover:text-white text-white rounded-lg font-bold transition-colors">{t('learn.browse_library')}</button>
                     </div>
                 ) : (
                     <div className="space-y-4">
@@ -51,12 +51,12 @@ const SearchResultsPage: React.FC = () => {
                             <div
                                 key={article.id}
                                 onClick={() => navigate('learn/article', article.id)}
-                                className="bg-white p-6 rounded-xl border border-stone-200 hover:border-lime-500 hover:shadow-md transition-all cursor-pointer group"
+                                className="bg-white p-6 rounded-xl border border-stone-200 hover:border-dlp-brand hover:shadow-md transition-all cursor-pointer group"
                             >
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <div className="flex items-center gap-2 mb-2">
-                                            <span className="text-xs font-bold text-lime-600 uppercase tracking-wider">
+                                            <span className="text-xs font-bold text-dlp-brand-hover uppercase tracking-wider">
                                                 {article.category}
                                             </span>
                                             {matches.length > 0 && (
@@ -65,14 +65,14 @@ const SearchResultsPage: React.FC = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-lime-600 transition-colors">
+                                        <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-dlp-brand-hover transition-colors">
                                             {article.title}
                                         </h3>
                                         <p className="text-slate-600 text-sm line-clamp-2">
                                             {article.subtitle}
                                         </p>
                                     </div>
-                                    <ArrowRightIcon className="w-5 h-5 text-slate-400 group-hover:text-lime-500 transition-colors mt-2" />
+                                    <ArrowRightIcon className="w-5 h-5 text-slate-400 group-hover:text-dlp-brand transition-colors mt-2" />
                                 </div>
                             </div>
                         ))}
@@ -84,3 +84,5 @@ const SearchResultsPage: React.FC = () => {
 };
 
 export default SearchResultsPage;
+
+

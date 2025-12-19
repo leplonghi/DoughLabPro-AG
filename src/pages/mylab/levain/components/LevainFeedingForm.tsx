@@ -78,7 +78,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
             >
                 <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/50 px-6 py-4">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 bg-lime-100 rounded-lg text-lime-600">
+                        <div className="p-2 bg-lime-100 rounded-lg text-dlp-brand-hover">
                             <WeightIcon className="h-5 w-5" />
                         </div>
                         <h2 className="text-lg font-bold text-slate-900">{t('mylab.feed_your_levain')}</h2>
@@ -109,9 +109,9 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                                 />
                             </div>
                             <div className="flex gap-2 items-end">
-                                <button type="button" onClick={() => applyRatio(1, 1)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:1:1</button>
-                                <button type="button" onClick={() => applyRatio(2, 2)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:2:2</button>
-                                <button type="button" onClick={() => applyRatio(5, 5)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-600 transition-colors">1:5:5</button>
+                                <button type="button" onClick={() => applyRatio(1, 1)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-dlp-brand hover:text-dlp-brand-hover transition-colors">1:1:1</button>
+                                <button type="button" onClick={() => applyRatio(2, 2)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-dlp-brand hover:text-dlp-brand-hover transition-colors">1:2:2</button>
+                                <button type="button" onClick={() => applyRatio(5, 5)} className="px-3 py-2 text-xs font-bold rounded-lg bg-white border border-slate-300 hover:border-dlp-brand hover:text-dlp-brand-hover transition-colors">1:5:5</button>
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                             <select
                                 value={flourType}
                                 onChange={e => setFlourType(e.target.value)}
-                                className="w-full rounded-md border-slate-300 text-sm text-slate-700 focus:border-lime-500 focus:ring-lime-500"
+                                className="w-full rounded-md border-slate-300 text-sm text-slate-700 focus:border-dlp-brand focus:ring-dlp-brand"
                             >
                                 <option>{t('mylab.white_flour')}</option>
                                 <option>{t('mylab.whole_wheat')}</option>
@@ -167,7 +167,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
                                 value={ambientTemperature || ''}
                                 onChange={e => setAmbientTemperature(Number(e.target.value))}
                                 placeholder="24"
-                                className="w-full rounded-md border-slate-300 text-sm focus:border-lime-500 focus:ring-lime-500 text-slate-700"
+                                className="w-full rounded-md border-slate-300 text-sm focus:border-dlp-brand focus:ring-dlp-brand text-slate-700"
                             />
                         </div>
                     </div>
@@ -184,7 +184,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
 
                     <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                         <button type="button" onClick={onClose} className="rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors">{t('common.cancel')}</button>
-                        <button type="submit" className="rounded-lg bg-gradient-to-br from-lime-500 to-lime-700 px-6 py-2 text-sm font-bold text-white shadow-md shadow-lime-200 hover:from-lime-600 hover:to-lime-800 transition-all active:scale-95">{t('mylab.confirm_feeding')}</button>
+                        <button type="submit" className="rounded-lg bg-gradient-to-br from-dlp-brand to-lime-700 px-6 py-2 text-sm font-bold text-white shadow-md shadow-lime-200 hover:from-dlp-brand-hover hover:to-lime-800 transition-all active:scale-95">{t('mylab.confirm_feeding')}</button>
                     </div>
                 </form>
             </div>
@@ -193,3 +193,5 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
 };
 
 export default LevainFeedingForm;
+
+

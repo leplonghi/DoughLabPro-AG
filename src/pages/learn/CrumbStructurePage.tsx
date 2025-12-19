@@ -84,7 +84,7 @@ const CrumbStructurePage: React.FC = () => {
 
             <div className="mt-12 border-t border-slate-200 pt-8">
                 <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <BookOpenIcon className="h-5 w-5 text-lime-600" />
+                    <BookOpenIcon className="h-5 w-5 text-dlp-brand-hover" />
                     References & Further Reading
                 </h3>
                 <ul className="space-y-2 text-sm text-slate-600">
@@ -100,3 +100,5 @@ const CrumbStructurePage: React.FC = () => {
 };
 
 export default CrumbStructurePage;
+
+

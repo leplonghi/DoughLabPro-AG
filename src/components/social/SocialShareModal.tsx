@@ -68,14 +68,14 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                         className="w-[320px] aspect-[4/5] bg-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden"
                     >
                         {/* Background Accents - Enhanced */}
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-lime-500/20 blur-3xl rounded-full -mr-16 -mt-16 mix-blend-screen"></div>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-dlp-brand/20 blur-3xl rounded-full -mr-16 -mt-16 mix-blend-screen"></div>
                         <div className="absolute bottom-0 left-0 w-48 h-48 bg-sky-500/20 blur-3xl rounded-full -ml-16 -mb-16 mix-blend-screen"></div>
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-slate-800/50 rounded-full blur-2xl"></div>
 
                         {/* Header */}
                         <div className="relative z-10">
                             <div className="flex items-center gap-2 mb-2">
-                                <div className="h-6 w-6 rounded bg-lime-500 flex items-center justify-center font-black text-slate-900 text-xs shadow-lg shadow-lime-500/20">DL</div>
+                                <div className="h-6 w-6 rounded bg-dlp-brand flex items-center justify-center font-black text-slate-900 text-xs shadow-lg shadow-dlp-brand/20">DL</div>
                                 <span className="font-bold tracking-widest text-[10px] text-slate-400 uppercase">{t('common.share_card.doughlab_title')}</span>
                             </div>
                             <h2 className="text-3xl font-black text-white mt-1 leading-none tracking-tight">
@@ -106,7 +106,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                                     <circle
                                         cx="50" cy="50" r="40"
                                         fill="transparent"
-                                        stroke="#84cc16" // lime-500
+                                        stroke="#51a145" // Earthier Green
                                         strokeWidth="12"
                                         strokeDasharray={`${(config.hydration / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2} 251.2`}
                                         strokeDashoffset={`-${(100 / (100 + config.hydration + config.salt + (config.oil || 0) + (config.sugar || 0) + (config.yeastPercentage || 0))) * 251.2}`}
@@ -178,3 +178,5 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
 };
 
 export default SocialShareModal;
+
+

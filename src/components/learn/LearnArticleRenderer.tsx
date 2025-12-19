@@ -29,7 +29,7 @@ const StandardSection: React.FC<{
     <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm mb-6">
         <div className="px-6 sm:px-8 py-6 border-b border-stone-100 bg-stone-50/30">
             <h3 className="text-xl font-bold text-slate-900 flex items-center gap-3">
-                {icon && <span className="text-lime-500">{icon}</span>}
+                {icon && <span className="text-dlp-brand">{icon}</span>}
                 {title}
             </h3>
         </div>
@@ -119,8 +119,8 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                             <button
                                 onClick={() => handleModeChange('technical')}
                                 className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'technical'
-                                    ? 'bg-lime-600 border-lime-600 text-white shadow-lg shadow-lime-900/20 scale-105'
-                                    : 'bg-white border-stone-200 text-stone-500 hover:border-lime-500 hover:text-lime-600'
+                                    ? 'bg-dlp-brand-hover border-dlp-brand-hover text-white shadow-lg shadow-lime-900/20 scale-105'
+                                    : 'bg-white border-stone-200 text-stone-500 hover:border-dlp-brand hover:text-dlp-brand-hover'
                                     }`}
                             >
                                 <BookOpenIcon className="w-4 h-4" />
@@ -161,7 +161,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                     ) : (
                         <div className="p-8 bg-white rounded-2xl text-center text-slate-500 border border-stone-200">
                             {t('learn.grandma_nap', { defaultValue: 'Grandma is taking a nap. (No simplified version available for this article yet).' })}
-                            <button onClick={() => handleModeChange('technical')} className="block mx-auto mt-4 text-lime-600 hover:underline">{t('learn.return_main', { defaultValue: 'Return to Main Article' })}</button>
+                            <button onClick={() => handleModeChange('technical')} className="block mx-auto mt-4 text-dlp-brand-hover hover:underline">{t('learn.return_main', { defaultValue: 'Return to Main Article' })}</button>
                         </div>
                     )
                 )}
@@ -180,7 +180,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                             <ul className="space-y-2 mb-6">
                                 {summaryData.keyPoints.map((point, i) => (
                                     <li key={i} className="flex items-start gap-2 text-slate-600">
-                                        <CheckIcon className="w-5 h-5 text-lime-600 flex-shrink-0 mt-0.5" />
+                                        <CheckIcon className="w-5 h-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
                                         <span>{point}</span>
                                     </li>
                                 ))}
@@ -209,7 +209,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                                 <ul className="space-y-3">
                                     {finalData.technicalFoundations.map((item, i) => (
                                         <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-lime-500 mt-2 flex-shrink-0" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-dlp-brand mt-2 flex-shrink-0" />
                                             <span>{item}</span>
                                         </li>
                                     ))}
@@ -271,7 +271,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                                 <ul className="space-y-3">
                                     {finalData.practicalApplications.map((app, i) => (
                                         <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <CheckIcon className="w-5 h-5 text-lime-600 flex-shrink-0 mt-0.5" />
+                                            <CheckIcon className="w-5 h-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
                                             <span>{app}</span>
                                         </li>
                                     ))}
@@ -364,7 +364,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                                     {finalData.faq.map((item, i) => (
                                         <div key={i} className="bg-stone-50 p-4 rounded-xl border border-stone-200">
                                             <h4 className="font-bold text-slate-900 mb-2 flex items-start gap-2">
-                                                <QuestionMarkCircleIcon className="h-5 w-5 text-lime-600 flex-shrink-0 mt-0.5" />
+                                                <QuestionMarkCircleIcon className="h-5 w-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
                                                 {item.q}
                                             </h4>
                                             <p className="text-slate-700 pl-7">{item.a}</p>
@@ -393,3 +393,5 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
 };
 
 export default LearnArticleRenderer;
+
+

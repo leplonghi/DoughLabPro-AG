@@ -1,7 +1,15 @@
-
+import React, { useState, useEffect } from 'react';
+import { DoughConfig, Levain, TimelineStep } from '@/types';
+import { useTranslation } from '@/i18n';
+import { calculateReverseTimeline } from '@/logic/reverseTimeline';
 import { useBakingNotifications } from '@/hooks/useBakingNotifications';
-import { ClockIcon, CalendarIcon, ShareIcon, BellIcon } from '@heroicons/react/24/outline'; // Adjust import based on your icon system or use standard ones
-import { BellIcon as BellIconSolid } from '@heroicons/react/24/solid';
+import {
+    ClockIcon,
+    CalendarIcon,
+    ShareIcon,
+    BellIcon,
+    SolidBellIcon
+} from '@/components/ui/Icons';
 
 // Simple formatter
 const formatDate = (date: Date, locale: string) => {
@@ -27,7 +35,7 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
     onTargetDateChange,
     onScheduleChange
 }) => {
-    const { t, i18n } = useTranslation();
+    const { t, locale } = useTranslation();
 
     // Default target: Tonight at 20:00 or Tomorrow 20:00
     // Only use default if targetDate is NOT provided
@@ -79,7 +87,7 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
             } else if (Notification.permission === 'granted') {
                 setNotificationsEnabled(true);
             } else {
-                alert(t('common.notifications_blocked', 'Notifications are blocked. Please enable them in your browser settings.'));
+                alert(t('common.notifications_blocked', { defaultValue: 'Notifications are blocked. Please enable them in your browser settings.' }));
             }
         } else {
             setNotificationsEnabled(false);
@@ -114,9 +122,9 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
                 <div>
                     <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
                         <ClockIcon className="w-5 h-5 text-amber-600" />
-                        {t('calc.schedule.title', 'Smart Schedule')}
+                        {t('calc.schedule.title', { defaultValue: 'Smart Schedule' })}
                     </h3>
-                    <p className="text-xs text-slate-500">{t('calc.schedule.subtitle', 'Plan backwards from eating time')}</p>
+                    <p className="text-xs text-slate-500">{t('calc.schedule.subtitle', { defaultValue: 'Plan backwards from eating time' })}</p>
                 </div>
 
                 <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -126,7 +134,7 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
                         title={notificationsEnabled ? "Disable Alerts" : "Enable Live Alerts"}
                         className={`p-2 rounded-lg transition-colors ${notificationsEnabled ? 'bg-amber-100 text-amber-600' : 'bg-slate-100 text-slate-400 hover:text-slate-600'}`}
                     >
-                        {notificationsEnabled ? <BellIconSolid className="w-5 h-5" /> : <BellIcon className="w-5 h-5" />}
+                        {notificationsEnabled ? <SolidBellIcon className="w-5 h-5" /> : <BellIcon className="w-5 h-5" />}
                     </button>
 
                     {/* Date Picker */}
@@ -147,12 +155,12 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
                     return (
                         <div key={step.id} className="ml-6 relative">
                             {/* Dot */}
-                            <div className={`absolute -left-[31px] w-4 h-4 rounded-full border-2 border-white shadow-sm ${isFirst ? 'bg-green-500' : isLast ? 'bg-amber-600' : 'bg-slate-300'}`}></div>
+                            <div className={`absolute -left-[31px] w-4 h-4 rounded-full border-2 border-white shadow-sm ${isFirst ? 'bg-dlp-brand' : isLast ? 'bg-amber-600' : 'bg-slate-300'}`}></div>
 
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                                 <div>
                                     <span className="text-xs font-bold text-slate-400 uppercase tracking-wide block mb-0.5">
-                                        {formatDate(step.startTime, i18n.language)}
+                                        {formatDate(step.startTime, locale)}
                                     </span>
                                     <h4 className="font-semibold text-slate-800 text-sm">{step.title}</h4>
                                 </div>
@@ -172,9 +180,10 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
                     className="w-full flex items-center justify-center gap-2 text-sm font-medium text-amber-700 hover:bg-amber-50 py-2 rounded-lg transition"
                 >
                     <CalendarIcon className="w-4 h-4" />
-                    {t('calc.schedule.add_to_calendar', 'Add Start to Calendar')}
+                    {t('calc.schedule.add_to_calendar', { defaultValue: 'Add Start to Calendar' })}
                 </button>
             </div>
         </div>
     );
 };
+

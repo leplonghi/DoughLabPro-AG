@@ -111,7 +111,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     <div className="pt-4">
                         <button
                             onClick={() => setStep(1)}
-                            className="w-full bg-lime-600 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:bg-lime-700 transition flex items-center justify-center gap-2"
+                            className="w-full bg-dlp-brand-hover text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:bg-lime-700 transition flex items-center justify-center gap-2"
                         >
                             Start <ChevronRightIcon className="w-5 h-5" />
                         </button>
@@ -138,7 +138,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                                         key={l}
                                         onClick={() => setSkill(l)}
                                         className={`p-3 rounded-lg border text-sm font-medium transition-all ${skill === l
-                                            ? 'border-lime-500 bg-lime-50 text-lime-700 ring-1 ring-lime-500'
+                                            ? 'border-dlp-brand bg-lime-50 text-lime-700 ring-1 ring-dlp-brand'
                                             : 'border-slate-200 bg-white text-slate-600 hover:border-lime-300'
                                             }`}
                                     >
@@ -161,7 +161,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                                         key={item.id}
                                         onClick={() => setInterest(item.id as any)}
                                         className={`p-3 rounded-lg border text-sm font-medium transition-all flex flex-col items-center gap-1 ${interest === item.id
-                                            ? 'border-lime-500 bg-lime-50 text-lime-700 ring-1 ring-lime-500'
+                                            ? 'border-dlp-brand bg-lime-50 text-lime-700 ring-1 ring-dlp-brand'
                                             : 'border-slate-200 bg-white text-slate-600 hover:border-lime-300'
                                             }`}
                                     >
@@ -179,7 +179,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                             <button
                                 onClick={() => setEnableSchedule(false)}
                                 className={`p-3 rounded-lg border text-sm font-medium transition-all ${!enableSchedule
-                                    ? 'border-lime-500 bg-lime-50 text-lime-700 ring-1 ring-lime-500'
+                                    ? 'border-dlp-brand bg-lime-50 text-lime-700 ring-1 ring-dlp-brand'
                                     : 'border-slate-200 bg-white text-slate-600 hover:border-lime-300'
                                     }`}
                             >
@@ -189,7 +189,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                             <button
                                 onClick={() => setEnableSchedule(true)}
                                 className={`p-3 rounded-lg border text-sm font-medium transition-all ${enableSchedule
-                                    ? 'border-lime-500 bg-lime-50 text-lime-700 ring-1 ring-lime-500'
+                                    ? 'border-dlp-brand bg-lime-50 text-lime-700 ring-1 ring-dlp-brand'
                                     : 'border-slate-200 bg-white text-slate-600 hover:border-lime-300'
                                     }`}
                             >
@@ -201,7 +201,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
 
                     <button
                         onClick={() => setStep(2)}
-                        className="w-full mt-4 bg-lime-600 text-white py-3 rounded-lg font-semibold hover:bg-lime-700 transition"
+                        className="w-full mt-4 bg-dlp-brand-hover text-white py-3 rounded-lg font-semibold hover:bg-lime-700 transition"
                     >
                         {t('auth.onboarding.continue', 'Continue')}
                     </button>
@@ -232,7 +232,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     <button
                         onClick={handleFinish}
                         disabled={isLoading}
-                        className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-dlp-brand-hover text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoading ? (
                             <>
@@ -266,7 +266,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                 {/* Progress Bar */}
                 <div className="h-1 bg-slate-100 w-full">
                     <motion.div
-                        className="h-full bg-lime-500"
+                        className="h-full bg-dlp-brand"
                         initial={{ width: '0%' }}
                         animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
                     />
@@ -289,3 +289,5 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
         </div>
     );
 };
+
+

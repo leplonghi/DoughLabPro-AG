@@ -1,246 +1,169 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
 /* ========================================
-   DoughLabPro Design System
-   ========================================
-   IMPORTANT: This app is LIGHT MODE ONLY
-   - NO dark mode support
-   - NO dark: classes
-   - Cards are ALWAYS white (bg-white)
+   DoughLabPro Premium Design System
    ======================================== */
 
 :root {
-  /* Base Background Colors */
-  --dlp-bg: #FFFFFF;
-  --dlp-bg-soft: #F8F9FA;
-  --dlp-bg-card: #FFFFFF;
+  /* Premium Palette */
+  --dlp-bg: #F8FAFC;
+  --dlp-bg-soft: #F1F5F9;
+  --dlp-bg-card: rgba(255, 255, 255, 0.918);
 
-  /* Text Colors */
-  --dlp-text-primary: #111827;
-  --dlp-text-secondary: #4B5563;
-  --dlp-text-muted: #6B7280;
+  /* Brand Colors - Fresh Gradient (Lime to Emerald) */
+  --dlp-brand: #51a145;
+  --dlp-brand-hover: #36782c;
+  --dlp-brand-light: #ECFCCB;
+  --dlp-brand-dark: #36782c;
 
   /* Accent Colors */
-  --dlp-accent: #84CC16;
-  --dlp-accent-hover: #65A30D;
-  --dlp-accent-light: #A3E635;
-  --dlp-space-md: 12px;
-  --dlp-space-lg: 16px;
-  --dlp-space-xl: 20px;
-  --dlp-space-2xl: 24px;
-  --dlp-space-3xl: 32px;
-  --dlp-space-4xl: 40px;
-  --dlp-space-5xl: 48px;
+  --dlp-accent: #51a145;
+  --dlp-accent-hover: #36782c;
+  --dlp-accent-warm: #F59E0B;
 
-  /* Shadows */
-  --dlp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --dlp-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.06);
+  /* Text Colors - High contrast but soft */
+  --dlp-text-primary: #0F172A;
+  --dlp-text-secondary: #334155;
+  --dlp-text-muted: #64748B;
 
-  /* Force light mode - NO dark mode support */
+  /* Borders & Shadows */
+  --dlp-border: rgba(226, 232, 240, 0.8);
+  --dlp-border-strong: #E2E8F0;
+
+  --dlp-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --dlp-shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --dlp-shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  --dlp-shadow-premium: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+
+  /* Force light mode */
   color-scheme: light;
 }
 
-
 html {
   font-size: 14px;
+  /* Reduced from 15px for a tighter look */
   scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--dlp-bg-soft);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(216, 243, 220, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(81, 161, 69, 0.05) 0px, transparent 50%);
   color: var(--dlp-text-primary);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Enforce Typography Constraints */
-.font-bold,
-.font-extrabold,
-.font-black {
-  font-weight: 600 !important;
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
 }
 
-/* Pro Lock Effect */
-.pro-locked {
-  filter: blur(0.1875rem);
-  opacity: 0.5;
-  pointer-events: none;
-  user-select: none;
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--dlp-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--dlp-border);
+  box-shadow: var(--dlp-shadow-premium);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--dlp-bg-muted);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--dlp-accent);
-  border-radius: 10px;
-  transition: background 0.3s;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--dlp-accent-hover);
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Custom styles for the range input thumb */
-input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 1.25rem;
-  height: 1.25rem;
-  background: var(--dlp-accent);
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: -0.375rem;
-  border: 0.25rem solid #fff;
-  box-shadow: var(--dlp-shadow-sm);
-  transition: all 0.2s;
-}
-
-input[type='range']::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: var(--dlp-shadow-md);
-}
-
-input[type='range']::-moz-range-thumb {
-  width: 0.75rem;
-  height: 0.75rem;
-  background: var(--dlp-accent);
-  border-radius: 50%;
-  cursor: pointer;
-  border: 0.25rem solid #fff;
-  box-shadow: var(--dlp-shadow-sm);
-  transition: all 0.2s;
-}
-
-input[type='range']::-moz-range-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: var(--dlp-shadow-md);
-}
-
-/* Custom styles for the range input track */
-input[type='range']::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 0.5rem;
-  cursor: pointer;
-  background: var(--dlp-border);
-  border-radius: 9999px;
-}
-
-input[type='range']::-moz-range-track {
-  width: 100%;
-  height: 0.5rem;
-  cursor: pointer;
-  background: var(--dlp-border);
-  border-radius: 9999px;
-}
-
-/* Card hover effects */
-.card-hover {
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-hover:hover {
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
-  box-shadow: var(--dlp-shadow-md);
+  box-shadow: var(--dlp-shadow-lg);
 }
 
-/* Editorial Typography for Learn Pages */
+/* Custom Components */
+.dlp-button-primary {
+  @apply bg-gradient-to-br from-[#51a145] to-[#36782c] text-white font-bold py-3 px-6 rounded-xl transition-all hover:brightness-110 hover:shadow-lg hover:shadow-emerald-500/30 active:scale-[0.98] shadow-md shadow-emerald-900/10;
+}
+
+@layer utilities {
+  .shadow-premium {
+    box-shadow: var(--dlp-shadow-premium);
+  }
+}
+
+.dlp-card {
+  @apply bg-white rounded-2xl border border-slate-100 shadow-premium overflow-hidden;
+}
+
+/* Enforce Typography */
+.font-bold {
+  font-weight: 600;
+}
+
+.font-extrabold {
+  font-weight: 700;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dlp-bg-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Range Input Stylings */
+input[type='range'] {
+  @apply appearance-none bg-slate-200 h-1 rounded-full;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 bg-gradient-to-br from-[#51a145] to-[#36782c] rounded-full cursor-pointer border-2 border-white shadow-md transition-transform hover:scale-110;
+}
+
+/* Prose Editorial */
 .prose-editorial h1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  color: var(--dlp-text-primary);
-}
-
-.prose-editorial h2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-top: 2.5em;
-  margin-bottom: 1em;
-  color: var(--dlp-text-primary);
+  @apply text-4xl font-bold mb-6 text-slate-900;
 }
 
 .prose-editorial p {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.75;
-  margin-bottom: 1.5em;
-  color: var(--dlp-text-secondary);
-  font-size: 1.125rem;
-}
-
-.prose-editorial strong {
-  font-weight: 600;
-  color: var(--dlp-text-primary);
-}
-
-.prose-editorial blockquote {
-  font-style: italic;
-  border-left: 4px solid var(--dlp-accent);
-  padding-left: 1.5em;
-  color: var(--dlp-text-muted);
-  margin: 2em 0;
+  @apply text-lg leading-relaxed text-slate-600 mb-6;
 }

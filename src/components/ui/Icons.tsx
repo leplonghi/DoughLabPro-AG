@@ -78,7 +78,39 @@ import {
   Sliders,
   Cloud,
   Globe2,
-  LucideProps
+  LucideProps,
+  Target,
+  Crosshair,
+  RotateCcw,
+  Rocket,
+  Moon,
+  ChefHat,
+  Sandwich,
+  Cookie,
+  Croissant,
+  Milk,
+  Egg,
+  Candy,
+  Beef,
+  Grape,
+  Leaf,
+  GlassWater,
+  Microwave,
+  Waves,
+  Microscope,
+  History,
+  Utensils,
+  Triangle,
+  RefreshCw,
+  Timer,
+  Layers,
+  Move,
+  Disc,
+  ArrowDown,
+  Soup,
+  Calendar,
+  Bell,
+  LayoutGrid
 } from 'lucide-react';
 
 // --- Navigation & Layout ---
@@ -140,8 +172,16 @@ export const FlourIcon = Wheat;
 export const WaterIcon = Droplets;
 export const SaltIcon = Hexagon;
 export const OilIcon = Droplet;
-export const YeastIcon = Activity; // Using Activity as placeholder for Yeast/Action
+export const SugarIcon = Candy;
+export const MilkIcon = Milk;
+export const EggIcon = Egg;
+export const CheeseIcon = Triangle; // Wedge shape for cheese
+export const MeatIcon = Beef;
+export const FruitIcon = Grape;
+export const VegetableIcon = Leaf;
+export const YeastIcon = Microscope; // Better than Activity for Yeast science
 export const FireIcon = Flame;
+export const OvenIcon = Microwave; // Lucide's closest to an oven/microwave box
 export const ClockIcon = Clock;
 export const CubeIcon = Box;
 export const WrenchScrewdriverIcon = Wrench;
@@ -150,11 +190,30 @@ export const InsightsIcon = LineChart;
 export const ListBulletIcon = List;
 export const PhotoIcon = Image;
 export const PizzaSliceIcon = Pizza;
+export const BreadIcon = Sandwich;
+export const PastryIcon = Croissant;
+export const CookieIcon = Cookie;
 export const PuzzlePieceIcon = Puzzle;
 export const QuestionMarkCircleIcon = HelpCircle;
 export const SaveIcon = Save;
+export const ChefHatIcon = ChefHat;
+export const UtensilsIcon = Utensils;
+export const HistoryIcon = History;
 
-export const FermentationIcon = Activity;
+export const FermentationIcon = Waves; // Representing activity/tides of fermentation
+export const MixingIcon = RefreshCw;
+export const KneadingIcon = Move;
+export const ShapingIcon = Layers;
+export const CoolingIcon = Snowflake;
+export const FlatbreadIcon = Disc;
+export const TimerIcon = Timer;
+export const ArrowDownIcon = ArrowDown;
+export const BowlIcon = Soup; // Closest to a mixing bowl or soup dish
+export const CalendarIcon = Calendar;
+export const BellIcon = Bell;
+export const SolidBellIcon = (props: any) => <Bell fill="currentColor" {...props} />;
+export const LayoutGridIcon = LayoutGrid;
+
 export const SunIcon = Sun;
 export const SnowIcon = Snowflake;
 export const ThermometerIcon = Thermometer;
@@ -175,6 +234,11 @@ export const ClipboardDocumentCheckIcon = ClipboardCheck;
 export const AdjustmentsIcon = Sliders;
 export const CloudIcon = Cloud;
 export const GlobeAmericasIcon = Globe2;
+export const TargetIcon = Target;
+export const CrosshairIcon = Crosshair;
+export const RotateCcwIcon = RotateCcw;
+export const RocketIcon = Rocket;
+export const MoonIcon = Moon;
 
 export const GoogleIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg

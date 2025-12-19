@@ -50,3 +50,5 @@ export const CommunityPost: React.FC<CommunityPostProps> = ({ post, onLike, onCo
         </div>
     );
 };
+
+

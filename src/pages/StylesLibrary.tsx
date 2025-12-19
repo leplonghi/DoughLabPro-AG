@@ -85,7 +85,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
             {/* --- HERO SECTION --- */}
             <div className="mb-8 mx-4 sm:mx-0">
                 <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-dlp-brand/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
 
                     <div className="relative z-10 text-center max-w-3xl mx-auto">
@@ -113,7 +113,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             </div>
                             <input
                                 type="text"
-                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 text-sm shadow-sm transition-all"
+                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-dlp-brand focus:border-dlp-brand text-sm shadow-sm transition-all"
                                 placeholder={t('common.general.search_styles')}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -160,7 +160,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                 <select
                                     value={filterRegion}
                                     onChange={(e) => setFilterRegion(e.target.value as Region | 'All' | 'Global')}
-                                    className="block w-full pl-9 pr-8 py-2 text-xs font-bold border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 shadow-sm appearance-none cursor-pointer hover:bg-slate-50 transition-colors"
+                                    className="block w-full pl-9 pr-8 py-2 text-xs font-bold border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-dlp-brand focus:border-dlp-brand shadow-sm appearance-none cursor-pointer hover:bg-slate-50 transition-colors"
                                 >
                                     <option value="All">{t('common.general.all_regions')}</option>
                                     <option disabled>──────────</option>
@@ -197,7 +197,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                     <p className="text-slate-400 text-lg">{t('styles.no_styles_match_your_filter')}</p>
                     <button
                         onClick={() => { setFilterCategory('All'); setFilterRegion('All'); setSearchQuery(''); }}
-                        className="mt-4 text-lime-600 font-bold hover:underline"
+                        className="mt-4 text-dlp-brand-hover font-bold hover:underline"
                     >{t('common.clear_filters')}</button>
                 </div>
             )}
@@ -248,3 +248,5 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
         </LibraryPageLayout>
     );
 };
+
+

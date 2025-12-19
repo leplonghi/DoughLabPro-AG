@@ -20,7 +20,7 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
                 className="flex items-center justify-between p-4 cursor-pointer bg-slate-50/50 hover:bg-slate-50 transition-colors"
             >
                 <div className="flex items-center gap-4">
-                    <div className="p-2 bg-white rounded-xl border border-slate-100 shadow-sm text-lime-600">
+                    <div className="p-2 bg-white rounded-xl border border-slate-100 shadow-sm text-dlp-brand-hover">
                         {style.source === 'official' ? <BookOpenIcon className="h-5 w-5" /> : <SparklesIcon className="h-5 w-5" />}
                     </div>
                     <div>
@@ -67,7 +67,7 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
                     <div className="flex justify-end pt-2 border-t border-slate-50">
                         <a
                             href={`#/styles/detail/${style.id}`}
-                            className="text-xs font-bold text-lime-600 hover:text-lime-700 flex items-center gap-1"
+                            className="text-xs font-bold text-dlp-brand-hover hover:text-lime-700 flex items-center gap-1"
                         >
                             View Full Style Guide &rarr;
                         </a>
@@ -79,3 +79,5 @@ const StyleSummaryCard: React.FC<StyleSummaryCardProps> = ({ style, className = 
 };
 
 export default StyleSummaryCard;
+
+

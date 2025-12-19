@@ -36,9 +36,10 @@ const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculat
                     : 'text-slate-600 hover:text-slate-900'
                     }`}
             >
-                <SparklesIcon className={`h-3 w-3 ${calculatorMode === 'advanced' ? 'text-lime-600' : 'text-slate-400'}`} />{t('calculator.pro')}</button>
+                <SparklesIcon className={`h-3 w-3 ${calculatorMode === 'advanced' ? 'text-dlp-brand-hover' : 'text-slate-400'}`} />{t('calculator.pro')}</button>
         </div>
     );
 };
 
 export default UiModeToggle;
+

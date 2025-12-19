@@ -79,10 +79,10 @@ const FloursPage: React.FC = () => {
       <div className="mt-12 grid gap-6 sm:grid-cols-2">
         <button
           onClick={() => navigate('mylab/farinhas')}
-          className="group block rounded-xl border border-slate-200 p-6 hover:border-lime-500 hover:shadow-md transition-all text-left w-full"
+          className="group block rounded-xl border border-slate-200 p-6 hover:border-dlp-brand hover:shadow-md transition-all text-left w-full"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
+            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-dlp-brand group-hover:text-white transition-colors">
               <FlaskIcon className="h-6 w-6" />
             </div>
             <h3 className="font-bold text-slate-900">{t('learn.manage_my_flours')}</h3>
@@ -94,10 +94,10 @@ const FloursPage: React.FC = () => {
 
         <button
           onClick={() => navigate('calculator')}
-          className="group block rounded-xl border border-slate-200 p-6 hover:border-lime-500 hover:shadow-md transition-all text-left w-full"
+          className="group block rounded-xl border border-slate-200 p-6 hover:border-dlp-brand hover:shadow-md transition-all text-left w-full"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-lime-500 group-hover:text-white transition-colors">
+            <div className="rounded-lg bg-lime-100 p-2 text-lime-700 group-hover:bg-dlp-brand group-hover:text-white transition-colors">
               <CalculatorIcon className="h-6 w-6" />
             </div>
             <h3 className="font-bold text-slate-900">{t('learn.test_hydration')}</h3>
@@ -113,3 +113,5 @@ const FloursPage: React.FC = () => {
 };
 
 export default FloursPage;
+
+

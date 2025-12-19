@@ -34,14 +34,14 @@ export const SchedulerSection: React.FC = () => {
     return (
         <div className="space-y-6">
             {/* Toggle */}
-            <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+            <div className="flex bg-slate-50 p-1 rounded-xl border border-slate-100">
                 <button
                     onClick={toggleMode}
                     className={`
-                        flex-1 py-2 text-sm font-medium rounded-md transition-all
+                        flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all duration-200
                         ${isManual
-                            ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-white'
-                            : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}
+                            ? 'bg-[#51a145] text-white shadow-md'
+                            : 'text-slate-400 hover:text-[#51a145] hover:bg-white/50'}
                     `}
                 >
                     Manual Duration
@@ -49,36 +49,36 @@ export const SchedulerSection: React.FC = () => {
                 <button
                     onClick={toggleMode}
                     className={`
-                         flex-1 py-2 text-sm font-medium rounded-md transition-all
+                         flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all duration-200
                         ${!isManual
-                            ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-white'
-                            : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}
+                            ? 'bg-[#51a145] text-white shadow-md'
+                            : 'text-slate-400 hover:text-[#51a145] hover:bg-white/50'}
                     `}
                 >
-                    Target Time <span className="text-xs text-amber-500 font-bold ml-1">NEW</span>
+                    Target Time <span className="text-[9px] bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded ml-1">NEW</span>
                 </button>
             </div>
 
             {/* Content */}
             {!isManual && (
-                <div className="bg-white/40 dark:bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/40 dark:border-emerald-500/20 shadow-sm">
+                <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
                     <div className="flex flex-col space-y-4">
-                        <label className="text-xs uppercase tracking-wider text-emerald-800 dark:text-emerald-200 flex items-center gap-2 font-bold">
-                            <Calendar size={14} />
+                        <label className="text-xs uppercase tracking-wider text-slate-500 font-bold flex items-center gap-2">
+                            <Calendar size={14} className="text-[#51a145]" />
                             When do you want to eat?
                         </label>
                         <input
                             type="datetime-local"
-                            className="bg-white/80 dark:bg-black/30 border border-emerald-100 dark:border-emerald-800/50 rounded-lg p-3 text-lg font-mono text-emerald-950 dark:text-emerald-50 focus:ring-2 focus:ring-emerald-500 outline-none placeholder-emerald-900/30 shadow-inner"
+                            className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-lg font-mono font-bold text-slate-800 focus:ring-2 focus:ring-[#51a145] focus:bg-white outline-none transition-all"
                             onChange={handleDateChange}
                             value={pickerValue}
                         />
 
                         {startTimeParams && (
-                            <div className="mt-4 pt-4 border-t border-emerald-100/50 dark:border-emerald-800/30">
+                            <div className="mt-4 pt-4 border-t border-slate-100">
                                 <div className="flex justify-between items-center mb-4">
-                                    <span className="text-sm font-medium text-emerald-800 dark:text-emerald-300">Total Duration</span>
-                                    <span className="text-sm font-bold text-emerald-900 dark:text-white">
+                                    <span className="text-sm font-bold text-slate-500">Total Duration</span>
+                                    <span className="text-sm font-black text-[#1B4332]">
                                         {/* Simple diff display */}
                                         {schedule.targetDate && (
                                             Math.round((new Date(schedule.targetDate).getTime() - new Date().getTime()) / (1000 * 60 * 60))
@@ -87,14 +87,14 @@ export const SchedulerSection: React.FC = () => {
                                 </div>
 
                                 {/* Vertical Timeline Preview */}
-                                <div className="relative pl-6 space-y-6 border-l-2 border-emerald-200 dark:border-emerald-800 ml-2">
+                                <div className="relative pl-6 space-y-6 border-l-2 border-emerald-100 ml-2">
                                     {/* Start */}
                                     <div className="relative">
-                                        <div className="absolute -left-[31px] bg-emerald-500 text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm">1</div>
-                                        <span className="text-xs text-emerald-600 dark:text-emerald-400 uppercase block mb-0.5">Start Process</span>
-                                        <p className="font-mono text-sm font-bold text-emerald-900 dark:text-emerald-100">
+                                        <div className="absolute -left-[31px] bg-[#51a145] text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm font-bold">1</div>
+                                        <span className="text-[10px] font-bold text-[#51a145] uppercase block mb-0.5 tracking-wider">Start Process</span>
+                                        <p className="font-mono text-sm font-bold text-slate-800">
                                             {startTimeParams.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                            <span className="text-xs font-normal text-emerald-600 dark:text-emerald-400 ml-2">
+                                            <span className="text-xs font-medium text-slate-400 ml-2">
                                                 {startTimeParams.toLocaleDateString()}
                                             </span>
                                         </p>
@@ -104,9 +104,9 @@ export const SchedulerSection: React.FC = () => {
 
                                     {/* Eat */}
                                     <div className="relative">
-                                        <div className="absolute -left-[31px] bg-emerald-700 text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm">2</div>
-                                        <span className="text-xs text-emerald-600 dark:text-emerald-400 uppercase block mb-0.5">Bake & Eat</span>
-                                        <p className="font-mono text-sm font-bold text-emerald-900 dark:text-emerald-100">
+                                        <div className="absolute -left-[31px] bg-[#1B4332] text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm font-bold">2</div>
+                                        <span className="text-[10px] font-bold text-[#1B4332] uppercase block mb-0.5 tracking-wider">Bake & Eat</span>
+                                        <p className="font-mono text-sm font-bold text-slate-800">
                                             {new Date(schedule.targetDate!).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </p>
                                     </div>
@@ -115,7 +115,7 @@ export const SchedulerSection: React.FC = () => {
                         )}
 
                         {!startTimeParams && (
-                            <div className="text-center text-emerald-600/50 dark:text-emerald-400/50 text-sm py-4 italic">
+                            <div className="text-center text-slate-400 text-sm py-4 italic">
                                 Pick a date to calculate schedule
                             </div>
                         )}
@@ -124,11 +124,13 @@ export const SchedulerSection: React.FC = () => {
             )}
 
             {isManual && (
-                <div className="p-4 text-center text-slate-500 italic border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">
+                <div className="p-6 text-center text-slate-400 italic border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">
                     Manual Duration Mode (Classic) is active. Adjust yeast manually in The Lab.
                 </div>
             )}
         </div>
     );
 };
+
+
 

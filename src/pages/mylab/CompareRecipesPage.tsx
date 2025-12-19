@@ -42,7 +42,7 @@ const RecipeDetailColumn: React.FC<{ batch: Batch; onLoad: () => void; t: (key: 
             </div>
             <button
                 onClick={onLoad}
-                className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-lime-500 py-2.5 px-4 font-semibold text-white shadow-sm hover:bg-lime-600"
+                className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-dlp-brand py-2.5 px-4 font-semibold text-white shadow-sm hover:bg-dlp-brand hover:text-white-hover"
             >
                 <CalculatorIcon className="h-5 w-5" />{t('mylab.use_recipe_in_calculator')}</button>
         </div>
@@ -150,3 +150,5 @@ const CompareRecipesPage: React.FC<CompareRecipesPageProps> = ({ onNavigate, onL
 };
 
 export default CompareRecipesPage;
+
+

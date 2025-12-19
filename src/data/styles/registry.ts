@@ -14,6 +14,7 @@ import { northAmericaStyles as americasStyles } from './regions/north_america';
 // --- SUPPLEMENTARY LIBRARY MODULES ---
 import { Challah, BurgerBun, Shokupan as ShokupanLegacy, Panettone } from './library/bread/enriched';
 import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './library/pastry/sweets';
+import { burger_buns_enriched } from './bread/burger_buns_enriched';
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -48,7 +49,20 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
 
     // Safely handle category mapping
     const categoryLower = style.category?.toLowerCase() || 'other';
-    const validCategory = (['pizza', 'bread', 'pastry'].includes(categoryLower) ? categoryLower : 'bread') as any;
+
+    // Map v2 Categories to v3 StyleCategory IDs
+    const catMap: Record<string, any> = {
+        'pizza': 'pizza',
+        'bread': 'bread',
+        'flatbread': 'flatbread',
+        'enriched': 'enriched_bread',
+        'snack': 'other',
+        'buns': 'burger_bun',
+        'pastry': 'pastry',
+        'soft bread': 'enriched_bread'
+    };
+
+    const validCategory = catMap[categoryLower] || 'bread';
 
     // Map V2 Method (DIRECT, BIGA, etc) to Legacy 'fermentationType'
     let fermType: 'direct' | 'preferment' | 'levain' | 'cold' = 'direct';
@@ -97,6 +111,55 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
     };
 }
 
+/**
+ * ADAPTER V3: Convert StyleDefinition (Gold Standard) to DoughStyleDefinition (App Legacy)
+ */
+function adaptV3ToLegacy(style: any): DoughStyleDefinition {
+    return {
+        id: style.id,
+        name: style.title || style.name || 'Unknown Style',
+        category: style.category?.toLowerCase() || 'bread',
+        recipeStyle: style.recipeStyle,
+        origin: {
+            country: style.origin?.country || 'Unknown',
+            region: style.origin?.region || '',
+            period: style.origin?.period || ''
+        },
+        description: style.intro || style.description || '',
+        history: style.history || '',
+        difficulty: style.technicalProfile?.difficulty || 'Medium',
+        fermentationType: style.technicalProfile?.fermentation?.coldRetard ? 'cold' : 'direct',
+        technicalProfile: {
+            hydration: style.technicalProfile?.hydrationRange || [60, 70],
+            salt: style.technicalProfile?.saltRange || [2, 2],
+            oil: style.technicalProfile?.oilRange || [0, 0],
+            sugar: style.technicalProfile?.sugarRange || [0, 0],
+            flourStrength: style.technicalProfile?.flourStrength || 'Standard',
+            ovenTemp: style.technicalProfile?.oven?.temperatureC || [200, 250],
+            recommendedUse: style.technicalProfile?.recommendedUse || [],
+            difficulty: style.technicalProfile?.difficulty || 'Medium',
+            ballWeight: style.technicalProfile?.ballWeight,
+            fermentationSteps: []
+        },
+        tags: style.tags || [],
+        notes: style.notes || [],
+        references: style.references || [],
+        isPro: false,
+        source: 'official',
+        createdAt: new Date().toISOString(),
+        releaseDate: new Date().toISOString(),
+        images: style.images?.[0] ? {
+            hero: style.images[0],
+            dough: style.images[1] || style.images[0],
+            crumb: style.images[2] || style.images[0]
+        } : {
+            hero: "/images/styles/placeholder-dough.png",
+            dough: "/images/styles/placeholder-dough.png",
+            crumb: "/images/styles/placeholder-dough.png"
+        }
+    };
+}
+
 // consolidate all V2 styles
 const allNewStyles: DoughStyle[] = [
     ...italianStyles,
@@ -129,7 +192,10 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         NYChocolateChip,
         FrenchCroissant,
         CinnamonRoll,
-        FudgyBrownie
+        FudgyBrownie,
+
+        // New Additions
+        adaptV3ToLegacy(burger_buns_enriched)
     ]
 ].flat(2) as DoughStyleDefinition[];
 
@@ -144,7 +210,11 @@ RAW_STYLES.forEach(style => {
 });
 
 // Convert Map back to Array for the app to consume
-export const STYLES_DATA = Array.from(STYLES_MAP.values()).sort((a, b) => a.name.localeCompare(b.name));
+export const STYLES_DATA = Array.from(STYLES_MAP.values()).sort((a, b) => {
+    const nameA = a.name || '';
+    const nameB = b.name || '';
+    return nameA.localeCompare(nameB);
+});
 
 export const getStyleById = (id: string) => STYLES_MAP.get(id);
 

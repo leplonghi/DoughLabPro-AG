@@ -127,11 +127,11 @@ const LevainModal: React.FC<LevainModalProps> = ({
 
     const Tooltip = ({ text }: { text: string }) => (
         <div className="group relative inline-block ml-2">
-            <InfoIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-lime-600 transition-colors" />
+            <InfoIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-dlp-brand-hover transition-colors" />
             <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 transition-opacity group-hover:opacity-100 z-50">
-                <div className="bg-slate-800 text-white text-xs rounded py-1 px-2 text-center shadow-lg w-max max-w-[200px]">
+                <div className="bg-white text-slate-700 text-xs rounded py-1 px-2 text-center shadow-lg w-max max-w-[200px] border border-slate-200">
                     {text}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white"></div>
                 </div>
             </div>
         </div>
@@ -314,3 +314,4 @@ const LevainModal: React.FC<LevainModalProps> = ({
 };
 
 export default LevainModal;
+
