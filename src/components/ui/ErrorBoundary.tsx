@@ -9,6 +9,8 @@ interface ErrorBoundaryState {
   error?: Error | null;
 }
 
+import { monitor } from '@/infrastructure/monitoring';
+
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState = { hasError: false, error: null };
 
@@ -18,6 +20,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error("ErrorBoundary caught an error:", error, errorInfo);
+    monitor.trackError(error, errorInfo);
   }
 
   render() {

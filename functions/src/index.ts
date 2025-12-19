@@ -7,6 +7,8 @@ if (!admin.apps.length) {
 const db = admin.firestore();
 
 export * from "./stripe";
+export * from "./infrastructure/backup";
+export * from "./infrastructure/monitoring";
 
 // Points System
 const POINTS = {

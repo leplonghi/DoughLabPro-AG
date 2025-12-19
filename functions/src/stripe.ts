@@ -3,6 +3,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import Stripe from "stripe";
 import { getCountryPricing, CountryPricing } from "./countryPricing";
+import { createHandler } from "./infrastructure/handler";
 
 // Initialize Stripe with the secret key from environment variables
 // Make sure to set this using: firebase functions:config:set stripe.secret="sk_test_..."
@@ -44,46 +45,50 @@ async function resolveEffectiveCountry(userId: string, ip?: string): Promise<{ c
     return { country: "US", isLocked: false };
 }
 
+
+
 /**
  * Creates a Stripe Checkout Session for a "Pro" subscription.
  * Call this function from the client with { planKey, successUrl, cancelUrl, countryHint }.
  */
-export const createCheckoutSession = functions.https.onCall(async (data, context) => {
-    // 1. Ensure user is authenticated
-    if (!context.auth) {
-        throw new functions.https.HttpsError(
-            "unauthenticated",
-            "The function must be called while authenticated."
-        );
-    }
+export const createCheckoutSession = createHandler<{
+    planKey?: string;
+    successUrl: string;
+    cancelUrl: string;
+    countryHint?: string;
+}, { sessionId: string }>(
+    "createCheckoutSession",
+    {
+        requireAuth: true,
+        rateLimit: { points: 5, duration: 60, keyPrefix: "checkout" } // 5 attempts per minute
+    },
+    async (data, context) => {
+        const { planKey = 'standard', successUrl, cancelUrl, countryHint } = data;
+        const userId = context.auth!.uid;
+        const userEmail = context.auth!.token.email;
 
-    const { planKey = 'standard', successUrl, cancelUrl, countryHint } = data;
-    const userId = context.auth.uid;
-    const userEmail = context.auth.token.email;
+        if (!successUrl || !cancelUrl) {
+            throw new functions.https.HttpsError(
+                "invalid-argument",
+                "The function must be called with \"successUrl\" and \"cancelUrl\"."
+            );
+        }
 
-    if (!successUrl || !cancelUrl) {
-        throw new functions.https.HttpsError(
-            "invalid-argument",
-            "The function must be called with \"successUrl\" and \"cancelUrl\"."
-        );
-    }
+        // 2. Resolve Country & Price
+        let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId);
 
-    // 2. Resolve Country & Price
-    let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId); // Use helper
+        // Allow hint if not locked to override the Provisional default
+        if (!isLocked && typeof countryHint === 'string' && countryHint.length === 2) {
+            targetCountry = countryHint.toUpperCase();
+        }
 
-    // Allow hint if not locked to override the Provisional default
-    if (!isLocked && typeof countryHint === 'string' && countryHint.length === 2) {
-        targetCountry = countryHint.toUpperCase();
-    }
+        const pricing = getCountryPricing(targetCountry);
+        const planPrice = pricing.plans[planKey as keyof CountryPricing['plans']];
 
-    const pricing = getCountryPricing(targetCountry);
-    const planPrice = pricing.plans[planKey as keyof CountryPricing['plans']];
+        if (!planPrice) {
+            throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
+        }
 
-    if (!planPrice) {
-        throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
-    }
-
-    try {
         // 3. Create the session with dynamic pricing based on country
         const session = await stripe.checkout.sessions.create({
             mode: "subscription",
@@ -110,7 +115,7 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
             client_reference_id: userId,
             metadata: {
                 userId: userId,
-                targetCountry: targetCountry, // Pass this to recognize intention in webhook
+                targetCountry: targetCountry,
                 lockedStatus: isLocked ? 'LOCKED' : 'PROVISIONAL'
             },
             subscription_data: {
@@ -122,15 +127,8 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
         });
 
         return { sessionId: session.id };
-    } catch (error: any) {
-        console.error("Stripe Checkout Error:", error);
-        throw new functions.https.HttpsError(
-            "internal",
-            "Unable to create Stripe checkout session.",
-            error.message
-        );
     }
-});
+);
 
 /**
  * Handle Stripe Webhooks
