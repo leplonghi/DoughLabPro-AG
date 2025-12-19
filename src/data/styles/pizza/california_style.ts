@@ -13,7 +13,7 @@ export const california_style: StyleDefinition = {
   "origin": {
     "country": t('styles.united_states_5'),
     "region": t('styles.california'),
-    "period": "1980s"
+    "period": t('styles.1980s_late_20th_century')
   },
   "intro": t('styles.california_intro'),
   "history": t('styles.california_history'),

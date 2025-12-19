@@ -158,4 +158,7 @@ export interface StyleDefinition {
         durationLabel?: string;
         temperatureLabel?: string;
     }[];
+
+    /** Optional: Override automatic tag-based recommendations with a specific curated list */
+    affiliatePlacementId?: string;
 }

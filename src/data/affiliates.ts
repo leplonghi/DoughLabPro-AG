@@ -181,6 +181,48 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         priceRange: 'high',
         tags: ['oven', 'pizza', 'portable', 'compact'],
         imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Portable+Oven'
+    },
+
+    // --- BURGER BUNS ---
+    {
+        id: 'bun-pan',
+        name: 'USA Pan Burger Bun Pan',
+        category: 'equipment',
+        description: 'Commercial grade aluminized steel for perfect uniform buns.',
+        affiliateLink: 'https://amzn.to/3vIeZ6r',
+        priceRange: 'medium',
+        tags: ['burger buns', 'sandwich rolls', 'buns', 'tools', 'pan', 'baking', 'united states'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Bun+Pan'
+    },
+    {
+        id: 'dry-milk',
+        name: 'Baker\'s Dry Milk Powder',
+        category: 'ingredient',
+        description: 'Essential for soft, enriched crumb structure.',
+        affiliateLink: 'https://amzn.to/3TKgP0d',
+        priceRange: 'low',
+        tags: ['burger buns', 'sandwich rolls', 'enriched', 'milk', 'ingredients', 'softness'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Dry+Milk'
+    },
+    {
+        id: 'potato-flour',
+        name: 'Potato Flour',
+        category: 'ingredient',
+        description: 'Attracts water for incredibly moist rolls.',
+        affiliateLink: 'https://amzn.to/3TMxI9A',
+        priceRange: 'low',
+        tags: ['burger buns', 'sandwich rolls', 'potato', 'enriched', 'ingredients'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Potato+Flour'
+    },
+    {
+        id: 'sesame-seeds',
+        name: 'White Sesame Seeds',
+        category: 'ingredient',
+        description: 'The classic topping for authentic burger buns.',
+        affiliateLink: 'https://amzn.to/4aHOv7p',
+        priceRange: 'low',
+        tags: ['burger buns', 'sandwich rolls', 'topping', 'seeds', 'ingredients'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Sesame+Seeds'
     }
 ];
 

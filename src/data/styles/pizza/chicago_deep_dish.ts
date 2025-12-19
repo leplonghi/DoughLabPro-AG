@@ -13,7 +13,7 @@ export const chicago_deep_dish: StyleDefinition = {
   "origin": {
     "country": t('styles.united_states_6'),
     "region": t('styles.chicago_2'),
-    "period": "1940s"
+    "period": t('styles.1940s_mid_20th_century')
   },
   "intro": t('styles.a_hearty_knifeandfork_meal_iconic_to_chicago_culin'),
   "history": t('styles.chicago_history'),
@@ -134,7 +134,7 @@ export const chicago_deep_dish: StyleDefinition = {
       ],
       "notes": t('styles.chicago_oven_notes')
     },
-    "difficulty": t('styles.medium_34'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.deep_dish_pizza'),
       t('styles.casserole_style_pizza')

@@ -44,6 +44,12 @@ export const AFFILIATE_PLACEMENTS: Record<string, AffiliatePlacement> = {
         title: 'Lab Essentials',
         description: 'Keep your workflow efficient with these essentials.',
         productIds: ['sourdough-kit', 'dough-scraper', 'scale-precision']
+    },
+    'burger_buns_essentials': {
+        id: 'burger_buns_essentials',
+        title: 'Burger Bun Essentials',
+        description: 'Professional tools for the perfect bun.',
+        productIds: ['bun-pan', 'dry-milk', 'potato-flour', 'sesame-seeds']
     }
 };
 

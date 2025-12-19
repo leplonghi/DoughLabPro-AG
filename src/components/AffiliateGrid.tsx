@@ -1,6 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { getRecommendedProducts, AffiliateProduct } from '@/data/affiliates';
+import { getProductsForPlacement } from '@/data/affiliatePlacements';
 import { ShoppingBag, Tag, ExternalLink as ExternalLinkIcon } from 'lucide-react';
 import { ExternalLink } from '@/components/ui/ExternalLink';
 import { useTranslation } from '@/i18n';
@@ -10,18 +11,28 @@ interface AffiliateGridProps {
     limit?: number;
     title?: string;
     className?: string;
+    placementId?: string;
 }
 
 export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
     tags,
     limit = 3,
     title = 'Recommended Gear',
-    className = ""
+    className = "",
+    placementId
 }) => {
     const { t } = useTranslation();
 
     // Memoize recommendations to avoid recalc on every render
-    const products = useMemo(() => getRecommendedProducts(tags, limit), [tags, limit]);
+    const products = useMemo(() => {
+        if (placementId) {
+            const placedProducts = getProductsForPlacement(placementId);
+            if (placedProducts && placedProducts.length > 0) {
+                return placedProducts.slice(0, limit);
+            }
+        }
+        return getRecommendedProducts(tags, limit);
+    }, [tags, limit, placementId]);
 
     if (!products || products.length === 0) {
         return null; // Don't render empty sections

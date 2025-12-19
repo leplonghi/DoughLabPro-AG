@@ -243,6 +243,7 @@ export const burger_buns_enriched: StyleDefinition = {
       "answer": t('styles.burger_buns_enriched_faq_5_a')
     }
   ],
+  "affiliatePlacementId": "burger_buns_essentials",
   "isCanonical": true,
   "source": "official"
 };
