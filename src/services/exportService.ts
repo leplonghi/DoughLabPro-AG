@@ -1,15 +1,7 @@
-
+import { jsPDF } from 'jspdf';
 import { Batch, DoughConfig, DoughResult } from '../types';
 import { FLOURS } from '../flours-constants';
 import { generateTechnicalMethod } from '../logic/methodGenerator';
-import { useTranslation } from '@/i18n';
-
-// Assuming jsPDF is loaded from a CDN as per index.html
-declare global {
-    interface Window {
-        jspdf: any;
-    }
-}
 
 const COLORS = {
     PRIMARY: [81, 161, 69], // #51a145 (Brand Green)
@@ -26,7 +18,6 @@ const COLORS = {
  */
 export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: any) => string): Promise<void> => {
     try {
-        const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
         // Page Config
