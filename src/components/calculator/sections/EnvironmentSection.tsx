@@ -51,11 +51,11 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
             description={t('calculator.impact_on_fermentation')}
             icon={<SunIcon />}
         >
-            <div className="space-y-10 animate-slide-up">
+            <div className="space-y-6 animate-slide-up">
                 {/* 1. Ambient Thermal Profile */}
                 <div>
-                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332] mb-4 block">{t('calculator.ambient_temperature')}</label>
-                    <div className="bg-slate-100/80 p-1.5 rounded-2xl border border-slate-100 grid grid-cols-3 gap-2">
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332] mb-2 block">{t('calculator.ambient_temperature')}</label>
+                    <div className="bg-slate-100/80 p-1 rounded-2xl border border-slate-100 grid grid-cols-3 gap-2">
                         {AMBIENT_TEMPERATURE_OPTIONS.map((option) => {
                             const isActive = config.ambientTemperature === option.value;
                             return (
@@ -77,7 +77,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 
                 {/* 2. Fermentation Insight Panel */}
                 {currentGuideline && (
-                    <div className="bg-[#D8F3DC]/30 rounded-[2rem] border border-[#D8F3DC]/60 p-6 flex gap-4 items-start">
+                    <div className="bg-[#D8F3DC]/30 rounded-[2rem] border border-[#D8F3DC]/60 p-4 flex gap-4 items-start">
                         <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#51a145] shadow-sm shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
                             <InfoIcon size={20} />
                         </div>
@@ -95,8 +95,8 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                 )}
 
                 {/* 3. Baking Specification */}
-                <div className="pt-8 border-t border-slate-100">
-                    <div className="flex items-center justify-between mb-4">
+                <div className="pt-4 border-t border-slate-100">
+                    <div className="flex items-center justify-between mb-2">
                         <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332]">
                             {t('common.baking_profile') || "Baking Specification"}
                         </label>
@@ -113,7 +113,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                             type="number"
                             value={config.bakingTempC || ''}
                             onChange={(e) => onConfigChange({ bakingTempC: parseFloat(e.target.value) })}
-                            className="block w-full rounded-2xl border-slate-200 bg-slate-50 py-4 px-6 text-xl font-bold text-slate-800 focus:border-[#1B4332] focus:bg-white focus:ring-4 focus:ring-dlp-brand/5 transition-all outline-none"
+                            className="block w-full rounded-2xl border-slate-200 bg-slate-50 py-2.5 px-4 text-xl font-bold text-slate-800 focus:border-[#1B4332] focus:bg-white focus:ring-4 focus:ring-dlp-brand/5 transition-all outline-none"
                             placeholder="250"
                             min={100}
                             max={500}

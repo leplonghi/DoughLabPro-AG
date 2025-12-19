@@ -20,8 +20,8 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
 }) => {
     const { t } = useTranslation();
     return (
-        <div id={id} className={`dlp-card p-4 animate-slide-up bg-white/70 backdrop-blur-sm transition-all duration-300 hover:shadow-premium group ${className}`}>
-            <div className="mb-4 flex items-start gap-3">
+        <div id={id} className={`dlp-card p-3.5 animate-slide-up bg-white/70 backdrop-blur-sm transition-all duration-300 hover:shadow-premium group ${className}`}>
+            <div className="mb-2.5 flex items-start gap-3">
                 {icon && (
                     <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#2D6A4F] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-[#2D6A4F]/10">
                         {React.cloneElement(icon as React.ReactElement, { size: 16, strokeWidth: 2.5 })}
@@ -34,7 +34,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
                     )}
                 </div>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
                 {children}
             </div>
         </div>

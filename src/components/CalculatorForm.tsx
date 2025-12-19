@@ -168,7 +168,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   const StepBanner = ({ step, title, description }: { step: number, title: string, description: string }) => {
     if (!isBasic) return null;
     return (
-      <div className="mb-5 flex items-start gap-3 animate-slide-up">
+      <div className="mb-3 flex items-start gap-3 animate-slide-up">
         <div className="flex-shrink-0 w-7 h-7 rounded-full bg-white border-2 border-[#51a145] text-[#51a145] flex items-center justify-center text-[10px] font-bold shadow-sm">
           {step}
         </div>
@@ -182,7 +182,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto px-1 py-8">
+    <div className="space-y-4 max-w-4xl mx-auto px-1 py-4">
       {/* 1. Style Selection */}
       <div className="animate-slide-up">
         <StepBanner step={1} title={t('common.general.choose_your_style')} description={t('calculator.choose_style_desc')} />
@@ -218,7 +218,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
       {/* 3+ Flow */}
       {(!isBasic || hasQuantity) && (
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="animate-slide-up">
             <StepBanner step={3} title={t('common.general.customize_ingredients')} description={t('calculator.customize_ing_desc')} />
             <IngredientsSection
@@ -278,12 +278,12 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       )}
 
       {/* Action Area */}
-      <div className="pt-12 border-t border-slate-100 space-y-4">
+      <div className="pt-6 border-t border-slate-100 space-y-3">
         {!isBasic && (
           <LockFeature featureKey="calculator.save_preset">
             <button
               onClick={handleSavePreset}
-              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white border border-slate-200 py-4 px-6 text-sm font-bold text-[#1B4332] shadow-sm hover:border-[#1B4332] hover:bg-emerald-50/30 transition-all active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white border border-slate-200 py-3.5 px-6 text-sm font-bold text-[#1B4332] shadow-sm hover:border-[#1B4332] hover:bg-emerald-50/30 transition-all active:scale-[0.98]"
             >
               <BookmarkSquareIcon size={18} />
               {t('calculator.save_as_custom_style')}
@@ -294,7 +294,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <button
           type="button"
           onClick={onReset}
-          className="w-full flex items-center justify-center gap-3 rounded-2xl bg-slate-50 py-4 px-6 text-sm font-bold text-slate-500 hover:bg-slate-100 transition-all active:scale-[0.98]"
+          className="w-full flex items-center justify-center gap-3 rounded-2xl bg-slate-50 py-3.5 px-6 text-sm font-bold text-slate-500 hover:bg-slate-100 transition-all active:scale-[0.98]"
         >
           <RotateCcwIcon size={18} />
           {t('calculator.reset_fields')}
@@ -303,7 +303,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
       {/* Pro Teaser */}
       {!hasProAccess && (
-        <div className="mt-12 group relative overflow-hidden rounded-[2.5rem] bg-[#1B4332] p-8 text-white shadow-2xl transition-all hover:scale-[1.01]">
+        <div className="mt-6 group relative overflow-hidden rounded-[2.5rem] bg-[#1B4332] p-6 text-white shadow-2xl transition-all hover:scale-[1.01]">
           <div className="absolute top-0 right-0 p-12 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-700">
             <SparklesIcon size={120} />
           </div>

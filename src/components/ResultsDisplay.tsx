@@ -131,7 +131,8 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             await exportBatchToPDF(batchMock, t);
         } catch (e) {
             console.error("PDF Export Error:", e);
-            addToast(t('common.export_failed'), "error");
+            const errorMsg = e instanceof Error ? e.message : String(e);
+            addToast(`${t('common.export_failed')}: ${errorMsg}`, "error");
         }
     };
 

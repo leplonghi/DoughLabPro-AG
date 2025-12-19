@@ -77,9 +77,9 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
   };
 
   return (
-    <div className="space-y-10 animate-slide-up">
+    <div className="space-y-6 animate-slide-up">
       {/* 1. Primary Flour Selection */}
-      <div className="bg-white rounded-3xl p-1 border border-slate-100 shadow-sm">
+      <div className="bg-white rounded-3xl p-0.5 border border-slate-100 shadow-sm">
         <FlourSelector
           selectedFlourId={config.flourId}
           onFlourChange={(flourId) => handleSelectChange({ target: { name: 'flourId', value: flourId } } as any)}
@@ -87,9 +87,9 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
         />
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-4">
         {/* 2. Core Ratios */}
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 gap-4">
           <HydrationInput
             label={config.bakeType === 'SWEETS_PASTRY' ? t('calculator.liquids_eggs') : t('form.hydration')}
             value={config.hydration}
@@ -142,16 +142,34 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
 
         {/* 3. Fermentation & Yeast */}
         {!(config.fermentationTechnique === 'CHEMICAL' || config.fermentationTechnique === 'NO_FERMENT') && (
-          <div className="pt-8 border-t border-slate-100 space-y-8">
-            <div className="flex flex-col md:flex-row gap-8 items-end">
-              <div className="w-full md:w-1/3 group">
-                <label htmlFor="yeastType" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#065F46] mb-3 block">{t('calculator.yeast_type')}</label>
-                <select id="yeastType" name="yeastType" value={config.yeastType} onChange={handleSelectChange}
-                  className="w-full bg-slate-50 border-none rounded-2xl py-3 px-4 font-bold text-slate-700 focus:ring-4 focus:ring-dlp-brand/10 transition-all outline-none cursor-pointer">
-                  {YEAST_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>))}
-                </select>
+          <div className="pt-4 border-t border-slate-100 space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+              {/* Yeast Type Integrated Card */}
+              <div className="md:col-span-4 group">
+                <div className="h-full rounded-xl border-[0.5px] border-slate-100 bg-white shadow-sm overflow-hidden flex flex-col">
+                  <div className="px-4 py-2 bg-slate-50/50 border-b-[0.5px] border-slate-100">
+                    <label htmlFor="yeastType" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#065F46] block">
+                      {t('calculator.yeast_type')}
+                    </label>
+                  </div>
+                  <div className="p-3 flex-grow flex items-center">
+                    <select
+                      id="yeastType"
+                      name="yeastType"
+                      value={config.yeastType}
+                      onChange={handleSelectChange}
+                      className="w-full bg-slate-50 border-none rounded-xl py-2 px-3 font-bold text-slate-700 focus:ring-4 focus:ring-dlp-brand/10 transition-all outline-none cursor-pointer text-sm"
+                    >
+                      {YEAST_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               </div>
-              <div className="flex-grow w-full">
+
+              {/* Yeast Quantity Slider */}
+              <div className="md:col-span-8">
                 <SliderInput
                   label={isAnySourdough ? t('calculator.starter_') : t('calculator.yeast_')}
                   name="yeastPercentage"
@@ -170,7 +188,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             </div>
 
             {isAnySourdough && (
-              <div className="p-6 bg-[#D8F3DC]/30 rounded-3xl border border-[#D8F3DC]/50">
+              <div className="p-4 bg-[#D8F3DC]/30 rounded-3xl border border-[#D8F3DC]/50">
                 {config.yeastType === YeastType.SOURDOUGH_STARTER ? (
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-[#065F46] shadow-sm">
@@ -223,8 +241,8 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
 
         {/* 4. Advanced Composition Editor */}
         {!isBasic && (
-          <div className="pt-10 border-t border-slate-100">
-            <div className="mb-6 flex items-center justify-between">
+          <div className="pt-6 border-t border-slate-100">
+            <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded bg-emerald-100 flex items-center justify-center">
                   <CubeIcon size={12} className="text-[#1B4332]" />
@@ -234,7 +252,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
             </div>
 
             <LockFeature featureKey="calculator.advanced_ingredients" customMessage={t('calculator.unlock_pro_ingredients')}>
-              <div className="bg-slate-50 rounded-[2rem] p-6 border border-slate-100">
+              <div className="bg-slate-50 rounded-[2rem] p-4 border border-slate-100">
                 <IngredientTableEditor
                   ingredients={config.ingredients || []}
                   onChange={handleIngredientsUpdate}

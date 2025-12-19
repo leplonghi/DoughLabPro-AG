@@ -62,7 +62,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
         description={t('calculator.leavening_description')}
         icon={<FermentationIcon />}
       >
-        <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 text-center space-y-3">
+        <div className="p-4 bg-slate-50 rounded-[2rem] border border-slate-100 text-center space-y-3">
           <div className="w-12 h-12 bg-gradient-to-br from-[#51a145] to-[#10B981]/10 rounded-2xl flex items-center justify-center mx-auto shadow-sm text-[#51a145] transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
             <CubeIcon size={24} />
           </div>
@@ -84,7 +84,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
       icon={<FermentationIcon />}
     >
       {isAnySourdough ? (
-        <div className="bg-[#D8F3DC]/30 rounded-[2rem] border border-[#D8F3DC]/60 p-6 animate-slide-up">
+        <div className="bg-[#D8F3DC]/30 rounded-[2rem] border border-[#D8F3DC]/60 p-4 animate-slide-up">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#51a145] shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6">
               <FermentationIcon size={24} />
@@ -123,7 +123,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
           </p>
         </div>
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               { id: FermentationTechnique.DIRECT, label: t('calculator.direct'), pro: false },
@@ -165,7 +165,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
           </div>
 
           {config.fermentationTechnique !== FermentationTechnique.DIRECT && (
-            <div className="pt-8 border-t border-slate-100 animate-slide-up">
+            <div className="pt-4 border-t border-slate-100 animate-slide-up">
               <SliderInput
                 label={t('calculator._flour_in_preferment')}
                 name="prefermentFlourPercentage"
