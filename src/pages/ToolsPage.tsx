@@ -6,7 +6,7 @@ import {
     WrenchScrewdriverIcon,
     FireIcon,
     BeakerIcon,
-    CalculatorIcon,
+
     SparklesIcon,
     LockClosedIcon
 } from '@/components/ui/Icons';
@@ -74,15 +74,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     const plan = getCurrentPlan(user);
 
     const TOOLS: ToolCardType[] = [
-        {
-            id: 'calculator',
-            title: 'FormulaLab',
-            description: 'Advanced dough calculator for creating, scaling, and balancing recipes with precision.',
-            isPro: false,
-            route: 'calculator',
-            icon: <CalculatorIcon />,
-            featureKey: undefined
-        },
+
         {
             id: 'doughbot',
             title: 'Dough Diagnostic',

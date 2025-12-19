@@ -141,6 +141,12 @@ export const ciabatta_high_hydration: StyleDefinition = {
       t('common.rustic_table_bread')
     ]
   },
+  "defaults": {
+    "hydration": 78,
+    "salt": 2,
+    "oil": 1,
+    "sugar": 0
+  },
   "regionalVariants": [
     "Ciabatta Polesana - The original 1982 recipe from Adria/Veneto",
     "Ciabatta Integrale - Version using whole wheat or mixed grains",
@@ -225,24 +231,24 @@ export const ciabatta_high_hydration: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "O que é Ciabatta?",
-      "answer": "É um pão italiano de alta hidratação (muita água), formato achatado e alongado (lembrando um 'chinelo' ou slipper), com miolo muito aerado e casca fina e crocante. Foi criado para competir com a baguete francesa no mercado de sanduíches."
+      "question": "What is Ciabatta?",
+      "answer": "It is a high-hydration Italian bread (high water content), with a flat, elongated shape (resembling a 'slipper'), featuring a very airy crumb and a thin, crispy crust. It was created to compete with the French baguette in the sandwich market."
     },
     {
-      "question": "Por que a massa da Ciabatta é tão mole e difícil de trabalhar?",
-      "answer": "A alta hidratação (75-80%) é o que permite a criação dos grandes buracos no miolo. Para lidar com ela, usamos a técnica de 'dobras' (stretch and folds) em vez de sova tradicional, desenvolvendo o glúten por tempo e manipulação gentil."
+      "question": "Why is Ciabatta dough so soft and hard to work with?",
+      "answer": "High hydration (75-80%) is what allows for the creation of large holes in the crumb. To handle it, we use the 'stretch and fold' technique instead of traditional kneading, developing gluten through time and gentle manipulation."
     },
     {
-      "question": "Qual a diferença entre Ciabatta e Focaccia?",
-      "answer": "A Ciabatta é uma massa magra (sem óleo por dentro) focada em buracos grandes e casca crocante. A Focaccia é enriquecida com bastante azeite, tem um miolo mais macio e uniforme, e é assada em assadeiras, enquanto a Ciabatta é assada direto na pedra."
+      "question": "What is the difference between Ciabatta and Focaccia?",
+      "answer": "Ciabatta is a lean dough (typically little to no oil inside) focused on large holes and crispy crust. Focaccia is enriched with plenty of olive oil, has a softer, more uniform crumb, and is baked in pans, whereas Ciabatta is baked directly on the stone."
     },
     {
-      "question": "É obrigatório usar Poolish?",
-      "answer": "Sim, no método clássico. O Poolish (prefermento líquido) garante a extensibilidade necessária para a massa expandir e criar os buracos, além de dar um aroma adocicado de trigo fermentado sem a acidez do levain."
+      "question": "Is it mandatory to use Poolish?",
+      "answer": "Yes, in the classic method. Poolish (liquid preferment) ensures the necessary extensibility for the dough to expand and create holes, as well as providing a sweet fermented wheat aroma without the acidity of sourdough."
     },
     {
-      "question": "Como saber se a Ciabatta ficou boa?",
-      "answer": "Ela deve ser leve para o seu tamanho (muito ar), ter uma casca que 'estala' ao ser apertada e, ao cortar, exibir alvéolos de tamanhos irregulares em todo o miolo, sem partes densas ou 'soladas' no fundo."
+      "question": "How do I know if the Ciabatta turned out well?",
+      "answer": "It should be light for its size (full of air), have a crust that 'crackles' when squeezed, and when cut, show alveoli (holes) of irregular sizes throughout the crumb, without dense or 'gummy' parts at the bottom."
     }
   ],
   "isCanonical": true,

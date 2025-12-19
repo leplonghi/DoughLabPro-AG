@@ -141,6 +141,12 @@ export const focaccia_genovese: StyleDefinition = {
       t('common.sandwich_base')
     ]
   },
+  "defaults": {
+    "hydration": 75,
+    "salt": 2.5,
+    "oil": 6,
+    "sugar": 1
+  },
   "regionalVariants": [
     "Focaccia di Recco - The paper-thin cheese-filled non-yeasted cousin",
     "Focaccia con le Cipolle - Loaded with thin, sweet white onions (very traditional)",
@@ -225,24 +231,24 @@ export const focaccia_genovese: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "O que torna a Focaccia Genovese única?",
-      "answer": "A característica principal é a 'salamoia' (salmoura) - uma mistura de água, sal e muito azeite que é vertida nos buracos da massa antes de assar. Isso cria poças de sabor e mantém o interior úmido enquanto a superfície doura."
+      "question": "What makes Focaccia Genovese unique?",
+      "answer": "The main feature is the 'salamoia' (brine) - a mixture of water, salt, and plenty of olive oil that is poured into the dimples of the dough before baking. This creates reservoirs of flavor and keeps the interior moist while the surface browns."
     },
     {
-      "question": "É verdade que os italianos comem focaccia no café da manhã?",
-      "answer": "Sim! Em Gênova, é um ritual sagrado mergulhar um pedaço de focaccia genovese quentinha no cappuccino ou no caffè latte. O contraste do salgado do azeite com o doce do café é considerado sublime pelos locais."
+      "question": "Is it true that Italians eat focaccia for breakfast?",
+      "answer": "Yes! In Genoa, it is a sacred ritual to dip a piece of warm Focaccia Genovese into cappuccino or caffè latte. The contrast of the salty oil with the sweet coffee is considered sublime by locals."
     },
     {
-      "question": "Por que devo comer a focaccia de cabeça para baixo?",
-      "answer": "É uma tradição genovesa. Ao virar o lado do sal para baixo, ele toca as papilas gustativas da língua primeiro, proporcionando uma explosão de sabor muito mais intensa e imediata."
+      "question": "Why should I eat focaccia upside down?",
+      "answer": "It is a Genoese tradition. By flipping the salt side down, it hits the taste buds of the tongue first, providing a much more intense and immediate explosion of flavor."
     },
     {
-      "question": "Qual o segredo para os buracos perfeitos?",
-      "answer": "Use as pontas dos dedos e force-as contra a assadeira, mas sem furar a massa. Esses buracos devem ser profundos para 'segurar' o azeite e a salmoura. Se forem rasos, a salmoura evapora e o pão fica seco."
+      "question": "What is the secret to perfect holes (dimples)?",
+      "answer": "Use your fingertips and press firmly against the pan, but without tearing the dough. These holes must be deep to 'hold' the oil and brine. If they are shallow, the brine evaporates and the bread dries out."
     },
     {
-      "question": "Posso usar qualquer azeite?",
-      "answer": "Pode, mas como o azeite é o ingrediente principal de sabor, o resultado final depende 100% da qualidade dele. Azeites virgens e frutados (especialmente os da Ligúria) são os ideais para este estilo."
+      "question": "Can I use any olive oil?",
+      "answer": "You can, but since olive oil is the main flavor ingredient, the final result depends 100% on its quality. Fruity, extra virgin olive oils (especially from Liguria) are ideal for this style."
     }
   ],
   "isCanonical": true,

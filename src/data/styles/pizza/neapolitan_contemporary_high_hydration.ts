@@ -140,6 +140,13 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
       "Instagram-style puffy crusts"
     ]
   },
+
+  "defaults": {
+    "hydration": 70,
+    "salt": 2.8,
+    "oil": 0,
+    "sugar": 0
+  },
   "regionalVariants": [
     "Caserta Style - The birthplace; focuses on extreme rim size and high hydration",
     "Pepe-Inspired - Focus on hand-kneaded, high-hydration doughs with no oil",
@@ -223,24 +230,24 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "O que é a 'Pizza Canotto'?",
-      "answer": "É uma variante moderna da pizza napolitana caracterizada por uma borda (cornicione) extremamente alta, leve e alveolada (cheia de bolhas de ar). O nome 'Canotto' significa 'bote inflável' em italiano, referindo-se ao volume da borda."
+      "question": "What is 'Pizza Canotto'?",
+      "answer": "It is a modern variant of Neapolitan pizza characterized by an extremely high, light, and airy rim (cornicione). The name 'Canotto' means 'inflatable dinghy' in Italian, referring to the large volume of the crust."
     },
     {
-      "question": "Por que se usa a Biga ou Poolish neste estilo?",
-      "answer": "Os prefermentos ajudam a criar uma rede de glúten mais forte e elástica, necessária para suportar a expansão vertical exagerada durante o forneamento. Além disso, proporcionam uma cornicione mais aromática, saborosa e de fácil digestão."
+      "question": "Why use Biga or Poolish in this style?",
+      "answer": "Preferments help create a stronger and more elastic gluten network, necessary to support the exaggerated vertical expansion during baking. They also provide a more aromatic, flavorful, and digestible cornicione."
     },
     {
-      "question": "Qual a principal diferença técnica para a Napolitana Clássica?",
-      "answer": "A Napolitana Contemporânea usa hidratações mais altas (65-75% vs 58-62%), farinhas de maior força (W300+ vs W250) e técnicas de fermentação longa com prefermentos, resultando em uma estrutura muito mais leve e aerada."
+      "question": "What is the main technical difference from Classic Neapolitan?",
+      "answer": "Contemporary Neapolitan uses higher hydration (65-75% vs 58-62%), stronger flours (W300+ vs W250), and long fermentation techniques with preferments, resulting in a much lighter and airier structure."
     },
     {
-      "question": "Posso fazer Pizza Canotto no forno doméstico?",
-      "answer": "É difícil, pois a expansão do canotto exige um 'choque térmico' de pelo menos 400°C. Em fornos de 250°C, a massa tende a cozinhar lentamente e perder o salto, resultando em uma borda mais pesada e compacta."
+      "question": "Can I make Pizza Canotto in a home oven?",
+      "answer": "It is difficult, as the expansion of the 'canotto' requires a 'thermal shock' of at least 400°C. In 250°C ovens, the dough tends to cook slowly and lose its lift, resulting in a heavier, more compact rim."
     },
     {
-      "question": "Por que a pizza é cortada com tesoura?",
-      "answer": "A tesoura evita que a pressão da faca achate as delicadas bolhas de ar dentro da borda. Cortar com tesoura 'preserva' a estrutura de colmeia (alveolatura) que é o orgulho de quem faz a pizza contemporânea."
+      "question": "Why is the pizza cut with scissors?",
+      "answer": "Scissors prevent the pressure of a knife from flattening the delicate air bubbles inside the rim. Cutting with scissors 'preserves' the honeycomb structure (alveolatura) that is the pride of contemporary pizza makers."
     }
   ],
   "isCanonical": true,

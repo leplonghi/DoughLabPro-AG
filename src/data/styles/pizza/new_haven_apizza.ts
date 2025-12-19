@@ -140,6 +140,12 @@ export const new_haven_apizza: StyleDefinition = {
       t('common.clam_pie')
     ]
   },
+  "defaults": {
+    "hydration": 62,
+    "salt": 2,
+    "oil": 2,
+    "sugar": 1
+  },
   "regionalVariants": [
     "Wooster Street Classic - The standard set by Pepe's and Sally's",
     "Modern Style - Usually slightly thicker with a heavier cheese application",

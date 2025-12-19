@@ -140,6 +140,12 @@ export const cinnamon_rolls_classic: StyleDefinition = {
       "Coffee-shop pastry"
     ]
   },
+  "defaults": {
+    "hydration": 60,
+    "salt": 1.8,
+    "oil": 15,
+    "sugar": 18
+  },
   "regionalVariants": [
     "Swedish Kanelbulle - Cardamom-spiced, pearl sugar topping, often knotted rather than rolled",
     "American Classic - Large, soft, heavy cream cheese frosting, very sweet",

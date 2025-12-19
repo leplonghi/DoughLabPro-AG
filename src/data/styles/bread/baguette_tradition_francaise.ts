@@ -141,6 +141,12 @@ export const baguette_tradition_francaise: StyleDefinition = {
       t('common.toast')
     ]
   },
+  "defaults": {
+    "hydration": 68,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
   "regionalVariants": [
     "Baguette de Tradition Française - Protected by French law (Décret Pain 1993)",
     "Baguette Ordinaire - Standard commercial version with additives allowed",

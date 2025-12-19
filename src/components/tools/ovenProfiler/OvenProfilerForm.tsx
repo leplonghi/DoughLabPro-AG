@@ -23,6 +23,7 @@ const Tooltip: React.FC<{ label: string; content: string }> = ({ label, content 
     </div>
 );
 
+
 export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
     profile,
     errors,
@@ -38,139 +39,170 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
         onChange(name as keyof OvenProfileInput, finalValue);
     };
 
+    // Helper to update specific fields directly
+    const setField = (name: keyof OvenProfileInput, value: any) => {
+        onChange(name, value);
+    };
+
     return (
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                <div className="p-2 bg-lime-100 rounded-lg text-dlp-brand-hover">
-                    <FireIcon className="h-6 w-6" />
+        <div className="space-y-6">
+
+            {/* 1. Oven Type & Heating Physics */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-600 text-xs font-bold ring-1 ring-slate-200">1</span>
+                    {t('common.oven_type')}
+                </h3>
+
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+                    {[
+                        { id: 'home_electric', label: t('tools.home_electric_oven'), icon: '⚡' },
+                        { id: 'home_gas', label: t('tools.home_gas_oven'), icon: '🔥' },
+                        { id: 'convection', label: t('tools.convection_oven'), icon: '💨' },
+                        { id: 'deck', label: 'Deck / Stone', icon: '🍕' },
+                        { id: 'wood', label: t('tools.woodfired_oven'), icon: '🪵' },
+                    ].map((type) => (
+                        <button
+                            key={type.id}
+                            onClick={() => setField('ovenType', type.id)}
+                            className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${profile.ovenType === type.id
+                                    ? 'border-dlp-brand bg-lime-50 text-dlp-brand shadow-md'
+                                    : 'border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
+                                }`}
+                        >
+                            <span className="text-2xl mb-1">{type.icon}</span>
+                            <span className="text-xs font-bold text-center leading-tight">{type.label}</span>
+                        </button>
+                    ))}
                 </div>
-                <div>
-                    <h3 className="text-lg font-bold text-slate-900">1. Oven Configuration</h3>
-                    <p className="text-sm text-slate-500">{t('tools.define_your_equipment_parameters')}</p>
+
+                <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex-1">
+                        <label className="block text-sm font-bold text-slate-700 mb-2">{t('tools.max_temperature_c')}</label>
+                        <div className="relative">
+                            <input
+                                type="number"
+                                name="maxTemperature"
+                                value={profile.maxTemperature}
+                                onChange={handleChange}
+                                className={`block w-full rounded-xl border-2 py-3 px-4 text-xl font-bold font-mono shadow-sm focus:outline-none focus:ring-4 focus:ring-lime-100 transition-all ${errors.maxTemperature ? 'border-red-300 text-red-600 bg-red-50' : 'border-slate-200 text-slate-800 focus:border-dlp-brand'
+                                    }`}
+                            />
+                            <div className="absolute right-3 top-3.5 text-slate-400 font-bold text-sm">°C</div>
+                        </div>
+                        {errors.maxTemperature && <p className="mt-1 text-xs font-bold text-red-500">{errors.maxTemperature}</p>}
+                    </div>
+
+                    <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                            <label className="block text-sm font-bold text-slate-700">{t('tools.fan_convection')}</label>
+                            <div className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${profile.convectionMode ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-400'}`}>
+                                {profile.convectionMode ? 'Active' : 'Off'}
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => setField('convectionMode', !profile.convectionMode)}
+                            className={`w-full py-3 px-4 rounded-xl border-2 flex items-center justify-center gap-2 font-bold transition-all ${profile.convectionMode
+                                    ? 'border-blue-500 bg-blue-50 text-blue-700'
+                                    : 'border-slate-200 text-slate-400 hover:border-slate-300'
+                                }`}
+                        >
+                            <InfoIcon className={`w-5 h-5 ${profile.convectionMode ? 'animate-spin-slow' : ''}`} />
+                            {profile.convectionMode ? t('tools.fan_on') : t('tools.fan_off')}
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Oven Type */}
-                <div>
-                    <label htmlFor="ovenType" className="block text-sm font-medium text-slate-700 mb-1">{t('common.oven_type')}</label>
-                    <select
-                        id="ovenType"
-                        name="ovenType"
-                        value={profile.ovenType}
-                        onChange={handleChange}
-                        className="block w-full rounded-xl border-slate-300 bg-slate-50 p-3 text-slate-900 focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm transition-shadow"
-                    >
-                        <option value="home_gas">{t('tools.home_gas_oven')}</option>
-                        <option value="home_electric">{t('tools.home_electric_oven')}</option>
-                        <option value="convection">{t('tools.convection_oven')}</option>
-                        <option value="deck">Deck/stone oven</option>
-                        <option value="wood">{t('tools.woodfired_oven')}</option>
-                    </select>
-                </div>
+            {/* 2. Baking Surface & Rack Position */}
+            <div className="grid md:grid-cols-2 gap-6">
 
-                {/* Max Temperature */}
-                <div>
-                    <label htmlFor="maxTemperature" className="block text-sm font-medium text-slate-700 mb-1">
-                        Max Temperature (°C)
-                    </label>
-                    <div className="relative">
-                        <input
-                            type="number"
-                            id="maxTemperature"
-                            name="maxTemperature"
-                            value={profile.maxTemperature}
-                            onChange={handleChange}
-                            className={`block w-full rounded-xl border p-3 text-slate-900 focus:ring-dlp-brand sm:text-sm transition-shadow ${errors.maxTemperature ? 'border-red-500 focus:border-red-500 bg-red-50' : 'border-slate-300 bg-slate-50 focus:border-dlp-brand'}`}
-                            placeholder="e.g. 250"
-                        />
-                        <span className="absolute right-3 top-3 text-slate-400 text-xs font-bold">°C</span>
+                {/* Surface Selector */}
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-600 text-xs font-bold ring-1 ring-slate-200">2</span>
+                        {t('common.baking_surface')}
+                    </h3>
+
+                    <div className="space-y-3">
+                        {[
+                            { id: 'none', label: 'Standard Rack / Pan', desc: t('tools.low_thermal_mass'), color: 'bg-slate-100' },
+                            { id: 'stone', label: 'Baking Stone', desc: t('tools.medium_thermal_mass_good_result'), color: 'bg-orange-100' },
+                            { id: 'steel', label: t('tools.baking_steel'), desc: t('tools.high_thermal_mass_best_for_crisp'), color: 'bg-slate-800 text-white' },
+                        ].map((surface) => (
+                            <button
+                                key={surface.id}
+                                onClick={() => setField('surface', surface.id)}
+                                className={`w-full text-left p-4 rounded-xl border-2 transition-all group ${profile.surface === surface.id
+                                        ? 'border-dlp-brand ring-1 ring-dlp-brand shadow-md transform scale-[1.02]'
+                                        : 'border-slate-100 hover:border-slate-300'
+                                    }`}
+                            >
+                                <div className="flex justify-between items-center mb-1">
+                                    <span className="font-bold text-sm block">{surface.label}</span>
+                                    <div className={`w-3 h-3 rounded-full ${surface.color} border border-black/10`}></div>
+                                </div>
+                                <span className="text-xs text-slate-500 block">{surface.desc}</span>
+                            </button>
+                        ))}
                     </div>
-                    {errors.maxTemperature && <p className="mt-1 text-xs text-red-500">{errors.maxTemperature}</p>}
-                </div>
 
-                {/* Baking Surface */}
-                <div>
-                    <label htmlFor="surface" className="block text-sm font-medium text-slate-700 mb-1">{t('common.baking_surface')}</label>
-                    <select
-                        id="surface"
-                        name="surface"
-                        value={profile.surface}
-                        onChange={handleChange}
-                        className="block w-full rounded-xl border-slate-300 bg-slate-50 p-3 text-slate-900 focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm transition-shadow"
-                    >
-                        <option value="none">No stone/steel</option>
-                        <option value="stone">Baking stone (Cordierite)</option>
-                        <option value="steel">{t('tools.baking_steel')}</option>
-                    </select>
-                </div>
-
-                {/* Rack Position */}
-                <div>
-                    <label htmlFor="rackPosition" className="block text-sm font-medium text-slate-700 mb-1">{t('common.rack_position')}</label>
-                    <select
-                        id="rackPosition"
-                        name="rackPosition"
-                        value={profile.rackPosition}
-                        onChange={handleChange}
-                        className="block w-full rounded-xl border-slate-300 bg-slate-50 p-3 text-slate-900 focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm transition-shadow"
-                    >
-                        <option value="top">Top (High heat)</option>
-                        <option value="middle">Middle (Balanced)</option>
-                        <option value="bottom">Bottom (Direct heat)</option>
-                    </select>
-                </div>
-
-                {/* Preheat Time */}
-                <div>
-                    <label htmlFor="preheatMinutes" className="block text-sm font-medium text-slate-700 mb-1 flex items-center">
-                        Preheat Time (Minutes)
-                        <Tooltip
-                            label={t('tools.why_preheat')}
-                            content="Stones and steels require significant time to absorb heat (thermal mass). Without saturation, the base of your pizza will remain undercooked."
-                        />
-                    </label>
-                    <div className="relative">
-                        <input
-                            type="number"
-                            id="preheatMinutes"
-                            name="preheatMinutes"
-                            value={profile.preheatMinutes}
-                            onChange={handleChange}
-                            className={`block w-full rounded-xl border p-3 text-slate-900 focus:ring-dlp-brand sm:text-sm transition-shadow ${errors.preheatMinutes ? 'border-red-500 focus:border-red-500 bg-red-50' : 'border-slate-300 bg-slate-50 focus:border-dlp-brand'}`}
-                            placeholder="e.g. 45"
-                        />
-                        <ClockIcon className="absolute right-3 top-3 h-5 w-5 text-slate-400" />
+                    <div className="mt-6">
+                        <label className="block text-sm font-bold text-slate-700 mb-2">{t('tools.preheat_time_mins')}</label>
+                        <div className="relative">
+                            <input
+                                type="number"
+                                name="preheatMinutes"
+                                value={profile.preheatMinutes}
+                                onChange={handleChange}
+                                className="block w-full rounded-xl border-slate-200 py-2.5 px-3 bg-slate-50 focus:bg-white focus:border-dlp-brand focus:outline-none focus:ring-2 focus:ring-lime-100 font-mono text-slate-900"
+                            />
+                            <ClockIcon className="absolute right-3 top-3 w-4 h-4 text-slate-400" />
+                        </div>
                     </div>
-                    {errors.preheatMinutes && <p className="mt-1 text-xs text-red-500">{errors.preheatMinutes}</p>}
                 </div>
 
-                {/* Convection Mode Toggle */}
-                <div className="flex items-center justify-between rounded-xl border border-slate-200 p-3 bg-slate-50">
-                    <div className="flex flex-col">
-                        <span className="text-sm font-medium text-slate-900">{t('tools.convection_mode')}</span>
-                        <span className="text-xs text-slate-500">{t('tools.fanforced_air_circulation')}</span>
+                {/* Visual Rack Position */}
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col">
+                    <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-600 text-xs font-bold ring-1 ring-slate-200">3</span>
+                        {t('common.rack_position')}
+                    </h3>
+
+                    {/* Oven Visualization */}
+                    <div className="flex-1 rounded-xl bg-slate-800 relative p-4 border-4 border-slate-300 shadow-inner flex flex-col justify-between overflow-hidden">
+                        {/* Heat Elements Visuals */}
+                        <div className={`absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-red-500/50 to-transparent transition-opacity duration-500 ${['home_electric', 'convection'].includes(profile.ovenType) ? 'opacity-100' : 'opacity-20'}`}></div>
+                        <div className={`absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-red-500/50 to-transparent transition-opacity duration-500 ${['home_electric', 'convection', 'deck', 'home_gas'].includes(profile.ovenType) ? 'opacity-100' : 'opacity-20'}`}></div>
+
+                        {['top', 'middle', 'bottom'].map((pos) => (
+                            <button
+                                key={pos}
+                                onClick={() => setField('rackPosition', pos)}
+                                className={`relative z-10 w-full h-2 rounded-full transition-all duration-300 flex items-center justify-center group ${profile.rackPosition === pos
+                                        ? 'bg-gradient-to-r from-slate-200 via-white to-slate-200 shadow-[0_0_15px_rgba(255,255,255,0.5)] scale-y-150'
+                                        : 'bg-slate-600 hover:bg-slate-500 opacity-50 hover:opacity-100'
+                                    }`}
+                            >
+                                <span className={`absolute -right-12 text-xs font-bold ${profile.rackPosition === pos ? 'text-white' : 'text-transparent group-hover:text-slate-400'}`}>
+                                    {pos.toUpperCase()}
+                                </span>
+                            </button>
+                        ))}
                     </div>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                        <input
-                            type="checkbox"
-                            name="convectionMode"
-                            checked={profile.convectionMode}
-                            onChange={handleChange}
-                            className="sr-only peer"
-                        />
-                        <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-lime-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dlp-brand"></div>
-                    </label>
+                    <p className="text-center text-xs text-slate-500 mt-4">
+                        {t('tools.click_chart_to_set_rack_position')}
+                    </p>
                 </div>
             </div>
 
-            <div className="mt-8">
-                <button
-                    onClick={onAnalyze}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-3.5 px-6 text-base font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-                >
-                    <FireIcon className="h-5 w-5" />{t('common.analyze_oven_profile')}</button>
-            </div>
+            <button
+                onClick={onAnalyze}
+                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 py-4 px-6 text-base font-bold text-white shadow-xl shadow-slate-900/20 hover:shadow-2xl hover:from-black hover:to-slate-900 hover:-translate-y-0.5 transition-all text-lg"
+            >
+                <FireIcon className="h-5 w-5 text-orange-400" />
+                {t('common.analyze_oven_profile')}
+            </button>
         </div>
     );
 };

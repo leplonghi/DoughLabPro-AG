@@ -40,6 +40,10 @@ export const communityStore = {
         return docRef.id;
     },
 
+    deletePost: async (postId: string) => {
+        await deleteDoc(doc(db, POSTS_COLLECTION, postId));
+    },
+
     getFeed: async (lastDoc?: DocumentSnapshot, limitCount = 10, filter: 'latest' | 'trending' | 'top' = 'latest') => {
         let orderByField = 'createdAt';
         if (filter === 'trending') orderByField = 'comments';

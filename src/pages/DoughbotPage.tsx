@@ -81,64 +81,115 @@ const DoughbotPage: React.FC = () => {
       <div className="space-y-8 animate-fade-in relative min-h-[600px]">
 
         {/* Input Section */}
-        <div className={`transition-all duration-500 ${result || showFomo ? 'opacity-50 pointer-events-none blur-[2px]' : ''}`}>
-          <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-6 md:p-8 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-900 text-white text-sm">1</span>{t('common.describe_your_problem')}</h3>
 
-            <div className="space-y-6">
+        {/* Input Section */}
+        <div className={`transition-all duration-500 ${result || showFomo ? 'hidden' : 'block'}`}>
+          <div className="space-y-6">
+
+            {/* 1. Stage Selection */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+              <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-600 text-xs font-bold ring-1 ring-slate-200">1</span>
+                {t('doughbot.when_did_it_happen')}
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {['Mixing', 'Bulk Ferment', 'Shaping/Proof', 'Baking'].map((stage) => (
+                  <button
+                    key={stage}
+                    onClick={() => setDescription(prev => prev.includes(`Stage: ${stage}`) ? prev : `Stage: ${stage}. ${prev}`)}
+                    className="px-4 py-3 rounded-xl text-sm font-semibold border transition-all hover:scale-[1.02] active:scale-[0.98] border-slate-200 bg-slate-50 text-slate-600 hover:border-dlp-brand hover:text-dlp-brand focus:ring-2 focus:ring-dlp-brand/50 focus:border-dlp-brand"
+                  >
+                    {stage}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 2. Symptom Grid */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+              <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-600 text-xs font-bold ring-1 ring-slate-200">2</span>
+                {t('doughbot.identify_symptom')}
+              </h3>
+
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                {[
+                  { val: 'sticky', label: 'Sticky / Wet', desc: 'Impossible to handle', icon: '💧' },
+                  { val: 'tearing', label: 'Tearing', desc: 'No gluten structure', icon: '🕸️' },
+                  { val: 'no_rise', label: 'Flat / No Rise', desc: 'Yeast inactivity', icon: '📉' },
+                  { val: 'dense', label: 'Dense Crumb', desc: 'Heavy, brick-like', icon: '🧱' },
+                  { val: 'gummy', label: 'Gummy Interior', desc: 'Undercooked feel', icon: '🧖' },
+                  { val: 'pale', label: 'Pale Crust', desc: 'No browning', icon: '👻' },
+                ].map((item) => (
+                  <button
+                    key={item.val}
+                    onClick={() => setProblem(item.val)}
+                    className={`relative p-4 rounded-xl text-left border-2 transition-all duration-200 ${problem === item.val
+                        ? 'border-dlp-brand bg-lime-50/50 ring-1 ring-dlp-brand shadow-md transform scale-[1.02]'
+                        : 'border-slate-100 bg-white hover:border-slate-300 hover:bg-slate-50'
+                      }`}
+                  >
+                    <div className="text-2xl mb-2">{item.icon}</div>
+                    <div className="font-bold text-slate-800 text-sm">{item.label}</div>
+                    <div className="text-xs text-slate-500 mt-1">{item.desc}</div>
+                    {problem === item.val && (
+                      <div className="absolute top-3 right-3 text-dlp-brand">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              {/* Description Box */}
               <div>
-                <label htmlFor="problem-select" className="block text-sm font-bold text-slate-700 mb-2">
-                  {t('doughbot.common_issue_label')}
+                <label htmlFor="problem-description" className="block text-sm font-bold text-slate-700 mb-2">
+                  {t('common.specific_details')} <span className="text-slate-400 font-normal">({t('ui.optional')})</span>
                 </label>
-                <select
-                  id="problem-select"
-                  value={problem}
-                  onChange={(e) => setProblem(e.target.value)}
-                  className="block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-dlp-brand focus:outline-none focus:ring-dlp-brand sm:text-sm text-slate-900"
-                >
-                  {commonProblems.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative">
+                  <textarea
+                    id="problem-description"
+                    rows={3}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="block w-full rounded-xl border-slate-300 bg-slate-50 py-3 px-4 shadow-sm focus:border-dlp-brand focus:outline-none focus:ring-dlp-brand sm:text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:bg-white"
+                    placeholder={t('doughbot.description_placeholder_detailed')}
+                  />
+                  <div className="absolute right-3 bottom-3 text-slate-400">
+                    <SparklesIcon className="w-4 h-4 opacity-50" />
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <div>
-                <label htmlFor="problem-description" className="block text-sm font-bold text-slate-700 mb-2">{t('common.detailed_description')}</label>
-                <textarea
-                  id="problem-description"
-                  rows={4}
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="block w-full rounded-xl border-slate-300 bg-white py-3 px-4 shadow-sm focus:border-dlp-brand focus:outline-none focus:ring-dlp-brand sm:text-sm text-slate-900 placeholder:text-slate-400"
-                  placeholder={t('doughbot.description_placeholder')}
-                />
-                <p className="mt-2 text-xs text-slate-500">
-                  {t('doughbot.tips_hint')}
-                </p>
-              </div>
-
+            {/* Error & Action */}
+            <div className="sticky bottom-4 z-10 bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-lg ring-1 ring-black/5">
               {error && (
-                <div className="p-4 bg-red-50 text-red-700 rounded-xl text-sm border border-red-100">
-                  {error}
+                <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-lg text-sm border border-red-100 flex items-center gap-2">
+                  <span className="text-lg">⚠️</span> {error}
                 </div>
               )}
 
               <button
                 onClick={handleDiagnose}
-                disabled={isLoading || isFomoLoading}
-                className="group relative flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-dlp-brand-hover to-dlp-brand py-4 px-6 text-base font-bold text-white shadow-lg shadow-dlp-brand/30 hover:shadow-xl hover:from-dlp-brand hover:to-lime-400 hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:pointer-events-none"
+                disabled={!problem && !description || isLoading || isFomoLoading}
+                className="group relative flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 py-4 px-6 text-base font-bold text-white shadow-xl shadow-slate-900/20 hover:shadow-2xl hover:from-black hover:to-slate-900 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:pointer-events-none disabled:shadow-none overflow-hidden"
               >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[100%] group-hover:animate-shimmer" />
+
                 {isLoading || isFomoLoading ? (
                   <LoadingSpinner className="w-5 h-5 text-white" />
                 ) : (
                   <>
-                    <SparklesIcon className="h-5 w-5 animate-pulse" />{t('common.diagnose_problem')}</>
+                    <SparklesIcon className="h-5 w-5 text-lime-400 animate-pulse" />
+                    <span>{t('ui.analyze_with_dough_intelligence')}</span>
+                  </>
                 )}
               </button>
             </div>
+
           </div>
         </div>
 

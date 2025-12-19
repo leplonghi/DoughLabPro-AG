@@ -60,6 +60,12 @@ export const pain_au_chocolat: StyleDefinition = {
       t('common.snack_pastry')
     ]
   },
+  "defaults": {
+    "hydration": 56,
+    "salt": 1.8,
+    "oil": 30,
+    "sugar": 10
+  },
   "regionalVariants": [],
   "climateScenarios": [],
   "styleComparisons": [],
