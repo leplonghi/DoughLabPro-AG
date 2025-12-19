@@ -124,8 +124,8 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                         <button
                             onClick={() => setViewMode('inventory')}
                             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${viewMode === 'inventory'
-                                    ? 'bg-slate-900 text-white shadow-lg'
-                                    : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
+                                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
+                                : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
                                 }`}
                         >
                             My Inventory ({userFlours.length})
@@ -133,8 +133,8 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                         <button
                             onClick={() => setViewMode('catalog')}
                             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${viewMode === 'catalog'
-                                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
-                                    : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
+                                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
+                                : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
                                 }`}
                         >
                             + Browse Database

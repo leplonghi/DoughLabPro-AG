@@ -16,73 +16,73 @@ export const california_style: StyleDefinition = {
     "period": "1980s"
   },
   "intro": t('styles.california_intro'),
-  "history": "Born in the late 1970s and early 1980s, California Style pizza was pioneered by Alice Waters at Chez Panisse and Ed LaDou at Spago. It broke the traditional Italian rules by treating the pizza crust as a canvas for fresh, seasonal, and often unconventional toppings like goat cheese, smoked salmon, and avocado, sparking the 'Gourmet Pizza' revolution.",
+  "history": t('styles.california_history'),
   "culturalContext": {
     "significance": [
-      "Represents the birth of 'Gourmet' or 'Artisan' pizza in the United States",
-      "Symbol of the farm-to-table movement and California's emphasis on fresh, seasonal ingredients",
-      "Shifted the cultural focus of pizza from cheap street food to high-end restaurant fare",
-      "Democratized creative cooking by making the pizza crust a blank slate for any flavor profile",
-      "Strongly associated with the 'California cool' lifestyle and wine country dining"
+      t('styles.california_sig_1'),
+      t('styles.california_sig_2'),
+      t('styles.california_sig_3'),
+      t('styles.california_sig_4'),
+      t('styles.california_sig_5')
     ],
     "consumptionContext": [
-      "Primarily served as personal-sized pies in upscale casual restaurants",
-      "Often enjoyed with local Californian wines (Chardonnay or Pinot Noir)",
-      "Commonly found in outdoor patios or bright, modern dining rooms",
-      "Eaten with a knife and fork due to the sometimes delicate or mountain of fresh toppings",
-      "A staple of healthy-ish, creative lunches and trendy dinner scenes"
+      t('styles.california_consum_1'),
+      t('styles.california_consum_2'),
+      t('styles.california_consum_3'),
+      t('styles.california_consum_4'),
+      t('styles.california_consum_5')
     ],
     "evolution": [
-      "1980: Alice Waters puts garden-fresh ingredients on pizzas at Chez Panisse",
-      "1982: Wolfgang Puck opens Spago; Ed LaDou creates the iconic Smoked Salmon pizza",
-      "Mid-1980s: California Pizza Kitchen (CPK) founded, bringing the style to the masses",
-      "1990s: Focus shifts to specialized wood-fired ovens and cold-fermented doughs",
-      "2000s: Influence spreads globally, inspiring 'Artisan' pizzerias in every major city",
-      "Present: Merged into the broader 'Neo-Neapolitan' and 'Modern American Artisan' categories"
+      t('styles.california_evo_1'),
+      t('styles.california_evo_2'),
+      t('styles.california_evo_3'),
+      t('styles.california_evo_4'),
+      t('styles.california_evo_5'),
+      t('styles.california_evo_6')
     ],
     "rituals": [
-      "The 'Chef's Table' view: watching the pizzaiolo work with fresh produce and a wood-fired oven",
-      "Seasonal menu rotations: the pizza changes based on what's available at the market that week",
-      "Drizzling high-quality local olive oil or balsamic reduction as a finishing touch",
-      "Sharing several different creative pizzas across the table for a variety of flavors",
-      "Pairing specific pizzas with artisanal beers or specific wine varietals"
+      t('styles.california_rituals_1'),
+      t('styles.california_rituals_2'),
+      t('styles.california_rituals_3'),
+      t('styles.california_rituals_4'),
+      t('styles.california_rituals_5')
     ]
   },
   "flavorProfile": {
     "primaryFlavors": [
-      "Complex, slightly sweet dough with a clean wheat finish",
-      "Strong emphasis on fresh, acidic, and creamy elements (goat cheese, arugula, citrus)",
-      "Smoky undertones from wood-fired baking",
-      "Often features a balance of savory, sweet, and tangy (e.g., balsamic or fruit additions)",
-      "High-quality extra virgin olive oil is often a primary flavor component"
+      t('styles.california_flavor_1'),
+      t('styles.california_flavor_2'),
+      t('styles.california_flavor_3'),
+      t('styles.california_flavor_4'),
+      t('styles.california_flavor_5')
     ],
     "aromaProfile": [
-      "Fresh herbs (basil, thyme, rosemary) and garden produce",
-      "Toasted bread with a hint of honey or malt",
-      "Clean wood smoke from oak or almond wood fires",
-      "Sharp, tangy aromas from specialty cheeses",
-      "Nutty notes from toasted seeds or nuts often used as toppings"
+      t('styles.california_aroma_1'),
+      t('styles.california_aroma_2'),
+      t('styles.california_aroma_3'),
+      t('styles.california_aroma_4'),
+      t('styles.california_aroma_5')
     ],
     "textureNotes": [
-      "Light, airy cornicione (crust edge) with a crisp but tender bite",
-      "Thin center that is flexible but not soggy",
-      "Variable textures from toppings: crunchy greens, creamy cheeses, tender roasted meats",
-      "Slightly chewy crumb with fine to medium aeration",
-      "Delicate charring on the edges provides a 'snap' to the bite"
+      t('styles.california_texture_1'),
+      t('styles.california_texture_2'),
+      t('styles.california_texture_3'),
+      t('styles.california_texture_4'),
+      t('styles.california_texture_5')
     ],
     "pairingRecommendations": [
-      "Cheese: Goat cheese, Gorgonzola, Burrata, Fontina",
-      "Produce: Arugula, figs, shaved asparagus, caramelized onions, sun-dried tomatoes",
-      "Protein: Prosciutto, smoked salmon, roasted chicken, pine nuts",
-      "Beverage: California Chardonnay, IPA, or sparkling water with citrus",
-      "Finishing: Hot honey, truffle oil, or fresh lemon zest"
+      t('styles.california_pair_1'),
+      t('styles.california_pair_2'),
+      t('styles.california_pair_3'),
+      t('styles.california_pair_4'),
+      t('styles.california_pair_5')
     ],
     "flavorEvolution": [
-      "Fresh (0-5 mins): Best for hot/cold contrast pizzas (like arugula on hot crust)",
-      "Warm (10-15 mins): Dough softens slightly; oils and juices from toppings meld with the crust",
-      "Room Temp: Excellent for vegetarian options; the flavors of the produce become more distinct",
-      "Next Day: Thin crust can become tough; best reheated quickly in a hot skillet",
-      "Cold: Not the ideal way to enjoy this style; the fresh toppings lose their vibrancy"
+      t('styles.california_fe_1'),
+      t('styles.california_fe_2'),
+      t('styles.california_fe_3'),
+      t('styles.california_fe_4'),
+      t('styles.california_fe_5')
     ]
   },
   "technicalFoundations": [
@@ -90,18 +90,18 @@ export const california_style: StyleDefinition = {
     t('styles.california_tech_2')
   ],
   "doughImpact": [
-    "Moderate hydration (60-68%) creates a dough that is easy to handle but remains light",
-    "Small amounts of oil and sugar provide tenderness and help with browning in lower-temp wood ovens",
-    "Cold fermentation (24-48h) is preferred for developing a complex but clean flavor",
-    "Using All-Purpose or Bread Flour instead of 00 creates a more substantial American-style crumb",
-    "Gentle balling and shaping ensure the delicate air bubbles aren't crushed before baking"
+    t('styles.california_di_1'),
+    t('styles.california_di_2'),
+    t('styles.california_di_3'),
+    t('styles.california_di_4'),
+    t('styles.california_di_5')
   ],
   "bakingImpact": [
-    "Baked at lower temps than Neapolitan (300-400°C) to allow varied toppings to cook through",
-    "Wood-fired ovens provide a dry, intense heat that crisps the crust while keeping toppings fresh",
-    "The longer bake time (3-5 minutes) allows for superior structural integrity to hold heavy produce",
-    "Differentiation in heat zones: toppings are often added at different stages to preserve texture",
-    "Lower humidity in the oven helps achieve a crisp, 'cracker-like' snap in the thinner areas"
+    t('styles.california_bi_1'),
+    t('styles.california_bi_2'),
+    t('styles.california_bi_3'),
+    t('styles.california_bi_4'),
+    t('styles.california_bi_5')
   ],
   "technicalProfile": {
     "hydrationRange": [
@@ -141,44 +141,44 @@ export const california_style: StyleDefinition = {
     ]
   },
   "regionalVariants": [
-    "The Spago Classic - Famous for smoked salmon, crème fraîche, and caviar",
-    "SF Artisan - Often incorporates sourdough starters and locally foraged ingredients",
-    "CPK Style - The commercialized version that brought BBQ Chicken pizza to the world",
-    "Neo-Artisan - Modern trend using ultra-high hydration and 72-hour ferments",
-    "Santa Barbara Style - Focus on avocado, ranch, and very thin 'blonde' crusts"
+    t('styles.california_rv_1'),
+    t('styles.california_rv_2'),
+    t('styles.california_rv_3'),
+    t('styles.california_rv_4'),
+    t('styles.california_rv_5')
   ],
   "climateScenarios": [
-    "Hot/Humid: Reduce sugar to prevent too-rapid browning; use 10% more salt for gluten strength",
-    "Cold/Dry: Increase hydration by 3% to prevent the thin dough from drying out and cracking",
-    "High Altitude: Reduce yeast by 20% to prevent over-proofing of the delicate, thin balls",
-    "Coastal Fog: May need to slightly increase oven temp to combat ambient humidity during the bake"
+    t('styles.california_cs_1'),
+    t('styles.california_cs_2'),
+    t('styles.california_cs_3'),
+    t('styles.california_cs_4')
   ],
   "styleComparisons": [
-    "vs. Neapolitan: California is baked lower/longer, holds toppings better, and uses non-traditional items",
-    "vs. NY Style: California is smaller (10-12 inch), has a more tender crust, and gourmet focus",
-    "vs. New Haven: California lacks the intense char and heavy grease of an Apizza",
-    "vs. Artisan American: Very similar, but California is historically tied to the 80s 'Gourmet' boom"
+    t('styles.california_sc_1'),
+    t('styles.california_sc_2'),
+    t('styles.california_sc_3'),
+    t('styles.california_sc_4')
   ],
   "parameterSensitivity": [
-    "Critical: Topping weight - too many fresh ingredients will create a 'soupy' center",
-    "Highly sensitive: Oven temp - too high and the crust burns before the toppings (like chicken) cook",
-    "Flour type: AP flour gives a softer bite, while Bread flour adds the chew preferred by some",
-    "Fermentation temp: Cold retard is vital to prevent the dough from becoming too 'sour'",
-    "Rolling vs Stretching: Hand stretching is essential to keep the 'gourmet' airy crust"
+    t('styles.california_ps_1'),
+    t('styles.california_ps_2'),
+    t('styles.california_ps_3'),
+    t('styles.california_ps_4'),
+    t('styles.california_ps_5')
   ],
   "risks": [
-    "Soggy Middle: Caused by overloaded toppings or moisture-heavy vegetables like zucchini",
-    "Tough Crust: Over-kneading or using flour with excessive protein content",
-    "Burnt Toppings: Delicate items like arugula or nuts added too early in the bake",
-    "Dough Snap-back: Insufficient resting time after baling makes stretching difficult",
-    "Bland Flavor: Skipping the cold-ferment or under-salting the dough"
+    t('styles.california_risk_1'),
+    t('styles.california_risk_2'),
+    t('styles.california_risk_3'),
+    t('styles.california_risk_4'),
+    t('styles.california_risk_5')
   ],
   "notes": [
-    "This style is all about the toppings - use the best quality, freshest produce available",
-    "Don't be afraid of fruit - figs, pears, and grapes can work beautifully on this crust",
-    "A baking stone is highly recommended for home bakers to get the proper bottom crisp",
-    "Finish with fresh greens AFTER the bake to maintain their texture and color",
-    "Pair with a light local beverage to complete the West Coast experience"
+    t('styles.california_note_1'),
+    t('styles.california_note_2'),
+    t('styles.california_note_3'),
+    t('styles.california_note_4'),
+    t('styles.california_note_5')
   ],
   "tags": [
     t('common.gourmet_personal_pizzas'),
@@ -223,24 +223,24 @@ export const california_style: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "What defines a California Style pizza?",
-      "answer": "It is defined by its small, personal size (10-12 inches), a light and tender thin crust, and most importantly, the use of non-traditional, upscale, and fresh seasonal toppings such as goat cheese, avocados, or smoked salmon."
+      "question": t('styles.california_faq_1_q'),
+      "answer": t('styles.california_faq_1_a')
     },
     {
-      "question": "Can I make this in a regular home oven?",
-      "answer": "Yes! Unlike Neapolitan, which requires 450°C+, California style is perfectly happy at 260-300°C. Using a pizza stone or steel in your home oven at its highest setting will yield excellent results."
+      "question": t('styles.california_faq_2_q'),
+      "answer": t('styles.california_faq_2_a')
     },
     {
-      "question": "What kind of flour is best?",
-      "answer": "While you can use 00 flour, California style is traditionally made with 'strong' American flours like All-Purpose or Bread flour. This gives the pizza a bit more structural integrity to hold up those creative toppings."
+      "question": t('styles.california_faq_3_q'),
+      "answer": t('styles.california_faq_3_a')
     },
     {
-      "question": "Should I precook the toppings?",
-      "answer": "It depends. Vegetables with high water content (mushrooms, onions) are often better roasted or sautéed beforehand. Delicate items like prosciutto or arugula should be added after the pizza comes out of the oven."
+      "question": t('styles.california_faq_4_q'),
+      "answer": t('styles.california_faq_4_a')
     },
     {
-      "question": "How long should I ferment the dough?",
-      "answer": "For the best flavor, a cold fermentation in the refrigerator for 24 to 48 hours is ideal. This allows the enzymes to break down sugars and create a more complex, 'artisan' taste without the extreme sourness of old dough."
+      "question": t('styles.california_faq_5_q'),
+      "answer": t('styles.california_faq_5_a')
     }
   ],
   "isCanonical": true,

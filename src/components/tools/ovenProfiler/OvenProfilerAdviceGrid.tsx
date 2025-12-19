@@ -19,16 +19,16 @@ const Tooltip: React.FC<{ label: string; content: string }> = ({ label, content 
         <button className="text-slate-400 hover:text-dlp-brand-hover transition-colors block">
             <InfoIcon className="h-4 w-4" />
         </button>
-        <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-64 -translate-x-1/2 rounded-xl bg-slate-900 p-3 text-xs text-white opacity-0 shadow-xl transition-opacity duration-300 group-hover:opacity-100 border border-slate-700">
-            <strong className="text-lime-400">{label}</strong><br />
+        <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-64 -translate-x-1/2 rounded-xl bg-white p-3 text-xs text-slate-700 opacity-0 shadow-xl transition-opacity duration-300 group-hover:opacity-100 border border-slate-200">
+            <strong className="text-[#51a145]">{label}</strong><br />
             {content}
-            <svg className="absolute left-0 top-full h-2 w-full text-slate-900" x="0px" y="0px" viewBox="0 0 255 255"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
+            <svg className="absolute left-0 top-full h-2 w-full text-white" x="0px" y="0px" viewBox="0 0 255 255"><polygon className="fill-current" points="0,0 127.5,127.5 255,0" /></svg>
         </div>
     </div>
 );
 
 export const OvenProfilerAdviceGrid: React.FC<OvenProfilerAdviceGridProps> = ({ analysis }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1: Preheat */}

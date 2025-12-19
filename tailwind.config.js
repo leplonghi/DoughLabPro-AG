@@ -26,6 +26,7 @@ export default {
                         dark: '#216416ff',
                     },
                     brand: {
+                        DEFAULT: '#51a145',
                         green: '#3e8b32ff',
                         dark: '#216416ff',
                         lime: '#51a145',

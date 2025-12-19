@@ -66,8 +66,8 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                             key={type.id}
                             onClick={() => setField('ovenType', type.id)}
                             className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${profile.ovenType === type.id
-                                    ? 'border-dlp-brand bg-lime-50 text-dlp-brand shadow-md'
-                                    : 'border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
+                                ? 'border-dlp-brand bg-lime-50 text-dlp-brand shadow-md'
+                                : 'border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
                                 }`}
                         >
                             <span className="text-2xl mb-1">{type.icon}</span>
@@ -103,8 +103,8 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                         <button
                             onClick={() => setField('convectionMode', !profile.convectionMode)}
                             className={`w-full py-3 px-4 rounded-xl border-2 flex items-center justify-center gap-2 font-bold transition-all ${profile.convectionMode
-                                    ? 'border-blue-500 bg-blue-50 text-blue-700'
-                                    : 'border-slate-200 text-slate-400 hover:border-slate-300'
+                                ? 'border-blue-500 bg-blue-50 text-blue-700'
+                                : 'border-slate-200 text-slate-400 hover:border-slate-300'
                                 }`}
                         >
                             <InfoIcon className={`w-5 h-5 ${profile.convectionMode ? 'animate-spin-slow' : ''}`} />
@@ -128,14 +128,14 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                         {[
                             { id: 'none', label: 'Standard Rack / Pan', desc: t('tools.low_thermal_mass'), color: 'bg-slate-100' },
                             { id: 'stone', label: 'Baking Stone', desc: t('tools.medium_thermal_mass_good_result'), color: 'bg-orange-100' },
-                            { id: 'steel', label: t('tools.baking_steel'), desc: t('tools.high_thermal_mass_best_for_crisp'), color: 'bg-slate-800 text-white' },
+                            { id: 'steel', label: t('tools.baking_steel'), desc: t('tools.high_thermal_mass_best_for_crisp'), color: 'bg-slate-300' },
                         ].map((surface) => (
                             <button
                                 key={surface.id}
                                 onClick={() => setField('surface', surface.id)}
                                 className={`w-full text-left p-4 rounded-xl border-2 transition-all group ${profile.surface === surface.id
-                                        ? 'border-dlp-brand ring-1 ring-dlp-brand shadow-md transform scale-[1.02]'
-                                        : 'border-slate-100 hover:border-slate-300'
+                                    ? 'border-dlp-brand ring-1 ring-dlp-brand shadow-md transform scale-[1.02]'
+                                    : 'border-slate-100 hover:border-slate-300'
                                     }`}
                             >
                                 <div className="flex justify-between items-center mb-1">
@@ -170,7 +170,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                     </h3>
 
                     {/* Oven Visualization */}
-                    <div className="flex-1 rounded-xl bg-slate-800 relative p-4 border-4 border-slate-300 shadow-inner flex flex-col justify-between overflow-hidden">
+                    <div className="flex-1 rounded-xl bg-slate-100 relative p-4 border-4 border-slate-300 shadow-inner flex flex-col justify-between overflow-hidden">
                         {/* Heat Elements Visuals */}
                         <div className={`absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-red-500/50 to-transparent transition-opacity duration-500 ${['home_electric', 'convection'].includes(profile.ovenType) ? 'opacity-100' : 'opacity-20'}`}></div>
                         <div className={`absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-red-500/50 to-transparent transition-opacity duration-500 ${['home_electric', 'convection', 'deck', 'home_gas'].includes(profile.ovenType) ? 'opacity-100' : 'opacity-20'}`}></div>
@@ -180,11 +180,11 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                                 key={pos}
                                 onClick={() => setField('rackPosition', pos)}
                                 className={`relative z-10 w-full h-2 rounded-full transition-all duration-300 flex items-center justify-center group ${profile.rackPosition === pos
-                                        ? 'bg-gradient-to-r from-slate-200 via-white to-slate-200 shadow-[0_0_15px_rgba(255,255,255,0.5)] scale-y-150'
-                                        : 'bg-slate-600 hover:bg-slate-500 opacity-50 hover:opacity-100'
+                                    ? 'bg-gradient-to-r from-slate-400 via-slate-600 to-slate-400 shadow-[0_0_15px_rgba(0,0,0,0.2)] scale-y-150'
+                                    : 'bg-slate-300 hover:bg-slate-400 opacity-50 hover:opacity-100'
                                     }`}
                             >
-                                <span className={`absolute -right-12 text-xs font-bold ${profile.rackPosition === pos ? 'text-white' : 'text-transparent group-hover:text-slate-400'}`}>
+                                <span className={`absolute -right-12 text-xs font-bold ${profile.rackPosition === pos ? 'text-slate-900' : 'text-transparent group-hover:text-slate-400'}`}>
                                     {pos.toUpperCase()}
                                 </span>
                             </button>
@@ -198,9 +198,9 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
 
             <button
                 onClick={onAnalyze}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 py-4 px-6 text-base font-bold text-white shadow-xl shadow-slate-900/20 hover:shadow-2xl hover:from-black hover:to-slate-900 hover:-translate-y-0.5 transition-all text-lg"
+                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#51a145] to-[#3e8b32] py-4 px-6 text-base font-bold text-white shadow-xl shadow-lime-900/10 hover:shadow-2xl hover:from-[#3e8b32] hover:to-[#216416] hover:-translate-y-0.5 transition-all text-lg"
             >
-                <FireIcon className="h-5 w-5 text-orange-400" />
+                <FireIcon className="h-5 w-5 text-lime-100" />
                 {t('common.analyze_oven_profile')}
             </button>
         </div>

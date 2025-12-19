@@ -291,7 +291,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                             className={`
                                                 whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-2
                                                 ${isActive
-                                                    ? activeClass
+                                                    ? 'bg-[#51a145] border-[#51a145] text-white shadow-md transform scale-105'
                                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                                                 }
                                             `}
