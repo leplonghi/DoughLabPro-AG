@@ -133,7 +133,7 @@ export const mixed_grain_sourdough: StyleDefinition = {
       ],
       "notes": t('styles.requires_good_steaming_scoring_adapted_to_dough_st')
     },
-    "difficulty": t('styles.expert_7'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.nutritious_sourdough_loaves'),
       t('common.sandwiches'),

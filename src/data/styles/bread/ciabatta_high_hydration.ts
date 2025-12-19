@@ -134,7 +134,7 @@ export const ciabatta_high_hydration: StyleDefinition = {
       ],
       "notes": t('styles.bake_with_good_steam_handle_gently_to_preserve_gas')
     },
-    "difficulty": t('styles.expert_3'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.sandwich_bread'),
       t('common.bruschetta'),

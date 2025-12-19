@@ -134,7 +134,7 @@ export const tartine_country_loaf: StyleDefinition = {
       ],
       "notes": t('styles.often_baked_in_dutch_ovens_or_steaminjected_decks')
     },
-    "difficulty": t('styles.expert_9'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.artisan_sourdough'),
       t('common.table_bread'),

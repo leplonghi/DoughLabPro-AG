@@ -133,7 +133,7 @@ export const japanese_milk_bread: StyleDefinition = {
       ],
       "notes": t('styles.bake_to_golden_color_without_overdrying')
     },
-    "difficulty": t('styles.hard_5'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.soft_sandwich_bread'),
       t('common.toast'),

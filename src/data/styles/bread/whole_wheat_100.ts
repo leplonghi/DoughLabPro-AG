@@ -134,7 +134,7 @@ export const whole_wheat_100: StyleDefinition = {
       ],
       "notes": t('styles.careful_baking_to_avoid_dry_crumb_pan_loaves_are_c')
     },
-    "difficulty": t('styles.expert_11'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.wholegrain_sandwich_bread'),
       t('common.toast')

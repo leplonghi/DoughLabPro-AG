@@ -134,7 +134,7 @@ export const roman_teglia_pan: StyleDefinition = {
       ],
       "notes": t('styles.baked_in_oiled_rectangular_pans_sometimes_in_two_s')
     },
-    "difficulty": t('styles.expert_15'),
+    "difficulty": t('styles.difficulty_advanced'),
     "recommendedUse": [
       t('common.roman_pan_pizza'),
       t('styles.roman_teglia_utils_usage_2')

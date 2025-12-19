@@ -54,7 +54,7 @@ export const sweet_rolls_neutral: StyleDefinition = {
       ],
       "notes": t('styles.bake_to_a_soft_crumb_toppings_and_glazes_vary_wide')
     },
-    "difficulty": t('styles.hard_20'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.generic_sweet_rolls'),
       t('common.base_for_multiple_pastry_formats')

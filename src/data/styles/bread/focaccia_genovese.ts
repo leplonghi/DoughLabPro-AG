@@ -134,7 +134,7 @@ export const focaccia_genovese: StyleDefinition = {
       ],
       "notes": t('styles.baked_in_oiled_sheet_pans_for_crisp_bottom_and_ten')
     },
-    "difficulty": t('styles.expert_4'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.flatbread_snack'),
       t('common.table_bread'),

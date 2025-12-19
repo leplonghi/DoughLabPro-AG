@@ -134,7 +134,7 @@ export const neapolitan_home_oven_adapted: StyleDefinition = {
       ],
       "notes": t('styles.neapolitan_home_oven_notes')
     },
-    "difficulty": t('styles.hard_23'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.home_baking_without_pizza_oven'),
       t('common.crispier_crust_lovers')

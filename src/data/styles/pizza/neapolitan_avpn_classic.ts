@@ -133,7 +133,7 @@ export const neapolitan_avpn_classic: StyleDefinition = {
       ],
       "notes": t('styles.dome_temp_485c_floor_430c_cook_time_strictly_6090_')
     },
-    "difficulty": t('styles.medium_35'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.authentic_neapolitan_margherita'),
       t('common.marinara')

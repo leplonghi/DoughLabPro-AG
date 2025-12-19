@@ -134,7 +134,7 @@ export const pao_de_leite_brazil: StyleDefinition = {
       ],
       "notes": t('styles.often_finished_with_egg_wash_or_sugar_toppings')
     },
-    "difficulty": t('styles.hard_13'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.sweet_rolls'),
       t('common.milk_bread_loaves'),

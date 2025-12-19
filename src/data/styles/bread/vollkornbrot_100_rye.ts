@@ -134,7 +134,7 @@ export const vollkornbrot_100_rye: StyleDefinition = {
       ],
       "notes": t('styles.long_gentle_bake_bread_often_matured_24_h_before_s')
     },
-    "difficulty": t('styles.expert_10'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.dense_wholegrain_rye_bread'),
       t('common.long_keeping_breads')

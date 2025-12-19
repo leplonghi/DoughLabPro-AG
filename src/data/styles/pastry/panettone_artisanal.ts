@@ -134,7 +134,7 @@ export const panettone_artisanal: StyleDefinition = {
       ],
       "notes": t('styles.loaves_are_often_cooled_upsidedown_to_prevent_coll')
     },
-    "difficulty": t('styles.hard_19'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.festive_sweet_bread'),
       "High-skill project baking"

@@ -134,7 +134,7 @@ export const wheat_tortilla: StyleDefinition = {
       ],
       "notes": t('styles.cooked_quickly_on_hot_comal_or_skillet')
     },
-    "difficulty": t('styles.medium_13'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       "Tortillas for tacos, wraps, quesadillas"
     ]

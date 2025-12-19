@@ -134,7 +134,7 @@ export const sicilian_grandma_pan: StyleDefinition = {
       ],
       "notes": t('styles.baked_in_oiled_rectangular_pans_thickness_depends_')
     },
-    "difficulty": t('styles.hard_24'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('styles.sicilian_grandma_pan_use_1'),
       t('styles.sicilian_grandma_pan_use_2')

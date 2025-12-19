@@ -134,7 +134,7 @@ export const pane_pugliese: StyleDefinition = {
       ],
       "notes": t('styles.often_baked_as_large_loaves_with_bold_crust')
     },
-    "difficulty": t('styles.hard_12'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.rustic_italian_table_bread')
     ]

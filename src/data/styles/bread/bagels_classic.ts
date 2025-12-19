@@ -134,7 +134,7 @@ export const bagels_classic: StyleDefinition = {
       ],
       "notes": "Boiled briefly (often with malt or baking soda) before baking."
     },
-    "difficulty": t('styles.medium_6'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.bagels_for_breakfast_and_sandwiches')
     ]

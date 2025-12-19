@@ -54,7 +54,7 @@ export const pain_au_chocolat: StyleDefinition = {
       ],
       "notes": t('styles.baked_until_deep_golden_with_visible_layers')
     },
-    "difficulty": t('styles.medium_29'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.breakfast_pastry'),
       t('common.snack_pastry')

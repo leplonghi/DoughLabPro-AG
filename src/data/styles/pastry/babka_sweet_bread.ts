@@ -134,7 +134,7 @@ export const babka_sweet_bread: StyleDefinition = {
       ],
       "notes": t('styles.bake_thoroughly_to_set_rich_crumb_without_burning_')
     },
-    "difficulty": t('styles.medium_24'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.sweet_loaf'),
       t('common.dessert_bread')

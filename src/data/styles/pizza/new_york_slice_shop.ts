@@ -134,7 +134,7 @@ export const new_york_slice_shop: StyleDefinition = {
       ],
       "notes": t('styles.baked_on_deck_for_712_minutes_must_be_crisp_enough')
     },
-    "difficulty": t('styles.medium_38'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('styles.ny_slice_recommended_use_1'),
       t('styles.ny_slice_recommended_use_2')

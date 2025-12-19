@@ -54,7 +54,7 @@ export const pain_rustique: StyleDefinition = {
       ],
       "notes": t('styles.requires_good_steaming_and_gentle_shaping_to_prese')
     },
-    "difficulty": t('styles.hard_11'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.rustic_loaves'),
       t('common.table_bread'),

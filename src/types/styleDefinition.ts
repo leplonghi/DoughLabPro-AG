@@ -87,7 +87,7 @@ export interface StyleDefinition {
             temperatureC: [number, number];
             notes?: string;
         };
-        difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
+        difficulty: 'Easy' | 'Medium' | 'Hard' | 'Advanced' | 'Expert';
         recommendedUse: string[];
     };
     /** List of regional variations */

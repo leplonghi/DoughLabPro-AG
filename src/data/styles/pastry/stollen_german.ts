@@ -134,7 +134,7 @@ export const stollen_german: StyleDefinition = {
       ],
       "notes": t('styles.heavily_buttered_and_sugared_after_baking_improves')
     },
-    "difficulty": t('styles.medium_30'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.christmas_bread'),
       t('common.festive_sweet_loaf')

@@ -134,7 +134,7 @@ export const injera_flatbread: StyleDefinition = {
       ],
       "notes": "Cooked on a large hot plate (mitad), no flipping."
     },
-    "difficulty": t('styles.expert_6'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       "Base for Ethiopian/Eritrean meals"
     ]

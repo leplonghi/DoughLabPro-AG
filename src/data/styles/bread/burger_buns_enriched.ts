@@ -134,7 +134,7 @@ export const burger_buns_enriched: StyleDefinition = {
       ],
       "notes": t('styles.often_topped_with_seeds_avoid_overbaking_to_keep_c')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.burger_buns'),
       t('common.sandwich_rolls')

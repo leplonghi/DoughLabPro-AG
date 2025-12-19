@@ -134,7 +134,7 @@ export const yeasted_donuts: StyleDefinition = {
       ],
       "notes": t('styles.fried_until_golden_on_both_sides_then_glazed_or_su')
     },
-    "difficulty": t('styles.medium_31'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.fried_donuts'),
       t('common.glazed_or_filled_donuts')

@@ -134,7 +134,7 @@ export const japanese_shokupan: StyleDefinition = {
       ],
       "notes": t('styles.baked_gently_to_avoid_thick_crust_often_lidded_for')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.sandwiches'),
       t('common.thick_toast'),

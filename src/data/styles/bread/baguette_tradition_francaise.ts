@@ -134,7 +134,7 @@ export const baguette_tradition_francaise: StyleDefinition = {
       ],
       "notes": t('styles.requires_strong_steam_at_the_beginning_of_the_bake')
     },
-    "difficulty": "Hard",
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.daily_table_bread'),
       t('common.sandwiches'),

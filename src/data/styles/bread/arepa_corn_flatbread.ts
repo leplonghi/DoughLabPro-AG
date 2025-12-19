@@ -134,7 +134,7 @@ export const arepa_corn_flatbread: StyleDefinition = {
       ],
       "notes": t('styles.cooked_on_griddle_and_sometimes_finished_in_oven')
     },
-    "difficulty": t('styles.hard_3'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.filled_arepas'),
       t('common.savory_stuffed_flatbreads')

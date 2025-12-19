@@ -134,7 +134,7 @@ export const berliner_bomboloni: StyleDefinition = {
       ],
       "notes": t('styles.fried_cooled_then_injected_with_fillings_and_duste')
     },
-    "difficulty": t('styles.medium_25'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.filled_donuts'),
       t('common.sweet_fried_pastries')

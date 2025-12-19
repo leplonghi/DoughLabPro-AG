@@ -134,7 +134,7 @@ export const naan_flatbread: StyleDefinition = {
       ],
       "notes": t('styles.home_versions_use_very_hot_cast_iron_pans_or_stone')
     },
-    "difficulty": t('styles.hard_8'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.accompaniment_to_curries'),
       t('common.flatbread_for_dipping')

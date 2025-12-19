@@ -134,7 +134,7 @@ export const pao_sovado_brazil: StyleDefinition = {
       ],
       "notes": t('styles.often_glazed_for_a_slightly_glossy_crust')
     },
-    "difficulty": t('styles.medium_10'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.breakfast_bread'),
       t('common.snacks'),

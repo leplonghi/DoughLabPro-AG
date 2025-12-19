@@ -134,7 +134,7 @@ export const pita_bread_flatbread: StyleDefinition = {
       ],
       "notes": t('styles.very_hot_stone_or_deck_encourages_pocket_formation')
     },
-    "difficulty": t('styles.medium_11'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.pocket_flatbread'),
       t('common.wraps_and_sandwiches')

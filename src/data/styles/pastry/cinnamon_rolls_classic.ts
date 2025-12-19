@@ -134,7 +134,7 @@ export const cinnamon_rolls_classic: StyleDefinition = {
       ],
       "notes": t('styles.bake_until_set_but_still_soft_icing_added_after_ba')
     },
-    "difficulty": t('styles.medium_26'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.breakfast_pastry'),
       "Coffee-shop pastry"

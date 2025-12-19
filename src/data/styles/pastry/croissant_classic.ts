@@ -134,7 +134,7 @@ export const croissant_classic: StyleDefinition = {
       ],
       "notes": t('styles.requires_proper_proofing_and_steam_or_humidity_con')
     },
-    "difficulty": t('styles.hard_18'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.breakfast_pastry'),
       t('common.viennoiserie_display')

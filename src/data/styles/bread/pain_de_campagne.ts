@@ -134,7 +134,7 @@ export const pain_de_campagne: StyleDefinition = {
       ],
       "notes": t('styles.works_well_in_dutch_ovens_or_steaminjected_decks')
     },
-    "difficulty": t('styles.hard_9'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.country_loaves'),
       t('common.rustic_sandwiches'),

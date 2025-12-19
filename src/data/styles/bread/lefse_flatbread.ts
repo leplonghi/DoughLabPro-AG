@@ -54,7 +54,7 @@ export const lefse_flatbread: StyleDefinition = {
       ],
       "notes": t('styles.cooked_quickly_on_hot_griddles_turned_once')
     },
-    "difficulty": t('styles.hard_7'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.traditional_scandinavian_flatbread'),
       t('common.sweet_or_savory_wraps')

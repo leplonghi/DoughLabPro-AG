@@ -134,7 +134,7 @@ export const pretzel_dough_classic: StyleDefinition = {
       ],
       "notes": "Dipped in alkaline solution (traditionally lye) before baking."
     },
-    "difficulty": t('styles.medium_12'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.traditional_pretzels'),
       t('common.pretzel_rolls_and_sticks')

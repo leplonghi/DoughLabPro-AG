@@ -54,7 +54,7 @@ export const pain_aux_raisins: StyleDefinition = {
       ],
       "notes": t('styles.must_balance_bake_to_avoid_burning_sugars')
     },
-    "difficulty": t('styles.medium_28'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.sweet_breakfast_pastry'),
       t('common.viennoiserie_item')

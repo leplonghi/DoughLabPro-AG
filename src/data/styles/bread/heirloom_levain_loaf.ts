@@ -134,7 +134,7 @@ export const heirloom_levain_loaf: StyleDefinition = {
       ],
       "notes": t('styles.baker_must_adapt_to_specific_grain_absorption_and_')
     },
-    "difficulty": t('styles.expert_5'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.artisan_bread_expressing_local_grains')
     ]

@@ -134,7 +134,7 @@ export const pao_frances_brazil: StyleDefinition = {
       ],
       "notes": t('styles.strong_steam_early_in_bake_to_create_thin_crisp_cr')
     },
-    "difficulty": t('styles.medium_9'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.breakfast_rolls'),
       t('common.sandwiches'),

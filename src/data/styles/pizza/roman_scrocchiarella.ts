@@ -134,7 +134,7 @@ export const roman_scrocchiarella: StyleDefinition = {
       ],
       "notes": t('styles.baked_thin_on_pans_or_stone_for_crispness')
     },
-    "difficulty": "Medium",
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.roman_thin_pizza'),
       t('common.crispy_pizza_base')

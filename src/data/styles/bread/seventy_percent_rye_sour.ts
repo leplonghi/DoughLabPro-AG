@@ -133,7 +133,7 @@ export const seventy_percent_rye_sour: StyleDefinition = {
       ],
       "notes": t('styles.longer_bake_to_set_crumb_often_rested_before_slici')
     },
-    "difficulty": t('styles.expert_8'),
+    "difficulty": t('styles.difficulty_expert'),
     "recommendedUse": [
       t('common.traditional_rye_loaves'),
       t('common.cold_cuts_and_cheese')

@@ -54,7 +54,7 @@ export const malasadas_fried_dough: StyleDefinition = {
       ],
       "notes": t('styles.traditionally_coated_in_sugar_after_frying')
     },
-    "difficulty": t('styles.medium_27'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.fried_sweet_doughnuts'),
       t('common.festive_treats')

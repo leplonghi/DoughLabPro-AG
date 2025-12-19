@@ -134,7 +134,7 @@ export const pain_de_mie_pullman: StyleDefinition = {
       ],
       "notes": t('styles.lidded_pans_create_tight_square_crumb_structure')
     },
-    "difficulty": t('styles.hard_10'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.sandwich_bread'),
       t('common.toast'),

@@ -134,7 +134,7 @@ export const colomba_pasquale: StyleDefinition = {
       ],
       "notes": t('styles.topped_with_almond_glaze_and_sugar_before_baking')
     },
-    "difficulty": t('styles.hard_17'),
+    "difficulty": t('styles.difficulty_hard'),
     "recommendedUse": [
       t('common.festive_sweet_bread_for_easter')
     ]

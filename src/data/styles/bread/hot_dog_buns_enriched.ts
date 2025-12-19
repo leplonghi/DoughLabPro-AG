@@ -134,7 +134,7 @@ export const hot_dog_buns_enriched: StyleDefinition = {
       ],
       "notes": t('styles.baked_close_together_for_soft_pullapart_texture')
     },
-    "difficulty": t('styles.medium_8'),
+    "difficulty": t('styles.difficulty_medium'),
     "recommendedUse": [
       t('common.hot_dog_buns'),
       t('common.sausage_rolls')
