@@ -200,6 +200,7 @@ export interface DoughResult {
     totalSugar: number;
     totalYeast: number;
     totalDough: number;
+    projectedYield?: number; // Calculated number of balls/loaves
     preferment?: {
         flour: number;
         water: number;

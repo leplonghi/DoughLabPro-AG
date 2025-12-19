@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 import { CommunityFilters } from '../components/CommunityFilters';
 import { CommunityFeed } from '../components/CommunityFeed';
 import { CommunityProfileSidebar } from '../components/CommunityProfileSidebar';
+import { CommunityTopics } from '../components/CommunityTopics';
+import { SuggestedBakers } from '../components/SuggestedBakers';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
 import { Plus, Sparkles } from 'lucide-react';
 import { useRouter } from '../../contexts/RouterContext';
 import { useTranslation } from '@/i18n';
 
 export const CommunityPage: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const [activeFilter, setActiveFilter] = useState<'latest' | 'trending' | 'top'>('latest');
     const { navigate } = useRouter();
 
@@ -52,6 +54,10 @@ export const CommunityPage: React.FC = () => {
                     <div className="hidden lg:block lg:col-span-4 space-y-6">
                         <div className="sticky top-24 space-y-6">
                             <CommunityProfileSidebar />
+
+                            <SuggestedBakers />
+
+                            <CommunityTopics />
 
                             {/* Pro Tip Card */}
                             <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-5 border border-indigo-100 shadow-sm">

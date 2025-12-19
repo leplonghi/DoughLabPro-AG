@@ -65,6 +65,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     onOpenPaywall,
     saveButtonRef,
     selectedLevain,
+    calculationMode,
 }) => {
     const { addToast } = useToast();
     const { t } = useTranslation(['common', 'calculator', 'method']);
@@ -183,8 +184,17 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                             <CubeIcon className="w-4 h-4 text-dlp-brand-lime" />
                         </div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.weight_per_piece', { defaultValue: 'Per piece' })}</p>
-                        <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough / config.numPizzas)}</p>
+                        {calculationMode === 'flour' ? (
+                            <>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.est_yield', { defaultValue: 'Est. Yield' })}</p>
+                                <p className="text-lg font-bold font-heading text-slate-800">{results.projectedYield || 0} Pcs</p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.weight_per_piece', { defaultValue: 'Per piece' })}</p>
+                                <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough / config.numPizzas)}</p>
+                            </>
+                        )}
                     </div>
                 </div>
 

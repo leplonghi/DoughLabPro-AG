@@ -262,7 +262,8 @@ export const calculateDoughUniversal = (
     totalSugar: 0,
     totalYeast: 0,
     totalDough: totalTargetWeight,
-    ingredientWeights: ingredientWeights
+    ingredientWeights: ingredientWeights,
+    projectedYield: config.doughBallWeight > 0 ? Math.floor(totalTargetWeight / config.doughBallWeight) : 0
   };
 
   // Extract base weights for easy access. 

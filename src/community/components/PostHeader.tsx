@@ -13,7 +13,7 @@ interface PostHeaderProps {
 }
 
 export const PostHeader: React.FC<PostHeaderProps> = ({ uid, username, userPhotoURL, createdAt, title }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { navigate } = useRouter();
 
     const handleUserClick = (e: React.MouseEvent) => {
@@ -24,25 +24,33 @@ export const PostHeader: React.FC<PostHeaderProps> = ({ uid, username, userPhoto
 
     return (
         <div className="flex items-center justify-between p-4">
-            <div
-                className={`flex items-center gap-3 ${uid ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}`}
-                onClick={handleUserClick}
-            >
-                <div className="h-10 w-10 rounded-full bg-gray-100 overflow-hidden">
-                    {userPhotoURL ? (
-                        <img src={userPhotoURL} alt={username} className="h-full w-full object-cover" />
-                    ) : (
-                        <div className="h-full w-full flex items-center justify-center text-gray-400">
-                            <User className="h-5 w-5" />
-                        </div>
-                    )}
-                </div>
-                <div>
-                    <div className="font-semibold text-gray-900 text-sm hover:underline hover:text-lime-700 transition-colors">
-                        {username}
+            <div className="flex items-center gap-3">
+                <div
+                    className={`flex items-center gap-3 ${uid ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}`}
+                    onClick={handleUserClick}
+                >
+                    <div className="h-10 w-10 rounded-full bg-gray-100 overflow-hidden">
+                        {userPhotoURL ? (
+                            <img src={userPhotoURL} alt={username} className="h-full w-full object-cover" />
+                        ) : (
+                            <div className="h-full w-full flex items-center justify-center text-gray-400">
+                                <User className="h-5 w-5" />
+                            </div>
+                        )}
                     </div>
-                    <div className="text-xs text-gray-500">{formatPostDate(createdAt)}</div>
+                    <div>
+                        <div className="font-semibold text-gray-900 text-sm hover:underline hover:text-lime-700 transition-colors">
+                            {username}
+                        </div>
+                        <div className="text-xs text-gray-500">{formatPostDate(createdAt)}</div>
+                    </div>
                 </div>
+
+                {uid && (
+                    <button className="text-xs font-bold text-lime-600 hover:text-lime-700 px-3 py-1 bg-lime-50 hover:bg-lime-100 rounded-full transition-colors ml-2">
+                        + Follow
+                    </button>
+                )}
             </div>
 
             <button className="text-gray-400 hover:text-gray-600">

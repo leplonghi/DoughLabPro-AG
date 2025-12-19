@@ -69,7 +69,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                                         : 'text-slate-500 border-transparent hover:bg-slate-50 hover:text-slate-800'
                                         }`}
                                 >
-                                    <Icon className={`h-5 w-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${isActive ? 'text-dlp-brand' : 'text-dlp-brand/60 group-hover:text-dlp-brand'}`} />
+                                    <Icon className="h-5 w-5 text-dlp-brand transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" />
                                     {link.label}
                                 </button>
                             );

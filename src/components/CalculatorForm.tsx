@@ -223,6 +223,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             <StepBanner step={3} title={t('common.general.customize_ingredients')} description={t('calculator.customize_ing_desc')} />
             <IngredientsSection
               config={config}
+              onConfigChange={onConfigChange}
               errors={errors}
               handleNumberChange={handleNumberChange}
               handleSelectChange={handleSelectChange}

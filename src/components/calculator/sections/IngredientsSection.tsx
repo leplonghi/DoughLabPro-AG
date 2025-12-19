@@ -18,6 +18,7 @@ interface IngredientsSectionProps {
   handleNumberChange: (name: string, value: number) => void;
   handleSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleIngredientsUpdate: (ingredients: any[]) => void;
+  onConfigChange: (newConfig: Partial<DoughConfig>) => void;
   isBasic: boolean;
   isAnySourdough: boolean;
   levains: Levain[];
@@ -34,6 +35,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
   handleNumberChange,
   handleSelectChange,
   handleIngredientsUpdate,
+  onConfigChange,
   isBasic,
   isAnySourdough,
   levains,
@@ -127,8 +129,13 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
               name={`ing-${ing.id}`}
               value={ing.bakerPercentage || 0}
               onChange={(_, val) => {
-                const newIngs = config.ingredients?.map(Current => Current.id === ing.id ? { ...Current, bakerPercentage: val, manualOverride: true } : Current);
-                handleIngredientsUpdate(newIngs || []);
+                const newIngs = config.ingredients?.map(Current => Current.id === ing.id ? { ...Current, bakerPercentage: val, manualOverride: true } : Current) || [];
+
+                const updates: Partial<DoughConfig> = { ingredients: newIngs };
+                if (ing.role === 'fat') updates.oil = val;
+                if (ing.role === 'sugar') updates.sugar = val;
+
+                onConfigChange(updates);
               }}
               min={0}
               max={ing.role === 'sugar' ? 300 : ing.role === 'fat' ? 200 : 100}
