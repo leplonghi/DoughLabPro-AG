@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "firebase_auth_failed_to_initialize": "Firebase Auth failed to initialize",
+    "failed_to_login_with_google_please_try_again": "Failed to login with Google. Please try again.",
+    "invalid_email_or_password": "Invalid email or password.",
+    "failed_to_login_please_try_again": "Failed to login. Please try again.",
+    "failed_to_create_account_please_try_again": "Failed to create account. Please try again.",
+    "failed_to_send_reset_email_please_try_again": "Failed to send reset email. Please try again.",
+    "failed_to_login_as_guest": "Failed to login as guest.",
+    "failed_to_login_as_admin": "Failed to login as admin.",
+    "error_getting_token_result": "Error getting token result:",
+    "error_fetching_user_data": "Error fetching user data:"
+  },
+  "an_error_occurred": "An error occurred."
+}
