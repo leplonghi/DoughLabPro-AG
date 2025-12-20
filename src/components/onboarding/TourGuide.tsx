@@ -12,27 +12,63 @@ interface TourStep {
 
 const TOUR_STEPS: TourStep[] = [
     {
-        targetId: 'style-selector',
+        targetId: 'tour-style-section',
         title: 'Choose Your Style',
-        content: 'Start by selecting the type of dough you want to make. Neapolitan, NY Style, or your own custom creation.',
+        content: 'Start here. Select from authentic presets like Neapolitan, NY Style, or Detroit. This sets the baseline for your formula.',
         position: 'bottom'
     },
     {
-        targetId: 'calculator-inputs',
-        title: 'Fine-tune Your Recipe',
-        content: 'Adjust hydration, salt, and fermentation time. The calculator updates instantly.',
+        targetId: 'tour-quantity-section',
+        title: 'Define Yield',
+        content: 'How much dough do you need? Set the number of pizza balls and their individual weight. The calculator adjusts everything automatically.',
+        position: 'bottom'
+    },
+    {
+        targetId: 'tour-ingredients-section',
+        title: 'Customize Ratios',
+        content: 'Fine-tune your recipe. Adjust Hydration (water content) and Salt levels. Add enrichments like Oil or Sugar using the sliders.',
         position: 'right'
     },
     {
-        targetId: 'results-panel',
-        title: 'Your Formula',
-        content: 'Here is your professional recipe. Switch between Grams, Ounces, or Volume.',
+        targetId: 'tour-fermentation-section',
+        title: 'Fermentation Strategy',
+        content: 'Advanced bakers can select their yeast type here. Choose between Instant Yeast, Fresh Yeast, or complex preferments like Biga, Poolish, or Sourdough.',
+        position: 'right'
+    },
+    {
+        targetId: 'tour-environment-section',
+        title: 'Baking Environment',
+        content: 'Tell us about your oven. We use this to estimate baking times and suggest temperature adjustments.',
+        position: 'right'
+    },
+    {
+        targetId: 'tour-results-metrics',
+        title: 'Formula Overview',
+        content: 'See your totals at a glance. Total Flour, Total Dough Weight, and expected Yield.',
         position: 'left'
     },
     {
-        targetId: 'save-batch-btn',
+        targetId: 'tour-results-ingredients',
+        title: 'Precise Recipe',
+        content: 'Here is your professional formula. Every ingredient is calculated to 0.1g precision. Hover over ingredients for pro tips.',
+        position: 'left'
+    },
+    {
+        targetId: 'tour-method',
+        title: 'Step-by-Step Method',
+        content: 'Follow these generated instructions. They change based on your dough style and fermentation choice.',
+        position: 'left'
+    },
+    {
+        targetId: 'tour-log-batch',
         title: 'Start Baking',
-        content: 'Ready to bake? Click here to save this batch to your diary and track your progress.',
+        content: 'Ready to mix? Click here to "Log" this batch. This saves it to your Journal so you can track improvements over time.',
+        position: 'top'
+    },
+    {
+        targetId: 'tour-actions',
+        title: 'Share & Export',
+        content: 'Share your secret formula with the community or export a professional PDF for your kitchen.',
         position: 'top'
     }
 ];

@@ -25,6 +25,7 @@ import { ModeSelectionScreen } from '@/components/calculator/ModeSelectionScreen
 import { SchedulerSection } from '@/components/dashboard/sections/SchedulerSection';
 import { AssemblySection } from '@/components/dashboard/sections/AssemblySection';
 import { LogisticsSection } from '@/components/dashboard/sections/LogisticsSection';
+import { FloatingHelpButton } from '@/components/ui/FloatingHelpButton';
 import { Calendar, Layers, Truck } from 'lucide-react';
 
 const ProductionDashboardTabs = () => {
@@ -222,6 +223,98 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           onFinish={() => { }}
         />
       )}
+
+      {/* Floating Help with Contextual Tips */}
+      <FloatingHelpButton
+        tips={[
+          {
+            id: 'hydration',
+            title: 'Hidratação',
+            icon: '💧',
+            content: (
+              <div className="space-y-2">
+                <p><strong>O que é?</strong> Percentual de água em relação à farinha.</p>
+                <div className="bg-emerald-50 rounded-lg p-2 text-xs">
+                  <p className="font-bold mb-1">Guia Rápido:</p>
+                  <ul className="space-y-0.5">
+                    <li>• 55-60%: Firme (bagels)</li>
+                    <li>• 60-65%: Clássica (NY pizza)</li>
+                    <li>• 70-80%: Úmida (ciabatta)</li>
+                  </ul>
+                </div>
+              </div>
+            )
+          },
+          {
+            id: 'fermentation',
+            title: 'Fermentação',
+            icon: '🦠',
+            content: (
+              <div className="space-y-2">
+                <p><strong>Tipos principais:</strong></p>
+                <ul className="text-xs space-y-1">
+                  <li>• <strong>Direta:</strong> Rápida, 2-4h</li>
+                  <li>• <strong>Fria:</strong> 24-72h na geladeira</li>
+                  <li>• <strong>Biga/Poolish:</strong> Pré-fermentos</li>
+                  <li>• <strong>Sourdough:</strong> Fermento natural</li>
+                </ul>
+                <p className="text-xs mt-2 text-emerald-700">💡 Mais tempo = mais sabor!</p>
+              </div>
+            )
+          },
+          {
+            id: 'flour',
+            title: 'Escolha da Farinha',
+            icon: '🌾',
+            content: (
+              <div className="space-y-2">
+                <p className="text-xs"><strong>Proteína é chave:</strong></p>
+                <ul className="text-xs space-y-1">
+                  <li>• 8-10%: Bolos, biscoitos</li>
+                  <li>• 10-12%: Pães macios</li>
+                  <li>• 12-14%: Pizza, pães artesanais</li>
+                  <li>• 14%+: Bagels, massas resistentes</li>
+                </ul>
+                <p className="text-xs mt-2 bg-amber-50 p-2 rounded">⚠️ Mais proteína = mais glúten = mais estrutura</p>
+              </div>
+            )
+          },
+          {
+            id: 'salt',
+            title: 'Sal: Controle Total',
+            icon: '🧂',
+            content: (
+              <div className="space-y-2">
+                <p className="text-xs"><strong>Funções:</strong></p>
+                <ul className="text-xs space-y-0.5">
+                  <li>✓ Fortalece glúten</li>
+                  <li>✓ Controla fermentação</li>
+                  <li>✓ Realça sabor</li>
+                </ul>
+                <div className="bg-red-50 rounded p-2 mt-2">
+                  <p className="text-xs font-bold text-red-800">⚠️ Nunca misture sal direto com fermento!</p>
+                </div>
+              </div>
+            )
+          },
+          {
+            id: 'temperature',
+            title: 'Temperatura da Massa',
+            icon: '🌡️',
+            content: (
+              <div className="space-y-2">
+                <p className="text-xs"><strong>Temperatura ideal:</strong> 24-26°C</p>
+                <div className="bg-blue-50 rounded p-2 text-xs">
+                  <p className="font-bold mb-1">Dica Pro:</p>
+                  <p>Use água gelada em dias quentes e morna em dias frios para manter a massa na temperatura ideal.</p>
+                </div>
+                <p className="text-xs mt-2">💡 Massa muito quente = fermentação rápida demais!</p>
+              </div>
+            )
+          }
+        ]}
+      />
+
       <DoughyAssistant />
     </div>
   );

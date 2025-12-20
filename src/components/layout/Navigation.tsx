@@ -12,10 +12,12 @@ import {
     UsersIcon,
     WrenchScrewdriverIcon,
     UserCircleIcon,
-    BatchesIcon
+    BatchesIcon,
+    BellIcon
 } from '@/components/ui/Icons';
 import { useUser } from '@/contexts/UserProvider';
 import { Logo } from '@/components/ui/Logo';
+import { useNotifications } from '@/contexts/NotificationContext';
 
 interface NavigationProps {
     activePage: Page;
@@ -31,6 +33,30 @@ interface HeaderComponentProps extends Omit<NavigationProps, 'activePage'> {
 const ProBadge = () => (
     <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">PRO</span>
 );
+
+const NotificationButton: React.FC<{ activePage: Page; handleNavigate: (page: Page) => void }> = ({ activePage, handleNavigate }) => {
+    const { scheduledNotifications } = useNotifications();
+    const pendingCount = scheduledNotifications.filter(n => n.status === 'PENDING').length;
+    const isActive = activePage === 'notifications';
+
+    return (
+        <button
+            onClick={() => handleNavigate('notifications')}
+            className={`relative rounded-xl p-2.5 transition-all ${isActive
+                ? 'bg-slate-50/80 border border-slate-100 shadow-sm'
+                : 'hover:bg-slate-50 border border-transparent'
+                }`}
+            aria-label="Notifications"
+        >
+            <BellIcon className={`h-5 w-5 ${isActive ? 'text-dlp-brand' : 'text-slate-500'}`} />
+            {pendingCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                    {pendingCount > 9 ? '9+' : pendingCount}
+                </span>
+            )}
+        </button>
+    );
+};
 
 
 
@@ -79,6 +105,9 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
 
                 {/* Right Section: User Avatar & Plan Status */}
                 <div className="flex flex-shrink-0 items-center gap-4">
+                    {/* Notifications Button */}
+                    <NotificationButton activePage={activePage} handleNavigate={handleNavigate} />
+
                     {isAuthenticated && (
                         <div className="flex items-center gap-3 border-r border-dlp-border pr-4 mr-1">
                             {!hasProAccess && (
@@ -116,6 +145,7 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
         { id: 'learn', page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
         { id: 'tools', page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
         { id: 'community', page: 'community', label: t('common.nav.community'), icon: UsersIcon },
+        { id: 'notifications', page: 'notifications', label: 'Notifications', icon: BellIcon },
         { id: 'profile', page: 'profile', label: t('common.nav.profile'), icon: UserCircleIcon },
     ];
 

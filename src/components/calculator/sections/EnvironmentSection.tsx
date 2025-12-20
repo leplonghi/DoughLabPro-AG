@@ -5,6 +5,8 @@ import AccordionSection from '@/components/calculator/AccordionSection';
 import { AMBIENT_TEMPERATURE_OPTIONS, ENVIRONMENT_TEMPERATURE_GUIDELINES } from '@/constants';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { TemperatureDetector } from '@/components/weather';
+import { getAmbientTemperatureCategory } from '@/services/geolocation';
 
 interface EnvironmentSectionProps {
     config: DoughConfig;
@@ -42,6 +44,12 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
         onConfigChange(updates);
     };
 
+    const handleTemperatureDetected = (tempCelsius: number) => {
+        const category = getAmbientTemperatureCategory(tempCelsius);
+        handleTempChange(AmbientTemperature[category]);
+        addToast(`${t('calculator.temperature_detected')}: ${tempCelsius}°C (${t(`form.temp_${category.toLowerCase()}`)})`, 'success');
+    };
+
     const currentGuideline = ENVIRONMENT_TEMPERATURE_GUIDELINES[config.ambientTemperature];
     const isUsingDefaultOvenMax = defaultOven && config.bakingTempC === defaultOven.maxTemperature;
 
@@ -72,6 +80,13 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                                 </button>
                             );
                         })}
+                    </div>
+
+                    {/* Auto-detect Temperature Button */}
+                    <div className="mt-3 flex justify-center">
+                        <TemperatureDetector
+                            onTemperatureDetected={handleTemperatureDetected}
+                        />
                     </div>
                 </div>
 

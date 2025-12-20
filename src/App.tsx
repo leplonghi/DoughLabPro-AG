@@ -12,6 +12,7 @@ import { Logo } from '@/components/ui/Logo';
 import { TourGuide } from '@/components/onboarding/TourGuide';
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
 import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
+import { FloatingNotificationWidget } from '@/components/notifications/FloatingNotificationWidget';
 
 // Contexts
 import { ToastProvider, useToast } from '@/components/ToastProvider';
@@ -22,6 +23,7 @@ import { CalculatorProvider, useCalculator } from '@/contexts/CalculatorContext'
 import { DoughSessionProvider, useDoughSession } from '@/contexts/DoughSessionContext';
 import { StylesProvider } from '@/contexts/StylesProvider';
 import { RouterProvider, useRouter } from '@/contexts/RouterContext';
+import { NotificationProvider } from '@/contexts/NotificationContext';
 
 // Domain-specific providers
 import { BatchesProviderComponent } from '@/contexts/BatchesProvider';
@@ -233,6 +235,7 @@ function AppContent() {
       <Footer onNavigate={navigate} />
 
       <DoughyAssistant />
+      <FloatingNotificationWidget />
 
       {showLevainOnboarding && (
         <LevainOnboardingModal
@@ -281,36 +284,38 @@ function App() {
         <ToastProvider>
           <UserProvider>
             <MarketingProvider>
-              {/* Domain-specific providers */}
-              <BatchesProviderComponent>
-                <LevainProvider>
-                  <GoalsProvider>
-                    <FloursProvider>
-                      <ConsistencyProvider>
-                        <InsightsProvider>
-                          <RecipesProvider>
-                            <DoughsProvider>
-                              <SensoryProvider>
-                                <TimelineProvider>
-                                  <RouterProvider>
-                                    <DoughSessionProvider>
-                                      <CalculatorProvider>
-                                        <StylesProvider>
-                                          <AppContent />
-                                        </StylesProvider>
-                                      </CalculatorProvider>
-                                    </DoughSessionProvider>
-                                  </RouterProvider>
-                                </TimelineProvider>
-                              </SensoryProvider>
-                            </DoughsProvider>
-                          </RecipesProvider>
-                        </InsightsProvider>
-                      </ConsistencyProvider>
-                    </FloursProvider>
-                  </GoalsProvider>
-                </LevainProvider>
-              </BatchesProviderComponent>
+              <NotificationProvider>
+                {/* Domain-specific providers */}
+                <BatchesProviderComponent>
+                  <LevainProvider>
+                    <GoalsProvider>
+                      <FloursProvider>
+                        <ConsistencyProvider>
+                          <InsightsProvider>
+                            <RecipesProvider>
+                              <DoughsProvider>
+                                <SensoryProvider>
+                                  <TimelineProvider>
+                                    <RouterProvider>
+                                      <DoughSessionProvider>
+                                        <CalculatorProvider>
+                                          <StylesProvider>
+                                            <AppContent />
+                                          </StylesProvider>
+                                        </CalculatorProvider>
+                                      </DoughSessionProvider>
+                                    </RouterProvider>
+                                  </TimelineProvider>
+                                </SensoryProvider>
+                              </DoughsProvider>
+                            </RecipesProvider>
+                          </InsightsProvider>
+                        </ConsistencyProvider>
+                      </FloursProvider>
+                    </GoalsProvider>
+                  </LevainProvider>
+                </BatchesProviderComponent>
+              </NotificationProvider>
             </MarketingProvider>
           </UserProvider>
         </ToastProvider>

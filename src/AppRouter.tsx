@@ -109,6 +109,7 @@ const ProductionDashboard = React.lazy(() => import('@/pages/ProductionDashboard
 // --- Placeholder Pages ---
 const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
 const UpgradePage = React.lazy(() => import('@/pages/UpgradePage'));
+const NotificationsPage = React.lazy(() => import('@/pages/NotificationsPage'));
 
 function LandingPage() {
     return <div className="p-8 text-center">Landing Page (Coming Soon)</div>;
@@ -399,6 +400,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 );
             case 'community':
                 return protect(<CommunityPage />);
+            case 'notifications':
+                return protect(<NotificationsPage />);
             case 'upgrade':
                 return protect(<UpgradePage />);
             case 'upgrade/success':

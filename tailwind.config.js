@@ -18,6 +18,7 @@ export default {
                         primary: '#111827',
                         secondary: '#7d8692ff',
                         muted: '#a6acb8ff',
+                        inverted: '#FFFFFF',
                     },
                     accent: {
                         DEFAULT: '#3e8b32ff',
@@ -30,6 +31,12 @@ export default {
                         green: '#3e8b32ff',
                         dark: '#216416ff',
                         lime: '#51a145',
+                    },
+                    // Semantic names for Refactor
+                    primary: '#51a145', // Brand Green
+                    surface: {
+                        flour: '#FDFBF7', // Off-white typical of flour
+                        water: '#F0F9FF', // Light blue hint
                     },
                     success: '#669225ff',
                     warning: '#F59E0B',

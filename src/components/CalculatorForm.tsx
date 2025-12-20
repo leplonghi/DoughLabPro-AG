@@ -184,7 +184,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   return (
     <div className="space-y-4 max-w-4xl mx-auto px-1 py-4">
       {/* 1. Style Selection */}
-      <div className="animate-slide-up">
+      <div className="animate-slide-up" id="tour-style-section">
         <StepBanner step={1} title={t('common.general.choose_your_style')} description={t('calculator.choose_style_desc')} />
         <StyleSection
           config={config}
@@ -201,7 +201,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
       {/* 2. Quantity */}
       {(!isBasic || hasStyle) && (
-        <div className="animate-slide-up">
+        <div className="animate-slide-up" id="tour-quantity-section">
           <StepBanner step={2} title={t('common.general.define_quantity')} description={t('calculator.define_quantity_desc')} />
           <QuantitySection
             config={config}
@@ -212,6 +212,10 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             numPizzasRef={inputRefs?.numPizzas}
             minDoughBallWeight={minW}
             maxDoughBallWeight={maxW}
+            getInputClasses={(hasError) =>
+              `block w-full rounded-2xl border-slate-200 bg-slate-50 py-2.5 px-4 text-xl font-bold text-slate-800 placeholder-slate-400 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none ${hasError ? 'border-rose-300 bg-rose-50' : ''
+              }`
+            }
           />
         </div>
       )}
@@ -219,7 +223,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       {/* 3+ Flow */}
       {(!isBasic || hasQuantity) && (
         <div className="space-y-4">
-          <div className="animate-slide-up">
+          <div className="animate-slide-up" id="tour-ingredients-section">
             <StepBanner step={3} title={t('common.general.customize_ingredients')} description={t('calculator.customize_ing_desc')} />
             <IngredientsSection
               config={config}
@@ -239,7 +243,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             />
           </div>
 
-          <div className="animate-slide-up">
+          <div className="animate-slide-up" id="tour-fermentation-section">
             <StepBanner step={4} title={t('common.general.fermentation_strategy')} description={t('calculator.fermentation_strategy_desc')} />
             <FermentationSection
               config={config}
@@ -254,7 +258,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             />
           </div>
 
-          <div className="animate-slide-up">
+          <div className="animate-slide-up" id="tour-environment-section">
             <StepBanner step={5} title={t('common.general.baking_environment')} description={t('calculator.baking_env_desc')} />
             <EnvironmentSection
               config={config}
@@ -264,7 +268,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           </div>
 
           {assemblyStyle && (
-            <div className="animate-slide-up">
+            <div className="animate-slide-up" id="tour-assembly-section">
               <StepBanner step={6} title={t('calculator.assembly_toppings')} description={t('calculator.assembly_toppings_desc_pizza')} />
               <AssemblySection
                 style={assemblyStyle}
@@ -283,6 +287,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         {!isBasic && (
           <LockFeature featureKey="calculator.save_preset">
             <button
+              id="tour-save-preset"
               onClick={handleSavePreset}
               className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white border border-slate-200 py-3.5 px-6 text-sm font-bold text-[#1B4332] shadow-sm hover:border-[#1B4332] hover:bg-emerald-50/30 transition-all active:scale-[0.98]"
             >
@@ -293,6 +298,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         )}
 
         <button
+          id="tour-reset-form"
           type="button"
           onClick={onReset}
           className="w-full flex items-center justify-center gap-3 rounded-2xl bg-slate-50 py-3.5 px-6 text-sm font-bold text-slate-500 hover:bg-slate-100 transition-all active:scale-[0.98]"

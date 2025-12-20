@@ -9,6 +9,7 @@ import { getArticleById } from "@/data/learn";
 import { timeSince } from "@/utils/dateUtils";
 import { LockFeature } from "@/components/auth/LockFeature";
 import { IngredientTableEditor } from "@/components/calculator/IngredientTableEditor";
+import { InfoTooltip } from '@/components/ui/InfoTooltip';
 import { useTranslation } from '@/i18n';
 import { FLOURS } from '@/flours-constants';
 
@@ -93,7 +94,35 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
         {/* 2. Core Ratios */}
         <div className="grid grid-cols-1 gap-4">
           <HydrationInput
-            label={config.bakeType === 'SWEETS_PASTRY' ? t('calculator.liquids_eggs') : t('form.hydration')}
+            label={
+              <div className="flex items-center gap-2">
+                <span>{config.bakeType === 'SWEETS_PASTRY' ? t('calculator.liquids_eggs') : t('form.hydration')}</span>
+                <InfoTooltip
+                  variant="tutorial"
+                  size="lg"
+                  position="right"
+                  content={
+                    <div>
+                      <p className="font-bold mb-2">💧 Hidratação: A alma da massa</p>
+                      <div className="space-y-2 text-[11px]">
+                        <p><strong>O que é?</strong> Percentual de água em relação à farinha.</p>
+                        <div className="bg-white/10 rounded-lg p-2 my-2">
+                          <p className="font-bold text-[10px] mb-1">Guia Rápido:</p>
+                          <ul className="space-y-0.5 text-[10px]">
+                            <li>• 55-60%: Massa firme (bagels)</li>
+                            <li>• 60-65%: Clássica (pizza NY)</li>
+                            <li>• 65-70%: Macia (pães artesanais)</li>
+                            <li>• 70-80%: Muito úmida (ciabatta)</li>
+                            <li>• 80%+: Extrema (focaccia)</li>
+                          </ul>
+                        </div>
+                        <p className="text-[10px] opacity-80">💡 Mais água = mais alvéolos, mas mais difícil de trabalhar!</p>
+                      </div>
+                    </div>
+                  }
+                />
+              </div>
+            }
             value={config.hydration}
             onChange={(e) => handleNumberChange('hydration', Number(e.target.value))}
             min={config.bakeType === 'SWEETS_PASTRY' ? 0 : 40}
@@ -108,7 +137,37 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
           />
 
           <SliderInput
-            label={t('results.salt')}
+            label={
+              <div className="flex items-center gap-2">
+                <span>{t('results.salt')}</span>
+                <InfoTooltip
+                  variant="tutorial"
+                  size="lg"
+                  position="right"
+                  content={
+                    <div>
+                      <p className="font-bold mb-2">🧂 Sal: Controle e sabor</p>
+                      <div className="space-y-2 text-[11px]">
+                        <p><strong>Funções principais:</strong></p>
+                        <ul className="space-y-1 text-[10px] ml-2">
+                          <li>✓ Fortalece o glúten</li>
+                          <li>✓ Controla fermentação</li>
+                          <li>✓ Realça sabor</li>
+                          <li>✓ Melhora cor da crosta</li>
+                        </ul>
+                        <div className="bg-white/10 rounded-lg p-2 my-2">
+                          <p className="font-bold text-[10px]">Recomendações:</p>
+                          <p className="text-[10px]">• Pizza: 2-2.5%</p>
+                          <p className="text-[10px]">• Pão: 1.8-2.2%</p>
+                          <p className="text-[10px]">• Focaccia: 2.5-3%</p>
+                        </div>
+                        <p className="text-[10px] opacity-80">⚠️ Nunca misture sal direto com fermento!</p>
+                      </div>
+                    </div>
+                  }
+                />
+              </div>
+            }
             name="salt"
             value={config.salt}
             onChange={handleNumberChange}
