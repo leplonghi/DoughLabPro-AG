@@ -77,7 +77,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
 
         {
             id: 'doughbot',
-            title: 'Dough Diagnostic',
+            title: t('ui.dough_diagnostic_378'),
             description: 'AI-powered diagnostic tool to troubleshoot dough issues and get instant solutions.',
             isPro: true,
             route: 'tools/doughbot',
@@ -88,7 +88,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         },
         {
             id: 'oven-profiler',
-            title: 'Oven Profiler',
+            title: t('ui.oven_profiler_379'),
             description: 'Analyze your oven\'s heat distribution and optimize baking parameters for your specific model.',
             isPro: true,
             route: 'tools/oven-profiler',
@@ -98,7 +98,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         },
         {
             id: 'hydration-converter',
-            title: 'Hydration Adjuster',
+            title: t('ui.hydration_adjuster_380'),
             description: 'Calculate exactly how much water or flour to add to correct your dough\'s hydration.',
             isPro: false,
             route: 'tools/hydration-converter',

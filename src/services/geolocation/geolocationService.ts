@@ -4,12 +4,15 @@
  */
 
 import { GeolocationCoordinates, GeolocationError, LocationData } from './types';
+import i18n from '@/i18n';
+const t = i18n.t.bind(i18n);
+
 
 const GEOLOCATION_TIMEOUT = 10000; // 10 seconds
 const GEOLOCATION_MAX_AGE = 300000; // 5 minutes
 
 /**
- * Gets the user's current position using the browser's Geolocation API
+ * Gets the usert('common.s_current_position_using_the_browser_422')s Geolocation API
  */
 export async function getCurrentPosition(): Promise<GeolocationCoordinates> {
     return new Promise((resolve, reject) => {
@@ -72,7 +75,7 @@ export async function reverseGeocode(
         );
 
         if (!response.ok) {
-            throw new Error('Reverse geocoding failed');
+            throw new Error(t('common.reverse_geocoding_failed_423'));
         }
 
         const data = await response.json();

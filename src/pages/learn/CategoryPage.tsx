@@ -92,7 +92,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                                 <div className="p-6 flex-1 flex flex-col">
                                     <div className="flex items-center justify-between mb-4">
                                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded border uppercase tracking-wider ${article.difficulty === 'Advanced' ? 'bg-purple-50 text-purple-700 border-purple-200' :
-                                            article.difficulty === 'Intermediate' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                                            article.difficulty === t('learn.intermediate_441') ? 'bg-amber-50 text-amber-700 border-amber-200' :
                                                 'bg-lime-50 text-lime-700 border-lime-200'
                                             }`}>
                                             {article.difficulty}

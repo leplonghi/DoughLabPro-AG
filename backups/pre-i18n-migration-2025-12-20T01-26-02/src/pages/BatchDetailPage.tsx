@@ -1,0 +1,549 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
+import { useUser } from '@/contexts/UserProvider';
+import { Batch, BatchStatus, Page, CommunityBatch, DoughConfig, DoughResult } from '@/types';
+import { useTranslation } from '@/i18n';
+import { useToast } from '@/components/ToastProvider';
+import {
+    SaveIcon,
+    StarIcon,
+    SolidStarIcon,
+    PencilIcon,
+    InfoIcon,
+    BatchesIcon,
+    DocumentDuplicateIcon,
+    TrashIcon,
+    DownloadIcon,
+    PhotoIcon,
+    YeastIcon,
+    ClockIcon,
+    FireIcon,
+    FeedIcon
+} from '@/components/ui/Icons';
+import { uploadImage } from '@/services/storageService';
+import { FLOURS } from '@/flours-constants';
+import { exportBatchToPDF } from '@/services/exportService';
+import { canUseFeature, getCurrentPlan } from '@/permissions';
+import { allLearnArticles } from '@/data/learn';
+import { BookOpenIcon } from '@/components/ui/Icons';
+import { ShareBatchModal } from '@/community/components/ShareBatchModal';
+import { SocialShare } from '@/marketing/social/SocialShare';
+import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
+import { AdCard } from "@/marketing/ads/AdCard";
+import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
+import { ReverseSchedule } from '@/components/calculator/ReverseSchedule';
+import { useBakingNotifications } from '@/hooks/useBakingNotifications';
+import { TimelineStep } from '@/logic/reverseTimeline';
+import { AffiliateIngredientRow } from '@/components/calculator/AffiliateIngredientRow';
+import { RecipeCardGenerator } from '@/components/tools/RecipeCardGenerator';
+import { ShareIcon as ShareIconSolid } from '@heroicons/react/24/solid'; // Adjust if valid, relying on existing Icons import mostly
+
+interface BatchDetailPageProps {
+    batchId: string | null;
+    onNavigate: (page: Page, params?: string) => void;
+    onLoadAndNavigate: (config: DoughConfig) => void;
+}
+
+const DetailRow: React.FC<{ label: string; value: React.ReactNode }> = ({ label, value }) => (
+    <div>
+        <dt className="text-sm font-medium text-slate-500 ">{label}</dt>
+        <dd className="mt-1 text-slate-900 ">{value}</dd>
+    </div>
+);
+
+const ResultBadge: React.FC<{ rating?: number }> = ({ rating }) => {
+    const { t } = useTranslation();
+    if (!rating || rating < 1) return null;
+
+    let text = t('batch_detail.badge.adjust');
+    let color = 'bg-yellow-100 text-yellow-800  ';
+    if (rating >= 4.5) {
+        text = t('batch_detail.badge.great');
+        color = 'bg-green-100 text-green-800  ';
+    } else if (rating >= 3.5) {
+        text = t('batch_detail.badge.good');
+        color = 'bg-blue-100 text-blue-800  ';
+    } else if (rating >= 2.5) {
+        text = t('batch_detail.badge.regular');
+        color = 'bg-orange-100 text-orange-800  ';
+    }
+    return <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${color}`}>{text}</span>;
+};
+
+const KeyStatCard: React.FC<{ label: string; value: React.ReactNode; icon: React.ReactNode }> = ({ label, value, icon }) => (
+    <div className="flex items-center gap-3">
+        <div className="flex-shrink-0 text-slate-400 ">{icon}</div>
+        <div>
+            <dt className="text-sm text-slate-500 ">{label}</dt>
+            <dd className="font-semibold text-slate-900 ">{value}</dd>
+        </div>
+    </div>
+);
+
+const IngredientTable: React.FC<{ result: DoughResult, doughConfig: DoughConfig }> = ({ result, doughConfig }) => {
+    const { t } = useTranslation();
+    const renderRow = (label: string, value: number, note?: string) => (
+        <AffiliateIngredientRow
+            key={label}
+            label={label}
+            grams={value}
+            displayValue={`${value.toFixed(1)}g`}
+            hydration={doughConfig.hydration}
+            subtext={note}
+        />
+    );
+
+    return (
+        <div className="flex flex-col">
+            <div className="grid grid-cols-2 border-b-2 border-slate-300 pb-2 mb-2">
+                <div className="text-left font-bold text-slate-900">{t('general.ingredient_2')}</div>
+                <div className="text-right font-bold text-slate-900">{t('general.quantity')}</div>
+            </div>
+
+            {result.preferment && (
+                <>
+                    <div className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 bg-slate-50 mt-2 mb-1">{t(`form.${doughConfig.fermentationTechnique.toLowerCase()}`)}</div>
+                    {renderRow(t('results.flour'), result.preferment.flour)}
+                    {renderRow(t('results.water'), result.preferment.water)}
+                    {result.preferment.yeast > 0 && renderRow(t('results.yeast'), result.preferment.yeast)}
+                    <div className="py-1 px-2 font-bold text-xs uppercase tracking-wider text-slate-600 bg-slate-50 mt-4 mb-1">{t('results.final_dough_title')}</div>
+                </>
+            )}
+
+            {/* Final Dough Ingredients */}
+            {result.finalDough ? (
+                <>
+                    {renderRow(t('results.flour'), result.finalDough.flour)}
+                    {renderRow(t('results.water'), result.finalDough.water)}
+                    {renderRow(t('results.salt'), result.finalDough.salt, `${doughConfig.salt.toFixed(1)}%`)}
+                    {result.finalDough.oil > 0 && renderRow(t('results.oil'), result.finalDough.oil, `${doughConfig.oil.toFixed(1)}%`)}
+                    {result.finalDough.yeast > 0 && renderRow(t('results.yeast'), result.finalDough.yeast)}
+                </>
+            ) : (
+                <>
+                    {renderRow(t('results.flour'), result.totalFlour)}
+                    {renderRow(t('results.water'), result.totalWater, `${doughConfig.hydration}%`)}
+                    {renderRow(t('results.salt'), result.totalSalt, `${doughConfig.salt}%`)}
+                    {result.totalOil > 0 && renderRow(t('results.oil'), result.totalOil, `${doughConfig.oil}%`)}
+                    {result.totalYeast > 0 && renderRow(t('results.yeast'), result.totalYeast)}
+                </>
+            )}
+
+            <div className="border-t-2 border-slate-300 mt-4 pt-2 flex justify-between items-center">
+                <div className="font-bold text-slate-900">{t('results.total_dough')}</div>
+                <div className="font-bold font-mono text-slate-900">{result.totalDough.toFixed(0)}g</div>
+            </div>
+        </div>
+    );
+};
+
+const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, onLoadAndNavigate }) => {
+    const { user, batches, updateBatch, addBatch, deleteBatch, hasProAccess, openPaywall } = useUser();
+    const { t } = useTranslation(['common', 'dashboard', 'calculator', 'method']);
+    const { addToast } = useToast();
+
+    const [editableBatch, setEditableBatch] = useState<Batch | null>(null);
+    const [isEditingNotes, setIsEditingNotes] = useState(false);
+    const [tempNotes, setTempNotes] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
+    const [isShareCardOpen, setIsShareCardOpen] = useState(false);
+    const [schedule, setSchedule] = useState<TimelineStep[]>([]);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    // Enable notifications for the current batch schedule
+    useBakingNotifications(schedule, true);
+
+    const userPlan = getCurrentPlan(user);
+
+    const handlePhotoSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0] && editableBatch) {
+            const file = e.target.files[0];
+            setIsUploading(true);
+            try {
+                const path = `user_uploads/${user?.uid || 'anonymous'}/${editableBatch.id}/${Date.now()}_${file.name}`;
+                const url = await uploadImage(file, path);
+
+                setEditableBatch({ ...editableBatch, photoUrl: url });
+                addToast(t('toasts.photo_upload_success'), 'success');
+            } catch (error) {
+                console.error(error);
+                addToast(t('toasts.photo_upload_error'), 'error');
+            } finally {
+                setIsUploading(false);
+            }
+        }
+    };
+
+    useEffect(() => {
+        const foundBatch = batches.find((b) => b.id === batchId);
+        if (foundBatch) {
+            setEditableBatch(JSON.parse(JSON.stringify(foundBatch)));
+            setIsEditingNotes(!foundBatch.notes);
+        } else {
+            setEditableBatch(null);
+        }
+    }, [batchId, batches]);
+
+    const handleRatingChange = (newRating: number) => {
+        if (!editableBatch) return;
+        setEditableBatch({ ...editableBatch, rating: editableBatch.rating === newRating ? undefined : newRating });
+    };
+
+    const handleSaveNotesClick = () => {
+        if (!editableBatch) return;
+        setEditableBatch({ ...editableBatch, notes: tempNotes });
+        setIsEditingNotes(false);
+    };
+
+    const handleSave = async () => {
+        if (editableBatch) {
+            const updated = { ...editableBatch };
+            // Auto-complete if rated
+            if (updated.rating && updated.rating > 0 && updated.status === BatchStatus.DRAFT) {
+                updated.status = BatchStatus.COMPLETED;
+            }
+            await updateBatch(updated);
+            addToast(t('info.update_success'), 'success');
+        }
+    };
+
+    const handleDuplicate = async () => {
+        if (!editableBatch) return;
+        const savedBatches = batches.filter(b => b.status !== BatchStatus.DRAFT);
+
+        // Check limit for free users (e.g. 3 batches)
+        if (!canUseFeature(userPlan, 'mylab.unlimited_advanced') && savedBatches.length >= 3) {
+            openPaywall('mylab');
+            return;
+        }
+
+        const newBatchData: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'> = {
+            ...JSON.parse(JSON.stringify(editableBatch)),
+            name: `${editableBatch.name}${t('batch_detail.copy_suffix')}`,
+            status: BatchStatus.DRAFT,
+            rating: undefined,
+            isPublic: false,
+        };
+        const added = await addBatch(newBatchData);
+        addToast(`${t('ui.batch_')}${editableBatch.name}" duplicated.`, 'success');
+        onNavigate('batch', added.id);
+    };
+
+    const handleDelete = async () => {
+        if (editableBatch && window.confirm(t('confirmations.delete_batch', { name: editableBatch.name }))) {
+            await deleteBatch(editableBatch.id);
+            onNavigate('mylab/fornadas');
+        }
+    };
+
+    const handleExportPDF = () => {
+        if (!canUseFeature(userPlan, 'export.pdf_json')) {
+            openPaywall('mylab');
+            return;
+        }
+        if (!editableBatch) return;
+        try {
+            exportBatchToPDF(editableBatch, t);
+        } catch (e) {
+            addToast(t('toasts.pdf_export_error'), 'error');
+        }
+    };
+
+    const handleShareClick = () => {
+        if (!canUseFeature(userPlan, 'community.feed')) {
+            openPaywall('community');
+            return;
+        }
+        setIsShareModalOpen(true);
+    };
+
+    if (!editableBatch) {
+        return (
+            <div className="text-center p-8">
+                <h2 className="text-xl font-bold text-slate-900 ">{t('batch_detail.not_found')}</h2>
+                <p className="mt-2 text-slate-600 ">{t('batch_detail.not_found_desc')}</p>
+                <button onClick={() => onNavigate('mylab/fornadas')} className="mt-4 rounded-xl bg-dlp-brand py-2.5 px-5 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">
+                    {t('batch_detail.back_to_diary')}
+                </button>
+            </div>
+        );
+    }
+
+    const { doughConfig, doughResult } = editableBatch;
+    const flour = FLOURS.find(f => f.id === doughConfig.flourId);
+
+    return (
+        <div className="animate-fade-in">
+            <button
+                onClick={() => window.history.back()}
+                className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-500  hover:text-slate-800 transition-colors"
+            >
+                &larr; Back
+            </button>
+
+            {/* Header */}
+            <div className="mb-8 space-y-2">
+                <input
+                    type="text"
+                    name="name"
+                    value={editableBatch.name}
+                    onChange={(e) => setEditableBatch({ ...editableBatch, name: e.target.value })}
+                    className="w-full bg-transparent text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl focus:outline-none focus:ring-0 border-0 p-0 placeholder-slate-400"
+                />
+                <div className="flex items-center gap-4">
+                    <p className="text-sm text-slate-500 ">
+                        {new Date(editableBatch.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </p>
+                    <ResultBadge rating={editableBatch.rating} />
+
+                </div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+                {/* Main Content */}
+                <div className="w-full lg:w-2/3 space-y-6">
+                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                        <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.data_title')}</h3>
+                        <dl className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6">
+                            <KeyStatCard label={t('batch_detail.hydration')} value={`${doughConfig.hydration}%`} icon={<InfoIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('form.flour_type')} value={flour?.name || 'N/A'} icon={<InfoIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('batch_detail.yeast')} value={t(`form.yeast_${doughConfig.yeastType.toLowerCase()}`)} icon={<YeastIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('general.total_time')} value={`${(editableBatch.bulkTimeHours || 0) + (editableBatch.proofTimeHours || 0)}h`} icon={<ClockIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('general.avg_temp')} value={t(`form.temp_${doughConfig.ambientTemperature.toLowerCase()}`)} icon={<InfoIcon className="h-6 w-6" />} />
+                            <KeyStatCard label={t('general.oven_2')} value={editableBatch.ovenType ? t(`profile.ovens.types.${editableBatch.ovenType.toLowerCase()}`) : 'N/A'} icon={<FireIcon className="h-6 w-6" />} />
+                        </dl>
+                    </div>
+
+                    {doughResult && (
+                        <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                            <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.ingredients_title')}</h3>
+                            <IngredientTable result={doughResult} doughConfig={doughConfig} />
+                        </div>
+                    )}
+
+                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="font-bold text-lg text-slate-900 ">{t('batch_detail.process_title')}</h3>
+                            {!isEditingNotes && (
+                                <button onClick={() => setIsEditingNotes(true)} className="flex items-center gap-1.5 rounded-lg py-1.5 px-3 text-xs font-bold text-slate-600  hover:bg-slate-100 transition-colors">
+                                    <PencilIcon className="h-3 w-3" />
+                                    <span>{editableBatch.notes ? t('batch_detail.edit_notes') : t('batch_detail.add_notes')}</span>
+                                </button>
+                            )}
+                        </div>
+                        {isEditingNotes ? (
+                            <div>
+                                <textarea rows={10} value={tempNotes} onChange={(e) => setTempNotes(e.target.value)} placeholder={t('batch_detail.notes_placeholder')} className="block w-full rounded-xl border-slate-300  bg-white  text-slate-900  shadow-sm focus:border-dlp-brand focus:ring-dlp-brand" autoFocus />
+                                <div className="mt-2 flex justify-end gap-2">
+                                    <button onClick={() => setIsEditingNotes(false)} className="rounded-xl py-2 px-4 text-sm font-bold text-slate-600  hover:bg-slate-100 transition-colors">{t('common.cancel')}</button>
+                                    <button onClick={handleSaveNotesClick} className="rounded-xl bg-dlp-brand py-2 px-4 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">{t('common.save')}</button>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="prose prose-sm max-w-none min-h-[10rem] whitespace-pre-wrap text-slate-700 ">{editableBatch.notes || <p className="italic text-slate-400 ">{t('batch_detail.no_notes')}</p>}</div>
+                        )}
+                    </div>
+                    <AdCard context="batch_detail" />
+                </div>
+
+                {/* Sidebar */}
+                <div className="w-full lg:w-1/3 space-y-6 lg:sticky lg:top-24">
+
+                    {/* Reverse Schedule (Timeline) */}
+                    <div className="animate-in slide-in-from-right-4 duration-500 delay-100">
+                        <ReverseSchedule
+                            config={doughConfig}
+                            levain={null} // TODO: Add levain support if needed
+                            targetDate={editableBatch.targetBakeTime}
+                            onTargetDateChange={(date) => setEditableBatch({ ...editableBatch, targetBakeTime: date })}
+                            onScheduleChange={setSchedule}
+                        />
+                    </div>
+
+                    {/* Related Learn Insights */}
+                    <div className="rounded-2xl bg-gradient-to-br from-lime-50 to-white p-6 shadow-sm border border-lime-100">
+                        <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-lime-900">
+                            <BookOpenIcon className="h-5 w-5 text-dlp-brand-hover" />
+                            {t('batch_detail.learn_insights')}
+                        </h3>
+                        <div className="space-y-3">
+                            {allLearnArticles.filter(article => {
+                                const config = editableBatch.doughConfig;
+
+                                // Use new schema fields: practicalApplications, tags, etc.
+                                const articleTags = article.tags || [];
+                                const practicalApps = article.practicalApplications || [];
+
+                                // Match based on practical applications and tags
+                                if (config.hydration > 65 && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('hydration')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('hydration')) ||
+                                    article.id.includes('hydration') || article.id.includes('water')
+                                )) return true;
+
+                                if ((editableBatch.bulkTimeHours || 0) > 4 && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('fermentation')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('fermentation')) ||
+                                    article.id.includes('fermentation')
+                                )) return true;
+
+                                if (['sourdough', 'levain'].includes(config.yeastType) && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('sourdough')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('sourdough')) ||
+                                    article.id.includes('sourdough')
+                                )) return true;
+
+                                if (editableBatch.ovenType && (
+                                    practicalApps?.some(app => app.toLowerCase().includes('baking')) ||
+                                    articleTags?.some(tag => tag.toLowerCase().includes('baking')) ||
+                                    article.id.includes('baking')
+                                )) return true;
+
+                                // Fallback matches by ID
+                                if (article.id === 'water-hydration-dynamics' || article.id.includes('fermentation-basics')) return true;
+                                return false;
+                            }).slice(0, 4).map(article => (
+                                <a
+                                    key={article.id}
+                                    href={`#/learn/article/${article.id}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block p-3 bg-white rounded-xl border border-lime-100 hover:border-lime-300 hover:shadow-md transition-all group"
+                                >
+                                    <h4 className="font-bold text-sm text-slate-800 group-hover:text-lime-700 transition-colors line-clamp-1">
+                                        {article.title}
+                                    </h4>
+                                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                                        {article.subtitle}
+                                    </p>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
+                        <RecommendedProducts
+                            tags={[
+                                doughConfig.style?.toLowerCase() || 'general',
+                                doughConfig.yeastType?.toLowerCase() || '',
+                                doughConfig.ovenType?.toLowerCase() || '',
+                                'baking'
+                            ].filter(Boolean)}
+                            title={t('general.tools_for_this_recipe')}
+                        />
+                    </div>
+                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                        <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.rating')}</h3>
+                        <div className="flex items-center justify-center gap-1">
+                            {[1, 2, 3, 4, 5].map(star => (
+                                <button key={star} onClick={() => handleRatingChange(star)} className="p-1 transition-transform hover:scale-110 active:scale-95">
+                                    {editableBatch.rating && editableBatch.rating >= star ? <SolidStarIcon className="h-8 w-8 text-yellow-400" /> : <StarIcon className="h-8 w-8 text-slate-300  hover:text-yellow-400" />}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                        <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.photos_title')}</h3>
+                        <div className="aspect-video w-full rounded-xl bg-slate-100 overflow-hidden flex items-center justify-center relative">
+                            {editableBatch.photoUrl ? (
+                                <img src={editableBatch.photoUrl} alt={editableBatch.name} className="w-full h-full object-cover" />
+                            ) : (
+                                <PhotoIcon className="h-10 w-10 text-slate-400 " />
+                            )}
+                            {isUploading && (
+                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                                </div>
+                            )}
+                        </div>
+
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            className="hidden"
+                            accept="image/*"
+                            onChange={handlePhotoSelect}
+                        />
+
+                        <button
+                            onClick={() => fileInputRef.current?.click()}
+                            disabled={isUploading}
+                            className="w-full mt-4 rounded-xl bg-slate-100  text-slate-700  py-2.5 text-sm font-bold hover:bg-slate-200 transition-colors disabled:opacity-50"
+                        >
+                            {editableBatch.photoUrl ? t('batch_detail.change_photo') : t('batch_detail.add_photo')}
+                        </button>
+                    </div>
+                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                        <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.actions_title')}</h3>
+                        <div className="space-y-3">
+                            <button onClick={() => onLoadAndNavigate(doughConfig)} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><BatchesIcon className="h-5 w-5" /> {t('batch_detail.actions.repeat')}</button>
+                            <button onClick={handleDuplicate} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><DocumentDuplicateIcon className="h-5 w-5" /> {t('batch_detail.actions.duplicate')}</button>
+
+                            <LockedTeaser featureKey="export.pdf_json">
+                                <button onClick={handleExportPDF} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><DownloadIcon className="h-5 w-5" /> {t('batch_detail.actions.export_pdf')}</button>
+                            </LockedTeaser>
+
+                            <LockedTeaser featureKey="community.feed">
+                                <button
+                                    onClick={handleShareClick}
+                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-dlp-brand to-dlp-brand-hover py-3 font-bold text-white shadow-lg shadow-dlp-brand/20 hover:from-dlp-brand-hover hover:to-lime-700 transition-all"
+                                >
+                                    <FeedIcon className="h-5 w-5" />{t('common.share_in_community')}
+                                </button>
+                            </LockedTeaser>
+
+                            <button
+                                onClick={() => setIsShareCardOpen(true)}
+                                className="w-full flex items-center justify-center gap-2 rounded-xl bg-indigo-50 text-indigo-700 py-3 font-bold hover:bg-indigo-100 transition-colors border border-indigo-200"
+                            >
+                                <PhotoIcon className="h-5 w-5" />
+                                {t('batch_detail.actions.share_visual')}
+                            </button>
+
+                            <SocialShare
+                                title={`My ${editableBatch.name} Recipe`}
+                                data={editableBatch.doughConfig}
+                                type="recipe"
+                                className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-3 font-bold text-slate-700 hover:bg-slate-200 transition-colors"
+                            />
+
+                            <button onClick={handleDelete} className="w-full flex items-center justify-center gap-2 rounded-xl text-red-600  py-3 font-bold hover:bg-red-50 transition-colors"><TrashIcon className="h-5 w-5" /> {t('batch_detail.actions.delete')}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="mt-8 flex items-center justify-between border-t border-slate-200  pt-6">
+                <button onClick={() => onNavigate('mylab/fornadas')} className="text-sm font-bold text-dlp-brand-hover  hover:underline">
+                    &larr; {t('batch_detail.back_to_diary')}
+                </button>
+                <button onClick={handleSave} className="flex items-center gap-2 rounded-xl bg-dlp-brand py-3 px-6 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95">
+                    <SaveIcon className="h-5 w-5" />
+                    {t('common.save_changes')}
+                </button>
+            </div>
+
+            <ShareBatchModal
+                batch={editableBatch}
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+            />
+
+            <DoughyAssistant />
+
+            {isShareCardOpen && editableBatch.doughResult && (
+                <RecipeCardGenerator
+                    config={editableBatch.doughConfig}
+                    result={editableBatch.doughResult}
+                    title={editableBatch.name}
+                    onClose={() => setIsShareCardOpen(false)}
+                />
+            )}
+        </div>
+    );
+};
+
+export default BatchDetailPage;
+
+
+

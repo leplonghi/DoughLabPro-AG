@@ -224,6 +224,16 @@ export const pain_aux_raisins: StyleDefinition = {
       "answer": t('styles.pain_aux_raisins_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 60,
+    "salt": 1.5,
+    "oil": 5,
+    "sugar": 10
+  },
+  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
 };

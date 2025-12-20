@@ -184,7 +184,6 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
                 tag: notification.id,
                 requireInteraction: notification.requiresInteraction || false,
                 silent: notification.silent || !settings.soundEnabled,
-                vibrate: settings.vibrationEnabled ? (notification.vibrate || [200, 100, 200]) : undefined,
                 data: notification.data,
             });
 
@@ -406,8 +405,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
             new Notification('DoughLabPro Test', {
                 body: 'Notifications are working! 🍕',
                 icon: '/icons/notification-icon.png',
-                vibrate: [200, 100, 200, 100, 200],
-            });
+                });
         }
     }, [permissionStatus, requestPermission, serviceWorkerRegistration]);
 

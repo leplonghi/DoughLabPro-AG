@@ -237,6 +237,16 @@ export const brazilian_pizzeria_gas_deck: StyleDefinition = {
       "answer": t('styles.brazilian_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 65,
+    "salt": 2.5,
+    "oil": 2,
+    "sugar": 1
+  },
+  "recommendedFlavorComponents": ["tomato_sauce","mozzarella","olive_oil","basil","oregano"]
 };

@@ -263,7 +263,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                     <div>
                       <h4 className="text-sm font-bold font-heading text-[#065F46]">{t('calculator.generic_starter')}</h4>
                       <p className="text-[11px] text-[#065F46]/60 mt-1 leading-relaxed">
-                        Calibrated for a <strong>balanced 100% hydration</strong>. For specific strain adjustments or feeding windows, use <strong>"My Lab"</strong>.
+                        Calibrated for a <strong>balanced 100% hydration</strong>. For specific strain adjustments or feeding windows, use <strong>t('calculator.my_lab_394')</strong>.
                       </p>
                     </div>
                   </div>
@@ -282,7 +282,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                             <div className="bg-white/80 p-3 rounded-2xl">
                               <span className="text-[9px] uppercase font-bold text-slate-400 block mb-1">Status</span>
                               <span className={`text-[11px] font-bold ${selectedLevain.status === 'ativo' ? 'text-dlp-brand-hover' : 'text-amber-600'}`}>
-                                {selectedLevain.status === 'ativo' ? 'Active & Ready' : 'Needs Attention'}
+                                {selectedLevain.status === 'ativo' ? 'Active & Ready' : t('calculator.needs_attention_395')}
                               </span>
                             </div>
                             <div className="bg-white/80 p-3 rounded-2xl">

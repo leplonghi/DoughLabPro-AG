@@ -17,7 +17,7 @@ const OvenSciencePage: React.FC = () => {
             <ul className="list-disc pl-5 mt-2 space-y-1">
                 <li><strong>{t('learn.thermal_shock')}</strong> Cold dough meets intense oven heat.</li>
                 <li><strong>{t('learn.rapid_water_evaporation')}</strong> Water on dough surface and ingredients turns to steam almost instantly.</li>
-                <li><strong>Gas expansion (Oven Spring):</strong> CO₂ trapped in gluten and newly formed steam expand violently, causing "oven spring" and puffing the rim (cornicione).</li>
+                <li><strong>Gas expansion (Oven Spring):</strong> CO₂ trapped in gluten and newly formed steam expand violently, causing t('learn.oven_spring_446') and puffing the rim (cornicione).</li>
                 <li><strong>{t('learn.surface_coloration')}</strong> Maillard reactions and caramelization occur on dry surface, developing color and flavor.</li>
                 <li><strong>{t('learn.internal_structure_stabilization')}</strong> Starch gelatinizes and gluten proteins coagulate, fixing the aerated dough structure.</li>
             </ul>
@@ -57,7 +57,7 @@ const OvenSciencePage: React.FC = () => {
               Transformation of water to steam is one of most important events in oven.
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-                <li><strong>{t('learn.rapid_water_evaporation')}</strong> in dough turns to steam. Since steam occupies much larger volume than liquid water, it violently expands existing gas bubbles, contributing to "oven spring".</li>
+                <li><strong>{t('learn.rapid_water_evaporation')}</strong> in dough turns to steam. Since steam occupies much larger volume than liquid water, it violently expands existing gas bubbles, contributing to t('learn.oven_spring_446').</li>
                 <li>Free water in ingredients (especially sauce and veg) also evaporates. <strong>{t('learn.controlling_this_moisture_is_critical')}</strong> to avoid soggy pizza.</li>
             </ul>
         </LearnSection>

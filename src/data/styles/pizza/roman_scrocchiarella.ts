@@ -242,6 +242,16 @@ export const roman_scrocchiarella: StyleDefinition = {
       "answer": t('styles.roman_scrocchiarella_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 65,
+    "salt": 2.5,
+    "oil": 2,
+    "sugar": 1
+  },
+  "recommendedFlavorComponents": ["tomato_sauce","mozzarella","olive_oil","basil","oregano"]
 };

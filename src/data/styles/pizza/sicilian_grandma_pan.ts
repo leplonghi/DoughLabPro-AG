@@ -237,6 +237,16 @@ export const sicilian_grandma_pan: StyleDefinition = {
       "answer": t('styles.sicilian_grandma_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 65,
+    "salt": 2.5,
+    "oil": 2,
+    "sugar": 1
+  },
+  "recommendedFlavorComponents": ["tomato_sauce","mozzarella","olive_oil","basil","oregano"]
 };

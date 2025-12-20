@@ -241,6 +241,16 @@ export const bagels_classic: StyleDefinition = {
       "answer": t('styles.bagels_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 70,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

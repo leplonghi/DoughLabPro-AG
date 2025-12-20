@@ -2,6 +2,8 @@ import jsPDF from 'jspdf';
 import { Batch, DoughConfig, DoughResult } from '../types';
 import { FLOURS } from '../flours-constants';
 import { generateTechnicalMethod } from '../logic/methodGenerator';
+import { useTranslation } from 'react-i18next';
+
 
 const COLORS = {
     PRIMARY: [81, 161, 69], // #51a145 (Brand Green)
@@ -20,7 +22,7 @@ const COLORS = {
  */
 export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: any) => string): Promise<void> => {
     try {
-        if (!batch) throw new Error("Batch data is missing");
+        if (!batch) throw new Error(t('common.batch_data_is_missing_175'));
 
         const doc = new jsPDF();
 
@@ -47,7 +49,7 @@ export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: 
         try {
             const logoInfo = await new Promise<{ data: string, ratio: number }>((resolve, reject) => {
                 const img = new Image();
-                img.crossOrigin = 'Anonymous';
+                img.crossOrigin = t('common.anonymous_176');
                 const timeout = setTimeout(() => reject(new Error("Timeout")), 3000);
                 img.onload = () => {
                     clearTimeout(timeout);
@@ -83,7 +85,7 @@ export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: 
         // Recipe Title (Compacted)
         doc.setFontSize(18); doc.setFont('helvetica', 'bold');
         doc.setTextColor(COLORS.TEXT_DARK[0], COLORS.TEXT_DARK[1], COLORS.TEXT_DARK[2]);
-        const recipeName = (batch.name || 'Untitled Recipe').toUpperCase();
+        const recipeName = (batch.name || t('common.untitled_recipe_177')).toUpperCase();
         const titleLines = doc.splitTextToSize(recipeName, CONTENT_WIDTH);
         doc.text(titleLines, MARGIN_X, cursorY);
         cursorY += (titleLines.length * 7) + 2;
@@ -111,12 +113,12 @@ export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: 
         };
 
         const config = batch.doughConfig || {} as DoughConfig;
-        drawMetricCard('Hydration', `${config.hydration || 0}%`, MARGIN_X);
+        drawMetricCard(t('common.hydration_178'), `${config.hydration || 0}%`, MARGIN_X);
         const servingsLabel = config.bakeType === 'PIZZAS' ? `${config.numPizzas || 0} Pizzas` : `${config.numPizzas || 1} Pcs`;
-        drawMetricCard('Yield', servingsLabel, MARGIN_X + colWidth);
+        drawMetricCard(t('common.yield_179'), servingsLabel, MARGIN_X + colWidth);
         const totalWeight = batch.doughResult ? Number(batch.doughResult.totalDough || 0).toFixed(0) : '0';
-        drawMetricCard('Total Mass', `${totalWeight}g`, MARGIN_X + (colWidth * 2));
-        drawMetricCard('Strategy', config.fermentationTechnique || 'Direct', MARGIN_X + (colWidth * 3));
+        drawMetricCard(t('common.total_mass_180'), `${totalWeight}g`, MARGIN_X + (colWidth * 2));
+        drawMetricCard(t('common.strategy_181'), config.fermentationTechnique || t('common.direct_182'), MARGIN_X + (colWidth * 3));
 
         cursorY += 24;
 
@@ -129,9 +131,9 @@ export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: 
         const results = batch.doughResult || { totalFlour: 1000, totalWater: 600, totalSalt: 20, totalOil: 0, totalSugar: 0, totalYeast: 5, totalDough: 1625, ingredientWeights: [] };
         const ings = [...(results.ingredientWeights || [])];
         if (ings.length === 0) {
-            const flourName = FLOURS.find(f => f.id === config.flourId)?.name || 'Flour';
+            const flourName = FLOURS.find(f => f.id === config.flourId)?.name || t('common.flour_183');
             ings.push({ name: flourName, weight: Number(results.totalFlour || 1000), bakerPercentage: 100 } as any);
-            ings.push({ name: 'Water', weight: Number(results.totalWater || 600), bakerPercentage: Number(config.hydration || 60) } as any);
+            ings.push({ name: t('common.water_184'), weight: Number(results.totalWater || 600), bakerPercentage: Number(config.hydration || 60) } as any);
         }
 
         const ingredientsCardHeight = (ings.length * 6) + 4;

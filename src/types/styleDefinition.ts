@@ -161,4 +161,7 @@ export interface StyleDefinition {
 
     /** Optional: Override automatic tag-based recommendations with a specific curated list */
     affiliatePlacementId?: string;
+
+    /** Recommended affiliate products for this style (product IDs from affiliate catalog) */
+    affiliateProducts?: string[];
 }

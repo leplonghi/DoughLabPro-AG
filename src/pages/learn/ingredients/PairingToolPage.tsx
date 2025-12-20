@@ -9,11 +9,11 @@ const PairingToolPage: React.FC = () => {
   const { t } = useTranslation();
   const pairingIngredients = [
     { value: '', label: 'Select an ingredient...' },
-    { value: 'mozzarella', label: 'Mozzarella' },
-    { value: 'gorgonzola', label: 'Gorgonzola' },
-    { value: 'pumpkin', label: 'Pumpkin' },
-    { value: 'red_onion', label: 'Red Onion' },
-    { value: 'mushrooms', label: 'Mushrooms' },
+    { value: 'mozzarella', label: t('learn.mozzarella_319') },
+    { value: 'gorgonzola', label: t('learn.gorgonzola_320') },
+    { value: 'pumpkin', label: t('learn.pumpkin_321') },
+    { value: 'red_onion', label: t('learn.red_onion_322') },
+    { value: 'mushrooms', label: t('learn.mushrooms_323') },
     { value: 'prosciutto', label: 'Prosciutto (Cured Ham)' },
   ];
 

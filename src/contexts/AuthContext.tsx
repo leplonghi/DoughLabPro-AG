@@ -78,7 +78,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                         } else {
                             // Create new user doc if not exists
                             const newUser: User = {
-                                name: user.displayName || 'User',
+                                name: user.displayName || t('common.user_250'),
                                 email: user.email || '',
                                 avatar: user.photoURL || undefined,
                                 isPro: isProClaim || false,
@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                         console.error("Error fetching user data:", error);
                         // Fallback for guest/dev mode if DB fails
                         setAppUser({
-                            name: user.displayName || 'User',
+                            name: user.displayName || t('common.user_250'),
                             email: user.email || '',
                             isPro: isProClaim || false,
                             plan: planClaim === 'pro' ? 'lab_pro' : ((planClaim as 'free' | 'lab_pro' | 'calculator_unlock') || 'free')
@@ -110,7 +110,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     console.log("VIP Access Granted");
                     const guestUser = {
                         uid: 'vip-guest-user',
-                        displayName: 'VIP Guest',
+                        displayName: t('common.vip_guest_252'),
                         email: 'vip@doughlab.pro',
                         emailVerified: true,
                         isAnonymous: true,
@@ -137,7 +137,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
                     setFirebaseUser(guestUser);
                     setAppUser({
-                        name: 'VIP Guest',
+                        name: t('common.vip_guest_252'),
                         email: 'vip@doughlab.pro',
                         isPro: true,
                         plan: 'lab_pro',
@@ -185,7 +185,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             if (db) {
                 const userDocRef = doc(db, 'users', userCredential.user.uid);
                 const newUser: User = {
-                    name: name || 'User',
+                    name: name || t('common.user_250'),
                     email: email,
                     isPro: false,
                     plan: 'free',
@@ -204,7 +204,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const loginAsGuest = async () => {
         const guestUser = {
             uid: 'guest-123',
-            displayName: 'Guest User',
+            displayName: t('common.guest_user_255'),
             email: 'guest@doughlab.pro',
             emailVerified: true,
             isAnonymous: true,
@@ -231,7 +231,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         setFirebaseUser(guestUser);
         setAppUser({
-            name: 'Guest User',
+            name: t('common.guest_user_255'),
             email: 'guest@doughlab.pro',
             isPro: true, // Give Pro access to guest for testing
             plan: 'lab_pro',

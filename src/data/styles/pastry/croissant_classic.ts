@@ -263,6 +263,10 @@ export const croissant_classic: StyleDefinition = {
       "answer": t('styles.croissant_faq_6_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
 };

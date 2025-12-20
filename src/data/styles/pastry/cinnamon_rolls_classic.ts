@@ -249,6 +249,8 @@ export const cinnamon_rolls_classic: StyleDefinition = {
       "answer": t('styles.cinnamon_rolls_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official",
   "base_formula": [
@@ -265,4 +267,6 @@ export const cinnamon_rolls_classic: StyleDefinition = {
     { "name": t('styles.frosting_cream_cheese_2'), "percentage": 20, "role": "other" },
     { "name": t('styles.frosting_powdered_sugar_2'), "percentage": 15, "role": "other" }
   ]
+,
+  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
 };

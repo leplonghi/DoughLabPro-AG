@@ -243,6 +243,16 @@ export const hot_dog_buns_enriched: StyleDefinition = {
       "answer": t('styles.hot_dog_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 70,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

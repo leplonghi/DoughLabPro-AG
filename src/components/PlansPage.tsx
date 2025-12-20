@@ -13,16 +13,16 @@ const PlansPage: React.FC<PlansPageProps> = ({ onGrantAccess, onNavigateHome }) 
     const { hasProAccess, openPaywall } = useUser();
 
     const features = [
-        { name: 'Unlimited Saved Batches', free: false, pro: true },
-        { name: 'Advanced Calculator Mode', free: false, pro: true },
-        { name: 'Create Custom Styles', free: false, pro: true },
+        { name: t('ui.unlimited_saved_batches_154'), free: false, pro: true },
+        { name: t('ui.advanced_calculator_mode_155'), free: false, pro: true },
+        { name: t('ui.create_custom_styles_156'), free: false, pro: true },
         { name: 'AI Assistant (Doughbot)', free: false, pro: true },
-        { name: 'Oven Analysis Tool', free: false, pro: true },
-        { name: 'Levain Management', free: false, pro: true },
-        { name: 'Export to PDF', free: false, pro: true },
-        { name: 'Basic Calculator', free: true, pro: true },
-        { name: 'Standard Presets', free: true, pro: true },
-        { name: 'Community Access', free: true, pro: true },
+        { name: t('ui.oven_analysis_tool_157'), free: false, pro: true },
+        { name: t('ui.levain_management_158'), free: false, pro: true },
+        { name: t('ui.export_to_pdf_159'), free: false, pro: true },
+        { name: t('ui.basic_calculator_160'), free: true, pro: true },
+        { name: t('ui.standard_presets_161'), free: true, pro: true },
+        { name: t('ui.community_access_162'), free: true, pro: true },
     ];
 
     return (
@@ -89,7 +89,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onGrantAccess, onNavigateHome }) 
                             : 'bg-dlp-accent hover:bg-dlp-accent-hover hover:scale-[1.02]'
                             }`}
                     >
-                        {hasProAccess ? 'Current Plan' : 'Upgrade to Pro'}
+                        {hasProAccess ? t('ui.current_plan_163') : t('ui.upgrade_to_pro_164')}
                     </button>
                 </div>
             </div>

@@ -77,8 +77,8 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                                 <button
                                     onClick={() => navigate('learn/category', encodeURIComponent(finalData.category!))}
                                     className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-80 transition-opacity ${finalData.category === 'Ingredient Science' ? 'bg-lime-900 text-lime-300 border border-lime-700' :
-                                        finalData.category === 'Dough Science' ? 'bg-sky-900 text-sky-300 border border-sky-700' :
-                                            finalData.category === 'Fermentation Science' ? 'bg-amber-900 text-amber-300 border border-amber-700' :
+                                        finalData.category === t('learn.dough_science_400') ? 'bg-sky-900 text-sky-300 border border-sky-700' :
+                                            finalData.category === t('learn.fermentation_science_401') ? 'bg-amber-900 text-amber-300 border border-amber-700' :
                                                 'bg-stone-700 text-stone-300 border border-stone-600'
                                         }`}
                                 >

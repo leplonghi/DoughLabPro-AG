@@ -41,14 +41,14 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
             if (placedProducts && placedProducts.length > 0) {
                 return {
                     products: placedProducts.slice(0, limit),
-                    displayTitle: title || (placement ? placement.title : 'Recommended Gear')
+                    displayTitle: title || (placement ? placement.title : t('ui.recommended_gear_386'))
                 };
             }
         }
 
         return {
             products: getRecommendedProducts(tags, limit),
-            displayTitle: title || 'Recommended Gear'
+            displayTitle: title || t('ui.recommended_gear_386')
         };
     }, [tags, limit, placementId, category, title]);
 

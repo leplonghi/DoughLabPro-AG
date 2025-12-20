@@ -13,76 +13,76 @@ export const wheat_tortilla: StyleDefinition = {
   "origin": {
     "country": t('styles.mexico'),
     "region": t('styles.northern_mexico_and_southwest_us'),
-    "period": "Traditional/Modern"
+    "period": t('styles.tortilla_origin_period')
   },
   "intro": t('styles.used_for_tacos_burritos_quesadillas_and_many_stree'),
-  "history": "Wheat Flour Tortillas (Tortillas de Harina) originated in the northern states of Mexico (Sonora, Chihuahua, Sinaloa) following the Spanish conquest. While central and southern Mexico remained dedicated to corn (maize), the north had white wheat and lard introduced by the Europeans. Jewish conversos (Crypto-Jews) in the region are often credited with adapting their unleavened flatbread traditions to the local ingredients, creating a thin, pliable carrier that became the foundation for northern Mexican cuisine and, later, the American 'Tex-Mex' burrito culture.",
+  "history": t('styles.tortilla_history'),
   "culturalContext": {
     "significance": [
-      "The defining vessel of Northern Mexican and Southwest American cuisine",
-      "Historically a symbol of the 'Borderlands'—where indigenous methods met European grains",
-      "Represents a mastery of 'Leanness' vs 'Fat'—achieving flexibility with minimal ingredients",
-      "Essential for the 'Sonoran' food identity, distinguishing it from the 'Corn-Belt' of the South",
-      "An icon of versatility: can be a snack, a main meal wrapper, or a dessert (Sopapillas)"
+      t('styles.tortilla_sig_1'),
+      t('styles.tortilla_sig_2'),
+      t('styles.tortilla_sig_3'),
+      t('styles.tortilla_sig_4'),
+      t('styles.tortilla_sig_5')
     ],
     "consumptionContext": [
-      "Commonly served warm for Tacos (Carne Asada), Burritos, and Quesadillas",
-      "Used for 'Desayuno' (breakfast) with eggs, beans, and chorizo",
-      "Can be fried into 'Chimichangas' or used as 'Buñuelos' with sugar and cinnamon",
-      "Often used simply as a utensil to scoop up stews (Guisados)",
-      "Essential for 'Fajita' night in Tex-Mex restaurant culture"
+      t('styles.tortilla_cons_1'),
+      t('styles.tortilla_cons_2'),
+      t('styles.tortilla_cons_3'),
+      t('styles.tortilla_cons_4'),
+      t('styles.tortilla_cons_5')
     ],
     "evolution": [
-      "1500s: Spanish introduce wheat and lard to Northern Mexico",
-      "1800s: The 'Sonoran' style of ultra-thin, giant flour tortillas is standardized",
-      "1920s: Burritos (little donkeys) gain popularity as a portable lunch for laborers",
-      "1950s: Industrial flour tortillas enter US supermarkets, losing the traditional lard complexity",
-      "2010s: Artisanal revival: chefs return to hand-pressed, lard-based tortillas using heirloom wheat",
-      "Present: Global staple, used as 'wraps' in every culinary fusion context imaginable"
+      t('styles.tortilla_evo_1'),
+      t('styles.tortilla_evo_2'),
+      t('styles.tortilla_evo_3'),
+      t('styles.tortilla_evo_4'),
+      t('styles.tortilla_evo_5'),
+      t('styles.tortilla_evo_6')
     ],
     "rituals": [
-      "The 'Puff' Test: watching the tortilla inflate on the Comal as a sign of proper hydration and heat",
-      "Hand-Stretching: the artisan technique of 'stretching' the dough until it's translucent",
-      "The 'Comal' Flip: the rapid, bare-handed flip of the hot tortilla on the griddle",
-      "Hot-Towel Wrap: stacking fresh tortillas immediately into a cloth to 'sweat' and soften",
-      "Lard Rub: the sensory ritual of working cold lard into the flour until it feels like wet sand"
+      t('styles.tortilla_rit_1'),
+      t('styles.tortilla_rit_2'),
+      t('styles.tortilla_rit_3'),
+      t('styles.tortilla_rit_4'),
+      t('styles.tortilla_rit_5')
     ]
   },
   "flavorProfile": {
     "primaryFlavors": [
-      "Mildly sweet, toasted wheat flavor",
-      "Savory richness (especially if using traditional lard)",
-      "Slightly salty with clean cereal notes",
-      "Buttery or nutty undertones (depending on the fat used)",
-      "Neutral but satisfying canvas for spicy salsas and rich meats"
+      t('styles.tortilla_flav_1'),
+      t('styles.tortilla_flav_2'),
+      t('styles.tortilla_flav_3'),
+      t('styles.tortilla_flav_4'),
+      t('styles.tortilla_flav_5')
     ],
     "aromaProfile": [
-      "Toasted bread and warm cereal",
-      "Subtle sweet fat (lard or butter)",
-      "Warm wheat fields",
-      "Mild yeast-like notes (even if unleavened)",
-      "Sun-warmed earth"
+      t('styles.tortilla_aroma_1'),
+      t('styles.tortilla_aroma_2'),
+      t('styles.tortilla_aroma_3'),
+      t('styles.tortilla_aroma_4'),
+      t('styles.tortilla_aroma_5')
     ],
     "textureNotes": [
-      "Flexible and Pliable: must be able to fold twice without breaking",
-      "Soft and Tender: should have a short 'bite' (gentle resistance then yielding)",
-      "Translucent Spots: the iconic 'dark brown bubbles' on a pale white background",
-      "Pillsbury Cloud: slightly airy if chemical leaveners or high-heat steam are present",
-      "Non-Greasy: should feel smooth and dry to the touch, despite the high fat content"
+      t('styles.tortilla_text_1'),
+      t('styles.tortilla_text_2'),
+      t('styles.tortilla_text_3'),
+      t('styles.tortilla_text_4'),
+      t('styles.tortilla_text_5')
     ],
     "pairingRecommendations": [
-      "Protein: Carne Asada (grilled beef), Al Pastor (pork), or Refried Beans",
-      "Fat: Avocado, Sour Cream, or melted Monterey Jack cheese",
-      "Acid: Salsa Verde (Tomatillo), pickled onions, or fresh lime juice",
-      "Condiment: Guacamole and spicy Pico de Gallo",
-      "Beverage: Ice-cold Mexican Lager (Corona/Dos Equis), Horchata, or a Margarita"
+      t('styles.tortilla_pair_1'),
+      t('styles.tortilla_pair_2'),
+      t('styles.tortilla_pair_3'),
+      t('styles.tortilla_pair_4'),
+      t('styles.tortilla_pair_5')
     ],
     "flavorEvolution": [
-      "Fresh (0-10 mins): Peak flexibility and 'toast' aroma; melts in the mouth",
-      "1-2 Hours: Becomes slightly firmer; perfect for sturdier burritos",
-      "Next Day: Must be reheated on a dry pan to restore softness; excellent for chips (Totopos)",
-      "Stale: Traditionally transformed into 'Chilaquiles' or fried for dessert",
-      "Freezing: Freezes exceptionally well; separate with parchment and reheat directly from frozen"
+      t('styles.tortilla_fevo_1'),
+      t('styles.tortilla_fevo_2'),
+      t('styles.tortilla_fevo_3'),
+      t('styles.tortilla_fevo_4'),
+      t('styles.tortilla_fevo_5')
     ]
   },
   "technicalFoundations": [
@@ -122,7 +122,7 @@ export const wheat_tortilla: StyleDefinition = {
     ],
     "flourStrength": t('styles.allpurpose_or_soft_wheat_flour'),
     "fermentation": {
-      "bulk": "Short rest after mixing (20–30 min)",
+      "bulk": t('styles.tortilla_ferm_bulk'),
       "proof": t('styles.no_traditional_yeast_proofing_steps'),
       "coldRetard": t('styles.optional_dough_rest_in_fridge')
     },
@@ -140,44 +140,44 @@ export const wheat_tortilla: StyleDefinition = {
     ]
   },
   "regionalVariants": [
-    "Sonoran Flour Tortillas - Ultra-thin, giant (40cm+) tortillas using high-quality local wheat",
-    "Tex-Mex Style - Thicker, fluffier tortillas often containing baking powder",
-    "Chihuahuense - Known for being more robust and slightly larger",
-    "Corn-Wheat Blend - A hybrid style common in some coastal regions",
-    "Whole Wheat Tortilla - Modern 'health' variant using high-extraction flour"
+    t('styles.tortilla_var_1'),
+    t('styles.tortilla_var_2'),
+    t('styles.tortilla_var_3'),
+    t('styles.tortilla_var_4'),
+    t('styles.tortilla_var_5')
   ],
   "climateScenarios": [
-    "Extreme Dryness: The dough will 'skin' over; keep under a damp towel during rolling",
-    "High Humidity: Tortillas may stick when stacked; ensure they are fully 'sweat' and then separated",
-    "Tropical Heat: Lard will melt too fast during mixing—use chilled lard if the room is above 30°C",
-    "High Altitude: Moisture evaporates faster; add 2-3% more water to prevent cracking during folding"
+    t('styles.tortilla_clim_1'),
+    t('styles.tortilla_clim_2'),
+    t('styles.tortilla_clim_3'),
+    t('styles.tortilla_clim_4')
   ],
   "styleComparisons": [
-    "vs. Naan: Tortillas are much thinner, have no yeast, and use lard/oil vs Naan's Yogurt/Butter",
-    "vs. Piadina: Tortillas are thinner and more flexible; Piadina is thicker and more 'bready'",
-    "vs. Corn Tortilla: Wheat uses gluten for stretch; Corn uses Nixtamalization for structure",
-    "vs. Lavash: Tortillas are smaller and rely on fat for softness vs Lavash's thinness and hydration"
+    t('styles.tortilla_comp_1'),
+    t('styles.tortilla_comp_2'),
+    t('styles.tortilla_comp_3'),
+    t('styles.tortilla_comp_4')
   ],
   "parameterSensitivity": [
-    "Critical: Fat Content - too little makes them 'bready' and prone to breaking; too much makes them greasy",
-    "Highly sensitive: Water Temp - using cold water makes it impossible to stretch the dough thin",
-    "Salt Level: 1.5% is standard; it highlights the sweetness of the wheat and the richness of the lard",
-    "Rest Time: Skipping the 30-min rest results in 'rubber' dough that snaps back when rolled",
-    "Pan Temp: If the comal is too cold, the tortilla dries into leather before it can brown"
+    t('styles.tortilla_sens_1'),
+    t('styles.tortilla_sens_2'),
+    t('styles.tortilla_sens_3'),
+    t('styles.tortilla_sens_4'),
+    t('styles.tortilla_sens_5')
   ],
   "risks": [
-    "The Crack: Tortilla snaps when folded (usually due to under-hydration or over-baking)",
-    "Rubber Band Effect: Dough won't hold its thin shape (due to skipping the rest period)",
-    "Pale/Soggy: Pan was too cold or too many stacked together without enough initial heat",
-    "Grease Slick: Lard wasn't incorporated properly into the flour before adding water",
-    "Unblown Bubbles: Surface of the pan was oiled or dough was too dry internally"
+    t('styles.tortilla_risk_1'),
+    t('styles.tortilla_risk_2'),
+    t('styles.tortilla_risk_3'),
+    t('styles.tortilla_risk_4'),
+    t('styles.tortilla_risk_5')
   ],
   "notes": [
-    "Always use a dry cast-iron skillet (Comal) for the best results and iconic brown 'freckles'",
-    "If you want them super soft, use half milk and half hot water as your liquid",
-    "Don't be afraid of lard—it provides the traditional flavor that vegetable oil can't match",
-    "Roll from the center outward to ensure the edges aren't thicker than the middle",
-    "Stack them inside a clean kitchen towel inside a lidded container to keep them warm for hours"
+    t('styles.tortilla_note_1'),
+    t('styles.tortilla_note_2'),
+    t('styles.tortilla_note_3'),
+    t('styles.tortilla_note_4'),
+    t('styles.tortilla_note_5')
   ],
   "tags": [
     "Tortillas for tacos, wraps, quesadillas",
@@ -193,7 +193,7 @@ export const wheat_tortilla: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Mexican Cookery: Flatbreads of the North",
+      "title": t('styles.tortilla_title'),
       "url": "https://www.worldcat.org/title/mexican-cookery-flatbreads-of-the-north/",
       "author": "Barbara Pool Fenzl",
       "year": 1995
@@ -205,13 +205,13 @@ export const wheat_tortilla: StyleDefinition = {
       "year": 2017
     },
     {
-      "title": "The Art of the Flour Tortilla",
+      "title": t('styles.tortilla_title'),
       "url": "https://www.latimes.com/food/la-fo-flour-tortilla-master-class-20180517-story.html",
       "author": "L.A. Times",
       "year": 2018
     },
     {
-      "title": "Sonoran Flour Tortillas: A Cultural Identity",
+      "title": t('styles.tortilla_title'),
       "url": "https://www.foodandwine.com/news/sonoran-flour-tortilla-history",
       "author": "Food & Wine",
       "year": 2019
@@ -221,26 +221,36 @@ export const wheat_tortilla: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "Why won't my tortillas stretch thin enough?",
-      "answer": "This is almost always because the dough hasn't rested enough. The gluten needs at least 30-60 minutes to relax after being mixed. If you try to roll them immediately, they will act like a rubber band and snap back."
+      "question": t('styles.tortilla_faq_1_q'),
+      "answer": t('styles.tortilla_faq_1_a')
     },
     {
-      "question": "Can I use oil instead of lard?",
-      "answer": "Yes, vegetable oil works perfectly fine and is a great vegan alternative. However, lard provides a specific savory 'shortness' and flavor that is traditional to Northern Mexico. If using oil, you might need 1-2% more to match the tenderness of lard."
+      "question": t('styles.tortilla_faq_2_q'),
+      "answer": t('styles.tortilla_faq_2_a')
     },
     {
-      "question": "Why is it important to stack them in a cloth after baking?",
-      "answer": "This is a critical step called 'sweating'. As the hot tortillas are stacked, they release steam. The cloth traps this steam, which softens the recently-browned crust, keeping the tortillas pliable and preventing them from becoming hard and brittle."
+      "question": t('styles.tortilla_faq_3_q'),
+      "answer": t('styles.tortilla_faq_3_a')
     },
     {
-      "question": "What is the secret to the 'bubbles' on top?",
-      "answer": "High heat and proper hydration. When a tortilla hits a very hot pan, the water inside turns to steam instantly. This steam pushes the layers apart, creating the puffed bubbles that brown quickly on the surface."
+      "question": t('styles.tortilla_faq_4_q'),
+      "answer": t('styles.tortilla_faq_4_a')
     },
     {
-      "question": "How do I store leftover homemade tortillas?",
-      "answer": "Let them cool completely, then place them in an airtight plastic bag. They will last 2-3 days at room temperature or several months in the freezer. To reheat, always use a dry pan for 15 seconds per side to restore their flexibility."
+      "question": t('styles.tortilla_faq_5_q'),
+      "answer": t('styles.tortilla_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 70,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

@@ -51,7 +51,7 @@ const ChemistryLibraryPage: React.FC = () => {
             </LearnSection>
 
             <LearnSection title="7. Evaporation and Phase Change">
-                <p>When pizza enters the hot oven, free water on the dough surface and ingredients evaporates rapidly. Water inside the dough turns into steam. This steam expands violently, inflating gas alveoli (created by fermentation) and causing "oven spring" — the rapid final rise of the rim. It is a basic thermodynamics principle in action.</p>
+                <p>When pizza enters the hot oven, free water on the dough surface and ingredients evaporates rapidly. Water inside the dough turns into steam. This steam expands violently, inflating gas alveoli (created by fermentation) and causing t('learn.oven_spring_442') — the rapid final rise of the rim. It is a basic thermodynamics principle in action.</p>
             </LearnSection>
 
             <LearnSection title="8. Lipids and Oil-Out">

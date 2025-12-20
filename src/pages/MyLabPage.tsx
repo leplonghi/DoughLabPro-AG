@@ -91,9 +91,9 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                         <div className="flex flex-col w-full">
                             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                                 {(() => {
-                                    if (totalBakes >= 50) return 'Master Pizzaiolo';
-                                    if (totalBakes >= 20) return 'Pizzaiolo';
-                                    if (totalBakes >= 5) return 'Enthusiast';
+                                    if (totalBakes >= 50) return t('ui.master_pizzaiolo_375');
+                                    if (totalBakes >= 20) return t('ui.pizzaiolo_376');
+                                    if (totalBakes >= 5) return t('ui.enthusiast_377');
                                     return 'Home Baker'; // Level 1
                                 })()}
                             </span>

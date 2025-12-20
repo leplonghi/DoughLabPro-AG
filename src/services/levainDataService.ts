@@ -1,5 +1,7 @@
 import { Levain } from '@/types';
-import { useTranslation } from '@/i18n';
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 export const levainDataService = {};
 export const exportLevainData = (levains: Levain[]): string => JSON.stringify(levains);
@@ -8,6 +10,6 @@ export const importLevainData = (jsonString: string): { error?: string; newLevai
         const newLevains = JSON.parse(jsonString);
         return { newLevains };
     } catch (e) {
-        return { error: 'Invalid JSON file', newLevains: [] };
+        return { error: t('common.invalid_json_file_455'), newLevains: [] };
     }
 };

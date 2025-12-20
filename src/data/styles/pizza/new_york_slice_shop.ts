@@ -256,6 +256,8 @@ export const new_york_slice_shop: StyleDefinition = {
       "answer": t('styles.ny_slice_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
 };

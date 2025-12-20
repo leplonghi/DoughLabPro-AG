@@ -28,7 +28,7 @@ const TomatoPreservationPage: React.FC = () => {
         <p>t('learn.fresh_notes') come from volatile compounds easily lost with heat. t('learn.cooked_notes') are developed through sugar caramelization and Maillard reactions (to a lesser degree), creating a robust and complex flavor profile. The choice between one and other depends entirely on pizza style and desired result.</p>
       </LearnSection>
       <LearnSection title={t('learn.tomato_behavior_in_baking')}>
-        <p>In the oven, sauce water evaporates rapidly. If sauce is too liquid, this evaporation can "cook" the dough underneath, creating a "gum line". If sauce is too concentrated and has added sugars, it can burn in high-temperature ovens. The goal is to have the right consistency so the sauce concentrates its flavor without soaking the dough or burning.</p>
+        <p>In the oven, sauce water evaporates rapidly. If sauce is too liquid, this evaporation can "cook" the dough underneath, creating a t('learn.gum_line_450'). If sauce is too concentrated and has added sugars, it can burn in high-temperature ovens. The goal is to have the right consistency so the sauce concentrates its flavor without soaking the dough or burning.</p>
       </LearnSection>
       <LearnSection title={t('learn.technical_references_6')}>
         <ul className="list-disc pl-5 space-y-2">

@@ -243,6 +243,10 @@ export const new_haven_apizza: StyleDefinition = {
       "answer": t('styles.new_haven_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "recommendedFlavorComponents": ["tomato_sauce","mozzarella","olive_oil","basil","oregano"]
 };

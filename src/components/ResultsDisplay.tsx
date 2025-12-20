@@ -140,7 +140,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     const renderIngredientRow = (label: string, grams: number, ingredientId: string, subtext?: string) => (
         <AffiliateIngredientRow
             key={ingredientId + label}
-            label={label}
+            label={String(label || '')}
             grams={grams}
             displayValue={displayIngredient(label, grams, ingredientId)}
             hydration={config.hydration}

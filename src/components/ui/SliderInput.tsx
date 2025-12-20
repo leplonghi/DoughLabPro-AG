@@ -219,7 +219,7 @@ const SliderInput: React.FC<SliderInputProps> = ({
         {/* Technical insight link */}
         {learnArticle && (
           <div className="mt-4 flex items-center justify-between border-t-[0.5px] border-slate-50 pt-3">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t('calculator.science_of')} {label.toLowerCase()}</span>
+            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t('calculator.science_of')} {String(label || '').toLowerCase()}</span>
             <a
               href={`#/learn/${encodeURIComponent(learnArticle.category)}/${learnArticle.id}`}
               target="_blank"

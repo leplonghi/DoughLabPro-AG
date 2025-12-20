@@ -251,6 +251,10 @@ export const ciabatta_high_hydration: StyleDefinition = {
       "answer": t('styles.ciabatta_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

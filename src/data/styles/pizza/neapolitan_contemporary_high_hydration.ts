@@ -250,6 +250,10 @@ export const neapolitan_contemporary_high_hydration: StyleDefinition = {
       "answer": t('styles.neapolitan_contemporary_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "recommendedFlavorComponents": ["tomato_sauce","mozzarella","olive_oil","basil","oregano"]
 };

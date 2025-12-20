@@ -156,7 +156,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           setFirebaseUser(guestAuth);
           setUser({
             uid: 'vip-guest-user',
-            name: 'VIP Guest',
+            name: t('common.vip_guest_418'),
             email: 'vip@doughlab.pro',
             avatar: undefined,
             plan: 'lab_pro',
@@ -239,7 +239,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         const mergedProfile: User = {
           uid: authUser.uid,
-          name: profileData.name || authUser.displayName || 'Baker',
+          name: profileData.name || authUser.displayName || t('common.baker_419'),
           email: authUser.email || '',
           avatar: profileData.avatar || authUser.photoURL || undefined,
           plan, // Normalized plan

@@ -15,74 +15,74 @@ export const pane_pugliese: StyleDefinition = {
     "region": t('styles.puglia'),
     "period": t('styles.traditional_7')
   },
-  "intro": "Served as a flavorful table bread with a chewy crumb, pairing well with olive oil and hearty dishes.",
-  "history": "Pane Pugliese is the rustic giant of Southern Italian breads, originating from the Puglia region—the 'granary of Italy'. Historically, families in Puglia made massive 2-3kg loaves (Pagnotte) using high-quality local durum wheat (semola). These large loaves were designed to last an entire week for farming families, staying moist and flavorful even after 5-7 days. It is deeply connected to the town of Altamura, though Pugliese refers to the broader regional style.",
+  "intro": t('styles.pane_pugliese_intro'),
+  "history": t('styles.pane_pugliese_history'),
   "culturalContext": {
     "significance": [
-      "A symbol of the agricultural heritage of Southern Italy",
-      "One of the only breads in Europe with a PDO (DOP) status (for the Altamura variant)",
-      "Represents the 'Cucina Povera' (impoverished cooking) philosophy: simple, high-quality, and zero waste",
-      "Known as the 'yellow bread' due to the natural pigments of remilled durum wheat",
-      "Traditionally baked in massive wood-fired public ovens"
+      t('styles.pane_pugliese_sig_1'),
+      t('styles.pane_pugliese_sig_2'),
+      t('styles.pane_pugliese_sig_3'),
+      t('styles.pane_pugliese_sig_4'),
+      t('styles.pane_pugliese_sig_5')
     ],
     "consumptionContext": [
-      "The soul of the 'Bruschetta' and 'Panzanella' traditions",
-      "Traditionally eaten in thick, hand-torn chunks with local olive oil",
-      "Served alongside hearty Apulian dishes like Orecchiette with rapini",
-      "A staple for 'Pane e Pomodoro'—rubbed with ripe tomatoes and salt",
-      "Valued for its long shelf life; the flavor actually improves on day 2 and 3"
+      t('styles.pane_pugliese_cons_1'),
+      t('styles.pane_pugliese_cons_2'),
+      t('styles.pane_pugliese_cons_3'),
+      t('styles.pane_pugliese_cons_4'),
+      t('styles.pane_pugliese_cons_5')
     ],
     "evolution": [
-      "Ancient Times: Greeks and Romans cultivate durum wheat in the Apulian plains",
-      "Middle Ages: Communal baking laws require families to mark their loaves with wooden stamps",
-      "1800s: The sourdough (lievito madre) method is standardized for long-lasting loaves",
-      "1900s: Puglia becomes the primary supplier of durum flour for all of Italy",
-      "2003: Pane di Altamura receives the first European DOP for bread",
-      "Present: A global favorite for those seeking rustic, 'big-flavored' Italian bread"
+      t('styles.pane_pugliese_evo_1'),
+      t('styles.pane_pugliese_evo_2'),
+      t('styles.pane_pugliese_evo_3'),
+      t('styles.pane_pugliese_evo_4'),
+      t('styles.pane_pugliese_evo_5'),
+      t('styles.pane_pugliese_evo_6')
     ],
     "rituals": [
-      "The 'Cappello di Prete' (Priest's Hat): a specific folding technique that creates a top dome",
-      "Marking the Loaf: traditionally stamping or scoring the dough with the family initial",
-      "The Tap of the Base: checking the massive loaf for a hollow sound to ensure the center is dry",
-      "Hand-Tearing: many locals refuse to slice Pugliese with a knife, preferring to tear it for texture",
-      "The Olive Oil Drizzle: testing the first hot slice with nothing but the current year's olive oil"
+      t('styles.pane_pugliese_rit_1'),
+      t('styles.pane_pugliese_rit_2'),
+      t('styles.pane_pugliese_rit_3'),
+      t('styles.pane_pugliese_rit_4'),
+      t('styles.pane_pugliese_rit_5')
     ]
   },
   "flavorProfile": {
     "primaryFlavors": [
-      "Distinctive nutty, earthy sweetness from remilled durum wheat",
-      "Subtle malty notes with a lack of harsh sourdough acidity",
-      "Intense toasted grain profile from the dark-baked crust",
-      "A unique 'yellow' savory note, typical of semola flours",
-      "Mildly salty and mineral-rich"
+      t('styles.pane_pugliese_flav_1'),
+      t('styles.pane_pugliese_flav_2'),
+      t('styles.pane_pugliese_flav_3'),
+      t('styles.pane_pugliese_flav_4'),
+      t('styles.pane_pugliese_flav_5')
     ],
     "aromaProfile": [
-      "Honey and toasted nuts",
-      "Freshly harvested wheat fields",
-      "Smoky and earthy notes from the thick, caramelized crust",
-      "Mildly sweet fermentative aroma",
-      "Clean and robust grain scent"
+      t('styles.pane_pugliese_aroma_1'),
+      t('styles.pane_pugliese_aroma_2'),
+      t('styles.pane_pugliese_aroma_3'),
+      t('styles.pane_pugliese_aroma_4'),
+      t('styles.pane_pugliese_aroma_5')
     ],
     "textureNotes": [
-      "The 'Yellow Crumb': dense but soft, with a distinct pale-yellow hue",
-      "Thick, dark-brown, and exceptionally crunchy 'shatter' crust",
-      "Substantial chewiness (high gluten elasticity from durum)",
-      "Irregular, medium-sized alveoli (holes) that persist even in large loaves",
-      "Moist and 'cool' internal feel that lasts for many days"
+      t('styles.pane_pugliese_text_1'),
+      t('styles.pane_pugliese_text_2'),
+      t('styles.pane_pugliese_text_3'),
+      t('styles.pane_pugliese_text_4'),
+      t('styles.pane_pugliese_text_5')
     ],
     "pairingRecommendations": [
-      "Olive Oil: Robust, spicy Southern Italian oils (like Coratina)",
-      "Vegetables: Sun-dried tomatoes, artichokes, or roasted peppers",
-      "Cheese: Pecorino Pugliese, fresh Burrata, or Scamorza",
-      "Meat: Capocollo di Martina Franca or spicy salami",
-      "Meal: Fave e Cicoria (fava bean puree and chicory)"
+      t('styles.pane_pugliese_pair_1'),
+      t('styles.pane_pugliese_pair_2'),
+      t('styles.pane_pugliese_pair_3'),
+      t('styles.pane_pugliese_pair_4'),
+      t('styles.pane_pugliese_pair_5')
     ],
     "flavorEvolution": [
-      "Fresh (0-6 hours): Maximum crust crunch; flavor is sweet and mild",
-      "Day 2-3: The 'Peak'; the crumb sets and the nutty durum flavor intensifies",
-      "Day 4-5: Perfect for 'Acquasale' (soaking in water with tomatoes and herbs)",
-      "Day 7: Still edible and excellent for making homemade breadcrumbs",
-      "Stale: Traditionally used for 'Polpette di Pane' (bread meatballs)"
+      t('styles.pane_pugliese_fevo_1'),
+      t('styles.pane_pugliese_fevo_2'),
+      t('styles.pane_pugliese_fevo_3'),
+      t('styles.pane_pugliese_fevo_4'),
+      t('styles.pane_pugliese_fevo_5')
     ]
   },
   "technicalFoundations": [
@@ -122,8 +122,8 @@ export const pane_pugliese: StyleDefinition = {
     ],
     "flourStrength": t('styles.blend_of_bread_flour_and_durum_wheat_flours'),
     "fermentation": {
-      "bulk": "2–4 h at 23–25°C with folds",
-      "proof": "45–90 min at 23–25°C",
+      "bulk": t('styles.pane_pugliese_ferm_bulk'),
+      "proof": t('styles.pane_pugliese_ferm_proof'),
       "coldRetard": t('styles.optional_overnight_retard')
     },
     "oven": {
@@ -140,44 +140,44 @@ export const pane_pugliese: StyleDefinition = {
     ]
   },
   "regionalVariants": [
-    "Pane di Altamura (DOP) - The protected, 100% durum wheat gold standard",
-    "Pane di Matera (IGP) - Neighboring style with a unique 'conical' or croissant-like shape",
-    "Pane Pugliese di Grano Tenero - Variant using a blend of soft and hard wheat flours",
-    "Pagnotta di Cerignola - Large, round variant known for its exceptionally thick crust",
-    "Friselle - Twice-baked durum bread rings designed for extreme long-term storage"
+    t('styles.pane_pugliese_var_1'),
+    t('styles.pane_pugliese_var_2'),
+    t('styles.pane_pugliese_var_3'),
+    t('styles.pane_pugliese_var_4'),
+    t('styles.pane_pugliese_var_5')
   ],
   "climateScenarios": [
-    "Mediterranean Heat: Use cooler water (18°C) to prevent the durum from fermenting too fast",
-    "Arid/Dry: Keep the large loaves in a wooden box to maintain the humidity of the thick crust",
-    "Winter/Cold: Extend the Biga fermentation time to ensure enough enzymatic activity for browning",
-    "Coastal: The salt air helps develop the crust flavor but requires a drier finish in the oven"
+    t('styles.pane_pugliese_clim_1'),
+    t('styles.pane_pugliese_clim_2'),
+    t('styles.pane_pugliese_clim_3'),
+    t('styles.pane_pugliese_clim_4')
   ],
   "styleComparisons": [
-    "vs. Pain de Campagne: Pugliese is made with hard durum wheat (yellow) vs soft wheat/rye (grey)",
-    "vs. Ciabatta: Both are hydrated, but Pugliese is much larger and has a thicker, darker crust",
-    "vs. Altamura: Pugliese is a style; Altamura is a specific, legally protected recipe",
-    "vs. Baguette: Pugliese is a 'marathon' bread (lasts a week) vs. Baguette's 'sprint' (lasts 4 hours)"
+    t('styles.pane_pugliese_comp_1'),
+    t('styles.pane_pugliese_comp_2'),
+    t('styles.pane_pugliese_comp_3'),
+    t('styles.pane_pugliese_comp_4')
   ],
   "parameterSensitivity": [
-    "Critical: Semola Quality - needs 'Semola Rimacinata' (remilled), not coarse semolina for pasta",
-    "Highly sensitive: Water Absorption - durum can 'drink' water suddenly; look for a soft, tacky feel",
-    "Lievito Madre Health: If the starter is too acidic, it will weaken the durum gluten drastically",
-    "Bake Duration: Short-baking a 1kg loaf will result in a gummy, raw center",
-    "Flour Temperature: Avoid overheating the dough during mixing as it can 'cook' the durum proteins"
+    t('styles.pane_pugliese_sens_1'),
+    t('styles.pane_pugliese_sens_2'),
+    t('styles.pane_pugliese_sens_3'),
+    t('styles.pane_pugliese_sens_4'),
+    t('styles.pane_pugliese_sens_5')
   ],
   "risks": [
-    "Gummy Center: Not baking the large loaf long enough to reach 97°C internally",
-    "Brick-like Crumb: Using 'Semolina' (coarse) instead of 'Semola Rimacinata' (fine remilled)",
-    "Lack of Color: Under-fermenting, which leaves no sugars for the Maillard reaction",
-    "Crust Peeling: Too much steam at the end of the bake, causing the skin to separate",
-    "Solado (Sunken Base): Not enough bottom heat to lift the massive weight of the dough"
+    t('styles.pane_pugliese_risk_1'),
+    t('styles.pane_pugliese_risk_2'),
+    t('styles.pane_pugliese_risk_3'),
+    t('styles.pane_pugliese_risk_4'),
+    t('styles.pane_pugliese_risk_5')
   ],
   "notes": [
-    "If you can't find Semola Rimacinata, pulse regular semolina in a high-speed blender",
-    "Try making at least 1kg loaves—this bread needs mass to develop its true character",
-    "Rub a cut tomato and olive oil on a 2-day-old slice for the best snack of your life",
-    "Scoring should be deep (at least 2cm) to allow the large loaf to expand without bursting",
-    "The crumb should be pale yellow—if it's white, you're not using enough durum wheat"
+    t('styles.pane_pugliese_note_1'),
+    t('styles.pane_pugliese_note_2'),
+    t('styles.pane_pugliese_note_3'),
+    t('styles.pane_pugliese_note_4'),
+    t('styles.pane_pugliese_note_5')
   ],
   "tags": [
     t('common.rustic_italian_table_bread'),
@@ -199,19 +199,19 @@ export const pane_pugliese: StyleDefinition = {
       "year": 2017
     },
     {
-      "title": "Historical Puglia: The Bread of Altamura",
+      "title": t('styles.pane_pugliese_title'),
       "url": "https://www.panealtamuradop.it/en/history/",
       "author": "Consortium of Pane di Altamura",
       "year": 2023
     },
     {
-      "title": "Encyclopedia of Pasta & Bread",
+      "title": t('styles.pane_pugliese_title'),
       "url": "https://www.amazon.com/Encyclopedia-Pasta-Bread-Italian-Heritage/dp/0520255931",
       "author": "Oretta Zanini De Vita",
       "year": 2009
     },
     {
-      "title": "Baking with Italian Flours",
+      "title": t('styles.pane_pugliese_title'),
       "url": "https://www.mulinocaputo.it/en/flours",
       "author": "Antimo Caputo",
       "year": 2021
@@ -221,26 +221,36 @@ export const pane_pugliese: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "What is Pane Pugliese?",
-      "answer": "It is the iconic rustic bread from the Puglia region in Southern Italy. It is famous for using remilled durum wheat semolina (which gives the crumb a yellowish color), having a dark and very thick crust, and being made in large formats (1kg or more)."
+      "question": t('styles.pane_pugliese_faq_1_q'),
+      "answer": t('styles.pane_pugliese_faq_1_a')
     },
     {
-      "question": "Why is the crumb yellowish?",
-      "answer": "Due to the use of 'Semola Rimacinata di Grano Duro'. Unlike the common soft wheat used for white bread, durum wheat (used in Italian pastas) has natural yellowish pigments and a flavor reminiscent of nuts and honey."
+      "question": t('styles.pane_pugliese_faq_2_q'),
+      "answer": t('styles.pane_pugliese_faq_2_a')
     },
     {
-      "question": "What is the difference between Pane Pugliese and Pane di Altamura?",
-      "answer": "All Altamura bread is a type of Pugliese, but 'Pane di Altamura DOP' is the most famous and legally protected example, strictly made with 100% semolina from that specific zone and natural leaven."
+      "question": t('styles.pane_pugliese_faq_3_q'),
+      "answer": t('styles.pane_pugliese_faq_3_a')
     },
     {
-      "question": "Is it true that this bread lasts for a week?",
-      "answer": "Yes! Traditionally, it was baked in communal ovens to last the entire week. The thick crust protects the crumb, and the use of natural leaven and durum wheat helps maintain moisture and flavor for up to 7 days."
+      "question": t('styles.pane_pugliese_faq_4_q'),
+      "answer": t('styles.pane_pugliese_faq_4_a')
     },
     {
-      "question": "How to serve Pane Pugliese traditionally?",
-      "answer": "The most classic way is 'Pane e Pomodoro': take a thick slice (preferably 1 or 2 days old), rub a very ripe tomato until the bread absorbs the color and juice, sprinkle salt, and drizzle with high-quality extra virgin olive oil."
+      "question": t('styles.pane_pugliese_faq_5_q'),
+      "answer": t('styles.pane_pugliese_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 70,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

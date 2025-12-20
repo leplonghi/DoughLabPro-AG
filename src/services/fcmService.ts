@@ -1,8 +1,11 @@
 import { getMessaging, getToken, onMessage, deleteToken } from 'firebase/messaging';
 import { doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from '../firebase/db';
+import i18n from '@/i18n';
+const t = i18n.t.bind(i18n);
 
-const VAPID_KEY = import.meta.env.VITE_FIREBASE_VAPID_KEY;
+
+const VAPID_KEY = import.meta.env.VITE_FIREBASE_VAPID_KEY || '';
 
 export interface FCMToken {
     token: string;
@@ -172,7 +175,7 @@ export class FCMService {
             });
 
             if (!response.ok) {
-                throw new Error('Failed to send notification');
+                throw new Error(t('common.failed_to_send_notification_381'));
             }
 
             console.log('Notification sent to all user devices');
@@ -205,7 +208,7 @@ export class FCMService {
             });
 
             if (!response.ok) {
-                throw new Error('Failed to send notification');
+                throw new Error(t('common.failed_to_send_notification_381'));
             }
 
             await this.updateTokenLastUsed(deviceId);
@@ -233,7 +236,7 @@ export class FCMService {
      * Check if FCM is supported
      */
     isSupported(): boolean {
-        return 'Notification' in window && 'serviceWorker' in navigator && !!this.messaging;
+        return t('common.notification_383') in window && 'serviceWorker' in navigator && !!this.messaging;
     }
 
     /**

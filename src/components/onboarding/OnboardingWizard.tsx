@@ -152,10 +152,10 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                             <label className="text-sm font-medium text-slate-700 block mb-2">{t('auth.onboarding.main_goal', 'Main Goal')}</label>
                             <div className="grid grid-cols-2 gap-2">
                                 {[
-                                    { id: 'pizza', icon: '🍕', label: 'Pizza' },
-                                    { id: 'bread', icon: '🥖', label: 'Bread' },
-                                    { id: 'sourdough', icon: '🦠', label: 'Sourdough' },
-                                    { id: 'pastry', icon: '🥐', label: 'Confectionery' }
+                                    { id: 'pizza', icon: '🍕', label: t('ui.pizza_337') },
+                                    { id: 'bread', icon: '🥖', label: t('ui.bread_338') },
+                                    { id: 'sourdough', icon: '🦠', label: t('ui.sourdough_339') },
+                                    { id: 'pastry', icon: '🥐', label: t('ui.confectionery_340') }
                                 ].map((item) => (
                                     <button
                                         key={item.id}

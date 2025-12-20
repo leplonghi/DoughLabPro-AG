@@ -99,7 +99,7 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
                 </div>
 
                 <button onClick={calculateToppings} disabled={remainingBalls !== 0} className="mt-4 w-full bg-dlp-brand text-white font-semibold py-2 rounded-lg disabled:bg-slate-400 disabled:cursor-not-allowed">
-                    {remainingBalls !== 0 ? `${remainingBalls} piece(s) remaining to allocate` : 'Calculate Shopping List'}
+                    {remainingBalls !== 0 ? `${remainingBalls} piece(s) remaining to allocate` : t('ui.calculate_shopping_list_431')}
                 </button>
 
                 {results && (

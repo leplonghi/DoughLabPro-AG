@@ -36,6 +36,30 @@ import { FlavorComponent } from '@/types/flavor';
 
 // --- ADAPTER: Legacy/Registry (V2) -> UI (V3) ---
 // This ensures that American/European styles (V2 Definitions) can be rendered by this V3 Page.
+
+// Helper: Smart translate - only translate if it looks like an i18n key
+function smartTranslate(value: string | undefined, t: (key: string) => string): string {
+    if (!value) return '';
+
+    // If it's a long sentence or has spaces at the beginning, it's probably direct content
+    if (value.length > 100 || value.startsWith(' ') || value.includes('. ')) {
+        return value;
+    }
+
+    // If it starts with common i18n prefixes, translate it
+    if (value.startsWith('styles.') || value.startsWith('common.') || value.startsWith('ui.') || value.startsWith('general.')) {
+        return t(value);
+    }
+
+    // If it's short and has underscores/dots, might be a key
+    if (value.includes('_') && value.length < 50) {
+        return t(value);
+    }
+
+    // Otherwise, return as-is (direct content)
+    return value;
+}
+
 function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, options?: any) => string): DoughStyle {
     // 1. Parse Fermentation Steps from Strings to Objects
     const processSteps: ProcessStep[] = def.technicalProfile.fermentationSteps.map((stepStr, index) => {
@@ -48,9 +72,9 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
 
         const cleanText = (stepStr.startsWith('styles.') || stepStr.startsWith('common.')) ? t(stepStr) : stepStr.replace(/\[Science:.*?\]/, '').trim();
 
-        let phase: any = 'Bulk';
+        let phase: any = t('ui.bulk_243');
         if (index === 0) phase = 'Mix';
-        if (index === def.technicalProfile.fermentationSteps.length - 1) phase = 'Bake';
+        if (index === def.technicalProfile.fermentationSteps.length - 1) phase = t('ui.bake_244');
 
         // Extract title. Support both "." (Legacy) and ":" (Registry Adapter) and "-"
         // We look for the first occurrence of ., :, or -
@@ -110,13 +134,13 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
 
     return {
         id: def.id,
-        name: t(def.name),
+        name: smartTranslate(def.name, t),
         region: (def.origin.country === 'Italy' ? 'Italy' : def.origin.country === 'USA' ? 'Americas' : 'Europe') as any, // Simple region mapping
-        subRegion: t(def.origin.region),
+        subRegion: smartTranslate(def.origin.region, t),
         category: 'Pizza', // Simplification for UI tags
-        tags: def.tags.map(tag => t(tag)),
-        description: t(def.description),
-        history_context: t(def.history),
+        tags: def.tags.map(tag => smartTranslate(tag, t)),
+        description: smartTranslate(def.description, t),
+        history_context: smartTranslate(def.history, t),
         base_formula: def.base_formula ? def.base_formula.map(ing => ({ ...ing, name: t(ing.name) })) : [
             { name: t('results.flour'), percentage: 100 },
             { name: t('results.water'), percentage: (def.technicalProfile.hydration[0] + def.technicalProfile.hydration[1]) / 2 },
@@ -677,7 +701,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                             <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-sm">
                                 <MapPin className="w-3 h-3 text-emerald-300" /> {styleData.subRegion}
                             </span>
-                            <span className={`px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm ${styleData.specs.difficulty === 'Expert' ? 'text-purple-300 border-purple-500/30' : 'text-lime-300'}`}>
+                            <span className={`px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm ${styleData.specs.difficulty === t('ui.expert_248') ? 'text-purple-300 border-purple-500/30' : 'text-lime-300'}`}>
                                 {styleData.specs.difficulty} {t('common.level')}
                             </span>
                         </div>
@@ -705,7 +729,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                 ) : (
                                     <Camera className="w-4 h-4" />
                                 )}
-                                <span>{isUploading ? 'Uploading...' : 'Change Cover'}</span>
+                                <span>{isUploading ? 'Uploading...' : t('ui.change_cover_245')}</span>
                                 <input
                                     type="file"
                                     className="hidden"
@@ -802,7 +826,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             <div className="flex gap-1 mt-2">
                                                 <span className={`w-2 h-2 rounded-full ${component.applicationMoment === 'post_oven' ? 'bg-purple-400' : 'bg-orange-400'}`} title={component.applicationMoment === 'post_oven' ? 'Post-Oven' : 'Pre-Oven'} />
                                                 <span className="text-[10px] text-slate-400 font-medium">
-                                                    {component.applicationMoment === 'post_oven' ? 'Finish' : 'Cook'}
+                                                    {component.applicationMoment === 'post_oven' ? t('ui.finish_246') : t('ui.cook_247')}
                                                 </span>
                                             </div>
                                         </button>
@@ -983,7 +1007,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             <div className="flex justify-between items-center mb-2">
                                                 <span className="text-[10px] font-bold text-emerald-800 uppercase">{t('general.recommended_strength')}</span>
                                                 <span className="text-xs font-bold text-dlp-brand-hover bg-white px-2 py-0.5 rounded shadow-sm border border-emerald-100">
-                                                    {styleData.scientificProfile.flourRheology.w_index || (styleData.specs.difficulty === 'Expert' ? 'W 350+' : 'W 260+')}
+                                                    {styleData.scientificProfile.flourRheology.w_index || (styleData.specs.difficulty === t('ui.expert_248') ? 'W 350+' : 'W 260+')}
                                                 </span>
                                             </div>
                                             <p className="text-[11px] text-emerald-900 leading-relaxed italic">
@@ -999,7 +1023,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                             <div className="flex-1 bg-slate-50 rounded p-2 text-center border border-slate-100">
                                                 <span className="block text-[9px] uppercase text-slate-400 font-bold">{t('general.protein')}</span>
                                                 <span className="text-xs font-bold text-slate-700">
-                                                    {styleData.specs.difficulty === 'Expert' ? '13.5%+' : '12-13%'}
+                                                    {styleData.specs.difficulty === t('ui.expert_248') ? '13.5%+' : '12-13%'}
                                                 </span>
                                             </div>
                                         </div>

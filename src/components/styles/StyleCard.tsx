@@ -41,47 +41,70 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
     return (
         <div
             onClick={handleCardClick}
-            className="group bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-lime-200 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full relative"
+            className="group bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-2xl hover:shadow-lime-500/10 hover:border-lime-300/50 hover:-translate-y-1 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col h-full relative"
         >
+            {/* Glow Effect on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-lime-400/0 via-lime-500/0 to-emerald-500/0 group-hover:from-lime-400/5 group-hover:via-lime-500/5 group-hover:to-emerald-500/5 rounded-2xl transition-all duration-500 pointer-events-none z-0"></div>
+
             {/* Image Header */}
-            <div className="relative h-48 overflow-hidden bg-slate-100">
+            <div className="relative h-56 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
                 {style.images?.hero ? (
                     <img
                         src={style.images.hero}
                         alt={t(style.name)}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-all duration-700 ease-out"
                         onError={(e) => {
                             (e.target as HTMLImageElement).src = '/images/styles/placeholder-dough.png';
-                            // Fallback to a placeholder if missing
                             (e.target as HTMLImageElement).style.opacity = "0.5";
                         }}
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-300">
-                        <PizzaSliceIcon className="w-12 h-12" />
+                    <div className="w-full h-full flex items-center justify-center text-slate-300 bg-gradient-to-br from-slate-50 to-slate-100">
+                        <PizzaSliceIcon className="w-16 h-16 opacity-20" />
                     </div>
                 )}
 
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                {/* Enhanced Overlay Gradient with Glassmorphism */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
 
-                <div className="absolute bottom-3 left-4 right-4 flex justify-between items-end">
-                    <div>
-                        <CategoryBadge category={style.category} className="shadow-lg backdrop-blur-md bg-white/90" />
-                    </div>
-                    <div className="flex gap-1">
+                {/* Floating Badges */}
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
+                    <CategoryBadge
+                        category={style.category}
+                        className="shadow-xl backdrop-blur-xl bg-white/95 border border-white/50 transform group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="flex flex-col gap-2">
                         {style.isPro && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-dlp-brand text-white shadow-sm border border-lime-400">{t('common.pro')}</span>
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black bg-gradient-to-r from-lime-400 to-lime-500 text-white shadow-lg border border-lime-300/50 backdrop-blur-sm animate-pulse-subtle">
+                                ✨ {t('common.pro')}
+                            </span>
                         )}
                         {isNew && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500 text-white shadow-sm border border-blue-400">{t('common.new')}</span>
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg border border-blue-400/50 backdrop-blur-sm">
+                                🆕 {t('common.new')}
+                            </span>
+                        )}
+                    </div>
+                </div>
+
+                {/* Bottom Info Bar with Glassmorphism */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 via-black/40 to-transparent backdrop-blur-md">
+                    <div className="flex items-center gap-2 text-xs text-white/90 font-semibold uppercase tracking-wider">
+                        <span className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20">
+                            <Globe className="w-3.5 h-3.5" /> {style.origin.country || ''}
+                        </span>
+                        {style.origin.region && (
+                            <span className="bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20">
+                                {style.origin.region}
+                            </span>
                         )}
                     </div>
                 </div>
             </div>
 
             {/* Content Body */}
-            <div className="p-5 pb-3 relative flex-grow flex flex-col">
+            <div className="p-6 pb-4 relative flex-grow flex flex-col z-10">
+                {/* Favorite Button - Floating */}
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
@@ -92,76 +115,77 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             metadata: { category: style.category }
                         });
                     }}
-                    className={`p-1.5 rounded-full hover:bg-slate-100 transition-colors ${favorited ? 'text-pink-500' : 'text-slate-300 hover:text-pink-400'}`}
+                    className={`absolute -top-5 right-5 p-3 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 transform hover:scale-110 ${favorited
+                            ? 'bg-pink-500 border-pink-400 text-white shadow-pink-500/50 animate-pulse-subtle'
+                            : 'bg-white/95 border-slate-200 text-slate-400 hover:text-pink-500 hover:border-pink-300 hover:bg-pink-50'
+                        }`}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={favorited ? "currentColor" : "none"} stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                     </svg>
                 </button>
 
-                <h3 className="text-xl font-semibold text-slate-900 mb-1 group-hover:text-dlp-brand-hover transition-colors line-clamp-1">{t(style.name)}</h3>
-                <div className="flex items-center gap-2 text-xs text-slate-500 font-medium uppercase tracking-wide">
-                    <span className="flex items-center gap-1">
-                        <Globe className="w-3 h-3" /> {style.origin.country || ''}
-                    </span>
-                    {style.origin.region && <span>• {style.origin.region}</span>}
-                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2 mt-2 group-hover:text-dlp-brand-hover transition-colors line-clamp-1 tracking-tight">
+                    {t(style.name)}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4 flex-grow">
+                    {t(style.description)}
+                </p>
             </div>
 
-            {/* Description */}
-            <div className="px-5 pb-4 flex-grow">
-                <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed">{t(style.description)}</p>
-            </div>
-
-            {/* Tech Specs Badges */}
-            <div className="px-5 pb-3 flex flex-wrap gap-2">
-                <div className="inline-flex items-center px-2 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium border border-blue-100">
-                    <Droplets className="w-3 h-3 mr-1.5" />
+            {/* Tech Specs Badges - Enhanced */}
+            <div className="px-6 pb-4 flex flex-wrap gap-2">
+                <div className="inline-flex items-center px-3 py-1.5 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-700 text-xs font-bold border border-blue-200/50 shadow-sm hover:shadow-md transition-shadow">
+                    <Droplets className="w-3.5 h-3.5 mr-1.5" />
                     {style.technicalProfile?.hydration[0]}-{style.technicalProfile?.hydration[1]}%
                 </div>
                 {(style.technicalProfile?.fermentation || (style.technicalProfile?.fermentationSteps && style.technicalProfile.fermentationSteps.length > 0)) && (
-                    <div className="inline-flex items-center px-2 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-medium border border-amber-100">
-                        <Clock className="w-3 h-3 mr-1.5" />
+                    <div className="inline-flex items-center px-3 py-1.5 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 text-amber-700 text-xs font-bold border border-amber-200/50 shadow-sm hover:shadow-md transition-shadow">
+                        <Clock className="w-3.5 h-3.5 mr-1.5" />
                         {style.technicalProfile?.fermentation
                             ? (typeof style.technicalProfile.fermentation === 'object'
-                                ? (style.technicalProfile.fermentation.bulk.includes('h') ? style.technicalProfile.fermentation.bulk : 'Variable')
-                                : 'Variable')
+                                ? (style.technicalProfile.fermentation.bulk.includes('h') ? style.technicalProfile.fermentation.bulk : t('ui.variable_369'))
+                                : t('ui.variable_369'))
                             : 'Multi-Stage'}
                     </div>
                 )}
-                <div className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${style.technicalProfile?.difficulty === 'Easy' ? 'bg-green-50 text-green-700 border-green-100' :
-                    style.technicalProfile?.difficulty === 'Medium' ? 'bg-yellow-50 text-yellow-700 border-yellow-100' :
-                        'bg-red-50 text-red-700 border-red-100'
+                <div className={`inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-bold border shadow-sm hover:shadow-md transition-shadow ${style.technicalProfile?.difficulty === 'Easy'
+                        ? 'bg-gradient-to-br from-green-50 to-emerald-50 text-green-700 border-green-200/50'
+                        : style.technicalProfile?.difficulty === t('ui.medium_371')
+                            ? 'bg-gradient-to-br from-yellow-50 to-amber-50 text-yellow-700 border-yellow-200/50'
+                            : 'bg-gradient-to-br from-red-50 to-rose-50 text-red-700 border-red-200/50'
                     }`}>
-                    <BarChart className="w-3 h-3 mr-1.5" />
-                    {t(`common.${(style.technicalProfile?.difficulty || 'Medium').toLowerCase()}`, { defaultValue: style.technicalProfile?.difficulty || 'Medium' })}
+                    <BarChart className="w-3.5 h-3.5 mr-1.5" />
+                    {t(`common.${(style.technicalProfile?.difficulty || t('ui.medium_371')).toLowerCase()}`, { defaultValue: style.technicalProfile?.difficulty || t('ui.medium_371') })}
                 </div>
             </div>
 
             {/* Tags */}
-            {
-                style.tags && style.tags.length > 0 && (
-                    <div className="px-5 py-2 border-t border-slate-50 flex flex-wrap gap-1">
-                        {style.tags.slice(0, 4).map(tag => (
-                            <span key={tag} className="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded-full font-medium">
-                                #{t(tag)}
-                            </span>
-                        ))}
-                    </div>
-                )
-            }
+            {style.tags && style.tags.length > 0 && (
+                <div className="px-6 py-3 border-t border-slate-100 flex flex-wrap gap-1.5">
+                    {style.tags.slice(0, 4).map(tag => (
+                        <span key={tag} className="text-[10px] px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full font-semibold transition-colors">
+                            #{t(tag)}
+                        </span>
+                    ))}
+                </div>
+            )}
 
-            {/* Action Bar */}
-            <div className="p-3 border-t border-slate-100 mt-auto grid grid-cols-2 gap-2">
+            {/* Action Bar - Premium Buttons */}
+            <div className="p-4 border-t border-slate-100 mt-auto grid grid-cols-2 gap-3 bg-slate-50/50">
                 <LockFeature featureKey="styles.detail" customMessage={t('general.unlock_calculator')} origin="styles.card">
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             onUseInCalculator(style);
                         }}
-                        className="w-full bg-lime-50 hover:bg-dlp-brand hover:text-white text-lime-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn"
+                        className="w-full bg-gradient-to-r from-dlp-brand to-lime-500 hover:from-lime-600 hover:to-lime-700 text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:shadow-lime-500/30 transform hover:scale-105 active:scale-95"
                     >
-                        <Calculator className="h-3.5 w-3.5" />{t('common.use_style')}</button>
+                        <Calculator className="h-4 w-4" />
+                        {t('common.use_style')}
+                    </button>
                 </LockFeature>
 
                 {isUserStyle && onDelete ? (
@@ -170,21 +194,25 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             e.stopPropagation();
                             onDelete(style);
                         }}
-                        className="w-full bg-red-50 hover:bg-red-500 hover:text-white text-red-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
+                        className="w-full bg-gradient-to-r from-red-50 to-rose-50 hover:from-red-500 hover:to-rose-600 text-red-700 hover:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 border border-red-200 hover:border-red-500 shadow-sm hover:shadow-lg transform hover:scale-105 active:scale-95"
                     >
-                        <Trash2 className="h-3.5 w-3.5" />{t('common.delete')}</button>
+                        <Trash2 className="h-4 w-4" />
+                        {t('common.delete')}
+                    </button>
                 ) : (
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             handleCardClick();
                         }}
-                        className="w-full bg-slate-50 hover:bg-slate-200 text-slate-600 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5"
-                    >{t('common.details')}<ArrowRight className="h-3.5 w-3.5" />
+                        className="w-full bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 shadow-sm hover:shadow-md transform hover:scale-105 active:scale-95"
+                    >
+                        {t('common.details')}
+                        <ArrowRight className="h-4 w-4" />
                     </button>
                 )}
             </div>
-        </div >
+        </div>
     );
 };
 

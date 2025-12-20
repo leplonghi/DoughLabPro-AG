@@ -29,6 +29,7 @@ import { FloatingHelpButton } from '@/components/ui/FloatingHelpButton';
 import { Calendar, Layers, Truck } from 'lucide-react';
 
 const ProductionDashboardTabs = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'scheduler' | 'batch' | 'logistics'>('scheduler');
 
   return (
@@ -47,9 +48,9 @@ const ProductionDashboardTabs = () => {
         {/* Cleaner Tabs */}
         <div className="flex bg-slate-50 p-1 rounded-xl">
           {[
-            { id: 'scheduler', icon: Calendar, label: 'Schedule' },
-            { id: 'batch', icon: Layers, label: 'Batch' },
-            { id: 'logistics', icon: Truck, label: 'Logistics' }
+            { id: 'scheduler', icon: Calendar, label: t('ui.schedule_309') },
+            { id: 'batch', icon: Layers, label: t('ui.batch_310') },
+            { id: 'logistics', icon: Truck, label: t('ui.logistics_311') }
           ].map((tab) => (
             <button
               key={tab.id}
@@ -264,7 +265,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           },
           {
             id: 'flour',
-            title: 'Escolha da Farinha',
+            title: t('ui.escolha_da_farinha_312'),
             icon: '🌾',
             content: (
               <div className="space-y-2">
@@ -299,7 +300,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           },
           {
             id: 'temperature',
-            title: 'Temperatura da Massa',
+            title: t('ui.temperatura_da_massa_313'),
             icon: '🌡️',
             content: (
               <div className="space-y-2">

@@ -37,14 +37,14 @@ const ParbakingPage: React.FC = () => {
                 </p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li>The dough is baked until the internal temperature passes ~93°C (200°F). At this point, the crumb structure is set and will not collapse.</li>
-                    <li>Without heavy cheese or wet toppings, water evaporates freely from the dough, establishing a crisp outer crust layer ("crust formation") without burning.</li>
+                    <li>Without heavy cheese or wet toppings, water evaporates freely from the dough, establishing a crisp outer crust layer (t('learn.crust_formation_412')) without burning.</li>
                     <li>{t('learn.the_result_is_a_stable_cooked_sponge_that_can_be_s')}</li>
                 </ul>
             </LearnSection>
 
             <LearnSection title="3. Moisture Management (The Anti-Gum Line Strategy)" icon={<BeakerIcon className="h-5 w-5" />}>
                 <p>
-                    One of the biggest technical faults in pizza is the "gum line"—a raw, doughy layer beneath the sauce. Parbaking solves this by creating a hydrophobic barrier (a dry crust) on top of the dough <em>before</em> moist ingredients are added. When sauce and cheese are added for the second bake, they sit on a cooked surface, preventing liquid absorption into the crumb.
+                    One of the biggest technical faults in pizza is the t('learn.gum_line_413')—a raw, doughy layer beneath the sauce. Parbaking solves this by creating a hydrophobic barrier (a dry crust) on top of the dough <em>before</em> moist ingredients are added. When sauce and cheese are added for the second bake, they sit on a cooked surface, preventing liquid absorption into the crumb.
                 </p>
             </LearnSection>
 

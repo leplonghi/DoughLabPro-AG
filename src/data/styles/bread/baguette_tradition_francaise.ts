@@ -251,6 +251,10 @@ export const baguette_tradition_francaise: StyleDefinition = {
       "answer": t('styles.baguette_tradition_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

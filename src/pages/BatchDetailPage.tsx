@@ -85,7 +85,7 @@ const IngredientTable: React.FC<{ result: DoughResult, doughConfig: DoughConfig 
     const renderRow = (label: string, value: number, note?: string) => (
         <AffiliateIngredientRow
             key={label}
-            label={label}
+            label={String(label || '')}
             grams={value}
             displayValue={`${value.toFixed(1)}g`}
             hydration={doughConfig.hydration}

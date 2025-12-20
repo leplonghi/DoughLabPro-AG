@@ -26,7 +26,7 @@ const VegetablesPage: React.FC = () => {
     >
       <LearnSection title={t('learn.introduction_the_moisture_challenge')}>
         <p>
-          Vegetables bring freshness, texture, and flavor, but their high water content (&gt;90% for many) is the biggest technical challenge in pizza making. When exposed to oven heat, cell walls rupture, releasing water that can pool on the pizza, leading to a soggy crust and the dreaded "gum line".
+          Vegetables bring freshness, texture, and flavor, but their high water content (&gt;90% for many) is the biggest technical challenge in pizza making. When exposed to oven heat, cell walls rupture, releasing water that can pool on the pizza, leading to a soggy crust and the dreaded t('learn.gum_line_445').
         </p>
       </LearnSection>
 

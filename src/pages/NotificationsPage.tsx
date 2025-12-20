@@ -2,17 +2,25 @@ import React, { useState } from 'react';
 import { NotificationSettings } from '@/components/notifications/NotificationSettings';
 import { TimerDashboard } from '@/components/notifications/TimerDashboard';
 import { NotificationList } from '@/components/notifications/NotificationList';
-import { Bell, Clock, Settings, List } from 'lucide-react';
+import { NotificationAnalyticsDashboard } from '@/components/notifications/NotificationAnalyticsDashboard';
+import { NotificationTemplatePicker } from '@/components/notifications/NotificationTemplatePicker';
+import { Bell, Clock, Settings, List, BarChart3, Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-type TabType = 'timers' | 'notifications' | 'settings';
+
+type TabType = 'timers' | 'notifications' | 'settings' | 'analytics' | 'templates';
 
 export const NotificationsPage: React.FC = () => {
+  const { t } = useTranslation();
+
     const [activeTab, setActiveTab] = useState<TabType>('timers');
 
     const tabs = [
-        { id: 'timers' as TabType, label: 'Timers', icon: Clock },
-        { id: 'notifications' as TabType, label: 'Notifications', icon: List },
-        { id: 'settings' as TabType, label: 'Settings', icon: Settings },
+        { id: 'timers' as TabType, label: t('ui.timers_324'), icon: Clock },
+        { id: 'notifications' as TabType, label: t('ui.notifications_325'), icon: List },
+        { id: 'templates' as TabType, label: t('ui.templates_326'), icon: Sparkles },
+        { id: 'analytics' as TabType, label: t('ui.analytics_327'), icon: BarChart3 },
+        { id: 'settings' as TabType, label: t('ui.settings_328'), icon: Settings },
     ];
 
     return (
@@ -63,6 +71,8 @@ export const NotificationsPage: React.FC = () => {
                 <div>
                     {activeTab === 'timers' && <TimerDashboard />}
                     {activeTab === 'notifications' && <NotificationList />}
+                    {activeTab === 'templates' && <NotificationTemplatePicker />}
+                    {activeTab === 'analytics' && <NotificationAnalyticsDashboard />}
                     {activeTab === 'settings' && <NotificationSettings />}
                 </div>
             </div>

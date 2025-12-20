@@ -20,7 +20,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
     const [flourAmount, setFlourAmount] = useState<number>(50);
     const [waterAmount, setWaterAmount] = useState<number>(50);
     const [ratio, setRatio] = useState('1:1:1');
-    const [flourType, setFlourType] = useState('White Flour');
+    const [flourType, setFlourType] = useState(t('ui.white_flour_451'));
     const [ambientTemperature, setAmbientTemperature] = useState<number | undefined>(24);
     const [notes, setNotes] = useState('');
 

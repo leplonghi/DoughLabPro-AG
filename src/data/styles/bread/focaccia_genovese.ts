@@ -251,6 +251,10 @@ export const focaccia_genovese: StyleDefinition = {
       "answer": t('styles.focaccia_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

@@ -40,7 +40,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                     }
                 ],
                 notes,
-                referenceTag: 'Custom'
+                referenceTag: t('ui.custom_428')
             };
             await onSave(newTopping);
             onClose();

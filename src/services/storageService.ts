@@ -1,8 +1,11 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app } from "@/firebase/app";
+import i18n from '@/i18n';
+
+const t = i18n.t.bind(i18n);
 
 export const uploadImage = async (file: File, path: string): Promise<string> => {
-    if (!app) throw new Error('Firebase not initialized');
+    if (!app) throw new Error(t('common.firebase_not_initialized_456'));
 
     const storage = getStorage(app);
     const storageRef = ref(storage, path);

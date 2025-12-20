@@ -41,7 +41,7 @@ export const ModeSelectionScreen: React.FC<ModeSelectionScreenProps> = ({ onSele
             hoverBorder: '',
             hoverBg: 'hover:bg-[#18540e]/5',
             groupHoverText: 'group-hover:text-[#18540e]',
-            tag: t('calculator.standard', { defaultValue: 'Standard' }),
+            tag: t('calculator.standard', { defaultValue: t('calculator.standard_390') }),
         },
         {
             id: 'advanced',
@@ -57,7 +57,7 @@ export const ModeSelectionScreen: React.FC<ModeSelectionScreenProps> = ({ onSele
             hoverBorder: '',
             hoverBg: 'hover:bg-[#51a145]/5',
             groupHoverText: 'group-hover:text-[#51a145]',
-            tag: t('calculator.advanced', { defaultValue: 'Advanced' }),
+            tag: t('calculator.advanced', { defaultValue: t('calculator.advanced_391') }),
         }
     ] as const;
 
@@ -104,7 +104,7 @@ export const ModeSelectionScreen: React.FC<ModeSelectionScreenProps> = ({ onSele
                                 </div>
                             ) : (
                                 <span className="flex-shrink-0 px-2 py-0.5 rounded text-[9px] font-bold text-slate-400 bg-slate-100 uppercase tracking-widest border border-slate-200/50">
-                                    {mode.id === 'basic' ? 'Standard' : mode.id === 'advanced' ? 'Advanced' : ''}
+                                    {mode.id === 'basic' ? t('calculator.standard_390') : mode.id === 'advanced' ? t('calculator.advanced_391') : ''}
                                 </span>
                             )}
                         </button>

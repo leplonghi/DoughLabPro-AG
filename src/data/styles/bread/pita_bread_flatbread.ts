@@ -13,76 +13,76 @@ export const pita_bread_flatbread: StyleDefinition = {
   "origin": {
     "country": t('styles.middle_east'),
     "region": t('styles.levant_and_mediterranean'),
-    "period": "Ancient/Traditional"
+    "period": t('styles.pita_origin_period')
   },
-  "intro": "Used for sandwiches, dips and wraps across Middle Eastern and Mediterranean cuisines.",
-  "history": "Pita (or 'Khubz') is one of the oldest bread styles in existence, with roots stretching back over 4,000 years to the ancient Levant and Mesopotamia. Originally an unleavened or naturally leavened flatbread baked on hot stones, it evolved the characteristic 'pocket' as baking technologies (specifically high-heat ovens) improved. It is the fundamental bread of the Middle East, serving as the plate, utensil, and vessel for thousands of years.",
+  "intro": t('styles.pita_intro'),
+  "history": t('styles.pita_history'),
   "culturalContext": {
     "significance": [
-      "The 'bread of life' across the Middle East, North Africa, and the Mediterranean",
-      "Functionally designed as an edible utensil to scoop up mezze and dips",
-      "A symbol of hospitality: 'Breaking bread' in the Levant almost always involves Pita",
-      "Historically baked daily in communal or household ovens (Taboon)",
-      "Essential for street food culture, from Falafel in Jerusalem to Gyros in Athens"
+      t('styles.pita_sig_1'),
+      t('styles.pita_sig_2'),
+      t('styles.pita_sig_3'),
+      t('styles.pita_sig_4'),
+      t('styles.pita_sig_5')
     ],
     "consumptionContext": [
-      "Commonly split to create a 'pocket' for Falafel, Sabich, or Shawarma",
-      "Served whole and warm alongside Hummus, Baba Ganoush, and Labneh",
-      "Used as a wrap for grilled meats (Souvlaki or Kofta)",
-      "Traditionally torn and used as a scoop rather than cut with a knife",
-      "The 'base' for Manakish (Pita topped with Za'atar and olive oil)"
+      t('styles.pita_cons_1'),
+      t('styles.pita_cons_2'),
+      t('styles.pita_cons_3'),
+      t('styles.pita_cons_4'),
+      t('styles.pita_cons_5')
     ],
     "evolution": [
-      "Ancient Mesopotamia: Barley-based flatbreads are baked on clay disks",
-      "Biblical Era: Leavened 'Khubz' becomes a dietary staple in the Levant",
-      "1500s: The Ottoman Empire standardizes bakery styles across the region",
-      "1950s: Industrial Pita production introduces high-speed ovens and chemical leaveners",
-      "2010s: The 'Israeli Artisan Pita' movement (e.g., Miznon) popularizes extra-fluffy, cloud-like Pita",
-      "Present: High-quality sourdough Pita is gaining traction in health-conscious bakeries"
+      t('styles.pita_evo_1'),
+      t('styles.pita_evo_2'),
+      t('styles.pita_evo_3'),
+      t('styles.pita_evo_4'),
+      t('styles.pita_evo_5'),
+      t('styles.pita_evo_6')
     ],
     "rituals": [
-      "The 'Balloon' Watch: the excitement of seeing the flat dough puff up into a balloon in seconds",
-      "Opening the Pocket: carefully slicing the edge to release the steam and reveal the cavity",
-      "The Mezze Dip: the precise 'three-finger' pinch used to scoop hummus without breaking the bread",
-      "Towel Wrapping: immediately placing hot pita in a cloth to keep it soft with its own steam",
-      "Topping with Za'atar: rubbing the warm surface with olive oil and wild thyme as a breakfast snack"
+      t('styles.pita_rit_1'),
+      t('styles.pita_rit_2'),
+      t('styles.pita_rit_3'),
+      t('styles.pita_rit_4'),
+      t('styles.pita_rit_5')
     ]
   },
   "flavorProfile": {
     "primaryFlavors": [
-      "Mild, clean toasted wheat with a delicate sweetness",
-      "Neutral savory profile designed to complement intense spices",
-      "Slightly nutty notes from the parchment-thin crust",
-      "Clean, yeast-forward aroma",
-      "Zero acidity (in standard commercial versions)"
+      t('styles.pita_flav_1'),
+      t('styles.pita_flav_2'),
+      t('styles.pita_flav_3'),
+      t('styles.pita_flav_4'),
+      t('styles.pita_flav_5')
     ],
     "aromaProfile": [
-      "Freshly baked white flour",
-      "Warm steam and cereal",
-      "Mild toasted notes",
-      "Subtle sweetness",
-      "Clean, neutral grain scent"
+      t('styles.pita_aroma_1'),
+      t('styles.pita_aroma_2'),
+      t('styles.pita_aroma_3'),
+      t('styles.pita_aroma_4'),
+      t('styles.pita_aroma_5')
     ],
     "textureNotes": [
-      "Contrast: extremely thin, tender skin vs. soft, slightly chewy internal walls",
-      "The 'Pocket': a clean, unobstructed central cavity",
-      "Softness: should be flexible enough to roll without cracking",
-      "Lightness: a high ratio of surface area to crumb, making it feel very light",
-      "Moist Finish: the interior walls should feel slightly damp and soft from trapped steam"
+      t('styles.pita_text_1'),
+      t('styles.pita_text_2'),
+      t('styles.pita_text_3'),
+      t('styles.pita_text_4'),
+      t('styles.pita_text_5')
     ],
     "pairingRecommendations": [
-      "Dip: Hummus with tahini, smoky Mutabal, or cooling Tzatziki",
-      "Filling: Crispy Falafel balls, grilled Chicken Shish, or sliced Lamb",
-      "Salad: Israeli salad (cucumber/tomato) or Tabbouleh",
-      "Spice: Za'atar, Sumac, or spicy Harissa",
-      "Drink: Mint tea, Arak (anise spirit), or cold lemonade"
+      t('styles.pita_pair_1'),
+      t('styles.pita_pair_2'),
+      t('styles.pita_pair_3'),
+      t('styles.pita_pair_4'),
+      t('styles.pita_pair_5')
     ],
     "flavorEvolution": [
-      "Hot (0-10 mins): The 'Magic' phase; maximum puff and soft, steamy interior",
-      "1-6 Hours: Becomes firm; still excellent for wraps and pockets",
-      "Next Day: Best used for dipping or making 'Fattoush' (toasted bread salad)",
-      "Stale: Traditionally fried to make pita chips or used as a base for stews",
-      "Freezing: Pita freezes exceptionally well; toast for 30 seconds to revive"
+      t('styles.pita_fevo_1'),
+      t('styles.pita_fevo_2'),
+      t('styles.pita_fevo_3'),
+      t('styles.pita_fevo_4'),
+      t('styles.pita_fevo_5')
     ]
   },
   "technicalFoundations": [
@@ -122,7 +122,7 @@ export const pita_bread_flatbread: StyleDefinition = {
     ],
     "flourStrength": t('styles.allpurpose_or_bread_flour_2'),
     "fermentation": {
-      "bulk": "1–2 h at room temperature",
+      "bulk": t('styles.pita_ferm_bulk'),
       "proof": t('styles.short_bench_rest_after_shaping'),
       "coldRetard": t('styles.optional_overnight_bulk_2')
     },
@@ -141,44 +141,44 @@ export const pita_bread_flatbread: StyleDefinition = {
     ]
   },
   "regionalVariants": [
-    "Pita (Greek Style) - Usually thicker, no pocket, designed for wrapping Souvlaki",
-    "Khubz (Standard) - The classic thin Middle Eastern pocket bread",
-    "Pocket Pita (Israeli) - Known for being extra thick, soft, and fluffy (cloud-like)",
-    "Whole Wheat Pita - Made with high-extraction flour for a nuttier, heartier profile",
-    "Manakish - The 'lebanese pizza' version using the same dough base"
+    t('styles.pita_var_1'),
+    t('styles.pita_var_2'),
+    t('styles.pita_var_3'),
+    t('styles.pita_var_4'),
+    t('styles.pita_var_5')
   ],
   "climateScenarios": [
-    "Desert Arid: Dough dries in seconds; keep rolled rounds under a damp cloth at all times",
-    "Coastal Humid: Breads may become 'soggy' after baking; allow a 1-min uncovered rest",
-    "Mediterranean Heat: Use cool water; at 35°C, the thin dough will over-proof while you roll them",
-    "Cold Winter: Use a warm stone; if the base temp drops below 200°C, the pocket will NEVER form"
+    t('styles.pita_clim_1'),
+    t('styles.pita_clim_2'),
+    t('styles.pita_clim_3'),
+    t('styles.pita_clim_4')
   ],
   "styleComparisons": [
-    "vs. Naan: Pita is leaner (no yogurt) and has a pocket; Naan is enriched and solid",
-    "vs. Tortilla: Pita is leavened (yeast) vs. Tortilla (unleavened); Pita is much thicker",
-    "vs. Pizza: Pita is baked to puff up; Pizza is baked with toppings to remain flat",
-    "vs. Bazari: Iranian bread similar to pita but longer and usually without a pocket"
+    t('styles.pita_comp_1'),
+    t('styles.pita_comp_2'),
+    t('styles.pita_comp_3'),
+    t('styles.pita_comp_4')
   ],
   "parameterSensitivity": [
-    "Critical: Sheet Thickness - if too thick (1cm), it's a roll; if too thin (1mm), it's a cracker",
-    "Highly sensitive: Oven Temp - if too cold, the air bubbles will just escape slowly (no puff)",
-    "Surface Smoothness: Any holes or tears during rolling will act as 'exhaust vents' (no pocket)",
-    "Resting Time: Dough MUST rest after rolling to allow gluten to relax for the puff",
-    "Oil content: Too much oil weakens the gluten skin, making the pocket prone to tearing"
+    t('styles.pita_sens_1'),
+    t('styles.pita_sens_2'),
+    t('styles.pita_sens_3'),
+    t('styles.pita_sens_4'),
+    t('styles.pita_sens_5')
   ],
   "risks": [
-    "The 'No-Pocket' Pita: Oven or stone wasn't hot enough to create an immediate steam burst",
-    "Brittle/Cracking: Baking too long or at too low a temperature",
-    "Raw/Gummy Walls: High hydration without enough heat to dry the internal steam",
-    "Fused Sides: Dough was over-rested after rolling, causing the center to stick together",
-    "Burnt Bottom: Stone overheated (350°C+) without enough top heat to match"
+    t('styles.pita_risk_1'),
+    t('styles.pita_risk_2'),
+    t('styles.pita_risk_3'),
+    t('styles.pita_risk_4'),
+    t('styles.pita_risk_5')
   ],
   "notes": [
-    "A baking steel or thick stone is your best friend for getting that magical puff at home",
-    "Don't stack them while rolling; use separate cloths or floured surfaces to prevent sticking",
-    "If it doesn't puff, it's still delicious—we call it 'Flat Pita' and it's great for dipping",
-    "The dough should be smooth and elastic like a baby's skin",
-    "For the fluffiest Israeli style, use a higher hydration (70%) and gentle handling"
+    t('styles.pita_note_1'),
+    t('styles.pita_note_2'),
+    t('styles.pita_note_3'),
+    t('styles.pita_note_4'),
+    t('styles.pita_note_5')
   ],
   "tags": [
     t('common.pocket_flatbread'),
@@ -195,7 +195,7 @@ export const pita_bread_flatbread: StyleDefinition = {
   },
   "references": [
     {
-      "title": "A History of Khubz: The Bread of life",
+      "title": t('styles.pita_title'),
       "url": "https://www.jstor.org/stable/j.ctv1v7zc5z",
       "author": "Liora Gvion",
       "year": 2012
@@ -207,13 +207,13 @@ export const pita_bread_flatbread: StyleDefinition = {
       "year": 2017
     },
     {
-      "title": "Ottolenghi: The Cookbook",
+      "title": t('styles.pita_title'),
       "url": "https://www.amazon.com/Ottolenghi-Cookbook-Yotam-Ottolenghi/dp/1607743936",
       "author": "Yotam Ottolenghi, Sami Tamimi",
       "year": 2008
     },
     {
-      "title": "Mastering the Art of Flatbreads",
+      "title": t('styles.pita_title'),
       "url": "https://www.kingarthurbaking.com/recipes/homemade-pita-bread-recipe",
       "author": "King Arthur Baking",
       "year": 2021
@@ -223,26 +223,36 @@ export const pita_bread_flatbread: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "How does the 'pocket' form inside the Pita bread?",
-      "answer": "The secret is extreme heat. When the thin dough comes into contact with a very hot surface, the water inside it instantly turns into steam. Since the outer surface bakes quickly and seals the edges, the steam gets trapped and 'inflates' the bread like a balloon, creating the pocket."
+      "question": t('styles.pita_faq_1_q'),
+      "answer": t('styles.pita_faq_1_a')
     },
     {
-      "question": "Why didn't my Pita bread puff up?",
-      "answer": "Usually for two reasons: either the oven/stone wasn't hot enough (it needs to be at maximum!), or the dough had a small hole or tear that let the steam escape. Also, the dough must rest after being rolled out."
+      "question": t('styles.pita_faq_2_q'),
+      "answer": t('styles.pita_faq_2_a')
     },
     {
-      "question": "What is the difference between Greek Pita and Syrian/Arabic Pita (Khubz)?",
-      "answer": "Greek Pita is generally thicker, doesn't have a pocket, and is used to wrap Souvlaki or Gyros. Syrian/Arabic Pita (Khubz) is thinner and is designed to create a pocket for filling like an envelope."
+      "question": t('styles.pita_faq_3_q'),
+      "answer": t('styles.pita_faq_3_a')
     },
     {
-      "question": "How to keep the bread soft after baking?",
-      "answer": "As soon as you take it out of the oven, immediately place the bread inside a clean kitchen towel. The steam coming off the bread will help soften the crust, keeping it pliable for folding or filling."
+      "question": t('styles.pita_faq_4_q'),
+      "answer": t('styles.pita_faq_4_a')
     },
     {
-      "question": "Can I make Pita with whole wheat flour?",
-      "answer": "Absolutely! Whole wheat Pita is very traditional. it tends to be slightly less elastic and the pocket might be smaller, but the flavor is rich and nutty."
+      "question": t('styles.pita_faq_5_q'),
+      "answer": t('styles.pita_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 70,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

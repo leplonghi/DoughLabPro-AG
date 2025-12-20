@@ -97,7 +97,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                         <div className="flex items-center justify-between mb-2">
                             <label className="block text-sm font-bold text-slate-700">{t('tools.fan_convection')}</label>
                             <div className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${profile.convectionMode ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-400'}`}>
-                                {profile.convectionMode ? 'Active' : 'Off'}
+                                {profile.convectionMode ? t('ui.active_432') : 'Off'}
                             </div>
                         </div>
                         <button

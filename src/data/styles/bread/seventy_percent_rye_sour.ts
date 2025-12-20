@@ -5,83 +5,83 @@ const t = i18n.t.bind(i18n);
 
 export const seventy_percent_rye_sour: StyleDefinition = {
   "id": "seventy_percent_rye_sour",
-  "title": "70% Rye Sour Bread",
+  "title": t('styles.rye_70_title'),
   "subtitle": t('styles.wholegrain__rye'),
   "category": t('styles.bread_24'),
   "family": t('styles.wholegrain__rye_2'),
-  "variantName": "70% Rye Sour Bread",
+  "variantName": t('styles.rye_70_variantName'),
   "origin": {
     "country": t('styles.germany_2'),
     "region": t('styles.central_europe'),
     "period": t('styles.traditional_10')
   },
   "intro": t('styles.consumed_as_dense_flavorful_loaves_sliced_thin_oft'),
-  "history": "The 70% Rye Sour is the classic 'Mischbrot' (Mixed Bread) of Central Europe, particularly Germany, Poland, and Austria. While 100% rye is often viewed as a specialty or 'health' bread, the 70/30 blend became the daily industrial and artisanal standard. This specific ratio provides the deep, satisfying earthiness of rye while the 30% wheat content offers just enough gluten to create a slightly lighter, more aerated crumb that can be baked as free-standing loaves ('freigeschoben') rather than always being confined to tins.",
+  "history": t('styles.rye_70_history'),
   "culturalContext": {
     "significance": [
-      "The 'Workhorse' of the German bakery, representing the most common daily loaf",
-      "A bridge between the rustic past (pure rye) and the modern preference for softer breads",
-      "Technically balanced: requires careful acidification but is more forgiving than 100% rye",
-      "Central to the 'UNESCO Intangible Cultural Heritage' status of German Bread Culture",
-      "Represents the preference for 'Sourdough-only' fermentation in traditional rye-belt countries"
+      t('styles.rye_70_sig_1'),
+      t('styles.rye_70_sig_2'),
+      t('styles.rye_70_sig_3'),
+      t('styles.rye_70_sig_4'),
+      t('styles.rye_70_sig_5')
     ],
     "consumptionContext": [
-      "Commonly enjoyed with 'Leberwurst' (liver sausage), deli meats, and hard cheeses",
-      "The mandatory base for a classic Reuben sandwich (though often marbled with lighter rye)",
-      "Served at every 'Brotzeit' or 'Abendbrot' as the default savory bread",
-      "Excellent when lightly toasted and topped with salted butter and sliced radishes",
-      "Stays moist for 3-5 days, making it ideal for large family households"
+      t('styles.rye_70_cons_1'),
+      t('styles.rye_70_cons_2'),
+      t('styles.rye_70_cons_3'),
+      t('styles.rye_70_cons_4'),
+      t('styles.rye_70_cons_5')
     ],
     "evolution": [
-      "1700s: Traditional village bakers blend excess rye with available wheat for 'Village Loaves'",
-      "1800s: Urban bakeries standardize the 70/30 ratio to appeal to broader tastes",
-      "1920s: Introduction of 'Detmolder' multi-stage sourdough builds to optimize the 70% rye mix",
-      "2000s: Artisanal comeback: focus on stone-ground, long-fermented high-percentage rye",
-      "Present: High focus on sourdough biodiversity and the health benefits of rye's high fiber"
+      t('styles.rye_70_evo_1'),
+      t('styles.rye_70_evo_2'),
+      t('styles.rye_70_evo_3'),
+      t('styles.rye_70_evo_4'),
+      t('styles.rye_70_evo_5')
     ],
     "rituals": [
-      "The 'Sour' Refresh: the daily ritual of feeding the rye-specific sourdough starter",
-      "Hand-Rounding: the technique of shaping the sticky, low-gluten dough with wet hands",
-      "The Wood-Box Rest: proofing the loaves in flour-dusted wicker baskets (Brotformen)",
-      "Steam Bursting: the initial burst of steam to allow the thick, heavy dough to expand",
-      "The Thump Test: checking for a deep, hollow sound from the bottom of the baked loaf"
+      t('styles.rye_70_rit_1'),
+      t('styles.rye_70_rit_2'),
+      t('styles.rye_70_rit_3'),
+      t('styles.rye_70_rit_4'),
+      t('styles.rye_70_rit_5')
     ]
   },
   "flavorProfile": {
     "primaryFlavors": [
-      "Earthy and malted with a robust, tangy acidity",
-      "Toasted hazelnut and dark cereal sweetness",
-      "Savory and spicy (natural caraway-like notes from rye)",
-      "Mildly floral and fruity (lactic acid profile)",
-      "Deeply caramelized crust flavor"
+      t('styles.rye_70_flav_1'),
+      t('styles.rye_70_flav_2'),
+      t('styles.rye_70_flav_3'),
+      t('styles.rye_70_flav_4'),
+      t('styles.rye_70_flav_5')
     ],
     "aromaProfile": [
-      "Tangy and sour (acetic/lactic balance)",
-      "Warm grain and fermented straw",
-      "Freshly brewed coffee or dark chocolate (if baked dark)",
-      "Nutty and savory",
-      "Earthy yeast notes"
+      t('styles.rye_70_aroma_1'),
+      t('styles.rye_70_aroma_2'),
+      t('styles.rye_70_aroma_3'),
+      t('styles.rye_70_aroma_4'),
+      t('styles.rye_70_aroma_5')
     ],
     "textureNotes": [
-      "Dense and Hearty: a significant, satisfying chewiness",
-      "Close Crumb: small, uniform holes with a moist, 'fudgy' mouthfeel",
-      "Substantial Crust: thick, dark-brown, and protective",
-      "Tender but Firm: can hold heavy fillings without sagging or tearing",
-      "Moist Finish: the high water content (bound by pentosans) keeps the crumb cool"
+      t('styles.rye_70_text_1'),
+      t('styles.rye_70_text_2'),
+      t('styles.rye_70_text_3'),
+      t('styles.rye_70_text_4'),
+      t('styles.rye_70_text_5')
     ],
     "pairingRecommendations": [
-      "Cheese: Sharp Aged Swiss (Emmental), Smoked Provolone, or creamy Brie",
-      "Meat: Corned beef, Salami, Black Forest Ham, or Liverwurst",
-      "Fat: Salted cultured butter or lard with crispy onions (Schmalz)",
-      "Vegetable: Pickled cucumbers (Gherkins), sauerkraut, or fresh radishes",
-      "Beverage: Dark Lager (Dunkel), strong black tea, or a dry Riesling"
+      t('styles.rye_70_pair_1'),
+      t('styles.rye_70_pair_2'),
+      t('styles.rye_70_pair_3'),
+      t('styles.rye_70_pair_4'),
+      t('styles.rye_70_pair_5')
     ],
     "flavorEvolution": [
-      "Fresh (0-4 hours): Too moist and gummy inside; flavor is 'sharp' and yeasty",
-      "Day 1: The 'Golden Window'; acidity and grain sweetness are perfectly balanced",
-      "Day 3: The flavor deepens; becomes more savory and the tang mellows",
-      "Day 5: Still excellent for sandwiches; moisture is perfectly distributed",
-      "Stale: Best used for traditional rye bread croutons or 'Kvass' (fermented beverage) base"
+      t('styles.rye_70_fevo_1'),
+      t('styles.rye_70_fevo_2'),
+      t('styles.rye_70_fevo_3'),
+      t('styles.rye_70_fevo_4'),
+      t('styles.rye_70_fevo_5')
     ]
   },
   "technicalFoundations": [
@@ -122,7 +122,7 @@ export const seventy_percent_rye_sour: StyleDefinition = {
     "flourStrength": "70% rye, 30% wheat or bread flour",
     "fermentation": {
       "bulk": t('styles.short_bulk_much_development_occurs_in_sour_build'),
-      "proof": "50–90 min in pans or forms",
+      "proof": t('styles.rye_70_ferm_proof'),
       "coldRetard": t('styles.occasional_short_retards_possible')
     },
     "oven": {
@@ -140,44 +140,44 @@ export const seventy_percent_rye_sour: StyleDefinition = {
     ]
   },
   "regionalVariants": [
-    "Berliner Landbrot - A classic 70% rye from northern Germany, usually oval and dark",
-    "Polish Rye - Often containing caraway seeds and a slightly lighter sour profile",
-    "Austrian Bauernbrot - Rustic village style, sometimes using a mix of wheat and rye meals",
-    "Jewish Deli Rye - The US evolution, often 40-60% rye and heavily spiced with caraway",
-    "Russian Borodinsky - Dark, spiced variant using malt and coriander (often higher rye %)"
+    t('styles.rye_70_var_1'),
+    t('styles.rye_70_var_2'),
+    t('styles.rye_70_var_3'),
+    t('styles.rye_70_var_4'),
+    t('styles.rye_70_var_5')
   ],
   "climateScenarios": [
-    "High Humidity: Crust can become leathery; bake 5 mins longer and leave in a cooling oven",
-    "Arid/Dry: Crust sets too fast; use a Dutch Oven or intense steam for the first half of bake",
-    "Cold/Winter: Dough is heavy and sluggish; proof in a warm spot (26-28°C) to ensure lift",
-    "Coastal/Salt Air: Salt slows the already sensitive rye yeast; reduce salt by 0.2% if needed"
+    t('styles.rye_70_clim_1'),
+    t('styles.rye_70_clim_2'),
+    t('styles.rye_70_clim_3'),
+    t('styles.rye_70_clim_4')
   ],
   "styleComparisons": [
-    "vs. 100% Vollkornbrot: 70% Rye is lighter and can be baked without a tin (free-standing)",
-    "vs. Sourdough (Wheat): 70% Rye is much denser, moister, and focus on 'starch' vs 'gluten'",
-    "vs. 50/50 Mischbrot: 70% Rye is more acidic, earthy, and has a significantly tighter crumb",
-    "vs. Pumpernickel: 70% Rye is a 'fast' hot bake (1h) vs Pumpernickel's 'slow' steam (16h)"
+    t('styles.rye_70_comp_1'),
+    t('styles.rye_70_comp_2'),
+    t('styles.rye_70_comp_3'),
+    t('styles.rye_70_comp_4')
   ],
   "parameterSensitivity": [
-    "Critical: Acidity (pH) - too low and the bread will be gummy (amylase attack)",
-    "Highly sensitive: Proofing Timing - rye has a narrow window; catch it just as the surface cracks",
-    "Water Quality: Rye loves mineral-rich water which helps the enzymatic activity",
-    "Wheat Strength: Use high-protein bread flour for the 30% wheat to give maximum support",
-    "Spicing: Even 0.5% Caraway or Anise completely transforms the flavor profile"
+    t('styles.rye_70_sens_1'),
+    t('styles.rye_70_sens_2'),
+    t('styles.rye_70_sens_3'),
+    t('styles.rye_70_sens_4'),
+    t('styles.rye_70_sens_5')
   ],
   "risks": [
-    "The 'Flounder' (Flat Loaf): Oven was too cold or dough was over-proofed/too wet",
-    "Gummy 'Wet' Streak: Under-baked in the center or not enough sourdough acidity",
-    "Internal Voids (Cave): Dough was shaped too loosely or fermented too hot/fast",
-    "Cracked 'Wild' Crust: Not enough steam or dough 'skinned over' before the bake",
-    "Bitter/Sharp Soul: Starter was too old or fermented at too low a temperature"
+    t('styles.rye_70_risk_1'),
+    t('styles.rye_70_risk_2'),
+    t('styles.rye_70_risk_3'),
+    t('styles.rye_70_risk_4'),
+    t('styles.rye_70_risk_5')
   ],
   "notes": [
-    "Use wet hands for all shaping—flour will just make the surface dry and mottled",
-    "Wait at least 12 hours before slicing; the moisture needs time to stabilize",
-    "If using seeds, always toast them first and soak them in part of the recipe water",
-    "A bit of 'Backmalz' (diastatic malt) can help with browning and flavor development",
-    "Dock the top with a fork or score deeply to prevent the heavy gas from blowing out the sides"
+    t('styles.rye_70_note_1'),
+    t('styles.rye_70_note_2'),
+    t('styles.rye_70_note_3'),
+    t('styles.rye_70_note_4'),
+    t('styles.rye_70_note_5')
   ],
   "tags": [
     t('common.traditional_rye_loaves'),
@@ -194,7 +194,7 @@ export const seventy_percent_rye_sour: StyleDefinition = {
   },
   "references": [
     {
-      "title": "Bread: A Baker's Book of Techniques and Recipes",
+      "title": t('styles.rye_70_title'),
       "url": "https://www.amazon.com/Bread-Bakers-Book-Techniques-Recipes/dp/1118132718",
       "author": "Jeffrey Hamelman",
       "year": 2012
@@ -206,13 +206,13 @@ export const seventy_percent_rye_sour: StyleDefinition = {
       "year": 2017
     },
     {
-      "title": "Traditional German Baking",
+      "title": t('styles.rye_70_title'),
       "url": "https://www.amazon.com/Classic-German-Baking-Recipes-Christmas/dp/1607748258",
       "author": "Luisa Weiss",
       "year": 2016
     },
     {
-      "title": "The Rye Baker: Classic Breads from Europe and America",
+      "title": t('styles.rye_70_title'),
       "url": "https://www.ryebaker.com/",
       "author": "Stanley Ginsberg",
       "year": 2016
@@ -222,26 +222,36 @@ export const seventy_percent_rye_sour: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "Why is 70% rye easier to bake than 100% rye?",
-      "answer": "The 30% wheat flour provides a gluten network that acts like a 'cage', holding the gases produced by the yeast. This allows the bread to have more volume and to be shaped as free-standing loaves (boules or batards) instead of having to be baked in a tin."
+      "question": t('styles.rye_70_faq_1_q'),
+      "answer": t('styles.rye_70_faq_1_a')
     },
     {
-      "question": "Can I make this without caraway seeds?",
-      "answer": "Absolutely. While caraway is traditional in many regions (especially for 'Jewish Rye' or Polish varieties), many German 'Landbrot' styles are made with pure rye and wheat, focusing entirely on the flavor of the fermented grain."
+      "question": t('styles.rye_70_faq_2_q'),
+      "answer": t('styles.rye_70_faq_2_a')
     },
     {
-      "question": "What is the best way to shape 70% rye dough?",
-      "answer": "Rye dough is very sticky. Do not use excessive flour, which will make the crust dry and dusty. Instead, use wet hands to shape the dough into a smooth ball or oval. Work quickly—the more you handle rye, the stickier it becomes."
+      "question": t('styles.rye_70_faq_3_q'),
+      "answer": t('styles.rye_70_faq_3_a')
     },
     {
-      "question": "Why did my rye bread burst at the bottom?",
-      "answer": "This is usually a sign of under-proofing or lack of oven steam. If the top crust sets too quickly before the dough has finished expanding, the gas will take the path of least resistance and blow out through the bottom or sides."
+      "question": t('styles.rye_70_faq_4_q'),
+      "answer": t('styles.rye_70_faq_4_a')
     },
     {
-      "question": "How long does 70% rye bread stay fresh?",
-      "answer": "Due to the high percentage of rye and the sourdough acidity, it stays fresh and moist for 4-6 days. In fact, it often tastes better on the second or third day as the flavors 'mature' and the acidity mellows."
+      "question": t('styles.rye_70_faq_5_q'),
+      "answer": t('styles.rye_70_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 70,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

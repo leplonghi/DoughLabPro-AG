@@ -5,84 +5,84 @@ const t = i18n.t.bind(i18n);
 
 export const pao_frances_brazil: StyleDefinition = {
   "id": "pao_frances_brazil",
-  "title": "Pão Francês / Cacetinho",
+  "title": t('styles.pao_frances_title'),
   "subtitle": t('styles.brazilian_professional_breads_3'),
   "category": t('styles.bread_20'),
   "family": t('styles.brazilian_professional_breads_4'),
-  "variantName": "Pão Francês / Cacetinho",
+  "variantName": t('styles.pao_frances_variantName'),
   "origin": {
     "country": t('styles.brazil_2'),
     "region": t('styles.nationwide_4'),
-    "period": "20th century"
+    "period": t('styles.pao_frances_origin_period')
   },
-  "intro": "A daily staple in Brazilian bakeries, eaten with butter, fillings and used in sandwiches.",
-  "history": "Pão Francês (French Bread) is the most consumed bread in Brazil, despite having little in common with modern French baguettes. It emerged in the early 20th century (c. 1910-1920) when the Brazilian elite returning from Paris requested a bread similar to the 'city bread' of France. Brazilian bakers adapted the concept using local wheat and intensive mixing, evolving into a unique 50g roll known for its 'pestana' (sculpted ear) and extremely light, airy crumb.",
+  "intro": t('styles.pao_frances_intro'),
+  "history": t('styles.pao_frances_history'),
   "culturalContext": {
     "significance": [
-      "The undisputed king of the Brazilian 'Padaria' (bakery) culture",
-      "A daily ritual for millions: 'Pão quente na chapa' (hot bread with butter on the griddle)",
-      "Historically a status symbol that became the country's primary food staple",
-      "One of the few products in Brazil with a national technical standard (ABNT NBR 16170)",
-      "Varies in name by region: 'Cacetinho' (South), 'Pão de Sal' (Southeast), 'Pão Massa Grossa' (Northeast)"
+      t('styles.pao_frances_sig_1'),
+      t('styles.pao_frances_sig_2'),
+      t('styles.pao_frances_sig_3'),
+      t('styles.pao_frances_sig_4'),
+      t('styles.pao_frances_sig_5')
     ],
     "consumptionContext": [
-      "The center of the traditional Brazilian breakfast, ideally eaten within 30 minutes of baking",
-      "Served 'na chapa'—sliced lengthwise, buttered, and pressed on a hot griddle",
-      "Used for the 'Misto Quente' (grilled ham and cheese) or 'Mortadela' sandwich",
-      "Commonly ordered by the dozen or half-dozen multiple times a day",
-      "A cultural indicator: people often wait for the 'próxima fornada' (next batch) to get it warm"
+      t('styles.pao_frances_cons_1'),
+      t('styles.pao_frances_cons_2'),
+      t('styles.pao_frances_cons_3'),
+      t('styles.pao_frances_cons_4'),
+      t('styles.pao_frances_cons_5')
     ],
     "evolution": [
-      "Early 1900s: Wealthy Brazilians bring back the concept of white wheat rolls from Europe",
-      "1950s: Industrialisation of bakeries leads to the use of 'melhoradores' (improvers) and intensive mixers",
-      "1970s: The 'Long-shelf life' or 'frozen dough' era begins in large urban centers",
-      "2000s: ABIP (Brazilian Bakery Association) standardizes the quality parameters for the 'National French Bread'",
-      "Present: High-end bakeries (Padarias Artesanais) are returning to long fermentation for this style",
-      "Future: Shift towards sourdough-based 'Pão Francês' to meet health-conscious demands"
+      t('styles.pao_frances_evo_1'),
+      t('styles.pao_frances_evo_2'),
+      t('styles.pao_frances_evo_3'),
+      t('styles.pao_frances_evo_4'),
+      t('styles.pao_frances_evo_5'),
+      t('styles.pao_frances_evo_6')
     ],
     "rituals": [
-      "Asking 'Tá saindo agora?' (is it coming out now?) to ensure maximum freshness",
-      "The 'Pestana' Check: customers often pick rolls with the most prominent, crispy 'ear'",
-      "Pushing the Crumb: kids often remove the 'miolo' (crumb) to eat only the crispy 'casquinha'",
-      "The Griddle Press: the distinctive sound of bread being flattened on a professional hot plate with butter",
-      "Carrying the 'Saco de Papel': the iconic brown paper bag that keeps the crust crispy while walking home"
+      t('styles.pao_frances_rit_1'),
+      t('styles.pao_frances_rit_2'),
+      t('styles.pao_frances_rit_3'),
+      t('styles.pao_frances_rit_4'),
+      t('styles.pao_frances_rit_5')
     ]
   },
   "flavorProfile": {
     "primaryFlavors": [
-      "Clean, mild toasted wheat with zero acidity",
-      "Savory and slightly salty (higher salt content than many American rolls)",
-      "Distinct 'bakery aroma' (yeasty and warm)",
-      "When grilled: intense browned butter and caramelized wheat notes",
-      "Subtle maltiness if using professional improvers"
+      t('styles.pao_frances_flav_1'),
+      t('styles.pao_frances_flav_2'),
+      t('styles.pao_frances_flav_3'),
+      t('styles.pao_frances_flav_4'),
+      t('styles.pao_frances_flav_5')
     ],
     "aromaProfile": [
-      "Freshly baked white bread",
-      "Toasted milk and butter (if enriched/grilled)",
-      "Subtle yeast and warm flour",
-      "The iconic 'Padaria' smell that permeates Brazilian streets at 6 AM",
-      "Mildly sweet and savory"
+      t('styles.pao_frances_aroma_1'),
+      t('styles.pao_frances_aroma_2'),
+      t('styles.pao_frances_aroma_3'),
+      t('styles.pao_frances_aroma_4'),
+      t('styles.pao_frances_aroma_5')
     ],
     "textureNotes": [
-      "The 'Casquinha': paper-thin, very crispy, and fragile crust that shatters easily",
-      "The 'Pestana': a raised, crunchy ridge or 'ear' along the center cut",
-      "Ultra-Light Crumb: white, cotton-like, and very airy with small, uniform cells",
-      "Extremely soft interior that provides no resistance when bitten",
-      "Contrast: the brittle crust must shatter, revealing the cloud-like interior"
+      t('styles.pao_frances_text_1'),
+      t('styles.pao_frances_text_2'),
+      t('styles.pao_frances_text_3'),
+      t('styles.pao_frances_text_4'),
+      t('styles.pao_frances_text_5')
     ],
     "pairingRecommendations": [
-      "Butter: 'Manteiga de garrafa' or salted butter, applied generously and melted",
-      "Drink: 'Café com Leite' (Pingado) served in an Americano glass",
-      "Fillings: Mortadella (São Paulo style), Minas cheese, or Dulce de Leche",
-      "Meat: Linguiça toscana (making a 'Churrasquinhos' sandwich)",
-      "Breakfast: Just hot butter and black coffee"
+      t('styles.pao_frances_pair_1'),
+      t('styles.pao_frances_pair_2'),
+      t('styles.pao_frances_pair_3'),
+      t('styles.pao_frances_pair_4'),
+      t('styles.pao_frances_pair_5')
     ],
     "flavorEvolution": [
-      "First 15 Mins: The 'Dream'; maximum crust shatter and warm yeasty aroma",
-      "1-4 Hours: The standard bakery quality; crust remains crisp but starts to soften",
-      "8 Hours: Becomes 'borrachudo' (rubbery/leathery); only good for toasting or 'chapa'",
-      "Next Day: Traditionally used for 'Rabanada' (Brazilian French Toast)",
-      "Stale: Grated to make 'Farinha de Rosca' (breadcrumbs) for breading steaks"
+      t('styles.pao_frances_fevo_1'),
+      t('styles.pao_frances_fevo_2'),
+      t('styles.pao_frances_fevo_3'),
+      t('styles.pao_frances_fevo_4'),
+      t('styles.pao_frances_fevo_5')
     ]
   },
   "technicalFoundations": [
@@ -123,7 +123,7 @@ export const pao_frances_brazil: StyleDefinition = {
     "flourStrength": t('styles.brazilian_bread_flour_w_280330'),
     "fermentation": {
       "bulk": t('styles.short_to_medium_bulk_often_in_continuous_processes'),
-      "proof": "40–80 min in proofing chambers",
+      "proof": t('styles.pao_frances_ferm_proof'),
       "coldRetard": t('styles.sometimes_used_to_manage_production')
     },
     "oven": {
@@ -142,44 +142,44 @@ export const pao_frances_brazil: StyleDefinition = {
     ]
   },
   "regionalVariants": [
-    "Cacetinho - The standard name in Rio Grande do Sul and Bahia",
-    "Pão de Sal - Common name in Minas Gerais and many states of the Southeast",
-    "Pão Careca - Variant without the central 'pestana' (common in Pará)",
-    "Pão Massa Grossa - Heavier, more rustic variant found in the Northeast",
-    "Pão de Padaria - The generic term for the most common version in São Paulo"
+    t('styles.pao_frances_var_1'),
+    t('styles.pao_frances_var_2'),
+    t('styles.pao_frances_var_3'),
+    t('styles.pao_frances_var_4'),
+    t('styles.pao_frances_var_5')
   ],
   "climateScenarios": [
-    "Tropical Humidity (Standard): Crust goes soft within 2 hours; bakeries bake every hour",
-    "Dry Winter (South): Dough dries out fast; increase hydration by 1-2% and use more steam",
-    "Amazonian Heat: Dough can over-ferment in 15 mins; use 80% ice in the mixing water",
-    "Coastal: The sea salt air adds flavor but can make the crust leathery very quickly"
+    t('styles.pao_frances_clim_1'),
+    t('styles.pao_frances_clim_2'),
+    t('styles.pao_frances_clim_3'),
+    t('styles.pao_frances_clim_4')
   ],
   "styleComparisons": [
-    "vs. Baguette: Pão Francês is much smaller (50g), lighter, and has a thinner, more brittle crust",
-    "vs. Kaiser Roll: Pão Francês is leaner and focuses on the 'pestana' vs the stamped pattern",
-    "vs. Dinner Roll: Pão Francês is a lean crusty bread, whereas dinner rolls are enriched and soft",
-    "vs. Portuguese Papossecos: Very similar ancestors, but the Pão Francês is lighter and airier"
+    t('styles.pao_frances_comp_1'),
+    t('styles.pao_frances_comp_2'),
+    t('styles.pao_frances_comp_3'),
+    t('styles.pao_frances_comp_4')
   ],
   "parameterSensitivity": [
-    "Critical: Scoring Depth - if not cut precisely with a tilted blade, the 'pestana' won't lift",
-    "Highly sensitive: Steam - without enough steam, the crust becomes thick, hard, and dull",
-    "Dough Temperature: Must stay below 26°C during mixing or the yeast will degrade quality",
-    "Fermentation Balance: Over-proofing leads to a flat bread with no 'pestana' lift",
-    "Salt Level: 2% is required to balance the sweetness of the improvers and provide savory bite"
+    t('styles.pao_frances_sens_1'),
+    t('styles.pao_frances_sens_2'),
+    t('styles.pao_frances_sens_3'),
+    t('styles.pao_frances_sens_4'),
+    t('styles.pao_frances_sens_5')
   ],
   "risks": [
-    "Pão Borrachudo (Rubbery): Caused by under-baking or not using enough steam",
-    "Lack of 'Ear': Not scoring deep enough or dough was too warm during final proof",
-    "Pale Crust: Dough was over-fermented (yeast ate all the sugars) or oven was too cold",
-    "Bursting Sides: Under-proofing or not scoring deep enough, causing the dough to explode sideways",
-    "Dense Inside: Insufficient mixing/kneading to develop the fine gluten mesh"
+    t('styles.pao_frances_risk_1'),
+    t('styles.pao_frances_risk_2'),
+    t('styles.pao_frances_risk_3'),
+    t('styles.pao_frances_risk_4'),
+    t('styles.pao_frances_risk_5')
   ],
   "notes": [
-    "Use a professional 'melhorador' (improver) if you want the true Brazilian bakery result",
-    "The cut (score) should be longitudinal and slightly off-center with a 45-degree blade angle",
-    "The dough should hold its shape when rolled into a cylinder before the final proof",
-    "If baking at home, use a spray bottle or a tray of water to mimic professional steam",
-    "Don't let it proof too much—it needs 'energy' to open the pestana in the oven"
+    t('styles.pao_frances_note_1'),
+    t('styles.pao_frances_note_2'),
+    t('styles.pao_frances_note_3'),
+    t('styles.pao_frances_note_4'),
+    t('styles.pao_frances_note_5')
   ],
   "tags": [
     t('common.breakfast_rolls'),
@@ -197,25 +197,25 @@ export const pao_frances_brazil: StyleDefinition = {
   },
   "references": [
     {
-      "title": "ABNT NBR 16170: Pão Tipo Francês",
+      "title": t('styles.pao_frances_title'),
       "url": "https://www.abntcatalogo.com.br/norma.aspx?ID=305710",
       "author": "ABNT",
       "year": 2013
     },
     {
-      "title": "Manual de Panificação SENAI",
+      "title": t('styles.pao_frances_title'),
       "url": "https://www.sp.senai.br/unidades/alimentos",
       "author": "SENAI-SP",
       "year": 2018
     },
     {
-      "title": "História da Gastronomia Brasileira",
+      "title": t('styles.pao_frances_title'),
       "url": "https://www.amazon.com.br/Hist%C3%B3ria-Gastronomia-Brasileira-Ricardo-Marinh%C3%A3o/dp/8574581755",
       "author": "Ricardo Maranhão",
       "year": 2005
     },
     {
-      "title": "O Pão no Brasil: Tradição e Modernidade",
+      "title": t('styles.pao_frances_title'),
       "url": "https://www.abip.org.br/",
       "author": "ABIP",
       "year": 2021
@@ -225,26 +225,36 @@ export const pao_frances_brazil: StyleDefinition = {
   "diagrams": [],
   "faq": [
     {
-      "question": "Why is it called 'French Bread' if it doesn't exist in France?",
-      "answer": "The name emerged in the early 20th century when the Brazilian elite requested local bakers to make lighter, whiter breads inspired by those they ate in Paris. The style evolved independently in Brazil, becoming something unique and quite different from the French baguette."
+      "question": t('styles.pao_frances_faq_1_q'),
+      "answer": t('styles.pao_frances_faq_1_a')
     },
     {
-      "question": "What is the 'pestana' of the French bread?",
-      "answer": "It is the longitudinal cut that opens during baking, creating a crispy 'ear'. For a good pestana, the baker must make a precise cut with a tilted blade and ensure the oven has plenty of steam in the first few seconds."
+      "question": t('styles.pao_frances_faq_2_q'),
+      "answer": t('styles.pao_frances_faq_2_a')
     },
     {
-      "question": "Why does French bread become rubbery so quickly?",
-      "answer": "Being a very light bread with a very thin crust and airy crumb, it loses moisture quickly to the environment (or absorbs it on rainy days). The secret is to consume it hot or regenerate it on the griddle with butter."
+      "question": t('styles.pao_frances_faq_3_q'),
+      "answer": t('styles.pao_frances_faq_3_a')
     },
     {
-      "question": "Does French bread contain sugar or fat?",
-      "answer": "Traditionally it is a lean dough (flour, water, salt, and yeast). However, many bakeries use small amounts (1 to 2%) of sugar and fat to help color the crust and maintain softness for longer."
+      "question": t('styles.pao_frances_faq_4_q'),
+      "answer": t('styles.pao_frances_faq_4_a')
     },
     {
-      "question": "How much does a standard French bread weigh?",
-      "answer": "The official Brazilian standard established by INMETRO and technical norms is 50 grams per unit."
+      "question": t('styles.pao_frances_faq_5_q'),
+      "answer": t('styles.pao_frances_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 70,
+    "salt": 2,
+    "oil": 0,
+    "sugar": 0
+  },
+  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
 };

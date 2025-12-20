@@ -7,6 +7,9 @@ import {
     IncrementCompatibility
 } from '@/types/ingredients';
 import { DoughStyleDefinition } from '@/types/styles';
+import i18n from '@/i18n';
+const t = i18n.t.bind(i18n);
+
 
 // Mock AI Service until real LLM integration
 export class IngredientAIService {
@@ -38,15 +41,15 @@ export class IngredientAIService {
             moistureLevel: inputData.moisturePerception,
             fatContent: inputData.hasCreamyBase ? 'high' : 'low', // Simple assumption
             sugarContent: 'low', // Default assumption unless specified otherwise (would need more inputs in real AI)
-            weightImpact: inputData.loadType === 'heavy' ? 'Heavy load' : 'Standard load',
+            weightImpact: inputData.loadType === 'heavy' ? t('common.heavy_load_49') : t('common.standard_load_50'),
             thermalBehavior: inputData.applicationTime === 'post_bake'
                 ? 'No thermal impact (applied after)'
-                : 'Participates in heat transfer'
+                : t('common.participates_in_heat_transfer_51')
         };
 
         const assumptions: string[] = [];
         if (inputData.applicationTime === 'pre_bake' && inputData.moisturePerception === 'high') {
-            assumptions.push("Assumed ingredient releases water during bake");
+            assumptions.push(t('common.assumed_ingredient_releases_water_during_52'));
         }
         if (category.toLowerCase().includes('fruit') || name.toLowerCase().includes('abacaxi')) {
             technicalProfile.sugarContent = 'high';
@@ -133,14 +136,14 @@ export class IngredientAIService {
             if (isHighTemp) {
                 // High Heat + Moisture = Soup
                 status = 'critical';
-                classification = 'Experimental';
+                classification = t('common.experimental_55');
                 impact.push("Hydro-Overload: High moisture ingredients in high heat will release water faster than evaporation.");
                 suggestions.push("Pre-cook ingredients to remove moisture.");
                 suggestions.push("Drain fresh cheeses thoroughly.");
             } else {
                 // Low Heat + Moisture = Soggy
                 status = 'warning';
-                classification = 'Variation';
+                classification = t('common.variation_54');
                 impact.push("Moisture Accumulation: Long bake times with wet ingredients risk center sogginess.");
             }
             alerts.push(impact[impact.length - 1]);
@@ -169,14 +172,14 @@ export class IngredientAIService {
             const comp = inc.compatibilityByStyle[style.id];
             if (comp === 'experimental') {
                 experimentalCount++;
-                classification = 'Experimental'; // Immediate trigger
+                classification = t('common.experimental_55'); // Immediate trigger
             } else if (comp === 'variation') {
                 variationCount++;
             }
         });
 
-        if (classification !== 'Experimental' && variationCount > 0) {
-            classification = 'Variation';
+        if (classification !== t('common.experimental_55') && variationCount > 0) {
+            classification = t('common.variation_54');
         }
 
         // 5. Contextual Logic (The "Smart" part)

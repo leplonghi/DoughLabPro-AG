@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { Bell, BellOff, Clock, Moon, Volume2, VolumeX, Vibrate, TestTube } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
 
 export const NotificationSettings: React.FC = () => {
+  const { t } = useTranslation();
+
     const { settings, updateSettings, permissionStatus, requestPermission, testNotification } = useNotifications();
     const [showAdvanced, setShowAdvanced] = useState(false);
 
@@ -85,12 +89,12 @@ export const NotificationSettings: React.FC = () => {
                 <h3 className="font-semibold text-gray-900 dark:text-white">Notification Types</h3>
 
                 {[
-                    { key: 'fermentationNotifications', label: 'Fermentation Timers', icon: Clock },
-                    { key: 'foldingNotifications', label: 'Folding Reminders', icon: Clock },
-                    { key: 'proofingNotifications', label: 'Proofing Timers', icon: Clock },
-                    { key: 'levainNotifications', label: 'Levain Reminders', icon: Bell },
-                    { key: 'bakingNotifications', label: 'Baking Alerts', icon: Bell },
-                    { key: 'recipeNotifications', label: 'Recipe Reminders', icon: Bell },
+                    { key: 'fermentationNotifications', label: t('notifications.fermentation_timers_269'), icon: Clock },
+                    { key: 'foldingNotifications', label: t('notifications.folding_reminders_270'), icon: Clock },
+                    { key: 'proofingNotifications', label: t('notifications.proofing_timers_271'), icon: Clock },
+                    { key: 'levainNotifications', label: t('notifications.levain_reminders_272'), icon: Bell },
+                    { key: 'bakingNotifications', label: t('notifications.baking_alerts_273'), icon: Bell },
+                    { key: 'recipeNotifications', label: t('notifications.recipe_reminders_274'), icon: Bell },
                 ].map(({ key, label, icon: Icon }) => (
                     <div key={key} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div className="flex items-center gap-3">

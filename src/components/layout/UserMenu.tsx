@@ -77,7 +77,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                     {/* User Info Header */}
                     <div className="px-4 py-3 border-b border-dlp-border bg-dlp-bg-muted">
                         <p className="text-sm font-semibold text-dlp-text-primary truncate">
-                            {user?.name || 'User'}
+                            {user?.name || t('ui.user_430')}
                         </p>
                         <p className="text-xs text-dlp-text-muted truncate mt-0.5">
                             {user?.email || ''}

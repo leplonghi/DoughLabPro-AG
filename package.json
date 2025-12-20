@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:style": "node scripts/generate-style.js",
+    "fill:style": "node scripts/fill-style-content.js",
+    "validate:styles": "node scripts/validate-styles.ts"
   },
   "dependencies": {
     "@firebase/app": "^0.14.6",

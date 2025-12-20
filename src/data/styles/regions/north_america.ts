@@ -1,4 +1,54 @@
 import { DoughStyleDefinition, RecipeStyle } from '@/types/styles';
+import { california_style } from '../pizza/california_style';
+
+// Adapter for V3 Gold Standard to V1 Legacy
+function adaptV3ToLegacy(style: any): DoughStyleDefinition {
+    return {
+        id: style.id,
+        name: style.title || style.name || 'Unknown Style',
+        category: style.category?.toLowerCase() || 'bread',
+        recipeStyle: style.recipeStyle || RecipeStyle.THIN_CRUST,
+        origin: {
+            country: style.origin?.country || 'Unknown',
+            region: style.origin?.region || '',
+            period: style.origin?.period || ''
+        },
+        description: style.intro || style.description || '',
+        history: style.history || '',
+        difficulty: style.technicalProfile?.difficulty || 'Medium',
+        fermentationType: style.technicalProfile?.fermentation?.coldRetard ? 'cold' : 'direct',
+        technicalProfile: {
+            hydration: style.technicalProfile?.hydrationRange || [60, 70],
+            salt: style.technicalProfile?.saltRange || [2, 2],
+            oil: style.technicalProfile?.oilRange || [0, 0],
+            sugar: style.technicalProfile?.sugarRange || [0, 0],
+            flourStrength: style.technicalProfile?.flourStrength || 'Standard',
+            ovenTemp: style.technicalProfile?.oven?.temperatureC || [200, 250],
+            recommendedUse: style.technicalProfile?.recommendedUse || [],
+            difficulty: style.technicalProfile?.difficulty || 'Medium',
+            ballWeight: style.technicalProfile?.ballWeight,
+            fermentationSteps: []
+        },
+        tags: style.tags || [],
+        notes: style.notes || [],
+        references: style.references || [],
+        isPro: false,
+        source: 'official',
+        createdAt: new Date().toISOString(),
+        releaseDate: new Date().toISOString(),
+        images: style.images?.[0] ? {
+            hero: style.images[0],
+            dough: style.images[1] || style.images[0],
+            crumb: style.images[2] || style.images[0]
+        } : {
+            hero: "/images/styles/placeholder-dough.png",
+            dough: "/images/styles/placeholder-dough.png",
+            crumb: "/images/styles/placeholder-dough.png"
+        }
+    };
+}
+
+const californiaStyleAdapted = adaptV3ToLegacy(california_style);
 
 const nycSlice: DoughStyleDefinition = {
     id: "new_york_slice_v2",
@@ -1478,5 +1528,6 @@ export const northAmericaStyles: DoughStyleDefinition[] = [
     grandmaPizza,
     chicagoTavern,
     montrealBagel,
-    flourTortilla
+    flourTortilla,
+    californiaStyleAdapted // V3 Gold Standard style (adapted)
 ];

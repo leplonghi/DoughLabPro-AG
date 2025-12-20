@@ -47,7 +47,7 @@ export const AdminTools: React.FC = () => {
                 proSince: userSnap.exists() && userSnap.data().proSince ? userSnap.data().proSince : now,
                 updatedAt: now,
                 email: firebaseUser.email || 'leplonghi@gmail.com',
-                name: firebaseUser.displayName || 'Admin',
+                name: firebaseUser.displayName || t('ui.admin_384'),
             };
 
             if (userSnap.exists()) {
@@ -70,7 +70,7 @@ export const AdminTools: React.FC = () => {
 
         } catch (error) {
             console.error('Error granting Pro access:', error);
-            setMessage(`❌ Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+            setMessage(`❌ Error: ${error instanceof Error ? error.message : t('ui.unknown_error_385')}`);
         } finally {
             setLoading(false);
         }

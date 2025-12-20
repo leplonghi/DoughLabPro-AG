@@ -241,6 +241,16 @@ export const colomba_pasquale: StyleDefinition = {
       "answer": t('styles.colomba_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "defaults": {
+    "hydration": 60,
+    "salt": 1.5,
+    "oil": 5,
+    "sugar": 10
+  },
+  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
 };

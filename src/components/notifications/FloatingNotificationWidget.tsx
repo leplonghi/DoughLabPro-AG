@@ -3,8 +3,12 @@ import { useNotifications } from '@/contexts/NotificationContext';
 import { useRouter } from '@/contexts/RouterContext';
 import { Bell, X, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import { NotificationPriority } from '@/types/notifications';
+import { useTranslation } from 'react-i18next';
+
 
 export const FloatingNotificationWidget: React.FC = () => {
+  const { t } = useTranslation();
+
     const { scheduledNotifications, activeTimers, cancelNotification } = useNotifications();
     const { navigate } = useRouter();
     const [isExpanded, setIsExpanded] = useState(false);
@@ -73,7 +77,7 @@ export const FloatingNotificationWidget: React.FC = () => {
                 <div className="flex items-center gap-2">
                     <Bell className="w-5 h-5 text-green-600" />
                     <span className="font-semibold text-gray-900 dark:text-white">
-                        {hasActiveTimers ? 'Active Timers' : 'Upcoming'}
+                        {hasActiveTimers ? t('notifications.active_timers_402') : t('notifications.upcoming_403')}
                     </span>
                     {pendingNotifications.length > 0 && (
                         <span className="px-2 py-0.5 text-xs font-bold bg-green-600 text-white rounded-full">

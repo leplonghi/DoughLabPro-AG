@@ -230,6 +230,10 @@ export const pain_au_chocolat: StyleDefinition = {
       "answer": t('styles.pain_au_chocolat_faq_5_a')
     }
   ],
+  "affiliateProducts": [],
+
   "isCanonical": true,
   "source": "official"
+,
+  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
 };

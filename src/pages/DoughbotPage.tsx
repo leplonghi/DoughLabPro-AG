@@ -93,7 +93,7 @@ const DoughbotPage: React.FC = () => {
                 {t('doughbot.when_did_it_happen')}
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {['Mixing', 'Bulk Ferment', 'Shaping/Proof', 'Baking'].map((stage) => (
+                {[t('ui.mixing_130'), t('ui.bulk_ferment_131'), 'Shaping/Proof', t('ui.baking_132')].map((stage) => (
                   <button
                     key={stage}
                     onClick={() => setDescription(prev => prev.includes(`Stage: ${stage}`) ? prev : `Stage: ${stage}. ${prev}`)}
@@ -114,12 +114,12 @@ const DoughbotPage: React.FC = () => {
 
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                 {[
-                  { val: 'sticky', label: 'Sticky / Wet', desc: 'Impossible to handle', icon: '💧' },
-                  { val: 'tearing', label: 'Tearing', desc: 'No gluten structure', icon: '🕸️' },
-                  { val: 'no_rise', label: 'Flat / No Rise', desc: 'Yeast inactivity', icon: '📉' },
-                  { val: 'dense', label: 'Dense Crumb', desc: 'Heavy, brick-like', icon: '🧱' },
-                  { val: 'gummy', label: 'Gummy Interior', desc: 'Undercooked feel', icon: '🧖' },
-                  { val: 'pale', label: 'Pale Crust', desc: 'No browning', icon: '👻' },
+                  { val: 'sticky', label: 'Sticky / Wet', desc: t('ui.impossible_to_handle_133'), icon: '💧' },
+                  { val: 'tearing', label: t('ui.tearing_134'), desc: t('ui.no_gluten_structure_135'), icon: '🕸️' },
+                  { val: 'no_rise', label: 'Flat / No Rise', desc: t('ui.yeast_inactivity_136'), icon: '📉' },
+                  { val: 'dense', label: t('ui.dense_crumb_137'), desc: 'Heavy, brick-like', icon: '🧱' },
+                  { val: 'gummy', label: t('ui.gummy_interior_138'), desc: t('ui.undercooked_feel_139'), icon: '🧖' },
+                  { val: 'pale', label: t('ui.pale_crust_140'), desc: t('ui.no_browning_141'), icon: '👻' },
                 ].map((item) => (
                   <button
                     key={item.val}
