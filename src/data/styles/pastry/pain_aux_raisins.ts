@@ -15,14 +15,96 @@ export const pain_aux_raisins: StyleDefinition = {
     "region": t('styles.francewide'),
     "period": "20th century"
   },
-  "intro": t('styles.served_as_a_sweet_breakfast_or_snack_pastry_in_fre'),
-  "history": "Pain aux raisins is a laminated or enriched dough rolled with pastry cream and raisins, often using similar base dough to croissant.",
+  "intro": t('styles.pain_aux_raisins_intro'),
+  "history": t('styles.pain_aux_raisins_history_full'),
+  "culturalContext": {
+    "significance": [
+      t('styles.pain_aux_raisins_sig_1'),
+      t('styles.pain_aux_raisins_sig_2'),
+      t('styles.pain_aux_raisins_sig_3'),
+      t('styles.pain_aux_raisins_sig_4'),
+      t('styles.pain_aux_raisins_sig_5')
+    ],
+    "consumptionContext": [
+      t('styles.pain_aux_raisins_consum_1'),
+      t('styles.pain_aux_raisins_consum_2'),
+      t('styles.pain_aux_raisins_consum_3'),
+      t('styles.pain_aux_raisins_consum_4'),
+      t('styles.pain_aux_raisins_consum_5')
+    ],
+    "evolution": [
+      t('styles.pain_aux_raisins_evo_1'),
+      t('styles.pain_aux_raisins_evo_2'),
+      t('styles.pain_aux_raisins_evo_3'),
+      t('styles.pain_aux_raisins_evo_4'),
+      t('styles.pain_aux_raisins_evo_5')
+    ],
+    "rituals": [
+      t('styles.pain_aux_raisins_ritual_1'),
+      t('styles.pain_aux_raisins_ritual_2'),
+      t('styles.pain_aux_raisins_ritual_3'),
+      t('styles.pain_aux_raisins_ritual_4'),
+      t('styles.pain_aux_raisins_ritual_5')
+    ]
+  },
+  "flavorProfile": {
+    "primaryFlavors": [
+      t('styles.pain_aux_raisins_flavor_1'),
+      t('styles.pain_aux_raisins_flavor_2'),
+      t('styles.pain_aux_raisins_flavor_3'),
+      t('styles.pain_aux_raisins_flavor_4'),
+      t('styles.pain_aux_raisins_flavor_5')
+    ],
+    "aromaProfile": [
+      t('styles.pain_aux_raisins_aroma_1'),
+      t('styles.pain_aux_raisins_aroma_2'),
+      t('styles.pain_aux_raisins_aroma_3'),
+      t('styles.pain_aux_raisins_aroma_4'),
+      t('styles.pain_aux_raisins_aroma_5')
+    ],
+    "textureNotes": [
+      t('styles.pain_aux_raisins_texture_1'),
+      t('styles.pain_aux_raisins_texture_2'),
+      t('styles.pain_aux_raisins_texture_3'),
+      t('styles.pain_aux_raisins_texture_4'),
+      t('styles.pain_aux_raisins_texture_5')
+    ],
+    "pairingRecommendations": [
+      t('styles.pain_aux_raisins_pair_1'),
+      t('styles.pain_aux_raisins_pair_2'),
+      t('styles.pain_aux_raisins_pair_3'),
+      t('styles.pain_aux_raisins_pair_4'),
+      t('styles.pain_aux_raisins_pair_5')
+    ],
+    "flavorEvolution": [
+      t('styles.pain_aux_raisins_fe_1'),
+      t('styles.pain_aux_raisins_fe_2'),
+      t('styles.pain_aux_raisins_fe_3'),
+      t('styles.pain_aux_raisins_fe_4'),
+      t('styles.pain_aux_raisins_fe_5')
+    ]
+  },
   "technicalFoundations": [
-    "Derived from croissant-type doughs or enriched brioche-like doughs.",
-    "Hydration: 55-65%"
+    t('styles.pain_aux_raisins_tech_1'),
+    t('styles.pain_aux_raisins_tech_2'),
+    t('styles.pain_aux_raisins_tech_3'),
+    t('styles.pain_aux_raisins_tech_4'),
+    t('styles.pain_aux_raisins_tech_5')
   ],
-  "doughImpact": [],
-  "bakingImpact": [],
+  "doughImpact": [
+    t('styles.pain_aux_raisins_di_1'),
+    t('styles.pain_aux_raisins_di_2'),
+    t('styles.pain_aux_raisins_di_3'),
+    t('styles.pain_aux_raisins_di_4'),
+    t('styles.pain_aux_raisins_di_5')
+  ],
+  "bakingImpact": [
+    t('styles.pain_aux_raisins_bi_1'),
+    t('styles.pain_aux_raisins_bi_2'),
+    t('styles.pain_aux_raisins_bi_3'),
+    t('styles.pain_aux_raisins_bi_4'),
+    t('styles.pain_aux_raisins_bi_5')
+  ],
   "technicalProfile": {
     "hydrationRange": [
       55,
@@ -60,12 +142,41 @@ export const pain_aux_raisins: StyleDefinition = {
       t('common.viennoiserie_item')
     ]
   },
-  "regionalVariants": [],
-  "climateScenarios": [],
+  "regionalVariants": [
+    t('styles.pain_aux_raisins_rv_1'),
+    t('styles.pain_aux_raisins_rv_2'),
+    t('styles.pain_aux_raisins_rv_3'),
+    t('styles.pain_aux_raisins_rv_4'),
+    t('styles.pain_aux_raisins_rv_5')
+  ],
+  "climateScenarios": [
+    t('styles.pain_aux_raisins_cs_1'),
+    t('styles.pain_aux_raisins_cs_2'),
+    t('styles.pain_aux_raisins_cs_3'),
+    t('styles.pain_aux_raisins_cs_4')
+  ],
   "styleComparisons": [],
-  "parameterSensitivity": [],
-  "risks": [],
-  "notes": [],
+  "parameterSensitivity": [
+    t('styles.pain_aux_raisins_ps_1'),
+    t('styles.pain_aux_raisins_ps_2'),
+    t('styles.pain_aux_raisins_ps_3'),
+    t('styles.pain_aux_raisins_ps_4'),
+    t('styles.pain_aux_raisins_ps_5')
+  ],
+  "risks": [
+    t('styles.pain_aux_raisins_risk_1'),
+    t('styles.pain_aux_raisins_risk_2'),
+    t('styles.pain_aux_raisins_risk_3'),
+    t('styles.pain_aux_raisins_risk_4'),
+    t('styles.pain_aux_raisins_risk_5')
+  ],
+  "notes": [
+    t('styles.pain_aux_raisins_note_1'),
+    t('styles.pain_aux_raisins_note_2'),
+    t('styles.pain_aux_raisins_note_3'),
+    t('styles.pain_aux_raisins_note_4'),
+    t('styles.pain_aux_raisins_note_5')
+  ],
   "tags": [
     t('common.sweet_breakfast_pastry'),
     t('common.viennoiserie_item'),
@@ -91,7 +202,28 @@ export const pain_aux_raisins: StyleDefinition = {
   ],
   "images": [],
   "diagrams": [],
-  "faq": [],
+  "faq": [
+    {
+      "question": t('styles.pain_aux_raisins_faq_1_q'),
+      "answer": t('styles.pain_aux_raisins_faq_1_a')
+    },
+    {
+      "question": t('styles.pain_aux_raisins_faq_2_q'),
+      "answer": t('styles.pain_aux_raisins_faq_2_a')
+    },
+    {
+      "question": t('styles.pain_aux_raisins_faq_3_q'),
+      "answer": t('styles.pain_aux_raisins_faq_3_a')
+    },
+    {
+      "question": t('styles.pain_aux_raisins_faq_4_q'),
+      "answer": t('styles.pain_aux_raisins_faq_4_a')
+    },
+    {
+      "question": t('styles.pain_aux_raisins_faq_5_q'),
+      "answer": t('styles.pain_aux_raisins_faq_5_a')
+    }
+  ],
   "isCanonical": true,
   "source": "official"
 };

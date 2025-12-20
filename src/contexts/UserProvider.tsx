@@ -43,6 +43,7 @@ import { PlanId } from '@/permissions';
 import { isProUser } from '@/lib/permissions';
 import { useBatchManager } from '@/hooks/useBatchManager';
 import { useTranslation } from '@/i18n';
+import { monitor } from '@/infrastructure/monitoring';
 
 const shouldUseFirestore = (user: User | null | any, db: any) => {
   return !!user && !!db && user.uid !== 'guest-123' && user.uid !== 'vip-guest-user';
@@ -178,7 +179,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setTestSeries([]);
         setUserStyles([]);
         setFavorites([]);
-        setFavorites([]);
         setCustomPresets([]);
         setCustomToppings([]);
         return;
@@ -200,8 +200,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           if (snap.exists()) {
             profileData = snap.data();
           }
-        } catch (err) {
-          console.error("Error fetching user profile:", err);
+        } catch (err: any) {
+          monitor.trackError(err, { context: 'fetch_user_profile' });
         }
 
         const email = authUser.email ? authUser.email.toLowerCase() : '';
@@ -221,8 +221,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             profileData.isAdmin = true;
             profileData.plan = 'lab_pro';
             profileData.isPro = true;
-          } catch (err) {
-            console.error("Failed to auto-upgrade admin:", err);
+          } catch (err: any) {
+            monitor.trackError(err, { context: 'auto_upgrade_admin' });
           }
         }
 
@@ -275,8 +275,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         if (stored) {
           setFavorites(JSON.parse(stored));
         }
-      } catch (err) {
-        console.error("Error loading guest favorites:", err);
+      } catch (err: any) {
+        //   monitor.trackError(err, { context: 'load_guest_favorites' });
       }
     }
   }, [firebaseUser]);
@@ -310,7 +310,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           setter(items);
         },
         (error) => {
-          console.error(`Error listening to ${collectionName}:`, error);
+          monitor.trackError(error, { context: `listener_${collectionName}` });
         }
       );
     },
@@ -391,7 +391,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const createDoc = useCallback(
     async (collectionName: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
       const usingFirestore = shouldUseFirestore(firebaseUser, db);
-      console.log(`[createDoc] ${collectionName} - usingFirestore: ${usingFirestore}, uid: ${firebaseUser?.uid}`);
 
       const now = new Date().toISOString();
       const rawData = {
@@ -406,10 +405,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
           const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
           const docRef = await addDoc(collRef, docData);
-          console.log(`[createDoc] Success: ${docRef.id}`);
           return { ...docData, id: docRef.id };
         } catch (error: any) {
-          console.error(`[createDoc] Firestore Error:`, error);
+          monitor.trackError(error, { context: `createDoc_${collectionName}` });
           addToast(`Error saving to cloud: ${error.message}`, 'error');
           // Fallback to local? No, better to let user know it failed.
           throw error;
@@ -431,7 +429,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const updateDocFn = useCallback(
     async (collectionName: string, id: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
       const usingFirestore = shouldUseFirestore(firebaseUser, db);
-      console.log(`[updateDoc] ${collectionName}/${id} - usingFirestore: ${usingFirestore}`);
 
       const rawUpdate = { ...data, updatedAt: new Date().toISOString() };
       const update = sanitizeForFirestore(rawUpdate);
@@ -440,9 +437,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
           const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
           await updateDoc(docRef, update);
-          console.log(`[updateDoc] Success`);
         } catch (error: any) {
-          console.error(`[updateDoc] Firestore Error:`, error);
+          monitor.trackError(error, { context: `updateDoc_${collectionName}` });
           addToast(`Error updating cloud: ${error.message}`, 'error');
           throw error;
         }
@@ -683,7 +679,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const toggleFavorite = useCallback(
     async (item: Omit<FavoriteItem, 'createdAt'>) => {
       const usingFirestore = shouldUseFirestore(firebaseUser, db);
-      console.log(`[toggleFavorite] item: ${item.title} (${item.type}), usingFirestore: ${usingFirestore}`);
 
       // Guest Mode Logic
       if (!usingFirestore) {
@@ -739,7 +734,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           addToast(t('ui.saved_to_favorites'), 'success');
         }
       } catch (error: any) {
-        console.error(`[toggleFavorite] Error:`, error);
+        monitor.trackError(error, { context: 'toggleFavorite' });
         addToast(`${t('ui.error_saving_favorite')}: ${error.message}`, 'error');
       }
     },

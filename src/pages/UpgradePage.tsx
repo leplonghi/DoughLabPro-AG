@@ -3,7 +3,7 @@ import { checkoutProSubscription } from '@/services/payment';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from '@/i18n';
-import { useNavigate } from 'react-router-dom'; // Or use your custom router navigation if needed
+// import { useNavigate } from 'react-router-dom'; // Unused in this version as we use window.location
 
 interface UpgradePageProps {
     success?: boolean;
@@ -13,13 +13,13 @@ interface UpgradePageProps {
 export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
-    // TODO: Replace with your actual Price ID from Stripe Dashboard
-    const PRO_PRICE_ID = "price_1SUduf15wYiGE65Byb3Zr4QB";
+    // Standard subscription plan key
+    const PRO_PLAN_KEY = "standard";
 
     const handleUpgrade = async () => {
         setIsLoading(true);
         try {
-            await checkoutProSubscription(PRO_PRICE_ID);
+            await checkoutProSubscription(PRO_PLAN_KEY);
         } catch (error) {
             console.error(error);
             alert(t('upgrade_page.checkout_error'));
@@ -105,11 +105,11 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
                             {t('upgrade_page.pay_once')}
                         </p>
                         <div className="mt-4 flex items-center justify-center text-5xl font-extrabold text-gray-900">
-                            <span>$29</span>
-                            <span className="ml-3 text-xl font-medium text-gray-500">{t('general.usd')}</span>
+                            <span>$4.99</span>
+                            <span className="ml-3 text-xl font-medium text-gray-500">/{t('general.month')}</span>
                         </div>
                         <p className="mt-4 text-sm text-gray-500">
-                            {t('upgrade_page.demo_price_note')}
+                            {t('paywall.pricing.cancel_anytime', { currency: 'USD' })}
                         </p>
                         <div className="mt-6">
                             <button
@@ -128,5 +128,3 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
 };
 
 export default UpgradePage;
-
-

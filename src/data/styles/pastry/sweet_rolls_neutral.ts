@@ -15,14 +15,96 @@ export const sweet_rolls_neutral: StyleDefinition = {
     "region": t('styles.commercial_and_artisan_bakeries'),
     "period": "20th century"
   },
-  "intro": "Used as a versatile platform for sweet bakery products in industrial and artisan production.",
-  "history": "Neutral sweet roll dough serves as a base for many bakery items, from twisted rolls to filled buns and rings.",
+  "intro": t('styles.sweet_rolls_intro'),
+  "history": t('styles.sweet_rolls_history_full'),
+  "culturalContext": {
+    "significance": [
+      t('styles.sweet_rolls_sig_1'),
+      t('styles.sweet_rolls_sig_2'),
+      t('styles.sweet_rolls_sig_3'),
+      t('styles.sweet_rolls_sig_4'),
+      t('styles.sweet_rolls_sig_5')
+    ],
+    "consumptionContext": [
+      t('styles.sweet_rolls_consum_1'),
+      t('styles.sweet_rolls_consum_2'),
+      t('styles.sweet_rolls_consum_3'),
+      t('styles.sweet_rolls_consum_4'),
+      t('styles.sweet_rolls_consum_5')
+    ],
+    "evolution": [
+      t('styles.sweet_rolls_evo_1'),
+      t('styles.sweet_rolls_evo_2'),
+      t('styles.sweet_rolls_evo_3'),
+      t('styles.sweet_rolls_evo_4'),
+      t('styles.sweet_rolls_evo_5')
+    ],
+    "rituals": [
+      t('styles.sweet_rolls_ritual_1'),
+      t('styles.sweet_rolls_ritual_2'),
+      t('styles.sweet_rolls_ritual_3'),
+      t('styles.sweet_rolls_ritual_4'),
+      t('styles.sweet_rolls_ritual_5')
+    ]
+  },
+  "flavorProfile": {
+    "primaryFlavors": [
+      t('styles.sweet_rolls_flavor_1'),
+      t('styles.sweet_rolls_flavor_2'),
+      t('styles.sweet_rolls_flavor_3'),
+      t('styles.sweet_rolls_flavor_4'),
+      t('styles.sweet_rolls_flavor_5')
+    ],
+    "aromaProfile": [
+      t('styles.sweet_rolls_aroma_1'),
+      t('styles.sweet_rolls_aroma_2'),
+      t('styles.sweet_rolls_aroma_3'),
+      t('styles.sweet_rolls_aroma_4'),
+      t('styles.sweet_rolls_aroma_5')
+    ],
+    "textureNotes": [
+      t('styles.sweet_rolls_texture_1'),
+      t('styles.sweet_rolls_texture_2'),
+      t('styles.sweet_rolls_texture_3'),
+      t('styles.sweet_rolls_texture_4'),
+      t('styles.sweet_rolls_texture_5')
+    ],
+    "pairingRecommendations": [
+      t('styles.sweet_rolls_pair_1'),
+      t('styles.sweet_rolls_pair_2'),
+      t('styles.sweet_rolls_pair_3'),
+      t('styles.sweet_rolls_pair_4'),
+      t('styles.sweet_rolls_pair_5')
+    ],
+    "flavorEvolution": [
+      t('styles.sweet_rolls_fe_1'),
+      t('styles.sweet_rolls_fe_2'),
+      t('styles.sweet_rolls_fe_3'),
+      t('styles.sweet_rolls_fe_4'),
+      t('styles.sweet_rolls_fe_5')
+    ]
+  },
   "technicalFoundations": [
-    "Often straight dough; sponge methods are also common.",
-    "Hydration: 60-70%"
+    t('styles.sweet_rolls_tech_1'),
+    t('styles.sweet_rolls_tech_2'),
+    t('styles.sweet_rolls_tech_3'),
+    t('styles.sweet_rolls_tech_4'),
+    t('styles.sweet_rolls_tech_5')
   ],
-  "doughImpact": [],
-  "bakingImpact": [],
+  "doughImpact": [
+    t('styles.sweet_rolls_di_1'),
+    t('styles.sweet_rolls_di_2'),
+    t('styles.sweet_rolls_di_3'),
+    t('styles.sweet_rolls_di_4'),
+    t('styles.sweet_rolls_di_5')
+  ],
+  "bakingImpact": [
+    t('styles.sweet_rolls_bi_1'),
+    t('styles.sweet_rolls_bi_2'),
+    t('styles.sweet_rolls_bi_3'),
+    t('styles.sweet_rolls_bi_4'),
+    t('styles.sweet_rolls_bi_5')
+  ],
   "technicalProfile": {
     "hydrationRange": [
       60,
@@ -60,12 +142,41 @@ export const sweet_rolls_neutral: StyleDefinition = {
       t('common.base_for_multiple_pastry_formats')
     ]
   },
-  "regionalVariants": [],
-  "climateScenarios": [],
+  "regionalVariants": [
+    t('styles.sweet_rolls_rv_1'),
+    t('styles.sweet_rolls_rv_2'),
+    t('styles.sweet_rolls_rv_3'),
+    t('styles.sweet_rolls_rv_4'),
+    t('styles.sweet_rolls_rv_5')
+  ],
+  "climateScenarios": [
+    t('styles.sweet_rolls_cs_1'),
+    t('styles.sweet_rolls_cs_2'),
+    t('styles.sweet_rolls_cs_3'),
+    t('styles.sweet_rolls_cs_4')
+  ],
   "styleComparisons": [],
-  "parameterSensitivity": [],
-  "risks": [],
-  "notes": [],
+  "parameterSensitivity": [
+    t('styles.sweet_rolls_ps_1'),
+    t('styles.sweet_rolls_ps_2'),
+    t('styles.sweet_rolls_ps_3'),
+    t('styles.sweet_rolls_ps_4'),
+    t('styles.sweet_rolls_ps_5')
+  ],
+  "risks": [
+    t('styles.sweet_rolls_risk_1'),
+    t('styles.sweet_rolls_risk_2'),
+    t('styles.sweet_rolls_risk_3'),
+    t('styles.sweet_rolls_risk_4'),
+    t('styles.sweet_rolls_risk_5')
+  ],
+  "notes": [
+    t('styles.sweet_rolls_note_1'),
+    t('styles.sweet_rolls_note_2'),
+    t('styles.sweet_rolls_note_3'),
+    t('styles.sweet_rolls_note_4'),
+    t('styles.sweet_rolls_note_5')
+  ],
   "tags": [
     t('common.generic_sweet_rolls'),
     t('common.base_for_multiple_pastry_formats'),
@@ -91,7 +202,28 @@ export const sweet_rolls_neutral: StyleDefinition = {
   ],
   "images": [],
   "diagrams": [],
-  "faq": [],
+  "faq": [
+    {
+      "question": t('styles.sweet_rolls_faq_1_q'),
+      "answer": t('styles.sweet_rolls_faq_1_a')
+    },
+    {
+      "question": t('styles.sweet_rolls_faq_2_q'),
+      "answer": t('styles.sweet_rolls_faq_2_a')
+    },
+    {
+      "question": t('styles.sweet_rolls_faq_3_q'),
+      "answer": t('styles.sweet_rolls_faq_3_a')
+    },
+    {
+      "question": t('styles.sweet_rolls_faq_4_q'),
+      "answer": t('styles.sweet_rolls_faq_4_a')
+    },
+    {
+      "question": t('styles.sweet_rolls_faq_5_q'),
+      "answer": t('styles.sweet_rolls_faq_5_a')
+    }
+  ],
   "isCanonical": true,
   "source": "official"
 };

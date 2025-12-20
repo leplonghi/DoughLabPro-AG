@@ -15,14 +15,96 @@ export const pain_au_chocolat: StyleDefinition = {
     "region": t('styles.francewide_2'),
     "period": "19th–20th century"
   },
-  "intro": t('styles.common_in_french_and_international_bakeries_as_a_b'),
-  "history": "Pain au chocolat uses the same laminated dough as croissant, shaped around chocolate sticks and baked as a rectangular pastry.",
+  "intro": t('styles.pain_au_chocolat_intro'),
+  "history": t('styles.pain_au_chocolat_history_full'),
+  "culturalContext": {
+    "significance": [
+      t('styles.pain_au_chocolat_sig_1'),
+      t('styles.pain_au_chocolat_sig_2'),
+      t('styles.pain_au_chocolat_sig_3'),
+      t('styles.pain_au_chocolat_sig_4'),
+      t('styles.pain_au_chocolat_sig_5')
+    ],
+    "consumptionContext": [
+      t('styles.pain_au_chocolat_consum_1'),
+      t('styles.pain_au_chocolat_consum_2'),
+      t('styles.pain_au_chocolat_consum_3'),
+      t('styles.pain_au_chocolat_consum_4'),
+      t('styles.pain_au_chocolat_consum_5')
+    ],
+    "evolution": [
+      t('styles.pain_au_chocolat_evo_1'),
+      t('styles.pain_au_chocolat_evo_2'),
+      t('styles.pain_au_chocolat_evo_3'),
+      t('styles.pain_au_chocolat_evo_4'),
+      t('styles.pain_au_chocolat_evo_5')
+    ],
+    "rituals": [
+      t('styles.pain_au_chocolat_ritual_1'),
+      t('styles.pain_au_chocolat_ritual_2'),
+      t('styles.pain_au_chocolat_ritual_3'),
+      t('styles.pain_au_chocolat_ritual_4'),
+      t('styles.pain_au_chocolat_ritual_5')
+    ]
+  },
+  "flavorProfile": {
+    "primaryFlavors": [
+      t('styles.pain_au_chocolat_flavor_1'),
+      t('styles.pain_au_chocolat_flavor_2'),
+      t('styles.pain_au_chocolat_flavor_3'),
+      t('styles.pain_au_chocolat_flavor_4'),
+      t('styles.pain_au_chocolat_flavor_5')
+    ],
+    "aromaProfile": [
+      t('styles.pain_au_chocolat_aroma_1'),
+      t('styles.pain_au_chocolat_aroma_2'),
+      t('styles.pain_au_chocolat_aroma_3'),
+      t('styles.pain_au_chocolat_aroma_4'),
+      t('styles.pain_au_chocolat_aroma_5')
+    ],
+    "textureNotes": [
+      t('styles.pain_au_chocolat_texture_1'),
+      t('styles.pain_au_chocolat_texture_2'),
+      t('styles.pain_au_chocolat_texture_3'),
+      t('styles.pain_au_chocolat_texture_4'),
+      t('styles.pain_au_chocolat_texture_5')
+    ],
+    "pairingRecommendations": [
+      t('styles.pain_au_chocolat_pair_1'),
+      t('styles.pain_au_chocolat_pair_2'),
+      t('styles.pain_au_chocolat_pair_3'),
+      t('styles.pain_au_chocolat_pair_4'),
+      t('styles.pain_au_chocolat_pair_5')
+    ],
+    "flavorEvolution": [
+      t('styles.pain_au_chocolat_fe_1'),
+      t('styles.pain_au_chocolat_fe_2'),
+      t('styles.pain_au_chocolat_fe_3'),
+      t('styles.pain_au_chocolat_fe_4'),
+      t('styles.pain_au_chocolat_fe_5')
+    ]
+  },
   "technicalFoundations": [
-    "Same base as croissant, usually straight dough.",
-    "Hydration: 50-60%"
+    t('styles.pain_au_chocolat_tech_1'),
+    t('styles.pain_au_chocolat_tech_2'),
+    t('styles.pain_au_chocolat_tech_3'),
+    t('styles.pain_au_chocolat_tech_4'),
+    t('styles.pain_au_chocolat_tech_5')
   ],
-  "doughImpact": [],
-  "bakingImpact": [],
+  "doughImpact": [
+    t('styles.pain_au_chocolat_di_1'),
+    t('styles.pain_au_chocolat_di_2'),
+    t('styles.pain_au_chocolat_di_3'),
+    t('styles.pain_au_chocolat_di_4'),
+    t('styles.pain_au_chocolat_di_5')
+  ],
+  "bakingImpact": [
+    t('styles.pain_au_chocolat_bi_1'),
+    t('styles.pain_au_chocolat_bi_2'),
+    t('styles.pain_au_chocolat_bi_3'),
+    t('styles.pain_au_chocolat_bi_4'),
+    t('styles.pain_au_chocolat_bi_5')
+  ],
   "technicalProfile": {
     "hydrationRange": [
       50,
@@ -66,12 +148,41 @@ export const pain_au_chocolat: StyleDefinition = {
     "oil": 30,
     "sugar": 10
   },
-  "regionalVariants": [],
-  "climateScenarios": [],
+  "regionalVariants": [
+    t('styles.pain_au_chocolat_rv_1'),
+    t('styles.pain_au_chocolat_rv_2'),
+    t('styles.pain_au_chocolat_rv_3'),
+    t('styles.pain_au_chocolat_rv_4'),
+    t('styles.pain_au_chocolat_rv_5')
+  ],
+  "climateScenarios": [
+    t('styles.pain_au_chocolat_cs_1'),
+    t('styles.pain_au_chocolat_cs_2'),
+    t('styles.pain_au_chocolat_cs_3'),
+    t('styles.pain_au_chocolat_cs_4')
+  ],
   "styleComparisons": [],
-  "parameterSensitivity": [],
-  "risks": [],
-  "notes": [],
+  "parameterSensitivity": [
+    t('styles.pain_au_chocolat_ps_1'),
+    t('styles.pain_au_chocolat_ps_2'),
+    t('styles.pain_au_chocolat_ps_3'),
+    t('styles.pain_au_chocolat_ps_4'),
+    t('styles.pain_au_chocolat_ps_5')
+  ],
+  "risks": [
+    t('styles.pain_au_chocolat_risk_1'),
+    t('styles.pain_au_chocolat_risk_2'),
+    t('styles.pain_au_chocolat_risk_3'),
+    t('styles.pain_au_chocolat_risk_4'),
+    t('styles.pain_au_chocolat_risk_5')
+  ],
+  "notes": [
+    t('styles.pain_au_chocolat_note_1'),
+    t('styles.pain_au_chocolat_note_2'),
+    t('styles.pain_au_chocolat_note_3'),
+    t('styles.pain_au_chocolat_note_4'),
+    t('styles.pain_au_chocolat_note_5')
+  ],
   "tags": [
     t('common.breakfast_pastry'),
     t('common.snack_pastry'),
@@ -97,7 +208,28 @@ export const pain_au_chocolat: StyleDefinition = {
   ],
   "images": [],
   "diagrams": [],
-  "faq": [],
+  "faq": [
+    {
+      "question": t('styles.pain_au_chocolat_faq_1_q'),
+      "answer": t('styles.pain_au_chocolat_faq_1_a')
+    },
+    {
+      "question": t('styles.pain_au_chocolat_faq_2_q'),
+      "answer": t('styles.pain_au_chocolat_faq_2_a')
+    },
+    {
+      "question": t('styles.pain_au_chocolat_faq_3_q'),
+      "answer": t('styles.pain_au_chocolat_faq_3_a')
+    },
+    {
+      "question": t('styles.pain_au_chocolat_faq_4_q'),
+      "answer": t('styles.pain_au_chocolat_faq_4_a')
+    },
+    {
+      "question": t('styles.pain_au_chocolat_faq_5_q'),
+      "answer": t('styles.pain_au_chocolat_faq_5_a')
+    }
+  ],
   "isCanonical": true,
   "source": "official"
 };

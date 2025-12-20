@@ -18,37 +18,35 @@ export const arepa_corn_flatbread: StyleDefinition = {
   "intro": t('styles.arepa_intro'),
   "history": t('styles.arepa_history'),
   "culturalContext": {
-    "culturalContext": {
-      "significance": [
-        t('styles.arepa_sig_1'),
-        t('styles.arepa_sig_2'),
-        t('styles.arepa_sig_3'),
-        t('styles.arepa_sig_4'),
-        t('styles.arepa_sig_5')
-      ],
-      "consumptionContext": [
-        t('styles.arepa_consum_1'),
-        t('styles.arepa_consum_2'),
-        t('styles.arepa_consum_3'),
-        t('styles.arepa_consum_4'),
-        t('styles.arepa_consum_5')
-      ],
-      "evolution": [
-        t('styles.arepa_evo_1'),
-        t('styles.arepa_evo_2'),
-        t('styles.arepa_evo_3'),
-        t('styles.arepa_evo_4'),
-        t('styles.arepa_evo_5'),
-        t('styles.arepa_evo_6')
-      ],
-      "rituals": [
-        t('styles.arepa_ritual_1'),
-        t('styles.arepa_ritual_2'),
-        t('styles.arepa_ritual_3'),
-        t('styles.arepa_ritual_4'),
-        t('styles.arepa_ritual_5')
-      ]
-    },
+    "significance": [
+      t('styles.arepa_sig_1'),
+      t('styles.arepa_sig_2'),
+      t('styles.arepa_sig_3'),
+      t('styles.arepa_sig_4'),
+      t('styles.arepa_sig_5')
+    ],
+    "consumptionContext": [
+      t('styles.arepa_consum_1'),
+      t('styles.arepa_consum_2'),
+      t('styles.arepa_consum_3'),
+      t('styles.arepa_consum_4'),
+      t('styles.arepa_consum_5')
+    ],
+    "evolution": [
+      t('styles.arepa_evo_1'),
+      t('styles.arepa_evo_2'),
+      t('styles.arepa_evo_3'),
+      t('styles.arepa_evo_4'),
+      t('styles.arepa_evo_5'),
+      t('styles.arepa_evo_6')
+    ],
+    "rituals": [
+      t('styles.arepa_ritual_1'),
+      t('styles.arepa_ritual_2'),
+      t('styles.arepa_ritual_3'),
+      t('styles.arepa_ritual_4'),
+      t('styles.arepa_ritual_5')
+    ]
   },
   "flavorProfile": {
     "primaryFlavors": [

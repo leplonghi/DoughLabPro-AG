@@ -44,10 +44,7 @@ import { FLOURS } from '@/flours-constants';
 const AssistantPage = React.lazy(() => import('@/components/AssistantPage'));
 
 
-console.log('[App] BatchesProvider imported:', BatchesProviderComponent);
-
 function AppContent() {
-  console.log('[App] AppContent rendering');
   const { route, navigate } = useRouter();
   const { loading: authLoading } = useAuth();
   const {
