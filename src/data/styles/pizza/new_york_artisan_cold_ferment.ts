@@ -27,7 +27,7 @@ export const new_york_artisan_cold_ferment: DoughStyleDefinition = {
   history: "The 'Artisan' movement in NY pizza was sparked by Mark Iacono (Lucali) in 2006 and further propelled by spots like Roberta’s in Bushwick. These pizzerias abandoned the 'gas-deck' standardized templates in favor of wood-fired or high-performance deck ovens and sourdough starters. This 'New York Renaissance' brought back the attention to flour quality and fermentation science, attracting a cult following that values the 'imperfect' char and artisanal irregularities over the uniform commercial slice.",
 
   difficulty: "Hard",
-  fermentationType: "sourdough",
+  fermentationType: "levain",
 
   base_formula: [
     { name: "Organic High-Protein Bread Flour (W320+)", percentage: 100 },
@@ -259,5 +259,5 @@ export const new_york_artisan_cold_ferment: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce", "basil_fresh", "parmigiano_reggiano", "garlic_oregano"]
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_raw", "basil_fresh", "parmesan", "garlic_oregano"]
 };

@@ -13,7 +13,7 @@ export const neapolitan_home_oven_adapted: DoughStyleDefinition = {
   id: "neapolitan_home_oven_adapted",
   name: "Neapolitan (Home Oven Adapted)",
   category: "pizza",
-  recipeStyle: RecipeStyle.NEAPOLITAN_HOME,
+  recipeStyle: RecipeStyle.NEAPOLITAN,
   family: "Neapolitan Adaptation",
 
   origin: {
@@ -166,7 +166,7 @@ export const neapolitan_home_oven_adapted: DoughStyleDefinition = {
     ],
     fermentation_methods: [
       {
-        method: "Cold",
+        method: "Direct",
         suitability: "Ideal",
         notes: "Crucial for making high-hydration dough easy to shape at home."
       },
@@ -260,5 +260,5 @@ export const neapolitan_home_oven_adapted: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce", "basil_fresh", "parmigiano_reggiano", "olive_oil_extra_virgin"]
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "basil_fresh", "parmesan", "olive_oil_extra_virgin"]
 };

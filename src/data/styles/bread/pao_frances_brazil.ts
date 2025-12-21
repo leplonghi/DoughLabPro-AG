@@ -264,5 +264,5 @@ export const pao_frances_brazil: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture", "proscuitto_crudo", "malt_powder"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture", "prosciutto_crudo", "malt_powder"]
 };

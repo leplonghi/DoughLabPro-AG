@@ -138,6 +138,168 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
         isStandard: true
     },
     {
+        id: 'brick_cheese',
+        name: 'Wisconsin Brick Cheese',
+        category: 'Cheese',
+        description: 'Semi-soft cheese with a sweet, nutty flavor. High fat content.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 3,
+            sweetness: 3,
+            thermalBehavior: 'The key to the "Frico". Melts and caramelizes against hot steel without burning.'
+        },
+        origin: 'Wisconsin, USA.',
+        historyContext: 'Derived from white American cheddar, aged for a short period.',
+        commonStyles: ['detroit_style_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Pepperoni',
+            'Tomato Sauce (Cooked)',
+            'Butter'
+        ],
+        technicalNotes: 'Must be cubed, not shredded, for authentic melt.',
+        applicationMoment: 'pre_oven',
+        variations: 'Mild vs Aged (Aged is very pungent like Limburger). Standard Brick is mild.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'mozzarella_di_bufala',
+        name: 'Mozzarella di Bufala Campana',
+        category: 'Cheese',
+        description: 'PDO buffalo milk mozzarella. Tangier, richer, and creamier than cow milk mozzarella.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 3,
+            sweetness: 3,
+            thermalBehavior: 'Releases significant moisture (whey) when cooked. Often added post-bake or drained well.'
+        },
+        origin: 'Campania, Italy.',
+        historyContext: 'The original mozzarella for Neapolitan pizza.',
+        commonStyles: ['neapolitan_avpn_classic', 'neapolitan_contemporary'],
+        ovenCompatibility: ['wood_fired'],
+        classicCombinations: [
+            'Tomato Sauce (Raw)',
+            'Basil',
+            'Olive Oil'
+        ],
+        technicalNotes: 'Strain well before use to prevent soupy pizza.',
+        applicationMoment: 'pre_oven',
+        variations: 'Bocconcini, Treccia.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'stracciatella',
+        name: 'Stracciatella di Bufala',
+        category: 'Cheese',
+        description: 'Shreds of fresh mozzarella soaked in cream. The creamy heart of Burrata.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 2,
+            sweetness: 4,
+            thermalBehavior: 'Separates if heated too much. Best applied fresh post-bake.'
+        },
+        origin: 'Puglia, Italy.',
+        historyContext: 'Originally a way to use up leftover mozzarella scraps.',
+        commonStyles: ['roman_pinsa_modern', 'neapolitan_contemporary'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Mortadella',
+            'Pistachio',
+            'Tomato Confit'
+        ],
+        technicalNotes: 'Keep chilled until the very last second.',
+        applicationMoment: 'post_oven',
+        variations: 'Burrata (encased version).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'guava_paste',
+        name: 'Guava Paste (Goiabada)',
+        category: 'Pastry Filling',
+        description: 'Dense, sweet conserve made from red guavas and sugar.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'Melts into a molten, jam-like texture.'
+        },
+        origin: 'Brazil.',
+        historyContext: 'The "Julieta" to the cheese "Romeu".',
+        commonStyles: ['pao_de_queijo', 'brazilian_pizzeria'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Minas Cheese',
+            'Catupiry',
+            'Cream Cheese'
+        ],
+        technicalNotes: 'Cut into cubes or thin slices for pizza topping.',
+        applicationMoment: 'pre_oven',
+        variations: 'Goiabada Cascão (with bits of skin).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'anchovies',
+        name: 'Anchovies (Alici)',
+        category: 'Meat',
+        description: 'Salt-cured small forage fish. Intense umami bomb.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 3,
+            salinity: 5,
+            sweetness: 0,
+            thermalBehavior: 'Melts into the sauce if chopped, or crisps up if whole.'
+        },
+        origin: 'Mediterranean.',
+        historyContext: 'A staple of Roman pizza and the classic Marinara enhancement.',
+        commonStyles: ['roman_scrocchiarella', 'neapolitan_avpn_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Tomato Sauce',
+            'Oregano',
+            'Garlic'
+        ],
+        technicalNotes: 'Rinse salt-packed anchovies; drain oil-packed ones.',
+        applicationMoment: 'pre_oven',
+        variations: 'White Anchovies (Marinated), Salted Anchovies.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'garlic_roasted',
+        name: 'Roasted Garlic',
+        category: 'Vegetal',
+        description: 'Whole garlic cloves roasted until soft, sweet, and spreadable.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 2,
+            salinity: 0,
+            sweetness: 4,
+            thermalBehavior: 'Already cooked; heats through and spreads.'
+        },
+        origin: 'Global.',
+        historyContext: 'Mellows the harshness of raw garlic.',
+        commonStyles: ['california_style', 'new_haven_apizza'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chicken',
+            'White Sauce',
+            'Spinach'
+        ],
+        technicalNotes: 'Squeeze out of skins after roasting.',
+        applicationMoment: 'pre_oven',
+        variations: 'Black Garlic (Fermented).',
+        references: [],
+        isStandard: true
+    },
+    {
         id: 'provolone',
         name: 'Provolone',
         category: 'Cheese',
@@ -269,6 +431,33 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
                 sourceType: 'scientific'
             }
         ],
+        isStandard: true
+    },
+    {
+        id: 'mortadella',
+        name: 'Mortadella (Bologna)',
+        category: 'Meat',
+        description: 'Emulsified pork sausage with cubes of fat (lardons) and pistachios. Silky and aromatic.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 3,
+            sweetness: 2,
+            thermalBehavior: 'Best applied post-oven. Heating releases fat but alters the delicate texture.'
+        },
+        origin: 'Bologna, Emilia-Romagna, Italy.',
+        historyContext: 'The noble ancestor of the American "Bologna". A symbol of the Italian economic boom.',
+        commonStyles: ['neapolitan_contemporary', 'roman_teglia_pan', 'focaccia-genovese'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Pistachio Pesto',
+            'Stracciatella',
+            'Lemon Zest'
+        ],
+        technicalNotes: 'Always slice paper thin and drape in "rosettes" for volume and mouthfeel.',
+        applicationMoment: 'post_oven',
+        variations: 'Mortadella with Truffle.',
+        references: [],
         isStandard: true
     },
     {

@@ -13,7 +13,7 @@ i18n
   .init({
     lng: 'en', // Hardcoded English
     fallbackLng: 'en',
-    supportedLngs: ['en'],
+    supportedLngs: ['en', 'pt', 'es'],
     ns: ['common', 'ui', 'calculator', 'styles', 'learn', 'errors'], // New namespaces
     defaultNS: 'common',
     // fallbackNS ensures compatibility during migration by resolving keys from all namespaces
@@ -57,8 +57,7 @@ export const useTranslation = (ns?: string | string[]) => {
   const { t, i18n } = useI18nextTranslation(ns);
 
   const setLocale = (l: Locale) => {
-    // Disabled language switching
-    // i18n.changeLanguage(l);
+    i18n.changeLanguage(l);
   };
 
   const tWrapper = (key: string, replacements?: Record<string, any>): string => {
@@ -107,9 +106,7 @@ export const useTranslation = (ns?: string | string[]) => {
   };
 
   // Ensure we return a valid Locale from types, even if detection picked an unsupported one
-  let currentLanguage = (i18n.resolvedLanguage || i18n.language)?.split('-')[0];
-  // Force English
-  currentLanguage = 'en';
+  const currentLanguage = (i18n.resolvedLanguage || i18n.language)?.split('-')[0];
 
   return {
     locale: currentLanguage as Locale,

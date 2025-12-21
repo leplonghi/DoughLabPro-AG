@@ -206,5 +206,5 @@ export const pizza_frita_montanara: DoughStyleDefinition = {
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
-    recommendedFlavorComponents: ["tomato_san_marzano", "parmigiano_reggiano", "basil_fresh"]
+    recommendedFlavorComponents: ["tomato_sauce_cooked", "parmesan", "basil_fresh"]
 };

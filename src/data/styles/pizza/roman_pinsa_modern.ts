@@ -264,5 +264,5 @@ export const roman_pinsa_modern: DoughStyleDefinition = {
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
-    recommendedFlavorComponents: ["stracciatella", "prosciutto_crudo", "olive_oil_extra_virgin", "cherry_tomatoes", "garlic_fresh", "pecorino_romano"]
+    recommendedFlavorComponents: ["stracciatella", "mortadella", "pistachio", "olive_oil_extra_virgin", "cherry_tomatoes_confit"]
 };

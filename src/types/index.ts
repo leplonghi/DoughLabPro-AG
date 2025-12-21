@@ -68,7 +68,7 @@ export interface DoughSessionState {
 }
 
 
-export type Locale = 'en';
+export type Locale = 'en' | 'pt' | 'es';
 
 export enum BakeType {
     PIZZAS = 'PIZZAS',

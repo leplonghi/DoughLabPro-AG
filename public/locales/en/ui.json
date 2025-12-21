@@ -1292,5 +1292,52 @@
   "whole_wheat_334": "Whole Wheat",
   "wisconsin_brick_cheese": "Wisconsin Brick Cheese",
   "yeast_inactivity_136": "Yeast inactivity",
-  "you_have_full_access_to_all_lab_pro_features": "You have full access to all Lab Pro features."
+  "you_have_full_access_to_all_lab_pro_features": "You have full access to all Lab Pro features.",
+  "floating_help": {
+    "button_label": "Help",
+    "title": "Quick Tips",
+    "previous": "Previous",
+    "next": "Next",
+    "hydration": {
+      "title": "Hydration",
+      "what_is": "What is it? Water percentage relative to flour.",
+      "guide_title": "Quick Guide:",
+      "guide_firm": "55-60%: Firm (bagels)",
+      "guide_classic": "60-65%: Classic (NY pizza)",
+      "guide_wet": "70-80%: Wet (ciabatta)"
+    },
+    "fermentation": {
+      "title": "Fermentation",
+      "main_types": "Main types:",
+      "direct": "Direct: Fast, 2-4h",
+      "cold": "Cold: 24-72h in fridge",
+      "biga_poolish": "Biga/Poolish: Pre-ferments",
+      "sourdough": "Sourdough: Natural leaven",
+      "tip": "💡 More time = more flavor!"
+    },
+    "flour": {
+      "title": "Flour Choice",
+      "protein_key": "Protein is key:",
+      "cakes": "8-10%: Cakes, cookies",
+      "soft_breads": "10-12%: Soft breads",
+      "pizza_artisan": "12-14%: Pizza, artisan breads",
+      "bagels": "14%+: Bagels, sturdy doughs",
+      "warning": "⚠️ More protein = more gluten = more structure"
+    },
+    "salt": {
+      "title": "Salt: Total Control",
+      "functions": "Functions:",
+      "strengthens": "Strengthens gluten",
+      "controls": "Controls fermentation",
+      "enhances": "Enhances flavor",
+      "warning": "⚠️ Never mix salt directly with yeast!"
+    },
+    "temperature": {
+      "title": "Dough Temperature",
+      "ideal": "Ideal temperature: 24-26°C",
+      "pro_tip_title": "Pro Tip:",
+      "pro_tip_content": "Use cold water on hot days and warm water on cold days to keep dough at ideal temperature.",
+      "warning": "💡 Dough too hot = fermentation too fast!"
+    }
+  }
 }

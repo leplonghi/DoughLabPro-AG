@@ -260,5 +260,5 @@ export const pizza_argentina_fugazzeta: DoughStyleDefinition = {
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
-    recommendedFlavorComponents: ["mozzarella_low_moisture", "onions_fresh", "oregano_dried", "olive_oil_extra_virgin", "presunto"]
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "cebola", "oregano_dried", "olive_oil_extra_virgin", "presunto"]
 };

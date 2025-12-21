@@ -260,5 +260,5 @@ export const roman_scrocchiarella: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["olive_oil_extra_virgin", "pecorino_romano", "anchovies", "onions_fresh", "mozzarella_low_moisture", "oregano_dried"]
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "pecorino_romano", "anchovies", "cebola", "mozzarella_low_moisture", "oregano_dried"]
 };

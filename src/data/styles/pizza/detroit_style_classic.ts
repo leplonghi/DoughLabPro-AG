@@ -252,7 +252,7 @@ export const detroit_style_classic: DoughStyleDefinition = {
     "Embodies Detroit's industrial heritage and resourcefulness"
   ],
 
-  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "pepperoni", "white_sauce", "stracciatella"],
+  recommendedFlavorComponents: ["brick_cheese", "mozzarella_low_moisture", "tomato_sauce_cooked", "pepperoni", "garlic_oregano"],
 
   references: [
     {

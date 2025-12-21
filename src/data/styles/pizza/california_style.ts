@@ -192,7 +192,7 @@ export const california_style: DoughStyleDefinition = {
     "Open kitchens with wood-fired ovens became standard",
     "California Pizza Kitchen brought the style to mainstream America in 1985"
   ],
-  recommendedFlavorComponents: ["mozzarella_low_moisture", "fior_di_latte", "burrata", "cherry_tomatoes", "basil_fresh", "olive_oil_extra_virgin"],
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "fior_di_latte", "ricotta", "bell_pepper", "cebola", "cogumelos", "olive_oil_extra_virgin", "bacon"],
   references: [
     {
       source: "Wikipedia - California-style pizza",

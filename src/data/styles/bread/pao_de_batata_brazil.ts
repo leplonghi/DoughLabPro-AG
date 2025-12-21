@@ -13,7 +13,7 @@ export const pao_de_batata_brazil: DoughStyleDefinition = {
     id: "pao_de_batata_brazil",
     name: "Pão de Batata (Brazilian Potato Bread)",
     category: "bread",
-    recipeStyle: RecipeStyle.ENRICHED_LOAF,
+    recipeStyle: RecipeStyle.PAO_DE_BATATA,
     family: "Brazilian Professional Bakery",
 
     origin: {
@@ -258,5 +258,5 @@ export const pao_de_batata_brazil: DoughStyleDefinition = {
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
-    recommendedFlavorComponents: ["requeijao_cremoso", "oregano_dried", "salted_butter_normandy", "calabresa_sausage"]
+    recommendedFlavorComponents: ["requeijao_cremoso", "oregano_dried", "salted_butter_normandy", "calabresa"]
 };

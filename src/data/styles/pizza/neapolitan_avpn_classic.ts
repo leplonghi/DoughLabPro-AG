@@ -249,7 +249,7 @@ export const neapolitan_avpn_classic: DoughStyleDefinition = {
     "Pizza Margherita was created in 1889 for Queen Margherita of Savoy",
     "European Union granted TSG (Traditional Speciality Guaranteed) status in 2010"
   ],
-  recommendedFlavorComponents: ["fior_di_latte", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "pecorino_romano"],
+  recommendedFlavorComponents: ["mozzarella_di_bufala", "fior_di_latte", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "garlic_oregano"],
 
   references: [
     {

@@ -252,7 +252,7 @@ export const chicago_deep_dish: DoughStyleDefinition = {
     "Locals often prefer tavern-style thin crust for daily eating - deep dish is special occasion food"
   ],
 
-  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "italian_sausage", "provolone", "bell_pepper"],
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "italian_sausage", "parmesan", "garlic_oregano", "bell_pepper", "cogumelos", "cebola"],
 
   references: [
     {

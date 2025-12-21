@@ -260,5 +260,5 @@ export const pizza_al_piatto_italiana: DoughStyleDefinition = {
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     },
-    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce", "basil_fresh", "olive_oil_extra_virgin", "pecorino_romano"]
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "pecorino_romano"]
 };

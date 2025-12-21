@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from '@/i18n';
 import { InfoTooltip } from './InfoTooltip';
 import { X, HelpCircle } from 'lucide-react';
 
@@ -12,6 +13,7 @@ interface FloatingHelpButtonProps {
 }
 
 export const FloatingHelpButton: React.FC<FloatingHelpButtonProps> = ({ tips }) => {
+    const { t } = useTranslation('ui');
     const [isOpen, setIsOpen] = useState(false);
     const [currentTip, setCurrentTip] = useState(0);
     const [hasSeenTips, setHasSeenTips] = useState(false);
@@ -50,7 +52,7 @@ export const FloatingHelpButton: React.FC<FloatingHelpButtonProps> = ({ tips }) 
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-[#51a145] to-[#1B4332] text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group animate-bounce hover:animate-none"
-                aria-label="Ajuda"
+                aria-label={t('floating_help.button_label')}
             >
                 <HelpCircle className="h-6 w-6 group-hover:rotate-12 transition-transform" />
                 {!hasSeenTips && (
@@ -65,7 +67,7 @@ export const FloatingHelpButton: React.FC<FloatingHelpButtonProps> = ({ tips }) 
                     <div className="bg-gradient-to-r from-[#51a145] to-[#1B4332] text-white p-4 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <HelpCircle className="h-5 w-5" />
-                            <h3 className="font-bold text-sm">Dicas Rápidas</h3>
+                            <h3 className="font-bold text-sm">{t('floating_help.title')}</h3>
                         </div>
                         <button
                             onClick={handleClose}
@@ -97,7 +99,7 @@ export const FloatingHelpButton: React.FC<FloatingHelpButtonProps> = ({ tips }) 
                                 onClick={prevTip}
                                 className="text-xs font-bold text-[#51a145] hover:text-[#1B4332] transition-colors"
                             >
-                                ← Anterior
+                                ← {t('floating_help.previous')}
                             </button>
                             <div className="flex gap-1">
                                 {tips.map((_, idx) => (
@@ -105,8 +107,8 @@ export const FloatingHelpButton: React.FC<FloatingHelpButtonProps> = ({ tips }) 
                                         key={idx}
                                         onClick={() => setCurrentTip(idx)}
                                         className={`w-2 h-2 rounded-full transition-all ${idx === currentTip
-                                                ? 'bg-[#51a145] w-6'
-                                                : 'bg-slate-200 hover:bg-slate-300'
+                                            ? 'bg-[#51a145] w-6'
+                                            : 'bg-slate-200 hover:bg-slate-300'
                                             }`}
                                     />
                                 ))}
@@ -115,7 +117,7 @@ export const FloatingHelpButton: React.FC<FloatingHelpButtonProps> = ({ tips }) 
                                 onClick={nextTip}
                                 className="text-xs font-bold text-[#51a145] hover:text-[#1B4332] transition-colors"
                             >
-                                Próxima →
+                                {t('floating_help.next')} →
                             </button>
                         </div>
                     </div>

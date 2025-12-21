@@ -13,7 +13,7 @@ export const pao_sovado_brazil: DoughStyleDefinition = {
   id: "pao_sovado_brazil",
   name: "Pão Sovado (Brazilian Rolled Bread)",
   category: "bread",
-  recipeStyle: RecipeStyle.ENRICHED_LOAF,
+  recipeStyle: RecipeStyle.SANDWICH_LOAF,
   family: "Brazilian Professional Bakery",
 
   origin: {
@@ -257,5 +257,5 @@ export const pao_sovado_brazil: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "requeijao_cremoso", "guava_paste", "minas_cheese"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "requeijao_cremoso", "minas_cheese"]
 };
