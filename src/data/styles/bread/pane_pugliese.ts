@@ -245,12 +245,12 @@ export const pane_pugliese: StyleDefinition = {
 
   "isCanonical": true,
   "source": "official"
-,
+  ,
   "defaults": {
     "hydration": 70,
     "salt": 2,
     "oil": 0,
     "sugar": 0
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "rosemary_fresh"]
 };

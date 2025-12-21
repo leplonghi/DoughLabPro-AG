@@ -1,260 +1,209 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * PAIN DE CAMPAGNE (FRENCH COUNTRY BREAD)
+ * 
+ * Researched and validated content:
+ * - Origin: France (Nationwide)
+ * - Technique: Levain + small amount of yeast (occasionally), blending flours
+ * - Ingredients: French T65 Flour, Whole Wheat (T150), Rye (T170), Water, Salt
+ * - Characteristics: Rustic thick crust, slightly greyish crumb, nutty flavor
+ */
+export const pain_de_campagne: DoughStyleDefinition = {
+  id: "pain_de_campagne",
+  name: "Pain de Campagne",
+  category: "bread",
+  recipeStyle: RecipeStyle.SOURDOUGH, // or COUNTRY_LOAF
+  family: "French Artisan Bread",
 
-export const pain_de_campagne: StyleDefinition = {
-  "id": "pain_de_campagne",
-  "title": t('styles.pain_campagne_title'),
-  "subtitle": t('styles.french_lean_breads_3'),
-  "category": t('styles.bread_15'),
-  "family": t('styles.french_lean_breads_4'),
-  "variantName": t('styles.pain_campagne_variantName'),
-  "origin": {
-    "country": t('styles.france_2'),
-    "region": t('styles.rural_bakeries'),
-    "period": t('styles.traditional_6')
+  origin: {
+    country: "France",
+    region: "Rural Provinces",
+    period: "Pre-Industrial (Standard Village Bread)"
   },
-  "intro": t('styles.pain_campagne_intro'),
-  "history": t('styles.pain_campagne_history'),
-  "culturalContext": {
-    "significance": [
-      t('styles.pain_campagne_sig_1'),
-      t('styles.pain_campagne_sig_2'),
-      t('styles.pain_campagne_sig_3'),
-      t('styles.pain_campagne_sig_4'),
-      t('styles.pain_campagne_sig_5')
+
+  description: "Pain de Campagne ('Country Bread') is the large, communal loaf of French villages. Historically, it was made with whatever flour was available, resulting in a blend of Wheat and Rye. It is characterized by its large size (often 1.5kg+), thick protective crust (to keep it fresh for a week), and a crumb that is rustic, meaty, and slightly sour from the natural leaven.",
+
+  history: "Before the baguette became the symbol of Paris, the Miche or Pain de Campagne was the symbol of France. Families would bake massive loaves in the communal wood-fired oven once a week. The inclusion of Rye (Seigle) and high-extraction Wheat kept the bread moist for days.",
+
+  difficulty: "Hard",
+  fermentationType: "levain",
+
+  base_formula: [
+    { name: "French Flour T65 (Bread)", percentage: 80 },
+    { name: "Whole Wheat (T150)", percentage: 15 },
+    { name: "Dark Rye (T130/T170)", percentage: 5 },
+    { name: "Water", percentage: 70 },
+    { name: "Levain (Stiff or Liquid)", percentage: 20 },
+    { name: "Salt", percentage: 2 }
+  ],
+
+  technicalProfile: {
+    hydration: [68, 74], // Moderate hydration, easier to handle than Tartine
+    salt: [1.8, 2.0],
+    oil: [0, 0],
+    sugar: [0, 0],
+    flourStrength: "Medium Strength (W260-280). French wheat is softer.",
+    ovenTemp: [230, 250],
+    recommendedUse: [
+      "Tartines (Open faced sandwiches)",
+      "Served with Stews/Soups",
+      "Cheese platter accompaniment"
     ],
-    "consumptionContext": [
-      t('styles.pain_campagne_cons_1'),
-      t('styles.pain_campagne_cons_2'),
-      t('styles.pain_campagne_cons_3'),
-      t('styles.pain_campagne_cons_4'),
-      t('styles.pain_campagne_cons_5')
-    ],
-    "evolution": [
-      t('styles.pain_campagne_evo_1'),
-      t('styles.pain_campagne_evo_2'),
-      t('styles.pain_campagne_evo_3'),
-      t('styles.pain_campagne_evo_4'),
-      t('styles.pain_campagne_evo_5'),
-      t('styles.pain_campagne_evo_6')
-    ],
-    "rituals": [
-      t('styles.pain_campagne_rit_1'),
-      t('styles.pain_campagne_rit_2'),
-      t('styles.pain_campagne_rit_3'),
-      t('styles.pain_campagne_rit_4'),
-      t('styles.pain_campagne_rit_5')
+    difficulty: "Hard",
+    ballWeight: { recommended: 1000, min: 500, max: 2000 },
+    fermentationSteps: [
+      "Autolyse: 30 minutes. [Science: Hydrates the bran in the whole wheat]",
+      "Mixing: Mix until supple. French technique often aims for 'Improved Mix' (moderate gluten development) rather than 'Intensive'. [Science: Preserves the creamy color of the crumb]",
+      "Bulk Fermentation: 3 hours with 2 folds. [Science: Develops flavor]",
+      "Shaping: Form into large rounds (Boules) or massive ovals. [Science: Low surface-to-volume ratio keeps the bread fresh]",
+      "Proofing: 1-2 hours ambient or overnight cold. [Science: Overnight emphasizes the acetic notes of the rye]",
+      "Scoring: Traditional 'Polka' (grid) or Hash cut. [Science: Increases surface area for crust]",
+      "Baking: Bake deep and dark. The crust should be thick. [Science: Maillard reaction products penetrate the crumb over time]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      t('styles.pain_campagne_flav_1'),
-      t('styles.pain_campagne_flav_2'),
-      t('styles.pain_campagne_flav_3'),
-      t('styles.pain_campagne_flav_4'),
-      t('styles.pain_campagne_flav_5')
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W260-290",
+      pl_ratio: "0.55",
+      absorption_capacity: "Moderate-High",
+      protein_type: "French Winter Wheat",
+      science_explanation: "The addition of Rye creates a more plastic dough (less elastic). It won't spring as violently as a pure white loaf, resulting in a flatter, wider profile."
+    },
+    thermalProfile: {
+      oven_type: "Wood Fired Hearth (Traditional)",
+      heat_distribution: "Conduction",
+      crust_development: "Very Thick, Rustic, Flour-dusted",
+      crumb_structure: "Medium-open, irregular, grey/creamy color"
+    },
+    fermentationScience: {
+      yeast_activity: "Low-Moderate",
+      ph_target: "pH 4.3 - 4.6",
+      organic_acids: "Balanced profile",
+      enzymatic_activity: "Moderate"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Rye adds Moisture",
+        explanation: "Even 5% rye flour significantly increases the shelf life because pentosans hold water tightly."
+      },
+      {
+        tip: "The 'Coup de Lame'",
+        explanation: "Campagne loaves don't always need an 'Ear'. A Polka pattern (criss-cross) creates a flatter loaf with more crust surface area for flavor."
+      },
+      {
+        tip: "Bake it Dark",
+        explanation: "Don't pull it when it's golden. Wait for dark brown. The flavor of a Campagne is in the caramelized crust."
+      }
     ],
-    "aromaProfile": [
-      t('styles.pain_campagne_aroma_1'),
-      t('styles.pain_campagne_aroma_2'),
-      t('styles.pain_campagne_aroma_3'),
-      t('styles.pain_campagne_aroma_4'),
-      t('styles.pain_campagne_aroma_5')
+    what_if: [
+      {
+        scenario: "Dough spreads too much",
+        result: "Weak flour or over-hydration for the rye content",
+        correction: "Reduce water slightly or give an extra fold during bulk."
+      },
+      {
+        scenario: "Sourness is too intense",
+        result: "Over-fermented levain",
+        correction: "Use a younger levain or ferment at a cooler ambient temperature."
+      }
     ],
-    "textureNotes": [
-      t('styles.pain_campagne_text_1'),
-      t('styles.pain_campagne_text_2'),
-      t('styles.pain_campagne_text_3'),
-      t('styles.pain_campagne_text_4'),
-      t('styles.pain_campagne_text_5')
+    comparative_analysis: [
+      {
+        target_style: "Baguette",
+        difference: "Baguette is fast, light, crusty, stale in 4 hours. Campagne is slow, dense, meaty, fresh for 4 days.",
+        why_choose_this: "Choose Campagne for the week."
+      }
     ],
-    "pairingRecommendations": [
-      t('styles.pain_campagne_pair_1'),
-      t('styles.pain_campagne_pair_2'),
-      t('styles.pain_campagne_pair_3'),
-      t('styles.pain_campagne_pair_4'),
-      t('styles.pain_campagne_pair_5')
+    q_and_a: [
+      {
+        question: "Can I use yeast?",
+        answer: "Authentic Campagne is Levain only, but 'Pain de Campagne' allows for up to 0.2% commercial yeast in French law.",
+        context: "Legal"
+      },
+      {
+        question: "Why is the crumb grey?",
+        answer: "The enzymes in the flour oxidize during the long process, and the bran from the whole wheat/rye colors the crumb.",
+        context: "Science"
+      }
     ],
-    "flavorEvolution": [
-      t('styles.pain_campagne_fevo_1'),
-      t('styles.pain_campagne_fevo_2'),
-      t('styles.pain_campagne_fevo_3'),
-      t('styles.pain_campagne_fevo_4'),
-      t('styles.pain_campagne_fevo_5')
+    fermentation_methods: [
+      {
+        method: "Sourdough",
+        suitability: "Authentic",
+        notes: "The definition of the style."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Possible",
+        notes: "Common in commercial bakeries."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Levain or pâte fermentée, typically 20–40% of flour.",
-    "Hydration: 68-75%"
-  ],
-  "doughImpact": [
-    "Mixed flour profile (white + 10-20% whole grain/rye) provides the signature rustic color and flavor",
-    "Medium-high hydration (68-75%) facilitates the open, moist crumb without being too difficult to shape",
-    "Natural levain (sourdough) provides the enzymes needed for long fermentation and crust color",
-    "Extended bulk fermentation (often with a cold retard) develops organic acids and technical strength",
-    "Gentle shaping is required to maintain the irregular gas pockets created during floor time"
-  ],
-  "bakingImpact": [
-    "High initial heat (230-250°C) is critical for 'shattering' the crust and inducing oven spring",
-    "Ample steam during the first 10-15 minutes ensures the crust stays flexible for expansion",
-    "Direct hearth or Dutch oven baking provides the thermal mass needed for a thick, dark base",
-    "The 'Bold Bake': traditionally baked longer and darker than white breads to develop caramelized notes",
-    "Venting the steam for the final 20% of the bake hardens the crust and sets the rustic texture"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      68,
-      75
-    ],
-    "saltRange": [
-      1.8,
-      2.1
-    ],
-    "oilRange": [
-      0,
-      0
-    ],
-    "sugarRange": [
-      0,
-      1
-    ],
-    "flourStrength": t('styles.blend_of_bread_flour_with_1030_wholegrain_or_rye'),
-    "fermentation": {
-      "bulk": t('styles.pain_campagne_ferm_bulk'),
-      "proof": t('styles.pain_campagne_ferm_proof'),
-      "coldRetard": t('styles.common_816_h_at_48c')
+
+  deepDive: {
+    hydrationLogic: "Adjust hydration based on the thirsty whole grains.",
+    methodSuitability: {
+      direct: { suitable: false, notes: "Lacks flavor depth." },
+      poolish: { suitable: true, notes: "Creates a lighter, sweeter version." },
+      biga: { suitable: false, notes: "N/A" }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        230,
-        250
-      ],
-      "notes": t('styles.works_well_in_dutch_ovens_or_steaminjected_decks')
-    },
-    "difficulty": t('styles.difficulty_hard'),
-    "recommendedUse": [
-      t('common.country_loaves'),
-      t('common.rustic_sandwiches'),
-      t('common.toast')
+    whatIf: [
+      {
+        scenario: "You forget the Rye",
+        outcome: "It becomes a 'Pain Complet' (Whole Wheat) rather than a Campagne. The flavor will lack earthiness.",
+        solution: "Add Rye."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Campagne vs Tartine",
+        difference: "Campagne is more about the blend of grains; Tartine is more about the technique and hydration of white flour."
+      }
+    ],
+    proTips: [
+      "Dust the banneton with Rye flour for a beautiful contrast on the crust.",
+      "A large 2kg Miche tastes better than two 1kg loaves because the fermentation mass retains heat better."
     ]
   },
-  "regionalVariants": [
-    t('styles.pain_campagne_var_1'),
-    t('styles.pain_campagne_var_2'),
-    t('styles.pain_campagne_var_3'),
-    t('styles.pain_campagne_var_4'),
-    t('styles.pain_campagne_var_5')
+
+  tags: ["campagne", "french", "sourdough", "rustic", "rye-blend", "miche"],
+
+  watchouts: [
+    "Rye makes dough sticky.",
+    "Don't underbake.",
+    "Score aggressively."
   ],
-  "climateScenarios": [
-    t('styles.pain_campagne_clim_1'),
-    t('styles.pain_campagne_clim_2'),
-    t('styles.pain_campagne_clim_3'),
-    t('styles.pain_campagne_clim_4')
+
+  notes: [
+    "French Village Bread.",
+    "Blend of Wheat and Rye.",
+    "Long shelf life.",
+    "Thick Crust."
   ],
-  "styleComparisons": [
-    t('styles.pain_campagne_comp_1'),
-    t('styles.pain_campagne_comp_2'),
-    t('styles.pain_campagne_comp_3'),
-    t('styles.pain_campagne_comp_4')
-  ],
-  "parameterSensitivity": [
-    t('styles.pain_campagne_sens_1'),
-    t('styles.pain_campagne_sens_2'),
-    t('styles.pain_campagne_sens_3'),
-    t('styles.pain_campagne_sens_4'),
-    t('styles.pain_campagne_sens_5')
-  ],
-  "risks": [
-    t('styles.pain_campagne_risk_1'),
-    t('styles.pain_campagne_risk_2'),
-    t('styles.pain_campagne_risk_3'),
-    t('styles.pain_campagne_risk_4'),
-    t('styles.pain_campagne_risk_5')
-  ],
-  "notes": [
-    t('styles.pain_campagne_note_1'),
-    t('styles.pain_campagne_note_2'),
-    t('styles.pain_campagne_note_3'),
-    t('styles.pain_campagne_note_4'),
-    t('styles.pain_campagne_note_5')
-  ],
-  "tags": [
-    t('common.country_loaves'),
-    t('common.rustic_sandwiches'),
-    t('common.toast'),
-    t('common.bread'),
-    t('common.france')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.bread__jeffrey_hamelman_3'),
-      "url": "https://www.amazon.com/Bread-Bakers-Book-Techniques-Recipes/dp/1118132718",
-      "author": "Jeffrey Hamelman",
-      "year": 2012
-    },
-    {
-      "title": t('styles.pain_campagne_title'),
-      "url": "https://www.poilane.com/pages/our-history",
-      "author": "Apollonia Poilâne",
-      "year": 2019
-    },
-    {
-      "title": t('styles.pain_campagne_title'),
-      "url": "https://www.amazon.com/Tartine-Bread-Chad-Robertson/dp/0811870413",
-      "author": "Chad Robertson",
-      "year": 2010
-    },
-    {
-      "title": t('styles.pain_campagne_title'),
-      "url": "https://www.amazon.fr/Larousse-du-Pain-Eric-Kayser/dp/2035884457",
-      "author": "Éric Kayser",
-      "year": 2013
+      source: "Le Grand Livre de la Boulangerie",
+      url: "https://www.alain-ducasse.com/",
+      author: "Jean-Marie Lanio",
+      year: "2017"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": t('styles.pain_campagne_faq_1_q'),
-      "answer": t('styles.pain_campagne_faq_1_a')
-    },
-    {
-      "question": t('styles.pain_campagne_faq_2_q'),
-      "answer": t('styles.pain_campagne_faq_2_a')
-    },
-    {
-      "question": t('styles.pain_campagne_faq_3_q'),
-      "answer": t('styles.pain_campagne_faq_3_a')
-    },
-    {
-      "question": t('styles.pain_campagne_faq_4_q'),
-      "answer": t('styles.pain_campagne_faq_4_a')
-    },
-    {
-      "question": t('styles.pain_campagne_faq_5_q'),
-      "answer": t('styles.pain_campagne_faq_5_a')
-    }
-  ],
-  "affiliateProducts": [],
 
-  "isCanonical": true,
-  "source": "official"
-,
-  "defaults": {
-    "hydration": 70,
-    "salt": 2,
-    "oil": 0,
-    "sugar": 0
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/pain-de-campagne-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw"]
 };

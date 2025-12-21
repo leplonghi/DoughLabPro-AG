@@ -1,258 +1,228 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * AREPA (VENEZUELAN/COLOMBIAN CORN FLATBREAD)
+ * 
+ * Researched and validated content:
+ * - Origin: Colombia/Venezuela (Pre-Columbian)
+ * - Technique: Hydration of pre-cooked corn flour (Masarepa), griddle searing + baking
+ * - Ingredients: Masarepa (White/Yellow), Water, Salt, Oil/Butter
+ * - Characteristics: Crispy exterior, moist almost creamy interior, split and stuffed
+ */
+export const arepa_corn_flatbread: DoughStyleDefinition = {
+  id: "arepa_corn_flatbread",
+  name: "Arepa (Corn Flatbread)",
+  category: "flatbread",
+  recipeStyle: RecipeStyle.FLATBREAD,
+  family: "South American Corn Bread",
 
-export const arepa_corn_flatbread: StyleDefinition = {
-  "id": "arepa_corn_flatbread",
-  "title": "Arepa (Corn Flatbread)",
-  "subtitle": t('styles.classic_flatbreads'),
-  "category": t('styles.bread'),
-  "family": t('styles.classic_flatbreads_2'),
-  "variantName": "Arepa (Corn Flatbread)",
-  "origin": {
-    "country": "Venezuela/Colombia",
-    "region": t('styles.northern_south_america'),
-    "period": t('styles.traditional')
+  origin: {
+    country: "Colombia / Venezuela",
+    region: "Northern South America",
+    period: "Pre-Columbian (>1000 years)"
   },
-  "intro": t('styles.arepa_intro'),
-  "history": t('styles.arepa_history'),
-  "culturalContext": {
-    "significance": [
-      t('styles.arepa_sig_1'),
-      t('styles.arepa_sig_2'),
-      t('styles.arepa_sig_3'),
-      t('styles.arepa_sig_4'),
-      t('styles.arepa_sig_5')
+
+  description: "The Arepa is the daily bread of Colombia and Venezuela. It is a round, flat patty made from pre-cooked corn flour (Masarepa). Unlike tortillas, arepas are thick (1.5 - 2cm) and cooked until they develop a hard, crispy shell protecting a soft, steaming, starchy interior. They are sliced open like a pocket and stuffed with cheese, meat, beans, or eggs.",
+
+  history: "Originally made by indigenous tribes who soaked and pounded dried corn in a pilón (large wooden mortar), the modern arepa was revolutionized in the 1960s with the invention of industrial pre-cooked corn flour (Harina P.A.N.). This invention simplified the process from days to minutes, checking the arepa's place as the dominant staple food of the region.",
+
+  difficulty: "Easy",
+  fermentationType: "direct", // No fermentation, but hydration rest is key
+
+  base_formula: [
+    { name: "Pre-cooked Corn Flour (Masarepa)", percentage: 100 },
+    { name: "Water (Warm)", percentage: 120 }, // Hydration is usually > 100%
+    { name: "Salt", percentage: 2 },
+    { name: "Butter or Oil", percentage: 5 } // Optional, for richness
+  ],
+
+  technicalProfile: {
+    hydration: [110, 130], // Corn absorbs massive amounts of water
+    salt: [1.5, 2.5],
+    oil: [0, 5],
+    sugar: [0, 0], // Not sweet
+    flourStrength: "N/A (Gluten Free). Cohesion comes from gelatinized starch.",
+    ovenTemp: [200, 220],
+    recommendedUse: [
+      "Reina Pepiada (Chicken & Avocado)",
+      "Cheese Arepa (Queso de Mano)",
+      "Breakfast side"
     ],
-    "consumptionContext": [
-      t('styles.arepa_consum_1'),
-      t('styles.arepa_consum_2'),
-      t('styles.arepa_consum_3'),
-      t('styles.arepa_consum_4'),
-      t('styles.arepa_consum_5')
-    ],
-    "evolution": [
-      t('styles.arepa_evo_1'),
-      t('styles.arepa_evo_2'),
-      t('styles.arepa_evo_3'),
-      t('styles.arepa_evo_4'),
-      t('styles.arepa_evo_5'),
-      t('styles.arepa_evo_6')
-    ],
-    "rituals": [
-      t('styles.arepa_ritual_1'),
-      t('styles.arepa_ritual_2'),
-      t('styles.arepa_ritual_3'),
-      t('styles.arepa_ritual_4'),
-      t('styles.arepa_ritual_5')
+    difficulty: "Easy",
+    ballWeight: { recommended: 150, min: 100, max: 200 },
+    fermentationSteps: [
+      "Mixing: Pour water and salt into a bowl. Slowly rain in the flour while mixing with your hand to prevent lumps. [Science: Adding flour to water creates a smoother hydration than water to flour]",
+      "Resting (Hydration): Let the mix sit for 5-10 minutes. [Science: The dehydrated corn particles need time to fully absorb the water and swell. The mix will stiffen significantly]",
+      "Kneading: Knead briefly in the bowl until smooth and non-sticky. [Science: We are creating a cohesive starch gel, not gluten]",
+      "Shaping: Form into a ball, then flatten into a disk (1.5-2cm thick). Repair any cracks on the edges with wet fingers. [Science: Cracks will expand in the heat, so smooth edges are vital]",
+      "Searing (Budare/Pan): Cook on medium-high heat for 5-7 mins per side until a crust forms with black spots. [Science: Sets the structure]",
+      "Baking (Optional): Finish in oven at 200°C for 10 mins. [Science: Dries the shell further and puffs the center slightly, making it easier to split]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      t('styles.arepa_flavor_1'),
-      t('styles.arepa_flavor_2'),
-      t('styles.arepa_flavor_3'),
-      t('styles.arepa_flavor_4'),
-      t('styles.arepa_flavor_5')
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "N/A",
+      pl_ratio: "N/A",
+      absorption_capacity: "Extreme (>110%)",
+      protein_type: "Corn Protein (Zein) - No Gluten",
+      science_explanation: "Structure relies entirely on the re-gelatinization of the pre-cooked starch. If the water is too cold or resting is skipped, the arepa will be sandy/grainy."
+    },
+    thermalProfile: {
+      oven_type: "Cast Iron Griddle (Budare) + Oven",
+      heat_distribution: "Conduction",
+      crust_development: "Hard, crispy, spotted carapace",
+      crumb_structure: "Dense, moist, starchy gel"
+    },
+    fermentationScience: {
+      yeast_activity: "None (usually)",
+      ph_target: "Neutral",
+      organic_acids: "N/A",
+      enzymatic_activity: "N/A"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Masarepa is NOT Masa Harina",
+        explanation: "Do not use 'Maseca' (for tacos/tortillas). That is nixtamalized and tastes like lime. You need 'Harina de Maiz Precocida' (P.A.N. brand)."
+      },
+      {
+        tip: "The Slap Sound",
+        explanation: "Venezuelans say the dough is ready when it doesn't stick to your hands and makes a specific 'chap-chap' sound when slapped between palms."
+      },
+      {
+        tip: "Wet Hands",
+        explanation: "Keep a bowl of water nearby. Wet your hands before shaping each arepa to ensure a glossy smooth finish."
+      },
+      {
+        tip: "The Hollow Tap",
+        explanation: "An arepa is perfectly cooked when you tap the center and it sounds slightly hollow ('toc toc'), indicating the steam has separated the shell from the crumb."
+      }
     ],
-    "aromaProfile": [
-      t('styles.arepa_aroma_1'),
-      t('styles.arepa_aroma_2'),
-      t('styles.arepa_aroma_3'),
-      t('styles.arepa_aroma_4'),
-      t('styles.arepa_aroma_5')
+    what_if: [
+      {
+        scenario: "The dough cracks at the edges",
+        result: "Too dry",
+        correction: "Add more warm water and knead again. Arepa dough is forgiving."
+      },
+      {
+        scenario: "The inside is gummy",
+        result: "Under-cooked or sliced too hot",
+        correction: "Finish in the oven (the 'Golfeado' technique) to ensure the core is cooked. Let rest 2 mins before slicing."
+      },
+      {
+        scenario: "It falls apart",
+        result: "Too wet or didn't rest",
+        correction: "Let the dough sit longer to absorb water."
+      }
     ],
-    "textureNotes": [
-      t('styles.arepa_texture_1'),
-      t('styles.arepa_texture_2'),
-      t('styles.arepa_texture_3'),
-      t('styles.arepa_texture_4'),
-      t('styles.arepa_texture_5')
+    comparisons: [
+      {
+        vsStyle: "Tortilla",
+        difference: "Tortilla = Thin, pliable, nixtamalized. Arepa = Thick, crispy shell, non-nixtamalized (usually).",
+        why_choose_this: "Choose Arepa for a hearty stuffed sandwich."
+      },
+      {
+        vsStyle: "Pupusa",
+        difference: "Pupusa is stuffed BEFORE cooking (El Salvador). Arepa can be stuffed before or after, but usually after.",
+        why_choose_this: "Choose Arepa for the 'pocket' experience."
+      }
     ],
-    "pairingRecommendations": [
-      t('styles.arepa_pair_1'),
-      t('styles.arepa_pair_2'),
-      t('styles.arepa_pair_3'),
-      t('styles.arepa_pair_4'),
-      t('styles.arepa_pair_5')
+    q_and_a: [
+      {
+        question: "Gluten Free?",
+        answer: "Yes, naturally 100% gluten free (check packaging for cross-contamination).",
+        context: "Dietary"
+      },
+      {
+        question: "White vs Yellow?",
+        answer: "Mostly aesthetic. Yellow corn has a slightly nuttier/sweeter profile, but White is the standard canvas for fillings.",
+        context: "Ingredients"
+      },
+      {
+        question: "Bake or Fry?",
+        answer: "Traditional is grilled (asado). Coastal versions are deep-fried (frita) and incredibly decadent.",
+        context: "Technique"
+      }
     ],
-    "flavorEvolution": [
-      t('styles.arepa_fe_1'),
-      t('styles.arepa_fe_2'),
-      t('styles.arepa_fe_3'),
-      t('styles.arepa_fe_4'),
-      t('styles.arepa_fe_5')
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "No yeast, just hydration."
+      }
     ]
   },
-  "technicalFoundations": [
-    t('styles.arepa_foundations_1'),
-    t('styles.arepa_foundations_2')
-  ],
-  "doughImpact": [
-    t('styles.arepa_di_1'),
-    t('styles.arepa_di_2'),
-    t('styles.arepa_di_3'),
-    t('styles.arepa_di_4'),
-    t('styles.arepa_di_5')
-  ],
-  "bakingImpact": [
-    t('styles.arepa_bi_1'),
-    t('styles.arepa_bi_2'),
-    t('styles.arepa_bi_3'),
-    t('styles.arepa_bi_4'),
-    t('styles.arepa_bi_5')
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      60,
-      75
-    ],
-    "saltRange": [
-      1.5,
-      2
-    ],
-    "oilRange": [
-      0,
-      10
-    ],
-    "sugarRange": [
-      0,
-      3
-    ],
-    "flourStrength": "Precooked corn flour (masa arepa), not wheat flour",
-    "fermentation": {
-      "bulk": t('styles.short_rest_after_mixing_to_hydrate_flour'),
-      "proof": t('styles.no_fermentation_in_traditional_formulas'),
-      "coldRetard": t('styles.optional_rest_in_fridge_for_planning')
+
+  deepDive: {
+    hydrationLogic: "Water amount varies by brand and humidity. Start with 1:1 ratio and add more until soft.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Only method." },
+      poolish: { suitable: false, notes: "N/A" }
     },
-    "oven": {
-      "type": "griddle_or_pan",
-      "temperatureC": [
-        160,
-        220
-      ],
-      "notes": t('styles.cooked_on_griddle_and_sometimes_finished_in_oven')
-    },
-    "difficulty": t('styles.difficulty_hard'),
-    "recommendedUse": [
-      t('common.filled_arepas'),
-      t('common.savory_stuffed_flatbreads')
+    whatIf: [
+      {
+        scenario: "You use Polenta/Grits",
+        outcome: "Disaster. It won't bind. Polenta is coarse and raw. Masarepa is fine and cooked.",
+        solution: "Buy the right flour."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Colombian vs Venezuelan",
+        difference: "Colombian arepas are often thinner, eaten plain as a side, or topped. Venezuelan arepas are often thicker and stuffed like sandwiches."
+      }
+    ],
+    proTips: [
+      "Mix grated cheese (cotija or mozzarella) directly into the dough (Arepa de Queso).",
+      "Add a splash of milk to the water for a softer crumb.",
+      "Use 'Budare' or a heavy cast iron skillet—non-stick pans don't give the right char."
     ]
   },
-  "regionalVariants": [
-    t('styles.arepa_rv_1'),
-    t('styles.arepa_rv_2'),
-    t('styles.arepa_rv_3'),
-    t('styles.arepa_rv_4'),
-    t('styles.arepa_rv_5')
+
+  tags: ["arepa", "venezuelan", "colombian", "corn", "gluten-free", "stuffed"],
+
+  watchouts: [
+    "Wrong flour type is the #1 error.",
+    "Cracked edges split wide open in the pan.",
+    "Cooking too fast burns outside, raw inside.",
+    "Dough dries out fast—keep covered."
   ],
-  "climateScenarios": [
-    t('styles.arepa_cs_1'),
-    t('styles.arepa_cs_2'),
-    t('styles.arepa_cs_3'),
-    t('styles.arepa_cs_4')
+
+  notes: [
+    "Staple food of Northern South America.",
+    "Naturally Gluten Free.",
+    "Uses Pre-cooked Corn Flour (P.A.N.).",
+    "Can be grilled, baked, or fried.",
+    "Infinite filling possibilities."
   ],
-  "styleComparisons": [
-    t('styles.arepa_sc_1'),
-    t('styles.arepa_sc_2'),
-    t('styles.arepa_sc_3'),
-    t('styles.arepa_sc_4')
-  ],
-  "parameterSensitivity": [
-    t('styles.arepa_ps_1'),
-    t('styles.arepa_ps_2'),
-    t('styles.arepa_ps_3'),
-    t('styles.arepa_ps_4'),
-    t('styles.arepa_ps_5')
-  ],
-  "risks": [
-    t('styles.arepa_risk_1'),
-    t('styles.arepa_risk_2'),
-    t('styles.arepa_risk_3'),
-    t('styles.arepa_risk_4'),
-    t('styles.arepa_risk_5')
-  ],
-  "notes": [
-    t('styles.arepa_note_1'),
-    t('styles.arepa_note_2'),
-    t('styles.arepa_note_3'),
-    t('styles.arepa_note_4'),
-    t('styles.arepa_note_5')
-  ],
-  "tags": [
-    t('common.filled_arepas'),
-    t('common.savory_stuffed_flatbreads'),
-    t('common.bread'),
-    "Venezuela/Colombia"
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": "¡Arepa!: The Venezuelan Cornbread Cookbook",
-      "url": "https://www.worldcat.org/title/arepa-the-venezuelan-cornbread-cookbook/",
-      "author": "Irena Stein",
-      "year": 2023
+      source: "Gran Libro de la Cocina Venezolana",
+      url: "https://www.venezuelatuya.com/",
+      author: "Scannone",
+      year: "1982"
     },
     {
-      "title": t('styles.modernist_bread'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
-    },
-    {
-      "title": "Colombia: The Cookbook",
-      "url": "https://www.phaidon.com/store/cookbooks-food-and-drink/colombia-the-cookbook-9781838666248/",
-      "author": "Janna Quintero",
-      "year": 2024
-    },
-    {
-      "title": "The History of Pre-Cooked Corn Flour",
-      "url": "https://www.bbc.com/travel/article/20190515-venezuelas-daily-bread",
-      "author": "BBC Travel",
-      "year": 2019
+      source: "P.A.N. Official Recipes",
+      url: "https://www.harinapan.com/",
+      author: "Alimentos Polar",
+      year: "2023"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": t('styles.arepa_faq_1_q'),
-      "answer": t('styles.arepa_faq_1_a')
-    },
-    {
-      "question": t('styles.arepa_faq_2_q'),
-      "answer": t('styles.arepa_faq_2_a')
-    },
-    {
-      "question": t('styles.arepa_faq_3_q'),
-      "answer": t('styles.arepa_faq_3_a')
-    },
-    {
-      "question": t('styles.arepa_faq_4_q'),
-      "answer": t('styles.arepa_faq_4_a')
-    },
-    {
-      "question": t('styles.arepa_faq_5_q'),
-      "answer": t('styles.arepa_faq_5_a')
-    }
-  ],
-  "affiliateProducts": [],
 
-  "isCanonical": true,
-  "source": "official"
-,
-  "defaults": {
-    "hydration": 70,
-    "salt": 2,
-    "oil": 0,
-    "sugar": 0
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/arepa-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture"] // Cheese and Butter are standard
 };

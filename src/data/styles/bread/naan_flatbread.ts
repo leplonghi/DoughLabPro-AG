@@ -1,258 +1,249 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * NAAN (INDIAN TANDOORI FLATBREAD)
+ * 
+ * Researched and validated content:
+ * - Origin: India/Persia (Mughal Era)
+ * - Technique: High hydration + Yogurt enrichment + High heat (Tandoor)
+ * - Ingredients: Maida (White Flour), Yogurt, Milk, Ghee, Nigella Seeds
+ * - Characteristics: Teardrop shape, smoky flavor, bubbly charred surface, soft/chewy texture
+ */
+export const naan_flatbread: DoughStyleDefinition = {
+  id: "naan_flatbread",
+  name: "Naan (Restaurant Style)",
+  category: "flatbread",
+  recipeStyle: RecipeStyle.FLATBREAD,
+  family: "Asian Flatbread",
 
-export const naan_flatbread: StyleDefinition = {
-  "id": "naan_flatbread",
-  "title": t('styles.naan_title'),
-  "subtitle": t('styles.classic_flatbreads_7'),
-  "category": t('styles.bread_14'),
-  "family": t('styles.classic_flatbreads_8'),
-  "variantName": t('styles.naan_variantName'),
-  "origin": {
-    "country": t('styles.naan_origin_country'),
-    "region": t('styles.south_and_central_asia'),
-    "period": t('styles.traditional_5')
+  origin: {
+    country: "India",
+    region: "Northern India",
+    period: "Mughal Empire (16th Century)"
   },
-  "intro": t('styles.served_with_curries_and_grilled_dishes_in_indian_a'),
-  "history": t('styles.naan_history'),
-  "culturalContext": {
-    "significance": [
-      t('styles.naan_sig_1'),
-      t('styles.naan_sig_2'),
-      t('styles.naan_sig_3'),
-      t('styles.naan_sig_4'),
-      t('styles.naan_sig_5')
+
+  description: "Naan is the quintessential leavened flatbread of Northern Indian cuisine. Traditionally baked by slapping dough onto the super-heated clay walls of a Tandoor oven (480°C+), it is defined by its smoky flavor, pillowy texture, and signature charred bubbles. Restaurant-style naan is enriched with yogurt and milk to ensure it remains soft even after cooling, often finished with a brush of Ghee or Butter.",
+
+  history: "The word 'Naan' comes from the Persian word for bread. It was popularized in India during the Mughal era as a breakfast food for royals. Originally a simple dough, it evolved into the enriched, fluffy version we know today. The 'teardrop' shape is a result of gravity stretching the dough as it hangs on the vertical wall of the clay oven.",
+
+  difficulty: "Medium",
+  fermentationType: "direct", // Short fermentation is common for soft naan
+
+  base_formula: [
+    { name: "All-Purpose Flour (Maida)", percentage: 100 },
+    { name: "Water (Warm)", percentage: 40 },
+    { name: "Plain Yogurt (Thick)", percentage: 20 },
+    { name: "Whole Milk", percentage: 10 },
+    { name: "Ghee or Oil", percentage: 5 },
+    { name: "Sugar", percentage: 2 },
+    { name: "Salt", percentage: 1.5 },
+    { name: "Instant Yeast", percentage: 1 },
+    { name: "Baking Powder", percentage: 0.5 } // Common cheat in restaurants
+  ],
+
+  technicalProfile: {
+    hydration: [65, 75], // Effective hydration is high due to yogurt
+    salt: [1.2, 1.8],
+    oil: [5, 10], // Ghee inside the dough
+    sugar: [2, 4],
+    flourStrength: "Medium Protein (All Purpose/Maida). Too strong = tough naan.",
+    ovenTemp: [250, 300], // Maximum domestic oven temp + Broiler
+    recommendedUse: [
+      "Curry accompaniment",
+      "Kebab wraps",
+      "Pizza base ('Naan Pizza')"
     ],
-    "consumptionContext": [
-      t('styles.naan_cons_1'),
-      t('styles.naan_cons_2'),
-      t('styles.naan_cons_3'),
-      t('styles.naan_cons_4'),
-      t('styles.naan_cons_5')
-    ],
-    "evolution": [
-      t('styles.naan_evo_1'),
-      t('styles.naan_evo_2'),
-      t('styles.naan_evo_3'),
-      t('styles.naan_evo_4'),
-      t('styles.naan_evo_5'),
-      t('styles.naan_evo_6')
-    ],
-    "rituals": [
-      t('styles.naan_rit_1'),
-      t('styles.naan_rit_2'),
-      t('styles.naan_rit_3'),
-      t('styles.naan_rit_4'),
-      t('styles.naan_rit_5')
+    difficulty: "Medium",
+    ballWeight: { recommended: 120, min: 100, max: 150 },
+    fermentationSteps: [
+      "Mix: Combine flour, sugar, salt, yeast, and baking powder. Whisk yogurt, milk, and water together. [Science: The acidity of the yogurt tenderizes the gluten and activates the baking powder]",
+      "Knead: Mix until smooth and soft. It should be slightly sticky. [Science: High hydration ensures steam generation for the bubbles]",
+      "First Proof: 1-2 hours until doubled. [Science: We want significant aeration but not exhaustion]",
+      "Ball & Rest: Divide into 120g balls. Rest 20 mins. [Science: Relaxed gluten is essential for stretching without tearing]",
+      "Shaping: Stretch into a teardrop shape. Use wet hands or a rolling pin. [Science: Uneven stretching creates the variation between thin crispy spots and thick fluffy spots]",
+      "Application (Home Method): slap onto a pre-heated cast iron skillet, then flip the skillet upside down over a gas flame. [Science: Mimics the conductive heat of the tandoor wall and the convective heat of the tandoor fire]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      t('styles.naan_flav_1'),
-      t('styles.naan_flav_2'),
-      t('styles.naan_flav_3'),
-      t('styles.naan_flav_4'),
-      t('styles.naan_flav_5')
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W200-240 (Medium)",
+      pl_ratio: "0.40 (Extensible)",
+      absorption_capacity: "Moderate",
+      protein_type: "Soft Wheat (Maida)",
+      science_explanation: "Naan should be soft, not chewy like a baguette. Lower protein flour + yogurt enzymes break down the protein matrix."
+    },
+    thermalProfile: {
+      oven_type: "Tandoor (Clay Oven) or Cast Iron + Flame",
+      heat_distribution: "Intense direct conduction + Radiance",
+      crust_development: "Spotty charring (leopard spots), glossy from ghee",
+      crumb_structure: "Large irregular bubbles, open textured but soft"
+    },
+    fermentationScience: {
+      yeast_activity: "Moderate to High",
+      ph_target: "pH 5.0 - 5.5 (Acidic due to Yogurt)",
+      organic_acids: "Lactic dominant",
+      enzymatic_activity: "Proteolytic activity from yogurt bacteria softens the dough."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "The Skillet Method",
+        explanation: "Use a cast iron tawa or skillet. Wet one side of the naan with water before slapping it on the hot pan—this acts as 'glue' so you can invert the pan over the flame without it falling."
+      },
+      {
+        tip: "Baking Powder Hack",
+        explanation: "Include 0.5% baking powder along with yeast. This gives an immediate 'puff' in the heat that yeast alone sometimes struggles to achieve in a home oven."
+      },
+      {
+        tip: "Yogurt is Key",
+        explanation: "Don't skip the yogurt. It provides the signature tang and tenderness. Milk alone makes a 'bread', not a 'naan'."
+      },
+      {
+        tip: "Nigella Seeds",
+        explanation: "Sprinkle Nigella (Kalonji) seeds and press them into the dough before baking for that authentic restaurant flavor profile."
+      },
+      {
+        tip: "Garlic & Corriander",
+        explanation: "Mix minced garlic and cilantro into soft butter. Brush this on the naan the second it comes off the fire."
+      }
     ],
-    "aromaProfile": [
-      t('styles.naan_aroma_1'),
-      t('styles.naan_aroma_2'),
-      t('styles.naan_aroma_3'),
-      t('styles.naan_aroma_4'),
-      t('styles.naan_aroma_5')
+    what_if: [
+      {
+        scenario: "The naan is hard and cracker-like",
+        result: "Cooked too slowly at too low heat",
+        correction: "Naan needs VIOLENT heat. Max out your burner or broiler. It should cook in 90 seconds."
+      },
+      {
+        scenario: "The naan falls off the pan when inverted",
+        result: "Pan wasn't hot enough or not enough water glue",
+        correction: "The pan must be smoking hot, and the dough surface wet."
+      },
+      {
+        scenario: "It's too chewy",
+        result: "Flour was too strong (Bread flour)",
+        correction: "Use Pastry flour or All Purpose flour (Maida)."
+      }
     ],
-    "textureNotes": [
-      t('styles.naan_text_1'),
-      t('styles.naan_text_2'),
-      t('styles.naan_text_3'),
-      t('styles.naan_text_4'),
-      t('styles.naan_text_5')
+    comparative_analysis: [
+      {
+        target_style: "Pita Bread",
+        difference: "Pita is leaner (water only) and forms a single pocket; Naan is enriched (yogurt/milk) and forms multiple bubbles.",
+        why_choose_this: "Choose Naan for a richer, softer accompaniment."
+      },
+      {
+        target_style: "Roti / Chapati",
+        difference: "Roti is unleavened whole wheat; Naan is leavened white flour.",
+        why_choose_this: "Choose Naan for a restaurant-style feast."
+      }
     ],
-    "pairingRecommendations": [
-      t('styles.naan_pair_1'),
-      t('styles.naan_pair_2'),
-      t('styles.naan_pair_3'),
-      t('styles.naan_pair_4'),
-      t('styles.naan_pair_5')
+    q_and_a: [
+      {
+        question: "Can I make this in an oven?",
+        answer: "Yes, use a pizza stone preheated at max temp. Broil for the last minute to get the char.",
+        context: "Technique"
+      },
+      {
+        question: "Why the teardrop shape?",
+        answer: "In a tandoor, the dough stretches downward due to gravity before it sets. It's a sign of authenticity.",
+        context: "History"
+      },
+      {
+        question: "Is yeast necessary?",
+        answer: "Traditional Naan is yeasted. 'Kulcha' is a similar bread often leavened with baking powder/soda only.",
+        context: "Ingredients"
+      },
+      {
+        question: "What is 'Maida'?",
+        answer: "Indian finely milled refined wheat flour, similar to US Cake/Pastry flour or soft AP flour.",
+        context: "Ingredients"
+      }
     ],
-    "flavorEvolution": [
-      t('styles.naan_fevo_1'),
-      t('styles.naan_fevo_2'),
-      t('styles.naan_fevo_3'),
-      t('styles.naan_fevo_4'),
-      t('styles.naan_fevo_5')
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Most common. 2-4 hour rise."
+      },
+      {
+        method: "Sourdough",
+        suitability: "Historical",
+        notes: "Before commercial yeast, old dough (khameer) was used."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Yeast-based; sometimes uses yogurt as mild acidity and enrichment.",
-    "Hydration: 60-70%"
-  ],
-  "doughImpact": [
-    "Yogurt inclusion provides lactic acid that tenderizes the gluten and adds a mild tang",
-    "High enrichment (oil/milk/sugar) ensures the bread stays soft despite the ultra-high heat bake",
-    "Moderate hydration (60-70%) allows the dough to be extensible enough for the teardrop stretch",
-    "Natural yeasts or commercial yeast works with the yogurt for a complex fermentation profile",
-    "Minimal handling after bulk preserves the internal gas bubbles needed for the surface char"
-  ],
-  "bakingImpact": [
-    "Ultra-high heat (300-450°C) is mandatory to produce the signature 'char' bubbles quickly",
-    "Baking against a clay wall (Tandoor) or scorching-hot cast iron pan creates bottom-up spring",
-    "A extremely fast bake (60-90 seconds) prevents the thin dough from drying out and becoming brittle",
-    "The lack of steam results in a dry, matte surface that is immediately softened by basting butter",
-    "Direct contact with a hot surface (stone/iron) creates the characteristic dark spots (char)"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      60,
-      70
-    ],
-    "saltRange": [
-      1.5,
-      2
-    ],
-    "oilRange": [
-      5,
-      15
-    ],
-    "sugarRange": [
-      2,
-      8
-    ],
-    "flourStrength": t('styles.allpurpose_or_bread_flour'),
-    "fermentation": {
-      "bulk": t('styles.naan_ferm_bulk'),
-      "proof": t('styles.short_rest_after_shaping'),
-      "coldRetard": t('styles.optional_overnight_bulk_for_flavor')
+
+  deepDive: {
+    hydrationLogic: "Effective hydration around 70-75% (counting yogurt water). Soft dough bubbles better.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Standard." },
+      poolish: { suitable: true, notes: "Good for puffiness." },
+      biga: { suitable: false, notes: "Too stiff." }
     },
-    "oven": {
-      "type": "tandoor_or_hot_surface",
-      "temperatureC": [
-        300,
-        450
-      ],
-      "notes": t('styles.home_versions_use_very_hot_cast_iron_pans_or_stone')
-    },
-    "difficulty": t('styles.difficulty_hard'),
-    "recommendedUse": [
-      t('common.accompaniment_to_curries'),
-      t('common.flatbread_for_dipping')
+    whatIf: [
+      {
+        scenario: "You omit the Sugar",
+        outcome: "You lose the beautiful browning/char spots.",
+        solution: "Keep at least 1-2% sugar for color."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Butter Naan vs Garlic Naan",
+        difference: "Same dough, different finishing topping."
+      }
+    ],
+    proTips: [
+      "Rest the dough balls for at least 30 mins before shaping—if they shrink back, they aren't ready.",
+      "Use a rolling pin for even thickness, but hands for a more rustic texture.",
+      "Brush with Ghee immediately—dry naan goes stale in minutes.",
+      "Stack cooked naans in a cloth towel to keep them soft while you cook the rest."
     ]
   },
-  "regionalVariants": [
-    t('styles.naan_var_1'),
-    t('styles.naan_var_2'),
-    t('styles.naan_var_3'),
-    t('styles.naan_var_4'),
-    t('styles.naan_var_5')
+
+  tags: ["naan", "indian", "flatbread", "tandoor", "soft", "yogurt"],
+
+  watchouts: [
+    "Don't use Bread Flour—it creates a tough 'shoe-leather' naan.",
+    "Pan not hot enough = no bubbles.",
+    "Too much flour during rolling = burnt flour taste.",
+    "Over-baking makes it a cracker."
   ],
-  "climateScenarios": [
-    t('styles.naan_clim_1'),
-    t('styles.naan_clim_2'),
-    t('styles.naan_clim_3'),
-    t('styles.naan_clim_4')
+
+  notes: [
+    "Requires high smoke-point fat (Ghee).",
+    "Yogurt tenderizer is mandatory.",
+    "Best cooked on Cast Iron or Pizza Stone.",
+    "Consume immediately.",
+    "Can be stuffed (Keema Naan, Peshwari Naan)."
   ],
-  "styleComparisons": [
-    t('styles.naan_comp_1'),
-    t('styles.naan_comp_2'),
-    t('styles.naan_comp_3'),
-    t('styles.naan_comp_4')
-  ],
-  "parameterSensitivity": [
-    t('styles.naan_sens_1'),
-    t('styles.naan_sens_2'),
-    t('styles.naan_sens_3'),
-    t('styles.naan_sens_4'),
-    t('styles.naan_sens_5')
-  ],
-  "risks": [
-    t('styles.naan_risk_1'),
-    t('styles.naan_risk_2'),
-    t('styles.naan_risk_3'),
-    t('styles.naan_risk_4'),
-    t('styles.naan_risk_5')
-  ],
-  "notes": [
-    t('styles.naan_note_1'),
-    t('styles.naan_note_2'),
-    t('styles.naan_note_3'),
-    t('styles.naan_note_4'),
-    t('styles.naan_note_5')
-  ],
-  "tags": [
-    t('common.accompaniment_to_curries'),
-    t('common.flatbread_for_dipping'),
-    t('common.bread'),
-    "India / Central Asia"
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.naan_title'),
-      "url": "https://www.jstor.org/stable/25188556",
-      "author": "Journal of the Economic and Social History of the Orient",
-      "year": 1995
+      source: "Dishoom Cookbook",
+      url: "https://www.dishoom.com/",
+      author: "Shamil Thakrar",
+      year: "2019"
     },
     {
-      "title": t('styles.modernist_bread_13'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
-    },
-    {
-      "title": t('styles.naan_title'),
-      "url": "https://www.amazon.com/Dishoom-From-Bombay-with-Love/dp/1408827441",
-      "author": "Shamil Thakrar, Kavi Thakrar, Naved Nasir",
-      "year": 2019
-    },
-    {
-      "title": t('styles.naan_title'),
-      "url": "https://www.indianhealthyrecipes.com/naan/",
-      "author": "Swasthi Shreekanth",
-      "year": 2023
+      source: "The Indian Cooking Course",
+      url: "https://www.monishabharadwaj.com/",
+      author: "Monisha Bharadwaj",
+      year: "2016"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": t('styles.naan_faq_1_q'),
-      "answer": t('styles.naan_faq_1_a')
-    },
-    {
-      "question": t('styles.naan_faq_2_q'),
-      "answer": t('styles.naan_faq_2_a')
-    },
-    {
-      "question": t('styles.naan_faq_3_q'),
-      "answer": t('styles.naan_faq_3_a')
-    },
-    {
-      "question": t('styles.naan_faq_4_q'),
-      "answer": t('styles.naan_faq_4_a')
-    },
-    {
-      "question": t('styles.naan_faq_5_q'),
-      "answer": t('styles.naan_faq_5_a')
-    }
-  ],
-  "affiliateProducts": [],
 
-  "isCanonical": true,
-  "source": "official"
-,
-  "defaults": {
-    "hydration": 70,
-    "salt": 2,
-    "oil": 0,
-    "sugar": 0
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/naan-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["yogurt_plain", "ghee_clarified_butter", "nigella_seeds", "garlic_raw"]
 };

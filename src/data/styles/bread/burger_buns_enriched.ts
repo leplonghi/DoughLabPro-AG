@@ -243,16 +243,16 @@ export const burger_buns_enriched: StyleDefinition = {
       "answer": t('styles.burger_buns_enriched_faq_5_a')
     }
   ],
-  "affiliatePlacementId": "burger_buns_essentials",  "affiliateProducts": [],
+  "affiliatePlacementId": "burger_buns_essentials", "affiliateProducts": [],
 
   "isCanonical": true,
   "source": "official"
-,
+  ,
   "defaults": {
     "hydration": 70,
     "salt": 2,
     "oil": 0,
     "sugar": 0
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["sesame_seeds", "salted_butter_normandy"]
 };

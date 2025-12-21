@@ -248,12 +248,12 @@ export const mixed_grain_sourdough: StyleDefinition = {
 
   "isCanonical": true,
   "source": "official"
-,
+  ,
   "defaults": {
     "hydration": 70,
     "salt": 2,
     "oil": 0,
     "sugar": 0
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["seeds", "sunflower_seeds"]
 };

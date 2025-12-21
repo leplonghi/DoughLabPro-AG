@@ -228,12 +228,12 @@ export const pain_aux_raisins: StyleDefinition = {
 
   "isCanonical": true,
   "source": "official"
-,
+  ,
   "defaults": {
     "hydration": 60,
     "salt": 1.5,
     "oil": 5,
     "sugar": 10
   },
-  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
+  recommendedFlavorComponents: ["raisins", "butter_dry_84", "vanilla_madagascar"]
 };

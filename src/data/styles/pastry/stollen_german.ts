@@ -247,12 +247,12 @@ export const stollen_german: StyleDefinition = {
 
   "isCanonical": true,
   "source": "official"
-,
+  ,
   "defaults": {
     "hydration": 60,
     "salt": 1.5,
     "oil": 5,
     "sugar": 10
   },
-  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
+  recommendedFlavorComponents: ["candied_citrus", "raisins", "vanilla_madagascar"]
 };

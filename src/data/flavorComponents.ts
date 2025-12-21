@@ -1836,5 +1836,293 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
         variations: 'Semi-dried tomatoes.',
         references: [],
         isStandard: true
+    },
+    {
+        id: 'condensed_milk',
+        name: 'Condensed Milk (Sweetened)',
+        category: 'Dairy',
+        description: 'Thick, sweetened cow\'s milk with a creamy, caramel-like flavor. Standard for Asian enriched breads.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 3,
+            salinity: 1,
+            sweetness: 5,
+            thermalBehavior: 'Caramelizes and browns deeply in the dough. Retains moisture.'
+        },
+        origin: 'Global / Popular in Asia & Latin America.',
+        historyContext: 'A key ingredient in Hokkaido Milk Bread and Brazilian Pão de Leite for a "milky" aroma.',
+        commonStyles: ['enriched_bread', 'pastry'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Matcha',
+            'Strawberries',
+            'Soft Bread'
+        ],
+        technicalNotes: 'Count as 50% sugar and 50% liquid. Over-dosing can make the dough overly sticky.',
+        applicationMoment: 'pre_oven',
+        variations: 'Evaporated milk (no sugar), Dulce de leche.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'black_sesame',
+        name: 'Black Sesame Seeds',
+        category: 'Spice',
+        description: 'Small black seeds with a much deeper, nuttier flavor than white sesame. Often used in Asian pastry.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Fragrant and crunchy when toasted. Does not burn as easily as white sesame.'
+        },
+        origin: 'East Asia.',
+        historyContext: 'Traditional garnish for Japanese and Chinese breads and desserts.',
+        commonStyles: ['enriched_bread', 'pastry'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Red Bean Paste',
+            'Matcha',
+            'Hokkaido Milk Bread'
+        ],
+        technicalNotes: 'Grind into a paste (Nerigoma) for intense flavor integration or use whole for visual contrast.',
+        applicationMoment: 'pre_oven',
+        variations: 'White Sesame, Toasted Sesame Oil.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'requeijao_cremoso',
+        name: 'Requeijão Cremoso (Brazilian)',
+        category: 'Cheese',
+        description: 'A creamy, spreadable processed cheese typical of Brazil. Similar to a thicker Melter cream cheese, but with a unique lactic tang.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 4,
+            sweetness: 2,
+            thermalBehavior: 'Melts into a thick, lava-like consistency. Resists separation at high heat.'
+        },
+        origin: 'Brazil.',
+        historyContext: 'The soul of Brazilian "Salgados" (savory snacks) and the most popular filling for Pão de Batata.',
+        commonStyles: ['pizza', 'enriched_bread'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chicken (Frango com Catupiry)',
+            'Corn',
+            'Potato Bread'
+        ],
+        technicalNotes: 'Applied via a piping bag into the center of dough balls before baking. Use "Culinary" version for best results in ovens.',
+        applicationMoment: 'pre_oven',
+        variations: 'Catupiry (premium brand), Cheddar Cream.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'yogurt_plain',
+        name: 'Yogurt (Plain/Greek)',
+        category: 'Dairy',
+        description: 'Fermented milk product that tenders the crumb and adds a tangy lactic acid flavor.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 2,
+            salinity: 1,
+            sweetness: 2,
+            thermalBehavior: 'Acidity weakens gluten network, creating softer textures.'
+        },
+        origin: 'Global',
+        historyContext: 'Ancient tenderizer for flatbreads in India and the Middle East.',
+        commonStyles: ['naan_flatbread', 'pita_bread_flatbread'],
+        ovenCompatibility: ['tandoor', 'home_oven'],
+        classicCombinations: ['Honey', 'Garlic', 'Coriander'],
+        technicalNotes: 'Acidity can speed up yeast activity initially but degrade gluten if left too long.',
+        applicationMoment: 'pre_oven',
+        variations: 'Buttermilk, Kefir.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'butter_dry_84',
+        name: 'Dry Butter (84% Fat)',
+        category: 'Dairy',
+        description: 'Professional "Tourage" butter with higher fat and lower water content. Essential for puff pastry.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Higher melting point and plasticity allows for thinner layers without breakage.'
+        },
+        origin: 'France / New Zealand',
+        historyContext: 'Developed for industrial and artisanal lamination efficiency.',
+        commonStyles: ['puff_pastry_classic', 'croissant_classic', 'pastry_danish_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Flour', 'Sugar'],
+        technicalNotes: 'Melting point: 34-36°C. Standard butter melts at 32°C.',
+        applicationMoment: 'pre_oven',
+        variations: 'Sheet Butter, Beurre de Tourage.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'ghee_clarified_butter',
+        name: 'Ghee (Clarified Butter)',
+        category: 'Dairy',
+        description: 'Pure butterfat with milk solids removed. High smoke point and intense nutty aroma.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 0,
+            sweetness: 3,
+            thermalBehavior: 'Stable at high temperatures. Does not burn like regular butter.'
+        },
+        origin: 'India',
+        historyContext: 'The sacred fat of Indian cuisine, essential for Naan and Roti.',
+        commonStyles: ['naan_flatbread', 'paratha'],
+        ovenCompatibility: ['tandoor', 'skillet'],
+        classicCombinations: ['Garlic', 'Nigella Seeds'],
+        technicalNotes: 'Brush immediately after baking for maximum aroma absorption.',
+        applicationMoment: 'post_oven',
+        variations: 'Clarified Butter, Brown Butter.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'nigella_seeds',
+        name: 'Nigella Seeds (Kalorji)',
+        category: 'Spice',
+        description: 'Small black seeds with notes of onion, oregano, and black pepper.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 2,
+            salinity: 0,
+            sweetness: 0,
+            thermalBehavior: 'Toasts quickly on the surface of bread.'
+        },
+        origin: 'South Asia / Middle East',
+        historyContext: 'The visual and flavor signature of authentic Naan.',
+        commonStyles: ['naan_flatbread', 'turkish_pide'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Ghee', 'Coriander'],
+        technicalNotes: 'Sprinkle on wet dough surface before baking.',
+        applicationMoment: 'pre_oven',
+        variations: 'Black Sesame (visual only), Onion Seeds.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'lard_pork_fat',
+        name: 'Lard (Pork Fat)',
+        category: 'Dairy',
+        description: 'Rendered pork fat. The secret to the flakiest pastries and the softest tortillas.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 1,
+            sweetness: 1,
+            thermalBehavior: 'Creates distinct layers (lamination) due to large crystal structure.'
+        },
+        origin: 'Global (historically dominant fat before vegetable oils)',
+        historyContext: 'Essential for authentic Mexican Wheat Tortillas and Cuban Bread.',
+        commonStyles: ['wheat_tortilla', 'pie_dough', 'cuban_bread'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Flour', 'Salt'],
+        technicalNotes: 'Use "Leaf Lard" for neutral flavor in pastries.',
+        applicationMoment: 'pre_oven',
+        variations: 'Vegetable Shortening (Crisco), Duck Fat.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'caraway_seeds',
+        name: 'Caraway Seeds (Kümmel)',
+        category: 'Spice',
+        description: 'Aromatic split seeds with a distinct anise/licorice flavor. The soul of Rye bread.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 2,
+            salinity: 0,
+            sweetness: 0,
+            thermalBehavior: 'Flavor intensifies with baking.'
+        },
+        origin: 'Central Europe / Germany',
+        historyContext: 'Traditional digestive aid paired with heavy rye breads.',
+        commonStyles: ['vollkornbrot_100_rye', 'seventy_percent_rye_sour', 'ny_deli_rye'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Rye', 'Salt'],
+        technicalNotes: 'Can be ground or used whole.',
+        applicationMoment: 'pre_oven',
+        variations: 'Fennel, Anise.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'sunflower_seeds',
+        name: 'Sunflower Seeds',
+        category: 'Spice',
+        description: 'Nutty, rich seeds that resist burning on the crust better than smaller seeds.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 4,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'Toasts to a deep brown.'
+        },
+        origin: 'Americas (native), popularized in Europe',
+        historyContext: 'Staple of German "Vollkornbrot" and multi-grain mixes.',
+        commonStyles: ['vollkornbrot_100_rye', 'mixed_grain_sourdough'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Honey', 'Whole Wheat'],
+        technicalNotes: 'Soak (soaker) before adding to dough to prevent them from stealing water.',
+        applicationMoment: 'pre_oven',
+        variations: 'Pumpkin Seeds.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'poppy_seeds',
+        name: 'Poppy Seeds (Mohn)',
+        category: 'Spice',
+        description: 'Tiny blue-black seeds with a nutty, earthy flavor and crunchy texture.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 4,
+            salinity: 0,
+            sweetness: 0,
+            thermalBehavior: 'Resists heat well.'
+        },
+        origin: 'Eastern Europe',
+        historyContext: 'Used extensively in Jewish (Challah) and Slavic baking.',
+        commonStyles: ['challah_jewish_braided', 'bagels_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Lemon', 'Honey'],
+        technicalNotes: 'Can be ground into a paste (Mohn mass).',
+        applicationMoment: 'pre_oven',
+        variations: 'Chia Seeds.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'vanilla_bean',
+        name: 'Vanilla Bean (Madagascar/Tahiti)',
+        category: 'Spice',
+        description: 'The complex, floral aroma of cured orchid pods. Essential for pastry.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 4, // Perception of sweetness
+            thermalBehavior: 'Volatile compounds can bake off; seeds remain stable.'
+        },
+        origin: 'Mexico (Native), Madagascar',
+        historyContext: 'The world\'s most popular flavor, cultivated by the Totonacs.',
+        commonStyles: ['pastry_danish_classic', 'brioche_feuilletee', 'panettone_artisanal'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Butter', 'Cream', 'Sugar'],
+        technicalNotes: 'Use the scraped seeds (caviar) for visual appeal and strongest flavor.',
+        applicationMoment: 'pre_oven',
+        variations: 'Extract, Paste.',
+        references: [],
+        isStandard: true
     }
 ];

@@ -245,12 +245,12 @@ export const injera_flatbread: StyleDefinition = {
 
   "isCanonical": true,
   "source": "official"
-,
+  ,
   "defaults": {
     "hydration": 70,
     "salt": 2,
     "oil": 0,
     "sugar": 0
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["ghee_clarified_butter", "yogurt_plain"]
 };

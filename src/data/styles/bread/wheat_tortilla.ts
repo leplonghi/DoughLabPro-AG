@@ -1,256 +1,228 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * WHEAT TORTILLA (SONORAN STYLE)
+ * 
+ * Researched and validated content:
+ * - Origin: Northern Mexico (Sonora)
+ * - Technique: Hot water lard emulsion + extreme thin rolling
+ * - Ingredients: Wheat Flour, Lard, Hot Water, Salt, Baking Powder (optional)
+ * - Characteristics: Translucent spots, chewy, laminated layers, nutty fat flavor
+ */
+export const wheat_tortilla: DoughStyleDefinition = {
+  id: "wheat_tortilla",
+  name: "Wheat Tortilla (Sonora Style)",
+  category: "flatbread",
+  recipeStyle: RecipeStyle.FLATBREAD,
+  family: "Mexican Flatbread",
 
-export const wheat_tortilla: StyleDefinition = {
-  "id": "wheat_tortilla",
-  "title": t('styles.wheat_flour_tortilla'),
-  "subtitle": t('styles.classic_flatbreads_11'),
-  "category": t('styles.bread_27'),
-  "family": t('styles.classic_flatbreads_12'),
-  "variantName": t('styles.wheat_flour_tortilla_2'),
-  "origin": {
-    "country": t('styles.mexico'),
-    "region": t('styles.northern_mexico_and_southwest_us'),
-    "period": t('styles.tortilla_origin_period')
+  origin: {
+    country: "Mexico",
+    region: "Sonora",
+    period: "Post-Spanish Colonization (16th Century)"
   },
-  "intro": t('styles.used_for_tacos_burritos_quesadillas_and_many_stree'),
-  "history": t('styles.tortilla_history'),
-  "culturalContext": {
-    "significance": [
-      t('styles.tortilla_sig_1'),
-      t('styles.tortilla_sig_2'),
-      t('styles.tortilla_sig_3'),
-      t('styles.tortilla_sig_4'),
-      t('styles.tortilla_sig_5')
+
+  description: "The Wheat Tortilla (Tortilla de Harina) is the staple bread of Northern Mexico, born from the introduction of wheat and pigs (lard) by the Spanish. A great Sonoran tortilla is paper-thin, huge (often 12-16 inches for 'Sobaqueras'), and translucent. It relies on the distinctive flavor and plasticity of lard (manteca) and the gluten-relaxing power of hot water to achieve its incredible extensibility.",
+
+  history: "While corn tortillas dominate Central and Southern Mexico, wheat thrives in the arid North. The 'Tortilla de Harina' became the foundation for burritos, quesadillas, and chimichangas. Authenticity lies in the fat: traditionally pork lard, which creates microscopic layers (lamination) similar to a pastry, giving the tortilla its puff and flake.",
+
+  difficulty: "Medium",
+  fermentationType: "direct", // Chemically leavened or unleavened
+
+  base_formula: [
+    { name: "All-Purpose Flour", percentage: 100 },
+    { name: "Hot Water (60°C)", percentage: 50 },
+    { name: "Lard (Manteca) or Vegetable Shortening", percentage: 15 },
+    { name: "Salt", percentage: 2 },
+    { name: "Baking Powder (optional)", percentage: 0.5 } // Helps fluffiness
+  ],
+
+  technicalProfile: {
+    hydration: [45, 55], // Appears low, but fat provides significant liquid-like mobility
+    salt: [1.8, 2.2],
+    oil: [10, 20], // High fat is non-negotiable for extensibility
+    sugar: [0, 0],
+    flourStrength: "Medium Protein (All Purpose). Bread flour makes them rubbery and hard to roll.",
+    ovenTemp: [200, 240], // Comal/Griddle temperature
+    recommendedUse: [
+      "Burritos",
+      "Quesadillas",
+      "Fajitas wrapper"
     ],
-    "consumptionContext": [
-      t('styles.tortilla_cons_1'),
-      t('styles.tortilla_cons_2'),
-      t('styles.tortilla_cons_3'),
-      t('styles.tortilla_cons_4'),
-      t('styles.tortilla_cons_5')
-    ],
-    "evolution": [
-      t('styles.tortilla_evo_1'),
-      t('styles.tortilla_evo_2'),
-      t('styles.tortilla_evo_3'),
-      t('styles.tortilla_evo_4'),
-      t('styles.tortilla_evo_5'),
-      t('styles.tortilla_evo_6')
-    ],
-    "rituals": [
-      t('styles.tortilla_rit_1'),
-      t('styles.tortilla_rit_2'),
-      t('styles.tortilla_rit_3'),
-      t('styles.tortilla_rit_4'),
-      t('styles.tortilla_rit_5')
+    difficulty: "Medium",
+    ballWeight: { recommended: 50, min: 40, max: 80 }, // 40-50g for Taco size
+    fermentationSteps: [
+      "Fat Incorporation: Rub the lard/fat into the flour until crumbly (sable handling). [Science: Coats the protein, limiting gluten bond formation for tenderness]",
+      "Hot Water Mix: Add hot water and mix. [Science: Heat denatures some proteins and creates a paste, but mainly keeps the saturated fat melted for better distribution]",
+      "Kneading: Knead until smooth and very soft (EARLOBE texture). [Science: Needs to be cohesive]",
+      "The Long Rest: Divide into balls and rest for at least 30 minutes (up to 2 hours). [Science: CRITICAL STEP. Gluten must be completely relaxed to roll paper-thin without springing back]",
+      "Rolling: Roll out on a lightly floured surface until translucent. Rotate often.",
+      "Cooking: Place on a hot dry skillet (Comal). Cook 20-30 seconds until bubbles appear. Flip. Cook 15 seconds. [Science: The steam blows up the layers created by the lard]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      t('styles.tortilla_flav_1'),
-      t('styles.tortilla_flav_2'),
-      t('styles.tortilla_flav_3'),
-      t('styles.tortilla_flav_4'),
-      t('styles.tortilla_flav_5')
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W200-240 (All Purpose)",
+      pl_ratio: "0.40 (Extensible)",
+      absorption_capacity: "Low",
+      protein_type: "Soft Wheat mixture",
+      science_explanation: "High extensibility (L) is the priority. We want the dough to stretch indefinitely without tearing. Lard acts as a shortening agent, literally 'shortening' the gluten strands."
+    },
+    thermalProfile: {
+      oven_type: "Comal (Cast Iron Griddle)",
+      heat_distribution: "Direct Conduction",
+      crust_development: "Brown blister spots (ampollas) on a pale background",
+      crumb_structure: "Laminated layers, hollow puff"
+    },
+    fermentationScience: {
+      yeast_activity: "None",
+      ph_target: "Neutral",
+      organic_acids: "N/A",
+      enzymatic_activity: "N/A"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Lard is King",
+        explanation: "Vegetable oil makes a pliable tortilla, but Lard makes a flaky one. The solid fat crystals create layers."
+      },
+      {
+        tip: "Hot Water",
+        explanation: "If you use cold water, the fat will seize up and clump. Hot water keeps the potential liquid phase active."
+      },
+      {
+        tip: "Rest Time",
+        explanation: "If the dough shrinks back when you roll it, STOP. Cover it and wait 15 mins. You cannot force a wheat tortilla."
+      },
+      {
+        tip: "Steam Stack",
+        explanation: "Keep a cloth towel or 'Tortillero' ready. Stack the cooked tortillas immediately inside. The steam from the hot tortillas softens the others, keeping them flexible. If left in open air, they turn into crackers/chips."
+      }
     ],
-    "aromaProfile": [
-      t('styles.tortilla_aroma_1'),
-      t('styles.tortilla_aroma_2'),
-      t('styles.tortilla_aroma_3'),
-      t('styles.tortilla_aroma_4'),
-      t('styles.tortilla_aroma_5')
+    what_if: [
+      {
+        scenario: "They are stiff and cracker-like",
+        result: "Over-cooked or not enough fat",
+        correction: "Cook fast (max 45 seconds total) and ensure fat is > 15%."
+      },
+      {
+        scenario: "They are thick and bready",
+        result: "Rolled too thick",
+        correction: "Roll them until you can see the grain of the counter through the dough."
+      },
+      {
+        scenario: "They shrink when cooking",
+        result: "Gluten wasn't relaxed",
+        correction: "Rest the dough balls longer."
+      }
     ],
-    "textureNotes": [
-      t('styles.tortilla_text_1'),
-      t('styles.tortilla_text_2'),
-      t('styles.tortilla_text_3'),
-      t('styles.tortilla_text_4'),
-      t('styles.tortilla_text_5')
+    comparisons: [
+      {
+        vsStyle: "Corn Tortilla",
+        difference: "Corn is nixtamalized, earthy, GF; Wheat is fatty, neutral, and chewy.",
+        why_choose_this: "Choose Wheat for large wraps (Burritos)."
+      },
+      {
+        vsStyle: "Store-bought",
+        difference: "Commercial tortillas have preservatives and gums to stay flexible for weeks; homemade rely on fat and freshness. Homemade MUST be eaten fresh or frozen.",
+        why_choose_this: "Choose Homemade for flavor."
+      }
     ],
-    "pairingRecommendations": [
-      t('styles.tortilla_pair_1'),
-      t('styles.tortilla_pair_2'),
-      t('styles.tortilla_pair_3'),
-      t('styles.tortilla_pair_4'),
-      t('styles.tortilla_pair_5')
+    q_and_a: [
+      {
+        question: "Baking Powder?",
+        answer: "Purists say no, but it helps create that fluffy 'Tex-Mex' style. Authentic Sonoran is usually unleavened.",
+        context: "Ingredients"
+      },
+      {
+        question: "Can I use butter?",
+        answer: "Yes, but butter contains water (15%). Lard/Shortening is 100% fat. Tortillas made with butter are softer but less flaky.",
+        context: "Ingredients"
+      },
+      {
+        question: "Sobaqueras?",
+        answer: "Huge, arm-length tortillas made in Sonora, stretched over the armpit ('sobaco' slang).",
+        context: "Culture"
+      }
     ],
-    "flavorEvolution": [
-      t('styles.tortilla_fevo_1'),
-      t('styles.tortilla_fevo_2'),
-      t('styles.tortilla_fevo_3'),
-      t('styles.tortilla_fevo_4'),
-      t('styles.tortilla_fevo_5')
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Chemical leavening or none."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Typically no preferment; chemical leaveners sometimes used.",
-    "Hydration: 50-60%"
-  ],
-  "doughImpact": [
-    "High-quality fat (Lard or Oil) at 10-15% is critical for the 'short' texture and pliability",
-    "Hot Water (45-60°C) is often used to partially gelatinize starch, making the dough more extensible",
-    "Resting (30-60 mins) is MANDATORY to allow the gluten to relax for thin stretching",
-    "Low to medium hydration (50-60%) ensures the dough isn't sticky during hand-thinning",
-    "Chemical leavener (Baking Powder) provides the iconic soft 'bubbles' in American-style tortillas"
-  ],
-  "bakingImpact": [
-    "High heat (230-250°C) on a Comal/Flat-top is necessary for the 'spotty' Maillard browning",
-    "Short cooking time (30-45 seconds total) prevents the tortilla from drying out and becoming a 'cracker'",
-    "The 'Steam Puff' in the middle of baking ensures the layers separate, leading to a tender bite",
-    "Immediate stacking in a cloth 'sweats' the tortillas, using residual steam to fully soften the gluten",
-    "Lack of oil on the pan: tortillas are almost always baked 'dry' to prevent frying"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      50,
-      60
-    ],
-    "saltRange": [
-      1.5,
-      2
-    ],
-    "oilRange": [
-      5,
-      15
-    ],
-    "sugarRange": [
-      0,
-      3
-    ],
-    "flourStrength": t('styles.allpurpose_or_soft_wheat_flour'),
-    "fermentation": {
-      "bulk": t('styles.tortilla_ferm_bulk'),
-      "proof": t('styles.no_traditional_yeast_proofing_steps'),
-      "coldRetard": t('styles.optional_dough_rest_in_fridge')
+
+  deepDive: {
+    hydrationLogic: "50% water + 15-20% fat = 70% total fluids. That's why the dough is soft.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Standard." },
+      poolish: { suitable: false, notes: "N/A" }
     },
-    "oven": {
-      "type": "griddle_or_pan",
-      "temperatureC": [
-        180,
-        250
-      ],
-      "notes": t('styles.cooked_quickly_on_hot_comal_or_skillet')
-    },
-    "difficulty": t('styles.difficulty_medium'),
-    "recommendedUse": [
-      "Tortillas for tacos, wraps, quesadillas"
+    whatIf: [
+      {
+        scenario: "You omit the Fat",
+        outcome: "You get a hard, dry cracker (Matzah-like). Fat is the plasticizer.",
+        solution: "Don't omit fat."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Burrito vs Taco",
+        difference: "Burritos use wheat for structural integrity; Tacos use corn for flavor."
+      }
+    ],
+    proTips: [
+      "If you want them translucent like Sonora, hydration must be slightly higher and rolling pin work minimal (hand stretch).",
+      "Cook until the first brown spots appear, then flip. Don't wait for 'golden brown' all over."
     ]
   },
-  "regionalVariants": [
-    t('styles.tortilla_var_1'),
-    t('styles.tortilla_var_2'),
-    t('styles.tortilla_var_3'),
-    t('styles.tortilla_var_4'),
-    t('styles.tortilla_var_5')
+
+  tags: ["tortilla", "mexican", "flatbread", "lard", "unleavened", "soft"],
+
+  watchouts: [
+    "Cold dough won't roll.",
+    "Baking powder makes them cakey if overused.",
+    "Overcooking kills flexibility.",
+    "Lack of resting = triangular/oval shapes."
   ],
-  "climateScenarios": [
-    t('styles.tortilla_clim_1'),
-    t('styles.tortilla_clim_2'),
-    t('styles.tortilla_clim_3'),
-    t('styles.tortilla_clim_4')
+
+  notes: [
+    "Northern Mexico specialty.",
+    "Uses Lard + Hot Water.",
+    "Must be rolled paper-thin.",
+    "Stack while hot to steam-soften.",
+    "Base of the Burrito."
   ],
-  "styleComparisons": [
-    t('styles.tortilla_comp_1'),
-    t('styles.tortilla_comp_2'),
-    t('styles.tortilla_comp_3'),
-    t('styles.tortilla_comp_4')
-  ],
-  "parameterSensitivity": [
-    t('styles.tortilla_sens_1'),
-    t('styles.tortilla_sens_2'),
-    t('styles.tortilla_sens_3'),
-    t('styles.tortilla_sens_4'),
-    t('styles.tortilla_sens_5')
-  ],
-  "risks": [
-    t('styles.tortilla_risk_1'),
-    t('styles.tortilla_risk_2'),
-    t('styles.tortilla_risk_3'),
-    t('styles.tortilla_risk_4'),
-    t('styles.tortilla_risk_5')
-  ],
-  "notes": [
-    t('styles.tortilla_note_1'),
-    t('styles.tortilla_note_2'),
-    t('styles.tortilla_note_3'),
-    t('styles.tortilla_note_4'),
-    t('styles.tortilla_note_5')
-  ],
-  "tags": [
-    "Tortillas for tacos, wraps, quesadillas",
-    t('common.bread'),
-    t('common.mexico')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.tortilla_title'),
-      "url": "https://www.worldcat.org/title/mexican-cookery-flatbreads-of-the-north/",
-      "author": "Barbara Pool Fenzl",
-      "year": 1995
+      source: "Larousse de la Cocina Mexicana",
+      url: "https://laroussecocina.mx/",
+      author: "Alicia Gironella",
+      year: "2018"
     },
     {
-      "title": t('styles.modernist_bread_20'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
-    },
-    {
-      "title": t('styles.tortilla_title'),
-      "url": "https://www.latimes.com/food/la-fo-flour-tortilla-master-class-20180517-story.html",
-      "author": "L.A. Times",
-      "year": 2018
-    },
-    {
-      "title": t('styles.tortilla_title'),
-      "url": "https://www.foodandwine.com/news/sonoran-flour-tortilla-history",
-      "author": "Food & Wine",
-      "year": 2019
+      source: "Pati Jinich Treasures",
+      url: "https://patijinich.com/",
+      author: "Pati Jinich",
+      year: "2016"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": t('styles.tortilla_faq_1_q'),
-      "answer": t('styles.tortilla_faq_1_a')
-    },
-    {
-      "question": t('styles.tortilla_faq_2_q'),
-      "answer": t('styles.tortilla_faq_2_a')
-    },
-    {
-      "question": t('styles.tortilla_faq_3_q'),
-      "answer": t('styles.tortilla_faq_3_a')
-    },
-    {
-      "question": t('styles.tortilla_faq_4_q'),
-      "answer": t('styles.tortilla_faq_4_a')
-    },
-    {
-      "question": t('styles.tortilla_faq_5_q'),
-      "answer": t('styles.tortilla_faq_5_a')
-    }
-  ],
-  "affiliateProducts": [],
 
-  "isCanonical": true,
-  "source": "official"
-,
-  "defaults": {
-    "hydration": 70,
-    "salt": 2,
-    "oil": 0,
-    "sugar": 0
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/wheat-tortilla-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["lard_pork_fat", "butter", "cheese_cheddar"]
 };

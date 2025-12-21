@@ -234,6 +234,6 @@ export const pain_au_chocolat: StyleDefinition = {
 
   "isCanonical": true,
   "source": "official"
-,
-  "recommendedFlavorComponents": ["butter","sugar","vanilla","cinnamon","chocolate"]
+  ,
+  recommendedFlavorComponents: ["dark_chocolate_70", "butter_dry_84", "vanilla_madagascar"]
 };

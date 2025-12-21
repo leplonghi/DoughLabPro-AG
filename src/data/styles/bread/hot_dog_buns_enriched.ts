@@ -247,12 +247,12 @@ export const hot_dog_buns_enriched: StyleDefinition = {
 
   "isCanonical": true,
   "source": "official"
-,
+  ,
   "defaults": {
     "hydration": 70,
     "salt": 2,
     "oil": 0,
     "sugar": 0
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["sesame_seeds", "poppy_seeds"]
 };

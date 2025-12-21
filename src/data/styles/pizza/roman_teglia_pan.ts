@@ -180,7 +180,7 @@ export const roman_teglia_pan: DoughStyleDefinition = {
       },
       {
         method: "Direct",
-        suitability: "Not Recommended",
+        suitability: "Possible",
         notes: "Same-day Teglia will be heavy and won't develop the iconic alveolation."
       },
       {
@@ -239,7 +239,9 @@ export const roman_teglia_pan: DoughStyleDefinition = {
   references: [
     {
       source: "API - Associazione Pizzerie Italiane (Angelo Iezzi)",
-      url: "https://www.api-pizzerie.it/"
+      url: "https://www.api-pizzerie.it/",
+      author: "Angelo Iezzi",
+      year: "2019"
     },
     {
       source: "Il Gioco della Pizza",
@@ -255,7 +257,7 @@ export const roman_teglia_pan: DoughStyleDefinition = {
     }
   ],
 
-  isPro: false,
+  isPro: true,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),

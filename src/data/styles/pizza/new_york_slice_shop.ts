@@ -166,7 +166,7 @@ export const new_york_slice_shop: DoughStyleDefinition = {
     ],
     fermentation_methods: [
       {
-        method: "Cold",
+        method: "Hybrid",
         suitability: "Authentic",
         notes: "Mandatory for the NY texture and flavor depth."
       },
