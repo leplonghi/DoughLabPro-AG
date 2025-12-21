@@ -209,4 +209,5 @@ export interface DoughStyle {
     regulatory_info?: string;
     global_presence?: string;
     variations?: any[];
+    recommendedFlavorComponents?: string[];
 }

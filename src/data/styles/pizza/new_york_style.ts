@@ -173,18 +173,18 @@ export const new_york_style: DoughStyleDefinition = {
         ],
         fermentation_methods: [
             {
-                method: "Cold Retard (24-72h)",
+                method: "Hybrid",
                 suitability: "Authentic",
-                notes: "Standard practice for NY-style. Develops complex flavors and improves texture. Essential for authentic results."
+                notes: "Cold Retard (24-72h). Standard practice for NY-style. Develops complex flavors and improves texture. Essential for authentic results."
             },
             {
-                method: "Direct (Same Day)",
+                method: "Direct",
                 suitability: "Possible",
-                notes: "Works in a pinch but lacks the complex flavors and improved texture from cold fermentation. Not traditional."
+                notes: "Same Day. Works in a pinch but lacks the complex flavors and improved texture from cold fermentation. Not traditional."
             },
             {
                 method: "Biga",
-                suitability: "Modern Adaptation",
+                suitability: "Possible",
                 notes: "Some modern pizzerias use biga for added complexity, but not traditional for classic NY-style."
             }
         ]
@@ -251,7 +251,7 @@ export const new_york_style: DoughStyleDefinition = {
         "Coal-fired ovens became standard due to coal's economic availability in early 1900s",
         "The 'Pizza Principle' - slice cost historically correlated with subway fare"
     ],
-
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "pepperoni", "pecorino_romano", "oregano_dried", "garlic_oregano"],
     references: [
         {
             source: "Lombardi's Pizza - First Pizzeria in USA",

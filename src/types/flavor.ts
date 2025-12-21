@@ -7,7 +7,9 @@ export type FlavorCategory =
     | 'Finish'
     | 'Bread Filling'
     | 'Pastry Filling'
-    | 'Spice';
+    | 'Spice'
+    | 'Dairy'
+    | 'Seafood';
 
 export interface FlavorTextureProfile {
     intensity: number; // 1-5

@@ -171,19 +171,19 @@ export const neapolitan_avpn_classic: DoughStyleDefinition = {
     ],
     fermentation_methods: [
       {
-        method: "Direct (Room Temperature)",
+        method: "Direct",
         suitability: "Authentic",
-        notes: "8-24 hours at 22-25°C is the traditional AVPN method. Develops flavor and extensibility without cold retard."
+        notes: "Room Temperature fermentation. Standard for Neapolitan pizza."
       },
       {
-        method: "Cold Retard",
-        suitability: "Modern Adaptation",
-        notes: "Some contemporary pizzaiolos use overnight cold fermentation, but this is not traditional AVPN practice."
+        method: "Hybrid",
+        suitability: "Possible",
+        notes: "Cold Retard. Modern adaptation for consistency and cold fermentation benefits."
       },
       {
-        method: "Biga/Poolish",
-        suitability: "Not Traditional",
-        notes: "Preferments are not part of authentic AVPN Neapolitan pizza. Direct dough only."
+        method: "Biga",
+        suitability: "Not Recommended",
+        notes: "Biga/Poolish. Not traditional for Neapolitan pizza; produces a different crumb and crust character."
       }
     ]
   },
@@ -249,6 +249,7 @@ export const neapolitan_avpn_classic: DoughStyleDefinition = {
     "Pizza Margherita was created in 1889 for Queen Margherita of Savoy",
     "European Union granted TSG (Traditional Speciality Guaranteed) status in 2010"
   ],
+  recommendedFlavorComponents: ["fior_di_latte", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "pecorino_romano"],
 
   references: [
     {

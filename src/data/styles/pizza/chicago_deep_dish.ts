@@ -173,19 +173,19 @@ export const chicago_deep_dish: DoughStyleDefinition = {
     ],
     fermentation_methods: [
       {
-        method: "Direct (1-2 hours)",
+        method: "Direct",
         suitability: "Authentic",
-        notes: "Traditional for deep dish. Short fermentation because flavor comes from fat and fillings, not yeast development."
+        notes: "1-2 hours. Traditional for deep dish. Short fermentation because flavor comes from fat and fillings, not yeast development."
       },
       {
-        method: "Cold Retard",
-        suitability: "Not Traditional",
-        notes: "Not part of authentic deep dish. The style relies on fat for flavor, not fermentation complexity."
+        method: "Hybrid",
+        suitability: "Not Recommended",
+        notes: "Cold Retard. Not part of authentic deep dish. The style relies on fat for flavor, not fermentation complexity."
       },
       {
-        method: "Preferment",
-        suitability: "Not Traditional",
-        notes: "Not used in traditional deep dish. Would develop too much gluten and change the biscuit-like texture."
+        method: "Biga",
+        suitability: "Not Recommended",
+        notes: "Preferment. Not used in traditional deep dish. Would develop too much gluten and change the biscuit-like texture."
       }
     ]
   },
@@ -251,6 +251,8 @@ export const chicago_deep_dish: DoughStyleDefinition = {
     "Lou Malnati's (1971) introduced buttery, laminated crust variation",
     "Locals often prefer tavern-style thin crust for daily eating - deep dish is special occasion food"
   ],
+
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "italian_sausage", "provolone", "bell_pepper"],
 
   references: [
     {

@@ -139,9 +139,9 @@ export const california_style: DoughStyleDefinition = {
         notes: "Works but loses complexity. Cold retard is preferred for authentic California style."
       },
       {
-        method: "Cold Retard",
+        method: "Hybrid",
         suitability: "Authentic",
-        notes: "12-24 hours cold fermentation develops the complex flavors characteristic of California style."
+        notes: "Cold Retard. 12-24 hours cold fermentation develops the complex flavors characteristic of California style."
       }
     ]
   },
@@ -192,7 +192,7 @@ export const california_style: DoughStyleDefinition = {
     "Open kitchens with wood-fired ovens became standard",
     "California Pizza Kitchen brought the style to mainstream America in 1985"
   ],
-
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "fior_di_latte", "burrata", "cherry_tomatoes", "basil_fresh", "olive_oil_extra_virgin"],
   references: [
     {
       source: "Wikipedia - California-style pizza",

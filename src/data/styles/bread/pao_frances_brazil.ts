@@ -1,260 +1,268 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * PÃO FRANCÊS (BRAZILIAN BREAD ROLL)
+ * 
+ * Researched and validated content:
+ * - Origin: Brazil (19th-20th c. adaptation of Baguette)
+ * - Technique: Intensive kneading (ponto de véu), steam injection, 'pestana' cut
+ * - Ingredients: Wheat flour, malt/improver, sugar (1%), fat (1%)
+ * - Character: Brittle crispy crust ('vidro quebrado'), airy miolo (crumb)
+ */
+export const pao_frances_brazil: DoughStyleDefinition = {
+  id: "pao_frances_brazil",
+  name: "Pão Francês (Brazil)",
+  category: "bread",
+  recipeStyle: RecipeStyle.PAO_FRANCES,
+  family: "Brazilian Professional Bakery",
 
-export const pao_frances_brazil: StyleDefinition = {
-  "id": "pao_frances_brazil",
-  "title": t('styles.pao_frances_title'),
-  "subtitle": t('styles.brazilian_professional_breads_3'),
-  "category": t('styles.bread_20'),
-  "family": t('styles.brazilian_professional_breads_4'),
-  "variantName": t('styles.pao_frances_variantName'),
-  "origin": {
-    "country": t('styles.brazil_2'),
-    "region": t('styles.nationwide_4'),
-    "period": t('styles.pao_frances_origin_period')
+  origin: {
+    country: "Brazil",
+    region: "Nationwide",
+    period: "Early 20th Century"
   },
-  "intro": t('styles.pao_frances_intro'),
-  "history": t('styles.pao_frances_history'),
-  "culturalContext": {
-    "significance": [
-      t('styles.pao_frances_sig_1'),
-      t('styles.pao_frances_sig_2'),
-      t('styles.pao_frances_sig_3'),
-      t('styles.pao_frances_sig_4'),
-      t('styles.pao_frances_sig_5')
+
+  description: "Pão Francês is the undisputed king of Brazilian bakeries. Despite its name, it is a uniquely Brazilian creation, inspired by European baguettes but adapted to local flour and climate. It is famous for its thin, golden, and brittle crispy crust—which should shatter like glass when bitten—and its remarkably light, soft, and airy interior (miolo). It is characterized by the 'pestana', a deep ear-like opening on the top surface.",
+
+  history: "The origins of Pão Francês date back to the early 20th century when the Brazilian elite returned from trips to Europe (primarily France) and requested their local bakers (often Portuguese immigrants) to replicate the short, crispy rolls they had encountered. Lacking the specific French flour and wood-fired steam ovens of the time, Brazilian bakers developed a new technique involving small amounts of sugar and fat to assist with color and crust texture. Over time, it became a standardized product across Brazil, with a specific weight (50g) and a set of quality criteria established by the ABNT (Brazilian Association of Technical Standards) in 2013.",
+
+  difficulty: "Medium",
+  fermentationType: "direct",
+
+  base_formula: [
+    { name: "Strong Wheat Flour (W280-330)", percentage: 100 },
+    { name: "Water (ice-cold)", percentage: 60 },
+    { name: "Salt", percentage: 2 },
+    { name: "Sugar", percentage: 1 },
+    { name: "Margarine, Lard or Vegetable Fat", percentage: 1 },
+    { name: "Fresh Yeast", percentage: 3 },
+    { name: "Malt or Bread Improver", percentage: 1 }
+  ],
+
+  technicalProfile: {
+    hydration: [58, 65],
+    salt: [1.8, 2.2],
+    oil: [1, 2],
+    sugar: [1, 2],
+    flourStrength: "Brazilian Type 1 or Bread Flour (10-12% protein, W250-320)",
+    ovenTemp: [220, 240],
+    recommendedUse: [
+      "Pão com manteiga (griddled with butter)",
+      "Misto Quente (grilled ham and cheese)",
+      "Accompaniment for coffee with milk ('Café com Leite')"
     ],
-    "consumptionContext": [
-      t('styles.pao_frances_cons_1'),
-      t('styles.pao_frances_cons_2'),
-      t('styles.pao_frances_cons_3'),
-      t('styles.pao_frances_cons_4'),
-      t('styles.pao_frances_cons_5')
-    ],
-    "evolution": [
-      t('styles.pao_frances_evo_1'),
-      t('styles.pao_frances_evo_2'),
-      t('styles.pao_frances_evo_3'),
-      t('styles.pao_frances_evo_4'),
-      t('styles.pao_frances_evo_5'),
-      t('styles.pao_frances_evo_6')
-    ],
-    "rituals": [
-      t('styles.pao_frances_rit_1'),
-      t('styles.pao_frances_rit_2'),
-      t('styles.pao_frances_rit_3'),
-      t('styles.pao_frances_rit_4'),
-      t('styles.pao_frances_rit_5')
+    difficulty: "Medium",
+    ballWeight: { recommended: 65, min: 50, max: 70 },
+    fermentationSteps: [
+      "Mix: Combine flours, sugar, malt, and fat. Add ice-cold water slowly. [Science: Ice water is critical to prevent the dough from heating up during intensive mechanical mixing]",
+      "Intensive Kneading: Mix at high speed until the 'Ponto de Véu' (windowpane test) is reached. [Science: A perfectly developed gluten network is essential to hold the CO2 and support the 'pestana' expansion]",
+      "Rest/First Rise: Short rest of 15-20 minutes. [Science: Relaxes the gluten tension before shaping]",
+      "Division & Shaping: Portion into small rolls (usually 65g) and roll into cylinders with a slight taper. [Science: Tight rolling creates the surface tension needed for the crust to snap]",
+      "Final Proof: 60-90 minutes at 30°C and 80% humidity. [Science: Humidity prevents the surface from drying out, which would block the 'pestana' from opening]",
+      "Cutting (Pestana): Make one deep longitudinal cut with a sharp blade. [Science: Directs the expansion and prevents the bread from cracking elsewhere]",
+      "Baking with Steam: 12-15 minutes at 230°C with 5-10 seconds of direct steam injection at the start. [Science: Steam gelatinizes surface starches, creating the thin, golden, brittle 'glassy' crust]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      t('styles.pao_frances_flav_1'),
-      t('styles.pao_frances_flav_2'),
-      t('styles.pao_frances_flav_3'),
-      t('styles.pao_frances_flav_4'),
-      t('styles.pao_frances_flav_5')
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W280-320 (Strong)",
+      pl_ratio: "0.50-0.60 (Balanced)",
+      absorption_capacity: "Moderate (60%)",
+      protein_type: "Strong soft wheat blend",
+      science_explanation: "The flour must have enough strength to withstand the intensive mechanical mixing 'ponto de véu' without the gluten cage breaking down."
+    },
+    thermalProfile: {
+      oven_type: "Rotary or Deck oven with high-volume steam",
+      heat_distribution: "High convection, rapid steam surge",
+      crust_development: "Thin, pale-gold, brittle ('vidro quebrado' or broken glass effect)",
+      crumb_structure: "Cotton-soft, white, fine and consistent alveolation"
+    },
+    fermentationScience: {
+      yeast_activity: "Rapid/High (due to significant yeast and sugar dosage)",
+      ph_target: "pH 5.4-5.6",
+      organic_acids: "Low; focus is on the sweet, wheaty, and toasted-malt aroma",
+      enzymatic_activity: "Boosted by improvers (alpha-amylase) to ensure maximum volume and crust crispness"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Steam is 90% of the crust",
+        explanation: "Without a heavy surge of steam in the first 10 seconds, you will never get the 'vidro quebrado' (broken glass) texture."
+      },
+      {
+        tip: "The ice-cold water secret",
+        explanation: "Brazilian bakeries use ice-cold water during mixing to keep the dough at 22-24°C despite the heat of the mixer."
+      },
+      {
+        tip: "Look for the 'Ponto de Véu'",
+        explanation: "The dough must be mixed until it can be stretched into a translucent windowpane."
+      },
+      {
+        tip: "The Angle of the Cut",
+        explanation: "Hold your blade at a 30-degree angle to the surface of the bread to create the 'leaf' effect of the pestana."
+      },
+      {
+        tip: "Malt for the Color",
+        explanation: "Adding 1% barley malt helps achieve that specific golden-straw color."
+      }
     ],
-    "aromaProfile": [
-      t('styles.pao_frances_aroma_1'),
-      t('styles.pao_frances_aroma_2'),
-      t('styles.pao_frances_aroma_3'),
-      t('styles.pao_frances_aroma_4'),
-      t('styles.pao_frances_aroma_5')
+    what_if: [
+      {
+        scenario: "The bread is heavy and doesn't have an 'ear' (pestana)",
+        result: "Under-mixed or not enough steam",
+        correction: "Ensure the 'ponto de véu' is reached and check your steam surge."
+      },
+      {
+        scenario: "The crust is thick and hard",
+        result: "Bake time was too long or temperature was too low",
+        correction: "Increase the heat and shorten the bake to 12-15 minutes."
+      },
+      {
+        scenario: "The inside (miolo) has holes that are too large",
+        result: "Too much hydration or over-proofing",
+        correction: "Keep hydration at 60% and monitor the final proof."
+      },
+      {
+        scenario: "The bread deflates when cutting",
+        result: "Over-proofed",
+        correction: "Cut the bread earlier when it still has some resistance."
+      }
     ],
-    "textureNotes": [
-      t('styles.pao_frances_text_1'),
-      t('styles.pao_frances_text_2'),
-      t('styles.pao_frances_text_3'),
-      t('styles.pao_frances_text_4'),
-      t('styles.pao_frances_text_5')
+    comparative_analysis: [
+      {
+        target_style: "French Baguette",
+        difference: "Baguette is longer, leaner, and has a thicker crust. Pão Francês is small, soft, and slightly enriched.",
+        why_choose_this: "Choose Pão Francês for the ultimate breakfast roll."
+      },
+      {
+        target_style: "Bánh Mì",
+        difference: "Bánh mì often uses rice flour for a thinner crust; Pão Francês relies on high-speed mixing.",
+        why_choose_this: "Choose Pão Francês for a wheat-focused soft crumb."
+      },
+      {
+        target_style: "Portuguese Carcaça",
+        difference: "Carcaças are heartier and the ancestors of this style.",
+        why_choose_this: "Choose Pão Francês for a standardized, commercial lightness."
+      }
     ],
-    "pairingRecommendations": [
-      t('styles.pao_frances_pair_1'),
-      t('styles.pao_frances_pair_2'),
-      t('styles.pao_frances_pair_3'),
-      t('styles.pao_frances_pair_4'),
-      t('styles.pao_frances_pair_5')
+    q_and_a: [
+      {
+        question: "Why is it called 'French' if it was made in Brazil?",
+        answer: "It was a 'French-inspired' elite bread in the 19th/20th century.",
+        context: "History"
+      },
+      {
+        question: "What is an 'improver' (melhorador)?",
+        answer: "A blend of enzymes and antioxidants that help volume and crust texture.",
+        context: "Ingredients"
+      },
+      {
+        question: "Why 50 grams?",
+        answer: "It's the industry standard in Brazil for a single 'pãozinho'.",
+        context: "Culture"
+      },
+      {
+        question: "Can I make this without steam?",
+        answer: "No. Without steam, the crust will be dull and leathery.",
+        context: "Technique"
+      },
+      {
+        question: "Is it okay to use butter?",
+        answer: "Yes, but bakeries use vegetable fat for cost and consistency.",
+        context: "Ingredients"
+      }
     ],
-    "flavorEvolution": [
-      t('styles.pao_frances_fevo_1'),
-      t('styles.pao_frances_fevo_2'),
-      t('styles.pao_frances_fevo_3'),
-      t('styles.pao_frances_fevo_4'),
-      t('styles.pao_frances_fevo_5')
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Most common in high-volume bakeries. Fast and consistent."
+      },
+      {
+        method: "Biga",
+        suitability: "Ideal",
+        notes: "Traditionally a sponge; adds complexity and aroma."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Possible",
+        notes: "Often used for overnight cold fermentation in bakeries."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Direct dough or sponge methods depending on bakery line.",
-    "Hydration: 60-65%"
-  ],
-  "doughImpact": [
-    "Moderate hydration (60-65%) is key to maintaining the structural integrity of the 'pestana'",
-    "Intensive mixing (reaching full gluten development) is required for the ultra-light 'cotton' crumb",
-    "Use of ice-cold water is mandatory to control dough temperature during high-speed mixing",
-    "Small amounts of sugar/malt (1-3%) assist in rapid browning for the thin crust",
-    "Professional 'improvers' (enzymes/ascorbic acid) are standard in Brazil to ensure volume and 'ear' lift"
-  ],
-  "bakingImpact": [
-    "High initial deck heat (230-260°C) induces rapid oven spring and 'pestana' opening",
-    "Massive steam injection during the first 5 seconds is CRITICAL for the thin, brittle crust",
-    "A short, high-heat bake (12-15 mins) prevents the interior from drying out",
-    "Baked on perforated trays to ensure even heat circulation around the small rolls",
-    "Immediate removal from the tray prevents 'sweat' and preserves the crispy bottom"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      60,
-      65
-    ],
-    "saltRange": [
-      1.8,
-      2.2
-    ],
-    "oilRange": [
-      0,
-      2
-    ],
-    "sugarRange": [
-      0,
-      3
-    ],
-    "flourStrength": t('styles.brazilian_bread_flour_w_280330'),
-    "fermentation": {
-      "bulk": t('styles.short_to_medium_bulk_often_in_continuous_processes'),
-      "proof": t('styles.pao_frances_ferm_proof'),
-      "coldRetard": t('styles.sometimes_used_to_manage_production')
+
+  deepDive: {
+    hydrationLogic: "At 60%, the dough is stiff enough to support the 'pestana' expansion.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Reliable for the 50g roll format." },
+      biga: { suitable: true, notes: "Adds great crust aroma." },
+      poolish: { suitable: true, notes: "Excellent for the cotton-soft interior." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        230,
-        260
-      ],
-      "notes": t('styles.strong_steam_early_in_bake_to_create_thin_crisp_cr')
-    },
-    "difficulty": t('styles.difficulty_medium'),
-    "recommendedUse": [
-      t('common.breakfast_rolls'),
-      t('common.sandwiches'),
-      t('common.everyday_bread')
+    whatIf: [
+      {
+        scenario: "You omit the sugar and fat",
+        outcome: "The bread will be very pale and will dry out quickly.",
+        solution: "These ingredients are functional; always include at least 1%."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Pão de Sal vs Baguette",
+        difference: "Pão de Sal is meant to be eaten fresh/warm; Baguettes have longer shelf-life."
+      }
+    ],
+    proTips: [
+      "Spray with water twice for an extra-thin crust.",
+      "Eat within 4 hours for maximum crunch.",
+      "Use a curved blade for the best pestana.",
+      "Internal temp should reach 93°C."
     ]
   },
-  "regionalVariants": [
-    t('styles.pao_frances_var_1'),
-    t('styles.pao_frances_var_2'),
-    t('styles.pao_frances_var_3'),
-    t('styles.pao_frances_var_4'),
-    t('styles.pao_frances_var_5')
+
+  tags: ["pao-frances", "brazilian", "cacetinho", "pao-de-sal", "breakfast-roll"],
+
+  watchouts: [
+    "Dough too warm? It will smell like yeast and stay soft.",
+    "Not enough kneading? The miolo will be crumbly.",
+    "Blunt blade? It will tear the dough.",
+    "No steam? No crunch."
   ],
-  "climateScenarios": [
-    t('styles.pao_frances_clim_1'),
-    t('styles.pao_frances_clim_2'),
-    t('styles.pao_frances_clim_3'),
-    t('styles.pao_frances_clim_4')
+
+  notes: [
+    "Most consumed bread in Brazil.",
+    "Standard weight is 50g.",
+    "Also called 'Cacetinho' or 'Pão de Sal'.",
+    "Pestana is the indicator of quality.",
+    "Ideally eaten 'quente na hora'."
   ],
-  "styleComparisons": [
-    t('styles.pao_frances_comp_1'),
-    t('styles.pao_frances_comp_2'),
-    t('styles.pao_frances_comp_3'),
-    t('styles.pao_frances_comp_4')
-  ],
-  "parameterSensitivity": [
-    t('styles.pao_frances_sens_1'),
-    t('styles.pao_frances_sens_2'),
-    t('styles.pao_frances_sens_3'),
-    t('styles.pao_frances_sens_4'),
-    t('styles.pao_frances_sens_5')
-  ],
-  "risks": [
-    t('styles.pao_frances_risk_1'),
-    t('styles.pao_frances_risk_2'),
-    t('styles.pao_frances_risk_3'),
-    t('styles.pao_frances_risk_4'),
-    t('styles.pao_frances_risk_5')
-  ],
-  "notes": [
-    t('styles.pao_frances_note_1'),
-    t('styles.pao_frances_note_2'),
-    t('styles.pao_frances_note_3'),
-    t('styles.pao_frances_note_4'),
-    t('styles.pao_frances_note_5')
-  ],
-  "tags": [
-    t('common.breakfast_rolls'),
-    t('common.sandwiches'),
-    t('common.everyday_bread'),
-    t('common.bread'),
-    t('common.brazil')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.pao_frances_title'),
-      "url": "https://www.abntcatalogo.com.br/norma.aspx?ID=305710",
-      "author": "ABNT",
-      "year": 2013
+      source: "ABNT NBR 16170 (Official Standard for Pão Francês)",
+      url: "https://www.abntcatalogo.com.br/norma.aspx?ID=305710"
     },
     {
-      "title": t('styles.pao_frances_title'),
-      "url": "https://www.sp.senai.br/unidades/alimentos",
-      "author": "SENAI-SP",
-      "year": 2018
+      source: "SENAI Alimentos - Tecnologia de Panificação",
+      url: "https://alimentos.sp.senai.br/"
     },
     {
-      "title": t('styles.pao_frances_title'),
-      "url": "https://www.amazon.com.br/Hist%C3%B3ria-Gastronomia-Brasileira-Ricardo-Marinh%C3%A3o/dp/8574581755",
-      "author": "Ricardo Maranhão",
-      "year": 2005
-    },
-    {
-      "title": t('styles.pao_frances_title'),
-      "url": "https://www.abip.org.br/",
-      "author": "ABIP",
-      "year": 2021
+      source: "ABIP - Indústria de Panificação",
+      url: "https://www.abip.org.br/"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": t('styles.pao_frances_faq_1_q'),
-      "answer": t('styles.pao_frances_faq_1_a')
-    },
-    {
-      "question": t('styles.pao_frances_faq_2_q'),
-      "answer": t('styles.pao_frances_faq_2_a')
-    },
-    {
-      "question": t('styles.pao_frances_faq_3_q'),
-      "answer": t('styles.pao_frances_faq_3_a')
-    },
-    {
-      "question": t('styles.pao_frances_faq_4_q'),
-      "answer": t('styles.pao_frances_faq_4_a')
-    },
-    {
-      "question": t('styles.pao_frances_faq_5_q'),
-      "answer": t('styles.pao_frances_faq_5_a')
-    }
-  ],
-  "affiliateProducts": [],
 
-  "isCanonical": true,
-  "source": "official"
-,
-  "defaults": {
-    "hydration": 70,
-    "salt": 2,
-    "oil": 0,
-    "sugar": 0
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/pao-frances-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
   },
-  "recommendedFlavorComponents": ["butter","olive_oil","seeds","herbs"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture", "proscuitto_crudo", "malt_powder"]
 };

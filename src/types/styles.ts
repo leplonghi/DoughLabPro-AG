@@ -88,6 +88,7 @@ export enum RecipeStyle {
     PASTRY_CINNAMON_ROLL = 'PASTRY_CINNAMON_ROLL',
     PASTRY_DANISH = 'PASTRY_DANISH',
     FRENCH_CROISSANT = 'FRENCH_CROISSANT',
+    PANETTONE_ARTISANAL = 'PANETTONE_ARTISANAL',
     PUFF_PASTRY = 'PUFF_PASTRY',
     COOKIE_CLASSIC_CHOC_CHIP = 'COOKIE_CLASSIC_CHOC_CHIP',
     COOKIE_BROWN_BUTTER = 'COOKIE_BROWN_BUTTER',
@@ -356,4 +357,5 @@ export interface DoughStyleDefinition {
      * IDs of recommended increments/ingredients for this style.
      */
     recommendedIncrements?: string[];
+    recommendedFlavorComponents?: string[];
 }

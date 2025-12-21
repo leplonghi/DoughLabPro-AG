@@ -190,7 +190,8 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
             if (typeof r === 'string') return r;
             return r?.source || r?.url || '';
         }).filter(Boolean),
-        images: def.images
+        images: def.images,
+        recommendedFlavorComponents: def.recommendedFlavorComponents
     };
 }
 
@@ -814,28 +815,35 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                             </div>
 
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                {FLAVOR_COMPONENTS.filter(c => c.commonStyles.includes(styleData.id)).length > 0 ? (
-                                    FLAVOR_COMPONENTS.filter(c => c.commonStyles.includes(styleData.id)).map(component => (
-                                        <button
-                                            key={component.id}
-                                            onClick={() => setSelectedFlavorComponent(component)}
-                                            className="flex flex-col items-start p-3 bg-white border border-slate-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all text-left group"
-                                        >
-                                            <span className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-1 group-hover:text-orange-700">{component.category}</span>
-                                            <span className="font-bold text-slate-800 group-hover:text-orange-900">{component.name}</span>
-                                            <div className="flex gap-1 mt-2">
-                                                <span className={`w-2 h-2 rounded-full ${component.applicationMoment === 'post_oven' ? 'bg-purple-400' : 'bg-orange-400'}`} title={component.applicationMoment === 'post_oven' ? 'Post-Oven' : 'Pre-Oven'} />
-                                                <span className="text-[10px] text-slate-400 font-medium">
-                                                    {component.applicationMoment === 'post_oven' ? t('ui.finish_246') : t('ui.cook_247')}
-                                                </span>
-                                            </div>
-                                        </button>
-                                    ))
-                                ) : (
-                                    <div className="col-span-full py-4 text-center text-slate-500 text-sm italic">
-                                        No specific favor components mapped to this style yet.
-                                    </div>
-                                )}
+                                {(() => {
+                                    const components = styleData.recommendedFlavorComponents && styleData.recommendedFlavorComponents.length > 0
+                                        ? FLAVOR_COMPONENTS.filter(c => styleData.recommendedFlavorComponents?.includes(c.id))
+                                        : FLAVOR_COMPONENTS.filter(c => c.commonStyles.includes(styleData.id));
+
+                                    if (components.length > 0) {
+                                        return components.map(component => (
+                                            <button
+                                                key={component.id}
+                                                onClick={() => setSelectedFlavorComponent(component)}
+                                                className="flex flex-col items-start p-3 bg-white border border-slate-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all text-left group"
+                                            >
+                                                <span className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-1 group-hover:text-orange-700">{component.category}</span>
+                                                <span className="font-bold text-slate-800 group-hover:text-orange-900">{component.name}</span>
+                                                <div className="flex gap-1 mt-2">
+                                                    <span className={`w-2 h-2 rounded-full ${component.applicationMoment === 'post_oven' ? 'bg-purple-400' : 'bg-orange-400'}`} title={component.applicationMoment === 'post_oven' ? 'Post-Oven' : 'Pre-Oven'} />
+                                                    <span className="text-[10px] text-slate-400 font-medium">
+                                                        {component.applicationMoment === 'post_oven' ? t('ui.finish_246') : t('ui.cook_247')}
+                                                    </span>
+                                                </div>
+                                            </button>
+                                        ));
+                                    }
+                                    return (
+                                        <div className="col-span-full py-4 text-center text-slate-500 text-sm italic">
+                                            No specific flavor components mapped to this style yet.
+                                        </div>
+                                    );
+                                })()}
                             </div>
                         </section>
 
