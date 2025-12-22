@@ -162,7 +162,8 @@ export const pita_bread_flatbread: DoughStyleDefinition = {
     hydrationLogic: "60-63% is the sweet spot. Too wet = hard to transfer. Too dry = won't steam enough.",
     methodSuitability: {
       direct: { suitable: true, notes: "Best." },
-      poolish: { suitable: true, notes: "Good flavor." }
+      poolish: { suitable: true, notes: "Good flavor." },
+      biga: { suitable: false, notes: "Too stiff." }
     },
     whatIf: [
       {
@@ -226,5 +227,5 @@ export const pita_bread_flatbread: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["olive_oil", "yogurt_plain", "honey_raw"]
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "yogurt_plain", "honey_raw"]
 };

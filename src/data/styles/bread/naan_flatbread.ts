@@ -245,5 +245,5 @@ export const naan_flatbread: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["yogurt_plain", "ghee_clarified_butter", "nigella_seeds", "garlic_raw"]
+  recommendedFlavorComponents: ["yogurt_plain", "ghee_clarified_butter", "nigella_seeds", "garlic_fresh"]
 };

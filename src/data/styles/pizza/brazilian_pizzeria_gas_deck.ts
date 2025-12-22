@@ -260,5 +260,5 @@ export const brazilian_pizzeria_gas_deck: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce", "calabresa", "catupiry", "onions_fresh", "boiled_eggs", "oregano_dried"]
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "calabresa", "catupiry", "onions_fresh", "boiled_eggs", "oregano_dried"]
 };

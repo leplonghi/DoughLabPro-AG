@@ -2313,5 +2313,330 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
         variations: 'Extract, Paste.',
         references: [],
         isStandard: true
+    },
+    {
+        id: 'molasses',
+        name: 'Molasses (Blackstrap)',
+        category: 'Spice',
+        description: 'Thick, dark syrup produced during sugar extraction. Robust, bittersweet flavor.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 4,
+            thermalBehavior: 'Determines the dark color and moisture of rye breads and gingerbread.'
+        },
+        origin: 'Caribbean / American South.',
+        historyContext: 'The sweetener of the working class before refined sugar became cheap.',
+        commonStyles: ['vollkornbrot_100_rye', 'pumpernickel'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Rye Flour',
+            'Ginger',
+            'Coffee'
+        ],
+        technicalNotes: 'Acidity in molasses reacts with baking soda for reliable leavening.',
+        applicationMoment: 'pre_oven',
+        variations: 'Treacle (lighter), Sorghum Syrup.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'hazelnuts',
+        name: 'Hazelnuts',
+        category: 'Vegetal',
+        description: 'Sweet, buttery round nuts with a paper-like skin.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 0,
+            sweetness: 3,
+            thermalBehavior: 'Roasting is essential to remove skins and release oils.'
+        },
+        origin: 'Turkey / Italy (Piedmont).',
+        historyContext: 'The base of Gianduja and Nutella.',
+        commonStyles: ['pate_sablee_classic', 'meringue'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chocolate',
+            'Coffee',
+            'Caramel'
+        ],
+        technicalNotes: 'Rub hot roasted nuts in a towel to remove bitter skins.',
+        applicationMoment: 'pre_oven',
+        variations: 'Hazelnut Praline (Paste).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'cheddar_cheese',
+        name: 'Cheddar Cheese (Sharp)',
+        category: 'Cheese',
+        description: 'Firm cow\'s milk cheese with ranging sharpness and orange/white color.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 4,
+            salinity: 4,
+            sweetness: 1,
+            thermalBehavior: 'Separates into oil if heated too quickly. Aged versions don\'t melt as smoothly.'
+        },
+        origin: 'Somerset, England.',
+        historyContext: 'The world\'s most popular cheese style.',
+        commonStyles: ['burger_buns_enriched', 'wheat_tortilla', 'pan_pizza'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Jalapeños',
+            'Bacon',
+            'Apple'
+        ],
+        technicalNotes: 'Shred yourself to avoid anti-caking agents that ruin the melt.',
+        applicationMoment: 'pre_oven',
+        variations: 'White Cheddar, Mild Cheddar.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'orange_peel',
+        name: 'Orange Peel (Zest)',
+        category: 'Fruit',
+        description: 'The aromatic outer skin of fresh oranges, rich in essential oils.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Releases oils when heated; becomes bitter if pith is included.'
+        },
+        origin: 'Global.',
+        historyContext: 'A classic flavoring for cakes and holiday breads (Panettone).',
+        commonStyles: ['panettone_classic', 'pound_cake_classic', 'brioche_feuilletee'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chocolate',
+            'Almonds',
+            'Vanilla'
+        ],
+        technicalNotes: 'Use a microplane for fine zest. Avoid the white pith.',
+        applicationMoment: 'pre_oven',
+        variations: 'Candied Orange Peel.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'lemon_peel',
+        name: 'Lemon Peel (Zest)',
+        category: 'Fruit',
+        description: 'Bright, acidic, and floral aromatic zest from fresh lemons.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'High heat can dull the top notes, but the essential oils persist.'
+        },
+        origin: 'Global.',
+        historyContext: 'Used to cut through richness in butter-heavy pastries.',
+        commonStyles: ['pate_sucree_classic', 'madeleines'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Blueberries',
+            'Poppy Seeds',
+            'Ricotta'
+        ],
+        technicalNotes: 'Rub zest into sugar to release oils before mixing.',
+        applicationMoment: 'pre_oven',
+        variations: 'Candied Lemon Peel.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'onions_fresh',
+        name: 'Fresh Onions (Sliced)',
+        category: 'Vegetal',
+        description: 'Raw onion slices that sweeten and soften during baking.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 0,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Caramelizes (Maillard) and loses pungency with heat.'
+        },
+        origin: 'Global.',
+        historyContext: 'A staple topping for flatbreads and pizzas worldwide.',
+        commonStyles: ['brazilian_pizzeria_gas_deck', 'focaccia-genovese'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Calabresa Sausage',
+            'Tuna',
+            'Olives'
+        ],
+        technicalNotes: 'Slice thinly for even cooking. Red onions offer better color.',
+        applicationMoment: 'pre_oven',
+        variations: 'Caramelized Onions (pre-cooked).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'bacon',
+        name: 'Bacon (Cured Pork)',
+        category: 'Meat',
+        description: 'Salt-cured, smoked pork belly.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 5,
+            salinity: 5,
+            sweetness: 2,
+            thermalBehavior: 'Renders fat, becomes crispy.'
+        },
+        origin: 'Global.',
+        historyContext: 'The ultimate savory enhancer.',
+        commonStyles: ['burger_buns_enriched', 'quiche'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Eggs',
+            'Cheese',
+            'Maple Syrup'
+        ],
+        technicalNotes: 'Pre-cook if using large pieces to ensure crispiness on fast-bake items.',
+        applicationMoment: 'pre_oven',
+        variations: 'Pancetta (unsmoked).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'hot_honey',
+        name: 'Hot Honey (Infused)',
+        category: 'Finish',
+        description: 'Honey infused with chili peppers (like habanero or cayenne) and a touch of vinegar.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 1,
+            sweetness: 5,
+            thermalBehavior: 'Carmelizes if baked; best added post-oven to maintain floral honey notes and spicy punch.'
+        },
+        origin: 'USA (Brooklyn popularity).',
+        historyContext: 'Populiarized in the 2010s as a transformative topping for pepperoni and detroit-style pizzas.',
+        commonStyles: ['detroit_style_classic', 'new_york_slice_v2', 'modern_artisan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Pepperoni Cups',
+            'Wisconsin Brick Cheese',
+            'Ricotta'
+        ],
+        technicalNotes: 'Drizzle in a thin zig-zag pattern immediately after the bake. The residual heat helps the honey spread and penetrate the cheese.',
+        applicationMoment: 'post_oven',
+        variations: 'Mike\'s Hot Honey, Chili Infused.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'mushrooms',
+        name: 'Mushrooms (Sautéed/Fresh)',
+        category: 'Vegetal',
+        description: 'Earthy, umami-rich fungi like Cremini, White Button, or Shiitake.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 0,
+            salinity: 1,
+            sweetness: 2,
+            thermalBehavior: 'Releases moisture then browns (Maillard). Post-cooking intensifies umami.'
+        },
+        origin: 'Global.',
+        historyContext: 'One of the most traditional pizza toppings, providing texture and earthy depth.',
+        commonStyles: ['pizza-napoletana', 'nyc_slice', 'chicago-deep-dish'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Garlic',
+            'Thyme',
+            'Mozzarella',
+            'Italian Sausage'
+        ],
+        technicalNotes: 'Thinly slice if fresh. For high-moisture varieties, pre-sautéing prevents soggy dough.',
+        applicationMoment: 'pre_oven',
+        variations: 'Truffle, Porcini, Wild Mushrooms.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'cilantro_fresh',
+        name: 'Fresh Cilantro (Coriander)',
+        category: 'Vegetal',
+        description: 'Bright, citrusy, and pungent herb essential for Mexican and Asian cuisines.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'Loses flavor quickly with heat; best used fresh or added at the very end.'
+        },
+        origin: 'Mexico/Asia/Middle East.',
+        historyContext: 'Critical flavor component in tacos, curries, and regional flatbreads.',
+        commonStyles: ['flour_tortilla_sonora', 'gua_bao', 'naan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Lime',
+            'Chili',
+            'Onion',
+            'Cumin'
+        ],
+        technicalNotes: 'Chop finely and use leaves for best visual and flavor impact.',
+        applicationMoment: 'post_oven',
+        variations: 'Dried (less pungent).',
+        references: [],
+    },
+    {
+        id: 'pesto',
+        name: 'Pesto Genovese',
+        category: 'Sauce',
+        description: 'Traditional herb sauce made from fresh basil, pine nuts, garlic, Parmesan, and olive oil.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 5,
+            salinity: 3,
+            sweetness: 2,
+            thermalBehavior: 'Oxidizes and loses vibrant green color if exposed to high heat for too long.'
+        },
+        origin: 'Genoa, Italy.',
+        historyContext: 'A symbol of Ligurian cuisine, often used as a finishing touch or a white base replacement.',
+        commonStyles: ['pizza-napoletana', 'focaccia-genovese', 'modern_artisan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Cherry Tomatoes',
+            'Fresh Mozzarella',
+            'Pine Nuts'
+        ],
+        technicalNotes: 'Apply post-oven for maximum freshness and color. If applied pre-oven, dollop under cheese or add late in the bake.',
+        applicationMoment: 'post_oven',
+        variations: 'Sun-dried Tomato Pesto, Walnut Pesto.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'blue_cheese',
+        name: 'Blue Cheese (Gorgonzola/Stilton)',
+        category: 'Cheese',
+        description: 'Aged cheese with blue-green veins of Penicillium mold. Sharp, pungent, and creamy.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 4,
+            salinity: 4,
+            sweetness: 1,
+            thermalBehavior: 'Melts rapidly into a creamy pool. Can become bitter if burnt.'
+        },
+        origin: 'Global (Gorgonzola from Italy, Stilton from UK).',
+        historyContext: 'One of the four cheeses in the classic "Quattro Formaggi".',
+        commonStyles: ['pizza-napoletana', 'artisan', 'whole_wheat_100'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Walnuts + Honey',
+            'Pears',
+            'Caramelized Onions'
+        ],
+        technicalNotes: 'A little goes a long way. Use dollops (< 5g) to avoid overpowering other ingredients.',
+        applicationMoment: 'pre_oven',
+        variations: 'Gorgonzola Dolce (sweet), Gorgonzola Piccante (sharp).',
+        references: [],
+        isStandard: true
     }
 ];

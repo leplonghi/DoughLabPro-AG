@@ -46,6 +46,13 @@ export const italianStyles: DoughStyle[] = [
             },
             processScience: "styles.pizza_napoletana_science_process"
         },
+        flavorProfile: {
+            primaryFlavors: ["Toasted Bread", "Lactic Tang", "Sweet Wheat", "Charred Crust"],
+            aromaProfile: ["Freshly Baked Bread", "Wood Smoke", "Sweet Mozzarella", "Fresh Basil"],
+            textureNotes: ["Light & Airy Cornicione", "Soft and Foldable", "Melt-in-mouth center", "Tender Elasticity"],
+            pairingRecommendations: ["Classic Margherita (Tomato, Bufala, Basil)", "Marinara (Garlic, Oregano)", "Prosciutto & Arugula after bake"],
+            flavorEvolution: ["Fresh yeast & flour notes", "Complex acidity after 24h maturation", "Maillard-rich charred finish"]
+        },
         process: [
             {
                 phase: 'Mix',
@@ -187,7 +194,8 @@ export const italianStyles: DoughStyle[] = [
             proTips: [
                 "styles.pizza_napoletana_dd_tip_1",
                 "styles.pizza_napoletana_dd_tip_2"]
-        }
+        },
+        recommendedFlavorComponents: ["mozzarella_di_bufala", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "pecorino_romano", "parmesan", "oregano_dried", "garlic_fresh", "pepperoni", "italian_sausage"]
     },
     {
         id: "pizza-teglia-romana",
@@ -234,6 +242,13 @@ export const italianStyles: DoughStyle[] = [
                 enzymatic_activity: "High (Proteolysis)"
             },
             processScience: "styles.pizza_teglia_romana_science_process"
+        },
+        flavorProfile: {
+            primaryFlavors: ["Nutty Toasted Crust", "Intense Fermentation", "Olive Oil Bloom"],
+            aromaProfile: ["Toasted Grain", "Fruity Extra Virgin Olive Oil", "Complex Wild Yeast"],
+            textureNotes: ["Extremely Crunchy Base", "High Alveolation (Honeycomb)", "Soft Cloud-like Interior"],
+            pairingRecommendations: ["Mortadella & Stracciatella", "Potato & Rosemary (Classic Romana)", "Red Pizza with Spicy Salami"],
+            flavorEvolution: ["Sharp yeast notes in young dough", "Mellow nutty sweetness after 48h-72h maturation"]
         },
         process: [
             {
@@ -345,7 +360,8 @@ export const italianStyles: DoughStyle[] = [
                 "styles.pizza_teglia_romana_dd_tip_1",
                 "styles.pizza_teglia_romana_dd_tip_2"
             ]
-        }
+        },
+        recommendedFlavorComponents: ["tomato_sauce_cooked", "mozzarella_low_moisture", "olive_oil_extra_virgin", "pecorino_romano", "garlic_fresh", "oregano_dried", "hot_honey", "bacon", "mushrooms", "bell_pepper"]
     },
     {
         id: "pizza-tonda-romana",
@@ -503,7 +519,8 @@ export const italianStyles: DoughStyle[] = [
                 "styles.pizza_tonda_romana_dd_tip_1",
                 "styles.pizza_tonda_romana_dd_tip_2"
             ]
-        }
+        },
+        recommendedFlavorComponents: ["tomato_sauce_cooked", "mozzarella_low_moisture", "olive_oil_extra_virgin", "pecorino_romano", "oregano_dried", "garlic_fresh", "pepperoni", "anchovies"]
     },
     {
         id: "focaccia-genovese",
@@ -664,7 +681,8 @@ export const italianStyles: DoughStyle[] = [
                 "styles.focaccia_genovese_dd_tip_1",
                 "styles.focaccia_genovese_dd_tip_2"
             ]
-        }
+        },
+        recommendedFlavorComponents: ["olive_oil_extra_virgin", "rosemary_fresh", "garlic_fresh", "sea_salt", "cherry_tomatoes_confit", "pesto", "olives_black", "parmesan"]
     },
     {
         id: "sfincione-palermitano",
@@ -802,15 +820,16 @@ export const italianStyles: DoughStyle[] = [
             ],
             comparisons: [
                 {
-                    vsStyle: 'Focaccia genovese 3',
-                    difference: "styles.sfincione_palermitano_comp_sicilian_diff"
+                    vsStyle: 'Focaccia Genovese',
+                    difference: 'styles.sfincione_palermitano_dd_comp_focaccia_diff'
                 }
             ],
             proTips: [
                 "styles.sfincione_palermitano_dd_tip_1",
                 "styles.sfincione_palermitano_dd_tip_2"
             ]
-        }
+        },
+        recommendedFlavorComponents: ["tomato_sauce_cooked", "onions_fresh", "pecorino_romano", "oregano_dried", "olive_oil_extra_virgin", "pepperoni", "anchovies", "breadcrumbs"]
     },
     {
         id: "pane-toscano",
@@ -820,7 +839,8 @@ export const italianStyles: DoughStyle[] = [
         category: 'Bread',
         tags: ['styles.pane_toscano_tag_no_salt', 'styles.pane_toscano_tag_sourdough', 'styles.pane_toscano_tag_dop', 'styles.pane_toscano_tag_ancient'],
         description: "styles.pane_toscano_desc",
-        history_context: "styles.pane_toscano_history", base_formula: [
+        history_context: "styles.pane_toscano_history",
+        base_formula: [
             { name: 'styles.ingredients_flour_soft_0', percentage: 100 },
             { name: 'styles.ingredients_water', percentage: 60 },
             { name: 'styles.ingredients_salt', percentage: 0 },
@@ -952,7 +972,8 @@ export const italianStyles: DoughStyle[] = [
                 "styles.pane_toscano_dd_tip_1",
                 "styles.pane_toscano_dd_tip_2"
             ]
-        }
+        },
+        recommendedFlavorComponents: ["prosciutto_crudo", "pecorino_romano", "olive_oil_extra_virgin", "garlic_fresh", "balsamic_modena", "blue_cheese", "walnuts", "honey_raw"]
     },
     {
         id: "ciabatta-classic",
@@ -1114,6 +1135,7 @@ export const italianStyles: DoughStyle[] = [
                 "styles.ciabatta_classic_dd_tip_1",
                 "styles.ciabatta_classic_dd_tip_2"
             ]
-        }
+        },
+        recommendedFlavorComponents: ["olive_oil_extra_virgin", "balsamic_modena", "prosciutto_crudo", "mozzarella_di_bufala", "basil_fresh", "cherry_tomatoes_confit", "pesto", "garlic_fresh"]
     }
 ];

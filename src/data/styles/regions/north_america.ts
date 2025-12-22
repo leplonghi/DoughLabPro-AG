@@ -211,7 +211,8 @@ const nycSlice: DoughStyleDefinition = {
             "styles.new_york_slice_v2_dd_tip_1",
             "styles.new_york_slice_v2_dd_tip_2"
         ]
-    }
+    },
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "pepperoni", "pecorino_romano", "oregano_dried", "garlic_fresh", "italian_sausage", "bacon", "onions_fresh", "mushrooms"]
 };
 
 const detroitStyle: DoughStyleDefinition = {
@@ -272,6 +273,13 @@ const detroitStyle: DoughStyleDefinition = {
             organic_acids: 'Lactic',
             enzymatic_activity: "High (High water)"
         }
+    },
+    flavorProfile: {
+        primaryFlavors: ["Cheese Caramelization", "Buttery Fried Crust", "Sweet Tomato Sauce"],
+        aromaProfile: ["Toasted Brioche", "Roasted Cheese", "Savory Pork Fat"],
+        textureNotes: ["Crunchy 'Frico' Edges", "Spongy and Airy Crumb", "Buttery/Oil-fried Bottom"],
+        pairingRecommendations: ["Wisconsin Brick Cheese (Essential)", "Pepperoni under the cheese", "Aged Cheddar for edges", "Hot Honey (Modern Finish)"],
+        flavorEvolution: ["Direct yeasty notes", "Develops deep Maillard notes during high-temp pan bake"]
     },
     tags: ["styles.detroit_style_classic_tag_pan", "styles.detroit_style_classic_tag_frico", "styles.detroit_style_classic_tag_deep", "styles.detroit_style_classic_tag_detroit"],
     pairings: {
@@ -373,7 +381,8 @@ const detroitStyle: DoughStyleDefinition = {
             "styles.detroit_style_classic_dd_tip_1",
             "styles.detroit_style_classic_dd_tip_2"
         ]
-    }
+    },
+    recommendedFlavorComponents: ["brick_cheese", "tomato_sauce_cooked", "pepperoni", "oregano_dried", "hot_honey", "bacon", "calabresa", "onions_fresh"]
 };
 
 const chicagoDeepDish: DoughStyleDefinition = {
@@ -531,7 +540,8 @@ const chicagoDeepDish: DoughStyleDefinition = {
             "styles.chicago_deep_dish_dd_tip_1",
             "styles.chicago_deep_dish_dd_tip_2"
         ]
-    }
+    },
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "italian_sausage", "parmesan", "garlic_fresh", "mushrooms", "onions_fresh", "basil_fresh"]
 };
 
 
@@ -694,7 +704,8 @@ const sfSourdough: DoughStyleDefinition = {
             "styles.sf_sourdough_dd_tip_1",
             "styles.sf_sourdough_dd_tip_2"
         ]
-    }
+    },
+    recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "sesame_seeds", "poppy_seeds", "cream_cheese", "strawberry_jam"]
 };
 
 const newHavenApizza: DoughStyleDefinition = {
@@ -849,7 +860,8 @@ const newHavenApizza: DoughStyleDefinition = {
             "styles.new_haven_apizza_dd_tip_1",
             "styles.new_haven_apizza_dd_tip_2"
         ]
-    }
+    },
+    recommendedFlavorComponents: ["fresh_clams", "garlic_fresh", "pecorino_romano", "oregano_dried", "olive_oil_extra_virgin", "bacon", "parmesan", "basil_fresh"]
 };
 
 
@@ -1007,7 +1019,8 @@ const nycBagel: DoughStyleDefinition = {
         proTips: [
             "styles.nyc_bagel_dd_tip_1",
             "styles.nyc_bagel_dd_tip_2"]
-    }
+    },
+    recommendedFlavorComponents: ["cream_cheese", "sesame_seeds", "poppy_seeds", "garlic_fresh", "onions_fresh", "smoked_salmon", "capers"]
 };
 
 const grandmaPizza: DoughStyleDefinition = {
@@ -1162,7 +1175,8 @@ const grandmaPizza: DoughStyleDefinition = {
         proTips: [
             "styles.grandma_pizza_dd_tip_1",
             "styles.grandma_pizza_dd_tip_2"]
-    }
+    },
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "garlic_fresh", "olive_oil_extra_virgin", "basil_fresh", "parmesan", "oregano_dried"]
 };
 
 const chicagoTavern: DoughStyleDefinition = {
@@ -1322,7 +1336,8 @@ const chicagoTavern: DoughStyleDefinition = {
             "styles.chicago_tavern_v2_dd_tip_1",
             "styles.chicago_tavern_v2_dd_tip_2"
         ]
-    }
+    },
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "italian_sausage", "oregano_dried", "garlic_fresh", "onions_fresh", "pepperoni", "bacon"]
 };
 
 const montrealBagel: DoughStyleDefinition = {
@@ -1419,7 +1434,8 @@ const montrealBagel: DoughStyleDefinition = {
         whatIf: [{ scenario: 'styles.montreal_bagel_dd_wi_proof_scen', outcome: 'styles.montreal_bagel_dd_wi_proof_out', solution: 'styles.montreal_bagel_dd_wi_proof_sol' }],
         comparisons: [{ vsStyle: 'NYC Bagel', difference: 'styles.montreal_bagel_dd_comp_nyc_diff' }],
         proTips: ['styles.montreal_bagel_dd_tip_1', 'styles.montreal_bagel_dd_tip_2']
-    }
+    },
+    recommendedFlavorComponents: ["honey_raw", "sesame_seeds", "poppy_seeds", "cream_cheese", "strawberry_jam", "butter_dry_84"]
 };
 
 const flourTortilla: DoughStyleDefinition = {
@@ -1515,7 +1531,8 @@ const flourTortilla: DoughStyleDefinition = {
         whatIf: [{ scenario: 'styles.flour_tortilla_sonora_dd_wi_rest_scen', outcome: 'styles.flour_tortilla_sonora_dd_wi_rest_out', solution: 'styles.flour_tortilla_sonora_dd_wi_rest_sol' }],
         comparisons: [{ vsStyle: 'Corn Tortilla', difference: 'styles.flour_tortilla_sonora_dd_comp_corn_diff' }],
         proTips: ['styles.flour_tortilla_sonora_dd_tip_1']
-    }
+    },
+    recommendedFlavorComponents: ["lard_pork_fat", "salted_butter_normandy", "fior_di_latte", "cheddar_cheese", "onions_fresh", "cilantro_fresh"]
 };
 
 export const northAmericaStyles: DoughStyleDefinition[] = [

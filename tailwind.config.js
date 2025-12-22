@@ -28,6 +28,7 @@ export default {
                     },
                     brand: {
                         DEFAULT: '#51a145',
+                        hover: '#36782c',
                         green: '#3e8b32ff',
                         dark: '#216416ff',
                         lime: '#51a145',

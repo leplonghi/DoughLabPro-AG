@@ -44,6 +44,7 @@ export const NYChocolateChip = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_dough.jpg"
     },
+    recommendedFlavorComponents: ["dark_chocolate_70", "walnuts", "pecan_nuts", "vanilla_madagascar", "brown_sugar", "salted_butter_normandy"],
     references: [
         { source: "The Secret to Levain Bakery Cookies", url: "https://www.seriouseats.com/levain-bakery-style-chocolate-chip-cookies-recipe", author: "Stella Parks", year: "2019" },
         { source: "Baking Science: Fats and Sugars", url: "https://vickypham.com/blog/science-behind-chocolate-chip-cookies", author: "Vicky Pham", year: "2020" }
@@ -95,7 +96,7 @@ export const FrenchCroissant = defineDoughStyle({
     technicalProfile: {
         hydration: [55, 62],
         salt: [1.8, 2.2],
-        fat: [40, 55], // Butter in dough + Butter Block
+        fat: [40, 55],
         sugar: [8, 12],
         fermentationSteps: [
             "styles.french_croissant_ferm_step_1",
@@ -125,6 +126,7 @@ export const FrenchCroissant = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_dough.jpg"
     },
+    recommendedFlavorComponents: ["butter_dry_84", "salted_butter_normandy", "dark_chocolate_70", "strawberry_jam", "pistachio", "hazelnuts", "honey_raw"],
     references: [
         { source: "Viennoiserie: The Art of Lamination", url: "https://www.kingarthurbaking.com/blog/2021/04/19/viennoiserie-at-home", author: "King Arthur Baking", year: "2021" },
         { source: "The Science of Croissants", url: "https://www.finecooking.com/article/the-science-of-croissants", author: "Fine Cooking", year: "2018" }
@@ -245,6 +247,7 @@ export const CinnamonRoll = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_dough.jpg"
     },
+    recommendedFlavorComponents: ["cinnamon_ceylon", "brown_sugar", "pecan_nuts", "raisins", "vanilla_glaze", "cream_cheese", "salted_butter_normandy"],
     references: [
         { source: "The Ultimate Cinnamon Roll", url: "https://www.kingarthurbaking.com/recipes/ultimate-cinnamon-rolls-recipe", author: "King Arthur Baking", year: "2021" }
     ],
@@ -320,6 +323,7 @@ export const FudgyBrownie = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_dough.jpg"
     },
+    recommendedFlavorComponents: ["dark_chocolate_70", "walnuts", "vanilla_madagascar", "pecan_nuts", "hazelnuts", "salted_butter_normandy"],
     references: [
         { source: "The History of the Brownie", url: "https://www.palmerhousehiltonhotel.com/about-hotel/brownie-history/", author: "Palmer House Hotel", year: "2021" }
     ],

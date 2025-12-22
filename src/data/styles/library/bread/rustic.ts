@@ -30,7 +30,8 @@ export const BaguetteTradition = defineDoughStyle({
     references: [
         { source: "Décret n°93-1074", url: "https://www.legifrance.gouv.fr/" },
         { source: "The Taste of Bread (Calvel)", url: "" }
-    ]
+    ],
+    recommendedFlavorComponents: ["salted_butter_normandy", "brie_de_meaux", "malt_powder", "honey_raw", "prosciutto_crudo", "strawberry_jam"]
 });
 
 export const Ciabatta = defineDoughStyle({
@@ -63,7 +64,8 @@ export const Ciabatta = defineDoughStyle({
     tags: ["bread", "italian", "high-hydration", "biga"],
     references: [
         { source: "Arnaldo Cavallari (Molini Adriesi)", url: "https://en.wikipedia.org/wiki/Ciabatta" }
-    ]
+    ],
+    recommendedFlavorComponents: ["olive_oil_extra_virgin", "balsamic_modena", "prosciutto_crudo", "mozzarella_di_bufala", "basil_fresh", "pesto", "garlic_fresh"]
 });
 
 export const PainDeCampagne = defineDoughStyle({
@@ -90,7 +92,8 @@ export const PainDeCampagne = defineDoughStyle({
         "Adding 5-10% Rye flour improves enzymatic activity and shelf life.",
         "Long cold fermentation drastically improves crust blistering and flavor complexity."
     ],
-    tags: ["bread", "french", "sourdough", "rustic", "whole-wheat"]
+    tags: ["bread", "french", "sourdough", "rustic", "whole-wheat"],
+    recommendedFlavorComponents: ["salted_butter_normandy", "pecorino_romano", "rosemary_fresh", "honey_raw", "walnuts", "blue_cheese"]
 });
 
 export const SanFranciscoSourdough = defineDoughStyle({
@@ -119,6 +122,7 @@ export const SanFranciscoSourdough = defineDoughStyle({
         "Scoring 'ears' requires tight shaping tension."
     ],
     tags: ["bread", "sourdough", "american", "iconic"],
+    recommendedFlavorComponents: ["honey_raw", "sesame_seeds", "poppy_seeds", "seeds", "salted_butter_normandy", "cream_cheese", "strawberry_jam"],
     references: [
         { source: "Boudin Bakery History", url: "https://boudinbakery.com/" }
     ]

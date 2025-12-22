@@ -82,7 +82,8 @@ export const middleEastStyles: DoughStyle[] = [
             hero: '/images/styles/pita_fresh_steam.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["olive_oil_extra_virgin", "yogurt_plain", "honey_raw", "garlic_fresh", "oregano_dried"]
     },
     {
         id: 'simit',
@@ -165,6 +166,7 @@ export const middleEastStyles: DoughStyle[] = [
             hero: '/images/styles/simit-hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["sesame_seeds", "molasses", "honey_raw", "black_sesame", "pistachio"]
     }
 ];

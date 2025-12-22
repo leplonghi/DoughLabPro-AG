@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { DoughStyle, ProcessStep } from '@/types/dough';
+import { DoughStyle, ProcessStep, FlavorProfile } from '@/types/dough';
 import { STYLES_DATA } from '@/data/styles/registry'; // Use Global Registry
 import { DoughStyleDefinition } from '@/types/styles';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
@@ -186,6 +186,13 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
             proTips: def.deepDive.proTips?.map((p: string) => t(p))
         } : undefined,
         process: processSteps,
+        flavorProfile: def.flavorProfile ? {
+            primaryFlavors: def.flavorProfile.primaryFlavors.map(f => smartTranslate(f, t)),
+            aromaProfile: def.flavorProfile.aromaProfile.map(a => smartTranslate(a, t)),
+            textureNotes: def.flavorProfile.textureNotes.map(tn => smartTranslate(tn, t)),
+            pairingRecommendations: def.flavorProfile.pairingRecommendations.map(pr => smartTranslate(pr, t)),
+            flavorEvolution: def.flavorProfile.flavorEvolution?.map(fe => smartTranslate(fe, t))
+        } : undefined,
         references: (def.references || []).map((r: any) => {
             if (typeof r === 'string') return r;
             return r?.source || r?.url || '';
@@ -667,7 +674,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                     </button>
                     <button
                         onClick={() => onLoadAndNavigate(styleData)}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-dlp-brand to-dlp-brand-hover hover:from-dlp-brand-hover hover:to-lime-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-dlp-brand/30 transition-all hover:scale-105 active:scale-95"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#51a145] to-[#36782c] hover:from-[#36782c] hover:to-[#216416] text-white text-xs font-bold rounded-xl shadow-lg shadow-emerald-900/20 transition-all hover:scale-105 active:scale-95"
                     >
                         <Calculator className="w-4 h-4" /> <span className="hidden sm:inline">{t('general.use_formula')}</span>
                     </button>
@@ -810,40 +817,48 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-slate-800">Flavor Intelligence</h3>
-                                    <p className="text-sm text-slate-500">Recommended components rooted in tradition and technique.</p>
+                                    <p className="text-sm text-slate-500">A deep organoleptic analysis and pairing strategy.</p>
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                {(() => {
-                                    const components = styleData.recommendedFlavorComponents && styleData.recommendedFlavorComponents.length > 0
-                                        ? FLAVOR_COMPONENTS.filter(c => styleData.recommendedFlavorComponents?.includes(c.id))
-                                        : FLAVOR_COMPONENTS.filter(c => c.commonStyles.includes(styleData.id));
+                            {/* Deep Flavor Profile (Sensory) */}
+                            {styleData.flavorProfile && (
+                                <FlavorIntelligenceSection flavorProfile={styleData.flavorProfile} />
+                            )}
 
-                                    if (components.length > 0) {
-                                        return components.map(component => (
-                                            <button
-                                                key={component.id}
-                                                onClick={() => setSelectedFlavorComponent(component)}
-                                                className="flex flex-col items-start p-3 bg-white border border-slate-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all text-left group"
-                                            >
-                                                <span className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-1 group-hover:text-orange-700">{component.category}</span>
-                                                <span className="font-bold text-slate-800 group-hover:text-orange-900">{component.name}</span>
-                                                <div className="flex gap-1 mt-2">
-                                                    <span className={`w-2 h-2 rounded-full ${component.applicationMoment === 'post_oven' ? 'bg-purple-400' : 'bg-orange-400'}`} title={component.applicationMoment === 'post_oven' ? 'Post-Oven' : 'Pre-Oven'} />
-                                                    <span className="text-[10px] text-slate-400 font-medium">
-                                                        {component.applicationMoment === 'post_oven' ? t('ui.finish_246') : t('ui.cook_247')}
-                                                    </span>
-                                                </div>
-                                            </button>
-                                        ));
-                                    }
-                                    return (
-                                        <div className="col-span-full py-4 text-center text-slate-500 text-sm italic">
-                                            No specific flavor components mapped to this style yet.
-                                        </div>
-                                    );
-                                })()}
+                            <div className="mt-6 pt-6 border-t border-slate-200">
+                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Recommended Flavor Components</h4>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    {(() => {
+                                        const components = styleData.recommendedFlavorComponents && styleData.recommendedFlavorComponents.length > 0
+                                            ? FLAVOR_COMPONENTS.filter(c => styleData.recommendedFlavorComponents?.includes(c.id))
+                                            : FLAVOR_COMPONENTS.filter(c => c.commonStyles.includes(styleData.id));
+
+                                        if (components.length > 0) {
+                                            return components.map(component => (
+                                                <button
+                                                    key={component.id}
+                                                    onClick={() => setSelectedFlavorComponent(component)}
+                                                    className="flex flex-col items-start p-3 bg-white border border-slate-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all text-left group"
+                                                >
+                                                    <span className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-1 group-hover:text-orange-700">{component.category}</span>
+                                                    <span className="font-bold text-slate-800 group-hover:text-orange-900">{component.name}</span>
+                                                    <div className="flex gap-1 mt-2">
+                                                        <span className={`w-2 h-2 rounded-full ${component.applicationMoment === 'post_oven' ? 'bg-purple-400' : 'bg-orange-400'}`} title={component.applicationMoment === 'post_oven' ? 'Post-Oven' : 'Pre-Oven'} />
+                                                        <span className="text-[10px] text-slate-400 font-medium">
+                                                            {component.applicationMoment === 'post_oven' ? t('ui.finish_246') : t('ui.cook_247')}
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                            ));
+                                        }
+                                        return (
+                                            <div className="col-span-full py-4 text-center text-slate-500 text-sm italic">
+                                                No specific flavor components mapped to this style yet.
+                                            </div>
+                                        );
+                                    })()}
+                                </div>
                             </div>
                         </section>
 
@@ -1124,6 +1139,89 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style: initial
             />
 
         </LibraryPageLayout>
+    );
+};
+
+// --- SUB-COMPONENTS ---
+
+const FlavorIntelligenceSection: React.FC<{ flavorProfile: FlavorProfile }> = ({ flavorProfile }) => {
+    const { t } = useTranslation();
+
+    return (
+        <div className="space-y-6 mb-8 animate-fadeIn">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Primary Flavors */}
+                <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
+                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <Activity className="w-3 h-3 text-orange-500" /> {t('general.primary_flavors')}
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                        {flavorProfile.primaryFlavors.map((f: string, i: number) => (
+                            <span key={i} className="px-2 py-1 bg-orange-50 text-orange-700 text-[11px] font-bold rounded-lg border border-orange-100">
+                                {f}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Aroma Profile */}
+                <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
+                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <Wind className="w-3 h-3 text-sky-500" /> {t('general.aroma_profile')}
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                        {flavorProfile.aromaProfile.map((a: string, i: number) => (
+                            <span key={i} className="px-2 py-1 bg-sky-50 text-sky-700 text-[11px] font-bold rounded-lg border border-sky-100">
+                                {a}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Texture & Pairings */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Texture */}
+                <div className="md:col-span-1 bg-slate-50 rounded-xl p-4 border border-slate-200">
+                    <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">
+                        {t('general.texture_notes')}
+                    </h4>
+                    <ul className="space-y-2">
+                        {flavorProfile.textureNotes.map((tn: string, i: number) => (
+                            <li key={i} className="text-xs text-slate-600 flex items-center gap-2">
+                                <CheckCircle2 className="w-3 h-3 text-emerald-500" /> {tn}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Pairings */}
+                <div className="md:col-span-2 bg-indigo-50/50 rounded-xl p-4 border border-indigo-100">
+                    <h4 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <ChefHat className="w-3 h-3" /> {t('general.pairing_strategy')}
+                    </h4>
+                    <div className="space-y-2">
+                        {flavorProfile.pairingRecommendations.map((pr: string, i: number) => (
+                            <p key={i} className="text-xs text-indigo-900 leading-relaxed font-medium">
+                                • {pr}
+                            </p>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Evolution */}
+            {flavorProfile.flavorEvolution && flavorProfile.flavorEvolution.length > 0 && (
+                <div className="bg-amber-50 rounded-xl p-4 border border-amber-100">
+                    <h4 className="text-[10px] font-bold text-amber-600 uppercase tracking-widest mb-2 flex items-center gap-2">
+                        <Clock className="w-3 h-3" /> {t('general.flavor_evolution')}
+                    </h4>
+                    <p className="text-[11px] text-amber-900 leading-relaxed italic">
+                        {flavorProfile.flavorEvolution.join(' → ')}
+                    </p>
+                </div>
+            )}
+        </div>
     );
 };
 

@@ -119,14 +119,14 @@ export const wheat_tortilla: DoughStyleDefinition = {
         correction: "Rest the dough balls longer."
       }
     ],
-    comparisons: [
+    comparative_analysis: [
       {
-        vsStyle: "Corn Tortilla",
+        target_style: "Corn Tortilla",
         difference: "Corn is nixtamalized, earthy, GF; Wheat is fatty, neutral, and chewy.",
         why_choose_this: "Choose Wheat for large wraps (Burritos)."
       },
       {
-        vsStyle: "Store-bought",
+        target_style: "Store-bought",
         difference: "Commercial tortillas have preservatives and gums to stay flexible for weeks; homemade rely on fat and freshness. Homemade MUST be eaten fresh or frozen.",
         why_choose_this: "Choose Homemade for flavor."
       }
@@ -161,7 +161,8 @@ export const wheat_tortilla: DoughStyleDefinition = {
     hydrationLogic: "50% water + 15-20% fat = 70% total fluids. That's why the dough is soft.",
     methodSuitability: {
       direct: { suitable: true, notes: "Standard." },
-      poolish: { suitable: false, notes: "N/A" }
+      poolish: { suitable: false, notes: "N/A" },
+      biga: { suitable: false, notes: "N/A" }
     },
     whatIf: [
       {
@@ -224,5 +225,5 @@ export const wheat_tortilla: DoughStyleDefinition = {
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   },
-  recommendedFlavorComponents: ["lard_pork_fat", "butter", "cheese_cheddar"]
+  recommendedFlavorComponents: ["lard_pork_fat", "salted_butter_normandy", "cheddar_cheese"]
 };

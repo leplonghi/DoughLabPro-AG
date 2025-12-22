@@ -58,7 +58,8 @@ export const DetroitStyle: DoughStyleDefinition = {
         hero: "/images/styles/detroit_hero.jpg",
         dough: "/images/styles/detroit_dough.jpg",
         crumb: "/images/styles/detroit_crumb.jpg"
-    }
+    },
+    recommendedFlavorComponents: ["brick_cheese", "tomato_sauce_cooked", "pepperoni", "oregano_dried", "hot_honey", "bacon", "calabresa", "onions_fresh", "mushrooms", "cilantro_fresh"]
 };
 
 export const GrandmaStyle: DoughStyleDefinition = {
@@ -79,7 +80,7 @@ export const GrandmaStyle: DoughStyleDefinition = {
     technicalProfile: {
         hydration: [60, 65],
         salt: [2.0, 2.5],
-        oil: [3.0, 5.0], // High oil in dough + pan
+        oil: [3.0, 5.0],
         sugar: [1.0, 3.0],
         flourStrength: "All Purpose or Bread (11-12%)",
         ovenTemp: [230, 260],
@@ -116,10 +117,10 @@ export const GrandmaStyle: DoughStyleDefinition = {
         hero: "/images/styles/grandma_hero.jpg",
         dough: "/images/styles/grandma_dough.jpg",
         crumb: "/images/styles/grandma_crumb.jpg"
-    }
+    },
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "garlic_fresh", "olive_oil_extra_virgin", "basil_fresh", "parmesan", "oregano_dried", "pecorino_romano", "anchovies"]
 };
 
-// Export definitions
 export const panStyles: DoughStyleDefinition[] = [
     DetroitStyle,
     GrandmaStyle

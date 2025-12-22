@@ -6,14 +6,15 @@ const FLAVOR_FILE = 'src/data/flavorComponents.ts';
 const STYLES_DIR = 'src/data/styles';
 
 function getFlavorIds() {
-    const content = fs.readFileSync(FLAVOR_FILE, 'utf8');
-    const ids = [];
-    const regex = /id:\s*['"]([^'"]+)['"]/g;
+    const flavorComponentsContent = fs.readFileSync(FLAVOR_FILE, 'utf8');
+    const idRegex = /id:\s*['"]([^'"]+)['"]/g;
     let match;
-    while ((match = regex.exec(content)) !== null) {
-        ids.push(match[1]);
+    const validIds = new Set();
+    while ((match = idRegex.exec(flavorComponentsContent)) !== null) {
+        validIds.add(match[1]);
     }
-    return new Set(ids);
+    console.log("Valid IDs:", Array.from(validIds).sort());
+    return validIds;
 }
 
 function getStyleFiles(dir, fileList = []) {

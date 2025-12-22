@@ -140,6 +140,14 @@ export interface EducationalContent {
     }[];
 }
 
+export interface FlavorProfile {
+    primaryFlavors: string[];
+    aromaProfile: string[];
+    textureNotes: string[];
+    pairingRecommendations: string[];
+    flavorEvolution?: string[];
+}
+
 // Deep Dive Module for Expert Consulting
 export interface DeepDive {
     hydrationLogic: string;
@@ -190,6 +198,9 @@ export interface DoughStyle {
 
     // The Knowledge Module
     deepDive?: DeepDive;
+
+    /** Flavor Intelligence - Sensory profile and pairing recommendations */
+    flavorProfile?: FlavorProfile;
 
     process: ProcessStep[];
 

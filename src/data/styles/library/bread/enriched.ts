@@ -40,6 +40,7 @@ export const BriocheATete = defineDoughStyle({
         dough: "/images/styles/brioche_dough.jpg",
         crumb: "/images/styles/brioche_crumb.jpg"
     },
+    recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "vanilla_madagascar", "candied_citrus", "citrus_zest", "strawberry_jam"],
     references: [
         { source: "The Art of French Baking", url: "" }
     ],
@@ -99,6 +100,7 @@ export const Challah = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_crumb.jpg"
     },
+    recommendedFlavorComponents: ["honey_raw", "sesame_seeds", "poppy_seeds", "raisins", "citrus_zest", "brown_sugar"],
     education: {
         pro_tips: [
             { tip: "Double Egg Wash", explanation: "Brush once after braiding, and again right before baking. This fills the gaps and creates a lacquer-like shine." },
@@ -155,6 +157,7 @@ export const BurgerBun = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_crumb.jpg"
     },
+    recommendedFlavorComponents: ["salted_butter_normandy", "sesame_seeds", "cheddar_cheese", "bacon", "onions_fresh"],
     education: {
         pro_tips: [
             { tip: "styles.classic_burger_bun_tip_flatten", explanation: "styles.classic_burger_bun_tip_flatten_exp" },
@@ -212,6 +215,7 @@ export const Shokupan = defineDoughStyle({
         dough: "/images/styles/shokupan-dough.jpg",
         crumb: "/images/styles/shokupan-crumb.jpg"
     },
+    recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "condensed_milk", "strawberry_jam", "cream_cheese", "black_sesame"],
     education: {
         pro_tips: [
             { tip: "The 65°C Magic", explanation: "Cook the flour/water roux (Tangzhong) exactly to 65°C. This maximizes starch gelatinization without degrading the starch." },
@@ -274,6 +278,7 @@ export const Panettone = defineDoughStyle({
         dough: "/images/styles/placeholder_dough.jpg",
         crumb: "/images/styles/placeholder_crumb.jpg"
     },
+    recommendedFlavorComponents: ["orange_peel", "raisins", "vanilla_madagascar", "salted_butter_normandy", "candied_citrus", "pistachio"],
     references: [
         { source: "Panettone Disciplinare (Italy)", url: "" }
     ],

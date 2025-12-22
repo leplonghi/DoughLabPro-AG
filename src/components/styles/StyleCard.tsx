@@ -116,8 +116,8 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                         });
                     }}
                     className={`absolute -top-5 right-5 p-3 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 transform hover:scale-110 ${favorited
-                            ? 'bg-pink-500 border-pink-400 text-white shadow-pink-500/50 animate-pulse-subtle'
-                            : 'bg-white/95 border-slate-200 text-slate-400 hover:text-pink-500 hover:border-pink-300 hover:bg-pink-50'
+                        ? 'bg-pink-500 border-pink-400 text-white shadow-pink-500/50 animate-pulse-subtle'
+                        : 'bg-white/95 border-slate-200 text-slate-400 hover:text-pink-500 hover:border-pink-300 hover:bg-pink-50'
                         }`}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={favorited ? "currentColor" : "none"} stroke="currentColor" className="w-5 h-5">
@@ -152,10 +152,10 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     </div>
                 )}
                 <div className={`inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-bold border shadow-sm hover:shadow-md transition-shadow ${style.technicalProfile?.difficulty === 'Easy'
-                        ? 'bg-gradient-to-br from-green-50 to-emerald-50 text-green-700 border-green-200/50'
-                        : style.technicalProfile?.difficulty === t('ui.medium_371')
-                            ? 'bg-gradient-to-br from-yellow-50 to-amber-50 text-yellow-700 border-yellow-200/50'
-                            : 'bg-gradient-to-br from-red-50 to-rose-50 text-red-700 border-red-200/50'
+                    ? 'bg-gradient-to-br from-green-50 to-emerald-50 text-green-700 border-green-200/50'
+                    : style.technicalProfile?.difficulty === t('ui.medium_371')
+                        ? 'bg-gradient-to-br from-yellow-50 to-amber-50 text-yellow-700 border-yellow-200/50'
+                        : 'bg-gradient-to-br from-red-50 to-rose-50 text-red-700 border-red-200/50'
                     }`}>
                     <BarChart className="w-3.5 h-3.5 mr-1.5" />
                     {t(`common.${(style.technicalProfile?.difficulty || t('ui.medium_371')).toLowerCase()}`, { defaultValue: style.technicalProfile?.difficulty || t('ui.medium_371') })}
@@ -181,7 +181,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             e.stopPropagation();
                             onUseInCalculator(style);
                         }}
-                        className="w-full bg-gradient-to-r from-dlp-brand to-lime-500 hover:from-lime-600 hover:to-lime-700 text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:shadow-lime-500/30 transform hover:scale-105 active:scale-95"
+                        className="w-full bg-gradient-to-r from-[#51a145] to-[#36782c] hover:from-[#36782c] hover:to-[#216416] text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:shadow-emerald-500/30 transform hover:scale-105 active:scale-95"
                     >
                         <Calculator className="h-4 w-4" />
                         {t('common.use_style')}

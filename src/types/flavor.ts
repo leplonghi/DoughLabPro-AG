@@ -9,7 +9,9 @@ export type FlavorCategory =
     | 'Pastry Filling'
     | 'Spice'
     | 'Dairy'
-    | 'Seafood';
+    | 'Seafood'
+    | 'Fruit'
+    | 'Nut';
 
 export interface FlavorTextureProfile {
     intensity: number; // 1-5

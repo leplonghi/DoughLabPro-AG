@@ -58,7 +58,8 @@ export const NewYorkSlice: DoughStyleDefinition = {
         hero: "/images/styles/ny_hero.jpg",
         dough: "/images/styles/ny_dough.jpg",
         crumb: "/images/styles/ny_crumb.jpg"
-    }
+    },
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "pepperoni", "pecorino_romano", "oregano_dried", "garlic_fresh", "italian_sausage", "bacon", "onions_fresh", "mushrooms"]
 };
 
 // Export as array for registry consumption
