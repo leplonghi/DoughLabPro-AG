@@ -109,7 +109,8 @@ const nycSlice: DoughStyleDefinition = {
             ph_target: "pH 5.2",
             organic_acids: "Balanced (Acetic notes)",
             enzymatic_activity: "Controlled (Cold)"
-        }
+        },
+        processScience: "styles.new_york_slice_v2_science_process"
     },
     tags: ["styles.new_york_slice_v2_tag_nyc", "styles.new_york_slice_v2_tag_slice", "styles.new_york_slice_v2_tag_deck", "styles.new_york_slice_v2_tag_foldable"],
     pairings: {
@@ -272,7 +273,8 @@ const detroitStyle: DoughStyleDefinition = {
             ph_target: 'Normal',
             organic_acids: 'Lactic',
             enzymatic_activity: "High (High water)"
-        }
+        },
+        processScience: "styles.detroit_style_classic_science_process"
     },
     flavorProfile: {
         primaryFlavors: ["Cheese Caramelization", "Buttery Fried Crust", "Sweet Tomato Sauce"],
@@ -443,7 +445,8 @@ const chicagoDeepDish: DoughStyleDefinition = {
             ph_target: 'Neutral',
             organic_acids: 'None',
             enzymatic_activity: 'Low'
-        }
+        },
+        processScience: "styles.chicago_deep_dish_science_process"
     },
     tags: ["styles.chicago_deep_dish_tag_casserole", "styles.chicago_deep_dish_tag_biscuit", "styles.chicago_deep_dish_tag_corn"],
     pairings: {
@@ -602,7 +605,8 @@ const sfSourdough: DoughStyleDefinition = {
             ph_target: "pH 4.0-4.5",
             organic_acids: "Acetic Dominant (Stiff Starter)",
             enzymatic_activity: "Very High (Proteolysis)"
-        }
+        },
+        processScience: "styles.sf_sourdough_science_process"
     },
     tags: ["styles.sf_sourdough_tag_sour", "styles.sf_sourdough_tag_wild", "styles.sf_sourdough_tag_gold", "styles.sf_sourdough_tag_sf"],
     pairings: {
@@ -764,7 +768,8 @@ const newHavenApizza: DoughStyleDefinition = {
             ph_target: 'Normal',
             organic_acids: 'Balanced',
             enzymatic_activity: "High (Maillard fuel)"
-        }
+        },
+        processScience: "styles.new_haven_apizza_science_process"
     },
     tags: ["styles.new_haven_apizza_tag_coal", "styles.new_haven_apizza_tag_char", "styles.new_haven_apizza_tag_clam", "styles.new_haven_apizza_tag_ct"],
     pairings: {
@@ -923,7 +928,8 @@ const nycBagel: DoughStyleDefinition = {
             ph_target: 'Normal',
             organic_acids: "Low (Direct)",
             enzymatic_activity: "Enhanced (Malt)"
-        }
+        },
+        processScience: "styles.nyc_bagel_science_process"
     },
     tags: ["styles.nyc_bagel_tag_bagel", "styles.nyc_bagel_tag_boiled", "styles.nyc_bagel_tag_malty", "styles.nyc_bagel_tag_nyc"],
     pairings: {
@@ -1079,7 +1085,8 @@ const grandmaPizza: DoughStyleDefinition = {
             ph_target: 'Normal',
             organic_acids: 'None',
             enzymatic_activity: "High (Sugar/Oil)"
-        }
+        },
+        processScience: "styles.grandma_pizza_science_process"
     },
     tags: ["styles.grandma_pizza_tag_pizza", "styles.grandma_pizza_tag_pan", "styles.grandma_pizza_tag_italian_american", "styles.grandma_pizza_tag_beginner", "styles.grandma_pizza_tag_thin"],
     pairings: {
@@ -1237,7 +1244,8 @@ const chicagoTavern: DoughStyleDefinition = {
             ph_target: 'Normal',
             organic_acids: 'None',
             enzymatic_activity: 'Low'
-        }
+        },
+        processScience: "styles.chicago_tavern_science_process"
     },
     tags: ["styles.chicago_tavern_v2_tag_pizza", "styles.chicago_tavern_v2_tag_american", "styles.chicago_tavern_v2_tag_midwest", "styles.chicago_tavern_v2_tag_thin", "styles.chicago_tavern_v2_tag_party", "styles.chicago_tavern_v2_tag_cracker"],
     pairings: {
@@ -1397,7 +1405,8 @@ const montrealBagel: DoughStyleDefinition = {
             ph_target: 'Normal',
             organic_acids: 'Low',
             enzymatic_activity: 'Standard'
-        }
+        },
+        processScience: "styles.montreal_bagel_science_process"
     },
     tags: ["styles.montreal_bagel_tag_honey", "styles.montreal_bagel_tag_nosalt", "styles.montreal_bagel_tag_wood", "styles.montreal_bagel_tag_canada"],
     pairings: {
@@ -1494,7 +1503,8 @@ const flourTortilla: DoughStyleDefinition = {
             ph_target: 'Neutral 9',
             organic_acids: 'None',
             enzymatic_activity: 'None'
-        }
+        },
+        processScience: "styles.flour_tortilla_science_process"
     },
     tags: ["styles.flour_tortilla_sonora_tag_lard", "styles.flour_tortilla_sonora_tag_sonora", "styles.flour_tortilla_sonora_tag_mexico"],
     pairings: {

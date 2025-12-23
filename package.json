@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run audit:cloud && vite build",
     "preview": "vite preview",
+    "audit:cloud": "node scripts/audit-cloud-efficiency.cjs",
     "generate:style": "node scripts/generate-style.js",
     "fill:style": "node scripts/fill-style-content.js",
     "validate:styles": "node scripts/validate-styles.ts"

@@ -41,10 +41,10 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
     return (
         <div
             onClick={handleCardClick}
-            className="group bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-2xl hover:shadow-lime-500/10 hover:border-lime-300/50 hover:-translate-y-1 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col h-full relative"
+            className="group bg-white rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-2xl hover:shadow-lime-500/10 hover:border-lime-300/50 hover:-translate-y-1 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col h-full relative"
         >
             {/* Glow Effect on Hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-lime-400/0 via-lime-500/0 to-emerald-500/0 group-hover:from-lime-400/5 group-hover:via-lime-500/5 group-hover:to-emerald-500/5 rounded-2xl transition-all duration-500 pointer-events-none z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-lime-400/0 via-lime-500/0 to-emerald-500/0 group-hover:from-lime-400/5 group-hover:via-lime-500/5 group-hover:to-emerald-500/5 rounded-3xl transition-all duration-500 pointer-events-none z-0"></div>
 
             {/* Image Header */}
             <div className="relative h-56 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
@@ -89,12 +89,12 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
 
                 {/* Bottom Info Bar with Glassmorphism */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 via-black/40 to-transparent backdrop-blur-md">
-                    <div className="flex items-center gap-2 text-xs text-white/90 font-semibold uppercase tracking-wider">
+                    <div className="flex items-center gap-2 text-[10px] text-white/90 font-bold uppercase tracking-widest">
                         <span className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20">
                             <Globe className="w-3.5 h-3.5" /> {style.origin.country || ''}
                         </span>
                         {style.origin.region && (
-                            <span className="bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20">
+                            <span className="bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20 line-clamp-1">
                                 {style.origin.region}
                             </span>
                         )}
@@ -103,7 +103,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
             </div>
 
             {/* Content Body */}
-            <div className="p-6 pb-4 relative flex-grow flex flex-col z-10">
+            <div className="p-6 pb-2 relative flex-grow flex flex-col z-10">
                 {/* Favorite Button - Floating */}
                 <button
                     onClick={(e) => {
@@ -115,7 +115,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                             metadata: { category: style.category }
                         });
                     }}
-                    className={`absolute -top-5 right-5 p-3 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 transform hover:scale-110 ${favorited
+                    className={`absolute -top-6 right-6 p-3 rounded-full shadow-lg backdrop-blur-md border transition-all duration-300 transform hover:scale-110 ${favorited
                         ? 'bg-pink-500 border-pink-400 text-white shadow-pink-500/50 animate-pulse-subtle'
                         : 'bg-white/95 border-slate-200 text-slate-400 hover:text-pink-500 hover:border-pink-300 hover:bg-pink-50'
                         }`}
@@ -125,95 +125,99 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
                     </svg>
                 </button>
 
-                <h3 className="text-xl font-bold text-slate-900 mb-2 mt-2 group-hover:text-dlp-brand-hover transition-colors line-clamp-1 tracking-tight">
+                <h3 className="text-xl font-bold text-slate-900 mb-2 mt-1 group-hover:text-dlp-brand-hover transition-colors line-clamp-1 tracking-tight">
                     {t(style.name)}
                 </h3>
 
-                {/* Description */}
-                <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4 flex-grow">
+                {/* Description - Fixed height for alignment */}
+                <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4 min-h-[40px]">
                     {t(style.description)}
                 </p>
-            </div>
 
-            {/* Tech Specs Badges - Enhanced */}
-            <div className="px-6 pb-4 flex flex-wrap gap-2">
-                <div className="inline-flex items-center px-3 py-1.5 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-700 text-xs font-bold border border-blue-200/50 shadow-sm hover:shadow-md transition-shadow">
-                    <Droplets className="w-3.5 h-3.5 mr-1.5" />
-                    {style.technicalProfile?.hydration[0]}-{style.technicalProfile?.hydration[1]}%
-                </div>
-                {(style.technicalProfile?.fermentation || (style.technicalProfile?.fermentationSteps && style.technicalProfile.fermentationSteps.length > 0)) && (
-                    <div className="inline-flex items-center px-3 py-1.5 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 text-amber-700 text-xs font-bold border border-amber-200/50 shadow-sm hover:shadow-md transition-shadow">
-                        <Clock className="w-3.5 h-3.5 mr-1.5" />
-                        {style.technicalProfile?.fermentation
-                            ? (typeof style.technicalProfile.fermentation === 'object'
-                                ? (style.technicalProfile.fermentation.bulk.includes('h') ? style.technicalProfile.fermentation.bulk : t('ui.variable_369'))
-                                : t('ui.variable_369'))
-                            : 'Multi-Stage'}
+                {/* Tech Specs Badges - Enhanced */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="inline-flex items-center px-3 py-1.5 rounded-xl bg-blue-50/50 text-blue-700 text-[11px] font-bold border border-blue-100/50">
+                        <Droplets className="w-3.5 h-3.5 mr-1.5" />
+                        {style.technicalProfile?.hydration?.[0] === style.technicalProfile?.hydration?.[1]
+                            ? `${style.technicalProfile?.hydration[0]}%`
+                            : `${style.technicalProfile?.hydration[0]}-${style.technicalProfile?.hydration[1]}%`
+                        }
                     </div>
-                )}
-                <div className={`inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-bold border shadow-sm hover:shadow-md transition-shadow ${style.technicalProfile?.difficulty === 'Easy'
-                    ? 'bg-gradient-to-br from-green-50 to-emerald-50 text-green-700 border-green-200/50'
-                    : style.technicalProfile?.difficulty === t('ui.medium_371')
-                        ? 'bg-gradient-to-br from-yellow-50 to-amber-50 text-yellow-700 border-yellow-200/50'
-                        : 'bg-gradient-to-br from-red-50 to-rose-50 text-red-700 border-red-200/50'
-                    }`}>
-                    <BarChart className="w-3.5 h-3.5 mr-1.5" />
-                    {t(`common.${(style.technicalProfile?.difficulty || t('ui.medium_371')).toLowerCase()}`, { defaultValue: style.technicalProfile?.difficulty || t('ui.medium_371') })}
+                    {(style.technicalProfile?.fermentation || (style.technicalProfile?.fermentationSteps && style.technicalProfile.fermentationSteps.length > 0)) && (
+                        <div className="inline-flex items-center px-3 py-1.5 rounded-xl bg-amber-50/50 text-amber-700 text-[11px] font-bold border border-amber-100/50">
+                            <Clock className="w-3.5 h-3.5 mr-1.5" />
+                            {style.technicalProfile?.fermentation
+                                ? (typeof style.technicalProfile.fermentation === 'object'
+                                    ? (style.technicalProfile.fermentation.bulk.includes('h') ? style.technicalProfile.fermentation.bulk : t('common.standard'))
+                                    : t('common.standard'))
+                                : t('common.multi_stage')}
+                        </div>
+                    )}
+                    <div className={`inline-flex items-center px-3 py-1.5 rounded-xl text-[11px] font-bold border ${style.technicalProfile?.difficulty === 'Easy'
+                        ? 'bg-green-50/50 text-green-700 border-green-100/50'
+                        : style.technicalProfile?.difficulty === 'Hard' || style.technicalProfile?.difficulty === 'Expert'
+                            ? 'bg-rose-50/50 text-rose-700 border-rose-100/50'
+                            : 'bg-amber-50/50 text-amber-700 border-amber-100/50'
+                        }`}>
+                        <BarChart className="w-3.5 h-3.5 mr-1.5" />
+                        {t(`common.${(style.technicalProfile?.difficulty || 'Medium').toLowerCase()}`)}
+                    </div>
                 </div>
             </div>
 
-            {/* Tags */}
+            {/* Tags - Optional but aligned */}
             {style.tags && style.tags.length > 0 && (
-                <div className="px-6 py-3 border-t border-slate-100 flex flex-wrap gap-1.5">
-                    {style.tags.slice(0, 4).map(tag => (
-                        <span key={tag} className="text-[10px] px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full font-semibold transition-colors">
-                            #{t(tag)}
+                <div className="px-6 py-3 border-t border-slate-50 flex flex-wrap gap-1.5 overflow-hidden h-[42px]">
+                    {style.tags.slice(0, 3).map(tag => (
+                        <span key={tag} className="text-[10px] px-2.5 py-1 bg-slate-100/50 text-slate-500 rounded-lg font-bold">
+                            #{t(tag).split(' ').pop()}
                         </span>
                     ))}
                 </div>
             )}
 
             {/* Action Bar - Premium Buttons */}
-            <div className="p-4 border-t border-slate-100 mt-auto grid grid-cols-2 gap-3 bg-slate-50/50">
-                <LockFeature featureKey="styles.detail" customMessage={t('general.unlock_calculator')} origin="styles.card">
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onUseInCalculator(style);
-                        }}
-                        className="w-full bg-gradient-to-r from-[#51a145] to-[#36782c] hover:from-[#36782c] hover:to-[#216416] text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:shadow-emerald-500/30 transform hover:scale-105 active:scale-95"
-                    >
-                        <Calculator className="h-4 w-4" />
-                        {t('common.use_style')}
-                    </button>
-                </LockFeature>
+            <div className="p-4 pt-0">
+                <div className="grid grid-cols-2 gap-3">
+                    <LockFeature featureKey="styles.detail" customMessage={t('general.unlock_calculator')} origin="styles.card">
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onUseInCalculator(style);
+                            }}
+                            className="w-full bg-gradient-to-r from-[#51a145] to-[#36782c] hover:brightness-110 text-white text-[11px] font-black py-3 px-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-lg hover:shadow-emerald-500/20 active:scale-95"
+                        >
+                            <Calculator className="h-4 w-4" />
+                            {t('common.use_style').toUpperCase()}
+                        </button>
+                    </LockFeature>
 
-                {isUserStyle && onDelete ? (
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onDelete(style);
-                        }}
-                        className="w-full bg-gradient-to-r from-red-50 to-rose-50 hover:from-red-500 hover:to-rose-600 text-red-700 hover:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 border border-red-200 hover:border-red-500 shadow-sm hover:shadow-lg transform hover:scale-105 active:scale-95"
-                    >
-                        <Trash2 className="h-4 w-4" />
-                        {t('common.delete')}
-                    </button>
-                ) : (
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleCardClick();
-                        }}
-                        className="w-full bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 shadow-sm hover:shadow-md transform hover:scale-105 active:scale-95"
-                    >
-                        {t('common.details')}
-                        <ArrowRight className="h-4 w-4" />
-                    </button>
-                )}
+                    {isUserStyle && onDelete ? (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onDelete(style);
+                            }}
+                            className="w-full bg-rose-50 hover:bg-rose-500 text-rose-600 hover:text-white text-[11px] font-black py-3 px-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 border border-rose-100 hover:border-rose-500 active:scale-95"
+                        >
+                            <Trash2 className="h-4 w-4" />
+                            {t('common.delete').toUpperCase()}
+                        </button>
+                    ) : (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleCardClick();
+                            }}
+                            className="w-full bg-slate-50 hover:bg-slate-100 text-slate-600 text-[11px] font-black py-3 px-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 border border-slate-100 hover:border-slate-200 active:scale-95"
+                        >
+                            {t('common.details').toUpperCase()}
+                            <ArrowRight className="h-4 w-4" />
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     );
 };
-
 

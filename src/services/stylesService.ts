@@ -1,4 +1,4 @@
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { DoughStyleDefinition } from '@/types/styles';
 import { STYLES_DATA, mapRawStyleToDoughStyleDefinition } from '@/data/stylesData';
@@ -19,8 +19,8 @@ export async function fetchStyles(): Promise<DoughStyleDefinition[]> {
     try {
         const stylesRef = collection(db, STYLES_COLLECTION);
         // Optional: Add ordering here if your Firestore docs have an 'order' field or similar
-        // For now, we just fetch all.
-        const q = query(stylesRef);
+        // For now, we just fetch all, with a safety limit of 100.
+        const q = query(stylesRef, limit(100));
 
         const snapshot = await getDocs(q);
 

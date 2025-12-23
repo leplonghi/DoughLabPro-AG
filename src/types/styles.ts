@@ -219,6 +219,8 @@ export interface AdvancedProfile {
         organic_acids: string; // e.g. t('common.lactic_dominant_over_acetic')
         enzymatic_activity: string; // e.g. t('common.high_protease_activity_during_autolyse')
     };
+
+    processScience?: string; // Unified key for the summary of the scientific process
 }
 
 // Level 3: Educational & Deep Dive Content

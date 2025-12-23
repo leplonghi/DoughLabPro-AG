@@ -1,8 +1,16 @@
-
 import React, { useMemo } from 'react';
 import { getRecommendedProducts, AffiliateProduct } from '@/data/affiliates';
 import { getProductsForPlacement, getCategoryPlacement, AFFILIATE_PLACEMENTS } from '@/data/affiliatePlacements';
-import { ShoppingBag, Tag, ExternalLink as ExternalLinkIcon } from 'lucide-react';
+import {
+    ShoppingBagIcon as ShoppingBag,
+    TagIcon as Tag,
+    ArrowTopRightOnSquareIcon as ExternalLinkIcon,
+    ChevronRightIcon as ChevronRight,
+    FireIcon as Flame,
+    FlourIcon as Wheat,
+    ScaleIcon as Scale,
+    WrenchScrewdriverIcon as Tool
+} from '@/components/ui/Icons';
 import { ExternalLink } from '@/components/ui/ExternalLink';
 import { useTranslation } from '@/i18n';
 
@@ -15,6 +23,15 @@ interface AffiliateGridProps {
     category?: string;
 }
 
+const CategoryIcon: React.FC<{ category: string; className?: string }> = ({ category, className }) => {
+    switch (category.toLowerCase()) {
+        case 'ingredient': return <Wheat className={className} />;
+        case 'equipment': return <Flame className={className} />;
+        case 'accessory': return <Tool className={className} />;
+        default: return <ShoppingBag className={className} />;
+    }
+};
+
 export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
     tags,
     limit = 3,
@@ -23,13 +40,10 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
     placementId,
     category
 }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common', 'ui', 'general']);
 
-    // Memoize recommendations to avoid recalc on every render
     const { products, displayTitle } = useMemo(() => {
         let activePlacementId = placementId;
-
-        // Auto-detect placement from category if not explicitly provided
         if (!activePlacementId && category) {
             activePlacementId = getCategoryPlacement(category);
         }
@@ -50,67 +64,73 @@ export const AffiliateGrid: React.FC<AffiliateGridProps> = ({
             products: getRecommendedProducts(tags, limit),
             displayTitle: title || t('ui.recommended_gear_386')
         };
-    }, [tags, limit, placementId, category, title]);
+    }, [tags, limit, placementId, category, title, t]);
 
-    if (!products || products.length === 0) {
-        return null; // Don't render empty sections
-    }
+    if (!products || products.length === 0) return null;
 
     return (
-        <div className={`space-y-3 ${className}`}>
-            <div className="flex items-center gap-2 mb-3">
-                <ShoppingBag className="w-4 h-4 text-dlp-primary-600" />
-                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide">
-                    {displayTitle}
-                </h3>
+        <div className={`space-y-4 ${className}`}>
+            <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2.5">
+                    <div className="p-2 bg-indigo-50 rounded-xl">
+                        <ShoppingBag className="w-4 h-4 text-indigo-600" />
+                    </div>
+                    <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                        {displayTitle}
+                    </h3>
+                </div>
+                <div className="h-px flex-1 bg-slate-100 ml-4 hidden sm:block" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3">
                 {products.map(product => (
                     <ExternalLink
                         key={product.id}
                         href={product.affiliateLink}
-                        className="group flex flex-col bg-white rounded-lg border border-slate-200 overflow-hidden hover:border-dlp-primary-500 hover:shadow-lg transition-all duration-300"
+                        className="group relative flex items-center gap-4 bg-white p-3 rounded-2xl border border-slate-100 transition-all hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/5 active:scale-[0.98]"
                     >
-                        {/* Compact layout: Image + Content */}
-                        <div className="flex flex-row h-24">
-                            {/* Image - 1/3 width */}
-                            <div className="w-1/3 bg-slate-50 relative overflow-hidden">
-                                <img
-                                    src={product.imageUrl}
-                                    alt={product.name}
-                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                                />
+                        {/* Product Image */}
+                        <div className="relative w-16 h-16 flex-shrink-0 bg-slate-50 rounded-xl overflow-hidden border border-slate-50 group-hover:border-emerald-100 transition-colors">
+                            <img
+                                src={product.imageUrl}
+                                alt={product.name}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-emerald-500/5 transition-colors" />
+                        </div>
+
+                        {/* Product Info */}
+                        <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5 mb-0.5">
+                                <CategoryIcon category={product.category} className="w-2.5 h-2.5 text-slate-400 group-hover:text-emerald-500 transition-colors" />
+                                <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest group-hover:text-emerald-600 transition-colors">
+                                    {product.category}
+                                </span>
                             </div>
+                            <h4 className="text-[13px] font-black text-slate-800 leading-tight truncate group-hover:text-emerald-900 transition-colors">
+                                {product.name}
+                            </h4>
+                            <div className="flex items-center gap-1 mt-1 text-emerald-600">
+                                <span className="text-[10px] font-black uppercase tracking-tighter">Check Price</span>
+                                <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                            </div>
+                        </div>
 
-                            {/* Content - 2/3 width */}
-                            <div className="w-2/3 p-3 flex flex-col justify-between bg-white relative">
-                                <div>
-                                    <div className="flex justify-between items-start">
-                                        <span className="text-[10px] font-bold text-dlp-primary-600 uppercase tracking-tight mb-1">
-                                            {product.category}
-                                        </span>
-                                        <ExternalLinkIcon className="w-3 h-3 text-slate-300 group-hover:text-dlp-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    </div>
-
-                                    <h4 className="text-sm font-bold text-slate-900 leading-tight line-clamp-2 group-hover:text-dlp-primary-600 transition-colors">
-                                        {product.name}
-                                    </h4>
-                                </div>
-
-                                <div className="mt-1 flex items-center justify-between">
-                                    <span className="text-[10px] text-slate-500 font-medium">
-                                        Check Price &rarr;
-                                    </span>
-                                </div>
+                        {/* Price Indicator (Optional hint of premium feel) */}
+                        <div className="pr-1">
+                            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-emerald-50 group-hover:text-emerald-500 transition-all">
+                                <ExternalLinkIcon className="w-3.5 h-3.5" />
                             </div>
                         </div>
                     </ExternalLink>
                 ))}
             </div>
 
-            <div className="text-[10px] text-slate-400 text-center italic mt-2">
-                As an Amazon Associate, DoughLab Pro earns from qualifying purchases.
+            <div className="flex items-center gap-3 p-3 bg-slate-50/50 rounded-xl border border-slate-100/50">
+                <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <p className="text-[9px] font-bold text-slate-400 italic leading-snug">
+                    As an Amazon Associate, DoughLab Pro earns from qualifying purchases. This helps support our scientific research.
+                </p>
             </div>
         </div>
     );

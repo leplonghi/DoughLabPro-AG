@@ -11,6 +11,7 @@ export const italianStyles: DoughStyle[] = [
         tags: ['styles.pizza_napoletana_tag_high_heat', 'styles.pizza_napoletana_tag_direct', 'styles.pizza_napoletana_tag_stg', 'styles.pizza_napoletana_tag_wood'],
         description: "styles.pizza_napoletana_desc",
         history_context: "styles.pizza_napoletana_history",
+        culturalContext: "styles.pizza_napoletana_cultural_context",
         base_formula: [
             { name: "styles.pizza_napoletana_bf_flour", percentage: 100 },
             { name: 'styles.pizza_napoletana_bf_water', percentage: 60 },
@@ -26,32 +27,55 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W280-320",
-                pl_ratio: "0.55-0.60 (Extensible)",
-                absorption_capacity: "Medium-High (58-65%)",
-                protein_type: "Soft Wheat Type 00",
+                w_index: "styles.pizza_napoletana_science_flour_w",
+                pl_ratio: "styles.pizza_napoletana_science_flour_pl",
+                absorption_capacity: "styles.pizza_napoletana_science_flour_abs",
+                protein_type: "styles.pizza_napoletana_science_flour_type",
                 science_explanation: "styles.pizza_napoletana_science_flour"
             },
             thermalProfile: {
-                oven_type: "Wood Fired (Dome)",
-                heat_distribution: "High Conduction (Floor) & Radiation",
-                crust_development: 'Leopard spotting',
-                crumb_structure: 'Airy cornicione thin center'
+                oven_type: "styles.pizza_napoletana_thermal_oven",
+                heat_distribution: "styles.pizza_napoletana_thermal_dist",
+                crust_development: 'styles.pizza_napoletana_thermal_crust',
+                crumb_structure: 'styles.pizza_napoletana_thermal_crumb'
             },
             fermentationScience: {
-                yeast_activity: "Controlled (Room Temp)",
-                ph_target: "pH 5.5",
-                organic_acids: 'Lactic dominant',
-                enzymatic_activity: "High (24h Maturation)"
+                yeast_activity: "styles.pizza_napoletana_ferm_yeast",
+                ph_target: "styles.pizza_napoletana_ferm_ph",
+                organic_acids: 'styles.pizza_napoletana_ferm_acids',
+                enzymatic_activity: "styles.pizza_napoletana_ferm_enzymatic"
             },
             processScience: "styles.pizza_napoletana_science_process"
         },
         flavorProfile: {
-            primaryFlavors: ["Toasted Bread", "Lactic Tang", "Sweet Wheat", "Charred Crust"],
-            aromaProfile: ["Freshly Baked Bread", "Wood Smoke", "Sweet Mozzarella", "Fresh Basil"],
-            textureNotes: ["Light & Airy Cornicione", "Soft and Foldable", "Melt-in-mouth center", "Tender Elasticity"],
-            pairingRecommendations: ["Classic Margherita (Tomato, Bufala, Basil)", "Marinara (Garlic, Oregano)", "Prosciutto & Arugula after bake"],
-            flavorEvolution: ["Fresh yeast & flour notes", "Complex acidity after 24h maturation", "Maillard-rich charred finish"]
+            primaryFlavors: [
+                "styles.pizza_napoletana_flavor_primary_1",
+                "styles.pizza_napoletana_flavor_primary_2",
+                "styles.pizza_napoletana_flavor_primary_3",
+                "styles.pizza_napoletana_flavor_primary_4"
+            ],
+            aromaProfile: [
+                "styles.pizza_napoletana_aroma_1",
+                "styles.pizza_napoletana_aroma_2",
+                "styles.pizza_napoletana_aroma_3",
+                "styles.pizza_napoletana_aroma_4"
+            ],
+            textureNotes: [
+                "styles.pizza_napoletana_texture_1",
+                "styles.pizza_napoletana_texture_2",
+                "styles.pizza_napoletana_texture_3",
+                "styles.pizza_napoletana_texture_4"
+            ],
+            pairingRecommendations: [
+                "styles.pizza_napoletana_pair_1",
+                "styles.pizza_napoletana_pair_2",
+                "styles.pizza_napoletana_pair_3"
+            ],
+            flavorEvolution: [
+                "styles.pizza_napoletana_evo_1",
+                "styles.pizza_napoletana_evo_2",
+                "styles.pizza_napoletana_evo_3"
+            ]
         },
         process: [
             {
@@ -175,14 +199,14 @@ export const italianStyles: DoughStyle[] = [
             },
             whatIf: [
                 {
-                    scenario: "Lowering temp to 250°C (Home Oven)?",
-                    outcome: 'The dough dries out before it browns you get a har',
-                    solution: "Add 2-3% sugar and oil to aid browning and softness (Technically becomes NY/Neo-Neapolitan)."
+                    scenario: "styles.pizza_napoletana_dd_wi_lowtemp_scen",
+                    outcome: 'styles.pizza_napoletana_dd_wi_lowtemp_out',
+                    solution: "styles.pizza_napoletana_dd_wi_lowtemp_sol"
                 },
                 {
-                    scenario: "Using weak flour (All Purpose)?",
-                    outcome: 'It cannot withstand the 24h fermentation',
-                    solution: "The gluten network will degrade and tear when stretching. Use a specific Pizza/Bread flour."
+                    scenario: "styles.pizza_napoletana_dd_wi_overproof_scen",
+                    outcome: 'styles.pizza_napoletana_dd_wi_overproof_out',
+                    solution: "styles.pizza_napoletana_dd_wi_overproof_sol"
                 }
             ],
             comparisons: [
@@ -195,6 +219,14 @@ export const italianStyles: DoughStyle[] = [
                 "styles.pizza_napoletana_dd_tip_1",
                 "styles.pizza_napoletana_dd_tip_2"]
         },
+        watchouts: [
+            "styles.pizza_napoletana_watchout_1",
+            "styles.pizza_napoletana_watchout_2"
+        ],
+        experimentSuggestions: [
+            "styles.pizza_napoletana_exp_1",
+            "styles.pizza_napoletana_exp_2"
+        ],
         recommendedFlavorComponents: ["mozzarella_di_bufala", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "pecorino_romano", "parmesan", "oregano_dried", "garlic_fresh", "pepperoni", "italian_sausage"]
     },
     {
@@ -207,6 +239,7 @@ export const italianStyles: DoughStyle[] = [
         tags: ['styles.pizza_teglia_romana_tag_high_hydration', 'styles.pizza_teglia_romana_tag_pan_pizza', 'styles.pizza_teglia_romana_tag_cold_ferment', 'styles.pizza_teglia_romana_tag_airy_crumb'],
         description: "styles.pizza_teglia_romana_desc",
         history_context: "styles.pizza_teglia_romana_history",
+        culturalContext: "styles.pizza_teglia_romana_cultural_context",
         base_formula: [
             { name: "styles.pizza_teglia_romana_bf_flour", percentage: 100 },
             { name: 'styles.ingredients_water', percentage: 80 },
@@ -223,32 +256,51 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W350+ (Very Strong)",
-                pl_ratio: "0.55 (Extensible but Strong)",
-                absorption_capacity: "Very High (80%+)",
-                protein_type: "Soft Wheat Type 0 or 00",
+                w_index: "styles.pizza_teglia_romana_science_flour_w",
+                pl_ratio: "styles.pizza_teglia_romana_science_flour_pl",
+                absorption_capacity: "styles.pizza_teglia_romana_science_flour_abs",
+                protein_type: "styles.pizza_teglia_romana_science_flour_type",
                 science_explanation: "styles.pizza_teglia_romana_science_flour"
             },
             thermalProfile: {
-                oven_type: 'Deck oven',
-                heat_distribution: "Conduction (Floor)",
-                crust_development: "Fried/Crispy Bottom",
-                crumb_structure: 'Open alveolated'
+                oven_type: "styles.pizza_teglia_romana_thermal_oven",
+                heat_distribution: "styles.pizza_teglia_romana_thermal_dist",
+                crust_development: "styles.pizza_teglia_romana_thermal_crust",
+                crumb_structure: "styles.pizza_teglia_romana_thermal_crumb"
             },
             fermentationScience: {
-                yeast_activity: "Slow (Cold Retard)",
-                ph_target: "Acidic (Protease Activity)",
-                organic_acids: "Complex (Cold Ferment)",
-                enzymatic_activity: "High (Proteolysis)"
+                yeast_activity: "styles.pizza_teglia_romana_ferm_yeast",
+                ph_target: "styles.pizza_teglia_romana_ferm_ph",
+                organic_acids: "styles.pizza_teglia_romana_ferm_acids",
+                enzymatic_activity: "styles.pizza_teglia_romana_ferm_enzymatic"
             },
             processScience: "styles.pizza_teglia_romana_science_process"
         },
         flavorProfile: {
-            primaryFlavors: ["Nutty Toasted Crust", "Intense Fermentation", "Olive Oil Bloom"],
-            aromaProfile: ["Toasted Grain", "Fruity Extra Virgin Olive Oil", "Complex Wild Yeast"],
-            textureNotes: ["Extremely Crunchy Base", "High Alveolation (Honeycomb)", "Soft Cloud-like Interior"],
-            pairingRecommendations: ["Mortadella & Stracciatella", "Potato & Rosemary (Classic Romana)", "Red Pizza with Spicy Salami"],
-            flavorEvolution: ["Sharp yeast notes in young dough", "Mellow nutty sweetness after 48h-72h maturation"]
+            primaryFlavors: [
+                "styles.pizza_teglia_romana_flavor_primary_1",
+                "styles.pizza_teglia_romana_flavor_primary_2",
+                "styles.pizza_teglia_romana_flavor_primary_3"
+            ],
+            aromaProfile: [
+                "styles.pizza_teglia_romana_aroma_1",
+                "styles.pizza_teglia_romana_aroma_2",
+                "styles.pizza_teglia_romana_aroma_3"
+            ],
+            textureNotes: [
+                "styles.pizza_teglia_romana_texture_1",
+                "styles.pizza_teglia_romana_texture_2",
+                "styles.pizza_teglia_romana_texture_3"
+            ],
+            pairingRecommendations: [
+                "styles.pizza_teglia_romana_pair_1",
+                "styles.pizza_teglia_romana_pair_2",
+                "styles.pizza_teglia_romana_pair_3"
+            ],
+            flavorEvolution: [
+                "styles.pizza_teglia_romana_evo_1",
+                "styles.pizza_teglia_romana_evo_2"
+            ]
         },
         process: [
             {
@@ -340,14 +392,9 @@ export const italianStyles: DoughStyle[] = [
             },
             whatIf: [
                 {
-                    scenario: "styles.pizza_teglia_romana_dd_wi_soup_scen",
-                    outcome: 'styles.pizza_teglia_romana_dd_wi_soup_out',
-                    solution: "styles.pizza_teglia_romana_dd_wi_soup_sol"
-                },
-                {
-                    scenario: 'styles.pizza_teglia_romana_dd_wi_pale_scen',
-                    outcome: "styles.pizza_teglia_romana_dd_wi_pale_out",
-                    solution: "styles.pizza_teglia_romana_dd_wi_pale_sol"
+                    scenario: "styles.pizza_teglia_romana_dd_wi_lowhyd_scen",
+                    outcome: 'styles.pizza_teglia_romana_dd_wi_lowhyd_out',
+                    solution: "styles.pizza_teglia_romana_dd_wi_lowhyd_sol"
                 }
             ],
             comparisons: [
@@ -361,6 +408,14 @@ export const italianStyles: DoughStyle[] = [
                 "styles.pizza_teglia_romana_dd_tip_2"
             ]
         },
+        watchouts: [
+            "styles.pizza_teglia_romana_watchout_1",
+            "styles.pizza_teglia_romana_watchout_2"
+        ],
+        experimentSuggestions: [
+            "styles.pizza_teglia_romana_exp_1",
+            "styles.pizza_teglia_romana_exp_2"
+        ],
         recommendedFlavorComponents: ["tomato_sauce_cooked", "mozzarella_low_moisture", "olive_oil_extra_virgin", "pecorino_romano", "garlic_fresh", "oregano_dried", "hot_honey", "bacon", "mushrooms", "bell_pepper"]
     },
     {
@@ -373,6 +428,7 @@ export const italianStyles: DoughStyle[] = [
         tags: ['styles.pizza_tonda_romana_tag_low_hyd', 'styles.pizza_tonda_romana_tag_rolling', 'styles.pizza_tonda_romana_tag_crispy', 'styles.pizza_tonda_romana_tag_cracker'],
         description: "styles.pizza_tonda_romana_desc",
         history_context: "pizza_tonda_romana_history",
+        culturalContext: "styles.pizza_tonda_romana_cultural_context",
         base_formula: [
             { name: "styles.ingredients_flour_00", percentage: 100 },
             { name: 'styles.ingredients_water', percentage: 56 },
@@ -389,25 +445,51 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W240 (Medium)",
-                pl_ratio: "0.45 (Very Extensible)",
-                absorption_capacity: "Low",
-                protein_type: "Soft Wheat Type 00",
+                w_index: "styles.pizza_tonda_romana_science_flour_w",
+                pl_ratio: "styles.pizza_tonda_romana_science_flour_pl",
+                absorption_capacity: "styles.pizza_tonda_romana_science_flour_abs",
+                protein_type: "styles.pizza_tonda_romana_science_flour_type",
                 science_explanation: "styles.pizza_tonda_romana_science_flour"
             },
             thermalProfile: {
-                oven_type: "Electric/Gas Deck",
-                heat_distribution: 'Consistent',
-                crust_development: 'Dry crispy crackerlike',
-                crumb_structure: 'Tight dense'
+                oven_type: "styles.pizza_tonda_romana_thermal_oven",
+                heat_distribution: "styles.pizza_tonda_romana_thermal_dist",
+                crust_development: "styles.pizza_tonda_romana_thermal_crust",
+                crumb_structure: "styles.pizza_tonda_romana_thermal_crumb"
             },
             fermentationScience: {
-                yeast_activity: 'Standard',
-                ph_target: 'Normal',
-                organic_acids: 'Low',
-                enzymatic_activity: 'Moderate 4'
+                yeast_activity: "styles.pizza_tonda_romana_ferm_yeast",
+                ph_target: "styles.pizza_tonda_romana_ferm_ph",
+                organic_acids: "styles.pizza_tonda_romana_ferm_acids",
+                enzymatic_activity: "styles.pizza_tonda_romana_ferm_enzymatic"
             },
             processScience: "pizza_tonda_romana_science_process"
+        },
+        flavorProfile: {
+            primaryFlavors: [
+                "styles.pizza_tonda_romana_flavor_primary_1",
+                "styles.pizza_tonda_romana_flavor_primary_2",
+                "styles.pizza_tonda_romana_flavor_primary_3"
+            ],
+            aromaProfile: [
+                "styles.pizza_tonda_romana_aroma_1",
+                "styles.pizza_tonda_romana_aroma_2",
+                "styles.pizza_tonda_romana_aroma_3"
+            ],
+            textureNotes: [
+                "styles.pizza_tonda_romana_texture_1",
+                "styles.pizza_tonda_romana_texture_2",
+                "styles.pizza_tonda_romana_texture_3"
+            ],
+            pairingRecommendations: [
+                "styles.pizza_tonda_romana_pair_1",
+                "styles.pizza_tonda_romana_pair_2",
+                "styles.pizza_tonda_romana_pair_3"
+            ],
+            flavorEvolution: [
+                "styles.pizza_tonda_romana_evo_1",
+                "styles.pizza_tonda_romana_evo_2"
+            ]
         },
         process: [
             {
@@ -511,7 +593,7 @@ export const italianStyles: DoughStyle[] = [
             ],
             comparisons: [
                 {
-                    vsStyle: 'Neapolitan 2',
+                    vsStyle: 'Neapolitan',
                     difference: "styles.pizza_tonda_romana_dd_comp_neo_diff"
                 }
             ],
@@ -520,6 +602,14 @@ export const italianStyles: DoughStyle[] = [
                 "styles.pizza_tonda_romana_dd_tip_2"
             ]
         },
+        watchouts: [
+            "styles.pizza_tonda_romana_watchout_1",
+            "styles.pizza_tonda_romana_watchout_2"
+        ],
+        experimentSuggestions: [
+            "styles.pizza_tonda_romana_exp_1",
+            "styles.pizza_tonda_romana_exp_2"
+        ],
         recommendedFlavorComponents: ["tomato_sauce_cooked", "mozzarella_low_moisture", "olive_oil_extra_virgin", "pecorino_romano", "oregano_dried", "garlic_fresh", "pepperoni", "anchovies"]
     },
     {
@@ -532,6 +622,7 @@ export const italianStyles: DoughStyle[] = [
         tags: ['styles.focaccia_genovese_tag_high_oil', 'styles.focaccia_genovese_tag_breakfast', 'styles.focaccia_genovese_tag_emulsion', 'styles.focaccia_genovese_tag_pan'],
         description: "styles.focaccia_genovese_desc",
         history_context: "styles.focaccia_genovese_history",
+        culturalContext: "styles.focaccia_genovese_cultural_context",
         base_formula: [
             { name: 'styles.ingredients_flour_00', percentage: 100 },
             { name: 'styles.ingredients_water', percentage: 65 },
@@ -549,25 +640,51 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W260-280",
-                pl_ratio: "0.50 (Extensible)",
-                absorption_capacity: "Medium (60%)",
-                protein_type: "Soft Wheat Type 00",
+                w_index: "styles.focaccia_genovese_science_flour_w",
+                pl_ratio: "styles.focaccia_genovese_science_flour_pl",
+                absorption_capacity: "styles.focaccia_genovese_science_flour_abs",
+                protein_type: "styles.focaccia_genovese_science_flour_type",
                 science_explanation: "styles.focaccia_genovese_science_flour"
             },
             thermalProfile: {
-                oven_type: "Convection/Deck",
-                heat_distribution: "Steam (Brine)",
-                crust_development: "Golden (Fried in Oil)",
-                crumb_structure: 'Soft creamy'
+                oven_type: "styles.focaccia_genovese_thermal_oven",
+                heat_distribution: "styles.focaccia_genovese_thermal_dist",
+                crust_development: "styles.focaccia_genovese_thermal_crust",
+                crumb_structure: "styles.focaccia_genovese_thermal_crumb"
             },
             fermentationScience: {
-                yeast_activity: 'Fast 2',
-                ph_target: 'Normal',
-                organic_acids: 'Low',
-                enzymatic_activity: 'High'
+                yeast_activity: "styles.focaccia_genovese_ferm_yeast",
+                ph_target: "styles.focaccia_genovese_ferm_ph",
+                organic_acids: "styles.focaccia_genovese_ferm_acids",
+                enzymatic_activity: "styles.focaccia_genovese_ferm_enzymatic"
             },
             processScience: "styles.focaccia_genovese_science_process"
+        },
+        flavorProfile: {
+            primaryFlavors: [
+                "styles.focaccia_genovese_flavor_primary_1",
+                "styles.focaccia_genovese_flavor_primary_2",
+                "styles.focaccia_genovese_flavor_primary_3"
+            ],
+            aromaProfile: [
+                "styles.focaccia_genovese_aroma_1",
+                "styles.focaccia_genovese_aroma_2",
+                "styles.focaccia_genovese_aroma_3"
+            ],
+            textureNotes: [
+                "styles.focaccia_genovese_texture_1",
+                "styles.focaccia_genovese_texture_2",
+                "styles.focaccia_genovese_texture_3"
+            ],
+            pairingRecommendations: [
+                "styles.focaccia_genovese_pair_1",
+                "styles.focaccia_genovese_pair_2",
+                "styles.focaccia_genovese_pair_3"
+            ],
+            flavorEvolution: [
+                "styles.focaccia_genovese_evo_1",
+                "styles.focaccia_genovese_evo_2"
+            ]
         },
         process: [
             {
@@ -679,9 +796,17 @@ export const italianStyles: DoughStyle[] = [
             ],
             proTips: [
                 "styles.focaccia_genovese_dd_tip_1",
-                "styles.focaccia_genovese_dd_tip_2"
+                "styles.focaccia_genovese_deep_dive_tip_2"
             ]
         },
+        watchouts: [
+            "styles.focaccia_genovese_watchout_1",
+            "styles.focaccia_genovese_watchout_2"
+        ],
+        experimentSuggestions: [
+            "styles.focaccia_genovese_exp_1",
+            "styles.focaccia_genovese_exp_2"
+        ],
         recommendedFlavorComponents: ["olive_oil_extra_virgin", "rosemary_fresh", "garlic_fresh", "sea_salt", "cherry_tomatoes_confit", "pesto", "olives_black", "parmesan"]
     },
     {
@@ -694,6 +819,7 @@ export const italianStyles: DoughStyle[] = [
         tags: ['styles.sfincione_palermitano_tag_sponge', 'styles.sfincione_palermitano_tag_focaccia', 'styles.sfincione_palermitano_tag_street', 'styles.sfincione_palermitano_tag_onions'],
         description: "styles.sfincione_palermitano_desc",
         history_context: "styles.sfincione_palermitano_history",
+        culturalContext: "styles.sfincione_palermitano_cultural_context",
         base_formula: [
             { name: "styles.ingredients_semolina_blend", percentage: 100 },
             { name: 'styles.ingredients_water', percentage: 70 },
@@ -710,25 +836,51 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W220 (Semolina)",
-                pl_ratio: "High (Tenacious)",
-                absorption_capacity: "High (70%)",
-                protein_type: "Durum Wheat (Semola Rimacinata)",
+                w_index: "styles.sfincione_palermitano_science_flour_w",
+                pl_ratio: "styles.sfincione_palermitano_science_flour_pl",
+                absorption_capacity: "styles.sfincione_palermitano_science_flour_abs",
+                protein_type: "styles.sfincione_palermitano_science_flour_type",
                 science_explanation: "styles.sfincione_palermitano_science_flour"
             },
             thermalProfile: {
-                oven_type: "Deck (Sheet Pan)",
-                heat_distribution: 'Protected top',
-                crust_development: 'Fried bottom steamed top',
-                crumb_structure: 'Spongy cakelike'
+                oven_type: "styles.sfincione_palermitano_thermal_oven",
+                heat_distribution: "styles.sfincione_palermitano_thermal_dist",
+                crust_development: "styles.sfincione_palermitano_thermal_crust",
+                crumb_structure: "styles.sfincione_palermitano_thermal_crumb"
             },
             fermentationScience: {
-                yeast_activity: 'Moderate 5',
-                ph_target: 'Normal',
-                organic_acids: 'Low',
-                enzymatic_activity: 'Moderate 6'
+                yeast_activity: "styles.sfincione_palermitano_ferm_yeast",
+                ph_target: "styles.sfincione_palermitano_ferm_ph",
+                organic_acids: "styles.sfincione_palermitano_ferm_acids",
+                enzymatic_activity: "styles.sfincione_palermitano_ferm_enzymatic"
             },
             processScience: "styles.sfincione_palermitano_science_process"
+        },
+        flavorProfile: {
+            primaryFlavors: [
+                "styles.sfincione_palermitano_flavor_primary_1",
+                "styles.sfincione_palermitano_flavor_primary_2",
+                "styles.sfincione_palermitano_flavor_primary_3"
+            ],
+            aromaProfile: [
+                "styles.sfincione_palermitano_aroma_1",
+                "styles.sfincione_palermitano_aroma_2",
+                "styles.sfincione_palermitano_aroma_3"
+            ],
+            textureNotes: [
+                "styles.sfincione_palermitano_texture_1",
+                "styles.sfincione_palermitano_texture_2",
+                "styles.sfincione_palermitano_texture_3"
+            ],
+            pairingRecommendations: [
+                "styles.sfincione_palermitano_pair_1",
+                "styles.sfincione_palermitano_pair_2",
+                "styles.sfincione_palermitano_pair_3"
+            ],
+            flavorEvolution: [
+                "styles.sfincione_palermitano_evo_1",
+                "styles.sfincione_palermitano_evo_2"
+            ]
         },
         process: [
             {
@@ -829,6 +981,14 @@ export const italianStyles: DoughStyle[] = [
                 "styles.sfincione_palermitano_dd_tip_2"
             ]
         },
+        watchouts: [
+            "styles.sfincione_palermitano_watchout_1",
+            "styles.sfincione_palermitano_watchout_2"
+        ],
+        experimentSuggestions: [
+            "styles.sfincione_palermitano_exp_1",
+            "styles.sfincione_palermitano_exp_2"
+        ],
         recommendedFlavorComponents: ["tomato_sauce_cooked", "onions_fresh", "pecorino_romano", "oregano_dried", "olive_oil_extra_virgin", "pepperoni", "anchovies", "breadcrumbs"]
     },
     {
@@ -840,6 +1000,7 @@ export const italianStyles: DoughStyle[] = [
         tags: ['styles.pane_toscano_tag_no_salt', 'styles.pane_toscano_tag_sourdough', 'styles.pane_toscano_tag_dop', 'styles.pane_toscano_tag_ancient'],
         description: "styles.pane_toscano_desc",
         history_context: "styles.pane_toscano_history",
+        culturalContext: "styles.pane_toscano_cultural_context",
         base_formula: [
             { name: 'styles.ingredients_flour_soft_0', percentage: 100 },
             { name: 'styles.ingredients_water', percentage: 60 },
@@ -854,25 +1015,51 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W180-200 (Weak)",
-                pl_ratio: "0.40 (Very Extensible)",
-                absorption_capacity: "Low",
-                protein_type: "Soft Wheat Type 0",
+                w_index: "styles.pane_toscano_science_flour_w",
+                pl_ratio: "styles.pane_toscano_science_flour_pl",
+                absorption_capacity: "styles.pane_toscano_science_flour_abs",
+                protein_type: "styles.pane_toscano_science_flour_type",
                 science_explanation: "styles.pane_toscano_science_flour"
             },
             thermalProfile: {
-                oven_type: "Wood Fired/Hearth",
-                heat_distribution: 'Radiant',
-                crust_development: 'Thick hard pale',
-                crumb_structure: 'Irregular'
+                oven_type: "styles.pane_toscano_thermal_oven",
+                heat_distribution: "styles.pane_toscano_thermal_dist",
+                crust_development: "styles.pane_toscano_thermal_crust",
+                crumb_structure: "styles.pane_toscano_thermal_crumb"
             },
             fermentationScience: {
-                yeast_activity: "Explosive (Runaway)",
-                ph_target: "Acidic (Sourdough Control)",
-                organic_acids: "High Acetic (Biga)",
-                enzymatic_activity: 'Very high 2'
+                yeast_activity: "styles.pane_toscano_ferm_yeast",
+                ph_target: "styles.pane_toscano_ferm_ph",
+                organic_acids: "styles.pane_toscano_ferm_acids",
+                enzymatic_activity: "styles.pane_toscano_ferm_enzymatic"
             },
             processScience: "styles.pane_toscano_science_process"
+        },
+        flavorProfile: {
+            primaryFlavors: [
+                "styles.pane_toscano_flavor_primary_1",
+                "styles.pane_toscano_flavor_primary_2",
+                "styles.pane_toscano_flavor_primary_3"
+            ],
+            aromaProfile: [
+                "styles.pane_toscano_aroma_1",
+                "styles.pane_toscano_aroma_2",
+                "styles.pane_toscano_aroma_3"
+            ],
+            textureNotes: [
+                "styles.pane_toscano_texture_1",
+                "styles.pane_toscano_texture_2",
+                "styles.pane_toscano_texture_3"
+            ],
+            pairingRecommendations: [
+                "styles.pane_toscano_pair_1",
+                "styles.pane_toscano_pair_2",
+                "styles.pane_toscano_pair_3"
+            ],
+            flavorEvolution: [
+                "styles.pane_toscano_evo_1",
+                "styles.pane_toscano_evo_2"
+            ]
         },
         process: [
             {
@@ -957,9 +1144,9 @@ export const italianStyles: DoughStyle[] = [
                     solution: "styles.pane_toscano_dd_wi_pale_sol"
                 },
                 {
-                    scenario: 'Tastes like cardboard',
-                    outcome: "It's unsalted bread. By itself, it is bland.",
-                    solution: 'Serve with salty prosciutto pecorino or aggressive'
+                    scenario: 'styles.pane_toscano_dd_wi_bland_scen',
+                    outcome: "styles.pane_toscano_dd_wi_bland_out",
+                    solution: 'styles.pane_toscano_dd_wi_bland_sol'
                 }
             ],
             comparisons: [
@@ -973,6 +1160,14 @@ export const italianStyles: DoughStyle[] = [
                 "styles.pane_toscano_dd_tip_2"
             ]
         },
+        watchouts: [
+            "styles.pane_toscano_watchout_1",
+            "styles.pane_toscano_watchout_2"
+        ],
+        experimentSuggestions: [
+            "styles.pane_toscano_exp_1",
+            "styles.pane_toscano_exp_2"
+        ],
         recommendedFlavorComponents: ["prosciutto_crudo", "pecorino_romano", "olive_oil_extra_virgin", "garlic_fresh", "balsamic_modena", "blue_cheese", "walnuts", "honey_raw"]
     },
     {
@@ -984,6 +1179,7 @@ export const italianStyles: DoughStyle[] = [
         tags: ['styles.ciabatta_classic_tag_high_hyd', 'styles.ciabatta_classic_tag_preferment', 'styles.ciabatta_classic_tag_biga', 'styles.ciabatta_classic_tag_modern'],
         description: "styles.ciabatta_classic_desc",
         history_context: "styles.ciabatta_classic_history",
+        culturalContext: "styles.ciabatta_classic_cultural_context",
         base_formula: [
             { name: 'styles.ingredients_flour_strong', percentage: 100 },
             { name: "styles.ingredients_water", percentage: 78 },
@@ -998,25 +1194,51 @@ export const italianStyles: DoughStyle[] = [
         },
         scientificProfile: {
             flourRheology: {
-                w_index: "W340+ (Very Strong)",
-                pl_ratio: "Balanced",
-                absorption_capacity: "Very High",
-                protein_type: "Soft Wheat Type 0",
+                w_index: "styles.ciabatta_classic_science_flour_w",
+                pl_ratio: "styles.ciabatta_classic_science_flour_pl",
+                absorption_capacity: "styles.ciabatta_classic_science_flour_abs",
+                protein_type: "styles.ciabatta_classic_science_flour_type",
                 science_explanation: "styles.ciabatta_classic_science_flour"
             },
             thermalProfile: {
-                oven_type: "Deck (Steam)",
-                heat_distribution: 'Conduction',
-                crust_development: 'Paperthin crispy',
-                crumb_structure: 'Massive alveoli'
+                oven_type: "styles.ciabatta_classic_thermal_oven",
+                heat_distribution: "styles.ciabatta_classic_thermal_dist",
+                crust_development: "styles.ciabatta_classic_thermal_crust",
+                crumb_structure: "styles.ciabatta_classic_thermal_crumb"
             },
             fermentationScience: {
-                yeast_activity: "Controlled (Biga)",
-                ph_target: "Acidic (Acetic Strength)",
-                organic_acids: "Acetic (Structure)",
-                enzymatic_activity: 'Controlled 2'
+                yeast_activity: "styles.ciabatta_classic_ferm_yeast",
+                ph_target: "styles.ciabatta_classic_ferm_ph",
+                organic_acids: "styles.ciabatta_classic_ferm_acids",
+                enzymatic_activity: "styles.ciabatta_classic_ferm_enzymatic"
             },
             processScience: "styles.ciabatta_classic_science_process"
+        },
+        flavorProfile: {
+            primaryFlavors: [
+                "styles.ciabatta_classic_flavor_primary_1",
+                "styles.ciabatta_classic_flavor_primary_2",
+                "styles.ciabatta_classic_flavor_primary_3"
+            ],
+            aromaProfile: [
+                "styles.ciabatta_classic_aroma_1",
+                "styles.ciabatta_classic_aroma_2",
+                "styles.ciabatta_classic_aroma_3"
+            ],
+            textureNotes: [
+                "styles.ciabatta_classic_texture_1",
+                "styles.ciabatta_classic_texture_2",
+                "styles.ciabatta_classic_texture_3"
+            ],
+            pairingRecommendations: [
+                "styles.ciabatta_classic_pair_1",
+                "styles.ciabatta_classic_pair_2",
+                "styles.ciabatta_classic_pair_3"
+            ],
+            flavorEvolution: [
+                "styles.ciabatta_classic_evo_1",
+                "styles.ciabatta_classic_evo_2"
+            ]
         },
         process: [
             {
@@ -1136,6 +1358,14 @@ export const italianStyles: DoughStyle[] = [
                 "styles.ciabatta_classic_dd_tip_2"
             ]
         },
+        watchouts: [
+            "styles.ciabatta_classic_watchout_1",
+            "styles.ciabatta_classic_watchout_2"
+        ],
+        experimentSuggestions: [
+            "styles.ciabatta_classic_exp_1",
+            "styles.ciabatta_classic_exp_2"
+        ],
         recommendedFlavorComponents: ["olive_oil_extra_virgin", "balsamic_modena", "prosciutto_crudo", "mozzarella_di_bufala", "basil_fresh", "cherry_tomatoes_confit", "pesto", "garlic_fresh"]
     }
 ];

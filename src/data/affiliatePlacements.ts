@@ -84,17 +84,17 @@ export const AFFILIATE_PLACEMENTS: Record<string, AffiliatePlacement> = {
 };
 
 export const CATEGORY_PLACEMENT_MAP: Record<string, string> = {
-    'Pizza': 'pizza_essentials',
-    'Bread': 'artisan_bread_essentials',
-    'Enriched': 'enriched_dough_essentials',
-    'Buns': 'burger_buns_essentials',
-    'Pastry': 'pastry_essentials',
-    'Cookies': 'pastry_essentials',
-    'Flatbreads': 'flatbread_essentials',
+    'pizza': 'pizza_essentials',
+    'bread': 'artisan_bread_essentials',
+    'enriched_bread': 'enriched_dough_essentials',
+    'burger_bun': 'burger_buns_essentials',
+    'pastry': 'pastry_essentials',
+    'cookie': 'pastry_essentials',
+    'flatbread': 'flatbread_essentials',
 };
 
 export const getCategoryPlacement = (category: string): string | undefined => {
-    return CATEGORY_PLACEMENT_MAP[category];
+    return CATEGORY_PLACEMENT_MAP[category.toLowerCase()];
 };
 
 export const getProductsForPlacement = (placementId: string): AffiliateProduct[] => {

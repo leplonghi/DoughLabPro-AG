@@ -15,7 +15,8 @@ import {
     serverTimestamp,
     DocumentSnapshot,
     setDoc,
-    deleteDoc
+    deleteDoc,
+    getCountFromServer
 } from 'firebase/firestore';
 import { db } from '../../firebase/db';
 import { CommunityPost, CommunityComment, CommunityLike, CommunityClone, CommunityFollow } from '../types';
@@ -78,7 +79,8 @@ export const communityStore = {
         const q = query(
             collection(db, POSTS_COLLECTION),
             where('uid', '==', uid),
-            orderBy('createdAt', 'desc')
+            orderBy('createdAt', 'desc'),
+            limit(50)
         );
         const snapshot = await getDocs(q);
         return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as CommunityPost));
@@ -102,7 +104,8 @@ export const communityStore = {
         const q = query(
             collection(db, COMMENTS_COLLECTION),
             where('postId', '==', postId),
-            orderBy('createdAt', 'asc')
+            orderBy('createdAt', 'asc'),
+            limit(100)
         );
         const snapshot = await getDocs(q);
         return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as CommunityComment));
@@ -179,13 +182,13 @@ export const communityStore = {
 
     getFollowersCount: async (uid: string) => {
         const q = query(collection(db, FOLLOWS_COLLECTION), where('targetUid', '==', uid));
-        const snapshot = await getDocs(q);
-        return snapshot.size;
+        const snapshot = await getCountFromServer(q);
+        return snapshot.data().count;
     },
 
     getFollowingCount: async (uid: string) => {
         const q = query(collection(db, FOLLOWS_COLLECTION), where('followerUid', '==', uid));
-        const snapshot = await getDocs(q);
-        return snapshot.size;
+        const snapshot = await getCountFromServer(q);
+        return snapshot.data().count;
     }
 };

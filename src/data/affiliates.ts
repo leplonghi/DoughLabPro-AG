@@ -267,6 +267,27 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         priceRange: 'low',
         tags: ['pastry', 'cookies', 'tools', 'rolling', 'flatbreads'],
         imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Rolling+Pin'
+    },
+    // --- SPECIALTY PIZZA ---
+    {
+        id: 'detroit-pan',
+        name: 'Authentic Detroit Style Pizza Pan',
+        category: 'equipment',
+        description: 'Heavy-duty blue steel for that signature frico crust.',
+        affiliateLink: 'https://amzn.to/493hEMZ',
+        priceRange: 'medium',
+        tags: ['detroit', 'pizza', 'pan-pizza', 'tools', 'equipment'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Detroit+Pan'
+    },
+    {
+        id: 'deep-dish-pan',
+        name: 'Deep Dish Pizza Pan',
+        category: 'equipment',
+        description: 'Heavy gauge steel for perfect deep dish results.',
+        affiliateLink: 'https://amzn.to/499tDaX',
+        priceRange: 'low',
+        tags: ['chicago', 'deep-dish', 'pizza', 'pan-pizza', 'equipment'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Deep+Dish+Pan'
     }
 ];
 

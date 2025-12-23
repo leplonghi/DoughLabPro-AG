@@ -214,7 +214,7 @@ export const california_style: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/california-style-hero.png",
+    hero: "/images/styles/california_style_pizza_hero.png",
     dough: "/images/styles/placeholder-dough.png",
     crumb: "/images/styles/placeholder-dough.png"
   }

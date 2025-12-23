@@ -221,4 +221,8 @@ export interface DoughStyle {
     global_presence?: string;
     variations?: any[];
     recommendedFlavorComponents?: string[];
+    watchouts?: string[];
+    experimentSuggestions?: string[];
+    culturalContext?: string;
+    notes?: string[];
 }
