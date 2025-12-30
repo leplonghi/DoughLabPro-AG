@@ -265,7 +265,7 @@ export interface User {
     email: string;
     avatar?: string;
     isPro?: boolean;
-    plan?: 'free' | 'pro' | 'calculator_unlock' | 'lab_pro';
+    plan?: 'free' | 'pro'; // Unified Monetization
     proSince?: string;
     proExpiresAt?: string;
     trialEndsAt?: string | null;

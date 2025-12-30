@@ -64,6 +64,8 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     return (
         <AccordionSection
             id="style-selector"
+            index={1}
+            accentColor="lime"
             title={
                 <div className="flex items-center gap-2">
                     <span>{t('calculator.dough_style')}</span>

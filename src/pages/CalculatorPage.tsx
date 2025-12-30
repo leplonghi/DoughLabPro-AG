@@ -108,7 +108,7 @@ interface CalculatorPageProps {
 
 const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
   const { t } = useTranslation(['common', 'calculator', 'dashboard', 'method', 'ui']);
-  const { levains, addCustomPreset, customPresets, isFavorite } = useUser();
+  const { levains, addCustomPreset, customPresets, isFavorite, batches } = useUser();
   const formRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const saveButtonRef = useRef<HTMLButtonElement>(null);
@@ -134,6 +134,24 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
 
   return (
     <div className="space-y-8 animate-slide-up pb-24">
+      {/* Soft Upgrade Banner */}
+      {!props.hasProAccess && batches.length >= 3 && (
+        <div className="mx-6 p-4 bg-gradient-to-r from-[#1B4332] to-[#2d5a45] rounded-2xl shadow-lg border border-white/10 flex items-center justify-between group cursor-pointer" onClick={props.onOpenPaywall}>
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-lime-400/20 flex items-center justify-center text-lime-400">
+              <Layers size={20} />
+            </div>
+            <div>
+              <h4 className="text-sm font-black text-white">You’re baking like a pro.</h4>
+              <p className="text-xs text-lime-100/70">See how Pro can take you further.</p>
+            </div>
+          </div>
+          <button className="px-4 py-2 bg-white text-[#1B4332] text-xs font-black rounded-xl group-hover:bg-lime-400 transition-colors">
+            UPGRADE
+          </button>
+        </div>
+      )}
+
       {/* 1. Scientific Control Center Selection */}
       <section className="p-0 border-none shadow-none">
         <div className="flex items-center gap-2 mb-2 px-6">

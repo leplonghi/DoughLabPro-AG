@@ -55,6 +55,8 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
 
     return (
         <AccordionSection
+            index={5}
+            accentColor="indigo"
             title={t('calculator.environment')}
             description={t('calculator.impact_on_fermentation')}
             icon={<SunIcon />}

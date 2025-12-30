@@ -51,18 +51,18 @@ export const FloatingHelpButton: React.FC<FloatingHelpButtonProps> = ({ tips }) 
             {/* Floating Help Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-[#51a145] to-[#1B4332] text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group animate-bounce hover:animate-none"
+                className="fixed bottom-6 right-24 z-50 w-14 h-14 bg-white text-[#1B4332] rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group animate-pulse-subtle border-2 border-slate-100"
                 aria-label={t('floating_help.button_label')}
             >
-                <HelpCircle className="h-6 w-6 group-hover:rotate-12 transition-transform" />
+                <HelpCircle className="h-6 w-6 group-hover:rotate-12 transition-transform text-[#51a145]" />
                 {!hasSeenTips && (
-                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-ping" />
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full" />
                 )}
             </button>
 
             {/* Tips Panel */}
             {isOpen && (
-                <div className="fixed bottom-24 right-6 z-50 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
+                <div className="fixed bottom-24 right-20 z-50 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
                     {/* Header */}
                     <div className="bg-gradient-to-r from-[#51a145] to-[#1B4332] text-white p-4 flex items-center justify-between">
                         <div className="flex items-center gap-2">

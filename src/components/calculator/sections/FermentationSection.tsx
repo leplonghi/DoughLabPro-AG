@@ -79,6 +79,8 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
 
   return (
     <FormSection
+      index={4}
+      accentColor="amber"
       title={t('calculator.fermentation_technique')}
       description={t('calculator.fermentation_technique_desc')}
       icon={<FermentationIcon />}
@@ -172,13 +174,76 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 value={config.prefermentFlourPercentage}
                 onChange={handleNumberChange}
                 min={isBasic ? (config.fermentationTechnique === FermentationTechnique.BIGA ? 30 : 20) : 5}
-                max={isBasic ? (config.fermentationTechnique === FermentationTechnique.BIGA ? 60 : 50) : 100}
+                max={isBasic
+                  ? (config.fermentationTechnique === FermentationTechnique.BIGA ? 60 : 50)
+                  : (config.fermentationTechnique === FermentationTechnique.POOLISH
+                    ? Math.min(100, config.hydration)
+                    : (config.fermentationTechnique === FermentationTechnique.BIGA
+                      ? Math.min(100, config.hydration * 2)
+                      : 100
+                    )
+                  )
+                }
                 step={5}
                 unit="%"
                 tooltip={t('calculator.preferment_flour_tooltip')}
                 hasError={!!errors.prefermentFlourPercentage}
                 learnArticle={getArticleById('preferments-overview')}
               />
+
+              {/* Dynamic Chef's Hint based on Preferment Level */}
+              {(() => {
+                const maxAllowed = config.fermentationTechnique === FermentationTechnique.POOLISH
+                  ? config.hydration
+                  : (config.fermentationTechnique === FermentationTechnique.BIGA ? config.hydration * 2 : 100);
+
+                const isLimit = config.prefermentFlourPercentage >= maxAllowed - 5;
+                const isHigh = config.prefermentFlourPercentage > (config.fermentationTechnique === FermentationTechnique.BIGA ? 70 : 40);
+
+                if (isLimit) {
+                  return (
+                    <div className="mt-4 relative overflow-hidden p-5 rounded-[2rem] bg-gradient-to-br from-amber-50 to-white border border-amber-100 flex items-start gap-4 animate-pulse shadow-sm group">
+                      <div className="absolute -right-2 -bottom-2 opacity-10 rotate-12 transition-transform group-hover:scale-110">
+                        <InfoIcon size={64} className="text-amber-500" />
+                      </div>
+                      <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center shrink-0 text-amber-600 shadow-inner">
+                        <InfoIcon size={20} />
+                      </div>
+                      <div className="relative z-10">
+                        <p className="text-[11px] font-black text-amber-900 uppercase tracking-[0.15em] mb-1">{t('calculator.extreme_fermentation_limit')}</p>
+                        <p className="text-xs font-semibold text-amber-800/70 leading-relaxed italic">
+                          {t('calculator.extreme_fermentation_limit_desc', {
+                            defaultValue: "Approaching physical hydration limit. Most flour will be in the preferment."
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (isHigh) {
+                  return (
+                    <div className="mt-4 relative overflow-hidden p-5 rounded-[2rem] bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 flex items-start gap-4 animate-slide-up shadow-sm group">
+                      <div className="absolute -right-2 -bottom-2 opacity-10 -rotate-12 transition-transform group-hover:scale-110">
+                        <FermentationIcon size={64} className="text-emerald-500" />
+                      </div>
+                      <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600 shadow-inner">
+                        <FermentationIcon size={20} />
+                      </div>
+                      <div className="relative z-10">
+                        <p className="text-[11px] font-black text-emerald-900 uppercase tracking-[0.15em] mb-1">{t('calculator.rapid_fermentation_notice')}</p>
+                        <p className="text-xs font-semibold text-emerald-800/70 leading-relaxed italic">
+                          {t('calculator.rapid_fermentation_desc', {
+                            defaultValue: "High preferment activity! Keep a close eye on the clock."
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return null;
+              })()}
             </div>
           )}
         </div>

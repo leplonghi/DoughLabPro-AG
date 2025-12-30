@@ -122,8 +122,8 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     const handleExportPDF = async () => {
         if (!canUseFeature(userPlan, 'export.pdf_json')) {
-            addToast("Pro feature: Export formulas as professional PDFs.", "info");
-            onOpenPaywall('calculator');
+            addToast("Share your recipe like a pro. Unlock clean exports.", "info");
+            onOpenPaywall('exports_pdf');
             return;
         }
         try {
@@ -148,8 +148,83 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         />
     );
 
+    const chefNotes = useMemo(() => {
+        const notes = [];
+
+        // 1. Zero Water Balance (The Poolish Scenario)
+        if (results.finalDough && results.finalDough.water <= 2) {
+            notes.push({
+                type: 'warning',
+                title: t('method.zero_water_balance', { defaultValue: 'Zero Water Balance' }),
+                content: t('method.zero_water_balance_desc', {
+                    defaultValue: 'Extreme setup: All the hydration is already in your preferment. You will only add flour and salt to the final mix. Handle with care!'
+                })
+            });
+        }
+
+        // 2. High Preferment Load
+        if (config.prefermentFlourPercentage > 50) {
+            notes.push({
+                type: 'info',
+                title: t('method.dominant_preferment', { defaultValue: 'Preferment Dominance' }),
+                content: t('method.dominant_preferment_desc', {
+                    defaultValue: 'Using >50% prefermented flour creates a very active dough. Expect rapid fermentation and a more acidic profile.'
+                })
+            });
+        }
+
+        // 3. High Hydration Warning
+        if (config.hydration > 85) {
+            notes.push({
+                type: 'warning',
+                title: t('method.soup_territory', { defaultValue: 'High Fluidity' }),
+                content: t('method.soup_territory_desc', {
+                    defaultValue: 'This hydration level requires advanced handling techniques (like Rubaud or coil folds) and a strong flour.'
+                })
+            });
+        }
+
+        return notes;
+    }, [results, config, t]);
+
     return (
         <div ref={resultRef} className="space-y-6 animate-slide-up">
+            {/* Chef's Lab Notes - Proactive Insights */}
+            {chefNotes.length > 0 && (
+                <div className="space-y-4">
+                    {chefNotes.map((note, idx) => (
+                        <div
+                            key={idx}
+                            className={`relative overflow-hidden p-5 rounded-[2.5rem] border flex gap-5 items-start shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5 group
+                                ${note.type === 'warning'
+                                    ? 'bg-gradient-to-br from-amber-50 to-white border-amber-100'
+                                    : 'bg-gradient-to-br from-blue-50 to-white border-blue-100'}
+                            `}
+                        >
+                            {/* Decorative background element */}
+                            <div className={`absolute -right-4 -bottom-4 opacity-[0.03] rotate-12 transition-transform group-hover:scale-110 duration-700
+                                ${note.type === 'warning' ? 'text-amber-900' : 'text-blue-900'}`}>
+                                <InfoIcon size={80} />
+                            </div>
+
+                            <div className={`mt-1 w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-inner
+                                ${note.type === 'warning' ? 'bg-amber-100 text-amber-600' : 'bg-blue-100 text-blue-600'}`}>
+                                <InfoIcon size={20} />
+                            </div>
+
+                            <div className="relative z-10">
+                                <h4 className={`text-[11px] font-black uppercase tracking-[0.2em] mb-1.5 ${note.type === 'warning' ? 'text-amber-900' : 'text-blue-900'}`}>
+                                    {note.title}
+                                </h4>
+                                <p className={`text-xs font-medium leading-relaxed ${note.type === 'warning' ? 'text-amber-800/80' : 'text-blue-800/80'}`}>
+                                    {note.content}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
             {/* Main Result Card: Dough Recipe */}
             <div className="dlp-card bg-white p-6 shadow-sm border-slate-100">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
@@ -260,7 +335,14 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 {/* Bottom Secondary Actions */}
                 <div className="grid grid-cols-2 gap-4 mt-6" id="tour-actions">
                     <button
-                        onClick={() => setIsShareModalOpen(true)}
+                        onClick={() => {
+                            if (!canUseFeature(userPlan, 'export.clean_recipe')) {
+                                addToast("Share your recipe like a pro. Unlock clean exports.", "info");
+                                onOpenPaywall('calculator');
+                            } else {
+                                setIsShareModalOpen(true);
+                            }
+                        }}
                         className="group flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-white border border-slate-100 text-slate-500 font-bold text-[10px] uppercase tracking-[0.1em] hover:bg-slate-50 transition-all font-heading shadow-sm active:translate-y-0.5"
                     >
                         <ShareIcon className="h-4 w-4 text-dlp-brand/60 group-hover:text-dlp-brand transition-all duration-300 group-hover:scale-110" />

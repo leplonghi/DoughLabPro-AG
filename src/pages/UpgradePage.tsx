@@ -3,6 +3,7 @@ import { checkoutProSubscription } from '@/services/payment';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from '@/i18n';
+import { logEvent } from '@/services/analytics';
 // import { useNavigate } from 'react-router-dom'; // Unused in this version as we use window.location
 
 interface UpgradePageProps {
@@ -16,7 +17,14 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
     // Standard subscription plan key
     const PRO_PLAN_KEY = "standard";
 
+    React.useEffect(() => {
+        if (success) {
+            logEvent('monetization_upgrade_success', { planId: 'pro' });
+        }
+    }, [success]);
+
     const handleUpgrade = async () => {
+        logEvent('monetization_upgrade_attempt', { planId: 'pro' });
         setIsLoading(true);
         try {
             await checkoutProSubscription(PRO_PLAN_KEY);
@@ -62,63 +70,68 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
     return (
         <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto text-center">
-                <h2 className="text-base text-amber-600 font-semibold tracking-wide uppercase">{t('general.doughlab_pro_3')}</h2>
-                <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{t('common.unlock_the_full_potential')}</p>
-                <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-                    {t('upgrade_page.hero_desc')}
+                <h2 className="text-base text-amber-600 font-bold tracking-widest uppercase">DoughLab Pro</h2>
+                <h1 className="mt-2 text-4xl leading-10 font-black tracking-tight text-slate-900 sm:text-5xl">
+                    Bake with confidence. Every time.
+                </h1>
+                <p className="mt-4 max-w-2xl text-xl text-slate-500 mx-auto">
+                    Stop guessing. <br />
+                    Start understanding your dough.
                 </p>
 
-                <div className="mt-12 max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
-                    <div className="flex-1 bg-white px-6 py-8 lg:p-12">
-                        <h3 className="text-2xl font-extrabold text-gray-900 sm:text-3xl">{t('common.pro_membership')}</h3>
-                        <p className="mt-6 text-base text-gray-500">
-                            {t('upgrade_page.pro_desc')}
+                <div className="mt-12 max-w-lg mx-auto rounded-3xl shadow-2xl overflow-hidden lg:max-w-none lg:flex border border-slate-100">
+                    <div className="flex-1 bg-white px-6 py-8 lg:p-12 text-left">
+                        <h3 className="text-2xl font-black text-slate-900 sm:text-3xl">Pro Baking Experience</h3>
+                        <p className="mt-6 text-base text-slate-500 font-medium">
+                            Join thousands of bakers using advanced science and data to perfect every batch.
                         </p>
                         <div className="mt-8">
                             <div className="flex items-center">
-                                <h4 className="flex-shrink-0 pr-4 bg-white text-sm tracking-wider font-semibold uppercase text-amber-600">
-                                    {t('upgrade_page.whats_included')}
+                                <h4 className="flex-shrink-0 pr-4 bg-white text-xs tracking-[0.2em] font-black uppercase text-amber-600">
+                                    Benefits
                                 </h4>
-                                <div className="flex-1 border-t-2 border-gray-200" />
+                                <div className="flex-1 border-t border-slate-100" />
                             </div>
                             <ul className="mt-8 space-y-5 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
                                 {[
-                                    'unlimited_recipes',
-                                    'advanced_calcs',
-                                    'levain_tracking',
-                                    'oven_analysis',
-                                    'priority_support',
-                                    'community_badges',
-                                ].map((featureKey) => (
-                                    <li key={featureKey} className="flex items-start lg:col-span-1">
+                                    'Unlimited baking history',
+                                    'Smart scheduling for future bakes',
+                                    'Dough behavior insights',
+                                    'Compare results and improve every batch',
+                                    'Less waste. More consistency.'
+                                ].map((benefit) => (
+                                    <li key={benefit} className="flex items-start lg:col-span-1">
                                         <div className="flex-shrink-0">
-                                            <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                                            <CheckCircleIcon className="h-6 w-6 text-emerald-500" aria-hidden="true" />
                                         </div>
-                                        <p className="ml-3 text-sm text-gray-700">{t(`upgrade_page.features.${featureKey}`)}</p>
+                                        <p className="ml-3 text-base text-slate-700 font-medium">{benefit}</p>
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     </div>
-                    <div className="py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12">
-                        <p className="text-lg leading-6 font-medium text-gray-900">
-                            {t('upgrade_page.pay_once')}
+                    <div className="py-12 px-6 text-center bg-slate-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12 min-w-[320px]">
+                        <p className="text-sm leading-6 font-bold text-slate-400 uppercase tracking-widest">
+                            Price
                         </p>
-                        <div className="mt-4 flex items-center justify-center text-5xl font-extrabold text-gray-900">
-                            <span>$4.99</span>
-                            <span className="ml-3 text-xl font-medium text-gray-500">/{t('general.month')}</span>
+                        <div className="mt-4 flex items-center justify-center text-6xl font-black text-slate-900">
+                            <span>$5.99</span>
+                            <span className="ml-2 text-lg font-bold text-slate-400 uppercase tracking-wider">/mo</span>
                         </div>
-                        <p className="mt-4 text-sm text-gray-500">
-                            {t('paywall.pricing.cancel_anytime', { currency: 'USD' })}
+                        <p className="mt-4 text-sm font-bold text-slate-500">
+                            Cancel anytime.
                         </p>
-                        <div className="mt-6">
+                        <div className="mt-8">
                             <button
                                 onClick={handleUpgrade}
                                 disabled={isLoading}
-                                className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full flex items-center justify-center px-8 py-4 border border-transparent text-lg font-black rounded-2xl text-white bg-[#1B4332] hover:bg-[#2d5a45] transition-all transform active:scale-95 shadow-xl shadow-emerald-900/10 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {isLoading ? <LoadingSpinner size="sm" color="white" /> : t('ui.upgrade_now_3')}
+                                {isLoading ? <LoadingSpinner size="sm" color="white" /> : "Unlock Pro Baking"}
                             </button>
+                            <p className="mt-6 text-xs font-medium text-slate-400">
+                                No ads. No tricks. Your data stays yours.
+                            </p>
                         </div>
                     </div>
                 </div>

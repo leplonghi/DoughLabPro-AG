@@ -20,7 +20,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4pOK3N3',
         priceRange: 'low',
         tags: ['precision', 'yeast', 'salt', 'baking', 'general', 'calculator'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Precision+Scale'
+        imageUrl: '/images/products/precision_scale.png'
     },
 
     // --- MIXERS ---
@@ -32,7 +32,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/499tDaX',
         priceRange: 'high',
         tags: ['mixer', 'kneading', 'brioche', 'panettone', 'high-hydration', 'enriched'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Stand+Mixer+A'
+        imageUrl: '/images/products/stand_mixer.png'
     },
     {
         id: 'stand-mixer-2',
@@ -42,7 +42,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4oQ35kC',
         priceRange: 'high',
         tags: ['mixer', 'kneading', 'professional', 'large-batch', 'bread'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Stand+Mixer+B'
+        imageUrl: '/images/products/stand_mixer.png'
     },
 
     // --- BAKING SURFACES ---
@@ -54,7 +54,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4rQKkA6',
         priceRange: 'medium',
         tags: ['pizza', 'baking', 'oven', 'crust', 'neapolitan', 'new-york-style'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Baking+Steel'
+        imageUrl: '/images/products/baking_steel.png'
     },
     {
         id: 'pizza-stone',
@@ -64,7 +64,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4aDK8OE',
         priceRange: 'medium',
         tags: ['pizza', 'baking', 'oven', 'stone', 'bread'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Pizza+Stone'
+        imageUrl: '/images/products/pizza_stone.png'
     },
 
     // --- FLOURS ---
@@ -76,7 +76,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4iNiK2V',
         priceRange: 'medium',
         tags: ['flour', 'neapolitan', 'pizza', 'ingredients', 'italian'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=00+Flour+A'
+        imageUrl: '/images/products/00_flour.png'
     },
     {
         id: '00-flour-2',
@@ -86,7 +86,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/499ueJJ',
         priceRange: 'medium',
         tags: ['flour', 'bread', 'pizza', 'high-protein', 'fermentation'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=00+Flour+B'
+        imageUrl: '/images/products/00_flour.png'
     },
 
     // --- TOOLS ---
@@ -98,7 +98,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/3MEsekR',
         priceRange: 'low',
         tags: ['tools', 'shaping', 'general', 'essentials', 'bread'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Scraper'
+        imageUrl: '/images/products/scraper.png'
     },
     {
         id: 'fermentation-box',
@@ -108,7 +108,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4iTlnQH',
         priceRange: 'low',
         tags: ['fermentation', 'storage', 'proofing', 'tools', 'pizza', 'bread'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Proofing+Box'
+        imageUrl: '/images/products/proofing_box.png'
     },
     {
         id: 'pizza-peel',
@@ -118,7 +118,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/493hEMZ',
         priceRange: 'medium',
         tags: ['pizza', 'oven', 'tools', 'launching', 'neapolitan'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Pizza+Peel'
+        imageUrl: '/images/products/pizza_peel.png'
     },
     {
         id: 'infrared-thermometer',
@@ -128,7 +128,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4j9gGT7',
         priceRange: 'low',
         tags: ['temperature', 'oven', 'tools', 'baking', 'pizza'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=IR+Thermometer'
+        imageUrl: '/images/products/ir_thermometer.png'
     },
     {
         id: 'sourdough-kit',
@@ -138,7 +138,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/48N6f2u',
         priceRange: 'medium',
         tags: ['sourdough', 'starter', 'wild-yeast', 'fermentation', 'bread'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Sourdough+Kit'
+        imageUrl: '/images/products/sourdough_kit.png'
     },
 
     // --- OVENS ---
@@ -150,7 +150,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/3Y71Vqd',
         priceRange: 'high',
         tags: ['oven', 'pizza', 'outdoor', 'neapolitan', 'gas'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Outdoor+Oven+1'
+        imageUrl: '/images/products/outdoor_oven.png'
     },
     {
         id: 'pizza-oven-2',
@@ -160,7 +160,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4pwCiLu',
         priceRange: 'high',
         tags: ['oven', 'pizza', 'versatile', 'fast-bake'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Pizza+Oven+2'
+        imageUrl: '/images/products/outdoor_oven.png'
     },
     {
         id: 'pizza-oven-3',
@@ -170,7 +170,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4iPYsWf',
         priceRange: 'high',
         tags: ['oven', 'pizza', 'indoor', 'electric', 'convenient'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Indoor+Oven'
+        imageUrl: '/images/products/indoor_oven.png'
     },
     {
         id: 'pizza-oven-4',
@@ -180,7 +180,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/4aHEkne',
         priceRange: 'high',
         tags: ['oven', 'pizza', 'portable', 'compact'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Portable+Oven'
+        imageUrl: '/images/products/indoor_oven.png'
     },
 
     // --- BURGER BUNS ---
@@ -192,7 +192,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/3vIeZ6r',
         priceRange: 'medium',
         tags: ['burger buns', 'sandwich rolls', 'buns', 'tools', 'pan', 'baking', 'united states'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Bun+Pan'
+        imageUrl: '/images/products/bun_pan.png'
     },
     {
         id: 'dry-milk',
@@ -277,7 +277,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/493hEMZ',
         priceRange: 'medium',
         tags: ['detroit', 'pizza', 'pan-pizza', 'tools', 'equipment'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Detroit+Pan'
+        imageUrl: '/images/products/detroit_pan.png'
     },
     {
         id: 'deep-dish-pan',
@@ -287,7 +287,7 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         affiliateLink: 'https://amzn.to/499tDaX',
         priceRange: 'low',
         tags: ['chicago', 'deep-dish', 'pizza', 'pan-pizza', 'equipment'],
-        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Deep+Dish+Pan'
+        imageUrl: '/images/products/detroit_pan.png'
     }
 ];
 

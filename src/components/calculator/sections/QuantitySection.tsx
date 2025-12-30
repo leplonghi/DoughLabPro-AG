@@ -33,6 +33,8 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
 
     return (
         <AccordionSection
+            index={2}
+            accentColor="blue"
             title={t('calculator.quantity')}
             description={t('calculator.quantity_description')}
             icon={<ListBulletIcon />}

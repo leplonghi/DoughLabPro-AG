@@ -1,4 +1,156 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, ChevronLeft, Sparkles, X } from 'lucide-react';
 import { useTranslation } from '@/i18n';
-export const OnboardingTooltip: React.FC<any> = ({ children }) => <>{children}</>;
+
+interface OnboardingTooltipProps {
+    targetElement: HTMLElement | null;
+    step: number;
+    totalSteps: number;
+    title: string;
+    description: string;
+    onNext: () => void;
+    onBack: () => void;
+    onFinish: () => void;
+}
+
+const OnboardingTooltip: React.FC<OnboardingTooltipProps> = ({
+    targetElement,
+    step,
+    totalSteps,
+    title,
+    description,
+    onNext,
+    onBack,
+    onFinish
+}) => {
+    const { t } = useTranslation();
+    const [coords, setCoords] = useState({ top: 0, left: 0, width: 0, height: 0 });
+
+    useEffect(() => {
+        if (!targetElement) return;
+
+        const updateCoords = () => {
+            const rect = targetElement.getBoundingClientRect();
+            setCoords({
+                top: rect.top + window.scrollY,
+                left: rect.left + window.scrollX,
+                width: rect.width,
+                height: rect.height
+            });
+        };
+
+        updateCoords();
+        window.addEventListener('resize', updateCoords);
+        window.addEventListener('scroll', updateCoords);
+
+        return () => {
+            window.removeEventListener('resize', updateCoords);
+            window.removeEventListener('scroll', updateCoords);
+        };
+    }, [targetElement]);
+
+    if (!targetElement) return null;
+
+    return (
+        <div className="fixed inset-0 z-[200] pointer-events-none">
+            {/* Target Highlight Overlay */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="absolute bg-black/40 pointer-events-auto"
+                style={{
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: coords.top - 8,
+                }}
+            />
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="absolute bg-black/40 pointer-events-auto"
+                style={{
+                    top: coords.top + coords.height + 8,
+                    left: 0,
+                    width: '100%',
+                    height: `calc(100vh - ${coords.top + coords.height + 8}px)`,
+                }}
+            />
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="absolute bg-black/40 pointer-events-auto"
+                style={{
+                    top: coords.top - 8,
+                    left: 0,
+                    width: coords.left - 8,
+                    height: coords.height + 16,
+                }}
+            />
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="absolute bg-black/40 pointer-events-auto"
+                style={{
+                    top: coords.top - 8,
+                    left: coords.left + coords.width + 8,
+                    width: `calc(100vw - ${coords.left + coords.width + 8}px)`,
+                    height: coords.height + 16,
+                }}
+            />
+
+            {/* Tooltip Card */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    top: coords.top + coords.height + 24,
+                    left: Math.max(16, Math.min(window.innerWidth - 336, coords.left + (coords.width / 2) - 160))
+                }}
+                className="absolute w-80 bg-white rounded-[2rem] shadow-2xl border border-emerald-100 p-6 pointer-events-auto origin-top"
+            >
+                <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-xl bg-emerald-50 flex items-center justify-center text-[#51a145]">
+                            <Sparkles size={16} />
+                        </div>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                            Step {step} of {totalSteps}
+                        </span>
+                    </div>
+                    <button onClick={onFinish} className="text-slate-300 hover:text-slate-500 transition-colors">
+                        <X size={16} />
+                    </button>
+                </div>
+
+                <h3 className="text-lg font-bold text-slate-800 mb-2 font-heading">{title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed mb-6 italic">{description}</p>
+
+                <div className="flex items-center justify-between gap-4">
+                    <button
+                        onClick={onBack}
+                        disabled={step === 1}
+                        className={`flex items-center gap-2 text-xs font-bold transition-colors ${step === 1 ? 'text-slate-200 cursor-not-allowed' : 'text-slate-400 hover:text-slate-600'}`}
+                    >
+                        <ChevronLeft size={14} /> Back
+                    </button>
+
+                    <button
+                        onClick={step === totalSteps ? onFinish : onNext}
+                        className="flex-1 bg-[#1B4332] text-white py-3 px-4 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 hover:bg-[#2D6A4F] transition-all shadow-lg shadow-emerald-900/10 active:scale-95"
+                    >
+                        {step === totalSteps ? 'Ready to Bake!' : 'Next Step'} <ChevronRight size={14} />
+                    </button>
+                </div>
+
+                {/* Arrow pointer */}
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-emerald-100" />
+            </motion.div>
+        </div>
+    );
+};
+
 export default OnboardingTooltip;

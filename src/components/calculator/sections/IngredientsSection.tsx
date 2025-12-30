@@ -13,6 +13,8 @@ import { InfoTooltip } from '@/components/ui/InfoTooltip';
 import { useTranslation } from '@/i18n';
 import { FLOURS } from '@/flours-constants';
 
+import AccordionSection from '@/components/calculator/AccordionSection';
+
 interface IngredientsSectionProps {
   config: DoughConfig;
   errors: FormErrors;
@@ -80,7 +82,13 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
   };
 
   return (
-    <div className="space-y-6 animate-slide-up">
+    <AccordionSection
+      index={3}
+      accentColor="emerald"
+      title={t('common.general.customize_ingredients')}
+      description={t('calculator.customize_ing_desc')}
+      icon={<CubeIcon />}
+    >
       {/* 1. Primary Flour Selection */}
       <div className="bg-white rounded-3xl p-0.5 border border-slate-100 shadow-sm">
         <FlourSelector
@@ -329,12 +337,8 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </AccordionSection>
   );
 };
 
 export default IngredientsSection;
-
-
-
-

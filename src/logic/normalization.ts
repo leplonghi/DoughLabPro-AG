@@ -57,9 +57,32 @@ export function normalizeDoughConfig(config: DoughConfig): DoughConfig {
     }
   }
 
-  return {
+  const normalized: DoughConfig = {
     ...config,
     fermentationTechnique: newTechnique,
     yeastType: newYeastType
   };
+
+  // 4. Constraint: Preferment Percentage vs Hydration (Physics Check)
+  // You cannot have a Poolish (100% Hydration) use 100% of flour if your Target Hydration is only 60%.
+  // Max Preferment Flour % = (Tw / Pw_ratio) / Tf ... simplified:
+  // Poolish (100%): Max% = TargetHydration
+  // Biga (50%): Max% = TargetHydration * 2
+  if (normalized.fermentationTechnique === FermentationTechnique.POOLISH || normalized.fermentationTechnique === FermentationTechnique.BIGA) {
+    let maxPct = 100;
+    if (normalized.fermentationTechnique === FermentationTechnique.POOLISH) {
+      maxPct = normalized.hydration;
+    } else if (normalized.fermentationTechnique === FermentationTechnique.BIGA) {
+      maxPct = normalized.hydration * 2;
+    }
+
+    // Clamp to 100% regardless (can't have > 100% flour in preferment)
+    maxPct = Math.min(100, maxPct);
+
+    if (normalized.prefermentFlourPercentage > maxPct) {
+      normalized.prefermentFlourPercentage = maxPct;
+    }
+  }
+
+  return normalized;
 }

@@ -94,8 +94,8 @@ const MyLabInsightsPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                 </div>
 
                 <LockFeature
-                    featureKey="mylab.unlimited_advanced"
-                    customMessage="Unlock deep insights into your baking habits, flour usage, and sensory notes with Lab Pro."
+                    featureKey="mylab.insights_smart"
+                    customMessage="This insight is available in Pro. Understand why your dough behaves this way."
                 >
                     {!stats ? (
                         <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">

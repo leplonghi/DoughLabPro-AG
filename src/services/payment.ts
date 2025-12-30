@@ -6,8 +6,7 @@ import { monitor } from '@/infrastructure/monitoring';
 const t = i18n.t.bind(i18n);
 
 // Initialize Stripe with your Publishable Key
-// TODO: Replace with your actual Publishable Key or use an env variable
-const stripePromise = loadStripe("mk_1SdC7315wYiGE65BTazQrfp5");
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 
 export const checkoutProSubscription = async (planKey: string = 'standard') => {

@@ -110,10 +110,8 @@ const ProductionDashboard = React.lazy(() => import('@/pages/ProductionDashboard
 const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
 const UpgradePage = React.lazy(() => import('@/pages/UpgradePage'));
 const NotificationsPage = React.lazy(() => import('@/pages/NotificationsPage'));
+const LandingPage = React.lazy(() => import('@/pages/LandingPage'));
 
-function LandingPage() {
-    return <div className="p-8 text-center">Landing Page (Coming Soon)</div>;
-}
 
 interface AppRouterProps {
     onStartBatch: () => void;
@@ -145,7 +143,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
 
     const { getStyleById } = useStyles();
 
-    const { ovens, hasProAccess, openPaywall } = useUser();
+    const { ovens, hasProAccess, openPaywall, isAuthenticated } = useUser();
+
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
     const defaultOven = ovens.find(o => o.isDefault) || (ovens.length > 0 ? ovens[0] : undefined);
@@ -201,7 +200,18 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             );
         }
 
+        // If not authenticated and targeting primary entry points, show the Landing Page
+        if (!isAuthenticated && (route === 'mylab' || route === 'landing' || !route)) {
+            return (
+                <LandingPage
+                    onNavigate={navigate}
+                    onOpenAuth={() => setIsAuthModalOpen(true)}
+                />
+            );
+        }
+
         switch (route) {
+
             case 'mylab':
             case 'lab':
                 return protect(
@@ -361,7 +371,13 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             case 'legal/contact':
                 return <ContactPage />;
             case 'landing':
-                return <LandingPage />;
+                return (
+                    <LandingPage
+                        onNavigate={navigate}
+                        onOpenAuth={() => setIsAuthModalOpen(true)}
+                    />
+                );
+
             case 'styles':
                 return protect(<DoughStylesPage onNavigateToDetail={(id) => navigate('styles/detail', id)} onUseInCalculator={(s) => handleLoadStyleFromModule(s, navigate)} />);
             case 'tools':

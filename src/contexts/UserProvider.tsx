@@ -122,14 +122,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [paywallOrigin, setPaywallOrigin] = useState<PaywallOrigin | null>(null);
 
   const openPaywall = useCallback((origin: PaywallOrigin = 'general') => {
+    logEvent('monetization_paywall_open', { origin });
     setPaywallOrigin(origin);
     setIsPaywallOpen(true);
   }, []);
 
   const closePaywall = useCallback(() => {
+    logEvent('monetization_paywall_close', { origin: paywallOrigin });
     setIsPaywallOpen(false);
     setPaywallOrigin(null);
-  }, []);
+  }, [paywallOrigin]);
 
   // Sync User - Race-Safe Implementation
   useEffect(() => {
@@ -159,7 +161,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             name: t('common.vip_guest_418'),
             email: 'vip@doughlab.pro',
             avatar: undefined,
-            plan: 'lab_pro',
+            plan: 'pro',
             isPro: true,
             isAdmin: false,
           } as User);
@@ -232,10 +234,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             profileData.isPro ||
             profileData.isAdmin ||
             isAdminEmail // Keep admin override
-            ? "lab_pro"
-            : profileData.plan === "calculator_unlock"
-              ? "calculator_unlock"
-              : "free";
+            ? "pro"
+            : "free";
 
         const mergedProfile: User = {
           uid: authUser.uid,
@@ -243,7 +243,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           email: authUser.email || '',
           avatar: profileData.avatar || authUser.photoURL || undefined,
           plan, // Normalized plan
-          isPro: plan === 'lab_pro', // Derived from plan
+          isPro: plan === 'pro', // Derived from plan
           isAdmin: !!profileData.isAdmin || isAdminEmail,
           trialEndsAt: profileData.trialEndsAt,
           proSince: profileData.proSince,
@@ -797,7 +797,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const now = new Date().toISOString();
       await updateUser({
         isPro: true,
-        plan: 'lab_pro',
+        plan: 'pro',
         proSince: now
       });
       addToast('Welcome to Pro! You have unlocked all features.', 'success');

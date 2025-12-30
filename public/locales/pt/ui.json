@@ -1,0 +1,86 @@
+{
+    "auth": {
+        "login": "Entrar",
+        "sign_up": "Cadastrar-se",
+        "logout": "Sair",
+        "google_login": "Entrar com Google",
+        "continue_as_guest": "Continuar como Convidado",
+        "forgot_password": "Esqueci minha senha",
+        "back_to_login": "Voltar para o Login",
+        "reset_password": "Redefinir Senha",
+        "unlock_feature": "Desbloquear Recurso",
+        "view_plans": "Ver Planos",
+        "feature_locked": "Recurso Bloqueado",
+        "back_to_lab": "Voltar para o Lab",
+        "please_log_in": "Por favor, faça login para acessar esta página.",
+        "email_already_in_use": "Este e-mail já está em uso.",
+        "invalid_credentials": "E-mail ou senha inválidos."
+    },
+    "calculator": {
+        "title": "Calculadora",
+        "dough_weight": "Peso da Massa",
+        "hydration": "Hidratação",
+        "salt": "Sal",
+        "yeast": "Fermento",
+        "oil": "Óleo",
+        "sugar": "Açúcar",
+        "calculate": "Calcular",
+        "save_bake": "Salvar Fornada",
+        "total_weight": "Peso Total",
+        "flour": "Farinha",
+        "water": "Água",
+        "ingredients": "Ingredientes",
+        "instructions": "Instruções",
+        "advanced_mode": "Modo Avançado",
+        "presets": "Predefinições"
+    },
+    "landing": {
+        "hero_title": "O Laboratório Científico do Padeiro",
+        "hero_subtitle": "Domine a ciência da fermentação com precisão matemática e auxílio de IA.",
+        "cta_start": "Começar Agora",
+        "features_title": "Recursos Premium",
+        "premium_desc": "O DoughLab Pro é para quem busca a perfeição em cada fornada.",
+        "pricing_title": "Escolha seu Plano",
+        "free_plan": "Grátis",
+        "pro_plan": "Lab Pro",
+        "calculator_unlock": "Desbloqueio da Calculadora"
+    },
+    "navigation": {
+        "calculator": "Calculadora",
+        "my_lab": "Meu Lab",
+        "learn": "Aprender",
+        "styles": "Estilos",
+        "community": "Comunidade",
+        "settings": "Configurações",
+        "profile": "Perfil"
+    },
+    "general": {
+        "save": "Salvar",
+        "cancel": "Cancelar",
+        "delete": "Excluir",
+        "edit": "Editar",
+        "loading": "Carregando...",
+        "error": "Ocorreu um erro",
+        "success": "Sucesso!",
+        "next": "Próximo",
+        "back": "Voltar",
+        "done": "Concluir",
+        "search": "Buscar",
+        "all": "Todos"
+    },
+    "onboarding": {
+        "welcome_title": "Bem-vindo ao DoughLab Pro",
+        "welcome_desc": "Vamos personalizar sua experiência em 30 segundos.",
+        "experience_level": "Nível de Experiência",
+        "beginner": "Iniciante",
+        "intermediate": "Intermediário",
+        "advanced": "Avançado",
+        "expert": "Especialista"
+    },
+    "assistant_page": {
+        "title": "Doughy - Seu Assistente",
+        "greeting": "Olá, eu sou o Doughy. Como posso ajudar com sua massa hoje?",
+        "placeholder": "Pergunte sobre farinha, fermentação ou peça uma receita...",
+        "send": "Enviar"
+    }
+}

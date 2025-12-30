@@ -77,12 +77,11 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                         <LockClosedIcon className="w-8 h-8 text-dlp-brand-hover" />
                                     </div>
 
-                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">{t('common.mylab.lab_capacity_reached')}</Dialog.Title>
+                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">History Limit</Dialog.Title>
 
                                     <p className="text-slate-600 mb-8 leading-relaxed">
-                                        <Trans i18nKey="common.mylab.limit_reach_desc">
-                                            You've reached the <strong>1-batch limit</strong> for the Free plan. Upgrade to <strong>DoughLab Pro</strong> to unlock unlimited storage, advanced analytics, and historical tracking.
-                                        </Trans>
+                                        You’re building real experience. <br />
+                                        Unlock full baking history to improve every batch.
                                     </p>
 
                                     <div className="space-y-3">

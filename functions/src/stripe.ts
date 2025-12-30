@@ -100,8 +100,8 @@ export const createCheckoutSession = createHandler<{
                         currency: pricing.currency,
                         unit_amount: Math.round(planPrice * 100), // cents
                         product_data: {
-                            name: `DoughLab Pro (${planKey})`,
-                            description: `Subscription for ${targetCountry}`,
+                            name: `DoughLab Pro`,
+                            description: `Unlock unlimited history, insights, and expert tools.`,
                         },
                         recurring: {
                             interval: 'month',
@@ -180,7 +180,7 @@ export const handleStripeWebhook = functions.https.onRequest(async (req, res) =>
 
                     const updateData: any = {
                         isPro: true,
-                        plan: "lab_pro",
+                        plan: "pro",
                         proSince: admin.firestore.FieldValue.serverTimestamp(),
                         stripeCustomerId: customerId,
                         stripeSubscriptionId: subscriptionId

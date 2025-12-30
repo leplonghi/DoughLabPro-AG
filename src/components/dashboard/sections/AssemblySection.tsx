@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
 import { useBatchVariants } from '@/hooks/useBatchVariants';
-import { Plus, Trash2, PlusCircle } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import { useToppings } from '@/hooks/useToppings';
 import { ToppingCreatorModal } from '../ToppingCreatorModal';
+import { ToppingSelector } from '../ToppingSelector';
 
 export const AssemblySection: React.FC = () => {
     const { variants, addVariant, removeVariant, updateVariant, validation } = useBatchVariants();
@@ -55,30 +56,17 @@ export const AssemblySection: React.FC = () => {
                             </div>
 
                             {/* Topping Preset Dropdown */}
-                            <div className="flex gap-2">
-                                <select
-                                    className="flex-1 text-xs bg-slate-50 border border-slate-200 rounded-lg p-1.5 outline-none focus:ring-1 focus:ring-[#51a145] text-slate-600 font-medium"
-                                    value={variant.addOns[0]?.id || ""}
-                                    onChange={(e) => {
-                                        const val = e.target.value;
+                            <div className="flex-1">
+                                <ToppingSelector
+                                    selectedId={variant.addOns[0]?.id || ""}
+                                    toppings={allToppings}
+                                    onChange={(val) => {
                                         const newAddons = val ? [{ id: val, qty: 1 }] : [];
                                         updateVariant(variant.id, { addOns: newAddons });
+                                        // Auto-focus logic or toast could go here
                                     }}
-                                >
-                                    <option value="">Select Flavor Preset...</option>
-                                    {allToppings.map(tc => (
-                                        <option key={tc.id} value={tc.id}>
-                                            {tc.name} ({tc.referenceTag})
-                                        </option>
-                                    ))}
-                                </select>
-                                <button
-                                    onClick={() => setIsToppingModalOpen(true)}
-                                    className="p-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-400 hover:text-[#51a145] hover:border-[#51a145] transition-colors"
-                                    title="Add New Preset"
-                                >
-                                    <PlusCircle size={16} />
-                                </button>
+                                    onNew={() => setIsToppingModalOpen(true)}
+                                />
                             </div>
                         </div>
 

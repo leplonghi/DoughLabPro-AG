@@ -121,127 +121,170 @@ const SliderInput: React.FC<SliderInputProps> = ({
     (recommendedMax !== undefined && value > recommendedMax);
 
   return (
-    <div className={`rounded-xl border-[0.5px] border-slate-100 bg-white shadow-sm transition-all overflow-hidden ${disabled ? 'opacity-70' : ''} ${hasError ? 'border-rose-200' : ''}`}>
+    <div className={`relative rounded-2xl border-[0.5px] border-slate-100 bg-white shadow-sm transition-all hover:shadow-md ${disabled ? 'opacity-70 grayscale-[0.5]' : ''} ${hasError ? 'border-rose-200 ring-1 ring-rose-100' : ''}`}>
 
-      {/* Input Deck */}
-      <div className="px-4 py-2.5 bg-slate-50/50 border-b-[0.5px] border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <div className="flex flex-col">
-          <label htmlFor={name} className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332] flex items-center gap-2 mb-1">
-            {label}
-            {isProFeature && <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-md font-black">{t('common.pro')}</span>}
+      {/* Label & Primary Input Row */}
+      <div className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <label htmlFor={name} className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-500 font-heading">
+              {label}
+            </label>
+            {isProFeature && (
+              <span className="text-[8px] bg-[#1B4332] text-white px-2 py-0.5 rounded-full font-black tracking-tighter shadow-sm animate-pulse-subtle">
+                PRO
+              </span>
+            )}
             {tooltip && (
-              <div className="group relative cursor-help">
-                <InfoIcon size={12} className="text-slate-300" />
-                <div className="pointer-events-none absolute bottom-full left-0 z-50 mb-3 w-64 p-4 rounded-2xl bg-[#1B4332] text-white text-[11px] opacity-0 group-hover:opacity-100 transition-all shadow-xl leading-relaxed italic border border-white/10">
+              <div className="group relative">
+                <div className="p-1 rounded-full bg-slate-50 text-slate-300 hover:text-[#51a145] transition-colors cursor-help">
+                  <InfoIcon size={12} />
+                </div>
+                {/* Repositioned Tooltip to avoid clip with better z-index */}
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 z-[60] mb-3 w-64 p-4 rounded-2xl bg-[#1B4332] text-white text-[11px] opacity-0 group-hover:opacity-100 transition-all shadow-2xl leading-relaxed italic border border-white/10 backdrop-blur-md">
                   <p dangerouslySetInnerHTML={{ __html: tooltip }} />
-                  <div className="absolute -bottom-1 left-4 w-2 h-2 bg-[#1B4332] rotate-45 border-r border-b border-white/10" />
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1B4332] rotate-45 border-r border-b border-white/10" />
                 </div>
               </div>
             )}
-          </label>
-          <div className="flex items-center gap-2">
-            {isOutOfRange && (
-              <div className="flex items-center gap-1.5 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-100">
-                <ExclamationCircleIcon size={10} className="text-amber-500" />
-                <span className="text-[9px] font-bold text-amber-600 uppercase tracking-tighter">Variations Lab</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {recommendedMin !== undefined && recommendedMax !== undefined && (
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50/50 border border-emerald-100/50">
+                <span className="text-[9px] font-bold text-emerald-700/60 uppercase tracking-widest whitespace-nowrap">
+                  Ideal: {recommendedMin}-{recommendedMax}{unit}
+                </span>
               </div>
             )}
-            {recommendedMin !== undefined && recommendedMax !== undefined && (
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest italic">Rec: {recommendedMin}-{recommendedMax}{unit}</span>
+            {isOutOfRange && (
+              <div className="flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-100 animate-slide-in-left">
+                <ExclamationCircleIcon size={10} className="text-amber-500" />
+                <span className="text-[8px] font-black text-amber-700 uppercase tracking-tight">Variant</span>
+              </div>
             )}
           </div>
         </div>
 
-        {/* Action matrix */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center bg-white border-[0.5px] border-slate-100 rounded-lg overflow-hidden shadow-sm">
-            <div className="relative group/val">
-              <input
-                type="number"
-                value={internalValue}
-                onChange={handleTextChange}
-                disabled={disabled}
-                className={`w-14 py-1.5 px-2 text-right text-sm font-black font-heading focus:bg-emerald-50 focus:text-[#1B4332] transition-colors outline-none h-8 ${hasError ? 'text-rose-500' : 'text-slate-700'}`}
-                min={min}
-                max={max}
-                step={step}
-              />
-              <span className="absolute right-0 top-0 bottom-0 flex items-center pr-1 text-[9px] font-bold text-slate-300 pointer-events-none group-focus-within/val:text-[#1B4332] transition-colors">{unit}</span>
-            </div>
-
-            {totalFlour && unit === '%' && (
-              <>
-                <div className="w-[1px] h-4 bg-slate-100" />
-                <div className="relative group/gms">
-                  <input
-                    type="number"
-                    value={gramsValue}
-                    onChange={handleGramsChange}
-                    disabled={disabled}
-                    className="w-16 py-1.5 px-2 text-right text-sm font-black font-heading text-slate-500 focus:bg-emerald-50 focus:text-[#51a145] transition-colors outline-none h-8 bg-slate-50/20"
-                    placeholder="g"
-                  />
-                  <span className="absolute right-0 top-0 bottom-0 flex items-center pr-1 text-[9px] font-bold text-slate-300 pointer-events-none group-focus-within/gms:text-[#51a145] transition-colors">g</span>
-                </div>
-              </>
-            )}
+        {/* Action Inputs: Pct & Grams */}
+        <div className="flex items-center bg-slate-50/50 p-1 rounded-xl border border-slate-100/50 shadow-inner w-full sm:w-auto">
+          <div className="relative flex-1 sm:flex-none">
+            <input
+              type="number"
+              value={internalValue}
+              onChange={handleTextChange}
+              disabled={disabled}
+              className={`w-full sm:w-16 py-2 px-3 text-right text-base font-black font-heading bg-transparent focus:bg-white rounded-lg transition-all outline-none ${hasError ? 'text-rose-500' : 'text-[#1B4332]'}`}
+              min={min}
+              max={max}
+              step={step}
+            />
+            <span className="absolute right-1 top-0 bottom-0 flex items-center pr-2 text-[10px] font-bold text-slate-300 pointer-events-none">{unit}</span>
           </div>
+
+          {totalFlour && unit === '%' && (
+            <>
+              <div className="w-px h-6 bg-slate-200 mx-1" />
+              <div className="relative flex-1 sm:flex-none">
+                <input
+                  type="number"
+                  value={gramsValue}
+                  onChange={handleGramsChange}
+                  disabled={disabled}
+                  className="w-full sm:w-20 py-2 px-3 text-right text-base font-black font-heading text-slate-400 bg-transparent focus:bg-white rounded-lg transition-all outline-none"
+                  placeholder="g"
+                />
+                <span className="absolute right-1 top-0 bottom-0 flex items-center pr-2 text-[10px] font-bold text-slate-300 pointer-events-none">g</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Control Deck */}
-      <div className="p-4 pt-4 relative">
-        <div className="relative h-1">
-          {recommendedMin !== undefined && recommendedMax !== undefined && (
-            <div
-              className="absolute top-1/2 -translate-y-1/2 h-4 sm:h-6 bg-emerald-50/50 border border-emerald-100 rounded-full z-0 pointer-events-none opacity-40"
+      {/* Range Control Area */}
+      <div className="px-5 pb-6 pt-2">
+        <div className="relative group/slider pt-8 pb-2">
+          {/* Floating Value Indicator */}
+          <div
+            className="absolute -top-1 pointer-events-none transition-all duration-75 z-20"
+            style={{
+              left: `${((internalValue - min) / (max - min)) * 100}%`,
+              transform: 'translateX(-50%)'
+            }}
+          >
+            <div className="bg-[#1B4332] text-white px-2 py-1 rounded-lg text-[10px] font-black shadow-lg relative animate-fade-in-scale">
+              {internalValue}{unit}
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#1B4332] rotate-45" />
+            </div>
+          </div>
+
+          {/* Track Markers (Min/Max Visual) */}
+          <div className="absolute -top-1 left-0 right-0 flex justify-between text-[9px] font-bold text-slate-300 uppercase tracking-widest pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity">
+            <span>{min}{unit}</span>
+            <span>{max}{unit}</span>
+          </div>
+
+          <div className="relative h-2 flex items-center">
+            {/* Recommended Zone Highlight */}
+            {recommendedMin !== undefined && recommendedMax !== undefined && (
+              <div
+                className="absolute h-4 bg-emerald-500/10 border border-emerald-500/20 rounded-full z-0 pointer-events-none blur-[1px]"
+                style={{
+                  left: `${((recommendedMin - min) / (max - min)) * 100}%`,
+                  width: `${((recommendedMax - recommendedMin) / (max - min)) * 100}%`
+                }}
+              />
+            )}
+
+            <input
+              type="range"
+              value={internalValue}
+              onChange={handleSliderChange}
+              min={min}
+              max={max}
+              step={step}
+              disabled={disabled}
+              className="w-full h-1.5 bg-slate-100 rounded-full appearance-none cursor-pointer focus:outline-none z-10 accent-[#51a145] relative
+                         [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-[#51a145] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-xl [&::-webkit-slider-thumb]:hover:scale-125 [&::-webkit-slider-thumb]:transition-transform [&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:active:cursor-grabbing"
               style={{
-                left: `${((recommendedMin - min) / (max - min)) * 100}%`,
-                width: `${((recommendedMax - recommendedMin) / (max - min)) * 100}%`
+                background: `linear-gradient(to right, #51a145 0%, #51a145 ${((internalValue - min) / (max - min)) * 100}%, #f1f5f9 ${((internalValue - min) / (max - min)) * 100}%, #f1f5f9 100%)`
               }}
             />
-          )}
-          <input
-            type="range"
-            value={internalValue}
-            onChange={handleSliderChange}
-            min={min}
-            max={max}
-            step={step}
-            disabled={disabled}
-            className="absolute inset-0 w-full h-1 bg-slate-100 rounded-full appearance-none cursor-pointer focus:outline-none z-10 accent-[#51a145]"
-            style={{
-              background: `linear-gradient(to right, #51a145 0%, #51a145 ${((internalValue - min) / (max - min)) * 100}%, #f1f5f9 ${((internalValue - min) / (max - min)) * 100}%, #f1f5f9 100%)`
-            }}
-          />
+          </div>
         </div>
 
-        {/* Technical insight link */}
+        {/* Technical Footer */}
         {learnArticle && (
-          <div className="mt-4 flex items-center justify-between border-t-[0.5px] border-slate-50 pt-3">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t('calculator.science_of')} {String(label || '').toLowerCase()}</span>
+          <div className="mt-4 pt-4 border-t border-slate-50 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#51a145]/40" />
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                Technical Mastery: {String(label || '').toLowerCase()}
+              </span>
+            </div>
             <a
               href={`#/learn/${encodeURIComponent(learnArticle.category)}/${learnArticle.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 group"
+              className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 hover:bg-[#51a145]/5 rounded-xl transition-all group border border-transparent hover:border-[#51a145]/10"
             >
-              <span className="text-[10px] font-bold text-[#51a145]/60 group-hover:text-[#51a145] transition-colors">{t('ui.dive_into_technical_details')}</span>
-              <div className="w-5 h-5 rounded-full bg-slate-50 flex items-center justify-center text-[#51a145]/40 group-hover:bg-[#51a145] group-hover:text-white transition-all shadow-sm">
-                <InfoIcon size={10} />
-              </div>
+              <span className="text-[10px] font-bold text-slate-500 group-hover:text-[#51a145] transition-colors">
+                {t('ui.dive_into_technical_details')}
+              </span>
+              <InfoIcon size={12} className="text-slate-300 group-hover:text-[#51a145] transition-colors" />
             </a>
           </div>
         )}
-
-        {disabled && disabledTooltip && (
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px] flex items-center justify-center group cursor-not-allowed z-50">
-            <div className="bg-[#1B4332] px-4 py-2 rounded-xl text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity shadow-xl">
-              {disabledTooltip}
-            </div>
-          </div>
-        )}
       </div>
+
+      {disabled && disabledTooltip && (
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] rounded-2xl flex items-center justify-center group cursor-not-allowed z-50 transition-all">
+          <div className="bg-[#1B4332] px-6 py-3 rounded-2xl text-white text-xs font-bold shadow-2xl border border-white/20 transform scale-90 group-hover:scale-100 transition-transform flex items-center gap-3">
+            <LockClosedIcon size={16} className="text-lime-400" />
+            {disabledTooltip}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

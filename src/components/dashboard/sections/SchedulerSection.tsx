@@ -1,16 +1,22 @@
 import React, { useState, useMemo } from 'react';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
 import { useReverseScheduling } from '@/hooks/useReverseScheduling';
+import { useUser } from '@/contexts/UserProvider';
 import { Calendar, Clock, ArrowDown } from 'lucide-react';
 
 export const SchedulerSection: React.FC = () => {
+
     const { session, updateSchedule } = useDoughSession();
     const { applySchedule } = useReverseScheduling();
+    const { hasProAccess, batches, openPaywall } = useUser();
     const { schedule } = session;
 
     const [pickerValue, setPickerValue] = useState<string>('');
 
-    // If we have a computed start time, parse it
+    const futureSchedulesCount = useMemo(() => {
+        return batches.filter(b => b.targetBakeTime && new Date(b.targetBakeTime) > new Date()).length;
+    }, [batches]);
+
     const startTimeParams = useMemo(() => {
         if (!schedule.computedStartTime) return null;
         return new Date(schedule.computedStartTime);
@@ -19,6 +25,12 @@ export const SchedulerSection: React.FC = () => {
     const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const dateStr = e.target.value;
         if (!dateStr) return;
+
+        if (!hasProAccess && futureSchedulesCount >= 1) {
+            openPaywall('mylab_timeline'); // Or a specialized origin
+            return;
+        }
+
         setPickerValue(dateStr);
 
         const target = new Date(dateStr);

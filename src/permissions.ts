@@ -1,7 +1,7 @@
 
 import { User } from './types';
 
-export type PlanId = 'free' | 'calculator_unlock' | 'lab_pro';
+export type PlanId = 'free' | 'pro';
 
 export type FeatureKey =
     | 'calculator.basic_3_styles'
@@ -12,6 +12,7 @@ export type FeatureKey =
     | 'styles.full_access'
     | 'learn.summary_only'
     | 'learn.full_and_grandma'
+    | 'mylab.history_unlimited'
     | 'mylab.two_bakes_one_full'
     | 'mylab.unlimited_advanced'
     | 'levain.create_basic'
@@ -19,6 +20,7 @@ export type FeatureKey =
     | 'tools.doughbot'
     | 'tools.oven_analysis'
     | 'export.pdf_json'
+    | 'export.clean_recipe'
     | 'community.share_and_clone'
     | 'app.theme_customization'
     | 'mylab.timeline'
@@ -47,85 +49,93 @@ export type FeatureKey =
     | 'levain.multipleLevains'
     | 'levain.exportPDF'
     | 'calculator.advanced_ingredients'
-    | 'calculator.flour_blend';
+    | 'calculator.flour_blend'
+    | 'mylab.schedules_unlimited'
+    | 'mylab.insights_smart'
+    | 'mylab.historical_comparisons'
+    | 'notifications.advanced';
 
 export type PlanType = PlanId;
 export type PermissionKey = FeatureKey;
 
 export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
     // Calculator
-    'calculator.basic_3_styles': ['free', 'calculator_unlock', 'lab_pro'],
-    'calculator.all_styles': ['calculator_unlock', 'lab_pro'],
-    'calculator.preferments_advanced': ['free', 'calculator_unlock', 'lab_pro'], // Unlocked for free users (constrained by style)
-    'calculator.environmental_insights': ['calculator_unlock', 'lab_pro'],
-    'calculator.advanced': ['free', 'calculator_unlock', 'lab_pro'], // Unlocked for free users
-    'calculator.advanced_ingredients': ['calculator_unlock', 'lab_pro'],
-    'calculator.flour_blend': ['lab_pro'],
+    'calculator.basic_3_styles': ['free', 'pro'],
+    'calculator.all_styles': ['pro'],
+    'calculator.preferments_advanced': ['free', 'pro'],
+    'calculator.environmental_insights': ['pro'],
+    'calculator.advanced': ['free', 'pro'],
+    'calculator.advanced_ingredients': ['pro'],
+    'calculator.flour_blend': ['pro'],
+    'calculator.hydration_advanced': ['free', 'pro'],
+    'calculator.save_preset': ['pro'],
 
     // Styles
-    'styles.pick_3_full': ['free', 'calculator_unlock', 'lab_pro'],
-    'styles.full_access': ['calculator_unlock', 'lab_pro'],
-    'styles.advancedSpecs': ['lab_pro'],
+    'styles.pick_3_full': ['free', 'pro'],
+    'styles.full_access': ['pro'],
+    'styles.advancedSpecs': ['pro'],
+    'styles.detail': ['free', 'pro'],
+    'styles.ai.builder': ['pro'],
+    'styles.formula': ['pro'],
+    'styles.technical': ['pro'],
+    'styles.technical_parameters': ['pro'],
+    'styles.specs': ['pro'],
 
-    // Learn
-    'learn.summary_only': ['free', 'calculator_unlock', 'lab_pro'],
-    'learn.full_and_grandma': ['lab_pro'],
+    // Learn & Support
+    'learn.summary_only': ['free', 'pro'],
+    'learn.full_and_grandma': ['pro'],
 
-    // MyLab
-    'mylab.two_bakes_one_full': ['free', 'calculator_unlock', 'lab_pro'],
-    'mylab.unlimited_advanced': ['lab_pro'],
-    'mylab.quickAction': ['lab_pro'],
-    'mylab.healthIndex': ['lab_pro'],
+    // MyLab & History
+    'mylab.two_bakes_one_full': ['free', 'pro'],
+    'mylab.history_unlimited': ['pro'],
+    'mylab.unlimited_advanced': ['pro'],
+    'mylab.quickAction': ['pro'],
+    'mylab.healthIndex': ['pro'],
+    'mylab.timeline': ['pro'],
+    'mylab.schedules_unlimited': ['pro'],
+    'mylab.insights_smart': ['pro'],
+    'mylab.historical_comparisons': ['pro'],
 
     // Levain
-    'levain.create_basic': ['free', 'calculator_unlock', 'lab_pro'],
-    'levain.lab_full': ['lab_pro'],
-    'levain.multipleLevains': ['lab_pro'],
-    'levain.exportPDF': ['lab_pro'],
+    'levain.create_basic': ['free', 'pro'],
+    'levain.lab_full': ['pro'],
+    'levain.multipleLevains': ['pro'],
+    'levain.exportPDF': ['pro'],
+    'levain_unlimited': ['pro'],
 
-    // Tools
-    'tools.doughbot': ['free', 'lab_pro'], // Page accessible, logic restricted
-    'tools.oven_analysis': ['lab_pro'],
-    'export.pdf_json': ['calculator_unlock', 'lab_pro'],
-    'community.share_and_clone': ['lab_pro'],
-    'app.theme_customization': ['lab_pro'],
-    'mylab.timeline': ['lab_pro'],
-    'tools.toppings_advanced': ['lab_pro'],
-
-    // Missing keys added for Pro access
-    'styles.detail': ['free', 'calculator_unlock', 'lab_pro'],
-    'styles.ai.builder': ['lab_pro'],
-    'levain_unlimited': ['lab_pro'],
-    'styles.formula': ['lab_pro'],
-    'styles.technical': ['lab_pro'],
-    'styles.technical_parameters': ['lab_pro'],
-    'styles.specs': ['lab_pro'],
+    // Tools & Export
+    'tools.doughbot': ['free', 'pro'], // Base accessible, but Pro triggers inside
+    'tools.oven_analysis': ['pro'],
+    'export.pdf_json': ['pro'],
+    'export.clean_recipe': ['pro'],
+    'tools.toppings_advanced': ['pro'],
+    'notifications.advanced': ['pro'],
 
     // Community
-    'community.feed': ['free', 'lab_pro'], // View only for free (restricted by actions)
-    'community.clone': ['lab_pro'],
-    'community.like': ['lab_pro'],
-    'community.comment': ['lab_pro'],
-    'community.profile_full': ['lab_pro'],
-    'community.ranking': ['lab_pro'],
+    'community.share_and_clone': ['pro'],
+    'community.feed': ['free', 'pro'],
+    'community.clone': ['pro'],
+    'community.like': ['pro'],
+    'community.comment': ['pro'],
+    'community.profile_full': ['pro'],
+    'community.ranking': ['pro'],
 
-    // Marketing / FOMO Triggers
-    'calculator.hydration_advanced': ['free', 'calculator_unlock', 'lab_pro'],
-    'calculator.save_preset': ['calculator_unlock', 'lab_pro'],
-    'consistency': ['lab_pro'],
-    'return_prompt': ['lab_pro'],
+    // Others
+    'app.theme_customization': ['pro'],
+    'consistency': ['pro'],
+    'return_prompt': ['pro'],
 };
 
 export function getCurrentPlan(user: User | null): PlanId {
     if (!user) return 'free';
 
-    // Safety fallback for admin
-    if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'lab_pro';
+    // Admin safety
+    if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'pro';
 
-    const plan = user.plan;
-    if (plan === 'pro') return 'lab_pro';
+    const plan = user.plan as any;
+    if (plan === 'pro' || plan === 'lab_pro' || plan === 'standard') return 'pro';
 
-    return (plan as PlanId) || 'free';
+    return 'free';
 }
 
 export function canUseFeature(plan: PlanId, feature: FeatureKey): boolean {

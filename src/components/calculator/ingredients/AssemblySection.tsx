@@ -12,6 +12,7 @@ import FlavorComponentProfileModal from '@/components/FlavorComponentProfileModa
 import { FlavorComponent } from '@/types/flavor';
 import { BakeType } from '@/types';
 import { useTranslation } from '@/i18n';
+import AccordionSection from '@/components/calculator/AccordionSection';
 
 interface AssemblySectionProps {
     style: DoughStyleDefinition;
