@@ -46,7 +46,7 @@ const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ batch, onClone })
                 </div>
                 <div className="bg-slate-50 rounded-lg p-2 text-center">
                     <span className="block text-xs text-slate-500 uppercase font-bold">{t('community.time')}</span>
-                    <span className="block text-lg font-bold text-slate-900">{doughConfig.fermentationTime}h</span>
+                    <span className="block text-lg font-bold text-slate-900">{(doughConfig as any).fermentationTime ?? '—'}h</span>
                 </div>
             </div>
 

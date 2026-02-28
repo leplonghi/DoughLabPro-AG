@@ -9,7 +9,7 @@ interface PostTechnicalPanelProps {
 }
 
 export const PostTechnicalPanel: React.FC<PostTechnicalPanelProps> = ({ post }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     // Helper for formatting
     const formatTime = (hours?: number) => {
         if (!hours) return '24h';
@@ -28,7 +28,7 @@ export const PostTechnicalPanel: React.FC<PostTechnicalPanelProps> = ({ post }) 
             {/* Time Pill */}
             <div className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg border border-purple-100/50 shadow-sm flex-shrink-0">
                 <Clock className="h-3.5 w-3.5" />
-                <span className="text-xs font-bold">{formatTime(post.fermentationTime)}</span>
+                <span className="text-xs font-bold">{formatTime((post as any).fermentationTime)}</span>
             </div>
 
             {/* Oven Pill */}

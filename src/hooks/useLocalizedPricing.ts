@@ -15,7 +15,7 @@ export interface LocalizedPricing {
 }
 
 export function useLocalizedPricing(): LocalizedPricing {
-    const { user, userLoading } = useAuth();
+    const { appUser: user, loading: userLoading } = useAuth();
     const [pricing, setPricing] = useState<LocalizedPricing>({
         countryCode: 'US',
         currency: 'USD',

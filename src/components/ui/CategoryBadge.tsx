@@ -12,10 +12,14 @@ const CATEGORY_LABELS: Record<StyleCategory, string> = {
     bread: 'styles_page.categories.bread',
     enriched_bread: 'styles_page.categories.enriched_bread',
     burger_bun: 'styles_page.categories.burger_bun',
+    buns: 'styles_page.categories.buns',
     pastry: 'styles_page.categories.pastry',
     cookie: 'styles_page.categories.cookie',
     cookies_confectionery: 'styles_page.categories.cookies',
+    confectionery: 'styles_page.categories.confectionery',
+    cookies_and_baked_goods: 'styles_page.categories.cookies',
     flatbread: 'styles_page.categories.flatbread',
+    gluten_free: 'styles_page.categories.gluten_free',
     other: 'styles_page.categories.other',
 };
 

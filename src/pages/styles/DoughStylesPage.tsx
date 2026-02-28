@@ -208,7 +208,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
             {/* Actions Bar - Simplified for new layout */}
             <div className="flex justify-end mb-6">
                 <div className="flex gap-2">
-                    <LockFeature featureKey="styles.ai.builder" customMessage={t('general.unlock_ai_builder')} origin="styles.ai.builder">
+                    <LockFeature featureKey="styles.ai.builder" customMessage={t('general.unlock_ai_builder')} origin="styles">
                         <button className="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-lg shadow-indigo-200 transition-all transform hover:scale-105 flex items-center gap-2">
                             <Sparkles className="w-4 h-4" />{t('common.ai_style_builder')}</button>
                     </LockFeature>

@@ -63,10 +63,10 @@ export const DoughyAssistant: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     // Context hooks for intelligent responses
-    const { config: doughConfig, result: doughResult } = useCalculator();
+    const { config: doughConfig, results: doughResult } = useCalculator();
     const { flours } = useFlours();
     const { batches } = useBatches();
-    const { user } = useAuth();
+    const { appUser: user } = useAuth();
 
     // Auto-scroll to bottom of chat
     const messagesEndRef = useRef<HTMLDivElement>(null);

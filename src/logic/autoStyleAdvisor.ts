@@ -81,6 +81,16 @@ const STYLE_CHARACTERISTICS: Record<
   [RecipeStyle.PUFF_PASTRY]: { hydrationRange: [45, 55], idealW: [300, 350], idealOvenTemp: [200, 220], name: 'Puff Pastry' },
   [RecipeStyle.ENRICHED_LOAF]: { hydrationRange: [60, 65], idealW: [260, 300], idealOvenTemp: [180, 200], name: 'Enriched Soft Loaf' },
   [RecipeStyle.PANETTONE_ARTISANAL]: { hydrationRange: [50, 60], idealW: [320, 400], idealOvenTemp: [160, 180], name: 'Artisanal Panettone' },
+
+  // Seed styles
+  [RecipeStyle.TURKISH_PIDE]: { hydrationRange: [60, 70], idealW: [260, 320], idealOvenTemp: [250, 300], name: 'Turkish Pide' },
+  [RecipeStyle.SFINCIONE_SICILIANO]: { hydrationRange: [70, 80], idealW: [280, 340], idealOvenTemp: [220, 260], name: 'Sfincione Siciliano' },
+  [RecipeStyle.KAISERSEMMEL]: { hydrationRange: [60, 68], idealW: [280, 330], idealOvenTemp: [210, 240], name: 'Kaisersemmel' },
+  [RecipeStyle.TURKISH_SIMIT]: { hydrationRange: [50, 60], idealW: [240, 290], idealOvenTemp: [200, 230], name: 'Turkish Simit' },
+  [RecipeStyle.CLASSIC_ENRICHED_BUN]: { hydrationRange: [55, 65], idealW: [240, 290], idealOvenTemp: [190, 210], name: 'Classic Enriched Bun' },
+  [RecipeStyle.KOUIGN_AMANN]: { hydrationRange: [65, 75], idealW: [280, 340], idealOvenTemp: [200, 220], name: 'Kouign-Amann' },
+  [RecipeStyle.PASTEL_DE_NATA]: { hydrationRange: [40, 55], idealW: [260, 320], idealOvenTemp: [250, 280], name: 'Pastel de Nata' },
+  [RecipeStyle.PATE_A_CHOUX]: { hydrationRange: [150, 200], idealW: [160, 220], idealOvenTemp: [190, 220], name: 'Pâte à Choux' },
 };
 
 

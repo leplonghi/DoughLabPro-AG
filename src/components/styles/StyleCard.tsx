@@ -160,7 +160,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
 
             {/* Action Bar */}
             <div className="p-4 pt-0 mt-auto">
-                <LockFeature featureKey="styles.detail" isLocked={!access.granted} customMessage={access.reason || t('general.unlock_calculator')} origin="styles.card">
+                <LockFeature featureKey="styles.detail" isLocked={!access.granted} customMessage={access.reason || t('general.unlock_calculator')} origin="styles">
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
