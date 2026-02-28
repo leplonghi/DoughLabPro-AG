@@ -10,10 +10,14 @@ export type StyleCategory =
     | 'bread'
     | 'enriched_bread'
     | 'burger_bun'
+    | 'buns'
     | 'pastry'
     | 'cookie'
     | 'cookies_confectionery'
+    | 'confectionery'
+    | 'cookies_and_baked_goods'
     | 'flatbread'
+    | 'gluten_free'
     | 'other';
 
 export enum RecipeStyle {
@@ -100,6 +104,16 @@ export enum RecipeStyle {
     SICILIAN = 'SICILIAN',
     CHICAGO = 'CHICAGO',
     PRETZEL = 'PRETZEL',
+
+    // --- SEED STYLES (new catalog additions) ---
+    TURKISH_PIDE = 'TURKISH_PIDE',
+    SFINCIONE_SICILIANO = 'SFINCIONE_SICILIANO',
+    KAISERSEMMEL = 'KAISERSEMMEL',
+    TURKISH_SIMIT = 'TURKISH_SIMIT',
+    CLASSIC_ENRICHED_BUN = 'CLASSIC_ENRICHED_BUN',
+    KOUIGN_AMANN = 'KOUIGN_AMANN',
+    PASTEL_DE_NATA = 'PASTEL_DE_NATA',
+    PATE_A_CHOUX = 'PATE_A_CHOUX',
 }
 
 export type StyleSource = 'official' | 'user_manual' | 'user_ai';

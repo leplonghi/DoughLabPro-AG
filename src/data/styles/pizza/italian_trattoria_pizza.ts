@@ -9,9 +9,9 @@ import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
  * - Ingredients: Soft Wheat Flour (Type 0/00), EVOO, Malt, Salt, Yeast
  * - Characteristics: Balanced crunch/softness, digestible, fragrant cornicione
  */
-export const pizza_al_piatto_italiana: DoughStyleDefinition = {
-    id: "pizza_al_piatto_italiana",
-    name: "Pizza al Piatto (Standard)",
+export const italian_trattoria_pizza: DoughStyleDefinition = {
+    id: "italian_trattoria_pizza",
+    name: "Italian Trattoria Pizza",
     category: "pizza",
     recipeStyle: RecipeStyle.THIN_CRUST, // Standard Italian "Classic"
     family: "Italian Contemporary",
@@ -22,7 +22,7 @@ export const pizza_al_piatto_italiana: DoughStyleDefinition = {
         period: "1980s (Formalization of technical pizza schools)"
     },
 
-    description: "Pizza al Piatto (or Pizza Classica) is the most widespread pizza style in Italy. It represents a technical middle ground between the soft, flash-baked Neapolitan and the paper-thin, rigid Roman Scrocchiarella. Developed in the pizzerias of the north and center of Italy during the late 20th century, it prioritizes 'fragrance' (a balance of crunch and elasticity) and high digestibility through long cold maturation (maturazione).",
+    description: "The Italian Trattoria Pizza (often referred to in Italy simply as 'Pizza Classica', 'Pizza al Piatto' or standard restaurant pizza) is a completely different style from Neapolitan. Widespread across Italian trattorias, it uses a longer cold maturation and lower deck oven temperatures compared to the blistering wood-fired heat of Naples. The addition of olive oil and diastatic malt produces a crust with a balanced crunch and elasticity, holding its structure better than the soft Neapolitan style, making it incredibly popular both locally and globally.",
 
     history: "While Naples created the legend, the 'Pizza Classica' formalization happened in the 1980s as pizza moved from a regional specialty to a national industry. Schools like the 'Scuola Italiana Pizzaioli' (1988) began teaching a standardized method suited for the gas and electric deck ovens that dominated the north. This style introduced the mandatory use of olive oil in the dough to compensate for lower oven temperatures compared to wood-fired Neapolitan ovens. It is the style most often exported globally as 'Italian Pizza'.",
 

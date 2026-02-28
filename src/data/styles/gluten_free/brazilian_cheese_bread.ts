@@ -9,10 +9,10 @@ import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
  * - Ingredients: Polvilho Doce/Azedo (Manioc Starch), Minas Cheese, Eggs
  * - Characteristics: Extremely chewy, crispy exterior, intense cheese flavor
  */
-export const pizza_pao_de_queijo: DoughStyleDefinition = {
-    id: "pizza_pao_de_queijo",
-    name: "Pizza de Pão de Queijo",
-    category: "pizza",
+export const brazilian_cheese_bread: DoughStyleDefinition = {
+    id: "brazilian_cheese_bread",
+    name: "Brazilian Cheese Bread (Pão de Queijo Base)",
+    category: "gluten_free",
     recipeStyle: RecipeStyle.PAO_DE_QUEIJO,
     family: "Brazilian Specialty",
 

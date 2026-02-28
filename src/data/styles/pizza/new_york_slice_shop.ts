@@ -140,6 +140,11 @@ export const new_york_slice_shop: DoughStyleDefinition = {
         target_style: "California Style",
         difference: "California focuses on goat cheese and fresh produce; NY Slice is all about the Pepperoni and Sausage classic combo.",
         why_choose_this: "Choose NY Slice for the 'Traditional American' flavor profile."
+      },
+      {
+        target_style: "New York Artisan (Cold Ferment)",
+        difference: "Artisan uses natural leavening (Sourdough) with extremely long cold maturation (48-96h) and high-heat baking (315-350°C), usually without sugar or oil. Slice Shop uses commercial yeast, oil for foldability, and sugar for browning.",
+        why_choose_this: "Choose NY Slice for the classic, foldable street experience that is easy to reheat; Artisan is better suited for fresh, gourmet pizza with a complex, charred crust."
       }
     ],
     q_and_a: [
@@ -179,6 +184,11 @@ export const new_york_slice_shop: DoughStyleDefinition = {
         method: "Poolish",
         suitability: "Ideal",
         notes: "Increasingly common in 'New Wave' slice shops for a lighter edge."
+      },
+      {
+        method: "Sourdough",
+        suitability: "Authentic",
+        notes: "48 to 96 hours at 3-4°C. The 'sweet spot' for flavor, traditionally paired with sourdough. Protease enzymes break down gluten into amino acids, creating a savory umami depth, while creating conditions for 'leopard spotting' when baked."
       }
     ]
   },
