@@ -14,13 +14,22 @@ import { northAmericaStyles as americasStyles } from './regions/north_america';
 // --- SUPPLEMENTARY LIBRARY MODULES ---
 import { Challah, BurgerBun, Shokupan as ShokupanLegacy, Panettone } from './library/bread/enriched';
 import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './library/pastry/sweets';
-import { burger_buns_enriched } from './bread/burger_buns_enriched';
 import { shokupan_milk_bread } from './bread/shokupan_milk_bread';
 import { pretzel_dough_classic } from './bread/pretzel_dough_classic';
 import { pain_de_mie_pullman } from './bread/pain_de_mie_pullman';
 import { ciabatta_high_hydration } from './bread/ciabatta_high_hydration';
 import { challah_braided } from './bread/challah_braided';
 import { colomba_pasquale } from './pastry/colomba_pasquale';
+
+// --- SEED IMPORTS (status: 'seed' — not shown in public catalog) ---
+import { turkishPide } from './pizza/turkish_pide';
+import { sfincioneSiciliano } from './pizza/sfincione_siciliano';
+import { kaisersemmelAustrian } from './bread/kaisersemmel_austrian';
+import { turkishSimit } from './bread/turkish_simit';
+import { kouignAmannBreton } from './pastry/kouign_amann_breton';
+import { pastelDeNataPortuguese } from './pastry/pastel_de_nata_portuguese';
+import { pateAChouxClassic } from './confectionery/pate_a_choux_classic';
+import { brazilian_cheese_bread } from './gluten_free/brazilian_cheese_bread';
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -188,10 +197,6 @@ const RAW_STYLES: DoughStyleDefinition[] = [
     americasStyles,
     [
         // Enriched Breads (Legacy imports)
-        // Filter out ShokupanLegacy if it conflicts with new Asia Shokupan, or keep as variant
-        // Challah, // Replaced by challah_braided
-        // BurgerBun, // Replaced by burger_buns_enriched
-        // ShokupanLegacy, // Commented out to prefer the new Asia module version if desired
         Panettone,
 
         // Sweets & Pastry
@@ -201,13 +206,22 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         FudgyBrownie,
 
         // New Additions
-        adaptV3ToLegacy(burger_buns_enriched),
         shokupan_milk_bread,
         pain_de_mie_pullman,
         ciabatta_high_hydration,
         challah_braided,
         pretzel_dough_classic,
         adaptV3ToLegacy(colomba_pasquale),
+
+        // Seed styles (status: 'seed' — filtered below)
+        turkishPide,
+        sfincioneSiciliano,
+        kaisersemmelAustrian,
+        turkishSimit,
+        kouignAmannBreton,
+        pastelDeNataPortuguese,
+        pateAChouxClassic,
+        brazilian_cheese_bread,
     ]
 ].flat(2) as DoughStyleDefinition[];
 
@@ -222,11 +236,22 @@ RAW_STYLES.forEach(style => {
 });
 
 // Convert Map back to Array for the app to consume
-export const STYLES_DATA = Array.from(STYLES_MAP.values()).sort((a, b) => {
-    const nameA = a.name || '';
-    const nameB = b.name || '';
-    return nameA.localeCompare(nameB);
-});
+// Seeds (status: 'seed') are excluded from the public-facing catalog
+export const STYLES_DATA = Array.from(STYLES_MAP.values())
+    .filter(s => s.status !== 'seed')
+    .sort((a, b) => {
+        const nameA = a.name || '';
+        const nameB = b.name || '';
+        return nameA.localeCompare(nameB);
+    });
+
+/** All styles including seeds — for admin/pipeline use only */
+export const STYLES_DATA_ALL = Array.from(STYLES_MAP.values()).sort((a, b) =>
+    (a.name || '').localeCompare(b.name || '')
+);
+
+export const STYLES_DATA_SEEDS = Array.from(STYLES_MAP.values())
+    .filter(s => s.status === 'seed');
 
 export const getStyleById = (id: string) => STYLES_MAP.get(id);
 

@@ -120,6 +120,16 @@ export const tartine_country_loaf: DoughStyleDefinition = {
         scenario: "The crust is pale and soft",
         result: "Not enough heat",
         correction: "Preheat the Dutch Oven for at least 45 mins at max temp."
+      },
+      {
+        scenario: "You add 10-20% Einkorn, Emmer, or heritage wheat",
+        result: "Deeper, nuttier flavor and more complex aroma — but lower gluten strength means less oven spring",
+        correction: "Reduce hydration by 3-5% per 10% heritage grain substitution. Shorten bulk by ~20% since these grains acidify faster. Use a strong levain proportion (25%) to compensate for the weaker gluten network."
+      },
+      {
+        scenario: "You blend 30% whole rye or whole spelt into the formula",
+        result: "Dramatically increased fermentation speed, nuttier/earthier flavor, denser crumb with smaller alveoli",
+        correction: "Reduce fermentation time by up to 30-40%. Lower hydration by 5% for rye additions. Score deeper to allow expansion of denser dough. Cold retard is especially beneficial to tame rye's fast fermentation."
       }
     ],
     comparative_analysis: [

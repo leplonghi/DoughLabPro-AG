@@ -125,6 +125,11 @@ export const pao_de_leite_brazil: DoughStyleDefinition = {
         scenario: "The rolls are pale and didn't brown",
         result: "Not enough sugar or oven temp was too low",
         correction: "Ensure at least 10% sugar (or honey) for the Maillard reaction. Use a dark-colored tray to absorb more bottom heat."
+      },
+      {
+        scenario: "You replace 30% of the milk with cold mashed potato (Asterix/Russet variety)",
+        result: "You get a 'Pão de Batata' variant — denser, more moisture-locked, slightly squidgy crumb that keeps for 3-4 days",
+        correction: "Always use starchy (floury) potatoes, not waxy ones. Chill the mash before adding. Reduce yeast by 10% since potato starch boosts fermentation speed. Classic filling: Requeijão Cremoso piped cold into each ball before sealing."
       }
     ],
     comparative_analysis: [

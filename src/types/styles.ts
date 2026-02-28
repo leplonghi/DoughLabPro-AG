@@ -311,11 +311,13 @@ export interface DoughStyleDefinition {
     category: StyleCategory;
     recipeStyle?: RecipeStyle;
     family?: string;
+    /** Lifecycle stage — seed styles are hidden from the public catalog until expanded and approved */
+    status?: 'seed' | 'draft' | 'review' | 'published';
 
     origin: StyleOrigin;
 
     description: string;
-    history: string;
+    history?: string;
     culturalContext?: string;
 
     regulatoryNotes?: string;
@@ -358,9 +360,9 @@ export interface DoughStyleDefinition {
     // Educational Links
     learnLinkTags?: string[]; // e.g. ["rheology-101", "maillard-reaction"]
 
-    watchouts?: string[]; // Replaces risks
+    watchouts?: string[];
     notes: string[];
-    references: Reference[];
+    references?: Reference[];
 
     isPro: boolean;
     source: StyleSource;
