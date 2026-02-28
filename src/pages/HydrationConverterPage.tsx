@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TechnicalPageLayout from './learn/TechnicalPageLayout';
+import TechnicalPageLayout from '../components/layouts/TechnicalPageLayout';
 import { BeakerIcon, ScaleIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
@@ -156,7 +156,7 @@ export const HydrationConverterPage: React.FC = () => {
                         </div>
 
                         {/* Current Stats Summary */}
-                        <div className="p-4 bg-slate-900 rounded-xl text-white flex justify-between items-center shadow-lg">
+                        <div className="p-4 bg-white rounded-xl text-slate-800 flex justify-between items-center shadow-lg">
                             <div>
                                 <p className="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">{t('general.current_net_hydration')}</p>
                                 <div className="text-3xl font-black font-mono tracking-tight text-white mb-1">

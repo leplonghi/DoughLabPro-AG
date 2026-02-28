@@ -10,9 +10,9 @@ import {
   Levain,
   BakeType,
 } from '../types';
-import { ENVIRONMENT_TEMPERATURE_GUIDELINES } from '../constants';
-import { hoursBetween } from '../helpers';
-import i18n from '@/i18n';
+import { ENVIRONMENT_TEMPERATURE_GUIDELINES, AMBIENT_TEMP_CELSIUS_MAP } from '../constants';
+import { hoursBetween, calculateWaterTempDDT } from '../helpers';
+
 
 // Default result structure
 const createDefaultResult = (): SmartAdjustmentResult => ({
@@ -38,19 +38,14 @@ export const getSmartAdjustments = (
   const result = createDefaultResult();
   const { oven, flour, userLevain } = options;
 
-  // --- New DDT Calculation ---
-  const tempMapping = {
-    [AmbientTemperature.COLD]: 16,
-    [AmbientTemperature.MILD]: 22,
-    [AmbientTemperature.HOT]: 28,
-  };
-  const roomTemp = tempMapping[config.ambientTemperature];
-  const flourTemp = roomTemp; // Assume flour temp is same as room temp for now
-  const desiredDoughTemp = 25;
-  // Formula: ((DDT - 1) * 3) - roomTemp - flourTemp
-  const waterTemp = ((desiredDoughTemp - 1) * 3) - roomTemp - flourTemp;
+  // --- DDT Calculation using shared constants & helper ---
+  const roomTemp = AMBIENT_TEMP_CELSIUS_MAP[config.ambientTemperature];
+  const flourTemp = config.flourTemperatureC ?? roomTemp;
+  const desiredDoughTemp = config.targetDDT ?? 25;
+  const useFriction = config.useFrictionFactor ?? false;
+  const waterTemp = calculateWaterTempDDT(desiredDoughTemp, roomTemp, flourTemp, useFriction);
   result.messages.push(
-    `To reach the ideal dough temperature (DDT 24–26°C), use water at approximately ${waterTemp.toFixed(0)}°C.`
+    `To reach the ideal dough temperature (DDT ${desiredDoughTemp}°C), use water at approximately ${waterTemp.toFixed(0)}°C.`
   );
 
 
@@ -88,7 +83,7 @@ export const getSmartAdjustments = (
     config.recipeStyle === RecipeStyle.NEAPOLITAN
   ) {
     result.messages.push(
-      `Home ovens (~250°C) bake pizza slower. To compensate, consider using a style like ${i18n.t('common.new_york')}, which benefits from oil and sugar for better color and texture at lower temperatures.`
+      `Home ovens (~250°C) bake pizza slower. To compensate, consider using a style like New York, which benefits from oil and sugar for better color and texture at lower temperatures.`
     );
     if (config.oil === 0) {
       result.suggestions.push({
@@ -113,7 +108,7 @@ export const getSmartAdjustments = (
     }
   } else if (flour && flour.strengthW && flour.strengthW < 240 && config.hydration > 65) {
     result.riskWarnings.push(
-      `${i18n.t('ui.warning_flours_with_w_')}${flour.strengthW} (weak) might not develop a strong enough gluten network for hydration above 65%.`
+      `Warning: Flours with W ${flour.strengthW} (weak) might not develop a strong enough gluten network for hydration above 65%.`
     );
   }
 
@@ -121,14 +116,14 @@ export const getSmartAdjustments = (
   // --- Rule 4: Ambient Temperature Adjustments ---
   const tempGuidelines = ENVIRONMENT_TEMPERATURE_GUIDELINES[config.ambientTemperature];
   if (tempGuidelines && tempGuidelines.yeastAdjustment !== 1.0) {
-    result.messages.push(i18n.t(tempGuidelines.notesKey));
+    result.messages.push(tempGuidelines.notesKey);
     if (config.yeastType !== YeastType.SOURDOUGH_STARTER && config.yeastType !== YeastType.USER_LEVAIN) {
       const suggestedYeast = parseFloat((config.yeastPercentage * tempGuidelines.yeastAdjustment).toFixed(2));
       const changePct = Math.round((tempGuidelines.yeastAdjustment - 1) * 100);
       result.suggestions.push({
         key: 'yeastPercentage',
         value: suggestedYeast,
-        message: `${i18n.t('ui.suggestion_adjust_yeast_by_')}${changePct}% (to ${suggestedYeast}%) to compensate for temperature.`
+        message: `Suggestion: Adjust yeast by ${changePct}% (to ${suggestedYeast}%) to compensate for temperature.`
       });
     }
   }

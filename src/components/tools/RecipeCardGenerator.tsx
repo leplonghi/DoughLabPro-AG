@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React, { useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import { DownloadIcon, ShareIcon } from 'lucide-react';
@@ -11,6 +12,7 @@ interface RecipeCardGeneratorProps {
 }
 
 export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config, result, title, onClose }) => {
+    const { t } = useTranslation();
     const cardRef = useRef<HTMLDivElement>(null);
     const [isGenerating, setIsGenerating] = useState(false);
 
@@ -37,13 +39,11 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/20 backdrop-blur-sm animate-in fade-in">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
                 <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
                     <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                        <ShareIcon className="w-5 h-5 text-indigo-500" />
-                        Share Recipe
-                    </h3>
+                        <ShareIcon className="w-5 h-5 text-indigo-500" />{t('common:share_recipe')}</h3>
                     <button onClick={onClose} className="text-gray-500 hover:text-gray-900">✕</button>
                 </div>
 
@@ -60,35 +60,35 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
                                 <span className="text-2xl">🍕</span>
                             </div>
                             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight leading-none mb-1">{title}</h2>
-                            <p className="text-indigo-600 font-bold text-sm tracking-wider uppercase">DoughLab Pro</p>
+                            <p className="text-indigo-600 font-bold text-sm tracking-wider uppercase">{t('learn:doughlab_pro')}</p>
                         </div>
 
                         {/* Stats Grid */}
                         <div className="grid grid-cols-2 gap-3 mb-6">
                             <div className="bg-slate-50 p-3 rounded-lg text-center border border-slate-100">
-                                <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Hydration</p>
+                                <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">{t('calculator:form.hydration')}</p>
                                 <p className="text-xl font-bold text-slate-900">{config.hydration}%</p>
                             </div>
                             <div className="bg-slate-50 p-3 rounded-lg text-center border border-slate-100">
-                                <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Time</p>
+                                <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">{t('ui:mylab.time_2')}</p>
                                 <p className="text-xl font-bold text-slate-900">{(config.fermentationTechnique === 'DIRECT' ? 4 : 24)}h</p> {/* Rough estimate fallback */}
                             </div>
                         </div>
 
                         {/* Ingredients */}
                         <div className="flex-1">
-                            <h4 className="font-bold text-sm border-b border-slate-200 pb-2 mb-3">Ingredients</h4>
+                            <h4 className="font-bold text-sm border-b border-slate-200 pb-2 mb-3">{t('styles:styles.flour_tortilla_sonora_qa_lard_ctx')}</h4>
                             <ul className="space-y-2 text-sm">
                                 <li className="flex justify-between">
-                                    <span className="text-slate-600 font-medium">Flour</span>
+                                    <span className="text-slate-600 font-medium">{t('calculator:results.flour')}</span>
                                     <span className="font-bold">{result.totalFlour.toFixed(0)}g</span>
                                 </li>
                                 <li className="flex justify-between">
-                                    <span className="text-slate-600 font-medium">Water</span>
+                                    <span className="text-slate-600 font-medium">{t('styles:water_2')}</span>
                                     <span className="font-bold">{result.totalWater.toFixed(0)}g</span>
                                 </li>
                                 <li className="flex justify-between">
-                                    <span className="text-slate-600 font-medium">Salt</span>
+                                    <span className="text-slate-600 font-medium">{t('styles:tiger_bread_ing_salt')}</span>
                                     <span className="font-bold">{result.totalSalt.toFixed(1)}g</span>
                                 </li>
                                 <li className="flex justify-between">
@@ -97,13 +97,13 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
                                 </li>
                                 {result.totalOil > 0 && (
                                     <li className="flex justify-between">
-                                        <span className="text-slate-600 font-medium">Oil</span>
+                                        <span className="text-slate-600 font-medium">{t('styles:khachapuri_adjaruli_ing_oil')}</span>
                                         <span className="font-bold">{result.totalOil.toFixed(1)}g</span>
                                     </li>
                                 )}
                                 {result.totalSugar > 0 && (
                                     <li className="flex justify-between">
-                                        <span className="text-slate-600 font-medium">Sugar</span>
+                                        <span className="text-slate-600 font-medium">{t('styles:tiger_bread_ing_sugar')}</span>
                                         <span className="font-bold">{result.totalSugar.toFixed(1)}g</span>
                                     </li>
                                 )}
@@ -119,7 +119,7 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
 
                         {/* Footer */}
                         <div className="mt-8 pt-4 border-t border-slate-200 text-center">
-                            <p className="text-xs text-slate-400 font-medium">Baked with</p>
+                            <p className="text-xs text-slate-400 font-medium">{t('common:baked_with')}</p>
                             <p className="font-black text-slate-800 tracking-tight">DoughLabPro.com</p>
                         </div>
 
@@ -133,9 +133,7 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
                     <button
                         onClick={onClose}
                         className="flex-1 py-3 text-slate-600 font-bold hover:bg-slate-50 rounded-xl transition-colors"
-                    >
-                        Cancel
-                    </button>
+                    >{t('ui:profile.cancel')}</button>
                     <button
                         onClick={handleDownload}
                         disabled={isGenerating}
@@ -143,9 +141,7 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
                     >
                         {isGenerating ? 'Generating...' : (
                             <>
-                                <DownloadIcon className="w-5 h-5" />
-                                Download Image
-                            </>
+                                <DownloadIcon className="w-5 h-5" />{t('common:download_image')}</>
                         )}
                     </button>
                 </div>

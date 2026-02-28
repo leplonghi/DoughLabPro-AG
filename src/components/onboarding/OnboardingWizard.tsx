@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 import { useUser } from '@/contexts/UserProvider';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import {
@@ -99,8 +99,8 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
             id: 'welcome',
             render: () => (
                 <div className="text-center space-y-6">
-                    <div className="w-20 h-20 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span className="text-4xl">🍕</span>
+                    <div className="w-24 h-24 bg-gradient-to-br from-lime-100 to-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner overflow-hidden border-2 border-white">
+                        <img src="/doughy-avatar.png" alt={t('ui:assistant_page.title_short')} className="w-full h-full object-cover scale-110" />
                     </div>
                     <h2 className="text-2xl font-bold text-slate-800">
                         {t('auth.onboarding.welcome_title', 'Welcome to DoughLab Pro')}

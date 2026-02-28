@@ -1,24 +1,29 @@
+
 import React, { useState, Suspense, useMemo, useEffect } from 'react';
+import { useOnboardingFlow } from '@/hooks/useOnboardingFlow';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import RequireAuth from '@/components/RequireAuth';
 import FloatingActionButton from '@/components/ui/FloatingActionButton';
-import AuthModal from '@/components/AuthModal';
-import { PaywallModal } from '@/components/PaywallModal';
-import LevainOnboardingModal from '@/components/onboarding/LevainOnboardingModal';
+const AuthModal = React.lazy(() => import('@/components/modals/AuthModal'));
 import { Logo } from '@/components/ui/Logo';
 import { TourGuide } from '@/components/onboarding/TourGuide';
-import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
-import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
+// Lazy Load Modals
+const PaywallModal = React.lazy(() => import('@/components/modals/PaywallModal').then(m => ({ default: m.PaywallModal })));
+const LevainOnboardingModal = React.lazy(() => import('@/components/onboarding/LevainOnboardingModal'));
+const OnboardingWizard = React.lazy(() => import('@/components/onboarding/OnboardingWizard').then(m => ({ default: m.OnboardingWizard })));
+const DoughyAssistant = React.lazy(() => import('@/components/tools/DoughyAssistant').then(m => ({ default: m.DoughyAssistant })));
 import { FloatingNotificationWidget } from '@/components/notifications/FloatingNotificationWidget';
+import PWAInstallPrompt from '@/components/PWAInstallPrompt';
+import { AppProviders } from '@/components/providers/AppProviders';
 
 // Contexts
 import { ToastProvider, useToast } from '@/components/ToastProvider';
 import { UserProvider, useUser } from '@/contexts/UserProvider';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
-import { I18nProvider, useTranslation } from '@/i18n';
+import { useTranslation } from '@/i18n';
 import { CalculatorProvider, useCalculator } from '@/contexts/CalculatorContext';
 import { DoughSessionProvider, useDoughSession } from '@/contexts/DoughSessionContext';
 import { StylesProvider } from '@/contexts/StylesProvider';
@@ -38,7 +43,8 @@ import { SensoryProvider } from '@/contexts/SensoryProvider';
 import { TimelineProvider } from '@/contexts/TimelineProvider';
 import { MarketingProvider } from '@/marketing/MarketingContext';
 
-import AppRouter from '@/AppRouter';
+// Lazy load AppRouter
+const AppRouter = React.lazy(() => import('@/AppRouter'));
 import { PrimaryPage, BatchStatus } from '@/types';
 import { FLOURS } from '@/flours-constants';
 
@@ -72,24 +78,17 @@ function AppContent() {
 
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
-  const [showLevainOnboarding, setShowLevainOnboarding] = useState(false);
-  const [showMainOnboarding, setShowMainOnboarding] = useState(false);
 
-  // Main Onboarding Logic
-  useEffect(() => {
-    if (user && isAuthenticated && !user.onboardingCompleted) {
-      // Check if we maybe stored it locally for guests/interim
-      const localCompleted = localStorage.getItem('dlp_onboarding_completed') === 'true';
-      if (!localCompleted) {
-        setShowMainOnboarding(true);
-      }
-    }
-  }, [user, isAuthenticated]);
+  // Extracted Onboarding Logic
+  const {
+    showMainOnboarding,
+    showLevainOnboarding,
+    setShowMainOnboarding,
+    handleMainOnboardingComplete,
+    handleLevainOnboardingComplete
+  } = useOnboardingFlow({ user, isAuthenticated, route, t });
 
-  const handleMainOnboardingComplete = () => {
-    localStorage.setItem('dlp_onboarding_completed', 'true');
-    setShowMainOnboarding(false);
-  };
+
 
   // Last batch calculation
   const lastBatch = useMemo(() => {
@@ -98,22 +97,7 @@ function AppContent() {
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0];
   }, [batches]);
 
-  // Levain Onboarding Logic
-  useEffect(() => {
-    const hasSeenOnboarding = localStorage.getItem('levain_pet_onboarding_seen_v1');
-    if (!hasSeenOnboarding && route.startsWith('mylab/levain')) {
-      setShowLevainOnboarding(true);
-    }
-  }, [route]);
 
-  const handleOnboardingComplete = () => {
-    try {
-      localStorage.setItem('levain_pet_onboarding_seen_v1', 'true');
-    } catch (error) {
-      console.error(t('common.failed_to_save_onboarding_status_to_localstorage'), error);
-    }
-    setShowLevainOnboarding(false);
-  };
 
   // Test Pro Logic
   useEffect(() => {
@@ -166,8 +150,12 @@ function AppContent() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-dlp-bg-soft p-4 relative overflow-hidden">
         <div className="z-10 text-center max-w-md w-full">
-          <div className="mb-8 flex justify-center">
-            <Logo className="h-24 w-auto" />
+          <div className="mb-8 flex flex-col items-center gap-4">
+            <div className="w-24 h-24 bg-white rounded-full p-1 shadow-xl border-2 border-emerald-100 overflow-hidden relative group">
+              <img src="/doughy-avatar.png" alt={t('ui:assistant_page.title_short')} className="w-full h-full object-cover scale-110 transition-transform group-hover:scale-125 duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <Logo className="h-12 w-auto" />
           </div>
 
           <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">{t('ui.welcome_title')}</h1>
@@ -192,23 +180,31 @@ function AppContent() {
 
         </div>
 
-        <AuthModal
-          isOpen={isAuthModalOpen}
-          onClose={() => setIsAuthModalOpen(false)}
-        />
+        {isAuthModalOpen && (
+          <Suspense fallback={
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+              <LoadingSpinner className="h-12 w-12 text-dlp-accent" />
+            </div>
+          }>
+            <AuthModal
+              isOpen={isAuthModalOpen}
+              onClose={() => setIsAuthModalOpen(false)}
+            />
+          </Suspense>
+        )}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-dlp-bg-soft font-sans text-dlp-text-primary transition-colors duration-300 flex flex-col">
+    <div className="min-h-screen bg-transparent font-sans text-dlp-text-primary transition-colors duration-300 flex flex-col">
       <Navigation
         activePage={route as PrimaryPage}
         onNavigate={navigate}
         onOpenAuth={() => setIsAuthModalOpen(true)}
       />
 
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 py-8 md:py-10 mt-20">
+      <main id="main-content" tabIndex={-1} className="flex-grow w-full max-w-[1440px] mx-auto px-4 py-8 md:py-10 mt-20 pb-24 sm:pb-8 focus:outline-none">
         {isAssistantOpen ? (
           <Suspense fallback={<LoadingSpinner />}>
             <RequireAuth onOpenAuth={() => setIsAuthModalOpen(true)}>
@@ -233,93 +229,61 @@ function AppContent() {
 
       <Footer onNavigate={navigate} />
 
-      <DoughyAssistant />
+      <Suspense fallback={null}>
+        <DoughyAssistant />
+      </Suspense>
       <FloatingNotificationWidget />
 
-      {showLevainOnboarding && (
-        <LevainOnboardingModal
-          onComplete={handleOnboardingComplete}
-          onNavigate={navigate}
-        />
-      )}
+      <Suspense fallback={null}>
+        {showLevainOnboarding && (
+          <LevainOnboardingModal
+            onComplete={handleLevainOnboardingComplete}
+            onNavigate={navigate}
+          />
+        )}
 
-      {showMainOnboarding && (
-        <OnboardingWizard
-          onComplete={handleMainOnboardingComplete}
-          onClose={() => setShowMainOnboarding(false)}
-        />
-      )}
+        {showMainOnboarding && (
+          <OnboardingWizard
+            onComplete={handleMainOnboardingComplete}
+            onClose={() => setShowMainOnboarding(false)}
+          />
+        )}
 
-      <PaywallModal
-        isOpen={isPaywallOpen}
-        onClose={closePaywall}
-        onNavigateToPlans={() => {
-          closePaywall();
-          navigate('plans');
-        }}
-        origin={paywallOrigin}
-      />
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
+        <PaywallModal
+          isOpen={isPaywallOpen}
+          onClose={closePaywall}
+          onNavigateToPlans={() => {
+            closePaywall();
+            navigate('plans');
+          }}
+          origin={paywallOrigin}
+        />
+      </Suspense>
+      {isAuthModalOpen && (
+        <Suspense fallback={
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+            <LoadingSpinner className="h-12 w-12 text-dlp-accent" />
+          </div>
+        }>
+          <AuthModal
+            isOpen={isAuthModalOpen}
+            onClose={() => setIsAuthModalOpen(false)}
+          />
+        </Suspense>
+      )}
       <TourGuide />
 
-      {/* Persistence Indicator */}
-      {lastSaved && (
-        <div className="fixed bottom-4 right-4 bg-dlp-bg-surface border border-dlp-border shadow-lg rounded-full px-4 py-2 text-xs text-dlp-text-muted transition-opacity duration-1000 animate-fade-in-out pointer-events-none z-50 flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-dlp-brand"></div>
-          {t('ui.changes_saved')}
-        </div>
-      )}
+      {/* PWA Install Prompt */}
+      <PWAInstallPrompt />
     </div>
   );
 }
 
 function App() {
   return (
-    <I18nProvider>
-      <AuthProvider>
-        <ToastProvider>
-          <UserProvider>
-            <MarketingProvider>
-              <NotificationProvider>
-                {/* Domain-specific providers */}
-                <BatchesProviderComponent>
-                  <LevainProvider>
-                    <GoalsProvider>
-                      <FloursProvider>
-                        <ConsistencyProvider>
-                          <InsightsProvider>
-                            <RecipesProvider>
-                              <DoughsProvider>
-                                <SensoryProvider>
-                                  <TimelineProvider>
-                                    <RouterProvider>
-                                      <DoughSessionProvider>
-                                        <CalculatorProvider>
-                                          <StylesProvider>
-                                            <AppContent />
-                                          </StylesProvider>
-                                        </CalculatorProvider>
-                                      </DoughSessionProvider>
-                                    </RouterProvider>
-                                  </TimelineProvider>
-                                </SensoryProvider>
-                              </DoughsProvider>
-                            </RecipesProvider>
-                          </InsightsProvider>
-                        </ConsistencyProvider>
-                      </FloursProvider>
-                    </GoalsProvider>
-                  </LevainProvider>
-                </BatchesProviderComponent>
-              </NotificationProvider>
-            </MarketingProvider>
-          </UserProvider>
-        </ToastProvider>
-      </AuthProvider>
-    </I18nProvider>
+    <AppProviders>
+      <AppContent />
+    </AppProviders>
   );
 }
 

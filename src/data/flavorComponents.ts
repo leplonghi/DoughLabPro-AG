@@ -2584,6 +2584,7 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
         applicationMoment: 'post_oven',
         variations: 'Dried (less pungent).',
         references: [],
+        isStandard: true
     },
     {
         id: 'pesto',

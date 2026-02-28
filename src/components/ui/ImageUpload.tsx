@@ -92,10 +92,10 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                                 className={`h-full w-full object-cover ${circle ? 'rounded-full' : 'rounded-xl'}`}
                             />
                             {/* Overlay on hover */}
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                                 <button
                                     onClick={triggerUpload}
-                                    className="p-1.5 bg-white/20 hover:bg-white/40 rounded-full text-white backdrop-blur-sm transition-colors"
+                                    className="p-1.5 bg-white/20 hover:bg-white/40 rounded-full text-slate-800 backdrop-blur-sm transition-colors"
                                     title={t('ui.change_image')}
                                 >
                                     <UploadIcon className="w-4 h-4" />

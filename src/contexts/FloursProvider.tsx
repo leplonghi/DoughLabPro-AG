@@ -4,9 +4,12 @@ import { db } from '@/firebase/db';
 import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { logger } from '@/utils/logger';
+import { useUser } from '@/contexts/UserProvider';
 
 // Placeholder interface - expand as needed
-interface FlourInventoryItem {
+// Ideally this should be in @/types if used broadly
+export interface FlourInventoryItem {
     id: string;
     name: string;
     brand?: string;
@@ -20,9 +23,9 @@ interface FlourInventoryItem {
 
 interface FloursContextType {
     flours: FlourInventoryItem[];
-    addFlour: (flour: Omit<FlourInventoryItem, 'id' | 'createdAt' | 'updatedAt'>) =>Promise<void>;
-    updateFlour: (id: string, updates: Partial<FlourInventoryItem>) =>Promise<void>;
-    deleteFlour: (id: string) =>Promise<void>;
+    addFlour: (flour: Omit<FlourInventoryItem, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
+    updateFlour: (id: string, updates: Partial<FlourInventoryItem>) => Promise<void>;
+    deleteFlour: (id: string) => Promise<void>;
     preferredFlourId: string | null;
     setPreferredFlour: (id: string | null) => void;
 }
@@ -30,18 +33,12 @@ interface FloursContextType {
 const FloursContext = createContext<FloursContextType | undefined>(undefined);
 
 export const FloursProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { firebaseUser } = useAuth();
     const { addToast } = useToast();
+    const { preferredFlourId, setPreferredFlour } = useUser();
+
     const [flours, setFlours] = useState<FlourInventoryItem[]>([]);
-    const [preferredFlourId, setPreferredFlourIdState] = useState<string | null>(() => {
-        try {
-            const stored = localStorage.getItem('dough-lab-preferred-flour');
-            return stored || null;
-        } catch {
-            return null;
-        }
-    });
 
     // Firestore subscription
     useEffect(() => {
@@ -68,7 +65,7 @@ export const FloursProvider: React.FC<{ children: ReactNode }> = ({ children }) 
                 setFlours(items);
             },
             (error) => {
-                console.error('Error listening to flours:', error);
+                logger.error('Error listening to flours:', error);
             }
         );
     }, [firebaseUser]);
@@ -119,18 +116,7 @@ export const FloursProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         [firebaseUser, addToast]
     );
 
-    const setPreferredFlour = useCallback((id: string | null) => {
-        setPreferredFlourIdState(id);
-        try {
-            if (id) {
-                localStorage.setItem('dough-lab-preferred-flour', id);
-            } else {
-                localStorage.removeItem('dough-lab-preferred-flour');
-            }
-        } catch (error) {
-            console.error('Failed to save preferred flour', error);
-        }
-    }, []);
+    // setPreferredFlour is now handled by UserProvider
 
     const value: FloursContextType = useMemo(() => ({
         flours,

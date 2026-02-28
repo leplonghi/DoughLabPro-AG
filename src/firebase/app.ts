@@ -1,7 +1,6 @@
 
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { firebaseConfig, isFirebaseConfigured } from "./config";
-import i18n from '@/i18n';
 
 export let app: FirebaseApp | null = null;
 
@@ -17,5 +16,5 @@ if (isFirebaseConfigured) {
     app = null;
   }
 } else {
-  console.warn(i18n.t('ui.firebase_configuration_missing_app_running_in_mock'));
+  console.warn("Firebase configuration missing. App running in mock/offline mode.");
 }

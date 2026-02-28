@@ -118,14 +118,14 @@ export const arepa_corn_flatbread: DoughStyleDefinition = {
         correction: "Let the dough sit longer to absorb water."
       }
     ],
-    comparisons: [
+    comparative_analysis: [
       {
-        vsStyle: "Tortilla",
+        target_style: "Tortilla",
         difference: "Tortilla = Thin, pliable, nixtamalized. Arepa = Thick, crispy shell, non-nixtamalized (usually).",
         why_choose_this: "Choose Arepa for a hearty stuffed sandwich."
       },
       {
-        vsStyle: "Pupusa",
+        target_style: "Pupusa",
         difference: "Pupusa is stuffed BEFORE cooking (El Salvador). Arepa can be stuffed before or after, but usually after.",
         why_choose_this: "Choose Arepa for the 'pocket' experience."
       }
@@ -160,7 +160,8 @@ export const arepa_corn_flatbread: DoughStyleDefinition = {
     hydrationLogic: "Water amount varies by brand and humidity. Start with 1:1 ratio and add more until soft.",
     methodSuitability: {
       direct: { suitable: true, notes: "Only method." },
-      poolish: { suitable: false, notes: "N/A" }
+      poolish: { suitable: false, notes: "N/A" },
+      biga: { suitable: false, notes: "N/A" }
     },
     whatIf: [
       {

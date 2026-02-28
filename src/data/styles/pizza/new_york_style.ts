@@ -273,7 +273,7 @@ export const new_york_style: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/new-york-style-hero.png",
+        hero: "/images/styles/nyc-slice-hero.png",
         dough: "/images/styles/placeholder-dough.png",
         crumb: "/images/styles/placeholder-dough.png"
     }

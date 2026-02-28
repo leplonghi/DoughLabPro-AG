@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React, { useState, useMemo } from 'react';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
 import { useReverseScheduling } from '@/hooks/useReverseScheduling';
@@ -5,7 +6,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { Calendar, Clock, ArrowDown } from 'lucide-react';
 
 export const SchedulerSection: React.FC = () => {
-
+    const { t } = useTranslation();
     const { session, updateSchedule } = useDoughSession();
     const { applySchedule } = useReverseScheduling();
     const { hasProAccess, batches, openPaywall } = useUser();
@@ -55,9 +56,7 @@ export const SchedulerSection: React.FC = () => {
                             ? 'bg-[#51a145] text-white shadow-md'
                             : 'text-slate-400 hover:text-[#51a145] hover:bg-white/50'}
                     `}
-                >
-                    Manual Duration
-                </button>
+                >{t('common:manual_duration')}</button>
                 <button
                     onClick={toggleMode}
                     className={`
@@ -76,9 +75,7 @@ export const SchedulerSection: React.FC = () => {
                 <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
                     <div className="flex flex-col space-y-4">
                         <label className="text-xs uppercase tracking-wider text-slate-500 font-bold flex items-center gap-2">
-                            <Calendar size={14} className="text-[#51a145]" />
-                            When do you want to eat?
-                        </label>
+                            <Calendar size={14} className="text-[#51a145]" />{t('calculator:when_do_you_want_to_eat')}</label>
                         <input
                             type="datetime-local"
                             className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-lg font-mono font-bold text-slate-800 focus:ring-2 focus:ring-[#51a145] focus:bg-white outline-none transition-all"
@@ -89,7 +86,7 @@ export const SchedulerSection: React.FC = () => {
                         {startTimeParams && (
                             <div className="mt-4 pt-4 border-t border-slate-100">
                                 <div className="flex justify-between items-center mb-4">
-                                    <span className="text-sm font-bold text-slate-500">Total Duration</span>
+                                    <span className="text-sm font-bold text-slate-500">{t('common:total_duration')}</span>
                                     <span className="text-sm font-black text-[#1B4332]">
                                         {/* Simple diff display */}
                                         {schedule.targetDate && (
@@ -103,7 +100,7 @@ export const SchedulerSection: React.FC = () => {
                                     {/* Start */}
                                     <div className="relative">
                                         <div className="absolute -left-[31px] bg-[#51a145] text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm font-bold">1</div>
-                                        <span className="text-[10px] font-bold text-[#51a145] uppercase block mb-0.5 tracking-wider">Start Process</span>
+                                        <span className="text-[10px] font-bold text-[#51a145] uppercase block mb-0.5 tracking-wider">{t('common:start_process')}</span>
                                         <p className="font-mono text-sm font-bold text-slate-800">
                                             {startTimeParams.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                             <span className="text-xs font-medium text-slate-400 ml-2">
@@ -116,8 +113,8 @@ export const SchedulerSection: React.FC = () => {
 
                                     {/* Eat */}
                                     <div className="relative">
-                                        <div className="absolute -left-[31px] bg-[#1B4332] text-white p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm font-bold">2</div>
-                                        <span className="text-[10px] font-bold text-[#1B4332] uppercase block mb-0.5 tracking-wider">Bake & Eat</span>
+                                        <div className="absolute -left-[31px] bg-gradient-to-br from-emerald-50 to-lime-50 text-slate-800 p-1 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm font-bold">2</div>
+                                        <span className="text-[10px] font-bold text-[#1B4332] uppercase block mb-0.5 tracking-wider">{t('common:bake_eat')}</span>
                                         <p className="font-mono text-sm font-bold text-slate-800">
                                             {new Date(schedule.targetDate!).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </p>
@@ -127,18 +124,14 @@ export const SchedulerSection: React.FC = () => {
                         )}
 
                         {!startTimeParams && (
-                            <div className="text-center text-slate-400 text-sm py-4 italic">
-                                Pick a date to calculate schedule
-                            </div>
+                            <div className="text-center text-slate-400 text-sm py-4 italic">{t('common:pick_a_date_to_calculate_schedule')}</div>
                         )}
                     </div>
                 </div>
             )}
 
             {isManual && (
-                <div className="p-6 text-center text-slate-400 italic border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">
-                    Manual Duration Mode (Classic) is active. Adjust yeast manually in The Lab.
-                </div>
+                <div className="p-6 text-center text-slate-400 italic border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">{t('common:manual_duration_mode_classic_is_active_adjust_yeast_manually')}</div>
             )}
         </div>
     );

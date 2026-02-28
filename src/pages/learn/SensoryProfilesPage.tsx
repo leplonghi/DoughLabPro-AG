@@ -1,12 +1,12 @@
 
 import React from 'react';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import { BookOpenIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 import { useTranslation } from '@/i18n';
 
 const SensoryProfilesPage: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <TechnicalPageLayout
             title={t('learn.sensory_profiles_in_pizza')}
@@ -14,7 +14,7 @@ const SensoryProfilesPage: React.FC = () => {
             showReferencesSection
         >
             <LearnSection title={t('learn.balance_of_fundamental_tastes')}>
-                <p>Successful pizza is symphony of flavors and textures. Secret isn't single ingredient but harmonious balance between fundamental tastes. Successful combo stimulates different palate parts simultaneously creating complex satisfying experience.</p>
+                <p>{t('learn:successful_pizza_is_symphony_of_flavors_and_textures_secret_')}</p>
             </LearnSection>
             <LearnSection title={t('learn.umami_taste_of_satisfaction')}>
                 <p>Umami, or t('learn.fifth_taste_447'), is savory depth flavor associated with glutamates. In pizza, umami is naturally present in key ingredients:</p>
@@ -26,16 +26,16 @@ const SensoryProfilesPage: React.FC = () => {
                 </ul>
             </LearnSection>
             <LearnSection title={t('learn.fat_as_flavor_vehicle')}>
-                <p>Fat from cheese, oil, and meats is essential. It adds richness and pleasant mouthfeel and acts as solvent for many aromatic compounds carrying and distributing flavor throughout pizza.</p>
+                <p>{t('learn:fat_from_cheese_oil_and_meats_is_essential_it_adds_richness_')}</p>
             </LearnSection>
             <LearnSection title={t('learn.acidity_for_contrast_and_cleansing')}>
                 <p>Acidity is necessary counterpoint to fat. Tomato sauce acid "cuts" cheese richness cleansing palate preventing cloying pizza. Ingredients like pickles or olives can also add bright acidic note.</p>
             </LearnSection>
             <LearnSection title={t('learn.natural_sweetness_for_balance')}>
-                <p>Sweetness, even subtle, is crucial balancing salt and acidity. Can come from natural caramelization of onion/pepper, tomato sugar concentration in cooked sauce, or intentional additions like honey drizzle contrasting salty cheese.</p>
+                <p>{t('learn:sweetness_even_subtle_is_crucial_balancing_salt_and_acidity_')}</p>
             </LearnSection>
             <LearnSection title={t('learn.crunch_as_texture_element')}>
-                <p>Pizza experience isn't just flavor but texture. Contrast between crispy base, soft melted cheese, and firmness of cured meat is fundamental. Crunch adds auditory and tactile dimension making experience interesting.</p>
+                <p>{t('learn:pizza_experience_isnt_just_flavor_but_texture_contrast_betwe')}</p>
             </LearnSection>
             <LearnSection title={t('learn.technical_references_3')}>
                 <ul className="list-disc pl-5 space-y-2">

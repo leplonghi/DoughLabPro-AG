@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React, { useState, useRef, useEffect } from 'react';
 
 interface AnimatedInputProps {
@@ -48,6 +49,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
     step = 1,
     autoFocus = false,
 }) => {
+    const { t } = useTranslation();
     const [isFocused, setIsFocused] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -164,7 +166,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
                             onClick={handleDecrement}
                             disabled={disabled || (min !== undefined && Number(value) <= min)}
                             className="p-1 rounded hover:bg-slate-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                            aria-label="Decrement"
+                            aria-label={t('common:decrement')}
                         >
                             <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

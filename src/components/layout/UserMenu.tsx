@@ -2,14 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUser } from '@/contexts/UserProvider';
 import { Page } from '@/types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 import {
     UserCircleIcon,
     SettingsIcon,
     QuestionMarkCircleIcon,
     ClockIcon,
     ArrowRightOnRectangleIcon,
-    ChevronRightIcon
+    ChevronRightIcon,
+    BellIcon
 } from '@/components/ui/Icons';
 
 interface UserMenuProps {
@@ -67,9 +68,13 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
         <div className="relative" ref={menuRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-center w-9 h-9 rounded-full bg-dlp-bg-card border border-dlp-accent text-dlp-accent font-semibold hover:bg-dlp-bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+                className="flex items-center justify-center w-9 h-9 rounded-full bg-dlp-bg-card border border-dlp-accent text-dlp-accent font-semibold hover:bg-dlp-bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2 overflow-hidden"
             >
-                {initials}
+                {user?.photoURL ? (
+                    <img src={user.photoURL} alt={user.name || 'User'} className="w-full h-full object-cover" />
+                ) : (
+                    initials
+                )}
             </button>
 
             {isOpen && (
@@ -92,6 +97,14 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                         >
                             <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
                             {t('common.nav.profile')}
+                        </button>
+
+                        <button
+                            onClick={() => handleItemClick('notifications')}
+                            className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
+                        >
+                            <BellIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
+                            {t('common.nav.notifications')}
                         </button>
 
                         <button

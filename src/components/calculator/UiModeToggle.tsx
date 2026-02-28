@@ -11,10 +11,10 @@ const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculat
     const { t } = useTranslation();
 
     return (
-        <div className="inline-flex items-center gap-1.5 bg-slate-100 rounded-lg p-1 h-9">
+        <div className="inline-flex items-center gap-1.5 bg-slate-100 rounded-lg p-1 min-h-[44px]">
             <button
                 onClick={() => setCalculatorMode('wizard')}
-                className={`relative px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${calculatorMode === 'wizard'
+                className={`relative px-3 py-2 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${calculatorMode === 'wizard'
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-600 hover:text-slate-900'
                     }`}
@@ -24,14 +24,14 @@ const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculat
             </button>
             <button
                 onClick={() => setCalculatorMode('basic')}
-                className={`relative px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 ${calculatorMode === 'basic'
+                className={`relative px-3 py-2 text-xs font-medium rounded-md transition-all duration-200 ${calculatorMode === 'basic'
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-600 hover:text-slate-900'
                     }`}
             >{t('calculator.guided')}</button>
             <button
                 onClick={() => setCalculatorMode('advanced')}
-                className={`relative px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${calculatorMode === 'advanced'
+                className={`relative px-3 py-2 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${calculatorMode === 'advanced'
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-600 hover:text-slate-900'
                     }`}

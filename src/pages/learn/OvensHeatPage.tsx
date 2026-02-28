@@ -1,18 +1,18 @@
 
 import React from 'react';
 import { Page } from '@/types';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { FireIcon, WrenchScrewdriverIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 import { useTranslation } from '@/i18n';
 
 interface OvensHeatPageProps {
-  onNavigate: (page: Page) => void;
+    onNavigate: (page: Page) => void;
 }
 
 const OvensHeatPage: React.FC<OvensHeatPageProps> = ({ onNavigate }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const topics = [
         { page: 'learn/oven-science', title: 'Oven Science', description: 'Understand how conduction, convection, and radiation transform your dough.', icon: <FireIcon className="h-8 w-8" /> },
         { page: 'learn/equipment', title: 'Equipment', description: 'The impact of peels, stones, steel, and other tools on the final result.', icon: <WrenchScrewdriverIcon className="h-8 w-8" /> },

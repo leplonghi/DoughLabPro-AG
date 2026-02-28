@@ -28,7 +28,9 @@ const root = ReactDOM.createRoot(rootElement);
 
 // Using standard render without StrictMode to avoid double-mount issues during i18n init
 root.render(
-  <ErrorBoundary>
-    <App />
-  </ErrorBoundary>
+  <React.StrictMode>
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  </React.StrictMode>
 );

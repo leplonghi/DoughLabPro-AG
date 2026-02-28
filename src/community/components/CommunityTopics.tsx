@@ -1,7 +1,9 @@
+import { useTranslation } from '@/i18n';
 import React from 'react';
 import { Tag } from 'lucide-react';
 
 export const CommunityTopics: React.FC = () => {
+    const { t } = useTranslation();
     const topics = [
         { name: 'Neapolitan', count: 128 },
         { name: 'Sourdough', count: 85 },
@@ -14,9 +16,7 @@ export const CommunityTopics: React.FC = () => {
     return (
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
             <div className="p-4 border-b border-gray-100 font-semibold text-sm flex items-center gap-2 text-gray-800">
-                <Tag className="h-4 w-4 text-lime-600" />
-                Popular Topics
-            </div>
+                <Tag className="h-4 w-4 text-lime-600" />{t('common:popular_topics')}</div>
 
             <div className="p-2">
                 {topics.map((topic) => (
@@ -33,9 +33,7 @@ export const CommunityTopics: React.FC = () => {
             </div>
 
             <div className="p-3 border-t border-gray-50 text-center">
-                <button className="text-xs text-lime-600 font-bold hover:text-lime-700 uppercase tracking-wider">
-                    View All Topics
-                </button>
+                <button className="text-xs text-lime-600 font-bold hover:text-lime-700 uppercase tracking-wider">{t('common:view_all_topics')}</button>
             </div>
         </div>
     );

@@ -29,7 +29,7 @@ export const CommunityComposer: React.FC = () => {
 
     if (!canPost) {
         return (
-            <div className="p-4 bg-zinc-900 rounded-xl border border-zinc-800 text-center">
+            <div className="p-4 bg-white rounded-xl border border-zinc-200 text-center">
                 <p className="text-zinc-400 text-sm mb-2">{t('community.join_the_conversation_with_doughlab_pro')}</p>
                 <button className="text-lime-400 text-sm font-bold">{t('community.upgrade_to_post')}</button>
             </div>
@@ -37,12 +37,12 @@ export const CommunityComposer: React.FC = () => {
     }
 
     return (
-        <div className="p-4 bg-zinc-900 rounded-xl border border-zinc-800 mb-6">
+        <div className="p-4 bg-white rounded-xl border border-zinc-200 mb-6">
             <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder={t('community.share_your_baking_journey')}
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-zinc-200 focus:border-dlp-brand outline-none resize-none h-24 mb-3"
+                className="w-full bg-zinc-950 border border-zinc-200 rounded-lg p-3 text-zinc-200 focus:border-dlp-brand outline-none resize-none h-24 mb-3"
             />
             <div className="flex justify-end">
                 <button

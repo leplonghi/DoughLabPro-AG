@@ -138,7 +138,7 @@ const IngredientTable: React.FC<{ result: DoughResult, doughConfig: DoughConfig 
 };
 
 const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, onLoadAndNavigate }) => {
-    const { user, batches, updateBatch, addBatch, deleteBatch, hasProAccess, openPaywall } = useUser();
+    const { user, batches, updateBatch, addBatch, deleteBatch, hasProAccess, openPaywall, levains } = useUser();
     const { t } = useTranslation(['common', 'dashboard', 'calculator', 'method']);
     const { addToast } = useToast();
 
@@ -234,7 +234,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const handleDelete = async () => {
         if (editableBatch && window.confirm(t('confirmations.delete_batch', { name: editableBatch.name }))) {
             await deleteBatch(editableBatch.id);
-            onNavigate('mylab/fornadas');
+            onNavigate('mylab/bakes');
         }
     };
 
@@ -264,7 +264,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
             <div className="text-center p-8">
                 <h2 className="text-xl font-bold text-slate-900 ">{t('batch_detail.not_found')}</h2>
                 <p className="mt-2 text-slate-600 ">{t('batch_detail.not_found_desc')}</p>
-                <button onClick={() => onNavigate('mylab/fornadas')} className="mt-4 rounded-xl bg-dlp-brand py-2.5 px-5 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">
+                <button onClick={() => onNavigate('mylab/bakes')} className="mt-4 rounded-xl bg-dlp-brand py-2.5 px-5 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">
                     {t('batch_detail.back_to_diary')}
                 </button>
             </div>
@@ -351,15 +351,25 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 {/* Sidebar */}
                 <div className="w-full lg:w-1/3 space-y-6 lg:sticky lg:top-24">
 
+
                     {/* Reverse Schedule (Timeline) */}
                     <div className="animate-in slide-in-from-right-4 duration-500 delay-100">
-                        <ReverseSchedule
-                            config={doughConfig}
-                            levain={null} // TODO: Add levain support if needed
-                            targetDate={editableBatch.targetBakeTime}
-                            onTargetDateChange={(date) => setEditableBatch({ ...editableBatch, targetBakeTime: date })}
-                            onScheduleChange={setSchedule}
-                        />
+                        {(() => {
+                            // Resolve Levain object if ID is present
+                            const activeLevain = doughConfig.levainId
+                                ? levains.find(l => l.id === doughConfig.levainId)
+                                : undefined;
+
+                            return (
+                                <ReverseSchedule
+                                    config={doughConfig}
+                                    levain={activeLevain}
+                                    targetDate={editableBatch.targetBakeTime}
+                                    onTargetDateChange={(date) => setEditableBatch({ ...editableBatch, targetBakeTime: date })}
+                                    onScheduleChange={setSchedule}
+                                />
+                            );
+                        })()}
                     </div>
 
                     {/* Related Learn Insights */}
@@ -514,7 +524,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 </div>
             </div>
             <div className="mt-8 flex items-center justify-between border-t border-slate-200  pt-6">
-                <button onClick={() => onNavigate('mylab/fornadas')} className="text-sm font-bold text-dlp-brand-hover  hover:underline">
+                <button onClick={() => onNavigate('mylab/bakes')} className="text-sm font-bold text-dlp-brand-hover  hover:underline">
                     &larr; {t('batch_detail.back_to_diary')}
                 </button>
                 <button onClick={handleSave} className="flex items-center gap-2 rounded-xl bg-dlp-brand py-3 px-6 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95">

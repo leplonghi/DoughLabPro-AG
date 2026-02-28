@@ -39,7 +39,7 @@ class MonitoringService {
         };
 
         // In production, send to a service like Sentry, LogRocket, or GA4
-        if (process.env.NODE_ENV === 'production') {
+        if (import.meta.env.PROD) {
             // example: Sentry.captureMessage(message, { level, extra: data });
             console.log(`[MONITORING] ${JSON.stringify(payload)}`);
         } else {
@@ -48,8 +48,12 @@ class MonitoringService {
         }
     }
 
-    trackError(error: Error, extra?: any) {
-        this.log('error', error.message, { stack: error.stack, ...extra });
+    trackError(error: unknown, extra?: any) {
+        if (error instanceof Error) {
+            this.log('error', error.message, { stack: error.stack, ...extra });
+        } else {
+            this.log('error', String(error), extra);
+        }
     }
 
     trackEvent(name: string, data?: any) {

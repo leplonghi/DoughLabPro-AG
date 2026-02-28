@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { Bell, BellOff, Clock, Moon, Volume2, VolumeX, Vibrate, TestTube } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 
 
 export const NotificationSettings: React.FC = () => {
@@ -26,26 +26,22 @@ export const NotificationSettings: React.FC = () => {
     };
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-6">
+        <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-6 space-y-6">
             <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                    <Bell className="w-6 h-6" />
-                    Notification Settings
-                </h2>
+                    <Bell className="w-6 h-6" />{t('common:notification_settings')}</h2>
                 <button
                     onClick={testNotification}
                     className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
                 >
-                    <TestTube className="w-4 h-4" />
-                    Test
-                </button>
+                    <TestTube className="w-4 h-4" />{t('common:test')}</button>
             </div>
 
             {/* Permission Status */}
             <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Permission Status</h3>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">{t('common:permission_status')}</h3>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                             {permissionStatus === 'granted' && '✅ Notifications enabled'}
                             {permissionStatus === 'denied' && '❌ Notifications blocked'}
@@ -56,9 +52,7 @@ export const NotificationSettings: React.FC = () => {
                         <button
                             onClick={handlePermissionRequest}
                             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                        >
-                            Enable Notifications
-                        </button>
+                        >{t('common:enable_notifications')}</button>
                     )}
                 </div>
             </div>
@@ -68,8 +62,8 @@ export const NotificationSettings: React.FC = () => {
                 <div className="flex items-center gap-3">
                     {settings.enabled ? <Bell className="w-5 h-5 text-green-600" /> : <BellOff className="w-5 h-5 text-gray-400" />}
                     <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Enable Notifications</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">Receive notifications for timers and events</p>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">{t('common:enable_notifications')}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">{t('common:receive_notifications_for_timers_and_events')}</p>
                     </div>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
@@ -86,7 +80,7 @@ export const NotificationSettings: React.FC = () => {
 
             {/* Notification Categories */}
             <div className="space-y-3">
-                <h3 className="font-semibold text-gray-900 dark:text-white">Notification Types</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t('common:notification_types')}</h3>
 
                 {[
                     { key: 'fermentationNotifications', label: t('notifications.fermentation_timers_269'), icon: Clock },
@@ -117,12 +111,12 @@ export const NotificationSettings: React.FC = () => {
 
             {/* Sound & Vibration */}
             <div className="space-y-3">
-                <h3 className="font-semibold text-gray-900 dark:text-white">Notification Behavior</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t('common:notification_behavior')}</h3>
 
                 <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                     <div className="flex items-center gap-3">
                         {settings.soundEnabled ? <Volume2 className="w-4 h-4 text-gray-600 dark:text-gray-300" /> : <VolumeX className="w-4 h-4 text-gray-400" />}
-                        <span className="text-gray-900 dark:text-white">Sound</span>
+                        <span className="text-gray-900 dark:text-white">{t('common:sound')}</span>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -139,7 +133,7 @@ export const NotificationSettings: React.FC = () => {
                 <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                     <div className="flex items-center gap-3">
                         <Vibrate className="w-4 h-4 text-gray-600 dark:text-gray-300" />
-                        <span className="text-gray-900 dark:text-white">Vibration</span>
+                        <span className="text-gray-900 dark:text-white">{t('common:vibration')}</span>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -159,7 +153,7 @@ export const NotificationSettings: React.FC = () => {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Quiet Hours</h3>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">{t('common:quiet_hours')}</h3>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
@@ -176,25 +170,21 @@ export const NotificationSettings: React.FC = () => {
                 {settings.quietHoursEnabled && (
                     <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Start Time
-                            </label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('common:start_time')}</label>
                             <input
                                 type="time"
                                 value={settings.quietHoursStart || '22:00'}
                                 onChange={(e) => handleTimeChange('quietHoursStart', e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-50 text-gray-900 dark:text-slate-800"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                End Time
-                            </label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('common:end_time')}</label>
                             <input
                                 type="time"
                                 value={settings.quietHoursEnd || '07:00'}
                                 onChange={(e) => handleTimeChange('quietHoursEnd', e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-50 text-gray-900 dark:text-slate-800"
                             />
                         </div>
                     </div>
@@ -213,20 +203,16 @@ export const NotificationSettings: React.FC = () => {
                 {showAdvanced && (
                     <div className="mt-4 space-y-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Advance Notice (minutes)
-                            </label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('common:advance_notice_minutes')}</label>
                             <input
                                 type="number"
                                 min="0"
                                 max="60"
                                 value={settings.advanceNoticeMinutes}
                                 onChange={(e) => updateSettings({ advanceNoticeMinutes: parseInt(e.target.value) })}
-                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-50 text-gray-900 dark:text-slate-800"
                             />
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                                Receive notifications this many minutes before events
-                            </p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t('common:receive_notifications_this_many_minutes_before_events')}</p>
                         </div>
                     </div>
                 )}

@@ -110,10 +110,16 @@ import {
   Soup,
   Calendar,
   Bell,
-  LayoutGrid
+  LayoutGrid,
+  Compass,
+  Zap,
+  DollarSign,
+  Cog,
+  MapPin
 } from 'lucide-react';
 
 // --- Navigation & Layout ---
+export const MapPinIcon = MapPin;
 export const Bars3Icon = Menu;
 export const CloseIcon = X;
 export const ChevronDownIcon = ChevronDown;
@@ -141,13 +147,13 @@ export const UsersIcon = Users;
 // --- Actions & Status ---
 export const PlusCircleIcon = PlusCircle;
 export const MinusCircleIcon = MinusCircle;
-export const PencilIcon = Pencil;
-export const TrashIcon = Trash2;
-export const CheckIcon = Check;
-export const CheckCircleIcon = CheckCircle;
-export const ExclamationCircleIcon = AlertCircle;
-export const AlertTriangleIcon = AlertTriangle;
-export const InfoIcon = Info;
+export const PencilIcon = (props: any) => <Pencil {...premiumIconProps} {...props} />;
+export const TrashIcon = (props: any) => <Trash2 {...premiumIconProps} {...props} />;
+export const CheckIcon = (props: any) => <Check {...premiumIconProps} {...props} />;
+export const CheckCircleIcon = (props: any) => <CheckCircle {...premiumIconProps} {...props} />;
+export const ExclamationCircleIcon = (props: any) => <AlertCircle {...premiumIconProps} {...props} />;
+export const AlertTriangleIcon = (props: any) => <AlertTriangle {...premiumIconProps} {...props} />;
+export const InfoIcon = (props: any) => <Info {...premiumIconProps} {...props} />;
 export const LockClosedIcon = Lock;
 export const DocumentDuplicateIcon = Copy;
 export const DocumentTextIcon = FileText;
@@ -159,7 +165,7 @@ export const StarIcon = Star;
 export const SolidStarIcon = (props: any) => <Star fill="currentColor" {...props} />;
 export const HeartIcon = Heart;
 export const BookmarkSquareIcon = Bookmark;
-export const SettingsIcon = Settings;
+export const SettingsIcon = (props: any) => <Settings {...premiumIconProps} {...props} />;
 export const ShieldCheckIcon = ShieldCheck;
 export const SparklesIcon = Sparkles;
 export const SpinnerIcon = Loader2;
@@ -167,32 +173,34 @@ export const TagIcon = Tag;
 export const ChatBubbleLeftEllipsisIcon = MessageSquare;
 export const ArrowDownTrayIcon = ArrowDownToLine;
 
-// --- Ingredients & Science ---
-export const FlourIcon = Wheat;
-export const WaterIcon = Droplets;
-export const SaltIcon = Hexagon;
-export const OilIcon = Droplet;
-export const SugarIcon = Candy;
-export const MilkIcon = Milk;
-export const EggIcon = Egg;
-export const CheeseIcon = Triangle; // Wedge shape for cheese
-export const MeatIcon = Beef;
-export const FruitIcon = Grape;
-export const VegetableIcon = Leaf;
-export const YeastIcon = Microscope; // Better than Activity for Yeast science
-export const FireIcon = Flame;
-export const OvenIcon = Microwave; // Lucide's closest to an oven/microwave box
-export const ClockIcon = Clock;
-export const CubeIcon = Box;
-export const WrenchScrewdriverIcon = Wrench;
-export const GlobeAltIcon = Globe;
-export const InsightsIcon = LineChart;
-export const ListBulletIcon = List;
-export const PhotoIcon = Image;
-export const PizzaSliceIcon = Pizza;
-export const BreadIcon = Sandwich;
-export const PastryIcon = Croissant;
-export const CookieIcon = Cookie;
+// --- Ingredients & Science (Premium 2D Minimalist Style) ---
+const premiumIconProps = { strokeWidth: 1.5, className: "w-full h-full" };
+
+export const FlourIcon = (props: any) => <Wheat {...premiumIconProps} {...props} />;
+export const WaterIcon = (props: any) => <Droplets {...premiumIconProps} {...props} />;
+export const SaltIcon = (props: any) => <Hexagon {...premiumIconProps} {...props} />;
+export const OilIcon = (props: any) => <Droplet {...premiumIconProps} {...props} />;
+export const SugarIcon = (props: any) => <Candy {...premiumIconProps} {...props} />;
+export const MilkIcon = (props: any) => <Milk {...premiumIconProps} {...props} />;
+export const EggIcon = (props: any) => <Egg {...premiumIconProps} {...props} />;
+export const CheeseIcon = (props: any) => <Triangle {...premiumIconProps} {...props} />;
+export const MeatIcon = (props: any) => <Beef {...premiumIconProps} {...props} />;
+export const FruitIcon = (props: any) => <Grape {...premiumIconProps} {...props} />;
+export const VegetableIcon = (props: any) => <Leaf {...premiumIconProps} {...props} />;
+export const YeastIcon = (props: any) => <Microscope {...premiumIconProps} {...props} />;
+export const FireIcon = (props: any) => <Flame {...premiumIconProps} {...props} />;
+export const OvenIcon = (props: any) => <Microwave {...premiumIconProps} {...props} />;
+export const ClockIcon = (props: any) => <Clock {...premiumIconProps} {...props} />;
+export const CubeIcon = (props: any) => <Box {...premiumIconProps} {...props} />;
+export const WrenchScrewdriverIcon = (props: any) => <Wrench {...premiumIconProps} {...props} />;
+export const GlobeAltIcon = (props: any) => <Globe {...premiumIconProps} {...props} />;
+export const InsightsIcon = (props: any) => <LineChart {...premiumIconProps} {...props} />;
+export const ListBulletIcon = (props: any) => <List {...premiumIconProps} {...props} />;
+export const PhotoIcon = (props: any) => <Image {...premiumIconProps} {...props} />;
+export const PizzaSliceIcon = (props: any) => <Pizza {...premiumIconProps} {...props} />;
+export const BreadIcon = (props: any) => <Sandwich {...premiumIconProps} {...props} />;
+export const PastryIcon = (props: any) => <Croissant {...premiumIconProps} {...props} />;
+export const CookieIcon = (props: any) => <Cookie {...premiumIconProps} {...props} />;
 export const PuzzlePieceIcon = Puzzle;
 export const QuestionMarkCircleIcon = HelpCircle;
 export const SaveIcon = Save;
@@ -239,6 +247,10 @@ export const CrosshairIcon = Crosshair;
 export const RotateCcwIcon = RotateCcw;
 export const RocketIcon = Rocket;
 export const MoonIcon = Moon;
+export const CompassIcon = (props: any) => <Compass {...premiumIconProps} {...props} />;
+export const ZapIcon = (props: any) => <Zap {...premiumIconProps} {...props} />;
+export const CurrencyDollarIcon = (props: any) => <DollarSign {...premiumIconProps} {...props} />;
+export const CogIcon = (props: any) => <Cog {...premiumIconProps} {...props} />;
 
 export const GoogleIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg

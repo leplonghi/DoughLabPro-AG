@@ -215,7 +215,7 @@ const CreateStyleModal: React.FC<CreateStyleModalProps> = ({ isOpen, onClose, on
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4 transition-all" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm p-4 transition-all" onClick={onClose}>
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col h-[85vh]" onClick={e => e.stopPropagation()}>
 
                 {/* Header */}

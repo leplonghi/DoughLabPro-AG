@@ -1,7 +1,8 @@
 
 import { User } from './types';
 
-export type PlanId = 'free' | 'pro';
+// Unified Plan IDs - includes legacy values for backward compatibility
+export type PlanId = 'free' | 'pro' | 'master' | 'lab_pro' | 'calculator_unlock' | 'standard';
 
 export type FeatureKey =
     | 'calculator.basic_3_styles'

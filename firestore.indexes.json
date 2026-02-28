@@ -1,72 +1,76 @@
 {
   "indexes": [
     {
-      "collectionGroup": "community_posts",
+      "collectionGroup": "batches",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "visibility",
-          "mode": "ASCENDING"
+          "fieldPath": "userId",
+          "order": "ASCENDING"
         },
         {
           "fieldPath": "createdAt",
-          "mode": "DESCENDING"
+          "order": "DESCENDING"
         }
       ]
     },
     {
-      "collectionGroup": "community_posts",
+      "collectionGroup": "batches",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "visibility",
-          "mode": "ASCENDING"
+          "fieldPath": "userId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isFavorite",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "community_recipes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isPublic",
+          "order": "ASCENDING"
         },
         {
           "fieldPath": "likes",
-          "mode": "DESCENDING"
+          "order": "DESCENDING"
         }
       ]
     },
     {
-      "collectionGroup": "community_posts",
+      "collectionGroup": "community_recipes",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "visibility",
-          "mode": "ASCENDING"
-        },
-        {
-          "fieldPath": "comments",
-          "mode": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "community_posts",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "uid",
-          "mode": "ASCENDING"
+          "fieldPath": "isPublic",
+          "order": "ASCENDING"
         },
         {
           "fieldPath": "createdAt",
-          "mode": "DESCENDING"
+          "order": "DESCENDING"
         }
       ]
     },
     {
-      "collectionGroup": "community_comments",
+      "collectionGroup": "levains",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "postId",
-          "mode": "ASCENDING"
+          "fieldPath": "userId",
+          "order": "ASCENDING"
         },
         {
-          "fieldPath": "createdAt",
-          "mode": "ASCENDING"
+          "fieldPath": "status",
+          "order": "ASCENDING"
         }
       ]
     }

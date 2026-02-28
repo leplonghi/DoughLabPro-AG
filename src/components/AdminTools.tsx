@@ -13,7 +13,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useTranslation } from '@/i18n';
 
 export const AdminTools: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { user } = useUser();
     const { firebaseUser } = useAuth();
     const [loading, setLoading] = useState(false);
@@ -77,7 +77,7 @@ export const AdminTools: React.FC = () => {
     };
 
     return (
-        <div className="fixed bottom-5 right-5 z-[10000] max-w-xs w-full bg-black/90 text-white p-5 rounded-xl shadow-dlp-lg border border-white/10 backdrop-blur-sm">
+        <div className="fixed bottom-5 right-5 z-[10000] max-w-xs w-full bg-white/90 text-slate-800 p-5 rounded-xl shadow-dlp-xl border border-slate-200 backdrop-blur-md">
             <h3 className="mb-4 text-base font-bold flex items-center gap-2">
                 🔧 Admin Tools
             </h3>
@@ -85,7 +85,7 @@ export const AdminTools: React.FC = () => {
             <div className="mb-3 text-xs opacity-80 space-y-1">
                 <div>UID: {firebaseUser?.uid.slice(0, 8)}...</div>
                 <div>Email: {firebaseUser?.email}</div>
-                <div>Current Plan: <strong className="text-dlp-accent">{user.plan}</strong></div>
+                <div>{t('common:current_plan')}<strong className="text-dlp-accent">{user.plan}</strong></div>
                 <div>isPro: <strong className={user.isPro ? 'text-dlp-success' : 'text-dlp-error'}>{user.isPro ? 'true' : 'false'}</strong></div>
             </div>
 

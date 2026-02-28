@@ -79,4 +79,10 @@ export const FOMO_TRIGGERS: Record<FeatureKey, FomoTriggerConfig> = {
     'calculator.flour_blend': { key: 'calculator.flour_blend', description: 'Blend multiple flours for custom recipes', cta: 'Unlock Flour Blending' },
     'styles.advancedSpecs': { key: 'styles.advancedSpecs', description: 'Advanced Specs', cta: 'Unlock' },
     'calculator.advanced': { key: 'calculator.advanced', description: 'Advanced Calculator', cta: 'Unlock' },
+    'mylab.history_unlimited': { key: 'mylab.history_unlimited', description: 'Unlimited History', cta: 'Unlock' },
+    'export.clean_recipe': { key: 'export.clean_recipe', description: 'Clean Recipe Export', cta: 'Unlock' },
+    'mylab.schedules_unlimited': { key: 'mylab.schedules_unlimited', description: 'Unlimited Schedules', cta: 'Unlock' },
+    'mylab.insights_smart': { key: 'mylab.insights_smart', description: 'Smart Insights', cta: 'Unlock' },
+    'mylab.historical_comparisons': { key: 'mylab.historical_comparisons', description: 'Historical Comparisons', cta: 'Unlock' },
+    'notifications.advanced': { key: 'notifications.advanced', description: 'Advanced Notifications', cta: 'Unlock' },
 };

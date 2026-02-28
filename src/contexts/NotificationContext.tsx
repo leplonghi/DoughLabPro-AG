@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { logger } from '@/utils/logger';
 import {
     NotificationContextType,
     NotificationSettings,
@@ -48,12 +49,12 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
             try {
                 const registration = await navigator.serviceWorker.register('/sw-notifications.js');
                 setServiceWorkerRegistration(registration);
-                console.log('Notification service worker registered');
+                logger.debug('Notification service worker registered');
 
                 // Check current permission status
                 setPermissionStatus(Notification.permission);
             } catch (error) {
-                console.error('Failed to register notification service worker:', error);
+                logger.error('Failed to register notification service worker:', error);
             }
         }
     };
@@ -62,9 +63,41 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         const stored = localStorage.getItem('doughlabpro_notification_settings');
         if (stored) {
             try {
-                setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(stored) });
+                const parsed = JSON.parse(stored);
+                if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+                    // Sanitize settings to ensure primitives
+                    const sanitized: NotificationSettings = { ...DEFAULT_SETTINGS };
+
+                    // Only copy valid properties from storage
+                    // Booleans
+                    const booleanKeys: (keyof NotificationSettings)[] = [
+                        'enabled', 'soundEnabled', 'vibrationEnabled', 'showOnLockScreen',
+                        'fermentationNotifications', 'foldingNotifications', 'proofingNotifications',
+                        'levainNotifications', 'bakingNotifications', 'recipeNotifications',
+                        'quietHoursEnabled'
+                    ];
+                    booleanKeys.forEach(key => {
+                        if (typeof parsed[key] === 'boolean') {
+                            (sanitized as any)[key] = parsed[key];
+                        }
+                    });
+
+                    // Strings
+                    if (typeof parsed.quietHoursStart === 'string') sanitized.quietHoursStart = parsed.quietHoursStart;
+                    if (typeof parsed.quietHoursEnd === 'string') sanitized.quietHoursEnd = parsed.quietHoursEnd;
+                    if (typeof parsed.deviceToken === 'string') sanitized.deviceToken = parsed.deviceToken;
+                    // Platform is constrained union, treat as string for safety
+                    if (typeof parsed.platform === 'string') sanitized.platform = parsed.platform;
+
+                    // Numbers
+                    if (typeof parsed.advanceNoticeMinutes === 'number') sanitized.advanceNoticeMinutes = parsed.advanceNoticeMinutes;
+                    if (typeof parsed.maxNotificationsPerDay === 'number') sanitized.maxNotificationsPerDay = parsed.maxNotificationsPerDay;
+
+                    setSettings(sanitized);
+                }
             } catch (error) {
-                console.error('Failed to load notification settings:', error);
+                logger.error('Failed to load notification settings:', error);
+                localStorage.removeItem('doughlabpro_notification_settings');
             }
         }
     };
@@ -74,9 +107,46 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         if (stored) {
             try {
                 const notifications = JSON.parse(stored);
-                setScheduledNotifications(notifications);
+                if (Array.isArray(notifications)) {
+                    const validNotifications = notifications.reduce((acc: any[], n: any) => {
+                        // Strict check for required primitives
+                        if (
+                            n &&
+                            typeof n === 'object' &&
+                            typeof n.id === 'string' &&
+                            // Ensure title/body are strings if present
+                            (!n.title || typeof n.title === 'string') &&
+                            (!n.body || typeof n.body === 'string') &&
+                            // Ensure scheduledFor is a valid primitive (string or number)
+                            (typeof n.scheduledFor === 'string' || typeof n.scheduledFor === 'number')
+                        ) {
+                            // Reconstruct object to strip any hidden non-primitives
+                            acc.push({
+                                ...n,
+                                title: String(n.title || ''),
+                                body: String(n.body || ''),
+                                // Force scheduledFor to string if it satisfies date parsing (primitive check passed)
+                                scheduledFor: String(n.scheduledFor)
+                            });
+                        }
+                        return acc;
+                    }, []);
+
+                    setScheduledNotifications(validNotifications);
+
+                    if (validNotifications.length !== notifications.length) {
+                        logger.warn('Filtered out invalid notifications from localStorage');
+                        localStorage.setItem('doughlabpro_scheduled_notifications', JSON.stringify(validNotifications));
+                    }
+                } else {
+                    logger.warn('Invalid scheduled notifications format in localStorage, resetting');
+                    localStorage.removeItem('doughlabpro_scheduled_notifications');
+                    setScheduledNotifications([]);
+                }
             } catch (error) {
-                console.error('Failed to load scheduled notifications:', error);
+                logger.error('Failed to load scheduled notifications:', error);
+                localStorage.removeItem('doughlabpro_scheduled_notifications');
+                setScheduledNotifications([]);
             }
         }
     };
@@ -86,9 +156,44 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         if (stored) {
             try {
                 const timers = JSON.parse(stored);
-                setActiveTimers(timers);
+                if (Array.isArray(timers)) {
+                    const validTimers = timers.reduce((acc: any[], t: any) => {
+                        if (
+                            t &&
+                            typeof t === 'object' &&
+                            typeof t.id === 'string' &&
+                            // Ensure name is string if present
+                            (!t.name || typeof t.name === 'string') &&
+                            // Ensure time fields are primitives
+                            (typeof t.endTime === 'string' || typeof t.endTime === 'number') &&
+                            (typeof t.startTime === 'string' || typeof t.startTime === 'number')
+                        ) {
+                            // Reconstruct object
+                            acc.push({
+                                ...t,
+                                name: String(t.name || 'Timer'),
+                                endTime: String(t.endTime),
+                                startTime: String(t.startTime)
+                            });
+                        }
+                        return acc;
+                    }, []);
+
+                    setActiveTimers(validTimers);
+
+                    if (validTimers.length !== timers.length) {
+                        logger.warn('Filtered out invalid timers from localStorage');
+                        localStorage.setItem('doughlabpro_active_timers', JSON.stringify(validTimers));
+                    }
+                } else {
+                    logger.warn('Invalid active timers format in localStorage, resetting');
+                    localStorage.removeItem('doughlabpro_active_timers');
+                    setActiveTimers([]);
+                }
             } catch (error) {
-                console.error('Failed to load active timers:', error);
+                logger.error('Failed to load active timers:', error);
+                localStorage.removeItem('doughlabpro_active_timers');
+                setActiveTimers([]);
             }
         }
     };
@@ -101,7 +206,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
     const requestPermission = useCallback(async (): Promise<NotificationPermission> => {
         if (!('Notification' in window)) {
-            console.error('This browser does not support notifications');
+            logger.error('This browser does not support notifications');
             return 'denied';
         }
 
@@ -172,7 +277,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
     const showNotification = useCallback((notification: ScheduledNotification) => {
         if (isInQuietHours()) {
-            console.log('Notification suppressed due to quiet hours');
+            logger.debug('Notification suppressed due to quiet hours');
             return;
         }
 
@@ -405,7 +510,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
             new Notification('DoughLabPro Test', {
                 body: 'Notifications are working! 🍕',
                 icon: '/icons/notification-icon.png',
-                });
+            });
         }
     }, [permissionStatus, requestPermission, serviceWorkerRegistration]);
 

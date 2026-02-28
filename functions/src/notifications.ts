@@ -174,7 +174,7 @@ export const processScheduledNotifications = functions.pubsub
                     console.error(`Error processing notification ${doc.id}:`, error);
                     await doc.ref.update({
                         status: 'FAILED',
-                        error: error.message,
+                        error: (error as Error).message,
                     });
                 }
             });

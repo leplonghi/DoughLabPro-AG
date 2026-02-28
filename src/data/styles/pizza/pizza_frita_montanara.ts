@@ -22,9 +22,9 @@ export const pizza_frita_montanara: DoughStyleDefinition = {
         period: "Post-WWII Popularity (Ancient roots)"
     },
 
-    description: "Pizza Frita (Fried Pizza) is the indulgent cousin of the wood-fired classic. In the 'Montanara' style, a small disk of dough is deep-fried until it puffs into a golden pillow, then topped simply with tomato sauce, parmesan, and basil (sometimes finished in the oven for 30 seconds). Contrary to expectation, a well-made Montanara is incredibly light and airy, not greasy.",
+    description: "Pizza Frita (Montanara) is a unique dual-cooked masterpiece from Naples that bridges the gap between street food and gourmet dining. Unlike standard fried pizza, the Montanara is first deep-fried to create a puffy, airy structure, and then finished in a wood-fired oven to dry excess oil and caramelize the toppings. This 'double-cooking' technique results in a crust that is remarkably light, crisp, and smoky, with a texture similar to a savory donut but with the structural integrity of a pizza.",
 
-    history: "Immortalized in the film 'L'Oro di Napoli' (Sophia Loren selling pizzas), fried pizza was the food of the people when they couldn't afford wood for ovens. It has recently seen a gourmet renaissance, with chefs serving it as a refined appetizer.",
+    history: "The origins of Pizza Frita are deeply rooted in the poverty of post-WWII Naples, where wood for ovens was scarce and expensive. As depicted in Vittorio De Sica's 1954 film 'L'Oro di Napoli' (starring Sophia Loren), fried pizza was the 'people's food'—cheap, filling, and made on street corners. The 'Montanara' variant specifically refers to the method of topping the fried dough with sauce and cheese (like a pizza) rather than stuffing it (like a calzone). Legend says it brought the flavors of the 'mountains' (Montanara) to the city. In recent years, celebrated pizzaiolos like Antonio Starita and Isabella De Cham have elevated this humble street food to a gourmet art form, reintroducing it to the world as a sophisticated, light-as-air delicacy.",
 
     difficulty: "Hard",
     fermentationType: "direct",
@@ -38,110 +38,129 @@ export const pizza_frita_montanara: DoughStyleDefinition = {
     ],
 
     technicalProfile: {
-        hydration: [62, 68], // Slightly lower than some modern baked pizzas to prevent oil absorption
+        hydration: [65, 70], // High hydration helps create explosive steam for the puff
         salt: [2.5, 3.0],
-        oil: [0, 0], // No oil in dough
+        oil: [0, 0], // Traditionally no oil in the dough itself
         sugar: [0, 0],
-        flourStrength: "Medium (W260-280). Needs extensibility.",
-        ovenTemp: [170, 180], // Frying Temperature (Oil)
+        flourStrength: "Medium-Strong (W280-320). Needs elasticity to hold the puff without bursting.",
+        ovenTemp: [175, 430], // Oil Temp: 175°C | Oven Baking Temp: 430°C
         recommendedUse: [
-            "Montanara (Sauce/Cheese on top)",
-            "Calzone Fritto (Stuffed)",
-            "Batsoà (Sweet version)"
+            "Montanara (Fried then Baked)",
+            "Pizza Fritta Completa (Filled/Stuffed)",
+            "Angioletti (Fried dough strips)"
         ],
         difficulty: "Hard",
-        ballWeight: { recommended: 100, min: 80, max: 150 },
+        ballWeight: { recommended: 160, min: 120, max: 200 }, // Slightly lighter than standard pizza
         fermentationSteps: [
-            "Process: Same as Neapolitan Pizza.",
-            "Mix: Stop when smooth. 24°C final dough temp.",
-            "Bulk: 2 hours.",
-            "Ball: 100g balls (smaller than standard pizza).",
-            "Proof: 24 hours Cold or 8 hours Ambient.",
-            "Stretching: Do not stretch the edge (cornicione). Leave it slightly thick.",
-            "Frying: Gently lower into 175°C oil. Spoon hot oil over the top. It will puff violently. Fry 60-90 seconds total.",
-            "Draining: Drain on paper upright (vertical) to shed oil.",
-            "Topping: Top with warm sauce and cheese immediately."
+            "Mix: Gentle mixing to preserve gluten structure. Final dough temp 24°C.",
+            "Bulk Fermentation: 2-4 hours at room temperature to activate yeast.",
+            "Balling: Tight balls (160g) to ensure even expansion during frying.",
+            "Cold Proof: 24-48 hours at 4°C. [Science: Long cold fermentation degrades proteins, ensuring the fried dough is light and not chewy]",
+            "Relax: bring to room temp (20°C) for 2-3 hours before frying.",
+            "Shape: Gently extend by hand, keeping some thickness. Poking a center dimple prevents it from becoming a ball.",
+            "Fry (Phase 1): Deep fry in sunflower/peanut oil at 175°C for ~60 seconds. Baste with hot oil. [Science: Rapid water evaporation causes violent expansion]",
+            "Drain & Top: Drain vertically. Top with hot marinara, parmesan, and basil.",
+            "Bake (Phase 2): Finish in 430°C oven for 60-90 seconds. [Science: Evaporates surface oil, adds char, and melts cheese]"
         ]
     },
 
     scientificProfile: {
         flourRheology: {
-            w_index: "W260-280",
-            pl_ratio: "0.50",
-            absorption_capacity: "Moderate",
-            protein_type: "Soft Wheat 00",
-            science_explanation: "If the dough is too strong (High W), it resists the rapid expansion in the oil and becomes tough. If too weak, it absorbs oil."
+            w_index: "W280-320 (Medium-Strong)",
+            pl_ratio: "0.50-0.60 (Elastic/Balanced)",
+            absorption_capacity: "High (65-70%)",
+            protein_type: "Type 00 Soft Wheat",
+            science_explanation: "A stronger W index is required than standard baked pizza because the dough must withstand the mechanical stress of rapid gas expansion in hot oil without tearing. The gluten network acts as a balloon."
         },
         thermalProfile: {
-            oven_type: "Deep Fryer",
-            heat_distribution: "Convection (Oil fluid)",
-            crust_development: "Maillard + Lipid Interaction (Crisp, micro-blistered)",
-            crumb_structure: "Explosive alveoli due to rapid steam generation"
+            oven_type: "Dual: Deep Fryer + Wood Oven",
+            heat_distribution: "Convection (Oil) -> Radiation (Oven)",
+            crust_development: "Phase 1: Gelatinization & crisping via oil (Maillard). Phase 2: Drying & charring via oven.",
+            crumb_structure: "Extreme alveolation (honeycomb) due to 'explosive' steam generation in oil."
         },
         fermentationScience: {
-            yeast_activity: "Moderate",
-            ph_target: "pH 5.5",
-            organic_acids: "Low",
-            enzymatic_activity: "Standard"
+            yeast_activity: "Controlled/Retarded",
+            ph_target: "pH 5.3-5.5",
+            organic_acids: "Balanced",
+            enzymatic_activity: "High (Proteolysis reduces chewiness)"
         }
     },
 
     education: {
         pro_tips: [
             {
-                tip: "Oil Temperature",
-                explanation: "175°C is the golden number. Below 160°C is greasy. Above 190°C is burnt outside/raw inside."
+                tip: "The 175°C Rule",
+                explanation: "Oil temperature is critical. Too low (<160°C) and the dough acts like a sponge, absorbing oil. Too high (>190°C) and the outside burns before the inside cooks. 175°C is the sweet spot."
             },
             {
-                tip: "Poke a hole?",
-                explanation: "For Montanara (topped), poke a depression in the center while frying so the sauce has somewhere to sit. For Calzone, seal tight!"
+                tip: "The Dimple Technique",
+                explanation: "Before frying, press a small depression in the center of the disc. This prevents the dough from ballooning into a sphere, keeping it flat enough to hold toppings later."
             },
             {
-                tip: "The 'Forno' Finish",
-                explanation: "Some chefs fry for 45s, top, then bake for 45s to melt the mozzarella properly and dry the oil."
+                tip: "Vertical Draining",
+                explanation: "Always drain the fried dough vertically (standing up) on paper flow. This uses gravity to remove excess oil from the surface before topping."
+            },
+            {
+                tip: "Sauce Temperature",
+                explanation: "Use warm sauce! Placing cold sauce on hot fried dough shocks the crust and can make it soggy. The sauce should be simmering."
             }
         ],
         what_if: [
             {
-                scenario: "It's greasy",
-                result: "Oil too cold or dough over-proofed (collapsed)",
-                correction: "Check thermometer and dough strength."
+                scenario: "Result is Greasy/Heavy",
+                result: "Oil too cold or crowded fryer",
+                correction: "Fry fewer pies at once and monitor temp. Ensure high hydration in dough to repel oil."
             },
             {
-                scenario: "It didn't puff",
-                result: "Dough too cold or under-proofed",
-                correction: "Let dough hit room temp (20°C) before frying."
+                scenario: "Dough didn't puff",
+                result: "Under-proofed or dough too cold",
+                correction: "Dough must be at room temperature (20-22°C) when hitting the oil for maximum expansion."
+            },
+            {
+                scenario: "Chewy/Tough Crust",
+                result: "Flour too strong or under-fermented",
+                correction: "Increase fermentation time (24h+) to degrade gluten strength slightly."
             }
         ],
         comparative_analysis: [
             {
                 target_style: "Standard Neapolitan",
-                difference: "Fried vs Baked. Fried is crunchier and richer.",
-                why_choose_this: "Choose Frita for a decadent treat."
+                difference: "Montanara provides a crunchier, more 'biscuit-like' exterior and a much airier interior due to the frying process.",
+                why_choose_this: "Choose Montanara as a shared appetizer or a decadent alternative to the classic."
+            },
+            {
+                target_style: "Classic Pizza Fritta (Stuffed)",
+                difference: "Classic Fritta is a closed pocket (Calzone) fried entirely. Montanara is open, fried, THEN baked.",
+                why_choose_this: "Montanara offers the best of both worlds: fried texture + wood-fired flavor."
             }
         ],
         q_and_a: [
             {
-                question: "What oil?",
-                answer: "Peanut or High-Oleic Sunflower. Lard is traditional but heavy.",
+                question: "Why bake it after frying?",
+                answer: "Baking dries out the excess surface oil, making the final product surprisingly light. It also allows the cheese to melt and the sauce to integrate without making the crust soggy.",
+                context: "Technique"
+            },
+            {
+                question: "What oil represents valid tradition?",
+                answer: "Sunflower or Peanut oil are standard today for their high smoke points and neutral flavor. Lard was historical but is rare now.",
                 context: "Ingredients"
             },
             {
-                question: "Is it a donut?",
-                answer: "Same principle, savory application. A sugar-rolled version is called 'Angioletti'.",
-                context: "Variation"
+                question: "Is this authentic?",
+                answer: "Yes, absolutely. While the 'Montanara' (fried then baked) is a more specific/modern refinement, frying dough is an ancient Neapolitan tradition pre-dating wood-fired pizza availability.",
+                context: "Authenticity"
             }
         ],
         fermentation_methods: [
             {
                 method: "Direct",
-                suitability: "Authentic",
-                notes: "Standard."
+                suitability: "Ideal",
+                notes: "24-48h Cold Fermentation gives the best digestibility and lightest texture."
             },
             {
                 method: "Poolish",
-                suitability: "Possible",
-                notes: "Makes it lighter."
+                suitability: "Authentic",
+                notes: "Adds extensibility and lightness, helping the 'puff' in the oil."
             }
         ]
     },
@@ -189,10 +208,26 @@ export const pizza_frita_montanara: DoughStyleDefinition = {
 
     references: [
         {
-            source: "Pizza City (Naples)",
-            url: "https://www.pizzacity.com/",
-            author: "Local Culture",
-            year: "1950"
+            source: "Starita a Materdei - The Home of Montanara",
+            url: "https://www.pizzeriastarita.it/en/",
+            author: "Antonio Starita",
+            year: "1901"
+        },
+        {
+            source: "L'Oro di Napoli (Film)",
+            url: "https://www.imdb.com/title/tt0047313/",
+            author: "Vittorio De Sica",
+            year: "1954"
+        },
+        {
+            source: "Isabella De Cham Pizza Fritta",
+            url: "https://www.instagram.com/isabelladecham_pizzafritta/",
+            author: "Isabella De Cham",
+            year: "2018"
+        },
+        {
+            source: "AVPN - Fried Pizza Standards",
+            url: "https://www.pizzanapoletana.org/"
         }
     ],
 

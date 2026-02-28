@@ -6,10 +6,10 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Card: React.FC<CardProps> = ({ children, className = '', ...props }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div
-            className={`bg-dlp-bg-card border border-dlp-border rounded-xl shadow-dlp-sm ${className}`}
+            className={`dlp-card ${className}`}
             {...props}
         >
             {children}

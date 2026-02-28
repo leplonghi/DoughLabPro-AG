@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 /**
  * WeatherWidget Component
  * Displays current weather and allows automatic temperature detection
@@ -18,6 +19,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
     compact = false,
     className = '',
 }) => {
+    const { t } = useTranslation();
     const { weather, loading, error, fetchWeather, lastUpdated, isStale } =
         useGeolocation();
 
@@ -80,9 +82,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
                                 onClick={handleDetectLocation}
                                 disabled={loading}
                                 className="text-xs text-blue-600 hover:text-blue-700 underline"
-                            >
-                                Update
-                            </button>
+                            >{t('common:update')}</button>
                         )}
                     </>
                 ) : (
@@ -94,12 +94,12 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
                         {loading ? (
                             <>
                                 <span className="animate-spin">⏳</span>
-                                <span>Detecting...</span>
+                                <span>{t('common:detecting')}</span>
                             </>
                         ) : (
                             <>
                                 <span>📍</span>
-                                <span>Detect Location</span>
+                                <span>{t('common:detect_location')}</span>
                             </>
                         )}
                     </button>
@@ -116,9 +116,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
     return (
         <div className={`bg-white rounded-xl shadow-lg p-6 ${className}`}>
             <div className="flex items-start justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                    Current Weather
-                </h3>
+                <h3 className="text-lg font-semibold text-gray-800">{t('common:current_weather')}</h3>
                 <button
                     onClick={handleDetectLocation}
                     disabled={loading}
@@ -127,12 +125,12 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
                     {loading ? (
                         <>
                             <span className="animate-spin">⏳</span>
-                            <span>Detecting...</span>
+                            <span>{t('common:detecting')}</span>
                         </>
                     ) : (
                         <>
                             <span>📍</span>
-                            <span>Detect Location</span>
+                            <span>{t('common:detect_location')}</span>
                         </>
                     )}
                 </button>
@@ -178,14 +176,14 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
                         <div className="flex items-center gap-2">
                             <span>💧</span>
                             <div>
-                                <div className="text-xs text-gray-500">Humidity</div>
+                                <div className="text-xs text-gray-500">{t('common:humidity')}</div>
                                 <div className="font-semibold">{weather.current.humidity}%</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
                             <span>💨</span>
                             <div>
-                                <div className="text-xs text-gray-500">Wind</div>
+                                <div className="text-xs text-gray-500">{t('common:wind')}</div>
                                 <div className="font-semibold">
                                     {weather.current.windSpeed} m/s
                                 </div>
@@ -194,7 +192,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
                         <div className="flex items-center gap-2">
                             <span>🌡️</span>
                             <div>
-                                <div className="text-xs text-gray-500">Pressure</div>
+                                <div className="text-xs text-gray-500">{t('common:pressure')}</div>
                                 <div className="font-semibold">
                                     {weather.current.pressure} hPa
                                 </div>
@@ -204,7 +202,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
                             <div className="flex items-center gap-2">
                                 <span>🕐</span>
                                 <div>
-                                    <div className="text-xs text-gray-500">Updated</div>
+                                    <div className="text-xs text-gray-500">{t('common:updated')}</div>
                                     <div className="font-semibold">
                                         {formatLastUpdated(lastUpdated)}
                                     </div>
@@ -218,7 +216,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
                         <div className="flex items-start gap-2">
                             <span className="text-lg">💡</span>
                             <div className="text-sm text-green-800">
-                                <strong>Dough Tip:</strong>{' '}
+                                <strong>{t('common:dough_tip')}</strong>{' '}
                                 {weather.current.temperature < 18
                                     ? 'Cold temperature - expect slower fermentation. Consider using warmer water or extending fermentation time.'
                                     : weather.current.temperature > 26

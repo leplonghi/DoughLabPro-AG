@@ -9,101 +9,115 @@
    ======================================== */
 
 :root {
-  /* Premium Palette */
-  --dlp-bg: #F8FAFC;
-  --dlp-bg-soft: #F1F5F9;
-  --dlp-bg-card: rgba(255, 255, 255, 0.918);
+  /* ========================================
+     DoughLabPro Premium Design System (2.0)
+     Theme: Artisan Professional
+     ======================================== */
 
-  /* Brand Colors - Fresh Gradient (Lime to Emerald) */
-  --dlp-brand: #51a145;
-  --dlp-brand-hover: #36782c;
-  --dlp-brand-light: #ECFCCB;
-  --dlp-brand-dark: #36782c;
+  /* Surface Colors - Warm & Clean */
+  --dlp-bg: #FAFAF9; /* Stone-50 */
+  --dlp-bg-soft: #F5F5F4; /* Stone-100 */
+  --dlp-bg-card: #FFFFFF;
+  --dlp-bg-overlay: rgba(255, 255, 255, 0.85);
 
-  /* Accent Colors */
-  --dlp-accent: #51a145;
-  --dlp-accent-hover: #36782c;
-  --dlp-accent-warm: #F59E0B;
+  /* Brand Colors - Deep Artisan Green */
+  --dlp-brand: #15803d; /* Emerald-700 - Professional, Deep */
+  --dlp-brand-hover: #166534; /* Emerald-800 */
+  --dlp-brand-light: #F0FDF4; /* Emerald-50 */
+  --dlp-brand-dark: #14532d; /* Emerald-900 */
 
-  /* Text Colors - High contrast but soft */
-  --dlp-text-primary: #0F172A;
-  --dlp-text-secondary: #334155;
-  --dlp-text-muted: #64748B;
+  /* Accent Colors - Baked Gold */
+  --dlp-accent: #D97706; /* Amber-600 */
+  --dlp-accent-hover: #B45309; /* Amber-700 */
+  --dlp-accent-warm: #F59E0B; /* Amber-500 */
+
+  /* Text Colors - High Contrast, Low Fatigue */
+  --dlp-text-primary: #1C1917; /* Stone-900 */
+  --dlp-text-secondary: #44403C; /* Stone-700 */
+  --dlp-text-muted: #78716C; /* Stone-500 */
+  --dlp-text-inverted: #FFFFFF;
 
   /* Borders & Shadows */
-  --dlp-border: rgba(226, 232, 240, 0.8);
-  --dlp-border-strong: #E2E8F0;
+  --dlp-border: #E7E5E4; /* Stone-200 */
+  --dlp-border-strong: #D6D3D1; /* Stone-300 */
 
-  --dlp-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --dlp-shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-  --dlp-shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
-  --dlp-shadow-premium: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+  /* Modern Subtle Shadows */
+  --dlp-shadow-sm: 0 1px 2px 0 rgba(28, 25, 23, 0.05);
+  --dlp-shadow-md: 0 4px 6px -1px rgba(28, 25, 23, 0.05), 0 2px 4px -1px rgba(28, 25, 23, 0.03);
+  --dlp-shadow-lg: 0 10px 15px -3px rgba(28, 25, 23, 0.05), 0 4px 6px -2px rgba(28, 25, 23, 0.025);
+  --dlp-shadow-premium: 
+    0 0 0 1px rgba(0, 0, 0, 0.02),
+    0 8px 30px rgba(0, 0, 0, 0.04), 
+    0 4px 12px rgba(0, 0, 0, 0.02);
 
   /* Force light mode */
   color-scheme: light;
 }
 
 html {
-  font-size: 14px;
-  /* Reduced from 15px for a tighter look */
+  font-size: 15px; /* Slightly increased for better readability */
   scroll-behavior: smooth;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--dlp-bg-soft);
-  background-image:
-    radial-gradient(at 0% 0%, rgba(216, 243, 220, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(81, 161, 69, 0.05) 0px, transparent 50%);
+  background-color: var(--dlp-bg);
   color: var(--dlp-text-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+  /* Clean Background Pattern */
+  background-image: 
+    radial-gradient(circle at top right, rgba(21, 128, 61, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at bottom left, rgba(217, 119, 6, 0.03) 0%, transparent 40%);
+  background-attachment: fixed;
 }
 
-h1,
-h2,
-h3,
-h4,
-.font-heading {
+/* Removed the noisy body::before animation for a cleaner look */
+
+h1, h2, h3, h4, .font-heading {
   font-family: 'Outfit', sans-serif;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  color: var(--dlp-text-primary);
 }
 
-/* Glassmorphism Utilities */
+/* Refined Glassmorphism */
 .glass-panel {
-  background: var(--dlp-bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--dlp-border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: var(--dlp-shadow-premium);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #FFFFFF;
+  border: 1px solid var(--dlp-border);
+  box-shadow: var(--dlp-shadow-sm);
+  transition: all 0.2s ease-out;
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
   box-shadow: var(--dlp-shadow-lg);
+  border-color: var(--dlp-brand-light);
 }
 
-/* Custom Components */
-.dlp-button-primary {
-  @apply bg-gradient-to-br from-[#51a145] to-[#36782c] text-white font-bold py-3 px-6 rounded-xl transition-all hover:brightness-110 hover:shadow-lg hover:shadow-emerald-500/30 active:scale-[0.98] shadow-md shadow-emerald-900/10;
-}
-
-@layer utilities {
-  .shadow-premium {
-    box-shadow: var(--dlp-shadow-premium);
-  }
-}
-
+/* Standardized Card */
 .dlp-card {
-  @apply bg-white rounded-2xl border border-slate-100 shadow-premium overflow-hidden;
+  background: var(--dlp-bg-card);
+  border-radius: 1rem; /* 16px */
+  border: 1px solid var(--dlp-border);
+  box-shadow: var(--dlp-shadow-premium);
+  overflow: hidden;
 }
 
 /* Enforce Typography */
@@ -493,4 +507,119 @@ input[type='range']::-webkit-slider-thumb {
 
 .prose-editorial p {
   @apply text-lg leading-relaxed text-slate-600 mb-6;
+}
+
+/* ========================================
+   KITCHEN PRINT STYLES (High Readability)
+   ======================================== */
+
+@media print {
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: black !important;
+    font-size: 14pt !important;
+    padding: 0 !important;
+  }
+
+  /* Hide UI elements not needed in kitchen */
+  nav,
+  header,
+  footer,
+  .no-print,
+  button,
+  .onboarding-overlay,
+  .ad-card,
+  .pro-teaser,
+  [id*="tour-"],
+  .mode-selector,
+  .floating-help-button,
+  .recommended-products,
+  .ad-container {
+    display: none !important;
+  }
+
+  /* Layout adjustments */
+  main,
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  .dlp-card {
+    border: 3px solid black !important;
+    box-shadow: none !important;
+    margin-bottom: 30px !important;
+    padding: 20px !important;
+    break-inside: avoid;
+    background: white !important;
+    border-radius: 0 !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: black !important;
+    text-transform: uppercase !important;
+    font-weight: 900 !important;
+  }
+
+  /* Ingredients Sheet Mode - Extreme Visibility */
+  .print-header {
+    font-size: 24pt !important;
+    border-bottom: 5px solid black !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .ingredient-row {
+    border-bottom: 2px solid #000 !important;
+    padding: 12px 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    break-inside: avoid;
+  }
+
+  /* Force labels to be bold and clear */
+  .print-label {
+    font-size: 18pt !important;
+    font-weight: 800 !important;
+    color: black !important;
+  }
+
+  /* Huge weights for quick glancing */
+  .weight-display {
+    font-family: 'Outfit', 'Courier New', monospace !important;
+    font-size: 28pt !important;
+    font-weight: 950 !important;
+    color: black !important;
+  }
+
+  .method-step {
+    border-left: 8px solid black !important;
+    padding-left: 20px !important;
+    margin-bottom: 25px !important;
+    break-inside: avoid;
+  }
+
+  .method-instruction {
+    font-size: 16pt !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Stability Score is useful in kitchen too */
+  .stability-gauge {
+    border: 2px dashed black !important;
+    padding: 10px !important;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
 }

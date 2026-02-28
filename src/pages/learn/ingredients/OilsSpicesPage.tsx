@@ -1,6 +1,6 @@
 
 import React from 'react';
-import IngredientPageLayout from './IngredientPageLayout';
+import IngredientPageLayout from '@/components/layouts/IngredientPageLayout';
 import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
@@ -26,14 +26,10 @@ const OilsSpicesPage: React.FC = () => {
         </p>
 
         <h4>b) Arugula</h4>
-        <p>
-          Bitter and fresh notes used as counterpoint to richness like cured ham. Delicate like basil, added fresh on hot pizza post-oven.
-        </p>
+        <p>{t('learn:bitter_and_fresh_notes_used_as_counterpoint_to_richness_like')}</p>
 
         <h4>c) Parsley</h4>
-        <p>
-          Clean fresh aroma, moderately heat resistant but freshness most pronounced when added at end.
-        </p>
+        <p>{t('learn:clean_fresh_aroma_moderately_heat_resistant_but_freshness_mo')}</p>
       </LearnSection>
 
       <LearnSection title={t('learn.dried_herbs_concentrated_flavor')} icon={<BeakerIcon className="h-5 w-5" />}>
@@ -50,7 +46,7 @@ const OilsSpicesPage: React.FC = () => {
       <LearnSection title={t('learn.classic_spices')}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.red_pepper_flakes')}</strong>{t('learn.heat_comes_from')}<strong>capsaicin</strong>, thermostable molecule keeping potency in oven heat.</li>
-          <li><strong>Garlic Powder/Granulated:</strong> Dehydration gives sweeter flavor. Protect from direct heat to avoid burning.</li>
+          <li><strong>{t('learn:garlic_powder_granulated')}</strong>{t('learn:dehydration_gives_sweeter_flavor_protect_from_direct_heat_to')}</li>
           <li><strong>{t('learn.rosemary')}</strong> Rich in heat resistant terpenes. Leaves used moderately before baking release resinous aroma.</li>
         </ul>
       </LearnSection>

@@ -52,9 +52,7 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({ filter = 'latest' 
                     🥖
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{t('community.the_oven_is_cold')}</h3>
-                <p className="text-gray-500 max-w-sm mx-auto mb-8">
-                    No posts found here yet. Be the first to break the ice (and the bread)!
-                </p>
+                <p className="text-gray-500 max-w-sm mx-auto mb-8">{t('common:no_posts_found_here_yet_be_the_first_to_break_the_ice_and_th')}</p>
                 <button
                     onClick={() => window.location.hash = '#/community/create'}
                     className="text-dlp-brand-hover font-semibold hover:text-lime-700 hover:underline"

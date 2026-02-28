@@ -311,14 +311,14 @@ const TechnicalMethodPanel: React.FC<TechnicalMethodPanelProps> = ({ steps }) =>
                 <div className="flex items-center gap-2 bg-dlp-bg-muted p-1 rounded-lg border border-dlp-border">
                     <button
                         onClick={() => setMode('technical')}
-                        className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'technical' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
+                        className={`px-4 py-3 rounded-md text-xs font-bold transition-all flex items-center gap-2 min-h-[44px] ${mode === 'technical' ? 'bg-dlp-bg-card text-dlp-text-primary shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
                     >
-                        <WrenchScrewdriverIcon className="h-3 w-3" />{t('calculator.technical')}</button>
+                        <WrenchScrewdriverIcon className="h-4 w-4" />{t('calculator.technical')}</button>
                     <button
                         onClick={() => setMode('grandma')}
-                        className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-2 ${mode === 'grandma' ? 'bg-dlp-bg-card text-dlp-accent shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
+                        className={`px-4 py-3 rounded-md text-xs font-bold transition-all flex items-center gap-2 min-h-[44px] ${mode === 'grandma' ? 'bg-dlp-bg-card text-dlp-accent shadow-dlp-sm' : 'text-dlp-text-muted hover:text-dlp-text-secondary'}`}
                     >
-                        <UserCircleIcon className="h-3 w-3" />{t('calculator.grandma')}</button>
+                        <UserCircleIcon className="h-4 w-4" />{t('calculator.grandma')}</button>
                 </div>
             </div>
 

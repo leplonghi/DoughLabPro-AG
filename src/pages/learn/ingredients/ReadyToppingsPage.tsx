@@ -1,6 +1,6 @@
 
 import React from 'react';
-import IngredientPageLayout from './IngredientPageLayout';
+import IngredientPageLayout from '@/components/layouts/IngredientPageLayout';
 import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
@@ -33,7 +33,7 @@ const ReadyToppingsPage: React.FC = () => {
           <li><strong>{t('learn.ready_sauces')}</strong> Passatas, seasoned pizza sauces.</li>
           <li><strong>{t('learn.precooked_meats')}</strong> Shredded chicken, bacon cubes, cooked sausage.</li>
           <li><strong>{t('learn.prepared_vegetables')}</strong> Roasted peppers, caramelized onions, sautéed mushrooms.</li>
-          <li><strong>Preserves/Premium:</strong> Artichokes, sun-dried tomatoes, anchovies, olives.</li>
+          <li><strong>{t('learn:preserves_premium')}</strong>{t('learn:artichokes_sun_dried_tomatoes_anchovies_olives')}</li>
         </ul>
         <p>
           Evaluate based on: <strong>texture, moisture, acidity, salinity, and flavor concentration</strong>.
@@ -41,20 +41,16 @@ const ReadyToppingsPage: React.FC = () => {
       </LearnSection>
 
       <LearnSection title={t('learn.ready_sauces')} icon={<BeakerIcon className="h-5 w-5" />}>
-        <p>
-          Convenient but inspect properties.
-        </p>
+        <p>{t('learn:convenient_but_inspect_properties')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.moisture')}</strong> Many have high water content. Liquid sauce causes "gum line". <strong>{t('learn.tip')}</strong> If it runs easily off spoon, reduce on low heat 10-15 min.</li>
           <li><strong>{t('learn.stabilizers')}</strong> Modified starch/gums give artificial viscosity. Can result in gelatinous texture.</li>
-          <li><strong>Acidity/Flavor:</strong> Often contain sugar balancing poor tomato acidity. Taste and adjust salt/acid.</li>
+          <li><strong>{t('learn:acidity_flavor')}</strong>{t('learn:often_contain_sugar_balancing_poor_tomato_acidity_taste_and_')}</li>
         </ul>
       </LearnSection>
 
       <LearnSection title={t('learn.precooked_meats')}>
-        <p>
-          Behave predictably in oven.
-        </p>
+        <p>{t('learn:behave_predictably_in_oven')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.less_water_release')}</strong> Main advantage. Won't release moisture onto dough.</li>
           <li><strong>{t('learn.concentrated_flavor')}</strong> Initial cooking concentrated flavors via Maillard.</li>
@@ -64,19 +60,15 @@ const ReadyToppingsPage: React.FC = () => {
       </LearnSection>
 
       <LearnSection title={t('learn.prepared_vegetables')}>
-        <p>
-          Raw veg is mostly water. Pre-prep controls moisture.
-        </p>
+        <p>{t('learn:raw_veg_is_mostly_water_pre_prep_controls_moisture')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Roasted/Grilled:</strong> Removes water, breaks cellulose, caramelizes sugars. Deep flavor and soft texture.</li>
+          <li><strong>{t('learn:roasted_grilled')}</strong>{t('learn:removes_water_breaks_cellulose_caramelizes_sugars_deep_flavo')}</li>
           <li><strong>{t('learn.pickled')}</strong> Pickles/peppers bring sharp acidity cutting fat. Use moderately.</li>
         </ul>
       </LearnSection>
 
       <LearnSection title={t('learn.high_quality_preserves')} icon={<SparklesIcon className="h-5 w-5" />}>
-        <p>
-          Professional shortcut to intense flavor.
-        </p>
+        <p>{t('learn:professional_shortcut_to_intense_flavor')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.artichoke')}</strong> Often in oil/brine. Drain well.</li>
           <li><strong>{t('learn.sundried_tomato')}</strong> Dehydration concentrates sugar/umami. Rehydrate in warm water for softness.</li>

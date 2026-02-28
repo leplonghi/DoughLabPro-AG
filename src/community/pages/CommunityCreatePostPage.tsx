@@ -293,7 +293,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-bold text-gray-900 mb-2">Description / Method</label>
+                                        <label className="block text-sm font-bold text-gray-900 mb-2">{t('common:description_method')}</label>
                                         <textarea
                                             value={description}
                                             onChange={e => setDescription(e.target.value)}

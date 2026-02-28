@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useRef, useCallback } from 'react';
 import { DoughSessionState, PrefermentType, ScheduleMode } from '@/types';
+import { logger } from '@/utils/logger';
 
 // Default State
 const DEFAULT_SESSION: DoughSessionState = {
@@ -57,7 +58,7 @@ export const DoughSessionProvider: React.FC<{ children: React.ReactNode }> = ({ 
                 }
             }
         } catch (e) {
-            console.error('Failed to load session', e);
+            logger.error('Failed to load session', e);
         }
         return {
             ...DEFAULT_SESSION,
@@ -88,7 +89,7 @@ export const DoughSessionProvider: React.FC<{ children: React.ReactNode }> = ({ 
                 // Update state silently to reflect lastSaved without triggering loop if possible,
                 // but strictly we just save here.
             } catch (e) {
-                console.error('Failed to save session', e);
+                logger.error('Failed to save session', e);
             } finally {
                 setIsSaving(false);
             }

@@ -5,14 +5,12 @@ import { useTranslation } from '@/i18n';
 import { AlertTriangleIcon, CheckCircleIcon, InfoIcon } from '@/components/ui/Icons';
 import { Droplets, Activity, Dumbbell, ScrollText, Wheat } from 'lucide-react';
 import { LockedTeaser } from '@/marketing/fomo/components/LockedTeaser';
-
 interface FlourSelectorProps {
     selectedFlourId: string;
     onFlourChange: (flourId: string) => void;
     currentHydration: number;
     className?: string;
 }
-
 export const FlourSelector: React.FC<FlourSelectorProps> = ({
     selectedFlourId,
     onFlourChange,
@@ -20,13 +18,10 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
     className = '',
 }) => {
     const { t } = useTranslation(['calculator']);
-
     const selectedFlour = useMemo(() => {
         return FLOURS.find(f => f.id === selectedFlourId);
     }, [selectedFlourId]);
-
     const isBlend = selectedFlourId === 'blend';
-
     // Group flours by category for better UX
     const floursByCategory = useMemo(() => {
         const categories: Record<string, FlourDefinition[]> = {
@@ -36,22 +31,17 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
             'whole': [],
             'other': [],
         };
-
         FLOURS.forEach(flour => {
             if (categories[flour.category]) {
                 categories[flour.category].push(flour);
             }
         });
-
         return categories;
     }, []);
-
     // Determine hydration warning level
     const hydrationWarning = useMemo(() => {
         if (!selectedFlour?.hydrationHint) return null;
-
         const { min, max } = selectedFlour.hydrationHint;
-
         if (currentHydration < (min || 0)) {
             return {
                 level: 'low',
@@ -59,7 +49,6 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                 icon: 'info',
             };
         }
-
         if (currentHydration > (max || 100)) {
             return {
                 level: 'high',
@@ -67,14 +56,12 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                 icon: 'warning',
             };
         }
-
         return {
             level: 'ok',
             message: t('calculator.flour_hydration_optimal', { min, max }),
             icon: 'check',
         };
     }, [selectedFlour, currentHydration, t]);
-
     const getCategoryLabel = (category: string): string => {
         const labels: Record<string, string> = {
             '00': t('calculator.flour_category_00'),
@@ -85,7 +72,6 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
         };
         return labels[category] || category;
     };
-
     return (
         <div className={`rounded-xl border border-dlp-border bg-white shadow-sm transition-all overflow-hidden ${className}`}>
             {/* Header Bar */}
@@ -95,7 +81,6 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                     {t('calculator.flour_type')}
                 </label>
             </div>
-
             <div className="p-4 space-y-4">
                 {/* Flour Selector Dropdown */}
                 <div>
@@ -104,7 +89,7 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                         name="flourId"
                         value={selectedFlourId}
                         onChange={(e) => onFlourChange(e.target.value)}
-                        className="block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2"
+                        className="block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-3 min-h-[44px]"
                     >
                         {Object.entries(floursByCategory).map(([category, items]) => {
                             const flours = items as FlourDefinition[];
@@ -120,43 +105,39 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                                 </optgroup>
                             );
                         })}
-                        <option value="blend">Custom Flour Blend (Pro)</option>
+                        <option value="blend">{t('calculator:custom_flour_blend_pro')}</option>
                     </select>
                 </div>
-
                 {/* Blend Builder (Pro Feature) */}
                 {isBlend && (
                     <div className="rounded-lg border border-dlp-border bg-dlp-bg-muted p-3">
                         <LockedTeaser featureKey="calculator.flour_blend">
                             <div className="space-y-3">
-                                <h4 className="text-sm font-bold text-dlp-text-primary">Custom Blend Builder</h4>
+                                <h4 className="text-sm font-bold text-dlp-text-primary">{t('calculator:custom_blend_builder')}</h4>
                                 <p className="text-xs text-dlp-text-secondary mb-2">
                                     Mix two flours to achieve specific protein/W targets.
                                 </p>
-
                                 {/* Placeholder UI for Blend - Non-functional visual only for now */}
                                 <div className="grid grid-cols-2 gap-2 text-xs opacity-75">
                                     <div className="p-2 border border-dlp-border rounded bg-white">
-                                        <div className="font-bold text-dlp-accent">70%</div>
-                                        <div>High Gluten</div>
+                                        <div className="font-bold text-dlp-accent">{t('styles:styles.sfincione_palermitano_science_flour_abs')}</div>
+                                        <div>{t('calculator:high_gluten')}</div>
                                     </div>
                                     <div className="p-2 border border-dlp-border rounded bg-white">
                                         <div className="font-bold text-dlp-accent">30%</div>
-                                        <div>Whole Wheat</div>
+                                        <div>{t('learn:whole_wheat')}</div>
                                     </div>
                                 </div>
-
                                 <div className="pt-2 border-t border-dlp-border mt-2">
                                     <div className="flex justify-between text-xs">
-                                        <span>Est. Protein: <span className="font-bold">13.8%</span></span>
-                                        <span>Est. W: <span className="font-bold">380</span></span>
+                                        <span>{t('calculator:est_protein')}<span className="font-bold">13.8%</span></span>
+                                        <span>{t('calculator:est_w')}<span className="font-bold">380</span></span>
                                     </div>
                                 </div>
                             </div>
                         </LockedTeaser>
                     </div>
                 )}
-
                 {/* Flour Info Card (Tech Specs Style) - Integrated into the body */}
                 {selectedFlour && !isBlend && (
                     <div className="bg-slate-50/50 rounded-lg border border-dlp-border/60 p-3 relative overflow-hidden">
@@ -164,13 +145,11 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                         <div className="absolute -right-4 -top-4 opacity-[0.03] pointer-events-none">
                             <Activity className="w-24 h-24" />
                         </div>
-
                         <div className="flex flex-col gap-3 relative z-10">
                             {/* Title */}
                             <div className="flex justify-between items-center border-b border-gray-100 pb-2">
-                                <h4 className="text-xs font-bold uppercase text-dlp-text-muted tracking-wider">Flour Specs</h4>
+                                <h4 className="text-xs font-bold uppercase text-dlp-text-muted tracking-wider">{t('calculator:flour_specs')}</h4>
                             </div>
-
                             {/* Specs Row */}
                             <div className="flex flex-wrap gap-2">
                                 {selectedFlour.protein && (
@@ -186,7 +165,6 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                                     </div>
                                 )}
                             </div>
-
                             {/* Hydration Hint */}
                             {selectedFlour.hydrationHint && (
                                 <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium border border-blue-100 shadow-sm w-fit">
@@ -194,7 +172,6 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                                     Recommended: {selectedFlour.hydrationHint.min}% - {selectedFlour.hydrationHint.max}%
                                 </div>
                             )}
-
                             {/* Notes */}
                             {selectedFlour.notes && (
                                 <div className="flex items-start gap-2 pt-1">
@@ -207,7 +184,6 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                         </div>
                     </div>
                 )}
-
                 {/* Hydration Warning/Info */}
                 {
                     hydrationWarning && !isBlend && (
@@ -259,5 +235,3 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
         </div >
     );
 };
-
-

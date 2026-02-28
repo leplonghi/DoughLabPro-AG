@@ -49,7 +49,7 @@ export const DoughbotResults: React.FC<DoughbotResultsProps> = ({ result }) => {
 
             {/* Technical Ranges / Adjustments */}
             {result.ranges && (
-                <div className="rounded-2xl bg-slate-800 p-6 shadow-xl text-white relative overflow-hidden">
+                <div className="rounded-2xl bg-slate-50 p-6 shadow-xl text-slate-800 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-dlp-brand/20 rounded-full blur-3xl -mr-8 -mt-8 pointer-events-none"></div>
 
                     <h4 className="flex items-center gap-2 text-lg font-bold text-slate-100 mb-6 relative z-10">

@@ -1,23 +1,23 @@
 // Force rebuild
 import React from 'react';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import { BookOpenIcon, GlobeAltIcon, FireIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 import { useTranslation } from '@/i18n';
 
 // Local Section component for structuring content
 const StyleGuidePage: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <TechnicalPageLayout
             title={t('learn.dough_style_guide')}
-            subtitle="A conceptual, historical, and scientific description of major dough styles, focusing on structural and textural characteristics."
+            subtitle={t('learn:a_conceptual_historical_and_scientific_description_of_major_')}
             showReferencesSection={false} // Custom references section at the end
         >
-            <LearnSection title="1. Pizza Napoletana (AVPN – Conceptual Version)" icon={<FireIcon className="h-5 w-5" />}>
+            <LearnSection title={t('learn:1_pizza_napoletana_avpn_conceptual_version')} icon={<FireIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.dough_2')}</strong> Extremely soft and extensible, designed to be opened by hand.</li>
-                    <li><strong>Rim (Cornicione):</strong> The most iconic feature. It is puffed, airy, with irregular alveoli and typical leopard spots ("leoparding") due to rapid, intense baking.</li>
+                    <li><strong>{t('learn:rim_cornicione')}</strong> The most iconic feature. It is puffed, airy, with irregular alveoli and typical leopard spots ("leoparding") due to rapid, intense baking.</li>
                     <li><strong>{t('learn.baking_2')}</strong> Extremely fast, in wood-fired ovens with extremely high temperatures. Pizza cooks in seconds, resulting in unique texture.</li>
                     <li><strong>{t('learn.flavor')}</strong> Delicate and balanced, centered on high quality of the tomato-mozzarella-basil trio.</li>
                     <li><strong>{t('learn.structure')}</strong> Center is very thin and wet, almost "soupy", making the slice soft and elastic, meant to be folded and eaten.</li>
@@ -25,7 +25,7 @@ const StyleGuidePage: React.FC = () => {
                 </ul>
             </LearnSection>
 
-            <LearnSection title="2. New York Style" icon={<SparklesIcon className="h-5 w-5" />}>
+            <LearnSection title={t('learn:2_new_york_style')} icon={<SparklesIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.base')}</strong> Firmer and wider, resulting in large, structured slices.</li>
                     <li><strong>{t('learn.rim')}</strong> Crispy outside, but soft and chewy inside.</li>
@@ -36,7 +36,7 @@ const StyleGuidePage: React.FC = () => {
                 </ul>
             </LearnSection>
 
-            <LearnSection title="3. Roman (Pala and Teglia)" icon={<BookOpenIcon className="h-5 w-5" />}>
+            <LearnSection title={t('learn:3_roman_pala_and_teglia')} icon={<BookOpenIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.dough_3')}</strong> Very high extensibility and hydration, resulting in extremely light and airy texture.</li>
                     <li><strong>{t('learn.crumb')}</strong> Characterized by very large and irregular alveoli.</li>
@@ -47,7 +47,7 @@ const StyleGuidePage: React.FC = () => {
                 </ul>
             </LearnSection>
 
-            <LearnSection title="4. Detroit Style" icon={<BeakerIcon className="h-5 w-5" />}>
+            <LearnSection title={t('learn:4_detroit_style')} icon={<BeakerIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.baking_pan')}</strong> Baked in rectangular steel pans, which conduct heat intensely.</li>
                     <li><strong>Cheese Crust (t('learn.frico')):</strong> The trademark of the style. Cheese is spread to the pan edges, creating a caramelized and crispy wall.</li>
@@ -57,7 +57,7 @@ const StyleGuidePage: React.FC = () => {
                 </ul>
             </LearnSection>
 
-            <LearnSection title="5. Focaccia / Pan Dough">
+            <LearnSection title={t('learn:5_focaccia_pan_dough')}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.dough_5')}</strong> High with a spongy and open crumb structure.</li>
                     <li><strong>{t('learn.texture')}</strong> Soft and moist inside, with base and surface golden from oil.</li>
@@ -67,7 +67,7 @@ const StyleGuidePage: React.FC = () => {
                 </ul>
             </LearnSection>
 
-            <LearnSection title="6. Chicago Style (Technical Summary)">
+            <LearnSection title={t('learn:6_chicago_style_technical_summary')}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.pie_structure')}</strong> Closer to a savory pie than a flat pizza.</li>
                     <li><strong>{t('learn.dough_6')}</strong> Dough forms a high wall and contains fat (butter or oil), giving it a rich, biscuit-like texture.</li>
@@ -76,19 +76,19 @@ const StyleGuidePage: React.FC = () => {
                 </ul>
             </LearnSection>
 
-            <LearnSection title="7. Thermal Considerations by Style">
+            <LearnSection title={t('learn:7_thermal_considerations_by_style')}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.high_temperature')}</strong> styles (like Neapolitan) depend on <strong>intense radiant heat</strong> from oven ceiling to cook top and puff rim quickly.</li>
                     <li><strong>{t('learn.home_oven')}</strong> styles (like adapted NY Style or Detroit) depend more on <strong>heat conduction</strong> from a good surface (steel or pan) and <strong>convection</strong> (circulating hot air) to cook dough over a longer period.</li>
                 </ul>
             </LearnSection>
 
-            <LearnSection title="8. Technical References" icon={<BookOpenIcon className="h-5 w-5" />}>
+            <LearnSection title={t('learn:8_technical_references')} icon={<BookOpenIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 space-y-2">
                     <li>{t('learn.modernist_pizza__nathan_myhrvold__francisco_migoya_2')}</li>
                     <li>Associazione Verace Pizza Napoletana (AVPN) – Official disciplinare</li>
                     <li>{t('learn.historical_and_culinary_records_on_pizza_evolution')}</li>
-                    <li>Historical pizzerias like Lombardi's (NY), Forno Campo de' Fiori (Rome), and Buddy's (Detroit).</li>
+                    <li>{t('learn:historical_pizzerias_like_lombardis_ny_forno_campo_de_fiori_')}</li>
                 </ul>
             </LearnSection>
         </TechnicalPageLayout>

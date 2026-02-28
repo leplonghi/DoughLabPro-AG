@@ -1,397 +1,1 @@
-import React, { useState, useEffect } from 'react';
-import { LearnArticleData } from '@/types/learn';
-import { GrandmaRenderer } from '@/pages/learn/GrandmaRenderer';
-import { generateArticleSummary } from '@/pages/learn/summaryGenerator';
-import { CollapseSection, SubCollapse } from '@/pages/learn/LearnComponents';
-import {
-    BookOpenIcon, ScaleIcon, ChartBarIcon, FireIcon, AdjustmentsIcon,
-    SparklesIcon, CalculatorIcon, LightBulbIcon, ExclamationCircleIcon,
-    BeakerIcon, CheckIcon, UserCircleIcon, ListBulletIcon, WrenchScrewdriverIcon,
-    PhotoIcon, QuestionMarkCircleIcon, CloseIcon, GlobeAmericasIcon, CloudIcon
-} from '@/components/ui/Icons';
-import { useRouter } from '@/contexts/RouterContext';
-import { useLearnContext, LearnMode } from '@/contexts/LearnContext';
-import { useTranslation } from '@/i18n';
-
-interface LearnArticleRendererProps {
-    articleData?: LearnArticleData;
-    data?: LearnArticleData;
-    embedded?: boolean;
-}
-
-type ArticleReadingMode = LearnMode | 'summary';
-
-const StandardSection: React.FC<{
-    title: string;
-    children: React.ReactNode;
-    icon?: React.ReactNode;
-}> = ({ title, children, icon }) => (
-    <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm mb-6">
-        <div className="px-6 sm:px-8 py-6 border-b border-stone-100 bg-stone-50/30">
-            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-3">
-                {icon && <span className="text-dlp-brand">{icon}</span>}
-                {title}
-            </h3>
-        </div>
-        <div className="p-6 sm:p-8">
-            <div className="prose prose-slate max-w-none">
-                {children}
-            </div>
-        </div>
-    </div>
-);
-
-export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ articleData, data, embedded = false }) => {
-    const finalData = articleData || data;
-    if (!finalData) return null;
-
-    const { t } = useTranslation();
-    const { navigate } = useRouter();
-    const { mode: globalMode, setMode: setGlobalMode } = useLearnContext();
-
-    const [localMode, setLocalMode] = useState<ArticleReadingMode>(globalMode);
-
-    useEffect(() => {
-        if (localMode !== 'summary') {
-            setLocalMode(globalMode);
-        }
-    }, [globalMode]);
-
-    const handleModeChange = (newMode: ArticleReadingMode) => {
-        setLocalMode(newMode);
-        if (newMode !== 'summary') {
-            setGlobalMode(newMode);
-        }
-    };
-
-    const summaryData = generateArticleSummary(finalData);
-
-    return (
-        <div className={embedded ? "" : "min-h-screen bg-stone-50 text-slate-900 pb-20"}>
-            {/* Header Section - Hide if embedded */}
-            {!embedded && (
-                <div className="bg-white border-b border-stone-200 pt-8 pb-12 px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="flex items-center gap-3 mb-4">
-                            {finalData.category && (
-                                <button
-                                    onClick={() => navigate('learn/category', encodeURIComponent(finalData.category!))}
-                                    className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-80 transition-opacity ${finalData.category === 'Ingredient Science' ? 'bg-lime-900 text-lime-300 border border-lime-700' :
-                                        finalData.category === t('learn.dough_science_400') ? 'bg-sky-900 text-sky-300 border border-sky-700' :
-                                            finalData.category === t('learn.fermentation_science_401') ? 'bg-amber-900 text-amber-300 border border-amber-700' :
-                                                'bg-stone-700 text-stone-300 border border-stone-600'
-                                        }`}
-                                >
-                                    {finalData.category}
-                                </button>
-                            )}
-                            {finalData.difficulty && (
-                                <span className="px-3 py-1 rounded-full bg-stone-700 text-stone-300 text-xs font-bold border border-stone-600">
-                                    {finalData.difficulty}
-                                </span>
-                            )}
-                        </div>
-                        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 tracking-tight leading-tight">
-                            {finalData.title}
-                        </h1>
-                        <p className="text-xl text-slate-500 font-light leading-relaxed">
-                            {finalData.subtitle}
-                        </p>
-
-                        {finalData.tags && finalData.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mt-6">
-                                {finalData.tags.map(tag => (
-                                    <span key={tag} className="text-xs text-lime-800 bg-lime-100 px-2.5 py-1 rounded-md border border-lime-200 font-medium">
-                                        #{tag}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
-
-            {/* Mode Selector - Hide if embedded (assuming new page handles summary/modes differently, or we force technical) */}
-            {!embedded && (
-                <div className="sticky top-16 z-40 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="flex space-x-2 overflow-x-auto py-3 no-scrollbar justify-center">
-                            <button
-                                onClick={() => handleModeChange('technical')}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'technical'
-                                    ? 'bg-dlp-brand-hover border-dlp-brand-hover text-white shadow-lg shadow-lime-900/20 scale-105'
-                                    : 'bg-white border-stone-200 text-stone-500 hover:border-dlp-brand hover:text-dlp-brand-hover'
-                                    }`}
-                            >
-                                <BookOpenIcon className="w-4 h-4" />
-                                {t('learn.technical_mode', { defaultValue: 'Technical Mode' })}
-                            </button>
-                            <button
-                                onClick={() => handleModeChange('grandma')}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'grandma'
-                                    ? 'bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-900/20 scale-105'
-                                    : 'bg-white border-stone-200 text-stone-500 hover:border-amber-400 hover:text-amber-600'
-                                    }`}
-                            >
-                                <UserCircleIcon className="w-4 h-4" />
-                                {t('learn.grandma_mode', { defaultValue: 'Grandma Mode' })}
-                            </button>
-                            <button
-                                onClick={() => handleModeChange('summary')}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'summary'
-                                    ? 'bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-900/20 scale-105'
-                                    : 'bg-white border-stone-200 text-stone-500 hover:border-purple-400 hover:text-purple-600'
-                                    }`}
-                            >
-                                <ListBulletIcon className="w-4 h-4" />
-                                {t('learn.summary_mode', { defaultValue: 'Summary Mode' })}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Main Content */}
-            <div className={embedded ? "" : "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8"}>
-
-                {/* MODE: GRANDMA */}
-                {localMode === 'grandma' && (
-                    finalData.grandmaVersion ? (
-                        <GrandmaRenderer data={finalData.grandmaVersion} />
-                    ) : (
-                        <div className="p-8 bg-white rounded-2xl text-center text-slate-500 border border-stone-200">
-                            {t('learn.grandma_nap', { defaultValue: 'Grandma is taking a nap. (No simplified version available for this article yet).' })}
-                            <button onClick={() => handleModeChange('technical')} className="block mx-auto mt-4 text-dlp-brand-hover hover:underline">{t('learn.return_main', { defaultValue: 'Return to Main Article' })}</button>
-                        </div>
-                    )
-                )}
-
-                {/* MODE: SUMMARY */}
-                {localMode === 'summary' && (
-                    <div className="space-y-6 animate-fadeIn">
-                        <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
-                            <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                <ListBulletIcon className="w-5 h-5 text-purple-500" />
-                                {t('learn.executive_summary', { defaultValue: 'Executive Summary' })}
-                            </h3>
-                            <p className="text-slate-600 leading-relaxed mb-6">{summaryData.intro}</p>
-
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm uppercase tracking-wider">{t('learn.key_takeaways', { defaultValue: 'Key Takeaways' })}</h4>
-                            <ul className="space-y-2 mb-6">
-                                {summaryData.keyPoints.map((point, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-slate-600">
-                                        <CheckIcon className="w-5 h-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
-                                        <span>{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                )}
-
-                {/* MODE: TECHNICAL (MAIN) */}
-                {localMode === 'technical' && (
-                    <div className="space-y-4 animate-fadeIn">
-
-                        {/* Intro */}
-                        <StandardSection title={t('learn.introduction', { defaultValue: 'Introduction' })} icon={<BookOpenIcon className="h-5 w-5" />}>
-                            <p className="text-lg leading-relaxed text-slate-700">{finalData.intro}</p>
-                        </StandardSection>
-
-                        {/* History */}
-                        <StandardSection title={t('learn.history_context', { defaultValue: 'History & Context' })} icon={<BookOpenIcon className="h-5 w-5" />}>
-                            <p className="text-slate-600 leading-relaxed">{finalData.history}</p>
-                        </StandardSection>
-
-                        {/* Technical Foundations */}
-                        {finalData.technicalFoundations && finalData.technicalFoundations.length > 0 && (
-                            <StandardSection title={t('learn.technical_foundations', { defaultValue: 'Technical Foundations' })} icon={<ScaleIcon className="h-5 w-5" />}>
-                                <ul className="space-y-3">
-                                    {finalData.technicalFoundations.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-dlp-brand mt-2 flex-shrink-0" />
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </StandardSection>
-                        )}
-
-                        {/* Dough Impact */}
-                        {finalData.doughImpact && finalData.doughImpact.length > 0 && (
-                            <StandardSection title={t('learn.impact_dough', { defaultValue: 'Impact on Dough' })} icon={<ChartBarIcon className="h-5 w-5" />}>
-                                <ul className="space-y-3">
-                                    {finalData.doughImpact.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0" />
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </StandardSection>
-                        )}
-
-                        {/* Baking Impact */}
-                        {finalData.bakingImpact && finalData.bakingImpact.length > 0 && (
-                            <StandardSection title={t('learn.baking_performance', { defaultValue: 'Baking Performance' })} icon={<FireIcon className="h-5 w-5" />}>
-                                <ul className="space-y-3">
-                                    {finalData.bakingImpact.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 flex-shrink-0" />
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </StandardSection>
-                        )}
-
-                        {/* Practical Ranges */}
-                        {finalData.practicalRanges && finalData.practicalRanges.length > 0 && (
-                            <StandardSection title={t('learn.practical_ranges', { defaultValue: 'Practical Ranges' })} icon={<AdjustmentsIcon className="h-5 w-5" />}>
-                                <div className="space-y-4">
-                                    {finalData.practicalRanges.map((range, i) => (
-                                        <div key={i} className="bg-stone-50 p-4 rounded-xl border border-stone-200">
-                                            <div className="font-bold text-slate-900 mb-1">{range.label}</div>
-                                            <div className="text-sm text-slate-600">
-                                                {range.notes || (
-                                                    range.recommended ?
-                                                        `Recommended: ${range.recommended}${range.unit} (Range: ${range.min}-${range.max}${range.unit})` :
-                                                        `${range.min}-${range.max}${range.unit}`
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </StandardSection>
-                        )}
-
-                        {/* Practical Applications (New) */}
-                        {finalData.practicalApplications && finalData.practicalApplications.length > 0 && (
-                            <StandardSection title={t('learn.practical_applications', { defaultValue: 'Practical Applications' })} icon={<WrenchScrewdriverIcon className="h-5 w-5" />}>
-                                <ul className="space-y-3">
-                                    {finalData.practicalApplications.map((app, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <CheckIcon className="w-5 h-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
-                                            <span>{app}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </StandardSection>
-                        )}
-
-                        {/* Pro Tips */}
-                        {finalData.proTips && finalData.proTips.length > 0 && (
-                            <StandardSection title={t('learn.pro_tips', { defaultValue: 'Pro Tips' })} icon={<LightBulbIcon className="h-5 w-5" />}>
-                                <div className="bg-amber-50 p-6 rounded-xl border border-amber-100 space-y-4">
-                                    {finalData.proTips.map((tip, i) => (
-                                        <div key={i} className="flex gap-3">
-                                            <LightBulbIcon className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                                            <p className="text-amber-900/90">{tip}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </StandardSection>
-                        )}
-
-                        {/* Critical Points */}
-                        {finalData.criticalPoints && finalData.criticalPoints.length > 0 && (
-                            <StandardSection title={t('learn.critical_points', { defaultValue: 'Critical Points' })} icon={<ExclamationCircleIcon className="h-5 w-5" />}>
-                                <div className="bg-rose-50 p-6 rounded-xl border border-rose-100 space-y-4">
-                                    {finalData.criticalPoints.map((point, i) => (
-                                        <div key={i} className="flex gap-3">
-                                            <ExclamationCircleIcon className="h-5 w-5 text-rose-500 flex-shrink-0 mt-0.5" />
-                                            <p className="text-rose-900/90">{point}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </StandardSection>
-                        )}
-
-                        {/* Regional Variants */}
-                        {finalData.regionalVariants && finalData.regionalVariants.length > 0 && (
-                            <StandardSection title={t('learn.regional_variants', { defaultValue: 'Regional Variants' })} icon={<GlobeAmericasIcon className="h-5 w-5" />}>
-                                <ul className="space-y-3">
-                                    {finalData.regionalVariants.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2 flex-shrink-0" />
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </StandardSection>
-                        )}
-
-                        {/* Climate Scenarios */}
-                        {finalData.climateScenarios && finalData.climateScenarios.length > 0 && (
-                            <StandardSection title={t('learn.climate_scenarios', { defaultValue: 'Climate Scenarios' })} icon={<CloudIcon className="h-5 w-5" />}>
-                                <ul className="space-y-3">
-                                    {finalData.climateScenarios.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-slate-700">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </StandardSection>
-                        )}
-
-                        {/* Variants & Implications */}
-                        {finalData.variantsAndImplications && finalData.variantsAndImplications.length > 0 && (
-                            <StandardSection title={t('learn.variants_implications', { defaultValue: 'Variants & Implications' })} icon={<SparklesIcon className="h-5 w-5" />}>
-                                <div className="space-y-4">
-                                    {finalData.variantsAndImplications.map((variant, i) => (
-                                        <SubCollapse key={i} title={variant.variant || variant.name || 'Variant'}>
-                                            <div className="space-y-2">
-                                                <p className="text-slate-700 text-sm">{variant.implications || variant.description}</p>
-                                                {/* Legacy Support */}
-                                                {variant.doughImplications && (
-                                                    <p className="text-xs text-slate-500"><strong>{t('learn.dough')}</strong> {variant.doughImplications}</p>
-                                                )}
-                                                {variant.bakingImplications && (
-                                                    <p className="text-xs text-slate-500"><strong>{t('learn.baking')}</strong> {variant.bakingImplications}</p>
-                                                )}
-                                            </div>
-                                        </SubCollapse>
-                                    ))}
-                                </div>
-                            </StandardSection>
-                        )}
-
-                        {/* FAQ */}
-                        {finalData.faq && finalData.faq.length > 0 && (
-                            <CollapseSection title={t('learn.faq', { defaultValue: 'Frequently Asked Questions' })} icon={<QuestionMarkCircleIcon className="h-5 w-5" />}>
-                                <div className="space-y-4">
-                                    {finalData.faq.map((item, i) => (
-                                        <div key={i} className="bg-stone-50 p-4 rounded-xl border border-stone-200">
-                                            <h4 className="font-bold text-slate-900 mb-2 flex items-start gap-2">
-                                                <QuestionMarkCircleIcon className="h-5 w-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
-                                                {item.q}
-                                            </h4>
-                                            <p className="text-slate-700 pl-7">{item.a}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </CollapseSection>
-                        )}
-
-                        {/* References */}
-                        {finalData.references && finalData.references.length > 0 && (
-                            <CollapseSection title={t('learn.references', { defaultValue: 'References' })} icon={<BookOpenIcon className="h-5 w-5" />}>
-                                <ul className="list-decimal pl-5 space-y-2 text-stone-500 text-sm">
-                                    {finalData.references.map((ref, i) => (
-                                        <li key={i}>{ref}</li>
-                                    ))}
-                                </ul>
-                            </CollapseSection>
-                        )}
-
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
-
-export default LearnArticleRenderer;
-
-
+import React, { useState, useEffect } from 'react';import { LearnArticleData } from '@/types/learn';import { GrandmaRenderer } from '@/pages/learn/GrandmaRenderer';import { generateArticleSummary } from '@/pages/learn/summaryGenerator';import { CollapseSection, SubCollapse } from '@/pages/learn/LearnComponents';import {    BookOpenIcon, ScaleIcon, ChartBarIcon, FireIcon, AdjustmentsIcon,    SparklesIcon, CalculatorIcon, LightBulbIcon, ExclamationCircleIcon,    BeakerIcon, CheckIcon, UserCircleIcon, ListBulletIcon, WrenchScrewdriverIcon,    PhotoIcon, QuestionMarkCircleIcon, CloseIcon, GlobeAmericasIcon, CloudIcon} from '@/components/ui/Icons';import { useRouter } from '@/contexts/RouterContext';import { useLearnContext, LearnMode } from '@/contexts/LearnContext';import { useTranslation } from '@/i18n';interface LearnArticleRendererProps {    articleData?: LearnArticleData;    data?: LearnArticleData;    embedded?: boolean;}type ArticleReadingMode = LearnMode | 'summary';const StandardSection: React.FC<{    title: string;    children: React.ReactNode;    icon?: React.ReactNode;}> = ({ title, children, icon }) => (    <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm mb-6">        <div className="px-6 sm:px-8 py-6 border-b border-stone-100 bg-stone-50/30">            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-3">                {icon && <span className="text-dlp-brand">{icon}</span>}                {title}            </h3>        </div>        <div className="p-6 sm:p-8">            <div className="prose prose-slate max-w-none">                {children}            </div>        </div>    </div>);// Add AnimatePresence and motion from framer-motionimport { AnimatePresence, motion } from 'framer-motion';export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ articleData, data, embedded = false }) => {    const finalData = articleData || data;    if (!finalData) return null;    const { t } = useTranslation();    const { navigate } = useRouter();    const { mode: globalMode, setMode: setGlobalMode } = useLearnContext();    const [localMode, setLocalMode] = useState<ArticleReadingMode>(globalMode);    useEffect(() => {        if (localMode !== 'summary') {            setLocalMode(globalMode);        }    }, [globalMode]);    const handleModeChange = (newMode: ArticleReadingMode) => {        setLocalMode(newMode);        if (newMode !== 'summary') {            setGlobalMode(newMode);        }    };    const summaryData = generateArticleSummary(finalData);    return (        <div className={embedded ? "" : "min-h-screen bg-stone-50 text-slate-900 pb-20"}>            {/* Header Section - Hide if embedded */}            {!embedded && (                <div className="bg-white border-b border-stone-200 pt-8 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">                    <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>                    <div className="max-w-4xl mx-auto relative z-10">                        <div className="flex items-center gap-3 mb-6">                            {finalData.category && (                                <button                                    onClick={() => navigate('learn/category', encodeURIComponent(finalData.category!))}                                    className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] hover:opacity-80 transition-opacity ${finalData.category === 'Ingredient Science' ? 'bg-lime-900/10 text-lime-700 border border-lime-700/20' :                                        finalData.category === t('learn.dough_science_400') ? 'bg-sky-900/10 text-sky-700 border border-sky-700/20' :                                            finalData.category === t('learn.fermentation_science_401') ? 'bg-amber-900/10 text-amber-700 border border-amber-700/20' :                                                'bg-stone-100 text-stone-500 border border-stone-200'                                        }`}                                >                                    {finalData.category}                                </button>                            )}                            {finalData.difficulty && (                                <span className="px-3 py-1 rounded-lg bg-stone-100 text-stone-500 text-[10px] font-black uppercase tracking-widest border border-stone-200">                                    {finalData.difficulty}                                </span>                            )}                        </div>                        <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tighter">                            {finalData.title}                        </h1>                        <p className="text-xl text-slate-500 font-light leading-relaxed border-l-4 border-emerald-500 pl-6">                            {finalData.subtitle}                        </p>                        {finalData.tags && finalData.tags.length > 0 && (                            <div className="flex flex-wrap gap-2 mt-8">                                {finalData.tags.map(tag => (                                    <span key={tag} className="text-[10px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100 font-bold uppercase tracking-wider hover:bg-emerald-100 transition-colors cursor-default">                                        #{tag}                                    </span>                                ))}                            </div>                        )}                    </div>                </div>            )}            {/* Mode Selector - Floating Glass */}            {!embedded && (                <div className="sticky top-20 z-40 px-4 pointer-events-none mt-6">                    <div className="max-w-4xl mx-auto">                        <div className="inline-flex p-1.5 rounded-2xl bg-white/80 backdrop-blur-xl border border-stone-200/50 shadow-xl shadow-stone-200/20 pointer-events-auto">                            <button                                onClick={() => handleModeChange('technical')}                                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${localMode === 'technical'                                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20 ring-1 ring-emerald-500/50'                                    : 'text-stone-500 hover:bg-stone-100/50'                                    }`}                            >                                <BookOpenIcon className="w-4 h-4" />                                {t('learn.technical_mode')}                            </button>                            <button                                onClick={() => handleModeChange('grandma')}                                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${localMode === 'grandma'                                    ? 'bg-amber-500 text-white shadow-md shadow-amber-500/20 ring-1 ring-amber-400/50'                                    : 'text-stone-500 hover:bg-stone-100/50'                                    }`}                            >                                <UserCircleIcon className="w-4 h-4" />                                {t('learn.grandma_mode')}                            </button>                            <button                                onClick={() => handleModeChange('summary')}                                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${localMode === 'summary'                                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20 ring-1 ring-indigo-500/50'                                    : 'text-stone-500 hover:bg-stone-100/50'                                    }`}                            >                                <ListBulletIcon className="w-4 h-4" />                                {t('learn.summary_mode')}                            </button>                        </div>                    </div>                </div>            )}            {/* Main Content with Animation */}            <div className={embedded ? "" : "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12"}>                <AnimatePresence mode="wait">                    {/* MODE: GRANDMA */}                    {localMode === 'grandma' && (                        <motion.div                            key="grandma"                            initial={{ opacity: 0, y: 20 }}                            animate={{ opacity: 1, y: 0 }}                            exit={{ opacity: 0, y: -20 }}                            transition={{ duration: 0.3 }}                        >                            {finalData.grandmaVersion ? (                                <GrandmaRenderer data={finalData.grandmaVersion} />                            ) : (                                <div className="p-12 bg-white rounded-3xl text-center border border-stone-100 shadow-sm">                                    <div className="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-4">                                        <UserCircleIcon className="w-8 h-8 text-stone-300" />                                    </div>                                    <p className="text-slate-500 italic mb-4">{t('learn.grandma_nap')}</p>                                    <button onClick={() => handleModeChange('technical')} className="text-emerald-600 font-bold hover:underline text-sm uppercase tracking-wide">                                        {t('learn.return_main')}                                    </button>                                </div>                            )}                        </motion.div>                    )}                    {/* MODE: SUMMARY */}                    {localMode === 'summary' && (                        <motion.div                            key="summary"                            initial={{ opacity: 0, scale: 0.98 }}                            animate={{ opacity: 1, scale: 1 }}                            exit={{ opacity: 0, scale: 0.98 }}                            transition={{ duration: 0.3 }}                        >                            <div className="bg-white p-8 rounded-3xl border border-indigo-100 shadow-xl shadow-indigo-100/50">                                <div className="flex items-center gap-3 mb-6">                                    <div className="p-2 bg-indigo-50 rounded-lg">                                        <ListBulletIcon className="w-6 h-6 text-indigo-600" />                                    </div>                                    <h3 className="text-xl font-bold text-slate-900">{t('learn.executive_summary')}</h3>                                </div>                                <p className="text-slate-600 leading-loose mb-8 text-lg">{summaryData.intro}</p>                                <h4 className="font-black text-slate-800 mb-4 text-xs uppercase tracking-[0.2em]">{t('learn.key_takeaways')}</h4>                                <ul className="space-y-4">                                    {summaryData.keyPoints.map((point, i) => (                                        <li key={i} className="flex items-start gap-4 p-4 rounded-xl bg-indigo-50/30 border border-indigo-100/50">                                            <div className="mt-0.5 min-w-[20px]">                                                <CheckIcon className="w-5 h-5 text-indigo-500" />                                            </div>                                            <span className="text-slate-700 font-medium">{point}</span>                                        </li>                                    ))}                                </ul>                            </div>                        </motion.div>                    )}                    {/* MODE: TECHNICAL (MAIN) */}                    {localMode === 'technical' && (                        <motion.div                            key="technical"                            initial={{ opacity: 0 }}                            animate={{ opacity: 1 }}                            exit={{ opacity: 0 }}                            transition={{ duration: 0.4 }}                            className="space-y-12"                        >                            {/* Technical Styles */}                            <style>{`                                .tech-section { @apply bg-white rounded-3xl border border-stone-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500; }                                .tech-header { @apply px-8 py-6 border-b border-stone-50 bg-stone-50/30 flex items-center gap-3; }                                .tech-body { @apply p-8 leading-loose text-lg text-slate-600 font-light; }                                .tech-list-item { @apply flex items-start gap-4 p-3 rounded-lg hover:bg-stone-50 transition-colors; }                            `}</style>                            {/* Intro */}                            <div className="tech-section">                                <div className="tech-header">                                    <BookOpenIcon className="h-5 w-5 text-emerald-600" />                                    <h3 className="text-xl font-bold text-slate-900">{t('learn.introduction')}</h3>                                </div>                                <div className="tech-body relative">                                    <span className="absolute top-8 left-4 text-6xl text-emerald-100 font-serif leading-none -z-10">“</span>                                    {finalData.intro}                                </div>                            </div>                            {/* History */}                            <div className="tech-section">                                <div className="tech-header">                                    <GlobeAmericasIcon className="h-5 w-5 text-emerald-600" />                                    <h3 className="text-xl font-bold text-slate-900">{t('learn.history_context')}</h3>                                </div>                                <div className="tech-body bg-stone-50/20">{finalData.history}</div>                            </div>                            {/* Technical Foundations */}                            {finalData.technicalFoundations && finalData.technicalFoundations.length > 0 && (                                <div className="tech-section">                                    <div className="tech-header">                                        <ScaleIcon className="h-5 w-5 text-emerald-600" />                                        <h3 className="text-xl font-bold text-slate-900">{t('learn.technical_foundations')}</h3>                                    </div>                                    <div className="p-8">                                        <ul className="space-y-2">                                            {finalData.technicalFoundations.map((item, i) => (                                                <li key={i} className="tech-list-item">                                                    <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.4)]" />                                                    <span className="text-slate-700">{item}</span>                                                </li>                                            ))}                                        </ul>                                    </div>                                </div>                            )}                            {/* Dough Impact & Baking Impact Grid */}                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">                                {finalData.doughImpact && finalData.doughImpact.length > 0 && (                                    <div className="bg-white rounded-3xl border border-sky-100 shadow-sm overflow-hidden flex flex-col">                                        <div className="bg-sky-50/50 px-6 py-4 border-b border-sky-100">                                            <h3 className="font-bold text-sky-900 flex items-center gap-2">                                                <ChartBarIcon className="w-5 h-5 text-sky-500" /> {t('learn.impact_dough')}                                            </h3>                                        </div>                                        <div className="p-6 flex-1">                                            <ul className="space-y-4 h-full">                                                {finalData.doughImpact.map((item, i) => (                                                    <li key={i} className="flex gap-3 text-sm text-slate-600 leading-relaxed">                                                        <div className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-2 flex-shrink-0" />                                                        {item}                                                    </li>                                                ))}                                            </ul>                                        </div>                                    </div>                                )}                                {finalData.bakingImpact && finalData.bakingImpact.length > 0 && (                                    <div className="bg-white rounded-3xl border border-rose-100 shadow-sm overflow-hidden flex flex-col">                                        <div className="bg-rose-50/50 px-6 py-4 border-b border-rose-100">                                            <h3 className="font-bold text-rose-900 flex items-center gap-2">                                                <FireIcon className="w-5 h-5 text-rose-500" /> {t('learn.baking_performance')}                                            </h3>                                        </div>                                        <div className="p-6 flex-1">                                            <ul className="space-y-4 h-full">                                                {finalData.bakingImpact.map((item, i) => (                                                    <li key={i} className="flex gap-3 text-sm text-slate-600 leading-relaxed">                                                        <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2 flex-shrink-0" />                                                        {item}                                                    </li>                                                ))}                                            </ul>                                        </div>                                    </div>                                )}                            </div>                            {/* Practical Ranges */}                            {finalData.practicalRanges && finalData.practicalRanges.length > 0 && (                                <div className="tech-section">                                    <div className="tech-header">                                        <AdjustmentsIcon className="h-5 w-5 text-emerald-600" />                                        <h3 className="text-xl font-bold text-slate-900">{t('learn.practical_ranges')}</h3>                                    </div>                                    <div className="p-8 space-y-4">                                        {finalData.practicalRanges.map((range, i) => (                                            <div key={i} className="group flex items-start md:items-center gap-6 p-4 rounded-2xl border border-stone-100 hover:border-emerald-200 hover:bg-emerald-50/30 transition-all">                                                <div className="min-w-[120px] font-bold text-slate-800 text-sm uppercase tracking-wide">{range.label}</div>                                                <div className="h-4 w-px bg-stone-200 hidden md:block group-hover:bg-emerald-200 transition-colors"></div>                                                <div className="text-slate-600 font-mono text-sm">                                                    {range.notes || (                                                        range.recommended ?                                                            `Recommended: ${range.recommended}${range.unit} (Range: ${range.min}-${range.max}${range.unit})` :                                                            `${range.min}-${range.max}${range.unit}`                                                    )}                                                </div>                                            </div>                                        ))}                                    </div>                                </div>                            )}                            {/* Practical Applications */}                            {finalData.practicalApplications && finalData.practicalApplications.length > 0 && (                                <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">                                    <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-[60px] -mr-16 -mt-16 pointer-events-none"></div>                                    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3 relative z-10">                                        <WrenchScrewdriverIcon className="h-6 w-6 text-emerald-400" /> {t('learn.practical_applications')}                                    </h3>                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 relative z-10">                                        {finalData.practicalApplications.map((app, i) => (                                            <li key={i} className="flex items-start gap-3">                                                <CheckIcon className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />                                                <span className="text-slate-300 font-light leading-relaxed">{app}</span>                                            </li>                                        ))}                                    </ul>                                </div>                            )}                            {/* Pro Tips & Critical Points Grid */}                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">                                {finalData.proTips && finalData.proTips.length > 0 && (                                    <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-3xl border border-amber-100/50 shadow-sm relative overflow-hidden">                                        <div className="absolute top-0 right-0 p-4 opacity-10"><LightBulbIcon className="w-24 h-24 text-amber-500" /></div>                                        <h3 className="text-lg font-bold text-amber-900 mb-6 flex items-center gap-2">                                            <LightBulbIcon className="h-5 w-5 text-amber-600" /> {t('learn.pro_tips')}                                        </h3>                                        <div className="space-y-4 relative z-10">                                            {finalData.proTips.map((tip, i) => (                                                <p key={i} className="text-amber-900/80 leading-relaxed font-medium text-sm border-l-2 border-amber-500/30 pl-4">{tip}</p>                                            ))}                                        </div>                                    </div>                                )}                                {finalData.criticalPoints && finalData.criticalPoints.length > 0 && (                                    <div className="bg-gradient-to-br from-rose-50 to-red-50 p-8 rounded-3xl border border-rose-100/50 shadow-sm relative overflow-hidden">                                        <div className="absolute top-0 right-0 p-4 opacity-10"><ExclamationCircleIcon className="w-24 h-24 text-rose-500" /></div>                                        <h3 className="text-lg font-bold text-rose-900 mb-6 flex items-center gap-2">                                            <ExclamationCircleIcon className="h-5 w-5 text-rose-600" /> {t('learn.critical_points')}                                        </h3>                                        <div className="space-y-4 relative z-10">                                            {finalData.criticalPoints.map((point, i) => (                                                <p key={i} className="text-rose-900/80 leading-relaxed font-medium text-sm border-l-2 border-rose-500/30 pl-4 bg-white/40 p-3 rounded-r-lg">{point}</p>                                            ))}                                        </div>                                    </div>                                )}                            </div>                            {/* FAQ */}                            {finalData.faq && finalData.faq.length > 0 && (                                <CollapseSection title={t('learn.faq')} icon={<QuestionMarkCircleIcon className="h-5 w-5" />}>                                    <div className="space-y-4">                                        {finalData.faq.map((item, i) => (                                            <div key={i} className="bg-stone-50 p-6 rounded-2xl border border-stone-100 hover:border-stone-200 transition-colors">                                                <h4 className="font-bold text-slate-900 mb-3 flex items-start gap-3">                                                    <div className="bg-emerald-100 text-emerald-700 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Q</div>                                                    {item.q}                                                </h4>                                                <div className="flex gap-3">                                                    <div className="bg-stone-200 text-stone-600 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">A</div>                                                    <p className="text-slate-600 leading-relaxed">{item.a}</p>                                                </div>                                            </div>                                        ))}                                    </div>                                </CollapseSection>                            )}                            {/* References (Minimal) */}                            {finalData.references && finalData.references.length > 0 && (                                <div className="mt-12 pt-8 border-t border-stone-200/60">                                    <h5 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">{t('learn:sources_references')}</h5>                                    <ul className="space-y-2 text-stone-400 text-xs font-mono">                                        {finalData.references.map((ref, i) => (                                            <li key={i}>{ref}</li>                                        ))}                                    </ul>                                </div>                            )}                        </motion.div>                    )}                </AnimatePresence>            </div>        </div>    );};export default LearnArticleRenderer;

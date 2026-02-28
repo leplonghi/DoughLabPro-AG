@@ -5,7 +5,7 @@ import { MagnifyingGlassIcon, ArrowRightIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
 const SearchResultsPage: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { routeParams, navigate } = useRouter();
 
     // Parse query from routeParams (expected format: "query=value")
@@ -29,7 +29,7 @@ const SearchResultsPage: React.FC = () => {
             <div className="bg-white border-b border-stone-200 pt-8 pb-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">
                     <button onClick={() => navigate('learn')} className="text-slate-500 hover:text-slate-900 mb-6 text-sm">
-                        &larr; Back to Learn
+                        &larr; {t('learn.back_to_learn')}
                     </button>
                     <h1 className="text-3xl font-bold text-slate-900 mb-2">{t('learn.search_results')}</h1>
                     <p className="text-slate-600">{t('learn.showing_results_for')}<span className="text-slate-900 font-bold">"{query}"</span>
@@ -61,7 +61,7 @@ const SearchResultsPage: React.FC = () => {
                                             </span>
                                             {matches.length > 0 && (
                                                 <span className="text-xs text-slate-500 bg-stone-100 px-2 py-0.5 rounded-full border border-stone-200">
-                                                    Matches: {matches.slice(0, 2).join(', ')}
+                                                    {t('common.matches')}: {matches.slice(0, 2).join(', ')}
                                                 </span>
                                             )}
                                         </div>

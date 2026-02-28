@@ -9,7 +9,7 @@ import { ShoppingBag, AlertTriangle } from 'lucide-react';
 
 export const LogisticsSection: React.FC = () => {
     const { t } = useTranslation();
-    const { config, results } = useCalculator();
+    const { config, results, formulaResult } = useCalculator();
     const { session, updateSettings } = useDoughSession();
     const { allToppings } = useToppings();
     const { settings, variants } = session;
@@ -27,12 +27,19 @@ export const LogisticsSection: React.FC = () => {
         const totalYield = config.numPizzas || 0;
 
         // 1. Start with Dough Ingredients
-        const combined = results.ingredientWeights.map(ing => ({
-            id: ing.id,
-            name: ing.name,
-            weight: ing.weight * multiplier,
-            type: 'dough'
-        }));
+        const combined = formulaResult && formulaResult.ingredients.length > 0
+            ? formulaResult.ingredients.map(ing => ({
+                id: ing.key || ing.label,
+                name: ing.label,
+                weight: ing.grams * multiplier,
+                type: 'dough'
+            }))
+            : results.ingredientWeights.map(ing => ({
+                id: ing.id,
+                name: ing.name,
+                weight: ing.weight * multiplier,
+                type: 'dough'
+            }));
 
         // 2. Aggregate Toppings
         const toppingAgg: Record<string, number> = {};
@@ -77,16 +84,16 @@ export const LogisticsSection: React.FC = () => {
 
         return combined;
 
-    }, [results, safetyBuffer, variants]);
+    }, [results, formulaResult, safetyBuffer, variants, config.assemblyIncrements, config.numPizzas, allToppings, t]);
 
-    if (!finalIngredients.length) return <div className="p-4 text-center text-slate-500">Calculate dough to see logistics.</div>;
+    if (!finalIngredients.length) return <div className="p-4 text-center text-slate-500">{t('common:calculate_dough_to_see_logistics')}</div>;
 
     return (
         <div className="space-y-6">
 
             {/* Safety Buffer Toggles */}
             <div className="flex flex-col space-y-2">
-                <label className="text-xs uppercase tracking-wider text-slate-400 font-bold">Inventory Safety Buffer</label>
+                <label className="text-xs uppercase tracking-wider text-slate-400 font-bold">{t('common:inventory_safety_buffer')}</label>
                 <div className="flex bg-slate-50 p-1 rounded-xl border border-slate-100">
                     {[0, 10, 20].map((val) => (
                         <button
@@ -115,10 +122,8 @@ export const LogisticsSection: React.FC = () => {
             <div className="bg-white rounded-xl border border-slate-100 overflow-hidden shadow-sm">
                 <div className="bg-slate-50 px-4 py-3 border-b border-slate-100 flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-                        <ShoppingBag size={14} className="text-[#51a145]" />
-                        Shopping List
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Values in Grams</span>
+                        <ShoppingBag size={14} className="text-[#51a145]" />{t('common:shopping_list')}</span>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{t('common:values_in_grams')}</span>
                 </div>
 
                 <div className="divide-y divide-slate-50">

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ExternalLink as ExternalLinkIcon, ShoppingBag } from 'lucide-react';
 import { ExternalLink } from '@/components/ui/ExternalLink';
 import { InfoTooltip } from '@/components/ui/InfoTooltip';
 import {
@@ -10,7 +9,10 @@ import {
     OilIcon,
     SugarIcon,
     BeakerIcon,
-    InfoIcon
+    InfoIcon,
+    ShoppingBagIcon as ShoppingBag,
+    ExternalLinkIcon,
+    ChevronRightIcon as ChevronRight
 } from '@/components/ui/Icons';
 
 interface AffiliateIngredientRowProps {
@@ -59,7 +61,7 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
                     <div className="w-8 h-8 rounded-lg bg-white shadow-sm border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         {getIngredientIcon(label)}
                     </div>
-                    <div>
+                    <div className="min-w-0">
                         <div className="flex items-center gap-2">
                             <p className="font-semibold text-slate-700 leading-tight">{labelStr}</p>
                             {isYeast && (
@@ -84,25 +86,38 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
 
             {/* Smart Suggestions */}
             {(isFlour && hydration > 65) || isSalt ? (
-                <div className="mt-1 pl-11">
+                <div className="mt-2 pl-11 space-y-2">
                     {isFlour && hydration > 65 && (
                         <ExternalLink
                             href={AFFILIATE_LINKS.strongFlour}
-                            className="flex items-center gap-1.5 text-[10px] text-dlp-brand-lime hover:underline font-medium"
+                            className="group flex items-center justify-between p-3 bg-white rounded-xl border border-slate-100 transition-all hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 active:scale-[0.98] min-h-[44px]"
                         >
-                            <ShoppingBag className="w-3 h-3" />
-                            <span>Recommended: High Protein Flour (W300+)</span>
-                            <ExternalLinkIcon className="w-2.5 h-2.5 opacity-70" />
+                            <div className="flex items-center gap-2">
+                                <div className="p-1.5 bg-emerald-50 rounded-lg group-hover:bg-emerald-100 transition-colors">
+                                    <ShoppingBag className="w-3.5 h-3.5 text-emerald-600" />
+                                </div>
+                                <span className="text-[11px] font-bold text-slate-600 group-hover:text-emerald-700 transition-colors">
+                                    Recommended: High Protein Flour (W300+)
+                                </span>
+                            </div>
+                            <ExternalLinkIcon className="w-3.5 h-3.5 text-slate-300 group-hover:text-emerald-500 transition-colors" />
                         </ExternalLink>
                     )}
 
                     {isSalt && (
                         <ExternalLink
                             href={AFFILIATE_LINKS.precisionScale}
-                            className="flex items-center gap-1.5 text-[10px] text-slate-400 hover:text-dlp-brand-lime transition-colors font-medium"
+                            className="group flex items-center justify-between p-3 bg-white rounded-xl border border-slate-100 transition-all hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 active:scale-[0.98] min-h-[44px]"
                         >
-                            <ExternalLinkIcon className="w-3 h-3" />
-                            <span>Need precision? Get a 0.01g Scale</span>
+                            <div className="flex items-center gap-2">
+                                <div className="p-1.5 bg-emerald-50 rounded-lg group-hover:bg-emerald-100 transition-colors">
+                                    <ExternalLinkIcon className="w-3.5 h-3.5 text-emerald-600" />
+                                </div>
+                                <span className="text-[11px] font-bold text-slate-600 group-hover:text-emerald-700 transition-colors">
+                                    Need precision? Get a 0.01g Scale
+                                </span>
+                            </div>
+                            <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-emerald-500 transition-colors" />
                         </ExternalLink>
                     )}
                 </div>

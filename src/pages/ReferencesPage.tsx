@@ -56,15 +56,13 @@ const ReferencesPage: React.FC = () => {
         <div className="text-center">
           <BookOpenIcon className="mx-auto h-12 w-12 text-dlp-brand" />
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl">{t('common.technical_references')}</h1>
-          <p className="mt-4 text-lg text-slate-600 ">
-            A curated collection of books, standards, and resources to deepen your knowledge.
-          </p>
+          <p className="mt-4 text-lg text-slate-600 ">{t('common:a_curated_collection_of_books_standards_and_resources_to_dee')}</p>
         </div>
 
         <div className="mt-10">
           <Section title={t('general.pizza__official_rules_and_associations')}>
             <ReferenceItem
-              title="Associazione Verace Pizza Napoletana (AVPN)"
+              title={t('common:associazione_verace_pizza_napoletana_avpn')}
               type="Association / Standard"
               description="The organization that defines and protects the rules of authentic Neapolitan pizza. The official website contains the international regulations."
               link="https://www.pizzanapoletana.org/"
@@ -78,7 +76,7 @@ const ReferencesPage: React.FC = () => {
 
           <Section title={t('general.baking__technical_books')}>
             <ReferenceItem
-              title="Le Goût du Pain (The Taste of Bread)"
+              title={t('common:le_go_t_du_pain_the_taste_of_bread')}
               type={t('general.book')}
               description="By Raymond Calvel. Considered one of the pillars of modern baking, focuses on the importance of temperature control and autolyse."
             />
@@ -94,7 +92,7 @@ const ReferencesPage: React.FC = () => {
             />
           </Section>
 
-          <Section title="Flour – Technical Data and Strength (W)">
+          <Section title={t('common:flour_technical_data_and_strength_w')}>
             <ReferenceItem
               title={t('general.chopin_alveograph')}
               type={t('general.technical_concept')}

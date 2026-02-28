@@ -1,65 +1,176 @@
 ---
-description: How to deploy DoughLabPro to Firebase Hosting
+description: Deployment command for production releases. Pre-flight checks and deployment execution.
 ---
 
-# Deploy DoughLabPro to Firebase Hosting
+# /deploy - Production Deployment
 
-This workflow guides you through deploying the DoughLabPro application to Firebase Hosting.
+$ARGUMENTS
 
-## Prerequisites
-- Firebase CLI installed (`firebase-tools` is in devDependencies)
-- Firebase project configured
-- Authenticated with Firebase CLI
+---
 
-## Deployment Steps
+## Purpose
 
-### 1. Build the production bundle
-// turbo
-```bash
-npm run build
+This command handles production deployment with pre-flight checks, deployment execution, and verification.
+
+---
+
+## Sub-commands
+
 ```
-This creates an optimized production build in the `dist` folder.
-
-### 2. Deploy to Firebase Hosting
-// turbo
-```bash
-npx firebase deploy --only hosting
-```
-This deploys the contents of the `dist` folder to Firebase Hosting.
-
-## Alternative: Full Firebase Deploy
-
-If you need to deploy Firestore rules, Storage rules, and Functions as well:
-
-```bash
-npx firebase deploy
+/deploy            - Interactive deployment wizard
+/deploy check      - Run pre-deployment checks only
+/deploy preview    - Deploy to preview/staging
+/deploy production - Deploy to production
+/deploy rollback   - Rollback to previous version
 ```
 
-## Verification
+---
 
-After deployment:
-1. Check the Firebase Console for the hosting URL
-2. Visit the deployed site to verify it's working correctly
-3. Test key features:
-   - Authentication
-   - Calculator functionality
-   - Community features
-   - MyLab features
+## Pre-Deployment Checklist
 
-## Troubleshooting
+Before any deployment:
 
-### Build Errors
-- Run `npm run build` locally first to catch any TypeScript or build errors
-- Fix any errors before attempting deployment
+```markdown
+## 🚀 Pre-Deploy Checklist
 
-### Authentication Issues
-- Ensure Firebase authentication is properly configured
-- Check that authorized domains include your Firebase hosting domain
+### Code Quality
+- [ ] No TypeScript errors (`npx tsc --noEmit`)
+- [ ] ESLint passing (`npx eslint .`)
+- [ ] All tests passing (`npm test`)
 
-### Missing Environment Variables
-- Verify all Firebase config is properly set in `src/config/firebase.ts`
+### Security
+- [ ] No hardcoded secrets
+- [ ] Environment variables documented
+- [ ] Dependencies audited (`npm audit`)
 
-## Notes
-- The `firebase.json` configuration points to the `dist` folder as the public directory
-- All routes are rewritten to `/index.html` for SPA routing support
-- The deployment includes Firestore rules, Storage rules, and Functions if configured
+### Performance
+- [ ] Bundle size acceptable
+- [ ] No console.log statements
+- [ ] Images optimized
+
+### Documentation
+- [ ] README updated
+- [ ] CHANGELOG updated
+- [ ] API docs current
+
+### Ready to deploy? (y/n)
+```
+
+---
+
+## Deployment Flow
+
+```
+┌─────────────────┐
+│  /deploy        │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Pre-flight     │
+│  checks         │
+└────────┬────────┘
+         │
+    Pass? ──No──► Fix issues
+         │
+        Yes
+         │
+         ▼
+┌─────────────────┐
+│  Build          │
+│  application    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Deploy to      │
+│  platform       │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Health check   │
+│  & verify       │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  ✅ Complete    │
+└─────────────────┘
+```
+
+---
+
+## Output Format
+
+### Successful Deploy
+
+```markdown
+## 🚀 Deployment Complete
+
+### Summary
+- **Version:** v1.2.3
+- **Environment:** production
+- **Duration:** 47 seconds
+- **Platform:** Vercel
+
+### URLs
+- 🌐 Production: https://app.example.com
+- 📊 Dashboard: https://vercel.com/project
+
+### What Changed
+- Added user profile feature
+- Fixed login bug
+- Updated dependencies
+
+### Health Check
+✅ API responding (200 OK)
+✅ Database connected
+✅ All services healthy
+```
+
+### Failed Deploy
+
+```markdown
+## ❌ Deployment Failed
+
+### Error
+Build failed at step: TypeScript compilation
+
+### Details
+```
+error TS2345: Argument of type 'string' is not assignable...
+```
+
+### Resolution
+1. Fix TypeScript error in `src/services/user.ts:45`
+2. Run `npm run build` locally to verify
+3. Try `/deploy` again
+
+### Rollback Available
+Previous version (v1.2.2) is still active.
+Run `/deploy rollback` if needed.
+```
+
+---
+
+## Platform Support
+
+| Platform | Command | Notes |
+|----------|---------|-------|
+| Vercel | `vercel --prod` | Auto-detected for Next.js |
+| Railway | `railway up` | Needs Railway CLI |
+| Fly.io | `fly deploy` | Needs flyctl |
+| Docker | `docker compose up -d` | For self-hosted |
+
+---
+
+## Examples
+
+```
+/deploy
+/deploy check
+/deploy preview
+/deploy production --skip-tests
+/deploy rollback
+```

@@ -25,9 +25,7 @@ const ToppingsPage: React.FC = () => {
             <div className="text-center">
                 <PizzaSliceIcon className="mx-auto h-12 w-12 text-dlp-brand" />
                 <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('common.toppings_library')}</h1>
-                <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
-                    Explore classic and modern pizza topping combinations, with quantity guides for different sizes.
-                </p>
+                <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">{t('common:explore_classic_and_modern_pizza_topping_combinations_with_q')}</p>
             </div>
 
             <div className="mt-12 space-y-12">
@@ -59,10 +57,10 @@ const ToppingsPage: React.FC = () => {
                                                 <thead className="bg-dlp-bg-muted">
                                                     <tr>
                                                         <th className="px-6 py-3 font-medium text-dlp-text-secondary">{t('general.size')}</th>
-                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Sauce (g)</th>
-                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Cheese (g)</th>
-                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Topping (g)</th>
-                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">Finish Oil (g)</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">{t('common:sauce_g')}</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">{t('common:cheese_g')}</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">{t('common:topping_g')}</th>
+                                                        <th className="px-6 py-3 font-medium text-dlp-text-secondary text-right">{t('common:finish_oil_g')}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-dlp-border">

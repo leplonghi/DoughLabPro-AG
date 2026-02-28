@@ -72,6 +72,8 @@ export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
     [RecipeStyle.COOKIE_SHORTBREAD]: 'shortbread',
     [RecipeStyle.FRENCH_CROISSANT]: 'croissant',
     [RecipeStyle.PUFF_PASTRY]: 'puff_pastry',
+    [RecipeStyle.PANETTONE_ARTISANAL]: 'panettone',
+    [RecipeStyle.ENRICHED_LOAF]: 'pao_de_leite',
 
     // Legacy
     [RecipeStyle.NY_STYLE]: 'nyc_thin',

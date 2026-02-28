@@ -9,51 +9,61 @@ export default {
             colors: {
                 dlp: {
                     bg: {
-                        DEFAULT: '#FFFFFF',
-                        soft: '#e9ecf0ff',
-                        card: '#fffffffd',
-                        muted: '#F3F4F6',
+                        DEFAULT: 'var(--dlp-bg)',
+                        soft: 'var(--dlp-bg-soft)',
+                        card: 'var(--dlp-bg-card)',
+                        muted: '#F8FAFC',
                     },
                     text: {
-                        primary: '#111827',
-                        secondary: '#7d8692ff',
-                        muted: '#a6acb8ff',
+                        primary: 'var(--dlp-text-primary)',
+                        secondary: 'var(--dlp-text-secondary)',
+                        muted: 'var(--dlp-text-muted)',
                         inverted: '#FFFFFF',
                     },
-                    accent: {
-                        DEFAULT: '#3e8b32ff',
-                        hover: '#36782c',
-                        light: '#ECFCCB',
-                        dark: '#216416ff',
-                    },
+                    // Primary Brand Color (Lime-Green)
                     brand: {
-                        DEFAULT: '#51a145',
-                        hover: '#36782c',
-                        green: '#3e8b32ff',
-                        dark: '#216416ff',
-                        lime: '#51a145',
+                        DEFAULT: 'var(--dlp-brand)',
+                        hover: 'var(--dlp-brand-hover)',
+                        light: 'var(--dlp-brand-light)',
+                        dark: 'var(--dlp-brand-dark)',
                     },
-                    // Semantic names for Refactor
-                    primary: '#51a145', // Brand Green
-                    surface: {
-                        flour: '#FDFBF7', // Off-white typical of flour
-                        water: '#F0F9FF', // Light blue hint
+                    // Action/Accent Color (Often same as brand, but semantic separation)
+                    accent: {
+                        DEFAULT: 'var(--dlp-accent)',
+                        hover: 'var(--dlp-accent-hover)',
+                        warm: 'var(--dlp-accent-warm)',
                     },
-                    success: '#669225ff',
+                    // Status Colors
+                    success: '#669225', // Consider moving to var if used often
                     warning: '#F59E0B',
                     error: '#EF4444',
-                    border: '#E5E7EB',
+                    info: '#3B82F6',
+                    border: {
+                        DEFAULT: 'var(--dlp-border)',
+                        strong: 'var(--dlp-border-strong)',
+                    },
                 }
+            },
+            zIndex: {
+                '0': '0',
+                '10': '10',  // Badges, decor
+                '20': '20',  // Sticky elements
+                '30': '30',  // Dropdowns, popovers
+                '40': '40',  // Modals, drawers
+                '50': '50',  // Critical overlays (Nav)
+                'toast': '100', // Toasts, Notifications
+                'max': '9999',  // Debug, Critical
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
                 heading: ['Outfit', 'sans-serif'],
             },
             boxShadow: {
-                'dlp-sm': '0 1px 2px rgba(0, 0, 0, 0.04)',
-                'dlp-md': '0 4px 6px rgba(0, 0, 0, 0.06)',
-                'dlp-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                'dlp-sm': 'var(--dlp-shadow-sm)',
+                'dlp-md': 'var(--dlp-shadow-md)',
+                'dlp-lg': 'var(--dlp-shadow-lg)',
                 'dlp-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                'premium': 'var(--dlp-shadow-premium)',
             },
             animation: {
                 'slide-up': 'slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards',

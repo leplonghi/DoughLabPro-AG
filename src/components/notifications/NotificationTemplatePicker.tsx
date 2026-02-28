@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React, { useState } from 'react';
 import { STYLE_NOTIFICATION_PLANS, scheduleStyleNotifications, NotificationTemplate } from '@/services/notificationTemplates';
 import { useNotifications } from '@/contexts/NotificationContext';
@@ -10,6 +11,7 @@ interface TemplatePickerProps {
 }
 
 export const NotificationTemplatePicker: React.FC<TemplatePickerProps> = ({ styleId, onApply }) => {
+    const { t } = useTranslation();
     const { scheduleNotification } = useNotifications();
     const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
     const [startTime, setStartTime] = useState<string>(new Date().toISOString().slice(0, 16));
@@ -51,12 +53,8 @@ export const NotificationTemplatePicker: React.FC<TemplatePickerProps> = ({ styl
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                    Notification Templates
-                </h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Pre-configured notification plans for different dough styles
-                </p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t('common:notification_templates')}</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{t('common:pre_configured_notification_plans_for_different_dough_styles')}</p>
             </div>
 
             {/* Style Plans */}
@@ -95,7 +93,7 @@ export const NotificationTemplatePicker: React.FC<TemplatePickerProps> = ({ styl
 
             {/* Template Details */}
             {currentPlan && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-6">
+                <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-6 space-y-6">
                     <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                             {currentPlan.styleName} - Notification Timeline
@@ -103,22 +101,18 @@ export const NotificationTemplatePicker: React.FC<TemplatePickerProps> = ({ styl
 
                         {/* Start Time Input */}
                         <div className="mb-6">
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Start Time
-                            </label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('common:start_time')}</label>
                             <input
                                 type="datetime-local"
                                 value={startTime}
                                 onChange={(e) => setStartTime(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-slate-800"
                             />
                         </div>
 
                         {/* Variables */}
                         <div className="mb-6">
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Template Variables
-                            </label>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('common:template_variables')}</label>
                             <div className="grid grid-cols-2 gap-3">
                                 {Object.keys(variables).map((key) => (
                                     <div key={key}>
@@ -129,7 +123,7 @@ export const NotificationTemplatePicker: React.FC<TemplatePickerProps> = ({ styl
                                             type="text"
                                             value={variables[key]}
                                             onChange={(e) => setVariables({ ...variables, [key]: e.target.value })}
-                                            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-slate-800"
                                         />
                                     </div>
                                 ))}
@@ -158,9 +152,7 @@ export const NotificationTemplatePicker: React.FC<TemplatePickerProps> = ({ styl
                     >
                         {loading ? (
                             <>
-                                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
-                                Applying...
-                            </>
+                                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />{t('common:applying')}</>
                         ) : (
                             <>
                                 <Zap className="w-5 h-5" />
@@ -174,7 +166,7 @@ export const NotificationTemplatePicker: React.FC<TemplatePickerProps> = ({ styl
             {/* Info Box */}
             <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
-                    💡 <strong>Tip:</strong> Templates automatically schedule all notifications for the selected style.
+                    💡 <strong>{t('learn:tip')}</strong> Templates automatically schedule all notifications for the selected style.
                     You can customize variables like temperature, duration, and count before applying.
                 </p>
             </div>

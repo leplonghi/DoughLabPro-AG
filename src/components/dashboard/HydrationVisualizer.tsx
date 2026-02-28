@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 
 import React, { useMemo } from 'react';
 
@@ -6,6 +7,7 @@ interface HydrationVisualizerProps {
 }
 
 export const HydrationVisualizer: React.FC<HydrationVisualizerProps> = ({ hydration }) => {
+    const { t } = useTranslation();
     const { color, label, widthPct } = useMemo(() => {
         let color = 'bg-dlp-brand';
         let label = 'Standard';
@@ -32,7 +34,7 @@ export const HydrationVisualizer: React.FC<HydrationVisualizerProps> = ({ hydrat
         <div className="w-full space-y-1">
             <div className="flex justify-between text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-semibold">
                 <span>Stiff (50%)</span>
-                <span>Standard</span>
+                <span>{t('styles:standard_23')}</span>
                 <span>High (80%+)</span>
             </div>
             <div className="h-3 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden relative">

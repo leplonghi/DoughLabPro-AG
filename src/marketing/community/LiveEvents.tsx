@@ -4,7 +4,7 @@ import { useTranslation } from '@/i18n';
 export const LiveEvents: React.FC = () => {
   const { t } = useTranslation();
     return (
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden mb-6">
+        <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden mb-6">
             <div className="relative aspect-video bg-black">
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">

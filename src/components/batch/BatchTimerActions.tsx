@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React from 'react';
 import { useBatchNotifications } from '@/hooks/useNotificationIntegration';
 import { Batch, TechnicalStep } from '@/types';
@@ -9,6 +10,7 @@ interface BatchTimerActionsProps {
 }
 
 export const BatchTimerActions: React.FC<BatchTimerActionsProps> = ({ batch, steps = [] }) => {
+    const { t } = useTranslation();
     const { startBulkFermentationTimer, startProofTimer, scheduleBatchNotifications } = useBatchNotifications();
     const [loading, setLoading] = React.useState(false);
 
@@ -50,10 +52,10 @@ export const BatchTimerActions: React.FC<BatchTimerActionsProps> = ({ batch, ste
     };
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 space-y-3">
+        <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-4 space-y-3">
             <div className="flex items-center gap-2 mb-3">
                 <Bell className="w-5 h-5 text-green-600" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Timer Actions</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t('common:timer_actions')}</h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -83,13 +85,11 @@ export const BatchTimerActions: React.FC<BatchTimerActionsProps> = ({ batch, ste
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     <Clock className="w-4 h-4" />
-                    <span className="font-medium">Schedule All Notifications</span>
+                    <span className="font-medium">{t('common:schedule_all_notifications')}</span>
                 </button>
             )}
 
-            <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-                Timers will send notifications at key moments
-            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 text-center">{t('common:timers_will_send_notifications_at_key_moments')}</p>
         </div>
     );
 };

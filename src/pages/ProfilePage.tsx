@@ -22,9 +22,9 @@ import {
   UploadIcon,
 } from '@/components/ui/Icons';
 import { ImageUpload } from '@/components/ui/ImageUpload';
-import { User, Gender, Oven, Page, Levain, UnitSystem } from '@/types';
-import OvenModal from '@/components/OvenModal';
-import LevainModal from '@/components/LevainModal';
+import { User, Gender, Oven, Page, Levain, UnitSystem, OvenType } from '@/types';
+import OvenModal from '@/components/modals/OvenModal';
+import LevainModal from '@/components/modals/LevainModal';
 import { LockFeature } from '@/components/auth/LockFeature';
 
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
@@ -50,8 +50,19 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     deleteLevain,
     setDefaultLevain,
     goals,
-    batches
+    batches,
+    // Settings
+    settings: userSettings,
+    setDefaultAmbientTempC,
+    setDefaultOvenType,
+    // Unit System logic is essentially local or context based, but we can read from settings if needed
   } = useUser();
+  // We need to access unit system state to display correct labels if needed, 
+  // though typically this is in CalculatorContext. For now, we assume user might want to see units.
+  // Ideally, useCalculator would provide this, but we are in Profile.
+  // Let's rely on a local state or just metric for the inputs as stored.
+  const [settingsUnitSystem] = useState<UnitSystem>(UnitSystem.METRIC);
+
   const { t } = useTranslation(['common', 'profile', 'auth']);
 
   const [activeTab, setActiveTab] = useState<'overview' | 'mylab' | 'settings'>('overview');
@@ -474,6 +485,74 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       </div>
                     ))
                   )}
+                </div>
+              </div>
+
+              {/* Environment Section */}
+              <div className="bg-white rounded-3xl p-6 shadow-lg border border-slate-100">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-sky-100 text-sky-600 rounded-xl">
+                    <GlobeAltIcon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold text-slate-800">{t('general.environment_defaults', { defaultValue: 'Lab Environment' })}</h2>
+                    <p className="text-xs text-slate-500">{t('settings_page.using_temp_as_base', { temp: userSettings?.defaultAmbientTempC || 23 })}</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Ambient Temp Controls */}
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">
+                      {t('community_detail.ambient_temp')} ({settingsUnitSystem === UnitSystem.METRIC ? '°C' : '°F'})
+                    </label>
+                    <div className="flex items-center gap-4">
+                      <div className="relative flex-1">
+                        <input
+                          type="range"
+                          min="15"
+                          max="40"
+                          step="0.5"
+                          value={userSettings?.defaultAmbientTempC || 23}
+                          onChange={(e) => setDefaultAmbientTempC(Number(e.target.value))}
+                          className="w-full accent-dlp-brand h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+                        />
+                        <div className="flex justify-between text-xs text-slate-400 mt-1 font-mono">
+                          <span>15°</span>
+                          <span>25°</span>
+                          <span>35°</span>
+                          <span>40°</span>
+                        </div>
+                      </div>
+                      <div className="w-16 text-center">
+                        <span className="text-2xl font-bold text-slate-800">{userSettings?.defaultAmbientTempC || 23}</span>
+                        <span className="text-xs text-slate-500 block">°C</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Oven Type Controls */}
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">
+                      {t('common.default_oven_type')}
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {Object.values(OvenType).map((type) => (
+                        <button
+                          key={type}
+                          onClick={() => setDefaultOvenType(type)}
+                          className={`
+                            px-3 py-2 rounded-xl text-sm font-medium transition-all border
+                            ${userSettings?.defaultOvenType === type
+                              ? 'bg-dlp-brand text-white border-dlp-brand shadow-md transform scale-[1.02]'
+                              : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50'}
+                          `}
+                        >
+                          {t(`profile.ovens.types.${type.toLowerCase()}`) || type}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
 

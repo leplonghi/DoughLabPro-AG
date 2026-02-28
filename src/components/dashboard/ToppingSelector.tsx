@@ -53,7 +53,7 @@ export const ToppingSelector: React.FC<ToppingSelectorProps> = ({
                                 return found ? found.name : '';
                             }}
                             onChange={(event) => setQuery(event.target.value)}
-                            placeholder="Select flavor profile..."
+                            placeholder={t('common:select_flavor_profile')}
                         />
                         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
                             <ChevronsUpDown
@@ -71,9 +71,7 @@ export const ToppingSelector: React.FC<ToppingSelectorProps> = ({
                     >
                         <Combobox.Options anchor="bottom" className="w-[var(--input-width)] max-h-60 overflow-auto rounded-xl bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-50 empty:invisible">
                             {filteredToppings.length === 0 && query !== '' ? (
-                                <div className="relative cursor-default select-none px-4 py-2 text-slate-500 italic">
-                                    Nothing found.
-                                </div>
+                                <div className="relative cursor-default select-none px-4 py-2 text-slate-500 italic">{t('common:nothing_found')}</div>
                             ) : (
                                 <>
                                     {Object.entries(grouped).map(([category, items]) => (
@@ -123,9 +121,7 @@ export const ToppingSelector: React.FC<ToppingSelectorProps> = ({
                                     }}
                                     className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm font-bold text-[#51a145] hover:bg-[#51a145]/10 rounded-lg transition-colors cursor-pointer"
                                 >
-                                    <Plus size={16} />
-                                    Create New Preset
-                                </button>
+                                    <Plus size={16} />{t('common:create_new_preset')}</button>
                             </div>
                         </Combobox.Options>
                     </Transition>

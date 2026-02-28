@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useTranslation } from '@/i18n';
 import { useRouter } from '@/contexts/RouterContext';
 import { allLearnArticles, learnCategories } from '@/data/learn';
-import { LibraryPageLayout } from './LibraryPageLayout';
+import { LibraryPageLayout } from '../../components/layouts/LibraryPageLayout';
 import { MagnifyingGlassIcon, ChevronDownIcon, ChevronUpIcon, BookOpenIcon } from '@/components/ui/Icons';
 
 export const AllArticlesPage: React.FC = () => {

@@ -23,7 +23,7 @@ export const california_style: DoughStyleDefinition = {
 
   description: "California-style pizza emerged in the 1980s as part of the California Cuisine movement, pioneered by Wolfgang Puck at Spago and Alice Waters at Chez Panisse. It features thin crusts topped with fresh, unconventional, gourmet ingredients that celebrate local, seasonal produce.",
 
-  history: "California-style pizza was born from the innovative spirit of California Cuisine in the early 1980s. Chef Ed LaDou, working at Prego Restaurant, began experimenting with unique toppings like ricotta, red peppers, pâté, and mustard. Wolfgang Puck was so impressed that he hired LaDou to lead Spago's pizza program when it opened in 1982. Together, they developed over 250 pizza concepts, moving beyond traditional pepperoni to embrace sophisticated flavors. Alice Waters at Chez Panisse also pioneered wood-fired pizzas with unusual, locally sourced toppings like leeks and duck confit starting in 1980. Spago became famous for Puck's signature smoked salmon pizza with dill crème fraîche, smoked salmon, caviar, and caramelized shallots. The style emphasized open kitchens centered around wood-burning ovens, fresh California ingredients, and creative freedom.",
+  history: "California-style pizza was born from the innovative spirit of California Cuisine in the early 1980s. The pivotal moment came when Chef Ed LaDou, working at Prego, was discovered by Wolfgang Puck. Puck hired him as the first pizza chef at Spago in 1982, where they defied tradition with toppings like smoked salmon, caviar, and duck sausage. In 1985, LaDou created the BBQ Chicken Pizza for the menu of the first California Pizza Kitchen (CPK), cementing the style's place in culinary history. Alice Waters at Chez Panisse simultaneously championed the 'garden-to-table' approach, using wood-fired ovens for pizzas topped with seasonal, locally sourced vegetables, effectively creating the 'salad pizza' concept.",
 
   difficulty: "Medium",
   fermentationType: "cold",
@@ -38,10 +38,10 @@ export const california_style: DoughStyleDefinition = {
   ],
 
   technicalProfile: {
-    hydration: [60, 68],
+    hydration: [58, 65], // Moderate hydration for handling
     salt: [2, 2.5],
-    oil: [2, 5],
-    sugar: [1, 3],
+    oil: [3, 5], // Higher oil content for tenderness and flavor
+    sugar: [2, 4], // Often uses Honey or Sugar for browning and flavor balance w/ savory toppings
     flourStrength: "Bread flour or all-purpose, moderate protein (11-12.5%)",
     ovenTemp: [370, 480],
     recommendedUse: [
@@ -49,7 +49,7 @@ export const california_style: DoughStyleDefinition = {
       "Individual-sized pizzas for upscale casual dining"
     ],
     difficulty: "Medium",
-    ballWeight: { recommended: 250, min: 200, max: 300 },
+    ballWeight: { recommended: 250, min: 200, max: 1000 },
     fermentationSteps: [
       "Mix: Combine flour, water, salt, oil, and yeast until just incorporated. [Science: Minimal mixing prevents excessive gluten development, keeping crust tender]",
       "Bulk Fermentation: 12-24 hours cold retard at 4°C. [Science: Long cold fermentation develops complex flavors through enzymatic activity and slow yeast metabolism]",
@@ -84,64 +84,64 @@ export const california_style: DoughStyleDefinition = {
   education: {
     pro_tips: [
       {
-        tip: "Use seasonal ingredients",
-        explanation: "The essence of California style is fresh, local, seasonal produce. Change your toppings with the seasons."
+        tip: "Honey is the Secret",
+        explanation: "Many California dough recipes replace sugar with Honey. This adds a unique floral sweetness that pairs perfectly with goat cheese and figs, common toppings in this style."
       },
       {
-        tip: "Don't overload",
-        explanation: "Thin crust can't support heavy toppings. Use restraint - 3-4 quality ingredients maximum."
+        tip: "The 'Salad' Bake",
+        explanation: "For topped pizzas with greens (arugula, mixed greens), bake the crust with just olive oil and garlic first, then toss the greens in vinaigrette and top the pizza AFTER it comes out of the oven."
       },
       {
-        tip: "Wood-fired is ideal",
-        explanation: "High heat (700-900°F) cooks pizza in 2-4 minutes, creating char while keeping toppings fresh."
+        tip: "Ed LaDou's BBQ Sauce",
+        explanation: "When making BBQ Chicken pizza, mix a little tomato sauce into your BBQ sauce (50/50 blend) to prevent the sugars in the BBQ sauce from burning too quickly in a high-heat oven."
       }
     ],
     what_if: [
       {
-        scenario: "Crust becomes soggy",
-        result: "Too many wet toppings or insufficient oven heat",
-        correction: "Pre-cook watery vegetables, use less sauce, increase oven temperature"
+        scenario: "Crust is soggy under veggies",
+        result: "Moisture release from fresh vegetables",
+        correction: "Sauté vegetables like mushrooms or spinach beforehand to release moisture, or slice ingredients like zucchini paper-thin."
       },
       {
-        scenario: "Toppings burn before crust cooks",
-        result: "Oven too hot or delicate ingredients added too early",
-        correction: "Lower temperature slightly, add delicate items like arugula after baking"
+        scenario: "Dough is too elastic/springy",
+        result: "Flour protein too high (using 100% Bread Flour)",
+        correction: "Cut the bread flour with 20% All-Purpose or Pastry flour to reduce chewiness. California crust should yield, not fight back."
       }
     ],
     comparative_analysis: [
       {
         target_style: "Neapolitan",
-        difference: "California is thinner and crispier with gourmet toppings; Neapolitan is soft with simple traditional ingredients",
-        why_choose_this: "Choose California style for creative, seasonal, gourmet pizza experience"
+        difference: "California is structured to support heavy/gourmet toppings; Neapolitan is delicate and minimalist. California dough often contains oil and sugar/honey; Neapolitan never does.",
+        why_choose_this: "Choose California when the toppings are the star of the show."
       },
       {
         target_style: "New York",
-        difference: "California emphasizes gourmet ingredients and creativity; NY focuses on classic simplicity and foldability",
-        why_choose_this: "Choose California for upscale dining with wine pairings"
+        difference: "NY is a street food slice; California is a sit-down variety. California crust is often lighter, less chewy, and 'pastry-like' due to higher oil/honey.",
+        why_choose_this: "Choose California for a more refined, less greasy experience."
       }
     ],
     q_and_a: [
       {
-        question: "What makes California-style pizza different?",
-        answer: "Creative, gourmet toppings featuring fresh, seasonal, local ingredients. Pioneered by Wolfgang Puck and Alice Waters in the 1980s.",
-        context: "California Cuisine movement"
+        question: "Is BBQ Chicken Pizza essentially California Style?",
+        answer: "Yes, it is the poster child of the style. Created by Ed LaDou for CPK in 1985, it broke the rule that pizza sauce must be tomato-based.",
+        context: "History"
       },
       {
-        question: "Who invented California-style pizza?",
-        answer: "Alice Waters at Chez Panisse (1980) and Wolfgang Puck at Spago (1982). Chef Ed LaDou developed over 250 concepts with Puck.",
-        context: "Pizza history"
+        question: "Why use honey?",
+        answer: "Honey promotes faster browning at lower temperatures and adds a flavor profile that complements the sweet/savory 'California Cuisine' palette (e.g., pear and gorgonzola).",
+        context: "Ingredients"
       }
     ],
     fermentation_methods: [
       {
         method: "Direct",
-        suitability: "Possible",
-        notes: "Works but loses complexity. Cold retard is preferred for authentic California style."
+        suitability: "Authentic",
+        notes: "Most common in commercial chains like CPK. 24h cold rise is standard for quality."
       },
       {
-        method: "Hybrid",
-        suitability: "Authentic",
-        notes: "Cold Retard. 12-24 hours cold fermentation develops the complex flavors characteristic of California style."
+        method: "Sourdough",
+        suitability: "Ideal",
+        notes: "San Francisco Sourdough culture is often used to add local terroir to the crust."
       }
     ]
   },

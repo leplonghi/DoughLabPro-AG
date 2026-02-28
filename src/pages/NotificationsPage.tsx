@@ -5,7 +5,7 @@ import { NotificationList } from '@/components/notifications/NotificationList';
 import { NotificationAnalyticsDashboard } from '@/components/notifications/NotificationAnalyticsDashboard';
 import { NotificationTemplatePicker } from '@/components/notifications/NotificationTemplatePicker';
 import { Bell, Clock, Settings, List, BarChart3, Sparkles } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 
 
 type TabType = 'timers' | 'notifications' | 'settings' | 'analytics' | 'templates';
@@ -24,25 +24,21 @@ export const NotificationsPage: React.FC = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4">
+        <div className="min-h-screen bg-gray-50 dark:bg-white py-8 px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
                         <Bell className="w-8 h-8 text-green-600" />
-                        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                            Notifications & Timers
-                        </h1>
+                        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t('common:notifications_timers')}</h1>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        Manage your baking timers and notification preferences
-                    </p>
+                    <p className="text-gray-600 dark:text-gray-400">{t('common:manage_your_baking_timers_and_notification_preferences')}</p>
                 </div>
 
                 {/* Tabs */}
                 <div className="mb-6">
                     <div className="border-b border-gray-200 dark:border-gray-700">
-                        <nav className="flex gap-4" aria-label="Tabs">
+                        <nav className="flex gap-4" aria-label={t('ui:mylab.tabs_2')}>
                             {tabs.map((tab) => {
                                 const Icon = tab.icon;
                                 const isActive = activeTab === tab.id;

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Page, Batch, DoughConfig, BatchStatus } from '@/types';
 import { ChartBarIcon, PlusCircleIcon, CheckCircleIcon, ArrowLeftIcon } from '@/components/ui/Icons';
-import MyLabLayout from './MyLabLayout';
+import MyLabLayout from '@/components/layouts/MyLabLayout';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
@@ -48,7 +48,7 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
     const selectedBatches = validBatches.filter(b => selectedBatchIds.includes(b.id));
 
     return (
-        <MyLabLayout activePage="mylab/comparacoes" onNavigate={onNavigate}>
+        <MyLabLayout activePage="mylab/comparisons" onNavigate={onNavigate}>
             <div className="animate-fade-in pb-20">
                 <LockFeature featureKey="mylab.unlimited_advanced" customMessage="Unlock Batch Comparisons with Lab Pro.">
                     {!isComparing ? (

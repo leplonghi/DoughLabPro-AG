@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 
 import React from 'react';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
@@ -5,6 +6,7 @@ import { HydrationVisualizer } from '../HydrationVisualizer';
 import { Minus, Plus } from 'lucide-react';
 
 export const LabSection: React.FC = () => {
+    const { t } = useTranslation();
     const { session, updateDough } = useDoughSession();
     const { dough } = session;
 
@@ -22,8 +24,8 @@ export const LabSection: React.FC = () => {
             <div className="grid grid-cols-2 gap-4">
 
                 {/* Yield Counter */}
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <label className="block text-xs uppercase tracking-wider text-slate-500 mb-2">Yield (Balls)</label>
+                <div className="bg-slate-50 dark:bg-slate-50/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <label className="block text-xs uppercase tracking-wider text-slate-500 mb-2">{t('common:yield_balls')}</label>
                     <div className="flex items-center justify-between">
                         <button
                             onClick={() => setBalls(dough.yieldCount - 1)}
@@ -42,8 +44,8 @@ export const LabSection: React.FC = () => {
                 </div>
 
                 {/* Weight Input */}
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <label className="block text-xs uppercase tracking-wider text-slate-500 mb-2">Ball Weight (g)</label>
+                <div className="bg-slate-50 dark:bg-slate-50/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <label className="block text-xs uppercase tracking-wider text-slate-500 mb-2">{t('common:ball_weight_g')}</label>
                     <div className="flex items-center justify-between">
                         <button
                             onClick={() => setWeight(dough.ballWeight - 10)}
@@ -63,9 +65,9 @@ export const LabSection: React.FC = () => {
             </div>
 
             {/* Hydration Slider & Viz */}
-            <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div className="bg-slate-50 dark:bg-slate-50/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
                 <div className="flex justify-between items-center mb-4">
-                    <label className="text-xs uppercase tracking-wider text-slate-500">Hydration</label>
+                    <label className="text-xs uppercase tracking-wider text-slate-500">{t('calculator:form.hydration')}</label>
                     <span className="text-xl font-bold font-mono text-slate-900 dark:text-white">{dough.hydration}%</span>
                 </div>
 
@@ -83,9 +85,9 @@ export const LabSection: React.FC = () => {
             </div>
 
             {/* Salt Input */}
-            <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div className="bg-slate-50 dark:bg-slate-50/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
                 <div className="flex justify-between items-center mb-2">
-                    <label className="text-xs uppercase tracking-wider text-slate-500">Salt Percentage</label>
+                    <label className="text-xs uppercase tracking-wider text-slate-500">{t('common:salt_percentage')}</label>
                     <span className="text-xl font-bold font-mono text-slate-900 dark:text-white">{dough.salt}%</span>
                 </div>
                 <input

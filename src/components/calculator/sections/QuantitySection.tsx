@@ -1,12 +1,14 @@
+
 import React from 'react';
 import { DoughConfig, CalculationMode, FormErrors } from '@/types';
-import { ListBulletIcon, InfoIcon, ClockIcon } from '@/components/ui/Icons';
-import ChoiceButton from '@/components/ui/ChoiceButton';
+import { ListBulletIcon, ClockIcon, ScaleIcon, CalculatorIcon } from '@/components/ui/Icons';
 import AccordionSection from '@/components/calculator/AccordionSection';
 import { useTranslation } from '@/i18n';
+import { InfoTooltip } from '@/components/ui/InfoTooltip';
 import TargetTimeInput from '../TargetTimeInput';
 
 interface QuantitySectionProps {
+    id?: string;
     config: DoughConfig;
     calculationMode: CalculationMode;
     onCalculationModeChange: (mode: CalculationMode) => void;
@@ -19,6 +21,7 @@ interface QuantitySectionProps {
 }
 
 const QuantitySection: React.FC<QuantitySectionProps> = ({
+    id,
     config,
     calculationMode,
     onCalculationModeChange,
@@ -31,137 +34,121 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
 }) => {
     const { t } = useTranslation();
 
+    const MODES = [
+        { mode: 'mass' as CalculationMode, label: t('calculator.by_count', { defaultValue: 'By Count' }), icon: <ListBulletIcon /> },
+        { mode: 'flour' as CalculationMode, label: t('calculator.by_flour', { defaultValue: 'By Flour' }), icon: <ScaleIcon /> },
+        { mode: 'TARGET_TIME' as CalculationMode, label: t('calculator.by_time', { defaultValue: 'Schedule' }), icon: <ClockIcon /> }
+    ];
+
     return (
         <AccordionSection
+            id={id}
             index={2}
             accentColor="blue"
             title={t('calculator.quantity')}
             description={t('calculator.quantity_description')}
-            icon={<ListBulletIcon />}
+            icon={<CalculatorIcon />}
         >
-            {/* Calculation Mode Selector - Professional Segmented Control */}
-            <div className="bg-slate-100/80 p-1 rounded-2xl border border-slate-100 mb-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
-                {[
-                    { mode: 'mass' as CalculationMode, label: t('calculator.by_total_weight'), icon: null },
-                    { mode: 'flour' as CalculationMode, label: t('calculator.by_flour_weight'), icon: null },
-                    { mode: 'TARGET_TIME' as CalculationMode, label: t('calculator.by_target_time'), icon: <ClockIcon size={14} /> }
-                ].map((item) => (
-                    <button
-                        key={item.mode}
-                        onClick={() => onCalculationModeChange(item.mode)}
-                        className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-300
-                            ${calculationMode === item.mode
-                                ? 'bg-[#51a145] text-white shadow-lg shadow-[#51a145]/20'
-                                : 'bg-transparent text-slate-500 hover:text-[#51a145] hover:bg-emerald-50/50'}
-                        `}
-                    >
-                        {item.icon}
-                        {item.label}
-                    </button>
-                ))}
+            {/* 1. Compact Mode Selector */}
+            <div className="bg-slate-50 p-1 rounded-xl mb-3 flex gap-1">
+                {MODES.map((item) => {
+                    const isActive = calculationMode === item.mode;
+                    return (
+                        <button
+                            key={item.mode}
+                            onClick={() => onCalculationModeChange(item.mode)}
+                            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200 min-h-[44px]
+                                ${isActive
+                                    ? 'bg-white text-blue-600 shadow-sm border border-slate-100'
+                                    : 'text-slate-400 hover:text-blue-500 hover:bg-slate-100'
+                                }
+                            `}
+                        >
+                            {React.cloneElement(item.icon as React.ReactElement, { size: 14 })}
+                            <span className="hidden sm:inline">{item.label}</span>
+                        </button>
+                    );
+                })}
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {/* 2. Compact Input Grid */}
+            <div>
                 {calculationMode === 'flour' ? (
-                    <div className="col-span-1 sm:col-span-2">
-                        <div className="mb-2 flex items-center justify-between">
-                            <label htmlFor="totalFlour" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332]">
-                                {t('calculator.total_flour_weight')}
-                            </label>
-                            <div className="group relative">
-                                <InfoIcon className="h-4 w-4 text-[#51a145]/60 hover:text-[#51a145] cursor-help transition-all duration-300 hover:scale-125 hover:rotate-12" />
-                                <div className="pointer-events-none absolute bottom-full right-0 z-20 mb-3 w-64 p-4 rounded-2xl bg-white text-slate-700 text-xs font-normal opacity-0 shadow-2xl transition-all group-hover:opacity-100 group-hover:-translate-y-1 leading-relaxed border border-slate-200">
-                                    {t('calculator.total_flour_tooltip')}
-                                    <div className="absolute -bottom-1 right-2 w-3 h-3 bg-white rotate-45 border-r border-b border-slate-200" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="relative">
+                    <div className="bg-white p-2 rounded-xl border border-slate-100/50">
+                        <label htmlFor="totalFlour" className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                            {t('calculator.total_flour_weight')}
+                        </label>
+                        <div className="relative group">
                             <input
                                 type="number"
                                 id="totalFlour"
-                                name="totalFlour"
-                                min="100"
-                                max="50000"
                                 value={config.totalFlour || 1000}
                                 onChange={(e) => onConfigChange({ totalFlour: parseInt(e.target.value) || 0 })}
-                                className="block w-full rounded-2xl border-slate-200 bg-slate-50 py-2.5 px-4 text-xl font-bold text-slate-800 placeholder-slate-400 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none"
+                                className="block w-full rounded-lg border border-slate-200 bg-slate-50 py-3 pl-3 pr-8 text-sm font-bold text-slate-700 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 transition-all outline-none min-h-[44px]"
                             />
-                            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">GRAMS</span>
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <span className="text-[10px] font-bold text-slate-400">g</span>
+                            </div>
                         </div>
-                        <p className="mt-3 text-[10px] text-slate-400 italic">
-                            {t('calculator.total_flour_help')}
-                        </p>
                     </div>
                 ) : calculationMode === 'TARGET_TIME' ? (
-                    <div className="col-span-1 sm:col-span-2">
-                        <TargetTimeInput
-                            targetTime={config.targetTime}
-                            onTargetTimeChange={(iso) => onConfigChange({ targetTime: iso })}
-                            numPizzas={config.numPizzas}
-                            onNumPizzasChange={(n) => onConfigChange({ numPizzas: n })}
-                            ballWeight={config.doughBallWeight}
-                            onBallWeightChange={(n) => onConfigChange({ doughBallWeight: n })}
-                            minWeight={minDoughBallWeight}
-                            maxWeight={maxDoughBallWeight}
-                            errors={errors}
-                            getInputClasses={getInputClasses}
-                        />
-                    </div>
+                    <TargetTimeInput
+                        targetTime={config.targetTime}
+                        onTargetTimeChange={(iso) => onConfigChange({ targetTime: iso })}
+                        numPizzas={config.numPizzas}
+                        onNumPizzasChange={(n) => onConfigChange({ numPizzas: n })}
+                        ballWeight={config.doughBallWeight}
+                        onBallWeightChange={(n) => onConfigChange({ doughBallWeight: n })}
+                        minWeight={minDoughBallWeight}
+                        maxWeight={maxDoughBallWeight}
+                        errors={errors}
+                        getInputClasses={getInputClasses}
+                    />
                 ) : (
-                    <>
+                    <div className="grid grid-cols-2 gap-3">
                         {/* Number of Balls */}
-                        <div className="group">
-                            <div className="mb-2 flex items-center justify-between">
-                                <label htmlFor="numPizzas" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332]">
-                                    {config.bakeType === 'PIZZAS' ? t('calculator.number_of_pizzas') : t('calculator.number_of_loaves')}
-                                </label>
-                                <InfoIcon className="h-4 w-4 text-[#51a145]/60 group-hover:text-[#51a145] transition-all duration-300 group-hover:scale-125 group-hover:-rotate-12" />
-                            </div>
+                        <div className="relative bg-white p-2 rounded-xl border border-slate-100/50 shadow-sm">
+                            <label htmlFor="numPizzas" className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                                {config.bakeType === 'PIZZAS' ? 'Count' : 'Loaves'}
+                            </label>
                             <div className="relative">
                                 <input
                                     ref={numPizzasRef}
                                     type="number"
                                     id="numPizzas"
-                                    name="numPizzas"
                                     min="1"
                                     max="100"
                                     value={config.numPizzas}
                                     onChange={(e) => onConfigChange({ numPizzas: parseInt(e.target.value) || 0 })}
-                                    className={`block w-full rounded-2xl border-slate-200 bg-slate-50 py-2.5 px-4 text-xl font-bold text-slate-800 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none ${errors.numPizzas ? 'border-rose-300 bg-rose-50' : ''}`}
+                                    className={`block w-full rounded-lg bg-slate-50 border-transparent py-3 pl-2 pr-8 text-base font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-blue-500/10 transition-all outline-none min-h-[44px] ${errors.numPizzas ? 'bg-rose-50 text-rose-600' : ''}`}
                                 />
-                                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400 uppercase tracking-widest">{config.bakeType === 'PIZZAS' ? 'Pcs' : 'Units'}</span>
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                    <span className="text-[9px] font-bold text-slate-400">
+                                        PC
+                                    </span>
+                                </div>
                             </div>
-                            {errors.numPizzas && <p className="mt-2 text-[10px] font-bold text-rose-500 uppercase tracking-wider">{errors.numPizzas}</p>}
                         </div>
 
                         {/* Weight per Ball */}
-                        <div className="group">
-                            <div className="mb-2 flex items-center justify-between">
-                                <label htmlFor="doughBallWeight" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332]">
-                                    {t('calculator.weight_per_piece')}
-                                </label>
-                                <InfoIcon className="h-4 w-4 text-[#51a145]/60 group-hover:text-[#51a145] transition-all duration-300 group-hover:scale-125 group-hover:rotate-12" />
-                            </div>
+                        <div className="relative bg-white p-2 rounded-xl border border-slate-100/50 shadow-sm">
+                            <label htmlFor="doughBallWeight" className="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">{t('calculator:weight')}</label>
                             <div className="relative">
                                 <input
                                     type="number"
                                     id="doughBallWeight"
-                                    name="doughBallWeight"
                                     min={minDoughBallWeight}
                                     max={maxDoughBallWeight}
                                     value={config.doughBallWeight}
                                     onChange={(e) => onConfigChange({ doughBallWeight: parseInt(e.target.value) || 0 })}
-                                    className={`block w-full rounded-2xl border-slate-200 bg-slate-50 py-2.5 px-4 text-xl font-bold text-slate-800 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none ${errors.doughBallWeight ? 'border-rose-300 bg-rose-50' : ''}`}
+                                    className={`block w-full rounded-lg bg-slate-50 border-transparent py-3 pl-2 pr-8 text-base font-bold text-slate-700 focus:bg-white focus:ring-2 focus:ring-blue-500/10 transition-all outline-none min-h-[44px] ${errors.doughBallWeight ? 'bg-rose-50 text-rose-600' : ''}`}
                                 />
-                                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">G</span>
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                    <span className="text-[9px] font-bold text-slate-400">g</span>
+                                </div>
                             </div>
-                            <p className="mt-2 text-[9px] text-slate-400 uppercase tracking-widest font-bold">
-                                Range: {minDoughBallWeight}g - {maxDoughBallWeight}g
-                            </p>
-                            {errors.doughBallWeight && <p className="mt-2 text-[10px] font-bold text-rose-500 uppercase tracking-wider">{errors.doughBallWeight}</p>}
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </AccordionSection>
@@ -169,6 +156,3 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
 };
 
 export default QuantitySection;
-
-
-

@@ -1,12 +1,12 @@
 
 import React from 'react';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import { BookOpenIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 import { useTranslation } from '@/i18n';
 
 const WhiteSaucesPage: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     return (
         <TechnicalPageLayout
             title={t('learn.white_sauces__emulsions')}
@@ -22,7 +22,7 @@ const WhiteSaucesPage: React.FC = () => {
                 <p>Dairy fat (cream, butter, cheese) gives richness and flavor to white sauces. It also carries fat-soluble aromatic compounds. The challenge is keeping this fat emulsified. Starches (like flour in béchamel) and proteins help create a network trapping fat.</p>
             </LearnSection>
             <LearnSection title={t('learn.thermal_behavior_in_oven_2')}>
-                <p>Under oven heat, water in emulsion begins to evaporate, concentrating the sauce. At the same time, heat can destabilize the emulsion. A well-made sauce thickens and browns slightly (Maillard reaction of milk proteins), while a poorly made one separates.</p>
+                <p>{t('learn:under_oven_heat_water_in_emulsion_begins_to_evaporate_concen')}</p>
             </LearnSection>
             <LearnSection title="Risks of Separation (t('learn.breaking_414'))">
                 <p>{t('learn.a_white_sauce_breaks_when_emulsion_fails_and_fat_s')}</p>
@@ -39,7 +39,7 @@ const WhiteSaucesPage: React.FC = () => {
                 <ul className="list-disc pl-5 space-y-2">
                     <li>t('learn.on_food_and_cooking') by Harold McGee</li>
                     <li>{t('learn.modernist_cuisine_2')}</li>
-                    <li>Wikipedia (Emulsion, Bechamel Sauce)</li>
+                    <li>{t('learn:wikipedia_emulsion_bechamel_sauce')}</li>
                 </ul>
             </LearnSection>
         </TechnicalPageLayout>

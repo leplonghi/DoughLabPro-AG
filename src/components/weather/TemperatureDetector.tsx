@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 /**
  * TemperatureDetector Component
  * Compact button to auto-detect ambient temperature
@@ -15,6 +16,7 @@ export const TemperatureDetector: React.FC<TemperatureDetectorProps> = ({
     onTemperatureDetected,
     className = '',
 }) => {
+    const { t } = useTranslation();
     const { temperature, loading, error, fetchWeather } = useCurrentTemperature();
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -38,17 +40,17 @@ export const TemperatureDetector: React.FC<TemperatureDetectorProps> = ({
                 onClick={handleDetect}
                 disabled={loading}
                 className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md text-sm font-medium"
-                title="Auto-detect ambient temperature based on your location"
+                title={t('common:auto_detect_ambient_temperature_based_on_your_location')}
             >
                 {loading ? (
                     <>
                         <span className="animate-spin">⏳</span>
-                        <span>Detecting...</span>
+                        <span>{t('common:detecting')}</span>
                     </>
                 ) : (
                     <>
                         <span>📍</span>
-                        <span>Auto-detect Temperature</span>
+                        <span>{t('common:auto_detect_temperature')}</span>
                     </>
                 )}
             </button>

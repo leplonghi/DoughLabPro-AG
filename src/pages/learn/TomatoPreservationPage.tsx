@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import { BookOpenIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 import { useTranslation } from '@/i18n';
@@ -13,7 +13,7 @@ const TomatoPreservationPage: React.FC = () => {
       subtitle={t('learn.how_tomato_choice_and_preparation_define_the_sauce')}
     >
       <LearnSection title={t('learn.introduction_the_acidic_soul_of_pizza')}>
-        <p>Tomato sauce is the heart of many pizzas, providing acidity, moisture, and a fundamental flavor base. The science behind a good sauce lies in the balance between tomato compounds and how they are transformed by processing and heat.</p>
+        <p>{t('learn:tomato_sauce_is_the_heart_of_many_pizzas_providing_acidity_m')}</p>
       </LearnSection>
       <LearnSection title={t('learn.qualitative_differences_raw_vs_cooked')}>
         <p>A <strong>raw tomato</strong> sauce (like Neapolitan) preserves volatile and fresh compounds, resulting in a bright, fruity flavor with pronounced acidity. A <strong>cooked</strong> sauce (typical of NY Style) undergoes chemical reactions: water evaporates concentrating sugars and umami, and heat breaks down cell walls releasing more flavor compounds creating deeper, sweeter notes.</p>
@@ -22,7 +22,7 @@ const TomatoPreservationPage: React.FC = () => {
         <p>Tomato flavor is a delicate balance between natural sugars (fructose and glucose) and organic acids (citric and malic). <strong>{t('learn.acidity')}</strong> is crucial to cut through cheese fat and highlight other flavors. <strong>{t('learn.sweetness')}</strong> balances this acidity. Cooking tends to decrease acidity perception and increase sweetness as water evaporates.</p>
       </LearnSection>
       <LearnSection title={t('learn.impact_of_oxidation_and_storage')}>
-        <p>Contact with oxygen and metals (like in unlined cans) can oxidize tomato compounds, leading to metallic taste and loss of freshness. This is why high-quality canned tomatoes come in protective lined cans and transferring sauce to glass or plastic containers after opening is recommended.</p>
+        <p>{t('learn:contact_with_oxygen_and_metals_like_in_unlined_cans_can_oxid')}</p>
       </LearnSection>
       <LearnSection title={t('learn.fresh_notes_vs_cooked_notes')}>
         <p>t('learn.fresh_notes') come from volatile compounds easily lost with heat. t('learn.cooked_notes') are developed through sugar caramelization and Maillard reactions (to a lesser degree), creating a robust and complex flavor profile. The choice between one and other depends entirely on pizza style and desired result.</p>

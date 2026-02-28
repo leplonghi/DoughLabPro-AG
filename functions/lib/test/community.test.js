@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const vitest_1 = require("vitest");
 const sinon = require("sinon");
 const fft = require("firebase-functions-test");
 const proxyquire = require("proxyquire");
 const test = fft();
-describe('Community Functions', () => {
+(0, vitest_1.describe)('Community Functions', () => {
     let myFunctions;
     let collectionStub;
     let runTransactionStub;
-    before(() => {
+    (0, vitest_1.beforeAll)(() => {
         // Mock Firestore chain
         collectionStub = sinon.stub();
         runTransactionStub = sinon.stub();
@@ -37,10 +38,10 @@ describe('Community Functions', () => {
             'firebase-admin': adminStub
         });
     });
-    after(() => {
+    (0, vitest_1.afterAll)(() => {
         test.cleanup();
     });
-    it('onNewLike should increment likes and award points', async () => {
+    (0, vitest_1.it)('onNewLike should increment likes and award points', async () => {
         const wrapped = test.wrap(myFunctions.onNewLike);
         // Mock data
         const snap = test.firestore.makeDocumentSnapshot({

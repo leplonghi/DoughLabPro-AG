@@ -279,7 +279,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                     const isActive = selectedCategory === cat.id;
 
                                     // Custom active style for Pastry to distinguish from Pizza/Bread
-                                    let activeClass = 'bg-slate-900 border-slate-900 text-white shadow-md transform scale-105';
+                                    let activeClass = 'bg-white border-slate-200 text-white shadow-md transform scale-105';
                                     if (cat.id === 'pastry') {
                                         activeClass = 'bg-[#6d6c4e] border-[#6d6c4e] text-white shadow-md transform scale-105';
                                     }
@@ -315,7 +315,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                     className={`
                                         whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
                                         ${selectedRegions.length === 0
-                                            ? 'bg-slate-900 border-slate-900 text-white shadow-md transform scale-105'
+                                            ? 'bg-white border-slate-200 text-white shadow-md transform scale-105'
                                             : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                                         }
                                     `}

@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React, { useEffect, useState } from 'react';
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info';
@@ -30,6 +31,7 @@ export const Toast: React.FC<ToastProps> = ({
     onClose,
     action,
 }) => {
+    const { t } = useTranslation();
     const [isVisible, setIsVisible] = useState(true);
     const [progress, setProgress] = useState(100);
 
@@ -186,7 +188,7 @@ export const Toast: React.FC<ToastProps> = ({
                         setTimeout(() => onClose?.(), 300);
                     }}
                     className="flex-shrink-0 p-1 rounded-lg hover:bg-black/5 transition-colors"
-                    aria-label="Close notification"
+                    aria-label={t('common:close_notification')}
                 >
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />

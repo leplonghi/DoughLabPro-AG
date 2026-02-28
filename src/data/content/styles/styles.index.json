@@ -1,0 +1,952 @@
+[
+  {
+    "id": "pretzel_dough_classic",
+    "name": "Bavarian Laugenbrezel",
+    "category": "bread",
+    "family": "Laugengebäck (Lye Breads)",
+    "tags": [
+      "german",
+      "bavarian",
+      "lye",
+      "snack",
+      "beer_food"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 53,
+    "difficulty": "Hard",
+    "fermentationType": "cold",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "burger_buns_enriched",
+    "name": "Burger Buns (Enriched)",
+    "category": "bread 4",
+    "family": null,
+    "tags": [
+      "Burger buns",
+      "Sandwich rolls",
+      "Bread",
+      "United states"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 64,
+    "difficulty": "Difficulty medium",
+    "fermentationType": "cold",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "california_style",
+    "name": "California Style Pizza",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "california",
+      "gourmet",
+      "wood-fired",
+      "seasonal",
+      "artisan"
+    ],
+    "proGate": false,
+    "hasImage": false,
+    "hydrationMid": 65,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.851Z"
+  },
+  {
+    "id": "challah_braided",
+    "name": "Challah (Braided)",
+    "category": "enriched_bread",
+    "family": "Enriched Breads",
+    "tags": [
+      "challah",
+      "jewish",
+      "braided",
+      "pareve",
+      "enriched"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 50,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "ciabatta_high_hydration",
+    "name": "Ciabatta High Hydration",
+    "category": "bread",
+    "family": "Italian Artisan Bread",
+    "tags": [
+      "italian",
+      "ciabatta",
+      "high hydration",
+      "open crumb",
+      "lean dough"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 80,
+    "difficulty": "Hard",
+    "fermentationType": "preferment",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "colomba_pasquale",
+    "name": "Colomba Pasquale (Easter Dove)",
+    "category": "pastry",
+    "family": null,
+    "tags": [
+      "festive_sweet_bread_for_easter",
+      "pastry",
+      "italy"
+    ],
+    "proGate": true,
+    "hasImage": false,
+    "hydrationMid": 60,
+    "difficulty": "Expert",
+    "fermentationType": "cold",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "shokupan_milk_bread",
+    "name": "Japanese Shokupan (Milk Bread)",
+    "category": "enriched_bread",
+    "family": "Asian Sweet/Soft Bread",
+    "tags": [
+      "japanese",
+      "shokupan",
+      "milk_bread",
+      "tangzhong",
+      "soft_bread"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 74,
+    "difficulty": "Hard",
+    "fermentationType": "preferment",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "pain_de_mie_pullman",
+    "name": "Pain de Mie (Pullman Loaf)",
+    "category": "enriched_bread",
+    "family": "Enriched Breads",
+    "tags": [
+      "pain_de_mie",
+      "pullman",
+      "sandwich_bread",
+      "french",
+      "square_loaf"
+    ],
+    "proGate": true,
+    "hasImage": true,
+    "hydrationMid": 64,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "arepa",
+    "name": "styles.arepa",
+    "category": "flatbread",
+    "family": null,
+    "tags": [
+      "Corn",
+      "Gluten free 2",
+      "Stuffed 2"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 120,
+    "difficulty": "Easy",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "baguette-tradition",
+    "name": "styles.baguette_tradition",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.baguette_tradition_tag_steam",
+      "styles.baguette_tradition_tag_crispy",
+      "styles.baguette_tradition_tag_autolyse",
+      "styles.baguette_tradition_tag_poolish"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 73,
+    "difficulty": "Hard",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "steamed-baozi",
+    "name": "styles.baozi",
+    "category": "burger_bun",
+    "family": null,
+    "tags": [
+      "Steam 2",
+      "Breakfast"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 52,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "brioche-tete",
+    "name": "styles.brioche_tete",
+    "category": "enriched_bread",
+    "family": null,
+    "tags": [
+      "styles.brioche_tete_tag_highfat",
+      "styles.brioche_tete_tag_eggs",
+      "styles.brioche_tete_tag_butter",
+      "styles.brioche_tete_tag_sponge"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 60,
+    "difficulty": "Expert",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "chicago_deep_dish",
+    "name": "styles.chicago_deep_dish",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.chicago_deep_dish_tag_casserole",
+      "styles.chicago_deep_dish_tag_biscuit",
+      "styles.chicago_deep_dish_tag_corn"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 54,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "chicago_tavern_v2",
+    "name": "styles.chicago_tavern_style_2",
+    "category": "pizza",
+    "family": "Flatbreads  pizzas 6",
+    "tags": [
+      "styles.chicago_tavern_v2_tag_pizza",
+      "styles.chicago_tavern_v2_tag_american",
+      "styles.chicago_tavern_v2_tag_midwest",
+      "styles.chicago_tavern_v2_tag_thin",
+      "styles.chicago_tavern_v2_tag_party",
+      "styles.chicago_tavern_v2_tag_cracker"
+    ],
+    "proGate": true,
+    "hasImage": true,
+    "hydrationMid": 48,
+    "difficulty": "Medium",
+    "fermentationType": "cold",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "ciabatta-classic",
+    "name": "styles.ciabatta_classic",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.ciabatta_classic_tag_high_hyd",
+      "styles.ciabatta_classic_tag_preferment",
+      "styles.ciabatta_classic_tag_biga",
+      "styles.ciabatta_classic_tag_modern"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 80,
+    "difficulty": "Hard",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "classic-cinnamon-roll",
+    "name": "styles.classic_cinnamon_roll",
+    "category": "pastry",
+    "family": "Laminated & Sweet",
+    "tags": [
+      "styles.tag_pastry",
+      "styles.tag_american",
+      "styles.tag_sweet",
+      "styles.tag_breakfast",
+      "styles.tag_cinnamon"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 64,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.852Z"
+  },
+  {
+    "id": "conchas",
+    "name": "styles.conchas",
+    "category": "enriched_bread",
+    "family": null,
+    "tags": [
+      "Sweet crust",
+      "Breakfast 5",
+      "Colorful"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 60,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "danish-rugbrod",
+    "name": "styles.danish_rugbrod",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.danish_rugbrod_tag_sourdough",
+      "styles.danish_rugbrod_tag_wholegrain",
+      "styles.danish_rugbrod_tag_seeds",
+      "styles.danish_rugbrod_tag_dense"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 90,
+    "difficulty": "Hard",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "detroit_style_classic",
+    "name": "styles.detroit_style_classic",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.detroit_style_classic_tag_pan",
+      "styles.detroit_style_classic_tag_frico",
+      "styles.detroit_style_classic_tag_deep",
+      "styles.detroit_style_classic_tag_detroit"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 73,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "empanada-dough",
+    "name": "styles.empanada_dough",
+    "category": "pastry",
+    "family": null,
+    "tags": [
+      "Lard",
+      "Fried 2",
+      "Frying dough"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 35,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "english_muffin",
+    "name": "styles.english_muffin",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.english_muffin_tag_griddle",
+      "styles.english_muffin_tag_nooks",
+      "styles.english_muffin_tag_breakfast"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 79,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "flour_tortilla_sonora",
+    "name": "styles.flour_tortilla_sonora",
+    "category": "flatbread",
+    "family": null,
+    "tags": [
+      "styles.flour_tortilla_sonora_tag_lard",
+      "styles.flour_tortilla_sonora_tag_sonora",
+      "styles.flour_tortilla_sonora_tag_mexico"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 50,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "focaccia-genovese",
+    "name": "styles.focaccia_genovese",
+    "category": "flatbread",
+    "family": null,
+    "tags": [
+      "styles.focaccia_genovese_tag_high_oil",
+      "styles.focaccia_genovese_tag_breakfast",
+      "styles.focaccia_genovese_tag_emulsion",
+      "styles.focaccia_genovese_tag_pan"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 64,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "french-croissant",
+    "name": "styles.french_croissant",
+    "category": "pastry",
+    "family": "Laminated & Sweet",
+    "tags": [
+      "styles.tag_pastry",
+      "styles.tag_french",
+      "styles.tag_laminated",
+      "styles.tag_breakfast",
+      "styles.tag_butter"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 59,
+    "difficulty": "Expert",
+    "fermentationType": "preferment",
+    "releaseDate": "2026-02-28T16:06:35.852Z"
+  },
+  {
+    "id": "fudgy-brownie",
+    "name": "styles.fudgy_brownie",
+    "category": "cookie",
+    "family": "Confectionery",
+    "tags": [
+      "styles.tag_sweet",
+      "styles.tag_chocolate",
+      "styles.tag_dessert",
+      "styles.tag_american"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 15,
+    "difficulty": "Easy",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.852Z"
+  },
+  {
+    "id": "fugazzeta-rellena",
+    "name": "styles.fugazzeta_rellena",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "Stuffed",
+      "Onion",
+      "Pan pizza 2",
+      "Heavy"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 63,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "grandma_style_v2",
+    "name": "styles.grandma_pizza_2",
+    "category": "pizza",
+    "family": "Flatbreads  pizzas 5",
+    "tags": [
+      "styles.grandma_pizza_tag_pizza",
+      "styles.grandma_pizza_tag_pan",
+      "styles.grandma_pizza_tag_italian_american",
+      "styles.grandma_pizza_tag_beginner",
+      "styles.grandma_pizza_tag_thin"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 63,
+    "difficulty": "Easy",
+    "fermentationType": "direct",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "asia_guabao",
+    "name": "styles.gua_bao",
+    "category": "burger_bun",
+    "family": null,
+    "tags": [
+      "Steam",
+      "Low protein",
+      "White"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 55,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "irish-soda-bread",
+    "name": "styles.irish_soda_bread",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.irish_soda_bread_tag_quick",
+      "styles.irish_soda_bread_tag_noyeast",
+      "styles.irish_soda_bread_tag_buttermilk"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 88,
+    "difficulty": "Easy",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "khachapuri-adjaruli",
+    "name": "styles.khachapuri_adjaruli",
+    "category": "enriched_bread",
+    "family": null,
+    "tags": [
+      "styles.khachapuri_adjaruli_tag_cheeseboat",
+      "styles.khachapuri_adjaruli_tag_egg",
+      "styles.khachapuri_adjaruli_tag_rich"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 62,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "laugenbrezel",
+    "name": "styles.laugenbrezel",
+    "category": "other",
+    "family": null,
+    "tags": [
+      "styles.laugenbrezel_tag_lye",
+      "styles.laugenbrezel_tag_alkaline",
+      "styles.laugenbrezel_tag_twist"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 50,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "medialunas",
+    "name": "styles.medialunas",
+    "category": "pastry",
+    "family": null,
+    "tags": [
+      "Laminated 2",
+      "Sweet syrup",
+      "Breakfast 4"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 50,
+    "difficulty": "Expert",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "montreal_bagel",
+    "name": "styles.montreal_bagel",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.montreal_bagel_tag_honey",
+      "styles.montreal_bagel_tag_nosalt",
+      "styles.montreal_bagel_tag_wood",
+      "styles.montreal_bagel_tag_canada"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 53,
+    "difficulty": "Hard",
+    "fermentationType": "direct",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "asia_naan",
+    "name": "styles.naan",
+    "category": "flatbread",
+    "family": null,
+    "tags": [
+      "Tandoor",
+      "Yogurt",
+      "High heat",
+      "Soft 2"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 65,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "new_haven_apizza",
+    "name": "styles.new_haven_apizza",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.new_haven_apizza_tag_coal",
+      "styles.new_haven_apizza_tag_char",
+      "styles.new_haven_apizza_tag_clam",
+      "styles.new_haven_apizza_tag_ct"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 63,
+    "difficulty": "Hard",
+    "fermentationType": "cold",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "new_york_slice_v2",
+    "name": "styles.new_york_slice",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.new_york_slice_v2_tag_nyc",
+      "styles.new_york_slice_v2_tag_slice",
+      "styles.new_york_slice_v2_tag_deck",
+      "styles.new_york_slice_v2_tag_foldable"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 64,
+    "difficulty": "Medium",
+    "fermentationType": "cold",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "ny-style-chip-cookie",
+    "name": "styles.ny_style_chip_cookie",
+    "category": "cookie",
+    "family": "Confectionery",
+    "tags": [
+      "styles.tag_cookies",
+      "styles.tag_american",
+      "styles.tag_chocolate",
+      "styles.tag_gooey"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 13,
+    "difficulty": "Easy",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.852Z"
+  },
+  {
+    "id": "nyc_bagel",
+    "name": "styles.nyc_bagel",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.nyc_bagel_tag_bagel",
+      "styles.nyc_bagel_tag_boiled",
+      "styles.nyc_bagel_tag_malty",
+      "styles.nyc_bagel_tag_nyc"
+    ],
+    "proGate": true,
+    "hasImage": true,
+    "hydrationMid": 53,
+    "difficulty": "Hard",
+    "fermentationType": "cold",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "pane-toscano",
+    "name": "styles.pane_toscano",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.pane_toscano_tag_no_salt",
+      "styles.pane_toscano_tag_sourdough",
+      "styles.pane_toscano_tag_dop",
+      "styles.pane_toscano_tag_ancient"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 60,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "styles_panettone",
+    "name": "styles.panettone",
+    "category": "enriched_bread",
+    "family": "Enriched Doughs",
+    "tags": [
+      "styles.tag_bread",
+      "styles.tag_italian",
+      "styles.tag_christmas",
+      "styles.tag_sourdough",
+      "styles.tag_sweet"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 60,
+    "difficulty": "Expert",
+    "fermentationType": "levain",
+    "releaseDate": "2026-02-28T16:06:35.852Z"
+  },
+  {
+    "id": "pao-de-queijo",
+    "name": "styles.pao_de_queijo",
+    "category": "other",
+    "family": null,
+    "tags": [
+      "Gluten free",
+      "Cassava",
+      "Scalded",
+      "Cheese"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 43,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "pao-frances",
+    "name": "styles.pao_frances",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "Crispy",
+      "Steam",
+      "Direct Method",
+      "50g"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 59,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "paratha",
+    "name": "styles.paratha",
+    "category": "flatbread",
+    "family": null,
+    "tags": [
+      "Laminated",
+      "Unleavened",
+      "Fried"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 65,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "pita-bread",
+    "name": "styles.pita_bread",
+    "category": "flatbread",
+    "family": null,
+    "tags": [
+      "Steam 6",
+      "Pocket",
+      "High heat 3",
+      "Vegan"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 62,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "pizza-napoletana",
+    "name": "styles.pizza_napoletana",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.pizza_napoletana_tag_high_heat",
+      "styles.pizza_napoletana_tag_direct",
+      "styles.pizza_napoletana_tag_stg",
+      "styles.pizza_napoletana_tag_wood"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 60,
+    "difficulty": "Expert",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "brazilian_gas_deck",
+    "name": "styles.pizza_paulistana",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "brazil",
+      "heavy-toppings",
+      "catupiry",
+      "sao-paulo"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 58,
+    "difficulty": "Easy",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "pizza-teglia-romana",
+    "name": "styles.pizza_teglia_romana",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.pizza_teglia_romana_tag_high_hydration",
+      "styles.pizza_teglia_romana_tag_pan_pizza",
+      "styles.pizza_teglia_romana_tag_cold_ferment",
+      "styles.pizza_teglia_romana_tag_airy_crumb"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 83,
+    "difficulty": "Expert",
+    "fermentationType": "cold",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "pizza-tonda-romana",
+    "name": "styles.pizza_tonda_romana",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.pizza_tonda_romana_tag_low_hyd",
+      "styles.pizza_tonda_romana_tag_rolling",
+      "styles.pizza_tonda_romana_tag_crispy",
+      "styles.pizza_tonda_romana_tag_cracker"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 56,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.902Z"
+  },
+  {
+    "id": "sf_sourdough",
+    "name": "styles.san_francisco_sourdough",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.sf_sourdough_tag_sour",
+      "styles.sf_sourdough_tag_wild",
+      "styles.sf_sourdough_tag_gold",
+      "styles.sf_sourdough_tag_sf"
+    ],
+    "proGate": true,
+    "hasImage": true,
+    "hydrationMid": 74,
+    "difficulty": "Expert",
+    "fermentationType": "levain",
+    "releaseDate": "2025-01-01"
+  },
+  {
+    "id": "sfincione-palermitano",
+    "name": "styles.sfincione_palermitano",
+    "category": "pizza",
+    "family": null,
+    "tags": [
+      "styles.sfincione_palermitano_tag_sponge",
+      "styles.sfincione_palermitano_tag_focaccia",
+      "styles.sfincione_palermitano_tag_street",
+      "styles.sfincione_palermitano_tag_onions"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 70,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "asia_shokupan",
+    "name": "styles.shokupan",
+    "category": "enriched_bread",
+    "family": null,
+    "tags": [
+      "Tangzhong",
+      "Yudane",
+      "Milk",
+      "Soft"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 70,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "simit",
+    "name": "styles.simit",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "Sesame",
+      "Molasses",
+      "Street food 2",
+      "Breakfast 6"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 55,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  },
+  {
+    "id": "tiger-bread",
+    "name": "styles.tiger_bread",
+    "category": "bread",
+    "family": null,
+    "tags": [
+      "styles.tiger_bread_tag_topping",
+      "styles.tiger_bread_tag_crunchy",
+      "styles.tiger_bread_tag_rice"
+    ],
+    "proGate": false,
+    "hasImage": true,
+    "hydrationMid": 63,
+    "difficulty": "Medium",
+    "fermentationType": "direct",
+    "releaseDate": "2026-02-28T16:06:35.903Z"
+  }
+]

@@ -79,6 +79,8 @@ const STYLE_CHARACTERISTICS: Record<
   [RecipeStyle.PRETZEL]: { hydrationRange: [50, 55], idealW: [280, 320], idealOvenTemp: [220, 240], name: 'Pretzel' },
   [RecipeStyle.FRENCH_CROISSANT]: { hydrationRange: [50, 60], idealW: [320, 380], idealOvenTemp: [200, 220], name: 'French Croissant' },
   [RecipeStyle.PUFF_PASTRY]: { hydrationRange: [45, 55], idealW: [300, 350], idealOvenTemp: [200, 220], name: 'Puff Pastry' },
+  [RecipeStyle.ENRICHED_LOAF]: { hydrationRange: [60, 65], idealW: [260, 300], idealOvenTemp: [180, 200], name: 'Enriched Soft Loaf' },
+  [RecipeStyle.PANETTONE_ARTISANAL]: { hydrationRange: [50, 60], idealW: [320, 400], idealOvenTemp: [160, 180], name: 'Artisanal Panettone' },
 };
 
 

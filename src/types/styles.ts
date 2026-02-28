@@ -62,6 +62,7 @@ export enum RecipeStyle {
     // --- NEW STYLES (ENRICHED) ---
     ENRICHED_BRIOCHE_CLASSIC = 'ENRICHED_BRIOCHE_CLASSIC',
     ENRICHED_DINNER_ROLL = 'ENRICHED_DINNER_ROLL',
+    ENRICHED_LOAF = 'ENRICHED_LOAF', // For sweet enriched loaves like Pão de Leite
 
     // --- NEW STYLES (BUNS) ---
     BURGER_BUN_BRIOCHE = 'BURGER_BUN_BRIOCHE',
@@ -311,7 +312,7 @@ export interface DoughStyleDefinition {
     tags: string[];
     difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
 
-    fermentationType: 'direct' | 'preferment' | 'levain' | 'cold';
+    fermentationType: 'direct' | 'preferment' | 'levain' | 'cold' | 'hybrid' | 'indirect';
 
     customMethod?: {
         phase: string;

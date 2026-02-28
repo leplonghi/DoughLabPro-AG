@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Page } from '@/types';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { QuestionMarkCircleIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
@@ -12,7 +12,7 @@ interface TroubleshootingGuidePageProps {
 }
 
 const TroubleshootingGuidePage: React.FC<TroubleshootingGuidePageProps> = ({ onNavigate }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const topics = [
         { page: 'learn/article/sticky-dough', title: 'Sticky Dough', description: 'Diagnosis and solutions for dough that is too soft and hard to handle.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },
         { page: 'learn/article/tough-dough', title: 'Dry or Tearing Dough', description: 'Understand why the dough is not developing elasticity.', icon: <QuestionMarkCircleIcon className="h-8 w-8" /> },

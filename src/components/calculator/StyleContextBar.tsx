@@ -17,11 +17,11 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
       {/* Header Bar */}
       <div
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between p-3 cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors"
+        className="flex items-center justify-between p-4 cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors min-h-[48px]"
       >
         <div className="flex items-center gap-3">
-          <div className="p-1.5 bg-white rounded-full border border-slate-200 shadow-sm text-dlp-brand-hover">
-            {style.source === 'official' ? <BookOpenIcon className="h-4 w-4" /> : <SparklesIcon className="h-4 w-4" />}
+          <div className="p-2 bg-white rounded-full border border-slate-200 shadow-sm text-dlp-brand-hover">
+            {style.source === 'official' ? <BookOpenIcon className="h-5 w-5" /> : <SparklesIcon className="h-5 w-5" />}
           </div>
           <div>
             <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('calculator.target_style')}</p>

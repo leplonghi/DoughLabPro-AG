@@ -18,7 +18,7 @@ import {
 import UnitSelector from '@/components/calculator/UnitSelector';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
-import { InfoIcon, SettingsIcon } from '@/components/ui/Icons';
+import { InfoIcon, SettingsIcon, ArrowRightIcon } from '@/components/ui/Icons';
 import OnboardingTooltip from '@/components/onboarding/OnboardingTooltip';
 import { AdCard } from '@/marketing/ads/AdCard';
 import { ModeSelectionScreen } from '@/components/calculator/ModeSelectionScreen';
@@ -27,24 +27,20 @@ import { AssemblySection } from '@/components/dashboard/sections/AssemblySection
 import { LogisticsSection } from '@/components/dashboard/sections/LogisticsSection';
 import { FloatingHelpButton } from '@/components/ui/FloatingHelpButton';
 import { Calendar, Layers, Truck } from 'lucide-react';
-
+import { useRouter } from '@/contexts/RouterContext';
 const ProductionDashboardTabs = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'scheduler' | 'batch' | 'logistics'>('scheduler');
-
   return (
-    <div className="bg-white rounded-2xl border-[0.5px] border-slate-100 shadow-sm overflow-hidden flex flex-col h-full">
+    <div className="bg-gradient-to-br from-white via-white to-slate-100/50 rounded-2xl border-[0.5px] border-slate-100 shadow-sm overflow-hidden flex flex-col h-full">
       {/* Header & Tabs Container */}
       <div className="border-b border-slate-100 p-2">
         {/* Title Area */}
         <div className="px-4 py-3 flex items-center justify-between">
           <h3 className="text-sm font-bold text-[#1B4332] flex items-center gap-2 uppercase tracking-wider">
-            <Layers size={16} className="text-[#51a145]" />
-            Production & Logistics
-          </h3>
-          <span className="text-[10px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded-full uppercase tracking-widest">Commercial Tools</span>
+            <Layers size={16} className="text-[#51a145]" />{t('common:production_logistics')}</h3>
+          <span className="text-[10px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded-full uppercase tracking-widest">{t('common:commercial_tools')}</span>
         </div>
-
         {/* Cleaner Tabs */}
         <div className="flex bg-slate-50 p-1 rounded-xl">
           {[
@@ -55,7 +51,7 @@ const ProductionDashboardTabs = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all duration-200
+              className={`flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-200 min-h-[44px] touch-target
                 ${activeTab === tab.id
                   ? 'bg-white text-[#51a145] shadow-sm border border-slate-100/50'
                   : 'text-slate-400 hover:text-slate-600 hover:bg-white/50'}`}
@@ -66,7 +62,6 @@ const ProductionDashboardTabs = () => {
           ))}
         </div>
       </div>
-
       {/* Content Area */}
       <div className="p-6 bg-white min-h-[300px]">
         {activeTab === 'scheduler' && <SchedulerSection />}
@@ -76,7 +71,6 @@ const ProductionDashboardTabs = () => {
     </div>
   );
 };
-
 interface CalculatorPageProps {
   config: DoughConfig;
   errors: FormErrors;
@@ -105,21 +99,19 @@ interface CalculatorPageProps {
     numPizzas?: React.RefObject<HTMLInputElement>;
   };
 }
-
 const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
   const { t } = useTranslation(['common', 'calculator', 'dashboard', 'method', 'ui']);
   const { levains, addCustomPreset, customPresets, isFavorite, batches } = useUser();
+  const { navigate } = useRouter();
   const formRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const saveButtonRef = useRef<HTMLButtonElement>(null);
-
   const selectedLevain = useMemo(() => {
     if (props.config.yeastType === YeastType.USER_LEVAIN) {
       return levains.find(l => l.id === props.config.levainId) || levains.find(l => l.isDefault) || levains[0];
     }
     return null;
   }, [props.config.yeastType, props.config.levainId, levains]);
-
   const handleSavePreset = async (name: string) => {
     try {
       await addCustomPreset({
@@ -131,61 +123,59 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
       console.error("Failed to save preset:", err);
     }
   };
-
   return (
-    <div className="space-y-8 animate-slide-up pb-24">
+    <div className="space-y-5 animate-slide-up pb-24">
       {/* Soft Upgrade Banner */}
       {!props.hasProAccess && batches.length >= 3 && (
-        <div className="mx-6 p-4 bg-gradient-to-r from-[#1B4332] to-[#2d5a45] rounded-2xl shadow-lg border border-white/10 flex items-center justify-between group cursor-pointer" onClick={props.onOpenPaywall}>
+        <div className="mx-4 p-3 bg-gradient-to-r from-emerald-50 to-white rounded-xl shadow-sm border border-emerald-100 flex items-center justify-between group cursor-pointer hover:shadow-md transition-all" onClick={props.onOpenPaywall}>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-lime-400/20 flex items-center justify-center text-lime-400">
-              <Layers size={20} />
+            <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+              <Layers size={16} />
             </div>
             <div>
-              <h4 className="text-sm font-black text-white">You’re baking like a pro.</h4>
-              <p className="text-xs text-lime-100/70">See how Pro can take you further.</p>
+              <h4 className="text-sm font-bold text-emerald-900">You’re baking like a pro.</h4>
+              <p className="text-xs text-emerald-600/80">{t('common:see_how_pro_can_take_you_further')}</p>
             </div>
           </div>
-          <button className="px-4 py-2 bg-white text-[#1B4332] text-xs font-black rounded-xl group-hover:bg-lime-400 transition-colors">
+          <button className="px-4 py-2 bg-emerald-600 text-white text-xs font-bold rounded-xl group-hover:bg-emerald-700 transition-colors shadow-sm shadow-emerald-200">
             UPGRADE
           </button>
         </div>
       )}
-
-      {/* 1. Scientific Control Center Selection */}
-      <section className="p-0 border-none shadow-none">
-        <div className="flex items-center gap-2 mb-2 px-6">
-          <h2 className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-[0.2em]">{t('calculator.mode', { defaultValue: 'MODE:' })}</h2>
-        </div>
-        <ModeSelectionScreen
-          selectedMode={props.calculatorMode}
-          onSelectMode={props.onCalculatorModeChange}
-        />
-      </section>
-
+      {/* 1. Mode + Settings Toolbar */}
       {/* 2. Laboratory Interface Area */}
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:items-start">
         {/* Left Form: Calibration */}
-        <div className="space-y-8" ref={formRef}>
-          <div className="flex items-center justify-between bg-white px-6 py-3 rounded-xl border-[0.5px] border-slate-100 shadow-sm">
-            <div className="flex items-center gap-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{t('calculator.settings', { defaultValue: 'Settings:' })}</span>
-              <UnitSelector unit={props.unit} onUnitChange={props.onUnitChange} />
+        <div className="space-y-4" ref={formRef}>
+          {/* Unified Toolbar: Mode + Settings */}
+          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+            {/* Mode Selector Row */}
+            <div className="px-3 py-2 border-b border-slate-50">
+              <ModeSelectionScreen
+                selectedMode={props.calculatorMode}
+                onSelectMode={props.onCalculatorModeChange}
+              />
             </div>
-            <div className="group relative">
-              <div className="p-2.5 rounded-xl bg-slate-50 text-slate-400 hover:text-[#1B4332] hover:bg-emerald-50 transition-all cursor-help">
-                <span className="sr-only">Info</span>
-                <InfoIcon size={16} />
+            {/* Settings Row */}
+            <div className="px-3 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-slate-400">{t('calculator.settings', { defaultValue: 'Units:' })}</span>
+                <UnitSelector unit={props.unit} onUnitChange={props.onUnitChange} />
               </div>
-              <div className="pointer-events-none absolute bottom-full right-0 z-10 mb-4 w-64 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                <div className="bg-[#1B4332] text-white p-4 rounded-2xl text-[11px] leading-relaxed shadow-xl border border-white/10 italic">
-                  {t('form.tooltips.ui_mode')}
+              <div className="group relative">
+                <div className="p-1.5 rounded-lg bg-slate-50 text-slate-400 hover:text-[#1B4332] hover:bg-emerald-50 transition-all cursor-help">
+                  <span className="sr-only">{t('common:info')}</span>
+                  <InfoIcon size={14} />
+                </div>
+                <div className="pointer-events-none absolute bottom-full right-0 z-10 mb-3 w-56 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <div className="bg-white text-slate-700 p-3 rounded-xl text-[10px] leading-relaxed shadow-xl border border-slate-100 italic">
+                    {t('form.tooltips.ui_mode')}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="bg-white rounded-2xl border-[0.5px] border-slate-100 p-0.5 shadow-sm">
+          <div className="bg-gradient-to-br from-white via-white to-emerald-50/30 rounded-2xl border-[0.5px] border-slate-100 p-0.5 shadow-sm">
             <CalculatorForm
               {...props}
               levains={levains}
@@ -196,9 +186,8 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             />
           </div>
         </div>
-
         {/* Right Panel: Results & Analytics */}
-        <div className="lg:sticky lg:top-24 space-y-8" ref={resultsRef}>
+        <div className="lg:sticky lg:top-24 space-y-5" ref={resultsRef}>
           <ResultsDisplay
             results={props.results}
             config={props.config}
@@ -216,16 +205,13 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             onboardingStep={props.onboardingState?.step}
             selectedLevain={selectedLevain}
           />
-
           {!props.hasProAccess && <AdCard context="calculator_sidebar" />}
-
           {/* Business Insights Tab Bar */}
           <div className="animate-slide-up" style={{ animationDelay: '200ms' }}>
             <ProductionDashboardTabs />
           </div>
         </div>
       </div>
-
       {props.onboardingState?.isActive && (
         <OnboardingTooltip
           targetElement={
@@ -242,7 +228,6 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           onFinish={() => { }}
         />
       )}
-
       {/* Floating Help with Contextual Tips */}
       <FloatingHelpButton
         tips={[
@@ -251,7 +236,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             title: t('floating_help.hydration.title'),
             icon: '💧',
             content: (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <p>{t('floating_help.hydration.what_is')}</p>
                 <div className="bg-emerald-50 rounded-lg p-2 text-xs">
                   <p className="font-bold mb-1">{t('floating_help.hydration.guide_title')}</p>
@@ -261,6 +246,12 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
                     <li>• {t('floating_help.hydration.guide_wet')}</li>
                   </ul>
                 </div>
+                <button
+                  onClick={() => navigate('learn/article', 'water')}
+                  className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md bg-emerald-100/50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider hover:bg-emerald-100 transition-colors"
+                >
+                  Learn Science <ArrowRightIcon className="w-3 h-3" />
+                </button>
               </div>
             )
           },
@@ -269,7 +260,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             title: t('floating_help.fermentation.title'),
             icon: '🦠',
             content: (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <p><strong>{t('floating_help.fermentation.main_types')}</strong></p>
                 <ul className="text-xs space-y-1">
                   <li>• {t('floating_help.fermentation.direct')}</li>
@@ -278,6 +269,12 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
                   <li>• {t('floating_help.fermentation.sourdough')}</li>
                 </ul>
                 <p className="text-xs mt-2 text-emerald-700">{t('floating_help.fermentation.tip')}</p>
+                <button
+                  onClick={() => navigate('learn/article', 'fermentation')}
+                  className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md bg-emerald-100/50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider hover:bg-emerald-100 transition-colors"
+                >
+                  Master Fermentation <ArrowRightIcon className="w-3 h-3" />
+                </button>
               </div>
             )
           },
@@ -286,7 +283,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             title: t('floating_help.flour.title'),
             icon: '🌾',
             content: (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <p className="text-xs"><strong>{t('floating_help.flour.protein_key')}</strong></p>
                 <ul className="text-xs space-y-1">
                   <li>• {t('floating_help.flour.cakes')}</li>
@@ -295,6 +292,12 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
                   <li>• {t('floating_help.flour.bagels')}</li>
                 </ul>
                 <p className="text-xs mt-2 bg-amber-50 p-2 rounded">{t('floating_help.flour.warning')}</p>
+                <button
+                  onClick={() => navigate('learn/article', 'flours')}
+                  className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md bg-amber-100/50 text-amber-700 text-[10px] font-bold uppercase tracking-wider hover:bg-amber-100 transition-colors"
+                >
+                  Flour Guide <ArrowRightIcon className="w-3 h-3" />
+                </button>
               </div>
             )
           },
@@ -303,7 +306,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             title: t('floating_help.salt.title'),
             icon: '🧂',
             content: (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <p className="text-xs"><strong>{t('floating_help.salt.functions')}</strong></p>
                 <ul className="text-xs space-y-0.5">
                   <li>✓ {t('floating_help.salt.strengthens')}</li>
@@ -313,6 +316,12 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
                 <div className="bg-red-50 rounded p-2 mt-2">
                   <p className="text-xs font-bold text-red-800">{t('floating_help.salt.warning')}</p>
                 </div>
+                <button
+                  onClick={() => navigate('learn/article', 'salt')}
+                  className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md bg-red-100/50 text-red-700 text-[10px] font-bold uppercase tracking-wider hover:bg-red-100 transition-colors"
+                >
+                  Salt Science <ArrowRightIcon className="w-3 h-3" />
+                </button>
               </div>
             )
           },
@@ -321,24 +330,26 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             title: t('floating_help.temperature.title'),
             icon: '🌡️',
             content: (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <p className="text-xs"><strong>{t('floating_help.temperature.ideal')}</strong></p>
                 <div className="bg-blue-50 rounded p-2 text-xs">
                   <p className="font-bold mb-1">{t('floating_help.temperature.pro_tip_title')}</p>
                   <p>{t('floating_help.temperature.pro_tip_content')}</p>
                 </div>
                 <p className="text-xs mt-2">{t('floating_help.temperature.warning')}</p>
+                <button
+                  onClick={() => navigate('learn/article', 'temperature-control')}
+                  className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md bg-blue-100/50 text-blue-700 text-[10px] font-bold uppercase tracking-wider hover:bg-blue-100 transition-colors"
+                >
+                  Temp Control <ArrowRightIcon className="w-3 h-3" />
+                </button>
               </div>
             )
           }
         ]}
       />
-
       <DoughyAssistant />
     </div>
   );
 };
-
 export default CalculatorPage;
-
-

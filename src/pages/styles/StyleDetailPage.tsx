@@ -30,7 +30,7 @@ import {
     GlobeAmericasIcon as Globe,
     FlaskIcon as Lab,
     TargetIcon as Target,
-    HelpCircleIcon as Help,
+    QuestionMarkCircleIcon as Help,
     ArrowsRightLeftIcon as Compare,
     UtensilsIcon as Tool
 } from '@/components/ui/Icons';
@@ -38,8 +38,10 @@ import { uploadImage } from '@/services/storageService';
 import { AffiliateGrid } from '@/components/AffiliateGrid';
 import { useTranslation } from '@/i18n';
 import { FLAVOR_COMPONENTS } from '@/data/flavorComponents';
-import FlavorComponentProfileModal from '@/components/FlavorComponentProfileModal';
+import FlavorComponentProfileModal from '@/components/modals/FlavorComponentProfileModal';
 import { FlavorComponent } from '@/types/flavor';
+import { LockFeature } from '@/components/auth/LockFeature';
+import { canAccessStyle } from '@/domain/usecases/canAccess';
 
 // --- ADAPTER ---
 function smartTranslate(value: string | undefined, t: (key: string) => string): string {
@@ -198,7 +200,7 @@ const SectionCard: React.FC<{
             >
                 <div className="flex items-center gap-3">
                     <div className={`p-2 rounded-xl ${variant === 'dark' ? 'bg-white/10 text-white' : 'bg-slate-100/80 text-slate-600'}`}>
-                        {React.cloneElement(icon as React.ReactElement, { className: "w-4 h-4" })}
+                        {React.isValidElement(icon) ? React.cloneElement(icon as any, { className: "w-4 h-4" }) : icon}
                     </div>
                     <h3 className={`text-[13px] font-black uppercase tracking-widest ${variant === 'dark' ? 'text-white' : 'text-slate-800'}`}>{title}</h3>
                 </div>
@@ -288,11 +290,16 @@ const FlavorIntelligenceSection: React.FC<{ flavorProfile: FlavorProfile, recomm
 
 export const StyleDetailPage: React.FC<any> = ({ style: initialStyle, onLoadAndNavigate, onBack, onNavigate }) => {
     const { t } = useTranslation(['common', 'styles', 'general']);
-    const { isFavorite, toggleFavorite } = useUser();
+    const { user, hasProAccess, isFavorite, toggleFavorite } = useUser();
     const [styleData, setStyleData] = useState<DoughStyle | null>(null);
     const [viewFormula, setViewFormula] = useState<any[]>([]);
     const [activeFormulaId, setActiveFormulaId] = useState<string>('base');
     const [selectedFlavorComponent, setSelectedFlavorComponent] = useState<FlavorComponent | null>(null);
+
+    const entitlements = { plan: user?.plan || null, isPro: hasProAccess };
+    // Determine if style is pro. In the original data, we use the definition's isPro.
+    const isProStyle = initialStyle?.isPro ?? STYLES_DATA.find(s => s.id === initialStyle?.id)?.isPro ?? false;
+    const access = canAccessStyle(entitlements, isProStyle);
 
     useEffect(() => {
         if (initialStyle?.id) {
@@ -327,7 +334,16 @@ export const StyleDetailPage: React.FC<any> = ({ style: initialStyle, onLoadAndN
                 </div>
                 <div className="flex items-center gap-2">
                     <button onClick={() => toggleFavorite({ id: styleData.id, type: 'style', title: styleData.name, metadata: {} })} className={`p-2 rounded-lg border transition-all ${favorited ? 'bg-pink-500 border-pink-500 text-white' : 'bg-white border-slate-200 text-slate-400'}`}><Heart className={`w-3.5 h-3.5 ${favorited ? 'fill-current' : ''}`} /></button>
-                    <button onClick={() => onLoadAndNavigate(styleData)} className="flex items-center gap-2 px-4 py-1.5 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white text-[9px] font-black uppercase tracking-widest rounded-lg shadow-sm hover:scale-[1.02] active:scale-95"><Calculator className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t('general.use_formula')}</span></button>
+                    <LockFeature
+                        featureKey="styles.detail"
+                        isLocked={!access.granted}
+                        customMessage={access.reason || t('general.unlock_calculator')}
+                        origin="styles"
+                        className="inline-block"
+                        mode="tooltip"
+                    >
+                        <button onClick={() => onLoadAndNavigate(styleData)} className="flex items-center gap-2 px-4 py-1.5 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white text-[9px] font-black uppercase tracking-widest rounded-lg shadow-sm hover:scale-[1.02] active:scale-95"><Calculator className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t('general.use_formula')}</span></button>
+                    </LockFeature>
                 </div>
             </div>
 

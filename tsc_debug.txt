@@ -1,0 +1,96 @@
+src/components/dashboard/sections/SchedulerSection.tsx(60,19): error TS2304: Cannot find name 't'.
+src/components/dashboard/sections/SchedulerSection.tsx(79,79): error TS2304: Cannot find name 't'.
+src/components/dashboard/sections/SchedulerSection.tsx(90,89): error TS2304: Cannot find name 't'.
+src/components/dashboard/sections/SchedulerSection.tsx(104,135): error TS2304: Cannot find name 't'.
+src/components/dashboard/sections/SchedulerSection.tsx(118,135): error TS2304: Cannot find name 't'.
+src/components/dashboard/sections/SchedulerSection.tsx(128,94): error TS2304: Cannot find name 't'.
+src/components/dashboard/sections/SchedulerSection.tsx(135,136): error TS2304: Cannot find name 't'.
+src/components/layout/LanguageSelector.tsx(22,16): error TS2339: Property 'i18n' does not exist on type '{ locale: Locale; setLocale: (l: Locale) => void; t: (key: string, replacements?: Record<string, any>) => string; }'.
+src/components/layout/UserMenu.tsx(73,24): error TS2339: Property 'photoURL' does not exist on type 'User'.
+src/components/layout/UserMenu.tsx(74,36): error TS2339: Property 'photoURL' does not exist on type 'User'.
+src/components/modals/FlavorComponentProfileModal.tsx(61,77): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(79,115): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(92,66): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(118,74): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(122,103): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(126,103): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(143,79): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(151,107): error TS2304: Cannot find name 't'.
+src/components/modals/FlavorComponentProfileModal.tsx(167,99): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(38,144): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(39,145): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(40,143): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(41,139): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(110,32): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(145,74): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(146,87): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(167,94): error TS2304: Cannot find name 't'.
+src/components/notifications/NotificationList.tsx(171,27): error TS2304: Cannot find name 't'.
+src/components/notifications/TimerDashboard.tsx(115,55): error TS2304: Cannot find name 't'.
+src/components/notifications/TimerDashboard.tsx(121,54): error TS2304: Cannot find name 't'.
+src/components/notifications/TimerDashboard.tsx(127,52): error TS2304: Cannot find name 't'.
+src/components/notifications/TimerDashboard.tsx(214,91): error TS2304: Cannot find name 't'.
+src/components/notifications/TimerDashboard.tsx(231,87): error TS2304: Cannot find name 't'.
+src/components/onboarding/OnboardingWizard.tsx(106,61): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(109,60): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(128,108): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(129,101): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(134,133): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(145,74): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(152,126): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(177,127): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(187,69): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(197,70): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(206,56): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(217,108): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(218,95): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(223,68): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/onboarding/OnboardingWizard.tsx(244,62): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, any>'.
+src/components/tools/DoughyAssistant.tsx(17,18): error TS2304: Cannot find name 't'.
+src/components/ui/ErrorBoundary.tsx(28,24): error TS2339: Property 'props' does not exist on type 'ErrorBoundary'.
+src/components/ui/ErrorBoundary.tsx(39,18): error TS2339: Property 'props' does not exist on type 'ErrorBoundary'.
+src/contexts/ConsistencyProvider.tsx(30,65): error TS2339: Property 'status' does not exist on type 'TestSeries'.
+src/contexts/ConsistencyProvider.tsx(31,68): error TS2339: Property 'status' does not exist on type 'TestSeries'.
+src/firebase/app.ts(20,23): error TS2345: Argument of type '["ui.firebase_configuration_missing_app_running_in_mock"]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '["ui.firebase_configuration_missing_app_running_in_mock"]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type '"ui.firebase_configuration_missing_app_running_in_mock"' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'.
+src/firebase/auth.ts(17,24): error TS2345: Argument of type '["auth.firebase_auth_failed_to_initialize"]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '["auth.firebase_auth_failed_to_initialize"]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type '"auth.firebase_auth_failed_to_initialize"' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'. Did you mean '"ui:auth.firebase_auth_failed_to_initialize"'?
+src/firebase/db.ts(12,25): error TS2345: Argument of type '["common.firebase_firestore_failed_to_initialize"]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '["common.firebase_firestore_failed_to_initialize"]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type '"common.firebase_firestore_failed_to_initialize"' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'.
+src/firebase/storage.ts(12,29): error TS2345: Argument of type '["common.firebase_storage_failed_to_initialize"]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '["common.firebase_storage_failed_to_initialize"]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type '"common.firebase_storage_failed_to_initialize"' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'.
+src/i18n.ts(74,59): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type '"calculator" | "styles" | "learn" | "common" | "ui" | "errors" | "notifications" | "weather" | "baguette_tradition_francaise_detailed_i18n" | "california_style_COMPLETE_i18n" | ... 8 more ... | $Tuple<...>'.
+  Type 'string' is not assignable to type '"calculator" | "styles" | "learn" | "common" | "ui" | "errors" | "notifications" | "weather" | "baguette_tradition_francaise_detailed_i18n" | "california_style_COMPLETE_i18n" | ... 8 more ... | $Tuple<...>'.
+src/infrastructure/monitoring.ts(42,29): error TS2339: Property 'PROD' does not exist on type 'ImportMetaEnv'.
+src/logic/smartAdjustments.ts(86,99): error TS2345: Argument of type '["common.new_york"]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '["common.new_york"]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type '"common.new_york"' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'.
+src/logic/smartAdjustments.ts(111,17): error TS2345: Argument of type '["ui.warning_flours_with_w_"]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '["ui.warning_flours_with_w_"]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type '"ui.warning_flours_with_w_"' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'.
+src/logic/smartAdjustments.ts(119,33): error TS2345: Argument of type '[string]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '[string]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type 'string' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'.
+src/logic/smartAdjustments.ts(126,28): error TS2345: Argument of type '["ui.suggestion_adjust_yeast_by_"]' is not assignable to parameter of type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+  Type '["ui.suggestion_adjust_yeast_by_"]' is not assignable to type '[key: TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[], options?: TOptionsBase & ...'.
+    Type at position 0 in source is not compatible with type at position 0 in target.
+      Type '"ui.suggestion_adjust_yeast_by_"' is not assignable to type 'TemplateStringsArray | "calculator:validated" | "calculator:variation" | "calculator:experimental" | "calculator:pre_oven" | "calculator:post_oven" | ... 20279 more ... | (TemplateStringsArray | ... 20283 more ... | "sicilian_grandma_pan_detailed_i18n:sicilian_grandma_pan_variant")[]'.
+src/pages/learn/BakingSciencePage.tsx(31,110): error TS2304: Cannot find name 't'.
+src/pages/learn/IngredientsPage.tsx(47,118): error TS2304: Cannot find name 't'.
+src/pages/ProductionDashboard.tsx(81,32): error TS2304: Cannot find name 't'.
+src/pages/ProductionDashboard.tsx(90,32): error TS2304: Cannot find name 't'.
+src/pages/ProductionDashboard.tsx(99,32): error TS2304: Cannot find name 't'.
+src/pages/ProductionDashboard.tsx(108,32): error TS2304: Cannot find name 't'.
+src/pages/settings/LanguagePage.tsx(6,16): error TS2339: Property 'i18n' does not exist on type '{ locale: Locale; setLocale: (l: Locale) => void; t: (key: string, replacements?: Record<string, any>) => string; }'.
+src/utils/logger.ts(7,38): error TS2339: Property 'PROD' does not exist on type 'ImportMetaEnv'.

@@ -180,17 +180,26 @@ export function convertYeast(amount: number, from: YeastType, to: YeastType): nu
 
 /**
  * Calculates the required water temperature to achieve a Desired Dough Temperature (DDT).
- * Uses a simplified heuristic formula provided.
- * @param ddt Desired Dough Temperature in Celsius.
- * @param ambientTemp Ambient temperature in Celsius.
+ *
+ * Standard formula: WaterTemp = (DDT × 3) − AmbientTemp − FlourTemp
+ * With friction: WaterTemp = ((DDT − 1) × 3) − AmbientTemp − FlourTemp
+ *   The friction factor (−1°C ≈ −3°C in water) compensates for heat generated
+ *   by mechanical mixing/kneading equipment.
+ *
+ * @param ddt Desired Dough Temperature in Celsius (typically 24–26°C).
+ * @param ambientTemp Ambient/room temperature in Celsius.
  * @param flourTemp Flour temperature in Celsius.
+ * @param useFriction If true, subtracts a friction correction (~3°C) for mixer heat.
  * @returns The required water temperature in Celsius.
  */
-export function calculateWaterTempDDT(ddt: number, ambientTemp: number, flourTemp: number): number {
-  // Using the user-provided simplified formula: ((DDT - 1) * 3) - ambient - flour
-  // This is a non-standard heuristic, but we'll implement it as requested.
-  // A note could be added in the UI that this is an estimate.
-  return ((ddt - 1) * 3) - ambientTemp - flourTemp;
+export function calculateWaterTempDDT(
+  ddt: number,
+  ambientTemp: number,
+  flourTemp: number,
+  useFriction: boolean = false,
+): number {
+  const effectiveDDT = useFriction ? ddt - 1 : ddt;
+  return (effectiveDDT * 3) - ambientTemp - flourTemp;
 }
 
 /**

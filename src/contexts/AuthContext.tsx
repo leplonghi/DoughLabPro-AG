@@ -14,6 +14,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { User } from '@/types';
 import { useTranslation } from '@/i18n';
+import { logger } from '@/utils/logger';
 
 interface AuthContextType {
     firebaseUser: FirebaseUser | null;
@@ -41,6 +42,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setLoading(false);
             return;
         }
+
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 setFirebaseUser(user);
@@ -53,13 +55,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     const claims = tokenResult.claims;
                     // Check for our custom app_metadata claim
                     const appMetadata = claims.app_metadata as { pro?: boolean; plan?: string } | undefined;
-
                     if (appMetadata) {
                         isProClaim = appMetadata.pro === true;
                         if (appMetadata.plan) planClaim = appMetadata.plan;
                     }
                 } catch (e) {
-                    console.error("Error getting token result:", e);
+                    logger.error("Error getting token result:", e);
                 }
 
                 // Fetch app user data from Firestore
@@ -67,6 +68,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     try {
                         const userDocRef = doc(db, 'users', user.uid);
                         const userDoc = await getDoc(userDocRef);
+
                         if (userDoc.exists()) {
                             const userData = userDoc.data() as User;
                             // Override with claims if present (claims are authoritative from admin)
@@ -88,7 +90,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                             setAppUser(newUser);
                         }
                     } catch (error) {
-                        console.error("Error fetching user data:", error);
+                        logger.error("Error fetching user data:", error);
                         // Fallback for guest/dev mode if DB fails
                         setAppUser({
                             name: user.displayName || t('common.user_250'),
@@ -107,7 +109,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     if (urlParams.get('vip') === 'true') {
                         localStorage.setItem('dough-lab-vip-mode', 'true');
                     }
-                    console.log("VIP Access Granted");
+                    logger.info("VIP Access Granted");
+
                     const guestUser = {
                         uid: 'vip-guest-user',
                         displayName: t('common.vip_guest_252'),
@@ -155,7 +158,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const loginWithGoogle = async () => {
         if (!auth) {
-            console.warn(t('auth.firebase_auth_not_initialized'));
+            logger.warn(t('auth.firebase_auth_not_initialized'));
             return;
         }
         // Use the configured provider from our auth module if available, otherwise create a new one
@@ -171,12 +174,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const registerWithEmail = async (email: string, pass: string, name?: string) => {
         if (!auth) throw new Error(t('auth.firebase_auth_not_initialized_3'));
         const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+
         // We can update the profile immediately if name is provided
         // But onAuthStateChanged might trigger first. 
         // Ideally we update profile before the effect runs or inside the effect if we can.
         // For simplicity, let's just let the effect create the user doc. 
         // If we want to save the name, we might need to update the profile or the doc manually here.
         // The effect uses `user.displayName`.
+
         if (name && auth.currentUser) {
             // We could update profile here if we imported updateProfile
             // But let's just rely on the user doc creation logic or update it manually.

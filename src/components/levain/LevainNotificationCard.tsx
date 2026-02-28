@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React, { useState } from 'react';
 import { useLevainNotifications } from '@/hooks/useNotificationIntegration';
 import { Levain } from '@/types';
@@ -8,6 +9,7 @@ interface LevainNotificationCardProps {
 }
 
 export const LevainNotificationCard: React.FC<LevainNotificationCardProps> = ({ levain }) => {
+    const { t } = useTranslation();
     const { scheduleNextFeeding, scheduleLevainReadyNotification, checkOverdueFeeding } = useLevainNotifications();
     const [customHours, setCustomHours] = useState(levain.idealFeedingIntervalHours || 12);
     const [loading, setLoading] = useState(false);
@@ -62,17 +64,15 @@ export const LevainNotificationCard: React.FC<LevainNotificationCardProps> = ({ 
         : false;
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 space-y-4">
+        <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-4 space-y-4">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Bell className="w-5 h-5 text-green-600" />
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Feeding Reminders</h3>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">{t('common:feeding_reminders')}</h3>
                 </div>
                 {isOverdue && (
                     <span className="flex items-center gap-1 text-xs font-medium text-red-600 bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-full">
-                        <AlertCircle className="w-3 h-3" />
-                        Overdue
-                    </span>
+                        <AlertCircle className="w-3 h-3" />{t('common:overdue')}</span>
                 )}
             </div>
 
@@ -84,16 +84,14 @@ export const LevainNotificationCard: React.FC<LevainNotificationCardProps> = ({ 
 
             <div className="space-y-3">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Feeding Interval (hours)
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('common:feeding_interval_hours')}</label>
                     <input
                         type="number"
                         min="4"
                         max="48"
                         value={customHours}
                         onChange={(e) => setCustomHours(parseInt(e.target.value))}
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-slate-800"
                     />
                 </div>
 
@@ -103,7 +101,7 @@ export const LevainNotificationCard: React.FC<LevainNotificationCardProps> = ({ 
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     <Clock className="w-4 h-4" />
-                    <span className="font-medium">Schedule Next Feeding</span>
+                    <span className="font-medium">{t('common:schedule_next_feeding')}</span>
                 </button>
 
                 <button
@@ -122,14 +120,14 @@ export const LevainNotificationCard: React.FC<LevainNotificationCardProps> = ({ 
                         className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         <AlertCircle className="w-4 h-4" />
-                        <span className="font-medium">Check if Overdue</span>
+                        <span className="font-medium">{t('common:check_if_overdue')}</span>
                     </button>
                 )}
             </div>
 
             <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
                 <p className="text-xs text-blue-800 dark:text-blue-200">
-                    💡 <strong>Tip:</strong> Enable notifications in settings to receive feeding reminders even when the app is closed.
+                    💡 <strong>{t('learn:tip')}</strong> Enable notifications in settings to receive feeding reminders even when the app is closed.
                 </p>
             </div>
         </div>

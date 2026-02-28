@@ -1,9 +1,11 @@
+import { useTranslation } from '@/i18n';
 
 import React, { useMemo } from 'react';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { ChefHat } from 'lucide-react';
 
 export const DashboardHeader: React.FC = () => {
+    const { t } = useTranslation();
     const { results } = useCalculator();
 
     const totalWeight = useMemo(() => {
@@ -22,8 +24,8 @@ export const DashboardHeader: React.FC = () => {
                     <ChefHat size={24} />
                 </div>
                 <div>
-                    <h1 className="text-xl font-bold leading-none text-slate-900 dark:text-white">DoughLab<span className="text-orange-500">Pro</span></h1>
-                    <span className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold">Production Dashboard</span>
+                    <h1 className="text-xl font-bold leading-none text-slate-900 dark:text-white">{t('learn:doughlab')}<span className="text-orange-500">{t('calculator:calculator.pro')}</span></h1>
+                    <span className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold">{t('common:production_dashboard')}</span>
                 </div>
             </div>
 

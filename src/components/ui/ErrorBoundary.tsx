@@ -1,24 +1,36 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
+import i18n from '@/i18n';
+import { monitor } from '@/infrastructure/monitoring';
 
 interface ErrorBoundaryProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 interface ErrorBoundaryState {
   hasError: boolean;
-  error?: Error | null;
+  error: Error | null;
 }
 
-import { monitor } from '@/infrastructure/monitoring';
-
+// Fallback if React.Component is not typed correctly
+// We extend the imported one, but defining the class members manually
+// to satisfy TypeScript when types are missing.
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  state: ErrorBoundaryState = { hasError: false, error: null };
+  // Manually declare props and state for TS
+  public props: Readonly<ErrorBoundaryProps> & Readonly<{ children?: React.ReactNode }>;
+  public state: Readonly<ErrorBoundaryState>;
+
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.props = props;
+    this.state = { hasError: false, error: null };
+  }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  // Use 'any' for errorInfo if types are missing
+  componentDidCatch(error: Error, errorInfo: any) {
     console.error("ErrorBoundary caught an error:", error, errorInfo);
     monitor.trackError(error, errorInfo);
   }
@@ -27,14 +39,16 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     if (this.state.hasError) {
       return (
         <div className="p-8 text-center">
-          <h1 className="text-xl font-bold text-red-600 mb-4">Something went wrong</h1>
+          <h1 className="text-xl font-bold text-red-600 mb-4">
+            {i18n.t('common:something_went_wrong') as string}
+          </h1>
           <pre className="text-left bg-slate-100 p-4 rounded overflow-auto text-sm text-slate-700">
             {this.state.error?.toString()}
           </pre>
         </div>
       );
     }
-    return (this as any).props.children;
+    return this.props.children ?? null;
   }
 }
 

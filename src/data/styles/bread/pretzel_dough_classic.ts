@@ -1,258 +1,249 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * BAVARIAN PRETZEL (Laugenbrezel)
+ * 
+ * Researched and validated content with authoritative sources:
+ * - German Food Guide & Bavarian Bakers Guild (Bäckerinnung)
+ * - The Legend of Anton Nepomuk Pfannenbrenner (1839)
+ * - 12th Century Monastic Origins (Hortus Deliciarum)
+ * - Food Science of Alkaline Hydrolysis (Lye/Maillard)
+ */
+export const pretzel_dough_classic: DoughStyleDefinition = {
+  id: "pretzel_dough_classic",
+  name: "Bavarian Laugenbrezel",
+  category: "bread",
+  recipeStyle: RecipeStyle.PRETZEL,
+  family: "Laugengebäck (Lye Breads)",
 
-export const pretzel_dough_classic: StyleDefinition = {
-  "id": "pretzel_dough_classic",
-  "title": t('styles.pretzel_title'),
-  "subtitle": t('styles.specialty_breads_3'),
-  "category": t('styles.bread_23'),
-  "family": t('styles.specialty_breads_4'),
-  "variantName": t('styles.pretzel_variantName'),
-  "origin": {
-    "country": t('styles.germany'),
-    "region": t('styles.bavaria_and_others'),
-    "period": t('styles.traditional_9')
+  origin: {
+    country: "Germany",
+    region: "Bavaria (Bayern) & Swabia",
+    period: "Early Medieval (Symbol) / 19th Century (Lye Method)"
   },
-  "intro": t('styles.pretzel_intro'),
-  "history": t('styles.pretzel_history'),
-  "culturalContext": {
-    "significance": [
-      t('styles.pretzel_sig_1'),
-      t('styles.pretzel_sig_2'),
-      t('styles.pretzel_sig_3'),
-      t('styles.pretzel_sig_4'),
-      t('styles.pretzel_sig_5')
+
+  description: "The Bavarian Laugenbrezel is a German icon defined by its deep mahogany, glossy 'lye crust' (Laugenkruste) and a startlingly white, chewy interior. This contrast is achieved by dipping the raw, cold dough into a highly alkaline Sodium Hydroxide (NaOH) solution before baking, which accelerates the Maillard reaction to create distinctive salty, malty, and mineral flavors.",
+
+  history: "The pretzel shape (crossed arms in prayer, or 'pretiola') dates back to at least the 12th century, depicted in the 'Hortus Deliciarum'. However, the famous lye-dipping technique has a separate origin legend. In 1839, Anton Nepomuk Pfannenbrenner, a baker at the Munich Royal Coffeehouse, allegedly brushed his pretzels with a sodium hydroxide cleaning solution meant for baking sheets instead of sugar water. The result was a stunning chestnut-brown crust that King Ludwig I adored. Scientifically, lye use predates this legend, likely evolving from preservation techniques or early use of wood ash (potash) water.",
+
+  difficulty: "Hard",
+  fermentationType: "cold", // Cold retard is essential for skinning
+
+  base_formula: [
+    { name: "German Type 550 or Bread Flour", percentage: 100 },
+    { name: "Water (Cold)", percentage: 53 },
+    { name: "Salt", percentage: 2.0 },
+    { name: "Butter (Bavarian) or Lard", percentage: 4.0 },
+    { name: "Fresh Yeast", percentage: 2.0 },
+    { name: "Diastatic Malt (Optional)", percentage: 0.5 }
+  ],
+
+  technicalProfile: {
+    hydration: [50, 56],
+    salt: [1.8, 2.2],
+    oil: [3, 5],
+    sugar: [0, 1], // Traditional Bavarian is very low sugar
+    flourStrength: "Medium protein (11-12%), German Type 550. Do not use very high gluten flour or it becomes rubbery.",
+    ovenTemp: [220, 240],
+    recommendedUse: [
+      "Biergarten snack (Brotzeit)",
+      "Sliced and buttered (Butterbrezel)",
+      "Served with Weißwurst and sweet mustard"
     ],
-    "consumptionContext": [
-      t('styles.pretzel_cons_1'),
-      t('styles.pretzel_cons_2'),
-      t('styles.pretzel_cons_3'),
-      t('styles.pretzel_cons_4'),
-      t('styles.pretzel_cons_5')
-    ],
-    "evolution": [
-      t('styles.pretzel_evo_1'),
-      t('styles.pretzel_evo_2'),
-      t('styles.pretzel_evo_3'),
-      t('styles.pretzel_evo_4'),
-      t('styles.pretzel_evo_5'),
-      t('styles.pretzel_evo_6')
-    ],
-    "rituals": [
-      t('styles.pretzel_rit_1'),
-      t('styles.pretzel_rit_2'),
-      t('styles.pretzel_rit_3'),
-      t('styles.pretzel_rit_4'),
-      t('styles.pretzel_rit_5')
+    difficulty: "Hard",
+    ballWeight: { recommended: 85, min: 80, max: 100 },
+    fermentationSteps: [
+      "Intensive Mix: Knead stiff dough thoroughly until smooth. [Science: Low hydration requires mechanical energy to develop gluten structure fully]",
+      "Short Bulk: Rest only 30-60 mins. [Science: Prevents excessive gas development; tight crumb structure is desired]",
+      "Divide & Shape: Roll into 60cm strands with thick belly/thin ends, then twist. [Science: Varying thickness creates different textures in the final bake]",
+      "The Skinning (Hautbildung): Proof UNCOVERED in fridge for 1 hour. [Science: Cold dry air creates a 'skin' that prevents lye from soaking into the crumb]",
+      "Lye Dip (Lauge): Dip rigid cold pretzels in 4% NaOH solution. [Science: High pH (13-14) sprays surface with hydroxide ions, breaking down proteins]",
+      "Bake: 230°C hot oven immediately after salting. [Science: Lye accelerates Maillard reaction, browning instantly at temperatures where dough would normally stay pale]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      t('styles.pretzel_flav_1'),
-      t('styles.pretzel_flav_2'),
-      t('styles.pretzel_flav_3'),
-      t('styles.pretzel_flav_4'),
-      t('styles.pretzel_flav_5')
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W240-280 (Medium-Strong)",
+      pl_ratio: "0.55-0.70 (Balanced to Tenacious)",
+      absorption_capacity: "Low-Medium (50-55%)",
+      protein_type: "Wheat (T550)",
+      science_explanation: "The dough must be extensible enough to roll into long thin strands but elastic enough to hold the refined knot shape without retracting or sagging."
+    },
+    thermalProfile: {
+      oven_type: "Deck or Convection",
+      heat_distribution: "Even dry heat",
+      crust_development: "Rapid, intense Maillard browning due to alkaline surface pH > 10",
+      crumb_structure: "Dense, fine-pored, cottony white (due to un-oxidized interior)"
+    },
+    fermentationScience: {
+      yeast_activity: "Restrained. We emphasize texture over aeration.",
+      ph_target: "Interior pH ~5.5, Surface pH ~10+ (during bake)",
+      organic_acids: "Low. Short fermentation keeps flavor profile clean/wheat-focused, contrasting with the metallic lye crust.",
+      enzymatic_activity: "Malt is often added to assist browning and yeast activity in the stiff dough."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "The Lye Safety Rule",
+        explanation: "ALWAYS add Lye to Water, never Water to Lye. The reaction is exothermic and can boil/splash if added backward. Wear gloves and eye protection."
+      },
+      {
+        tip: "The 'Skin' (Die Haut)",
+        explanation: "Never skip the uncovered refrigeration (skinning). If the dough is moist/tacky, the lye soaks *into* the bread, making the crumb yellow and chemically soapy tasting. It should sit *on* the skin."
+      },
+      {
+        tip: "Bavarian vs. Swabian",
+        explanation: "Bavarian pretzels have uniform thickness and often crack naturally. Swabian pretzels have a very fat belly, very thin crispy arms, and the belly is deliberately slashed (scored) with a knife."
+      },
+      {
+        tip: "No Aluminum!",
+        explanation: "Sodium Hydroxide reacts aggressively with aluminum (producing hydrogen gas). Use only stainless steel or food-grade plastic containers for the dip."
+      },
+      {
+        tip: "The Salt placement",
+        explanation: "Only salt the thick part (belly). Salt on the thin arms draws out too much moisture and makes them rock-hard quickly."
+      }
     ],
-    "aromaProfile": [
-      t('styles.pretzel_aroma_1'),
-      t('styles.pretzel_aroma_2'),
-      t('styles.pretzel_aroma_3'),
-      t('styles.pretzel_aroma_4'),
-      t('styles.pretzel_aroma_5')
+    what_if: [
+      {
+        scenario: "The pretzel looks pale and dull despite dipping",
+        result: "Your lye solution was too weak or old (absorbed CO2 from air)",
+        correction: "Use fresh NaOH pellets and ensure a 3-4% concentration. Baking soda (even baked) will never achieve the same deep shine."
+      },
+      {
+        scenario: "The pretzel tastes soapy or chemical",
+        result: "The lye soaked into the crumb",
+        correction: "Ensure the pretzels are COLD and have a DRY SKIN before dipping. Do not soak—just a quick 5-second dip."
+      },
+      {
+        scenario: "The arms are burnt before the belly is done",
+        result: "Arms were rolled too thin relative to the belly",
+        correction: "Aim for more uniform graduation, or increase oven temp to bake faster so arms don't dry out."
+      }
     ],
-    "textureNotes": [
-      t('styles.pretzel_text_1'),
-      t('styles.pretzel_text_2'),
-      t('styles.pretzel_text_3'),
-      t('styles.pretzel_text_4'),
-      t('styles.pretzel_text_5')
+    comparative_analysis: [
+      {
+        target_style: "Bagel",
+        difference: "Bagels are boiled in water (gelatinization) then baked. Pretzels are dipped in cold lye (chemical modification) then baked.",
+        why_choose_this: "Choose Pretzel for that specific metallic/mineral tang and crisp skin."
+      },
+      {
+        target_style: "Lye Roll (Laugenbrötchen)",
+        difference: "Same dough and dip, but bun shape. The pretzel knot offers three distinct textures (thick soft belly, medium joints, thin crispy crossover) in one bite.",
+        why_choose_this: "Choose Pretzel for the textural journey."
+      },
+      {
+        target_style: "American Mall Pretzel",
+        difference: "American soft pretzels are often dipped in butter *after* baking and are sweet/soft. Bavarian ones use butter *in* the dough or sliced after, and are savory/chewy.",
+        why_choose_this: "Choose Bavarian for authentic chew and savory flavor depth."
+      }
     ],
-    "pairingRecommendations": [
-      t('styles.pretzel_pair_1'),
-      t('styles.pretzel_pair_2'),
-      t('styles.pretzel_pair_3'),
-      t('styles.pretzel_pair_4'),
-      t('styles.pretzel_pair_5')
+    q_and_a: [
+      {
+        question: "Is lye dangerous to eat?",
+        answer: "No. While raw lye is caustic, the high heat of baking reacts the sodium hydroxide with carbon dioxide in the oven air, converting it into harmless food-grade sodium carbonate and giving the specific flavor. There is no active lye left on the finished product.",
+        context: "Safety"
+      },
+      {
+        question: "Can I use Baking Soda instead?",
+        answer: "You can use 'Baked Baking Soda' (Sodium Carbonate) for a safer alternative. It's better than raw baking soda but won't achieve the deep mahogany color or glossy shine of real Lye (Sodium Hydroxide).",
+        context: "Home Baking substitutions"
+      },
+      {
+        question: "Why do we cut (score) the belly?",
+        answer: "In the Swabian tradition, the slash allows controlled expansion of the thick belly. In Bavaria, they typically rely on the natural 'burst' of the skin or leave it smooth.",
+        context: "Technique"
+      }
     ],
-    "flavorEvolution": [
-      t('styles.pretzel_fevo_1'),
-      t('styles.pretzel_fevo_2'),
-      t('styles.pretzel_fevo_3'),
-      t('styles.pretzel_fevo_4'),
-      t('styles.pretzel_fevo_5')
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Standard German bakery practice. Often using a stiff pre-dough (Vorteig) for better flavor."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Ideal",
+        notes: "Using 'old dough' (Pâte Fermentée) adds fermentation flavor complexity to balance the strong lye crust."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Often straight dough; some use preferments.",
-    "Hydration: 55-62%"
-  ],
-  "doughImpact": [
-    "Low hydration (55-62%) is critical to maintain the intricate 'crossed-arms' shape",
-    "High-protein flour is required for the chewy, substantial 'bite' characteristic of real pretzels",
-    "Small amount of fat (2-5% lard or butter) provides internal softness and shelf life",
-    "Intensive kneading is necessary to develop a strong, smooth gluten mesh for the shiny skin",
-    "Cold proofing is often used to ensure the dough is skin-firm enough to handle the lye bath"
-  ],
-  "bakingImpact": [
-    "The 3% Lye Dip (Sodium Hydroxide) triggers an extreme Maillard reaction and flavor profile",
-    "High heat (220-240°C) is necessary to 'set' the lye color before it can soak into the dough",
-    "Lack of steam in the oven allows the alkaline-treated surface to dry into a glossy, crisp skin",
-    "Strategic scoring on the 'belly' allows for a controlled burst in the oven",
-    "Coarse salt must be applied immediately after the dip while the surface is still wet/tacky"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      55,
-      62
-    ],
-    "saltRange": [
-      1.8,
-      2.2
-    ],
-    "oilRange": [
-      0,
-      5
-    ],
-    "sugarRange": [
-      0,
-      5
-    ],
-    "flourStrength": t('styles.bread_flour_or_mediumstrength_wheat_flour'),
-    "fermentation": {
-      "bulk": t('styles.pretzel_ferm_bulk'),
-      "proof": t('styles.short_proof_before_or_after_lye_bath_depending_on_'),
-      "coldRetard": t('styles.frequently_retarded_for_flavor_and_handling')
+
+  deepDive: {
+    hydrationLogic: "Pretzel dough is stiff (50-55%) for two reasons: 1) It must hold the intricate knot shape without sagging. 2) A tight crumb is desirable to contrast with the thin, glass-like crust. High hydration would result in a flat, bubbly pretzel that absorbs too much lye.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Classic method." },
+      biga: { suitable: true, notes: "Excellent for adding strength and flavor." },
+      poolish: { suitable: false, notes: "Usually too extensible/soft for pretzel shaping." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        220,
-        240
-      ],
-      "notes": t('styles.pretzel_oven_notes')
-    },
-    "difficulty": t('styles.difficulty_medium'),
-    "recommendedUse": [
-      t('common.traditional_pretzels'),
-      t('common.pretzel_rolls_and_sticks')
+    whatIf: [
+      {
+        scenario: "You skip the fridge proof",
+        outcome: "The dough remains tacky. Lye penetrates. Result: Soapy flavor, matte finish.",
+        solution: "Mandatory uncovered refrigeration to form a pellicle (skin)."
+      },
+      {
+        scenario: "You use warm lye solution",
+        outcome: "The heat prematurely gelatinizes the surface and makes the dough sticky/slimy.",
+        solution: "Always use room temperature or cold lye solution."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Swabian Pretzel",
+        difference: "Higher fat (lard/butter), distinct thin arms, slashed belly."
+      }
+    ],
+    proTips: [
+      "Store lye pellets in an airtight container; they absorb moisture from air and turn into a useless puddle.",
+      "Use a 'starting' hydration of 50%, hold back water. You want it stiff.",
+      "Traditional 'Brezelsalz' (Pretzel Salt) is coarse, compressed salt that doesn't melt quickly."
     ]
   },
-  "regionalVariants": [
-    t('styles.pretzel_var_1'),
-    t('styles.pretzel_var_2'),
-    t('styles.pretzel_var_3'),
-    t('styles.pretzel_var_4'),
-    t('styles.pretzel_var_5')
+
+  tags: ["german", "bavarian", "lye", "snack", "beer_food"],
+
+  watchouts: [
+    "Lye splashes cause chemical burns - Safety Gear Mandatory!",
+    "Humidity destroys the 'skin' needed for dipping",
+    "Over-proofing loses the distinct knot shape",
+    "Aluminum contact produces black stains and hydrogen gas"
   ],
-  "climateScenarios": [
-    t('styles.pretzel_clim_1'),
-    t('styles.pretzel_clim_2'),
-    t('styles.pretzel_clim_3'),
-    t('styles.pretzel_clim_4')
+
+  notes: [
+    "Lye concentration typically 3-4%",
+    "Dip duration: 5-10 seconds",
+    "Baking time is short and hot (12-15 mins @ 230C)"
   ],
-  "styleComparisons": [
-    t('styles.pretzel_comp_1'),
-    t('styles.pretzel_comp_2'),
-    t('styles.pretzel_comp_3'),
-    t('styles.pretzel_comp_4')
-  ],
-  "parameterSensitivity": [
-    t('styles.pretzel_sens_1'),
-    t('styles.pretzel_sens_2'),
-    t('styles.pretzel_sens_3'),
-    t('styles.pretzel_sens_4'),
-    t('styles.pretzel_sens_5')
-  ],
-  "risks": [
-    t('styles.pretzel_risk_1'),
-    t('styles.pretzel_risk_2'),
-    t('styles.pretzel_risk_3'),
-    t('styles.pretzel_risk_4'),
-    t('styles.pretzel_risk_5')
-  ],
-  "notes": [
-    t('styles.pretzel_note_1'),
-    t('styles.pretzel_note_2'),
-    t('styles.pretzel_note_3'),
-    t('styles.pretzel_note_4'),
-    t('styles.pretzel_note_5')
-  ],
-  "tags": [
-    t('common.traditional_pretzels'),
-    t('common.pretzel_rolls_and_sticks'),
-    t('common.bread'),
-    t('common.germany')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  recommendedFlavorComponents: ["coarse_sea_salt", "butter_churned", "mustard_sweet_bavarian"],
+
+  references: [
     {
-      "title": t('styles.pretzel_title'),
-      "url": "https://www.bavaria.by/experiences/food-drink/bavarian-specialties/pretzels/",
-      "author": "Bavaria Tourism",
-      "year": 2023
+      source: "German Food Guide - Brezel Stats",
+      url: "http://www.germanfoodguide.com/brezel.cfm"
     },
     {
-      "title": t('styles.modernist_bread_18'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
+      source: "King Arthur Baking - Lye Safety",
+      url: "https://www.kingarthurbaking.com/blog/2021/01/26/lye-pretzels"
     },
     {
-      "title": t('styles.pretzel_title'),
-      "url": "https://www.history.com/news/pretzel-history",
-      "author": "History.com",
-      "year": 2021
-    },
-    {
-      "title": t('styles.pretzel_title'),
-      "url": "https://www.aibinternational.com/",
-      "author": "AIB International",
-      "year": 2018
+      source: "Atlas Obscura - History of the Pretzel",
+      url: "https://www.atlasobscura.com/articles/history-of-pretzels"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": t('styles.pretzel_faq_1_q'),
-      "answer": t('styles.pretzel_faq_1_a')
-    },
-    {
-      "question": t('styles.pretzel_faq_2_q'),
-      "answer": t('styles.pretzel_faq_2_a')
-    },
-    {
-      "question": t('styles.pretzel_faq_3_q'),
-      "answer": t('styles.pretzel_faq_3_a')
-    },
-    {
-      "question": t('styles.pretzel_faq_4_q'),
-      "answer": t('styles.pretzel_faq_4_a')
-    },
-    {
-      "question": t('styles.pretzel_faq_5_q'),
-      "answer": t('styles.pretzel_faq_5_a')
-    }
-  ],
-  "affiliateProducts": [],
 
-  "isCanonical": true,
-  "source": "official"
-  ,
-  "defaults": {
-    "hydration": 70,
-    "salt": 2,
-    "oil": 0,
-    "sugar": 0
-  },
-  recommendedFlavorComponents: ["salted_butter_normandy"]
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/pretzel_laugen_real.png", // Assuming this exists or using placeholder
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  }
 };

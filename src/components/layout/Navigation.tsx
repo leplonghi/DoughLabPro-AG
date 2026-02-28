@@ -18,6 +18,7 @@ import {
 import { useUser } from '@/contexts/UserProvider';
 import { Logo } from '@/components/ui/Logo';
 import { useNotifications } from '@/contexts/NotificationContext';
+import { LanguageSelector } from '@/components/layout/LanguageSelector';
 
 interface NavigationProps {
     activePage: Page;
@@ -30,23 +31,29 @@ interface HeaderComponentProps extends Omit<NavigationProps, 'activePage'> {
     handleNavigate: (page: Page) => void;
 }
 
-const ProBadge = () => (
-    <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">PRO</span>
-);
+const ProBadge = () => {
+    const { t } = useTranslation(['learn']);
+    return (
+        <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">
+            {t('learn:pro')}
+        </span>
+    );
+};
 
 const NotificationButton: React.FC<{ activePage: Page; handleNavigate: (page: Page) => void }> = ({ activePage, handleNavigate }) => {
     const { scheduledNotifications } = useNotifications();
+    const { t } = useTranslation(['ui']);
     const pendingCount = scheduledNotifications.filter(n => n.status === 'PENDING').length;
     const isActive = activePage === 'notifications';
 
     return (
         <button
             onClick={() => handleNavigate('notifications')}
-            className={`relative rounded-xl p-2.5 transition-all ${isActive
+            className={`relative rounded-xl p-2.5 transition-all focus-ring ${isActive
                 ? 'bg-slate-50/80 border border-slate-100 shadow-sm'
                 : 'hover:bg-slate-50 border border-transparent'
                 }`}
-            aria-label="Notifications"
+            aria-label={t('ui:notifications')}
         >
             <BellIcon className={`h-5 w-5 ${isActive ? 'text-dlp-brand' : 'text-slate-500'}`} />
             {pendingCount > 0 && (
@@ -57,8 +64,6 @@ const NotificationButton: React.FC<{ activePage: Page; handleNavigate: (page: Pa
         </button>
     );
 };
-
-
 
 const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { isAuthenticated, hasProAccess, openPaywall } = useUser();
@@ -74,41 +79,40 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
     ];
 
     return (
-        <header className="fixed top-0 left-0 w-full z-50 hidden border-b border-dlp-border bg-white/95 backdrop-blur-lg sm:block transition-all duration-200 shadow-sm">
+        <header className="fixed top-0 left-0 w-full z-40 hidden border-b border-dlp-border bg-white/95 backdrop-blur-lg md:block transition-all duration-200 shadow-sm">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Left Section: Logo & main links */}
                 <div className="flex items-center gap-6">
                     <button
-                        onClick={() => handleNavigate('mylab')}
+                        onClick={() => handleNavigate('calculator')}
                         aria-label={t('common.nav.home')}
-                        className="flex flex-shrink-0 items-center transition-transform hover:scale-105 active:scale-95"
+                        className="flex flex-shrink-0 items-center rounded-lg transition-transform hover:scale-105 active:scale-95 focus-ring"
                     >
                         <Logo className="h-9 w-auto" />
                     </button>
+
                     <nav className="flex items-center gap-1">
                         {navLinks.map(link => {
                             const isActive = activePage === link.page || activePage.startsWith(link.page + '/');
                             const Icon = link.icon;
-
                             return (
                                 <button
                                     key={link.page}
                                     onClick={() => handleNavigate(link.page as Page)}
-                                    className={`group relative rounded-xl px-4 py-2 text-sm font-bold tracking-tight transition-all flex items-center gap-2 border overflow-hidden ${isActive
-                                            ? 'text-dlp-brand bg-dlp-brand/5 border-dlp-brand/20 shadow-sm'
-                                            : 'text-slate-600 border-transparent hover:bg-slate-50 hover:text-slate-900 hover:border-slate-100'
+                                    aria-current={isActive ? 'page' : undefined}
+                                    className={`group relative rounded-xl px-4 py-2 text-sm font-bold tracking-tight transition-all flex items-center gap-2 border overflow-hidden focus-ring ${isActive
+                                        ? 'text-dlp-brand bg-dlp-brand/5 border-dlp-brand/20 shadow-sm'
+                                        : 'text-slate-600 border-transparent hover:bg-slate-50 hover:text-slate-900 hover:border-slate-100'
                                         }`}
                                 >
                                     {/* Active indicator */}
                                     {isActive && (
                                         <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-dlp-brand to-dlp-brand-dark animate-slide-in-left" />
                                     )}
-
                                     <Icon className={`h-5 w-5 transition-all duration-300 ${isActive
-                                            ? 'text-dlp-brand'
-                                            : 'text-slate-400 group-hover:text-dlp-brand group-hover:scale-110 group-hover:rotate-3'
+                                        ? 'text-dlp-brand'
+                                        : 'text-slate-400 group-hover:text-dlp-brand group-hover:scale-110 group-hover:rotate-3'
                                         }`} />
-
                                     <span className="relative">
                                         {link.label}
                                     </span>
@@ -119,7 +123,10 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                 </div>
 
                 {/* Right Section: User Avatar & Plan Status */}
-                <div className="flex flex-shrink-0 items-center gap-4">
+                <div className="flex flex-shrink-0 items-center gap-3">
+                    {/* Language Selector */}
+                    <LanguageSelector />
+
                     {/* Notifications Button */}
                     <NotificationButton activePage={activePage} handleNavigate={handleNavigate} />
 
@@ -132,7 +139,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                                     </span>
                                     <button
                                         onClick={() => openPaywall('general')}
-                                        className="text-sm font-semibold text-dlp-accent hover:text-dlp-accent-hover transition-all hover:scale-105 active:scale-95 relative group"
+                                        className="text-sm font-semibold text-dlp-accent hover:text-dlp-accent-hover transition-all hover:scale-105 active:scale-95 relative group focus-ring rounded-lg"
                                     >
                                         <span className="relative z-10">{t('paywall.title').replace('DoughLab ', '')}</span>
                                         <span className="absolute inset-0 bg-dlp-brand/5 rounded-lg scale-0 group-hover:scale-100 transition-transform" />
@@ -149,94 +156,76 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
     );
 };
 
-const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean; setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ activePage, handleNavigate, onNavigate, onOpenAuth, isMobileMenuOpen, setIsMobileMenuOpen }) => {
-    const { hasProAccess, openPaywall } = useUser();
+const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean; setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { t } = useTranslation(['common', 'profile', 'auth']);
-    const hasPro = hasProAccess;
 
-    const navLinks = [
+    return (
+        <header className="fixed top-0 left-0 w-full z-40 border-b border-dlp-border bg-dlp-bg-card/90 backdrop-blur-md md:hidden transition-all duration-200 shadow-dlp-sm">
+            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+                <button
+                    onClick={() => handleNavigate('calculator')}
+                    aria-label={t('common.nav.home')}
+                    className="flex flex-shrink-0 items-center rounded-lg transition-transform active:scale-95 focus-ring"
+                >
+                    <Logo className="h-9 w-auto" />
+                </button>
+                <div className="flex items-center gap-2">
+                    <LanguageSelector />
+                    <UserMenu onNavigate={onNavigate} onOpenAuthModal={onOpenAuth} />
+                </div>
+            </div>
+        </header>
+    );
+};
+
+const MobileBottomNav: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean; setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ activePage, handleNavigate, isMobileMenuOpen, setIsMobileMenuOpen }) => {
+    const { t } = useTranslation(['common']);
+
+    const navItems = [
         { id: 'calculator', page: 'calculator', label: t('common.nav.calculator'), icon: CalculatorIcon },
         { id: 'mylab', page: 'mylab', label: t('common.nav.lab'), icon: BeakerIcon },
         { id: 'styles', page: 'styles', label: t('common.nav.styles'), icon: BatchesIcon },
         { id: 'learn', page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
         { id: 'tools', page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
-        { id: 'community', page: 'community', label: t('common.nav.community'), icon: UsersIcon },
-        { id: 'notifications', page: 'notifications', label: 'Notifications', icon: BellIcon },
-        { id: 'profile', page: 'profile', label: t('common.nav.profile'), icon: UserCircleIcon },
     ];
 
-    const onMobileNavigate = (page: Page, requiresPro: boolean = false) => {
-        if (requiresPro && !hasPro) {
-            setIsMobileMenuOpen(false);
-            openPaywall();
-        } else {
-            handleNavigate(page);
-            setIsMobileMenuOpen(false);
-        }
-    }
-
     return (
-        <header className="fixed top-0 left-0 w-full z-50 border-b border-dlp-border bg-dlp-bg-card/90 backdrop-blur-md sm:hidden transition-all duration-200 shadow-dlp-sm">
-            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-                <button onClick={() => handleNavigate('mylab')} aria-label={t('common.nav.home')} className="flex flex-shrink-0 items-center transition-transform active:scale-95">
-                    <Logo className="h-9 w-auto" />
-                </button>
-                <div className="flex items-center gap-2">
-                    <UserMenu onNavigate={onNavigate} onOpenAuthModal={onOpenAuth} />
-                    <button
-                        onClick={() => setIsMobileMenuOpen(prev => !prev)}
-                        className="rounded-xl p-2.5 text-dlp-text-muted hover:bg-dlp-bg-muted transition-smooth touch-target"
-                        aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                    >
-                        {isMobileMenuOpen ? <CloseIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
-                    </button>
-                </div>
+        <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-dlp-border pb-safe-area-bottom shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:hidden">
+            <div className="flex justify-around items-center h-16 px-2">
+                {navItems.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activePage === item.page || activePage.startsWith(item.page + '/');
+                    return (
+                        <button
+                            key={item.id}
+                            onClick={() => handleNavigate(item.page as Page)}
+                            className={`group flex flex-col items-center justify-center w-full h-full space-y-1 focus-ring rounded-lg ${isActive ? 'text-dlp-brand' : 'text-slate-400 hover:text-slate-600'}`}
+                            aria-label={item.label}
+                            aria-current={isActive ? 'page' : undefined}
+                        >
+                            <Icon className={`h-6 w-6 transition-transform group-active:scale-95 ${isActive ? 'scale-110' : ''}`} />
+                            <span className="text-[10px] font-medium truncate max-w-[64px]">{item.label}</span>
+                        </button>
+                    );
+                })}
             </div>
-
-            {/* Mobile Menu Backdrop */}
-            {isMobileMenuOpen && (
-                <div
-                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 animate-fade-in"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    aria-hidden="true"
-                />
-            )}
-
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-                <nav className="fixed top-16 left-0 right-0 bg-white border-b border-dlp-border shadow-2xl z-50 max-h-[calc(100vh-4rem)] overflow-y-auto animate-slide-down">
-                    <div className="p-4 space-y-1">
-                        {navLinks.map((link: any, index: number) => {
-                            const Icon = link.icon;
-                            const isActive = activePage === link.page || activePage.startsWith(link.page + '/');
-                            return (
-                                <button
-                                    key={link.id}
-                                    onClick={() => onMobileNavigate(link.page, link.requiresPro)}
-                                    className={`flex w-full items-center gap-3 rounded-xl p-4 text-base font-semibold transition-smooth touch-target animate-slide-in-left stagger-${Math.min(index + 1, 5)} ${isActive
-                                        ? 'bg-dlp-brand/10 text-dlp-brand shadow-sm'
-                                        : 'text-dlp-text-primary hover:bg-dlp-bg-muted active:scale-98'
-                                        }`}
-                                >
-                                    <Icon className={`h-6 w-6 transition-transform ${isActive ? 'text-dlp-brand scale-110' : 'text-dlp-text-muted'}`} />
-                                    <span className="flex-grow text-left">{link.label}</span>
-                                    {link.requiresPro && !hasPro && <ProBadge />}
-                                    {isActive && (
-                                        <div className="w-2 h-2 rounded-full bg-dlp-brand animate-pulse" />
-                                    )}
-                                </button>
-                            );
-                        })}
-                    </div>
-                </nav>
-            )}
-        </header>
+        </nav>
     );
 };
 
-
 const Navigation: React.FC<NavigationProps> = (props) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    // Skip Link Handler
+    const handleSkipToContent = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const mainContent = document.querySelector('main');
+        if (mainContent) {
+            mainContent.setAttribute('tabIndex', '-1');
+            mainContent.focus();
+            mainContent.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     const handleNavigate = React.useCallback((page: Page) => {
         props.onNavigate(page);
@@ -245,8 +234,16 @@ const Navigation: React.FC<NavigationProps> = (props) => {
 
     return (
         <>
+            <a
+                href="#main-content"
+                onClick={handleSkipToContent}
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-toast focus:px-4 focus:py-2 focus:bg-white focus:text-dlp-brand focus:font-bold focus:shadow-xl focus:rounded-lg focus:border focus:border-dlp-brand focus:outline-none focus:ring-2 focus:ring-dlp-brand focus:ring-offset-2 transition-transform"
+            >
+                Skip to main content
+            </a>
             <DesktopHeader {...props} handleNavigate={handleNavigate} />
             <MobileHeader {...props} handleNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+            <MobileBottomNav {...props} handleNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
         </>
     );
 };

@@ -31,8 +31,9 @@ const LearnCategoryCard: React.FC<{
     icon: React.ReactNode;
     title: string;
     description: string;
+    exploreLabel: string;
     onClick: () => void;
-}> = ({ icon, title, description, onClick }) => (
+}> = ({ icon, title, description, exploreLabel, onClick }) => (
     <button
         onClick={onClick}
         className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
@@ -44,9 +45,7 @@ const LearnCategoryCard: React.FC<{
             </h3>
             <p className="mt-2 text-sm text-slate-900 leading-relaxed">{description}</p>
         </div>
-        <p className="mt-4 text-sm font-semibold text-slate-600 group-hover:text-dlp-brand-hover transition-colors">
-            Explore &rarr;
-        </p>
+        <p className="mt-4 text-sm font-semibold text-slate-600 group-hover:text-dlp-brand-hover transition-colors">{exploreLabel}</p>
     </button>
 );
 
@@ -133,9 +132,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
             <div className="text-center">
                 <AcademicCapIcon className="mx-auto h-12 w-12 text-dlp-brand" />
                 <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('learn.ingredient_guide')}</h1>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-700">
-                    Explore the universe of flavors that go on top of your dough.
-                </p>
+                <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-700">{t('learn:explore_the_universe_of_flavors_that_go_on_top_of_your_dough')}</p>
             </div>
 
             <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -145,6 +142,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
                         icon={category.icon}
                         title={category.title}
                         description={category.description}
+                        exploreLabel={t('learn:explore_rarr')}
                         onClick={() => onNavigate(category.page)}
                     />
                 ))}

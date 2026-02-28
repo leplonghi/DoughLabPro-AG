@@ -3,7 +3,7 @@ import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { DocumentTextIcon, PlusCircleIcon, WaterIcon, ClockIcon, FireIcon, SolidStarIcon, BatchesIcon, ArrowsRightLeftIcon } from '@/components/ui/Icons';
 import { Page, Batch } from '@/types';
-import MyLabLayout from './MyLabLayout';
+import MyLabLayout from '@/components/layouts/MyLabLayout';
 import { useTranslation } from '@/i18n';
 
 interface MyLabRecipesPageProps {
@@ -89,7 +89,7 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
     const favoriteBatches = batches.filter(b => b.isFavorite);
 
     return (
-        <MyLabLayout activePage="mylab/receitas" onNavigate={onNavigate}>
+        <MyLabLayout activePage="mylab/recipes" onNavigate={onNavigate}>
             <div className="animate-fade-in">
                 <div className="flex items-center justify-between mb-8">
                     <div>
@@ -128,7 +128,7 @@ const MyLabRecipesPage: React.FC<MyLabRecipesPageProps> = ({ onNavigate }) => {
                             <p className="text-slate-500  mt-2 max-w-sm mx-auto">{t('mylab.mark_your_best_batches_as')}<strong>{t('mylab.favorites')}</strong> to see them appear here as reusable recipes.
                             </p>
                             <button
-                                onClick={() => onNavigate('mylab/batches')}
+                                onClick={() => onNavigate('mylab/bakes')}
                                 className="mt-6 text-dlp-brand-hover  font-bold hover:underline"
                             >{t('mylab.go_to_my_bakes')}</button>
                         </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React from 'react';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { ScheduledNotification, NotificationPriority } from '../../types/notifications';
@@ -31,12 +32,12 @@ const getPriorityIcon = (priority: NotificationPriority) => {
     }
 };
 
-const getStatusBadge = (status: ScheduledNotification['status']): React.ReactElement => {
+const getStatusBadge = (status: ScheduledNotification['status'], t: (key: string, replacements?: Record<string, any>) => string): React.ReactElement => {
     const badges = {
-        PENDING: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Pending</span>,
-        SENT: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Sent</span>,
-        CANCELLED: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200">Cancelled</span>,
-        FAILED: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">Failed</span>,
+        PENDING: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">{t('common:pending')}</span>,
+        SENT: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">{t('common:sent')}</span>,
+        CANCELLED: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 dark:bg-white dark:text-gray-200">{t('common:cancelled')}</span>,
+        FAILED: <span className="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">{t('common:failed')}</span>,
     };
     return badges[status];
 };
@@ -47,6 +48,7 @@ interface NotificationItemProps {
 }
 
 const NotificationItem: React.FC<NotificationItemProps> = ({ notification, onCancel }) => {
+    const { t } = useTranslation();
     const scheduledDate = new Date(notification.scheduledFor);
     const now = new Date();
     const isPast = scheduledDate < now;
@@ -78,7 +80,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ notification, onCan
                             <h4 className="font-semibold text-gray-900 dark:text-white truncate">
                                 {notification.title}
                             </h4>
-                            {getStatusBadge(notification.status)}
+                            {getStatusBadge(notification.status, t)}
                         </div>
                         <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
                             {notification.body}
@@ -105,7 +107,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ notification, onCan
                     <button
                         onClick={() => onCancel(notification.id)}
                         className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors"
-                        title="Cancel notification"
+                        title={t('notifications:cancel_notification_405')}
                     >
                         <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                     </button>
@@ -116,6 +118,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ notification, onCan
 };
 
 export const NotificationList: React.FC = () => {
+    const { t } = useTranslation();
     const { scheduledNotifications, cancelNotification, clearHistory } = useNotifications();
 
     const pendingNotifications = scheduledNotifications.filter(n => n.status === 'PENDING');
@@ -138,12 +141,10 @@ export const NotificationList: React.FC = () => {
                 </div>
 
                 {pendingNotifications.length === 0 ? (
-                    <div className="text-center py-12 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div className="text-center py-12 bg-gray-50 dark:bg-gray-50 rounded-lg">
                         <Bell className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                        <p className="text-gray-600 dark:text-gray-400">No upcoming notifications</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                            Start a timer or schedule a recipe to receive notifications
-                        </p>
+                        <p className="text-gray-600 dark:text-gray-400">{t('common:no_upcoming_notifications')}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">{t('common:start_a_timer_or_schedule_a_recipe_to_receive_notifications')}</p>
                     </div>
                 ) : (
                     <div className="space-y-3">
@@ -164,15 +165,11 @@ export const NotificationList: React.FC = () => {
             {pastNotifications.length > 0 && (
                 <div>
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-                            History
-                        </h2>
+                        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{t('common:history')}</h2>
                         <button
                             onClick={clearHistory}
                             className="text-sm text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-                        >
-                            Clear History
-                        </button>
+                        >{t('common:clear_history')}</button>
                     </div>
                     <div className="space-y-3">
                         {pastNotifications

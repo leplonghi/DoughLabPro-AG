@@ -221,26 +221,27 @@ export function convertStyleToDoughConfig(style: DoughStyleDefinition | any): Pa
         // Specs might handle these differently, defaulting to simplified if not present
     } else if (style.technicalProfile) {
         // Legacy
-        hydration = style.technicalProfile.hydration
-            ? (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2
+        const tech = style.technicalProfile;
+        hydration = tech.hydration
+            ? (tech.hydration[0] + tech.hydration[1]) / 2
             : 65;
-        salt = style.technicalProfile.salt
-            ? (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2
+        salt = tech.salt
+            ? (tech.salt[0] + tech.salt[1]) / 2
             : 2;
-        oil = style.technicalProfile.oil
-            ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2
+        oil = tech.oil
+            ? (tech.oil[0] + tech.oil[1]) / 2
             : 0;
-        sugar = style.technicalProfile.sugar
-            ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2
+        sugar = tech.sugar
+            ? (tech.sugar[0] + tech.sugar[1]) / 2
             : 0;
-        cocoa = style.technicalProfile.cocoa
-            ? (style.technicalProfile.cocoa[0] + style.technicalProfile.cocoa[1]) / 2
+        cocoa = tech.cocoa
+            ? (tech.cocoa[0] + tech.cocoa[1]) / 2
             : 0;
-        fatVal = style.technicalProfile.fat
-            ? (style.technicalProfile.fat[0] + style.technicalProfile.fat[1]) / 2
+        fatVal = tech.fat
+            ? (tech.fat[0] + tech.fat[1]) / 2
             : 0;
-        bakingTempC = style.technicalProfile.ovenTemp
-            ? Math.round((style.technicalProfile.ovenTemp[0] + style.technicalProfile.ovenTemp[1]) / 2)
+        bakingTempC = tech.ovenTemp
+            ? Math.round((tech.ovenTemp[0] + tech.ovenTemp[1]) / 2)
             : 250;
     }
 

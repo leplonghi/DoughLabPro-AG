@@ -15,6 +15,12 @@ import { northAmericaStyles as americasStyles } from './regions/north_america';
 import { Challah, BurgerBun, Shokupan as ShokupanLegacy, Panettone } from './library/bread/enriched';
 import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './library/pastry/sweets';
 import { burger_buns_enriched } from './bread/burger_buns_enriched';
+import { shokupan_milk_bread } from './bread/shokupan_milk_bread';
+import { pretzel_dough_classic } from './bread/pretzel_dough_classic';
+import { pain_de_mie_pullman } from './bread/pain_de_mie_pullman';
+import { ciabatta_high_hydration } from './bread/ciabatta_high_hydration';
+import { challah_braided } from './bread/challah_braided';
+import { colomba_pasquale } from './pastry/colomba_pasquale';
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -183,8 +189,8 @@ const RAW_STYLES: DoughStyleDefinition[] = [
     [
         // Enriched Breads (Legacy imports)
         // Filter out ShokupanLegacy if it conflicts with new Asia Shokupan, or keep as variant
-        Challah,
-        BurgerBun,
+        // Challah, // Replaced by challah_braided
+        // BurgerBun, // Replaced by burger_buns_enriched
         // ShokupanLegacy, // Commented out to prefer the new Asia module version if desired
         Panettone,
 
@@ -195,7 +201,13 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         FudgyBrownie,
 
         // New Additions
-        adaptV3ToLegacy(burger_buns_enriched)
+        adaptV3ToLegacy(burger_buns_enriched),
+        shokupan_milk_bread,
+        pain_de_mie_pullman,
+        ciabatta_high_hydration,
+        challah_braided,
+        pretzel_dough_classic,
+        adaptV3ToLegacy(colomba_pasquale),
     ]
 ].flat(2) as DoughStyleDefinition[];
 

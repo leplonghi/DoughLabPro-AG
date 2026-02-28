@@ -26,7 +26,7 @@ export function adaptLegacyStyle(legacy: DoughStyleDefinition | any): StyleDefin
         doughImpact: [],
         bakingImpact: [],
         technicalProfile: {
-            hydrationRange: legacy.technicalProfile?.hydrationRange || [legacy.technical?.hydration || 60, legacy.technical?.hydration || 60],
+            hydrationRange: legacy.technicalProfile?.hydrationRange || [legacy.technical?.hydration || legacy.hydration || 60, legacy.technical?.hydration || legacy.hydration || 60],
             saltRange: legacy.technicalProfile?.saltRange || [2, 2],
             oilRange: legacy.technicalProfile?.fatRange || [0, 0],
             sugarRange: legacy.technicalProfile?.sugarRange || [0, 0],

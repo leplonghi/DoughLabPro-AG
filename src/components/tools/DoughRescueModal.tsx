@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useTranslation } from '@/i18n';
+import React, { useState } from 'react'; // Added useState back
 import { Dialog } from '@headlessui/react';
 import { AlertCircle, Thermometer, Droplets, Wind, X, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -53,13 +54,14 @@ interface DoughRescueModalProps {
 }
 
 export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onClose }) => {
+    const { t } = useTranslation();
     const [selectedIssue, setSelectedIssue] = useState<RescueOption | null>(null);
 
     return (
         <AnimatePresence>
             {isOpen && (
                 <div className="relative z-50">
-                    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true" onClick={onClose} />
+                    <div className="fixed inset-0 bg-white/20 backdrop-blur-sm" aria-hidden="true" onClick={onClose} />
 
                     <div className="fixed inset-0 flex items-center justify-center p-4">
                         <motion.div
@@ -71,10 +73,8 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                             <div className="p-5 border-b border-dlp-border flex justify-between items-center bg-slate-50">
                                 <div>
                                     <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
-                                        <AlertCircle className="w-5 h-5 text-dlp-accent" />
-                                        Dough Rescue
-                                    </h3>
-                                    <p className="text-xs text-dlp-text-muted">Don't panic. Everything is fixable.</p>
+                                        <AlertCircle className="w-5 h-5 text-dlp-accent" />{t('common:dough_rescue')}</h3>
+                                    <p className="text-xs text-dlp-text-muted">{t('common:dont_panic_everything_is_fixable')}</p>
                                 </div>
                                 <button onClick={onClose} className="p-1 rounded-full hover:bg-black/5 transition-colors">
                                     <X className="w-5 h-5 text-dlp-text-secondary" />
@@ -84,7 +84,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                             <div className="p-4 max-h-[70vh] overflow-y-auto">
                                 {!selectedIssue ? (
                                     <div className="grid grid-cols-1 gap-3">
-                                        <p className="text-sm font-medium text-dlp-text-secondary mb-2">What seems to be the problem?</p>
+                                        <p className="text-sm font-medium text-dlp-text-secondary mb-2">{t('common:what_seems_to_be_the_problem')}</p>
                                         {RESCUE_OPTIONS.map((option) => (
                                             <button
                                                 key={option.id}
@@ -117,7 +117,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                                                 <h4 className="text-xl font-bold text-dlp-text-primary">{selectedIssue.label}</h4>
                                             </div>
                                             <div className="bg-white/60 p-4 rounded-lg backdrop-blur-sm">
-                                                <p className="font-semibold text-sm text-dlp-text-secondary mb-1 uppercase tracking-wider">The Fix</p>
+                                                <p className="font-semibold text-sm text-dlp-text-secondary mb-1 uppercase tracking-wider">{t('common:the_fix')}</p>
                                                 <p className="text-base text-dlp-text-primary leading-relaxed">
                                                     {selectedIssue.fix}
                                                 </p>
@@ -133,9 +133,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                                         <button
                                             onClick={onClose}
                                             className="w-full py-3 bg-dlp-accent hover:bg-dlp-accent-hover text-white rounded-xl font-bold shadow-dlp-sm transition-all"
-                                        >
-                                            Got it, trying this now
-                                        </button>
+                                        >{t('common:got_it_trying_this_now')}</button>
                                     </div>
                                 )}
                             </div>

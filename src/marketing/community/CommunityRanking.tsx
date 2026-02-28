@@ -11,8 +11,8 @@ export const CommunityRanking: React.FC = () => {
     }, []);
 
     return (
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-            <div className="p-4 border-b border-zinc-800 bg-zinc-950/50">
+        <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden">
+            <div className="p-4 border-b border-zinc-200 bg-zinc-950/50">
                 <h3 className="text-lg font-bold text-white">{t('community.baker_of_the_week')}</h3>
             </div>
             <div className="divide-y divide-zinc-800">
@@ -20,7 +20,7 @@ export const CommunityRanking: React.FC = () => {
                     <div key={index} className="p-4 flex items-center gap-4">
                         <div className={`w-8 h-8 flex items-center justify-center rounded-full font-bold ${index === 0 ? 'bg-yellow-500 text-black' :
                                 index === 1 ? 'bg-zinc-400 text-black' :
-                                    index === 2 ? 'bg-orange-700 text-white' : 'bg-zinc-800 text-zinc-400'
+                                    index === 2 ? 'bg-orange-700 text-white' : 'bg-zinc-50 text-zinc-400'
                             }`}>
                             {user.rank}
                         </div>

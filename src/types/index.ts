@@ -3,6 +3,7 @@ import React from 'react';
 import { Timestamp } from "firebase/firestore";
 import { DoughStyleDefinition, StyleCategory, RecipeStyle } from './styles';
 import { Increment, UserIngredient } from './ingredients';
+import { PlanId } from '../permissions'; // Import PlanId type
 
 export { RecipeStyle };
 export type { DoughStyleDefinition, StyleCategory };
@@ -68,7 +69,7 @@ export interface DoughSessionState {
 }
 
 
-export type Locale = 'en' | 'pt' | 'es';
+export type Locale = 'en' | 'pt' | 'es' | 'fr' | 'it' | 'de';
 
 export enum BakeType {
     PIZZAS = 'PIZZAS',
@@ -180,6 +181,10 @@ export interface DoughConfig {
     levainId?: string | null;
     targetTime?: string; // ISO string for Reverse Scheduling
     bakingTempC: number;
+    targetDDT?: number; // Desired Dough Temperature in °C (default: 25)
+    flourTemperatureC?: number; // Explicit flour temp in °C (undefined = same as ambient)
+    useFrictionFactor?: boolean; // Account for mixer heat generation (default: true)
+    ovenType?: OvenType;
 }
 
 export interface DoughIngredients {
@@ -264,8 +269,9 @@ export interface User {
     name: string;
     email: string;
     avatar?: string;
+    photoURL?: string;
     isPro?: boolean;
-    plan?: 'free' | 'pro'; // Unified Monetization
+    plan?: PlanId; // ✅ FIXED: Now uses imported PlanId type
     proSince?: string;
     proExpiresAt?: string;
     trialEndsAt?: string | null;
@@ -323,8 +329,8 @@ export interface UserContextType {
     setPreferredFlour: (id: string | null) => void;
     batches: Batch[];
     addBatch: (newBatch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) => Promise<Batch>;
-    updateBatch: (updatedBatch: Batch) => void;
-    deleteBatch: (id: string) => void;
+    updateBatch: (updatedBatch: Batch) => Promise<void>;
+    deleteBatch: (id: string) => Promise<void>;
     createDraftBatch: () => Promise<Batch>;
     levains: Levain[];
     addLevain: (levain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'>) => Promise<void>;
@@ -362,6 +368,8 @@ export interface UserContextType {
     setDefaultAmbientTempC: (temp: number) => void;
     defaultOvenType: OvenType; // Global default
     setDefaultOvenType: (type: OvenType) => void;
+    settings: UserSettings;
+    updateSettings: (settings: Partial<UserSettings>) => Promise<void>;
 }
 
 
@@ -450,6 +458,7 @@ export interface TestSeries {
         steps: string[];
     };
     relatedBakes?: string[];
+    status?: 'active' | 'completed' | 'archived';
 }
 
 export interface FavoriteItem {
@@ -600,17 +609,24 @@ export interface CommunityMeta {
     favoritedBatchIds: string[];
 }
 
-export interface MyLabEnvironmentSettings {
-    ambientTempC?: number;
-    ovenType?: 'HOME_ELECTRIC' | 'HOME_GAS' | 'PORTABLE_WFO' | 'WOOD_FIRED';
-    bakingSurface?: 'STEEL' | 'STONE' | 'BISCOTTO' | 'TRAY';
-    maxOvenTempC?: number;
+
+
+export interface PricingRegistry {
+    currencySymbol: string;
+    flourPricePerKg: number;
+    waterPricePerLiter: number; // Usually 0, but filtering costs money
+    yeastPricePer100g: number;
+    saltPricePerKg: number;
+    oilPricePerLiter: number;
+    sugarPricePerKg: number;
+    [key: string]: number | string; // For custom ingredients
 }
 
 export interface UserSettings {
     preferredFlourId: string | null;
     defaultAmbientTempC: number;
     defaultOvenType: OvenType;
+    pricingRegistry?: PricingRegistry;
 }
 
 export interface Suggestion {

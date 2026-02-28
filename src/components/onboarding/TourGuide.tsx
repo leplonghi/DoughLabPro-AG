@@ -85,6 +85,16 @@ export const TourGuide: React.FC = () => {
             // Delay slightly to allow UI to render
             setTimeout(() => setIsVisible(true), 1000);
         }
+
+        const handleStartTour = () => {
+            setCurrentStep(0);
+            setIsVisible(true);
+            // Optionally clear local storage if you want it to auto-show next reload, 
+            // but usually manual trigger users just want it now.
+        };
+
+        window.addEventListener('dlp-start-tour', handleStartTour);
+        return () => window.removeEventListener('dlp-start-tour', handleStartTour);
     }, []);
 
     useEffect(() => {
@@ -152,7 +162,7 @@ export const TourGuide: React.FC = () => {
     return createPortal(
         <div className="fixed inset-0 z-[100] pointer-events-none">
             {/* Dimmed Background with cutout */}
-            <div className="absolute inset-0 bg-black/50 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-white/20 transition-opacity duration-500" />
 
             {/* Spotlight Effect */}
             <div

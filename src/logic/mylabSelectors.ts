@@ -1,5 +1,4 @@
-import { Batch, MyLabEnvironmentSettings, Suggestion } from '../types';
-import { useTranslation } from '@/i18n';
+import { Batch, UserSettings, Suggestion, OvenType } from '../types';
 
 /**
  * Sorts batches by creation date in descending order (most recent first).
@@ -26,45 +25,17 @@ export const getLastSavedConfig = (batches: Batch[]): Batch | undefined => {
   return sorted[0];
 };
 
-const MYLAB_ENVIRONMENT_KEY = 'doughlabpro.mylab.environment';
-
-/**
- * Loads the user's environment settings from localStorage.
- * @returns The saved settings object, or null if not found or on error.
- */
-export const loadEnvironmentSettings = (): MyLabEnvironmentSettings | null => {
-  try {
-    const rawData = localStorage.getItem(MYLAB_ENVIRONMENT_KEY);
-    return rawData ? JSON.parse(rawData) : null;
-  } catch (error) {
-    console.error('Failed to load environment settings:', error);
-    return null;
-  }
-};
-
-/**
- * Saves the user's environment settings to localStorage.
- * @param settings - The settings object to save.
- */
-export const saveEnvironmentSettings = (settings: MyLabEnvironmentSettings): void => {
-  try {
-    localStorage.setItem(MYLAB_ENVIRONMENT_KEY, JSON.stringify(settings));
-  } catch (error) {
-    console.error('Failed to save environment settings:', error);
-  }
-};
-
 /**
  * Provides a recipe suggestion based on the user's environment.
- * @param environment - The user's saved environment settings.
+ * @param settings - The user's saved settings.
  * @param batches - The user's saved batches (for future use).
  * @returns A Suggestion object or null.
  */
 export function getTodaySuggestion(
-  environment?: MyLabEnvironmentSettings | null,
+  settings?: UserSettings | null,
   batches?: Batch[]
 ): Suggestion | null {
-  if (environment?.ambientTempC && environment.ambientTempC > 27) {
+  if (settings?.defaultAmbientTempC && settings.defaultAmbientTempC > 27) {
     return {
       id: 'hot_day_neapolitan',
       titleKey: 'suggestions.hot_day.title',
@@ -74,8 +45,8 @@ export function getTodaySuggestion(
   }
 
   if (
-    (environment?.ovenType === 'HOME_GAS' || environment?.ovenType === 'HOME_ELECTRIC') &&
-    environment?.bakingSurface === 'STEEL'
+    (settings?.defaultOvenType === OvenType.GAS || settings?.defaultOvenType === OvenType.ELECTRIC)
+    // Optimization: Steel logic removed until supported in UserSettings
   ) {
     return {
       id: 'steel_ny_style',
@@ -85,7 +56,7 @@ export function getTodaySuggestion(
     };
   }
 
-  if (environment?.ambientTempC && environment.ambientTempC < 20) {
+  if (settings?.defaultAmbientTempC && settings.defaultAmbientTempC < 20) {
     return {
       id: 'cold_day_detroit',
       titleKey: 'suggestions.cold_day.title',

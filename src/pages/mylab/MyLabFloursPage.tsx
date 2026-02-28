@@ -9,7 +9,7 @@ import {
     MagnifyingGlassIcon,
     BeakerIcon
 } from '@/components/ui/Icons';
-import MyLabLayout from './MyLabLayout';
+import MyLabLayout from '@/components/layouts/MyLabLayout';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
 import { FLOURS } from '@/flours-constants';
@@ -111,7 +111,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
     const preferredFlour = userFlours.find(f => f.id === preferredFlourId) || FLOURS.find(f => f.id === preferredFlourId);
 
     return (
-        <MyLabLayout activePage="mylab/farinhas" onNavigate={onNavigate}>
+        <MyLabLayout activePage="mylab/flours" onNavigate={onNavigate}>
             <div className="space-y-6 animate-fade-in pb-10">
 
                 {/* Header Section */}
@@ -247,7 +247,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                             <div className="text-center py-16 px-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
                                 <BeakerIcon className="w-16 h-16 text-slate-300 mx-auto mb-4" />
                                 <h3 className="text-lg font-bold text-slate-900">{t('mylab.your_inventory_is_empty')}</h3>
-                                <p className="text-slate-500 max-w-md mx-auto mt-2 mb-6">Start by adding flours to your lab. You can search our database of popular brands or add your own manually.</p>
+                                <p className="text-slate-500 max-w-md mx-auto mt-2 mb-6">{t('ui:start_by_adding_flours_to_your_lab_you_can_search_our_databa')}</p>
                                 <button
                                     onClick={() => setViewMode('catalog')}
                                     className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-500/20 transition-all"
@@ -263,7 +263,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                 <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                                 <input
                                     type="text"
-                                    placeholder="Search by brand, type (e.g., Caputo, King Arthur, 00)..."
+                                    placeholder={t('ui:search_by_brand_type_e_g_caputo_king_arthur_00')}
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
@@ -304,9 +304,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                 <button
                                     onClick={() => { setSearchQuery(''); setIsAddingMode('custom'); }}
                                     className="text-indigo-600 font-bold hover:underline mt-2"
-                                >
-                                    Add Custom Flour instead?
-                                </button>
+                                >{t('ui:add_custom_flour_instead')}</button>
                             </div>
                         )}
                     </div>
@@ -350,7 +348,7 @@ const MyLabFloursPage: React.FC<MyLabFloursPageProps> = ({ onNavigate }) => {
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Strength (W)</label>
+                                        <label className="block text-sm font-bold text-slate-700 mb-1">{t('ui:strength_w')}</label>
                                         <input
                                             type="number"
                                             value={newFlour.strengthW || ''}

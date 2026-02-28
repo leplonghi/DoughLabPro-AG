@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Page, TestSeries, Batch } from '@/types';
-import MyLabLayout from './MyLabLayout';
+import MyLabLayout from '@/components/layouts/MyLabLayout';
 import { useUser } from '@/contexts/UserProvider';
 import { FlaskIcon, SparklesIcon, BatchesIcon, PlusCircleIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';

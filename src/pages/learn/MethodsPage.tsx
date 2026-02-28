@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Page } from '@/types';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { SunIcon, WrenchScrewdriverIcon, CubeIcon, SparklesIcon, FireIcon, BeakerIcon, ShieldCheckIcon, ClockIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
@@ -12,7 +12,7 @@ interface MethodsPageProps {
 }
 
 const MethodsPage: React.FC<MethodsPageProps> = ({ onNavigate }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const topics = [
         { page: 'learn/article/autolyse', title: 'Autolyse', description: 'The passive rest technique for gluten development and extensibility.', icon: <ClockIcon className="h-8 w-8" /> },
         { page: 'learn/article/ambient-vs-cold', title: 'Ambient vs. Cold', description: 'A scientific comparison of fermentation methods.', icon: <SunIcon className="h-8 w-8" /> },

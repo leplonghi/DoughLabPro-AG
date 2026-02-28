@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TechnicalPageLayout from '../TechnicalPageLayout';
+import TechnicalPageLayout from '../../../components/layouts/TechnicalPageLayout';
 import { BeakerIcon, SparklesIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
@@ -51,14 +51,12 @@ const BoldCombosPage: React.FC = () => {
   const { t } = useTranslation();
   return (
     <TechnicalPageLayout
-      title="Bold Combinations (Validated)"
+      title={t('learn:bold_combinations_validated')}
       subtitle={t('learn.exploring_flavor_frontiers_in_modern_pizza_based_o')}
       showReferencesSection
     >
       <LearnSection title={t('learn.introduction_innovating_on_tradition')}>
-        <p>
-          Bold combos in contemporary pizza aren't random. They follow same balance principles as classics but apply unexpected ingredients for new contrasts. Renowned places like Pizzarium (Rome) or Roberta's (NY) are flavor labs popularizing challenging pairings.
-        </p>
+        <p>{t('learn:bold_combos_in_contemporary_pizza_arent_random_they_follow_s')}</p>
       </LearnSection>
 
       <LearnSection title={t('learn.ingredients_and_pairings')} icon={<SparklesIcon className="h-5 w-5" />}>

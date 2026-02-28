@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
-import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'; // Using heroicons as standard in project
+import { ClockIcon } from '@heroicons/react/24/outline';
 import { format } from '@/logic/dateUtils';
 
 interface TargetTimeInputProps {
@@ -29,16 +29,17 @@ const TargetTimeInput: React.FC<TargetTimeInputProps> = ({
     minWeight,
     maxWeight,
     errors,
-    getInputClasses
+    getInputClasses,
 }) => {
     const { t } = useTranslation();
 
-    // Default to tomorrow 8 PM if not set
     const defaultDate = new Date();
     defaultDate.setDate(defaultDate.getDate() + 1);
     defaultDate.setHours(20, 0, 0, 0);
 
-    const currentValue = targetTime ? format(new Date(targetTime), 'yyyy-MM-ddTHH:mm') : format(defaultDate, 'yyyy-MM-ddTHH:mm');
+    const currentValue = targetTime
+        ? format(new Date(targetTime), 'yyyy-MM-ddTHH:mm')
+        : format(defaultDate, 'yyyy-MM-ddTHH:mm');
 
     const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const date = new Date(e.target.value);
@@ -55,8 +56,12 @@ const TargetTimeInput: React.FC<TargetTimeInputProps> = ({
                         <ClockIcon className="h-5 w-5" />
                     </div>
                     <div>
-                        <h3 className="text-sm font-bold text-indigo-900">{t('calculator.target_time_mode')}</h3>
-                        <p className="text-xs text-indigo-600">Reverse engineering from your meal time</p>
+                        <h3 className="text-sm font-bold text-indigo-900">
+                            {t('calculator.target_time_mode')}
+                        </h3>
+                        <p className="text-xs text-indigo-600">
+                            {t('calculator:reverse_engineering_from_your_meal_time')}
+                        </p>
                     </div>
                 </div>
 
@@ -64,13 +69,13 @@ const TargetTimeInput: React.FC<TargetTimeInputProps> = ({
                     {/* Time Input */}
                     <div>
                         <label className="mb-1 block text-xs font-bold text-gray-700">
-                            When do you want to eat?
+                            {t('calculator:when_do_you_want_to_eat')}
                         </label>
                         <input
                             type="datetime-local"
                             value={currentValue}
                             onChange={handleDateChange}
-                            className="block w-full rounded-md border-indigo-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2.5 px-3 font-bold text-indigo-950 bg-indigo-50/50"
+                            className="block w-full rounded-md border-indigo-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-3 font-bold text-indigo-950 bg-indigo-50/50 min-h-[44px]"
                         />
                     </div>
 
@@ -78,7 +83,7 @@ const TargetTimeInput: React.FC<TargetTimeInputProps> = ({
                         {/* Num Pizzas */}
                         <div>
                             <label className="mb-1 block text-xs font-bold text-gray-700">
-                                Count
+                                {t('calculator:count')}
                             </label>
                             <input
                                 type="number"
@@ -86,14 +91,13 @@ const TargetTimeInput: React.FC<TargetTimeInputProps> = ({
                                 max={100}
                                 value={numPizzas}
                                 onChange={(e) => onNumPizzasChange(parseInt(e.target.value) || 0)}
-                                className={getInputClasses(!!errors?.numPizzas)}
+                                className={`${getInputClasses(!!errors?.numPizzas)} py-3 min-h-[44px]`}
                             />
                         </div>
-
                         {/* Ball Weight */}
                         <div>
                             <label className="mb-1 block text-xs font-bold text-gray-700">
-                                Weight (g)
+                                {t('calculator:weight_g')}
                             </label>
                             <input
                                 type="number"
@@ -101,7 +105,7 @@ const TargetTimeInput: React.FC<TargetTimeInputProps> = ({
                                 max={maxWeight}
                                 value={ballWeight}
                                 onChange={(e) => onBallWeightChange(parseInt(e.target.value) || 0)}
-                                className={getInputClasses(!!errors?.ballWeight)}
+                                className={`${getInputClasses(!!errors?.ballWeight)} py-3 min-h-[44px]`}
                             />
                         </div>
                     </div>

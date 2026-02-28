@@ -1,5 +1,5 @@
 import React from 'react';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import { Page } from '@/types';
 import { WrenchScrewdriverIcon, CubeIcon, FireIcon, BeakerIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
@@ -10,23 +10,24 @@ const TechniqueCard: React.FC<{
   title: string;
   description: string;
   onClick: () => void;
-}> = ({ icon, title, description, onClick }) => (
-  <button
-    onClick={onClick}
-    className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
-  >
-    <div className="flex-shrink-0 text-dlp-brand">{icon}</div>
-    <div className="mt-4 flex-grow">
-      <h3 className="text-lg font-bold text-slate-900 group-hover:text-dlp-brand-hover transition-colors">
-        {title}
-      </h3>
-      <p className="mt-2 text-sm text-slate-900 leading-relaxed">{description}</p>
-    </div>
-    <p className="mt-4 text-sm font-semibold text-slate-500 group-hover:text-dlp-brand transition-colors">
-      Read More &rarr;
-    </p>
-  </button>
-);
+}> = ({ icon, title, description, onClick }) => {
+  const { t } = useTranslation();
+  return (
+    <button
+      onClick={onClick}
+      className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
+    >
+      <div className="flex-shrink-0 text-dlp-brand">{icon}</div>
+      <div className="mt-4 flex-grow">
+        <h3 className="text-lg font-bold text-slate-900 group-hover:text-dlp-brand-hover transition-colors">
+          {title}
+        </h3>
+        <p className="mt-2 text-sm text-slate-900 leading-relaxed">{description}</p>
+      </div>
+      <p className="mt-4 text-sm font-semibold text-slate-500 group-hover:text-dlp-brand transition-colors">{t('learn:read_more_rarr')}</p>
+    </button>
+  );
+};
 
 interface TechniquesPageProps {
   onNavigate: (page: Page) => void;
@@ -34,7 +35,6 @@ interface TechniquesPageProps {
 
 const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
   const { t } = useTranslation();
-
   const techniques = [
     {
       page: 'learn/article/autolyse' as Page,
@@ -65,7 +65,7 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
   return (
     <TechnicalPageLayout
       title={t('learn.baking_techniques')}
-      subtitle="Master the physical manipulations that define your dough's structure."
+      subtitle={t('learn:master_the_physical_manipulations_that_define_your_dough') + "'s structure."}
       showReferencesSection
     >
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -79,7 +79,6 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
           />
         ))}
       </div>
-
       <div className="mt-12 prose prose-slate max-w-none">
         <h3>{t('learn.why_technique_matters')}</h3>
         <p>
@@ -93,4 +92,3 @@ const TechniquesPage: React.FC<TechniquesPageProps> = ({ onNavigate }) => {
 };
 
 export default TechniquesPage;
-

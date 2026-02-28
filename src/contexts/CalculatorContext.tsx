@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import {
     DoughConfig,
@@ -12,7 +13,9 @@ import {
     ProRecipe,
     DoughStyleDefinition,
     RecipeStyle,
-    IngredientConfig
+    IngredientConfig,
+    AmbientTemperature,
+    OvenType
 } from '@/types';
 import { DOUGH_STYLE_PRESETS, DEFAULT_CONFIG, DOUGH_WEIGHT_RANGES } from '@/constants';
 import { FLOURS } from '@/flours-constants';
@@ -26,6 +29,10 @@ import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
 import { validateDoughConfig } from '@/features/calculator/domain/validators/DoughConfigValidator';
+import { logger } from '@/utils/logger';
+import { FormulaResult } from '@/domain/usecases/EngineTypes';
+import { computeFormula } from '@/domain/usecases/computeFormula';
+import { resolveStyleId } from '@/data/content/resolveStyleId';
 
 interface CalculatorContextType {
     config: DoughConfig;
@@ -40,6 +47,7 @@ interface CalculatorContextType {
     setUnitSystem: React.Dispatch<React.SetStateAction<UnitSystem>>;
     errors: FormErrors;
     results: DoughResult | null;
+    formulaResult: FormulaResult | null;
     hasInteracted: boolean;
     setHasInteracted: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -61,7 +69,7 @@ const isAnySourdough = (yeastType: YeastType) =>
 
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { t } = useTranslation(['common', 'calculator', 'styles']);
-    const { user, levains, preferredFlourId, ovens } = useUser();
+    const { user, levains, preferredFlourId, ovens, settings: userSettings } = useUser();
     const { addToast } = useToast();
     const previousErrorsRef = useRef<FormErrors>({});
 
@@ -82,7 +90,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         try {
             localStorage.setItem('doughlab_mode', calculatorMode);
         } catch (error) {
-            console.error('Failed to save mode to localStorage', error);
+            logger.error('Failed to save mode to localStorage', error);
         }
     }, [calculatorMode]);
 
@@ -96,18 +104,30 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         const preset = DOUGH_STYLE_PRESETS.find(p => p.id === DEFAULT_CONFIG.stylePresetId);
         if (preset?.preferredFlourProfileId) {
             config.flourId = preset.preferredFlourProfileId;
-        } else if (preferredFlourId) {
             config.flourId = preferredFlourId;
         }
 
-        // Apply Default Oven Temperature
+        // Apply User Environment Defaults
+        if (userSettings?.defaultAmbientTempC) {
+            const temp = userSettings.defaultAmbientTempC;
+            if (temp < 18) config.ambientTemperature = AmbientTemperature.COLD;
+            else if (temp > 24) config.ambientTemperature = AmbientTemperature.HOT;
+            else config.ambientTemperature = AmbientTemperature.MILD;
+        }
+
+        // Apply Oven Defaults
+        if (userSettings?.defaultOvenType) {
+            config.ovenType = userSettings.defaultOvenType;
+        }
+
+        // Apply Oven Temperature from My Lab Ovens
         const defaultOven = ovens.find(o => o.isDefault) || (ovens.length > 0 ? ovens[0] : undefined);
         if (defaultOven?.maxTemperature) {
             config.bakingTempC = defaultOven.maxTemperature;
         }
 
         return config;
-    }, [preferredFlourId, ovens]);
+    }, [preferredFlourId, ovens, userSettings]);
 
     // --- State Mapping ---
     // Map Session State to DoughConfig
@@ -235,6 +255,33 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             : null;
         return calculateDoughUniversal(config, calculatorMode, calculationMode, userLevain);
     }, [config, hasErrors, levains, calculatorMode, calculationMode]);
+
+    const formulaResult = useMemo(() => {
+        if (hasErrors || !config.stylePresetId) return null;
+
+        const canonicalId = resolveStyleId(config.stylePresetId);
+        const style = STYLES_DATA.find(s => s.id === canonicalId);
+        if (!style) return null;
+
+        return computeFormula({
+            style: style as any, // Cast for now as they're not purely CanonicalStyle structurally yet
+            targetInputs: {
+                doughWeight: config.doughBallWeight,
+                numBalls: config.numPizzas,
+                hydration: config.hydration,
+                salt: config.salt,
+                yeastPercentage: config.yeastPercentage,
+                fermentationTechnique: config.fermentationTechnique as any,
+                levainId: config.levainId
+            },
+            equipment: {
+                ovenType: config.ovenType as any,
+                surface: 'steel',
+                ambientTempC: 21,
+                maxOvenTempC: config.bakingTempC
+            }
+        });
+    }, [config, hasErrors]);
 
     // --- Handlers ---
 
@@ -412,6 +459,30 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         setHasInteracted(true);
         setConfig((prev) => {
             const newConfig: Partial<DoughConfig> = { ...prev, yeastType, stylePresetId: undefined };
+
+            // Apply Yeast Potency Conversion if switching COMMERCIAL types
+            const isCommercial = (t: YeastType) => ![YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(t);
+
+            if (isCommercial(prev.yeastType) && isCommercial(yeastType)) {
+                // Example: 0.2% IDY -> 0.6% Fresh
+                import('@/helpers').then(({ convertYeast }) => {
+                    // Since this is async/inside setState, we might need a better way.
+                    // But let's use the constants directly here for immediate sync response
+                });
+
+                // Direct constants access (sync)
+                const { YEAST_EQUIVALENCIES } = require('@/constants');
+                let idyEquivalent = prev.yeastPercentage;
+                if (prev.yeastType === YeastType.ADY) idyEquivalent = prev.yeastPercentage * YEAST_EQUIVALENCIES.ADY_TO_IDY;
+                else if (prev.yeastType === YeastType.FRESH) idyEquivalent = prev.yeastPercentage * YEAST_EQUIVALENCIES.FRESH_TO_IDY;
+
+                let targetPct = idyEquivalent;
+                if (yeastType === YeastType.ADY) targetPct = idyEquivalent * YEAST_EQUIVALENCIES.IDY_TO_ADY;
+                else if (yeastType === YeastType.FRESH) targetPct = idyEquivalent * YEAST_EQUIVALENCIES.IDY_TO_FRESH;
+
+                newConfig.yeastPercentage = parseFloat(targetPct.toFixed(2));
+            }
+
             if (isAnySourdough(yeastType)) {
                 newConfig.fermentationTechnique = FermentationTechnique.DIRECT;
                 if (!isAnySourdough(prev.yeastType)) {
@@ -513,7 +584,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         setHasInteracted(false);
     }, [smartDefaults]);
 
-    // Mode switching logic (wizard <-> basic <-> advanced)
+    // Mode switching logic (wizard <->{t('calculator:calculator.basic')}<-> advanced)
     const setCalculatorModeWrapper = useCallback((newMode: 'wizard' | 'basic' | 'advanced') => {
         setCalculatorMode(newMode);
         // Both wizard and basic modes reset to preset values
@@ -549,6 +620,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         setUnitSystem,
         errors,
         results,
+        formulaResult,
         hasInteracted,
         setHasInteracted,
         handleConfigChange,
@@ -583,6 +655,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 };
 
 export const useCalculator = () => {
+    const { t } = useTranslation();
     const context = useContext(CalculatorContext);
     if (context === undefined) {
         throw new Error('useCalculator must be used within a CalculatorProvider');

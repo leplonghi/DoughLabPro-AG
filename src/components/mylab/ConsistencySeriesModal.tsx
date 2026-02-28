@@ -71,7 +71,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
 
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fadeIn">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm p-4 animate-fadeIn">
             <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl ring-1 ring-slate-200 overflow-hidden">
                 <div className="flex items-center justify-between border-b border-gray-100 p-4 bg-gray-50/50">
                     <h2 className="text-lg font-bold text-gray-900">

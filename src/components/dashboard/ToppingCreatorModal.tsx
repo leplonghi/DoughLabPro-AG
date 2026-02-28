@@ -66,7 +66,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm" />
+                    <div className="fixed inset-0 bg-white/40 backdrop-blur-sm" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
@@ -83,9 +83,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                             <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-3xl bg-white p-6 shadow-2xl transition-all border border-slate-100">
                                 <div className="flex justify-between items-center mb-6">
                                     <Dialog.Title as="h3" className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                                        <Plus size={20} className="text-[#51a145]" />
-                                        Create New Filling Preset
-                                    </Dialog.Title>
+                                        <Plus size={20} className="text-[#51a145]" />{t('common:create_new_filling_preset')}</Dialog.Title>
                                     <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
                                         <X size={20} className="text-slate-400" />
                                     </button>
@@ -94,7 +92,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                                 <div className="space-y-5">
                                     {/* Name */}
                                     <div>
-                                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Preset Name</label>
+                                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">{t('ui:mylab.preset_name')}</label>
                                         <input
                                             type="text"
                                             value={name}
@@ -107,7 +105,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                                     {/* Grams Grid */}
                                     <div className="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Sauce (g)</label>
+                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">{t('common:sauce_g')}</label>
                                             <input
                                                 type="number"
                                                 value={sauceGrams}
@@ -116,7 +114,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Cheese (g)</label>
+                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">{t('common:cheese_g')}</label>
                                             <input
                                                 type="number"
                                                 value={cheeseGrams}
@@ -125,7 +123,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Others (g)</label>
+                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">{t('common:others_g')}</label>
                                             <input
                                                 type="number"
                                                 value={toppingsGrams}
@@ -137,11 +135,11 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
 
                                     {/* Notes */}
                                     <div>
-                                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Notes / Description</label>
+                                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">{t('common:notes_description')}</label>
                                         <textarea
                                             value={notes}
                                             onChange={(e) => setNotes(e.target.value)}
-                                            placeholder="Ingredients and special instructions..."
+                                            placeholder={t('common:ingredients_and_special_instructions')}
                                             rows={3}
                                             className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 ring-[#51a145]/20 focus:border-[#51a145] outline-none text-sm text-slate-600 transition-all resize-none"
                                         />
@@ -149,9 +147,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
 
                                     <div className="bg-emerald-50 p-4 rounded-2xl flex items-start gap-3">
                                         <Info size={16} className="text-[#51a145] mt-0.5 shrink-0" />
-                                        <p className="text-[11px] text-[#2d5a27] leading-relaxed">
-                                            This preset will be used to calculate your cumulative shopping list and logistics preparation. You can reuse it in future sessions.
-                                        </p>
+                                        <p className="text-[11px] text-[#2d5a27] leading-relaxed">{t('common:this_preset_will_be_used_to_calculate_your_cumulative_shoppi')}</p>
                                     </div>
                                 </div>
 
@@ -159,9 +155,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                                     <button
                                         onClick={onClose}
                                         className="flex-1 py-3 px-4 rounded-xl border border-slate-200 font-bold text-slate-500 hover:bg-slate-50 transition-colors"
-                                    >
-                                        Cancel
-                                    </button>
+                                    >{t('ui:profile.cancel')}</button>
                                     <button
                                         onClick={handleSave}
                                         disabled={!name || isSaving}
@@ -169,9 +163,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                                     >
                                         {isSaving ? 'Saving...' : (
                                             <>
-                                                <Save size={18} />
-                                                Create Preset
-                                            </>
+                                                <Save size={18} />{t('common:create_preset')}</>
                                         )}
                                     </button>
                                 </div>

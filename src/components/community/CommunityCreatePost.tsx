@@ -1,37 +1,1 @@
-import React from 'react';
-import { useRouter } from '@/contexts/RouterContext';
-import { FeedIcon, ChevronRightIcon } from '@/components/ui/Icons';
-import { useTranslation } from '@/i18n';
-
-const CommunityCreatePost: React.FC = () => {
-  const { t } = useTranslation();
-    const { navigate } = useRouter();
-
-    return (
-        <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
-            <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-lime-100 flex items-center justify-center text-dlp-brand-hover">
-                    <FeedIcon className="h-6 w-6" />
-                </div>
-                <div>
-                    <h3 className="font-bold text-slate-900">{t('community.share_your_bake_2')}</h3>
-                    <p className="text-xs text-slate-500">{t('community.inspire_the_community')}</p>
-                </div>
-            </div>
-
-            <p className="text-sm text-slate-600 mb-6 leading-relaxed">
-                Completed a great batch? Go to your lab history and publish it to the community feed!
-            </p>
-
-            <button
-                onClick={() => navigate('mylab/fornadas')}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-dlp-brand to-lime-700 py-3 text-sm font-bold text-white shadow-lg shadow-lime-900/10 hover:from-dlp-brand-hover hover:to-lime-800 transition-all active:scale-95"
-            >{t('community.go_to_my_lab')}<ChevronRightIcon className="h-4 w-4" />
-            </button>
-        </div>
-    );
-};
-
-export default CommunityCreatePost;
-
-
+import React from 'react';import { useRouter } from '@/contexts/RouterContext';import { FeedIcon, ChevronRightIcon } from '@/components/ui/Icons';import { useTranslation } from '@/i18n';const CommunityCreatePost: React.FC = () => {    const { t } = useTranslation();    const { navigate } = useRouter();    return (        <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">            <div className="flex items-center gap-3 mb-4">                <div className="h-10 w-10 rounded-full bg-lime-100 flex items-center justify-center text-dlp-brand-hover">                    <FeedIcon className="h-6 w-6" />                </div>                <div>                    <h3 className="font-bold text-slate-900">{t('community.share_your_bake_2')}</h3>                    <p className="text-xs text-slate-500">{t('community.inspire_the_community')}</p>                </div>            </div>            <p className="text-sm text-slate-600 mb-6 leading-relaxed">{t('common:completed_a_great_batch_go_to_your_lab_history_and_publish_i')}</p>            <button                onClick={() => navigate('mylab/bakes')}                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-dlp-brand to-lime-700 py-3 text-sm font-bold text-white shadow-lg shadow-lime-900/10 hover:from-dlp-brand-hover hover:to-lime-800 transition-all active:scale-95"            >{t('community.go_to_my_lab')}<ChevronRightIcon className="h-4 w-4" />            </button>        </div>    );};export default CommunityCreatePost;

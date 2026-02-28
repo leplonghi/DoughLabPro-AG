@@ -3,7 +3,7 @@ import { useNotifications } from '@/contexts/NotificationContext';
 import { useRouter } from '@/contexts/RouterContext';
 import { Bell, X, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import { NotificationPriority } from '@/types/notifications';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 
 
 export const FloatingNotificationWidget: React.FC = () => {
@@ -71,7 +71,7 @@ export const FloatingNotificationWidget: React.FC = () => {
     };
 
     return (
-        <div className="fixed bottom-4 right-4 z-40 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700">
+        <div className="fixed bottom-4 right-4 z-40 w-80 bg-white dark:bg-gray-50 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700">
             {/* Header */}
             <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-t-lg">
                 <div className="flex items-center gap-2">

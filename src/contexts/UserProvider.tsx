@@ -36,36 +36,31 @@ import {
   where,
   getDocs,
   getDoc,
+  Firestore,
 } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { auth } from '@/firebase/auth';
 import { PlanId } from '@/permissions';
 import { isProUser } from '@/lib/permissions';
 import { useBatchManager } from '@/hooks/useBatchManager';
 import { useTranslation } from '@/i18n';
 import { monitor } from '@/infrastructure/monitoring';
+import { useUserSubscriptions } from '@/hooks/useUserSubscriptions';
+import { logger } from '@/utils/logger';
+import { migrateFavorites } from '@/data/migrations/migrateSavedData';
+import { LevainRepo } from '@/data/repositories/LevainRepo';
+import { FavoriteRepo } from '@/data/repositories/FavoriteRepo';
+import { migrateFromLocalStorageToDexie } from '@/data/migrations/migrateToDexie';
+import { useLiveQuery } from 'dexie-react-hooks';
 
-const shouldUseFirestore = (user: User | null | any, db: any) => {
+const shouldUseFirestore = (user: FirebaseUser | null, db: Firestore) => {
   return !!user && !!db && user.uid !== 'guest-123' && user.uid !== 'vip-guest-user';
 };
 
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-const getStatusFromLastFeeding = (levain: Levain): LevainStatus => {
-  if (levain.status === 'arquivado') return 'arquivado';
 
-  const hoursSinceLastFeeding = hoursBetween(new Date().toISOString(), levain.lastFeeding);
-  const SEVEN_DAYS_IN_HOURS = 7 * 24;
-
-  if (hoursSinceLastFeeding <= 48) {
-    return 'ativo';
-  } else if (hoursSinceLastFeeding > 48 && hoursSinceLastFeeding <= SEVEN_DAYS_IN_HOURS) {
-    return 'precisa_atencao';
-  } else {
-    return 'descanso';
-  }
-};
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useTranslation(['common', 'ui', 'styles']);
@@ -73,24 +68,40 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const { loginWithGoogle, logout: authLogout } = useAuth();
 
   // Local state mirrors
-  const [firebaseUser, setFirebaseUser] = useState<any>(null);
+  const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [userLoading, setUserLoading] = useState(true);
   const [planLoading, setPlanLoading] = useState(true);
 
   const [ovens, setOvens] = useState<Oven[]>([]);
-  const [levains, setLevains] = useState<Levain[]>([]);
+
+  const isGuest = !firebaseUser || !shouldUseFirestore(firebaseUser, db);
+
+  const localLevains = useLiveQuery(() => LevainRepo.getAll()) || [];
+  const [firebaseLevains, setFirebaseLevains] = useState<Levain[]>([]);
+  const levains = isGuest ? localLevains : firebaseLevains;
+
   const [goals, setGoals] = useState<Goal[]>([]);
   const [testSeries, setTestSeries] = useState<TestSeries[]>([]);
   const [userStyles, setUserStyles] = useState<DoughStyleDefinition[]>([]);
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+
+  const localFavorites = useLiveQuery(() => FavoriteRepo.getAll()) || [];
+  const [firebaseFavorites, setFirebaseFavorites] = useState<FavoriteItem[]>([]);
+  const favorites = isGuest ? localFavorites : firebaseFavorites;
+
   const [customPresets, setCustomPresets] = useState<CustomPreset[]>([]);
   const [customToppings, setCustomToppings] = useState<ToppingCombination[]>([]);
+
+  const entitlements = useMemo(() => ({
+    plan: user?.plan || null,
+    isPro: user?.isPro || false
+  }), [user]);
 
   // Use custom hook for batches
   const { batches, addBatch, updateBatch, deleteBatch, createDraftBatch } = useBatchManager(
     firebaseUser,
     db,
+    entitlements,
     addToast
   );
 
@@ -135,6 +146,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Sync User - Race-Safe Implementation
   useEffect(() => {
+    // Run DB migration first
+    migrateFromLocalStorageToDexie().catch(console.error);
+
     if (!auth) return;
 
     const unsub = onAuthStateChanged(auth, async (authUser) => {
@@ -196,7 +210,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         // The file imports db from @/firebase/db
 
         // We use a try-catch block for the fetch
-        let profileData: any = {};
+        let profileData: Partial<User> = {};
         try {
           const snap = await getDoc(ref);
           if (snap.exists()) {
@@ -211,7 +225,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         // Auto-fix Firestore for admin
         if (isAdminEmail && (profileData.plan !== 'lab_pro' || !profileData.isAdmin)) {
-          console.log(t('ui.autoupgrading_admin_user_in_firestore'));
+          logger.info(t('ui.autoupgrading_admin_user_in_firestore'));
           try {
             await updateDoc(ref, {
               isAdmin: true,
@@ -267,81 +281,17 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
 
 
-  // --- LOCAL FAVOURITES (Guest Mode) ---
-  useEffect(() => {
-    if (!firebaseUser) {
-      try {
-        const stored = localStorage.getItem('dough-lab-guest-favorites');
-        if (stored) {
-          setFavorites(JSON.parse(stored));
-        }
-      } catch (err: any) {
-        //   monitor.trackError(err, { context: 'load_guest_favorites' });
-      }
-    }
-  }, [firebaseUser]);
-
-  // Generic subscription helper
-  const createCollectionSubscription = useCallback(
-    (
-      collectionName: string,
-      setter: React.Dispatch<React.SetStateAction<any[]>>,
-      postProcess?: (item: any) => any
-    ) => {
-      if (!shouldUseFirestore(firebaseUser, db)) {
-        return () => { };
-      }
-      const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
-      const q = query(collRef, orderBy('createdAt', 'desc'));
-
-      return onSnapshot(
-        q,
-        (snapshot) => {
-          const items = snapshot.docs.map((doc) => {
-            const data = doc.data();
-            Object.keys(data).forEach((key) => {
-              if (data[key] instanceof Timestamp) {
-                data[key] = data[key].toDate().toISOString();
-              }
-            });
-            const processedItem = { id: doc.id, ...data };
-            return postProcess ? postProcess(processedItem) : processedItem;
-          });
-          setter(items);
-        },
-        (error) => {
-          monitor.trackError(error, { context: `listener_${collectionName}` });
-        }
-      );
-    },
-    [firebaseUser]
-  );
-
-  // Subscriptions
-  useEffect(() => {
-    const unsubOvens = createCollectionSubscription('ovens', setOvens);
-    const unsubLevains = createCollectionSubscription('levains', setLevains, (l: Levain) => ({
-      ...l,
-      status: getStatusFromLastFeeding(l),
-    }));
-    const unsubGoals = createCollectionSubscription('goals', setGoals);
-    const unsubTestSeries = createCollectionSubscription('testSeries', setTestSeries);
-    const unsubUserStyles = createCollectionSubscription('styles', setUserStyles);
-    const unsubFavorites = createCollectionSubscription('favorites', setFavorites);
-    const unsubCustomPresets = createCollectionSubscription('customPresets', setCustomPresets);
-    const unsubCustomToppings = createCollectionSubscription('customToppings', setCustomToppings);
-
-    return () => {
-      unsubOvens();
-      unsubLevains();
-      unsubGoals();
-      unsubTestSeries();
-      unsubUserStyles();
-      unsubFavorites();
-      unsubCustomPresets();
-      unsubCustomToppings();
-    };
-  }, [createCollectionSubscription]);
+  // Subscriptions - Extracted to Hook
+  useUserSubscriptions(firebaseUser, {
+    setOvens,
+    setLevains: setFirebaseLevains,
+    setGoals,
+    setTestSeries,
+    setUserStyles,
+    setFavorites: setFirebaseFavorites,
+    setCustomPresets,
+    setCustomToppings
+  });
 
   const login = useCallback(
     (userData: User) => {
@@ -371,7 +321,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       localStorage.setItem('dough-lab-user-settings', JSON.stringify(userSettings));
     } catch (error) {
-      console.error(error);
+      logger.error('Failed to save user settings', error);
     }
   }, [userSettings]);
 
@@ -387,9 +337,18 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setUserSettings((prev) => ({ ...prev, defaultOvenType: type }));
   }, []);
 
+  const updateSettings = useCallback(async (newSettings: Partial<UserSettings>) => {
+    setUserSettings((prev) => ({ ...prev, ...newSettings }));
+    // If logged in, we could sync to firestore here too
+  }, []);
+
   // Helpers for CRUD - Mock Aware
   const createDoc = useCallback(
-    async (collectionName: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
+    async <T extends { id: string }>(
+      collectionName: string,
+      data: Omit<T, 'id' | 'createdAt' | 'updatedAt'>,
+      stateSetter?: React.Dispatch<React.SetStateAction<T[]>>
+    ): Promise<T> => {
       const usingFirestore = shouldUseFirestore(firebaseUser, db);
 
       const now = new Date().toISOString();
@@ -403,9 +362,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       if (usingFirestore) {
         try {
-          const collRef = collection(db, 'users', firebaseUser.uid, collectionName);
+          const collRef = collection(db!, 'users', firebaseUser!.uid, collectionName);
           const docRef = await addDoc(collRef, docData);
-          return { ...docData, id: docRef.id };
+          return { ...docData, id: docRef.id } as T;
         } catch (error: any) {
           monitor.trackError(error, { context: `createDoc_${collectionName}` });
           addToast(`Error saving to cloud: ${error.message}`, 'error');
@@ -414,11 +373,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
       } else {
         // Mock Mode
-        console.warn('[createDoc] Falling back to Mock Mode (Local State Only)');
+        logger.warn('[createDoc] Falling back to Mock Mode (Local State Only)');
         const newId = `mock-${collectionName}-${Date.now()}`;
-        const newItem = { ...docData, id: newId };
+        const newItem = { ...docData, id: newId } as T;
         if (stateSetter) {
-          stateSetter(prev => [newItem, ...prev]);
+          stateSetter((prev) => [newItem, ...prev]);
         }
         return newItem;
       }
@@ -427,7 +386,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 
   const updateDocFn = useCallback(
-    async (collectionName: string, id: string, data: any, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
+    async <T extends { id: string }>(
+      collectionName: string,
+      id: string,
+      data: Partial<T>,
+      stateSetter?: React.Dispatch<React.SetStateAction<T[]>>
+    ) => {
       const usingFirestore = shouldUseFirestore(firebaseUser, db);
 
       const rawUpdate = { ...data, updatedAt: new Date().toISOString() };
@@ -435,7 +399,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       if (usingFirestore) {
         try {
-          const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
+          const docRef = doc(db!, 'users', firebaseUser!.uid, collectionName, id);
           await updateDoc(docRef, update);
         } catch (error: any) {
           monitor.trackError(error, { context: `updateDoc_${collectionName}` });
@@ -443,9 +407,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           throw error;
         }
       } else {
-        console.warn('[updateDoc] Falling back to Mock Mode');
+        logger.warn('[updateDoc] Falling back to Mock Mode');
         if (stateSetter) {
-          stateSetter(prev => prev.map(item => item.id === id ? { ...item, ...update } : item));
+          stateSetter((prev) =>
+            prev.map((item) => (item.id === id ? { ...item, ...update } : item))
+          );
         }
       }
     },
@@ -453,13 +419,17 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 
   const deleteDocFn = useCallback(
-    async (collectionName: string, id: string, stateSetter?: React.Dispatch<React.SetStateAction<any[]>>) => {
+    async <T extends { id: string }>(
+      collectionName: string,
+      id: string,
+      stateSetter?: React.Dispatch<React.SetStateAction<T[]>>
+    ) => {
       if (shouldUseFirestore(firebaseUser, db)) {
-        const docRef = doc(db, 'users', firebaseUser.uid, collectionName, id);
+        const docRef = doc(db!, 'users', firebaseUser!.uid, collectionName, id);
         await deleteDoc(docRef);
       } else {
         if (stateSetter) {
-          stateSetter(prev => prev.filter(item => item.id !== id));
+          stateSetter((prev) => prev.filter((item) => item.id !== id));
         }
       }
     },
@@ -503,27 +473,50 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     ) => {
       const data = {
         ...newLevainData,
-        status: 'ativo',
+        status: 'ativo' as LevainStatus,
         lastFeeding: new Date().toISOString(),
         isDefault: levains.length === 0,
         feedingHistory: [],
       };
-      const newLevain = await createDoc('levains', data, setLevains);
+
+      let newLevain: any;
+      if (shouldUseFirestore(firebaseUser, db)) {
+        newLevain = await createDoc('levains', data, setFirebaseLevains);
+      } else {
+        newLevain = { ...data, id: `guest-levain-${Date.now()}` };
+        try {
+          await LevainRepo.create(newLevain, entitlements);
+        } catch (e: any) {
+          addToast(e.message, 'error');
+          return;
+        }
+      }
+
       if (user) logEvent('levain_pet_created', { userId: user.email, levainId: newLevain.id });
     },
-    [createDoc, levains.length, user]
+    [createDoc, levains.length, user, firebaseUser]
   );
 
   const updateLevain = useCallback(
     async (updatedData: Partial<Levain> & { id: string }) => {
-      await updateDocFn('levains', updatedData.id, updatedData, setLevains);
+      if (shouldUseFirestore(firebaseUser, db)) {
+        await updateDocFn('levains', updatedData.id, updatedData, setFirebaseLevains);
+      } else {
+        await LevainRepo.update(updatedData.id, updatedData);
+      }
       if (user)
         logEvent('levain_pet_profile_updated', { userId: user.email, levainId: updatedData.id });
     },
-    [updateDocFn, user]
+    [updateDocFn, user, firebaseUser]
   );
 
-  const deleteLevain = useCallback((id: string) => deleteDocFn('levains', id, setLevains), [deleteDocFn]);
+  const deleteLevain = useCallback(async (id: string) => {
+    if (shouldUseFirestore(firebaseUser, db)) {
+      await deleteDocFn('levains', id, setFirebaseLevains);
+    } else {
+      await LevainRepo.remove(id);
+    }
+  }, [deleteDocFn, firebaseUser]);
   const setDefaultLevain = useCallback(
     async (id: string) => {
       if (shouldUseFirestore(firebaseUser, db)) {
@@ -534,7 +527,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         });
         await batch.commit();
       } else {
-        setLevains(prev => prev.map(l => ({ ...l, isDefault: l.id === id })));
+        const levain = levains.find(l => l.id === id);
+        if (levain) {
+          await LevainRepo.update(id, { isDefault: true });
+          // need to unset other defaults
+          await Promise.all(levains.filter(l => l.id !== id && l.isDefault).map(l => LevainRepo.update(l.id, { isDefault: false })));
+        }
       }
     },
     [firebaseUser, levains]
@@ -548,11 +546,19 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const newEvent = { id: crypto.randomUUID(), date: now, ...eventData };
       const updatedHistory = [newEvent, ...levain.feedingHistory];
 
-      await updateDocFn('levains', levainId, {
-        feedingHistory: updatedHistory,
-        lastFeeding: now,
-        status: 'ativo',
-      }, setLevains);
+      if (shouldUseFirestore(firebaseUser, db)) {
+        await updateDocFn('levains', levainId, {
+          feedingHistory: updatedHistory,
+          lastFeeding: now,
+          status: 'ativo',
+        }, setFirebaseLevains);
+      } else {
+        await LevainRepo.update(levainId, {
+          feedingHistory: updatedHistory,
+          lastFeeding: now,
+          status: 'ativo',
+        });
+      }
 
       if (user) logEvent('levain_pet_feeding_logged', { userId: user.email, levainId });
     },
@@ -570,7 +576,14 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         });
         await batch.commit();
       } else {
-        setLevains(prev => [...levainsToImport, ...prev]);
+        // Bulk add to Dexie
+        await Promise.all(levainsToImport.map(async l => {
+          try {
+            await LevainRepo.create(l, entitlements);
+          } catch (e) {
+            // Ignore limit errors during mass import or log them
+          }
+        }));
       }
     },
     [firebaseUser]
@@ -588,7 +601,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     [createDoc, addToast]
   );
   const updateGoal = useCallback(
-    async (updatedData: any) => {
+    async (updatedData: Partial<Goal> & { id: string }) => {
       await updateDocFn('goals', updatedData.id, updatedData, setGoals);
       addToast('Goal updated.', 'info');
     },
@@ -621,7 +634,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     [createDoc, addToast]
   );
   const updateTestSeries = useCallback(
-    async (updatedData: any) => {
+    async (updatedData: Partial<TestSeries> & { id: string }) => {
       await updateDocFn('testSeries', updatedData.id, updatedData, setTestSeries);
       addToast('Series updated.', 'info');
     },
@@ -688,24 +701,22 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         if (existingIndex >= 0) {
           // Remove
-          newFavorites.splice(existingIndex, 1);
+          await FavoriteRepo.remove(favorites[existingIndex].id);
           addToast(t('ui.removed_from_favorites'), 'info');
         } else {
           // Add
           const newItem: FavoriteItem = {
-            id: `local-${Date.now()}`, // Generic ID for list keys
+            id: `guest-favorite-${Date.now()}`,
             itemId: item.id,
             type: item.type,
             title: item.title,
             metadata: item.metadata || {},
             createdAt: new Date().toISOString()
           };
-          newFavorites.push(newItem);
+          await FavoriteRepo.create(newItem);
           addToast(t('ui.saved_to_favorites'), 'success');
         }
 
-        setFavorites(newFavorites);
-        localStorage.setItem('dough-lab-guest-favorites', JSON.stringify(newFavorites));
         return;
       }
 
@@ -896,6 +907,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setDefaultAmbientTempC,
     defaultOvenType: userSettings.defaultOvenType,
     setDefaultOvenType,
+    settings: userSettings,
+    updateSettings,
   }), [
     firebaseUser,
     db,

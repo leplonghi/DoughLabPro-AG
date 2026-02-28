@@ -1,14 +1,18 @@
+
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { DoughStyleDefinition } from '@/types/styles';
 import { STYLES_DATA } from '@/data/stylesData';
 import { fetchStyles } from '@/services/stylesService';
 import { useTranslation } from '@/i18n';
+import { logger } from '@/utils/logger';
+import { resolveStyleId, getContentVersion } from '@/data/content/resolveStyleId';
 
 interface StylesContextType {
     styles: DoughStyleDefinition[];
     isLoading: boolean;
     refreshStyles: () => Promise<void>;
     getStyleById: (id: string) => DoughStyleDefinition | undefined;
+    contentVersion: string;
 }
 
 const StylesContext = createContext<StylesContextType | undefined>(undefined);
@@ -27,7 +31,7 @@ export const StylesProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                 setStyles(remoteStyles);
             }
         } catch (error) {
-            console.error(t('errors.failed_to_load_styles'), error);
+            logger.error(t('errors.failed_to_load_styles'), error);
             // Keep using fallback/static data
         } finally {
             setIsLoading(false);
@@ -52,15 +56,18 @@ export const StylesProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         await loadRemoteStyles();
     };
 
+    // Resolve alias before lookup — safe fallback if id is unknown
     const getStyleById = (id: string) => {
-        return styles.find(s => s.id === id);
+        const canonicalId = resolveStyleId(id);
+        return styles.find(s => s.id === canonicalId);
     };
 
     const value = useMemo(() => ({
         styles,
         isLoading,
         refreshStyles,
-        getStyleById
+        getStyleById,
+        contentVersion: getContentVersion().version,
     }), [styles, isLoading]);
 
     return (

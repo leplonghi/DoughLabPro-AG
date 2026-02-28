@@ -28,6 +28,7 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
+    const { t } = useTranslation();
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 

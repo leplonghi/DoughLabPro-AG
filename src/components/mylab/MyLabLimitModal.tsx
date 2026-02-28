@@ -32,7 +32,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-slate-900/75 backdrop-blur-sm transition-opacity" />
+                    <div className="fixed inset-0 bg-white/75 backdrop-blur-sm transition-opacity" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -67,7 +67,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                             className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-                                        <div className="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-white text-xs font-bold border border-white/20">
+                                        <div className="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-bold border border-white/20">
                                             <LockClosedIcon className="w-3 h-3 text-lime-400" />{t('common.mylab.pro_analytics')}</div>
                                     </div>
                                 </div>
@@ -77,12 +77,10 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                         <LockClosedIcon className="w-8 h-8 text-dlp-brand-hover" />
                                     </div>
 
-                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">History Limit</Dialog.Title>
+                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">{t('ui:history_limit')}</Dialog.Title>
 
                                     <p className="text-slate-600 mb-8 leading-relaxed">
-                                        You’re building real experience. <br />
-                                        Unlock full baking history to improve every batch.
-                                    </p>
+                                        You’re building real experience. <br />{t('ui:unlock_full_baking_history_to_improve_every_batch')}</p>
 
                                     <div className="space-y-3">
                                         <button

@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,13 +18,13 @@ const SectionWrapper: React.FC<{
     children: React.ReactNode;
 }> = ({ title, icon, isOpen, onToggle, children }) => {
     return (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+        <div className="bg-white dark:bg-white rounded-2xl shadow-sm border border-slate-200 dark:border-slate-200 overflow-hidden">
             <button
                 onClick={onToggle}
-                className="w-full flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-50/50 transition-colors"
             >
                 <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${isOpen ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'}`}>
+                    <div className={`p-2 rounded-lg ${isOpen ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'bg-slate-100 text-slate-500 dark:bg-slate-50 dark:text-slate-400'}`}>
                         {icon}
                     </div>
                     <span className="font-bold text-slate-700 dark:text-slate-200">{title}</span>
@@ -40,7 +41,7 @@ const SectionWrapper: React.FC<{
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
-                        <div className="p-4 pt-0 border-t border-slate-100 dark:border-slate-800/50">
+                        <div className="p-4 pt-0 border-t border-slate-100 dark:border-slate-200/50">
                             <div className="pt-4">
                                 {children}
                             </div>
@@ -53,6 +54,7 @@ const SectionWrapper: React.FC<{
 };
 
 const ProductionDashboard: React.FC<{ onSave: () => void }> = ({ onSave }) => {
+    const { t } = useTranslation();
     // State for collapsible sections
     // Default: Lab is open, others closed or maybe all open?
     // Let's keep Lab open by default.
@@ -68,7 +70,7 @@ const ProductionDashboard: React.FC<{ onSave: () => void }> = ({ onSave }) => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans pb-24">
+        <div className="min-h-screen bg-slate-50 dark:bg-white text-slate-900 dark:text-slate-100 font-sans pb-24">
             <div className="max-w-3xl mx-auto px-4">
 
                 <DashboardHeader />
@@ -76,7 +78,7 @@ const ProductionDashboard: React.FC<{ onSave: () => void }> = ({ onSave }) => {
                 <div className="space-y-4">
 
                     <SectionWrapper
-                        title="The Lab"
+                        title={t('ui:the_lab_353')}
                         icon={<Beaker size={20} />}
                         isOpen={sections.lab}
                         onToggle={() => toggle('lab')}
@@ -85,7 +87,7 @@ const ProductionDashboard: React.FC<{ onSave: () => void }> = ({ onSave }) => {
                     </SectionWrapper>
 
                     <SectionWrapper
-                        title="Scheduler"
+                        title={t('ui:scheduler_354')}
                         icon={<Calendar size={20} />}
                         isOpen={sections.scheduler}
                         onToggle={() => toggle('scheduler')}
@@ -94,7 +96,7 @@ const ProductionDashboard: React.FC<{ onSave: () => void }> = ({ onSave }) => {
                     </SectionWrapper>
 
                     <SectionWrapper
-                        title="Assembly Line"
+                        title={t('ui:assembly_line_355')}
                         icon={<Layers size={20} />}
                         isOpen={sections.assembly}
                         onToggle={() => toggle('assembly')}
@@ -103,7 +105,7 @@ const ProductionDashboard: React.FC<{ onSave: () => void }> = ({ onSave }) => {
                     </SectionWrapper>
 
                     <SectionWrapper
-                        title="Logistics"
+                        title={t('ui:logistics_356')}
                         icon={<Truck size={20} />}
                         isOpen={sections.logistics}
                         onToggle={() => toggle('logistics')}

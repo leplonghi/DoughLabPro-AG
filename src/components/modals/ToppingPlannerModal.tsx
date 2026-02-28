@@ -68,7 +68,7 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm" onClick={onClose}>
             <div className="relative w-full max-w-3xl bg-white rounded-2xl p-6 shadow-xl" onClick={e => e.stopPropagation()}>
                 <h2 className="text-xl font-bold mb-4">{t('general.ingredients_planner')}</h2>
                 <div className="p-3 rounded-lg bg-slate-100 text-center font-semibold mb-4">

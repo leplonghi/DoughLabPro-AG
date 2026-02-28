@@ -99,7 +99,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
 
                         <div className="flex items-center gap-4 mb-4">
                             <div className="flex-1">
-                                <label className="block text-xs text-slate-500 mb-1">Current Starter (g)</label>
+                                <label className="block text-xs text-slate-500 mb-1">{t('ui:current_starter_g')}</label>
                                 <input
                                     type="number"
                                     value={starterWeight || ''}
@@ -132,8 +132,7 @@ const LevainFeedingForm: React.FC<LevainFeedingFormProps> = ({ isOpen, onClose, 
 
                         <div className="space-y-1.5">
                             <label className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
-                                <WaterIcon className="h-4 w-4 text-blue-500" /> Water (g)
-                            </label>
+                                <WaterIcon className="h-4 w-4 text-blue-500" />{t('common:water_g')}</label>
                             <input
                                 type="number" required
                                 value={waterAmount}

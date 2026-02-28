@@ -11,9 +11,9 @@ interface CommunityPostProps {
 export const CommunityPost: React.FC<CommunityPostProps> = ({ post, onLike, onComment }) => {
     const { t } = useTranslation();
     return (
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden mb-6">
+        <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden mb-6">
             <div className="p-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 font-bold">
+                <div className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-400 font-bold">
                     {(post.ownerDisplayName || 'A').charAt(0)}
                 </div>
                 <div>
@@ -45,7 +45,7 @@ export const CommunityPost: React.FC<CommunityPostProps> = ({ post, onLike, onCo
                         <span>💬</span> {post.commentCount}
                     </button>
                     <div className="ml-auto flex items-center gap-2">
-                        <span className="bg-zinc-800 px-2 py-1 rounded text-xs">{post.hydrationPercentage}% Hydration</span>
+                        <span className="bg-zinc-50 px-2 py-1 rounded text-xs">{post.hydrationPercentage}% Hydration</span>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React, { useState, useEffect } from 'react';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { TimerConfig, NotificationType } from '../../types/notifications';
@@ -9,8 +10,9 @@ interface TimerCardProps {
 }
 
 export const TimerCard: React.FC<TimerCardProps> = ({ config, onStart }) => {
+    const { t } = useTranslation();
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 border-l-4 border-green-600">
+        <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-4 border-l-4 border-green-600">
             <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold text-gray-900 dark:text-white">{config.name}</h3>
                 <Clock className="w-5 h-5 text-green-600" />
@@ -22,9 +24,7 @@ export const TimerCard: React.FC<TimerCardProps> = ({ config, onStart }) => {
                 onClick={onStart}
                 className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
             >
-                <Play className="w-4 h-4" />
-                Start Timer
-            </button>
+                <Play className="w-4 h-4" />{t('common:start_timer')}</button>
         </div>
     );
 };
@@ -37,8 +37,15 @@ interface ActiveTimerProps {
 }
 
 export const ActiveTimer: React.FC<ActiveTimerProps> = ({ timer, onPause, onResume, onStop }) => {
+    const { t } = useTranslation();
     const [timeRemaining, setTimeRemaining] = useState<number>(0);
     const [progress, setProgress] = useState<number>(0);
+
+    // Validate timer prop
+    if (!timer || !timer.endTime || !timer.startTime || !timer.name) {
+        console.warn('Invalid timer props in ActiveTimer:', timer);
+        return null;
+    }
 
     useEffect(() => {
         if (timer.isPaused) return;
@@ -106,30 +113,24 @@ export const ActiveTimer: React.FC<ActiveTimerProps> = ({ timer, onPause, onResu
                         onClick={onPause}
                         className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors font-medium"
                     >
-                        <Pause className="w-5 h-5" />
-                        Pause
-                    </button>
+                        <Pause className="w-5 h-5" />{t('common:pause')}</button>
                 ) : (
                     <button
                         onClick={onResume}
                         className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                     >
-                        <Play className="w-5 h-5" />
-                        Resume
-                    </button>
+                        <Play className="w-5 h-5" />{t('common:resume')}</button>
                 )}
                 <button
                     onClick={onStop}
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium"
                 >
-                    <Square className="w-5 h-5" />
-                    Stop
-                </button>
+                    <Square className="w-5 h-5" />{t('common:stop')}</button>
             </div>
 
             {/* Notifications Info */}
             {timer.notifications && (
-                <div className="mt-4 p-3 bg-white dark:bg-gray-800 rounded-lg">
+                <div className="mt-4 p-3 bg-white dark:bg-gray-50 rounded-lg">
                     <div className="text-xs text-gray-600 dark:text-gray-300 space-y-1">
                         {timer.notifications.atStart && <div>✓ Start notification enabled</div>}
                         {timer.notifications.atHalfway && <div>✓ Halfway notification enabled</div>}
@@ -145,6 +146,7 @@ export const ActiveTimer: React.FC<ActiveTimerProps> = ({ timer, onPause, onResu
 };
 
 export const TimerDashboard: React.FC = () => {
+    const { t } = useTranslation();
     const { activeTimers, startTimer, pauseTimer, resumeTimer, stopTimer } = useNotifications();
 
     const commonTimers: Omit<TimerConfig, 'id' | 'isActive' | 'isPaused'>[] = [
@@ -211,7 +213,7 @@ export const TimerDashboard: React.FC = () => {
             {/* Active Timers */}
             {activeTimers.length > 0 && (
                 <div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Active Timers</h2>
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">{t('notifications:active_timers_402')}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {activeTimers.map((timer) => (
                             <ActiveTimer
@@ -228,7 +230,7 @@ export const TimerDashboard: React.FC = () => {
 
             {/* Quick Start Timers */}
             <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Quick Start Timers</h2>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">{t('common:quick_start_timers')}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {commonTimers.map((timer, index) => (
                         <TimerCard

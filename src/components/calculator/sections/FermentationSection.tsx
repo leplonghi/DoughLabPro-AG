@@ -10,6 +10,7 @@ import { useTranslation } from '@/i18n';
 import { getTechniqueRecommendation } from '@/logic/fermentationLogic';
 
 interface FermentationSectionProps {
+  id?: string;
   config: DoughConfig;
   onConfigChange: (newConfig: Partial<DoughConfig>) => void;
   isAnySourdough: boolean;
@@ -22,6 +23,7 @@ interface FermentationSectionProps {
 }
 
 const FermentationSection: React.FC<FermentationSectionProps> = ({
+  id,
   config,
   onConfigChange,
   isAnySourdough,
@@ -52,7 +54,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
       }
       return null;
     }
-    return { label: '⚠ Variation', class: 'bg-amber-50 text-amber-700 border-amber-200' };
+    return { label: 'Variation', class: 'bg-amber-50 text-amber-700 border-amber-200' };
   };
 
   if (isChemicalOrNoFermentOnly) {
@@ -62,14 +64,14 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
         description={t('calculator.leavening_description')}
         icon={<FermentationIcon />}
       >
-        <div className="p-4 bg-slate-50 rounded-[2rem] border border-slate-100 text-center space-y-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-[#51a145] to-[#10B981]/10 rounded-2xl flex items-center justify-center mx-auto shadow-sm text-[#51a145] transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
-            <CubeIcon size={24} />
+        <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center space-y-2">
+          <div className="w-8 h-8 bg-gradient-to-br from-[#51a145] to-[#10B981]/10 rounded-lg flex items-center justify-center mx-auto shadow-sm text-[#51a145]">
+            <CubeIcon size={16} />
           </div>
-          <p className="text-sm font-bold font-heading text-slate-800">
+          <p className="text-xs font-bold font-heading text-slate-800">
             {t('calculator.chemical_physical_leavening')}
           </p>
-          <p className="text-[11px] text-slate-500 leading-relaxed max-w-[240px] mx-auto">
+          <p className="text-[10px] text-slate-500 leading-relaxed max-w-[200px] mx-auto">
             {t('calculator.chemical_leavening_desc')}
           </p>
         </div>
@@ -79,6 +81,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
 
   return (
     <FormSection
+      id={id}
       index={4}
       accentColor="amber"
       title={t('calculator.fermentation_technique')}
@@ -86,17 +89,17 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
       icon={<FermentationIcon />}
     >
       {isAnySourdough ? (
-        <div className="bg-[#D8F3DC]/30 rounded-[2rem] border border-[#D8F3DC]/60 p-4 animate-slide-up">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#51a145] shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6">
-              <FermentationIcon size={24} />
+        <div className="bg-[#D8F3DC]/30 rounded-xl border border-[#D8F3DC]/60 p-3 animate-slide-up">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-[#51a145] shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6">
+              <FermentationIcon size={20} />
             </div>
             <div className="flex-1">
-              <div className="flex items-center justify-between mb-4">
-                <h4 className="font-bold text-[#1B4332] font-heading">{t('calculator.natural_leavening')}</h4>
-                <span className="text-[9px] font-bold text-white bg-[#1B4332] px-3 py-1 rounded-full uppercase tracking-widest">{t('calculator.active')}</span>
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-bold text-[#1B4332] font-heading text-sm">{t('calculator.natural_leavening')}</h4>
+                <span className="text-[8px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full uppercase tracking-wider">{t('calculator.active')}</span>
               </div>
-              <p className="text-xs text-[#1B4332]/70 mb-6 font-medium">
+              <p className="text-[11px] text-[#1B4332]/70 mb-3 font-medium">
                 {selectedLevain ? t('calculator.using_levain', { name: selectedLevain.name }) : t('calculator.using_generic_starter')}
               </p>
 
@@ -106,27 +109,27 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
                 const prefermentedFlour = inoculation / (1 + (hydration / 100));
 
                 return (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white/40">
-                      <span className="block text-[9px] uppercase text-[#1B4332]/40 font-bold tracking-widest mb-1">{t('calculator.inoculation')}</span>
-                      <span className="block text-xl font-bold font-heading text-[#1B4332]">{inoculation}%</span>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-white/60 backdrop-blur-sm p-2 rounded-lg border border-white/40">
+                      <span className="block text-[8px] uppercase text-[#1B4332]/50 font-bold tracking-widest mb-0.5">{t('calculator.inoculation')}</span>
+                      <span className="block text-sm font-bold font-heading text-[#1B4332]">{inoculation}%</span>
                     </div>
-                    <div className="bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white/40">
-                      <span className="block text-[9px] uppercase text-[#1B4332]/40 font-bold tracking-widest mb-1">{t('calculator.prefermented_flour')}</span>
-                      <span className="block text-xl font-bold font-heading text-[#1B4332]">~{prefermentedFlour.toFixed(1)}%</span>
+                    <div className="bg-white/60 backdrop-blur-sm p-2 rounded-lg border border-white/40">
+                      <span className="block text-[8px] uppercase text-[#1B4332]/50 font-bold tracking-widest mb-0.5">{t('calculator.prefermented_flour')}</span>
+                      <span className="block text-sm font-bold font-heading text-[#1B4332]">~{prefermentedFlour.toFixed(1)}%</span>
                     </div>
                   </div>
                 );
               })()}
             </div>
           </div>
-          <p className="text-[10px] text-center text-[#1B4332]/50 mt-6 italic font-medium">
+          <p className="text-[9px] text-center text-[#1B4332]/50 mt-3 italic font-medium">
             "{t('calculator.sourdough_is_preferment_msg')}"
           </p>
         </div>
       ) : (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="space-y-3">
+          <div className="grid grid-cols-3 gap-2">
             {[
               { id: FermentationTechnique.DIRECT, label: t('calculator.direct'), pro: false },
               { id: FermentationTechnique.POOLISH, label: t('calculator.poolish'), pro: true, msgKey: 'calculator.poolish_pro_msg' },
@@ -138,21 +141,21 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
               const Btn = (
                 <button
                   onClick={() => onConfigChange({ fermentationTechnique: tech.id, prefermentFlourPercentage: tech.id === FermentationTechnique.BIGA ? 50 : 30 })}
-                  className={`relative group w-full flex flex-col items-center justify-center p-5 rounded-3xl transition-all duration-300
+                  className={`relative group w-full flex flex-col items-center justify-center p-3 rounded-xl transition-all duration-200 border min-h-[64px]
                             ${isActive
-                      ? 'bg-[#51a145] text-white shadow-lg shadow-[#51a145]/30 scale-[1.02]'
-                      : 'bg-white shadow-sm hover:shadow-md text-slate-600 hover:text-white hover:bg-[#51a145]'}
+                      ? 'bg-[#51a145] border-[#51a145] text-white shadow-md scale-[1.02]'
+                      : 'bg-white border-slate-100 text-slate-500 hover:border-[#51a145]/30 hover:bg-slate-50'}
                         `}
                 >
-                  <span className="text-xs font-bold font-heading uppercase tracking-widest">{tech.label}</span>
+                  <span className="text-[10px] font-bold font-heading uppercase tracking-wider">{tech.label}</span>
                   {badge && (
-                    <span className={`absolute -top-2 left-1/2 -translate-x-1/2 text-[8px] font-bold px-2 py-0.5 rounded-full border shadow-sm whitespace-nowrap transition-colors ${isActive ? 'bg-white text-[#1B4332] border-white' : `${badge.class} group-hover:bg-white group-hover:text-[#1B4332] group-hover:border-white`}`}>
+                    <span className={`absolute -top-1.5 left-1/2 -translate-x-1/2 text-[7px] font-bold px-1.5 py-px rounded-full border shadow-sm whitespace-nowrap transition-colors z-10 ${isActive ? 'bg-white text-[#1B4332] border-white' : `${badge.class} group-hover:bg-white`}`}>
                       {badge.label}
                     </span>
                   )}
                   {tech.pro && !hasProAccess && (
-                    <div className="absolute top-2 right-2 text-amber-500 opacity-40">
-                      <LockClosedIcon size={12} />
+                    <div className="absolute top-1 right-1 text-amber-500 opacity-40">
+                      <LockClosedIcon size={8} />
                     </div>
                   )}
                 </button>
@@ -167,7 +170,7 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
           </div>
 
           {config.fermentationTechnique !== FermentationTechnique.DIRECT && (
-            <div className="pt-4 border-t border-slate-100 animate-slide-up">
+            <div className="pt-2 border-t border-slate-100 animate-slide-up">
               <SliderInput
                 label={t('calculator._flour_in_preferment')}
                 name="prefermentFlourPercentage"
@@ -202,18 +205,15 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
 
                 if (isLimit) {
                   return (
-                    <div className="mt-4 relative overflow-hidden p-5 rounded-[2rem] bg-gradient-to-br from-amber-50 to-white border border-amber-100 flex items-start gap-4 animate-pulse shadow-sm group">
-                      <div className="absolute -right-2 -bottom-2 opacity-10 rotate-12 transition-transform group-hover:scale-110">
-                        <InfoIcon size={64} className="text-amber-500" />
-                      </div>
-                      <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center shrink-0 text-amber-600 shadow-inner">
-                        <InfoIcon size={20} />
+                    <div className="mt-2 relative overflow-hidden p-3 rounded-xl bg-gradient-to-br from-amber-50 to-white border border-amber-100 flex items-start gap-3 animate-pulse shadow-sm group">
+                      <div className="w-6 h-6 rounded-lg bg-amber-100 flex items-center justify-center shrink-0 text-amber-600">
+                        <InfoIcon size={14} />
                       </div>
                       <div className="relative z-10">
-                        <p className="text-[11px] font-black text-amber-900 uppercase tracking-[0.15em] mb-1">{t('calculator.extreme_fermentation_limit')}</p>
-                        <p className="text-xs font-semibold text-amber-800/70 leading-relaxed italic">
+                        <p className="text-[10px] font-black text-amber-900 uppercase tracking-widest mb-0.5">{t('calculator.extreme_fermentation_limit')}</p>
+                        <p className="text-[10px] font-medium text-amber-800/70 italic">
                           {t('calculator.extreme_fermentation_limit_desc', {
-                            defaultValue: "Approaching physical hydration limit. Most flour will be in the preferment."
+                            defaultValue: "Approaching physical hydration limit."
                           })}
                         </p>
                       </div>
@@ -223,18 +223,15 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
 
                 if (isHigh) {
                   return (
-                    <div className="mt-4 relative overflow-hidden p-5 rounded-[2rem] bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 flex items-start gap-4 animate-slide-up shadow-sm group">
-                      <div className="absolute -right-2 -bottom-2 opacity-10 -rotate-12 transition-transform group-hover:scale-110">
-                        <FermentationIcon size={64} className="text-emerald-500" />
-                      </div>
-                      <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600 shadow-inner">
-                        <FermentationIcon size={20} />
+                    <div className="mt-2 relative overflow-hidden p-3 rounded-xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 flex items-start gap-3 animate-slide-up shadow-sm group">
+                      <div className="w-6 h-6 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600">
+                        <FermentationIcon size={14} />
                       </div>
                       <div className="relative z-10">
-                        <p className="text-[11px] font-black text-emerald-900 uppercase tracking-[0.15em] mb-1">{t('calculator.rapid_fermentation_notice')}</p>
-                        <p className="text-xs font-semibold text-emerald-800/70 leading-relaxed italic">
+                        <p className="text-[10px] font-black text-emerald-900 uppercase tracking-widest mb-0.5">{t('calculator.rapid_fermentation_notice')}</p>
+                        <p className="text-[10px] font-medium text-emerald-800/70 italic">
                           {t('calculator.rapid_fermentation_desc', {
-                            defaultValue: "High preferment activity! Keep a close eye on the clock."
+                            defaultValue: "High preferment activity! Watch the clock."
                           })}
                         </p>
                       </div>
@@ -253,6 +250,3 @@ const FermentationSection: React.FC<FermentationSectionProps> = ({
 };
 
 export default FermentationSection;
-
-
-

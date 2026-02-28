@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Page, Goal, GoalTargetType } from '../../types';
-import MyLabLayout from './MyLabLayout';
+import MyLabLayout from '@/components/layouts/MyLabLayout';
 import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import i18n from '../../i18n';
@@ -109,7 +109,7 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 
     return (
         <>
-            <MyLabLayout activePage="mylab/objetivos" onNavigate={onNavigate}>
+            <MyLabLayout activePage="mylab/goals" onNavigate={onNavigate}>
                 <div className="animate-fade-in">
                     <LockFeature
                         featureKey="mylab.unlimited_advanced"

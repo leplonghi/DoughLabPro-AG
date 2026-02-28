@@ -1,256 +1,155 @@
 import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
-
-const t = i18n.t.bind(i18n);
 
 export const colomba_pasquale: StyleDefinition = {
-  "id": "colomba_pasquale",
-  "title": t('styles.colomba_pasquale'),
-  "subtitle": t('styles.festive_breads'),
-  "category": t('styles.pastry_4'),
-  "family": t('styles.festive_breads_2'),
-  "variantName": t('styles.colomba_pasquale_2'),
-  "origin": {
-    "country": t('styles.italy_7'),
-    "region": t('styles.northern_italy_2'),
-    "period": "20th century"
+  id: "colomba_pasquale",
+  title: "Colomba Pasquale (Easter Dove)",
+  subtitle: "The Panettone of Easter",
+  category: "Pastry",
+  family: "Italian Grand Leavened (Grandi Lievitati)",
+  variantName: "Tradizionale",
+  origin: {
+    country: "Italy",
+    region: "Lombardy (Milan)",
+    period: "1930s (Modern commercial version by Motta)"
   },
-  "intro": t('styles.consumed_mainly_at_easter_in_italy_and_in_italian_'),
-  "history": t('styles.colomba_history'),
-  "culturalContext": {
-    "significance": [
-      t('styles.colomba_sig_1'),
-      t('styles.colomba_sig_2'),
-      t('styles.colomba_sig_3'),
-      t('styles.colomba_sig_4'),
-      t('styles.colomba_sig_5')
+  intro: "Colomba Pasquale ('Easter Dove') is the spring counterpart to Panettone. Shaped like a dove to symbolize peace, it shares the same complex sourdough (Pasta Madre) heritage but differs in its glazing (Ghiaccia) and the absence of raisins. It is celebrated for its incredibly light, shredding crumb and the crunchy, almond-sugar shell that contrasts with the soft interior.",
+  history: "While legends trace it to the 6th century siege of Pavia (where a dove-shaped bread brought peace), the modern Colomba was industrialized in the 1930s by Angelo Motta (the Panettone king). Motta wanted to utilize the same machinery and dough used for Panettone during the Easter season. Unlike Panettone, which contains raisins, Colomba traditionally contains only candied orange peel and is topped with a rich glaze of almonds and pearl sugar. It is now a P.A.T. (Traditional Agri-Food Product) regulated by strict Italian laws regarding butter and egg yolk content.",
+  culturalContext: {
+    significance: [
+      "Symbol of peace and resurrection.",
+      "The centerpiece of the Italian Easter lunch.",
+      "A gift of high esteem when artisanally made."
     ],
-    "consumptionContext": [
-      t('styles.colomba_consum_1'),
-      t('styles.colomba_consum_2'),
-      t('styles.colomba_consum_3'),
-      t('styles.colomba_consum_4'),
-      t('styles.colomba_consum_5')
+    consumptionContext: ["Served at the end of Easter lunch, often with Prosecco or Moscato d'Asti."],
+    evolution: [
+      "Medieval Legend -> 1930s Industrialization -> 2010s Artisan Renaissance."
     ],
-    "evolution": [
-      t('styles.colomba_evo_1'),
-      t('styles.colomba_evo_2'),
-      t('styles.colomba_evo_3'),
-      t('styles.colomba_evo_4'),
-      t('styles.colomba_evo_5'),
-      t('styles.colomba_evo_6')
-    ],
-    "rituals": [
-      t('styles.colomba_ritual_1'),
-      t('styles.colomba_ritual_2'),
-      t('styles.colomba_ritual_3'),
-      t('styles.colomba_ritual_4'),
-      t('styles.colomba_ritual_5')
+    rituals: [
+      "Gifting elegantly wrapped Columbas.",
+      "Saving the 'glaze' bits for last.",
+      "Eating leftovers toasted for breakfast."
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      t('styles.colomba_flavor_1'),
-      t('styles.colomba_flavor_2'),
-      t('styles.colomba_flavor_3'),
-      t('styles.colomba_flavor_4'),
-      t('styles.colomba_flavor_5')
-    ],
-    "aromaProfile": [
-      t('styles.colomba_aroma_1'),
-      t('styles.colomba_aroma_2'),
-      t('styles.colomba_aroma_3'),
-      t('styles.colomba_aroma_4'),
-      t('styles.colomba_aroma_5')
-    ],
-    "textureNotes": [
-      t('styles.colomba_texture_1'),
-      t('styles.colomba_texture_2'),
-      t('styles.colomba_texture_3'),
-      t('styles.colomba_texture_4'),
-      t('styles.colomba_texture_5')
-    ],
-    "pairingRecommendations": [
-      t('styles.colomba_pair_1'),
-      t('styles.colomba_pair_2'),
-      t('styles.colomba_pair_3'),
-      t('styles.colomba_pair_4'),
-      t('styles.colomba_pair_5')
-    ],
-    "flavorEvolution": [
-      t('styles.colomba_fe_1'),
-      t('styles.colomba_fe_2'),
-      t('styles.colomba_fe_3'),
-      t('styles.colomba_fe_4'),
-      t('styles.colomba_fe_5')
-    ]
+  flavorProfile: {
+    primaryFlavors: ["Candied Orange", "Butter", "Vanilla", "Almond (Glaze)"],
+    aromaProfile: ["Sourdough acidity (subtle)", "Citrus zest", "Toasted almonds"],
+    textureNotes: ["Cotton-soft", "Melts in mouth", "Crunchy top", "Moist interior"],
+    pairingRecommendations: ["Moscato d'Asti", "Espresso", "Mascarpone Cream"]
   },
-  "technicalFoundations": [
-    t('styles.colomba_tech_1'),
-    t('styles.colomba_tech_2')
+  technicalFoundations: [
+    "Pasta Madre (Solid Sourdough)",
+    "Triple Fermentation (Primo/Secondo Impasto)",
+    "Inverted Cooling (Hanging)"
   ],
-  "doughImpact": [
-    t('styles.colomba_di_1'),
-    t('styles.colomba_di_2'),
-    t('styles.colomba_di_3'),
-    t('styles.colomba_di_4'),
-    t('styles.colomba_di_5')
-  ],
-  "bakingImpact": [
-    t('styles.colomba_bi_1'),
-    t('styles.colomba_bi_2'),
-    t('styles.colomba_bi_3'),
-    t('styles.colomba_bi_4'),
-    t('styles.colomba_bi_5')
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      65,
-      75
-    ],
-    "saltRange": [
-      1.5,
-      2
-    ],
-    "oilRange": [
-      20,
-      30
-    ],
-    "sugarRange": [
-      20,
-      30
-    ],
-    "flourStrength": t('styles.very_strong_flour_suitable_for_rich_doughs'),
-    "fermentation": {
-      "bulk": t('styles.long_multistage_builds_and_first_dough_rise'),
-      "proof": t('styles.colomba_proof'),
-      "coldRetard": t('styles.handled_similarly_to_panettone_with_careful_temper')
+  doughImpact: ["Extreme extensibility", "High osmotic pressure tolerance", "Requires rapid cooling to set"],
+  bakingImpact: ["Massive oven spring", "Glaze cracking", "Maillard on the almonds"],
+  technicalProfile: {
+    hydrationRange: [55, 65],
+    saltRange: [0.5, 0.8],
+    oilRange: [20, 30],
+    sugarRange: [15, 25],
+    flourStrength: "Extra Strong Panettone Flour (W360-400, P/L 0.55). Must hold heavy fats and long fermentation.",
+    fermentation: {
+      bulk: "Primo Impasto: ~12-14 hours at 26°C until tripled.",
+      proof: "Secondo Impasto (Final Proof): ~6-8 hours at 28°C in the mold.",
+      coldRetard: "Not typical for the final dough, but the starter (Pasta Madre) is managed carefully at cool temps."
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        170,
-        190
-      ],
-      "notes": t('styles.topped_with_almond_glaze_and_sugar_before_baking')
+    oven: {
+      type: "Deck / Convection",
+      temperatureC: [160, 175],
+      notes: "Lower temperature to cook the core without burning the sugary glaze. Valve open for drying in the last phase."
     },
-    "difficulty": t('styles.difficulty_hard'),
-    "recommendedUse": [
-      t('common.festive_sweet_bread_for_easter')
-    ]
+    difficulty: "Expert",
+    recommendedUse: ["Easter Celebration", "Gourmet Gifting"]
   },
-  "regionalVariants": [
-    t('styles.colomba_rv_1'),
-    t('styles.colomba_rv_2'),
-    t('styles.colomba_rv_3'),
-    t('styles.colomba_rv_4'),
-    t('styles.colomba_rv_5')
-  ],
-  "climateScenarios": [
-    t('styles.colomba_cs_1'),
-    t('styles.colomba_cs_2'),
-    t('styles.colomba_cs_3'),
-    t('styles.colomba_cs_4')
-  ],
-  "styleComparisons": [
-    t('styles.colomba_sc_1'),
-    t('styles.colomba_sc_2'),
-    t('styles.colomba_sc_3'),
-    t('styles.colomba_sc_4')
-  ],
-  "parameterSensitivity": [
-    t('styles.colomba_ps_1'),
-    t('styles.colomba_ps_2'),
-    t('styles.colomba_ps_3'),
-    t('styles.colomba_ps_4'),
-    t('styles.colomba_ps_5')
-  ],
-  "risks": [
-    t('styles.colomba_risk_1'),
-    t('styles.colomba_risk_2'),
-    t('styles.colomba_risk_3'),
-    t('styles.colomba_risk_4'),
-    t('styles.colomba_risk_5')
-  ],
-  "notes": [
-    t('styles.colomba_note_1'),
-    t('styles.colomba_note_2'),
-    t('styles.colomba_note_3'),
-    t('styles.colomba_note_4'),
-    t('styles.colomba_note_5')
-  ],
-  "tags": [
-    t('common.festive_sweet_bread_for_easter'),
-    t('common.pastry'),
-    t('common.italy')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+  customMethod: [
     {
-      "title": t('styles.colomba_history_article'),
-      "url": "https://www.lacucinaitaliana.com/italian-food/italian-dishes/colomba-pasqua-history-origins",
-      "author": t('styles.la_cucina_italiana'),
-      "year": 2022
+      phase: 'PREP',
+      title: 'Pasta Madre Refresh',
+      actionInstructions: "Refresh the solid sourdough starter 3 times (every 3-4 hours) on the day of mixing.",
+      technicalExplanation: "Strengthens yeast activity and reduces acetic acid, which can degrade the gluten network during long rises."
     },
     {
-      "title": t('styles.modernist_bread_25'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
+      phase: 'MIX',
+      title: 'Primo Impasto (First Dough)',
+      actionInstructions: "Mix flour, water, sugar, butter, and Pasta Madre. Knead until smooth.",
+      technicalExplanation: "Establishes the fundamental crumb structure."
     },
     {
-      "title": "Cresci: The Art of Leavened Dough",
-      "url": "https://www.amazon.com/Cresci-Art-Leavened-Dough-Iginio/dp/8886561135",
-      "author": "Iginio Massari",
-      "year": 1999
+      phase: 'BULK',
+      title: 'First Rise',
+      actionInstructions: "Ferment for 12-14 hours at 26°C until volume triples.",
+      technicalExplanation: "Wait for the triple volume (1+2). If it doesn't triple, the final dough will be heavy."
     },
     {
-      "title": t('styles.italian_festive_breads_technical'),
-      "url": "https://www.pasticceriaitaliana.it/",
-      "author": t('styles.accademia_maestri_lievito_madre'),
-      "year": 2023
+      phase: 'MIX',
+      title: 'Secondo Impasto (Second Dough)',
+      actionInstructions: "Deflate the first dough. Add flour, sugar, honey, yolks, aromatics (vanilla/orange paste), salt, and soft butter in stages. Add candied orange peel last.",
+      technicalExplanation: "High-fat enrichment is possible only because the first dough has built a strong protein mesh."
+    },
+    {
+      phase: 'DIVIDE',
+      title: 'Shaping (Pirlatura)',
+      actionInstructions: "Divide into body and wings. Round the pieces tightly (Pirlatura). Place body in mold first, then wings.",
+      technicalExplanation: "Pirlatura creates surface tension, ensuring the dove rises vertically rather than spreading."
+    },
+    {
+      phase: 'PROOF',
+      title: 'Final Proof & Glazing',
+      actionInstructions: "Proof 6-8 hours at 28-30°C. Pipe glaze (Ghiaccia) on top before baking. Top with almonds/pearl sugar.",
+      technicalExplanation: "The glaze cracks as the dough expands (Oven Spring), creating the signature look."
+    },
+    {
+      phase: 'BAKE',
+      title: 'Baking',
+      actionInstructions: "Bake at 160-170°C until core reaches 94°C.",
+      technicalExplanation: "Low temp prevents burning the sugar-rich glaze."
+    },
+    {
+      phase: 'COOL',
+      title: 'Inverted Cooling',
+      actionInstructions: "Immediately skewer the base and flip upside down to cool for 12 hours.",
+      technicalExplanation: "Essential. The heavy butter/yolk structure is unstable when hot and will collapse under gravity if not inverted."
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
+  regionalVariants: ["Traditional (Candied Orange)", "Chocolate & Pear", "Pistachio (Bronte Style)"],
+  climateScenarios: ["High heat during proofing is mandatory (28°C+)", "Avoid drafts during hanging"],
+  styleComparisons: ["Panettone", "Pandoro"],
+  parameterSensitivity: ["Temperature", "Acid Balance"],
+  risks: ["Collapse during cooling", "Acidic flavor from poor starter", "Glaze sliding off"],
+  notes: ["The glaze acts as a thermal shield, keeping the top moist while adding crunch.", "Must be hung upside down effectively."],
+  references: [
     {
-      "question": t('styles.colomba_faq_1_q'),
-      "answer": t('styles.colomba_faq_1_a')
+      title: "Colomba Pasquale History",
+      url: "https://www.lacucinaitaliana.com/italian-food/italian-dishes/colomba-pasqua-history-origins",
+      author: "La Cucina Italiana",
+      year: 2022
     },
     {
-      "question": t('styles.colomba_faq_2_q'),
-      "answer": t('styles.colomba_faq_2_a')
-    },
-    {
-      "question": t('styles.colomba_faq_3_q'),
-      "answer": t('styles.colomba_faq_3_a')
-    },
-    {
-      "question": t('styles.colomba_faq_4_q'),
-      "answer": t('styles.colomba_faq_4_a')
-    },
-    {
-      "question": t('styles.colomba_faq_5_q'),
-      "answer": t('styles.colomba_faq_5_a')
+      title: "Maestro Massari's Techniques",
+      url: "https://www.iginiomassari.it/",
+      author: "Iginio Massari",
+      year: 2023
     }
   ],
-  "affiliateProducts": [],
-
-  "isCanonical": true,
-  "source": "official"
-  ,
-  "defaults": {
-    "hydration": 60,
-    "salt": 1.5,
-    "oil": 5,
-    "sugar": 10
+  isCanonical: true,
+  source: "official",
+  defaults: {
+    hydration: 60,
+    salt: 0.5,
+    oil: 25,
+    sugar: 20
   },
-  recommendedFlavorComponents: ["candied_citrus", "vanilla_madagascar", "salted_butter_normandy", "citrus_zest"]
+  recommendedFlavorComponents: ["candied_orange_peel", "vanilla_madagascar", "almonds_whole", "pearl_sugar"],
+  tags: ["festive_sweet_bread_for_easter", "pastry", "italy"],
+  applyInApp: {
+    calculator: [],
+    styles: [],
+    mylab: [],
+    levain: [],
+    tools: []
+  },
+  images: [],
+  diagrams: [],
+  faq: []
 };

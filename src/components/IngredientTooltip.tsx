@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 import React from 'react';
 import { Increment, UserIngredient } from '@/types/ingredients';
 import { FlavorComponent } from '@/types/flavor';
@@ -10,6 +11,7 @@ interface IngredientTooltipProps {
 }
 
 export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient, flavorComponent, children }) => {
+    const { t } = useTranslation();
     const [isVisible, setIsVisible] = React.useState(false);
 
     return (
@@ -30,14 +32,10 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                             <p className="text-xs text-slate-500 uppercase tracking-wide mt-0.5">{ingredient.category}</p>
                         </div>
                         {ingredient.source === 'user' && (
-                            <span className="px-2 py-0.5 bg-violet-100 text-violet-700 text-[10px] font-bold rounded-full">
-                                Custom
-                            </span>
+                            <span className="px-2 py-0.5 bg-violet-100 text-violet-700 text-[10px] font-bold rounded-full">{t('calculator:custom')}</span>
                         )}
                         {ingredient.source === 'official' && (
-                            <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full">
-                                Official
-                            </span>
+                            <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full">{t('common:official')}</span>
                         )}
                     </div>
 
@@ -54,7 +52,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                                 <div className="mb-3 p-2 bg-amber-50 rounded-lg">
                                     <div className="flex items-center gap-1.5 mb-1">
                                         <BookOpenIcon className="h-3 w-3 text-amber-600" />
-                                        <span className="text-[10px] uppercase font-bold text-amber-700">Origin</span>
+                                        <span className="text-[10px] uppercase font-bold text-amber-700">{t('common:origin')}</span>
                                     </div>
                                     <p className="text-xs text-amber-900">{flavorComponent.origin}</p>
                                     {flavorComponent.historyContext && (
@@ -68,7 +66,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                                 <div className="mb-3 p-2 bg-blue-50 rounded-lg">
                                     <div className="flex items-center gap-1.5 mb-1">
                                         <BeakerIcon className="h-3 w-3 text-blue-600" />
-                                        <span className="text-[10px] uppercase font-bold text-blue-700">Implementation</span>
+                                        <span className="text-[10px] uppercase font-bold text-blue-700">{t('common:implementation')}</span>
                                     </div>
                                     <p className="text-xs text-blue-900">{flavorComponent.technicalNotes}</p>
                                 </div>
@@ -79,7 +77,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                                 <div className="mb-3 p-2 bg-purple-50 rounded-lg">
                                     <div className="flex items-center gap-1.5 mb-1">
                                         <LightBulbIcon className="h-3 w-3 text-purple-600" />
-                                        <span className="text-[10px] uppercase font-bold text-purple-700">Classic Pairings</span>
+                                        <span className="text-[10px] uppercase font-bold text-purple-700">{t('common:classic_pairings')}</span>
                                     </div>
                                     <div className="flex flex-wrap gap-1">
                                         {flavorComponent.classicCombinations.slice(0, 3).map((combo, i) => (
@@ -93,7 +91,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
 
                             {/* Application Moment */}
                             <div className="mb-3 flex items-center gap-2">
-                                <span className="text-[10px] uppercase font-bold text-slate-400">Application:</span>
+                                <span className="text-[10px] uppercase font-bold text-slate-400">{t('common:application')}</span>
                                 <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${flavorComponent.applicationMoment === 'post_oven'
                                         ? 'bg-purple-100 text-purple-700'
                                         : flavorComponent.applicationMoment === 'mid_bake'
@@ -110,7 +108,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                                 <div className="pt-2 border-t border-slate-100">
                                     <div className="flex items-center gap-1.5 mb-1.5">
                                         <InformationCircleIcon className="h-3 w-3 text-slate-400" />
-                                        <span className="text-[10px] uppercase font-bold text-slate-400">References</span>
+                                        <span className="text-[10px] uppercase font-bold text-slate-400">{t('learn:references')}</span>
                                     </div>
                                     <div className="space-y-1">
                                         {flavorComponent.references.slice(0, 2).map((ref, i) => (
@@ -140,20 +138,20 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                             <div className="grid grid-cols-2 gap-2">
                                 {ingredient.technicalProfile.moistureLevel && (
                                     <div className="p-2 bg-slate-50 rounded">
-                                        <span className="text-[10px] uppercase text-slate-400 block">Moisture</span>
+                                        <span className="text-[10px] uppercase text-slate-400 block">{t('calculator:ingredient_creator.moisture')}</span>
                                         <span className="text-xs font-bold text-slate-700">{ingredient.technicalProfile.moistureLevel}</span>
                                     </div>
                                 )}
                                 {ingredient.technicalProfile.fatContent && (
                                     <div className="p-2 bg-slate-50 rounded">
-                                        <span className="text-[10px] uppercase text-slate-400 block">Fat</span>
+                                        <span className="text-[10px] uppercase text-slate-400 block">{t('learn:fat')}</span>
                                         <span className="text-xs font-bold text-slate-700">{ingredient.technicalProfile.fatContent}</span>
                                     </div>
                                 )}
                             </div>
                             {ingredient.technicalProfile.thermalBehavior && (
                                 <div className="p-2 bg-blue-50 rounded-lg">
-                                    <span className="text-[10px] uppercase font-bold text-blue-700 block mb-1">Thermal Behavior</span>
+                                    <span className="text-[10px] uppercase font-bold text-blue-700 block mb-1">{t('learn:thermal_behavior')}</span>
                                     <p className="text-xs text-blue-900">{ingredient.technicalProfile.thermalBehavior}</p>
                                 </div>
                             )}
@@ -163,7 +161,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                     {/* Variations */}
                     {flavorComponent?.variations && (
                         <div className="mt-3 pt-2 border-t border-slate-100">
-                            <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">Variations</span>
+                            <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">{t('common:variations')}</span>
                             <p className="text-[11px] text-slate-600 italic">{flavorComponent.variations}</p>
                         </div>
                     )}

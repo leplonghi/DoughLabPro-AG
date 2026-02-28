@@ -1,17 +1,14 @@
-import React, { createContext, useContext, ReactNode, useMemo } from 'react';
+import React, { createContext, useContext, ReactNode, useMemo, useCallback } from 'react';
 import { Batch } from '@/types';
-import { useBatchManager } from '@/hooks/useBatchManager';
-import { useAuth } from '@/contexts/AuthContext';
-import { db } from '@/firebase/db';
-import { useToast } from '@/components/ToastProvider';
+import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
 
 interface BatchesContextType {
     batches: Batch[];
-    addBatch: (batch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) =>Promise<Batch>;
-    updateBatch: (id: string, updates: Partial<Batch>) =>Promise<void>;
-    deleteBatch: (id: string) =>Promise<void>;
-    createDraftBatch: () =>Promise<Batch>;
+    addBatch: (batch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) => Promise<Batch>;
+    updateBatch: (id: string, updates: Partial<Batch>) => Promise<void>;
+    deleteBatch: (id: string) => Promise<void>;
+    createDraftBatch: () => Promise<Batch>;
     // Memoized selectors
     lastBake: Batch | null;
     totalBakes: number;
@@ -21,23 +18,27 @@ interface BatchesContextType {
 const BatchesContext = createContext<BatchesContextType | undefined>(undefined);
 
 export const BatchesProviderComponent: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
-    console.log('[BatchesProvider] Rendering');
-    const { firebaseUser } = useAuth();
-    const { addToast } = useToast();
+    const { t } = useTranslation();
+    const { batches, addBatch: userAddBatch, updateBatch: userUpdateBatch, deleteBatch: userDeleteBatch, createDraftBatch: userCreateDraftBatch } = useUser();
 
-    const { batches, addBatch, updateBatch: updateBatchManager, deleteBatch, createDraftBatch } = useBatchManager(
-        firebaseUser,
-        db,
-        addToast
-    );
-
-    const updateBatch = React.useCallback(async (id: string, updates: Partial<Batch>) => {
+    const updateBatch = useCallback(async (id: string, updates: Partial<Batch>) => {
         const batch = batches.find(b => b.id === id);
         if (batch) {
-            await updateBatchManager({ ...batch, ...updates } as Batch);
+            await userUpdateBatch({ ...batch, ...updates } as Batch);
         }
-    }, [batches, updateBatchManager]);
+    }, [batches, userUpdateBatch]);
+
+    const deleteBatch = useCallback(async (id: string) => {
+        await userDeleteBatch(id);
+    }, [userDeleteBatch]);
+
+    const addBatch = useCallback(async (batch: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>) => {
+        return userAddBatch(batch);
+    }, [userAddBatch]);
+
+    const createDraftBatch = useCallback(async () => {
+        return userCreateDraftBatch();
+    }, [userCreateDraftBatch]);
 
     // Memoized selectors
     const lastBake = useMemo(() =>

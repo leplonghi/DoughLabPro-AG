@@ -35,7 +35,7 @@ const RecipeDetailColumn: React.FC<{ batch: Batch; onLoad: () => void; t: (key: 
                     <DetailRow label={t('mylab.preferment')} value={doughConfig.fermentationTechnique === FermentationTechnique.DIRECT ? 'None' : doughConfig.fermentationTechnique} />
                     <DetailRow label={t('mylab.total_time')} value={batch.bulkTimeHours || batch.proofTimeHours ? `${(batch.bulkTimeHours || 0) + (batch.proofTimeHours || 0)}h` : 'N/A'} />
                     <div className="py-3">
-                        <dt className="text-sm text-slate-500 ">Process (summary)</dt>
+                        <dt className="text-sm text-slate-500 ">{t('ui:process_summary')}</dt>
                         <dd className="mt-1 text-sm text-slate-700  whitespace-pre-wrap truncate h-20">{batch.notes || 'No notes.'}</dd>
                     </div>
                 </dl>

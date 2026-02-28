@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Sparkles, AlertCircle, Loader2 } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 import { DoughRescueModal } from './DoughRescueModal';
 import { askGeneralAssistant } from '@/ai/assistantClient';
 import { useCalculator } from '@/contexts/CalculatorContext';
@@ -9,21 +9,15 @@ import { useFlours } from '@/contexts/FloursProvider';
 import { useBatches } from '@/contexts/BatchesProvider';
 import { useAuth } from '@/contexts/AuthContext';
 
-// Abstract Green Avatar Component
-const AbstractDoughyAvatar = () => (
-    <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="doughyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#84CC16" />
-                <stop offset="100%" stopColor="#10B981" />
-            </linearGradient>
-        </defs>
-        <circle cx="50" cy="50" r="45" fill="url(#doughyGradient)" />
-        <path d="M30 40 Q50 20 70 40 T90 60" stroke="white" strokeWidth="4" fill="none" opacity="0.5" />
-        <circle cx="35" cy="45" r="5" fill="white" />
-        <circle cx="65" cy="45" r="5" fill="white" />
-        <path d="M35 65 Q50 75 65 65" stroke="white" strokeWidth="4" strokeLinecap="round" fill="none" />
-    </svg>
+// Doughy Avatar Component
+const DoughyAvatar = ({ className = "w-full h-full" }: { className?: string }) => (
+    <div className={`${className} bg-white rounded-full overflow-hidden flex items-center justify-center`}>
+        <img
+            src="/doughy-avatar.jpg"
+            alt="Doughy Assistant"
+            className="w-full h-full object-cover scale-110"
+        />
+    </div>
 );
 
 // Enhanced Message Interface
@@ -207,7 +201,7 @@ export const DoughyAssistant: React.FC = () => {
     return (
         <>
             {/* Main Wrapper with pointer-events-none to prevent blocking clicks when closed */}
-            <div className={`fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4 print:hidden ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+            <div className={`fixed bottom-20 sm:bottom-6 right-6 z-30 flex flex-col items-end gap-4 print:hidden ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
 
                 <AnimatePresence>
                     {isOpen && (
@@ -219,23 +213,21 @@ export const DoughyAssistant: React.FC = () => {
                             className="bg-white rounded-2xl shadow-xl border border-slate-200 w-80 sm:w-96 flex flex-col overflow-hidden mb-2 origin-bottom-right h-[500px] pointer-events-auto ring-1 ring-black/5"
                         >
                             {/* Header */}
-                            <div className="bg-[#1B4332] p-4 flex items-center justify-between shrink-0 relative overflow-hidden">
+                            <div className="bg-gradient-to-br from-emerald-50 to-lime-50 p-4 flex items-center justify-between shrink-0 relative overflow-hidden border-b border-emerald-100">
                                 <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-30"></div>
                                 <div className="flex items-center gap-3 relative z-10">
-                                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border-2 border-white/40 shadow-inner overflow-hidden">
-                                        <AbstractDoughyAvatar />
+                                    <div className="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center border-2 border-emerald-200 shadow-inner overflow-hidden">
+                                        <DoughyAvatar />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-white text-sm tracking-wide">Doughy AI</h3>
-                                        <p className="text-emerald-100/90 text-[10px] font-medium uppercase tracking-wider flex items-center gap-1.5">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse"></span>
-                                            Online & Ready
-                                        </p>
+                                        <h3 className="font-bold text-slate-800 text-sm tracking-wide">{t('common:doughy_ai')}</h3>
+                                        <p className="text-emerald-700 text-[10px] font-medium uppercase tracking-wider flex items-center gap-1.5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse"></span>{t('calculator:ingredient_creator.online_ready')}</p>
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="text-white/60 hover:text-white hover:bg-white/10 transition-all p-1.5 rounded-lg relative z-10"
+                                    className="text-slate-600 hover:text-slate-800 hover:bg-white/40 transition-all p-1.5 rounded-lg relative z-10"
                                 >
                                     <X size={18} />
                                 </button>
@@ -285,7 +277,7 @@ export const DoughyAssistant: React.FC = () => {
                                     <button
                                         onClick={() => setIsRescueOpen(true)}
                                         className="p-2.5 rounded-xl bg-rose-50 text-rose-500 hover:bg-rose-100 transition-colors border border-rose-100 hover:border-rose-200 active:scale-95 flex-shrink-0"
-                                        title="Emergency Dough Rescue"
+                                        title={t('common.emergency_dough_rescue')}
                                     >
                                         <AlertCircle size={20} />
                                     </button>
@@ -295,7 +287,7 @@ export const DoughyAssistant: React.FC = () => {
                                             value={inputValue}
                                             onChange={(e) => setInputValue(e.target.value)}
                                             onKeyDown={handleKeyDown}
-                                            placeholder="Ask about your dough..."
+                                            placeholder={t('common.ask_about_your_dough')}
                                             className="w-full pl-4 pr-10 py-3 rounded-xl bg-slate-100/50 border border-slate-200 focus:bg-white focus:ring-2 focus:ring-[#51a145]/20 focus:border-[#51a145] text-sm text-slate-700 placeholder-slate-400 resize-none transition-all"
                                             style={{ minHeight: '44px', maxHeight: '100px' }}
                                         />
@@ -303,7 +295,7 @@ export const DoughyAssistant: React.FC = () => {
                                     <button
                                         onClick={() => handleSendMessage()}
                                         disabled={!inputValue.trim()}
-                                        className="p-2.5 rounded-xl bg-[#1B4332] text-white hover:bg-[#2D6A4F] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-emerald-900/10 active:scale-95 flex-shrink-0"
+                                        className="p-2.5 rounded-xl bg-gradient-to-br from-emerald-50 to-lime-50 text-slate-800 hover:bg-[#2D6A4F] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-emerald-900/10 active:scale-95 flex-shrink-0"
                                     >
                                         <Send size={18} />
                                     </button>
@@ -318,13 +310,13 @@ export const DoughyAssistant: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsOpen(!isOpen)}
-                    className="relative group h-14 w-14 sm:h-16 sm:w-16 rounded-full shadow-2xl flex items-center justify-center transition-all bg-white border-[3px] border-white overflow-hidden pointer-events-auto hover:shadow-emerald-900/20 z-[101]"
+                    className="relative group h-14 w-14 sm:h-16 sm:w-16 rounded-full shadow-2xl flex items-center justify-center transition-all bg-white border-[3px] border-white overflow-hidden pointer-events-auto hover:shadow-emerald-900/20"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#51a145] to-[#1B4332] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     {/* Use the avatar image here as the button icon */}
                     <div className="w-full h-full p-2 z-10 relative">
-                        <AbstractDoughyAvatar />
+                        <DoughyAvatar />
                     </div>
 
                     {!isOpen && (

@@ -204,15 +204,32 @@ export const calculateDoughUniversal = (
   // 2. Adjust t('common.added_water') to hit Target Hydration (if controllable)
   const waterIng = ingredients.find(i => i.role === 'water');
 
+  // Logic for Levain contribution: Levain has hydration too.
+  // If we have a levain/starter, its water content should be subtracted from 'Added Water' 
+  // to maintain the Target Hydration slider value.
+  const starterIng = ingredients.find(i => i.role === 'starter');
+  let waterFromStarter = 0;
+  if (starterIng) {
+    // Sourdough hydration is usually 100% (0.5 water, 0.5 flour)
+    // Formula: WaterInStarterWeight = StarterPct / (1 + Hydration) * Hydration
+    // But since we are in Baker's % space:
+    // PctWaterInStarter = StarterPct * (HydratioPct / (100 + HydrationPct))
+    let levainHydration = 100;
+    if (config.yeastType === YeastType.USER_LEVAIN && userLevain) {
+      levainHydration = userLevain.hydration;
+    }
+    waterFromStarter = starterIng.bakerPercentage * (levainHydration / (100 + levainHydration));
+  }
+
   // Only adjust if the water ingredient exists and IS NOT locked (manualOverride)
   // And if we have a target hydration from the config (slider)
   if (waterIng && !waterIng.manualOverride) {
     const targetHydration = config.hydration;
 
     // Calculate required added water
-    // If Eggs provide 10% water and Target is 65%, we need 55% Added Water.
-    // If Eggs provide 70% water and Target is 65%, we need 0% Added Water (and result will be 70%).
-    const requiredAddedWater = Math.max(0, targetHydration - waterFromOthers);
+    // Total Water = AddedWater + WaterFromOthers + WaterFromStarter
+    // AddedWater = Target - Others - Starter
+    const requiredAddedWater = Math.max(0, targetHydration - waterFromOthers - waterFromStarter);
 
     waterIng.bakerPercentage = requiredAddedWater;
   }
@@ -275,8 +292,17 @@ export const calculateDoughUniversal = (
     // Find orig config for hydration factor (inefficient but safe)
     const ingDef = ingredients.find(i => i.id === iw.id);
     let hVal = ingDef?.hydrationContent ?? 0;
+
     if (ingDef?.role === 'water') hVal = 1.0;
     else if (ingDef?.role === 'fat') hVal = 0; // Oil
+    else if (ingDef?.role === 'starter') {
+      // Sourdough hydration contribution
+      let levainHydration = 100;
+      if (config.yeastType === YeastType.USER_LEVAIN && userLevain) {
+        levainHydration = userLevain.hydration;
+      }
+      hVal = levainHydration / (100 + levainHydration);
+    }
     else if (ingDef && ingDef.type === 'liquid') hVal = 1.0; // Fallback
 
     actualTotalWater += iw.weight * hVal;

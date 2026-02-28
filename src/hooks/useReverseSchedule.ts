@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { FermentationTechnique } from '@/types';
+import { FermentationTechnique, OvenType } from '@/types';
 import { addMinutes, subMinutes, subHours, isBefore, format } from '@/logic/dateUtils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 
 
 export interface ScheduleStep {
@@ -30,8 +30,9 @@ export interface ScheduleResult {
 export const useReverseSchedule = (
     targetTime: Date,
     technique: FermentationTechnique,
-    bulkTimeHours: number = 2, // Default or dynamic
-    ballTimeHours: number = 6  // Default 4-6h
+    bulkTimeHours: number = 2,
+    ballTimeHours: number = 6,
+    ovenType: OvenType = OvenType.ELECTRIC
 ): ScheduleResult => {
     const { t } = useTranslation();
 
@@ -40,8 +41,6 @@ export const useReverseSchedule = (
         const errors: string[] = [];
 
         // 1. Target Time (Eating)
-        // Assume baking takes ~30 mins for a home batch, so we aim to have the first pizza ready slightly before target or right at target.
-        // Let's say Target is "Pizza Time".
         steps.push({
             id: 'target',
             title: 'Pizza Time!',
@@ -50,30 +49,39 @@ export const useReverseSchedule = (
             type: 'milestone',
         });
 
-        // 2. Preheat (1 hour before eating/baking start)
-        // Ideally oven is ready when we start baking.
-        // Baking starts, say, 15 mins before eating? Or we eat as we bake.
-        // Let's align "Pizza Time" with the first pizza coming out.
+        // 2. Preheat Mapping
+        let preheatMinutes = 60;
+        let ovenDesc = 'Turn on your oven to max temperature. Stone/Steel needs 1h to saturate.';
+
+        if (ovenType === OvenType.OONI) {
+            preheatMinutes = 20;
+            ovenDesc = 'Launch your outdoor oven. A stone temp of 400°C+ is ideal.';
+        } else if (ovenType === OvenType.WOOD) {
+            preheatMinutes = 120;
+            ovenDesc = 'Build a large fire across the floor. Push to the back once floor is white-hot.';
+        } else if (ovenType === OvenType.GAS) {
+            preheatMinutes = 45;
+            ovenDesc = 'Preheat gas oven. If using a stone, allow at least 45 mins.';
+        }
+
         const ovenReadyTime = targetTime;
-        const preheatStartTime = subMinutes(ovenReadyTime, 60);
+        const preheatStartTime = subMinutes(ovenReadyTime, preheatMinutes);
 
         steps.push({
             id: 'preheat',
-            title: 'Pre-heat Oven',
-            description: 'Turn on your oven to max temperature. Stone/Steel needs 1h to saturate.',
+            title: `Pre-heat (${ovenType})`,
+            description: ovenDesc,
             time: preheatStartTime,
             type: 'action',
-            durationMinutes: 60,
+            durationMinutes: preheatMinutes,
             affiliate: {
                 label: t('common.laser_thermometer_64'),
                 text: t('common.laser_thermometer_64'),
-                link: '#', // Placeholder
+                link: '#',
             }
         });
 
         // 3. Balling / Relaxing
-        // Balls must be relaxed by the time we want to stretch (ovenReadyTime).
-        // So we ball `ballTimeHours` before ovenReadyTime.
         const ballingStartTime = subHours(ovenReadyTime, ballTimeHours);
 
         steps.push({
@@ -82,7 +90,7 @@ export const useReverseSchedule = (
             description: `Divide dough into balls and let them relax for ${ballTimeHours} hours.`,
             time: ballingStartTime,
             type: 'action',
-            durationMinutes: 20, // Approx action time
+            durationMinutes: 20,
             affiliate: {
                 label: t('common.dough_scraper_67'),
                 text: t('common.dough_scraper_67'),
@@ -91,11 +99,7 @@ export const useReverseSchedule = (
         });
 
         // 4. Bulk Ferment
-        // Bulk happens before balling.
-        const bulkStartTime = subHours(ballingStartTime, bulkTimeHours);
-
-        // This is the t('common.mix_final_dough_69') time
-        const finalMixTime = bulkStartTime;
+        const finalMixTime = subHours(ballingStartTime, bulkTimeHours);
 
         steps.push({
             id: 'mix_final',
@@ -115,7 +119,7 @@ export const useReverseSchedule = (
 
         // 5. Pre-ferment
         if (technique === FermentationTechnique.POOLISH) {
-            prefermentMixTime = subHours(finalMixTime, 12); // Standard 12h poolish
+            prefermentMixTime = subHours(finalMixTime, 12);
             steps.push({
                 id: 'mix_poolish',
                 title: t('common.mix_poolish_72'),
@@ -130,7 +134,7 @@ export const useReverseSchedule = (
                 }
             });
         } else if (technique === FermentationTechnique.BIGA) {
-            prefermentMixTime = subHours(finalMixTime, 18); // Standard 18h biga
+            prefermentMixTime = subHours(finalMixTime, 18);
             steps.push({
                 id: 'mix_biga',
                 title: t('common.mix_biga_75'),
@@ -171,5 +175,5 @@ export const useReverseSchedule = (
             errors
         };
 
-    }, [targetTime, technique, bulkTimeHours, ballTimeHours]);
+    }, [targetTime, technique, bulkTimeHours, ballTimeHours, ovenType]);
 };

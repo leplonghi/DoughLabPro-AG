@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "firebase_auth_failed_to_initialize": "Fallo al inicializar autenticación Firebase",
+    "failed_to_login_with_google_please_try_again": "Fallo al entrar con Google. Intente de nuevo.",
+    "invalid_email_or_password": "Email o contraseña inválidos.",
+    "failed_to_login_please_try_again": "Fallo al entrar. Intente de nuevo.",
+    "failed_to_create_account_please_try_again": "Fallo al crear cuenta. Intente de nuevo.",
+    "failed_to_send_reset_email_please_try_again": "No se pudo enviar el correo electrónico de restablecimiento. Por favor, inténtelo de nuevo.",
+    "failed_to_login_as_guest": "No se pudo iniciar sesión como invitado.",
+    "failed_to_login_as_admin": "No se pudo iniciar sesión como administrador.",
+    "error_getting_token_result": "Error al obtener el resultado del token:",
+    "error_fetching_user_data": "Error al obtener los datos del usuario:"
+  },
+  "an_error_occurred": "Ocurrió un error."
+}

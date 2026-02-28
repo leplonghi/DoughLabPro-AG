@@ -1,3 +1,4 @@
+import { useTranslation } from '@/i18n';
 
 import React, { useState } from 'react';
 import { useBatchVariants } from '@/hooks/useBatchVariants';
@@ -7,6 +8,7 @@ import { ToppingCreatorModal } from '../ToppingCreatorModal';
 import { ToppingSelector } from '../ToppingSelector';
 
 export const AssemblySection: React.FC = () => {
+    const { t } = useTranslation();
     const { variants, addVariant, removeVariant, updateVariant, validation } = useBatchVariants();
     const { allToppings, addCustomTopping } = useToppings();
     const { isValid, remainingCount, totalYield } = validation;
@@ -40,7 +42,7 @@ export const AssemblySection: React.FC = () => {
                                 onChange={(e) => updateVariant(variant.id, { count: parseInt(e.target.value) || 0 })}
                                 className="w-12 h-10 text-center bg-slate-50 rounded-lg border border-slate-200 font-mono font-bold text-lg text-slate-800 focus:ring-2 ring-[#51a145] outline-none"
                             />
-                            <span className="text-[9px] text-slate-400 uppercase mt-1 font-bold tracking-wider">Balls</span>
+                            <span className="text-[9px] text-slate-400 uppercase mt-1 font-bold tracking-wider">{t('common:balls')}</span>
                         </div>
 
                         {/* Name Input & Flavor Selection */}
@@ -51,7 +53,7 @@ export const AssemblySection: React.FC = () => {
                                     value={variant.name}
                                     onChange={(e) => updateVariant(variant.id, { name: e.target.value })}
                                     className="flex-1 bg-transparent border-b border-transparent hover:border-slate-200 focus:border-[#51a145] outline-none p-1 text-sm font-bold text-slate-800 placeholder-slate-300 transition-colors"
-                                    placeholder="Variant Name"
+                                    placeholder={t('common:variant_name')}
                                 />
                             </div>
 

@@ -64,6 +64,7 @@ export interface DoughSpecs {
     fermentationTime: string; // ex: "24h"
     difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
     ballWeight?: { recommended: number; min: number; max: number };
+    targetDDT?: number; // Dough Desired Temperature (e.g., 23-24°C)
 }
 
 

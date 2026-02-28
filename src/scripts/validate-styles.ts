@@ -25,7 +25,7 @@ STYLES_DATA.forEach(style => {
     }
 
     // Check Hydration
-    if (!style.technicalProfile.hydration || style.technicalProfile.hydration.length !== 2) {
+    if (!style.technicalProfile || !style.technicalProfile.hydration || style.technicalProfile.hydration.length !== 2) {
         console.error(`❌ ERROR: Style "${style.name}" missing hydration ranges.`);
         errors++;
     }

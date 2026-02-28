@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { DoughConfig, FermentationTechnique } from '@/types';
 import { useReverseSchedule, ScheduleStep } from '@/hooks/useReverseSchedule';
@@ -19,8 +20,11 @@ interface ProductionTimelineProps {
     hasProAccess: boolean;
 }
 
-const TimelineStep: React.FC<{ step: ScheduleStep; index: number; isLast: boolean }> = ({ step, index, isLast }) => {
-
+const TimelineStep: React.FC<{
+    step: ScheduleStep;
+    index: number;
+    isLast: boolean
+}> = ({ step, index, isLast }) => {
     const getIcon = () => {
         switch (step.id) {
             case 'target': return <PizzaSliceIcon className="h-6 w-6 text-dlp-accent" />;
@@ -38,17 +42,14 @@ const TimelineStep: React.FC<{ step: ScheduleStep; index: number; isLast: boolea
             {!isLast && (
                 <div className="absolute top-10 left-[19px] bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700 group-last:hidden" />
             )}
-
             <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border-2 border-dlp-bg-muted shadow-sm z-10 group-hover:border-dlp-accent transition-colors">
                 {getIcon()}
             </div>
-
             <div className="flex-1 pt-1.5 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="flex items-start justify-between">
                     <div>
                         <h4 className="text-sm font-bold text-gray-900 dark:text-gray-100">{step.title}</h4>
                         <p className="text-xs text-gray-500 mt-1 max-w-[240px] leading-relaxed">{step.description}</p>
-
                         {step.affiliate && (
                             <a href={step.affiliate.link} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-[10px] uppercase font-bold text-indigo-500 hover:text-indigo-700 hover:underline">
                                 <span>🛒</span> {step.affiliate.text}
@@ -74,7 +75,6 @@ export const ProductionTimeline: React.FC<ProductionTimelineProps> = ({ config, 
 
     // Safety check for valid date
     const targetDate = config.targetTime ? new Date(config.targetTime) : new Date();
-
     // If invalid date, default to tomorrow
     const validTargetDate = isNaN(targetDate.getTime()) ? new Date(new Date().setDate(new Date().getDate() + 1)) : targetDate;
 
@@ -82,7 +82,8 @@ export const ProductionTimeline: React.FC<ProductionTimelineProps> = ({ config, 
         validTargetDate,
         config.fermentationTechnique,
         2, // default bulk
-        6  // default ball
+        6, // default ball
+        config.ovenType
     );
 
     if (schedule.isImpossible) {
@@ -91,7 +92,7 @@ export const ProductionTimeline: React.FC<ProductionTimelineProps> = ({ config, 
                 <div className="flex items-start gap-3">
                     <AlertTriangleIcon className="h-6 w-6 text-red-500 shrink-0" />
                     <div>
-                        <h3 className="text-sm font-bold text-red-800">Mission Impossible</h3>
+                        <h3 className="text-sm font-bold text-red-800">{t('calculator:mission_impossible')}</h3>
                         <p className="text-xs text-red-600 mt-1">
                             {schedule.errors[0] || "We can't go back in time (yet). Pick a later date!"}
                         </p>
@@ -105,11 +106,11 @@ export const ProductionTimeline: React.FC<ProductionTimelineProps> = ({ config, 
         <div className="mt-8 rounded-2xl bg-white p-6 shadow-sm border border-dlp-border">
             <div className="mb-6 flex items-center justify-between border-b border-gray-100 pb-4">
                 <div>
-                    <h3 className="text-base font-bold text-gray-900">Production Timeline</h3>
-                    <p className="text-xs text-gray-500">Reverse engineered from your target</p>
+                    <h3 className="text-base font-bold text-gray-900">{t('calculator:production_timeline')}</h3>
+                    <p className="text-xs text-gray-500">{t('calculator:reverse_engineered_from_your_target')}</p>
                 </div>
                 <div className="text-center">
-                    <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest">Starts</span>
+                    <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest">{t('calculator:starts')}</span>
                     <span className="text-indigo-600 font-bold font-mono">
                         {format(schedule.prefermentMixTime || schedule.finalMixTime, 'HH:mm')}
                     </span>
@@ -130,7 +131,7 @@ export const ProductionTimeline: React.FC<ProductionTimelineProps> = ({ config, 
             {/* Pro Tip Teaser */}
             {!hasProAccess && (
                 <div className="mt-6 rounded-lg bg-gray-50 p-3 text-center text-xs text-gray-500 italic">
-                    Unlock Pro to sync this schedule with Google Calendar.
+                    {t('calculator:unlock_pro_to_sync_this_schedule_with_google_calendar')}
                 </div>
             )}
         </div>

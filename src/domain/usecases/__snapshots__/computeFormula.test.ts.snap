@@ -1,0 +1,226 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`computeFormula > computes a Sourdough Bread formula handling starter calculation 1`] = `
+[
+  {
+    "bakerPct": 90,
+    "grams": 776.6497461928933,
+    "key": "ing-1772293665644-0",
+    "label": "Bread Flour",
+  },
+  {
+    "bakerPct": 10,
+    "grams": 86.29441624365482,
+    "key": "ing-1772293665644-1",
+    "label": "Whole Wheat Flour",
+  },
+  {
+    "bakerPct": 75,
+    "grams": 647.2081218274111,
+    "key": "ing-1772293665644-2",
+    "label": "Water",
+  },
+  {
+    "bakerPct": 2,
+    "grams": 17.258883248730964,
+    "key": "ing-1772293665644-3",
+    "label": "Salt",
+  },
+  {
+    "bakerPct": 20,
+    "grams": 172.58883248730965,
+    "key": "ing-1772293665644-4",
+    "label": "Sourdough Starter",
+  },
+]
+`;
+
+exports[`computeFormula > computes a Sourdough Bread formula handling starter calculation 2`] = `
+[
+  {
+    "notes": "Scale all ingredients precisely using a digital scale.",
+    "title": "Gather Ingredients",
+  },
+  {
+    "notes": "Mix flour, water, and yeast/starter. Cover and let rest.",
+    "title": "Mix Preferment / Levain",
+  },
+  {
+    "durationMin": 480,
+    "notes": "Wait until doubled or tripled in size.",
+    "temperatureC": 20,
+    "title": "Preferment Maturation",
+  },
+  {
+    "notes": "Combine all ingredients. Mix until required gluten development is reached.",
+    "title": "Mix Final Dough",
+  },
+  {
+    "durationMin": 120,
+    "notes": "Let the dough rest at room temperature.",
+    "temperatureC": 22,
+    "title": "Bulk Fermentation",
+  },
+  {
+    "notes": "Divide the dough into portions of 850g.",
+    "title": "Shape Loaves",
+  },
+  {
+    "durationMin": 240,
+    "notes": "Let balls come to room temperature and relax before baking.",
+    "temperatureC": 22,
+    "title": "Final Proof (Room Temp)",
+  },
+  {
+    "notes": "Bake using your oven until crust is well colored.",
+    "temperatureC": 260,
+    "title": "Bake",
+  },
+]
+`;
+
+exports[`computeFormula > computes a classic Neapolitan Pizza formula accurately 1`] = `
+[
+  {
+    "bakerPct": 100,
+    "grams": 594.5303210463734,
+    "key": "ing-1772293665641-0",
+    "label": "00 Flour",
+  },
+  {
+    "bakerPct": 65,
+    "grams": 386.4447086801427,
+    "key": "ing-1772293665641-1",
+    "label": "Water",
+  },
+  {
+    "bakerPct": 3,
+    "grams": 17.8359096313912,
+    "key": "ing-1772293665641-2",
+    "label": "Salt",
+  },
+  {
+    "bakerPct": 0.2,
+    "grams": 1.1890606420927468,
+    "key": "ing-1772293665641-3",
+    "label": "Fresh Yeast",
+  },
+]
+`;
+
+exports[`computeFormula > computes a classic Neapolitan Pizza formula accurately 2`] = `
+[
+  {
+    "notes": "Scale all ingredients precisely using a digital scale.",
+    "title": "Gather Ingredients",
+  },
+  {
+    "notes": "Combine all ingredients. Mix until required gluten development is reached.",
+    "title": "Mix Final Dough",
+  },
+  {
+    "durationMin": 120,
+    "notes": "Let the dough rest at room temperature.",
+    "temperatureC": 22,
+    "title": "Bulk Fermentation",
+  },
+  {
+    "notes": "Divide the dough into portions of 250g.",
+    "title": "Divide and Ball",
+  },
+  {
+    "durationMin": 240,
+    "notes": "Let balls come to room temperature and relax before baking.",
+    "temperatureC": 22,
+    "title": "Final Proof (Room Temp)",
+  },
+  {
+    "notes": "Bake using your oven until crust is well colored.",
+    "temperatureC": 500,
+    "title": "Bake",
+  },
+]
+`;
+
+exports[`computeFormula > computes a classic Neapolitan Pizza formula accurately 3`] = `[]`;
+
+exports[`computeFormula > computes an enriched Burger Bun formula with liquids/hydration accurately 1`] = `
+[
+  {
+    "bakerPct": 100,
+    "grams": 457.40423098913664,
+    "key": "ing-1772293665644-0",
+    "label": "Bread Flour",
+  },
+  {
+    "bakerPct": 28.9,
+    "grams": 132.1898227558605,
+    "key": "ing-1772293665644-1",
+    "label": "Milk",
+  },
+  {
+    "bakerPct": 20,
+    "grams": 91.48084619782733,
+    "key": "ing-1772293665645-2",
+    "label": "Butter",
+  },
+  {
+    "bakerPct": 15,
+    "grams": 68.61063464837049,
+    "key": "ing-1772293665645-3",
+    "label": "Egg",
+  },
+  {
+    "bakerPct": 8,
+    "grams": 36.59233847913093,
+    "key": "ing-1772293665645-4",
+    "label": "Sugar",
+  },
+  {
+    "bakerPct": 2,
+    "grams": 9.148084619782733,
+    "key": "ing-1772293665645-5",
+    "label": "Salt",
+  },
+  {
+    "bakerPct": 1,
+    "grams": 4.574042309891366,
+    "key": "ing-1772293665645-6",
+    "label": "IDY Yeast",
+  },
+]
+`;
+
+exports[`computeFormula > computes an enriched Burger Bun formula with liquids/hydration accurately 2`] = `
+[
+  {
+    "notes": "Scale all ingredients precisely using a digital scale.",
+    "title": "Gather Ingredients",
+  },
+  {
+    "notes": "Combine all ingredients. Mix until required gluten development is reached.",
+    "title": "Mix Final Dough",
+  },
+  {
+    "durationMin": 120,
+    "notes": "Let the dough rest at room temperature.",
+    "temperatureC": 22,
+    "title": "Bulk Fermentation",
+  },
+  {
+    "notes": "Divide the dough into portions of 100g.",
+    "title": "Divide and Ball",
+  },
+  {
+    "durationMin": 240,
+    "notes": "Let balls come to room temperature and relax before baking.",
+    "temperatureC": 22,
+    "title": "Final Proof (Room Temp)",
+  },
+  {
+    "notes": "Bake using your oven until crust is well colored.",
+    "temperatureC": 210,
+    "title": "Bake",
+  },
+]
+`;

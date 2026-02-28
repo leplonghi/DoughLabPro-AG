@@ -1,6 +1,6 @@
 
 import React from 'react';
-import IngredientPageLayout from './IngredientPageLayout';
+import IngredientPageLayout from '@/components/layouts/IngredientPageLayout';
 import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
@@ -26,9 +26,7 @@ const MeatsPage: React.FC = () => {
       category={t('learn.ingredients_3')}
     >
       <LearnSection title={t('learn.introduction_chemical_impact_of_meat')}>
-        <p>
-          Meats and sausages are more than just a topping; they are a complex chemical system interacting intensely with pizza. From scientific and sensory standpoint, they modulate:
-        </p>
+        <p>{t('learn:meats_and_sausages_are_more_than_just_a_topping_they_are_a_c')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.salinity_and_fat')}</strong> Contribute salt and fat, needing balance with sauce acidity and cheese smoothness.</li>
           <li><strong>{t('learn.umami_flavor')}</strong> Curing and fermentation processes concentrate glutamates, providing depth of umami flavor.</li>
@@ -39,10 +37,8 @@ const MeatsPage: React.FC = () => {
         </p>
       </LearnSection>
 
-      <LearnSection title="Technical Properties (Real Chemistry)" icon={<BeakerIcon className="h-5 w-5" />}>
-        <p>
-          Behavior of meats in oven is dictated by composition.
-        </p>
+      <LearnSection title={t('learn:technical_properties_real_chemistry')} icon={<BeakerIcon className="h-5 w-5" />}>
+        <p>{t('learn:behavior_of_meats_in_oven_is_dictated_by_composition')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.fat_rendering')}</strong> Fat melts and spreads. Saturated fats (like bacon) melt slower at higher temps. Process can lead to "oil-out".</li>
           <li><strong>{t('learn.water_content')}</strong> Cured meats (salami, prosciutto) have low water, making them stable and prone to crisping. Fresh meats (raw sausage, chicken) release significant water, risking soggy pizza.</li>
@@ -61,35 +57,35 @@ const MeatsPage: React.FC = () => {
 
       <LearnSection title={t('learn.common_meat_types')}>
         <h4>a) Pepperoni</h4>
-        <p>Cured dry sausage of Italian-American origin with paprika/chili. High fat and collagen casing contribute to cupping and crispy edges when sliced thin.</p>
+        <p>{t('learn:cured_dry_sausage_of_italian_american_origin_with_paprika_ch')}</p>
 
         <h4>b) Italian Salami</h4>
-        <p>Hundreds of varieties. Generally fermented giving acidic notes and complex flavor. Denser with less fat than pepperoni, tends not to cup but crisps pleasantly.</p>
+        <p>{t('learn:hundreds_of_varieties_generally_fermented_giving_acidic_note')}</p>
 
         <h4>c) Smoked Sausage / Calabresa</h4>
-        <p>Often cooked/processed differently than dry cured salami. Strong aromatic profile, more moisture and emulsified fat, releases significant oil.</p>
+        <p>{t('learn:often_cooked_processed_differently_than_dry_cured_salami_str')}</p>
 
         <h4>d) Prosciutto Crudo (Parma, San Daniele)</h4>
-        <p>Dry-cured with salt only, delicate flavor and melt-in-mouth texture. Best used thinly sliced added post-oven.</p>
+        <p>{t('learn:dry_cured_with_salt_only_delicate_flavor_and_melt_in_mouth_t')}</p>
 
         <h4>e) Bacon</h4>
-        <p>Dense fat needs time to render. In fast-bake pizzas (Neapolitan), won't cook properly. Almost always pre-cooked to partial crispness before use as topping.</p>
+        <p>{t('learn:dense_fat_needs_time_to_render_in_fast_bake_pizzas_neapolita')}</p>
       </LearnSection>
 
-      <LearnSection title="Classic Combinations (Tradition Validated)" icon={<BookOpenIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn:classic_combinations_tradition_validated')} icon={<BookOpenIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.pepperoni__mozzarella')}</strong> American classic. Pepperoni spice and fat balanced by mozzarella mildness.</li>
           <li><strong>{t('learn.salami__provolone')}</strong> Robust combination. Strong salami complements sharper provolone.</li>
           <li><strong>{t('learn.prosciutto__arugula__parmesan_shavings')}</strong> Modern classic. Added post-oven; salty ham, bitter arugula, umami cheese create fresh contrast.</li>
-          <li><strong>Bacon + Onion (Caramelized or Red):</strong> Onion sweetness cuts bacon richness and salt.</li>
+          <li><strong>{t('ui:meats_page.bacon_onion_caramelized_or_red')}</strong>{t('learn:onion_sweetness_cuts_bacon_richness_and_salt')}</li>
         </ul>
       </LearnSection>
 
       <LearnSection title={t('learn.risks_and_common_care')} icon={<SparklesIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Excess Fat (Oil-Out):</strong> Multiple fatty meats (pepperoni + bacon) lead to oily pizza. Balance with lower fat cheese or less quantity.</li>
+          <li><strong>{t('learn:excess_fat_oil_out')}</strong> Multiple fatty meats (pepperoni + bacon) lead to oily pizza. Balance with lower fat cheese or less quantity.</li>
           <li><strong>{t('learn.raw_fresh_meats')}</strong> High risk of releasing water and undercooking. Pre-cooking is safest effective practice.</li>
-          <li><strong>Curing Agents (Nitrites):</strong> Stable and don't change significantly with oven heat. Function happens during curing before reaching kitchen.</li>
+          <li><strong>{t('learn:curing_agents_nitrites')}</strong>{t('learn:stable_and_dont_change_significantly_with_oven_heat_function')}</li>
           <li><strong>{t('learn.aroma_loss_in_fine_cured_meats')}</strong> Never bake high quality prosciutto. You pay for aromatic complexity destroyed by heat.</li>
         </ul>
       </LearnSection>

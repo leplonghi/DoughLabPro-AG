@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TechnicalPageLayout from '../TechnicalPageLayout';
+import TechnicalPageLayout from '@/components/layouts/TechnicalPageLayout';
 import { BeakerIcon, BookOpenIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
@@ -56,9 +56,7 @@ const ClassicCombosPage: React.FC = () => {
       showReferencesSection
     >
       <LearnSection title={t('learn.introduction_the_art_of_flavor_pairing')}>
-        <p>
-          Successful pizza combinations aren't accidents but exercises in chemical and sensory balance. Best combos, validated over decades, rely on fundamental flavor pairing principles:
-        </p>
+        <p>{t('learn:successful_pizza_combinations_arent_accidents_but_exercises_')}</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.balance')}</strong> Complementary flavors, like tomato acidity cutting cheese fat.</li>
           <li><strong>{t('learn.contrast')}</strong> Interaction of opposites creating complexity.</li>

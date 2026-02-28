@@ -1,9 +1,11 @@
+import { useTranslation } from '@/i18n';
 import React, { useState, useEffect } from 'react';
 import { useNotificationAnalytics } from '@/services/notificationAnalytics';
 import { useUser } from '@/contexts/UserProvider';
 import { BarChart3, TrendingUp, Bell, MousePointer, X, Clock, Zap } from 'lucide-react';
 
 export const NotificationAnalyticsDashboard: React.FC = () => {
+    const { t } = useTranslation();
     const { user } = useUser();
     const analytics = useNotificationAnalytics(user?.uid || '');
 
@@ -52,7 +54,7 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
         return (
             <div className="text-center py-12">
                 <Bell className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600 dark:text-gray-400">No analytics data available</p>
+                <p className="text-gray-600 dark:text-gray-400">{t('common:no_analytics_data_available')}</p>
             </div>
         );
     }
@@ -62,12 +64,8 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                        Notification Analytics
-                    </h2>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Track engagement and performance
-                    </p>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{t('common:notification_analytics')}</h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('common:track_engagement_and_performance')}</p>
                 </div>
 
                 {/* Time Range Selector */}
@@ -78,7 +76,7 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
                             onClick={() => setTimeRange(days as 7 | 30 | 90)}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${timeRange === days
                                     ? 'bg-green-600 text-white'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                    : 'bg-gray-100 dark:bg-gray-50 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                                 }`}
                         >
                             {days}d
@@ -91,13 +89,13 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <MetricCard
                     icon={<Bell className="w-6 h-6" />}
-                    label="Total Sent"
+                    label={t('notifications:total_sent_263')}
                     value={metrics.totalSent}
                     color="blue"
                 />
                 <MetricCard
                     icon={<MousePointer className="w-6 h-6" />}
-                    label="Clicked"
+                    label={t('notifications:clicked_264')}
                     value={metrics.totalClicked}
                     color="green"
                 />
@@ -109,7 +107,7 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
                 />
                 <MetricCard
                     icon={<Zap className="w-6 h-6" />}
-                    label="Engagement"
+                    label={t('notifications:engagement_265')}
                     value={`${metrics.engagementRate.toFixed(1)}%`}
                     color="orange"
                 />
@@ -118,17 +116,17 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
             {/* Additional Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <StatCard
-                    label="Dismissed"
+                    label={t('notifications:dismissed_266')}
                     value={metrics.totalDismissed}
                     icon={<X className="w-5 h-5 text-red-500" />}
                 />
                 <StatCard
-                    label="Snoozed"
+                    label={t('notifications:snoozed_267')}
                     value={metrics.totalSnoozed}
                     icon={<Clock className="w-5 h-5 text-yellow-500" />}
                 />
                 <StatCard
-                    label="Avg Time to Click"
+                    label={t('notifications:avg_time_to_click_268')}
                     value={metrics.averageTimeToClick ? `${Math.round(metrics.averageTimeToClick)}s` : 'N/A'}
                     icon={<Clock className="w-5 h-5 text-blue-500" />}
                 />
@@ -136,10 +134,8 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
 
             {/* Popular Actions */}
             {metrics.popularActions.length > 0 && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Popular Actions
-                    </h3>
+                <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('common:popular_actions')}</h3>
                     <div className="space-y-3">
                         {metrics.popularActions.map((action: any, index: number) => (
                             <div key={index} className="flex items-center justify-between">
@@ -167,23 +163,15 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
 
             {/* Performance by Type */}
             {typeMetrics.length > 0 && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Performance by Type
-                    </h3>
+                <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('common:performance_by_type')}</h3>
                     <div className="overflow-x-auto">
                         <table className="w-full">
                             <thead>
                                 <tr className="border-b border-gray-200 dark:border-gray-700">
-                                    <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Type
-                                    </th>
-                                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Sent
-                                    </th>
-                                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Clicked
-                                    </th>
+                                    <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">{t('calculator:styles.type_2')}</th>
+                                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">{t('common:sent')}</th>
+                                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">{t('notifications:clicked_264')}</th>
                                     <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
                                         CTR
                                     </th>
@@ -226,10 +214,8 @@ export const NotificationAnalyticsDashboard: React.FC = () => {
 
             {/* Performance Chart */}
             {performance.length > 0 && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Performance Over Time
-                    </h3>
+                <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('common:performance_over_time')}</h3>
                     <div className="h-64 flex items-end justify-between gap-1">
                         {performance.map((day: any, index: number) => {
                             const maxSent = Math.max(...performance.map((d: any) => d.sent));
@@ -271,7 +257,7 @@ const MetricCard: React.FC<{
     };
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-6">
             <div className={`inline-flex p-3 rounded-lg ${colorClasses[color]} mb-3`}>
                 {icon}
             </div>
@@ -291,7 +277,7 @@ const StatCard: React.FC<{
     icon: React.ReactNode;
 }> = ({ label, value, icon }) => {
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex items-center gap-4">
+        <div className="bg-white dark:bg-gray-50 rounded-lg shadow-md p-4 flex items-center gap-4">
             <div className="flex-shrink-0">
                 {icon}
             </div>

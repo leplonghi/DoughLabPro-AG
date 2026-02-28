@@ -20,7 +20,7 @@ export const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose, fea
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-zinc-900 border border-dlp-brand/30 rounded-2xl max-w-md w-full p-6 shadow-2xl relative overflow-hidden">
+            <div className="bg-white border border-dlp-brand/30 rounded-2xl max-w-md w-full p-6 shadow-2xl relative overflow-hidden">
                 {/* Decorative background effects */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-dlp-brand/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-sky-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -60,7 +60,7 @@ export const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose, fea
                         </button>
                         <button
                             onClick={onClose}
-                            className="w-full py-3 px-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-medium rounded-xl transition-colors"
+                            className="w-full py-3 px-4 bg-zinc-50 hover:bg-zinc-200 text-zinc-300 font-medium rounded-xl transition-colors"
                         >{t('marketing.maybe_later')}</button>
                     </div>
                 </div>

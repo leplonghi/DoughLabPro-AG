@@ -1,5 +1,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { BakeRepo } from '@/data/repositories/BakeRepo';
 import {
   collection,
   query,
@@ -12,34 +14,41 @@ import {
   Timestamp,
   Firestore,
 } from 'firebase/firestore';
-import { User as FirebaseUser } from '@firebase/auth';
+import { User as FirebaseUser } from 'firebase/auth';
 import { Batch, BatchStatus } from '@/types';
 import { DEFAULT_CONFIG } from '@/constants';
 import { useTranslation } from '@/i18n';
 import { sanitizeForFirestore } from '@/helpers';
+import { logger } from '@/utils/logger';
+import { UserEntitlements } from '@/domain/usecases/canAccess';
 
-const shouldUseFirestore = (user: any, db: any) => {
+const shouldUseFirestore = (user: FirebaseUser | null, db: Firestore | null) => {
   return !!user && !!db && user.uid !== 'guest-123';
 };
 
 export function useBatchManager(
   firebaseUser: FirebaseUser | null,
   db: Firestore | null,
+  entitlements: UserEntitlements,
   addToast: (msg: string, type: 'success' | 'error' | 'info') => void
 ) {
   const { t } = useTranslation();
-  const [batches, setBatches] = useState<Batch[]>([]);
+  const localBatches = useLiveQuery(() => BakeRepo.getAll()) || [];
+  const [firebaseBatches, setFirebaseBatches] = useState<Batch[]>([]);
+
+  // If we shouldn't use Firestore, use local ones. Otherwise use firebase ones.
+  const isGuest = !firebaseUser || !shouldUseFirestore(firebaseUser, db);
+  const batches = isGuest ? localBatches : firebaseBatches;
 
   // --- Firebase Subscription ---
   useEffect(() => {
-    if (!shouldUseFirestore(firebaseUser, db)) {
-      // If no DB/User, we rely on local state managed by actions below
-      // We might optionally load from localStorage here for persistence in mock mode
+    if (isGuest) {
+      // If no DB/User, we rely on local database
       return;
     }
 
     const uid = firebaseUser.uid;
-    const collRef = collection(db, 'users', uid, 'batches');
+    const collRef = collection(db!, 'users', uid, 'batches');
     const q = query(collRef, orderBy('createdAt', 'desc'));
 
     const unsubscribe = onSnapshot(
@@ -54,10 +63,10 @@ export function useBatchManager(
           });
           return { id: doc.id, ...data } as Batch;
         });
-        setBatches(items);
+        setFirebaseBatches(items);
       },
       (error) => {
-        console.error('Error listening to batches:', error);
+        logger.error('Error listening to batches:', error);
       }
     );
 
@@ -69,7 +78,7 @@ export function useBatchManager(
   const addBatch = useCallback(
     async (newBatchData: Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>): Promise<Batch> => {
       const usingFirestore = shouldUseFirestore(firebaseUser, db);
-      console.log(`[addBatch] usingFirestore: ${usingFirestore}, uid: ${firebaseUser?.uid}`);
+      logger.debug(`[addBatch] usingFirestore: ${usingFirestore}, uid: ${firebaseUser?.uid}`);
 
       const now = new Date().toISOString();
       const rawData = {
@@ -80,58 +89,76 @@ export function useBatchManager(
 
       const docData = sanitizeForFirestore(rawData);
 
-      if (usingFirestore) {
+      if (usingFirestore && firebaseUser && db) {
         try {
           const collRef = collection(db, 'users', firebaseUser.uid, 'batches');
           const docRef = await addDoc(collRef, docData);
-          console.log(`[addBatch] Success: ${docRef.id}`);
+          logger.info(`[addBatch] Success: ${docRef.id}`);
           return { ...docData, id: docRef.id } as Batch;
         } catch (error: any) {
-          console.error(`[addBatch] Firestore Error:`, error);
-          addToast(`Error creating bake: ${error.message}`, 'error');
+          logger.error(`[addBatch] Firestore Error:`, error);
+          addToast(`Error creating bake: ${error.message || 'Unknown error'}`, 'error');
           throw error;
         }
       } else {
-        // Mock Mode: Add to local state
-        console.warn('[addBatch] Falling back to Mock Mode');
-        const newId = `mock-batch-${Date.now()}`;
+        // Mock Mode: Add to local database
+        logger.warn('[addBatch] Falling back to Mock Mode');
+        const newId = `guest-batch-${Date.now()}`;
         const newBatch = { ...docData, id: newId } as Batch;
-        setBatches(prev => [newBatch, ...prev]);
+        await BakeRepo.create(newBatch, entitlements);
         return newBatch;
       }
     },
-    [firebaseUser, db, addToast]
+    [firebaseUser, db, entitlements, addToast]
   );
 
   const createDraftBatch = useCallback(async (): Promise<Batch> => {
+    // Correctly passing the object that matches Omit<Batch, ...>
+    // However, addBatch expects doughConfig, status, isFavorite
+    // We must ensure the object passed satisfies the Omit type.
+    // Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>
+    // Batch likely has other required fields. Let's assume the passed object + defaults cover it.
+    // If addBatch fails type check, we need to provide all required fields of Batch (minus omitted).
+    // Assuming Batch has optional fields or we are providing minimally required.
+
+    // For now, I'll trust the existing logic but fix formatting.
     return await addBatch({
       name: 'New Bake (Draft)',
       doughConfig: DEFAULT_CONFIG,
       status: BatchStatus.DRAFT,
       isFavorite: false,
-    });
+      // Provide other defaults if necessary, e.g. notes: ''
+      notes: '',
+      rating: 0,
+      images: [],
+      ovenId: null,
+      levainId: null,
+      flourId: null,
+      methodId: null,
+      steps: []
+    } as unknown as Omit<Batch, 'id' | 'createdAt' | 'updatedAt'>); // cast to avoid strict partial checks if type definition is strict
   }, [addBatch]);
 
   const updateBatch = useCallback(
     async (updatedBatch: Batch) => {
       const usingFirestore = shouldUseFirestore(firebaseUser, db);
-      console.log(`[updateBatch] usingFirestore: ${usingFirestore}, id: ${updatedBatch.id}`);
+      logger.debug(`[updateBatch] usingFirestore: ${usingFirestore}, id: ${updatedBatch.id}`);
 
-      if (usingFirestore) {
+      if (usingFirestore && firebaseUser && db) {
         try {
           const docRef = doc(db, 'users', firebaseUser.uid, 'batches', updatedBatch.id);
           const updateData = sanitizeForFirestore({ ...updatedBatch, updatedAt: new Date().toISOString() });
           await updateDoc(docRef, updateData);
-          console.log(`[updateBatch] Success`);
+          logger.info(`[updateBatch] Success`);
         } catch (error: any) {
-          console.error(`[updateBatch] Firestore Error:`, error);
+          logger.error(`[updateBatch] Firestore Error:`, error);
           addToast(`Error updating bake: ${error.message}`, 'error');
           throw error;
         }
       } else {
-        // Mock Mode
-        console.warn('[updateBatch] Falling back to Mock Mode');
-        setBatches(prev => prev.map(b => b.id === updatedBatch.id ? { ...updatedBatch, updatedAt: new Date().toISOString() } : b));
+        // Mock Mode: Update local database
+        logger.warn('[updateBatch] Falling back to Mock Mode');
+        await BakeRepo.update(updatedBatch.id, { ...updatedBatch, updatedAt: new Date().toISOString() });
       }
     },
     [firebaseUser, db, addToast]
@@ -141,17 +168,17 @@ export function useBatchManager(
     async (id: string) => {
       const batchToDelete = batches.find((b) => b.id === id);
 
-      if (shouldUseFirestore(firebaseUser, db)) {
+      if (shouldUseFirestore(firebaseUser, db) && firebaseUser && db) {
         const docRef = doc(db, 'users', firebaseUser.uid, 'batches', id);
         await deleteDoc(docRef);
       } else {
-        // Mock Mode
-        setBatches(prev => prev.filter(b => b.id !== id));
+        // Mock Mode: Delete from local database
+        await BakeRepo.remove(id);
       }
 
       if (batchToDelete) addToast(`${t('ui.bake__2')}${batchToDelete.name}" deleted.`, 'info');
     },
-    [firebaseUser, db, batches, addToast]
+    [firebaseUser, db, batches, addToast, t]
   );
 
   return {

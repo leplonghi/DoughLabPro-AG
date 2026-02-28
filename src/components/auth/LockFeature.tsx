@@ -15,6 +15,7 @@ interface LockFeatureProps {
     showLockIcon?: boolean;
     className?: string;
     origin?: PaywallOrigin;
+    isLocked?: boolean;
 }
 
 export const LockFeature: React.FC<LockFeatureProps> = ({
@@ -26,6 +27,7 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
     showLockIcon = true,
     className = '',
     origin,
+    isLocked,
 }) => {
     const { t } = useTranslation();
     const { user, openPaywall, userLoading, planLoading } = useUser();
@@ -36,7 +38,7 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
     }
 
     const plan = getCurrentPlan(user);
-    const isAllowed = canUseFeature(plan, featureKey);
+    const isAllowed = isLocked === undefined ? canUseFeature(plan, featureKey) : !isLocked;
 
     if (isAllowed) {
         return <>{children}</>;

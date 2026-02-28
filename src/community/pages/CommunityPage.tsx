@@ -24,9 +24,7 @@ export const CommunityPage: React.FC = () => {
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 tracking-tight flex items-center gap-2">{t('community.community_feed')}<Sparkles className="h-6 w-6 text-yellow-500 fill-yellow-500 animate-pulse" />
                         </h1>
-                        <p className="text-gray-500 mt-1 text-sm sm:text-base">
-                            Discover the secret formulas behind the world's best homemade pizzas.
-                        </p>
+                        <p className="text-gray-500 mt-1 text-sm sm:text-base">{t('common:discover_the_secret_formulas_behind_the_worlds_best_homemade')}</p>
                     </div>
 
                     <button
@@ -64,9 +62,7 @@ export const CommunityPage: React.FC = () => {
                                 <h3 className="font-bold text-indigo-900 mb-2 text-sm flex items-center gap-2">
                                     <span className="text-lg">💡</span> Baker's Tip
                                 </h3>
-                                <p className="text-indigo-800/80 text-xs leading-relaxed">
-                                    Higher hydration isn't always better! For home ovens,
-                                    <strong className="text-indigo-900"> 65-70% hydration</strong> often yields the best balance of open crumb and crispiness without being impossible to handle.
+                                <p className="text-indigo-800/80 text-xs leading-relaxed">{t('common:higher_hydration_isnt_always_better_for_home_ovens')}<strong className="text-indigo-900"> 65-70% hydration</strong> often yields the best balance of open crumb and crispiness without being impossible to handle.
                                 </p>
                             </div>
 

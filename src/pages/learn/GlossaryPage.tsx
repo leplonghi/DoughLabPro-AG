@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -16,7 +16,7 @@ const GlossaryPage: React.FC = () => {
   return (
     <TechnicalPageLayout
       title={t('learn.technical_baking_glossary')}
-      subtitle="A dictionary of the most important technical terms in the world of pizza and bread, explained clearly and directly."
+      subtitle={t('learn:a_dictionary_of_the_most_important_technical_terms_in_the_wo')}
       showReferencesSection
     >
       <dl>
@@ -32,33 +32,21 @@ const GlossaryPage: React.FC = () => {
         <GlossaryTerm term={t('learn.biscotto')}>
           Cooking surface made of porous refractory clay, traditionally used in Neapolitan pizza ovens. Low thermal conductivity allows baking pizza base at very high temperatures (above 450°C) gently without burning.
         </GlossaryTerm>
-        <GlossaryTerm term={t('learn.browning')}>
-          Culinary term describing food surface darkening during cooking. In baking, result of combined Maillard Reaction and Caramelization.
-        </GlossaryTerm>
-        <GlossaryTerm term={t('learn.caramelization')}>
-          Process of oxidation and thermal degradation of sugars at high temperatures. Distinct from Maillard Reaction as it doesn't involve proteins. Contributes to dark brown color and flavors ranging from sweet to bitter.
-        </GlossaryTerm>
-        <GlossaryTerm term={t('learn.cornicione')}>
-          Italian term for the puffed, airy, soft rim of pizza, especially pronounced in Neapolitan style. Formed by correct dough manipulation pushing gas from center to edges.
-        </GlossaryTerm>
+        <GlossaryTerm term={t('learn.browning')}>{t('learn:culinary_term_describing_food_surface_darkening_during_cooki')}</GlossaryTerm>
+        <GlossaryTerm term={t('learn.caramelization')}>{t('learn:process_of_oxidation_and_thermal_degradation_of_sugars_at_hi')}</GlossaryTerm>
+        <GlossaryTerm term={t('learn.cornicione')}>{t('learn:italian_term_for_the_puffed_airy_soft_rim_of_pizza_especiall')}</GlossaryTerm>
         <GlossaryTerm term={t('learn.crumb')}>
           Refers to internal structure of baked dough. t('learn.crumb_1') analysis evaluates size, shape, and distribution of alveoli (bubbles), as well as texture (soft, chewy, etc.).
         </GlossaryTerm>
         <GlossaryTerm term="DDT (Desired Dough Temperature)">
           Target temperature dough should reach at end of mixing/kneading. Controlling DDT is crucial for predictable and consistent fermentation regardless of environmental conditions.
         </GlossaryTerm>
-        <GlossaryTerm term={t('learn.deck')}>
-          Base or floor of an oven (usually stone, steel, or firebrick) where pizza or bread is baked by direct contact (conduction).
-        </GlossaryTerm>
+        <GlossaryTerm term={t('learn.deck')}>{t('learn:base_or_floor_of_an_oven_usually_stone_steel_or_firebrick_wh')}</GlossaryTerm>
         <GlossaryTerm term={t('learn.fermentation')}>
           Metabolic process performed by microorganisms (mainly yeasts and bacteria) converting sugars into other compounds. In baking, results in CO₂ production (rising dough), ethanol, organic acids, and aromatic compounds developing flavor.
         </GlossaryTerm>
-        <GlossaryTerm term={t('learn.acetic_fermentation')}>
-          Secondary fermentation type performed by acetic bacteria producing acetic acid. In excess, can give vinegary, aggressive taste to dough.
-        </GlossaryTerm>
-        <GlossaryTerm term={t('learn.lactic_fermentation')}>
-          Fermentation performed by Lactic Acid Bacteria (LAB), such as Lactobacillus genus. Produces lactic acid, giving mild, slightly tangy flavor characteristic of sourdough (levain).
-        </GlossaryTerm>
+        <GlossaryTerm term={t('learn.acetic_fermentation')}>{t('learn:secondary_fermentation_type_performed_by_acetic_bacteria_pro')}</GlossaryTerm>
+        <GlossaryTerm term={t('learn.lactic_fermentation')}>{t('learn:fermentation_performed_by_lactic_acid_bacteria_lab_such_as_l')}</GlossaryTerm>
         <GlossaryTerm term={t('learn.starch_gelatinization_2')}>
           Process occurring during baking where starch granules absorb water and swell under heat. t('learn.locks') moisture in crumb structure, fundamental for soft, cooked texture of final product.
         </GlossaryTerm>
@@ -68,9 +56,7 @@ const GlossaryPage: React.FC = () => {
         <GlossaryTerm term={t('learn.maillard_reaction')}>
           Complex series of chemical reactions between amino acids (from proteins) and reducing sugars under heat. Responsible for most golden color and complex, "toasted" flavors and aromas of pizza and bread crust.
         </GlossaryTerm>
-        <GlossaryTerm term="Oil-Out">
-          Phenomenon where fat (oil) from cheese or meat separates from protein matrix during baking, forming small pools on pizza surface.
-        </GlossaryTerm>
+        <GlossaryTerm term="Oil-Out">{t('learn:phenomenon_where_fat_oil_from_cheese_or_meat_separates_from_')}</GlossaryTerm>
         <GlossaryTerm term="Overproof / Underproof">
           Terms describing fermentation state. <strong>{t('learn.overproof')}</strong> occurs when dough ferments too long; gluten network weakens, dough may collapse, and flavor becomes excessively acidic. <strong>{t('learn.underproof')}</strong> occurs when fermentation is insufficient, resulting in dense dough with little volume and undeveloped flavor.
         </GlossaryTerm>
@@ -80,18 +66,12 @@ const GlossaryPage: React.FC = () => {
         <GlossaryTerm term={t('learn.poolish_2')}>
           Type of high hydration (100%) preferment made with equal parts flour and water plus small amount of yeast. Ferments shorter than Biga and results in more extensible final dough with mild flavor.
         </GlossaryTerm>
-        <GlossaryTerm term={t('learn.preferment')}>
-          Mixture of flour, water, and yeast (commercial or natural) prepared hours or days before final dough. Goal is to develop flavor, aroma, and improve dough structure. Biga and Poolish are common types.
-        </GlossaryTerm>
+        <GlossaryTerm term={t('learn.preferment')}>{t('learn:mixture_of_flour_water_and_yeast_commercial_or_natural_prepa')}</GlossaryTerm>
         <GlossaryTerm term={t('learn.rimacinata')}>
           Italian term for "re-milled". Refers to durum wheat semolina flour passed through second milling process to be finer. Often used on work surface to open pizzas, especially Roman style, as it doesn't burn easily and adds crispy texture.
         </GlossaryTerm>
-        <GlossaryTerm term="Stretch & Fold">
-          Dough manipulation technique especially useful for high hydration doughs, consisting of stretching and folding dough over itself at intervals during bulk fermentation. Develops and strengthens gluten network gently without intense kneading.
-        </GlossaryTerm>
-        <GlossaryTerm term={t('learn.windowpane_test')}>
-          Practical test to verify if gluten network is well developed. Consists of stretching small piece of dough with fingers. If able to form thin, translucent membrane (like a window) without tearing, gluten is at ideal point.
-        </GlossaryTerm>
+        <GlossaryTerm term="Stretch & Fold">{t('learn:dough_manipulation_technique_especially_useful_for_high_hydr')}</GlossaryTerm>
+        <GlossaryTerm term={t('learn.windowpane_test')}>{t('learn:practical_test_to_verify_if_gluten_network_is_well_developed')}</GlossaryTerm>
         <GlossaryTerm term="W (Flour Strength)">
           Index measured by Alveograph quantifying flour strength and fermentation capacity. Represents total energy needed to expand dough. High W flours are "strong" suitable for long fermentation and high hydration. Low W flours are "weak" for short fermentation.
         </GlossaryTerm>

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Page } from '@/types';
-import TechnicalPageLayout from './TechnicalPageLayout';
+import TechnicalPageLayout from '../../components/layouts/TechnicalPageLayout';
 import LearnTopicCard from '@/components/learn/LearnTopicCard';
 import { SparklesIcon, BeakerIcon, CubeIcon, FermentationIcon, WaterIcon, SaltIcon, OilIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
@@ -12,7 +12,7 @@ interface FundamentalsPageProps {
 }
 
 const FundamentalsPage: React.FC<FundamentalsPageProps> = ({ onNavigate }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const topics = [
         { page: 'learn/article/oven-spring', title: 'Oven Spring', description: 'The science of the initial dough expansion in the oven.', icon: <SparklesIcon className="h-8 w-8" /> },
         { page: 'learn/fermentation-biochemistry', title: 'Fermentation Biochemistry', description: 'Yeast, bacteria, acids, and flavor creation.', icon: <BeakerIcon className="h-8 w-8" /> },

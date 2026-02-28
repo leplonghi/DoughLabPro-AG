@@ -17,6 +17,13 @@ export const AMBIENT_TEMPERATURE_OPTIONS = [
   { value: AmbientTemperature.HOT, labelKey: 'calculator.temp_hot', tempRange: '> 24°C' },
 ];
 
+/** Maps AmbientTemperature enum to a representative Celsius value */
+export const AMBIENT_TEMP_CELSIUS_MAP: Record<AmbientTemperature, number> = {
+  [AmbientTemperature.COLD]: 16,
+  [AmbientTemperature.MILD]: 22,
+  [AmbientTemperature.HOT]: 28,
+};
+
 export const YEAST_OPTIONS = [
   { value: YeastType.IDY, labelKey: 'calculator.yeast_idy' },
   { value: YeastType.ADY, labelKey: 'calculator.yeast_ady' },
@@ -95,8 +102,12 @@ export const DOUGH_STYLE_PRESETS: DoughStylePreset[] = STYLES_DATA.map(style => 
   if (style.recipeStyle === RecipeStyle.BURGER_BUN) type = BakeType.BREADS_SAVORY;
 
   // Calculate Defaults (Average of Range)
-  const hydration = (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2;
-  const salt = (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2;
+  // Calculate Defaults (Average of Range)
+  const hydrationRange = style.technicalProfile?.hydration || [60, 70];
+  const saltRange = style.technicalProfile?.salt || [2, 2];
+
+  const hydration = (hydrationRange[0] + hydrationRange[1]) / 2;
+  const salt = (saltRange[0] + saltRange[1]) / 2;
 
   // Extract or Default others
   // If base_formula is present, priority to it. Else, legacy defaults.

@@ -1,6 +1,7 @@
+
 import React, { useMemo, ReactNode } from 'react';
 import { Page, Batch, Levain } from '../../types';
-import MyLabLayout from './MyLabLayout';
+import MyLabLayout from '@/components/layouts/MyLabLayout';
 import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import { ClockIcon, BatchesIcon, BeakerIcon, PlusCircleIcon } from '@/components/ui/Icons';
@@ -33,8 +34,8 @@ const TimelinePage: React.FC<{ onNavigate: (page: Page, params?: string) => void
         type: 'BATCH',
         title: batch.name,
         description: `${t(`form.${batch.doughConfig.recipeStyle.toLowerCase()}`, { defaultValue: batch.doughConfig.recipeStyle })} Recipe, ${batch.doughConfig.hydration}% hydration.${batch.doughConfig.assemblyIncrements && batch.doughConfig.assemblyIncrements.length > 0
-            ? ` w/ ${batch.doughConfig.assemblyIncrements.map(i => i.visibleName).slice(0, 2).join(', ')}${batch.doughConfig.assemblyIncrements.length > 2 ? '...' : ''}`
-            : ''
+          ? ` w/ ${batch.doughConfig.assemblyIncrements.map(i => i.visibleName).slice(0, 2).join(', ')}${batch.doughConfig.assemblyIncrements.length > 2 ? '...' : ''}`
+          : ''
           }`,
         date: batch.createdAt,
         link: { page: 'batch', params: batch.id },
@@ -90,9 +91,7 @@ const TimelinePage: React.FC<{ onNavigate: (page: Page, params?: string) => void
       <div className="animate-fade-in">
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 ">{t('mylab.timeline')}</h1>
-          <p className="mt-2 text-slate-600 ">
-            Track your baking evolution.
-          </p>
+          <p className="mt-2 text-slate-600 ">{t('ui:track_your_baking_evolution')}</p>
         </div>
 
         <LockFeature
@@ -102,9 +101,7 @@ const TimelinePage: React.FC<{ onNavigate: (page: Page, params?: string) => void
         >
           {timelineEvents.length === 0 ? (
             <div className="flex h-64 items-center justify-center rounded-2xl border-2 border-dashed border-slate-300  bg-slate-50  p-6 text-center w-full">
-              <p className="text-slate-600 ">
-                Your journey is just beginning. Your next bakes will appear here.
-              </p>
+              <p className="text-slate-600 ">{t('ui:your_journey_is_just_beginning_your_next_bakes_will_appear_h')}</p>
             </div>
           ) : (
             <ol className="relative border-l border-slate-200  ml-3">
