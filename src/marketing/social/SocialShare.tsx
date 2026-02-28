@@ -14,8 +14,8 @@ interface SocialShareProps {
 }
 
 export const SocialShare: React.FC<SocialShareProps> = ({ title, data, type, className = '' }) => {
-  const { t } = useTranslation();
-    const { user } = useAuth();
+    const { t } = useTranslation();
+    const { appUser: user } = useAuth();
     const [isSharing, setIsSharing] = useState(false);
 
     const handleShare = async () => {

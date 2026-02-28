@@ -5,8 +5,8 @@ import { createPost } from './CommunityService';
 import { useTranslation } from '@/i18n';
 
 export const CommunityComposer: React.FC = () => {
-  const { t } = useTranslation();
-    const { user } = useAuth();
+    const { t } = useTranslation();
+    const { appUser: user } = useAuth();
     const [text, setText] = useState('');
     const [isPosting, setIsPosting] = useState(false);
 

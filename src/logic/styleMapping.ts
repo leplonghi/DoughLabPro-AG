@@ -80,4 +80,14 @@ export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
     [RecipeStyle.SICILIAN]: 'siciliana',
     [RecipeStyle.CHICAGO]: 'chicago_deep_dish',
     [RecipeStyle.PRETZEL]: 'pretzel',
+
+    // Seed styles
+    [RecipeStyle.TURKISH_PIDE]: 'turkish_pide',
+    [RecipeStyle.SFINCIONE_SICILIANO]: 'sfincione_siciliano',
+    [RecipeStyle.KAISERSEMMEL]: 'kaisersemmel_austrian',
+    [RecipeStyle.TURKISH_SIMIT]: 'turkish_simit',
+    [RecipeStyle.CLASSIC_ENRICHED_BUN]: 'soft_flour_bun',
+    [RecipeStyle.KOUIGN_AMANN]: 'kouign_amann_breton',
+    [RecipeStyle.PASTEL_DE_NATA]: 'pastel_de_nata_portuguese',
+    [RecipeStyle.PATE_A_CHOUX]: 'pate_a_choux_classic',
 };

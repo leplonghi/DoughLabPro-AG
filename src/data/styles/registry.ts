@@ -31,6 +31,19 @@ import { pastelDeNataPortuguese } from './pastry/pastel_de_nata_portuguese';
 import { pateAChouxClassic } from './confectionery/pate_a_choux_classic';
 import { brazilian_cheese_bread } from './gluten_free/brazilian_cheese_bread';
 
+// --- GOLD STANDARD BATCH IMPORTS (V3 schema, DoughStyleDefinition) ---
+import * as pizzaStyles from './pizza/index';
+import * as breadStyles from './bread/index';
+import * as pastryStyles from './pastry/index';
+import * as confectioneryStyles from './confectionery/index';
+import * as bunsStyles from './buns/index';
+
+const allPizzaStyles = Object.values(pizzaStyles) as DoughStyleDefinition[];
+const allBreadStyles = Object.values(breadStyles) as DoughStyleDefinition[];
+const allPastryStyles = Object.values(pastryStyles) as DoughStyleDefinition[];
+const allConfectioneryStyles = Object.values(confectioneryStyles) as DoughStyleDefinition[];
+const allBunsStyles = Object.values(bunsStyles) as DoughStyleDefinition[];
+
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
  * This prevents white-screen crashes due to schema mismatch.
@@ -222,7 +235,13 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         pastelDeNataPortuguese,
         pateAChouxClassic,
         brazilian_cheese_bread,
-    ]
+    ],
+    // --- GOLD STANDARD V3: batch-loaded from index files ---
+    allPizzaStyles,
+    allBreadStyles,
+    allPastryStyles,
+    allConfectioneryStyles,
+    allBunsStyles,
 ].flat(2) as DoughStyleDefinition[];
 
 // Deduplicate by ID using a Map (Last entry wins if IDs clash)

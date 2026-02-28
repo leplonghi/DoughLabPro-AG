@@ -12,7 +12,7 @@ interface AdCardProps {
 
 export const AdCard: React.FC<AdCardProps> = ({ context = 'general', className = '' }) => {
     const { t } = useTranslation();
-    const { user } = useAuth();
+    const { appUser: user } = useAuth();
     const [ad, setAd] = useState<Ad | null>(null);
     const [isVisible, setIsVisible] = useState(false);
 

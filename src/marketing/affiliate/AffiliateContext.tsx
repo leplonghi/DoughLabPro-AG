@@ -13,8 +13,8 @@ interface AffiliateContextType {
 const AffiliateContext = createContext<AffiliateContextType | undefined>(undefined);
 
 export const AffiliateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { t } = useTranslation();
-    const { user } = useAuth();
+    const { t } = useTranslation();
+    const { appUser: user } = useAuth();
     const [affiliateCode, setAffiliateCode] = useState<string | null>(null);
     const [stats, setStats] = useState<AffiliateStats | null>(null);
     const [isLoading, setIsLoading] = useState(false);
