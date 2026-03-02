@@ -1,11 +1,11 @@
-import { useTranslation } from '@/i18n';
+import { useTranslation } from "@/i18n";
 /**
  * TemperatureDetector Component
  * Compact button to auto-detect ambient temperature
  */
 
-import React, { useState } from 'react';
-import { useCurrentTemperature } from '../../hooks/useGeolocation';
+import React, { useState } from "react";
+import { useCurrentTemperature } from "../../hooks/useGeolocation";
 
 interface TemperatureDetectorProps {
     onTemperatureDetected: (temperature: number) => void;
@@ -14,7 +14,7 @@ interface TemperatureDetectorProps {
 
 export const TemperatureDetector: React.FC<TemperatureDetectorProps> = ({
     onTemperatureDetected,
-    className = '',
+    className = "",
 }) => {
     const { t } = useTranslation();
     const { temperature, loading, error, fetchWeather } = useCurrentTemperature();
@@ -23,13 +23,13 @@ export const TemperatureDetector: React.FC<TemperatureDetectorProps> = ({
     const handleDetect = async () => {
         try {
             const result = await fetchWeather();
-            if (result && result.weather?.current.temperature !== undefined) {
-                onTemperatureDetected(result.weather.current.temperature);
+            if (result && result.current?.temperature !== undefined) {
+                onTemperatureDetected(result.current.temperature);
                 setShowTooltip(true);
                 setTimeout(() => setShowTooltip(false), 3000);
             }
         } catch (err) {
-            console.error('Failed to detect temperature:', err);
+            console.error("Failed to detect temperature:", err);
         }
     };
 
@@ -40,17 +40,19 @@ export const TemperatureDetector: React.FC<TemperatureDetectorProps> = ({
                 onClick={handleDetect}
                 disabled={loading}
                 className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md text-sm font-medium"
-                title={t('common:auto_detect_ambient_temperature_based_on_your_location')}
+                title={t(
+                    "common:auto_detect_ambient_temperature_based_on_your_location",
+                )}
             >
                 {loading ? (
                     <>
                         <span className="animate-spin">⏳</span>
-                        <span>{t('common:detecting')}</span>
+                        <span>{t("common:detecting")}</span>
                     </>
                 ) : (
                     <>
                         <span>📍</span>
-                        <span>{t('common:auto_detect_temperature')}</span>
+                        <span>{t("common:auto_detect_temperature")}</span>
                     </>
                 )}
             </button>

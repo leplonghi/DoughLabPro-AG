@@ -136,14 +136,14 @@ export class IngredientAIService {
             if (isHighTemp) {
                 // High Heat + Moisture = Soup
                 status = 'critical';
-                classification = t('common.experimental_55');
+                classification = 'Experimental' as const;
                 impact.push("Hydro-Overload: High moisture ingredients in high heat will release water faster than evaporation.");
                 suggestions.push("Pre-cook ingredients to remove moisture.");
                 suggestions.push("Drain fresh cheeses thoroughly.");
             } else {
                 // Low Heat + Moisture = Soggy
                 status = 'warning';
-                classification = t('common.variation_54');
+                classification = 'Variation' as const;
                 impact.push("Moisture Accumulation: Long bake times with wet ingredients risk center sogginess.");
             }
             alerts.push(impact[impact.length - 1]);
@@ -172,14 +172,14 @@ export class IngredientAIService {
             const comp = inc.compatibilityByStyle[style.id];
             if (comp === 'experimental') {
                 experimentalCount++;
-                classification = t('common.experimental_55'); // Immediate trigger
+                classification = 'Experimental' as const; // Immediate trigger
             } else if (comp === 'variation') {
                 variationCount++;
             }
         });
 
-        if (classification !== t('common.experimental_55') && variationCount > 0) {
-            classification = t('common.variation_54');
+        if (classification !== 'Experimental' && variationCount > 0) {
+            classification = 'Variation' as const;
         }
 
         // 5. Contextual Logic (The "Smart" part)

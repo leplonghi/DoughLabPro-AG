@@ -268,19 +268,17 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             targetInputs: {
                 doughWeight: config.doughBallWeight,
                 numBalls: config.numPizzas,
-                hydration: config.hydration,
-                salt: config.salt,
-                yeastPercentage: config.yeastPercentage,
-                fermentationTechnique: config.fermentationTechnique as any,
-                levainId: config.levainId
+                targetHydration: config.hydration,
+                targetSalt: config.salt,
+                targetYeastPct: config.yeastPercentage,
+            } as any,
+            equipmentProfile: {
+                type: config.ovenType as any || 'home_oven',
+                bakingSurface: 'steel',
+                maxTempC: config.bakingTempC
             },
-            equipment: {
-                ovenType: config.ovenType as any,
-                surface: 'steel',
-                ambientTempC: 21,
-                maxOvenTempC: config.bakingTempC
-            }
-        });
+            ambientTempC: 21
+        } as any);
     }, [config, hasErrors]);
 
     // --- Handlers ---
@@ -288,7 +286,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const handleConfigChange = useCallback((newConfig: Partial<DoughConfig>) => {
         setHasInteracted(true);
 
-        let updatedConfig = {
+        let updatedConfig: DoughConfig = {
             ...config,
             ...newConfig,
             stylePresetId: (calculatorMode === 'wizard' || calculatorMode === 'basic') ? config.stylePresetId : undefined
@@ -325,7 +323,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                     presetValues.flourId = preferredFlourProfileId;
                 }
 
-                let newConf = {
+                let newConf: DoughConfig = {
                     ...smartDefaults,
                     ...config,
                     bakeType,
@@ -337,7 +335,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 newConf.ingredients = syncIngredientsFromConfig(newConf);
                 setConfig(newConf);
             } else {
-                let newConf = { ...config, bakeType, stylePresetId: undefined };
+                let newConf: DoughConfig = { ...config, bakeType, stylePresetId: undefined };
                 newConf = normalizeDoughConfig(newConf);
                 newConf.ingredients = syncIngredientsFromConfig(newConf);
                 setConfig(newConf);
@@ -418,7 +416,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 }
             }
 
-            let newConf = {
+            let newConf: DoughConfig = {
                 ...config,
                 recipeStyle,
                 ...presetValues,
@@ -509,7 +507,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
     const handleLoadProRecipe = useCallback((newConfig: ProRecipe['config']) => {
         setHasInteracted(true);
-        let fullConfig = { ...config, ...newConfig, stylePresetId: undefined };
+        let fullConfig: DoughConfig = { ...config, ...newConfig, stylePresetId: undefined };
         fullConfig = normalizeDoughConfig(fullConfig);
         fullConfig.ingredients = syncIngredientsFromConfig(fullConfig);
         setConfig(fullConfig);
@@ -592,7 +590,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             const preset = DOUGH_STYLE_PRESETS.find(p => p.recipeStyle === config.recipeStyle);
             if (preset) {
                 const { defaultHydration, defaultSalt, defaultOil, defaultSugar } = preset;
-                let newConf = {
+                let newConf: DoughConfig = {
                     ...config,
                     hydration: defaultHydration,
                     salt: defaultSalt,

@@ -100,7 +100,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                             `}
                         >
                             <span className={isActive ? 'opacity-100' : 'opacity-70'}>
-                                {React.cloneElement(type.icon as React.ReactElement, { size: 14 })}
+                                {React.cloneElement(type.icon as React.ReactElement<any>, { size: 14 })}
                             </span>
                             <span className="text-[11px] uppercase tracking-wide">{type.label}</span>
                         </button>

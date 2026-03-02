@@ -10,7 +10,7 @@ import SliderInput from '../../components/ui/SliderInput';
 import { useTranslation } from '@/i18n';
 
 export const CommunityCreatePostPage: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { navigate } = useRouter();
     const { user, batches } = useUser();
 
@@ -156,8 +156,8 @@ export const CommunityCreatePostPage: React.FC = () => {
             type="button"
             onClick={onClick}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${active
-                    ? 'bg-dlp-brand text-white shadow-md'
-                    : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
+                ? 'bg-dlp-brand text-white shadow-md'
+                : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
         >
             {children}
@@ -348,7 +348,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     label={t('form.hydration')}
                                     name="hydration"
                                     value={hydration}
-                                    min={50} max={100} unit="%"
+                                    min={50} max={100} unit="%" step={1}
                                     onChange={e => setHydration(Number(e.target.value))}
                                 />
                                 <SliderInput
@@ -362,7 +362,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     label={t('community.fermentation')}
                                     name="fermentation"
                                     value={fermentationTime}
-                                    min={1} max={96} unit="h"
+                                    min={1} max={96} unit="h" step={1}
                                     onChange={e => setFermentationTime(Number(e.target.value))}
                                 />
                                 <div>

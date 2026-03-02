@@ -64,7 +64,7 @@ export const LogisticsSection: React.FC = () => {
             config.assemblyIncrements.forEach(inc => {
                 const weightPerUnit = (inc as any).grams || 0;
                 if (weightPerUnit > 0) {
-                    toppingAgg[inc.name] = (toppingAgg[inc.name] || 0) + weightPerUnit * totalYield;
+                    toppingAgg[inc.visibleName] = (toppingAgg[inc.visibleName] || 0) + weightPerUnit * totalYield;
                 }
             });
         }

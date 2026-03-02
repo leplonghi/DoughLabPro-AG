@@ -57,7 +57,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
 
                             <div className="flex items-start gap-6">
                                 <div className={`hidden md:flex p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-xl`}>
-                                    {React.cloneElement((categoryData?.icon || <BookOpenIcon />) as React.ReactElement, { className: "w-10 h-10" })}
+                                    {React.cloneElement((categoryData?.icon || <BookOpenIcon />) as React.ReactElement<any>, { className: "w-10 h-10" })}
                                 </div>
                                 <div>
                                     <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">

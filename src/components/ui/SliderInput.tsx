@@ -3,7 +3,7 @@ import { InfoIcon, LockClosedIcon, ExclamationCircleIcon } from '@/components/ui
 import { useTranslation } from '@/i18n';
 
 interface SliderInputProps {
-  label: string;
+  label: React.ReactNode;
   name: string;
   value: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

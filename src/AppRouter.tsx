@@ -16,7 +16,7 @@ const AuthModal = React.lazy(() => import('@/components/modals/AuthModal'));
 
 interface AppRouterProps {
     onStartBatch: () => void;
-    onCreateDraftBatch: () => void;
+    onCreateDraftBatch: () => Promise<any>;
 }
 
 export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRouterProps) {
@@ -115,7 +115,6 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                     <Pages.MyLabPage
                         onNavigate={navigate}
                         onCreateDraftBatch={onCreateDraftBatch}
-                        onLoadAndNavigate={(c) => handleLoadAndNavigate(c, navigate)}
                     />
                 );
             case 'mylab/recipes':
@@ -156,10 +155,10 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                     />
                 );
             case 'pro/activated':
-                return protect(<Pages.ProActivatedPage onNavigate={navigate} />);
+                return protect(<Pages.ProActivatedPage />);
 
             case 'learn':
-                return protect(<Pages.LearnPage onNavigate={navigate} />);
+                return protect(<Pages.LearnPage />);
             case 'learn/all':
                 return protect(<Pages.AllArticlesPage />);
             case 'learn/search':
@@ -167,7 +166,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             case 'learn/category':
                 return protect(<Pages.CategoryPage categoryId={routeParams || undefined} />);
             case 'learn/article':
-                return protect(<Pages.LearnPage onNavigate={navigate} />);
+                return protect(<Pages.LearnPage />);
             case 'learn/fundamentals':
                 return protect(<Pages.FundamentalsPage onNavigate={navigate} />);
             case 'learn/methods':

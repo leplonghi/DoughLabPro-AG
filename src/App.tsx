@@ -137,9 +137,8 @@ function AppContent() {
   }, [results, batches, hasProAccess, addToast, openPaywall, config, addBatch, navigate]);
 
   const handleCreateDraftAndNavigate = React.useCallback(async () => {
-    const draft = await createDraftBatch();
-    navigate(`batch/${draft.id}`);
-  }, [createDraftBatch, navigate]);
+    return createDraftBatch();
+  }, [createDraftBatch]);
 
   // Global Authentication Check
   if (authLoading) {

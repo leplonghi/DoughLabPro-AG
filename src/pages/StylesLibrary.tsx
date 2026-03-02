@@ -24,7 +24,7 @@ const resolveRegion = (origin: string): Region | 'Global' => {
     if (o === 'italy') return 'Italy';
     // Country Mapping (Legacy Support)
     if (['usa', 'canada', 'mexico'].includes(o)) return 'North America';
-    if (['brazil', 'argentina', 'colombia', 'peru'].includes(o)) return 'South America';
+    if (['brazil', 'brasil', 'argentina', 'colombia', 'peru'].includes(o)) return 'South America';
     if (['france', 'germany', 'denmark', 'uk', 'spain', 'sweden', 'poland', 'belgium', 'netherlands'].includes(o)) return 'Europe';
     if (['japan', 'china', 'india', 'taiwan', 'korea', 'thailand', 'vietnam'].includes(o)) return 'Asia';
     return 'Global';
@@ -242,6 +242,9 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             <div className="p-4">
                                 <div className="text-[10px] font-bold text-dlp-text-muted uppercase tracking-wider mb-1">{style.region}</div>
                                 <h3 className="font-bold text-dlp-text-primary text-sm mb-1 leading-snug">{t(style.name)}</h3>
+                                {style.teaser && (
+                                    <p className="text-[11px] text-dlp-text-muted italic leading-snug mb-1">{style.teaser}</p>
+                                )}
                                 <div className="flex items-center gap-1.5 text-xs text-dlp-accent font-medium mt-2">
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-dlp-accent opacity-75"></span>

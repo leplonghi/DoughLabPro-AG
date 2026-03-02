@@ -5,11 +5,12 @@ import { shareContent, generatePreviewImage, SharePayload } from './socialApis';
 import { DoughConfig, Levain } from '../../types';
 import { DoughStyleDefinition } from '../../types/styles';
 import { useTranslation } from '@/i18n';
+import { Batch } from '../../types';
 
 interface SocialShareProps {
     title: string;
-    data: DoughConfig | Levain | DoughStyleDefinition;
-    type: 'recipe' | 'levain' | 'style';
+    data: DoughConfig | Levain | DoughStyleDefinition | Batch;
+    type: 'recipe' | 'levain' | 'style' | 'batch';
     className?: string;
 }
 

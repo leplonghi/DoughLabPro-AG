@@ -1,1 +1,234 @@
-import React, { useState } from 'react';import { useRouter } from '@/contexts/RouterContext';import { LibraryPageLayout } from '@/components/layouts/LibraryPageLayout';import { learnContent } from '@/data/learn-content';import { useTranslation } from '@/i18n';import {    SparklesIcon,    MagnifyingGlassIcon,    ArrowRightIcon,    AcademicCapIcon,    ClockIcon} from '@/components/ui/Icons';import { LEARN_CATEGORIES } from '@/data/learn/categories';import { LEARN_TRACKS } from '@/data/learn/tracks';import { TRACK_ICONS, TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config';const LearnHomePage: React.FC = () => {    const { navigate } = useRouter();    const { t } = useTranslation(['common', 'marketing', 'learn']);    const [searchQuery, setSearchQuery] = useState('');    const handleSearch = (e: React.FormEvent) => {        e.preventDefault();        if (searchQuery.trim()) {            navigate('learn/search', { q: searchQuery });        }    };    // Calculate generic stats    const totalArticles = Object.keys(learnContent).length;    // Dynamic featured article selection (could be improved to rotate)    const featuredArticleId = 'fermentation-basics';    const featuredArticle = learnContent[featuredArticleId] || Object.values(learnContent)[0];    return (        <LibraryPageLayout>            <div className="mx-auto max-w-7xl animate-fade-in pb-12">                {/* 1. PREMIUM HERO SECTION */}                <div className="mb-8 mx-4 sm:mx-6 pt-4">                    <div className="relative rounded-3xl overflow-hidden shadow-2xl">                        {/* Deep Premium Background */}                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-green-900 to-emerald-900"></div>                        {/* Abstract High-Tech Organic Shapes */}                        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none mix-blend-overlay"></div>                        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-lime-500/10 rounded-full blur-[80px] -ml-20 -mb-20 pointer-events-none mix-blend-soft-light"></div>                        {/* Noise Texture for 'Paper' feel */}                        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none"></div>                        <div className="relative z-10 px-8 py-12 md:py-16 md:px-12 flex flex-col md:flex-row items-center justify-between gap-10">                            <div className="text-left max-w-2xl space-y-6">                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/50 border border-emerald-400/20 text-emerald-300 text-[11px] font-bold uppercase tracking-[0.2em] shadow-lg backdrop-blur-md">                                    <AcademicCapIcon className="w-4 h-4 text-emerald-400" />                                    <span>{t('learn.doughlab_academy')}</span>                                </div>                                <div>                                    <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tighter drop-shadow-sm">                                        {t('learn:master_the')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-lime-200">{t('learn:science_of_dough')}</span> {t('learn:of_dough')}                                    </h1>                                    <p className="text-base md:text-lg text-emerald-100/80 leading-relaxed font-light max-w-lg">                                        {t('learn:hero_subtitle')}                                    </p>                                </div>                            </div>                            {/* Premium Glass Search */}                            <form onSubmit={handleSearch} className="relative w-full md:w-96 shrink-0 group">                                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-lime-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>                                <div className="relative">                                    <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">                                        <MagnifyingGlassIcon className="h-5 w-5 text-emerald-200/70" />                                    </div>                                    <input                                        type="text"                                        className="block w-full pl-12 pr-4 py-4 rounded-xl bg-emerald-950/40 backdrop-blur-xl border border-emerald-400/20 text-white placeholder-emerald-200/50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-emerald-900/60 transition-all font-medium shadow-inner"                                        placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics, chemical reactions...' })}                                        value={searchQuery}                                        onChange={(e) => setSearchQuery(e.target.value)}                                    />                                    <div className="absolute inset-y-0 right-3 flex items-center">                                        <div className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] text-emerald-200/50 font-bold">{t('learn:ctrl_k')}</div>                                    </div>                                </div>                            </form>                        </div>                    </div>                </div>                <div className="px-4 sm:px-6 space-y-12">                    {/* 2. FEATURED MASTERCLASS (High Impact) */}                    {featuredArticle && (                        <div className="group relative rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 border border-stone-100 cursor-pointer"                            onClick={() => navigate('learn/article', featuredArticle.id)}>                            <div className="md:flex h-full min-h-[280px]">                                {/* Image Half */}                                <div className="md:w-5/12 relative overflow-hidden">                                    <div                                        className="absolute inset-0 bg-cover bg-center transform group-hover:scale-105 transition-transform duration-700"                                        style={{                                            backgroundImage: `url(${(() => {                                                const cat = LEARN_CATEGORIES.find(c => c.title === featuredArticle.category);                                                const track = cat ? LEARN_TRACKS.find(t => t.id === cat.trackId) : null;                                                return track ? TRACK_IMAGES[track.id] : TRACK_IMAGES['science'];                                            })()})`                                        }}                                    />                                    <div className="absolute inset-0 bg-emerald-900/20 group-hover:bg-transparent transition-colors duration-500" />                                    {/* Overlay Gradient */}                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/10" />                                    <div className="absolute top-6 left-6">                                        <div className="bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest text-emerald-950 shadow-lg border border-white/50 flex items-center gap-2">                                            <SparklesIcon className="w-3 h-3 text-emerald-600" />                                            {t('learn.featured')}                                        </div>                                    </div>                                </div>                                {/* Text Half */}                                <div className="md:w-7/12 p-8 md:p-10 flex flex-col justify-center bg-white relative">                                    <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">                                        <AcademicCapIcon className="w-40 h-40 text-emerald-900" />                                    </div>                                    <div className="relative z-10">                                        <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4 group-hover:text-emerald-700 transition-colors leading-tight">                                            {featuredArticle.title}                                        </h2>                                        <p className="text-slate-500 mb-8 leading-relaxed max-w-lg font-light text-lg">                                            {featuredArticle.subtitle}                                        </p>                                        <div className="flex items-center gap-6">                                            <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider bg-stone-50 px-3 py-1.5 rounded-md">                                                <ClockIcon className="w-4 h-4 text-emerald-600" />                                                10 {t('learn:min_read')}                                            </div>                                            <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">                                                {t('learn.read_article')}                                                <ArrowRightIcon className="w-4 h-4" />                                            </div>                                        </div>                                    </div>                                </div>                            </div>                        </div>                    )}                    {/* 3. TRACKS GRID (Premium Cards) */}                    <div>                        <div className="flex items-center justify-between mb-8">                            <h3 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-3">                                <span className="w-1.5 h-8 bg-gradient-to-b from-emerald-400 to-emerald-600 rounded-full inline-block" />                                {t('learn:knowledge_tracks')}                            </h3>                        </div>                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">                            {LEARN_TRACKS.map((track) => {                                const trackCategories = LEARN_CATEGORIES.filter(cat => cat.trackId === track.id);                                const TrackIcon = TRACK_ICONS[track.iconName] || AcademicCapIcon;                                const colors = TRACK_COLORS[track.colorTheme] || TRACK_COLORS['lime'];                                return (                                    <section key={track.id} className="relative bg-white/90 backdrop-blur-sm rounded-3xl border border-stone-200/60 shadow-md shadow-stone-200/30 p-8 h-full flex flex-col hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-200/50 transition-all duration-500 overflow-hidden group/track">                                        {/* Top Gradient Accent Strip */}                                        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${colors.bg?.includes('emerald') ? 'from-emerald-400 to-teal-500' : colors.bg?.includes('lime') ? 'from-lime-400 to-emerald-500' : colors.bg?.includes('amber') ? 'from-amber-400 to-orange-500' : colors.bg?.includes('sky') ? 'from-sky-400 to-blue-500' : 'from-emerald-400 to-lime-500'} opacity-60 group-hover/track:opacity-100 transition-opacity duration-500 rounded-t-3xl`} />                                        {/* Track Header */}                                        <div className="flex items-center gap-5 mb-8">                                            <div className={`p-4 rounded-2xl ${colors.bg} ${colors.icon} border ${colors.border} shadow-sm transition-all duration-500 group-hover/track:shadow-md group-hover/track:scale-105`}>                                                <TrackIcon className="w-8 h-8" />                                            </div>                                            <div>                                                <h3 className="text-lg font-bold text-slate-900 leading-tight mb-1">{track.title}</h3>                                                <p className="text-slate-400 text-[10px] uppercase tracking-[0.15em] font-bold">{track.description}</p>                                            </div>                                        </div>                                        {/* Categories List (Premium Redesign) */}                                        <div className="flex-1 space-y-3">                                            {trackCategories.map((category) => (                                                <div                                                    key={category.id}                                                    onClick={() => navigate('learn/category', encodeURIComponent(category.id))}                                                    className="                                                        group relative overflow-hidden rounded-2xl border border-stone-100/80                                                        cursor-pointer bg-white hover:bg-white                                                        hover:shadow-lg hover:shadow-emerald-500/10 hover:border-emerald-200/60                                                        hover:-translate-y-0.5                                                        transition-all duration-500 p-4 flex items-center gap-4                                                    "                                                >                                                    {/* Left Accent Strip */}                                                    <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl bg-gradient-to-b ${colors.bg?.includes('emerald') ? 'from-emerald-400 to-teal-500' : colors.bg?.includes('lime') ? 'from-lime-400 to-emerald-500' : colors.bg?.includes('amber') ? 'from-amber-400 to-orange-500' : colors.bg?.includes('sky') ? 'from-sky-400 to-blue-500' : 'from-emerald-400 to-lime-500'} opacity-0 group-hover:opacity-80 transition-opacity duration-500`} />                                                    {/* Subtle hover glow overlay */}                                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/0 to-lime-50/0 group-hover:from-emerald-50/30 group-hover:to-lime-50/20 transition-all duration-500 rounded-2xl pointer-events-none" />                                                    {/* Category Icon - Premium */}                                                    <div className="                                                        relative shrink-0 p-2.5 rounded-xl bg-stone-50 border border-stone-200/60 text-stone-400                                                        group-hover:text-emerald-600 group-hover:border-emerald-200/80 group-hover:bg-gradient-to-br group-hover:from-emerald-50 group-hover:to-lime-50                                                        group-hover:shadow-sm                                                        transition-all duration-500                                                    ">                                                        {React.cloneElement(category.icon as React.ReactElement, { className: "w-5 h-5" })}                                                    </div>                                                    {/* Content */}                                                    <div className="relative flex-1 min-w-0">                                                        <h4 className="text-sm font-bold text-slate-700 group-hover:text-emerald-800 transition-colors duration-300">                                                            {category.title}                                                        </h4>                                                        <p className="text-xs text-slate-500 truncate group-hover:text-slate-600 mt-0.5 font-medium opacity-80 transition-colors duration-300">                                                            {category.description}                                                        </p>                                                    </div>                                                    {/* Interactive Arrow - Premium Button */}                                                    <div className="relative w-9 h-9 rounded-xl bg-stone-50 flex items-center justify-center text-stone-300 group-hover:bg-gradient-to-br group-hover:from-emerald-500 group-hover:to-emerald-600 group-hover:text-white group-hover:shadow-md group-hover:shadow-emerald-500/20 transition-all duration-500 opacity-40 group-hover:opacity-100 translate-x-1 group-hover:translate-x-0 flex-shrink-0">                                                        <ArrowRightIcon className="w-4 h-4" />                                                    </div>                                                </div>                                            ))}                                        </div>                                    </section>                                );                            })}                        </div>                    </div>                    {/* 4. FOOTER CTA (Premium) */}                    <div className="bg-stone-50 rounded-3xl p-10 border border-stone-200 text-center flex flex-col items-center justify-center gap-6 relative overflow-hidden">                        <div className="absolute inset-0 opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>                        <div className="relative z-10 max-w-2xl">                            <AcademicCapIcon className="w-12 h-12 text-stone-300 mx-auto mb-4" />                            <h2 className="text-2xl font-bold text-slate-900 mb-2">{t('learn.explore_the_full_library')}</h2>                            <p className="text-slate-500 text-sm mb-6 leading-relaxed">                                {t('learn:library_cta_description')}                            </p>                            <button                                onClick={() => navigate('learn/all')}                                className="inline-flex items-center gap-2 bg-white text-slate-800 border-2 border-slate-200 hover:border-emerald-400 hover:text-emerald-700 px-8 py-3 rounded-xl font-bold transition-all shadow-sm hover:shadow-lg uppercase tracking-wider text-xs"                            >                                {t('learn.view_all_articles')}                                <ArrowRightIcon className="w-4 h-4" />                            </button>                        </div>                    </div>                </div>            </div>        </LibraryPageLayout>    );};export default LearnHomePage;
+import React, { useState } from 'react';
+import { useRouter } from '@/contexts/RouterContext';
+import { LibraryPageLayout } from '@/components/layouts/LibraryPageLayout';
+import { learnContent } from '@/data/learn-content';
+import { useTranslation } from '@/i18n';
+import {
+    SparklesIcon,
+    MagnifyingGlassIcon,
+    ArrowRightIcon,
+    AcademicCapIcon,
+    ClockIcon
+} from '@/components/ui/Icons';
+import { LEARN_CATEGORIES } from '@/data/learn/categories';
+import { LEARN_TRACKS } from '@/data/learn/tracks';
+import { TRACK_ICONS, TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config';
+const LearnHomePage: React.FC = () => {
+    const { navigate } = useRouter();
+    const { t } = useTranslation(['common', 'marketing', 'learn']);
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate('learn/search', searchQuery);
+        }
+    };
+    // Calculate generic stats
+    const totalArticles = Object.keys(learnContent).length;
+    // Dynamic featured article selection (could be improved to rotate)
+    const featuredArticleId = 'fermentation-basics';
+    const featuredArticle = learnContent[featuredArticleId] || Object.values(learnContent)[0];
+    return (
+        <LibraryPageLayout>
+            <div className="mx-auto max-w-7xl animate-fade-in pb-12">
+                {/* 1. PREMIUM HERO SECTION */}
+                <div className="mb-8 mx-4 sm:mx-6 pt-4">
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                        {/* Deep Premium Background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-green-900 to-emerald-900"></div>
+                        {/* Abstract High-Tech Organic Shapes */}
+                        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none mix-blend-overlay"></div>
+                        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-lime-500/10 rounded-full blur-[80px] -ml-20 -mb-20 pointer-events-none mix-blend-soft-light"></div>
+                        {/* Noise Texture for 'Paper' feel */}
+                        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none"></div>
+                        <div className="relative z-10 px-8 py-12 md:py-16 md:px-12 flex flex-col md:flex-row items-center justify-between gap-10">
+                            <div className="text-left max-w-2xl space-y-6">
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/50 border border-emerald-400/20 text-emerald-300 text-[11px] font-bold uppercase tracking-[0.2em] shadow-lg backdrop-blur-md">
+                                    <AcademicCapIcon className="w-4 h-4 text-emerald-400" />
+                                    <span>{t('learn.doughlab_academy')}</span>
+                                </div>
+                                <div>
+                                    <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tighter drop-shadow-sm">
+                                        {t('learn:master_the')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-lime-200">{t('learn:science_of_dough')}</span> {t('learn:of_dough')}
+                                    </h1>
+                                    <p className="text-base md:text-lg text-emerald-100/80 leading-relaxed font-light max-w-lg">
+                                        {t('learn:hero_subtitle')}
+                                    </p>
+                                </div>
+                            </div>
+                            {/* Premium Glass Search */}
+                            <form onSubmit={handleSearch} className="relative w-full md:w-96 shrink-0 group">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-lime-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                        <MagnifyingGlassIcon className="h-5 w-5 text-emerald-200/70" />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="block w-full pl-12 pr-4 py-4 rounded-xl bg-emerald-950/40 backdrop-blur-xl border border-emerald-400/20 text-white placeholder-emerald-200/50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-emerald-900/60 transition-all font-medium shadow-inner"
+                                        placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics, chemical reactions...' })}
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                    />
+                                    <div className="absolute inset-y-0 right-3 flex items-center">
+                                        <div className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] text-emerald-200/50 font-bold">{t('learn:ctrl_k')}</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div className="px-4 sm:px-6 space-y-12">
+                    {/* 2. FEATURED MASTERCLASS (High Impact) */}
+                    {featuredArticle && (
+                        <div className="group relative rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 border border-stone-100 cursor-pointer"
+                            onClick={() => navigate('learn/article', featuredArticle.id)}>
+                            <div className="md:flex h-full min-h-[280px]">
+                                {/* Image Half */}
+                                <div className="md:w-5/12 relative overflow-hidden">
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center transform group-hover:scale-105 transition-transform duration-700"
+                                        style={{
+                                            backgroundImage: `url(${(() => {
+                                                const cat = LEARN_CATEGORIES.find(c => c.title === featuredArticle.category);
+                                                const track = cat ? LEARN_TRACKS.find(t => t.id === cat.trackId) : null;
+                                                return track ? TRACK_IMAGES[track.id] : TRACK_IMAGES['science'];
+                                            })()})`
+                                        }}
+                                    />
+                                    <div className="absolute inset-0 bg-emerald-900/20 group-hover:bg-transparent transition-colors duration-500" />
+                                    {/* Overlay Gradient */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/10" />
+                                    <div className="absolute top-6 left-6">
+                                        <div className="bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest text-emerald-950 shadow-lg border border-white/50 flex items-center gap-2">
+                                            <SparklesIcon className="w-3 h-3 text-emerald-600" />
+                                            {t('learn.featured')}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Text Half */}
+                                <div className="md:w-7/12 p-8 md:p-10 flex flex-col justify-center bg-white relative">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                                        <AcademicCapIcon className="w-40 h-40 text-emerald-900" />
+                                    </div>
+                                    <div className="relative z-10">
+                                        <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4 group-hover:text-emerald-700 transition-colors leading-tight">
+                                            {featuredArticle.title}
+                                        </h2>
+                                        <p className="text-slate-500 mb-8 leading-relaxed max-w-lg font-light text-lg">
+                                            {featuredArticle.subtitle}
+                                        </p>
+                                        <div className="flex items-center gap-6">
+                                            <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider bg-stone-50 px-3 py-1.5 rounded-md">
+                                                <ClockIcon className="w-4 h-4 text-emerald-600" />
+                                                10 {t('learn:min_read')}
+                                            </div>
+                                            <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
+                                                {t('learn.read_article')}
+                                                <ArrowRightIcon className="w-4 h-4" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {/* 3. TRACKS GRID (Premium Cards) */}
+                    <div>
+                        <div className="flex items-center justify-between mb-8">
+                            <h3 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-3">
+                                <span className="w-1.5 h-8 bg-gradient-to-b from-emerald-400 to-emerald-600 rounded-full inline-block" />
+                                {t('learn:knowledge_tracks')}
+                            </h3>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {LEARN_TRACKS.map((track) => {
+                                const trackCategories = LEARN_CATEGORIES.filter(cat => cat.trackId === track.id);
+                                const TrackIcon = TRACK_ICONS[track.iconName] || AcademicCapIcon;
+                                const colors = TRACK_COLORS[track.colorTheme] || TRACK_COLORS['lime'];
+                                return (
+                                    <section key={track.id} className="relative bg-white/90 backdrop-blur-sm rounded-3xl border border-stone-200/60 shadow-md shadow-stone-200/30 p-8 h-full flex flex-col hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-200/50 transition-all duration-500 overflow-hidden group/track">
+                                        {/* Top Gradient Accent Strip */}
+                                        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${colors.bg?.includes('emerald') ? 'from-emerald-400 to-teal-500' : colors.bg?.includes('lime') ? 'from-lime-400 to-emerald-500' : colors.bg?.includes('amber') ? 'from-amber-400 to-orange-500' : colors.bg?.includes('sky') ? 'from-sky-400 to-blue-500' : 'from-emerald-400 to-lime-500'} opacity-60 group-hover/track:opacity-100 transition-opacity duration-500 rounded-t-3xl`} />
+                                        {/* Track Header */}
+                                        <div className="flex items-center gap-5 mb-8">
+                                            <div className={`p-4 rounded-2xl ${colors.bg} ${colors.icon} border ${colors.border} shadow-sm transition-all duration-500 group-hover/track:shadow-md group-hover/track:scale-105`}>
+                                                <TrackIcon className="w-8 h-8" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold text-slate-900 leading-tight mb-1">{track.title}</h3>
+                                                <p className="text-slate-400 text-[10px] uppercase tracking-[0.15em] font-bold">{track.description}</p>
+                                            </div>
+                                        </div>
+                                        {/* Categories List (Premium Redesign) */}
+                                        <div className="flex-1 space-y-3">
+                                            {trackCategories.map((category) => (
+                                                <div
+                                                    key={category.id}
+                                                    onClick={() => navigate('learn/category', encodeURIComponent(category.id))}
+                                                    className="
+                                                        group relative overflow-hidden rounded-2xl border border-stone-100/80
+                                                        cursor-pointer bg-white hover:bg-white
+                                                        hover:shadow-lg hover:shadow-emerald-500/10 hover:border-emerald-200/60
+                                                        hover:-translate-y-0.5
+                                                        transition-all duration-500 p-4 flex items-center gap-4
+                                                    "
+                                                >
+                                                    {/* Left Accent Strip */}
+                                                    <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl bg-gradient-to-b ${colors.bg?.includes('emerald') ? 'from-emerald-400 to-teal-500' : colors.bg?.includes('lime') ? 'from-lime-400 to-emerald-500' : colors.bg?.includes('amber') ? 'from-amber-400 to-orange-500' : colors.bg?.includes('sky') ? 'from-sky-400 to-blue-500' : 'from-emerald-400 to-lime-500'} opacity-0 group-hover:opacity-80 transition-opacity duration-500`} />
+                                                    {/* Subtle hover glow overlay */}
+                                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/0 to-lime-50/0 group-hover:from-emerald-50/30 group-hover:to-lime-50/20 transition-all duration-500 rounded-2xl pointer-events-none" />
+                                                    {/* Category Icon - Premium */}
+                                                    <div className="
+                                                        relative shrink-0 p-2.5 rounded-xl bg-stone-50 border border-stone-200/60 text-stone-400
+                                                        group-hover:text-emerald-600 group-hover:border-emerald-200/80 group-hover:bg-gradient-to-br group-hover:from-emerald-50 group-hover:to-lime-50
+                                                        group-hover:shadow-sm
+                                                        transition-all duration-500
+                                                    ">
+                                                        {React.cloneElement(category.icon as React.ReactElement<any>, { className: "w-5 h-5" })}
+                                                    </div>
+                                                    {/* Content */}
+                                                    <div className="relative flex-1 min-w-0">
+                                                        <h4 className="text-sm font-bold text-slate-700 group-hover:text-emerald-800 transition-colors duration-300">
+                                                            {category.title}
+                                                        </h4>
+                                                        <p className="text-xs text-slate-500 truncate group-hover:text-slate-600 mt-0.5 font-medium opacity-80 transition-colors duration-300">
+                                                            {category.description}
+                                                        </p>
+                                                    </div>
+                                                    {/* Interactive Arrow - Premium Button */}
+                                                    <div className="relative w-9 h-9 rounded-xl bg-stone-50 flex items-center justify-center text-stone-300 group-hover:bg-gradient-to-br group-hover:from-emerald-500 group-hover:to-emerald-600 group-hover:text-white group-hover:shadow-md group-hover:shadow-emerald-500/20 transition-all duration-500 opacity-40 group-hover:opacity-100 translate-x-1 group-hover:translate-x-0 flex-shrink-0">
+                                                        <ArrowRightIcon className="w-4 h-4" />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </section>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    {/* 4. FOOTER CTA (Premium) */}
+                    <div className="bg-stone-50 rounded-3xl p-10 border border-stone-200 text-center flex flex-col items-center justify-center gap-6 relative overflow-hidden">
+                        <div className="absolute inset-0 opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+                        <div className="relative z-10 max-w-2xl">
+                            <AcademicCapIcon className="w-12 h-12 text-stone-300 mx-auto mb-4" />
+                            <h2 className="text-2xl font-bold text-slate-900 mb-2">{t('learn.explore_the_full_library')}</h2>
+                            <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                                {t('learn:library_cta_description')}
+                            </p>
+                            <button
+                                onClick={() => navigate('learn/all')}
+                                className="inline-flex items-center gap-2 bg-white text-slate-800 border-2 border-slate-200 hover:border-emerald-400 hover:text-emerald-700 px-8 py-3 rounded-xl font-bold transition-all shadow-sm hover:shadow-lg uppercase tracking-wider text-xs"
+                            >
+                                {t('learn.view_all_articles')}
+                                <ArrowRightIcon className="w-4 h-4" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </LibraryPageLayout>
+    );
+};
+export default LearnHomePage;

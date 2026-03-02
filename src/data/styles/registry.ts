@@ -21,6 +21,18 @@ import { ciabatta_high_hydration } from './bread/ciabatta_high_hydration';
 import { challah_braided } from './bread/challah_braided';
 import { colomba_pasquale } from './pastry/colomba_pasquale';
 
+// --- OLD-SCHEMA V2 STYLES (StyleDefinition — adapted via adaptV3ToLegacy) ---
+import { berliner_bomboloni } from './pastry/berliner_bomboloni';
+import { malasadas_fried_dough } from './pastry/malasadas_fried_dough';
+import { pain_au_chocolat } from './pastry/pain_au_chocolat';
+import { pain_aux_raisins } from './pastry/pain_aux_raisins';
+import { stollen_german } from './pastry/stollen_german';
+import { sweet_rolls_neutral } from './pastry/sweet_rolls_neutral';
+import { injera_flatbread } from './bread/injera_flatbread';
+import { pane_pugliese } from './bread/pane_pugliese';
+import { seventy_percent_rye_sour } from './bread/seventy_percent_rye_sour';
+import { whole_wheat_100 } from './bread/whole_wheat_100';
+
 // --- SEED IMPORTS (status: 'seed' — not shown in public catalog) ---
 import { turkishPide } from './pizza/turkish_pide';
 import { sfincioneSiciliano } from './pizza/sfincione_siciliano';
@@ -226,6 +238,18 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         pretzel_dough_classic,
         adaptV3ToLegacy(colomba_pasquale),
 
+        // Old-schema V2 styles — adapted to DoughStyleDefinition
+        adaptV3ToLegacy(berliner_bomboloni),
+        adaptV3ToLegacy(malasadas_fried_dough),
+        adaptV3ToLegacy(pain_au_chocolat),
+        adaptV3ToLegacy(pain_aux_raisins),
+        adaptV3ToLegacy(stollen_german),
+        adaptV3ToLegacy(sweet_rolls_neutral),
+        adaptV3ToLegacy(injera_flatbread),
+        adaptV3ToLegacy(pane_pugliese),
+        adaptV3ToLegacy(seventy_percent_rye_sour),
+        adaptV3ToLegacy(whole_wheat_100),
+
         // Seed styles (status: 'seed' — filtered below)
         turkishPide,
         sfincioneSiciliano,
@@ -244,6 +268,26 @@ const RAW_STYLES: DoughStyleDefinition[] = [
     allBunsStyles,
 ].flat(2) as DoughStyleDefinition[];
 
+/**
+ * V1 region entries superseded by Gold Standard (V3) equivalents.
+ * These IDs are excluded from STYLES_DATA to prevent duplicate catalog entries.
+ * When a new Gold Standard file replaces a V1 entry, add the old V1 ID here.
+ */
+const SUPERSEDED_V1_IDS = new Set<string>([
+    // Pizza — replaced by pizza/*.ts Gold Standard files
+    'pizza-napoletana',        // → neapolitan_avpn_classic
+    'pizza-teglia-romana',     // → roman_teglia_pan
+    'pizza-tonda-romana',      // → roman_scrocchiarella
+    'sfincione-palermitano',   // → sfincione_siciliano (seed, will promote)
+
+    // Italian Bread — replaced by bread/*.ts Gold Standard files
+    'ciabatta-classic',        // → ciabatta_high_hydration
+    'focaccia-genovese',       // → focaccia_genovese (bread/)
+
+    // European Bread — replaced by bread/*.ts Gold Standard files
+    'baguette-tradition',      // → baguette_tradition_francaise
+]);
+
 // Deduplicate by ID using a Map (Last entry wins if IDs clash)
 
 export const STYLES_MAP = new Map<string, DoughStyleDefinition>();
@@ -255,9 +299,9 @@ RAW_STYLES.forEach(style => {
 });
 
 // Convert Map back to Array for the app to consume
-// Seeds (status: 'seed') are excluded from the public-facing catalog
+// Seeds (status: 'seed') and superseded V1 entries are excluded from the public catalog
 export const STYLES_DATA = Array.from(STYLES_MAP.values())
-    .filter(s => s.status !== 'seed')
+    .filter(s => s.status !== 'seed' && !SUPERSEDED_V1_IDS.has(s.id))
     .sort((a, b) => {
         const nameA = a.name || '';
         const nameB = b.name || '';
@@ -278,12 +322,80 @@ export const getStyleById = (id: string) => STYLES_MAP.get(id);
 console.log(`[Registry] Loaded ${STYLES_DATA.length} unique dough styles.`);
 
 export const COMING_SOON_STYLES = [
+    // ── Pastry Europeu ───────────────────────────────────────────────────────
     {
-        id: 'sfogliatella',
+        id: 'sfogliatella_riccia',
         name: 'Sfogliatella Riccia',
         region: 'Italy',
         type: 'Pastry',
         image: '/images/styles/sfogliatella_hero.png',
-        releaseDate: 'February 2026'
+        releaseDate: 'Q2 2026',
+        teaser: 'Pastel napolitano em camadas com ricota e semolina',
+    },
+    {
+        id: 'kouign_amann',
+        name: 'Kouign-Amann',
+        region: 'France',
+        type: 'Pastry',
+        image: '/images/styles/kouign_hero.png',
+        releaseDate: 'Q2 2026',
+        teaser: 'Cake de manteiga caramelizada da Bretanha',
+    },
+    {
+        id: 'pastel_de_nata',
+        name: 'Pastel de Nata',
+        region: 'Portugal',
+        type: 'Pastry',
+        image: '/images/styles/nata_hero.png',
+        releaseDate: 'Q3 2026',
+        teaser: 'Massa folhada com creme de ovo caramelizado',
+    },
+    // ── Bread Internacional ──────────────────────────────────────────────────
+    {
+        id: 'turkish_pide',
+        name: 'Turkish Pide',
+        region: 'Turkey',
+        type: 'Bread',
+        image: '/images/styles/pide_hero.png',
+        releaseDate: 'Q2 2026',
+        teaser: 'Flatbread fermentado em formato de barco com coberturas',
+    },
+    {
+        id: 'georgian_khachapuri',
+        name: 'Khachapuri Adjarian',
+        region: 'Georgia',
+        type: 'Bread',
+        image: '/images/styles/khachapuri_hero.png',
+        releaseDate: 'Q3 2026',
+        teaser: 'Pão recheado com queijo suluguni e gema de ovo',
+    },
+    {
+        id: 'pain_epi',
+        name: 'Pain Épi',
+        region: 'France',
+        type: 'Bread',
+        image: '/images/styles/pain_epi_hero.png',
+        releaseDate: 'Q3 2026',
+        teaser: 'Baguette espiralada em forma de espiga de trigo',
+    },
+    // ── Pizza Especial ───────────────────────────────────────────────────────
+    {
+        id: 'pizza_romana_al_taglio',
+        name: 'Pizza Romana al Taglio',
+        region: 'Italy',
+        type: 'Pizza',
+        image: '/images/styles/al_taglio_hero.png',
+        releaseDate: 'Q3 2026',
+        teaser: 'Pizza em assadeira retangular, alta hidratação, vendida ao corte',
+    },
+    // ── Brasil ───────────────────────────────────────────────────────────────
+    {
+        id: 'broa_de_milho',
+        name: 'Broa de Milho',
+        region: 'Brazil',
+        type: 'Bread',
+        image: '/images/styles/broa_hero.png',
+        releaseDate: 'Q4 2026',
+        teaser: 'Pão denso de farinha de milho — tradicional do Sul e Minas',
     },
 ];

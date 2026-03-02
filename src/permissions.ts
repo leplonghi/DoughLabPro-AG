@@ -152,8 +152,28 @@ export function canUseFeature(plan: PlanId, feature: FeatureKey): boolean {
     return allowedPlans.includes(plan);
 }
 
+/**
+ * Free tier style IDs — these styles must have `isPro: false` in their definition.
+ * The actual access gate is `canAccessStyle()` in domain/usecases/canAccess.ts,
+ * which reads `style.isPro`. This list is the canonical source of truth for which
+ * styles should be free.
+ *
+ * Strategy: 8 styles covering all categories — enough to demo value, not enough to skip Pro.
+ */
 export const FREE_STYLE_IDS = [
-    'NEAPOLITAN', // Pizza
-    'SOURDOUGH',  // Bread
-    'CINNAMON_ROLL' // Pastry
-];
+    // ── Pizza (2) ─────────────────────────────────────────────────
+    'neapolitan_avpn_classic',   // O clássico mundial — intro ao app
+    'new_york_slice_shop',       // Segundo mais buscado globalmente
+
+    // ── Bread (2) ─────────────────────────────────────────────────
+    'sourdough_san_francisco',   // Gateway fermentação natural
+    'pao_frances_brazil',        // Pão mais consumido no Brasil (mercado primário)
+
+    // ── Pastry / Enriched (2) ─────────────────────────────────────
+    'cinnamon_rolls_classic',    // Resultado visual impressionante — gateway doce
+    'challah_braided',           // Enriquecido aspiracional — leva ao upgrade
+
+    // ── Especiais (2) ─────────────────────────────────────────────
+    'focaccia_genovese',         // Fácil para iniciantes — alta retenção
+    'brazilian_cheese_bread',    // Ícone BR, gluten-free — diferenciação
+] as const;

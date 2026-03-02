@@ -94,7 +94,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
                 {/* Icon - compact */}
                 {icon && (
                     <div className={`flex h-6 w-6 items-center justify-center rounded-lg ${colors.iconBg} ${colors.text} flex-shrink-0`}>
-                        {React.cloneElement(icon as React.ReactElement, { size: 14, strokeWidth: 2.5 })}
+                        {React.cloneElement(icon as React.ReactElement<any>, { size: 14, strokeWidth: 2.5 })}
                     </div>
                 )}
 

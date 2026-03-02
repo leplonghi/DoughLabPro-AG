@@ -1,4 +1,4 @@
-import { DoughConfig, Levain, DoughStyleDefinition } from '../../types';
+import { DoughConfig, Levain, DoughStyleDefinition, Batch } from '../../types';
 import { useTranslation } from '@/i18n';
 
 export interface SharePayload {
@@ -6,10 +6,10 @@ export interface SharePayload {
     text: string;
     url: string;
     image?: string;
-    data?: DoughConfig | Levain | DoughStyleDefinition; // For rich previews
+    data?: DoughConfig | Levain | DoughStyleDefinition | Batch; // For rich previews
 }
 
-export const generatePreviewImage = async (data: DoughConfig | Levain | DoughStyleDefinition): Promise<string> => {
+export const generatePreviewImage = async (data: DoughConfig | Levain | DoughStyleDefinition | Batch): Promise<string> => {
     // In a real app, this would call a serverless function to generate an OG image.
     // We simulate this by using a dynamic image service that accepts text.
 

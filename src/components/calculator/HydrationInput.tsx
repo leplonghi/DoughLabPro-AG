@@ -3,7 +3,7 @@ import { useTranslation } from '@/i18n';
 import { InfoIcon, LockClosedIcon, ExclamationCircleIcon } from '@/components/ui/Icons';
 
 interface HydrationInputProps {
-    label?: string;
+    label?: React.ReactNode;
     value: number;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     min?: number;

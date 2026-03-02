@@ -6,12 +6,10 @@ import { LearnProvider } from '@/contexts/LearnContext';
 import { useTranslation } from '@/i18n';
 
 const LearnPage: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { routeParams } = useRouter();
 
-    // Handle case where routeParams might be the ID string directly or an object
-    // navigate('learn', { articleId: '...' }) -> routeParams = { articleId: '...' }
-    const articleId = typeof routeParams === 'string' ? routeParams : routeParams?.articleId;
+    const articleId = routeParams;
 
     return (
         <LearnProvider>

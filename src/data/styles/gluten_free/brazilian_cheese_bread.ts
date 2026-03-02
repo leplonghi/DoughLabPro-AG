@@ -251,7 +251,7 @@ export const brazilian_cheese_bread: DoughStyleDefinition = {
         }
     ],
 
-    isPro: true,
+    isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),

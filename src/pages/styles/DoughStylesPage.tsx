@@ -392,7 +392,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                             key={style.id}
                                             style={style}
                                             onUseInCalculator={onUseInCalculator}
-                                            onDelete={deleteUserStyle}
+                                            onDelete={(s) => deleteUserStyle(s.id)}
                                         />
                                     ))}
                                 </div>

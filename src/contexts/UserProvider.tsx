@@ -169,7 +169,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         if (isVip) {
           const guestAuth = { uid: 'vip-guest-user', email: 'vip@doughlab.pro' };
-          setFirebaseUser(guestAuth);
+          setFirebaseUser(guestAuth as any);
           setUser({
             uid: 'vip-guest-user',
             name: t('common.vip_guest_418'),
@@ -190,11 +190,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setPlanLoading(false);
         // Clear data on logout
         setOvens([]);
-        setLevains([]);
+        setFirebaseLevains([]);
         setGoals([]);
         setTestSeries([]);
         setUserStyles([]);
-        setFavorites([]);
+        setFirebaseFavorites([]);
         setCustomPresets([]);
         setCustomToppings([]);
         return;
@@ -892,6 +892,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     attachBakeToSeries,
     userStyles,
     addUserStyle,
+    updateUserStyle,
     deleteUserStyle,
     favorites,
     toggleFavorite,

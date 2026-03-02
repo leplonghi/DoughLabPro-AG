@@ -435,7 +435,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                     <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
                         <RecommendedProducts
                             tags={[
-                                doughConfig.style?.toLowerCase() || 'general',
+                                doughConfig.recipeStyle?.toLowerCase() || 'general',
                                 doughConfig.yeastType?.toLowerCase() || '',
                                 doughConfig.ovenType?.toLowerCase() || '',
                                 'baking'

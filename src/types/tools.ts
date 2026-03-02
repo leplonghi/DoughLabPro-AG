@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { useTranslation } from '@/i18n';
+import { FeatureKey } from '../permissions';
 
 export interface ToolCard {
     id: string;
@@ -11,5 +11,5 @@ export interface ToolCard {
     preview?: string;
     isNew?: boolean;
     comingSoon?: boolean;
-    featureKey?: string; // Optional, for permission checking if needed alongside isPro
+    featureKey?: FeatureKey | string; // Optional, for permission checking
 }

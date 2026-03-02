@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Page, Batch, DoughConfig, BatchStatus } from '@/types';
+import { Page, Batch, DoughConfig, BatchStatus, YeastType } from '@/types';
 import { ChartBarIcon, PlusCircleIcon, CheckCircleIcon, ArrowLeftIcon } from '@/components/ui/Icons';
 import MyLabLayout from '@/components/layouts/MyLabLayout';
 import { LockFeature } from '@/components/auth/LockFeature';
@@ -174,9 +174,9 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                     <tbody className="divide-y divide-slate-100">
                                         <ComparisonRow label={t('mylab.style_2')} values={selectedBatches.map(b => b.doughConfig.recipeStyle)} />
                                         <ComparisonRow label={t('form.hydration')} values={selectedBatches.map(b => `${b.doughConfig.hydration}%`)} highlight />
-                                        <ComparisonRow label={t('results.flour')} values={selectedBatches.map(b => `${b.doughConfig.flourAmount}g`)} />
+                                        <ComparisonRow label={t('results.flour')} values={selectedBatches.map(b => `${b.doughConfig.totalFlour || (b.doughConfig.numPizzas * b.doughConfig.doughBallWeight * 0.6)}g`)} />
                                         <ComparisonRow label={t('results.salt')} values={selectedBatches.map(b => `${b.doughConfig.salt}%`)} />
-                                        <ComparisonRow label={t('results.yeast')} values={selectedBatches.map(b => `${b.doughConfig.yeastValue}${b.doughConfig.yeastType === 'sourdough' ? '%' : 'g'}`)} />
+                                        <ComparisonRow label={t('results.yeast')} values={selectedBatches.map(b => `${b.doughConfig.yeastPercentage}${b.doughConfig.yeastType === YeastType.USER_LEVAIN ? '%' : 'g'}`)} />
 
                                         <tr className="bg-slate-50/50"><td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold text-slate-400 uppercase">{t('mylab.process')}</td></tr>
 

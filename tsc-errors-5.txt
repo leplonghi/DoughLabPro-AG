@@ -1,0 +1,81 @@
+src/components/calculator/AccordionSection.tsx(97,75): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'size' does not exist in type 'Partial<unknown> & Attributes'.
+src/components/calculator/sections/IngredientsSection.tsx(2,1970): error TS2322: Type 'Element' is not assignable to type 'string'.
+src/components/calculator/sections/IngredientsSection.tsx(2,3757): error TS2322: Type 'Element' is not assignable to type 'string'.
+src/components/calculator/sections/IngredientsSection.tsx(2,5087): error TS2322: Type '(name: string, value: number) => void' is not assignable to type '(e: ChangeEvent<HTMLInputElement, Element>) => void'.
+  Target signature provides too few arguments. Expected 2 or more, but got 1.
+src/components/calculator/sections/IngredientsSection.tsx(2,5686): error TS2322: Type '(_: any, val: any) => void' is not assignable to type '(e: ChangeEvent<HTMLInputElement, Element>) => void'.
+  Target signature provides too few arguments. Expected 2 or more, but got 1.
+src/components/calculator/sections/IngredientsSection.tsx(7,149): error TS2322: Type '(name: string, value: number) => void' is not assignable to type '(e: ChangeEvent<HTMLInputElement, Element>) => void'.
+  Target signature provides too few arguments. Expected 2 or more, but got 1.
+src/components/calculator/sections/QuantitySection.tsx(67,84): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'size' does not exist in type 'Partial<unknown> & Attributes'.
+src/components/calculator/sections/StyleSection.tsx(103,88): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'size' does not exist in type 'Partial<unknown> & Attributes'.
+src/components/learn/LearnArticleRenderer.tsx(312,63): error TS2339: Property 'recommended' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(313,83): error TS2339: Property 'recommended' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(313,103): error TS2339: Property 'unit' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(313,125): error TS2339: Property 'min' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(313,138): error TS2339: Property 'max' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(313,150): error TS2339: Property 'unit' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(314,70): error TS2339: Property 'min' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(314,83): error TS2339: Property 'max' does not exist on type '{ label: string; notes?: string; }'.
+src/components/learn/LearnArticleRenderer.tsx(314,95): error TS2339: Property 'unit' does not exist on type '{ label: string; notes?: string; }'.
+src/contexts/CalculatorContext.tsx(271,17): error TS2353: Object literal may only specify known properties, and 'hydration' does not exist in type 'EngineTargetInputs'.
+src/contexts/CalculatorContext.tsx(297,9): error TS2322: Type 'DoughConfig' is not assignable to type '{ stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; numPizzas: number; ... 20 more ...; ovenType?: OvenType; }'.
+  Property 'stylePresetId' is optional in type 'DoughConfig' but required in type '{ stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; ... 21 more ...; ovenType?: OvenType; }'.
+src/contexts/CalculatorContext.tsx(336,17): error TS2322: Type 'DoughConfig' is not assignable to type '{ stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; numPizzas: number; ... 20 more ...; ovenType?: OvenType; }'.
+  Property 'stylePresetId' is optional in type 'DoughConfig' but required in type '{ stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; ... 21 more ...; ovenType?: OvenType; }'.
+src/contexts/CalculatorContext.tsx(341,17): error TS2322: Type 'DoughConfig' is not assignable to type '{ bakeType: BakeType; stylePresetId: any; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; ... 21 more ...; ovenType?: OvenType; }'.
+  Property 'stylePresetId' is optional in type 'DoughConfig' but required in type '{ bakeType: BakeType; stylePresetId: any; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; ... 21 more ...; ovenType?: OvenType; }'.
+src/contexts/CalculatorContext.tsx(430,13): error TS2322: Type 'DoughConfig' is not assignable to type '{ doughBallWeight: number; numPizzas: number; stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; ... 19 more ...; ovenType?: OvenType; }'.
+  Property 'stylePresetId' is optional in type 'DoughConfig' but required in type '{ doughBallWeight: number; numPizzas: number; stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; ... 21 more ...; ovenType?: OvenType; }'.
+src/contexts/CalculatorContext.tsx(513,9): error TS2322: Type 'DoughConfig' is not assignable to type '{ stylePresetId: any; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; numPizzas: number; ... 20 more ...; ovenType?: OvenType; }'.
+  Property 'stylePresetId' is optional in type 'DoughConfig' but required in type '{ stylePresetId: any; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ambientTemperature: AmbientTemperature; ... 21 more ...; ovenType?: OvenType; }'.
+src/contexts/CalculatorContext.tsx(603,17): error TS2322: Type 'DoughConfig' is not assignable to type '{ hydration: number; salt: number; oil: number; sugar: number; stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; flourId: string; ... 18 more ...; ovenType?: OvenType; }'.
+  Property 'sugar' is optional in type 'DoughConfig' but required in type '{ hydration: number; salt: number; oil: number; sugar: number; stylePresetId: string; bakeType: BakeType; recipeStyle: RecipeStyle; selectedStyleId?: string; baseStyleName?: string; ... 19 more ...; ovenType?: OvenType; }'.
+src/contexts/UserProvider.tsx(172,27): error TS2345: Argument of type '{ uid: string; email: string; }' is not assignable to parameter of type 'SetStateAction<User>'.
+  Type '{ uid: string; email: string; }' is missing the following properties from type 'User': emailVerified, isAnonymous, metadata, providerData, and 11 more.
+src/i18n.ts(74,59): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type '"calculator" | "styles" | "learn" | "common" | "ui" | "errors" | "notifications" | "weather" | "baguette_tradition_francaise_detailed_i18n" | "california_style_COMPLETE_i18n" | ... 8 more ... | $Tuple<...>'.
+  Type 'string' is not assignable to type '"calculator" | "styles" | "learn" | "common" | "ui" | "errors" | "notifications" | "weather" | "baguette_tradition_francaise_detailed_i18n" | "california_style_COMPLETE_i18n" | ... 8 more ... | $Tuple<...>'.
+src/pages/BatchDetailPage.tsx(438,45): error TS2339: Property 'style' does not exist on type 'DoughConfig'.
+src/pages/DoughbotPage.tsx(181,31): error TS2322: Type '{ size: string; }' is not assignable to type 'IntrinsicAttributes & { className?: string; }'.
+  Property 'size' does not exist on type 'IntrinsicAttributes & { className?: string; }'.
+src/pages/learn/CategoryPage.tsx(60,123): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+src/pages/learn/GrandmaRenderer.tsx(28,47): error TS2339: Property 'introAnalogy' does not exist on type '{ intro?: string; whatItDoes: string; howToUse?: string; dangerSigns?: string; }'.
+src/pages/learn/GrandmaRenderer.tsx(28,70): error TS2339: Property 'introAnalogy' does not exist on type '{ intro?: string; whatItDoes: string; howToUse?: string; dangerSigns?: string; }'.
+src/pages/learn/GrandmaRenderer.tsx(28,91): error TS2339: Property 'simpleExplanation' does not exist on type '{ intro?: string; whatItDoes: string; howToUse?: string; dangerSigns?: string; }'.
+src/pages/learn/GrandmaRenderer.tsx(28,124): error TS2339: Property 'simpleExplanation' does not exist on type '{ intro?: string; whatItDoes: string; howToUse?: string; dangerSigns?: string; }'.
+src/pages/learn/GrandmaRenderer.tsx(49,52): error TS2339: Property 'whyItMatters' does not exist on type '{ intro?: string; whatItDoes: string; howToUse?: string; dangerSigns?: string; }'.
+src/pages/learn/GrandmaRenderer.tsx(62,55): error TS2339: Property 'softWarning' does not exist on type '{ intro?: string; whatItDoes: string; howToUse?: string; dangerSigns?: string; }'.
+src/pages/learn/LearnHomePage.tsx(188,116): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+src/pages/mylab/levain/LevainDetailPage.tsx(212,51): error TS2322: Type '{ levain: Levain; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'levain' does not exist on type 'IntrinsicAttributes'.
+src/pages/mylab/levain/LevainDetailPage.tsx(236,17): error TS2322: Type '{ isOpen: boolean; onClose: () => void; levain: Levain; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'isOpen' does not exist on type 'IntrinsicAttributes'.
+src/pages/mylab/MyLabBatchesPage.tsx(100,42): error TS2322: Type '"batch"' is not assignable to type '"levain" | "style" | "recipe"'.
+src/pages/mylab/MyLabBatchesPage.tsx(100,74): error TS2322: Type 'Batch' is not assignable to type 'DoughStyleDefinition | DoughConfig | Levain'.
+  Type 'Batch' is missing the following properties from type 'Levain': hydration, lastFeeding, totalWeight, isDefault, feedingHistory
+src/pages/mylab/MyLabComparisonsPage.tsx(177,133): error TS2339: Property 'flourAmount' does not exist on type 'DoughConfig'.
+src/pages/mylab/MyLabComparisonsPage.tsx(179,151): error TS2367: This comparison appears to be unintentional because the types 'YeastType' and '"sourdough"' have no overlap.
+src/pages/mylab/MyLabInsightsPage.tsx(104,100): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+src/pages/mylab/ObjectivesPage.tsx(167,17): error TS2322: Type '{ isOpen: boolean; onClose: () => void; onSave: (goalData: Omit<Goal, "id" | "createdAt" | "updatedAt" | "status" | "progress"> | (Partial<Goal> & { id: string; })) => Promise<...>; goalToEdit: Goal; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'isOpen' does not exist on type 'IntrinsicAttributes'.
+src/pages/styles/DoughStylesPage.tsx(395,45): error TS2322: Type '(id: string) => Promise<void>' is not assignable to type '(style: DoughStyleDefinition) => void'.
+  Types of parameters 'id' and 'style' are incompatible.
+    Type 'DoughStyleDefinition' is not assignable to type 'string'.
+src/pages/ToolsPage.tsx(38,71): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+src/pages/ToolsPage.tsx(144,65): error TS2322: Type 'string' is not assignable to type 'FeatureKey'.
+src/pages/UpgradePage.tsx(109,62): error TS2322: Type '{ size: string; color: string; }' is not assignable to type 'IntrinsicAttributes & { className?: string; }'.
+  Property 'size' does not exist on type 'IntrinsicAttributes & { className?: string; }'.

@@ -71,7 +71,7 @@ i18n
 // export { I18nProvider } from '@/components/providers/I18nProvider'; // Avoid circular dependency if possible
 
 export const useTranslation = (ns?: string | string[]) => {
-  const { t, i18n: i18nInstance } = useI18nextTranslation(ns);
+  const { t, i18n: i18nInstance } = useI18nextTranslation(ns as any);
 
   const tWrapper = (key: string | string[], options?: any): string => {
     // Handle array of keys (fallback keys)

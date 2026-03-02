@@ -64,7 +64,7 @@ const QuantitySection: React.FC<QuantitySectionProps> = ({
                                 }
                             `}
                         >
-                            {React.cloneElement(item.icon as React.ReactElement, { size: 14 })}
+                            {React.cloneElement(item.icon as React.ReactElement<any>, { size: 14 })}
                             <span className="hidden sm:inline">{item.label}</span>
                         </button>
                     );

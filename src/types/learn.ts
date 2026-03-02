@@ -30,6 +30,10 @@ export interface LearnArticleData {
     practicalRanges: {
         label: string;
         notes?: string;
+        recommended?: string | number;
+        unit?: string;
+        min?: string | number;
+        max?: string | number;
     }[];
 
     practicalApplications?: string[];
@@ -55,8 +59,12 @@ export interface LearnArticleData {
 
     grandmaVersion: {
         intro?: string;
+        introAnalogy?: string;
+        simpleExplanation?: string;
         whatItDoes: string;
+        whyItMatters?: string;
         howToUse?: string;
         dangerSigns?: string;
+        softWarning?: string;
     };
 }

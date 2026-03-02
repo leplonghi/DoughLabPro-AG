@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/i18n';
 import { useUser } from '@/contexts/UserProvider';
 import { useCalculator } from '@/contexts/CalculatorContext';
+import { BakeType } from '@/types';
 import {
     BeakerIcon,
     FireIcon,
@@ -30,7 +31,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
     // Local state for selections - Initialize from user if available
     const [skill, setSkill] = useState<'beginner' | 'intermediate' | 'advanced' | 'pro'>(user?.skillLevel || 'beginner');
     const [interest, setInterest] = useState<'pizza' | 'bread' | 'sourdough' | 'pastry'>(user?.primaryInterest as any || 'pizza');
-    const [freq, setFreq] = useState<'weekly' | 'monthly' | 'occasionally'>(user?.bakingFrequency || 'weekly');
+    const [freq, setFreq] = useState<'weekly' | 'monthly' | 'occasionally'>((user?.bakingFrequency as any) || 'weekly');
     const [enableSchedule, setEnableSchedule] = useState(user?.enableSmartSchedule || false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -66,11 +67,11 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
             // Configure calculator based on choices
             try {
                 if (interest === 'pizza') {
-                    handleConfigChange({ bakeType: 'PIZZAS', hydration: 62 });
+                    handleConfigChange({ bakeType: BakeType.PIZZAS, hydration: 62 });
                 } else if (interest === 'bread') {
-                    handleConfigChange({ bakeType: 'BREADS_SAVORY', hydration: 70 });
+                    handleConfigChange({ bakeType: BakeType.BREADS_SAVORY, hydration: 70 });
                 } else if (interest === 'pastry') {
-                    handleConfigChange({ bakeType: 'SWEETS_PASTRY', hydration: 45 });
+                    handleConfigChange({ bakeType: BakeType.SWEETS_PASTRY, hydration: 45 });
                 }
             } catch (configError) {
                 console.error("Error applying calculator config:", configError);

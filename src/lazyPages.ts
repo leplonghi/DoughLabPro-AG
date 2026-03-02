@@ -98,5 +98,5 @@ export const ProductionDashboard = React.lazy(() => import('@/pages/ProductionDa
 // Placeholder Pages
 export const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
 export const UpgradePage = React.lazy(() => import('@/pages/UpgradePage'));
-export const NotificationsPage = React.lazy(() => import('@/pages/NotificationsPage'));
+export const NotificationsPage = React.lazy(() => import('@/pages/NotificationsPage').then(module => ({ default: module.NotificationsPage })));
 export const LandingPage = React.lazy(() => import('@/pages/LandingPage'));
