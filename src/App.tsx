@@ -2,6 +2,7 @@
 import React, { useState, Suspense, useMemo, useEffect } from 'react';
 import { useOnboardingFlow } from '@/hooks/useOnboardingFlow';
 import Navigation from '@/components/layout/Navigation';
+import { BottomNav } from '@/components/BottomNav';
 import Footer from '@/components/layout/Footer';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
@@ -29,6 +30,7 @@ import { DoughSessionProvider, useDoughSession } from '@/contexts/DoughSessionCo
 import { StylesProvider } from '@/contexts/StylesProvider';
 import { RouterProvider, useRouter } from '@/contexts/RouterContext';
 import { NotificationProvider } from '@/contexts/NotificationContext';
+import { Toaster } from 'react-hot-toast';
 
 // Domain-specific providers
 import { BatchesProviderComponent } from '@/contexts/BatchesProvider';
@@ -52,6 +54,8 @@ import { FLOURS } from '@/flours-constants';
 const AssistantPage = React.lazy(() => import('@/components/AssistantPage'));
 
 
+import { UpgradeModal } from '@/components/UpgradeModal';
+
 function AppContent() {
   const { route, navigate } = useRouter();
   const { loading: authLoading } = useAuth();
@@ -67,7 +71,9 @@ function AppContent() {
     closePaywall,
     openPaywall,
     paywallOrigin,
-    grantSessionProAccess
+    grantSessionProAccess,
+    upgradeModalConfig,
+    setUpgradeModalConfig
   } = useUser();
 
   const { config, results, hasInteracted } = useCalculator();
@@ -86,9 +92,7 @@ function AppContent() {
     setShowMainOnboarding,
     handleMainOnboardingComplete,
     handleLevainOnboardingComplete
-  } = useOnboardingFlow({ user, isAuthenticated, route, t });
-
-
+  } = useOnboardingFlow({ user, isAuthenticated, route, t, isPaywallOpen, isAuthModalOpen });
 
   // Last batch calculation
   const lastBatch = useMemo(() => {
@@ -97,7 +101,29 @@ function AppContent() {
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0];
   }, [batches]);
 
+  // Moment 4: Re-engagement (R1-03)
+  useEffect(() => {
+    if (!isAuthenticated || hasProAccess) return;
 
+    const lastVisit = localStorage.getItem('last_visit');
+    const now = new Date();
+    localStorage.setItem('last_visit', now.toISOString());
+
+    if (lastVisit) {
+      const diff = now.getTime() - new Date(lastVisit).getTime();
+      const days = diff / (1000 * 60 * 60 * 24);
+
+      if (days > 7) {
+        setTimeout(() => {
+          setUpgradeModalConfig({
+            isOpen: true,
+            title: 'Sentimos sua falta!',
+            description: 'Que tal levar suas massas ao próximo nível hoje? O Pro está com novos estilos premium esperando por você.',
+          });
+        }, 3000);
+      }
+    }
+  }, [isAuthenticated, hasProAccess, setUpgradeModalConfig]);
 
   // Test Pro Logic
   useEffect(() => {
@@ -258,6 +284,18 @@ function AppContent() {
           origin={paywallOrigin}
         />
       </Suspense>
+
+      <UpgradeModal
+        isOpen={upgradeModalConfig.isOpen}
+        onClose={() => setUpgradeModalConfig({ ...upgradeModalConfig, isOpen: false })}
+        title={upgradeModalConfig.title}
+        description={upgradeModalConfig.description}
+        onUpgrade={() => {
+          setUpgradeModalConfig({ ...upgradeModalConfig, isOpen: false });
+          navigate('plans');
+        }}
+      />
+
       {isAuthModalOpen && (
         <Suspense fallback={
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
@@ -274,6 +312,26 @@ function AppContent() {
 
       {/* PWA Install Prompt */}
       <PWAInstallPrompt />
+
+      {/* Mobile Bottom Navigation */}
+      <BottomNav />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: 'var(--dlp-bg-card)',
+            color: 'var(--dlp-text-primary)',
+            border: '1px solid var(--dlp-border)',
+            borderRadius: '12px',
+            fontSize: '14px',
+            fontWeight: '500',
+            boxShadow: 'var(--dlp-shadow-lg)',
+          },
+          success: { iconTheme: { primary: 'var(--dlp-accent)', secondary: 'white' } },
+          error: { iconTheme: { primary: '#ef4444', secondary: 'white' } },
+        }}
+      />
     </div>
   );
 }

@@ -98,18 +98,24 @@ export const HydrationConverterPage: React.FC = () => {
                                     <label className="block text-sm font-semibold text-slate-600 mb-1">{t('general.flour_weight')} (g)</label>
                                     <input
                                         type="number"
+                                        inputMode="decimal"
+                                        pattern="[0-9]*"
+                                        autoComplete="off"
                                         value={flour}
                                         onChange={(e) => setFlour(Math.max(0, Number(e.target.value)))}
-                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-brand focus:ring-dlp-brand font-mono font-bold text-slate-900 bg-slate-50"
+                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-brand focus:ring-dlp-brand font-mono font-bold text-slate-900 bg-slate-50 min-h-[44px]"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-slate-600 mb-1">{t('general.water_weight')} (g)</label>
                                     <input
                                         type="number"
+                                        inputMode="decimal"
+                                        pattern="[0-9]*"
+                                        autoComplete="off"
                                         value={water}
                                         onChange={(e) => setWater(Math.max(0, Number(e.target.value)))}
-                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-brand focus:ring-dlp-brand font-mono font-bold text-slate-900 bg-slate-50"
+                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-brand focus:ring-dlp-brand font-mono font-bold text-slate-900 bg-slate-50 min-h-[44px]"
                                     />
                                 </div>
                             </div>
@@ -136,18 +142,24 @@ export const HydrationConverterPage: React.FC = () => {
                                         <label className="block text-sm font-semibold text-slate-600 mb-1">{t('ui.starter_weight')} (g)</label>
                                         <input
                                             type="number"
+                                            inputMode="decimal"
+                                            pattern="[0-9]*"
+                                            autoComplete="off"
                                             value={levainAmount}
                                             onChange={(e) => setLevainAmount(Math.max(0, Number(e.target.value)))}
-                                            className="w-full rounded-xl border-amber-200 py-2.5 px-3 focus:border-amber-400 focus:ring-amber-400 font-mono font-bold text-amber-900 bg-amber-50"
+                                            className="w-full rounded-xl border-amber-200 py-2.5 px-3 focus:border-amber-400 focus:ring-amber-400 font-mono font-bold text-amber-900 bg-amber-50 min-h-[44px]"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-semibold text-slate-600 mb-1">{t('ui.starter_hydration')} (%)</label>
                                         <input
                                             type="number"
+                                            inputMode="decimal"
+                                            pattern="[0-9]*"
+                                            autoComplete="off"
                                             value={levainHydration}
                                             onChange={(e) => setLevainHydration(Math.max(1, Number(e.target.value)))}
-                                            className="w-full rounded-xl border-amber-200 py-2.5 px-3 focus:border-amber-400 focus:ring-amber-400 font-mono font-bold text-amber-900 bg-amber-50"
+                                            className="w-full rounded-xl border-amber-200 py-2.5 px-3 focus:border-amber-400 focus:ring-amber-400 font-mono font-bold text-amber-900 bg-amber-50 min-h-[44px]"
                                         />
                                         <p className="text-[10px] text-slate-400 mt-1">{t('ui.usually_100_for_liquid_starter')}</p>
                                     </div>

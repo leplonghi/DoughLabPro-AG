@@ -300,6 +300,14 @@ export interface User {
     };
 }
 
+export interface UpgradeModalConfig {
+    isOpen: boolean;
+    title: string;
+    description: string;
+    ctaLabel?: string;
+    onUpgrade?: () => void;
+}
+
 export interface UserContextType {
     isAuthenticated: boolean;
     user: User | null;
@@ -320,6 +328,13 @@ export interface UserContextType {
     paywallOrigin: PaywallOrigin | null;
     openPaywall: (origin?: PaywallOrigin) => void;
     closePaywall: () => void;
+
+    // Upgrade Nudges (R1-03)
+    upgradeModalConfig: UpgradeModalConfig;
+    setUpgradeModalConfig: (config: UpgradeModalConfig) => void;
+    showUpsellBanner: boolean;
+    setShowUpsellBanner: (show: boolean) => void;
+
     ovens: Oven[];
     addOven: (newOvenData: Omit<Oven, 'id' | 'isDefault'>) => Promise<Oven>;
     updateOven: (updatedOven: Oven) => Promise<void>;

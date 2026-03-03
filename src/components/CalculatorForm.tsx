@@ -66,6 +66,7 @@ interface CalculatorFormProps {
   onSavePreset?: (name: string) => Promise<void>;
   customPresets?: CustomPreset[];
   isFavorite: (id: string, type: string) => boolean;
+  isCalculating?: boolean;
 }
 
 const CalculatorForm: React.FC<CalculatorFormProps> = ({
@@ -91,6 +92,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   onSavePreset,
   customPresets = [],
   isFavorite,
+  isCalculating,
 }) => {
   const { t } = useTranslation(['common', 'calculator']);
   const isWizard = calculatorMode === 'wizard';
@@ -143,6 +145,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         onOpenPaywall={onOpenPaywall}
         results={results}
         customPresets={customPresets}
+        isCalculating={isCalculating}
       />
     );
   }
@@ -282,6 +285,36 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           )}
         </div>
       )}
+
+      {/* Main Calculate Button (Sticky mobile / Bottom Desktop) */}
+      <div className="pt-6">
+        <button
+          onClick={() => {
+            const resultsEl = document.getElementById('tour-results-metrics');
+            if (resultsEl) {
+              resultsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }}
+          disabled={isCalculating}
+          className="w-full flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-br from-[#51a145] to-[#1B4332] py-4 px-6 text-lg font-black text-white shadow-xl shadow-[#51a145]/20 hover:scale-[1.02] transition-all active:scale-95 disabled:opacity-70"
+        >
+          {isCalculating ? (
+            <>
+              <div className="flex gap-1">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse [animation-delay:0.2s]" />
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse [animation-delay:0.4s]" />
+              </div>
+              {t('calculator.calculating', { defaultValue: 'Calculating...' })}
+            </>
+          ) : (
+            <>
+              <SparklesIcon size={20} />
+              {t('calculator.calculate_recipe', { defaultValue: 'Show My Flour Formula' })}
+            </>
+          )}
+        </button>
+      </div>
 
       {/* Action Area */}
       <div className="pt-4 border-t border-slate-100 space-y-2">

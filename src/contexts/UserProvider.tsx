@@ -15,6 +15,7 @@ import {
   UserSettings,
   OvenType,
   CustomPreset,
+  UpgradeModalConfig,
   ToppingCombination,
 } from '@/types';
 import { useToast } from '@/components/ToastProvider';
@@ -144,6 +145,15 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setPaywallOrigin(null);
   }, [paywallOrigin]);
 
+  // Upgrade Nudges (R1-03)
+  const [upgradeModalConfig, setUpgradeModalConfig] = useState<UpgradeModalConfig>({
+    isOpen: false,
+    title: '',
+    description: '',
+  });
+
+  const [showUpsellBanner, setShowUpsellBanner] = useState(false);
+
   // Sync User - Race-Safe Implementation
   useEffect(() => {
     // Run DB migration first
@@ -177,7 +187,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             avatar: undefined,
             plan: 'pro',
             isPro: true,
-            isAdmin: false,
+            isAdmin: true,
           } as User);
 
           setUserLoading(false);
@@ -861,6 +871,13 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     paywallOrigin,
     openPaywall,
     closePaywall,
+
+    // Upgrade Nudges (R1-03)
+    upgradeModalConfig,
+    setUpgradeModalConfig,
+    showUpsellBanner,
+    setShowUpsellBanner,
+
     ovens,
     addOven,
     updateOven,
@@ -927,6 +944,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     paywallOrigin,
     openPaywall,
     closePaywall,
+    upgradeModalConfig,
+    setUpgradeModalConfig,
+    showUpsellBanner,
+    setShowUpsellBanner,
     ovens,
     addOven,
     updateOven,
@@ -967,10 +988,15 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addCustomPreset,
     updateCustomPreset,
     deleteCustomPreset,
+    customToppings,
+    addCustomTopping,
+    deleteCustomTopping,
     userSettings.defaultAmbientTempC,
     setDefaultAmbientTempC,
     userSettings.defaultOvenType,
     setDefaultOvenType,
+    userSettings,
+    updateSettings
   ]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

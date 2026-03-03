@@ -6,22 +6,41 @@ interface UseOnboardingFlowProps {
     isAuthenticated: boolean;
     route: string;
     t: (key: string) => string;
+    isPaywallOpen?: boolean;
+    isAuthModalOpen?: boolean;
 }
 
-export function useOnboardingFlow({ user, isAuthenticated, route, t }: UseOnboardingFlowProps) {
+export function useOnboardingFlow({
+    user,
+    isAuthenticated,
+    route,
+    t,
+    isPaywallOpen = false,
+    isAuthModalOpen = false,
+}: UseOnboardingFlowProps) {
     const [showLevainOnboarding, setShowLevainOnboarding] = useState(false);
     const [showMainOnboarding, setShowMainOnboarding] = useState(false);
 
-    // Main Onboarding Logic
+    // Main Onboarding Logic — with robust guards
     useEffect(() => {
-        if (user && isAuthenticated && !user.onboardingCompleted) {
-            // Check if we maybe stored it locally for guests/interim
-            const localCompleted = localStorage.getItem('dlp_onboarding_completed') === 'true';
-            if (!localCompleted) {
+        // Guard 1: Only for authenticated users without completed onboarding
+        if (!user || !isAuthenticated) return;
+        if (user.onboardingCompleted) return;
+
+        // Guard 2: Respect local flag (avoids re-triggering on every reload)
+        const localCompleted = localStorage.getItem('dlp_onboarding_completed') === 'true';
+        if (localCompleted) return;
+
+        // Guard 3: 800ms delay so we don't compete with loading modals
+        const timer = setTimeout(() => {
+            // Guard 4: Don't show if another modal is already open
+            if (!isPaywallOpen && !isAuthModalOpen) {
                 setShowMainOnboarding(true);
             }
-        }
-    }, [user, isAuthenticated]);
+        }, 800);
+
+        return () => clearTimeout(timer);
+    }, [user, isAuthenticated, isPaywallOpen, isAuthModalOpen]);
 
     const handleMainOnboardingComplete = () => {
         localStorage.setItem('dlp_onboarding_completed', 'true');
@@ -50,6 +69,6 @@ export function useOnboardingFlow({ user, isAuthenticated, route, t }: UseOnboar
         showLevainOnboarding,
         handleMainOnboardingComplete,
         handleLevainOnboardingComplete,
-        setShowMainOnboarding // Exported if needed to manually trigger
+        setShowMainOnboarding,
     };
 }

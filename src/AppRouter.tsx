@@ -138,6 +138,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protect(<Pages.MyLabInsightsPage onNavigate={navigate} />);
             case 'mylab/timeline':
                 return protectWithFeature(<Pages.TimelinePage onNavigate={navigate} />, 'mylab.timeline');
+            case 'mylab/calculations':
+                return protect(<Pages.CalculationHistoryPage />);
             case 'mylab/goals':
 
                 return protectWithFeature(<Pages.ObjectivesPage onNavigate={navigate} />, 'mylab.unlimited_advanced');

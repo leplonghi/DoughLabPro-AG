@@ -69,6 +69,7 @@ export const ReadyToppingsPage = React.lazy(() => import('@/pages/learn/ingredie
 
 // My Lab Pages
 export const MyLabRecipesPage = React.lazy(() => import('@/pages/mylab/MyLabRecipesPage'));
+export const CalculationHistoryPage = React.lazy(() => import('@/pages/mylab/CalculationHistoryPage'));
 export const MyLabLevainPetPage = React.lazy(() => import('@/pages/mylab/MyLabLevainPetPage'));
 export const MyLabBatchesPage = React.lazy(() => import('@/pages/mylab/MyLabBatchesPage'));
 export const MyLabFloursPage = React.lazy(() => import('@/pages/mylab/MyLabFloursPage'));

@@ -28,7 +28,7 @@ interface StyleCardProps {
 export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, onDelete }) => {
     const { t } = useTranslation(['common', 'styles']);
     const { navigate } = useRouter();
-    const { user, hasProAccess, isFavorite, toggleFavorite } = useUser();
+    const { user, hasProAccess, isFavorite, toggleFavorite, setUpgradeModalConfig } = useUser();
     const favorited = isFavorite(style.id);
 
     const entitlements = { plan: user?.plan || null, isPro: hasProAccess };
@@ -39,6 +39,14 @@ export const StyleCard: React.FC<StyleCardProps> = ({ style, onUseInCalculator, 
     const isAiStyle = style.source === 'user_ai';
 
     const handleCardClick = () => {
+        if (!access.granted) {
+            setUpgradeModalConfig({
+                isOpen: true,
+                title: `Desbloqueie o ${t(style.name)}`,
+                description: `O ${t(style.name)} faz parte do plano Pro com mais de 80 estilos premium — AVPN, UNESCO e muito mais.`,
+            });
+            return;
+        }
         navigate('styles/detail', style.id);
     };
 

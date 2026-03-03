@@ -15,39 +15,53 @@
      ======================================== */
 
   /* Surface Colors - Warm & Clean */
-  --dlp-bg: #FAFAF9; /* Stone-50 */
-  --dlp-bg-soft: #F5F5F4; /* Stone-100 */
+  --dlp-bg: #FAFAF9;
+  /* Stone-50 */
+  --dlp-bg-soft: #F5F5F4;
+  /* Stone-100 */
   --dlp-bg-card: #FFFFFF;
   --dlp-bg-overlay: rgba(255, 255, 255, 0.85);
 
   /* Brand Colors - Deep Artisan Green */
-  --dlp-brand: #15803d; /* Emerald-700 - Professional, Deep */
-  --dlp-brand-hover: #166534; /* Emerald-800 */
-  --dlp-brand-light: #F0FDF4; /* Emerald-50 */
-  --dlp-brand-dark: #14532d; /* Emerald-900 */
+  --dlp-brand: #15803d;
+  /* Emerald-700 - Professional, Deep */
+  --dlp-brand-hover: #166534;
+  /* Emerald-800 */
+  --dlp-brand-light: #F0FDF4;
+  /* Emerald-50 */
+  --dlp-brand-dark: #14532d;
+  /* Emerald-900 */
 
-  /* Accent Colors - Baked Gold */
-  --dlp-accent: #D97706; /* Amber-600 */
-  --dlp-accent-hover: #B45309; /* Amber-700 */
-  --dlp-accent-warm: #F59E0B; /* Amber-500 */
+  /* Accent Colors - Vibrant Green */
+  --dlp-accent: #10B981;
+  /* Emerald-500 */
+  --dlp-accent-hover: #059669;
+  /* Emerald-600 */
+  --dlp-accent-warm: #34D399;
+  /* Emerald-400 */
 
   /* Text Colors - High Contrast, Low Fatigue */
-  --dlp-text-primary: #1C1917; /* Stone-900 */
-  --dlp-text-secondary: #44403C; /* Stone-700 */
-  --dlp-text-muted: #78716C; /* Stone-500 */
+  --dlp-text-primary: #1C1917;
+  /* Stone-900 */
+  --dlp-text-secondary: #44403C;
+  /* Stone-700 */
+  --dlp-text-muted: #78716C;
+  /* Stone-500 */
   --dlp-text-inverted: #FFFFFF;
 
   /* Borders & Shadows */
-  --dlp-border: #E7E5E4; /* Stone-200 */
-  --dlp-border-strong: #D6D3D1; /* Stone-300 */
+  --dlp-border: #E7E5E4;
+  /* Stone-200 */
+  --dlp-border-strong: #D6D3D1;
+  /* Stone-300 */
 
   /* Modern Subtle Shadows */
   --dlp-shadow-sm: 0 1px 2px 0 rgba(28, 25, 23, 0.05);
   --dlp-shadow-md: 0 4px 6px -1px rgba(28, 25, 23, 0.05), 0 2px 4px -1px rgba(28, 25, 23, 0.03);
   --dlp-shadow-lg: 0 10px 15px -3px rgba(28, 25, 23, 0.05), 0 4px 6px -2px rgba(28, 25, 23, 0.025);
-  --dlp-shadow-premium: 
+  --dlp-shadow-premium:
     0 0 0 1px rgba(0, 0, 0, 0.02),
-    0 8px 30px rgba(0, 0, 0, 0.04), 
+    0 8px 30px rgba(0, 0, 0, 0.04),
     0 4px 12px rgba(0, 0, 0, 0.02);
 
   /* Force light mode */
@@ -55,7 +69,8 @@
 }
 
 html {
-  font-size: 15px; /* Slightly increased for better readability */
+  font-size: 15px;
+  /* Slightly increased for better readability */
   scroll-behavior: smooth;
   height: 100%;
 }
@@ -75,15 +90,19 @@ body {
   position: relative;
   overflow-x: hidden;
   /* Clean Background Pattern */
-  background-image: 
+  background-image:
     radial-gradient(circle at top right, rgba(21, 128, 61, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at bottom left, rgba(217, 119, 6, 0.03) 0%, transparent 40%);
+    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
   background-attachment: fixed;
 }
 
 /* Removed the noisy body::before animation for a cleaner look */
 
-h1, h2, h3, h4, .font-heading {
+h1,
+h2,
+h3,
+h4,
+.font-heading {
   font-family: 'Outfit', sans-serif;
   letter-spacing: -0.02em;
   color: var(--dlp-text-primary);
@@ -114,7 +133,8 @@ h1, h2, h3, h4, .font-heading {
 /* Standardized Card */
 .dlp-card {
   background: var(--dlp-bg-card);
-  border-radius: 1rem; /* 16px */
+  border-radius: 1rem;
+  /* 16px */
   border: 1px solid var(--dlp-border);
   box-shadow: var(--dlp-shadow-premium);
   overflow: hidden;
@@ -395,36 +415,205 @@ h1, h2, h3, h4, .font-heading {
 }
 
 /* ========================================
-   SKELETON LOADING STATES
+   LOADING & EMPTY STATES
    ======================================== */
 
 .skeleton {
   background: linear-gradient(90deg,
-      #f0f0f0 0%,
-      #e0e0e0 20%,
-      #f0f0f0 40%,
-      #f0f0f0 100%);
+      var(--dlp-bg-soft) 25%,
+      var(--dlp-border) 50%,
+      var(--dlp-bg-soft) 75%);
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-  border-radius: 0.5rem;
+  animation: shimmer 1.5s ease-in-out infinite;
 }
 
-.skeleton-text {
-  height: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
-.skeleton-title {
-  height: 1.5rem;
-  width: 60%;
-  margin-bottom: 0.75rem;
-  border-radius: 0.375rem;
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    opacity: 0.7;
+  }
 }
 
-.skeleton-card {
-  height: 200px;
-  border-radius: 1rem;
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--dlp-text-muted);
+}
+
+.empty-state__icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.empty-state h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--dlp-text-primary);
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.empty-state p {
+  max-width: 320px;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--dlp-text-muted);
+}
+
+
+/* ========================================
+   MOBILE POLISH (UX-02)
+   ======================================== */
+
+/* Touch targets minimum 44px */
+button,
+a,
+[role="button"],
+.clickable,
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* For small icon buttons */
+.icon-btn {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Grid for Cards */
+.styles-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 1024px) {
+  .styles-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .styles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 2 columns */
+@media (max-width: 639px) {
+  .styles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small mobile: 1 column */
+@media (max-width: 380px) {
+  .styles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Result Responsive Values */
+.result-value {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--dlp-accent);
+  /* Adjusted to dlp-accent for brand consistency */
+}
+
+/* Calculator Form Padding */
+.calculator-form {
+  max-width: 100%;
+  padding: 16px;
+}
+
+@media (max-width: 640px) {
+  .calculator-form {
+    padding: 12px;
+  }
+}
+
+/* Bottom Nav Helper (see BottomNav.tsx) */
+@media (max-width: 768px) {
+  main {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+.bottom-nav {
+  display: none;
+  /* hidden on desktop */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: var(--dlp-bg-card);
+  border-top: 1px solid var(--dlp-border);
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.bottom-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 64px;
+  min-height: 44px;
+  color: var(--dlp-text-muted);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: center;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.bottom-nav button.active {
+  color: var(--dlp-accent);
+}
+
+.bottom-nav .nav-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.bottom-nav button.active .nav-icon {
+  transform: scale(1.1);
 }
 
 /* ========================================
@@ -621,5 +810,91 @@ input[type='range']::-webkit-slider-thumb {
   @page {
     margin: 1.5cm;
     size: A4 portrait;
+  }
+}
+
+/* ========================================
+   UX POLISH & MICRO-INTERACTIONS (UX-03)
+   ======================================== */
+
+.style-card,
+.dlp-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.style-card:hover,
+.dlp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.style-card:active,
+.dlp-card:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.results-container {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dot-pulse {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  margin-right: 8px;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+}
+
+/* Accessible Focus States */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--dlp-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

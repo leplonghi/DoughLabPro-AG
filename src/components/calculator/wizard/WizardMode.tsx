@@ -1,1 +1,398 @@
-import React, { useState } from 'react';import { DoughConfig, FormErrors, BakeType, YeastType, FlourDefinition, Levain, DoughResult } from '@/types';import { useTranslation } from '@/i18n';import StyleSection from '@/components/calculator/sections/StyleSection';import QuantitySection from '@/components/calculator/sections/QuantitySection';import { FlourSelector } from '@/components/calculator/FlourSelector';import {    CheckCircleIcon,    ArrowRightIcon,    BeakerIcon,    ClockIcon,    FireIcon,    FlourIcon,    CubeIcon,    ScaleIcon,    CloudIcon,    RocketIcon,    MoonIcon,    LightBulbIcon,    SparklesIcon,    CalendarIcon,    MapPinIcon} from '@/components/ui/Icons';import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';import { DOUGH_STYLE_PRESETS } from '@/constants';import { getStyleById } from '@/data/styles/registry';import { ProductionTimeline } from '@/components/calculator/ProductionTimeline';interface WizardModeProps {    config: DoughConfig;    errors: FormErrors;    onConfigChange: (newConfig: Partial<DoughConfig>) => void;    onBakeTypeChange: (bakeType: BakeType) => void;    onStyleChange: (presetId: string) => void;    onYeastTypeChange: (yeastType: YeastType) => void;    levains: Levain[];    selectedLevain?: Levain;    inputRefs?: {        numPizzas?: React.RefObject<HTMLInputElement>;    };    defaultOven?: any;    selectedFlour?: FlourDefinition;    calculationMode: any;    onCalculationModeChange: any;    hasProAccess: boolean;    onOpenPaywall: () => void;    results: DoughResult | null;    customPresets?: any[];    isFavorite?: (id: string, type: string) => boolean;}export const WizardMode: React.FC<WizardModeProps> = ({    config,    errors,    onConfigChange,    onBakeTypeChange,    onStyleChange,    onYeastTypeChange,    levains,    selectedLevain,    inputRefs,    defaultOven,    selectedFlour,    calculationMode,    onCalculationModeChange,    hasProAccess,    onOpenPaywall,    results,    customPresets = [],    isFavorite,}) => {    const { t } = useTranslation();    const [currentStep, setCurrentStep] = useState(1);    // Helpers    const nextStep = () => setCurrentStep(prev => prev + 1);    const prevStep = () => setCurrentStep(prev => Math.max(1, prev - 1));    const handleTextureSelect = (type: 'easy' | 'balanced' | 'airy') => {        let hydration = 60;        let oil = config.oil;        if (type === 'easy') {            hydration = 58;            oil = config.bakeType === 'PIZZAS' ? 2 : config.oil;        } else if (type === 'balanced') {            hydration = 63;        } else if (type === 'airy') {            hydration = 70;        }        onConfigChange({ hydration, oil });    };    const handleTimeSelect = (type: 'asap' | 'tomorrow' | 'weekend') => {        if (type === 'asap') {            onConfigChange({                fermentationTechnique: 'DIRECT' as any,                yeastPercentage: 0.8            });        } else {            onConfigChange({                fermentationTechnique: 'DIRECT' as any,                yeastPercentage: 0.3            });        }    };    const StepIndicator = ({ step, title, description, active, completed }: { step: number, title: string, description: string, active: boolean, completed: boolean }) => (        <div className={`mb-8 p-6 rounded-2xl border-2 transition-all duration-300 ${active ? 'bg-gradient-to-br from-white to-[#51a145]/5 border-[#51a145] shadow-xl shadow-[#51a145]/10' : completed ? 'bg-emerald-50/30 border-emerald-100' : 'bg-slate-50/50 border-slate-200'}`}>            <div className="flex items-start gap-5">                <div className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center font-black text-2xl transition-all duration-300 ${active ? 'bg-gradient-to-br from-[#51a145] to-[#36782c] text-white shadow-lg shadow-[#51a145]/30 scale-110' : completed ? 'bg-emerald-500 text-white' : 'bg-white border-2 border-slate-200 text-slate-300'}`}>                    {completed ? <CheckCircleIcon size={24} /> : step}                </div>                <div className="flex-1">                    <h3 className={`text-base font-black uppercase tracking-wider mb-2 ${active ? 'text-[#1B4332]' : completed ? 'text-emerald-700' : 'text-slate-400'}`}>                        {title}                    </h3>                    <p className={`text-sm leading-relaxed ${active ? 'text-slate-600' : completed ? 'text-emerald-600/70' : 'text-slate-400'}`}>                        {description}                    </p>                </div>            </div>        </div>    );    const canProceedStep2 = config.numPizzas > 0 && config.doughBallWeight > 0;    return (        <div className="max-w-3xl mx-auto space-y-12 pb-20">            {/* Header Enhanced */}            <div className="text-center pt-8">                <div className="inline-flex p-3 rounded-2xl bg-[#51a145]/10 text-[#51a145] mb-4">                    <SparklesIcon className="w-8 h-8" />                </div>                <h2 className="text-3xl font-black text-[#1B4332] tracking-tight">                    {t('calculator.wizard_mode_title', { defaultValue: 'Dough Wizard' })}                </h2>                <p className="text-slate-500 mt-2 font-medium">                    {t('calculator.wizard_subtitle', { defaultValue: "Let's create your perfect dough formula, step by step." })}                </p>            </div>            {/* Step 1: Style Essence */}            <div className={`transition-all duration-500 ${currentStep === 1 ? 'scale-100 opacity-100' : 'scale-95 opacity-50 pointer-events-none'}`}>                <StepIndicator                    step={1}                    title={t('calculator.wz_step1_title', { defaultValue: '1. Choose Your Style' })}                    description={t('calculator.wz_step1_desc', { defaultValue: 'The style defines the "soul" of your dough—its hydration, fat content, and authentic character.' })}                    active={currentStep === 1}                    completed={currentStep > 1}                />                {currentStep === 1 && (                    <div className="animate-in slide-in-from-bottom-4 duration-500">                        <StyleSection                            config={config}                            onBakeTypeChange={onBakeTypeChange}                            onStyleChange={(id) => {                                onStyleChange(id);                                setTimeout(() => {                                    setCurrentStep(2);                                }, 600);                            }}                            recipeStylesToShow={DOUGH_STYLE_PRESETS.filter(p => p.type === config.bakeType)}                            isBasic={true}                            currentPreset={DOUGH_STYLE_PRESETS.find(p => p.id === config.stylePresetId)}                            onResetPreset={() => onStyleChange('')}                            customPresets={customPresets}                            isFavorite={isFavorite || (() => false)}                        />                    </div>                )}                {currentStep > 1 && (                    <div className="flex justify-center mt-4">                        <button onClick={() => setCurrentStep(1)} className="text-xs font-bold text-[#51a145] uppercase tracking-widest hover:underline flex items-center gap-2">                            <RotateCcwIcon size={12} /> {t('calculator.change_style', { defaultValue: 'Change Style' })}                        </button>                    </div>                )}            </div>            {/* Step 2: Batch Size */}            <div className={`transition-all duration-500 ${currentStep === 2 ? 'scale-100 opacity-100' : currentStep > 2 ? 'scale-95 opacity-50 pointer-events-none' : 'opacity-0 translate-y-8 disabled'}`}>                <StepIndicator                    step={2}                    title={t('calculator.wz_step2_title', { defaultValue: '2. Batch Yield' })}                    description={t('calculator.wz_step2_desc', { defaultValue: 'How many people are we feeding? This determines the total flour and volume needed.' })}                    active={currentStep === 2}                    completed={currentStep > 2}                />                {currentStep === 2 && (                    <div className="animate-in slide-in-from-bottom-4 duration-500 bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">                        <QuantitySection                            config={config}                            onConfigChange={onConfigChange}                            calculationMode={calculationMode}                            onCalculationModeChange={onCalculationModeChange}                            errors={errors}                            getInputClasses={(err) => `block w-full rounded-2xl border-slate-200 bg-slate-50 py-4 px-6 text-2xl font-black text-slate-900 focus:border-[#51a145] focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none ${err ? 'border-red-300' : ''}`}                            numPizzasRef={inputRefs?.numPizzas}                            minDoughBallWeight={getStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.min || 150}                            maxDoughBallWeight={getStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.max || 1000}                        />                        <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-50">                            <button onClick={prevStep} className="text-slate-400 font-bold uppercase text-[10px] tracking-widest hover:text-slate-600 transition-colors">{t('calculator:previous')}</button>                            <button                                onClick={nextStep}                                disabled={!canProceedStep2}                                className="px-10 py-4 rounded-full bg-[#51a145] text-white font-black uppercase tracking-widest shadow-xl shadow-[#51a145]/20 hover:brightness-110 disabled:opacity-50 disabled:grayscale transition-all active:scale-95 flex items-center gap-2"                            >                                {t('general.next', { defaultValue: 'Next' })} <ArrowRightIcon size={18} />                            </button>                        </div>                    </div>                )}            </div>            {/* Step 3: Texture & Time */}            <div className={`transition-all duration-500 ${currentStep === 3 ? 'scale-100 opacity-100' : currentStep > 3 ? 'scale-95 opacity-50 pointer-events-none' : 'opacity-0 translate-y-8'}`}>                <StepIndicator                    step={3}                    title={t('calculator.wz_step3_title', { defaultValue: '3. Texture & Time' })}                    description={t('calculator.wz_step3_desc', { defaultValue: 'Humidity creates the bubbles; time creates the flavor. Choose your path.' })}                    active={currentStep === 3}                    completed={currentStep > 3}                />                {currentStep === 3 && (                    <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-8">                        <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">                            <h4 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-6">{t('calculator.wz_texture_didactic', { defaultValue: 'Desired Texture' })}</h4>                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">                                <button onClick={() => { handleTextureSelect('easy'); }} className={`p-6 rounded-3xl border-2 text-left transition-all ${config.hydration <= 60 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>                                    <CubeIcon className="mb-3 text-[#51a145]" />                                    <span className="block font-black text-[#1B4332]">{t('calculator.wz_easy', { defaultValue: 'Firm' })}</span>                                    <span className="text-[10px] text-slate-500 font-medium">{t('calculator:beginner_friendly_crispy')}</span>                                </button>                                <button onClick={() => { handleTextureSelect('balanced'); }} className={`p-6 rounded-3xl border-2 text-left transition-all ${config.hydration > 60 && config.hydration <= 68 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>                                    <ScaleIcon className="mb-3 text-[#51a145]" />                                    <span className="block font-black text-[#1B4332]">{t('calculator.wz_balanced', { defaultValue: 'Classic' })}</span>                                    <span className="text-[10px] text-slate-500 font-medium">{t('calculator:the_artisan_gold_standard')}</span>                                </button>                                <button onClick={() => { handleTextureSelect('airy'); }} className={`p-6 rounded-3xl border-2 text-left transition-all ${config.hydration > 68 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>                                    <CloudIcon className="mb-3 text-[#51a145]" />                                    <span className="block font-black text-[#1B4332]">{t('calculator.wz_airy', { defaultValue: 'Airy' })}</span>                                    <span className="text-[10px] text-slate-500 font-medium">{t('calculator:big_bubbles_expert_skill')}</span>                                </button>                            </div>                        </div>                        <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">                            <h4 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-6">{t('calculator.wz_time_didactic', { defaultValue: 'Baking Timeline' })}</h4>                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">                                <button onClick={() => handleTimeSelect('asap')} className={`p-6 rounded-3xl border-2 text-left flex items-center gap-4 transition-all ${config.yeastPercentage > 0.4 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>                                    <RocketIcon className="text-amber-500" />                                    <div>                                        <span className="block font-black text-[#1B4332]">{t('calculator.wz_asap', { defaultValue: 'Fast (Today)' })}</span>                                        <span className="text-[10px] text-slate-500">Ready in 3-5 hours.</span>                                    </div>                                </button>                                <button onClick={() => handleTimeSelect('tomorrow')} className={`p-6 rounded-3xl border-2 text-left flex items-center gap-4 transition-all ${config.yeastPercentage <= 0.4 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>                                    <MoonIcon className="text-blue-500" />                                    <div>                                        <span className="block font-black text-[#1B4332]">{t('calculator.wz_tomorrow', { defaultValue: 'Slow (Next Day)' })}</span>                                        <span className="text-[10px] text-slate-500">{t('calculator:maximum_flavor_cold_ferment')}</span>                                    </div>                                </button>                            </div>                        </div>                        <div className="flex justify-between items-center">                            <button onClick={prevStep} className="text-slate-400 font-bold uppercase text-[10px] tracking-widest hover:text-slate-600 transition-colors">{t('calculator:previous')}</button>                            <button                                onClick={() => {                                    onCalculationModeChange('TARGET_TIME');                                    nextStep();                                }}                                className="px-10 py-4 rounded-full bg-[#51a145] text-white font-black uppercase tracking-widest shadow-xl shadow-[#51a145]/20 hover:brightness-110 transition-all active:scale-95"                            >                                {t('general.next', { defaultValue: 'Next' })}                            </button>                        </div>                    </div>                )}            </div>            {/* Step 4: Logistics & Timeline */}            <div className={`transition-all duration-500 ${currentStep === 4 ? 'scale-100 opacity-100' : currentStep > 4 ? 'scale-95 opacity-50 pointer-events-none' : 'opacity-0 translate-y-8'}`}>                <StepIndicator                    step={4}                    title={t('calculator.wz_step4_title', { defaultValue: '4. Production & Logistics' })}                    description={t('calculator.wz_step4_desc', { defaultValue: 'Plan your bake. When do you want to eat? We will reverse engineer the schedule for you.' })}                    active={currentStep === 4}                    completed={currentStep > 4}                />                {currentStep === 4 && (                    <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-6">                        <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">                            <div className="mb-6 flex items-center gap-3">                                <MapPinIcon className="text-indigo-500" />                                <h4 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em]">{t('calculator.logistics_planning')}</h4>                            </div>                            <QuantitySection                                config={config}                                onConfigChange={onConfigChange}                                calculationMode="TARGET_TIME"                                onCalculationModeChange={onCalculationModeChange}                                errors={errors}                                getInputClasses={(err) => `block w-full rounded-2xl border-indigo-100 bg-indigo-50/30 py-4 px-6 text-2xl font-black text-slate-900 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all outline-none ${err ? 'border-red-300' : ''}`}                                numPizzasRef={inputRefs?.numPizzas}                            />                        </div>                        {config.targetTime && (                            <div className="animate-in slide-in-from-bottom-4 duration-700">                                <ProductionTimeline config={config} hasProAccess={hasProAccess} />                            </div>                        )}                        <div className="flex justify-between items-center mt-8">                            <button onClick={prevStep} className="text-slate-400 font-bold uppercase text-[10px] tracking-widest hover:text-slate-600 transition-colors">{t('calculator:previous')}</button>                            <button                                onClick={nextStep}                                className="px-10 py-4 rounded-full bg-indigo-600 text-white font-black uppercase tracking-widest shadow-xl shadow-indigo-600/20 hover:brightness-110 transition-all active:scale-95"                            >                                {t('general.next', { defaultValue: 'Next' })}                            </button>                        </div>                    </div>                )}            </div>            {/* Step 5: Final Calibration */}            <div className={`transition-all duration-500 ${currentStep === 5 ? 'scale-100 opacity-100' : 'opacity-0 translate-y-8'}`}>                <StepIndicator                    step={5}                    title={t('calculator.wz_step5_title', { defaultValue: '5. Final Environment' })}                    description={t('calculator.wz_step5_desc', { defaultValue: 'Lastly, tell us about your kitchen temperature. This is the secret to timing.' })}                    active={currentStep === 5}                    completed={false}                />                {currentStep === 5 && (                    <div className="animate-in slide-in-from-bottom-4 duration-500 bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">                        <EnvironmentSection                            config={config}                            onConfigChange={onConfigChange}                            defaultOven={defaultOven}                        />                        <div className="mt-12 text-center">                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-4">{t('calculator:youre_ready_to_bake_like_an_artisan')}</p>                            <div className="flex flex-col sm:flex-row gap-4 justify-center">                                <button onClick={prevStep} className="px-8 py-5 rounded-3xl border-2 border-slate-100 text-slate-400 font-black uppercase tracking-widest hover:bg-slate-50 transition-all">{t('calculator:back')}</button>                                <button                                    onClick={() => {                                        const resultsEl = document.getElementById('tour-results-metrics');                                        if (resultsEl) {                                            resultsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });                                        }                                    }}                                    className="px-12 py-5 rounded-3xl bg-gradient-to-br from-[#51a145] to-[#1B4332] text-white font-black text-lg uppercase tracking-[0.1em] shadow-2xl shadow-emerald-900/20 hover:scale-105 transition-all active:scale-95 flex items-center justify-center gap-3"                                >                                    <SparklesIcon size={24} />                                    {t('calculator.reveal_recipe', { defaultValue: 'Reveal My Formula' })}                                </button>                            </div>                        </div>                    </div>                )}            </div>        </div>    );};interface RotateCcwIconProps {    size?: number;    className?: string;}const RotateCcwIcon: React.FC<RotateCcwIconProps> = ({ size = 16, className }) => (    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>        <path d="M1 4v6h6" />        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />    </svg>);
+import React, { useState } from 'react';
+import { DoughConfig, FormErrors, BakeType, YeastType, FlourDefinition, Levain, DoughResult } from '@/types';
+import { useTranslation } from '@/i18n';
+import StyleSection from '@/components/calculator/sections/StyleSection';
+import QuantitySection from '@/components/calculator/sections/QuantitySection';
+import { FlourSelector } from '@/components/calculator/FlourSelector';
+import {
+    CheckCircleIcon,
+    ArrowRightIcon,
+    BeakerIcon,
+    ClockIcon,
+    FireIcon,
+    FlourIcon,
+    CubeIcon,
+    ScaleIcon,
+    CloudIcon,
+    RocketIcon,
+    MoonIcon,
+    LightBulbIcon,
+    SparklesIcon,
+    CalendarIcon,
+    MapPinIcon
+} from '@/components/ui/Icons';
+import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
+import { DOUGH_STYLE_PRESETS } from '@/constants';
+import { getStyleById } from '@/data/styles/registry';
+import { ProductionTimeline } from '@/components/calculator/ProductionTimeline';
+
+interface WizardModeProps {
+    config: DoughConfig;
+    errors: FormErrors;
+    onConfigChange: (newConfig: Partial<DoughConfig>) => void;
+    onBakeTypeChange: (bakeType: BakeType) => void;
+    onStyleChange: (presetId: string) => void;
+    onYeastTypeChange: (yeastType: YeastType) => void;
+    levains: Levain[];
+    selectedLevain?: Levain;
+    inputRefs?: {
+        numPizzas?: React.RefObject<HTMLInputElement>;
+    };
+    defaultOven?: any;
+    selectedFlour?: FlourDefinition;
+    calculationMode: any;
+    onCalculationModeChange: any;
+    hasProAccess: boolean;
+    onOpenPaywall: () => void;
+    results: DoughResult | null;
+    customPresets?: any[];
+    isFavorite?: (id: string, type: string) => boolean;
+    isCalculating?: boolean;
+}
+
+export const WizardMode: React.FC<WizardModeProps> = ({
+    config,
+    errors,
+    onConfigChange,
+    onBakeTypeChange,
+    onStyleChange,
+    onYeastTypeChange,
+    levains,
+    selectedLevain,
+    inputRefs,
+    defaultOven,
+    selectedFlour,
+    calculationMode,
+    onCalculationModeChange,
+    hasProAccess,
+    onOpenPaywall,
+    results,
+    customPresets = [],
+    isFavorite,
+    isCalculating,
+}) => {
+    const { t } = useTranslation();
+    const [currentStep, setCurrentStep] = useState(1);
+
+    // Helpers
+    const nextStep = () => setCurrentStep(prev => prev + 1);
+    const prevStep = () => setCurrentStep(prev => Math.max(1, prev - 1));
+
+    const handleTextureSelect = (type: 'easy' | 'balanced' | 'airy') => {
+        let hydration = 60;
+        let oil = config.oil;
+        if (type === 'easy') {
+            hydration = 58;
+            oil = config.bakeType === 'PIZZAS' ? 2 : config.oil;
+        } else if (type === 'balanced') {
+            hydration = 63;
+        } else if (type === 'airy') {
+            hydration = 70;
+        }
+        onConfigChange({ hydration, oil });
+    };
+
+    const handleTimeSelect = (type: 'asap' | 'tomorrow' | 'weekend') => {
+        if (type === 'asap') {
+            onConfigChange({
+                fermentationTechnique: 'DIRECT' as any,
+                yeastPercentage: 0.8
+            });
+        } else {
+            onConfigChange({
+                fermentationTechnique: 'DIRECT' as any,
+                yeastPercentage: 0.3
+            });
+        }
+    };
+
+    const StepIndicator = ({ step, title, description, active, completed }: { step: number, title: string, description: string, active: boolean, completed: boolean }) => (
+        <div className={`mb-8 p-6 rounded-2xl border-2 transition-all duration-300 ${active ? 'bg-gradient-to-br from-white to-[#51a145]/5 border-[#51a145] shadow-xl shadow-[#51a145]/10' : completed ? 'bg-emerald-50/30 border-emerald-100' : 'bg-slate-50/50 border-slate-200'}`}>
+            <div className="flex items-start gap-5">
+                <div className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center font-black text-2xl transition-all duration-300 ${active ? 'bg-gradient-to-br from-[#51a145] to-[#36782c] text-white shadow-lg shadow-[#51a145]/30 scale-110' : completed ? 'bg-emerald-500 text-white' : 'bg-white border-2 border-slate-200 text-slate-300'}`}>
+                    {completed ? <CheckCircleIcon size={24} /> : step}
+                </div>
+                <div className="flex-1">
+                    <h3 className={`text-base font-black uppercase tracking-wider mb-2 ${active ? 'text-[#1B4332]' : completed ? 'text-emerald-700' : 'text-slate-400'}`}>
+                        {title}
+                    </h3>
+                    <p className={`text-sm leading-relaxed ${active ? 'text-slate-600' : completed ? 'text-emerald-600/70' : 'text-slate-400'}`}>
+                        {description}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+
+    const canProceedStep2 = config.numPizzas > 0 && config.doughBallWeight > 0;
+
+    return (
+        <div className="max-w-3xl mx-auto space-y-12 pb-20">
+            {/* Header Enhanced */}
+            <div className="text-center pt-8">
+                <div className="inline-flex p-3 rounded-2xl bg-[#51a145]/10 text-[#51a145] mb-4">
+                    <SparklesIcon className="w-8 h-8" />
+                </div>
+                <h2 className="text-3xl font-black text-[#1B4332] tracking-tight">
+                    {t('calculator.wizard_mode_title', { defaultValue: 'Dough Wizard' })}
+                </h2>
+                <p className="text-slate-500 mt-2 font-medium">
+                    {t('calculator.wizard_subtitle', { defaultValue: "Let's create your perfect dough formula, step by step." })}
+                </p>
+            </div>
+
+            {/* Step 1: Style Essence */}
+            <div className={`transition-all duration-500 ${currentStep === 1 ? 'scale-100 opacity-100' : 'scale-95 opacity-50 pointer-events-none'}`}>
+                <StepIndicator
+                    step={1}
+                    title={t('calculator.wz_step1_title', { defaultValue: '1. Choose Your Style' })}
+                    description={t('calculator.wz_step1_desc', { defaultValue: 'The style defines the "soul" of your dough—its hydration, fat content, and authentic character.' })}
+                    active={currentStep === 1}
+                    completed={currentStep > 1}
+                />
+                {currentStep === 1 && (
+                    <div className="animate-in slide-in-from-bottom-4 duration-500">
+                        <StyleSection
+                            config={config}
+                            onBakeTypeChange={onBakeTypeChange}
+                            onStyleChange={(id) => {
+                                onStyleChange(id);
+                                setTimeout(() => {
+                                    setCurrentStep(2);
+                                }, 600);
+                            }}
+                            recipeStylesToShow={DOUGH_STYLE_PRESETS.filter(p => p.type === config.bakeType)}
+                            isBasic={true}
+                            currentPreset={DOUGH_STYLE_PRESETS.find(p => p.id === config.stylePresetId)}
+                            onResetPreset={() => onStyleChange('')}
+                            customPresets={customPresets}
+                            isFavorite={isFavorite || (() => false)}
+                        />
+                    </div>
+                )}
+                {currentStep > 1 && (
+                    <div className="flex justify-center mt-4">
+                        <button onClick={() => setCurrentStep(1)} className="text-xs font-bold text-[#51a145] uppercase tracking-widest hover:underline flex items-center gap-2">
+                            <RotateCcwIcon size={12} /> {t('calculator.change_style', { defaultValue: 'Change Style' })}
+                        </button>
+                    </div>
+                )}
+            </div>
+
+            {/* Step 2: Batch Size */}
+            <div className={`transition-all duration-500 ${currentStep === 2 ? 'scale-100 opacity-100' : currentStep > 2 ? 'scale-95 opacity-50 pointer-events-none' : 'opacity-0 translate-y-8 disabled'}`}>
+                <StepIndicator
+                    step={2}
+                    title={t('calculator.wz_step2_title', { defaultValue: '2. Batch Yield' })}
+                    description={t('calculator.wz_step2_desc', { defaultValue: 'How many people are we feeding? This determines the total flour and volume needed.' })}
+                    active={currentStep === 2}
+                    completed={currentStep > 2}
+                />
+                {currentStep === 2 && (
+                    <div className="animate-in slide-in-from-bottom-4 duration-500 bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <QuantitySection
+                            config={config}
+                            onConfigChange={onConfigChange}
+                            calculationMode={calculationMode}
+                            onCalculationModeChange={onCalculationModeChange}
+                            errors={errors}
+                            getInputClasses={(err) => `block w-full rounded-2xl border-slate-200 bg-slate-50 py-4 px-6 text-2xl font-black text-slate-900 focus:border-[#51a145] focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none ${err ? 'border-red-300' : ''}`}
+                            numPizzasRef={inputRefs?.numPizzas}
+                            minDoughBallWeight={getStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.min || 150}
+                            maxDoughBallWeight={getStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.max || 1000}
+                        />
+                        <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-50">
+                            <button onClick={prevStep} className="text-slate-400 font-bold uppercase text-[10px] tracking-widest hover:text-slate-600 transition-colors">{t('calculator:previous')}</button>
+                            <button
+                                onClick={nextStep}
+                                disabled={!canProceedStep2}
+                                className="px-10 py-4 rounded-full bg-[#51a145] text-white font-black uppercase tracking-widest shadow-xl shadow-[#51a145]/20 hover:brightness-110 disabled:opacity-50 disabled:grayscale transition-all active:scale-95 flex items-center gap-2"
+                            >
+                                {t('general.next', { defaultValue: 'Next' })} <ArrowRightIcon size={18} />
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Step 3: Texture & Time */}
+            <div className={`transition-all duration-500 ${currentStep === 3 ? 'scale-100 opacity-100' : currentStep > 3 ? 'scale-95 opacity-50 pointer-events-none' : 'opacity-0 translate-y-8'}`}>
+                <StepIndicator
+                    step={3}
+                    title={t('calculator.wz_step3_title', { defaultValue: '3. Texture & Time' })}
+                    description={t('calculator.wz_step3_desc', { defaultValue: 'Humidity creates the bubbles; time creates the flavor. Choose your path.' })}
+                    active={currentStep === 3}
+                    completed={currentStep > 3}
+                />
+                {currentStep === 3 && (
+                    <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-8">
+                        <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                            <h4 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-6">{t('calculator.wz_texture_didactic', { defaultValue: 'Desired Texture' })}</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <button onClick={() => { handleTextureSelect('easy'); }} className={`p-6 rounded-3xl border-2 text-left transition-all ${config.hydration <= 60 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>
+                                    <CubeIcon className="mb-3 text-[#51a145]" />
+                                    <span className="block font-black text-[#1B4332]">{t('calculator.wz_easy', { defaultValue: 'Firm' })}</span>
+                                    <span className="text-[10px] text-slate-500 font-medium">{t('calculator:beginner_friendly_crispy')}</span>
+                                </button>
+                                <button onClick={() => { handleTextureSelect('balanced'); }} className={`p-6 rounded-3xl border-2 text-left transition-all ${config.hydration > 60 && config.hydration <= 68 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>
+                                    <ScaleIcon className="mb-3 text-[#51a145]" />
+                                    <span className="block font-black text-[#1B4332]">{t('calculator.wz_balanced', { defaultValue: 'Classic' })}</span>
+                                    <span className="text-[10px] text-slate-500 font-medium">{t('calculator:the_artisan_gold_standard')}</span>
+                                </button>
+                                <button onClick={() => { handleTextureSelect('airy'); }} className={`p-6 rounded-3xl border-2 text-left transition-all ${config.hydration > 68 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>
+                                    <CloudIcon className="mb-3 text-[#51a145]" />
+                                    <span className="block font-black text-[#1B4332]">{t('calculator.wz_airy', { defaultValue: 'Airy' })}</span>
+                                    <span className="text-[10px] text-slate-500 font-medium">{t('calculator:big_bubbles_expert_skill')}</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                            <h4 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-6">{t('calculator.wz_time_didactic', { defaultValue: 'Baking Timeline' })}</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <button onClick={() => handleTimeSelect('asap')} className={`p-6 rounded-3xl border-2 text-left flex items-center gap-4 transition-all ${config.yeastPercentage > 0.4 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>
+                                    <RocketIcon className="text-amber-500" />
+                                    <div>
+                                        <span className="block font-black text-[#1B4332]">{t('calculator.wz_asap', { defaultValue: 'Fast (Today)' })}</span>
+                                        <span className="text-[10px] text-slate-500">Ready in 3-5 hours.</span>
+                                    </div>
+                                </button>
+                                <button onClick={() => handleTimeSelect('tomorrow')} className={`p-6 rounded-3xl border-2 text-left flex items-center gap-4 transition-all ${config.yeastPercentage <= 0.4 ? 'border-[#51a145] bg-[#51a145]/5' : 'border-slate-100 hover:border-slate-200'}`}>
+                                    <MoonIcon className="text-blue-500" />
+                                    <div>
+                                        <span className="block font-black text-[#1B4332]">{t('calculator.wz_tomorrow', { defaultValue: 'Slow (Next Day)' })}</span>
+                                        <span className="text-[10px] text-slate-500">{t('calculator:maximum_flavor_cold_ferment')}</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                            <button onClick={prevStep} className="text-slate-400 font-bold uppercase text-[10px] tracking-widest hover:text-slate-600 transition-colors">{t('calculator:previous')}</button>
+                            <button
+                                onClick={() => {
+                                    onCalculationModeChange('TARGET_TIME');
+                                    nextStep();
+                                }}
+                                className="px-10 py-4 rounded-full bg-[#51a145] text-white font-black uppercase tracking-widest shadow-xl shadow-[#51a145]/20 hover:brightness-110 transition-all active:scale-95"
+                            >
+                                {t('general.next', { defaultValue: 'Next' })}
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Step 4: Logistics & Timeline */}
+            <div className={`transition-all duration-500 ${currentStep === 4 ? 'scale-100 opacity-100' : currentStep > 4 ? 'scale-95 opacity-50 pointer-events-none' : 'opacity-0 translate-y-8'}`}>
+                <StepIndicator
+                    step={4}
+                    title={t('calculator.wz_step4_title', { defaultValue: '4. Production & Logistics' })}
+                    description={t('calculator.wz_step4_desc', { defaultValue: 'Plan your bake. When do you want to eat? We will reverse engineer the schedule for you.' })}
+                    active={currentStep === 4}
+                    completed={currentStep > 4}
+                />
+                {currentStep === 4 && (
+                    <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-6">
+                        <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                            <div className="mb-6 flex items-center gap-3">
+                                <MapPinIcon className="text-indigo-500" />
+                                <h4 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em]">{t('calculator.logistics_planning')}</h4>
+                            </div>
+                            <QuantitySection
+                                config={config}
+                                onConfigChange={onConfigChange}
+                                calculationMode="TARGET_TIME"
+                                onCalculationModeChange={onCalculationModeChange}
+                                errors={errors}
+                                getInputClasses={(err) => `block w-full rounded-2xl border-indigo-100 bg-indigo-50/30 py-4 px-6 text-2xl font-black text-slate-900 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all outline-none ${err ? 'border-red-300' : ''}`}
+                                numPizzasRef={inputRefs?.numPizzas}
+                            />
+                        </div>
+
+                        {config.targetTime && (
+                            <div className="animate-in slide-in-from-bottom-4 duration-700">
+                                <ProductionTimeline config={config} hasProAccess={hasProAccess} />
+                            </div>
+                        )}
+
+                        <div className="flex justify-between items-center mt-8">
+                            <button onClick={prevStep} className="text-slate-400 font-bold uppercase text-[10px] tracking-widest hover:text-slate-600 transition-colors">{t('calculator:previous')}</button>
+                            <button
+                                onClick={nextStep}
+                                className="px-10 py-4 rounded-full bg-indigo-600 text-white font-black uppercase tracking-widest shadow-xl shadow-indigo-600/20 hover:brightness-110 transition-all active:scale-95"
+                            >
+                                {t('general.next', { defaultValue: 'Next' })}
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Step 5: Final Calibration */}
+            <div className={`transition-all duration-500 ${currentStep === 5 ? 'scale-100 opacity-100' : 'opacity-0 translate-y-8'}`}>
+                <StepIndicator
+                    step={5}
+                    title={t('calculator.wz_step5_title', { defaultValue: '5. Final Environment' })}
+                    description={t('calculator.wz_step5_desc', { defaultValue: 'Lastly, tell us about your kitchen temperature. This is the secret to timing.' })}
+                    active={currentStep === 5}
+                    completed={false}
+                />
+                {currentStep === 5 && (
+                    <div className="animate-in slide-in-from-bottom-4 duration-500 bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <EnvironmentSection
+                            config={config}
+                            onConfigChange={onConfigChange}
+                            defaultOven={defaultOven}
+                        />
+
+                        <div className="mt-12 text-center">
+                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-4">{t('calculator:youre_ready_to_bake_like_an_artisan')}</p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button onClick={prevStep} className="px-8 py-5 rounded-3xl border-2 border-slate-100 text-slate-400 font-black uppercase tracking-widest hover:bg-slate-50 transition-all">{t('calculator:back')}</button>
+                                <button
+                                    onClick={() => {
+                                        const resultsEl = document.getElementById('tour-results-metrics');
+                                        if (resultsEl) {
+                                            resultsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                        }
+                                    }}
+                                    disabled={isCalculating}
+                                    className="px-12 py-5 rounded-3xl bg-gradient-to-br from-[#51a145] to-[#1B4332] text-white font-black text-lg uppercase tracking-[0.1em] shadow-2xl shadow-emerald-900/20 hover:scale-105 transition-all active:scale-95 flex items-center justify-center gap-3 disabled:opacity-70"
+                                >
+                                    {isCalculating ? (
+                                        <>
+                                            <div className="flex gap-1">
+                                                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                                                <span className="w-2 h-2 rounded-full bg-white animate-pulse [animation-delay:0.2s]" />
+                                                <span className="w-2 h-2 rounded-full bg-white animate-pulse [animation-delay:0.4s]" />
+                                            </div>
+                                            {t('calculator.calculating', { defaultValue: 'Calculating...' })}
+                                        </>
+                                    ) : (
+                                        <>
+                                            <SparklesIcon size={24} />
+                                            {t('calculator.reveal_recipe', { defaultValue: 'Reveal My Formula' })}
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+interface RotateCcwIconProps {
+    size?: number;
+    className?: string;
+}
+
+const RotateCcwIcon: React.FC<RotateCcwIconProps> = ({ size = 16, className }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <path d="M1 4v6h6" />
+        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+    </svg>
+);

@@ -45,7 +45,9 @@ export const CalculatorInputs: React.FC = () => {
                     <input
                         type="text"
                         inputMode="decimal"
-                        className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
+                        pattern="[0-9]*"
+                        autoComplete="off"
+                        className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all min-h-[44px]"
                         value={flourInput.value}
                         onChange={(e) => flourInput.onChange(e.target.value)}
                         onBlur={flourInput.onBlur}
@@ -62,7 +64,9 @@ export const CalculatorInputs: React.FC = () => {
                         <input
                             type="text"
                             inputMode="decimal"
-                            className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                            pattern="[0-9]*"
+                            autoComplete="off"
+                            className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all min-h-[44px]"
                             value={hydrationInput.value}
                             onChange={(e) => hydrationInput.onChange(e.target.value)}
                             onBlur={hydrationInput.onBlur}
@@ -79,7 +83,9 @@ export const CalculatorInputs: React.FC = () => {
                         <input
                             type="text"
                             inputMode="decimal"
-                            className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                            pattern="[0-9]*"
+                            autoComplete="off"
+                            className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all min-h-[44px]"
                             value={waterInput.value}
                             onChange={(e) => waterInput.onChange(e.target.value)}
                             onBlur={waterInput.onBlur}

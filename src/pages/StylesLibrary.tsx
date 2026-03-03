@@ -4,9 +4,14 @@ import { DoughStyleDefinition } from '@/types/styles';
 import { Region, Category } from '@/types/dough';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { StyleCard } from '@/components/styles/StyleCard';
-import { Search, ChefHat, Globe2, ChevronDown, Calendar } from 'lucide-react';
+import { Search, ChefHat, Globe2, ChevronDown, Calendar, Filter, Heart } from 'lucide-react';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
 import { useTranslation } from '@/i18n';
+import { useStyles } from '@/contexts/StylesProvider';
+import { useUser } from '@/contexts/UserProvider';
+import { Skeleton } from '@/components/ui/Skeleton';
+import { StyleCardSkeleton } from '@/components/StyleCardSkeleton';
+import { EmptyState } from '@/components/ui/EmptyState';
 
 interface StylesLibraryPageProps {
     onNavigateToDetail: (id: string) => void;
@@ -34,21 +39,26 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
     const { t } = useTranslation(['common', 'styles']);
 
     // State
-    const [filterCategory, setFilterCategory] = useState<Category | 'All'>('All');
+    const [filterCategory, setFilterCategory] = useState<Category | 'All' | 'Favorites'>('All');
     const [filterRegion, setFilterRegion] = useState<Region | 'All' | 'Global'>('All');
     const [searchQuery, setSearchQuery] = useState('');
 
+    const { styles, isLoading: stylesLoading } = useStyles();
+    const { isFavorite } = useUser();
+
     // --- AGGREGATE DATA ---
     const allStyles: DoughStyleDefinition[] = useMemo(() => {
-        return STYLES_DATA;
-    }, []);
+        return styles && styles.length > 0 ? styles : STYLES_DATA;
+    }, [styles]);
 
     // --- FILTER LOGIC ---
     const filteredStyles = useMemo(() => {
         return allStyles.filter(style => {
             // Category Filter
             const styleCat = style.category?.toLowerCase();
-            const matchesCategory = filterCategory === 'All' ||
+            const matchesCategory =
+                filterCategory === 'All' ||
+                (filterCategory === 'Favorites' && isFavorite(style.id)) ||
                 (styleCat === filterCategory.toLowerCase()) ||
                 (filterCategory === 'Enriched' && (styleCat === 'enriched_bread' || styleCat === 'burger_bun' || styleCat === 'pastry' || styleCat === 'buns' || styleCat === 'snack' || styleCat === 'enriched')) ||
                 (filterCategory === 'Bread' && (styleCat === 'bread' || styleCat === 'flatbread' || styleCat === 'soft bread'));
@@ -154,6 +164,16 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                         {cat}
                                     </button>
                                 ))}
+                                <button
+                                    onClick={() => setFilterCategory(current => current === 'Favorites' ? 'All' : 'Favorites')}
+                                    className={`px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${filterCategory === 'Favorites'
+                                        ? 'bg-rose-50 text-rose-600 shadow-sm'
+                                        : 'text-dlp-text-muted hover:text-rose-500 hover:bg-white/50'
+                                        }`}
+                                >
+                                    <Heart className={`w-3.5 h-3.5 ${filterCategory === 'Favorites' ? 'fill-current' : ''}`} />
+                                    {t('common.favorites', { defaultValue: 'Favorites' })}
+                                </button>
                             </div>
 
                             {/* Secondary Region Dropdown */}
@@ -184,7 +204,13 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
             </div>
 
             {/* --- CONTENT GRID --- */}
-            {filteredStyles.length > 0 ? (
+            {stylesLoading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-0">
+                    {Array.from({ length: 9 }).map((_, i) => (
+                        <StyleCardSkeleton key={i} />
+                    ))}
+                </div>
+            ) : filteredStyles.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-0">
                     {filteredStyles.map(style => (
                         <div key={style.id} className="h-full">
@@ -196,17 +222,38 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                     ))}
                 </div>
             ) : (
-                <div className="text-center py-24 bg-dlp-bg-soft rounded-[2rem] border border-dashed border-dlp-border mx-4 md:mx-0">
-                    <div className="w-16 h-16 bg-dlp-bg-card rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-dlp-text-muted">
-                        <Search className="w-6 h-6" />
-                    </div>
-                    <p className="text-dlp-text-muted text-lg font-medium">{t('styles.no_styles_match_your_filter')}</p>
-                    <button
-                        onClick={() => { setFilterCategory('All'); setFilterRegion('All'); setSearchQuery(''); }}
-                        className="mt-4 text-dlp-brand font-bold hover:underline"
-                    >
-                        {t('clear_filters')}
-                    </button>
+                <div className="py-12 bg-dlp-bg-soft/30 rounded-[2rem] border border-dashed border-dlp-border mx-4 md:mx-0">
+                    {searchQuery ? (
+                        <EmptyState
+                            icon={<Search className="w-12 h-12 text-dlp-border-strong" />}
+                            title="Nenhum resultado de busca"
+                            description={`Não encontramos estilos correspondentes a "${searchQuery}". Tente outros termos.`}
+                            action={{
+                                label: 'Limpar busca',
+                                onClick: () => setSearchQuery('')
+                            }}
+                        />
+                    ) : filterCategory === 'Favorites' ? (
+                        <EmptyState
+                            icon={<Heart className="w-12 h-12 text-rose-200" />}
+                            title="Nenhum favorito ainda"
+                            description="Clique no ❤️ em qualquer estilo para salvá-lo aqui para acesso rápido."
+                            action={{
+                                label: 'Explorar estilos',
+                                onClick: () => setFilterCategory('All')
+                            }}
+                        />
+                    ) : (
+                        <EmptyState
+                            icon={<Filter className="w-12 h-12 text-dlp-border-strong" />}
+                            title="Nenhum estilo nesta categoria"
+                            description="Ainda não temos estilos registrados nesta categoria específica."
+                            action={{
+                                label: 'Ver todos os estilos',
+                                onClick: () => setFilterCategory('All')
+                            }}
+                        />
+                    )}
                 </div>
             )}
 

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import CalculatorForm from '@/components/CalculatorForm';
 import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
 import { ResultsDisplay } from '@/components/ResultsDisplay';
@@ -101,11 +101,35 @@ interface CalculatorPageProps {
 }
 const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
   const { t } = useTranslation(['common', 'calculator', 'dashboard', 'method', 'ui']);
-  const { levains, addCustomPreset, customPresets, isFavorite, batches } = useUser();
+  const { levains, addCustomPreset, customPresets, isFavorite, batches, showUpsellBanner, setShowUpsellBanner } = useUser();
   const { navigate } = useRouter();
   const formRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
   const saveButtonRef = useRef<HTMLButtonElement>(null);
+  const calcCount = useRef(0);
+
+  // Simulate calculation effort for the "wow" factor
+  useEffect(() => {
+    if (props.config) {
+      setIsCalculating(true);
+      const timer = setTimeout(() => setIsCalculating(false), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [props.config]);
+
+  // Moment 3: 3rd calculation in session (R1-03)
+  useEffect(() => {
+    if (props.results && !props.hasProAccess) {
+      calcCount.current++;
+      if (calcCount.current === 3) {
+        setShowUpsellBanner(true);
+        const timer = setTimeout(() => setShowUpsellBanner(false), 8000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [props.results, props.hasProAccess, setShowUpsellBanner]);
+
   const selectedLevain = useMemo(() => {
     if (props.config.yeastType === YeastType.USER_LEVAIN) {
       return levains.find(l => l.id === props.config.levainId) || levains.find(l => l.isDefault) || levains[0];
@@ -125,6 +149,22 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
   };
   return (
     <div className="space-y-5 animate-slide-up pb-24">
+      {/* Moment 3: Upsell Banner (Subtle) */}
+      {showUpsellBanner && !props.hasProAccess && (
+        <div className="mx-4 p-3 bg-dlp-brand/5 border border-dlp-brand/20 rounded-xl flex items-center justify-between animate-fade-in shadow-sm backdrop-blur-sm">
+          <div className="flex items-center gap-2 text-dlp-text-primary text-xs font-medium">
+            <span className="text-lg">✨</span>
+            <span>Você está explorando muito hoje! Que tal precisão total com o Pro?</span>
+          </div>
+          <button
+            onClick={() => props.onOpenPaywall()}
+            className="text-[10px] font-black uppercase tracking-wider text-dlp-brand hover:underline"
+          >
+            Ver Planos
+          </button>
+        </div>
+      )}
+
       {/* Soft Upgrade Banner */}
       {!props.hasProAccess && batches.length >= 3 && (
         <div className="mx-4 p-3 bg-gradient-to-r from-emerald-50 to-white rounded-xl shadow-sm border border-emerald-100 flex items-center justify-between group cursor-pointer hover:shadow-md transition-all" onClick={props.onOpenPaywall}>
@@ -183,6 +223,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
               selectedLevain={selectedLevain}
               onSavePreset={handleSavePreset}
               isFavorite={isFavorite}
+              isCalculating={isCalculating}
             />
           </div>
         </div>

@@ -177,42 +177,6 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
         </header>
     );
 };
-
-const MobileBottomNav: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean; setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ activePage, handleNavigate, isMobileMenuOpen, setIsMobileMenuOpen }) => {
-    const { t } = useTranslation(['common']);
-
-    const navItems = [
-        { id: 'calculator', page: 'calculator', label: t('common.nav.calculator'), icon: CalculatorIcon },
-        { id: 'mylab', page: 'mylab', label: t('common.nav.lab'), icon: BeakerIcon },
-        { id: 'styles', page: 'styles', label: t('common.nav.styles'), icon: BatchesIcon },
-        { id: 'learn', page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
-        { id: 'tools', page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
-    ];
-
-    return (
-        <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-dlp-border pb-safe-area-bottom shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:hidden">
-            <div className="flex justify-around items-center h-16 px-2">
-                {navItems.map((item) => {
-                    const Icon = item.icon;
-                    const isActive = activePage === item.page || activePage.startsWith(item.page + '/');
-                    return (
-                        <button
-                            key={item.id}
-                            onClick={() => handleNavigate(item.page as Page)}
-                            className={`group flex flex-col items-center justify-center w-full h-full space-y-1 focus-ring rounded-lg ${isActive ? 'text-dlp-brand' : 'text-slate-400 hover:text-slate-600'}`}
-                            aria-label={item.label}
-                            aria-current={isActive ? 'page' : undefined}
-                        >
-                            <Icon className={`h-6 w-6 transition-transform group-active:scale-95 ${isActive ? 'scale-110' : ''}`} />
-                            <span className="text-[10px] font-medium truncate max-w-[64px]">{item.label}</span>
-                        </button>
-                    );
-                })}
-            </div>
-        </nav>
-    );
-};
-
 const Navigation: React.FC<NavigationProps> = (props) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -243,7 +207,6 @@ const Navigation: React.FC<NavigationProps> = (props) => {
             </a>
             <DesktopHeader {...props} handleNavigate={handleNavigate} />
             <MobileHeader {...props} handleNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
-            <MobileBottomNav {...props} handleNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
         </>
     );
 };

@@ -243,6 +243,13 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     bgClass="bg-indigo-50"
                                 />
                                 <LabFeatureCard
+                                    icon={<ArchiveBoxIcon className="h-6 w-6 text-teal-500" />}
+                                    title={t('common.calculation_history', { defaultValue: 'Cálculos Salvos' })}
+                                    description={t('common.calculation_history_desc', { defaultValue: 'Restaure fórmulas calculadas no passado.' })}
+                                    onClick={() => onNavigate('mylab/calculations' as any)}
+                                    bgClass="bg-teal-50"
+                                />
+                                <LabFeatureCard
                                     icon={<FireIcon className="h-6 w-6 text-orange-500" />}
                                     title={t('mylab.levain_tracker')}
                                     description={t('mylab.desc_levain_tracker')}

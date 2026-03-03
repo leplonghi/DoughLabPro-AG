@@ -30,6 +30,8 @@ import {
 import { ScrollText, MoreHorizontal } from 'lucide-react'; // Those missing from reg
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
 import { AdCard } from '@/marketing/ads/AdCard';
+import { StyleCardSkeleton } from '@/components/StyleCardSkeleton';
+import { EmptyState } from '@/components/ui/EmptyState';
 
 // ========================================================
 // 1. CONSTANTS & CONFIG
@@ -82,7 +84,7 @@ interface DoughStylesPageProps {
 }
 
 const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, onUseInCalculator }) => {
-    const { styles: stylesData } = useStyles();
+    const { styles: stylesData, isLoading } = useStyles();
     const { userStyles, isFavorite, deleteUserStyle } = useUser();
     const { t } = useTranslation(['common', 'styles']);
     const CATEGORY_FILTERS = getCategoryFilters(t);
@@ -356,24 +358,35 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
 
             {/* Results Grid */}
             <div className="space-y-12 pb-20">
-                {Object.keys(stylesByGroup).length === 0 ? (
-                    <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-200">
-                        <div className="inline-flex p-4 bg-slate-50 rounded-full mb-4">
-                            <Search className="w-8 h-8 text-slate-300" />
+                {isLoading ? (
+                    <div className="animate-fade-in">
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="h-8 w-48 bg-slate-200 rounded-lg animate-pulse"></div>
+                            <div className="h-px bg-slate-200 flex-grow"></div>
                         </div>
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">{t('general.no_styles_found')}</h3>
-                        <p className="text-slate-500 mb-6">{t('styles.try_adjusting_your_filters_or_search_terms')}</p>
-                        <button
-                            onClick={() => {
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {[...Array(8)].map((_, i) => (
+                                <StyleCardSkeleton key={i} />
+                            ))}
+                        </div>
+                    </div>
+                ) : filteredStyles.length === 0 ? (
+                    <EmptyState
+                        icon={<Search className="w-12 h-12 text-slate-300" />}
+                        title={t('general.no_styles_found')}
+                        description={t('styles.try_adjusting_your_filters_or_search_terms')}
+                        action={{
+                            label: t('common.clear_all_filters'),
+                            onClick: () => {
                                 setSearchTerm('');
                                 setSelectedCategory('All');
                                 setSelectedTags([]);
                                 setSelectedDifficulty([]);
                                 setSelectedRegions([]);
-                            }}
-                            className="text-dlp-brand-hover font-bold hover:underline"
-                        >{t('common.clear_all_filters')}</button>
-                    </div>
+                                setShowFavorites(false);
+                            }
+                        }}
+                    />
                 ) : (
                     GROUP_ORDER.map(groupName => {
                         const styles = stylesByGroup[groupName];

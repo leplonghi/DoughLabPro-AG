@@ -173,10 +173,13 @@ const SliderInput: React.FC<SliderInputProps> = ({
           <div className="relative">
             <input
               type="number"
+              inputMode="decimal"
+              pattern="[0-9]*"
+              autoComplete="off"
               value={internalValue}
               onChange={handleTextChange}
               disabled={disabled}
-              className={`w-16 py-1.5 pr-5 pl-2 text-right text-sm font-bold bg-transparent focus:bg-white rounded-lg transition-all outline-none min-h-[36px] ${hasError ? 'text-rose-500' : 'text-dlp-text-primary'}`}
+              className={`w-16 py-1.5 pr-5 pl-2 text-right text-sm font-bold bg-transparent focus:bg-white rounded-lg transition-all outline-none min-h-[44px] ${hasError ? 'text-rose-500' : 'text-dlp-text-primary'}`}
               min={min} max={max} step={step}
             />
             <span className="absolute right-2 top-0 bottom-0 flex items-center text-[10px] font-bold text-dlp-text-muted pointer-events-none select-none">{unit}</span>
@@ -187,10 +190,13 @@ const SliderInput: React.FC<SliderInputProps> = ({
               <div className="relative">
                 <input
                   type="number"
+                  inputMode="decimal"
+                  pattern="[0-9]*"
+                  autoComplete="off"
                   value={gramsValue}
                   onChange={handleGramsChange}
                   disabled={disabled}
-                  className="w-16 py-1.5 pr-5 pl-2 text-right text-sm font-bold text-dlp-text-secondary focus:text-dlp-text-primary bg-transparent focus:bg-white rounded-lg transition-all outline-none min-h-[36px]"
+                  className="w-16 py-1.5 pr-5 pl-2 text-right text-sm font-bold text-dlp-text-secondary focus:text-dlp-text-primary bg-transparent focus:bg-white rounded-lg transition-all outline-none min-h-[44px]"
                   placeholder="g"
                 />
                 <span className="absolute right-2 top-0 bottom-0 flex items-center text-[10px] font-bold text-dlp-text-muted pointer-events-none select-none">g</span>
