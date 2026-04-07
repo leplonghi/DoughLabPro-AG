@@ -181,6 +181,113 @@ export const AFFILIATE_CATALOG: AffiliateProduct[] = [
         priceRange: 'high',
         tags: ['oven', 'pizza', 'portable', 'compact'],
         imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Portable+Oven'
+    },
+
+    // --- BURGER BUNS ---
+    {
+        id: 'bun-pan',
+        name: 'USA Pan Burger Bun Pan',
+        category: 'equipment',
+        description: 'Commercial grade aluminized steel for perfect uniform buns.',
+        affiliateLink: 'https://amzn.to/3vIeZ6r',
+        priceRange: 'medium',
+        tags: ['burger buns', 'sandwich rolls', 'buns', 'tools', 'pan', 'baking', 'united states'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Bun+Pan'
+    },
+    {
+        id: 'dry-milk',
+        name: 'Baker\'s Dry Milk Powder',
+        category: 'ingredient',
+        description: 'Essential for soft, enriched crumb structure.',
+        affiliateLink: 'https://amzn.to/3TKgP0d',
+        priceRange: 'low',
+        tags: ['burger buns', 'sandwich rolls', 'enriched', 'milk', 'ingredients', 'softness'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Dry+Milk'
+    },
+    {
+        id: 'potato-flour',
+        name: 'Potato Flour',
+        category: 'ingredient',
+        description: 'Attracts water for incredibly moist rolls.',
+        affiliateLink: 'https://amzn.to/3TMxI9A',
+        priceRange: 'low',
+        tags: ['burger buns', 'sandwich rolls', 'potato', 'enriched', 'ingredients'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Potato+Flour'
+    },
+    {
+        id: 'sesame-seeds',
+        name: 'White Sesame Seeds',
+        category: 'ingredient',
+        description: 'The classic topping for authentic burger buns.',
+        affiliateLink: 'https://amzn.to/4aHOv7p',
+        priceRange: 'low',
+        tags: ['burger buns', 'sandwich rolls', 'topping', 'seeds', 'ingredients'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Sesame+Seeds'
+    },
+
+    // --- BREAD TOOLS ---
+    {
+        id: 'bread-lame',
+        name: 'Professional Bread Lame',
+        category: 'accessory',
+        description: 'Sharp scoring tool for beautiful artisan crust control.',
+        affiliateLink: 'https://amzn.to/3TKgP0d',
+        priceRange: 'low',
+        tags: ['bread', 'tools', 'scoring', 'artisan'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Lame'
+    },
+    {
+        id: 'banneton',
+        name: 'Round Banneton Proofing Basket',
+        category: 'accessory',
+        description: 'Natural rattan for perfect moisture wicking during proofing.',
+        affiliateLink: 'https://amzn.to/3vIeZ6r',
+        priceRange: 'medium',
+        tags: ['bread', 'tools', 'proofing', 'sourdough'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Banneton'
+    },
+    {
+        id: 'dutch-oven',
+        name: 'Enameled Cast Iron Dutch Oven',
+        category: 'equipment',
+        description: 'Traps steam for the ultimate bakery-style oven spring.',
+        affiliateLink: 'https://amzn.to/499tDaX',
+        priceRange: 'high',
+        tags: ['bread', 'baking', 'oven', 'artisan', 'sourdough'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Dutch+Oven'
+    },
+
+    // --- PASTRY & COOKIE TOOLS ---
+    {
+        id: 'rolling-pin',
+        name: 'Professional French Rolling Pin',
+        category: 'accessory',
+        description: 'Tapered design for maximum control and tactile feedback.',
+        affiliateLink: 'https://amzn.to/3MEsekR',
+        priceRange: 'low',
+        tags: ['pastry', 'cookies', 'tools', 'rolling', 'flatbreads'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Rolling+Pin'
+    },
+    // --- SPECIALTY PIZZA ---
+    {
+        id: 'detroit-pan',
+        name: 'Authentic Detroit Style Pizza Pan',
+        category: 'equipment',
+        description: 'Heavy-duty blue steel for that signature frico crust.',
+        affiliateLink: 'https://amzn.to/493hEMZ',
+        priceRange: 'medium',
+        tags: ['detroit', 'pizza', 'pan-pizza', 'tools', 'equipment'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Detroit+Pan'
+    },
+    {
+        id: 'deep-dish-pan',
+        name: 'Deep Dish Pizza Pan',
+        category: 'equipment',
+        description: 'Heavy gauge steel for perfect deep dish results.',
+        affiliateLink: 'https://amzn.to/499tDaX',
+        priceRange: 'low',
+        tags: ['chicago', 'deep-dish', 'pizza', 'pan-pizza', 'equipment'],
+        imageUrl: 'https://placehold.co/400x400/e2e8f0/475569?text=Deep+Dish+Pan'
     }
 ];
 

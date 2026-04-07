@@ -134,7 +134,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                             disabled={uploading}
                             className="text-sm font-medium text-dlp-brand-hover hover:text-lime-700 border border-lime-200 bg-lime-50 hover:bg-lime-100 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-2"
                         >
-                            {uploading ? 'Uploading...' : 'Change Photo'}
+                            {uploading ? 'Uploading...' : t('ui.change_photo_435')}
                         </button>
                         {onDelete && currentImage && (
                             <button

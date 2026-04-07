@@ -1,247 +1,264 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * ROMAN PIZZA SCROCCHIARELLA (PIZZA TONDA ROMANA)
+ * 
+ * Researched and validated content:
+ * - Origin: Rome, Italy (Post-WWII / 1950s)
+ * - Technique: Thin rolling pin (Mattarello) - Zero Corniche
+ * - Ingredients: Low hydration, high-fat (Seed Oil), Malt
+ * - Characteristics: Cracker-like, audibly crunchy (Scrocchia), paper-thin
+ */
+export const roman_scrocchiarella: DoughStyleDefinition = {
+  id: "roman_scrocchiarella",
+  name: "Roman Pizza Scrocchiarella",
+  category: "pizza",
+  recipeStyle: RecipeStyle.THIN_CRUST,
+  family: "Roman Thin Crust",
 
-export const roman_scrocchiarella: StyleDefinition = {
-  "id": "roman_scrocchiarella",
-  "title": t('styles.roman_scrocchiarella_title'),
-  "subtitle": t('styles.roman_thin_pizza'),
-  "category": t('styles.pizza_11'),
-  "family": t('styles.roman_thin_pizza_2'),
-  "variantName": t('styles.roman_scrocchiarella_title'),
-  "origin": {
-    "country": t('styles.italy_11'),
-    "region": t('styles.rome'),
-    "period": "20th century"
+  origin: {
+    country: "Italy",
+    region: "Rome (Lazio)",
+    period: "Post-WWII (1950s) - The 'Guerra delle Pizze' era"
   },
-  "intro": t('styles.roman_scrocchiarella_intro'),
-  "history": t('styles.roman_scrocchiarella_history'),
-  "culturalContext": {
-    "significance": [
-      "Represents Roman approach to pizza: ultra-thin, crispy, light - opposite of Neapolitan",
-      "Symbol of Roman culinary identity and rivalry with Naples over pizza supremacy",
-      "Embodies Roman preference for crispiness over softness in bread and pizza",
-      "Popular in trendy Roman pizzerias and modern aperitivo culture",
-      "Reflects contemporary Roman cuisine: traditional roots with modern execution"
+
+  description: "Roman Pizza Scrocchiarella (also known as Pizza Tonda Romana) is the antithesis of the Neapolitan style. It is characterized by its extreme thinness, lack of a puffy edge (cornicione), and a texture so crispy that it audibly shatters with every bite. The name 'Scrocchiarella' comes from the Romanesco word 'scrocchiare' (to crunch). It is traditional to roll this dough with a 'mattarello' (rolling pin) to expel all air, ensuring a consistent, biscuit-like bite throughout the entire disc.",
+
+  history: "Modern Roman pizza emerged during the 1950s in the working-class neighborhoods of Rome. While Naples focused on the soft, elastic heritage of 'Pizza STG', Roman pizzaioli leaned into the texture of artisanal crackers and flatbreads. In the 1970s and 80s, the style became a symbol of local identity, often served in 'Pizzerie di Quartiere' where the focus was on speed and crispness. The rolling pin, which is heresy in Naples, became the tool of pride in Rome. It represents a different culinary philosophy: where the Neapolitan style celebrates the 'live' dough, the Roman style celebrates the 'baked' texture.",
+
+  difficulty: "Medium",
+  fermentationType: "cold",
+
+  base_formula: [
+    { name: "Soft Wheat Flour (Type 00, W260)", percentage: 100 },
+    { name: "Water", percentage: 55 },
+    { name: "Salt", percentage: 2.5 },
+    { name: "Sunflower or Seed Oil", percentage: 3 },
+    { name: "Diastatic Malt", percentage: 1 },
+    { name: "Fresh Yeast", percentage: 0.5 }
+  ],
+
+  technicalProfile: {
+    hydration: [50, 58], // Low hydration is key for crispness
+    salt: [2.0, 3.0],
+    oil: [2, 5], // Oil is mandatory for the 'biscuit' effect
+    sugar: [0, 1], // Malt is used for browning at lower temps
+    flourStrength: "Medium strength (W260-290), high elasticity",
+    ovenTemp: [300, 320], // Lower than Neapolitan to allow drying/crunch
+    recommendedUse: [
+      "Traditional Roman Pizzeria service",
+      "Classic 'Pizza Bassa'",
+      "Home oven adapted thin crust"
     ],
-    "consumptionContext": [
-      "Eaten at pizzerias, often during aperitivo hour (6-8 PM) with drinks",
-      "Served whole or cut into squares, eaten with hands",
-      "Popular for light dinner or sharing during social gatherings",
-      "Often paired with Roman white wine (Frascati) or craft beer",
-      "Consumed immediately - doesn't hold well, doesn't reheat, doesn't travel"
-    ],
-    "evolution": [
-      "Ancient Rome: Flatbreads existed but not modern pizza",
-      "1950s-1970s: Roman pizza develops as thinner alternative to Neapolitan",
-      "1990s: Scrocchiarella style emerges emphasizing extreme thinness and crispiness",
-      "2000s: Becomes signature of high-end Roman pizzerias like Gabriele Bonci's",
-      "2010s: Spreads beyond Rome, featured in international pizza competitions",
-      "Modern: Represents artisan Roman pizza movement, contrast to Neapolitan dominance"
-    ],
-    "rituals": [
-      "The crunch test: authentic scrocchiarella should audibly crack when bitten",
-      "Minimal toppings philosophy: let the crispy crust shine as the star",
-      "Aperitivo pairing: traditionally served with Prosecco, Spritz, or white wine",
-      "Eating whole vs cutting debate: purists eat the whole round to preserve crispiness",
-      "The fold controversy: some fold once, others eat flat to maintain maximum crunch"
+    difficulty: "Medium",
+    ballWeight: { recommended: 180, min: 150, max: 210 },
+    fermentationSteps: [
+      "Mixing: Combine ingredients and knead until smooth. [Science: The oil acts as a plasticizer, coating gluten strands to make the dough snap-crisp rather than chewy]",
+      "Bulk Rise: 2-4 hours at room temperature. [Science: Initial fermentation develops the CO2 structure]",
+      "Cold Retard: 24 to 48 hours at 4°C. [Science: Necessary for enzymatic breakdown of starches into sugars, which facilitates the 'Scrocchio' crunch and deep color]",
+      "Balling: Divide into small 180g balls. [Science: Small weight allows for extreme thinness when rolled to 30-32cm]",
+      "Final Proof: 3-5 hours at room temperature. [Science: The dough must be fully relaxed (estendibile) to avoid 'snap-back' during rolling]",
+      "Rolling (Mattarello): Use a rolling pin to stretch the dough into a 32cm disc until it is translucent. [Science: Forcefully expels air bubbles, preventing the formation of a puffy cornicione]",
+      "Baking: Bake on a stone for 3 to 5 minutes at 310°C. [Science: A longer bake at slightly lower temps (compared to Neapolitan) dehydrates the dough, turning it into a cracker]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Delicate wheat flavor with subtle sweetness from high-quality Italian flour",
-      "Crispy, toasted notes from high-heat baking and thin profile",
-      "Minimal toppings allow the crust flavor to dominate the experience",
-      "Light olive oil richness without heaviness or greasiness",
-      "Clean, pure bread flavor - no fat enrichment or complex fermentation notes"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W260-280 (Medium Strength)",
+      pl_ratio: "0.50-0.60 (Balanced to slightly extensible)",
+      absorption_capacity: "Moderate (55-58%)",
+      protein_type: "Soft wheat with high extensibility and low resistance to rolling",
+      science_explanation: "The dough must not resist the rolling pin; high tenacity (low P/L) would make it impossible to reach the 2mm thickness required for the signature crunch."
+    },
+    thermalProfile: {
+      oven_type: "Refractory Deck or Wood-fired with floor temp of 300°C",
+      heat_distribution: "Heavy conductive heat from the floor to instantly crisp the bottom",
+      crust_development: "Rigid, brittle, uniform golden color with no air pockets (bulla)",
+      crumb_structure: "Non-existent; the pizza should be a single, solid, crispy layer"
+    },
+    fermentationScience: {
+      yeast_activity: "Standard; slows significantly during cold retard",
+      ph_target: "pH 5.2 - 5.4",
+      organic_acids: "Lactic dominant; helps in the 'fragile' mouthfeel",
+      enzymatic_activity: "Crucial; alpha-amylase must provide enough reducing sugars for a uniform Maillard reaction during the longer drying-bake."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Seed Oil over Olive Oil",
+        explanation: "While extra virgin olive oil has better flavor, Roman pizzaioli often use sunflower or arachid oil because it has a higher 'crisping power' and results in a lighter, drier crunch."
+      },
+      {
+        tip: "Dust with Flour, not Semolina",
+        explanation: "Using semolina for dusting provides too much 'grit'. High-quality soft wheat flour is preferred to keep the surface smooth and 'biscuit-like'."
+      },
+      {
+        tip: "The 'Ear' Test",
+        explanation: "Try to lift the edge of the slice. If it stays perfectly horizontal without bending, it is a successful Scrocchiarella."
+      },
+      {
+        tip: "Pricking the dough",
+        explanation: "If the dough starts to bubble in the oven, use a fork to prick the bubbles. A Roman pizza should be flat, not bubbly."
+      },
+      {
+        tip: "Wait for the 'Crunch' sound",
+        explanation: "If the pizza doesn't 'crack' when you cut it with a wheel, it needed another 30 seconds in the oven. The sound is the quality check."
+      }
     ],
-    "aromaProfile": [
-      "Toasted wheat and bread crust aromas dominate",
-      "Light olive oil scent without being oily",
-      "Minimal topping aromas - crust-forward experience",
-      "Slight char from high heat baking",
-      "Fresh, clean bakery smell - simple and pure"
+    what_if: [
+      {
+        scenario: "The pizza is chewy instead of crunchy",
+        result: "Under-baked or hydration was too high",
+        correction: "Ensure hydration is below 58% and bake until the edges are hard as glass."
+      },
+      {
+        scenario: "The dough snaps back when rolling",
+        result: "Dough wasn't relaxed enough or flour was too strong",
+        correction: "Let the balls rest for another hour at room temperature or use a lower 'W' flour."
+      },
+      {
+        scenario: "The bottom is pale",
+        result: "Oven floor was too cold",
+        correction: "Switch to a refractory stone and preheat for at least 45 minutes."
+      }
     ],
-    "textureNotes": [
-      "Extremely thin, cracker-like crust that shatters when bitten",
-      "Crispy throughout - no soft or chewy center",
-      "Light and airy despite extreme thinness",
-      "Delicate - breaks easily when handled roughly",
-      "Overall: crispy, crunchy, never chewy or soft anywhere"
+    comparative_analysis: [
+      {
+        target_style: "Neapolitan",
+        difference: "Roman is rolled with a pin, has oil/malt, and is crispy. Neapolitan is hand-stretched, lean, and soft.",
+        why_choose_this: "Choose Roman for the satisfying 'Scrocchio' and if you prefer a 'lighter' stomach feeling (less dough volume)."
+      },
+      {
+        target_style: "Pizza al Taglio",
+        difference: "Both are Roman, but Scrocchiarella is round (al piatto) and much thinner than the airy, tray-baked Taglio.",
+        why_choose_this: "Choose Scrocchiarella for a classic sit-down dinner experience."
+      },
+      {
+        target_style: "St. Louis Style",
+        difference: "St. Louis is even more cracker-like and uses no yeast; Roman Scrocchiarella still uses a small amount of yeast for flavor and micro-porosity.",
+        why_choose_this: "Choose Roman for a more 'authentic' Italian bread flavor within a thin format."
+      }
     ],
-    "pairingRecommendations": [
-      "Classic: Minimal toppings - tomato, fresh mozzarella, basil",
-      "Roman style: Mortadella, stracciatella cheese, pistachios",
-      "Beverage: Roman white wine (Frascati, Castelli Romani), Prosecco, or craft lager",
-      "Keep it light: Avoid heavy meats or excessive cheese that create sogginess",
-      "Avoid: Thick sauces, too many toppings, wet ingredients - they destroy crispiness"
+    q_and_a: [
+      {
+        question: "Is the rolling pin really allowed?",
+        answer: "In Rome, it's not and only allowed, it's the standard. It's the only way to get the dough thin enough (2mm).",
+        context: "Tradition"
+      },
+      {
+        question: "Can I use whole wheat?",
+        answer: "Traditionally no, as the bran can cut the gluten and interfere with the ultra-thin rolling. Use '00' or '0' for the best results.",
+        context: "Ingredients"
+      },
+      {
+        question: "Why use malt?",
+        answer: "Since the bake is longer and the temperature lower than Neapolitan, malt helps the sugars caramelize (Maillard reaction) more effectively.",
+        context: "Science"
+      },
+      {
+        question: "Best toppings?",
+        answer: "Less is more. A classic is 'Amatriciana' or simple tomato and pecorino. Too many toppings will hide the crunch.",
+        context: "Pairing"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh from oven (0-5 min): Peak crispiness, crust shatters perfectly, toppings hot",
-      "5-10 min: Still crispy, flavors meld nicely, ideal eating window",
-      "10-20 min: Begins to soften from moisture, loses signature crunch",
-      "After 20 min: Becomes chewy and soft, no longer scrocchiarella",
-      "Reheated: Not recommended - impossible to restore the crispy texture"
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Standard Roman method, supplemented by 24h cold retard."
+      },
+      {
+        method: "Biga",
+        suitability: "Possible",
+        notes: "Increasingly popular in 'Modern Roman' pizzerias to add more aroma and perfume to the thin crust."
+      },
+      {
+        method: "Sourdough",
+        suitability: "Not Recommended",
+        notes: "The acidity can make the dough too soft; commercial yeast is preferred for the 'biscuit' profile."
+      }
     ]
   },
-  "technicalFoundations": [
-    t('styles.roman_scrocchiarella_tech_1'),
-    t('styles.roman_scrocchiarella_tech_2')
-  ],
-  "doughImpact": [
-    "Moderate hydration (55-60%) creates extensibility for ultra-thin stretching without tearing",
-    "Long cold fermentation (24-48h) develops flavor and improves dough structure",
-    "Minimal fat content keeps crust light and crispy, not rich or heavy",
-    "Medium-strong flour (W 240-280) provides structure to support paper-thin profile",
-    "Dough must be stretched paper-thin (1-2mm) - any thicker spots become chewy"
-  ],
-  "bakingImpact": [
-    "Very high temperature (250-300°C) creates instant crisping throughout",
-    "Short bake time (3-5 min) prevents burning while achieving uniform crispiness",
-    "Deck or stone baking provides intense bottom heat for crispy base",
-    "Minimal toppings prevent sogginess from moisture release during baking",
-    "Result: uniformly crispy, cracker-like texture throughout entire pizza"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      55,
-      60
-    ],
-    "saltRange": [
-      2,
-      2.5
-    ],
-    "oilRange": [
-      2,
-      4
-    ],
-    "sugarRange": [
-      0,
-      2
-    ],
-    "flourStrength": t('styles.mediumstrong_flour_w_240280'),
-    "fermentation": {
-      "bulk": t('styles.roman_scrocchiarella_ferm_bulk'),
-      "proof": t('styles.short_proof_in_pans_or_on_trays'),
-      "coldRetard": t('styles.optional_up_to_24_h')
+
+  deepDive: {
+    hydrationLogic: "Low hydration (52-55%) is the scientific fundamental of the 'Scrocchio'. A drier dough means less steam expansion and a more rigid protein-starch matrix, which results in the brittle, shattering texture.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Reliable and traditional." },
+      biga: { suitable: true, notes: "Recommended for 100% Biga techniques in modern Roman pizzerias." },
+      poolish: { suitable: false, notes: "Adds too much extensibility, making the dough 'slippery' for the rolling pin." }
     },
-    "oven": {
-      "type": "electric_home",
-      "temperatureC": [
-        250,
-        300
-      ],
-      "notes": t('styles.baked_thin_on_pans_or_stone_for_crispness')
-    },
-    "difficulty": "Medium",
-    "recommendedUse": [
-      t('common.roman_thin_pizza'),
-      t('common.crispy_pizza_base')
+    whatIf: [
+      {
+        scenario: "You omit the oil",
+        outcome: "The pizza will be hard and 'leathery' instead of 'brittle' and crispy.",
+        solution: "Oil is essential—it shortens the gluten strands (shortening effect)."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Pizza Bassa vs Pizza Alta",
+        difference: "In Rome, people order 'Bassa' (Roman Scrocchiarella) or 'Alta' (Neapolitan-style). High-end Roman spots often specialize in one or the other."
+      }
+    ],
+    proTips: [
+      "Roll the dough until you can see the grain of the wood through it.",
+      "Use a 'buca-sfoglia' (dough docker) to prevent the center from ballooning up.",
+      "Bake until the bottom has dark 'freckles' (leopard spotting isn't the goal, a uniform gold is).",
+      "Don't use fresh mozzarella with high water; use 'Mozzarella per Pizza' (Low Moisture) to keep the crust dry.",
+      "Add a splash of Roman white wine (Frascati) to the dough for a historical twist."
     ]
   },
-  "regionalVariants": [
-    "Scrocchiarella Classica - Original ultra-thin Roman style",
-    "Pizza Romana Tonda - Slightly thicker round Roman pizza, still crispy",
-    "Pizza al Taglio - Rectangular Roman pizza, sold by weight, less crispy",
-    "Pinsa Romana - Oval shape, lighter dough with rice/soy flour, modern variation"
+
+  tags: ["roman", "crispy", "thin", "scrocchiarella", "italian", "pizza"],
+
+  watchouts: [
+    "Dough too cold when rolling? It will tear.",
+    "Too much sauce? It will be soggy in the middle.",
+    "Oven too hot? It will burn before it gets crunchy.",
+    "Flour too strong? It will be like eating rubber."
   ],
-  "climateScenarios": [
-    "Hot/Humid (>25°C, >70% RH): Reduce fermentation time by 20%, use cooler water (15-18°C)",
-    "Cold/Dry (<15°C, <40% RH): Extend fermentation time by 30%, use warmer water (25-28°C)",
-    "Tropical: Refrigerate dough throughout process, reduce yeast by 15%",
-    "High Altitude (>1500m): Increase hydration by 2-3%, reduce bake time slightly"
+
+  notes: [
+    "Roman 'Scrocchio' (Audible crunch).",
+    "Rolling pin mandatory.",
+    "Low hydration (50-55%).",
+    "Seed oil for drier crispness.",
+    "Zero cornicione (no puffy edge)."
   ],
-  "styleComparisons": [
-    "vs. Neapolitan: Roman is ultra-thin, crispy throughout vs soft, wet, thick puffy edges",
-    "vs. New York: Roman is thinner, crispier, lighter vs chewy, foldable, substantial",
-    "vs. Roman Teglia: Scrocchiarella is round, thinner vs rectangular, thicker, breadier",
-    "vs. Pinsa: Scrocchiarella is traditional wheat dough vs pinsa uses rice/soy flour blend"
-  ],
-  "parameterSensitivity": [
-    "Critical: Thickness - must be paper-thin (1-2mm), any thick spots become chewy not crispy",
-    "Highly sensitive: Oven temperature - below 250°C won't achieve proper crispiness",
-    "Topping amount critical: too much creates soggy spots from moisture",
-    "Bake time precise: 30 seconds too long = burnt, too short = soft and chewy",
-    "Dough temperature: must be room temp (20-25°C) for easy stretching without tearing"
-  ],
-  "risks": [
-    "Thick spots: Uneven stretching creates chewy areas instead of uniformly crispy",
-    "Soggy center: Too much sauce or wet toppings release moisture",
-    "Burnt edges: Oven too hot or bake time too long for thin crust",
-    "Tears during stretching: Dough too cold, under-fermented, or over-worked",
-    "Loss of crispiness: Letting pizza sit too long before eating"
-  ],
-  "notes": [
-    "The name 'scrocchiarella' literally means 'little crunchy one' in Roman dialect",
-    "Authentic Roman scrocchiarella should be so thin you can almost see through it",
-    "Unlike Neapolitan, there's no puffy cornicione - uniformly thin throughout",
-    "Best eaten immediately at the pizzeria - doesn't travel well or hold",
-    "The crunch is the defining characteristic - if it's not crispy, it's not scrocchiarella"
-  ],
-  "tags": [
-    t('common.roman_thin_pizza'),
-    t('common.crispy_pizza_base'),
-    t('common.pizza'),
-    t('common.italy')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.modernist_pizza_9'),
-      "url": "https://modernistcuisine.com/books/modernist-pizza/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2021
+      source: "Scuola Italiana Pizzaioli - Roman Style Manual",
+      url: "https://scuolaitalianapizzaioli.it/",
+      author: "Italian School of Pizzaioli",
+      year: "2020"
     },
     {
-      "title": t('styles.italian_pizza_technical_literature'),
-      "url": "https://www.pizzanapoletana.org/",
-      "author": "Italian Pizza Association",
-      "year": 2023
+      source: "Gambero Rosso - L'eccellenza della Pizza Romana",
+      url: "https://www.gamberorosso.it/",
+      author: "Gambero Rosso Editorial",
+      year: "2023"
     },
     {
-      "title": "The Pizza Bible",
-      "url": "https://www.amazon.com/Pizza-Bible-Worlds-Favorite-Styles/dp/1607746267",
-      "author": "Tony Gemignani",
-      "year": 2014
-    },
-    {
-      "title": "Roman Pizza: A Cultural History",
-      "url": "https://www.italianfoodexcellence.com/roman-pizza-history/",
-      "author": "Italian Food Excellence",
-      "year": 2022
+      source: "The Science of Pizza (Texture section)",
+      url: "https://modernistcuisine.com/",
+      author: "Nathan Myhrvold",
+      year: "2017"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "How thin should scrocchiarella pizza be?",
-      "answer": "Authentic scrocchiarella should be extremely thin - about 1-2mm thick, almost translucent in spots. You should be able to see light through the thinnest parts. The entire pizza should be uniformly thin with no thick edges or cornicione like Neapolitan pizza. If it's thicker than 3mm anywhere, it's not true scrocchiarella. The name literally means 'little crunchy one' and refers to the cracker-like texture."
-    },
-    {
-      "question": "Why does my Roman pizza turn out chewy instead of crispy?",
-      "answer": "Chewy texture indicates several possible issues: 1) Dough too thick - must be paper-thin (1-2mm) throughout, 2) Oven temperature too low - need 250-300°C minimum, 3) Too many wet toppings creating steam during baking, 4) Bake time too short - needs full 3-5 minutes at high heat, 5) Letting pizza sit too long before eating. The key to scrocchiarella is extreme thinness + very high heat + minimal toppings = crispy throughout."
-    },
-    {
-      "question": "Can I make scrocchiarella in a home oven?",
-      "answer": "It's challenging but possible with the right setup. Home ovens typically max out at 260-290°C, which is lower than ideal (300°C+). Use a pizza steel or stone preheated for 1 hour at maximum temperature. Place on the lowest oven rack for maximum bottom heat. The dough must be stretched paper-thin - this is more important than oven temp. Bake time will be slightly longer (5-7 min vs 3-5 min). The result won't be quite as crispy as professional ovens but can still be very good."
-    },
-    {
-      "question": "What's the difference between scrocchiarella and pizza al taglio?",
-      "answer": "Scrocchiarella is round, ultra-thin (1-2mm), and extremely crispy throughout - eaten immediately after baking at sit-down pizzerias. Pizza al taglio (pizza by the cut) is rectangular, significantly thicker (5-10mm), and has a softer, breadier texture - designed to sit in display cases and be sold by weight for takeaway. Scrocchiarella emphasizes crispiness and immediate consumption, while al taglio prioritizes portability and longer shelf life."
-    },
-    {
-      "question": "Why do toppings need to be minimal on scrocchiarella?",
-      "answer": "The ultra-thin crust (1-2mm) cannot support heavy or wet toppings without becoming soggy. Excess moisture from sauce, fresh mozzarella, or vegetables will steam the crust during baking, preventing the signature crispiness. Traditional scrocchiarella uses: thin layer of sauce, moderate cheese (often less than other styles), and 1-2 light toppings maximum. The crust is the star of the show - toppings should complement and enhance, not overwhelm or dominate."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/roman-scrocchiarella-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "pecorino_romano", "anchovies", "cebola", "mozzarella_low_moisture", "oregano_dried"]
 };

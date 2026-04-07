@@ -143,7 +143,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     const renderIngredientRow = (label: string, grams: number, ingredientId: string, subtext?: string) => (
         <AffiliateIngredientRow
             key={ingredientId + label}
-            label={label}
+            label={String(label || '')}
             grams={grams}
             displayValue={displayIngredient(label, grams, ingredientId)}
             hydration={config.hydration}
@@ -168,6 +168,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
 
                 {/* Metric Boxes */}
+<<<<<<< HEAD
                 <div className="grid grid-cols-3 gap-4 mb-10">
                     <MetricCard
                         label={t('results.total_flour')}
@@ -191,10 +192,43 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         icon={<CubeIcon className="w-4 h-4 text-dlp-brand-lime" />}
                         className="items-center text-center"
                     />
+=======
+                <div className="grid grid-cols-3 gap-4 mb-10" id="tour-results-metrics">
+                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
+                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <FlourIcon className="w-4 h-4 text-dlp-brand-lime" />
+                        </div>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.total_flour')}</p>
+                        <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalFlour)}</p>
+                    </div>
+                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
+                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <ScaleIcon className="w-4 h-4 text-dlp-brand-lime" />
+                        </div>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.total_dough')}</p>
+                        <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough)}</p>
+                    </div>
+                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
+                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <CubeIcon className="w-4 h-4 text-dlp-brand-lime" />
+                        </div>
+                        {calculationMode === 'flour' ? (
+                            <>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.est_yield', { defaultValue: 'Est. Yield' })}</p>
+                                <p className="text-lg font-bold font-heading text-slate-800">{results.projectedYield || 0} Pcs</p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.weight_per_piece', { defaultValue: 'Per piece' })}</p>
+                                <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough / config.numPizzas)}</p>
+                            </>
+                        )}
+                    </div>
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                 </div>
 
                 {/* Ingredients List */}
-                <div className="space-y-1 px-1 mb-8">
+                <div className="space-y-1 px-1 mb-8" id="tour-results-ingredients">
                     <div className="flex items-center gap-3 mb-1">
                         <ListBulletIcon className="w-4 h-4 text-dlp-brand-lime" />
                         <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-800">
@@ -242,6 +276,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 <div className="relative group mt-4">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-dlp-brand to-teal-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                     <button
+                        id="tour-log-batch"
                         onClick={onStartBatch}
                         ref={saveButtonRef}
                         className="relative dlp-button-primary w-full py-4 text-sm uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all bg-dlp-brand text-[#1B4332] font-bold rounded-2xl border-none"
@@ -252,7 +287,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 </div>
 
                 {/* Bottom Secondary Actions */}
-                <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="grid grid-cols-2 gap-4 mt-6" id="tour-actions">
                     <button
                         onClick={() => setIsShareModalOpen(true)}
                         className="dlp-button-secondary group flex items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] font-heading active:translate-y-0.5"
@@ -279,7 +314,11 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             )}
 
             {/* Step-by-Step Method Panel */}
+<<<<<<< HEAD
             <AppSurface surface="glass" tone="neutral" className="overflow-hidden p-0">
+=======
+            <div className="dlp-card border-slate-100 p-0 overflow-hidden" id="tour-method">
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                 <div className="p-6">
                     <TechnicalMethodPanel steps={technicalSteps} />
                 </div>

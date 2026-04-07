@@ -24,7 +24,7 @@ const WhiteSaucesPage: React.FC = () => {
             <LearnSection title={t('learn.thermal_behavior_in_oven_2')}>
                 <p>Under oven heat, water in emulsion begins to evaporate, concentrating the sauce. At the same time, heat can destabilize the emulsion. A well-made sauce thickens and browns slightly (Maillard reaction of milk proteins), while a poorly made one separates.</p>
             </LearnSection>
-            <LearnSection title="Risks of Separation ('Breaking')">
+            <LearnSection title="Risks of Separation (t('learn.breaking_414'))">
                 <p>{t('learn.a_white_sauce_breaks_when_emulsion_fails_and_fat_s')}</p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.excessive_heat')}</strong> Intense heat can denature proteins maintaining emulsion.</li>
@@ -33,7 +33,7 @@ const WhiteSaucesPage: React.FC = () => {
                 </ul>
             </LearnSection>
             <LearnSection title={t('learn.uses_in_specific_pizzas')}>
-                <p>White sauces are the base for "white pizzas". They offer a neutral creamy canvas pairing well with mushrooms, spinach, potatoes, or cured meats. In focaccias, an oil-water emulsion base is often used to maintain moisture and flavor.</p>
+                <p>White sauces are the base for t('learn.white_pizzas_415'). They offer a neutral creamy canvas pairing well with mushrooms, spinach, potatoes, or cured meats. In focaccias, an oil-water emulsion base is often used to maintain moisture and flavor.</p>
             </LearnSection>
             <LearnSection title={t('learn.technical_references_7')}>
                 <ul className="list-disc pl-5 space-y-2">

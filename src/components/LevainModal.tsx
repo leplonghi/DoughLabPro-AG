@@ -32,10 +32,10 @@ const LevainModal: React.FC<LevainModalProps> = ({
 
     const PRESET_FLOURS = [
         'Strong White (Bread Flour)',
-        'All Purpose',
-        'Whole Wheat',
+        t('ui.all_purpose_333'),
+        t('ui.whole_wheat_334'),
         'Rye',
-        'Spelt',
+        t('ui.spelt_335'),
         'Mix'
     ];
 
@@ -73,7 +73,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
             await onSave({ ...levainToEdit, ...formData } as Levain);
         } else {
             const newLevain: Omit<Levain, 'id' | 'isDefault' | 'feedingHistory' | 'status' | 'createdAt'> = {
-                name: formData.name || 'LevainPet',
+                name: formData.name || t('ui.levainpet_336'),
                 hydration: formData.hydration || 100,
                 baseFlourType: formData.baseFlourType,
                 totalWeight: formData.totalWeight || 0,

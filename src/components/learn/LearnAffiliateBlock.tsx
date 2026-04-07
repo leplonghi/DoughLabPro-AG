@@ -91,7 +91,7 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                         <div className="flex-1 p-2.5 flex flex-col justify-between min-w-0">
                             <div className="flex justify-between items-start gap-2">
                                 <span className="text-xs font-semibold text-dlp-accent bg-dlp-accent/10 px-2 py-0.5 rounded-full shrink-0">
-                                    {product.category === 'equipment' ? 'Tool' : 'Ingredient'}
+                                    {product.category === 'equipment' ? t('learn.tool_398') : t('learn.ingredient_399')}
                                 </span>
                                 <ExternalLinkIcon className="h-3.5 w-3.5 text-dlp-text-muted group-hover:text-dlp-accent transition-colors shrink-0" />
                             </div>

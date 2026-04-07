@@ -3,20 +3,23 @@ import { useCallback, useMemo } from 'react';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
 import { DoughSessionVariant } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
+
 
 export const useBatchVariants = () => {
+    const { t } = useTranslation();
     const { session, updateSession } = useDoughSession();
     const { variants, dough } = session;
 
     // Helper: auto-generate default variants if empty
-    // e.g. 1 "Main Batch" with full count
+    // e.g. 1 t('common.main_batch_420') with full count
     const ensureInitialized = useCallback(() => {
         if (variants.length === 0) {
             updateSession((prev) => ({
                 variants: [
                     {
                         id: crypto.randomUUID(),
-                        name: 'Main Batch',
+                        name: t('common.main_batch_420'),
                         count: prev.dough.yieldCount,
                         addOns: []
                     }
@@ -25,7 +28,7 @@ export const useBatchVariants = () => {
         }
     }, [variants.length, updateSession]);
 
-    const addVariant = useCallback((name: string = 'New Variant') => {
+    const addVariant = useCallback((name: string = t('common.new_variant_421')) => {
         updateSession((prev) => {
             // Allocate remaining count if any
             const currentTotal = prev.variants.reduce((sum, v) => sum + v.count, 0);

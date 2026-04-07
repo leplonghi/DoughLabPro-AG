@@ -51,8 +51,8 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                 moistureLevel: component.flavorProfile.intensity > 3 ? 'high' : component.flavorProfile.intensity > 1 ? 'medium' : 'low',
                 fatContent: component.flavorProfile.fat > 3 ? 'high' : component.flavorProfile.fat > 1 ? 'medium' : 'low',
                 sugarContent: component.flavorProfile.sweetness > 3 ? 'high' : component.flavorProfile.sweetness > 1 ? 'medium' : 'low',
-                weightImpact: 'Standard load',
-                thermalBehavior: component.flavorProfile.thermalBehavior || 'Standard'
+                weightImpact: t('calculator.standard_load_185'),
+                thermalBehavior: component.flavorProfile.thermalBehavior || t('calculator.standard_186')
             },
             compatibilityByStyle: component.commonStyles.reduce((acc, styleId) => {
                 acc[styleId] = 'validated';
@@ -127,7 +127,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
         onClose();
     };
 
-    const categories = ['all', 'Cheese', 'Meat', 'Vegetal', 'Sauce', 'Finish'];
+    const categories = ['all', t('calculator.cheese_187'), t('calculator.meat_188'), t('calculator.vegetal_189'), t('calculator.sauce_190'), t('calculator.finish_191')];
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
@@ -159,7 +159,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
                                 <div className="flex justify-between items-center mb-4">
                                     <Dialog.Title as="h3" className="text-lg font-bold leading-6 text-slate-900 flex items-center gap-2">
                                         <BeakerIcon className="h-5 w-5 text-dlp-brand-hover" />
-                                        {step === 'result' ? 'AI Validation Complete' : 'Add Ingredient'}
+                                        {step === 'result' ? t('calculator.ai_validation_complete_192') : t('calculator.add_ingredient_193')}
                                     </Dialog.Title>
                                     <button onClick={reset}><XMarkIcon className="h-5 w-5 text-slate-400" /></button>
                                 </div>

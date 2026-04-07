@@ -58,7 +58,7 @@ export const InsightsProvider: React.FC<{ children: ReactNode }> = ({ children }
 
         const styleCounts: Record<string, number> = {};
         batches.forEach(b => {
-            const style = b.doughConfig.recipeStyle || 'Unknown';
+            const style = b.doughConfig.recipeStyle || t('common.unknown_454');
             styleCounts[style] = (styleCounts[style] || 0) + 1;
         });
 

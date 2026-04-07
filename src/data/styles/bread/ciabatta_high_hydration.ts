@@ -1,250 +1,283 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * CIABATTA HIGH HYDRATION
+ * 
+ * Researched and validated content:
+ * - 1982 invention by Arnaldo Cavallari (Adria, Veneto)
+ * - Italian response to French Baguettes
+ * - "Ciabatta" (Slipper) etymology and shape
+ * - Science of high hydration (70%+) and open crumb
+ */
+export const ciabatta_high_hydration: DoughStyleDefinition = {
+  id: "ciabatta_high_hydration",
+  name: "Ciabatta High Hydration",
+  category: "bread",
+  recipeStyle: RecipeStyle.CIABATTA,
+  family: "Italian Artisan Bread",
 
-export const ciabatta_high_hydration: StyleDefinition = {
-  "id": "ciabatta_high_hydration",
-  "title": "Ciabatta (High Hydration Poolish)",
-  "subtitle": t('styles.italian_rustic__high_hydration'),
-  "category": t('styles.bread_5'),
-  "family": t('styles.italian_rustic__high_hydration_2'),
-  "variantName": "Ciabatta (High Hydration Poolish)",
-  "origin": {
-    "country": t('styles.italy_2'),
-    "region": t('styles.northern_italy'),
-    "period": t('styles.late_20th_century')
+  origin: {
+    country: "Italy",
+    region: "Adria, Veneto",
+    period: "1982, created by Arnaldo Cavallari"
   },
-  "intro": "Used for sandwiches, bruschetta and table bread, valued for its airy internal structure.",
-  "history": "Ciabatta was developed in 1982 by Arnaldo Cavallari in Adria, Italy, as a nationalistic response to the popularity of French Baguettes. Cavallari and other bakers wanted an Italian bread that could compete for the sandwich market. The name translates to 'slipper', referring to its flat, elongated shape. It revolutionized Italian bread making through the use of high hydration and Poolish preferments.",
-  "culturalContext": {
-    "significance": [
-      "A symbol of modern Italian culinary nationalism and innovation",
-      "Redefined the Italian sandwich (Panino) culture globally",
-      "One of the few globally famous breads with a known, modern 'inventor'",
-      "Represents the industrial-artisanal hybrid of the late 20th century",
-      "A staple of 'Modern Italian' restaurant tables and Mediterranean diets"
+
+  description: "Ciabatta was created in 1982 by Arnaldo Cavallari, a miller and baker in Adria, Veneto, as Italy's response to the popularity of French baguettes. The name means 'slipper' in Italian, referencing its characteristic flat, elongated shape and open, airy crumb structure with large, irregular holes.",
+
+  history: "Ciabatta is a remarkably recent invention in the world of bread. In 1982, Arnaldo Cavallari, a miller and baker in Adria, Veneto, developed ciabatta as a direct response to French baguettes threatening traditional Italian bread sales for sandwiches. He initially named it 'ciabatta polesana' after Polesine, his home region. The defining characteristic is its high hydration dough (often 75% or more water), which creates a light, airy texture with large, irregular holes (alvéolage). This high water content, combined with long fermentation using a biga, creates a chewy texture and signature open crumb. By 1999, Cavallari's company, Molini Adriesi, had licensed the recipe to bakers in 11 countries. It was introduced to the US in 1987, quickly becoming a global favorite for sandwiches.",
+
+  difficulty: "Hard",
+  fermentationType: "preferment",
+
+  base_formula: [
+    { name: "High-protein Bread flour", percentage: 100 },
+    { name: "Water", percentage: 80 },
+    { name: "Salt", percentage: 2.2 },
+    { name: "Instant Yeast", percentage: 0.4 },
+    { name: "Olive oil (optional)", percentage: 2 },
+    { name: "Biga (Preferment)", percentage: 30 }
+  ],
+
+  technicalProfile: {
+    hydration: [75, 85],
+    salt: [2.0, 2.5],
+    oil: [0, 3],
+    sugar: [0, 0],
+    flourStrength: "Strong bread flour, 12.5-13.5% protein to support high hydration",
+    ovenTemp: [230, 250],
+    recommendedUse: [
+      "Italian panini and sandwiches",
+      "Bruschetta and crostini base",
+      "Dipping in high-quality olive oil"
     ],
-    "consumptionContext": [
-      "The default choice for authentic Italian panini and gourmet sandwiches",
-      "Ideal for 'Scarpetta'—dipping into pasta sauces or olive oil",
-      "Traditionally served in long loaves or small 'Ciabattine' buns",
-      "Commonly used for Bruschetta due to its sturdy, porous structure",
-      "Often sliced horizontally and grilled to refresh the internal texture"
-    ],
-    "evolution": [
-      "1982: Arnaldo Cavallari 'invents' the Ciabatta Polesana in Adria",
-      "1985: Marks & Spencer introduces Ciabatta to the UK, sparking global fame",
-      "1987: The style reaches the US, becoming a staple of 'Artisan' bakeries",
-      "1990s: Development of the 'Ciabatta al Taglio' for industrial sandwich production",
-      "2000s: High-hydration home baking movement adopts Ciabatta as a technical benchmark",
-      "Present: Available in endless varieties (Whole Wheat, Olive, Walnut) globally"
-    ],
-    "rituals": [
-      "The 'Slipper' Shape: rustic, irregular, and flour-dusted appearance",
-      "Hand-Dividing: using a bench scraper to cut the wet dough into rectangular pieces without degassing",
-      "The 'Windowpane' test: checking the high-hydration gluten strength before bulk ferment",
-      "Dipping in Extra Virgin: the classic ritual of testing the crumb's 'wicking' ability with olive oil",
-      "Checking the Alveoli: cutting the loaf to admire the large, irregular internal air pockets"
+    difficulty: "Hard",
+    ballWeight: { recommended: 500, min: 300, max: 800 },
+    fermentationSteps: [
+      "Biga Preparation: Mix flour, water, and a tiny amount of yeast. Ferment 12-16 hours. [Science: Develops organic acids and strengthens gluten network through long enzyme activity]",
+      "Mixing: Combine biga, remaining flour, water, yeast, and salt. Use high-speed mixing initially, then rest. [Science: High hydration requires intensive early development to build structure]",
+      "Stretch & Fold: Perform 3-4 sets of folds directly in the bowl during bulk fermentation. [Science: Builds strength gently while preserving large gas bubbles (alveoli)]",
+      "Bulk Fermentation: 3-4 hours until dough is jiggly and full of air. [Science: Gas production expands the high-hydration network]",
+      "Shaping: Gently pour onto a heavily floured surface. Cut into rectangles without degassing. [Science: Minimal handling is critical to keep the 'slipper' airy]",
+      "Baking with Steam: Bake at 450°F with steam for the first 10-12 mins. [Science: Steam facilitates oven spring and creates a thin, shattering crust]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Sweet, mild wheat notes with a clean finish",
-      "Subtle nutty/buttery undertones from the Poolish preferment",
-      "Mild lactic tang from long bulk fermentation",
-      "Significant toasted wheat aroma from the high-temp bake",
-      "Absence of acidity (unlike sourdough), focusing on pure grain flavor"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W320-380 (Very strong)",
+      pl_ratio: "0.50-0.65 (Balanced-Extensible)",
+      absorption_capacity: "High (75-85%)",
+      protein_type: "Strong wheat with high glutenin content",
+      science_explanation: "Only high-protein flour with a strong gluten network can support 80% hydration without turning into a puddle. The W index must be high enough to resist the enzymatic breakdown during long fermentation."
+    },
+    thermalProfile: {
+      oven_type: "Hearth or deck oven with high thermal mass",
+      heat_distribution: "Strong bottom conduction (stone), steam convection",
+      crust_development: "Thin, pale-to-golden, shattering crispness",
+      crumb_structure: "Gigantic, irregular holes (alveoli) with gelatinized, translucent walls"
+    },
+    fermentationScience: {
+      yeast_activity: "High; accelerated in the high-moisture environment",
+      ph_target: "pH 5.2 - 5.5",
+      organic_acids: "Acetic acids from the biga provide the classic Italian tang",
+      enzymatic_activity: "Protease activity is high, which helps create the extensible dough that stretches around large gas bubbles"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Water temperature is your control",
+        explanation: "High hydration doughs heat up fast during intensive mixing. Use ice-cold water to keep the final dough temperature around 24°C (75°F) for controlled fermentation."
+      },
+      {
+        tip: "Don't over-mix—stretch and fold instead",
+        explanation: "While you need initial strength, the best open crumb in Ciabatta comes from time and folds. Folds align the gluten fibers without knocking out the air."
+      },
+      {
+        tip: "Heavily flour the workspace",
+        explanation: "Ciabatta dough is very sticky. Use a generous amount of semolina or flour on your board and hands. You are 'floating' the dough rather than handling it."
+      },
+      {
+        tip: "Proof on linen (Couche)",
+        explanation: "Proofing the cut 'slippers' on floured linen helps maintain their rectangular shape and prevents the dough from spreading too flat before it hits the oven."
+      },
+      {
+        tip: "Listen for the 'hollow' sound",
+        explanation: "Because Ciabatta is so airy, it should feel remarkably light for its size when done. Tap the bottom; it should sound like a drum."
+      }
     ],
-    "aromaProfile": [
-      "Freshly baked white bread with a hint of honey/malt",
-      "Mildly alcoholic/yeasty notes from the active Poolish",
-      "Warm, toasted flour from the heavy dusting on the crust",
-      "Dominant cereal and grain aromas",
-      "Clean and neutral, designed to highlight sandwich fillings"
+    what_if: [
+      {
+        scenario: "The dough is a liquid puddle and won't hold shape",
+        result: "Flour was too weak or over-hydration",
+        correction: "Next time, use a higher protein flour (W350+) or reduce hydration by 5% until technique improves."
+      },
+      {
+        scenario: "The inside is gummy and wet",
+        result: "Under-baked or not enough steam at the start",
+        correction: "Increase bake time; ensure the steam is heavy in the first 10 mins and then vented for the final 10 mins."
+      },
+      {
+        scenario: "The holes are small and even like white bread",
+        result: "Over-handling/degassing during shaping",
+        correction: "Be extremely gentle after bulk fermentation. Don't 'knead' the dough after it's fermented; just cut and lift."
+      },
+      {
+        scenario: "The crust is too thick and hard",
+        result: "Steam was insufficient or oven too cold",
+        correction: "Preheat the oven longer (at least 1 hour) and use a steam-generating pan with lava rocks."
+      }
     ],
-    "textureNotes": [
-      "The 'Big Hole' Crumb: irregular, large-celled structure (alveolatura)",
-      "Thin, crisp, and slightly leathery crust with a matte flour finish",
-      "Highly moist and tender interior that feels 'waxy' or translucent in parts",
-      "Light and airy mouthfeel despite the large size of the loaf",
-      "Significant 'crunch' when toasted, followed by a soft, melting interior"
+    comparative_analysis: [
+      {
+        target_style: "Baguette",
+        difference: "Ciabatta is flatter, much wetter (80% vs 68%), and has much larger, irregular holes",
+        why_choose_this: "Choose Ciabatta for sandwiches (panini) where you want a soft, holey carrier for oil and fillings."
+      },
+      {
+        target_style: "Focaccia",
+        difference: "Ciabatta is leaner (no or low oil) and baked on a hearth; focaccia is baked in a pan with significant oil",
+        why_choose_this: "Choose Ciabatta for a lighter, crispier bread with a clean wheat flavor."
+      },
+      {
+        target_style: "Pain Rustique",
+        difference: "Pain Rustique is similar but often uses poolish and has a slightly tighter crumb than high-hydration Ciabatta",
+        why_choose_this: "Choose Ciabatta for the absolute maximum airiness possible in a loaf."
+      }
     ],
-    "pairingRecommendations": [
-      "Cheese: Fresh Mozzarella, Taleggio, or Fontina",
-      "Meat: Prosciutto di Parma, Mortadella, or Bresaola",
-      "Vegetables: Roasted red peppers, arugula, sun-dried tomatoes",
-      "Finishing: High-quality olive oil and balsamic vinegar for dipping",
-      "Sandwich: The classic Caprese (mozzarella, tomato, basil, olive oil)"
+    q_and_a: [
+      {
+        question: "Why is ciabatta so holey and airy?",
+        answer: "It's the combination of 80% hydration and very gentle handling. The high water content creates steam, and the strong gluten network (from biga and folds) traps large bubbles that aren't squeezed out during shaping.",
+        context: "Technique"
+      },
+      {
+        question: "Is Ciabatta a centuries-old tradition?",
+        answer: "Surprisingly, no. It was invented in 1982 by Arnaldo Cavallari to compete with the French baguette which was dominating the sandwich market in Italy.",
+        context: "History"
+      },
+      {
+        question: "What does 'Ciabatta' actually mean?",
+        answer: "It means 'slipper' in Italian. The bread is flat, elongated, and slightly irregular, resembling a house slipper or old shoe.",
+        context: "Etymology"
+      },
+      {
+        question: "Can I make this without a biga?",
+        answer: "You can use a direct method, but you'll lose the characteristic Italian 'tang' and the enzyme-driven gluten strength that helps the bread hold its shape.",
+        context: "Methods"
+      },
+      {
+        question: "What kind of flour is best?",
+        answer: "You need a 'Manitoba' style flour or a strong bread flour with at least 13% protein. Low-protein '00' flour will collapse under this much water.",
+        context: "Ingredients"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh (0-4 hours): Maximum crust crispness and internal moisture vibrancy",
-      "6-12 hours: Becomes 'leathery'; the internal moisture starts to migration to the crust",
-      "Day 2: Needs to be toasted; the crumb remains exceptionally moist for toasting",
-      "Stale: Makes the world's best croutons or 'Panzanella' salad bread",
-      "Frozen: Freezes exceptionally well due to high internal moisture"
+    fermentation_methods: [
+      {
+        method: "Hybrid",
+        suitability: "Authentic",
+        notes: "Using a biga (preferment) with a small addition of yeast in the final mix is the authentic 1982 Cavallari method."
+      },
+      {
+        method: "Direct",
+        suitability: "Possible",
+        notes: "Easier for beginners but produces a less aromatic and less structural result."
+      },
+      {
+        method: "Sourdough",
+        suitability: "Possible",
+        notes: "Modern Adaptation - Known as 'Ciabatta al Lievito Naturale'. Produces a thicker crust and more acidic crumb."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Poolish 30–50% of flour is classic.",
-    "Hydration: 75-80%"
-  ],
-  "doughImpact": [
-    "High hydration (75-80%) is essential for creating the large, irregular internal air pockets",
-    "Poolish (liquid preferment) provides enzymatic activity that improves stretch and flavor",
-    "Long bulk fermentation with frequent 'stretch and folds' builds the required gluten strength",
-    "Delicate handling during division is critical to prevent degassing the high-hydration bubbles",
-    "Heavy flour dusting provides the signature rustic look and prevents sticking of the wet dough"
-  ],
-  "bakingImpact": [
-    "High heat (230-250°C) with steam provides the initial 'oven spring' needed for the holes",
-    "Steam keeps the crust thin and flexible during the expansion phase",
-    "A baking stone or heavy deck is vital for quick heat transfer to the wet dough base",
-    "The 20-25 minute bake time ensures the large amount of internal moisture is adequately set",
-    "Venturing the steam in the last 10 minutes helps achieve the signature crisp/matte crust"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      75,
-      80
-    ],
-    "saltRange": [
-      2,
-      2.2
-    ],
-    "oilRange": [
-      0,
-      2
-    ],
-    "sugarRange": [
-      0,
-      1
-    ],
-    "flourStrength": t('styles.strong_bread_flour_w_260300'),
-    "fermentation": {
-      "bulk": "2–3 h at 23–25°C with multiple folds",
-      "proof": "30–60 min after dividing and shaping",
-      "coldRetard": t('styles.optional_812_h_for_flavor')
+
+  deepDive: {
+    hydrationLogic: "Ciabatta pushes the limits of wheat flour. At 80% hydration, the dough is technically a 'thick batter'. This moisture levels are essential for the Maillard reaction to occur on a very thin crust and for the gelatinization of starches that makes the crumb look translucent and taste moist.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Requires very careful folding to build enough strength." },
+      biga: { suitable: true, notes: "The classic method. Biga provides the necessary tenacity to balance the high hydration's extensibility." },
+      poolish: { suitable: true, notes: "Produces a very extensible dough, though it can be harder to shape into the 'slipper' form." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        230,
-        250
-      ],
-      "notes": t('styles.bake_with_good_steam_handle_gently_to_preserve_gas')
-    },
-    "difficulty": t('styles.expert_3'),
-    "recommendedUse": [
-      t('common.sandwich_bread'),
-      t('common.bruschetta'),
-      t('common.rustic_table_bread')
+    whatIf: [
+      {
+        scenario: "You omit the folds",
+        outcome: "The dough will never develop enough strength to hold the gas, resulting in a flat, dense pancake",
+        solution: "Perform at least 3 sets of strength-building folds every 30 minutes"
+      },
+      {
+        scenario: "You handle the dough like pizza dough (stretching it)",
+        outcome: "You will degas the large alveoli, losing the signature open crumb",
+        solution: "Treat the dough like a 'cloud'—lift and place, never pull or press"
+      },
+      {
+        scenario: "You bake without enough top heat",
+        outcome: "The bread won't get enough oven spring, leading to a pale and gummy top",
+        solution: "Ensure the oven is fully preheated to at least 450°F (230°C)"
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Pane di Genzano",
+        difference: "Genzano is a large round loaf with a dark, bran-coated crust; Ciabatta is a small, elongated slipper with a lighter crust."
+      },
+      {
+        vsStyle: "Focaccia Barese",
+        difference: "Barese is loaded with olive oil and potatoes; Ciabatta is a lean dough focused on pure wheat flavor."
+      }
+    ],
+    proTips: [
+      "Use 'Double Zero' flour only if it's the high-protein reinforced version (W300+)",
+      "Dust the top with extra flour before baking for that classic rustic, white-streaked look",
+      "Let the bread cool completely on a wire rack; cutting while warm will make the high-moisture crumb gummy",
+      "Arnaldo Cavallari's original company was Molini Adriesi, which still promotes the 'Ciabatta Italia' brand",
+      "If the dough is too wet to shape rectangles, bake it in a pan as a 'Pan Focaccia'—it's still delicious!"
     ]
   },
-  "regionalVariants": [
-    "Ciabatta Polesana - The original 1982 recipe from Adria/Veneto",
-    "Ciabatta Integrale - Version using whole wheat or mixed grains",
-    "Ciabatta al Latte - Enriched with milk for a softer, tighter crumb",
-    "Ciabattine - 'Little slippers', individual-sized rolls for sandwiches",
-    "Pane di Como - A high-hydration cousin from the Lake Como region"
+
+  tags: ["italian", "ciabatta", "high hydration", "open crumb", "lean dough"],
+
+  watchouts: [
+    "Over-mixing deflates dough and destroys open crumb structure",
+    "Insufficient fermentation results in weak gluten and flat bread",
+    "Wrong flour type creates dense, gummy texture instead of airy",
+    "Degassing during shaping is the most common mistake",
+    "Cold oven causes the dough to spread before it can rise"
   ],
-  "climateScenarios": [
-    "Hot/Humid: Use ice-cold water (4°C) for the main dough; shorten bulk ferment to prevent collapse",
-    "Cold/Dry: Use warm water (30°C) for the poolish; use a proofing box to maintain 24-25°C",
-    "High Altitude: Reduce yeast in the poolish by 20% to prevent over-expansion of the wet dough",
-    "Coastal: The high humidity can make the thin crust go soft quickly; extend the 'dry' bake phase"
+
+  notes: [
+    "Created in 1982 by Arnaldo Cavallari",
+    "Name 'ciabatta' means 'slipper'",
+    "High hydration (75-85%) is key to signature holes",
+    "Traditionally uses a biga (preferment)",
+    "Icon of modern Italian baking innovation"
   ],
-  "styleComparisons": [
-    "vs. Baguette: Ciabatta is much more hydrated, uses poolish vs direct/starter, and has a flatter shape",
-    "vs. Focaccia: Ciabatta is a lean dough (no oil inside), whereas Focaccia is heavily enriched with oil",
-    "vs. Sourdough Loaf: Ciabatta focuses on mild wheat sweetness vs. the tang and acidity of sourdough",
-    "vs. Pugliese: Similar rustic origins, but Ciabatta is wetter and more rectangular"
-  ],
-  "parameterSensitivity": [
-    "Critical: Flour Strength - only high-protein flour (W 280+) can hold 80% hydration without sloping",
-    "Highly sensitive: Stretch and Folds - skipping these will result in a flat, pancake-like loaf",
-    "Poolish Age: Using an over-ripe, acidic poolish will degrade the gluten and cause collapse",
-    "Dough Temperature: Controlling the 24-25°C bulk is the secret to consistent hole structure",
-    "Shaping: Under-handling is better than over-handling; keep the 'slipper' rustic and irregular"
-  ],
-  "risks": [
-    "Flat 'Pancake' Bread: Caused by using weak flour or insufficient gluten development during folds",
-    "Soggy Middle: Under-baking the high-moisture dough or not enough steam during the first 10 mins",
-    "Dense Crumb: Over-handling/degassing the dough during the dividing and panning process",
-    "Sticking to Linen: Not using enough flour on the couches or towels during proofing",
-    "Burnt Bottom: Stone is too hot or bake time is too long without balancing top/bottom heat"
-  ],
-  "notes": [
-    "Wet your hands before performing stretch and folds to prevent the dough from sticking",
-    "Don't be afraid of the mess - Ciabatta is a high-hydration, rustic 'adventure' bread",
-    "A bench scraper is your best tool for moving and dividing the rectangular dough pieces",
-    "The Poolish should be bubbly and smelling like fresh fruit/yeast before use",
-    "Wait at least 1 hour before cutting into a fresh ciabatta to let the internal structure set"
-  ],
-  "tags": [
-    t('common.sandwich_bread'),
-    t('common.bruschetta'),
-    t('common.rustic_table_bread'),
-    t('common.bread'),
-    t('common.italy')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "balsamic_modena", "prosciutto_crudo", "azeitonas"],
+
+  references: [
     {
-      "title": t('styles.bread__jeffrey_hamelman_2'),
-      "url": "https://www.amazon.com/Bread-Bakers-Book-Techniques-Recipes/dp/1118132718",
-      "author": "Jeffrey Hamelman",
-      "year": 2012
+      source: "The Guardian - The rise and rise of the ciabatta",
+      url: "https://www.theguardian.com/food/2019/apr/30/the-rise-and-rise-of-the-ciabatta"
     },
     {
-      "title": t('styles.modernist_bread_4'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
+      source: "Molini Adriesi - History of Ciabatta",
+      url: "http://www.moliniadriesi.it/ciabatta-italia/"
     },
     {
-      "title": "Arnaldo Cavallari: The Man Who Invented Ciabatta",
-      "url": "https://www.theflourmillingjournal.com/history/cavallari-ciabatta",
-      "author": "Italian Bakers Guild",
-      "year": 2021
-    },
-    {
-      "title": "The Village Baker",
-      "url": "https://www.amazon.com/Village-Baker-Classic-Regional-Europe/dp/0898154157",
-      "author": "Joe Ortiz",
-      "year": 1993
+      source: "Arnaldo Cavallari - Wikipedia",
+      url: "https://it.wikipedia.org/wiki/Arnaldo_Cavallari"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "O que é Ciabatta?",
-      "answer": "É um pão italiano de alta hidratação (muita água), formato achatado e alongado (lembrando um 'chinelo' ou slipper), com miolo muito aerado e casca fina e crocante. Foi criado para competir com a baguete francesa no mercado de sanduíches."
-    },
-    {
-      "question": "Por que a massa da Ciabatta é tão mole e difícil de trabalhar?",
-      "answer": "A alta hidratação (75-80%) é o que permite a criação dos grandes buracos no miolo. Para lidar com ela, usamos a técnica de 'dobras' (stretch and folds) em vez de sova tradicional, desenvolvendo o glúten por tempo e manipulação gentil."
-    },
-    {
-      "question": "Qual a diferença entre Ciabatta e Focaccia?",
-      "answer": "A Ciabatta é uma massa magra (sem óleo por dentro) focada em buracos grandes e casca crocante. A Focaccia é enriquecida com bastante azeite, tem um miolo mais macio e uniforme, e é assada em assadeiras, enquanto a Ciabatta é assada direto na pedra."
-    },
-    {
-      "question": "É obrigatório usar Poolish?",
-      "answer": "Sim, no método clássico. O Poolish (prefermento líquido) garante a extensibilidade necessária para a massa expandir e criar os buracos, além de dar um aroma adocicado de trigo fermentado sem a acidez do levain."
-    },
-    {
-      "question": "Como saber se a Ciabatta ficou boa?",
-      "answer": "Ela deve ser leve para o seu tamanho (muito ar), ter uma casca que 'estala' ao ser apertada e, ao cortar, exibir alvéolos de tamanhos irregulares em todo o miolo, sem partes densas ou 'soladas' no fundo."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/ciabatta-high-hydration-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  }
 };

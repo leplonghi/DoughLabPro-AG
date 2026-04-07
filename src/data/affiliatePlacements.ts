@@ -44,7 +44,57 @@ export const AFFILIATE_PLACEMENTS: Record<string, AffiliatePlacement> = {
         title: 'Lab Essentials',
         description: 'Keep your workflow efficient with these essentials.',
         productIds: ['sourdough-kit', 'dough-scraper', 'scale-precision']
+    },
+    'burger_buns_essentials': {
+        id: 'burger_buns_essentials',
+        title: 'Burger Bun Essentials',
+        description: 'Professional tools for the perfect bun.',
+        productIds: ['bun-pan', 'dry-milk', 'potato-flour', 'sesame-seeds']
+    },
+    'pizza_essentials': {
+        id: 'pizza_essentials',
+        title: 'Pizza Essentials',
+        description: 'Professional tools for the perfect pizza crust.',
+        productIds: ['pizza-steel', 'pizza-peel', 'infrared-thermometer', '00-flour-1']
+    },
+    'artisan_bread_essentials': {
+        id: 'artisan_bread_essentials',
+        title: 'Artisan Bread Kit',
+        description: 'Everything you need for sourdough and artisan loaves.',
+        productIds: ['sourdough-kit', 'bread-lame', 'banneton', 'dutch-oven']
+    },
+    'enriched_dough_essentials': {
+        id: 'enriched_dough_essentials',
+        title: 'Enriched Dough Tools',
+        description: 'Master brioche and sweet breads with these tools.',
+        productIds: ['stand-mixer-1', 'scale-precision', 'dry-milk', 'dough-scraper']
+    },
+    'pastry_essentials': {
+        id: 'pastry_essentials',
+        title: 'Pastry Essentials',
+        description: 'Bake professional-grade pastries at home.',
+        productIds: ['stand-mixer-1', 'rolling-pin', 'sourdough-kit', 'pure-fat-enrichment']
+    },
+    'flatbread_essentials': {
+        id: 'flatbread_essentials',
+        title: 'Flatbread Essentials',
+        description: 'Tools for perfect naan, tortillas, and more.',
+        productIds: ['rolling-pin', 'pizza-stone', 'scale-precision', 'bench-scraper']
     }
+};
+
+export const CATEGORY_PLACEMENT_MAP: Record<string, string> = {
+    'pizza': 'pizza_essentials',
+    'bread': 'artisan_bread_essentials',
+    'enriched_bread': 'enriched_dough_essentials',
+    'burger_bun': 'burger_buns_essentials',
+    'pastry': 'pastry_essentials',
+    'cookie': 'pastry_essentials',
+    'flatbread': 'flatbread_essentials',
+};
+
+export const getCategoryPlacement = (category: string): string | undefined => {
+    return CATEGORY_PLACEMENT_MAP[category.toLowerCase()];
 };
 
 export const getProductsForPlacement = (placementId: string): AffiliateProduct[] => {

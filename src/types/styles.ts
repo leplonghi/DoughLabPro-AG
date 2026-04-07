@@ -88,6 +88,7 @@ export enum RecipeStyle {
     PASTRY_CINNAMON_ROLL = 'PASTRY_CINNAMON_ROLL',
     PASTRY_DANISH = 'PASTRY_DANISH',
     FRENCH_CROISSANT = 'FRENCH_CROISSANT',
+    PANETTONE_ARTISANAL = 'PANETTONE_ARTISANAL',
     PUFF_PASTRY = 'PUFF_PASTRY',
     COOKIE_CLASSIC_CHOC_CHIP = 'COOKIE_CLASSIC_CHOC_CHIP',
     COOKIE_BROWN_BUTTER = 'COOKIE_BROWN_BUTTER',
@@ -229,9 +230,11 @@ export interface AdvancedProfile {
         organic_acids: string; // e.g. t('common.lactic_dominant_over_acetic')
         enzymatic_activity: string; // e.g. t('common.high_protease_activity_during_autolyse')
     };
+
+    processScience?: string; // Unified key for the summary of the scientific process
 }
 
-// New Rich Content Interface (Level 3 - Educational)
+// Level 3: Educational & Deep Dive Content
 export interface EducationalContent {
     pro_tips: {
         tip: string;
@@ -261,6 +264,14 @@ export interface EducationalContent {
         suitability: 'Ideal' | 'Possible' | 'Not Recommended' | 'Historical' | 'Authentic';
         notes: string;
     }[];
+}
+
+export interface FlavorProfile {
+    primaryFlavors: string[];
+    aromaProfile: string[];
+    textureNotes: string[];
+    pairingRecommendations: string[];
+    flavorEvolution?: string[];
 }
 
 export interface DeepDive {
@@ -471,6 +482,9 @@ export interface DoughStyleDefinition {
     education?: EducationalContent;
     deepDive?: DeepDive;
 
+    /** Flavor Intelligence - Sensory profile and pairing recommendations */
+    flavorProfile?: FlavorProfile;
+
     // App Mapping (MyLab)
     experimentSuggestions?: string[]; // e.g. "Try pushing hydration to 75%..."
 
@@ -524,4 +538,5 @@ export interface DoughStyleDefinition {
      * IDs of recommended increments/ingredients for this style.
      */
     recommendedIncrements?: string[];
+    recommendedFlavorComponents?: string[];
 }

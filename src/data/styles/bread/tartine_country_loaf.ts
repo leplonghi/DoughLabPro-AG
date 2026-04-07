@@ -1,250 +1,238 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * TARTINE COUNTRY LOAF (MODERN SOURDOUGH)
+ * 
+ * Researched and validated content:
+ * - Origin: California (San Francisco/Oakland) - Chad Robertson
+ * - Technique: High Hydration, Young Levain, Gentle folding, Dutch Oven bake
+ * - Ingredients: White Flour, Whole Wheat (10%), Water, Salt, Wild Yeast
+ * - Characteristics: Open "wild" crumb, deep blistered crust, mild acidity
+ */
+export const tartine_country_loaf: DoughStyleDefinition = {
+  id: "tartine_country_loaf",
+  name: "Tartine Country Loaf",
+  category: "bread",
+  recipeStyle: RecipeStyle.SOURDOUGH,
+  family: "Modern Artisan Sourdough",
 
-export const tartine_country_loaf: StyleDefinition = {
-  "id": "tartine_country_loaf",
-  "title": "Country Sourdough (Tartine-style)",
-  "subtitle": t('styles.levain__country_sourdough_5'),
-  "category": t('styles.bread_25'),
-  "family": t('styles.levain__country_sourdough_6'),
-  "variantName": "Country Sourdough (Tartine-style)",
-  "origin": {
-    "country": t('styles.united_states_3'),
-    "region": t('styles.san_francisco'),
-    "period": t('styles.early_21st_century')
+  origin: {
+    country: "USA",
+    region: "California (San Francisco)",
+    period: "Modern (2000s)"
   },
-  "intro": t('styles.baked_in_artisan_bakeries_and_by_home_enthusiasts_'),
-  "history": "The Tartine Country Loaf was born in San Francisco in the early 2000s, developed by Chad Robertson at Tartine Bakery. Drawing from traditional French methods but pushing the boundaries of hydration and 'wild' fermentation, it sparked a global movement. Often called 'The Loaf That Changed Bread', it shifted the artisan focus from dense, acidified sourdoughs to light, highly hydrated, open-crumb 'custardy' loaves.",
-  "culturalContext": {
-    "significance": [
-      "The quintessential benchmark of the 21st-century 'Artisan Sourdough' movement",
-      "Redefined the home baker's standards for open crumb and deep crust caramelization",
-      "Credited with reviving the interest in natural leavening (Levain) globally",
-      "Represents the 'San Francisco Style' of high-hydration baking",
-      "A symbol of culinary patience, requiring a multi-day process"
+
+  description: "The bread that changed the world of baking. Developed by Chad Robertson at Tartine Bakery, this style focuses on a 'young' and mild sourdough starter, extremely high hydration, and gentle handling to preserve the gas structure. It is defined by its dramatic oven spring, dark mahogany crust with small blisters, and an open, creamy, pearlescent crumb.",
+
+  history: "While San Francisco was already famous for its sour bread, the 'Tartine' style moved away from the intense acetic sourness of the 19th-century gold rush breads. Instead, it pursued a 'sweet' lactic acidity and a lightness previously thought impossible with simple flour and water. It is the archetype of the 'Instagram Sourdough' movement.",
+
+  difficulty: "Expert",
+  fermentationType: "levain",
+
+  base_formula: [
+    { name: "Strong Bread Flour", percentage: 90 },
+    { name: "Whole Wheat Flour", percentage: 10 },
+    { name: "Water (Warm)", percentage: 75 }, // Base hydration
+    { name: "Water (Hold-back)", percentage: 5 }, // For Bassinage
+    { name: "Young Levain (100% Hyd)", percentage: 20 },
+    { name: "Sea Salt", percentage: 2 }
+  ],
+
+  technicalProfile: {
+    hydration: [75, 85], // The hallmark of the style
+    salt: [1.8, 2.2],
+    oil: [0, 0],
+    sugar: [0, 0],
+    flourStrength: "High Protein but Extensible (W300+). Needs to hold tons of water.",
+    ovenTemp: [240, 260], // Dutch Oven method requires high initial heat
+    recommendedUse: [
+      "Avocado Toast",
+      "Table bread with salted butter",
+      "Grilled Cheese"
     ],
-    "consumptionContext": [
-      "Often eaten simple: a thick slice with high-fat salted butter",
-      "Perfect base for 'Tartines'—complex, gourmet open-faced sandwiches",
-      "A centerpiece bread for communal dinners, often served in large wedges",
-      "Ideal for 'Scarpetta'—sopping up high-end olive oil or pasta sauces",
-      "Traditionally sliced thick to admire the giant, irregular internal air pockets"
-    ],
-    "evolution": [
-      "Early 2000s: Chad Robertson experiments with 'young' levain and high hydration in Pt. Reyes",
-      "2002: Tartine Bakery opens in SF, selling 100 loaves a day that sell out in minutes",
-      "2010: The book 'Tartine Bread' is published, becoming the bible for home bakers",
-      "2010s: The 'Sourdough Revolution' spreads to London, Copenhagen, and Tokyo",
-      "2020: The global pandemic induces a massive resurgence of Tartine-style home baking",
-      "Present: Remains the most photographed and technical benchmark bread on social media"
-    ],
-    "rituals": [
-      "The 'Windowpane' Test: checking the sheer transparency of the high-hydration dough",
-      "The Float Test: checking if the 'young' levain is ready by seeing if a spoonful floats in water",
-      "The Dutch Oven Ritual: the excitement of removing the lid after 20 minutes to see the 'oven spring'",
-      "Listening to the 'Crackles': hearing the crust shatter as the bread cools on the rack",
-      "The 'Crumb Shot': cutting the bread centrally to photograph and share the open internal structure"
+    difficulty: "Expert",
+    ballWeight: { recommended: 900, min: 750, max: 1200 },
+    fermentationSteps: [
+      "Levain Building: Use a 'young' levain, fed 4-6 hours before mixing, smelling milky-sweet, not vinegary. [Science: Younger biological age = less acidity and more enzymatic power for oven spring]",
+      "Autolyse: Mix flour and water only. Rest 40-60 mins. [Science: Allows gluten to form passively and enzymes to start converting starch to sugar before salt/yeast inhibit them]",
+      "Mixing: Add levain and salt. Squeeze the dough to incorporate. [Science: Minimal oxidation. No machine mixing preferred]",
+      "Bulk Fermentation: 3-4 hours at 26°C. Perform 'Coil Folds' or 'Stretch & Folds' every 30 mins. [Science: Structure generates through folding, not kneading]",
+      "The 'Wobble': Stop bulk when the dough is puffy, domed, and wobbles like jelly (approx 30-50% volume increase). [Science: Pushing beyond 50% weakens the gluten too much for the final shape]",
+      "Shaping: Gentle tension building. Do not degas. [Science: We want to preserve the CO2 pockets for the open crumb]",
+      "Cold Retard: Proof in banneton for 12-16 hours at 5°C. [Science: Enhances blistering and flavor complexity]",
+      "Baking (Dutch Oven): Bake covered for 20 mins at 250°C (steam), then uncovered for 25 mins at 230°C. [Science: The sealed pot traps the dough's own steam, allowing maximum expansion]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Mild, creamy sweetness from 'young' liquid levain",
-      "Subtle yogurt-like lactic acidity (low acetic sharpness)",
-      "Intense caramelized, almost smoky notes from a dark-burnt crust",
-      "Rich toasted wheat and toasted cereal flavors",
-      "Subtle roasted nuttiness from the small percentage of whole wheat"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W300-350 (Strong)",
+      pl_ratio: "0.50-0.60 (Balanced)",
+      absorption_capacity: "High",
+      protein_type: "Hard Red Spring Wheat",
+      science_explanation: "Requires a flour that can absorb 85% water without turning into soup. High protein content is mandatory."
+    },
+    thermalProfile: {
+      oven_type: "Dutch Oven (Cast Iron) or Deck Oven with Steam",
+      heat_distribution: "Radiant heat from all sides",
+      crust_development: "Thick, crunchy, caramelized (Maillard), with micro-blisters",
+      crumb_structure: "Wild, irregular alveoli (holes), gelatinized sheen"
+    },
+    fermentationScience: {
+      yeast_activity: "Wild Yeast (Candida milleri) + Lactic Acid Bacteria (L. sanfranciscensis)",
+      ph_target: "pH 4.1 - 4.3 (Baked)",
+      organic_acids: "Balanced Acetic/Lactic favors Lactic",
+      enzymatic_activity: "High; prolonged hydration breaks down gluten slightly, creating the tender bite."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Water Temperature is the Throttle",
+        explanation: "Since you can't control the yeast amount (it's in the starter), you control speed with water temperature. Use 28°C water to keep the dough moving."
+      },
+      {
+        tip: "Young Levain",
+        explanation: "Test your starter by dropping a spoonful in water. If it floats, it's ready. If it sinks, it's too young or too old."
+      },
+      {
+        tip: "The Score",
+        explanation: "Score at a very shallow angle (almost horizontal) to get the 'Ear'. The expansion force must be directed upwards."
+      },
+      {
+        tip: "Don't Slice Hot",
+        explanation: "Sourdough continues to cook and set while cooling. Slicing it hot will result in a gummy, wet texture."
+      }
     ],
-    "aromaProfile": [
-      "Sweet, fermented fruit and fresh cream",
-      "Deeply toasted, slightly smoky crust notes",
-      "Warm wheat and toasted malt",
-      "Mild cider-like tang",
-      "Clean, earthy, and complex"
+    what_if: [
+      {
+        scenario: "The bread is a flat frisbee",
+        result: "Over-fermented (acid degraded the gluten) or weak shaping",
+        correction: "Shorten the bulk fermentation time or build more tension during shaping."
+      },
+      {
+        scenario: "The crumb is tight and dense",
+        result: "Under-fermented",
+        correction: "Let the bulk fermentation go longer until you see bubbles on the surface."
+      },
+      {
+        scenario: "The crust is pale and soft",
+        result: "Not enough heat",
+        correction: "Preheat the Dutch Oven for at least 45 mins at max temp."
+      }
     ],
-    "textureNotes": [
-      "The 'Custardy' Crumb: highly moist, gelatinized, and tender to the point of being translucent",
-      "The 'Shatter' Crust: thin, blistered, and exceptionally crunchy",
-      "Open Alveolatura: giant, irregular, 'wild' internal air pockets",
-      "Springy and elastic: should fully recover its shape when compressed",
-      "Significant weight-to-volume ratio: feels light in the hand but substantial in the mouth"
+    comparative_analysis: [
+      {
+        target_style: "San Francisco Sour",
+        difference: "Traditional SF Sour is very acidic (vinegary); Tartine style is milder and creamier.",
+        why_choose_this: "Choose Tartine for a balanced, modern artisan flavor."
+      },
+      {
+        target_style: "Ciabatta",
+        difference: "Ciabatta is yeast-based and flatter; Country Loaf is wild-yeast and taller.",
+        why_choose_this: "Choose Country Loaf for structure and complexity."
+      }
     ],
-    "pairingRecommendations": [
-      "Fat: High-quality cultured butter (Le Beurre Bordier style) or raw honey",
-      "Cheese: Soft-ripened cheeses like Brillat-Savarin or aged Gruyère",
-      "Meal: Roasted chicken, heritage tomato salads, or bone marrow",
-      "Beverage: Natural wines, craft sourdough beers, or fresh-pressed apple juice",
-      "Finishing: A drizzle of cold-pressed Californian olive oil and sea salt"
+    q_and_a: [
+      {
+        question: "Can I use 100% white flour?",
+        answer: "Yes, but the 10% Whole Wheat provides nutrients for the yeast and deeper fermentation colors.",
+        context: "Ingredients"
+      },
+      {
+        question: "Why Dutch Oven?",
+        answer: "Domestic ovens vent steam. The Dutch Oven creates a sealed, high-steam environment mimicking professional deck ovens.",
+        context: "Technique"
+      },
+      {
+        question: "Is it really healthy?",
+        answer: "Long fermentation breaks down gluten and phytic acid, making nutrients more bioavailable and the bread easier to digest.",
+        context: "Health"
+      }
     ],
-    "flavorEvolution": [
-      "Warm (0-2 hours): Crumb is still setting; extreme toasted crust aroma",
-      "8-12 Hours: Peak texture and flavor balance (the 'Gold Standard' window)",
-      "Next Day: Acidity develops slightly further; becomes the ultimate toast bread",
-      "Day 3+: Toasts to a perfect golden crunch; the moist interior stays soft",
-      "Stale: Used for rustic Panzanella salad or high-end Ribollita soup"
+    fermentation_methods: [
+      {
+        method: "Sourdough",
+        suitability: "Authentic",
+        notes: "The soul of the bread."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Possible",
+        notes: "Adding 0.2% yeast speeds it up but reduces flavor complexity."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Liquid levain 15–25% of flour.",
-    "Hydration: 75-80%"
-  ],
-  "doughImpact": [
-    "High hydration (75-80%+) creates the characteristic 'custardy' and open-crumb texture",
-    "Use of 10-20% whole wheat provides the nutrients needed for wild yeast and enzymatic activity",
-    "A 'young' liquid levain (used before peak acidity) ensures a mild, sweet flavor profile",
-    "Gentle 'coil folds' or 'stretch and folds' build technical strength without degassing the dough",
-    "Extended cold retard (12-16h) develops flavor and firms the dough for intricate scoring"
-  ],
-  "bakingImpact": [
-    "High initial heat (230-250°C) and confined steam (Dutch oven) maximize 'oven spring'",
-    "Steam keeps the surface flexible, allowing the massive expansion that creates the 'ear'",
-    "The 'Dark Bake': bread is left until the crust is a deep mahogany color for maximum flavor",
-    "Radiant heat from a heavy cast iron pot mimics the floor heat of a professional deck oven",
-    "Venting the steam after 20 minutes is crucial for drying the crust to achieve the 'shatter' crunch"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      75,
-      80
-    ],
-    "saltRange": [
-      2,
-      2.2
-    ],
-    "oilRange": [
-      0,
-      0
-    ],
-    "sugarRange": [
-      0,
-      1
-    ],
-    "flourStrength": t('styles.bread_flour_with_1020_whole_wheat'),
-    "fermentation": {
-      "bulk": "3–4 h at 25–27°C with repeated folds",
-      "proof": "2–4 h at 20–24°C or retarded overnight",
-      "coldRetard": t('styles.commonly_816_h_for_flavor_and_scoring')
+
+  deepDive: {
+    hydrationLogic: "High hydration (75-85%) allows the gluten to stretch thinly, creating the large holes. It also gelatinizes starch more effectively for a shiny crumb.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Only method." },
+      poolish: { suitable: false, notes: "N/A" },
+      biga: { suitable: false, notes: "N/A" }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        230,
-        250
-      ],
-      "notes": t('styles.often_baked_in_dutch_ovens_or_steaminjected_decks')
-    },
-    "difficulty": t('styles.expert_9'),
-    "recommendedUse": [
-      t('common.artisan_sourdough'),
-      t('common.table_bread'),
-      "Toast, tartines"
+    whatIf: [
+      {
+        scenario: "You omit the Salt",
+        outcome: "Fermentation will go out of control and the dough will be sticky/strengthless.",
+        solution: "Never omit salt."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Round vs Oval",
+        difference: "Boule (Round) vs Bâtard (Oval). Bâtard is easier to slice for sandwiches."
+      }
+    ],
+    proTips: [
+      "Rice flour for the banneton is non-negotiable—it acts like ball bearings preventing sticking.",
+      "Ice cubes in the Dutch Oven can create extra steam for better blisters.",
+      "Let the bread cure for 24 hours before eating for the peak flavor development."
     ]
   },
-  "regionalVariants": [
-    "Tartine Whole Wheat - 70% whole grain variant for a denser, more nutritious profile",
-    "Tartine Sesame - Coated in toasted seeds for a nutty, aromatic finish",
-    "Tartine Porridge - Inclusion of cooked grains (oats/barley) for an even moister crumb",
-    "San Francisco Sour - The traditional, more acidic predecessor to the Tartine style",
-    "Artisan Bakery Standard - The simplified professional version found in modern bakeries"
+
+  tags: ["sourdough", "artisan", "tartine", "high-hydration", "levain", "wild-yeast"],
+
+  watchouts: [
+    "Starter must be active.",
+    "Over-proofing destroys structure.",
+    "Using low protein flour results in a pancake.",
+    "Scoring too deep causes the loaf to spread instead of rise."
   ],
-  "climateScenarios": [
-    "San Francisco Fog (Ideal): 18-22°C ambient is perfect for the slow fermentation required",
-    "Dry Desert: Increase hydration by 2% and keep dough in a sealed container throughout folds",
-    "Tropical: Use ice water for the mix; use the fridge for 50% of the bulk ferment time",
-    "High Altitude: Reduce levain percentage and monitor hydration; the dough will dry out faster"
+
+  notes: [
+    "The Gold Standard of modern baking.",
+    "Requires an active Sourdough Starter.",
+    "Dutch Oven bake method recommended.",
+    "Long cold retard improves flavor.",
+    "High hydration requires folding technique."
   ],
-  "styleComparisons": [
-    "vs. Baguette: Tartine is much wetter, relies on levain vs yeast, and has a thicker bake",
-    "vs. Pain de Campagne: Tartine is usually more hydrated and has a more 'translucent' crumb",
-    "vs. German Rye: Opposite worlds; Tartine is light/airy wheat vs dense/acidic rye",
-    "vs. Wonder Bread: Completely different philosophies; Tartine is slow/lean/natural vs fast/enriched/industrial"
-  ],
-  "parameterSensitivity": [
-    "Critical: Levain Ripeness - using a levain that is even slightly too acidic will lead to a dense loaf",
-    "Highly sensitive: Bulk Temperature - 25-27°C is the sweet spot; too low and it won't rise",
-    "Autolyse Time: 30-60 mins is essential to allow the high hydration to fully saturate the flour",
-    "Scoring Angle: A shallow, 30-degree slit is required to achieve the signature 'ear'",
-    "Steam Management: If steam is lost in the first 10 mins, the crust will set too early"
-  ],
-  "risks": [
-    "The 'Pancake' Effect: Using weak flour or failing to build enough strength during folds",
-    "Gummy Texture: Cutting the bread while still warm; the starch needs to set",
-    "Burnt Bottom: Dutch oven base getting too hot; solved by placing a tray on the rack below",
-    "Lack of Oven Spring: Under-proofing (leads to bursting) or over-proofing (leads to collapse)",
-    "Dense Crumb: Over-handling the dough during the final shape, degassing the bubbles"
-  ],
-  "notes": [
-    "The 'Float Test' is your best friend—don't mix the dough until the levain floats",
-    "Use a cast iron combo cooker for the best home oven results",
-    "Don't be afraid of the 'burnt' bits — they provide the essential bitter-sweet contrast",
-    "Keep hands wet when folding to prevent sticking without adding extra flour",
-    "Scoring should be one confident, swift motion using a sharp razor blade (lame)"
-  ],
-  "tags": [
-    t('common.artisan_sourdough'),
-    t('common.table_bread'),
-    "Toast, tartines",
-    t('common.bread'),
-    t('common.united_states')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.tartine_bread__chad_robertson'),
-      "url": "https://www.amazon.com/Tartine-Bread-Chad-Robertson/dp/0811870413",
-      "author": "Chad Robertson",
-      "year": 2010
+      source: "Tartine Bread",
+      url: "https://tartinebakery.com/",
+      author: "Chad Robertson",
+      year: "2010"
     },
     {
-      "title": t('styles.modernist_bread_19'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
-    },
-    {
-      "title": "The Bread Code: Tartine Style",
-      "url": "https://www.thebreadcode.com/recipe/tartine-style-sourdough/",
-      "author": "Hendrik Kleinwaechter",
-      "year": 2021
-    },
-    {
-      "title": "Tartine Bakery: The Cult of Sourdough",
-      "url": "https://www.newyorker.com/magazine/2010/11/29/the-staff-of-life",
-      "author": "The New Yorker",
-      "year": 2010
+      source: "The Perfect Loaf",
+      url: "https://www.theperfectloaf.com/",
+      author: "Maurizio Leo",
+      year: "2023"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "O que define o pão estilo 'Tartine'?",
-      "answer": "É um pão de fermentação natural (sourdough) com altíssima hidratação, miolo muito aberto e 'gelatinoso', e uma casca escura, caramelizada e crocante. Ele utiliza um 'levain jovem' (pouco ácido) para garantir um sabor adocicado e cremoso."
-    },
-    {
-      "question": "Por que o pão estilo Tartine é tão difícil de fazer?",
-      "answer": "Devido à alta hidratação (além de 75-80%), a massa é muito mole e pegajosa. O sucesso depende de desenvolver a força do glúten apenas com dobras (sem sova pesada) e de um controle preciso da temperatura de fermentação."
-    },
-    {
-      "question": "O que é o 'levain jovem'?",
-      "answer": "É o fermento natural usado logo após ele dobrar de volume, antes de começar a colapsar e ficar ácido. Isso resulta em um pão com aroma de iogurte e creme, em vez daquele azedo forte dos sourdoughs tradicionais."
-    },
-    {
-      "question": "Por que assar dentro de uma panela de ferro (Dutch Oven)?",
-      "answer": "A panela de ferro retém a umidade da própria massa, criando um ambiente de vapor saturado. Isso permite que o pão cresça ao máximo ('oven spring') antes que a casca se forme, resultando em uma pestana aberta e miolo leve."
-    },
-    {
-      "question": "Qual a melhor farinha para este estilo?",
-      "answer": "É necessária uma farinha de trigo com alto teor de proteína (farinha para pão forte) para suportar tanta água. Geralmente mistura-se uma pequena porcentagem de farinha integral para dar nutrientes ao fermento e complexidade ao sabor."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: true,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/tartine-country-loaf-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["salted_butter_normandy", "olive_oil_extra_virgin"]
 };

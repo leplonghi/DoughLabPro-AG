@@ -138,6 +138,168 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
         isStandard: true
     },
     {
+        id: 'brick_cheese',
+        name: 'Wisconsin Brick Cheese',
+        category: 'Cheese',
+        description: 'Semi-soft cheese with a sweet, nutty flavor. High fat content.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 3,
+            sweetness: 3,
+            thermalBehavior: 'The key to the "Frico". Melts and caramelizes against hot steel without burning.'
+        },
+        origin: 'Wisconsin, USA.',
+        historyContext: 'Derived from white American cheddar, aged for a short period.',
+        commonStyles: ['detroit_style_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Pepperoni',
+            'Tomato Sauce (Cooked)',
+            'Butter'
+        ],
+        technicalNotes: 'Must be cubed, not shredded, for authentic melt.',
+        applicationMoment: 'pre_oven',
+        variations: 'Mild vs Aged (Aged is very pungent like Limburger). Standard Brick is mild.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'mozzarella_di_bufala',
+        name: 'Mozzarella di Bufala Campana',
+        category: 'Cheese',
+        description: 'PDO buffalo milk mozzarella. Tangier, richer, and creamier than cow milk mozzarella.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 3,
+            sweetness: 3,
+            thermalBehavior: 'Releases significant moisture (whey) when cooked. Often added post-bake or drained well.'
+        },
+        origin: 'Campania, Italy.',
+        historyContext: 'The original mozzarella for Neapolitan pizza.',
+        commonStyles: ['neapolitan_avpn_classic', 'neapolitan_contemporary'],
+        ovenCompatibility: ['wood_fired'],
+        classicCombinations: [
+            'Tomato Sauce (Raw)',
+            'Basil',
+            'Olive Oil'
+        ],
+        technicalNotes: 'Strain well before use to prevent soupy pizza.',
+        applicationMoment: 'pre_oven',
+        variations: 'Bocconcini, Treccia.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'stracciatella',
+        name: 'Stracciatella di Bufala',
+        category: 'Cheese',
+        description: 'Shreds of fresh mozzarella soaked in cream. The creamy heart of Burrata.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 2,
+            sweetness: 4,
+            thermalBehavior: 'Separates if heated too much. Best applied fresh post-bake.'
+        },
+        origin: 'Puglia, Italy.',
+        historyContext: 'Originally a way to use up leftover mozzarella scraps.',
+        commonStyles: ['roman_pinsa_modern', 'neapolitan_contemporary'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Mortadella',
+            'Pistachio',
+            'Tomato Confit'
+        ],
+        technicalNotes: 'Keep chilled until the very last second.',
+        applicationMoment: 'post_oven',
+        variations: 'Burrata (encased version).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'guava_paste',
+        name: 'Guava Paste (Goiabada)',
+        category: 'Pastry Filling',
+        description: 'Dense, sweet conserve made from red guavas and sugar.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'Melts into a molten, jam-like texture.'
+        },
+        origin: 'Brazil.',
+        historyContext: 'The "Julieta" to the cheese "Romeu".',
+        commonStyles: ['pao_de_queijo', 'brazilian_pizzeria'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Minas Cheese',
+            'Catupiry',
+            'Cream Cheese'
+        ],
+        technicalNotes: 'Cut into cubes or thin slices for pizza topping.',
+        applicationMoment: 'pre_oven',
+        variations: 'Goiabada Cascão (with bits of skin).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'anchovies',
+        name: 'Anchovies (Alici)',
+        category: 'Meat',
+        description: 'Salt-cured small forage fish. Intense umami bomb.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 3,
+            salinity: 5,
+            sweetness: 0,
+            thermalBehavior: 'Melts into the sauce if chopped, or crisps up if whole.'
+        },
+        origin: 'Mediterranean.',
+        historyContext: 'A staple of Roman pizza and the classic Marinara enhancement.',
+        commonStyles: ['roman_scrocchiarella', 'neapolitan_avpn_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Tomato Sauce',
+            'Oregano',
+            'Garlic'
+        ],
+        technicalNotes: 'Rinse salt-packed anchovies; drain oil-packed ones.',
+        applicationMoment: 'pre_oven',
+        variations: 'White Anchovies (Marinated), Salted Anchovies.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'garlic_roasted',
+        name: 'Roasted Garlic',
+        category: 'Vegetal',
+        description: 'Whole garlic cloves roasted until soft, sweet, and spreadable.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 2,
+            salinity: 0,
+            sweetness: 4,
+            thermalBehavior: 'Already cooked; heats through and spreads.'
+        },
+        origin: 'Global.',
+        historyContext: 'Mellows the harshness of raw garlic.',
+        commonStyles: ['california_style', 'new_haven_apizza'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chicken',
+            'White Sauce',
+            'Spinach'
+        ],
+        technicalNotes: 'Squeeze out of skins after roasting.',
+        applicationMoment: 'pre_oven',
+        variations: 'Black Garlic (Fermented).',
+        references: [],
+        isStandard: true
+    },
+    {
         id: 'provolone',
         name: 'Provolone',
         category: 'Cheese',
@@ -269,6 +431,33 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
                 sourceType: 'scientific'
             }
         ],
+        isStandard: true
+    },
+    {
+        id: 'mortadella',
+        name: 'Mortadella (Bologna)',
+        category: 'Meat',
+        description: 'Emulsified pork sausage with cubes of fat (lardons) and pistachios. Silky and aromatic.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 3,
+            sweetness: 2,
+            thermalBehavior: 'Best applied post-oven. Heating releases fat but alters the delicate texture.'
+        },
+        origin: 'Bologna, Emilia-Romagna, Italy.',
+        historyContext: 'The noble ancestor of the American "Bologna". A symbol of the Italian economic boom.',
+        commonStyles: ['neapolitan_contemporary', 'roman_teglia_pan', 'focaccia-genovese'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Pistachio Pesto',
+            'Stracciatella',
+            'Lemon Zest'
+        ],
+        technicalNotes: 'Always slice paper thin and drape in "rosettes" for volume and mouthfeel.',
+        applicationMoment: 'post_oven',
+        variations: 'Mortadella with Truffle.',
+        references: [],
         isStandard: true
     },
     {
@@ -1051,6 +1240,1402 @@ export const FLAVOR_COMPONENTS: FlavorComponent[] = [
         technicalNotes: 'Use "chunks" for cookies to get distinct pools; finely chop for brownies for integration.',
         applicationMoment: 'pre_oven',
         variations: 'Milk Chocolate (sweeter), White Chocolate.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'salted_butter_normandy',
+        name: 'Salted French Butter (Normandy)',
+        category: 'Dairy',
+        description: 'Cultured butter with fleur de sel. High fat content (82%+).',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 4,
+            sweetness: 3,
+            thermalBehavior: 'Melts into crumb. Promotes golden browning in crust.'
+        },
+        origin: 'Normandy/Brittany, France.',
+        historyContext: 'The traditional partner for a fresh baguette tradition.',
+        commonStyles: ['baguette_tradition_francaise', 'croissant_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Radishes + Sea Salt',
+            'Jambon de Paris',
+            'Honey'
+        ],
+        technicalNotes: 'For finish, use cold. For dough integration, use room temp.',
+        applicationMoment: 'post_oven',
+        variations: 'Unsalted (Doux), Demi-sel.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'brie_de_meaux',
+        name: 'Brie de Meaux',
+        category: 'Cheese',
+        description: 'Soft-ripened cow\'s milk cheese with a bloomy rind and mushroomy, buttery interior.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 4,
+            salinity: 3,
+            sweetness: 3,
+            thermalBehavior: 'Becomes fluid when heated. Rind remains structured.'
+        },
+        origin: 'Île-de-France (near Paris).',
+        historyContext: 'Known as the "King of Cheeses," a classic companion to the Parisian baguette.',
+        commonStyles: ['baguette_tradition_francaise'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Walnuts + Honey',
+            'Fresh Figs',
+            'Apple Slices'
+        ],
+        technicalNotes: 'Best served at room temperature. If baked (e.g., in a sandwich), do it briefly to prevent complete liquefaction.',
+        applicationMoment: 'post_oven',
+        variations: 'Brie de Melun (stronger).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'balsamic_modena',
+        name: 'Balsamic Vinegar of Modena',
+        category: 'Finish',
+        description: 'Dark, syrupy, aged vinegar with complex sweet and acidic notes.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'Sugar content can burn/bitterize if baked. Use as finish.'
+        },
+        origin: 'Modena, Italy.',
+        historyContext: 'Traditional condiment for Italian breads and salads.',
+        commonStyles: ['ciabatta_high_hydration', 'focaccia-genovese'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Extra Virgin Olive Oil + Sea Salt',
+            'Parmigiano Reggiano',
+            'Strawberries'
+        ],
+        technicalNotes: 'Use "Aceto Balsamico Tradizionale" for raw finish; commercial "Glaze" for decor.',
+        applicationMoment: 'post_oven',
+        variations: 'Balsamic Glaze (thickened).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'rosemary_fresh',
+        name: 'Fresh Rosemary',
+        category: 'Vegetal',
+        description: 'Woody, aromatic herb with pine-like notes.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'Infuses oil beautifully. Can become dry/needle-like if not protected.'
+        },
+        origin: 'Mediterranean.',
+        historyContext: 'The fragrance of the Italian countryside and Roman street food.',
+        commonStyles: ['focaccia-genovese', 'pizza-teglia-romana', 'roman_scrocchiarella'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Sea Salt + Olive Oil',
+            'Potato Slices',
+            'Lamb'
+        ],
+        technicalNotes: 'Strip needles from woody stems. Brush with oil before baking to prevent charring.',
+        applicationMoment: 'pre_oven',
+        variations: 'Dried (less aromatic).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'fresh_clams',
+        name: 'Fresh Clams (Shucked)',
+        category: 'Seafood',
+        description: 'Fresh Littleneck or Cherrystone clams, shucked and kept in their liquor.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 1,
+            salinity: 5,
+            sweetness: 2,
+            thermalBehavior: 'Sears quickly in high heat, releasing briny liquor that seasons the dough.'
+        },
+        origin: 'Rhode Island / Connecticut coastline.',
+        historyContext: 'The core of the New Haven White Clam Pie, popularized by Frank Pepe in the 1960s.',
+        commonStyles: ['new_haven_apizza'],
+        ovenCompatibility: ['coal_fired', 'high_temp_gas', 'deck_oven'],
+        classicCombinations: [
+            'Garlic + Oregano + Olive Oil',
+            'Pecorino Romano',
+            'Bacon (Modern variation)'
+        ],
+        technicalNotes: 'Never use canned clams for authentic results. Ensure the oven is at least 350°C to cook the clams quickly without making them rubbery.',
+        applicationMoment: 'pre_oven',
+        variations: 'Canned chopped clams (low quality substitute).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'garlic_fresh',
+        name: 'Fresh Garlic',
+        category: 'Vegetal',
+        description: 'Finely minced or sliced raw garlic cloves.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 3,
+            thermalBehavior: 'Mellows and sweetens when roasted; can become bitter if burnt.'
+        },
+        origin: 'Global.',
+        historyContext: 'Essential aromatic for Italian and Mediterranean baking.',
+        commonStyles: ['new_haven_apizza', 'pizza-napoletana', 'new_york_slice_v2', 'focaccia-genovese'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Tomato Sauce + Oregano (Marinara)',
+            'Olive Oil + Clams',
+            'Roasted Peppers'
+        ],
+        technicalNotes: 'Mince finely for even distribution. In high-heat ovens, submerge in oil or sauce to prevent rapid burning.',
+        applicationMoment: 'pre_oven',
+        variations: 'Garlic Oil, Confit Garlic.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'oregano_dried',
+        name: 'Dried Oregano (Mediterranean)',
+        category: 'Spice',
+        description: 'Highly aromatic dried herb, more intense than fresh.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'Releases essential oils upon heating.'
+        },
+        origin: 'Mediterranean / Greece / Italy.',
+        historyContext: "The defining 'pizza' herb, particularly for Neapolitan and New York traditions.",
+        commonStyles: ['new_haven_apizza', 'pizza-napoletana', 'new_york_slice_v2', 'sicilian_grandma_pan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Tomato Sauce + Garlic',
+            'Pecorino Romano',
+            'Mozzarella'
+        ],
+        technicalNotes: 'Rub between palms when applying to wake up the oils. Higher stability in heat than fresh basil.',
+        applicationMoment: 'pre_oven',
+        variations: 'Fresh Oregano (milder).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'provel_cheese',
+        name: 'Provel Cheese',
+        category: 'Cheese',
+        description: 'A processed cheese blend of White Cheddar, Swiss, and Provolone with a hint of liquid smoke.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 4,
+            salinity: 4,
+            sweetness: 3,
+            thermalBehavior: 'Extremely low melting point. Becomes gooey and creamy without being stringy.'
+        },
+        origin: 'St. Louis, Missouri (USA). Created by Costa Grocery in 1947.',
+        historyContext: 'A regional icon of St. Louis. Designed specifically for the thin cracker crust to provide a "clean bite" that doesn\'t pull off the small square slices.',
+        commonStyles: ['st_louis_thin'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Sweet Tomato Sauce + Oregano',
+            'Italian Sausage',
+            'Bacon'
+        ],
+        technicalNotes: 'Unique for its lack of stringiness. It coats the pizza in a creamy layer. Hard to find outside of the Midwest.',
+        applicationMoment: 'pre_oven',
+        variations: 'Substitute with a blend of young Provolone, Monterey Jack, and a drop of liquid smoke.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'potato_slices',
+        name: 'Potato Slices',
+        category: 'Vegetal',
+        description: 'Thinly sliced potatoes, often seasoned with rosemary and sea salt.',
+        flavorProfile: {
+            intensity: 2,
+            fat: 1,
+            salinity: 2,
+            sweetness: 2,
+            thermalBehavior: 'Crisps on the edges, remains soft in the center. Absorbs fat from cheese or oil.'
+        },
+        origin: 'Rome, Italy.',
+        historyContext: 'The classic topping for "Pizza con Patate" in Roman bakeries (Taglio).',
+        commonStyles: ['roman_teglia_pan'],
+        ovenCompatibility: ['deck_oven', 'electric'],
+        classicCombinations: [
+            'Rosemary + Olive Oil',
+            'Mozzarella + Black Pepper',
+            'Pecorino Romano'
+        ],
+        technicalNotes: 'Slice paper thin (1-2mm) for even cooking. Pre-soaking in water removes excess starch for better crisping.',
+        applicationMoment: 'pre_oven',
+        variations: 'Potato Cream, Roasted Potato Chunks.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'honey_raw',
+        name: 'Raw Honey',
+        category: 'Finish',
+        description: 'Natural bee honey, providing floral sweetness and a glossy finish.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'Carmelizes rapidly. Can become bitter if burnt.'
+        },
+        origin: 'Global.',
+        historyContext: 'Used in traditional Jewish breads (Challah) and high-end artisanal pizzas.',
+        commonStyles: ['challah_jewish_braided', 'modern_artisan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Goat Cheese + Walnuts',
+            'Spicy Salami (Hot Honey)',
+            'Salted Butter'
+        ],
+        technicalNotes: 'Apply post-oven for floral notes. Use in dough (pre-oven) for crust color and subtle sweetness.',
+        applicationMoment: 'post_oven',
+        variations: 'Spicy Honey, Clover Honey.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'sesame_seeds',
+        name: 'Sesame Seeds',
+        category: 'Spice',
+        description: 'Tiny, nutty-flavored seeds that add crunch and aroma when toasted.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 3,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Toast quickly. Release intense nutty oils when heated.'
+        },
+        origin: 'Global.',
+        historyContext: 'Symbol of fertility and manna; essential for Bagels and Challah.',
+        commonStyles: ['bagels_classic', 'challah_jewish_braided', 'burger_buns'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Honey',
+            'Sea Salt',
+            'Butter'
+        ],
+        technicalNotes: 'Brush dough with egg wash or water before applying to ensure they stick.',
+        applicationMoment: 'pre_oven',
+        variations: 'Black Sesame, Toasted Sesame.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'poppy_seeds',
+        name: 'Poppy Seeds',
+        category: 'Spice',
+        description: 'Small, blue-black seeds with a mild, nutty, and slightly earth flavor.',
+        flavorProfile: {
+            intensity: 2,
+            fat: 2,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'Maintain crunch and color when baked.'
+        },
+        origin: 'Central Europe.',
+        historyContext: 'Traditional topping for Ashkenazi Jewish breads and lemon-based cakes.',
+        commonStyles: ['bagels_classic', 'challah_jewish_braided'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Cream Cheese',
+            'Lemon Zest',
+            'Honey'
+        ],
+        technicalNotes: 'Best applied over an egg wash for maximum adhesion and visual contrast.',
+        applicationMoment: 'pre_oven',
+        variations: 'White Poppy Seeds.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'seeds',
+        name: 'Mixed Seeds',
+        category: 'Spice',
+        description: 'A blend of sunflower, pumpkin, flax, and sesame seeds.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 4,
+            salinity: 1,
+            sweetness: 2,
+            thermalBehavior: 'Develop complex nutty aromas when toasted during baking.'
+        },
+        origin: 'Global.',
+        historyContext: 'Symbol of health and rustic bread traditions.',
+        commonStyles: ['whole_wheat_100', 'mixed_grain_sourdough', 'challah_jewish_braided'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Whole Grains',
+            'Butter',
+            'Honey'
+        ],
+        technicalNotes: 'Toasting seeds before adding to dough improves flavor but can affect hydration absorption.',
+        applicationMoment: 'pre_oven',
+        variations: 'Everything Bagel Seasoning.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'cream_cheese',
+        name: 'Cream Cheese',
+        category: 'Dairy',
+        description: 'Smooth, mild, and slightly tangy fresh cheese.',
+        flavorProfile: {
+            intensity: 2,
+            fat: 5,
+            salinity: 2,
+            sweetness: 3,
+            thermalBehavior: 'Softens but holds shape. Can brown slightly if baked.'
+        },
+        origin: 'USA (New York/Philadelphia).',
+        historyContext: 'The inseparable partner of the New York Bagel since the late 19th century.',
+        commonStyles: ['bagels_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Smoked Salmon + Capers + Red Onion',
+            'Everything Bagel Seasoning',
+            'Fruit Jam'
+        ],
+        technicalNotes: 'For bagels, apply as a "shmear" (generous layer). For baking, use full-fat blocks for better structure.',
+        applicationMoment: 'post_oven',
+        variations: 'Whipped, Scallion, Veggie.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'smoked_salmon',
+        name: 'Smoked Salmon (Lox)',
+        category: 'Seafood',
+        description: 'Thinly sliced salmon, cured or smoked, with a rich, buttery, and salty profile.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 4,
+            sweetness: 2,
+            thermalBehavior: 'Do not bake. High heat makes it salty and tough.'
+        },
+        origin: 'Pacific NW / Scandinavian roots, NYC deli icon.',
+        historyContext: "The 'Lox' on a bagel is a NYC cultural staple, often served at Sunday brunch.",
+        commonStyles: ['bagels_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Cream Cheese + Red Onion + Capers',
+            'Dill',
+            'Lemon'
+        ],
+        technicalNotes: 'Always add cold after the bagel is toasted. Slicing translucent-thin is the sign of a master deli.',
+        applicationMoment: 'post_oven',
+        variations: 'Gravlax, Nova, Belly Lox.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'candied_citrus',
+        name: 'Candied Citrus Peel',
+        category: 'Pastry Filling',
+        description: 'Oranges and Citron peels cooked in sugar syrup until translucent and sweet.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'Softens during baking, infusing the dough with citrus oils.'
+        },
+        origin: 'Sicily, Italy.',
+        historyContext: 'The soul of the Milanese Panettone; represents wealth and celebration.',
+        commonStyles: ['panettone_artisanal', 'stollen_german'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Raisins + Vanilla',
+            'Dark Chocolate',
+            'Honey'
+        ],
+        technicalNotes: 'Use high-quality artisan peel (not industrial cubes) for the best aroma and mouthfeel.',
+        applicationMoment: 'pre_oven',
+        variations: 'Orange, Citron (Cedro), Lemon.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'raisins',
+        name: 'Raisins (Sultanas)',
+        category: 'Pastry Filling',
+        description: 'Dried grapes, often soaked in water or rum before use.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 0,
+            salinity: 1,
+            sweetness: 5,
+            thermalBehavior: 'Plump up during baking as they absorb moisture from the dough.'
+        },
+        origin: 'Global.',
+        historyContext: 'Essential for traditional celebration breads across Europe.',
+        commonStyles: ['panettone_artisanal', 'challah_jewish_braided', 'stollen_german'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Cinnamon',
+            'Walnuts',
+            'Rum'
+        ],
+        technicalNotes: 'Soak in water or liqueur for at least 12 hours before adding to dough to prevent them from drying out the crumb.',
+        applicationMoment: 'pre_oven',
+        variations: 'Golden Sultanas, Dark Thompson.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'citrus_zest',
+        name: 'Fresh Citrus Zest',
+        category: 'Finish',
+        description: 'The aromatic outer layer of citrus fruits, containing intense essential oils.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Highly volatile. Aroma is most intense when fresh.'
+        },
+        origin: 'Global.',
+        historyContext: 'The universal aromatic boost for pastries and breads.',
+        commonStyles: ['panettone_artisanal', 'japanese_milk_bread', 'brioche_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Vanilla',
+            'Sugar',
+            'Butter'
+        ],
+        technicalNotes: 'Zest directly into the sugar or fat to capture the essential oils immediately.',
+        applicationMoment: 'pre_oven',
+        variations: 'Lemon, Orange, Lime, Grapefruit.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'brown_sugar',
+        name: 'Brown Sugar (Dark)',
+        category: 'Spice',
+        description: 'Sucrose crystals with a high coating of molasses, providing a deep caramel flavor.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'Melts and caramelizes into a sticky syrup when heated with butter.'
+        },
+        origin: 'Global.',
+        historyContext: 'The key to the American sticky bun and cinnamon roll traditions.',
+        commonStyles: ['cinnamon_rolls', 'babka_sweet_bread'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Cinnamon',
+            'Butter',
+            'Pecans'
+        ],
+        technicalNotes: 'Pack firmly during measurement. The molasses content keeps the pastry moist.',
+        applicationMoment: 'pre_oven',
+        variations: 'Light Brown Sugar (milder), Muscovado.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'pecan_nuts',
+        name: 'Pecan Nuts',
+        category: 'Vegetal',
+        description: 'Rich, buttery, and slightly sweet nuts with a distinctive wrinkled shell.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 0,
+            sweetness: 3,
+            thermalBehavior: 'Toast beautifully. Fat content releases when heated.'
+        },
+        origin: 'North America.',
+        historyContext: 'A staple of Southern American and Philadelphia-style "Sticky Buns".',
+        commonStyles: ['cinnamon_rolls', 'american_biscuits'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Brown Sugar',
+            'Cinnamon',
+            'Maple Syrup'
+        ],
+        technicalNotes: 'Always toast briefly before adding for maximum aroma. Chop coarsely for better texture integration.',
+        applicationMoment: 'pre_oven',
+        variations: 'Walnuts (earthier substitute).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'walnuts',
+        name: 'Walnuts',
+        category: 'Vegetal',
+        description: 'Earthier, slightly bitter, and crunchy nuts.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Develop deep roasted flavor when baked.'
+        },
+        origin: 'Central Asia / Mediterranean.',
+        historyContext: 'Traditional pairing for Eastern European breads like Babka and Povatizsa.',
+        commonStyles: ['babka_sweet_bread', 'whole_wheat_100'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Dark Chocolate',
+            'Honey',
+            'Blue Cheese'
+        ],
+        technicalNotes: 'Toasting reduces bitterness. Breaking into irregular pieces provides a rustic texture.',
+        applicationMoment: 'pre_oven',
+        variations: 'English Walnuts, Black Walnuts.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'pistachio',
+        name: 'Pistachios',
+        category: 'Vegetal',
+        description: 'Bright green, floral, and nutty-sweet kernels.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 4,
+            salinity: 1,
+            sweetness: 3,
+            thermalBehavior: 'Lose bright green color if over-baked. Best as a finish or protected in filling.'
+        },
+        origin: 'Middle East.',
+        historyContext: 'Symbol of luxury in Mediterranean and Middle Eastern pastries; modern artisan pizza icon.',
+        commonStyles: ['modern_artisan', 'mortadella_pistachio', 'babka_sweet_bread'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Mortadella',
+            'Honey',
+            'Rose Water'
+        ],
+        technicalNotes: 'Use unsalted, shelled pistachios. Skinning them (blanching) reveals the brightest green color.',
+        applicationMoment: 'post_oven',
+        variations: 'Bronte Pistachio (highest quality).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'nutmeg',
+        name: 'Ground Nutmeg',
+        category: 'Spice',
+        description: 'Warm, nutty, and slightly sweet spice with a powerful aroma.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Heat-stable. Aroma intensifies during frying/baking.'
+        },
+        origin: 'Indonesia / Moluccas.',
+        historyContext: 'The traditional secret ingredient of the classic American donut and Dutch olykoeks.',
+        commonStyles: ['yeasted_donuts', 'beignets'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Cinnamon',
+            'Vanilla',
+            'Milk'
+        ],
+        technicalNotes: 'Always use freshly grated for maximum impact. A tiny amount goes a long way.',
+        applicationMoment: 'pre_oven',
+        variations: 'Mace (outer shell, similar but milder).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'strawberry_jam',
+        name: 'Strawberry Jam',
+        category: 'Pastry Filling',
+        description: 'Sweet, bright red fruit preserve with subtle acidity.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 0,
+            salinity: 0,
+            sweetness: 5,
+            thermalBehavior: 'If baked inside, it can boil/explode. Best injected post-fry.'
+        },
+        origin: 'Global.',
+        historyContext: 'Classic filling for Berliners, Sufganiyot, and American jelly donuts.',
+        commonStyles: ['yeasted_donuts', 'japanese_milk_bread'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Vanilla Glaze',
+            'Powdered Sugar',
+            'Cream'
+        ],
+        technicalNotes: 'Strain for smooth injection. Use high-fruit content jams for better flavor balance.',
+        applicationMoment: 'post_oven',
+        variations: 'Raspberry (tarter), Apricot.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'vanilla_glaze',
+        name: 'Vanilla Glaze',
+        category: 'Finish',
+        description: 'A smooth, sweet coating made of powdered sugar, milk, and vanilla.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 1,
+            salinity: 1,
+            sweetness: 5,
+            thermalBehavior: 'Sets as it cools, forming a thin, translucent crackly shell.'
+        },
+        origin: 'USA.',
+        historyContext: 'The defining finish of the Krispy Kreme and Dunkin styles.',
+        commonStyles: ['yeasted_donuts', 'cinnamon_rolls'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Sprinkles',
+            'Chocolate Drizzle',
+            'Cinnamon'
+        ],
+        technicalNotes: 'Apply while the donut is slightly warm to ensure a even, thin coating.',
+        applicationMoment: 'post_oven',
+        variations: 'Maple Glaze, Chocolate Glaze.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'catupiry',
+        name: 'Catupiry (Requeijão Culinário)',
+        category: 'Cheese',
+        description: 'A unique Brazilian processed cheese, ultra-creamy, mild, and highly heat-stable.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 4,
+            salinity: 3,
+            sweetness: 2,
+            thermalBehavior: 'Does not melt into oil; maintains its shape even at high heat.'
+        },
+        origin: 'Lambari, Minas Gerais, Brazil (1911).',
+        historyContext: 'Created by Italian immigrants Mario and Isaura Silvestrini; became a national icon.',
+        commonStyles: ['brazilian_pizzeria', 'esfiha'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chicken (Frango com Catupiry)',
+            'Corn',
+            'Shrimp'
+        ],
+        technicalNotes: 'Apply in characteristic concentric circles using a pastry bag or the specialized Tube.',
+        applicationMoment: 'pre_oven',
+        variations: 'Requeijão Cremoso (thinner).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'boiled_eggs',
+        name: 'Hard Boiled Eggs (Sliced)',
+        category: 'Dairy',
+        description: 'Eggs cooked until solid and sliced into rounds.',
+        flavorProfile: {
+            intensity: 2,
+            fat: 3,
+            salinity: 1,
+            sweetness: 1,
+            thermalBehavior: 'Can become rubbery if double-baked at very high heat.'
+        },
+        origin: 'Global.',
+        historyContext: 'Defining element of the "Portuguese" pizza in Brazil.',
+        commonStyles: ['brazilian_pizzeria'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Ham',
+            'Onions',
+            'Olives'
+        ],
+        technicalNotes: 'Slice with an egg-cutter for uniform presentation. Place on top of cheese to protect the yolk from drying.',
+        applicationMoment: 'pre_oven',
+        variations: 'Quail eggs (smaller).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'minas_cheese',
+        name: 'Queijo Minas (Padrão)',
+        category: 'Cheese',
+        description: 'Traditional Brazilian semi-hard cheese, mild, milky, and slightly acidic.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 3,
+            salinity: 3,
+            sweetness: 2,
+            thermalBehavior: "Melts well but maintains some structure; doesn't release much oil."
+        },
+        origin: 'Minas Gerais, Brazil.',
+        historyContext: 'The heart of the "Pão de Queijo" heritage and Brazilian colonial breakfast.',
+        commonStyles: ['pao_de_queijo', 'brazilian_pizzeria'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Guava Paste (Romeu e Julieta)',
+            'Coffee',
+            'Honey'
+        ],
+        technicalNotes: 'For pizza, grate coarsely. Provides a "homestyle" flavor that contrasts with industrial mozzarella.',
+        applicationMoment: 'pre_oven',
+        variations: 'Canastra (artisanal, cured), Serro.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'cherry_tomatoes_confit',
+        name: 'Cherry Tomatoes (Confit)',
+        category: 'Vegetal',
+        description: 'Small, sweet tomatoes slow-cooked in olive oil with garlic and herbs.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 3,
+            salinity: 2,
+            sweetness: 5,
+            thermalBehavior: 'Already soft. In the oven, they caramelize further and release intense juices.'
+        },
+        origin: 'France (Confit technique) / Italy (Gourmet Pizza).',
+        historyContext: 'Crucial ingredient for the "Gourmet" Pizza revolution in Italy.',
+        commonStyles: ['neapolitan_contemporary', 'modern_artisan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Stracciatella',
+            'Basil Oil',
+            'Anchovies'
+        ],
+        technicalNotes: 'Do not bake at high heat for too long or they will lose their shape. Best added halfway through or post-bake.',
+        applicationMoment: 'post_oven',
+        variations: 'Semi-dried tomatoes.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'condensed_milk',
+        name: 'Condensed Milk (Sweetened)',
+        category: 'Dairy',
+        description: 'Thick, sweetened cow\'s milk with a creamy, caramel-like flavor. Standard for Asian enriched breads.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 3,
+            salinity: 1,
+            sweetness: 5,
+            thermalBehavior: 'Caramelizes and browns deeply in the dough. Retains moisture.'
+        },
+        origin: 'Global / Popular in Asia & Latin America.',
+        historyContext: 'A key ingredient in Hokkaido Milk Bread and Brazilian Pão de Leite for a "milky" aroma.',
+        commonStyles: ['enriched_bread', 'pastry'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Matcha',
+            'Strawberries',
+            'Soft Bread'
+        ],
+        technicalNotes: 'Count as 50% sugar and 50% liquid. Over-dosing can make the dough overly sticky.',
+        applicationMoment: 'pre_oven',
+        variations: 'Evaporated milk (no sugar), Dulce de leche.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'black_sesame',
+        name: 'Black Sesame Seeds',
+        category: 'Spice',
+        description: 'Small black seeds with a much deeper, nuttier flavor than white sesame. Often used in Asian pastry.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Fragrant and crunchy when toasted. Does not burn as easily as white sesame.'
+        },
+        origin: 'East Asia.',
+        historyContext: 'Traditional garnish for Japanese and Chinese breads and desserts.',
+        commonStyles: ['enriched_bread', 'pastry'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Red Bean Paste',
+            'Matcha',
+            'Hokkaido Milk Bread'
+        ],
+        technicalNotes: 'Grind into a paste (Nerigoma) for intense flavor integration or use whole for visual contrast.',
+        applicationMoment: 'pre_oven',
+        variations: 'White Sesame, Toasted Sesame Oil.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'requeijao_cremoso',
+        name: 'Requeijão Cremoso (Brazilian)',
+        category: 'Cheese',
+        description: 'A creamy, spreadable processed cheese typical of Brazil. Similar to a thicker Melter cream cheese, but with a unique lactic tang.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 4,
+            sweetness: 2,
+            thermalBehavior: 'Melts into a thick, lava-like consistency. Resists separation at high heat.'
+        },
+        origin: 'Brazil.',
+        historyContext: 'The soul of Brazilian "Salgados" (savory snacks) and the most popular filling for Pão de Batata.',
+        commonStyles: ['pizza', 'enriched_bread'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chicken (Frango com Catupiry)',
+            'Corn',
+            'Potato Bread'
+        ],
+        technicalNotes: 'Applied via a piping bag into the center of dough balls before baking. Use "Culinary" version for best results in ovens.',
+        applicationMoment: 'pre_oven',
+        variations: 'Catupiry (premium brand), Cheddar Cream.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'yogurt_plain',
+        name: 'Yogurt (Plain/Greek)',
+        category: 'Dairy',
+        description: 'Fermented milk product that tenders the crumb and adds a tangy lactic acid flavor.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 2,
+            salinity: 1,
+            sweetness: 2,
+            thermalBehavior: 'Acidity weakens gluten network, creating softer textures.'
+        },
+        origin: 'Global',
+        historyContext: 'Ancient tenderizer for flatbreads in India and the Middle East.',
+        commonStyles: ['naan_flatbread', 'pita_bread_flatbread'],
+        ovenCompatibility: ['tandoor', 'home_oven'],
+        classicCombinations: ['Honey', 'Garlic', 'Coriander'],
+        technicalNotes: 'Acidity can speed up yeast activity initially but degrade gluten if left too long.',
+        applicationMoment: 'pre_oven',
+        variations: 'Buttermilk, Kefir.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'butter_dry_84',
+        name: 'Dry Butter (84% Fat)',
+        category: 'Dairy',
+        description: 'Professional "Tourage" butter with higher fat and lower water content. Essential for puff pastry.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Higher melting point and plasticity allows for thinner layers without breakage.'
+        },
+        origin: 'France / New Zealand',
+        historyContext: 'Developed for industrial and artisanal lamination efficiency.',
+        commonStyles: ['puff_pastry_classic', 'croissant_classic', 'pastry_danish_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Flour', 'Sugar'],
+        technicalNotes: 'Melting point: 34-36°C. Standard butter melts at 32°C.',
+        applicationMoment: 'pre_oven',
+        variations: 'Sheet Butter, Beurre de Tourage.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'ghee_clarified_butter',
+        name: 'Ghee (Clarified Butter)',
+        category: 'Dairy',
+        description: 'Pure butterfat with milk solids removed. High smoke point and intense nutty aroma.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 5,
+            salinity: 0,
+            sweetness: 3,
+            thermalBehavior: 'Stable at high temperatures. Does not burn like regular butter.'
+        },
+        origin: 'India',
+        historyContext: 'The sacred fat of Indian cuisine, essential for Naan and Roti.',
+        commonStyles: ['naan_flatbread', 'paratha'],
+        ovenCompatibility: ['tandoor', 'skillet'],
+        classicCombinations: ['Garlic', 'Nigella Seeds'],
+        technicalNotes: 'Brush immediately after baking for maximum aroma absorption.',
+        applicationMoment: 'post_oven',
+        variations: 'Clarified Butter, Brown Butter.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'nigella_seeds',
+        name: 'Nigella Seeds (Kalorji)',
+        category: 'Spice',
+        description: 'Small black seeds with notes of onion, oregano, and black pepper.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 2,
+            salinity: 0,
+            sweetness: 0,
+            thermalBehavior: 'Toasts quickly on the surface of bread.'
+        },
+        origin: 'South Asia / Middle East',
+        historyContext: 'The visual and flavor signature of authentic Naan.',
+        commonStyles: ['naan_flatbread', 'turkish_pide'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Ghee', 'Coriander'],
+        technicalNotes: 'Sprinkle on wet dough surface before baking.',
+        applicationMoment: 'pre_oven',
+        variations: 'Black Sesame (visual only), Onion Seeds.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'lard_pork_fat',
+        name: 'Lard (Pork Fat)',
+        category: 'Dairy',
+        description: 'Rendered pork fat. The secret to the flakiest pastries and the softest tortillas.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 1,
+            sweetness: 1,
+            thermalBehavior: 'Creates distinct layers (lamination) due to large crystal structure.'
+        },
+        origin: 'Global (historically dominant fat before vegetable oils)',
+        historyContext: 'Essential for authentic Mexican Wheat Tortillas and Cuban Bread.',
+        commonStyles: ['wheat_tortilla', 'pie_dough', 'cuban_bread'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Flour', 'Salt'],
+        technicalNotes: 'Use "Leaf Lard" for neutral flavor in pastries.',
+        applicationMoment: 'pre_oven',
+        variations: 'Vegetable Shortening (Crisco), Duck Fat.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'caraway_seeds',
+        name: 'Caraway Seeds (Kümmel)',
+        category: 'Spice',
+        description: 'Aromatic split seeds with a distinct anise/licorice flavor. The soul of Rye bread.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 2,
+            salinity: 0,
+            sweetness: 0,
+            thermalBehavior: 'Flavor intensifies with baking.'
+        },
+        origin: 'Central Europe / Germany',
+        historyContext: 'Traditional digestive aid paired with heavy rye breads.',
+        commonStyles: ['vollkornbrot_100_rye', 'seventy_percent_rye_sour', 'ny_deli_rye'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Rye', 'Salt'],
+        technicalNotes: 'Can be ground or used whole.',
+        applicationMoment: 'pre_oven',
+        variations: 'Fennel, Anise.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'sunflower_seeds',
+        name: 'Sunflower Seeds',
+        category: 'Spice',
+        description: 'Nutty, rich seeds that resist burning on the crust better than smaller seeds.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 4,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'Toasts to a deep brown.'
+        },
+        origin: 'Americas (native), popularized in Europe',
+        historyContext: 'Staple of German "Vollkornbrot" and multi-grain mixes.',
+        commonStyles: ['vollkornbrot_100_rye', 'mixed_grain_sourdough'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Honey', 'Whole Wheat'],
+        technicalNotes: 'Soak (soaker) before adding to dough to prevent them from stealing water.',
+        applicationMoment: 'pre_oven',
+        variations: 'Pumpkin Seeds.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'poppy_seeds',
+        name: 'Poppy Seeds (Mohn)',
+        category: 'Spice',
+        description: 'Tiny blue-black seeds with a nutty, earthy flavor and crunchy texture.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 4,
+            salinity: 0,
+            sweetness: 0,
+            thermalBehavior: 'Resists heat well.'
+        },
+        origin: 'Eastern Europe',
+        historyContext: 'Used extensively in Jewish (Challah) and Slavic baking.',
+        commonStyles: ['challah_jewish_braided', 'bagels_classic'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Lemon', 'Honey'],
+        technicalNotes: 'Can be ground into a paste (Mohn mass).',
+        applicationMoment: 'pre_oven',
+        variations: 'Chia Seeds.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'vanilla_bean',
+        name: 'Vanilla Bean (Madagascar/Tahiti)',
+        category: 'Spice',
+        description: 'The complex, floral aroma of cured orchid pods. Essential for pastry.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 4, // Perception of sweetness
+            thermalBehavior: 'Volatile compounds can bake off; seeds remain stable.'
+        },
+        origin: 'Mexico (Native), Madagascar',
+        historyContext: 'The world\'s most popular flavor, cultivated by the Totonacs.',
+        commonStyles: ['pastry_danish_classic', 'brioche_feuilletee', 'panettone_artisanal'],
+        ovenCompatibility: ['any'],
+        classicCombinations: ['Butter', 'Cream', 'Sugar'],
+        technicalNotes: 'Use the scraped seeds (caviar) for visual appeal and strongest flavor.',
+        applicationMoment: 'pre_oven',
+        variations: 'Extract, Paste.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'molasses',
+        name: 'Molasses (Blackstrap)',
+        category: 'Spice',
+        description: 'Thick, dark syrup produced during sugar extraction. Robust, bittersweet flavor.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 0,
+            salinity: 0,
+            sweetness: 4,
+            thermalBehavior: 'Determines the dark color and moisture of rye breads and gingerbread.'
+        },
+        origin: 'Caribbean / American South.',
+        historyContext: 'The sweetener of the working class before refined sugar became cheap.',
+        commonStyles: ['vollkornbrot_100_rye', 'pumpernickel'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Rye Flour',
+            'Ginger',
+            'Coffee'
+        ],
+        technicalNotes: 'Acidity in molasses reacts with baking soda for reliable leavening.',
+        applicationMoment: 'pre_oven',
+        variations: 'Treacle (lighter), Sorghum Syrup.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'hazelnuts',
+        name: 'Hazelnuts',
+        category: 'Vegetal',
+        description: 'Sweet, buttery round nuts with a paper-like skin.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 5,
+            salinity: 0,
+            sweetness: 3,
+            thermalBehavior: 'Roasting is essential to remove skins and release oils.'
+        },
+        origin: 'Turkey / Italy (Piedmont).',
+        historyContext: 'The base of Gianduja and Nutella.',
+        commonStyles: ['pate_sablee_classic', 'meringue'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chocolate',
+            'Coffee',
+            'Caramel'
+        ],
+        technicalNotes: 'Rub hot roasted nuts in a towel to remove bitter skins.',
+        applicationMoment: 'pre_oven',
+        variations: 'Hazelnut Praline (Paste).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'cheddar_cheese',
+        name: 'Cheddar Cheese (Sharp)',
+        category: 'Cheese',
+        description: 'Firm cow\'s milk cheese with ranging sharpness and orange/white color.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 4,
+            salinity: 4,
+            sweetness: 1,
+            thermalBehavior: 'Separates into oil if heated too quickly. Aged versions don\'t melt as smoothly.'
+        },
+        origin: 'Somerset, England.',
+        historyContext: 'The world\'s most popular cheese style.',
+        commonStyles: ['burger_buns_enriched', 'wheat_tortilla', 'pan_pizza'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Jalapeños',
+            'Bacon',
+            'Apple'
+        ],
+        technicalNotes: 'Shred yourself to avoid anti-caking agents that ruin the melt.',
+        applicationMoment: 'pre_oven',
+        variations: 'White Cheddar, Mild Cheddar.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'orange_peel',
+        name: 'Orange Peel (Zest)',
+        category: 'Fruit',
+        description: 'The aromatic outer skin of fresh oranges, rich in essential oils.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Releases oils when heated; becomes bitter if pith is included.'
+        },
+        origin: 'Global.',
+        historyContext: 'A classic flavoring for cakes and holiday breads (Panettone).',
+        commonStyles: ['panettone_classic', 'pound_cake_classic', 'brioche_feuilletee'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Chocolate',
+            'Almonds',
+            'Vanilla'
+        ],
+        technicalNotes: 'Use a microplane for fine zest. Avoid the white pith.',
+        applicationMoment: 'pre_oven',
+        variations: 'Candied Orange Peel.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'lemon_peel',
+        name: 'Lemon Peel (Zest)',
+        category: 'Fruit',
+        description: 'Bright, acidic, and floral aromatic zest from fresh lemons.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'High heat can dull the top notes, but the essential oils persist.'
+        },
+        origin: 'Global.',
+        historyContext: 'Used to cut through richness in butter-heavy pastries.',
+        commonStyles: ['pate_sucree_classic', 'madeleines'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Blueberries',
+            'Poppy Seeds',
+            'Ricotta'
+        ],
+        technicalNotes: 'Rub zest into sugar to release oils before mixing.',
+        applicationMoment: 'pre_oven',
+        variations: 'Candied Lemon Peel.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'onions_fresh',
+        name: 'Fresh Onions (Sliced)',
+        category: 'Vegetal',
+        description: 'Raw onion slices that sweeten and soften during baking.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 0,
+            salinity: 0,
+            sweetness: 2,
+            thermalBehavior: 'Caramelizes (Maillard) and loses pungency with heat.'
+        },
+        origin: 'Global.',
+        historyContext: 'A staple topping for flatbreads and pizzas worldwide.',
+        commonStyles: ['brazilian_pizzeria_gas_deck', 'focaccia-genovese'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Calabresa Sausage',
+            'Tuna',
+            'Olives'
+        ],
+        technicalNotes: 'Slice thinly for even cooking. Red onions offer better color.',
+        applicationMoment: 'pre_oven',
+        variations: 'Caramelized Onions (pre-cooked).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'bacon',
+        name: 'Bacon (Cured Pork)',
+        category: 'Meat',
+        description: 'Salt-cured, smoked pork belly.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 5,
+            salinity: 5,
+            sweetness: 2,
+            thermalBehavior: 'Renders fat, becomes crispy.'
+        },
+        origin: 'Global.',
+        historyContext: 'The ultimate savory enhancer.',
+        commonStyles: ['burger_buns_enriched', 'quiche'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Eggs',
+            'Cheese',
+            'Maple Syrup'
+        ],
+        technicalNotes: 'Pre-cook if using large pieces to ensure crispiness on fast-bake items.',
+        applicationMoment: 'pre_oven',
+        variations: 'Pancetta (unsmoked).',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'hot_honey',
+        name: 'Hot Honey (Infused)',
+        category: 'Finish',
+        description: 'Honey infused with chili peppers (like habanero or cayenne) and a touch of vinegar.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 1,
+            sweetness: 5,
+            thermalBehavior: 'Carmelizes if baked; best added post-oven to maintain floral honey notes and spicy punch.'
+        },
+        origin: 'USA (Brooklyn popularity).',
+        historyContext: 'Populiarized in the 2010s as a transformative topping for pepperoni and detroit-style pizzas.',
+        commonStyles: ['detroit_style_classic', 'new_york_slice_v2', 'modern_artisan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Pepperoni Cups',
+            'Wisconsin Brick Cheese',
+            'Ricotta'
+        ],
+        technicalNotes: 'Drizzle in a thin zig-zag pattern immediately after the bake. The residual heat helps the honey spread and penetrate the cheese.',
+        applicationMoment: 'post_oven',
+        variations: 'Mike\'s Hot Honey, Chili Infused.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'mushrooms',
+        name: 'Mushrooms (Sautéed/Fresh)',
+        category: 'Vegetal',
+        description: 'Earthy, umami-rich fungi like Cremini, White Button, or Shiitake.',
+        flavorProfile: {
+            intensity: 3,
+            fat: 0,
+            salinity: 1,
+            sweetness: 2,
+            thermalBehavior: 'Releases moisture then browns (Maillard). Post-cooking intensifies umami.'
+        },
+        origin: 'Global.',
+        historyContext: 'One of the most traditional pizza toppings, providing texture and earthy depth.',
+        commonStyles: ['pizza-napoletana', 'nyc_slice', 'chicago-deep-dish'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Garlic',
+            'Thyme',
+            'Mozzarella',
+            'Italian Sausage'
+        ],
+        technicalNotes: 'Thinly slice if fresh. For high-moisture varieties, pre-sautéing prevents soggy dough.',
+        applicationMoment: 'pre_oven',
+        variations: 'Truffle, Porcini, Wild Mushrooms.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'cilantro_fresh',
+        name: 'Fresh Cilantro (Coriander)',
+        category: 'Vegetal',
+        description: 'Bright, citrusy, and pungent herb essential for Mexican and Asian cuisines.',
+        flavorProfile: {
+            intensity: 4,
+            fat: 0,
+            salinity: 0,
+            sweetness: 1,
+            thermalBehavior: 'Loses flavor quickly with heat; best used fresh or added at the very end.'
+        },
+        origin: 'Mexico/Asia/Middle East.',
+        historyContext: 'Critical flavor component in tacos, curries, and regional flatbreads.',
+        commonStyles: ['flour_tortilla_sonora', 'gua_bao', 'naan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Lime',
+            'Chili',
+            'Onion',
+            'Cumin'
+        ],
+        technicalNotes: 'Chop finely and use leaves for best visual and flavor impact.',
+        applicationMoment: 'post_oven',
+        variations: 'Dried (less pungent).',
+        references: [],
+    },
+    {
+        id: 'pesto',
+        name: 'Pesto Genovese',
+        category: 'Sauce',
+        description: 'Traditional herb sauce made from fresh basil, pine nuts, garlic, Parmesan, and olive oil.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 5,
+            salinity: 3,
+            sweetness: 2,
+            thermalBehavior: 'Oxidizes and loses vibrant green color if exposed to high heat for too long.'
+        },
+        origin: 'Genoa, Italy.',
+        historyContext: 'A symbol of Ligurian cuisine, often used as a finishing touch or a white base replacement.',
+        commonStyles: ['pizza-napoletana', 'focaccia-genovese', 'modern_artisan'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Cherry Tomatoes',
+            'Fresh Mozzarella',
+            'Pine Nuts'
+        ],
+        technicalNotes: 'Apply post-oven for maximum freshness and color. If applied pre-oven, dollop under cheese or add late in the bake.',
+        applicationMoment: 'post_oven',
+        variations: 'Sun-dried Tomato Pesto, Walnut Pesto.',
+        references: [],
+        isStandard: true
+    },
+    {
+        id: 'blue_cheese',
+        name: 'Blue Cheese (Gorgonzola/Stilton)',
+        category: 'Cheese',
+        description: 'Aged cheese with blue-green veins of Penicillium mold. Sharp, pungent, and creamy.',
+        flavorProfile: {
+            intensity: 5,
+            fat: 4,
+            salinity: 4,
+            sweetness: 1,
+            thermalBehavior: 'Melts rapidly into a creamy pool. Can become bitter if burnt.'
+        },
+        origin: 'Global (Gorgonzola from Italy, Stilton from UK).',
+        historyContext: 'One of the four cheeses in the classic "Quattro Formaggi".',
+        commonStyles: ['pizza-napoletana', 'artisan', 'whole_wheat_100'],
+        ovenCompatibility: ['any'],
+        classicCombinations: [
+            'Walnuts + Honey',
+            'Pears',
+            'Caramelized Onions'
+        ],
+        technicalNotes: 'A little goes a long way. Use dollops (< 5g) to avoid overpowering other ingredients.',
+        applicationMoment: 'pre_oven',
+        variations: 'Gorgonzola Dolce (sweet), Gorgonzola Piccante (sharp).',
         references: [],
         isStandard: true
     }

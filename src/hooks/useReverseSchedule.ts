@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { FermentationTechnique } from '@/types';
 import { addMinutes, subMinutes, subHours, isBefore, format } from '@/logic/dateUtils';
+import { useTranslation } from 'react-i18next';
+
 
 export interface ScheduleStep {
     id: string;
@@ -31,6 +33,7 @@ export const useReverseSchedule = (
     bulkTimeHours: number = 2, // Default or dynamic
     ballTimeHours: number = 6  // Default 4-6h
 ): ScheduleResult => {
+    const { t } = useTranslation();
 
     return useMemo(() => {
         const steps: ScheduleStep[] = [];
@@ -62,8 +65,8 @@ export const useReverseSchedule = (
             type: 'action',
             durationMinutes: 60,
             affiliate: {
-                label: 'Laser Thermometer',
-                text: 'Laser Thermometer',
+                label: t('common.laser_thermometer_64'),
+                text: t('common.laser_thermometer_64'),
                 link: '#', // Placeholder
             }
         });
@@ -75,14 +78,14 @@ export const useReverseSchedule = (
 
         steps.push({
             id: 'ball',
-            title: 'Ball Dough',
+            title: t('common.ball_dough_66'),
             description: `Divide dough into balls and let them relax for ${ballTimeHours} hours.`,
             time: ballingStartTime,
             type: 'action',
             durationMinutes: 20, // Approx action time
             affiliate: {
-                label: 'Dough Scraper',
-                text: 'Dough Scraper',
+                label: t('common.dough_scraper_67'),
+                text: t('common.dough_scraper_67'),
                 link: '#'
             }
         });
@@ -91,19 +94,19 @@ export const useReverseSchedule = (
         // Bulk happens before balling.
         const bulkStartTime = subHours(ballingStartTime, bulkTimeHours);
 
-        // This is the "Mix Final Dough" time
+        // This is the t('common.mix_final_dough_69') time
         const finalMixTime = bulkStartTime;
 
         steps.push({
             id: 'mix_final',
-            title: 'Mix Final Dough',
+            title: t('common.mix_final_dough_69'),
             description: 'Combine flour, water, salt (and pre-ferment). Mix until smooth.',
             time: finalMixTime,
             type: 'action',
             durationMinutes: 20,
             affiliate: {
-                label: 'Danish Dough Whisk',
-                text: 'Danish Dough Whisk',
+                label: t('common.danish_dough_whisk_70'),
+                text: t('common.danish_dough_whisk_70'),
                 link: '#'
             }
         });
@@ -115,14 +118,14 @@ export const useReverseSchedule = (
             prefermentMixTime = subHours(finalMixTime, 12); // Standard 12h poolish
             steps.push({
                 id: 'mix_poolish',
-                title: 'Mix Poolish',
+                title: t('common.mix_poolish_72'),
                 description: 'Mix equal parts flour and water with a pinch of yeast. Let ferment for 12h.',
                 time: prefermentMixTime,
                 type: 'action',
                 durationMinutes: 10,
                 affiliate: {
-                    label: 'Best Container',
-                    text: 'Best Container for expansion',
+                    label: t('common.best_container_73'),
+                    text: t('common.best_container_for_expansion_74'),
                     link: '#'
                 }
             });
@@ -130,14 +133,14 @@ export const useReverseSchedule = (
             prefermentMixTime = subHours(finalMixTime, 18); // Standard 18h biga
             steps.push({
                 id: 'mix_biga',
-                title: 'Mix Biga',
+                title: t('common.mix_biga_75'),
                 description: 'Mix flour, water (45-50%), and yeast. Let ferment for 18h.',
                 time: prefermentMixTime,
                 type: 'action',
                 durationMinutes: 15,
                 affiliate: {
-                    label: 'Best Container',
-                    text: 'Best Container for expansion',
+                    label: t('common.best_container_73'),
+                    text: t('common.best_container_for_expansion_74'),
                     link: '#'
                 }
             });

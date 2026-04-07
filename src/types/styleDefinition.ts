@@ -87,7 +87,7 @@ export interface StyleDefinition {
             temperatureC: [number, number];
             notes?: string;
         };
-        difficulty: 'Easy' | 'Medium' | 'Hard' | 'Expert';
+        difficulty: 'Easy' | 'Medium' | 'Hard' | 'Advanced' | 'Expert';
         recommendedUse: string[];
     };
     /** List of regional variations */
@@ -158,4 +158,10 @@ export interface StyleDefinition {
         durationLabel?: string;
         temperatureLabel?: string;
     }[];
+
+    /** Optional: Override automatic tag-based recommendations with a specific curated list */
+    affiliatePlacementId?: string;
+
+    /** Recommended affiliate products for this style (product IDs from affiliate catalog) */
+    affiliateProducts?: string[];
 }

@@ -1,0 +1,2905 @@
+[
+  {
+    "file": "src/services/geolocation/weatherService.ts",
+    "count": 26,
+    "strings": [
+      {
+        "line": 27,
+        "text": "Weather API request failed",
+        "context": "throw new Error('Weather API request failed');"
+      },
+      {
+        "line": 69,
+        "text": "Clear sky",
+        "context": "0: 'Clear sky',"
+      },
+      {
+        "line": 70,
+        "text": "Mainly clear",
+        "context": "1: 'Mainly clear',"
+      },
+      {
+        "line": 71,
+        "text": "Partly cloudy",
+        "context": "2: 'Partly cloudy',"
+      },
+      {
+        "line": 72,
+        "text": "Overcast",
+        "context": "3: 'Overcast',"
+      },
+      {
+        "line": 73,
+        "text": "Foggy",
+        "context": "45: 'Foggy',"
+      },
+      {
+        "line": 74,
+        "text": "Depositing rime fog",
+        "context": "48: 'Depositing rime fog',"
+      },
+      {
+        "line": 75,
+        "text": "Light drizzle",
+        "context": "51: 'Light drizzle',"
+      },
+      {
+        "line": 76,
+        "text": "Moderate drizzle",
+        "context": "53: 'Moderate drizzle',"
+      },
+      {
+        "line": 77,
+        "text": "Dense drizzle",
+        "context": "55: 'Dense drizzle',"
+      },
+      {
+        "line": 78,
+        "text": "Slight rain",
+        "context": "61: 'Slight rain',"
+      },
+      {
+        "line": 79,
+        "text": "Moderate rain",
+        "context": "63: 'Moderate rain',"
+      },
+      {
+        "line": 80,
+        "text": "Heavy rain",
+        "context": "65: 'Heavy rain',"
+      },
+      {
+        "line": 81,
+        "text": "Slight snow",
+        "context": "71: 'Slight snow',"
+      },
+      {
+        "line": 82,
+        "text": "Moderate snow",
+        "context": "73: 'Moderate snow',"
+      },
+      {
+        "line": 83,
+        "text": "Heavy snow",
+        "context": "75: 'Heavy snow',"
+      },
+      {
+        "line": 84,
+        "text": "Snow grains",
+        "context": "77: 'Snow grains',"
+      },
+      {
+        "line": 85,
+        "text": "Slight rain showers",
+        "context": "80: 'Slight rain showers',"
+      },
+      {
+        "line": 86,
+        "text": "Moderate rain showers",
+        "context": "81: 'Moderate rain showers',"
+      },
+      {
+        "line": 87,
+        "text": "Violent rain showers",
+        "context": "82: 'Violent rain showers',"
+      },
+      {
+        "line": 88,
+        "text": "Slight snow showers",
+        "context": "85: 'Slight snow showers',"
+      },
+      {
+        "line": 89,
+        "text": "Heavy snow showers",
+        "context": "86: 'Heavy snow showers',"
+      },
+      {
+        "line": 90,
+        "text": "Thunderstorm",
+        "context": "95: 'Thunderstorm',"
+      },
+      {
+        "line": 91,
+        "text": "Thunderstorm with slight hail",
+        "context": "96: 'Thunderstorm with slight hail',"
+      },
+      {
+        "line": 92,
+        "text": "Thunderstorm with heavy hail",
+        "context": "99: 'Thunderstorm with heavy hail',"
+      },
+      {
+        "line": 95,
+        "text": "Unknown",
+        "context": "return weatherCodes[code] || 'Unknown';"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/StylesLibrary.tsx",
+    "count": 23,
+    "strings": [
+      {
+        "line": 17,
+        "text": "Global",
+        "context": "const resolveRegion = (origin: string): Region | 'Global' => {"
+      },
+      {
+        "line": 21,
+        "text": "Asia",
+        "context": "if (o === 'asia') return 'Asia';"
+      },
+      {
+        "line": 22,
+        "text": "Europe",
+        "context": "if (o === 'europe') return 'Europe';"
+      },
+      {
+        "line": 23,
+        "text": "north america",
+        "context": "if (o === 'north america') return 'North America';"
+      },
+      {
+        "line": 23,
+        "text": "North America",
+        "context": "if (o === 'north america') return 'North America';"
+      },
+      {
+        "line": 24,
+        "text": "south america",
+        "context": "if (o === 'south america') return 'South America';"
+      },
+      {
+        "line": 24,
+        "text": "South America",
+        "context": "if (o === 'south america') return 'South America';"
+      },
+      {
+        "line": 25,
+        "text": "Italy",
+        "context": "if (o === 'italy') return 'Italy';"
+      },
+      {
+        "line": 28,
+        "text": "North America",
+        "context": "if (['usa', 'canada', 'mexico'].includes(o)) return 'North America';"
+      },
+      {
+        "line": 29,
+        "text": "South America",
+        "context": "if (['brazil', 'argentina', 'colombia', 'peru'].includes(o)) return 'South America';"
+      },
+      {
+        "line": 30,
+        "text": "Europe",
+        "context": "if (['france', 'germany', 'denmark', 'uk', 'spain', 'sweden', 'poland', 'belgium', 'netherlands'].includes(o)) return 'Europe';"
+      },
+      {
+        "line": 31,
+        "text": "Asia",
+        "context": "if (['japan', 'china', 'india', 'taiwan', 'korea', 'thailand', 'vietnam'].includes(o)) return 'Asia';"
+      },
+      {
+        "line": 33,
+        "text": "Global",
+        "context": "return 'Global';"
+      },
+      {
+        "line": 40,
+        "text": "Global",
+        "context": "const [filterRegion, setFilterRegion] = useState<Region | 'All' | 'Global'>('All');"
+      },
+      {
+        "line": 55,
+        "text": "Enriched",
+        "context": "(filterCategory === 'Enriched' && (styleCat === 'enriched_bread' || styleCat === 'burger_bun' || styleCat === 'pastry' || styleCat === 'buns' || styleCat === 'snack' || styleCat === 'enriched')) ||"
+      },
+      {
+        "line": 56,
+        "text": "Bread",
+        "context": "(filterCategory === 'Bread' && (styleCat === 'bread' || styleCat === 'flatbread' || styleCat === 'soft bread'));"
+      },
+      {
+        "line": 56,
+        "text": "soft bread",
+        "context": "(filterCategory === 'Bread' && (styleCat === 'bread' || styleCat === 'flatbread' || styleCat === 'soft bread'));"
+      },
+      {
+        "line": 74,
+        "text": "Global",
+        "context": "const regionOptions: { value: Region | 'Global'; label: string }[] = ["
+      },
+      {
+        "line": 145,
+        "text": "Pizza",
+        "context": "{cat === 'Pizza' && '🍕'}"
+      },
+      {
+        "line": 146,
+        "text": "Bread",
+        "context": "{cat === 'Bread' && '🍞'}"
+      },
+      {
+        "line": 147,
+        "text": "Flatbread",
+        "context": "{cat === 'Flatbread' && '🫓'}"
+      },
+      {
+        "line": 148,
+        "text": "Enriched",
+        "context": "{cat === 'Enriched' && '🥐'}"
+      },
+      {
+        "line": 162,
+        "text": "Global",
+        "context": "onChange={(e) => setFilterRegion(e.target.value as Region | 'All' | 'Global')}"
+      }
+    ]
+  },
+  {
+    "file": "src/services/IngredientAIService.ts",
+    "count": 15,
+    "strings": [
+      {
+        "line": 41,
+        "text": "Heavy load",
+        "context": "weightImpact: inputData.loadType === 'heavy' ? 'Heavy load' : 'Standard load',"
+      },
+      {
+        "line": 41,
+        "text": "Standard load",
+        "context": "weightImpact: inputData.loadType === 'heavy' ? 'Heavy load' : 'Standard load',"
+      },
+      {
+        "line": 44,
+        "text": "Participates in heat transfer",
+        "context": ": 'Participates in heat transfer'"
+      },
+      {
+        "line": 49,
+        "text": "Assumed ingredient releases water during bake",
+        "context": "assumptions.push(\"Assumed ingredient releases water during bake\");"
+      },
+      {
+        "line": 107,
+        "text": "Standard",
+        "context": "classification: 'Standard' | 'Variation' | 'Experimental';"
+      },
+      {
+        "line": 107,
+        "text": "Variation",
+        "context": "classification: 'Standard' | 'Variation' | 'Experimental';"
+      },
+      {
+        "line": 107,
+        "text": "Experimental",
+        "context": "classification: 'Standard' | 'Variation' | 'Experimental';"
+      },
+      {
+        "line": 118,
+        "text": "Standard",
+        "context": "let classification: 'Standard' | 'Variation' | 'Experimental' = 'Standard';"
+      },
+      {
+        "line": 118,
+        "text": "Variation",
+        "context": "let classification: 'Standard' | 'Variation' | 'Experimental' = 'Standard';"
+      },
+      {
+        "line": 118,
+        "text": "Experimental",
+        "context": "let classification: 'Standard' | 'Variation' | 'Experimental' = 'Standard';"
+      },
+      {
+        "line": 118,
+        "text": "Standard",
+        "context": "let classification: 'Standard' | 'Variation' | 'Experimental' = 'Standard';"
+      },
+      {
+        "line": 136,
+        "text": "Experimental",
+        "context": "classification = 'Experimental';"
+      },
+      {
+        "line": 143,
+        "text": "Variation",
+        "context": "classification = 'Variation';"
+      },
+      {
+        "line": 178,
+        "text": "Experimental",
+        "context": "if (classification !== 'Experimental' && variationCount > 0) {"
+      },
+      {
+        "line": 179,
+        "text": "Variation",
+        "context": "classification = 'Variation';"
+      }
+    ]
+  },
+  {
+    "file": "src/hooks/useReverseSchedule.ts",
+    "count": 14,
+    "strings": [
+      {
+        "line": 65,
+        "text": "Laser Thermometer",
+        "context": "label: 'Laser Thermometer',"
+      },
+      {
+        "line": 66,
+        "text": "Laser Thermometer",
+        "context": "text: 'Laser Thermometer',"
+      },
+      {
+        "line": 78,
+        "text": "Ball Dough",
+        "context": "title: 'Ball Dough',"
+      },
+      {
+        "line": 84,
+        "text": "Dough Scraper",
+        "context": "label: 'Dough Scraper',"
+      },
+      {
+        "line": 85,
+        "text": "Dough Scraper",
+        "context": "text: 'Dough Scraper',"
+      },
+      {
+        "line": 99,
+        "text": "Mix Final Dough",
+        "context": "title: 'Mix Final Dough',"
+      },
+      {
+        "line": 105,
+        "text": "Danish Dough Whisk",
+        "context": "label: 'Danish Dough Whisk',"
+      },
+      {
+        "line": 106,
+        "text": "Danish Dough Whisk",
+        "context": "text: 'Danish Dough Whisk',"
+      },
+      {
+        "line": 118,
+        "text": "Mix Poolish",
+        "context": "title: 'Mix Poolish',"
+      },
+      {
+        "line": 124,
+        "text": "Best Container",
+        "context": "label: 'Best Container',"
+      },
+      {
+        "line": 125,
+        "text": "Best Container for expansion",
+        "context": "text: 'Best Container for expansion',"
+      },
+      {
+        "line": 133,
+        "text": "Mix Biga",
+        "context": "title: 'Mix Biga',"
+      },
+      {
+        "line": 139,
+        "text": "Best Container",
+        "context": "label: 'Best Container',"
+      },
+      {
+        "line": 140,
+        "text": "Best Container for expansion",
+        "context": "text: 'Best Container for expansion',"
+      }
+    ]
+  },
+  {
+    "file": "src/utils/styleValidation.ts",
+    "count": 14,
+    "strings": [
+      {
+        "line": 15,
+        "text": "Missing ID",
+        "context": "if (!style.id) errors.push('Missing ID');"
+      },
+      {
+        "line": 16,
+        "text": "Missing Title",
+        "context": "if (!style.title) errors.push('Missing Title');"
+      },
+      {
+        "line": 17,
+        "text": "Missing Category",
+        "context": "if (!style.category) errors.push('Missing Category');"
+      },
+      {
+        "line": 18,
+        "text": "Missing Origin",
+        "context": "if (!style.origin) errors.push('Missing Origin');"
+      },
+      {
+        "line": 20,
+        "text": "Missing Origin Country",
+        "context": "if (!style.origin.country) errors.push('Missing Origin Country');"
+      },
+      {
+        "line": 25,
+        "text": "Missing Technical Profile",
+        "context": "errors.push('Missing Technical Profile');"
+      },
+      {
+        "line": 28,
+        "text": "Invalid Hydration Range",
+        "context": "if (!tp.hydrationRange || tp.hydrationRange.length !== 2) errors.push('Invalid Hydration Range');"
+      },
+      {
+        "line": 29,
+        "text": "Invalid Salt Range",
+        "context": "if (!tp.saltRange || tp.saltRange.length !== 2) errors.push('Invalid Salt Range');"
+      },
+      {
+        "line": 30,
+        "text": "Missing Fermentation Details",
+        "context": "if (!tp.fermentation) errors.push('Missing Fermentation Details');"
+      },
+      {
+        "line": 31,
+        "text": "Missing Oven Details",
+        "context": "if (!tp.oven) errors.push('Missing Oven Details');"
+      },
+      {
+        "line": 35,
+        "text": "Intro is too short",
+        "context": "if (!style.intro || style.intro.length < 50) warnings.push('Intro is too short');"
+      },
+      {
+        "line": 36,
+        "text": "History is too short",
+        "context": "if (!style.history || style.history.length < 50) warnings.push('History is too short');"
+      },
+      {
+        "line": 37,
+        "text": "No technical foundations listed",
+        "context": "if (!style.technicalFoundations || style.technicalFoundations.length === 0) warnings.push('No technical foundations listed');"
+      },
+      {
+        "line": 38,
+        "text": "No baking impacts listed",
+        "context": "if (!style.bakingImpact || style.bakingImpact.length === 0) warnings.push('No baking impacts listed');"
+      }
+    ]
+  },
+  {
+    "file": "src/components/styles/AiStyleBuilderModal.tsx",
+    "count": 13,
+    "strings": [
+      {
+        "line": 16,
+        "text": "Ultra Crispy",
+        "context": "'Ultra Crispy', 'Soft & Cloud-like', 'Chewy', 'Melt-in-mouth', 'Dense & Hearty', 'Flaky'"
+      },
+      {
+        "line": 16,
+        "text": "Chewy",
+        "context": "'Ultra Crispy', 'Soft & Cloud-like', 'Chewy', 'Melt-in-mouth', 'Dense & Hearty', 'Flaky'"
+      },
+      {
+        "line": 16,
+        "text": "Flaky",
+        "context": "'Ultra Crispy', 'Soft & Cloud-like', 'Chewy', 'Melt-in-mouth', 'Dense & Hearty', 'Flaky'"
+      },
+      {
+        "line": 19,
+        "text": "Thin Crust",
+        "context": "'Thin Crust', 'Thick Crust', 'Cornicione (Puffy Rim)', 'Pan/Deep Dish', 'Flatbread', 'Stuffed'"
+      },
+      {
+        "line": 19,
+        "text": "Thick Crust",
+        "context": "'Thin Crust', 'Thick Crust', 'Cornicione (Puffy Rim)', 'Pan/Deep Dish', 'Flatbread', 'Stuffed'"
+      },
+      {
+        "line": 19,
+        "text": "Flatbread",
+        "context": "'Thin Crust', 'Thick Crust', 'Cornicione (Puffy Rim)', 'Pan/Deep Dish', 'Flatbread', 'Stuffed'"
+      },
+      {
+        "line": 19,
+        "text": "Stuffed",
+        "context": "'Thin Crust', 'Thick Crust', 'Cornicione (Puffy Rim)', 'Pan/Deep Dish', 'Flatbread', 'Stuffed'"
+      },
+      {
+        "line": 22,
+        "text": "Buttery",
+        "context": "'Sour & Complex', 'Sweet & Enriched', 'Nutty (Whole Grain)', 'Buttery', 'Neutral', 'Charred/Smoky'"
+      },
+      {
+        "line": 22,
+        "text": "Neutral",
+        "context": "'Sour & Complex', 'Sweet & Enriched', 'Nutty (Whole Grain)', 'Buttery', 'Neutral', 'Charred/Smoky'"
+      },
+      {
+        "line": 25,
+        "text": "Poolish",
+        "context": "'Sourdough (Levain)', 'Poolish', 'Biga', 'Direct Method', 'No-Knead', 'High Hydration'"
+      },
+      {
+        "line": 25,
+        "text": "Biga",
+        "context": "'Sourdough (Levain)', 'Poolish', 'Biga', 'Direct Method', 'No-Knead', 'High Hydration'"
+      },
+      {
+        "line": 25,
+        "text": "Direct Method",
+        "context": "'Sourdough (Levain)', 'Poolish', 'Biga', 'Direct Method', 'No-Knead', 'High Hydration'"
+      },
+      {
+        "line": 25,
+        "text": "High Hydration",
+        "context": "'Sourdough (Levain)', 'Poolish', 'Biga', 'Direct Method', 'No-Knead', 'High Hydration'"
+      }
+    ]
+  },
+  {
+    "file": "src/utils/learnSearch.ts",
+    "count": 13,
+    "strings": [
+      {
+        "line": 43,
+        "text": "Title",
+        "context": "check(article.title, 20, 'Title');"
+      },
+      {
+        "line": 46,
+        "text": "Category",
+        "context": "check(article.category, 15, 'Category');"
+      },
+      {
+        "line": 49,
+        "text": "Subtitle",
+        "context": "check(article.subtitle, 10, 'Subtitle');"
+      },
+      {
+        "line": 52,
+        "text": "Technical Foundations",
+        "context": "article.technicalFoundations?.forEach(tf => check(tf, 5, 'Technical Foundations'));"
+      },
+      {
+        "line": 56,
+        "text": "Variants",
+        "context": "check(v.variant, 5, 'Variants');"
+      },
+      {
+        "line": 57,
+        "text": "Variants",
+        "context": "check(v.implications, 2, 'Variants');"
+      },
+      {
+        "line": 61,
+        "text": "Parameters",
+        "context": "article.parameterSensitivity?.forEach(p => check(p, 3, 'Parameters'));"
+      },
+      {
+        "line": 64,
+        "text": "Applications",
+        "context": "article.practicalApplications?.forEach(p => check(p, 4, 'Applications'));"
+      },
+      {
+        "line": 67,
+        "text": "Troubleshooting",
+        "context": "if (article.category === 'Troubleshooting') {"
+      },
+      {
+        "line": 68,
+        "text": "Troubleshooting",
+        "context": "check(article.title, 8, 'Troubleshooting');"
+      },
+      {
+        "line": 72,
+        "text": "Content",
+        "context": "article.intro && check(article.intro, 1, 'Content');"
+      },
+      {
+        "line": 73,
+        "text": "Content",
+        "context": "article.history && check(article.history, 1, 'Content');"
+      },
+      {
+        "line": 74,
+        "text": "Grandma Explanation",
+        "context": "article.grandmaVersion?.whatItDoes && check(article.grandmaVersion.whatItDoes, 1, 'Grandma Explanation');"
+      }
+    ]
+  },
+  {
+    "file": "src/components/styles/CreateStyleModal.tsx",
+    "count": 12,
+    "strings": [
+      {
+        "line": 38,
+        "text": "My Custom Styles",
+        "context": "family: 'My Custom Styles',"
+      },
+      {
+        "line": 40,
+        "text": "Custom",
+        "context": "country: 'Custom',"
+      },
+      {
+        "line": 53,
+        "text": "Medium",
+        "context": "difficulty: 'Medium' as 'Easy' | 'Medium' | 'Hard' | 'Expert',"
+      },
+      {
+        "line": 53,
+        "text": "Easy",
+        "context": "difficulty: 'Medium' as 'Easy' | 'Medium' | 'Hard' | 'Expert',"
+      },
+      {
+        "line": 53,
+        "text": "Medium",
+        "context": "difficulty: 'Medium' as 'Easy' | 'Medium' | 'Hard' | 'Expert',"
+      },
+      {
+        "line": 53,
+        "text": "Hard",
+        "context": "difficulty: 'Medium' as 'Easy' | 'Medium' | 'Hard' | 'Expert',"
+      },
+      {
+        "line": 53,
+        "text": "Expert",
+        "context": "difficulty: 'Medium' as 'Easy' | 'Medium' | 'Hard' | 'Expert',"
+      },
+      {
+        "line": 70,
+        "text": "My Custom Styles",
+        "context": "family: defaultValues.family || 'My Custom Styles',"
+      },
+      {
+        "line": 81,
+        "text": "Medium",
+        "context": "difficulty: defaultValues.difficulty || 'Medium',"
+      },
+      {
+        "line": 84,
+        "text": "Custom",
+        "context": "country: defaultValues.origin?.country || 'Custom',"
+      },
+      {
+        "line": 114,
+        "text": "New Step",
+        "context": "{ phase: 'Mix', title: 'New Step', duration: '10 min', action: '', science: '' }"
+      },
+      {
+        "line": 153,
+        "text": "Contemporary",
+        "context": "period: 'Contemporary'"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/DoughbotPage.tsx",
+    "count": 12,
+    "strings": [
+      {
+        "line": 96,
+        "text": "Mixing",
+        "context": "{['Mixing', 'Bulk Ferment', 'Shaping/Proof', 'Baking'].map((stage) => ("
+      },
+      {
+        "line": 96,
+        "text": "Bulk Ferment",
+        "context": "{['Mixing', 'Bulk Ferment', 'Shaping/Proof', 'Baking'].map((stage) => ("
+      },
+      {
+        "line": 96,
+        "text": "Baking",
+        "context": "{['Mixing', 'Bulk Ferment', 'Shaping/Proof', 'Baking'].map((stage) => ("
+      },
+      {
+        "line": 117,
+        "text": "Impossible to handle",
+        "context": "{ val: 'sticky', label: 'Sticky / Wet', desc: 'Impossible to handle', icon: '💧' },"
+      },
+      {
+        "line": 118,
+        "text": "Tearing",
+        "context": "{ val: 'tearing', label: 'Tearing', desc: 'No gluten structure', icon: '🕸️' },"
+      },
+      {
+        "line": 118,
+        "text": "No gluten structure",
+        "context": "{ val: 'tearing', label: 'Tearing', desc: 'No gluten structure', icon: '🕸️' },"
+      },
+      {
+        "line": 119,
+        "text": "Yeast inactivity",
+        "context": "{ val: 'no_rise', label: 'Flat / No Rise', desc: 'Yeast inactivity', icon: '📉' },"
+      },
+      {
+        "line": 120,
+        "text": "Dense Crumb",
+        "context": "{ val: 'dense', label: 'Dense Crumb', desc: 'Heavy, brick-like', icon: '🧱' },"
+      },
+      {
+        "line": 121,
+        "text": "Gummy Interior",
+        "context": "{ val: 'gummy', label: 'Gummy Interior', desc: 'Undercooked feel', icon: '🧖' },"
+      },
+      {
+        "line": 121,
+        "text": "Undercooked feel",
+        "context": "{ val: 'gummy', label: 'Gummy Interior', desc: 'Undercooked feel', icon: '🧖' },"
+      },
+      {
+        "line": 122,
+        "text": "Pale Crust",
+        "context": "{ val: 'pale', label: 'Pale Crust', desc: 'No browning', icon: '👻' },"
+      },
+      {
+        "line": 122,
+        "text": "No browning",
+        "context": "{ val: 'pale', label: 'Pale Crust', desc: 'No browning', icon: '👻' },"
+      }
+    ]
+  },
+  {
+    "file": "src/utils/styleAdapter.ts",
+    "count": 12,
+    "strings": [
+      {
+        "line": 14,
+        "text": "Untitled Style",
+        "context": "title: legacy.name || legacy.title || 'Untitled Style',"
+      },
+      {
+        "line": 16,
+        "text": "Other",
+        "context": "category: legacy.category || 'Other',"
+      },
+      {
+        "line": 17,
+        "text": "User Custom",
+        "context": "family: legacy.family || 'User Custom',"
+      },
+      {
+        "line": 20,
+        "text": "Unknown",
+        "context": "country: legacy.country || 'Unknown',"
+      },
+      {
+        "line": 33,
+        "text": "Medium",
+        "context": "flourStrength: legacy.technicalProfile?.flourStrength || 'Medium',"
+      },
+      {
+        "line": 34,
+        "text": "Standard",
+        "context": "fermentation: legacy.technicalProfile?.fermentation || { bulk: 'Standard', proof: 'Standard' },"
+      },
+      {
+        "line": 34,
+        "text": "Standard",
+        "context": "fermentation: legacy.technicalProfile?.fermentation || { bulk: 'Standard', proof: 'Standard' },"
+      },
+      {
+        "line": 36,
+        "text": "Medium",
+        "context": "difficulty: legacy.technicalProfile?.difficulty || 'Medium',"
+      },
+      {
+        "line": 71,
+        "text": "Unknown",
+        "context": "region: style.origin.region || 'Unknown',"
+      },
+      {
+        "line": 72,
+        "text": "Unknown",
+        "context": "period: (style.origin as any).period || 'Unknown'"
+      },
+      {
+        "line": 97,
+        "text": "Standard",
+        "context": "fermentation: typeof style.technicalProfile.fermentation === 'string' ? { bulk: style.technicalProfile.fermentation, proof: 'Standard' } : style.technicalProfile.fermentation,"
+      },
+      {
+        "line": 122,
+        "text": "Medium",
+        "context": "difficulty: 'Medium',"
+      }
+    ]
+  },
+  {
+    "file": "src/components/PlansPage.tsx",
+    "count": 11,
+    "strings": [
+      {
+        "line": 16,
+        "text": "Unlimited Saved Batches",
+        "context": "{ name: 'Unlimited Saved Batches', free: false, pro: true },"
+      },
+      {
+        "line": 17,
+        "text": "Advanced Calculator Mode",
+        "context": "{ name: 'Advanced Calculator Mode', free: false, pro: true },"
+      },
+      {
+        "line": 18,
+        "text": "Create Custom Styles",
+        "context": "{ name: 'Create Custom Styles', free: false, pro: true },"
+      },
+      {
+        "line": 20,
+        "text": "Oven Analysis Tool",
+        "context": "{ name: 'Oven Analysis Tool', free: false, pro: true },"
+      },
+      {
+        "line": 21,
+        "text": "Levain Management",
+        "context": "{ name: 'Levain Management', free: false, pro: true },"
+      },
+      {
+        "line": 22,
+        "text": "Export to PDF",
+        "context": "{ name: 'Export to PDF', free: false, pro: true },"
+      },
+      {
+        "line": 23,
+        "text": "Basic Calculator",
+        "context": "{ name: 'Basic Calculator', free: true, pro: true },"
+      },
+      {
+        "line": 24,
+        "text": "Standard Presets",
+        "context": "{ name: 'Standard Presets', free: true, pro: true },"
+      },
+      {
+        "line": 25,
+        "text": "Community Access",
+        "context": "{ name: 'Community Access', free: true, pro: true },"
+      },
+      {
+        "line": 92,
+        "text": "Current Plan",
+        "context": "{hasProAccess ? 'Current Plan' : 'Upgrade to Pro'}"
+      },
+      {
+        "line": 92,
+        "text": "Upgrade to Pro",
+        "context": "{hasProAccess ? 'Current Plan' : 'Upgrade to Pro'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/onboarding/TourGuide.tsx",
+    "count": 10,
+    "strings": [
+      {
+        "line": 16,
+        "text": "Choose Your Style",
+        "context": "title: 'Choose Your Style',"
+      },
+      {
+        "line": 22,
+        "text": "Define Yield",
+        "context": "title: 'Define Yield',"
+      },
+      {
+        "line": 28,
+        "text": "Customize Ratios",
+        "context": "title: 'Customize Ratios',"
+      },
+      {
+        "line": 34,
+        "text": "Fermentation Strategy",
+        "context": "title: 'Fermentation Strategy',"
+      },
+      {
+        "line": 40,
+        "text": "Baking Environment",
+        "context": "title: 'Baking Environment',"
+      },
+      {
+        "line": 46,
+        "text": "Formula Overview",
+        "context": "title: 'Formula Overview',"
+      },
+      {
+        "line": 52,
+        "text": "Precise Recipe",
+        "context": "title: 'Precise Recipe',"
+      },
+      {
+        "line": 64,
+        "text": "Start Baking",
+        "context": "title: 'Start Baking',"
+      },
+      {
+        "line": 199,
+        "text": "Finish",
+        "context": "{currentStep === TOUR_STEPS.length - 1 ? 'Finish' : 'Next'}"
+      },
+      {
+        "line": 199,
+        "text": "Next",
+        "context": "{currentStep === TOUR_STEPS.length - 1 ? 'Finish' : 'Next'}"
+      }
+    ]
+  },
+  {
+    "file": "src/services/exportService.ts",
+    "count": 10,
+    "strings": [
+      {
+        "line": 23,
+        "text": "Batch data is missing",
+        "context": "if (!batch) throw new Error(\"Batch data is missing\");"
+      },
+      {
+        "line": 50,
+        "text": "Anonymous",
+        "context": "img.crossOrigin = 'Anonymous';"
+      },
+      {
+        "line": 86,
+        "text": "Untitled Recipe",
+        "context": "const recipeName = (batch.name || 'Untitled Recipe').toUpperCase();"
+      },
+      {
+        "line": 114,
+        "text": "Hydration",
+        "context": "drawMetricCard('Hydration', `${config.hydration || 0}%`, MARGIN_X);"
+      },
+      {
+        "line": 116,
+        "text": "Yield",
+        "context": "drawMetricCard('Yield', servingsLabel, MARGIN_X + colWidth);"
+      },
+      {
+        "line": 118,
+        "text": "Total Mass",
+        "context": "drawMetricCard('Total Mass', `${totalWeight}g`, MARGIN_X + (colWidth * 2));"
+      },
+      {
+        "line": 119,
+        "text": "Strategy",
+        "context": "drawMetricCard('Strategy', config.fermentationTechnique || 'Direct', MARGIN_X + (colWidth * 3));"
+      },
+      {
+        "line": 119,
+        "text": "Direct",
+        "context": "drawMetricCard('Strategy', config.fermentationTechnique || 'Direct', MARGIN_X + (colWidth * 3));"
+      },
+      {
+        "line": 132,
+        "text": "Flour",
+        "context": "const flourName = FLOURS.find(f => f.id === config.flourId)?.name || 'Flour';"
+      },
+      {
+        "line": 134,
+        "text": "Water",
+        "context": "ings.push({ name: 'Water', weight: Number(results.totalWater || 600), bakerPercentage: Number(config.hydration || 60) } as any);"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/ingredients/IngredientCreatorModal.tsx",
+    "count": 9,
+    "strings": [
+      {
+        "line": 54,
+        "text": "Standard load",
+        "context": "weightImpact: 'Standard load',"
+      },
+      {
+        "line": 55,
+        "text": "Standard",
+        "context": "thermalBehavior: component.flavorProfile.thermalBehavior || 'Standard'"
+      },
+      {
+        "line": 130,
+        "text": "Cheese",
+        "context": "const categories = ['all', 'Cheese', 'Meat', 'Vegetal', 'Sauce', 'Finish'];"
+      },
+      {
+        "line": 130,
+        "text": "Meat",
+        "context": "const categories = ['all', 'Cheese', 'Meat', 'Vegetal', 'Sauce', 'Finish'];"
+      },
+      {
+        "line": 130,
+        "text": "Vegetal",
+        "context": "const categories = ['all', 'Cheese', 'Meat', 'Vegetal', 'Sauce', 'Finish'];"
+      },
+      {
+        "line": 130,
+        "text": "Sauce",
+        "context": "const categories = ['all', 'Cheese', 'Meat', 'Vegetal', 'Sauce', 'Finish'];"
+      },
+      {
+        "line": 130,
+        "text": "Finish",
+        "context": "const categories = ['all', 'Cheese', 'Meat', 'Vegetal', 'Sauce', 'Finish'];"
+      },
+      {
+        "line": 162,
+        "text": "AI Validation Complete",
+        "context": "{step === 'result' ? 'AI Validation Complete' : 'Add Ingredient'}"
+      },
+      {
+        "line": 162,
+        "text": "Add Ingredient",
+        "context": "{step === 'result' ? 'AI Validation Complete' : 'Add Ingredient'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/CategoryBadge.tsx",
+    "count": 9,
+    "strings": [
+      {
+        "line": 12,
+        "text": "Pizza",
+        "context": "pizza: 'Pizza',"
+      },
+      {
+        "line": 13,
+        "text": "Bread",
+        "context": "bread: 'Bread',"
+      },
+      {
+        "line": 14,
+        "text": "Enriched",
+        "context": "enriched_bread: 'Enriched',"
+      },
+      {
+        "line": 16,
+        "text": "Pastry",
+        "context": "pastry: 'Pastry',"
+      },
+      {
+        "line": 17,
+        "text": "Cookie",
+        "context": "cookie: 'Cookie',"
+      },
+      {
+        "line": 18,
+        "text": "Confectionery",
+        "context": "cookies_confectionery: 'Confectionery',"
+      },
+      {
+        "line": 19,
+        "text": "Flatbread",
+        "context": "flatbread: 'Flatbread',"
+      },
+      {
+        "line": 20,
+        "text": "Other",
+        "context": "other: 'Other',"
+      },
+      {
+        "line": 27,
+        "text": "Other",
+        "context": "const label = CATEGORY_LABELS[category] || 'Other';"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/IngredientsPage.tsx",
+    "count": 9,
+    "strings": [
+      {
+        "line": 59,
+        "text": "Flours",
+        "context": "title: 'Flours',"
+      },
+      {
+        "line": 65,
+        "text": "Yeasts",
+        "context": "title: 'Yeasts',"
+      },
+      {
+        "line": 71,
+        "text": "Cheeses",
+        "context": "title: 'Cheeses',"
+      },
+      {
+        "line": 83,
+        "text": "Vegetables",
+        "context": "title: 'Vegetables',"
+      },
+      {
+        "line": 89,
+        "text": "Sauces",
+        "context": "title: 'Sauces',"
+      },
+      {
+        "line": 107,
+        "text": "Classic Combos",
+        "context": "title: 'Classic Combos',"
+      },
+      {
+        "line": 113,
+        "text": "Bold Combos",
+        "context": "title: 'Bold Combos',"
+      },
+      {
+        "line": 119,
+        "text": "Pairing Tool",
+        "context": "title: 'Pairing Tool',"
+      },
+      {
+        "line": 125,
+        "text": "Ready Toppings",
+        "context": "title: 'Ready Toppings',"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/legal/LegalIndexPage.tsx",
+    "count": 8,
+    "strings": [
+      {
+        "line": 8,
+        "text": "DoughLabPro",
+        "context": "const COMPANY_NAME = 'DoughLabPro';"
+      },
+      {
+        "line": 12,
+        "text": "Legal Overview",
+        "context": "{ id: 'overview', title: 'Legal Overview' },"
+      },
+      {
+        "line": 13,
+        "text": "Terms of Use",
+        "context": "{ id: 'terms', title: 'Terms of Use' },"
+      },
+      {
+        "line": 14,
+        "text": "Privacy Policy",
+        "context": "{ id: 'privacy', title: 'Privacy Policy' },"
+      },
+      {
+        "line": 15,
+        "text": "Cookie Policy",
+        "context": "{ id: 'cookies', title: 'Cookie Policy' },"
+      },
+      {
+        "line": 16,
+        "text": "Affiliate Disclosure",
+        "context": "{ id: 'affiliate', title: 'Affiliate Disclosure' },"
+      },
+      {
+        "line": 18,
+        "text": "Intellectual Property",
+        "context": "{ id: 'ip', title: 'Intellectual Property' },"
+      },
+      {
+        "line": 19,
+        "text": "Contact",
+        "context": "{ id: 'contact', title: 'Contact' },"
+      }
+    ]
+  },
+  {
+    "file": "src/services/notificationTemplates.ts",
+    "count": 8,
+    "strings": [
+      {
+        "line": 48,
+        "text": "Perform a gentle fold to strengthen the gluten network",
+        "context": "bodyTemplate: 'Perform a gentle fold to strengthen the gluten network',"
+      },
+      {
+        "line": 135,
+        "text": "Time to prepare butter block and begin lamination",
+        "context": "bodyTemplate: 'Time to prepare butter block and begin lamination',"
+      },
+      {
+        "line": 163,
+        "text": "Poolish Ready",
+        "context": "name: 'Poolish Ready',"
+      },
+      {
+        "line": 173,
+        "text": "Biga Ready",
+        "context": "name: 'Biga Ready',"
+      },
+      {
+        "line": 196,
+        "text": "Bake Complete",
+        "context": "name: 'Bake Complete',"
+      },
+      {
+        "line": 213,
+        "text": "Neapolitan Pizza",
+        "context": "styleName: 'Neapolitan Pizza',"
+      },
+      {
+        "line": 225,
+        "text": "Sourdough Bread",
+        "context": "styleName: 'Sourdough Bread',"
+      },
+      {
+        "line": 239,
+        "text": "French Croissant",
+        "context": "styleName: 'French Croissant',"
+      }
+    ]
+  },
+  {
+    "file": "src/utils/doughConversion.ts",
+    "count": 8,
+    "strings": [
+      {
+        "line": 51,
+        "text": "masa madre",
+        "context": "return n.includes('sourdough') || n.includes('levain') || n.includes('starter') || n.includes('masa madre');"
+      },
+      {
+        "line": 80,
+        "text": "masa madre",
+        "context": "else if (n.includes('yeast') || n.includes('fermento') || n.includes('levain') || n.includes('starter') || n.includes('masa madre')) role = 'yeast';"
+      },
+      {
+        "line": 271,
+        "text": "Flour",
+        "context": "{ id: 'flour', name: 'Flour', type: 'solid', role: 'flour', bakerPercentage: 100 },"
+      },
+      {
+        "line": 272,
+        "text": "Water",
+        "context": "{ id: 'water', name: 'Water', type: 'liquid', role: 'water', bakerPercentage: hydration },"
+      },
+      {
+        "line": 273,
+        "text": "Salt",
+        "context": "{ id: 'salt', name: 'Salt', type: 'solid', role: 'salt', bakerPercentage: salt },"
+      },
+      {
+        "line": 277,
+        "text": "Yeast",
+        "context": "ingredients.push({ id: 'yeast', name: 'Yeast', type: 'solid', role: 'yeast', bakerPercentage: yeastPercentage });"
+      },
+      {
+        "line": 284,
+        "text": "Sugar",
+        "context": "ingredients.push({ id: 'sugar', name: 'Sugar', type: 'solid', role: 'sugar', bakerPercentage: sugar });"
+      },
+      {
+        "line": 287,
+        "text": "Cocoa Powder",
+        "context": "ingredients.push({ id: 'cocoa', name: 'Cocoa Powder', type: 'solid', role: 'other', bakerPercentage: cocoa });"
+      }
+    ]
+  },
+  {
+    "file": "src/components/dashboard/sections/LogisticsSection.tsx",
+    "count": 7,
+    "strings": [
+      {
+        "line": 49,
+        "text": "Pizza Sauce",
+        "context": "if (sizeRef.sauceGrams) toppingAgg['Pizza Sauce'] = (toppingAgg['Pizza Sauce'] || 0) + sizeRef.sauceGrams * count;"
+      },
+      {
+        "line": 49,
+        "text": "Pizza Sauce",
+        "context": "if (sizeRef.sauceGrams) toppingAgg['Pizza Sauce'] = (toppingAgg['Pizza Sauce'] || 0) + sizeRef.sauceGrams * count;"
+      },
+      {
+        "line": 50,
+        "text": "Mozzarella Cheese",
+        "context": "if (sizeRef.cheeseGrams) toppingAgg['Mozzarella Cheese'] = (toppingAgg['Mozzarella Cheese'] || 0) + sizeRef.cheeseGrams * count;"
+      },
+      {
+        "line": 50,
+        "text": "Mozzarella Cheese",
+        "context": "if (sizeRef.cheeseGrams) toppingAgg['Mozzarella Cheese'] = (toppingAgg['Mozzarella Cheese'] || 0) + sizeRef.cheeseGrams * count;"
+      },
+      {
+        "line": 102,
+        "text": "Exact",
+        "context": "{val === 0 ? 'Exact' : `+${val}% ${val === 20 ? 'Party' : 'Safe'}`}"
+      },
+      {
+        "line": 102,
+        "text": "Party",
+        "context": "{val === 0 ? 'Exact' : `+${val}% ${val === 20 ? 'Party' : 'Safe'}`}"
+      },
+      {
+        "line": 102,
+        "text": "Safe",
+        "context": "{val === 0 ? 'Exact' : `+${val}% ${val === 20 ? 'Party' : 'Safe'}`}"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/styles/StyleDetailPage.tsx",
+    "count": 7,
+    "strings": [
+      {
+        "line": 51,
+        "text": "Bulk",
+        "context": "let phase: any = 'Bulk';"
+      },
+      {
+        "line": 53,
+        "text": "Bake",
+        "context": "if (index === def.technicalProfile.fermentationSteps.length - 1) phase = 'Bake';"
+      },
+      {
+        "line": 708,
+        "text": "Change Cover",
+        "context": "<span>{isUploading ? 'Uploading...' : 'Change Cover'}</span>"
+      },
+      {
+        "line": 805,
+        "text": "Finish",
+        "context": "{component.applicationMoment === 'post_oven' ? 'Finish' : 'Cook'}"
+      },
+      {
+        "line": 805,
+        "text": "Cook",
+        "context": "{component.applicationMoment === 'post_oven' ? 'Finish' : 'Cook'}"
+      },
+      {
+        "line": 986,
+        "text": "Expert",
+        "context": "{styleData.scientificProfile.flourRheology.w_index || (styleData.specs.difficulty === 'Expert' ? 'W 350+' : 'W 260+')}"
+      },
+      {
+        "line": 1002,
+        "text": "Expert",
+        "context": "{styleData.specs.difficulty === 'Expert' ? '13.5%+' : '12-13%'}"
+      }
+    ]
+  },
+  {
+    "file": "src/contexts/AuthContext.tsx",
+    "count": 7,
+    "strings": [
+      {
+        "line": 81,
+        "text": "User",
+        "context": "name: user.displayName || 'User',"
+      },
+      {
+        "line": 94,
+        "text": "User",
+        "context": "name: user.displayName || 'User',"
+      },
+      {
+        "line": 113,
+        "text": "VIP Guest",
+        "context": "displayName: 'VIP Guest',"
+      },
+      {
+        "line": 140,
+        "text": "VIP Guest",
+        "context": "name: 'VIP Guest',"
+      },
+      {
+        "line": 188,
+        "text": "User",
+        "context": "name: name || 'User',"
+      },
+      {
+        "line": 207,
+        "text": "Guest User",
+        "context": "displayName: 'Guest User',"
+      },
+      {
+        "line": 234,
+        "text": "Guest User",
+        "context": "name: 'Guest User',"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/sections/StyleSection.tsx",
+    "count": 6,
+    "strings": [
+      {
+        "line": 47,
+        "text": "Other",
+        "context": "if (countries.includes('Other')) {"
+      },
+      {
+        "line": 48,
+        "text": "Other",
+        "context": "countries.push(countries.splice(countries.indexOf('Other'), 1)[0]);"
+      },
+      {
+        "line": 50,
+        "text": "Favorites",
+        "context": "if (selectedCountry === 'Favorites') {"
+      },
+      {
+        "line": 53,
+        "text": "Other",
+        "context": "styles = styles.filter(s => (s.country || 'Other') === selectedCountry);"
+      },
+      {
+        "line": 150,
+        "text": "Favorites",
+        "context": "onClick={() => setSelectedCountry('Favorites')}"
+      },
+      {
+        "line": 152,
+        "text": "Favorites",
+        "context": "${selectedCountry === 'Favorites' ? 'bg-amber-50 rounded-full shadow-sm text-amber-600' : 'bg-white shadow-sm text-slate-500 hover:text-[#51a145] hover:shadow-md'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/notifications/NotificationAnalyticsDashboard.tsx",
+    "count": 6,
+    "strings": [
+      {
+        "line": 94,
+        "text": "Total Sent",
+        "context": "label=\"Total Sent\""
+      },
+      {
+        "line": 100,
+        "text": "Clicked",
+        "context": "label=\"Clicked\""
+      },
+      {
+        "line": 112,
+        "text": "Engagement",
+        "context": "label=\"Engagement\""
+      },
+      {
+        "line": 121,
+        "text": "Dismissed",
+        "context": "label=\"Dismissed\""
+      },
+      {
+        "line": 126,
+        "text": "Snoozed",
+        "context": "label=\"Snoozed\""
+      },
+      {
+        "line": 131,
+        "text": "Avg Time to Click",
+        "context": "label=\"Avg Time to Click\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/notifications/NotificationSettings.tsx",
+    "count": 6,
+    "strings": [
+      {
+        "line": 88,
+        "text": "Fermentation Timers",
+        "context": "{ key: 'fermentationNotifications', label: 'Fermentation Timers', icon: Clock },"
+      },
+      {
+        "line": 89,
+        "text": "Folding Reminders",
+        "context": "{ key: 'foldingNotifications', label: 'Folding Reminders', icon: Clock },"
+      },
+      {
+        "line": 90,
+        "text": "Proofing Timers",
+        "context": "{ key: 'proofingNotifications', label: 'Proofing Timers', icon: Clock },"
+      },
+      {
+        "line": 91,
+        "text": "Levain Reminders",
+        "context": "{ key: 'levainNotifications', label: 'Levain Reminders', icon: Bell },"
+      },
+      {
+        "line": 92,
+        "text": "Baking Alerts",
+        "context": "{ key: 'bakingNotifications', label: 'Baking Alerts', icon: Bell },"
+      },
+      {
+        "line": 93,
+        "text": "Recipe Reminders",
+        "context": "{ key: 'recipeNotifications', label: 'Recipe Reminders', icon: Bell },"
+      }
+    ]
+  },
+  {
+    "file": "src/components/notifications/TimerDashboard.tsx",
+    "count": 6,
+    "strings": [
+      {
+        "line": 98,
+        "text": "Paused",
+        "context": "{timer.isPaused ? 'Paused' : 'Time Remaining'}"
+      },
+      {
+        "line": 98,
+        "text": "Time Remaining",
+        "context": "{timer.isPaused ? 'Paused' : 'Time Remaining'}"
+      },
+      {
+        "line": 152,
+        "text": "Bulk Fermentation",
+        "context": "name: 'Bulk Fermentation',"
+      },
+      {
+        "line": 165,
+        "text": "Fold Reminder",
+        "context": "name: 'Fold Reminder',"
+      },
+      {
+        "line": 175,
+        "text": "Final Proof",
+        "context": "name: 'Final Proof',"
+      },
+      {
+        "line": 187,
+        "text": "Preheat Oven",
+        "context": "name: 'Preheat Oven',"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/HelpPage.tsx",
+    "count": 6,
+    "strings": [
+      {
+        "line": 231,
+        "text": "What is the difference between ",
+        "context": "q: \"What is the difference between 'Direct' and 'Biga/Poolish'?\","
+      },
+      {
+        "line": 232,
+        "text": "Direct",
+        "context": "a: \"'Direct' dough means all ingredients are mixed at once. 'Biga' and 'Poolish' are preferments—a portion of flour and water fermented beforehand to add complexity and strength. Use the 'Preferment' toggles in the Calculator to set this up.\""
+      },
+      {
+        "line": 232,
+        "text": "Biga",
+        "context": "a: \"'Direct' dough means all ingredients are mixed at once. 'Biga' and 'Poolish' are preferments—a portion of flour and water fermented beforehand to add complexity and strength. Use the 'Preferment' toggles in the Calculator to set this up.\""
+      },
+      {
+        "line": 232,
+        "text": "Poolish",
+        "context": "a: \"'Direct' dough means all ingredients are mixed at once. 'Biga' and 'Poolish' are preferments—a portion of flour and water fermented beforehand to add complexity and strength. Use the 'Preferment' toggles in the Calculator to set this up.\""
+      },
+      {
+        "line": 232,
+        "text": "Preferment",
+        "context": "a: \"'Direct' dough means all ingredients are mixed at once. 'Biga' and 'Poolish' are preferments—a portion of flour and water fermented beforehand to add complexity and strength. Use the 'Preferment' toggles in the Calculator to set this up.\""
+      },
+      {
+        "line": 240,
+        "text": "Go to the ",
+        "context": "a: \"Go to the 'Plans' page or click any locked feature (marked with a lock icon). You can choose a monthly or annual subscription to unlock unlimited batches, advanced tools, and the full styles library.\""
+      }
+    ]
+  },
+  {
+    "file": "src/pages/styles/DoughStylesPage.tsx",
+    "count": 6,
+    "strings": [
+      {
+        "line": 168,
+        "text": "Easy",
+        "context": "const diffMap: Record<string, number> = { 'Easy': 1, 'Medium': 2, 'Hard': 3, 'Expert': 4 };"
+      },
+      {
+        "line": 168,
+        "text": "Medium",
+        "context": "const diffMap: Record<string, number> = { 'Easy': 1, 'Medium': 2, 'Hard': 3, 'Expert': 4 };"
+      },
+      {
+        "line": 168,
+        "text": "Hard",
+        "context": "const diffMap: Record<string, number> = { 'Easy': 1, 'Medium': 2, 'Hard': 3, 'Expert': 4 };"
+      },
+      {
+        "line": 168,
+        "text": "Expert",
+        "context": "const diffMap: Record<string, number> = { 'Easy': 1, 'Medium': 2, 'Hard': 3, 'Expert': 4 };"
+      },
+      {
+        "line": 169,
+        "text": "Medium",
+        "context": "const diffA = diffMap[a.technicalProfile?.difficulty || 'Medium'] || 2;"
+      },
+      {
+        "line": 170,
+        "text": "Medium",
+        "context": "const diffB = diffMap[b.technicalProfile?.difficulty || 'Medium'] || 2;"
+      }
+    ]
+  },
+  {
+    "file": "src/contexts/NotificationContext.tsx",
+    "count": 6,
+    "strings": [
+      {
+        "line": 47,
+        "text": "Notification",
+        "context": "if ('serviceWorker' in navigator && 'Notification' in window) {"
+      },
+      {
+        "line": 103,
+        "text": "Notification",
+        "context": "if (!('Notification' in window)) {"
+      },
+      {
+        "line": 140,
+        "text": "Notifications are not enabled or permission not granted",
+        "context": "throw new Error('Notifications are not enabled or permission not granted');"
+      },
+      {
+        "line": 179,
+        "text": "Notification",
+        "context": "if ('Notification' in window && Notification.permission === 'granted') {"
+      },
+      {
+        "line": 389,
+        "text": "Time to perform a fold on your dough",
+        "context": "body: 'Time to perform a fold on your dough',"
+      },
+      {
+        "line": 406,
+        "text": "DoughLabPro Test",
+        "context": "new Notification('DoughLabPro Test', {"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/ingredients/AssemblySection.tsx",
+    "count": 5,
+    "strings": [
+      {
+        "line": 159,
+        "text": "Variation",
+        "context": "health.aiAnalysis.classification === 'Variation' ? 'bg-blue-100 text-blue-700' :"
+      },
+      {
+        "line": 240,
+        "text": "View Full Profile",
+        "context": "title=\"View Full Profile\""
+      },
+      {
+        "line": 315,
+        "text": "After Baking",
+        "context": "{flavorMatch.applicationMoment === 'post_oven' ? 'After Baking' : 'Before Baking'}"
+      },
+      {
+        "line": 315,
+        "text": "Before Baking",
+        "context": "{flavorMatch.applicationMoment === 'post_oven' ? 'After Baking' : 'Before Baking'}"
+      },
+      {
+        "line": 374,
+        "text": "View Profile",
+        "context": "title=\"View Profile\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/PDFExportButton.tsx",
+    "count": 5,
+    "strings": [
+      {
+        "line": 19,
+        "text": "Export PDF",
+        "context": "label = 'Export PDF',"
+      },
+      {
+        "line": 54,
+        "text": "Inter",
+        "context": "wrapper.style.fontFamily = \"'Inter', 'Helvetica', 'Arial', sans-serif\";"
+      },
+      {
+        "line": 54,
+        "text": "Helvetica",
+        "context": "wrapper.style.fontFamily = \"'Inter', 'Helvetica', 'Arial', sans-serif\";"
+      },
+      {
+        "line": 54,
+        "text": "Arial",
+        "context": "wrapper.style.fontFamily = \"'Inter', 'Helvetica', 'Arial', sans-serif\";"
+      },
+      {
+        "line": 239,
+        "text": "Download PDF",
+        "context": "{label || 'Download PDF'}"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/CalculatorPage.tsx",
+    "count": 5,
+    "strings": [
+      {
+        "line": 50,
+        "text": "Schedule",
+        "context": "{ id: 'scheduler', icon: Calendar, label: 'Schedule' },"
+      },
+      {
+        "line": 51,
+        "text": "Batch",
+        "context": "{ id: 'batch', icon: Layers, label: 'Batch' },"
+      },
+      {
+        "line": 52,
+        "text": "Logistics",
+        "context": "{ id: 'logistics', icon: Truck, label: 'Logistics' }"
+      },
+      {
+        "line": 267,
+        "text": "Escolha da Farinha",
+        "context": "title: 'Escolha da Farinha',"
+      },
+      {
+        "line": 302,
+        "text": "Temperatura da Massa",
+        "context": "title: 'Temperatura da Massa',"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/BakingSciencePage.tsx",
+    "count": 5,
+    "strings": [
+      {
+        "line": 44,
+        "text": "Starch Gelatinization",
+        "context": "title: 'Starch Gelatinization',"
+      },
+      {
+        "line": 50,
+        "text": "Crust Formation Dynamics",
+        "context": "title: 'Crust Formation Dynamics',"
+      },
+      {
+        "line": 56,
+        "text": "Baking Profiles by Style",
+        "context": "title: 'Baking Profiles by Style',"
+      },
+      {
+        "line": 62,
+        "text": "Oven Physics",
+        "context": "title: 'Oven Physics',"
+      },
+      {
+        "line": 68,
+        "text": "Baking Surfaces",
+        "context": "title: 'Baking Surfaces',"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/ingredients/PairingToolPage.tsx",
+    "count": 5,
+    "strings": [
+      {
+        "line": 12,
+        "text": "Mozzarella",
+        "context": "{ value: 'mozzarella', label: 'Mozzarella' },"
+      },
+      {
+        "line": 13,
+        "text": "Gorgonzola",
+        "context": "{ value: 'gorgonzola', label: 'Gorgonzola' },"
+      },
+      {
+        "line": 14,
+        "text": "Pumpkin",
+        "context": "{ value: 'pumpkin', label: 'Pumpkin' },"
+      },
+      {
+        "line": 15,
+        "text": "Red Onion",
+        "context": "{ value: 'red_onion', label: 'Red Onion' },"
+      },
+      {
+        "line": 16,
+        "text": "Mushrooms",
+        "context": "{ value: 'mushrooms', label: 'Mushrooms' },"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/NotificationsPage.tsx",
+    "count": 5,
+    "strings": [
+      {
+        "line": 15,
+        "text": "Timers",
+        "context": "{ id: 'timers' as TabType, label: 'Timers', icon: Clock },"
+      },
+      {
+        "line": 16,
+        "text": "Notifications",
+        "context": "{ id: 'notifications' as TabType, label: 'Notifications', icon: List },"
+      },
+      {
+        "line": 17,
+        "text": "Templates",
+        "context": "{ id: 'templates' as TabType, label: 'Templates', icon: Sparkles },"
+      },
+      {
+        "line": 18,
+        "text": "Analytics",
+        "context": "{ id: 'analytics' as TabType, label: 'Analytics', icon: BarChart3 },"
+      },
+      {
+        "line": 19,
+        "text": "Settings",
+        "context": "{ id: 'settings' as TabType, label: 'Settings', icon: Settings },"
+      }
+    ]
+  },
+  {
+    "file": "src/components/FlavorComponentProfileModal.tsx",
+    "count": 4,
+    "strings": [
+      {
+        "line": 80,
+        "text": "Intensity",
+        "context": "{renderScale(component.flavorProfile.intensity, 'Intensity')}"
+      },
+      {
+        "line": 82,
+        "text": "Salinity",
+        "context": "{renderScale(component.flavorProfile.salinity, 'Salinity')}"
+      },
+      {
+        "line": 83,
+        "text": "Sweetness",
+        "context": "{renderScale(component.flavorProfile.sweetness, 'Sweetness')}"
+      },
+      {
+        "line": 176,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/LevainModal.tsx",
+    "count": 4,
+    "strings": [
+      {
+        "line": 35,
+        "text": "All Purpose",
+        "context": "'All Purpose',"
+      },
+      {
+        "line": 36,
+        "text": "Whole Wheat",
+        "context": "'Whole Wheat',"
+      },
+      {
+        "line": 38,
+        "text": "Spelt",
+        "context": "'Spelt',"
+      },
+      {
+        "line": 76,
+        "text": "LevainPet",
+        "context": "name: formData.name || 'LevainPet',"
+      }
+    ]
+  },
+  {
+    "file": "src/components/onboarding/OnboardingWizard.tsx",
+    "count": 4,
+    "strings": [
+      {
+        "line": 155,
+        "text": "Pizza",
+        "context": "{ id: 'pizza', icon: '🍕', label: 'Pizza' },"
+      },
+      {
+        "line": 156,
+        "text": "Bread",
+        "context": "{ id: 'bread', icon: '🥖', label: 'Bread' },"
+      },
+      {
+        "line": 157,
+        "text": "Sourdough",
+        "context": "{ id: 'sourdough', icon: '🦠', label: 'Sourdough' },"
+      },
+      {
+        "line": 158,
+        "text": "Confectionery",
+        "context": "{ id: 'pastry', icon: '🥐', label: 'Confectionery' }"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/TechniquesPage.tsx",
+    "count": 4,
+    "strings": [
+      {
+        "line": 41,
+        "text": "Autolyse",
+        "context": "title: 'Autolyse',"
+      },
+      {
+        "line": 47,
+        "text": "Mixing Techniques",
+        "context": "title: 'Mixing Techniques',"
+      },
+      {
+        "line": 59,
+        "text": "Parbaking",
+        "context": "title: 'Parbaking',"
+      },
+      {
+        "line": 68,
+        "text": "Master the physical manipulations that define your dough",
+        "context": "subtitle=\"Master the physical manipulations that define your dough's structure.\""
+      }
+    ]
+  },
+  {
+    "file": "src/pages/mylab/levain/components/LevainInsights.tsx",
+    "count": 4,
+    "strings": [
+      {
+        "line": 28,
+        "text": "Weak",
+        "context": "let text = 'Weak';"
+      },
+      {
+        "line": 30,
+        "text": "Peak Health",
+        "context": "if (score > 80) { color = 'bg-dlp-brand'; text = 'Peak Health'; }"
+      },
+      {
+        "line": 31,
+        "text": "Good",
+        "context": "else if (score > 50) { color = 'bg-dlp-brand'; text = 'Good'; }"
+      },
+      {
+        "line": 32,
+        "text": "Fair",
+        "context": "else if (score > 30) { color = 'bg-yellow-500'; text = 'Fair'; }"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/mylab/levain/LevainListPage.tsx",
+    "count": 4,
+    "strings": [
+      {
+        "line": 19,
+        "text": "Active",
+        "context": "ativo: { color: 'bg-lime-100 text-lime-700', text: 'Active' },"
+      },
+      {
+        "line": 20,
+        "text": "Hungry",
+        "context": "precisa_atencao: { color: 'bg-orange-100 text-orange-700', text: 'Hungry' },"
+      },
+      {
+        "line": 21,
+        "text": "Hibernating",
+        "context": "descanso: { color: 'bg-blue-100 text-blue-700', text: 'Hibernating' },"
+      },
+      {
+        "line": 22,
+        "text": "Discarded",
+        "context": "arquivado: { color: 'bg-slate-100 text-slate-500', text: 'Discarded' },"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/ProductionDashboard.tsx",
+    "count": 4,
+    "strings": [
+      {
+        "line": 79,
+        "text": "The Lab",
+        "context": "title=\"The Lab\""
+      },
+      {
+        "line": 88,
+        "text": "Scheduler",
+        "context": "title=\"Scheduler\""
+      },
+      {
+        "line": 97,
+        "text": "Assembly Line",
+        "context": "title=\"Assembly Line\""
+      },
+      {
+        "line": 106,
+        "text": "Logistics",
+        "context": "title=\"Logistics\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/AuthModal.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 190,
+        "text": "Reset Password",
+        "context": "{view === 'forgot-password' ? 'Reset Password' : 'DoughLab Pro'}"
+      },
+      {
+        "line": 190,
+        "text": "DoughLab Pro",
+        "context": "{view === 'forgot-password' ? 'Reset Password' : 'DoughLab Pro'}"
+      },
+      {
+        "line": 193,
+        "text": "Recover your access",
+        "context": "{view === 'forgot-password' ? 'Recover your access' : 'Bem-vindo ao DoughLab Pro'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/UnitSelector.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 18,
+        "text": "Grams",
+        "context": "title=\"Grams\""
+      },
+      {
+        "line": 28,
+        "text": "Ounces",
+        "context": "title=\"Ounces\""
+      },
+      {
+        "line": 38,
+        "text": "Cups",
+        "context": "title=\"Cups\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/dashboard/HydrationVisualizer.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 11,
+        "text": "Standard",
+        "context": "let label = 'Standard';"
+      },
+      {
+        "line": 22,
+        "text": "Stiff",
+        "context": "label = 'Stiff';"
+      },
+      {
+        "line": 25,
+        "text": "High Hydration",
+        "context": "label = 'High Hydration';"
+      }
+    ]
+  },
+  {
+    "file": "src/components/IngredientTooltip.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 103,
+        "text": "After Baking",
+        "context": "{flavorComponent.applicationMoment === 'post_oven' ? 'After Baking' :"
+      },
+      {
+        "line": 104,
+        "text": "Before Baking",
+        "context": "flavorComponent.applicationMoment === 'mid_bake' ? 'Mid-Bake' : 'Before Baking'}"
+      },
+      {
+        "line": 121,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/styles/StyleCard.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 127,
+        "text": "Variable",
+        "context": "? (style.technicalProfile.fermentation.bulk.includes('h') ? style.technicalProfile.fermentation.bulk : 'Variable')"
+      },
+      {
+        "line": 128,
+        "text": "Variable",
+        "context": ": 'Variable')"
+      },
+      {
+        "line": 133,
+        "text": "Medium",
+        "context": "style.technicalProfile?.difficulty === 'Medium' ? 'bg-yellow-50 text-yellow-700 border-yellow-100' :"
+      }
+    ]
+  },
+  {
+    "file": "src/components/styles/TechnicalProfileCard.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 18,
+        "text": "Expert",
+        "context": "${profile.difficulty === 'Expert' ? 'bg-red-100 text-red-800' :"
+      },
+      {
+        "line": 19,
+        "text": "Hard",
+        "context": "profile.difficulty === 'Hard' ? 'bg-orange-100 text-orange-800' :"
+      },
+      {
+        "line": 20,
+        "text": "Medium",
+        "context": "profile.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' :"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/MyLabPage.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 94,
+        "text": "Master Pizzaiolo",
+        "context": "if (totalBakes >= 50) return 'Master Pizzaiolo';"
+      },
+      {
+        "line": 95,
+        "text": "Pizzaiolo",
+        "context": "if (totalBakes >= 20) return 'Pizzaiolo';"
+      },
+      {
+        "line": 96,
+        "text": "Enthusiast",
+        "context": "if (totalBakes >= 5) return 'Enthusiast';"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/ToolsPage.tsx",
+    "count": 3,
+    "strings": [
+      {
+        "line": 80,
+        "text": "Dough Diagnostic",
+        "context": "title: 'Dough Diagnostic',"
+      },
+      {
+        "line": 91,
+        "text": "Oven Profiler",
+        "context": "title: 'Oven Profiler',"
+      },
+      {
+        "line": 101,
+        "text": "Hydration Adjuster",
+        "context": "title: 'Hydration Adjuster',"
+      }
+    ]
+  },
+  {
+    "file": "src/services/fcmService.ts",
+    "count": 3,
+    "strings": [
+      {
+        "line": 175,
+        "text": "Failed to send notification",
+        "context": "throw new Error('Failed to send notification');"
+      },
+      {
+        "line": 208,
+        "text": "Failed to send notification",
+        "context": "throw new Error('Failed to send notification');"
+      },
+      {
+        "line": 236,
+        "text": "Notification",
+        "context": "return 'Notification' in window && 'serviceWorker' in navigator && !!this.messaging;"
+      }
+    ]
+  },
+  {
+    "file": "src/components/AdminTools.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 50,
+        "text": "Admin",
+        "context": "name: firebaseUser.displayName || 'Admin',"
+      },
+      {
+        "line": 73,
+        "text": "Unknown error",
+        "context": "setMessage(`❌ Error: ${error instanceof Error ? error.message : 'Unknown error'}`);"
+      }
+    ]
+  },
+  {
+    "file": "src/components/AffiliateGrid.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 44,
+        "text": "Recommended Gear",
+        "context": "displayTitle: title || (placement ? placement.title : 'Recommended Gear')"
+      },
+      {
+        "line": 51,
+        "text": "Recommended Gear",
+        "context": "displayTitle: title || 'Recommended Gear'"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/HydrationVisualizer.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 9,
+        "text": "Stiff Dough",
+        "context": "title: 'Stiff Dough',"
+      },
+      {
+        "line": 24,
+        "text": "High Hydration",
+        "context": "title: 'High Hydration',"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/ModeSelectionScreen.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 107,
+        "text": "Standard",
+        "context": "{mode.id === 'basic' ? 'Standard' : mode.id === 'advanced' ? 'Advanced' : ''}"
+      },
+      {
+        "line": 107,
+        "text": "Advanced",
+        "context": "{mode.id === 'basic' ? 'Standard' : mode.id === 'advanced' ? 'Advanced' : ''}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/ReverseSchedule.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 134,
+        "text": "Disable Alerts",
+        "context": "title={notificationsEnabled ? \"Disable Alerts\" : \"Enable Live Alerts\"}"
+      },
+      {
+        "line": 134,
+        "text": "Enable Live Alerts",
+        "context": "title={notificationsEnabled ? \"Disable Alerts\" : \"Enable Live Alerts\"}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/sections/IngredientsSection.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 266,
+        "text": "My Lab",
+        "context": "Calibrated for a <strong>balanced 100% hydration</strong>. For specific strain adjustments or feeding windows, use <strong>\"My Lab\"</strong>."
+      },
+      {
+        "line": 285,
+        "text": "Needs Attention",
+        "context": "{selectedLevain.status === 'ativo' ? 'Active & Ready' : 'Needs Attention'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/dashboard/sections/AssemblySection.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 20,
+        "text": "Batch Balanced",
+        "context": "{isValid ? 'Batch Balanced' : `Unallocated: ${remainingCount}`}"
+      },
+      {
+        "line": 78,
+        "text": "Add New Preset",
+        "context": "title=\"Add New Preset\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/learn/LearnAffiliateBlock.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 94,
+        "text": "Tool",
+        "context": "{product.category === 'equipment' ? 'Tool' : 'Ingredient'}"
+      },
+      {
+        "line": 94,
+        "text": "Ingredient",
+        "context": "{product.category === 'equipment' ? 'Tool' : 'Ingredient'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/learn/LearnArticleRenderer.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 80,
+        "text": "Dough Science",
+        "context": "finalData.category === 'Dough Science' ? 'bg-sky-900 text-sky-300 border border-sky-700' :"
+      },
+      {
+        "line": 81,
+        "text": "Fermentation Science",
+        "context": "finalData.category === 'Fermentation Science' ? 'bg-amber-900 text-amber-300 border border-amber-700' :"
+      }
+    ]
+  },
+  {
+    "file": "src/components/notifications/FloatingNotificationWidget.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 76,
+        "text": "Active Timers",
+        "context": "{hasActiveTimers ? 'Active Timers' : 'Upcoming'}"
+      },
+      {
+        "line": 76,
+        "text": "Upcoming",
+        "context": "{hasActiveTimers ? 'Active Timers' : 'Upcoming'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/notifications/NotificationList.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 58,
+        "text": "Past due",
+        "context": "if (isPast) return 'Past due';"
+      },
+      {
+        "line": 108,
+        "text": "Cancel notification",
+        "context": "title=\"Cancel notification\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/notifications/NotificationTemplatePicker.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 21,
+        "text": "Neapolitan",
+        "context": "style: 'Neapolitan',"
+      },
+      {
+        "line": 196,
+        "text": "Not scheduled",
+        "context": "if (!template.defaultSchedule) return 'Not scheduled';"
+      }
+    ]
+  },
+  {
+    "file": "src/components/tools/DoughRescueModal.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 19,
+        "text": "Too Sticky",
+        "context": "label: 'Too Sticky',"
+      },
+      {
+        "line": 43,
+        "text": "Tearing When Stretched",
+        "context": "label: 'Tearing When Stretched',"
+      }
+    ]
+  },
+  {
+    "file": "src/components/tools/DoughyAssistant.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 201,
+        "text": "Enter",
+        "context": "if (e.key === 'Enter' && !e.shiftKey) {"
+      },
+      {
+        "line": 288,
+        "text": "Emergency Dough Rescue",
+        "context": "title=\"Emergency Dough Rescue\""
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/ParbakingPage.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 40,
+        "text": "crust formation",
+        "context": "<li>Without heavy cheese or wet toppings, water evaporates freely from the dough, establishing a crisp outer crust layer (\"crust formation\") without burning.</li>"
+      },
+      {
+        "line": 47,
+        "text": "gum line",
+        "context": "One of the biggest technical faults in pizza is the \"gum line\"—a raw, doughy layer beneath the sauce. Parbaking solves this by creating a hydrophobic barrier (a dry crust) on top of the dough <em>before</em> moist ingredients are added. When sauce and cheese are added for the second bake, they sit on a cooked surface, preventing liquid absorption into the crumb."
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/WhiteSaucesPage.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 27,
+        "text": "Breaking",
+        "context": "<LearnSection title=\"Risks of Separation ('Breaking')\">"
+      },
+      {
+        "line": 36,
+        "text": "white pizzas",
+        "context": "<p>White sauces are the base for \"white pizzas\". They offer a neutral creamy canvas pairing well with mushrooms, spinach, potatoes, or cured meats. In focaccias, an oil-water emulsion base is often used to maintain moisture and flavor.</p>"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/mylab/MyLabDoughsPage.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 61,
+        "text": "Fermenting",
+        "context": "{batch.status === BatchStatus.IN_PROGRESS ? 'Fermenting' : 'Planned'}"
+      },
+      {
+        "line": 61,
+        "text": "Planned",
+        "context": "{batch.status === BatchStatus.IN_PROGRESS ? 'Fermenting' : 'Planned'}"
+      }
+    ]
+  },
+  {
+    "file": "src/contexts/UserProvider.tsx",
+    "count": 2,
+    "strings": [
+      {
+        "line": 159,
+        "text": "VIP Guest",
+        "context": "name: 'VIP Guest',"
+      },
+      {
+        "line": 242,
+        "text": "Baker",
+        "context": "name: profileData.name || authUser.displayName || 'Baker',"
+      }
+    ]
+  },
+  {
+    "file": "src/hooks/useBatchVariants.ts",
+    "count": 2,
+    "strings": [
+      {
+        "line": 19,
+        "text": "Main Batch",
+        "context": "name: 'Main Batch',"
+      },
+      {
+        "line": 28,
+        "text": "New Variant",
+        "context": "const addVariant = useCallback((name: string = 'New Variant') => {"
+      }
+    ]
+  },
+  {
+    "file": "src/services/geolocation/geolocationService.ts",
+    "count": 2,
+    "strings": [
+      {
+        "line": 12,
+        "text": "s current position using the browser",
+        "context": "* Gets the user's current position using the browser's Geolocation API"
+      },
+      {
+        "line": 75,
+        "text": "Reverse geocoding failed",
+        "context": "throw new Error('Reverse geocoding failed');"
+      }
+    ]
+  },
+  {
+    "file": "src/utils/affiliate.ts",
+    "count": 2,
+    "strings": [
+      {
+        "line": 29,
+        "text": "Caputo Pizzeria ",
+        "context": "productName: 'Caputo Pizzeria \"Blue\"',"
+      },
+      {
+        "line": 36,
+        "text": "Caputo Dry Yeast",
+        "context": "productName: 'Caputo Dry Yeast',"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/ingredients/DidacticTooltips.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 147,
+        "text": "Ingredient",
+        "context": "tooltip: 'Ingredient'"
+      }
+    ]
+  },
+  {
+    "file": "src/components/calculator/ProductionTimeline.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 96,
+        "text": "We can",
+        "context": "{schedule.errors[0] || \"We can't go back in time (yet). Pick a later date!\"}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/dashboard/ToppingCreatorModal.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 43,
+        "text": "Custom",
+        "context": "referenceTag: 'Custom'"
+      }
+    ]
+  },
+  {
+    "file": "src/components/layout/Navigation.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 148,
+        "text": "Notifications",
+        "context": "{ id: 'notifications', page: 'notifications', label: 'Notifications', icon: BellIcon },"
+      }
+    ]
+  },
+  {
+    "file": "src/components/layout/UserMenu.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 80,
+        "text": "User",
+        "context": "{user?.name || 'User'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/modals/ToppingPlannerModal.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 102,
+        "text": "Calculate Shopping List",
+        "context": "{remainingBalls !== 0 ? `${remainingBalls} piece(s) remaining to allocate` : 'Calculate Shopping List'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/tools/ovenProfiler/OvenProfilerForm.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 100,
+        "text": "Active",
+        "context": "{profile.convectionMode ? 'Active' : 'Off'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/AffiliateIngredientLink.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 32,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/ExternalLink.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 21,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/ImageUpload.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 137,
+        "text": "Change Photo",
+        "context": "{uploading ? 'Uploading...' : 'Change Photo'}"
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/RecommendedProducts.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 17,
+        "text": "Professional Baking Gear",
+        "context": "title = 'Professional Baking Gear',"
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/ShareButton.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 18,
+        "text": "Share",
+        "context": "label = 'Share'"
+      }
+    ]
+  },
+  {
+    "file": "src/components/ui/SliderInput.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 226,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/components/weather/WeatherWidget.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 56,
+        "text": "Just now",
+        "context": "if (minutes < 1) return 'Just now';"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/BatchDetailPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 412,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/CategoryPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 95,
+        "text": "Intermediate",
+        "context": "article.difficulty === 'Intermediate' ? 'bg-amber-50 text-amber-700 border-amber-200' :"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/ChemistryLibraryPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 54,
+        "text": "oven spring",
+        "context": "<p>When pizza enters the hot oven, free water on the dough surface and ingredients evaporates rapidly. Water inside the dough turns into steam. This steam expands violently, inflating gas alveoli (created by fermentation) and causing \"oven spring\" — the rapid final rise of the rim. It is a basic thermodynamics principle in action.</p>"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/CrumbStructurePage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 70,
+        "text": "sandwich bread",
+        "context": "<strong>Low Hydration (60%):</strong> Tighter network, smaller bubbles, uniform \"sandwich bread\" crumb.<br />"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/ingredients/OilsPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 19,
+        "text": "The Bread Baker",
+        "context": "\"The Bread Baker's Apprentice (Peter Reinhart) – Enriched doughs\","
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/ingredients/VegetablesPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 29,
+        "text": "gum line",
+        "context": "Vegetables bring freshness, texture, and flavor, but their high water content (&gt;90% for many) is the biggest technical challenge in pizza making. When exposed to oven heat, cell walls rupture, releasing water that can pool on the pizza, leading to a soggy crust and the dreaded \"gum line\"."
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/OvenSciencePage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 20,
+        "text": "oven spring",
+        "context": "<li><strong>Gas expansion (Oven Spring):</strong> CO₂ trapped in gluten and newly formed steam expand violently, causing \"oven spring\" and puffing the rim (cornicione).</li>"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/SensoryProfilesPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 20,
+        "text": "fifth taste",
+        "context": "<p>Umami, or \"fifth taste\", is savory depth flavor associated with glutamates. In pizza, umami is naturally present in key ingredients:</p>"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/SpecialSaucesPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 28,
+        "text": "gum line",
+        "context": "<p>Main risk of using any alternative sauce is excess moisture. Too liquid sauces or those releasing water during cooking are main cause of \"gum line\" (dense raw dough layer under topping). Key is always seeking thicker consistency and using sauces strategically, not as a uniform heavy layer insulating dough from heat.</p>"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/TechnicalPageLayout.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 181,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/pages/learn/TomatoPreservationPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 31,
+        "text": "gum line",
+        "context": "<p>In the oven, sauce water evaporates rapidly. If sauce is too liquid, this evaporation can \"cook\" the dough underneath, creating a \"gum line\". If sauce is too concentrated and has added sugars, it can burn in high-temperature ovens. The goal is to have the right consistency so the sauce concentrates its flavor without soaking the dough or burning.</p>"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/mylab/levain/components/LevainFeedingForm.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 23,
+        "text": "White Flour",
+        "context": "const [flourType, setFlourType] = useState('White Flour');"
+      }
+    ]
+  },
+  {
+    "file": "src/pages/mylab/levain/LevainDetailPage.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 157,
+        "text": "noopener noreferrer",
+        "context": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "file": "src/contexts/DoughSessionContext.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 111,
+        "text": "noopener noreferrer",
+        "context": "link.rel = 'noopener noreferrer';"
+      }
+    ]
+  },
+  {
+    "file": "src/contexts/InsightsProvider.tsx",
+    "count": 1,
+    "strings": [
+      {
+        "line": 61,
+        "text": "Unknown",
+        "context": "const style = b.doughConfig.recipeStyle || 'Unknown';"
+      }
+    ]
+  },
+  {
+    "file": "src/services/levainDataService.ts",
+    "count": 1,
+    "strings": [
+      {
+        "line": 11,
+        "text": "Invalid JSON file",
+        "context": "return { error: 'Invalid JSON file', newLevains: [] };"
+      }
+    ]
+  },
+  {
+    "file": "src/services/storageService.ts",
+    "count": 1,
+    "strings": [
+      {
+        "line": 5,
+        "text": "Firebase not initialized",
+        "context": "if (!app) throw new Error('Firebase not initialized');"
+      }
+    ]
+  }
+]

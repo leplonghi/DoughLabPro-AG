@@ -11,7 +11,7 @@ interface CommunityPostCardLockedProps {
 }
 
 export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = ({ post }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const { openPaywall } = useUser();
 
     return (
@@ -50,7 +50,7 @@ export const CommunityPostCardLocked: React.FC<CommunityPostCardLockedProps> = (
 
             {/* Fake Content Skeleton underneath to give weight */}
             <div className="p-4 space-y-3 opacity-20 pointer-events-none select-none blur-[2px]">
-                <div className="h-6 bg-gray-900 rounded w-3/4"></div>
+                <div className="h-6 bg-gray-200 rounded w-3/4"></div>
                 <div className="h-4 bg-gray-400 rounded w-full"></div>
                 <div className="h-4 bg-gray-400 rounded w-2/3"></div>
             </div>

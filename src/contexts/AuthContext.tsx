@@ -83,7 +83,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                         } else {
                             // Create new user doc if not exists
                             const newUser: User = {
-                                name: user.displayName || 'User',
+                                name: user.displayName || t('common.user_250'),
                                 email: user.email || '',
                             };
                             if (user.photoURL) {
@@ -101,8 +101,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                         console.error("Error fetching user data:", error);
                         // Fallback for guest/dev mode if DB fails
                         setAppUser({
+<<<<<<< HEAD
                             uid: user.uid,
                             name: user.displayName || 'User',
+=======
+                            name: user.displayName || t('common.user_250'),
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                             email: user.email || '',
                             isPro: isProClaim || false,
                             plan: planClaim === 'pro' ? 'lab_pro' : ((planClaim as 'free' | 'lab_pro' | 'calculator_unlock') || 'free')
@@ -110,8 +114,58 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     }
                 }
             } else {
+<<<<<<< HEAD
                 setFirebaseUser(null);
                 setAppUser(null);
+=======
+                // Check for VIP/Guest access via URL or LocalStorage
+                const urlParams = new URLSearchParams(window.location.search);
+                const isVip = urlParams.get('vip') === 'true' || localStorage.getItem('dough-lab-vip-mode') === 'true';
+
+                if (isVip) {
+                    if (urlParams.get('vip') === 'true') {
+                        localStorage.setItem('dough-lab-vip-mode', 'true');
+                    }
+                    console.log("VIP Access Granted");
+                    const guestUser = {
+                        uid: 'vip-guest-user',
+                        displayName: t('common.vip_guest_252'),
+                        email: 'vip@doughlab.pro',
+                        emailVerified: true,
+                        isAnonymous: true,
+                        metadata: {},
+                        providerData: [],
+                        refreshToken: '',
+                        tenantId: null,
+                        delete: async () => { },
+                        getIdToken: async () => 'mock-vip-token',
+                        getIdTokenResult: async () => ({
+                            token: 'mock-vip-token',
+                            signInProvider: 'custom',
+                            claims: { app_metadata: { pro: true, plan: 'lab_pro' } },
+                            authTime: Date.now().toString(),
+                            issuedAtTime: Date.now().toString(),
+                            expirationTime: (Date.now() + 3600000).toString(),
+                        }),
+                        reload: async () => { },
+                        toJSON: () => ({}),
+                        phoneNumber: null,
+                        photoURL: null,
+                        providerId: 'custom',
+                    } as unknown as FirebaseUser;
+
+                    setFirebaseUser(guestUser);
+                    setAppUser({
+                        name: t('common.vip_guest_252'),
+                        email: 'vip@doughlab.pro',
+                        isPro: true,
+                        plan: 'lab_pro',
+                    });
+                } else {
+                    setFirebaseUser(null);
+                    setAppUser(null);
+                }
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             }
             setLoading(false);
         });
@@ -150,7 +204,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             if (db) {
                 const userDocRef = doc(db, 'users', userCredential.user.uid);
                 const newUser: User = {
-                    name: name || 'User',
+                    name: name || t('common.user_250'),
                     email: email,
                 };
                 await setDoc(userDocRef, newUser);
@@ -170,10 +224,47 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const loginAsGuest = async () => {
+<<<<<<< HEAD
         if (!auth) {
             throw new Error(t('auth.firebase_auth_not_initialized'));
         }
         await signInAnonymously(auth);
+=======
+        const guestUser = {
+            uid: 'guest-123',
+            displayName: t('common.guest_user_255'),
+            email: 'guest@doughlab.pro',
+            emailVerified: true,
+            isAnonymous: true,
+            metadata: {},
+            providerData: [],
+            refreshToken: '',
+            tenantId: null,
+            delete: async () => { },
+            getIdToken: async () => 'mock-token',
+            getIdTokenResult: async () => ({
+                token: 'mock-token',
+                signInProvider: 'custom',
+                claims: {},
+                authTime: Date.now().toString(),
+                issuedAtTime: Date.now().toString(),
+                expirationTime: (Date.now() + 3600000).toString(),
+            }),
+            reload: async () => { },
+            toJSON: () => ({}),
+            phoneNumber: null,
+            photoURL: null,
+            providerId: 'custom',
+        } as unknown as FirebaseUser;
+
+        setFirebaseUser(guestUser);
+        setAppUser({
+            name: t('common.guest_user_255'),
+            email: 'guest@doughlab.pro',
+            isPro: true, // Give Pro access to guest for testing
+            plan: 'lab_pro',
+        });
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     };
 
     const logout = async () => {

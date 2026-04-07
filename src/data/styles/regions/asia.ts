@@ -53,6 +53,13 @@ export const asiaStyles: DoughStyle[] = [
             },
             processScience: 'styles.asia_shokupan_science_process'
         },
+        flavorProfile: {
+            primaryFlavors: ["Sweet Milk", "Cultured Butter", "Pure Wheat Sweetness"],
+            aromaProfile: ["Floral Yeast", "Warm Milk", "Caramelized Butter"],
+            textureNotes: ["Cloud-like Softness", "Long Vertical Shredding", "Moist and Silky Crumb"],
+            pairingRecommendations: ["Thick cut with cold butter", "Fruit preserves (Ichigo Jam)", "French Toast base (The Best)", "Wagyu Katsu Sando"],
+            flavorEvolution: ["Direct milk sweetness", "Matures into a balanced buttery bouquet after cooling"]
+        },
         process: [
             {
                 phase: 'Prep',
@@ -81,7 +88,8 @@ export const asiaStyles: DoughStyle[] = [
             hero: '/images/styles/shokupan-hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["condensed_milk", "strawberry_jam", "cream_cheese", "black_sesame", "salted_butter_normandy", "honey_raw"]
     },
     {
         id: 'asia_naan',
@@ -162,7 +170,8 @@ export const asiaStyles: DoughStyle[] = [
             hero: '/images/styles/naan-hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["yogurt_plain", "ghee_clarified_butter", "garlic_fresh", "nigella_seeds", "basil_fresh", "onions_fresh"]
     },
     {
         id: 'asia_guabao',
@@ -243,7 +252,8 @@ export const asiaStyles: DoughStyle[] = [
             hero: '/images/styles/guabao-hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["lard_pork_fat", "condensed_milk", "black_sesame", "onions_fresh", "citrus_zest", "cilantro_fresh", "garlic_fresh"]
     },
     {
         id: 'steamed-baozi',
@@ -325,7 +335,8 @@ export const asiaStyles: DoughStyle[] = [
             hero: '/images/styles/baozi_steamed.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["lard_pork_fat", "onions_fresh", "garlic_fresh", "condensed_milk", "black_sesame", "cilantro_fresh"]
     },
     {
         id: 'paratha',
@@ -413,6 +424,7 @@ export const asiaStyles: DoughStyle[] = [
             hero: '/images/styles/paratha_flaky_hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["ghee_clarified_butter", "yogurt_plain", "onions_fresh", "garlic_fresh", "citrus_zest", "cilantro_fresh", "nigella_seeds"]
     }
 ];

@@ -3,6 +3,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import Stripe from "stripe";
 import { getCountryPricing, CountryPricing } from "./countryPricing";
+import { createHandler } from "./infrastructure/handler";
 
 if (!admin.apps.length) {
     admin.initializeApp();
@@ -140,10 +141,13 @@ async function resolveEffectiveCountry(userId: string, ip?: string): Promise<{ c
     return { country: "US", isLocked: false };
 }
 
+
+
 /**
  * Creates a Stripe Checkout Session for a "Pro" subscription.
  * Call this function from the client with { planKey, successUrl, cancelUrl, countryHint }.
  */
+<<<<<<< HEAD
 export const createCheckoutSession = functions.https.onCall(async (data: any, context: any) => {
     assertStripeConfigured();
 
@@ -163,23 +167,53 @@ export const createCheckoutSession = functions.https.onCall(async (data: any, co
     const safeSuccessUrl = assertAllowedCheckoutUrl(successUrl, "successUrl");
     const safeCancelUrl = assertAllowedCheckoutUrl(cancelUrl, "cancelUrl");
     const safeCountryHint = normalizeCountryHint(countryHint);
+=======
+export const createCheckoutSession = createHandler<{
+    planKey?: string;
+    successUrl: string;
+    cancelUrl: string;
+    countryHint?: string;
+}, { sessionId: string }>(
+    "createCheckoutSession",
+    {
+        requireAuth: true,
+        rateLimit: { points: 5, duration: 60, keyPrefix: "checkout" } // 5 attempts per minute
+    },
+    async (data, context) => {
+        const { planKey = 'standard', successUrl, cancelUrl, countryHint } = data;
+        const userId = context.auth!.uid;
+        const userEmail = context.auth!.token.email;
 
-    // 2. Resolve Country & Price
-    let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId); // Use helper
+        if (!successUrl || !cancelUrl) {
+            throw new functions.https.HttpsError(
+                "invalid-argument",
+                "The function must be called with \"successUrl\" and \"cancelUrl\"."
+            );
+        }
 
+        // 2. Resolve Country & Price
+        let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId);
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
+
+        // Allow hint if not locked to override the Provisional default
+        if (!isLocked && typeof countryHint === 'string' && countryHint.length === 2) {
+            targetCountry = countryHint.toUpperCase();
+        }
+
+<<<<<<< HEAD
     // Allow hint if not locked to override the Provisional default
     if (!isLocked && safeCountryHint) {
         targetCountry = safeCountryHint;
     }
+=======
+        const pricing = getCountryPricing(targetCountry);
+        const planPrice = pricing.plans[planKey as keyof CountryPricing['plans']];
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
-    const pricing = getCountryPricing(targetCountry);
-    const planPrice = pricing.plans[planKey as keyof CountryPricing['plans']];
+        if (!planPrice) {
+            throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
+        }
 
-    if (!planPrice) {
-        throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
-    }
-
-    try {
         // 3. Create the session with dynamic pricing based on country
         const session = await stripe.checkout.sessions.create({
             mode: "subscription",
@@ -206,7 +240,7 @@ export const createCheckoutSession = functions.https.onCall(async (data: any, co
             client_reference_id: userId,
             metadata: {
                 userId: userId,
-                targetCountry: targetCountry, // Pass this to recognize intention in webhook
+                targetCountry: targetCountry,
                 lockedStatus: isLocked ? 'LOCKED' : 'PROVISIONAL'
             },
             subscription_data: {
@@ -217,6 +251,7 @@ export const createCheckoutSession = functions.https.onCall(async (data: any, co
             }
         });
 
+<<<<<<< HEAD
         return {
             sessionId: session.id,
             url: session.url,
@@ -228,8 +263,11 @@ export const createCheckoutSession = functions.https.onCall(async (data: any, co
             "Unable to create Stripe checkout session.",
             error.message
         );
+=======
+        return { sessionId: session.id };
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     }
-});
+);
 
 /**
  * Creates a Stripe Billing Portal session for the authenticated customer.

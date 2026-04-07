@@ -25,7 +25,7 @@ const SpecialSaucesPage: React.FC = () => {
         <p>Bechamel, a flour, butter, and milk emulsion, serves as a neutral creamy base. Its structure, stabilized by flour starch, is more heat resistant than simple cream. It browns well (milk protein Maillard reaction) creating rich texture, excellent base for vegetable or smoked meat pizzas.</p>
       </LearnSection>
       <LearnSection title={t('learn.qualitative_risks_of_wet_sauces')}>
-        <p>Main risk of using any alternative sauce is excess moisture. Too liquid sauces or those releasing water during cooking are main cause of "gum line" (dense raw dough layer under topping). Key is always seeking thicker consistency and using sauces strategically, not as a uniform heavy layer insulating dough from heat.</p>
+        <p>Main risk of using any alternative sauce is excess moisture. Too liquid sauces or those releasing water during cooking are main cause of t('learn.gum_line_448') (dense raw dough layer under topping). Key is always seeking thicker consistency and using sauces strategically, not as a uniform heavy layer insulating dough from heat.</p>
       </LearnSection>
       <LearnSection title={t('learn.technical_references_4')}>
         <ul className="list-disc pl-5 space-y-2">

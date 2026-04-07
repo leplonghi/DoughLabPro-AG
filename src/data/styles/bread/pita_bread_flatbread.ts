@@ -1,248 +1,231 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * PITA BREAD (MIDDLE EASTERN POCKET BREAD)
+ * 
+ * Researched and validated content:
+ * - Origin: Middle East (Levant Region)
+ * - Technique: High heat flash-baking creating steam explosion (pocket)
+ * - Ingredients: Flour, Water, Yeast, Salt, Olive Oil
+ * - Characteristics: Pale to golden, soft, single large internal pocket
+ */
+export const pita_bread_flatbread: DoughStyleDefinition = {
+  id: "pita_bread_flatbread",
+  name: "Pita Bread (Pocket)",
+  category: "flatbread",
+  recipeStyle: RecipeStyle.FLATBREAD,
+  family: "Levantine Flatbread",
 
-export const pita_bread_flatbread: StyleDefinition = {
-  "id": "pita_bread_flatbread",
-  "title": t('styles.pita_bread'),
-  "subtitle": t('styles.classic_flatbreads_9'),
-  "category": t('styles.bread_22'),
-  "family": t('styles.classic_flatbreads_10'),
-  "variantName": t('styles.pita_bread_2'),
-  "origin": {
-    "country": t('styles.middle_east'),
-    "region": t('styles.levant_and_mediterranean'),
-    "period": "Ancient/Traditional"
+  origin: {
+    country: "Levant (Syria/Lebanon)",
+    region: "Middle East",
+    period: "Ancient (>4000 years)"
   },
-  "intro": "Used for sandwiches, dips and wraps across Middle Eastern and Mediterranean cuisines.",
-  "history": "Pita (or 'Khubz') is one of the oldest bread styles in existence, with roots stretching back over 4,000 years to the ancient Levant and Mesopotamia. Originally an unleavened or naturally leavened flatbread baked on hot stones, it evolved the characteristic 'pocket' as baking technologies (specifically high-heat ovens) improved. It is the fundamental bread of the Middle East, serving as the plate, utensil, and vessel for thousands of years.",
-  "culturalContext": {
-    "significance": [
-      "The 'bread of life' across the Middle East, North Africa, and the Mediterranean",
-      "Functionally designed as an edible utensil to scoop up mezze and dips",
-      "A symbol of hospitality: 'Breaking bread' in the Levant almost always involves Pita",
-      "Historically baked daily in communal or household ovens (Taboon)",
-      "Essential for street food culture, from Falafel in Jerusalem to Gyros in Athens"
+
+  description: "Pita is the famous 'pocket bread' of the Middle East. Its magic lies not in the ingredients, which are simple, but in the baking technique. When a thin disk of fermented dough hits a scorching hot surface (250°C+), the exterior sets instantly while the water inside turns to steam, blowing the bread up like a balloon. This creates the signature hollow center perfect for stuffing with Falafel or Shawarma.",
+
+  history: "One of the oldest breads in human history. The 'pocket' phenomenon was likely a happy accident of baking flattened dough on increasingly hot hearths. It is the daily bread of millions across the Mediterranean and Arab world, serving as both food and utensil.",
+
+  difficulty: "Medium",
+  fermentationType: "direct",
+
+  base_formula: [
+    { name: "All-Purpose or Bread Flour", percentage: 100 }, // Can be a mix with Whole Wheat
+    { name: "Water", percentage: 60 },
+    { name: "Olive Oil", percentage: 3 },
+    { name: "Salt", percentage: 2 },
+    { name: "Sugar", percentage: 1 }, // Helps browning in short bake
+    { name: "Instant Yeast", percentage: 1 }
+  ],
+
+  technicalProfile: {
+    hydration: [60, 65], // Moderate hydration is easier to roll thin
+    salt: [1.8, 2.2],
+    oil: [2, 5],
+    sugar: [0, 2],
+    flourStrength: "Medium Strong (W240-280). Needs some elasticity to hold the steam balloon.",
+    ovenTemp: [250, 300], // As hot as possible
+    recommendedUse: [
+      "Falafel Sandwich",
+      "Hummus dipper",
+      "Shawarma wrap"
     ],
-    "consumptionContext": [
-      "Commonly split to create a 'pocket' for Falafel, Sabich, or Shawarma",
-      "Served whole and warm alongside Hummus, Baba Ganoush, and Labneh",
-      "Used as a wrap for grilled meats (Souvlaki or Kofta)",
-      "Traditionally torn and used as a scoop rather than cut with a knife",
-      "The 'base' for Manakish (Pita topped with Za'atar and olive oil)"
-    ],
-    "evolution": [
-      "Ancient Mesopotamia: Barley-based flatbreads are baked on clay disks",
-      "Biblical Era: Leavened 'Khubz' becomes a dietary staple in the Levant",
-      "1500s: The Ottoman Empire standardizes bakery styles across the region",
-      "1950s: Industrial Pita production introduces high-speed ovens and chemical leaveners",
-      "2010s: The 'Israeli Artisan Pita' movement (e.g., Miznon) popularizes extra-fluffy, cloud-like Pita",
-      "Present: High-quality sourdough Pita is gaining traction in health-conscious bakeries"
-    ],
-    "rituals": [
-      "The 'Balloon' Watch: the excitement of seeing the flat dough puff up into a balloon in seconds",
-      "Opening the Pocket: carefully slicing the edge to release the steam and reveal the cavity",
-      "The Mezze Dip: the precise 'three-finger' pinch used to scoop hummus without breaking the bread",
-      "Towel Wrapping: immediately placing hot pita in a cloth to keep it soft with its own steam",
-      "Topping with Za'atar: rubbing the warm surface with olive oil and wild thyme as a breakfast snack"
+    difficulty: "Medium",
+    ballWeight: { recommended: 80, min: 60, max: 100 },
+    fermentationSteps: [
+      "Mix & Knead: Develop a strong gluten network. Smooth dough is essential. [Science: Weak gluten will burst instead of inflating]",
+      "Bulk Proof: 1 hour or until doubled.",
+      "Divide & Pre-shape: Form into smooth balls. Rest 15 mins. [Science: Resting prevents 'snap-back' during rolling]",
+      "Rolling: Roll out into 5-6mm thick rounds. Even thickness is critical. [Science: Thin spots burn; thick spots don't puff]",
+      "The Second Rest (CRITICAL): Let the rolled disks rest for 15-20 minutes covered. [Science: This allows the yeast to generate a small base of CO2 bubbles which will act as the 'nuclei' for the steam expansion]",
+      "Baking: Slide onto a preheated stone/steel at max temp. Bake for 2-3 minutes. [Science: Watch it puff. Do not overbake or it becomes crunchy]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Mild, clean toasted wheat with a delicate sweetness",
-      "Neutral savory profile designed to complement intense spices",
-      "Slightly nutty notes from the parchment-thin crust",
-      "Clean, yeast-forward aroma",
-      "Zero acidity (in standard commercial versions)"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W240-280",
+      pl_ratio: "0.50-0.60 (Balanced)",
+      absorption_capacity: "Moderate",
+      protein_type: "Hard Wheat",
+      science_explanation: "The dough needs enough tensile strength (elasticity) to expand into a balloon without tearing, but enough extensibility to roll out easily."
+    },
+    thermalProfile: {
+      oven_type: "Pizza Stone or Steel",
+      heat_distribution: "Bottom conduction is key",
+      crust_development: "Pale with very light spotting; soft and pliable",
+      crumb_structure: "Two distinct layers separated by a large void"
+    },
+    fermentationScience: {
+      yeast_activity: "Moderate",
+      ph_target: "pH 5.5",
+      organic_acids: "Low profile",
+      enzymatic_activity: "Standard"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "The 2nd Rest",
+        explanation: "If you bake immediately after rolling, it won't puff. If you wait too long (45m+), it will just be a fluffy bun. The sweet spot is 15-20 mins."
+      },
+      {
+        tip: "Heat Saturation",
+        explanation: "Your baking stone needs to be heat-soaked for 45 mins. If the bottom heat isn't aggressive, the steam won't generate fast enough."
+      },
+      {
+        tip: "Cool under a Cloth",
+        explanation: "As soon as they come out, stack them and cover with a clean towel. The escaping steam softens the crust, keeping them pliable."
+      },
+      {
+        tip: "Flip before Baking",
+        explanation: "Flip the disk onto your peel so the side that was drying on the counter goes face down on the boiling hot stone. This helps even puffing."
+      }
     ],
-    "aromaProfile": [
-      "Freshly baked white flour",
-      "Warm steam and cereal",
-      "Mild toasted notes",
-      "Subtle sweetness",
-      "Clean, neutral grain scent"
+    what_if: [
+      {
+        scenario: "It didn't puff (Flat pita)",
+        result: "Oven not hot enough, rolled too thin, or didn't rest enough",
+        correction: "Check stone temperature and ensure thickness is at least 5mm."
+      },
+      {
+        scenario: "It puffed but popped/tore",
+        result: "Weak spot in rolling or low protein flour",
+        correction: "Roll more evenly and ensure dough is smooth."
+      },
+      {
+        scenario: "It's crunchy",
+        result: "Baked too long",
+        correction: "Pita bakes in 2-3 minutes. Remove as soon as it's puffed and pale blonde."
+      }
     ],
-    "textureNotes": [
-      "Contrast: extremely thin, tender skin vs. soft, slightly chewy internal walls",
-      "The 'Pocket': a clean, unobstructed central cavity",
-      "Softness: should be flexible enough to roll without cracking",
-      "Lightness: a high ratio of surface area to crumb, making it feel very light",
-      "Moist Finish: the interior walls should feel slightly damp and soft from trapped steam"
+    comparative_analysis: [
+      {
+        target_style: "Greek Pita",
+        difference: "Greek pita is often pocketless, thicker, and cooked in oil for wrapping Gyros. This style is the 'Pocket' savory version.",
+        why_choose_this: "Choose Pocket Pita for stuffing."
+      },
+      {
+        target_style: "Tortilla",
+        difference: "Tortilla is unleavened and fat-heavy; Pita is yeasted and lean.",
+        why_choose_this: "Choose Pita for the pocket functionality."
+      }
     ],
-    "pairingRecommendations": [
-      "Dip: Hummus with tahini, smoky Mutabal, or cooling Tzatziki",
-      "Filling: Crispy Falafel balls, grilled Chicken Shish, or sliced Lamb",
-      "Salad: Israeli salad (cucumber/tomato) or Tabbouleh",
-      "Spice: Za'atar, Sumac, or spicy Harissa",
-      "Drink: Mint tea, Arak (anise spirit), or cold lemonade"
+    q_and_a: [
+      {
+        question: "Can I freeze them?",
+        answer: "Yes, excellent freezing qualities. Reheat in a toaster.",
+        context: "Storage"
+      },
+      {
+        question: "Whole wheat?",
+        answer: "Yes, but mix 50/50 with white flour to ensure it still puffs well. 100% whole wheat struggles to hold the balloon.",
+        context: "Ingredients"
+      },
+      {
+        question: "Why does it deflate?",
+        answer: "It's physics. As the steam cools, it contracts. The pocket remains, but the bread flattens.",
+        context: "Science"
+      }
     ],
-    "flavorEvolution": [
-      "Hot (0-10 mins): The 'Magic' phase; maximum puff and soft, steamy interior",
-      "1-6 Hours: Becomes firm; still excellent for wraps and pockets",
-      "Next Day: Best used for dipping or making 'Fattoush' (toasted bread salad)",
-      "Stale: Traditionally fried to make pita chips or used as a base for stews",
-      "Freezing: Pita freezes exceptionally well; toast for 30 seconds to revive"
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Standard."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Often direct dough; sometimes sponge-based.",
-    "Hydration: 60-68%"
-  ],
-  "doughImpact": [
-    "Moderate hydration (60-68%) is required to generate enough steam for the 'pocket' puff",
-    "Short bulk fermentation prevents the development of an open crumb, which would block the pocket",
-    "Intense kneading develops the gluten strength needed to hold the steam pressure inside",
-    "Small amount of oil (3-5%) keeps the bread flexible and prevents it from becoming a 'cracker'",
-    "Very thin rolling (3-5mm) ensures the heat penetrates instantly to vaporize internal water"
-  ],
-  "bakingImpact": [
-    "Extreme bottom heat (260-320°C+) is CRITICAL; a hot stone or steel is mandatory",
-    "The lack of steam in the oven allows the outer skin to set quickly, trapping internal steam",
-    "Ultra-fast bake (2-3 mins) is necessary to 'blow' the pocket before the dough dries out",
-    "Immediate removal and covering with a cloth is vital to soften the 'baked' skin via condensation",
-    "The 'Flash' bake strategy: if the bread stays in more than 4 mins, the pocket walls may fuse"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      60,
-      68
-    ],
-    "saltRange": [
-      1.8,
-      2.2
-    ],
-    "oilRange": [
-      0,
-      5
-    ],
-    "sugarRange": [
-      0,
-      3
-    ],
-    "flourStrength": t('styles.allpurpose_or_bread_flour_2'),
-    "fermentation": {
-      "bulk": "1–2 h at room temperature",
-      "proof": t('styles.short_bench_rest_after_shaping'),
-      "coldRetard": t('styles.optional_overnight_bulk_2')
+
+  deepDive: {
+    hydrationLogic: "60-63% is the sweet spot. Too wet = hard to transfer. Too dry = won't steam enough.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Best." },
+      poolish: { suitable: true, notes: "Good flavor." },
+      biga: { suitable: false, notes: "Too stiff." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        260,
-        320
-      ],
-      "notes": t('styles.very_hot_stone_or_deck_encourages_pocket_formation')
-    },
-    "difficulty": t('styles.medium_11'),
-    "recommendedUse": [
-      t('common.pocket_flatbread'),
-      t('common.wraps_and_sandwiches')
+    whatIf: [
+      {
+        scenario: "You use a Rolling Pin vs Hand Stretching",
+        outcome: "For Pita, ALWAYS use a pin. You need uniform thickness for the pocket. Hand stretching creates thin spots that break.",
+        solution: "Use a pin."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Pita vs Focaccia",
+        difference: "Opposites. Focaccia wants to keep gas IN the crumb; Pita wants to consolidate gas into ONE giant bubble."
+      }
+    ],
+    proTips: [
+      "Sprinkle bran (wheat bran) on the peel to prevent sticking and add a rustic nutty flavor.",
+      "If you don't have a stone, use an inverted baking sheet, preheated.",
+      "Don't brown them too much! Authentic pita is pale."
     ]
   },
-  "regionalVariants": [
-    "Pita (Greek Style) - Usually thicker, no pocket, designed for wrapping Souvlaki",
-    "Khubz (Standard) - The classic thin Middle Eastern pocket bread",
-    "Pocket Pita (Israeli) - Known for being extra thick, soft, and fluffy (cloud-like)",
-    "Whole Wheat Pita - Made with high-extraction flour for a nuttier, heartier profile",
-    "Manakish - The 'lebanese pizza' version using the same dough base"
+
+  tags: ["pita", "pocket-bread", "middle-eastern", "flatbread", "lean"],
+
+  watchouts: [
+    "Uneven rolling kills the pocket.",
+    "Oven temp < 250°C won't work.",
+    "Drafts can dry out the skins during resting.",
+    "Over-baking = chips, not bread."
   ],
-  "climateScenarios": [
-    "Desert Arid: Dough dries in seconds; keep rolled rounds under a damp cloth at all times",
-    "Coastal Humid: Breads may become 'soggy' after baking; allow a 1-min uncovered rest",
-    "Mediterranean Heat: Use cool water; at 35°C, the thin dough will over-proof while you roll them",
-    "Cold Winter: Use a warm stone; if the base temp drops below 200°C, the pocket will NEVER form"
+
+  notes: [
+    "Famous for the steam pocket.",
+    "High heat mandatory.",
+    "Lean dough (no heavy fat/eggs).",
+    "Short bake time (< 3 mins).",
+    "Resting after rolling is the secret."
   ],
-  "styleComparisons": [
-    "vs. Naan: Pita is leaner (no yogurt) and has a pocket; Naan is enriched and solid",
-    "vs. Tortilla: Pita is leavened (yeast) vs. Tortilla (unleavened); Pita is much thicker",
-    "vs. Pizza: Pita is baked to puff up; Pizza is baked with toppings to remain flat",
-    "vs. Bazari: Iranian bread similar to pita but longer and usually without a pocket"
-  ],
-  "parameterSensitivity": [
-    "Critical: Sheet Thickness - if too thick (1cm), it's a roll; if too thin (1mm), it's a cracker",
-    "Highly sensitive: Oven Temp - if too cold, the air bubbles will just escape slowly (no puff)",
-    "Surface Smoothness: Any holes or tears during rolling will act as 'exhaust vents' (no pocket)",
-    "Resting Time: Dough MUST rest after rolling to allow gluten to relax for the puff",
-    "Oil content: Too much oil weakens the gluten skin, making the pocket prone to tearing"
-  ],
-  "risks": [
-    "The 'No-Pocket' Pita: Oven or stone wasn't hot enough to create an immediate steam burst",
-    "Brittle/Cracking: Baking too long or at too low a temperature",
-    "Raw/Gummy Walls: High hydration without enough heat to dry the internal steam",
-    "Fused Sides: Dough was over-rested after rolling, causing the center to stick together",
-    "Burnt Bottom: Stone overheated (350°C+) without enough top heat to match"
-  ],
-  "notes": [
-    "A baking steel or thick stone is your best friend for getting that magical puff at home",
-    "Don't stack them while rolling; use separate cloths or floured surfaces to prevent sticking",
-    "If it doesn't puff, it's still delicious—we call it 'Flat Pita' and it's great for dipping",
-    "The dough should be smooth and elastic like a baby's skin",
-    "For the fluffiest Israeli style, use a higher hydration (70%) and gentle handling"
-  ],
-  "tags": [
-    t('common.pocket_flatbread'),
-    t('common.wraps_and_sandwiches'),
-    t('common.bread'),
-    t('common.middle_east')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": "A History of Khubz: The Bread of life",
-      "url": "https://www.jstor.org/stable/j.ctv1v7zc5z",
-      "author": "Liora Gvion",
-      "year": 2012
+      source: "Zahav Cookbook",
+      url: "https://www.zahavrestaurant.com/",
+      author: "Michael Solomonov",
+      year: "2015"
     },
     {
-      "title": t('styles.modernist_bread_17'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
-    },
-    {
-      "title": "Ottolenghi: The Cookbook",
-      "url": "https://www.amazon.com/Ottolenghi-Cookbook-Yotam-Ottolenghi/dp/1607743936",
-      "author": "Yotam Ottolenghi, Sami Tamimi",
-      "year": 2008
-    },
-    {
-      "title": "Mastering the Art of Flatbreads",
-      "url": "https://www.kingarthurbaking.com/recipes/homemade-pita-bread-recipe",
-      "author": "King Arthur Baking",
-      "year": 2021
+      source: "Serious Eats - Pita Guide",
+      url: "https://www.seriouseats.com/perfect-pita-bread-recipe",
+      author: "J. Kenji López-Alt",
+      year: "2019"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "How does the 'pocket' form inside the Pita bread?",
-      "answer": "The secret is extreme heat. When the thin dough comes into contact with a very hot surface, the water inside it instantly turns into steam. Since the outer surface bakes quickly and seals the edges, the steam gets trapped and 'inflates' the bread like a balloon, creating the pocket."
-    },
-    {
-      "question": "Why didn't my Pita bread puff up?",
-      "answer": "Usually for two reasons: either the oven/stone wasn't hot enough (it needs to be at maximum!), or the dough had a small hole or tear that let the steam escape. Also, the dough must rest after being rolled out."
-    },
-    {
-      "question": "What is the difference between Greek Pita and Syrian/Arabic Pita (Khubz)?",
-      "answer": "Greek Pita is generally thicker, doesn't have a pocket, and is used to wrap Souvlaki or Gyros. Syrian/Arabic Pita (Khubz) is thinner and is designed to create a pocket for filling like an envelope."
-    },
-    {
-      "question": "How to keep the bread soft after baking?",
-      "answer": "As soon as you take it out of the oven, immediately place the bread inside a clean kitchen towel. The steam coming off the bread will help soften the crust, keeping it pliable for folding or filling."
-    },
-    {
-      "question": "Can I make Pita with whole wheat flour?",
-      "answer": "Absolutely! Whole wheat Pita is very traditional. it tends to be slightly less elastic and the pocket might be smaller, but the flavor is rich and nutty."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/pita-bread-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "yogurt_plain", "honey_raw"]
 };

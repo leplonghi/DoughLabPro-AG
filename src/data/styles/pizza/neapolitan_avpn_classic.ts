@@ -1,259 +1,279 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * NEAPOLITAN PIZZA (AVPN CLASSIC)
+ * 
+ * Researched and validated content with authoritative sources:
+ * - UNESCO Intangible Cultural Heritage (2017)
+ * - AVPN (Associazione Verace Pizza Napoletana) - Official Standards (1984)
+ * - European Union TSG Status (2010)
+ * - Historical documentation from Naples, Italy
+ */
+export const neapolitan_avpn_classic: DoughStyleDefinition = {
+  id: "neapolitan_avpn_classic",
+  name: "Neapolitan Pizza (AVPN Classic)",
+  category: "pizza",
+  recipeStyle: RecipeStyle.NEAPOLITAN,
 
-export const neapolitan_avpn_classic: StyleDefinition = {
-  "id": "neapolitan_avpn_classic",
-  "title": t('styles.neapolitan_avpn_classic'),
-  "subtitle": t('styles.neapolitan_pizza'),
-  "category": t('styles.pizza_5'),
-  "family": t('styles.neapolitan_pizza_2'),
-  "variantName": t('styles.neapolitan_avpn_classic_2'),
-  "origin": {
-    "country": t('styles.italy_9'),
-    "region": t('styles.naples'),
-    "period": "18th–19th century (Codified 1984)"
+  origin: {
+    country: "Italy",
+    region: "Naples, Campania",
+    period: "18th-19th century, formalized 1984"
   },
-  "intro": "A UNESCO Intangible Cultural Heritage item. It is not just food but a social ritual in Naples. Traditionally eaten with a knife and fork or folded 'a libretto' (like a booklet) as street food. It is soft, wet, and digestible, never crispy.",
-  "history": "The 'Verace Pizza Napoletana' is the protected ancestor of modern pizza. While flatbreads existed for millennia, the tomato-topped pizza emerged in 18th-century Naples. The legend of the Margherita (1889) honors Queen Margherita of Savoy, but the style predates her. In 1984, the Associazione Verace Pizza Napoletana (AVPN) codified the rules to protect the tradition against industrialization.",
-  "culturalContext": {
-    "significance": [
-      "UNESCO Intangible Cultural Heritage (2017) - recognized as 'Art of Neapolitan Pizzaiuolo'",
-      "Symbol of Neapolitan identity and working-class culture since 18th century",
-      "Represents the democratization of food - originally poor man's meal, now global icon",
-      "Protected by AVPN (Associazione Verace Pizza Napoletana) with strict certification standards",
-      "Embodies the Italian concept of 'campanilismo' - intense local pride and tradition"
+
+  description: "Neapolitan pizza is the original pizza style from Naples, Italy, recognized by UNESCO as an Intangible Cultural Heritage. Protected by strict AVPN standards since 1984, it represents centuries of culinary tradition and craftsmanship.",
+
+  history: "Pizza's origins in Naples trace back centuries to humble flatbreads topped with olive oil, garlic, and herbs. By the 18th century, tomatoes became widely available through Naples' port and were incorporated into these flatbreads among the working class. The modern pizza evolved in the late 18th and early 19th centuries in Naples' poorer areas. A pivotal moment occurred in 1889 when pizzaiolo Raffaele Esposito created Pizza Margherita for Queen Margherita of Savoy, featuring tomatoes, mozzarella, and basil representing the Italian flag colors. Following WWII, American soldiers brought the dish back home, spreading its fame internationally. AVPN was established in 1984 to protect traditional methods globally.",
+
+  difficulty: "Hard",
+  fermentationType: "direct",
+
+  base_formula: [
+    { name: "Type 00 flour", percentage: 100 },
+    { name: "Water", percentage: 59 },
+    { name: "Salt", percentage: 2.5 },
+    { name: "Fresh yeast", percentage: 0.1 }
+  ],
+
+  technicalProfile: {
+    hydration: [55, 62.5],
+    salt: [2, 3],
+    oil: [0, 0],
+    sugar: [0, 0],
+    flourStrength: "Type 00 or 0 flour, moderate protein (11-12.5%)",
+    ovenTemp: [430, 480],
+    recommendedUse: [
+      "Traditional Margherita and Marinara pizzas",
+      "Simple, high-quality ingredient combinations respecting AVPN guidelines"
     ],
-    "consumptionContext": [
-      "Traditionally eaten at pizzerias, not made at home - pizza-making is a specialized craft",
-      "Consumed for lunch or dinner, often as a complete meal with minimal accompaniments",
-      "Social ritual: eaten at communal tables, shared with family and friends",
-      "Street food tradition: folded 'a libretto' (like a booklet) and eaten while walking",
-      "Never reheated or saved - must be consumed immediately while hot and fresh"
-    ],
-    "evolution": [
-      "Pre-1700s: Flatbreads with various toppings existed in Naples",
-      "1700s-1800s: Tomatoes introduced from Americas, pizza as we know it emerges",
-      "1889: Pizza Margherita created for Queen Margherita (red tomato, white mozzarella, green basil)",
-      "1984: AVPN founded to codify and protect traditional methods against industrialization",
-      "2017: UNESCO recognition elevates pizza-making to intangible cultural heritage",
-      "Modern: Global spread while maintaining strict traditional standards in Naples"
-    ],
-    "rituals": [
-      "The pizzaiuolo's theatrical hand-stretching and tossing is performance art",
-      "Wood-fired oven tending is a continuous ritual requiring constant attention",
-      "Traditional pizzerias display the AVPN certification plaque with pride",
-      "Eating with hands vs fork-and-knife debate reflects class and regional identity",
-      "The 'cornicione' (puffy edge) is left uneaten by some as a sign of quality assessment"
+    difficulty: "Hard",
+    ballWeight: { recommended: 250, min: 200, max: 280 },
+    fermentationSteps: [
+      "Mix: Combine flour, water, salt, and yeast by hand or low-speed mixer until just incorporated. [Science: Minimal mixing prevents excessive gluten development, maintaining delicate texture]",
+      "Bulk Fermentation: 8-24 hours at room temperature (22-25°C). [Science: Long fermentation develops complex flavors through enzymatic activity and creates extensible dough]",
+      "Divide and Ball: Portion into 200-280g balls using gentle, rotatory movements. [Science: Characteristic AVPN technique preserves air structure]",
+      "Final Proof: 4-6 hours at room temperature until doubled. [Science: Yeast creates CO2 for final rise and airy cornicione]",
+      "Stretch and Top: Hand-stretch (never roll) to 3mm center, 1-2cm raised edge. [Science: Preserves air bubbles for characteristic puffy cornicione]",
+      "Bake: Wood-fired oven at 430-480°C for 60-90 seconds. [Science: Extreme heat creates rapid oven spring, leopard spotting, and preserves moisture]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Sweet-tart tomato with bright acidity from San Marzano DOP tomatoes",
-      "Creamy, milky richness from fresh fior di latte or buffalo mozzarella",
-      "Subtle wheat and yeast notes from the dough's fermentation",
-      "Delicate char and smoke from wood-fired baking",
-      "Fresh basil's peppery, anise-like aromatics (when used)"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W250-310 (Moderate strength)",
+      pl_ratio: "0.50-0.70 (Extensible)",
+      absorption_capacity: "High (55-62.5%)",
+      protein_type: "Type 00 or 0 flour, soft wheat",
+      science_explanation: "Type 00 flour with moderate protein creates delicate, extensible dough that's easy to digest and produces characteristic soft texture"
+    },
+    thermalProfile: {
+      oven_type: "Wood-fired dome oven",
+      heat_distribution: "Intense radiant heat from dome and floor",
+      crust_development: "Leopard-spotted char with puffy cornicione",
+      crumb_structure: "Soft, airy center with irregular holes"
+    },
+    fermentationScience: {
+      yeast_activity: "Moderate (long room temp fermentation)",
+      ph_target: "pH 5.5-6.0",
+      organic_acids: "Balanced lactic and acetic",
+      enzymatic_activity: "High (long fermentation breaks down starches)"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "The four phases of dough preparation",
+        explanation: "AVPN specifies four distinct phases with characteristic rotatory movements: mixing, bulk fermentation, balling, and final proof. Each phase is crucial for authentic texture."
+      },
+      {
+        tip: "Hand-stretching is essential",
+        explanation: "Never use a rolling pin. Hand-stretching preserves air bubbles and creates the characteristic irregular, puffy cornicione. The dough should be stretched from the center outward."
+      },
+      {
+        tip: "Less is more with toppings",
+        explanation: "Authentic Neapolitan pizza uses minimal toppings. Too much sauce or cheese makes the center soggy and prevents proper cooking in the short 60-90 second bake time."
+      },
+      {
+        tip: "Pizza sospesa tradition",
+        explanation: "The 'suspended pizza' tradition where customers pay for two pizzas, leaving one for a stranger in need, embodies Neapolitan community spirit."
+      },
+      {
+        tip: "Eat immediately",
+        explanation: "Neapolitan pizza is best consumed within 2-3 minutes from the oven when crust is at peak texture and cheese is molten. It's meant to be eaten fresh, not reheated."
+      }
     ],
-    "aromaProfile": [
-      "Wood smoke with hints of oak or fruitwood",
-      "Yeasty, bread-like fermentation aromas",
-      "Bright, fresh tomato with herbaceous notes",
-      "Milky, lactic sweetness from fresh mozzarella",
-      "Charred crust with caramelized, toasted notes"
+    what_if: [
+      {
+        scenario: "Pizza center is too wet and soggy",
+        result: "Too much sauce, insufficient oven temperature, or over-topped",
+        correction: "Use less sauce (80-100g max), ensure oven reaches 430-480°C, limit toppings to AVPN guidelines"
+      },
+      {
+        scenario: "Crust is tough and dry",
+        result: "Over-baked, oven too cool, or under-fermented dough",
+        correction: "Reduce bake time to 60-90 seconds, increase oven temp, ensure minimum 8-hour fermentation"
+      },
+      {
+        scenario: "Cornicione doesn't puff up",
+        result: "Dough rolled instead of hand-stretched, or insufficient proof",
+        correction: "Always hand-stretch to preserve air bubbles, ensure 4-6 hour final proof at room temperature"
+      },
+      {
+        scenario: "No leopard spotting on crust",
+        result: "Oven temperature too low or bake time too short",
+        correction: "Ensure oven reaches 430-480°C, bake for full 60-90 seconds, rotate pizza if needed"
+      }
     ],
-    "textureNotes": [
-      "Soft, tender, pliable crust that folds easily without breaking",
-      "Slightly wet, almost creamy center from quick bake and fresh cheese",
-      "Puffy, airy cornicione (edge) with large irregular holes",
-      "Delicate leopard spotting provides textural contrast - crispy char spots",
-      "Overall: tender and digestible, never tough or chewy"
+    comparative_analysis: [
+      {
+        target_style: "New York Style",
+        difference: "Neapolitan has softer, wetter center and puffier crust; NY is crispier, drier, and foldable for eating on the go",
+        why_choose_this: "Choose Neapolitan for authentic Italian tradition, UNESCO-protected heritage, and delicate flavors"
+      },
+      {
+        target_style: "Roman Pizza",
+        difference: "Neapolitan is thicker and softer with puffy edges; Roman is ultra-thin, cracker-crisp throughout",
+        why_choose_this: "Choose Neapolitan for soft, pillowy texture and traditional wood-fired flavor"
+      },
+      {
+        target_style: "Contemporary High-Hydration",
+        difference: "AVPN Classic uses lower hydration (55-62.5%) vs. 70%+ modern styles; Classic is more traditional and regulated",
+        why_choose_this: "Choose AVPN Classic for certified authenticity and centuries-old tradition"
+      }
     ],
-    "pairingRecommendations": [
-      "Classic: San Marzano tomatoes + fior di latte + fresh basil (Margherita)",
-      "Traditional: Tomato + garlic + oregano + olive oil (Marinara)",
-      "Authentic additions: Anchovies, capers, black olives (Napoletana)",
-      "Beverage: Light Italian lager, Aglianico red wine, or sparkling water",
-      "Avoid: Heavy meats, excessive cheese, thick sauces - keep it simple and light"
+    q_and_a: [
+      {
+        question: "What makes Neapolitan pizza authentic according to AVPN?",
+        answer: "Authentic Neapolitan pizza must use Type 00 or 0 flour, San Marzano tomatoes, fresh mozzarella (buffalo or fior di latte), fresh basil, and extra virgin olive oil. The dough must be hand-kneaded, fermented for minimum 8 hours, and baked in a wood-fired oven at 430-480°C for 60-90 seconds. The finished pizza must be round, maximum 35cm diameter, with a raised cornicione 1-2cm high.",
+        context: "AVPN Official Standards"
+      },
+      {
+        question: "Why is Neapolitan pizza so soft and floppy in the center?",
+        answer: "The soft, slightly wet center is intentional and traditional. The high oven temperature (430-480°C) and very short bake time (60-90 seconds) cook the pizza rapidly, preserving moisture. The high hydration dough (55-62.5%) and minimal toppings also contribute to the characteristic soft, pliable texture that allows the pizza to be folded.",
+        context: "Traditional technique"
+      },
+      {
+        question: "Can I make authentic Neapolitan pizza in a home oven?",
+        answer: "While challenging, it's possible to approximate Neapolitan pizza at home. Use a pizza stone or steel preheated to maximum temperature (usually 260-290°C), extend bake time to 5-8 minutes, and consider using a broiler for extra top heat. However, the authentic flavor and texture from a 480°C wood-fired oven cannot be fully replicated in a standard home oven.",
+        context: "Home baking adaptation"
+      },
+      {
+        question: "What is the difference between Pizza Margherita and Marinara?",
+        answer: "Pizza Margherita (created 1889) has tomato, mozzarella, basil, and olive oil. Pizza Marinara (the oldest variant) has tomato, garlic, oregano, and olive oil but NO cheese. Both are AVPN-certified traditional variants.",
+        context: "Traditional variants"
+      },
+      {
+        question: "Why was Neapolitan pizza recognized by UNESCO?",
+        answer: "In 2017, UNESCO recognized 'The Art of the Neapolitan Pizzaiuolo' as Intangible Cultural Heritage of Humanity, celebrating the traditional craft, social practice, and cultural significance of Neapolitan pizza-making that has been passed down through generations.",
+        context: "UNESCO recognition 2017"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh from oven (0-5 min): Peak flavor, cheese molten, crust crispy-soft, aromas intense",
-      "Cooling (5-15 min): Flavors meld, cheese sets, still excellent but losing peak freshness",
-      "After 15 min: Crust begins to toughen, cheese congeals, flavors flatten - quality declines",
-      "Cold/reheated: Not recommended - texture becomes tough, flavors muted, authenticity lost"
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Room Temperature fermentation. Standard for Neapolitan pizza."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Possible",
+        notes: "Cold Retard. Modern adaptation for consistency and cold fermentation benefits."
+      },
+      {
+        method: "Biga",
+        suitability: "Not Recommended",
+        notes: "Biga/Poolish. Not traditional for Neapolitan pizza; produces a different crumb and crust character."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Direct dough (impasto diretto) is the standard. Sourdough (Criskito) is allowed but rare in strict tradition.",
-    "Hydration: 58-62.5%"
-  ],
-  "doughImpact": [
-    "Soft, extensible dough with minimal gluten development - requires gentle handling",
-    "Low hydration (58-62.5%) creates a tender, pliable texture that stretches easily without tearing",
-    "Room temperature fermentation develops flavor while maintaining dough elasticity",
-    "Dough must be soft enough to stretch by hand into a thin disc with raised cornicione",
-    "Zero fat content ensures authentic Neapolitan texture and digestibility"
-  ],
-  "bakingImpact": [
-    "Extreme heat (430-485°C) causes rapid oven spring and leopard spotting in 60-90 seconds",
-    "Wood-fired dome creates intense top heat for characteristic charring",
-    "Quick bake preserves moisture, creating the signature soft, wet center",
-    "High temperature caramelizes sugars rapidly, developing complex flavor",
-    "Minimal bake time prevents drying, maintaining the tender, foldable texture"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      58,
-      62.5
-    ],
-    "saltRange": [
-      2.5,
-      3
-    ],
-    "oilRange": [
-      0,
-      0
-    ],
-    "sugarRange": [
-      0,
-      0
-    ],
-    "flourStrength": "Medium-High strength (W 280–320), P/L 0.50–0.60, protein 11.5–12.5%",
-    "fermentation": {
-      "bulk": "2h bulk at room temp, then balling",
-      "proof": "6–24h total maturation at room temp (18–25°C)",
-      "coldRetard": t('styles.traditionally_not_used_modern_avpn_rules_allow_it')
+
+  deepDive: {
+    hydrationLogic: "AVPN specifies 55-62.5% hydration to create soft, extensible dough that's easy to hand-stretch and produces the characteristic tender texture. Higher hydration would make the dough too sticky for traditional hand-kneading techniques and could result in excessive moisture in the finished pizza during the ultra-short 60-90 second bake.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "The only authentic AVPN method. 8-24 hours room temperature fermentation is traditional." },
+      biga: { suitable: false, notes: "Not part of AVPN standards. Authentic Neapolitan uses direct dough only." },
+      poolish: { suitable: false, notes: "Not traditional for AVPN certification. Direct method is required." }
     },
-    "oven": {
-      "type": "wood_fired",
-      "temperatureC": [
-        430,
-        485
-      ],
-      "notes": t('styles.dome_temp_485c_floor_430c_cook_time_strictly_6090_')
-    },
-    "difficulty": t('styles.medium_35'),
-    "recommendedUse": [
-      t('common.authentic_neapolitan_margherita'),
-      t('common.marinara')
+    whatIf: [
+      {
+        scenario: "Dough is too sticky to handle",
+        outcome: "Hydration too high or flour protein too low",
+        solution: "Reduce water to 55-59% range, ensure Type 00 flour with 11-12.5% protein"
+      },
+      {
+        scenario: "Pizza burns in spots but center is raw",
+        outcome: "Oven temperature uneven or pizza not rotated",
+        solution: "Ensure even oven heat distribution, rotate pizza halfway through 60-90 second bake"
+      },
+      {
+        scenario: "Dough tears when stretching",
+        outcome: "Under-fermented, over-kneaded, or too cold",
+        solution: "Ensure minimum 8-hour bulk + 4-6 hour final proof, minimal kneading, room temperature dough"
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Contemporary High-Hydration Neapolitan",
+        difference: "AVPN Classic uses 55-62.5% hydration; Contemporary uses 70%+ for even softer, more delicate texture"
+      },
+      {
+        vsStyle: "Neapolitan Home Oven Adapted",
+        difference: "AVPN requires wood-fired oven at 430-480°C; Home adaptation uses standard oven at 260-290°C with longer bake time"
+      }
+    ],
+    proTips: [
+      "The characteristic rotatory movements during balling are essential for creating surface tension",
+      "Wood type matters - oak and beech are traditional for authentic flavor",
+      "The 'pizza sospesa' tradition embodies Neapolitan solidarity and community spirit",
+      "Authentic Neapolitan pizza should never exceed 35cm diameter",
+      "Eat with fork and knife in Italy - it's the traditional way for this soft, delicate pizza"
     ]
   },
-  "defaults": {
-    "hydration": 60,
-    "salt": 2.8,
-    "oil": 0,
-    "sugar": 0
-  },
-  "recommendedFlavorComponents": [
-    "fior_di_latte",
-    "garlic_oregano",
-    "parmesan",
-    "anchovies",
-    "cherry_tomatoes"
+
+  tags: ["traditional", "unesco heritage", "wood-fired", "avpn certified", "italian"],
+
+  watchouts: [
+    "Over-baking even by 30 seconds can dry out the pizza and burn the cornicione",
+    "Insufficient oven temperature results in pale, tough crust without proper char",
+    "Too much sauce or toppings makes center soggy and prevents proper cooking",
+    "Rolling pin destroys air bubbles - always hand-stretch",
+    "Dough must be at room temperature for proper extensibility"
   ],
-  "regionalVariants": [
-    "Neapolitan STG (Specialità Tradizionale Garantita) - EU protected designation",
-    "Neapolitan Contemporary - Higher hydration (65-70%) for home ovens",
-    "Canotto style - Ultra-high edge with air pockets in the cornicione",
-    "Pizza a Metro - Elongated Neapolitan style sold by the meter"
+
+  notes: [
+    "AVPN certification requires strict adherence to ingredients, techniques, and equipment specifications",
+    "The 'pizza sospesa' tradition embodies Neapolitan community spirit and solidarity",
+    "Authentic Neapolitan pizza should never exceed 35cm diameter and must be round",
+    "UNESCO recognized the Art of the Neapolitan Pizzaiuolo in 2017",
+    "Pizza Margherita was created in 1889 for Queen Margherita of Savoy",
+    "European Union granted TSG (Traditional Speciality Guaranteed) status in 2010"
   ],
-  "climateScenarios": [
-    "Hot/Humid (>25°C, >70% RH): Reduce fermentation time by 20-30%, use cooler water (15-18°C)",
-    "Cold/Dry (<15°C, <40% RH): Extend fermentation time by 30-50%, use warmer water (25-28°C)",
-    "Tropical: Refrigerate dough after 4-6h to prevent over-fermentation",
-    "High Altitude (>1500m): Increase hydration by 2-3% to compensate for faster evaporation"
-  ],
-  "styleComparisons": [
-    "vs. New York: Neapolitan is softer, wetter, lower hydration, wood-fired vs gas deck",
-    "vs. Roman: Neapolitan is thicker, softer, less crispy, shorter bake time",
-    "vs. Detroit: Neapolitan is hand-stretched, wood-fired, no pan, much thinner",
-    "vs. Contemporary Neapolitan: Classic AVPN is stricter on ingredients, lower hydration, traditional methods only"
-  ],
-  "parameterSensitivity": [
-    "Highly sensitive to oven temperature - below 400°C will not achieve proper leoparding",
-    "Critical: Fermentation time - over-fermented dough tears during stretching",
-    "Flour protein content must be 11.5-12.5% - higher creates tough texture",
-    "Salt timing: Must be added after initial mixing to avoid inhibiting gluten development",
-    "Water temperature critical: 20-25°C for proper fermentation control"
-  ],
-  "risks": [
-    "Over-proofing: Dough becomes sticky, tears easily, loses structure",
-    "Under-baking: Center remains raw and doughy (common in home ovens)",
-    "Incorrect stretching: Pressing with rolling pin destroys gas structure",
-    "Too much sauce: Creates soggy center, prevents proper baking",
-    "Insufficient oven heat: Results in pale, tough crust without char"
-  ],
-  "notes": [
-    "AVPN certification requires strict adherence to ingredient and method specifications",
-    "Traditional Neapolitan pizza should be consumed immediately - does not hold well",
-    "The 'wet center' is intentional and authentic, not a defect",
-    "Tipo 00 flour is traditional but not mandatory - protein content matters more",
-    "Wood-fired oven is traditional but AVPN now accepts gas ovens reaching proper temperature"
-  ],
-  "tags": [
-    t('common.authentic_neapolitan_margherita'),
-    t('common.marinara'),
-    t('common.pizza'),
-    t('common.italy')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+  recommendedFlavorComponents: ["mozzarella_di_bufala", "fior_di_latte", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "garlic_oregano"],
+
+  references: [
     {
-      "title": t('styles.avpn_international_regulations'),
-      "url": "https://www.pizzanapoletana.org/en/ricetta_pizza_napoletana",
-      "author": "Associazione Verace Pizza Napoletana",
-      "year": 2022
+      source: "UNESCO - Art of Neapolitan 'Pizzaiuolo'",
+      url: "https://ich.unesco.org/en/RL/art-of-neapolitan-pizzaiuolo-00722"
     },
     {
-      "title": t('styles.modernist_pizza_4'),
-      "url": "https://modernistcuisine.com/books/modernist-pizza/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2021
+      source: "AVPN - Associazione Verace Pizza Napoletana",
+      url: "https://www.pizzanapoletana.org/"
     },
     {
-      "title": t('styles.unesco_intangible_cultural_heritage'),
-      "url": "https://ich.unesco.org/en/RL/art-of-neapolitan-pizzaiuolo-00722",
-      "author": "UNESCO",
-      "year": 2017
-    },
-    {
-      "title": "The Pizza Bible",
-      "url": "https://www.amazon.com/Pizza-Bible-Worlds-Favorite-Styles/dp/1607746267",
-      "author": "Tony Gemignani",
-      "year": 2014
+      source: "European Commission - TSG Registration",
+      url: "https://ec.europa.eu/agriculture/quality/door/"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "Why is my Neapolitan pizza dough tearing when I stretch it?",
-      "answer": "This is typically caused by over-fermentation, insufficient gluten development, or dough that's too cold. Ensure your fermentation time is within 6-24 hours at room temperature, and let cold dough warm up for 30-60 minutes before stretching. Always stretch gently from the center outward, never using a rolling pin."
-    },
-    {
-      "question": "Can I make authentic Neapolitan pizza in a home oven?",
-      "answer": "True AVPN-certified Neapolitan pizza requires 430-485°C, which home ovens cannot reach. However, you can make Neapolitan-style pizza using a pizza steel or stone at maximum temperature (usually 260-290°C), with longer bake times (5-7 minutes). Consider the 'Contemporary Neapolitan' style adapted for home ovens."
-    },
-    {
-      "question": "Is the wet, soft center a mistake?",
-      "answer": "No! The soft, slightly wet center is the authentic characteristic of Neapolitan pizza. It should be eaten with a knife and fork or folded 'a libretto'. The high moisture content and quick bake time are intentional, creating a tender, digestible pizza. If it's truly raw or doughy, then the oven wasn't hot enough."
-    },
-    {
-      "question": "Do I need Tipo 00 flour for Neapolitan pizza?",
-      "answer": "Tipo 00 is traditional but not mandatory. What matters most is the protein content (11.5-12.5%) and flour strength (W 280-320). You can use bread flour or all-purpose flour with similar protein levels. Tipo 00 refers to the fineness of the grind, which affects texture but isn't essential for authenticity."
-    },
-    {
-      "question": "How do I achieve the leopard spotting on the crust?",
-      "answer": "Leopard spotting (charred spots) requires three things: 1) Proper fermentation (6-24h) to develop sugars, 2) Very high oven temperature (430-485°C), and 3) Intense top heat from a dome or broiler. The spots form where air bubbles in the dough char from the extreme heat. Home ovens typically cannot achieve this without modifications."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/neapolitan-avpn-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  }
 };

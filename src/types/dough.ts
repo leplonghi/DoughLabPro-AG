@@ -140,6 +140,14 @@ export interface EducationalContent {
     }[];
 }
 
+export interface FlavorProfile {
+    primaryFlavors: string[];
+    aromaProfile: string[];
+    textureNotes: string[];
+    pairingRecommendations: string[];
+    flavorEvolution?: string[];
+}
+
 // Deep Dive Module for Expert Consulting
 export interface DeepDive {
     hydrationLogic: string;
@@ -191,6 +199,9 @@ export interface DoughStyle {
     // The Knowledge Module
     deepDive?: DeepDive;
 
+    /** Flavor Intelligence - Sensory profile and pairing recommendations */
+    flavorProfile?: FlavorProfile;
+
     process: ProcessStep[];
 
     references: string[];
@@ -209,4 +220,9 @@ export interface DoughStyle {
     regulatory_info?: string;
     global_presence?: string;
     variations?: any[];
+    recommendedFlavorComponents?: string[];
+    watchouts?: string[];
+    experimentSuggestions?: string[];
+    culturalContext?: string;
+    notes?: string[];
 }

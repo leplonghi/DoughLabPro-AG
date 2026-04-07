@@ -26,10 +26,12 @@ import { ModeSelectionScreen } from '@/components/calculator/ModeSelectionScreen
 import { SchedulerSection } from '@/components/dashboard/sections/SchedulerSection';
 import { AssemblySection } from '@/components/dashboard/sections/AssemblySection';
 import { LogisticsSection } from '@/components/dashboard/sections/LogisticsSection';
+import { FloatingHelpButton } from '@/components/ui/FloatingHelpButton';
 import { Calendar, Layers, Truck } from 'lucide-react';
 import { getPageMeta } from '@/app/appShell';
 
 const ProductionDashboardTabs = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'scheduler' | 'batch' | 'logistics'>('scheduler');
 
   return (
@@ -48,9 +50,9 @@ const ProductionDashboardTabs = () => {
         {/* Cleaner Tabs */}
         <div className="flex bg-slate-50 p-1 rounded-xl">
           {[
-            { id: 'scheduler', icon: Calendar, label: 'Schedule' },
-            { id: 'batch', icon: Layers, label: 'Batch' },
-            { id: 'logistics', icon: Truck, label: 'Logistics' }
+            { id: 'scheduler', icon: Calendar, label: t('ui.schedule_309') },
+            { id: 'batch', icon: Layers, label: t('ui.batch_310') },
+            { id: 'logistics', icon: Truck, label: t('ui.logistics_311') }
           ].map((tab) => (
             <button
               key={tab.id}
@@ -107,7 +109,7 @@ interface CalculatorPageProps {
 }
 
 const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
-  const { t } = useTranslation(['common', 'calculator', 'dashboard', 'method']);
+  const { t } = useTranslation(['common', 'calculator', 'dashboard', 'method', 'ui']);
   const { levains, addCustomPreset, customPresets, isFavorite } = useUser();
   const formRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -242,6 +244,102 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           onFinish={() => { }}
         />
       )}
+<<<<<<< HEAD
+=======
+
+      {/* Floating Help with Contextual Tips */}
+      <FloatingHelpButton
+        tips={[
+          {
+            id: 'hydration',
+            title: t('floating_help.hydration.title'),
+            icon: '💧',
+            content: (
+              <div className="space-y-2">
+                <p>{t('floating_help.hydration.what_is')}</p>
+                <div className="bg-emerald-50 rounded-lg p-2 text-xs">
+                  <p className="font-bold mb-1">{t('floating_help.hydration.guide_title')}</p>
+                  <ul className="space-y-0.5">
+                    <li>• {t('floating_help.hydration.guide_firm')}</li>
+                    <li>• {t('floating_help.hydration.guide_classic')}</li>
+                    <li>• {t('floating_help.hydration.guide_wet')}</li>
+                  </ul>
+                </div>
+              </div>
+            )
+          },
+          {
+            id: 'fermentation',
+            title: t('floating_help.fermentation.title'),
+            icon: '🦠',
+            content: (
+              <div className="space-y-2">
+                <p><strong>{t('floating_help.fermentation.main_types')}</strong></p>
+                <ul className="text-xs space-y-1">
+                  <li>• {t('floating_help.fermentation.direct')}</li>
+                  <li>• {t('floating_help.fermentation.cold')}</li>
+                  <li>• {t('floating_help.fermentation.biga_poolish')}</li>
+                  <li>• {t('floating_help.fermentation.sourdough')}</li>
+                </ul>
+                <p className="text-xs mt-2 text-emerald-700">{t('floating_help.fermentation.tip')}</p>
+              </div>
+            )
+          },
+          {
+            id: 'flour',
+            title: t('floating_help.flour.title'),
+            icon: '🌾',
+            content: (
+              <div className="space-y-2">
+                <p className="text-xs"><strong>{t('floating_help.flour.protein_key')}</strong></p>
+                <ul className="text-xs space-y-1">
+                  <li>• {t('floating_help.flour.cakes')}</li>
+                  <li>• {t('floating_help.flour.soft_breads')}</li>
+                  <li>• {t('floating_help.flour.pizza_artisan')}</li>
+                  <li>• {t('floating_help.flour.bagels')}</li>
+                </ul>
+                <p className="text-xs mt-2 bg-amber-50 p-2 rounded">{t('floating_help.flour.warning')}</p>
+              </div>
+            )
+          },
+          {
+            id: 'salt',
+            title: t('floating_help.salt.title'),
+            icon: '🧂',
+            content: (
+              <div className="space-y-2">
+                <p className="text-xs"><strong>{t('floating_help.salt.functions')}</strong></p>
+                <ul className="text-xs space-y-0.5">
+                  <li>✓ {t('floating_help.salt.strengthens')}</li>
+                  <li>✓ {t('floating_help.salt.controls')}</li>
+                  <li>✓ {t('floating_help.salt.enhances')}</li>
+                </ul>
+                <div className="bg-red-50 rounded p-2 mt-2">
+                  <p className="text-xs font-bold text-red-800">{t('floating_help.salt.warning')}</p>
+                </div>
+              </div>
+            )
+          },
+          {
+            id: 'temperature',
+            title: t('floating_help.temperature.title'),
+            icon: '🌡️',
+            content: (
+              <div className="space-y-2">
+                <p className="text-xs"><strong>{t('floating_help.temperature.ideal')}</strong></p>
+                <div className="bg-blue-50 rounded p-2 text-xs">
+                  <p className="font-bold mb-1">{t('floating_help.temperature.pro_tip_title')}</p>
+                  <p>{t('floating_help.temperature.pro_tip_content')}</p>
+                </div>
+                <p className="text-xs mt-2">{t('floating_help.temperature.warning')}</p>
+              </div>
+            )
+          }
+        ]}
+      />
+
+      <DoughyAssistant />
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     </div>
   );
 };

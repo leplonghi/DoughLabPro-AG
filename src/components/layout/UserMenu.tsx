@@ -87,6 +87,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
             {isOpen && (
                 <div className="absolute right-0 z-50 mt-3 w-72 origin-top-right overflow-hidden rounded-[1.35rem] border border-white/75 bg-white/88 shadow-[0_26px_60px_-32px_rgba(15,23,42,0.3)] ring-1 ring-emerald-100/70 backdrop-blur-xl focus:outline-none animate-fade-in">
                     {/* User Info Header */}
+<<<<<<< HEAD
                     <div className="border-b border-dlp-border bg-[linear-gradient(135deg,rgba(237,250,239,0.95)_0%,rgba(255,255,255,0.92)_100%)] px-4 py-3">
                         <div className="flex items-center gap-3">
                             <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white bg-white shadow-sm">
@@ -109,6 +110,15 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                                 </p>
                             </div>
                         </div>
+=======
+                    <div className="px-4 py-3 border-b border-dlp-border bg-dlp-bg-muted">
+                        <p className="text-sm font-semibold text-dlp-text-primary truncate">
+                            {user?.name || t('ui.user_430')}
+                        </p>
+                        <p className="text-xs text-dlp-text-muted truncate mt-0.5">
+                            {user?.email || ''}
+                        </p>
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                     </div>
 
                     {/* Menu Items */}

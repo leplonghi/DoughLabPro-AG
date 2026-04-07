@@ -1,248 +1,264 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * PANETTONE ARTISANAL (MILANESE)
+ * 
+ * Researched and validated content:
+ * - Origin: Milan, Italy (15th c. legends / 1919 Angelo Motta modern shape)
+ * - Technique: Sfozatura (Triple fermentation), Lievito Madre (Sourdough) only
+ * - Ingredients: Manitoba Flour (W400+), High-fat butter, Egg yolks, Candied citrus, Raisins
+ * - Science: Osmotolerant sourdough, inverted cooling (hanging)
+ */
+export const panettone_artisanal: DoughStyleDefinition = {
+  id: "panettone_artisanal",
+  name: "Panettone Artisanal",
+  category: "pastry",
+  recipeStyle: RecipeStyle.PANETTONE_ARTISANAL,
+  family: "Large-format Leavened Bread",
 
-export const panettone_artisanal: StyleDefinition = {
-  "id": "panettone_artisanal",
-  "title": t('styles.artisanal_panettone'),
-  "subtitle": t('styles.festive_breads_3'),
-  "category": t('styles.pastry_9'),
-  "family": t('styles.festive_breads_4'),
-  "variantName": t('styles.artisanal_panettone_2'),
-  "origin": {
-    "country": t('styles.italy_8'),
-    "region": t('styles.northern_italy_3'),
-    "period": "Traditional/Modern"
+  origin: {
+    country: "Italy",
+    region: "Milan, Lombardy",
+    period: "15th Century (Origin myths) / 1919 (Modern tall shape by Angelo Motta)"
   },
-  "intro": "Served around Christmas and festive seasons, now produced artisanal and industrially worldwide.",
-  "history": "Panettone originated in Milan and has become the symbol of Italian Christmas globally. Its origins are shrouded in legends, the most famous being that of 'Toni', a humble kitchen assistant at the court of Ludovico il Moro. Having accidentally burned the planned dessert for a banquet, Toni used his own sourdough starter to create a rich, sweet bread with eggs, butter, and candied fruits. The bread was such a success that it was named 'Pan di Toni' (Toni's Bread). Historically, it evolved from a simple loaf into a highly technical masterpiece in the early 20th century, when Milanese bakers like Angelo Motta and Gioacchino Alemagna introduced the iconic tall, cylindrical shape and the double-dough fermentation method that defines the artisanal standard today.",
-  "culturalContext": {
-    "significance": [
-      "The 'Everest' of the baking world; widely considered the most difficult dough to master",
-      "Central to Italian Christmas and New Year's Eve traditions",
-      "A protected Italian product regulated by a 2005 decree specifying ingredients and methods",
-      "Represents the pinnacle of the 'Lievito Madre' (natural yeast) technique",
-      "Symbolizes luxury, patience, and the bridge between pastry and bread making"
+
+  description: "Panettone is the 'Everest of Baking'. It is a rich, dome-shaped Italian leavened bread traditionally prepared for Christmas and New Year. Characterized by its incredible height, soft 'shredding' crumb, and intense fragrance of butter and candied fruits, authentic artisanal panettone is made exclusively with 'Lievito Madre' (natural sourdough leaven) and requires a multi-day process of intense labor and temperature control.",
+
+  history: "Legend attributes its creation to 'Toni', a humble scullery boy in the service of Ludovico il Moro in 15th-century Milan, who saved a Christmas banquet by serving his own enriched bread (Pane di Toni -> Panettone). Historically, it was a flat loaf until 1919, when Angelo Motta revolutionized it by giving it its characteristic tall flute shape and using a triple-fermentation sourdough method. Gioacchino Alemagna later refined the recipe, leading to the industrial vs. artisanal rivalry that defines the style today. Authentic artisanal panettone is protected by an Italian decree (2005) specifying mandatory ingredients and methods.",
+
+  difficulty: "Expert",
+  fermentationType: "levain",
+
+  base_formula: [
+    { name: "Manitoba or Strong Flour (W400+)", percentage: 100 },
+    { name: "Lievito Madre (Solid Sourdough)", percentage: 30 },
+    { name: "Egg Yolks", percentage: 40 },
+    { name: "Butter (82%+ Fat)", percentage: 50 },
+    { name: "Sugar", percentage: 35 },
+    { name: "Water", percentage: 45 },
+    { name: "Candied Citrus & Raisins", percentage: 60 }
+  ],
+
+  technicalProfile: {
+    hydration: [60, 75], // High liquid content from eggs and butter
+    salt: [0.5, 0.8], // Very low salt compared to bread
+    oil: [25, 50], // Very high butter content
+    sugar: [20, 35],
+    flourStrength: "Extremely strong (W400-450), high protein (15%+) with high P/L stability",
+    ovenTemp: [160, 180],
+    recommendedUse: [
+      "Celebration dessert",
+      "Gifting",
+      "Panettone French Toast (for leftovers)"
     ],
-    "consumptionContext": [
-      "Traditionally served sliced vertically into tall wedges during the Christmas season",
-      "Often accompanied by sweet dessert wines like Moscato d'Aasti or Vin Santo",
-      "Commonly served with 'Crema al Mascarpone' or zabaglione during family gatherings",
-      "Prized as a high-end corporate or personal gift in beautifully designed boxes",
-      "Used for 'Colazione' (breakfast) in the days following Christmas, often toasted with coffee"
-    ],
-    "evolution": [
-      "1490s: Legendary creation at the court of Ludovico il Moro in Milan",
-      "1800s: Becomes a staple of Milanese bakeries, though typically low and dense",
-      "1919: Angelo Motta introduces the tall shape by using paper molds and upside-down cooling",
-      "1950s: Modern refrigeration and specialized flours allow for more stable 3-stage fermentation",
-      "2005: Italy establishes the 'Panettone Decree' to protect the artisanal definition",
-      "Present: Global 'Panettone Mania' with master bakers in Japan, US, and Brazil pushing technical limits"
-    ],
-    "rituals": [
-      "The 'Bagnetto': washing the Lievito Madre in sugar water to control acidity before use",
-      "The Cross-Cut (Scarpatura): cutting a cross on top and placing a knob of butter before baking",
-      "Upside-Down Cooling: piercing the loaves with 'spade' (skewers) and hanging them to prevent collapse",
-      "The 'Windowpane' Test: stretching the ultra-fatty dough to a transparent membrane without tearing",
-      "The Blessing of the Bread: traditionally, a piece was kept until February 3rd (St. Blaise) for health"
+    difficulty: "Expert",
+    ballWeight: { recommended: 1000, min: 500, max: 2000 },
+    fermentationSteps: [
+      "Lievito Madre Refreshment: 3 refreshments every 4 hours at 28°C to ensure maximum vitality and low acidity. [Science: Balances lactic and acetic acids for a sweet, non-sour result]",
+      "Primo Impasto (First Dough): Mix flour, water, sugar, butter, and LM. Ferment 12-14 hours at 24-26°C until tripled in volume. [Science: Builds the structural foundation and initial bacterial population]",
+      "Secondo Impasto (Second Dough): Add more flour, sugar, salt, and a massive amount of egg yolks and butter. Incorporate fruits. [Science: The gluten must be strong enough to support the extreme weight of fat and sugar (osmotic pressure)]",
+      "Pirlatura (Rounding): Shape the dough on a buttered surface using a circular tensioning movement. [Science: Creates a skin to support the vertical rise in the paper mold]",
+      "Final Proof: 6-10 hours at 28-30°C in the paper mold (Pirottino). [Science: The dough must reach the 'shoulder' of the mold before baking]",
+      "Scarpatura (Scoring): Cut a cross on top and place a knob of butter. [Science: Allows the dome to expand evenly and creates the classic ears]",
+      "Inverted Cooling: Hang the panettone upside down for 10-12 hours immediately after baking. [Science: Prevents the fragile, air-filled structure from collapsing under its own weight while cooling]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Intense buttery and eggy richness",
-      "Bright, floral citrus notes from candied orange and citron peels",
-      "Sweet, earthy raisins (often soaked in wine or vanilla)",
-      "Mild, elegant lactic tang from the Lievito Madre fermentation",
-      "Deep vanilla and honey sweetness throughout the crumb"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W400-450 (Ultra-strong)",
+      pl_ratio: "0.50-0.60 (Balanced stability)",
+      absorption_capacity: "Very High (70%+)",
+      protein_type: "Strong Manitoba wheat with exceptional gluten tenacity",
+      science_explanation: "The flour must survive 36+ hours of fermentation and the massive 'osmotic shock' of high sugar and fat concentrations which normally inhibit gluten formation."
+    },
+    thermalProfile: {
+      oven_type: "Convection or static oven with precise temperature control",
+      heat_distribution: "Gentle, even heat to cook the large core without burning the sugary crust",
+      crust_development: "Thin, soft, brownish-orange with a butter-melted top",
+      crumb_structure: "Cloud-like, long vertical fibers (shredding), with irregular elongated holes"
+    },
+    fermentationScience: {
+      yeast_activity: "Exclusively wild yeast from Lievito Madre, selected for acid tolerance and sugar resistance",
+      ph_target: "pH 4.8 - 5.2 (End of first dough); pH 5.4 (Final product)",
+      organic_acids: "Shifted heavily toward lactic acid (sweetness) via precise temperature control (28°C vs 20°C for bread)",
+      enzymatic_activity: "High proteolysis is balanced by the extreme strength of the W450 flour, leading to a melting mouthfeel that still has structure."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "The thermometer is your boss",
+        explanation: "Every stage of panettone depends on the internal temperature of the dough. If it gets too hot (30°C+) during mixing, the butter will separate and the gluten will break."
+      },
+      {
+        tip: "Solid Lievito Madre only",
+        explanation: "While some use liquid levain, the classic Milanese texture is only possible with a solid sourdough (50% hydration) maintained in a bound cloth (Legato)."
+      },
+      {
+        tip: "Hanging is mandatory",
+        explanation: "A panettone is so rich and airy that if cooled upright, the center will sink. Use specialized pins (Forche) to hang them the moment they leave the oven."
+      },
+      {
+        tip: "Avoid 'Acid' notes",
+        explanation: "Panettone should NOT taste sour. The 3-stage refreshment of the leaven is designed to wash away acetic acid, leaving only a sweet, milky lactic fragrance."
+      },
+      {
+        tip: "Cura del Lievito",
+        explanation: "In the weeks leading up to Panettone season, bakers 'train' their yeast with daily, precise refreshments to ensure it can handle the intense sugar of the final dough."
+      }
     ],
-    "aromaProfile": [
-      "Warm butter and fermented sourdough",
-      "Roasted vanilla and wildflower honey",
-      "Candied citrus oils and essential oils",
-      "Sweet, toasted yeast (if hybrid) or clean sourdough",
-      "The complex 'Panettone smell' that fills a bakery for 48 hours"
+    what_if: [
+      {
+        scenario: "The first dough didn't triple in 12 hours",
+        result: "The starter was too weak or the temperature too low",
+        correction: "Do not move to the second stage. Wait for the triple, or start over. The second dough will never recover from a weak first stage."
+      },
+      {
+        scenario: "The dough collapses when you add the butter",
+        result: "The gluten network wasn't sufficiently developed before the fat was added",
+        correction: "Add butter in small increments, ensuring the dough 'cleans the bowl' between each addition."
+      },
+      {
+        scenario: "The panettone has large holes but a gummy core",
+        result: "Under-baked in the center",
+        correction: "Always use a probe thermometer. The core must reach exactly 92-94°C for structural stability."
+      }
     ],
-    "textureNotes": [
-      "The 'Feathery' Shred: the crumb should pull apart in long, silky filaments",
-      "Ultra-Light and Airy: despite the high fat, it should feel like biting into a 'scented cloud'",
-      "Large, Vertical Alveoli: indicative of a strong, healthy Lievito Madre and proper mixing",
-      "Moist and Tender: should never feel dry; the fat and sugar create a velvety mouthfeel",
-      "Thin, Soft Crust: a delicate brown skin that yields immediately to the bite"
+    comparative_analysis: [
+      {
+        target_style: "Pandoro",
+        difference: "Pandoro is from Verona, has a star shape, contains no fruit, and is even richer in butter and eggs.",
+        why_choose_this: "Choose Panettone for the complex aroma of candied fruits and the legendary sourdough challenge."
+      },
+      {
+        target_style: "Colomba Pasquale",
+        difference: "Same dough, but shaped like a dove and topped with pearl sugar and almonds, traditionally for Easter.",
+        why_choose_this: "Choose Panettone for the iconic vertical shred and Christmas tradition."
+      },
+      {
+        target_style: "Stollen",
+        difference: "Stollen is German, uses commercial yeast, and is much denser and more like a cake-bread than the airy Panettone.",
+        why_choose_this: "Choose Panettone for its unique vertical height and cloud-like texture."
+      }
     ],
-    "pairingRecommendations": [
-      "Wine: Moscato d'Asti, Prosecco, or a late-harvest Recioto di Soave",
-      "Cream: Mascarpone cream with a hint of Grand Marnier or rum",
-      "Hot Drink: Dark Italian espresso or a thick hot chocolate",
-      "Cheese: A mild Gorgonzola Dolce for a sweet-savory pairing",
-      "Breakfast: Toasted with cold, unsalted artisan butter"
+    q_and_a: [
+      {
+        question: "Why is it so expensive?",
+        answer: "Artisanal panettone takes 3 days of constant attention, specialty high-protein flour, and massive amounts of premium butter and eggs. The failure rate is high even for professionals.",
+        context: "Economics"
+      },
+      {
+        question: "Does it contain commercial yeast?",
+        answer: "Authentic 'Artisan' Panettone uses 100% Lievito Madre. High-end 'Industrial' versions often use a hybrid method for reliability.",
+        context: "Authenticity"
+      },
+      {
+        question: "How long does it stay fresh?",
+        answer: "Because of the natural acidity of the Lievito Madre and the high fat content, an artisanal panettone can stay soft for 3-4 weeks if sealed in a bag.",
+        context: "Storage"
+      },
+      {
+        question: "What are the raisins and peel for?",
+        answer: "They aren't just for flavor; they provide moisture to the crumb and act as little thermal heat-sinks during baking, helping the center cook evenly.",
+        context: "Functionality"
+      }
     ],
-    "flavorEvolution": [
-      "Day 1-3: Peak moisture and intense buttery aroma; the texture is at its most 'feathery'",
-      "Week 1: Flavors of the fruits and citrus oils meld deeply with the crumb",
-      "Week 2: Becomes slightly firmer; perfect for those who enjoy the sourdough complexity",
-      "Week 3+: Classic artisanal panettone can last up to 45 days due to the acidity of the starter",
-      "Post-Expiration: Transformed into the world's best French Toast or 'Bread Pudding'"
+    fermentation_methods: [
+      {
+        method: "Sourdough",
+        suitability: "Authentic",
+        notes: "The only method allowed for the true 'Artisanal' designation in Italy."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Possible",
+        notes: "Used in many bakeries for consistency, but considered a compromise by purists."
+      },
+      {
+        method: "Direct",
+        suitability: "Not Recommended",
+        notes: "Will result in a dry, cake-like bread that goes stale in 24 hours."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Multiple levain builds or stiff sourdough for structure and flavor.",
-    "Hydration: 65-75%"
-  ],
-  "doughImpact": [
-    "High enrichment (butter/sugar/yolks) requires the most resilient Lievito Madre (stiff starter)",
-    "The 'Primo Impasto' (first dough) must triple in volume before the second stage starts",
-    "Fat inhibits gluten; butter must be added in multiple stages to prevent the network from collapsing",
-    "pH control is critical: the starter must be between 3.9 and 4.2 to ensure both rise and shelf-life",
-    "Total hydration is deceptively high when accounting for the water content in yolks and butter"
-  ],
-  "bakingImpact": [
-    "Baked in vertical paper molds (pirottini) which provide structural support for the extreme rise",
-    "Relatively low temperature (160-175°C) is used for a long time to bake through the massive interior",
-    "Internal temperature must reach exactly 92-94°C to ensure the crumb is set but not dry",
-    "Hanging upside down for 8-12 hours is MANDATORY to prevent the dome from sinking into its own weight",
-    "A well-baked panettone will continue to 'ripen' its flavor for 48 hours after exiting the oven"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      65,
-      75
-    ],
-    "saltRange": [
-      1.5,
-      2
-    ],
-    "oilRange": [
-      20,
-      30
-    ],
-    "sugarRange": [
-      20,
-      30
-    ],
-    "flourStrength": t('styles.very_strong_highprotein_flour_suitable_for_extreme'),
-    "fermentation": {
-      "bulk": t('styles.multiple_dough_stages_over_1224_h'),
-      "proof": "4–8 h at ~28–30°C in molds",
-      "coldRetard": t('styles.used_cautiously_temperature_control_is_crucial')
+
+  deepDive: {
+    hydrationLogic: "While the 'water' hydration is low (approx 45%), the effective hydration including eggs and butter is extremely high. The sugar also acts as a liquid during baking, meaning the dough is technically closer to a batter that is held together by an ultra-strong gluten mesh.",
+    methodSuitability: {
+      direct: { suitable: false, notes: "Impossible to achieve the required volume." },
+      biga: { suitable: false, notes: "Too much acetic acid for a sweet bread." },
+      poolish: { suitable: false, notes: "Lacks the structural integrity of Lievito Madre." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        170,
-        190
-      ],
-      "notes": t('styles.loaves_are_often_cooled_upsidedown_to_prevent_coll')
-    },
-    "difficulty": t('styles.hard_19'),
-    "recommendedUse": [
-      t('common.festive_sweet_bread'),
-      "High-skill project baking"
+    whatIf: [
+      {
+        scenario: "You use commercial yeast instead of Lievito Madre",
+        outcome: "The bread will rise faster but lose its characteristic 'shredding' crumb and long-term shelf life.",
+        solution: "Use the hybrid method but still maintain 50% of the leavening from sourdough."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Angelo Motta vs Gioacchino Alemagna",
+        difference: "Motta created the tall mold; Alemagna added more fat and perfected the sourdough fermentation, defining the luxury artisanal standard."
+      }
+    ],
+    proTips: [
+      "Incorporate the sugar slowly—too much at once will 'kill' the yeast by dehydrating the cells (osmotic pressure).",
+      "Use 'cedro' (citron) instead of just orange peel for a more complex, historic flavor profile.",
+      "If your Lievito Madre smells like vinegar (acetic), your panettone will be tough. It must smell like yogurt and honey.",
+      "The 'First Dough' should be allowed to ferment at exactly 24°C; any higher and you risk a 'runaway' fermentation that breaks the gluten."
     ]
   },
-  "regionalVariants": [
-    "Milanese Classico - Low or tall dome, with raisins and candied citrus (no icing)",
-    "Piedmontese Style - Topped with a hazelnut 'glassa' (icing) and whole almonds",
-    "Veneto (Pandoro) - A cousin without fruits, star-shaped, and incredibly buttery",
-    "Brazilian Panettone - Famous for the 'Chocotone' variant (using chocolate chips instead of fruit)",
-    "Artisan Pan d'Oro - Modern hybrid with sourdough and extremely high cocoa butter content"
+
+  tags: ["italian", "panettone", "pastry", "sourdough", "lievito madre", "christmas"],
+
+  watchouts: [
+    "Dough temperature exceeding 30°C during mixing will ruin the texture.",
+    "Starter not refreshed properly? It won't rise in time.",
+    "Not hanging upside down? It will collapse into a pancake.",
+    "Under-baking? It will shrink and pull away from the paper."
   ],
-  "climateScenarios": [
-    "Humid Summer (Brazil/Italy): Fermentation can run away; use air conditioning for the bulk rise",
-    "Cold Winter: Use a proofing chamber at a constant 28°C; any draft will kill the delicate dough",
-    "Arid Environment: Keep the molded dough inside a humidity-controlled plastic tent to avoid skinning",
-    "High Altitude: Reduce yeast/starter activity slightly to prevent the large air pockets from bursting"
+
+  notes: [
+    "Most complex project in baking.",
+    "Exclusively Pie di Lievito (Sourdough).",
+    "Requires Manitoba W400+ flour.",
+    "Inverted cooling is essential.",
+    "36-48 hour process."
   ],
-  "styleComparisons": [
-    "vs. Brioche: Panettone is far more technically complex and uses a stiff sourdough vs yeast",
-    "vs. Pandoro: Panettone has fruit and a vertical dome; Pandoro is fruitless and star-shaped",
-    "vs. Stollen: Panettone is airy and 'cloud-like' vs Stollen's dense, spicy, and buttery fruitcake-style",
-    "vs. Babka: Panettone uses 2nd-stage enrichment vs Babka's simpler fillings and shaping"
-  ],
-  "parameterSensitivity": [
-    "Critical: Stiff Starter (Lievito Madre) Health - if it's not at its peak, the dough will never rise",
-    "Highly sensitive: Kneading Order - added sugar too early will destroy the gluten bonds permanently",
-    "Temperature Control: Keeping the dough at 26-28°C during mixing is vital for fat emulsification",
-    "Fruit Weight: Too much candied fruit can tear the delicate 'honeycomb' structure of the crumb",
-    "Hanging Timing: Even 10 minutes of upright cooling after bake can cause the loaf to collapse"
-  ],
-  "risks": [
-    "The Collapse: The loaf falls into itself during or after baking (usually due to weak fermentation)",
-    "Gum Line: A dense, wet layer at the bottom from under-baking or improper temperature control",
-    "Acetic Finish: The sourdough was too old or too cold, resulting in a vinegar-like taste",
-    "Oil Separation: The dough 'broke' during mixing because butter was added too fast",
-    "Burnt Dome: Sugar concentration in the dough leads to fast browning; needs foil protection"
-  ],
-  "notes": [
-    "Use 'Farina di Forza' (W380-450) - normal bread flour will not survive this process",
-    "The butter should be high-quality (82%+ fat) and at room temperature for emulsification",
-    "Candied fruits should be 'pulp-in', not dry industrial bits, for the best moisture migration",
-    "The first dough (Primo) must be absolutely perfectlyDeveloped before starting the second dough",
-    "Patience is the main ingredient: a true panettone takes 48 to 72 hours from the first build"
-  ],
-  "tags": [
-    t('common.festive_sweet_bread'),
-    "High-skill project baking",
-    t('common.pastry'),
-    t('common.italy')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": "Panettone: Master Bakers and World Class Techniques",
-      "url": "https://www.panettoneworldcup.it/",
-      "author": "The Panettone World Cup Association",
-      "year": 2023
+      source: "Cresci: The Art of Leavened Dough",
+      url: "https://www.amazon.com/Cresci-Art-Leavened-Dough-Iginio/dp/8886561135",
+      author: "Iginio Massari & Achille Zoia",
+      year: "1999"
     },
     {
-      "title": t('styles.modernist_bread_30'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
+      source: "Panettone World Cup - Technical Standards",
+      url: "https://www.panettoneworldcup.it/",
+      author: "Coppa del Mondo del Panettone",
+      year: "2023"
     },
     {
-      "title": "Cresci: The Art of Leavened Dough",
-      "url": "https://www.amazon.com/Cresci-Art-Leavened-Dough-Iginio/dp/8886561135",
-      "author": "Iginio Massari & Achille Zoia",
-      "year": 1999
-    },
-    {
-      "title": "Omnia Fermenta: The Science of Large Sourdough",
-      "url": "https://www.francesco-migoya.com/",
-      "author": "Francesco Migoya",
-      "year": 2020
+      source: "Modernist Bread (Large Sourdough Lepidoptera section)",
+      url: "https://modernistcuisine.com/books/modernist-bread/",
+      author: "Nathan Myhrvold, Francisco Migoya",
+      year: "2017"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "Is it possible to make a real Panettone without a Lievito Madre (stiff starter)?",
-      "answer": "While you can make a 'sweet festive bread' with commercial yeast, the true Italian Panettone (by decree) must use a Lievito Madre. The sourdough starter provides the unique feathery texture, the specific aromatic complexity, and the incredible 45-day shelf life that yeast simply cannot replicate."
-    },
-    {
-      "question": "Why do I have to hang the Panettone upside down?",
-      "answer": "The structure of a Panettone is extremely delicate due to the huge amounts of butter and yolks. While hot, the internal gluten network is like a liquid. If cooled upright, the 'cloud' would cave in under the weight of the fruits. Hanging it upside down allows the network to set in an elongated, gravity-defying state."
-    },
-    {
-      "question": "What is the 'primo impasto' and why is it so important?",
-      "answer": "The 'primo impasto' is the first dough (usually starter, flour, water, butter, and yolks). It ferment for 10-12 hours until it triples in size. This stage builds the foundation of the fermentation. If the primo fails or is under-fermented, the second dough will be heavy and won't have the characteristic vertical bubbles."
-    },
-    {
-      "question": "My dough 'broke' or started leaking oil during mixing. What happened?",
-      "answer": "This is common when adding butter too fast or if the dough temperature exceeds 26°C. The fat breaks the gluten bonds instead of emulsifying with them. To fix it, try cooling the bowl in an ice bath and adding a small amount of cold flour to help re-bind the emulsion."
-    },
-    {
-      "question": "How do I know when the Panettone is fully baked?",
-      "answer": "Never guess by color alone. You must use a probe thermometer. The internal temperature must reach between 92°C and 94°C. Below 92°C, it will collapse when hung; above 94°C, it will be dry and lose its feathery quality."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: true,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/panettone-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["salted_butter_normandy", "candied_citrus", "raisins", "citrus_zest", "honey_raw", "vanilla_madagascar"]
 };

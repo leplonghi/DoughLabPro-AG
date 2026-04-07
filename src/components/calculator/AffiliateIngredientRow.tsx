@@ -28,7 +28,8 @@ const AFFILIATE_LINKS = {
 };
 
 const getIngredientIcon = (label: string) => {
-    const l = label.toLowerCase();
+    const labelStr = String(label || '');
+    const l = labelStr.toLowerCase();
     const iconClass = "w-4 h-4 text-dlp-brand-lime/80";
     if (l.includes('flour')) return <FlourIcon className={iconClass} />;
     if (l.includes('water')) return <WaterIcon className={iconClass} />;
@@ -46,9 +47,10 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
     hydration = 60,
     subtext
 }) => {
-    const isFlour = label.toLowerCase().includes('flour');
-    const isYeast = label.toLowerCase().includes('yeast');
-    const isSalt = label.toLowerCase().includes('salt');
+    const labelStr = String(label || '');
+    const isFlour = labelStr.toLowerCase().includes('flour');
+    const isYeast = labelStr.toLowerCase().includes('yeast');
+    const isSalt = labelStr.toLowerCase().includes('salt');
 
     return (
         <div className="group flex flex-col py-2.5 border-b border-slate-100 last:border-0 hover:bg-slate-50/50 -mx-4 px-4 transition-colors">
@@ -59,7 +61,7 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
-                            <p className="font-semibold text-slate-700 leading-tight">{label}</p>
+                            <p className="font-semibold text-slate-700 leading-tight">{labelStr}</p>
                             {isYeast && (
                                 <InfoTooltip content="Instant Yeast is more concentrated than Fresh Yeast. 1g Instant ≈ 3g Fresh.">
                                     <InfoIcon className="w-3.5 h-3.5 text-slate-300 hover:text-dlp-brand-lime transition-colors cursor-help" />

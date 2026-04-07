@@ -1,250 +1,281 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * BAGUETTE TRADITION FRANÇAISE
+ * 
+ * Researched and validated content:
+ * - UNESCO Intangible Cultural Heritage (2022)
+ * - Le Décret Pain (1993 French Bread Decree) standard
+ * - Ingredients: Strictly flour, water, salt, yeast/leaven only
+ * - Technique: Steam injection and long fermentation
+ */
+export const baguette_tradition_francaise: DoughStyleDefinition = {
+  id: "baguette_tradition_francaise",
+  name: "Baguette Tradition Française",
+  category: "bread",
+  recipeStyle: RecipeStyle.BAGUETTE,
+  family: "French Artisan Bread",
 
-export const baguette_tradition_francaise: StyleDefinition = {
-  "id": "baguette_tradition_francaise",
-  "title": t('styles.baguette_tradition_française'),
-  "subtitle": t('styles.french_lean_breads'),
-  "category": t('styles.bread_3'),
-  "family": t('styles.french_lean_breads_2'),
-  "variantName": t('styles.baguette_tradition_française_2'),
-  "origin": {
-    "country": t('styles.france'),
-    "region": t('styles.nationwide'),
-    "period": "20th century"
+  origin: {
+    country: "France",
+    region: "Paris and throughout France",
+    period: "Early 20th century (term adopted 1920, protected 1993)"
   },
-  "intro": "Consumed daily as a staple bread in France, often bought fresh from artisan boulangeries.",
-  "history": "Baguette tradition is a protected style of French lean bread with restrictions on additives and methods, relying on slow fermentation and quality flour.",
-  "culturalContext": {
-    "significance": [
-      "Ultimate symbol of French culture and daily life - as iconic as the Eiffel Tower",
-      "Protected by French law (Décret Pain 1993) defining 'Baguette de Tradition Française'",
-      "Represents French artisanal craftsmanship and resistance to industrialization",
-      "UNESCO consideration for Intangible Cultural Heritage status",
-      "Embodies French values: quality, tradition, and daily ritual over convenience"
+
+  description: "The Baguette Tradition Française is the iconic French bread protected by UNESCO (2022) and French law (Decree 1993). It represents centuries of French baking tradition, characterized by its elongated shape, crispy golden crust, and airy interior crumb with irregular holes (alvéoles).",
+
+  history: "While the exact origins of the baguette are debated, theories connect it to 19th-century Vienna, the French Revolution, or early 20th-century Paris. Before the baguette, French bread was typically round and dense. The elongated shape allowed faster baking, particularly relevant after a 1920 law limited bakers' working hours. The term 'baguette' was officially adopted in 1920. Steam ovens invented in the late 19th century enabled the characteristic crispy crust. By the 1930s, the baguette had become ubiquitous and an icon of French culture. The crucial 'Le Décret Pain' (Bread Decree) of September 13, 1993 legally protected the 'baguette de tradition française,' mandating it contain only wheat flour, water, salt, and yeast/leaven, with no frozen dough, additives, or preservatives. UNESCO inscribed 'the artisanal know-how and culture of baguette bread' on its Intangible Cultural Heritage list on November 30, 2022.",
+
+  difficulty: "Hard",
+  fermentationType: "preferment",
+
+  base_formula: [
+    { name: "French T65 or T55 flour", percentage: 100 },
+    { name: "Water", percentage: 68 },
+    { name: "Sea Salt", percentage: 2.0 },
+    { name: "Fresh Yeast (or 0.3% dry)", percentage: 1.0 },
+    { name: "Poolish or Leaven (optional)", percentage: 20 }
+  ],
+
+  technicalProfile: {
+    hydration: [65, 75],
+    salt: [1.8, 2.2],
+    oil: [0, 0],
+    sugar: [0, 0],
+    flourStrength: "French Type 55 or 65 flour, moderate protein (10-12%)",
+    ovenTemp: [230, 250],
+    recommendedUse: [
+      "Daily bread for French meals and sandwiches",
+      "Base for tartines, crostini, and bruschetta"
     ],
-    "consumptionContext": [
-      "Purchased fresh daily (often twice daily) from local boulangerie",
-      "Eaten at every meal: breakfast with butter and jam, lunch/dinner with cheese and wine",
-      "Carried unwrapped under the arm, often with the end torn off and eaten while walking home",
-      "Central to French social gatherings: cheese course, charcuterie boards, dinner parties",
-      "Never stored in plastic - paper bag only, consumed within hours of baking"
-    ],
-    "evolution": [
-      "Pre-1800s: Various bread shapes existed, but not the modern baguette form",
-      "1830s-1920s: Long, thin bread emerges in Paris, possibly due to new deck ovens",
-      "1920: Law prohibits bakers from working before 4 AM - quick-rising baguette becomes practical",
-      "1993: Décret Pain law protects 'Baguette de Tradition' from industrial methods and additives",
-      "2000s-present: Artisan revival, return to traditional methods, sourdough variations",
-      "2021: UNESCO application submitted for cultural heritage recognition"
-    ],
-    "rituals": [
-      "The morning boulangerie run - social ritual and daily exercise for many French people",
-      "Breaking bread at the table - tearing, never cutting with knife",
-      "The 'quignon' (end piece) is prized, often eaten first while still warm",
-      "Scoring pattern (grignes) is the baker's signature and point of pride",
-      "Tapping the bottom to hear the hollow sound - test of proper baking"
+    difficulty: "Hard",
+    ballWeight: { recommended: 350, min: 250, max: 400 },
+    fermentationSteps: [
+      "Autolyse: Mix flour and water only for 20-45 minutes. [Science: Allows enzymes to begin breaking down starches and proteins for improved flavor and extensibility]",
+      "Mixing: Add salt and yeast/leaven. Knead minimally until smooth but don't overwork. [Science: Preserves the large air bubbles needed for 'alvéolage']",
+      "Bulk Fermentation: 2-4 hours with folds every 30-45 minutes. [Science: Folds develop gluten strength without traditional heavy kneading]",
+      "Dividing & Preshaping: Cut into 350g pieces and roll into loose cylinders. Rest 20 min. [Science: Relaxes the gluten for the final shaping elongation]",
+      "Final Shaping: Elongate carefully to 55-65cm. [Science: Proper tension is critical for a straight baguette and even expansion]",
+      "Baking with Steam: Score 5-7 times and bake at 460°F with heavy steam injection. [Science: Steam keeps the surface moist, allowing maximum 'oven spring' before the crust hardens]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Nutty, toasted wheat with subtle sweetness from French T65 flour",
-      "Complex fermentation notes: slightly tangy, yeasty, with hint of alcohol",
-      "Caramelized crust with deep, toasted flavors from Maillard reaction",
-      "Mineral, earthy notes from high-extraction flour",
-      "Clean, pure bread flavor - no fat or enrichment to mask the wheat"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W220-260 (Moderate strength)",
+      pl_ratio: "0.40-0.60 (Extensible)",
+      absorption_capacity: "Moderate (65-72%)",
+      protein_type: "French soft wheat T65 with low ash content",
+      science_explanation: "The relatively low W index and high extensibility allow the dough to expand significantly during the initial minutes of baking without tearing the delicate thin walls of the bubbles."
+    },
+    thermalProfile: {
+      oven_type: "Deck oven with steam injection (mandatory for authentic results)",
+      heat_distribution: "Bottom conduction from stone, top radiation, steam convection",
+      crust_development: "Thin, crispy, with deep golden brown caramelization (Maillard reaction)",
+      crumb_structure: "Open and irregular (Alvéolage sauvage) with translucent walls"
+    },
+    fermentationScience: {
+      yeast_activity: "Controlled; often using cold retard (Pointage en bac) to foster amino acid production",
+      ph_target: "pH 5.4 - 5.6",
+      organic_acids: "Lactic-dominant if using poolish; more complex acetic notes if using levain de pâte",
+      enzymatic_activity: "High alpha-amylase activity is desired to provide sugars for the crust color and crusty texture"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Master the 'coupe de lame' (scoring)",
+        explanation: "Score the baguette with a slight overlap (about 1/3) and keep the blade at a 30-degree angle. This creates the 'ear' of the crust and allows the bread to expand upwards rather than sideways."
+      },
+      {
+        tip: "Steam is the secret to the shine",
+        explanation: "Without steam, the crust becomes dull and grey. Steam gelatinizes the surface starches, creating that polished, golden, shattering crust that makes a baguette 'tradition'."
+      },
+      {
+        tip: "Don't fear the autolyse",
+        explanation: "Giving the flour and water time to sit before adding salt/yeast significantly reduces kneading time, which prevents oxygenating the dough too much and ruining the wheat's natural yellow pigments and flavor."
+      },
+      {
+        tip: "Check the 'quignon' (end piece)",
+        explanation: "The ends of the baguette should be slightly pointed for 'baguette' and rounded for 'pain'. In France, it's a social ritual to tear off and eat the quignon on the walk home from the bakery."
+      },
+      {
+        tip: "Flour choice matters more than anything",
+        explanation: "Using high-protein American bread flour will result in a chewy, tough baguette. Use French T55 or a blend that mimics its properties (approx 11% protein, moderate strength)."
+      }
     ],
-    "aromaProfile": [
-      "Intense toasted wheat and caramelized crust aromas",
-      "Yeasty, fermented notes with slight acidity",
-      "Nutty, almost hazelnut-like from browned crust",
-      "Fresh-baked bread smell that fills the boulangerie",
-      "Subtle mineral, earthy notes from the flour"
+    what_if: [
+      {
+        scenario: "The baguette is flat and has no ears (grignes)",
+        result: "Under-proofing or insufficient steam during the first 5 mins of baking",
+        correction: "Extend the final proof and ensure your steam system is producing heavy mist. Score more decisively."
+      },
+      {
+        scenario: "The crumb is dense like sandwich bread",
+        result: "Over-kneading or too low hydration",
+        correction: "Reduce kneading time (use more folds instead) and ensure hydration is at least 68-70%."
+      },
+      {
+        scenario: "The crust is thick and hard like a shell",
+        result: "Oven temperature was too low or bake time too long",
+        correction: "Bake at a higher initial temperature (460-480°F) to set the crust quickly and retain interior moisture."
+      },
+      {
+        scenario: "Dough sticks to everything during shaping",
+        result: "Insufficient bulk fermentation or poor shaping technique",
+        correction: "Don't skip the folds during bulk fermentation; use just enough flour to touch the dough, not to coat it."
+      }
     ],
-    "textureNotes": [
-      "Thin, crispy, shattering crust that 'sings' when cooling",
-      "Open, irregular crumb with glossy, cream-colored interior",
-      "Chewy, resilient texture from gluten development",
-      "Airy holes with thin, translucent cell walls",
-      "Overall: crispy-chewy contrast, never dense or gummy"
+    comparative_analysis: [
+      {
+        target_style: "Ciabatta",
+        difference: "Baguette is elongated and crustier; Ciabatta is flatter with even higher hydration and much larger holes",
+        why_choose_this: "Choose Baguette for iconic crispy texture and versatility in sandwiches."
+      },
+      {
+        target_style: "Italian Bread",
+        difference: "Baguette is thinner and crispier with a more open crumb; Italian loaves are often wider and softer",
+        why_choose_this: "Choose Baguette for higher crust-to-crumb ratio and artisanal prestige."
+      },
+      {
+        target_style: "Sourdough Boule",
+        difference: "Baguette usually uses commercial yeast (poolish/direct) for a cleaner wheat flavor vs the acidic bite of sourdough",
+        why_choose_this: "Choose Baguette when you want a lighter, neutral carrier for delicate cheeses and butter."
+      }
     ],
-    "pairingRecommendations": [
-      "Classic French: Butter and jam for breakfast, cheese for dinner",
-      "Traditional: Pâté, rillettes, charcuterie, soft-ripened cheeses",
-      "Beverage: Red wine (Bordeaux, Burgundy), café au lait, or mineral water",
-      "Soups: Perfect for dipping in French onion soup or bouillabaisse",
-      "Avoid: Heavy spreads that mask the bread's flavor - let the bread shine"
+    q_and_a: [
+      {
+        question: "What makes a baguette 'tradition' vs regular baguette?",
+        answer: "A 'Baguette de Tradition Française' is legally protected by the 1993 French Bread Decree. It must contain only four ingredients (flour, water, salt, yeast/leaven) with no additives or preservatives. Regular baguettes can use industrial dough conditioners and enzymes.",
+        context: "Legal/Quality"
+      },
+      {
+        question: "Why did UNESCO recognize the baguette?",
+        answer: "UNESCO recognized the 'artisanal know-how and culture' of the baguette in 2022 as part of the world's intangible cultural heritage, celebrating its role in French social identity and craftsmanship.",
+        context: "History"
+      },
+      {
+        question: "How should I store my baguette?",
+        answer: "Never refrigerate bread! It accelerates the staling process. Store room temperature in a paper bag. It is best eaten within 6 hours of baking. If it's a day old, sprinkle with water and bake for 5 mins to refresh.",
+        context: "Storage"
+      },
+      {
+        question: "Why is my baguette crust soft after cooling?",
+        answer: "This is usually caused by 'moisture migration' from the crumb to the crust. Increasing the bake time slightly or allowing the bread to cool in a drafty area can help keep it crispy longer.",
+        context: "Quality Control"
+      },
+      {
+        question: "What is poolish and do I need it?",
+        answer: "Poolish is a 1:1 mixture of flour and water with a tiny bit of yeast. It improves the extensibility of the baguette and adds a nutty, sweet flavor that isn't found in a simple direct dough.",
+        context: "Technique"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh from oven (0-1 hour): Peak aroma and crust crispness, interior still warm and tender",
-      "2-4 hours: Crust softens slightly, flavors meld, still excellent quality",
-      "4-6 hours: Crust becomes chewy, interior firms up, flavors deepen but texture declines",
-      "After 6 hours: Staling accelerates, crust tough, interior dry - use for toast or croutons",
-      "Next day: Make pain perdu (French toast), croutons, or breadcrumbs - never waste"
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Used for high-turnover daily production, but flavor is less complex than preferment versions."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Ideal",
+        notes: "Using a small amount of poolish or old dough (pâte fermentée) with fresh yeast is the gold standard for French Tradition."
+      },
+      {
+        method: "Sourdough",
+        suitability: "Possible",
+        notes: "Known as 'Baguette au Levain'. Changes the flavor profile to be more acidic and the crust to be thicker."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Poolish, pâte fermentée or liquid levain commonly 20–50%.",
-    "Hydration: 65-72%"
-  ],
-  "doughImpact": [
-    "High hydration (65-72%) creates open, irregular crumb structure with thin cell walls",
-    "Poolish or pâte fermentée (20-50%) develops complex, nutty flavor and improves extensibility",
-    "French T65/T55 flour provides mineral-rich flavor and cream-colored crumb",
-    "Minimal mixing and gentle folding preserve gas structure for open crumb",
-    "Long, cool fermentation (2-4h bulk + optional overnight retard) develops acidity and aroma"
-  ],
-  "bakingImpact": [
-    "Strong initial steam creates thin, crispy crust with distinctive shine",
-    "High temperature (230-250°C) with falling heat develops deep golden color",
-    "Scoring pattern controls expansion and creates signature 'ears' (grignes)",
-    "Deck baking provides bottom heat for crispy base and even browning",
-    "Proper baking creates audible 'singing' crust that crackles when cooling"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      65,
-      72
-    ],
-    "saltRange": [
-      1.8,
-      2.2
-    ],
-    "oilRange": [
-      0,
-      0
-    ],
-    "sugarRange": [
-      0,
-      0.5
-    ],
-    "flourStrength": "French T65/T55 or equivalent, W ~200–260",
-    "fermentation": {
-      "bulk": "2–4 h at 23–25°C with folds, or partially retarded",
-      "proof": "45–75 min at 23–25°C",
-      "coldRetard": t('styles.optional_overnight_retard_for_flavor')
+
+  deepDive: {
+    hydrationLogic: "Traditional Baguettes target 68-72% hydration. This is high enough to produce a light, open crumb (alvéolage) but low enough to allow the high-tension shaping required for the baguette's iconic length without the dough collapsing into a flat puddle.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Reliable, but requires very high-quality flour to achieve good flavor." },
+      biga: { suitable: false, notes: "Biga adds too much tenacity; baguettes needs extensibility to stretch to 60cm." },
+      poolish: { suitable: true, notes: "The preferred preferment for French artisan baguettes. Enhances extensibility and aroma." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        230,
-        250
-      ],
-      "notes": t('styles.requires_strong_steam_at_the_beginning_of_the_bake')
-    },
-    "difficulty": "Hard",
-    "recommendedUse": [
-      t('common.daily_table_bread'),
-      t('common.sandwiches'),
-      t('common.toast')
+    whatIf: [
+      {
+        scenario: "You use 75% hydration with T55 flour",
+        outcome: "The dough will be very difficult to score cleanly and may lack 'ear' development",
+        solution: "Reduce hydration to 68% or add a few more folds to build strength"
+      },
+      {
+        scenario: "You omit the steam injection",
+        outcome: "The baguette will be dull, have a thick grey crust, and very small volume",
+        solution: "Use a cast iron pan with lava rocks and add hot water at the exact moment the bread goes in"
+      },
+      {
+        scenario: "You proof in a drafty room",
+        outcome: "A skin will form on the dough, causing it to tear awkwardly rather than expand at the scores",
+        solution: "Keep proofing dough covered or in a humidity-controlled 'couche' (linen cloth)"
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Baguette Ordinaire",
+        difference: "Ordinaire contains additives/enzymes and is often mixed with high-speed mixers, leading to a white, odorless crumb vs the cream-colored, aromatic Tradition."
+      },
+      {
+        vsStyle: "Viennoise",
+        difference: "Viennoise contains milk, sugar, and fat (enrichment) making it soft and sweet, unlike the lean Tradition."
+      }
+    ],
+    proTips: [
+      "Use a baker's couche (unbleached linen) for proofing to keep the baguettes' shape and wick away surface moisture for a better crust",
+      "The Maillard reaction is your friend—don't be afraid of a 'well baked' (bien cuite) dark golden crust",
+      "Always allow the poolish to bubble and collapse slightly before using it in the final mix",
+      "In the 'Coupe du Monde de la Boulangerie' (World Bakery Cup), the baguette is the ultimate test of a baker's skill",
+      "If you listen closely, a perfect baguette 'sings' (crackles) as it cools on the rack"
     ]
   },
-  "regionalVariants": [
-    "Baguette de Tradition Française - Protected by French law (Décret Pain 1993)",
-    "Baguette Ordinaire - Standard commercial version with additives allowed",
-    "Baguette de Campagne - Rustic version with whole wheat or rye addition",
-    "Ficelle - Thinner version (half the weight), crispier crust ratio",
-    "Flûte - Slightly thicker than baguette, softer crumb"
+
+  tags: ["french", "baguette", "unesco", "artisan bread", "lean dough"],
+
+  watchouts: [
+    "Over-proofing causes flat, dense bread without proper rise",
+    "Insufficient steam results in pale, thick crust instead of crispy golden",
+    "Wrong flour type creates texture that's too soft or too tough",
+    "Dull scoring leads to internal pressure blowouts on the side",
+    "Cold dough when shaping will resist elongation"
   ],
-  "climateScenarios": [
-    "Hot/Humid (>25°C, >70% RH): Reduce poolish fermentation to 8-10h, use cooler water (15-18°C), reduce bulk time by 30%",
-    "Cold/Dry (<15°C, <40% RH): Extend poolish fermentation to 14-16h, use warmer water (25-28°C), extend bulk time by 50%",
-    "Tropical: Refrigerate poolish after 6-8h, use ice water for final dough, work in air-conditioned space",
-    "High Altitude (>1500m): Increase hydration by 3-5%, reduce proof time by 15-20%, increase oven humidity"
+
+  notes: [
+    "UNESCO Intangible Cultural Heritage (2022) recognition",
+    "Contains only 4 ingredients: Wheat flour, water, salt, yeast/leaven",
+    "Must be made on-site to be called 'Boulangerie' in France",
+    "Shape is approx 5-6cm wide and 55-65cm long",
+    "Traditional scoring is an odd number (usually 5 or 7 cuts)"
   ],
-  "styleComparisons": [
-    "vs. Italian Ciabatta: Baguette is shaped, scored, less hydration, tighter crumb, more structured",
-    "vs. Pain Rustique: Baguette is more refined, shaped vs free-form, tighter crumb, thinner crust",
-    "vs. Sourdough: Baguette uses commercial yeast or poolish, faster fermentation, milder flavor",
-    "vs. Pain de Campagne: Baguette is all white flour, lighter, crispier, shorter shelf life"
-  ],
-  "parameterSensitivity": [
-    "Critical: Steam in first 10-15 minutes - insufficient steam prevents proper crust development",
-    "Highly sensitive to scoring depth and angle - affects ear formation and expansion",
-    "Proof time is critical - over-proofed baguettes collapse, under-proofed are dense",
-    "Flour type matters: French T65 creates authentic flavor, substitutes alter taste significantly",
-    "Oven temperature must be accurate - 10°C difference dramatically affects crust color and texture"
-  ],
-  "risks": [
-    "Over-proofing: Baguettes flatten during baking, lose volume, develop pale crust",
-    "Insufficient steam: Crust sets too early, prevents oven spring, creates thick tough crust",
-    "Poor scoring: Irregular expansion, no ears, blowouts on sides",
-    "Under-baking: Pale color, gummy crumb, crust softens quickly",
-    "Over-mixing: Tight crumb, loss of artisan character, tough texture"
-  ],
-  "notes": [
-    "French law (Décret Pain 1993) defines 'Baguette de Tradition Française' - no additives, no freezing",
-    "Authentic baguettes stale within 4-6 hours - this is normal and expected",
-    "The 'singing' sound when cooling indicates proper crust development",
-    "Scoring should be done with a lame (razor blade) at 30-45° angle for best ears",
-    "Traditional weight is 250g, length 65cm, but varies by region and baker"
-  ],
-  "tags": [
-    t('common.daily_table_bread'),
-    t('common.sandwiches'),
-    t('common.toast'),
-    t('common.bread'),
-    t('common.france')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  recommendedFlavorComponents: ["salted_butter_normandy", "brie_de_meaux", "malt_powder"],
+
+  references: [
     {
-      "title": t('styles.bread__jeffrey_hamelman'),
-      "url": "https://www.amazon.com/Bread-Bakers-Book-Techniques-Recipes/dp/1118132718",
-      "author": "Jeffrey Hamelman",
-      "year": 2012
+      source: "UNESCO - Baguette culture and know-how",
+      url: "https://ich.unesco.org/en/RL/artisanal-know-how-and-culture-of-baguette-bread-01883"
     },
     {
-      "title": t('styles.the_taste_of_bread__raymond_calvel'),
-      "url": "https://www.amazon.com/Taste-Bread-Raymond-Calvel/dp/0834216469",
-      "author": "Raymond Calvel",
-      "year": 2001
+      source: "Legifrance - Décret n°93-1074 (Bread Decree)",
+      url: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000727648/"
     },
     {
-      "title": "Modernist Bread",
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
-    },
-    {
-      "title": "The French Baker's Handbook",
-      "url": "https://www.amazon.com/French-Bakers-Handbook-Artisan-Breads/dp/1624143547",
-      "author": "Ferrandi Paris",
-      "year": 2018
+      source: "Le Cordon Bleu - The History of the Baguette",
+      url: "https://www.cordonbleu.edu/news/history-of-the-baguette/en"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "Why does my baguette have a thick, tough crust instead of thin and crispy?",
-      "answer": "This is almost always caused by insufficient steam during the first 10-15 minutes of baking. Steam keeps the crust flexible during oven spring, allowing maximum expansion. Without it, the crust sets too early and becomes thick and tough. Use a steam pan, spray bottle, or professional steam injection. Also ensure your oven is fully preheated to 230-250°C."
-    },
-    {
-      "question": "What is poolish and why is it important for baguettes?",
-      "answer": "Poolish is a pre-ferment made from equal parts flour and water with a small amount of yeast, fermented 12-16 hours. It develops complex flavor compounds, improves dough extensibility, and creates a more open crumb structure. While you can make baguettes without poolish, the flavor will be significantly less complex. Poolish typically comprises 20-50% of the total flour weight."
-    },
-    {
-      "question": "How do I achieve the characteristic 'ears' (grignes) on my baguette?",
-      "answer": "Ears form when you score at the correct angle (30-45°) with a very sharp blade (lame). The cut should be about 1/4 inch deep and overlap slightly with the previous cut. The dough must be properly proofed (not over or under) and the oven must have strong steam. The ear is the flap of dough that lifts up during oven spring - it's a sign of proper technique."
-    },
-    {
-      "question": "Can I use all-purpose flour instead of French T65?",
-      "answer": "Yes, but the flavor and color will differ. French T65 has higher mineral content (ash) which creates a cream-colored crumb and nutty, complex flavor. All-purpose flour (similar to T55) will work but produces whiter crumb and milder flavor. For best results, use a blend of 70% all-purpose and 30% whole wheat, or seek out high-extraction flour (85-90% extraction)."
-    },
-    {
-      "question": "Why does my baguette go stale so quickly?",
-      "answer": "This is normal and authentic! Traditional French baguettes are designed to be consumed within 4-6 hours of baking. The thin crust and lean formula (no fat) mean they stale rapidly through retrogradation. This is why French people buy bread twice daily. To extend freshness slightly, store in a paper bag (not plastic) at room temperature. Never refrigerate - this accelerates staling."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/baguette-tradition-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  }
 };

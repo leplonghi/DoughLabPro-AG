@@ -144,7 +144,7 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({ category }) => {
     const info = categoryInfo[category] || {
         icon: '📦',
         color: 'bg-slate-100 text-slate-700 border-slate-200',
-        tooltip: 'Ingredient'
+        tooltip: t('calculator.ingredient_426')
     };
 
     return (

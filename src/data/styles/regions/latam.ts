@@ -84,7 +84,8 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/pao-de-queijo-hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["minas_cheese", "parmesan", "requeijao_cremoso", "guava_paste", "honey_raw", "butter_dry_84"]
     },
     {
         id: 'pao-frances',
@@ -169,7 +170,8 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/pao-frances-hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["lard_pork_fat", "salted_butter_normandy", "mortadella", "presunto", "cheddar_cheese", "onions_fresh"]
     },
     {
         id: 'fugazzeta-rellena',
@@ -260,7 +262,8 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/fugazzeta-hero.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["onions_fresh", "mozzarella_low_moisture", "olive_oil_extra_virgin", "oregano_dried", "parmesan", "presunto", "calabresa", "bacon"]
     },
     {
         id: 'medialunas',
@@ -343,7 +346,8 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/medialunas_argentina.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "lemon_peel", "vanilla_madagascar", "citrus_zest", "strawberry_jam"]
     },
     {
         id: 'conchas',
@@ -432,7 +436,8 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/conchas_mexican.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "vanilla_madagascar", "cinnamon_ceylon", "dark_chocolate_70", "brown_sugar"]
     },
     {
         id: "brazilian_gas_deck",
@@ -514,7 +519,8 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/brazilian_gas_deck_real.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["catupiry", "mozzarella_low_moisture", "oregano_dried", "calabresa", "onions_fresh", "boiled_eggs", "presunto", "bacon", "azeitonas"]
     },
     {
         id: "arepa",
@@ -594,7 +600,8 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/arepa_corn_grill.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "cheddar_cheese", "bacon", "onions_fresh", "presunto", "mozzarella_low_moisture", "parmesan", "oregano_dried"]
     },
     {
         id: "empanada-dough",
@@ -674,6 +681,7 @@ export const latamStyles: DoughStyle[] = [
             hero: '/images/styles/empanada_dough_raw.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["lard_pork_fat", "onions_fresh", "boiled_eggs", "azeitonas", "calabresa", "pepperoni"]
     }
 ];

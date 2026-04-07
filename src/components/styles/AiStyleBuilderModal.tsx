@@ -11,21 +11,6 @@ interface AiStyleBuilderModalProps {
   onStyleGenerated: (style: Partial<DoughStyleDefinition>) => void;
 }
 
-const CATEGORIES = {
-  texture: [
-    'Ultra Crispy', 'Soft & Cloud-like', 'Chewy', 'Melt-in-mouth', 'Dense & Hearty', 'Flaky'
-  ],
-  crust: [
-    'Thin Crust', 'Thick Crust', 'Cornicione (Puffy Rim)', 'Pan/Deep Dish', 'Flatbread', 'Stuffed'
-  ],
-  flavor: [
-    'Sour & Complex', 'Sweet & Enriched', 'Nutty (Whole Grain)', 'Buttery', 'Neutral', 'Charred/Smoky'
-  ],
-  method: [
-    'Sourdough (Levain)', 'Poolish', 'Biga', 'Direct Method', 'No-Knead', 'High Hydration'
-  ]
-};
-
 const LOADING_STEPS = [
   "Analyzing texture requirements...",
   "Calculating optimal hydration ratio...",
@@ -40,6 +25,22 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
   const [isGenerating, setIsGenerating] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const { addToast } = useToast();
+
+  // Categories with translations - moved inside component to use t()
+  const CATEGORIES = {
+    texture: [
+      t('ui.ultra_crispy_92'), 'Soft & Cloud-like', t('ui.chewy_93'), 'Melt-in-mouth', 'Dense & Hearty', t('ui.flaky_94')
+    ],
+    crust: [
+      t('ui.thin_crust_95'), t('ui.thick_crust_96'), 'Cornicione (Puffy Rim)', 'Pan/Deep Dish', t('ui.flatbread_97'), t('ui.stuffed_98')
+    ],
+    flavor: [
+      'Sour & Complex', 'Sweet & Enriched', 'Nutty (Whole Grain)', t('ui.buttery_99'), t('ui.neutral_100'), 'Charred/Smoky'
+    ],
+    method: [
+      'Sourdough (Levain)', t('ui.poolish_101'), t('ui.biga_102'), t('ui.direct_method_103'), 'No-Knead', t('ui.high_hydration_104')
+    ]
+  };
 
   // Reset state on open
   useEffect(() => {
@@ -156,5 +157,3 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
 };
 
 export default AiStyleBuilderModal;
-
-

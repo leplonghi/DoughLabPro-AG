@@ -253,3 +253,27 @@ interface User {
 - **State:** Managed via `UserProvider` (Persistent) and `CalculatorContext` (Ephemeral).
 - **Persistence:** Firestore for User data; LocalStorage for settings/preferences.
 - **Testing:** Manual verification via `TESTING_CHECKLIST.md`.
+
+---
+
+## 8. Infrastructure Standards (Scalability & Reliability)
+
+### 8.1 Monitoring
+- **Backend:** Structured logging via `functions/infrastructure/monitoring.ts`. All functions measure latency and track custom metrics (latency, hits, error rates).
+- **Frontend:** Centralized monitoring via `src/infrastructure/monitoring.ts`. Global `ErrorBoundary` reports React crashes with source context.
+- **Log Severity:** Standardized labels (INFO, WARNING, ERROR) for fast filtering in Cloud Logging.
+
+### 8.2 Rate Limiting
+- **Mechanism:** Distributed Rate Limiting using Firestore (`rate_limits` collection).
+- **Enforcement:** Applied to sensitive endpoints (e.g., `createCheckoutSession`) via `createHandler` middleware.
+- **Goal:** Protect API costs and prevent brute-force/abuse.
+
+### 8.3 Multi-tenancy Isolation
+- **Data Architecture:** Use `uid` field on every private document.
+- **Enforcement:** Stricter Firestore Rules using `isDataOwner()` and `belongsToTenant()` helpers.
+- **Privacy:** `match /users/{userId}` prevents cross-user data leakage.
+
+### 8.4 Disaster Recovery (DR)
+- **Automated Backups:** Scheduled Cloud Function (`scheduledFirestoreExport`) performs daily exports to `gs://doughlabpro-fire-backups`.
+- **Code Integrity:** All code versioned in Git with CI/CD hooks.
+- **Storage Protection:** Cloud Storage versioning enabled on the primary production bucket.

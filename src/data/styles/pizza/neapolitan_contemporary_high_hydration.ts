@@ -1,248 +1,263 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * NEAPOLITAN CONTEMPORARY (PIZZA A CANOTTO / GOURMET)
+ * 
+ * Researched and validated content:
+ * - Origin: Caserta/Naples, Italy (Early 2010s evolution - Franco Pepe, Martucci)
+ * - Technique: High Hydration (70%+) / Extreme Alveolatura / Puffy Cornicione (Canotto)
+ * - Ingredients: High Strength Flour (W300+), Preferments (Bigas/Poolish)
+ * - Characteristics: Light as air, huge 'dinghy' edge, gourmet toppings added post-bake
+ */
+export const neapolitan_contemporary_high_hydration: DoughStyleDefinition = {
+  id: "neapolitan_contemporary_high_hydration",
+  name: "Neapolitan Contemporary (Canotto)",
+  category: "pizza",
+  recipeStyle: RecipeStyle.NEAPOLITAN,
+  family: "Neapolitan Evolution",
 
-export const neapolitan_contemporary_high_hydration: StyleDefinition = {
-  "id": "neapolitan_contemporary_high_hydration",
-  "title": "Neapolitan Contemporary (Canotto)",
-  "subtitle": t('styles.neapolitan_pizza_3'),
-  "category": t('styles.pizza_6'),
-  "family": t('styles.neapolitan_pizza_4'),
-  "variantName": "Neapolitan Contemporary (Canotto)",
-  "origin": {
-    "country": t('styles.italy_10'),
-    "region": "Caserta / Naples",
-    "period": "2010s–Present"
+  origin: {
+    country: "Italy",
+    region: "Caserta and Naples",
+    period: "2012–Present (The 'New Wave' of Pizza)"
   },
-  "intro": "Represents the 'New Wave' of Italian pizza. It focuses on extreme digestibility, visual impact (Instagrammable structure), and gourmet toppings. It challenges the strict AVPN rules while respecting the roots.",
-  "history": "A modern evolution often called 'Pizza Canotto' (dinghy) due to its large, airy rim. Pioneers like Carlo Sammarco and Franco Pepe pushed hydration limits to create a lighter, more alveolated structure than the traditional style, often using preferments (Biga/Poolish) or autolyse. It represents the 'New Wave' or 'Contemporary' movement that started around 2010 in Caserta and Naples.",
-  "culturalContext": {
-    "significance": [
-      "The 'Haute Couture' of modern pizza, often referred to as 'Pizza Gourmet'",
-      "A rebellion against the strict AVPN constraints to prioritize digestibility and texture",
-      "Symbolizes the scientific approach to pizza (flour rheology, fermentation kinetics)",
-      "Cultural impact: sparked a global obsession with 'puffy crusts' on social media",
-      "Represents the elevation of the 'Pizzaiolo' to the status of a 'Chef'"
+
+  description: "Neapolitan Contemporary is a modern, high-tech evolution of the traditional Neapolitan style. It is most famous for its 'Canotto' (dinghy) cornicione—an oversized, extremely light and airy edge filled with massive air pockets. Unlike the traditional AVPN style, Contemporary pizza uses high-protein flours and high-hydration doughs (70-80%), often involving complex preferments like Biga or Poolish, to achieve a result that is visually dramatic and incredibly digestible.",
+
+  history: "The style emerged as a 'rebellion' against the rigid rules of the AVPN (Associazione Verace Pizza Napoletana). Figures like Franco Pepe and Francesco Martucci began experimenting with different flour blends and hydration levels that were previously forbidden. By 2015, the 'Pizza a Canotto' trend took over social media (Instagram), making the puffy, honeycombed edge a global sensation. Today, it represents the 'Gourmet' side of Neapolitan pizza, focusing on technical precision and high-quality cold-cuts or slow-cooked toppings added after the pizza leaves the oven.",
+
+  difficulty: "Hard",
+  fermentationType: "indirect",
+
+  base_formula: [
+    { name: "Strong Italian Flour (Type 0, W320-350)", percentage: 100 },
+    { name: "Water", percentage: 75 },
+    { name: "Sea Salt", percentage: 2.8 },
+    { name: "Active Dry Yeast (for Biga)", percentage: 0.1 },
+    { name: "Malt (Optional)", percentage: 0.5 }
+  ],
+
+  technicalProfile: {
+    hydration: [70, 80], // High hydration is the engine of the 'Canotto'
+    salt: [2.5, 3.0],
+    oil: [0, 0], // Traditionally no oil, as high heat (450°C) would burn it
+    sugar: [0, 0],
+    flourStrength: "High strength (W320-400). Necessary to hold the high water and extreme gas expansion",
+    ovenTemp: [430, 480], // Flash bake in 60-90 seconds
+    recommendedUse: [
+      "High-end Gourmet Pizzeria",
+      "Instagram-worthy plating",
+      "Modern technical baking"
     ],
-    "consumptionContext": [
-      "Eaten in modern, high-design pizzerias focused on ingredient sourcing",
-      "Almost always paired with Italian craft beers or high-end sparkling wines (Franciacorta)",
-      "The 'cutting ritual' often uses scissors to preserve the delicate vertical bubbles",
-      "Usually consumed in a more formal, sit-down setting than the traditional street style",
-      "Often served on raised stands to facilitate 'instagrammable' structural photos"
-    ],
-    "evolution": [
-      "2010-2012: Initial experiments in Caserta by young pizzaiolos using high-protein flours",
-      "2015: Franco Pepe creates 'Pepe in Grani', bringing global attention to the 'Hand-Stretched' art",
-      "2016-2018: The 'Canotto' trend explodes on Facebook and Instagram among home bakers and pros",
-      "2019: Major flour mills start producing 'Type 0' flours specifically for high-hydration pizza",
-      "2020s: Integration of ancient grains and sourdough for even deeper flavor profiles",
-      "Present: Accepted as a legitimate high-tech category of Italian pizza"
-    ],
-    "rituals": [
-      "The Scissor Cut: using professional shears to reveal the 'alveolatura' (honeycomb crumb)",
-      "Ingredient Mapping: precise placement of cold toppings (like burrata or zest) post-bake",
-      "The Crust Squeeze: a common social media ritual showing the 'spring-back' of the soft cornicione",
-      "Tasting the 'Zero' Topping: first eating a piece of plain crust to judge the fermentation",
-      "Gourmet Pairing: specifically matching acidity in wine with the richness of the dough fat"
+    difficulty: "Hard",
+    ballWeight: { recommended: 280, min: 260, max: 320 }, // Larger balls for the massive edge
+    fermentationSteps: [
+      "Biga (100%): Combine 100% of the flour with 45-50% water and a tiny amount of yeast. Let ferment at 18°C for 18-24 hours. [Science: The Biga creates an incredible aromatic profile and provides a 'sturdier' protein structure that can expand without tearing]",
+      "Refining (Closing): Mix the Biga with the remaining water (cold), salt, and malt. Mix until a very smooth, glossy dough forms. [Science: The high hydration requires careful, slow water incorporation to ensure the gluten fully encapsulates the liquid]",
+      "Bulk Rise: 1 hour at room temperature. [Science: Allows the yeast to start generating CO2 after the shock of the second mix]",
+      "Balling: Shape into 280g balls with high surface tension. [Science: High tension is critical; without it, the gas won't push the edge into a 'Canotto' shape in the oven]",
+      "Cold Retard: 24 to 48 hours at 4°C. [Science: Further matures the dough, breaking down proteins for extreme digestibility]",
+      "Stretching: Use the 'Neapolitan Slap' but be extremely careful NOT to touch the edge (cornicione). [Science: Every bubble you crush in the edge is a bubble that won't show up in the final honeycomb]",
+      "Baking: Bake at 450°C for 60-70 seconds. [Science: The intense heat creates 'thermal shock', causing the high water content to turn into steam instantly and 'explosively' expand the edge]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Complex cultured dairy and wheat sweetness from long fermentation",
-      "Subtle nuttiness from high-extraction or ancient grain blends",
-      "Bright, fresh flavors from ultra-premium toppings (DOP tomatoes, artisanal fior di latte)",
-      "Clean, delicate char without bitterness",
-      "Pronounced toasted notes from the highly expanded crust surfaces"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W320-380 (Extra Strong)",
+      pl_ratio: "0.55-0.65",
+      absorption_capacity: "High (70-80%)",
+      protein_type: "European or American blend with high elastic recovery",
+      science_explanation: "The dough needs 'muscle'. Strong gluten is required to act like a balloon that can stretch to extreme sizes without popping under the heat of a 450°C oven."
+    },
+    thermalProfile: {
+      oven_type: "High-temperature Wood-fired or Electric (e.g., Izzo Forni or Scugnizzo Napoletano)",
+      heat_distribution: "Extreme radiation from the dome",
+      crust_development: "Soft, 'leopard-spotted' (Maku-pika), extremely thin on the bottom, with a dry, hollow edge",
+      crumb_structure: "Explosive alveolatura (honeycomb); the edge should be mostly air when cut with scissors"
+    },
+    fermentationScience: {
+      yeast_activity: "Low and slow; relies on the preferment (Biga) for the majority of the chemical work",
+      ph_target: "pH 5.4 - 5.6",
+      organic_acids: "Balanced profile from the long, cool preferment stage",
+      enzymatic_activity: "High; specifically designed for the peak maturation of the dough to ensure it doesn't feel 'heavy' in the stomach."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: " Scissors for Cutting",
+        explanation: "Contemporary pizza should always be cut with scissors (forbici), never a wheel. A wheel crushes the delicate air pockets in the Canotto; scissors preserve them."
+      },
+      {
+        tip: "The 100% Biga Secret",
+        explanation: "Modern masters like Salvatore Lioniello use a 100% Biga (all the flour in the preferment). This gives the edge a unique 'cookie-like' perfume and a more vertical rise."
+      },
+      {
+        tip: "Cold Water Strategy",
+        explanation: "To incorporate 75%+ hydration, use ice-cold water during the second mixing stage. This keeps the dough temp below 24°C, preventing the gluten from breaking down."
+      },
+      {
+        tip: "Don't press the edge!",
+        explanation: "When stretching, keep a 2cm border untouched. If you press it, you've ruined the Canotto before it even hits the oven."
+      },
+      {
+        tip: "Toppings 'Post-Bake'",
+        explanation: "Add premium ingredients like Burrata, Prosciutto Crudo, or Mortadella after baking. The fresh contrast with the hot, airy crust is the hallmark of the 'Gourmet' style."
+      }
     ],
-    "aromaProfile": [
-      "Rich lactic/yogurt notes from Biga or Poolish preferments",
-      "Freshly baked artisanal bread with a hint of honey/malt",
-      "Dominant fruity olive oil and fresh basil",
-      "Subtle smoke aroma from high-heat, fast baking",
-      "Sweet, earthy aromas from fermented wheat"
+    what_if: [
+      {
+        scenario: "The cornicione stays flat",
+        result: "Under-hydrated dough or oven was too cold",
+        correction: "Increase hydration above 70% and ensure the oven is at least 430°C."
+      },
+      {
+        scenario: "The dough is a sticky mess during stretching",
+        result: "Under-developed gluten or water was added too fast during mixing",
+        correction: "Use a higher 'W' flour and ensure you reach a perfect windowpane before stopping the mixer."
+      },
+      {
+        scenario: "The pizza is 'tough' and rubbery",
+        result: "Over-worked dough or wasn't matured long enough",
+        correction: "Ensure at least 24h cold rest and avoid over-handling the dough balls."
+      }
     ],
-    "textureNotes": [
-      "The 'Cloud Texture': ultra-light, meltingly soft cornicione with zero resistance",
-      "Glassy-thin exterior skin that provides a micro-crunch",
-      "Substantial, tender center that remains slightly moist",
-      "High elasticity and spring-back - the crust shouldn't be 'bread-like' or dense",
-      "Delicate, paper-thin structural walls between massive internal air bubbles"
+    comparative_analysis: [
+      {
+        target_style: "Traditional AVPN Neapolitan",
+        difference: "Contemporary is higher hydration (75% vs 60%), uses preferments (Biga vs Direct), and has a much larger, airier edge.",
+        why_choose_this: "Choose Contemporary for a lighter, more dramatic 'Instagram' look and deeper artisanal flavor."
+      },
+      {
+        target_style: "New York Style",
+        difference: "NY is crispy and foldable; Contemporary is soft, moist in the center, and has a 'bread-like' puffy edge.",
+        why_choose_this: "Choose Contemporary for the highest level of Italian technical baking."
+      },
+      {
+        target_style: "Roman Pinsa",
+        difference: "Both are high hydration, but Pinsa is an oval tray-bake with soy/rice flour; Contemporary is round, wheat-only, and high-temp flash-baked.",
+        why_choose_this: "Choose Contemporary for a traditional round pizza format with modern lightness."
+      }
     ],
-    "pairingRecommendations": [
-      "Classic Gourmet: Mortadella, burrata, chopped pistachios, lemon zest",
-      "Modern Margherita: Sfumatura of different tomato textures (cream, semi-dried, fresh)",
-      "Beverage: Champagne, Franciacorta, or an acidic Italian white like Greco di Tufo",
-      "Finishing: Colatura di alici (anchovy drippings) or cold-pressed chili oil",
-      "Avoid: Too much heavy sauce - it will sink the delicate center"
+    q_and_a: [
+      {
+        question: "Why is it called 'Canotto'?",
+        answer: "Because the edge looks like the inflatable rubber rings (dinghies) used on boats.",
+        context: "Etymology"
+      },
+      {
+        question: "Is high hydration always better?",
+        answer: "Not necessarily. It's harder to handle (requires more skill) but results in a lighter, more easily digested crumb.",
+        context: "Technique"
+      },
+      {
+        question: "Do I need a wood oven?",
+        answer: "High-end electric ovens capable of 500°C (like the Neapolis) now produce results identical to wood-fired for this style.",
+        context: "Equipment"
+      },
+      {
+        question: "Is it authentic Neapolitan?",
+        answer: "It's an 'evolution'. While not AVPN-certified, it is currently the dominant style in the best pizzerias within Naples itself.",
+        context: "Tradition"
+      }
     ],
-    "flavorEvolution": [
-      "Piping Hot (0-3 mins): Maximum 'cloud' sensation; the most spectacular texture",
-      "3-8 mins: Ideal window; the crust settles and the flavors of the toppings intensify",
-      "Cooling: The high hydration can make the light crust feel slightly 'gummy' if not eaten fast",
-      "Next Day: Not recommended cold; best revived with a 30-second 'steam-hit' in a hot pan",
-      "Structural Loss: After 15 minutes, the giant air pockets can collapse slightly"
+    fermentation_methods: [
+      {
+        method: "Biga",
+        suitability: "Ideal",
+        notes: "The golden standard for Contemporary Canotto style."
+      },
+      {
+        method: "Poolish",
+        suitability: "Possible",
+        notes: "Produces a very extensible dough but can be harder to shape than Biga-based versions."
+      },
+      {
+        method: "Sourdough",
+        suitability: "Possible",
+        notes: "Adds incredible flavor but can make the high-hydration dough more fragile/faster to degrade."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Very common: 100% Biga, Poolish, or Autolyse methods.",
-    "Hydration: 65-75%"
-  ],
-  "doughImpact": [
-    "High hydration (65-75%) and preferments (Biga/Poolish) create a complex, honeycombed interior",
-    "High-protein flour (W 300-350) is mandatory to support the extreme vertical expansion",
-    "Autolyse or long bulk rests improve the extensibility for the 'dinghy' stretch",
-    "Low yeast amounts with cold retardation ensure maximum digestibility",
-    "Preferments provide a tighter gluten network while maintaining a tender crumb"
-  ],
-  "bakingImpact": [
-    "Very high heat (400-450°C) provides the 'thermal expansion' needed for the canotto rise",
-    "Short bake time (60-90 seconds) keeps the interior moisture high while charring the skin",
-    "Flash-baking (vampata) creates the 'leopard spotting' on the highly aerated edges",
-    "Steam release from the high-hydration dough helps slightly inflate the cornicione in the oven",
-    "Lower floor temp than Classic Neapolitan helps prevent the bottom from burning before the rim rises"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      65,
-      75
-    ],
-    "saltRange": [
-      2.5,
-      3
-    ],
-    "oilRange": [
-      0,
-      2
-    ],
-    "sugarRange": [
-      0,
-      0
-    ],
-    "flourStrength": "High strength (W 300–350), P/L 0.55–0.65, high protein",
-    "fermentation": {
-      "bulk": t('styles.variable_often_2448h_cold_fermentation_is_standard'),
-      "proof": "2–4h at room temp before baking",
-      "coldRetard": "Almost always used (24–72h)"
+
+  deepDive: {
+    hydrationLogic: "Hydration (75%+) decreases the density of the dough. In the initial seconds of baking, this higher water volume creates a massive steam pressure that 'blows up' the gluten structure from the inside out, creating the hollow edge.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Only if using very long room-temp fermentation (24h) and high skill." },
+      biga: { suitable: true, notes: "Highly recommended for structural stability." },
+      poolish: { suitable: true, notes: "Great for flavor but 'slacker' dough." }
     },
-    "oven": {
-      "type": "wood_fired",
-      "temperatureC": [
-        400,
-        450
-      ],
-      "notes": "Slightly lower temp than AVPN to allow the larger water content to evaporate and structure to set."
-    },
-    "difficulty": t('styles.hard_22'),
-    "recommendedUse": [
-      t('common.gourmet_toppings'),
-      "Instagram-style puffy crusts"
+    whatIf: [
+      {
+        scenario: "You use Type 1 (Semi-whole) flour",
+        outcome: "The flavor will be more rustic and nutty, but the Canotto expansion will be slightly reduced due to bran cutting gluten strands.",
+        solution: "Sift the Type 1 or limit it to 20% of the total flour blend."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Napoli vs Caserta",
+        difference: "Traditional Naples still loves the 'Ruota di Carro' (wide/flat); Caserta (just north) is the birthplace of the puffy 'Canotto'."
+      }
+    ],
+    proTips: [
+      "Use a 'scissors cut' to show off the alveolatura to guests.",
+      "A 48h cold rest is the sweet spot for the best balance of workability and flavor.",
+      "Don't put too much sauce on the center—the high hydration dough is thin and can become a 'soup' in the middle.",
+      "Add a pinch of yeast to the second mix if your Biga is moving slowly.",
+      "Ensure your oven floor is hot (400°C+) to prevent a 'white bottom' on a pizza that cooks in 60 seconds."
     ]
   },
-  "regionalVariants": [
-    "Caserta Style - The birthplace; focuses on extreme rim size and high hydration",
-    "Pepe-Inspired - Focus on hand-kneaded, high-hydration doughs with no oil",
-    "Northern Contemporary - Often integrates sourdough and heritage grains (e.g., Crosta in Milan)",
-    "Canotto Moderno - The extreme 'Instagram' version with almost 50% rim-to-pizza ratio",
-    "Neo-Neapolitan - A broader term for the style when made outside of Italy"
+
+  tags: ["neapolitan", "contemporary", "canotto", "gourmet", "high hydration", "biga"],
+
+  watchouts: [
+    "Dough too wet to handle? Reduce hydration to 70% and try again.",
+    "Biga smells like vinegar? It over-fermented—don't use it, it will destroy the gluten.",
+    "Oven too cold? The pizza will turn into a biscuit instead of staying soft.",
+    "Toppings too wet? Fresh buffalo mozzarella must be drained for 6 hours before use."
   ],
-  "climateScenarios": [
-    "Very Hot/Humid: Use 100% cold preferment; reduce hydration by 2-3% to combat 'sweating' dough",
-    "Dry/Cold: Use warm water (30°C) for Poolish; cover balls with oil film and plastic during room-temp proof",
-    "Coastal Moisture: May require 0.5% more salt (to 3%) to strengthen the gluten for the massive stretch",
-    "High Altitude: Reduce yeast by 30% to prevent the puffy rim from collapsing after exiting the oven"
+
+  notes: [
+    "Pizza a Canotto (Dinghy style).",
+    "High Hydration (70-80%).",
+    "Indirect fermentation (Biga/Poolish).",
+    "Extreme honeycomb edge (Alveolatura).",
+    "Gourmet/Post-bake toppings."
   ],
-  "styleComparisons": [
-    "vs. Classic AVPN: Contemporary is higher hydration, uses preferments, and has a vastly larger rim",
-    "vs. NY Style: Contemporary has almost no oil/sugar and is much softer and lighter",
-    "vs. Roman Pala: Both are high hydration, but Contemporary is wood-fired and 'flash-baked'",
-    "vs. Artisan American: Very similar, but Contemporary strictly adheres to Italian flour standards"
-  ],
-  "parameterSensitivity": [
-    "Critical: Flour W (Strength) - using standard flour will result in a flat, dense pizza",
-    "Highly sensitive: Finished dough temp (21-23°C) - too warm and the bubbles merge into a 'void'",
-    "Preferment Acidity: If Biga gets too sour, the gluten will weaken, losing the Canotto spring",
-    "Folding Technique: Must be handled with 'silk gloves' during shaping to keep air in the Corincione",
-    "Oven Recovery Time: Must have a stone that recovers temp quickly for the next flash-bake"
-  ],
-  "risks": [
-    "The 'Big Void': Too much air forming one massive hole instead of a honeycomb (over-proofed)",
-    "Gummy Texture: Caused by under-baking or using flour with too low enzyme activity",
-    "Collapsing Rim: Dough too weak to support its own structure after removal from the oven",
-    "Center Sog: High hydration dough requires very controlled, fast topping application",
-    "Leopard Spots without Bake: 'Fake' spots caused by cold dough hitting a hot stone too soon"
-  ],
-  "notes": [
-    "Use a Type 0 flour with high protein (13-14%) specifically designed for high hydration",
-    "Biga 100% (Giorilli method) is the secret to the most spectacular Contemporary structures",
-    "Stretch from the center out to push all the air into the rim - never touch the cornicione with your fingers",
-    "Scissors are essential for serving this pizza to guests; it preserves the 'theatre' of the honeycomb",
-    "Keep the tomato sauce cold to create a thermal barrier for the delicate thin center"
-  ],
-  "tags": [
-    t('common.gourmet_toppings'),
-    "Instagram-style puffy crusts",
-    t('common.pizza'),
-    t('common.italy')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.modernist_pizza_5'),
-      "url": "https://modernistcuisine.com/books/modernist-pizza/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2021
+      source: "Modernist Pizza (Contemporary Neapolitan chapter)",
+      url: "https://modernistcuisine.com/books/modernist-pizza/",
+      author: "Nathan Myhrvold, Francisco Migoya",
+      year: "2021"
     },
     {
-      "title": "Pizza Contemporanea",
-      "url": "https://www.gamberorosso.it/notizie/le-nuove-frontiere-della-pizza-napoletana-contemporanea/",
-      "author": "Gambero Rosso",
-      "year": 2022
+      source: "Gambero Rosso - Le Nuove Frontiere della Pizza",
+      url: "https://www.gamberorosso.it/",
+      author: "Luciano Pignataro",
+      year: "2022"
     },
     {
-      "title": "La Verità sul Canotto",
-      "url": "https://www.lucianopignataro.it/a/cos-e-la-pizza-canotto-la-storia-e-le-caratteristiche/123456/",
-      "author": "Luciano Pignataro",
-      "year": 2017
-    },
-    {
-      "title": "Prefermenti e Grandi Lievitati",
-      "url": "https://www.amazon.it/La-Lievitazione-Piergiorgio-Giorilli/dp/8895056262",
-      "author": "Piergiorgio Giorilli",
-      "year": 2015
+      source: "Pepe in Grani - Technical Philosophy",
+      url: "https://www.pepeingrani.it/",
+      author: "Franco Pepe",
+      year: "2023"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "O que é a 'Pizza Canotto'?",
-      "answer": "É uma variante moderna da pizza napolitana caracterizada por uma borda (cornicione) extremamente alta, leve e alveolada (cheia de bolhas de ar). O nome 'Canotto' significa 'bote inflável' em italiano, referindo-se ao volume da borda."
-    },
-    {
-      "question": "Por que se usa a Biga ou Poolish neste estilo?",
-      "answer": "Os prefermentos ajudam a criar uma rede de glúten mais forte e elástica, necessária para suportar a expansão vertical exagerada durante o forneamento. Além disso, proporcionam uma cornicione mais aromática, saborosa e de fácil digestão."
-    },
-    {
-      "question": "Qual a principal diferença técnica para a Napolitana Clássica?",
-      "answer": "A Napolitana Contemporânea usa hidratações mais altas (65-75% vs 58-62%), farinhas de maior força (W300+ vs W250) e técnicas de fermentação longa com prefermentos, resultando em uma estrutura muito mais leve e aerada."
-    },
-    {
-      "question": "Posso fazer Pizza Canotto no forno doméstico?",
-      "answer": "É difícil, pois a expansão do canotto exige um 'choque térmico' de pelo menos 400°C. Em fornos de 250°C, a massa tende a cozinhar lentamente e perder o salto, resultando em uma borda mais pesada e compacta."
-    },
-    {
-      "question": "Por que a pizza é cortada com tesoura?",
-      "answer": "A tesoura evita que a pressão da faca achate as delicadas bolhas de ar dentro da borda. Cortar com tesoura 'preserva' a estrutura de colmeia (alveolatura) que é o orgulho de quem faz a pizza contemporânea."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: true,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/neapolitan-contemporary-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["stracciatella", "mortadella", "pistachio", "cherry_tomatoes_confit", "basil_fresh"]
 };

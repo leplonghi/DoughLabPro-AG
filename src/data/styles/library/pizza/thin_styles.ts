@@ -58,7 +58,8 @@ export const ChicagoTavern: DoughStyleDefinition = {
         hero: "/images/styles/chicago_hero.jpg",
         dough: "/images/styles/chicago_dough.jpg",
         crumb: "/images/styles/chicago_crumb.jpg"
-    }
+    },
+    recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "oregano_dried", "calabresa", "onions_fresh", "pepperoni", "italian_sausage", "garlic_fresh", "pecorino_romano", "hot_honey"]
 };
 
 export const thinStyles: DoughStyleDefinition[] = [

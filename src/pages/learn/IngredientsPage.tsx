@@ -56,19 +56,24 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
     const categories = [
         {
             page: 'learn/ingredients/flours' as Page,
-            title: 'Flours',
+            title: t('learn.flours_203'),
             description: 'The science behind the main ingredient: strength (W), P/L, and milling types.',
             icon: <FlourIcon className="h-8 w-8" />,
         },
         {
+<<<<<<< HEAD
             page: 'learn/ingredients/yeasts' as Page,
             title: 'Yeasts',
+=======
+            page: 'learn/article/yeast-leavening-agents' as Page,
+            title: t('learn.yeasts_204'),
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             description: 'Commercial yeasts, sourdough starters, and fermentation science.',
             icon: <YeastIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/cheeses' as Page,
-            title: 'Cheeses',
+            title: t('learn.cheeses_205'),
             description: 'All about mozzarella, parmesan, provolone, and more. Moisture, melting, and flavor.',
             icon: <CheeseIcon className="h-8 w-8" />,
         },
@@ -80,13 +85,13 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
         },
         {
             page: 'learn/ingredients/vegetables' as Page,
-            title: 'Vegetables',
+            title: t('learn.vegetables_206'),
             description: 'How to prepare vegetables for pizza, avoiding excess moisture and maximizing flavor.',
             icon: <VegetableIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/sauces' as Page,
-            title: 'Sauces',
+            title: t('learn.sauces_207'),
             description: 'From classic San Marzano to white bases and pestos. The foundation of flavor.',
             icon: <FireIcon className="h-8 w-8" />,
         },
@@ -104,25 +109,25 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
         },
         {
             page: 'learn/ingredients/classic-combos' as Page,
-            title: 'Classic Combos',
+            title: t('learn.classic_combos_208'),
             description: 'Margherita, Pepperoni, Four Cheese. Recipes that never fail.',
             icon: <BookOpenIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/bold-combos' as Page,
-            title: 'Bold Combos',
+            title: t('learn.bold_combos_209'),
             description: 'Get inspired by creative and surprising combinations for your pizzas.',
             icon: <SparklesIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/pairing-tool' as Page,
-            title: 'Pairing Tool',
+            title: t('learn.pairing_tool_210'),
             description: 'An interactive tool to discover the best ingredient combinations.',
             icon: <PuzzlePieceIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/ready-toppings' as Page,
-            title: 'Ready Toppings',
+            title: t('learn.ready_toppings_211'),
             description: 'Library of prepared combinations with weights and measures for your pizza.',
             icon: <ListBulletIcon className="h-8 w-8" />,
         },

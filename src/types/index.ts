@@ -68,8 +68,12 @@ export interface DoughSessionState {
 }
 
 
+<<<<<<< HEAD
 export type Locale = 'en' | 'pt-BR';
 export type LocalePreference = Locale | 'system';
+=======
+export type Locale = 'en' | 'pt' | 'es';
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
 export enum BakeType {
     PIZZAS = 'PIZZAS',
@@ -480,7 +484,7 @@ export interface NavLinkItem {
     requiresPro?: boolean;
 }
 
-export type PaywallOrigin = 'general' | 'calculator' | 'styles' | 'learn' | 'community' | 'mylab' | 'plans_page' | 'exports_pdf' | 'levain' | 'mylab_flours' | 'mylab_consistency' | 'mylab_timeline' | 'doughbot';
+export type PaywallOrigin = 'general' | 'calculator' | 'styles' | 'learn' | 'community' | 'mylab' | 'plans_page' | 'exports_pdf' | 'levain' | 'mylab_flours' | 'mylab_consistency' | 'mylab_timeline' | 'mylab_sensory_diary' | 'doughbot';
 
 export interface SmartAdjustmentSuggestion {
     key: keyof DoughConfig;

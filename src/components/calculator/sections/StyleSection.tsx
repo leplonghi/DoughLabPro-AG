@@ -4,6 +4,7 @@ import { BookOpenIcon, MagnifyingGlassIcon, PizzaSliceIcon, FlourIcon, SparklesI
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import AccordionSection from '@/components/calculator/AccordionSection';
+import { InfoTooltip } from '@/components/ui/InfoTooltip';
 import { useTranslation } from '@/i18n';
 
 interface StyleSectionProps {
@@ -42,14 +43,14 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                 (s.region && s.region.toLowerCase().includes(searchTerm.toLowerCase()))
             );
         }
-        const countries = Array.from(new Set(styles.map(s => s.country || 'Other'))).sort();
-        if (countries.includes('Other')) {
-            countries.push(countries.splice(countries.indexOf('Other'), 1)[0]);
+        const countries = Array.from(new Set(styles.map(s => s.country || t('calculator.other_257')))).sort();
+        if (countries.includes(t('calculator.other_257'))) {
+            countries.push(countries.splice(countries.indexOf(t('calculator.other_257')), 1)[0]);
         }
-        if (selectedCountry === 'Favorites') {
+        if (selectedCountry === t('calculator.favorites_259')) {
             styles = styles.filter(s => isFavorite && isFavorite(s.id, 'style'));
         } else if (selectedCountry !== 'All') {
-            styles = styles.filter(s => (s.country || 'Other') === selectedCountry);
+            styles = styles.filter(s => (s.country || t('calculator.other_257')) === selectedCountry);
         }
         return { uniqueCountries: countries, filteredStyles: styles };
     }, [recipeStylesToShow, searchTerm, selectedCountry, isFavorite]);
@@ -63,7 +64,27 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     return (
         <AccordionSection
             id="style-selector"
-            title={t('calculator.dough_style')}
+            title={
+                <div className="flex items-center gap-2">
+                    <span>{t('calculator.dough_style')}</span>
+                    <InfoTooltip
+                        variant="tutorial"
+                        size="lg"
+                        position="bottom"
+                        content={
+                            <div>
+                                <p className="font-bold mb-2">🎯 Como escolher seu estilo:</p>
+                                <ul className="space-y-1.5 text-[11px]">
+                                    <li>• <strong>Pizzas:</strong> Napolitana, NY, Detroit e mais</li>
+                                    <li>• <strong>Pães:</strong> Baguete, Ciabatta, Focaccia</li>
+                                    <li>• <strong>Confeitaria:</strong> Croissants, Brioche, Babka</li>
+                                </ul>
+                                <p className="mt-3 text-[10px] opacity-80">💡 Cada estilo ajusta automaticamente hidratação, fermentação e ingredientes!</p>
+                            </div>
+                        }
+                    />
+                </div>
+            }
             description={t('calculator.style_section_description')}
             icon={<BookOpenIcon />}
         >
@@ -99,11 +120,18 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                 </div>
                 <input
                     type="text"
-                    className="block w-full rounded-2xl border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm placeholder-slate-400 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none"
+                    className="block w-full rounded-2xl border-slate-200 bg-slate-50 py-3 pl-11 pr-12 text-sm placeholder-slate-400 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none"
                     placeholder={t('calculator.find_a_style')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <InfoTooltip
+                        variant="tutorial"
+                        position="left"
+                        content="🔍 Digite para filtrar estilos por nome ou região. Ex: 'napolitana', 'francesa', 'sourdough'"
+                    />
+                </div>
             </div>
 
             {/* 3. Country & Custom Presets */}
@@ -119,9 +147,9 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                         All
                     </button>
                     <button
-                        onClick={() => setSelectedCountry('Favorites')}
+                        onClick={() => setSelectedCountry(t('calculator.favorites_259'))}
                         className={`flex-shrink-0 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all flex items-center gap-2
-                            ${selectedCountry === 'Favorites' ? 'bg-amber-50 rounded-full shadow-sm text-amber-600' : 'bg-white shadow-sm text-slate-500 hover:text-[#51a145] hover:shadow-md'}
+                            ${selectedCountry === t('calculator.favorites_259') ? 'bg-amber-50 rounded-full shadow-sm text-amber-600' : 'bg-white shadow-sm text-slate-500 hover:text-[#51a145] hover:shadow-md'}
                         `}
                     >
                         <BookmarkIcon className="h-3 w-3" /> {t('ui.favorites')}

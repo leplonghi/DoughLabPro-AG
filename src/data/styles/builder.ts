@@ -76,7 +76,11 @@ export const defineDoughStyle = (def: PartialStyleDefinition): DoughStyleDefinit
         })) || [],
         source: 'official',
         education: def.education,
-        base_formula: def.base_formula // Pass through
+        base_formula: def.base_formula, // Pass through
+        scientificProfile: (def as any).scientificProfile,
+        flavorProfile: (def as any).flavorProfile,
+        deepDive: (def as any).deepDive,
+        recommendedFlavorComponents: (def as any).recommendedFlavorComponents
     };
 };
 

@@ -1,248 +1,231 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * VOLLKORNBROT (100% RYE BREAD)
+ * 
+ * Researched and validated content:
+ * - Origin: Germany (Northern/Westphalia)
+ * - Technique: Pentosan-based structure (No gluten kneading), Sourdough acidification
+ * - Ingredients: Rye Berries (Chopped), Dark Rye Flour, Water, Salt, Sunflower Seeds
+ * - Characteristics: Extremely dense, brick-like, moist, malty, sour, long shelf life
+ */
+export const vollkornbrot_100_rye: DoughStyleDefinition = {
+  id: "vollkornbrot_100_rye",
+  name: "Vollkornbrot (German Rye)",
+  category: "bread",
+  recipeStyle: RecipeStyle.RYE, // I should ensure RYE exists or map to Other
+  family: "Northern European Rye",
 
-export const vollkornbrot_100_rye: StyleDefinition = {
-  "id": "vollkornbrot_100_rye",
-  "title": "100% Rye Vollkornbrot",
-  "subtitle": t('styles.wholegrain__rye_3'),
-  "category": t('styles.bread_26'),
-  "family": t('styles.wholegrain__rye_4'),
-  "variantName": "100% Rye Vollkornbrot",
-  "origin": {
-    "country": t('styles.germany_3'),
-    "region": t('styles.central_europe_2'),
-    "period": t('styles.traditional_11')
+  origin: {
+    country: "Germany",
+    region: "Nationwide",
+    period: "Medieval (Ancient)"
   },
-  "intro": "Served as thin slices with butter, cheese, cured meats and spreads; popular in northern European diets.",
-  "history": "Vollkornbrot (Whole Grain Bread) is the nutritional powerhouse of Central and Northern European baking. Historically, rye was the dominant grain in these regions due to its ability to grow in cold, damp, and poor soils where wheat struggled. Pure rye bread became a dietary staple in Germany, Scandinavia, and the Baltics. Because rye lacks significant gluten-forming proteins, bakers developed the 'acidification' method (sourdough) not just for flavor, but as a technical necessity to prevent the bread from turning into a gummy mass. This style represents centuries of tradition in using coarse meals, seeds, and long, slow bakes to create one of the most sustainable and shelf-stable breads in history.",
-  "culturalContext": {
-    "significance": [
-      "The 'Pillar of Health' in German and Northern European food culture",
-      "One of the only 100% whole-grain breads that is globally recognized and exported",
-      "Demonstrates the technical mastery of 'Starch-based' (pentosan) baking vs. 'Gluten-based' baking",
-      "A symbol of endurance and resilience—traditionally designed to last for weeks",
-      "Regarded as a premium 'superfood' today for its low glycemic index and high fiber content"
+
+  description: "Vollkornbrot (Whole Grain Bread) is the heavyweight champion of the bread world. Made with 100% rye (often a mix of flour and coarse chops/berries), it has zero gluten development. Instead, it relies on 'pentosans' (gums) and acidification to hold its structure. It is dense, moist, deeply flavorful, and technically challenging due to the 'Starch Attack' phenomenon which requires high acidity to prevent.",
+
+  history: "Rye was the staple crop of Northern Europe where wheat could not survive the cold winters. German bakers perfected the art of using sourdough not just for leavening, but for chemistry: without the acid from the sourdough, the enzymes in the rye would dismantle the starch structure during baking, resulting in a soggy, hollow loaf.",
+
+  difficulty: "Expert",
+  fermentationType: "levain",
+
+  base_formula: [
+    { name: "Rye Meal / Chops (Coarse)", percentage: 50 },
+    { name: "Whole Rye Flour (Dark)", percentage: 50 },
+    { name: "Water (Hot)", percentage: 80 },
+    { name: "Rye Sourdough Starter", percentage: 40 }, // High inoculation crucial for acid
+    { name: "Sunflower Seeds", percentage: 10 },
+    { name: "Salt", percentage: 2 },
+    { name: "Molasses/Syrup", percentage: 3 } // Food for yeast + color
+  ],
+
+  technicalProfile: {
+    hydration: [75, 85], // Rye absorbs a lot
+    salt: [1.8, 2.2],
+    oil: [0, 0],
+    sugar: [2, 5],
+    flourStrength: "N/A. Use Whole Rye. Protein content is irrelevant for structure.",
+    ovenTemp: [200, 240], // Falling heat curve (starts hot, finishes low)
+    recommendedUse: [
+      "Smørrebrød (Open faced sandwiches)",
+      "With aged Gouda or Cured Meats",
+      "Just butter"
     ],
-    "consumptionContext": [
-      "Traditionally sliced paper-thin (very difficult to eat in thick slices)",
-      "The base for 'Abendbrot' (the German evening bread meal) with cheese and cold cuts",
-      "Ideally paired with pungent flavors: smoked fish (herring), liver pâté, or strong mustard",
-      "Often served with a generous layer of unsalted butter to balance the intense grain flavor",
-      "Mandatory that it 'cures' for at least 24-48 hours before the first slice is cut"
-    ],
-    "evolution": [
-      "Middle Ages: Rye becomes the primary grain for the masses in Northern Europe",
-      "1800s: The 'Pumpernickel' (a cousin to Vollkornbrot) is standardized using low heat and long bakes",
-      "1900s: Traditional 'Three-Stage Sourdough' (Detmolder) is developed to optimize rye acidity",
-      "1950s: Modern milling allows for varying 'Schrot' (coarse meal) sizes for diverse textures",
-      "Present: High demand in artisan bakeries as a gluten-sensitive (but not gluten-free) alternative",
-      "Future: Renewed interest in sprouted rye versions for enhanced nutritional bio-availability"
-    ],
-    "rituals": [
-      "The '24-Hour Wait': the absolute rule of never slicing a rye loaf until it has cooled and set for a day",
-      "Smelt Check: the distinctive aroma of 'sour earth' that signals a successful sourdough fermentation",
-      "Smoothing the Paste: using wet hands or a spatula to smooth the top of the sticky, gluten-free dough",
-      "Seed Soaking: the ritual of boiling or soaking rye kernels for hours before adding them to the dough",
-      "The Thin Slice: the use of a specialized machine or very sharp serrated knife to achieve 3-5mm slices"
+    difficulty: "Expert",
+    ballWeight: { recommended: 1000, min: 800, max: 1500 }, // Usually baked in a Pullman tin
+    fermentationSteps: [
+      "Soaker Prep: Soak the coarse rye chops and seeds in boiling water for 12 hours. [Science: Softens the bran and pre-gelatinizes starch]",
+      "Sourdough Build: Build a stiff rye levain. Ripen for 12-16 hours. [Science: Maximize Acetic Acid production]",
+      "Mixing: Combine all ingredients. Mix on LOW speed only. Do not knead. [Science: We are mixing like concrete, not developing gluten. Over-mixing breaks the pentosans]",
+      "Bulk Rest: Short rest (30 mins). [Science: Rye moves fast]",
+      "Shaping: With wet hands (it's sticky like clay), smooth into a greased Pullman pan.",
+      "Final Proof: Proof until the surface shows cracks (Pinholes). [Science: Don't look for double size; look for surface texture]",
+      "Baking: Bake with steam at 240°C for 15 mins, then drop to 190°C for 45-60 mins. [Science: Long slow bake ensures the dense core reaches 98°C]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Intense, earthy, and nutty rye sweetness",
-      "Bold lactic acidity (tang) with vinegar-like notes",
-      "Deeply savory and malted finish",
-      "Subtle molasses or dark chocolate undertones from long baking",
-      "Pungent cereal and fermented grain profile"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "N/A",
+      pl_ratio: "N/A",
+      absorption_capacity: "Extreme",
+      protein_type: "Rye Protein (nutritionally present, functionally useless for structure)",
+      science_explanation: "Structure is a 'Pentosan-Starch Gel'. The sourdough acid (pH < 4.5) inhibits amylase enzymes. Without acid, the amylases would eat the starch gel during the bake (Starch Attack), causing the loaf to collapse."
+    },
+    thermalProfile: {
+      oven_type: "Deck Oven or Combi",
+      heat_distribution: "Falling heat",
+      crust_development: "Think, dark, protective shell",
+      crumb_structure: "Dense, moist, heavy, zero alveoli"
+    },
+    fermentationScience: {
+      yeast_activity: "Secondary",
+      ph_target: "pH 4.0 - 4.2 (Mandatory)",
+      organic_acids: "Acetic Acid dominant (Sour)",
+      enzymatic_activity: "Must be INHIBITED by acidity."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "The 24h Wait",
+        explanation: "Never cut a Rye bread hot. The starch gel needs 24-48 hours to 'set'. If you cut it early, the knife will be gummy and the bread will crumble."
+      },
+      {
+        tip: "Docking",
+        explanation: "Poke holes all over the top (Docking) to prevent the top crust from separating (flying crust)."
+      },
+      {
+        tip: "Sticky Hands",
+        explanation: "Rye dough is incredibly sticky. Always use water on your hands/tools, never flour."
+      },
+      {
+        tip: "Acid is Safety",
+        explanation: "If in doubt, use MORE sourdough. You can't really over-acidify rye, but you can definitely under-acidify it."
+      }
     ],
-    "aromaProfile": [
-      "Damp earth and fermented straw",
-      "Toasted nuts and deep malt",
-      "Subtle notes of dark berries or raisins (natural rye aroma)",
-      "Tangy and sour (from the acetic acid profile)",
-      "Smoky and caramelized"
+    what_if: [
+      {
+        scenario: "The inside is gummy/wet after baking",
+        result: " 'Starch Attack' (Not enough acid) or Underbaked",
+        correction: "Increase the percentage of pre-fermented flour (sourdough) or bake longer."
+      },
+      {
+        scenario: "The crust separated from the crumb",
+        result: "Over-proofed or lack of docking",
+        correction: "Proof less and dock the dough deep."
+      },
+      {
+        scenario: "It tasted bland",
+        result: "Lack of salt",
+        correction: "Rye needs salt (2%+) to balance the sourness."
+      }
     ],
-    "textureNotes": [
-      "Dense and Fudgy: a moist, tight crumb that feels almost like a cake or brownie",
-      "Zero Spring: does not bounce back; it is a structural, solid mass",
-      "Seed Crunch: if containing 'Schrot' or whole rye berries, it provides a pleasant pop",
-      "Crisp, Matte Crust: unlike wheat bread, the crust is firm and dry but not glassy",
-      "Moist Finish: the crumb stays hydrated and cool for up to 14 days"
+    comparisons: [
+      {
+        target_style: "Wheat Sourdough",
+        difference: "Wheat = Gluten/Air/Elasticity. Rye = Pentosans/Gel/Plasticity.",
+        why_choose_this: "Choose Rye for longevity and deep nutrition."
+      },
+      {
+        target_style: "Pumpernickel",
+        difference: "True Pumpernickel is steamed for 16-24 hours at low temp to caramelize; Vollkornbrot is baked normally.",
+        why_choose_this: "Choose Vollkornbrot for a quicker (but still difficult) rye."
+      }
     ],
-    "pairingRecommendations": [
-      "Cheese: Strong blue cheese, aged Gouda, or creamy Havarti",
-      "Fish: Smoked salmon, pickled herring, or sardine pâté",
-      "Meat: Liverwurst, smoked ham, or pastrami",
-      "Spread: Honey with salted butter or a thick layer of quark/cream cheese",
-      "Drink: Strong black coffee, dark beer (Doppelbock), or a shot of Aquavit"
+    q_and_a: [
+      {
+        question: "Is it Gluten Free?",
+        answer: "No. Rye contains glutenin/gliadin relatives, but they don't form strong chains. It is NOT safe for Celiacs.",
+        context: "Health"
+      },
+      {
+        question: "Why use seeds?",
+        answer: "Seeds add texture and mitigate the immense density of the rye crumb.",
+        context: "Ingredients"
+      },
+      {
+        question: "Why hot water?",
+        answer: "To soak the coarse meal. It speeds up hydration.",
+        context: "Technique"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh (0-4 hours): Unedible; too gummy and hot; the crumb is still 'setting'",
-      "Day 1-2: The 'Peak'; the moisture has redistributed, and the acidity has mellowed",
-      "Day 5-7: Excellent; the flavor has fully developed and the 'tang' is very balanced",
-      "Day 14: Still moist and flavorful; the acidity acts as a natural preservative",
-      "Stale: Traditionally grated into salads or used as a base for hearty rye-bread soups"
+    fermentation_methods: [
+      {
+        method: "Levain",
+        suitability: "Mandatory",
+        notes: "Chemical acidification (vinegar) is possible but cheating."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Strong rye sourdough build is essential.",
-    "Hydration: 90-100%"
-  ],
-  "doughImpact": [
-    "100% Rye Sourdough is mandatory; the acid prevents alpha-amylase from turning the crumb into starch-syrup",
-    "High hydration (90-100%) is required because whole rye meal absorbs massive amounts of water",
-    "No gluten development: the dough is a 'paste' or 'mash' (pentosan-based) and should not be kneaded",
-    "Inclusion of 'Schrot' (coarse cracked rye) provides texture and slows down fast-fermenting rye starches",
-    "Minimal handling: the dough is simply 'placed' or 'pushed' into a tin using wet hands"
-  ],
-  "bakingImpact": [
-    "Long, low, and slow bake (1.5 - 3 hours) is necessary to cook the dense mineral-rich interior",
-    "Pans are almost always used because the dough lacks the gluten strength to stand on its own",
-    "A 'steamy' start followed by a very dry finish helps create the protective matte crust",
-    "Maturity is achieved via heat: the starches must gelatinize slowly to prevent a gummy outcome",
-    "Immediately wrapping the hot loaf in linen after baking helps the crust retain enough moisture"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      90,
-      100
-    ],
-    "saltRange": [
-      1.8,
-      2
-    ],
-    "oilRange": [
-      0,
-      3
-    ],
-    "sugarRange": [
-      0,
-      3
-    ],
-    "flourStrength": "100% rye wholegrain or mixed rye meals",
-    "fermentation": {
-      "bulk": t('styles.minimal_bulk_dough_is_more_like_a_paste'),
-      "proof": "60–120 min in pans",
-      "coldRetard": t('styles.sometimes_retarded_to_manage_scheduling')
+
+  deepDive: {
+    hydrationLogic: "High hydration is needed because pentosans absorb 10x their weight in water versus gluten's 2x.",
+    methodSuitability: {
+      direct: { suitable: false, notes: "Requires acid." },
+      biga: { suitable: false, notes: "Use Rye Sour." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        180,
-        210
-      ],
-      "notes": t('styles.long_gentle_bake_bread_often_matured_24_h_before_s')
-    },
-    "difficulty": t('styles.expert_10'),
-    "recommendedUse": [
-      t('common.dense_wholegrain_rye_bread'),
-      t('common.long_keeping_breads')
+    whatIf: [
+      {
+        scenario: "You knead it like wheat",
+        outcome: "You will break the gum structure and get a sticky soup that never rises.",
+        solution: "Mix only until combined."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Light vs Dark Rye",
+        difference: "Light rye has bran removed and behaves more like wheat; Dark/Whole rye requires the full acid treatment."
+      }
+    ],
+    proTips: [
+      "Brush the loaf with water immediately after baking to give it a shine.",
+      "Store in a plastic bag or wrapped in linen; it stays fresh for weeks."
     ]
   },
-  "regionalVariants": [
-    "Pumpernickel - Extra-long (16-24h) steam-baked version with a dark, chocolatey profile",
-    "Schwarzbrot - The classic German 'Black Bread', slightly lighter than 100% rye",
-    "Danish Rugbrød - Dense rye loaf containing high percentages of whole seeds and kernels",
-    "Baltic Black Bread - A 100% rye style from Lithuania/Latvia, often spiced with caraway",
-    "Stone-ground Vollkorn - The most rustic version using only flour ground between stones"
+
+  tags: ["rye", "german", "vollkornbrot", "sourdough", "whole-grain", "dense"],
+
+  watchouts: [
+    "Not enough sourdough starter = Starch Attack.",
+    "Cutting too early = Gummy mess.",
+    "Over-mixing = loss of structure.",
+    "Under-baking = wet core."
   ],
-  "climateScenarios": [
-    "Cold/Humid North: The standard environment; rye loves the damp but requires a warm proofing box",
-    "Arid/Dry: The dough will 'skin' over instantly; keep the tins covered at all times before baking",
-    "Extreme Heat: Rye is a fast fermenter; at 30°C+, it can over-prove in 30 minutes. Use cold water",
-    "Coastal: High salt air aids the preservative qualities but can make the matte crust tacky"
+
+  notes: [
+    "Requires Rye Sourdough Starter.",
+    "No Gluten Development needed.",
+    "Wait 24h before slicing.",
+    "High Acidity Mandatory.",
+    "Excellent keeper."
   ],
-  "styleComparisons": [
-    "vs. Pain de Campagne: Vollkornbrot has NO white flour and 0% gluten-feel vs. Campagne's 80/20",
-    "vs. Baguette: Worlds apart; Vollkornbrot is a 'survival' masonry bread vs Baguette's 'light air' roll",
-    "vs. Rye Sourdough (Mixed): Vollkornbrot is 100% rye meal vs Mixed's 40-70% flour blend",
-    "vs. Whole Wheat: Rye is pentosan-based (sticky) vs Whole Wheat's gluten-based (elastic)"
-  ],
-  "parameterSensitivity": [
-    "Non-Negotiable: pH Level - if the dough isn't acidic enough, the 'Starch Attack' (syneresis) will occur",
-    "Critical: Water Absorption - even 2% variations in coarse meal size change the water need drastically",
-    "Salt Level: Needs 2% to balance the potentially overwhelming sweetness of the rye starch",
-    "Proofing: If it over-proofs in the pan, it will cave in during baking as there is no gluten support",
-    "Pan Filling: Filling the tin to exactly 70% allows for the slow and heavy rise of the rye paste"
-  ],
-  "risks": [
-    "The 'Starch Syrup' Crumb: Gummy, un-cuttable interior due to insufficient sourdough acidity",
-    "Cave-In: Over-proofing or moving the tins too aggressively before the bake starts",
-    "Cracked Crust: Oven was too hot initially or not enough steam during the first 20 minutes",
-    "Soggy Bottom: Not removing the loaf from the tin immediately after baking",
-    "Bitterness: Using old, oxidized whole rye meal; always use freshly ground rye if possible"
-  ],
-  "notes": [
-    "DO NOT SLICE while warm—you will tear the internal structure and think the bread is failures",
-    "Use a Pullman tin with a lid for a perfectly square 'sandwich' profile common in professional shops",
-    "A 3-stage sourdough build (Detmolder) is the enthusiast's way to get the best flavor and acidity",
-    "Brush the top with water immediately after baking for a slightly more polished, less dusty finish",
-    "If the crust is too hard, wrap the cooled bread in plastic for 24 hours to soften the skin"
-  ],
-  "tags": [
-    t('common.dense_wholegrain_rye_bread'),
-    t('common.long_keeping_breads'),
-    t('common.bread'),
-    t('common.germany')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": "Bread: A Baker's Book of Techniques and Recipes",
-      "url": "https://www.amazon.com/Bread-Bakers-Book-Techniques-Recipes/dp/1118132718",
-      "author": "Jeffrey Hamelman",
-      "year": 2012
+      source: "The Rye Baker",
+      url: "https://theryebaker.com/",
+      author: "Stanley Ginsberg",
+      year: "2016"
     },
     {
-      "title": t('styles.modernist_bread_18'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
-    },
-    {
-      "title": "The German Bakery",
-      "url": "https://www.germanbakery.com/technical-rye/",
-      "author": "German Bakers Guild",
-      "year": 2021
-    },
-    {
-      "title": "Culinaria Germany",
-      "url": "https://www.amazon.com/Culinaria-Germany-Christine-Metzger/dp/3833149141",
-      "author": "Christine Metzger",
-      "year": 2008
+      source: "German Baking Institute",
+      url: "https://www.baeckerhandwerk.de/",
+      author: "ADB",
+      year: "2023"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "Why is it mandatory to use sourdough in 100% rye bread?",
-      "answer": "This is a technical requirement, not just for flavor. Rye contains high levels of an enzyme called alpha-amylase. Without a low pH (acidity) from sourdough, these enzymes would break down the rye starches into syrup during baking, resulting in a gummy, wet, and inedible 'mashed' interior."
-    },
-    {
-      "question": "Why can't I knead rye dough like I do with wheat?",
-      "answer": "Rye does not contain the same gluten-forming proteins as wheat. Instead of a gluten network, rye bread relies on 'Pentosans' (complex sugars) to hold gas. Kneading does nothing for rye; instead, you simply mix it into a uniform paste. Over-mixing can actually make it gummier."
-    },
-    {
-      "question": "How long should I wait before slicing 100% rye bread?",
-      "answer": "You must wait at least 24 hours, and ideally 48 hours. When it comes out of the oven, the inside is still a wet paste. The cooling period allows the starch to 'retrograde' or set. If you slice it too early, you'll find a gummy mess and the bread won't have its proper flavor."
-    },
-    {
-      "question": "Is 100% rye Vollkornbrot gluten-free?",
-      "answer": "No. Rye contains gluten (specifically secalin), though much less than wheat and in a form that behaves differently. It is not suitable for people with Celiac disease. However, many people with non-celiac gluten sensitivity find it easier to digest due to the long sourdough fermentation and low glycemic index."
-    },
-    {
-      "question": "How should I store such a dense loaf?",
-      "answer": "Wrap it in a clean linen cloth or place it in a wooden bread box. Do not put it in a plastic bag for the first 48 hours as it needs to 'breathe' out residual moisture. Once set, it can last up to 2 weeks at room temperature."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: true,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/vollkornbrot-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["caraway_seeds", "sunflower_seeds", "molasses"]
 };

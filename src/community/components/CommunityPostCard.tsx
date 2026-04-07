@@ -14,7 +14,7 @@ interface CommunityPostCardProps {
 }
 
 export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
     const [showComments, setShowComments] = useState(false);
     const [commentCount, setCommentCount] = useState(post.comments);
     const { navigate } = useRouter();
@@ -38,6 +38,7 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({ post }) =>
                 userPhotoURL={post.userPhotoURL}
                 createdAt={post.createdAt}
                 title={post.title} // Pass title to header if we want it there, or handle below
+                postId={post.id}
             />
 
             {/* Photo Section - Full Bleed */}

@@ -131,7 +131,7 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
                     {/* Notification Toggle */}
                     <button
                         onClick={toggleNotifications}
-                        title={notificationsEnabled ? "Disable Alerts" : "Enable Live Alerts"}
+                        title={notificationsEnabled ? t('calculator.disable_alerts_392') : t('calculator.enable_live_alerts_393')}
                         className={`p-2 rounded-lg transition-colors ${notificationsEnabled ? 'bg-amber-100 text-amber-600' : 'bg-slate-100 text-slate-400 hover:text-slate-600'}`}
                     >
                         {notificationsEnabled ? <SolidBellIcon className="w-5 h-5" /> : <BellIcon className="w-5 h-5" />}

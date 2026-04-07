@@ -25,3 +25,7 @@ functions/temp_*.js
 *.njsproj
 *.sln
 *.sw?
+
+# Environment Variables
+.env
+.env.*

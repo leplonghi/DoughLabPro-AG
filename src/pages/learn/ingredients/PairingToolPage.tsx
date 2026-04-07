@@ -74,8 +74,21 @@ const PAIRING_GUIDES: Record<string, PairingGuide> = {
 };
 
 const PairingToolPage: React.FC = () => {
+<<<<<<< HEAD
     const { t } = useTranslation();
     const [selectedIngredient, setSelectedIngredient] = useState<keyof typeof PAIRING_GUIDES>('mozzarella');
+=======
+  const { t } = useTranslation();
+  const pairingIngredients = [
+    { value: '', label: 'Select an ingredient...' },
+    { value: 'mozzarella', label: t('learn.mozzarella_319') },
+    { value: 'gorgonzola', label: t('learn.gorgonzola_320') },
+    { value: 'pumpkin', label: t('learn.pumpkin_321') },
+    { value: 'red_onion', label: t('learn.red_onion_322') },
+    { value: 'mushrooms', label: t('learn.mushrooms_323') },
+    { value: 'prosciutto', label: 'Prosciutto (Cured Ham)' },
+  ];
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
     const selectedGuide = useMemo(() => PAIRING_GUIDES[selectedIngredient], [selectedIngredient]);
 

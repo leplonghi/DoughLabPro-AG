@@ -24,6 +24,7 @@ const coreFeatures = [
     'Learning Library',
 ];
 
+<<<<<<< HEAD
 const advancedFeatures = [
     'Unlimited Saved Batches',
     'Advanced Calculator Mode',
@@ -117,6 +118,20 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
             setIsPortalLoading(false);
         }
     };
+=======
+    const features = [
+        { name: t('ui.unlimited_saved_batches_154'), free: false, pro: true },
+        { name: t('ui.advanced_calculator_mode_155'), free: false, pro: true },
+        { name: t('ui.create_custom_styles_156'), free: false, pro: true },
+        { name: 'AI Assistant (Doughbot)', free: false, pro: true },
+        { name: t('ui.oven_analysis_tool_157'), free: false, pro: true },
+        { name: t('ui.levain_management_158'), free: false, pro: true },
+        { name: t('ui.export_to_pdf_159'), free: false, pro: true },
+        { name: t('ui.basic_calculator_160'), free: true, pro: true },
+        { name: t('ui.standard_presets_161'), free: true, pro: true },
+        { name: t('ui.community_access_162'), free: true, pro: true },
+    ];
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
     return (
         <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out] px-4 py-12 sm:px-6 lg:px-8">
@@ -173,7 +188,11 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                         onClick={handleContinueFree}
                         className="mt-8 w-full rounded-xl border border-dlp-border bg-white/80 py-3 px-4 text-center text-sm font-semibold text-dlp-text-secondary transition-colors hover:bg-dlp-bg-muted"
                     >
+<<<<<<< HEAD
                         {t('common.continue_with_free')}
+=======
+                        {hasProAccess ? t('ui.current_plan_163') : t('ui.upgrade_to_pro_164')}
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                     </button>
                 </AppSurface>
 

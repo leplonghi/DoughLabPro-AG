@@ -50,8 +50,8 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
 
             {/* Lock Overlay */}
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/70 backdrop-blur-[1px] z-10 p-6 text-center transition-all duration-300">
-                <div className="rounded-full bg-slate-900 p-3 mb-3 shadow-lg group-hover:scale-110 transition-transform">
-                    <LockClosedIcon className="h-6 w-6 text-lime-400" />
+                <div className="rounded-full bg-lime-50 p-4 mb-3 shadow-sm ring-1 ring-lime-100 group-hover:scale-110 transition-transform">
+                    <LockClosedIcon className="h-6 w-6 text-dlp-brand" />
                 </div>
 
                 <h3 className="text-lg font-bold text-slate-900 mb-1">{t('common.pro_feature')}</h3>
@@ -62,7 +62,7 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
 
                 <button
                     onClick={() => openPaywall('general')}
-                    className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 group-hover:scale-105"
+                    className="bg-gradient-to-r from-[#51a145] to-[#3e8b32] hover:from-[#3e8b32] hover:to-[#216416] text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 group-hover:scale-105"
                 >
                     <SparklesIcon className="h-4 w-4 text-lime-400" />{t('common.unlock_now')}</button>
             </div>

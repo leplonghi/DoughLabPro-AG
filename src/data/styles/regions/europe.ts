@@ -22,7 +22,7 @@ export const europeStyles: DoughStyle[] = [
             ovenTemp: { ideal: 250, min: 240, max: 260 },
             fermentationTime: '18-24h',
             difficulty: 'Hard',
-            ballWeight: { recommended: 350, min: 300, max: 400 } // Standard baguette size
+            ballWeight: { recommended: 350, min: 300, max: 400 }
         },
         calculation: {
             method: 'baker_percentage',
@@ -95,6 +95,7 @@ export const europeStyles: DoughStyle[] = [
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png',
         },
+        recommendedFlavorComponents: ["salted_butter_normandy", "brie_de_meaux", "malt_powder", "honey_raw", "vanilla_madagascar", "olive_oil_extra_virgin"]
     },
     {
         id: 'brioche-tete',
@@ -116,11 +117,11 @@ export const europeStyles: DoughStyle[] = [
             { name: 'styles.brioche_tete_ing_milk', percentage: 10 },
         ],
         specs: {
-            hydration: { ideal: 60, min: 50, max: 70 }, // Hydration is complex due to eggs/butter
+            hydration: { ideal: 60, min: 50, max: 70 },
             ovenTemp: { ideal: 190, min: 180, max: 200 },
             fermentationTime: '12-24h',
             difficulty: 'Expert',
-            ballWeight: { recommended: 400, min: 250, max: 600 } // Nanterre or Tete
+            ballWeight: { recommended: 400, min: 250, max: 600 }
         },
         calculation: {
             method: 'baker_percentage',
@@ -200,6 +201,7 @@ export const europeStyles: DoughStyle[] = [
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png',
         },
+        recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "vanilla_madagascar", "dark_chocolate_70", "citrus_zest", "raisins"]
     },
     {
         id: 'laugenbrezel',
@@ -227,7 +229,7 @@ export const europeStyles: DoughStyle[] = [
             ballWeight: { recommended: 85, min: 70, max: 110 }
         },
         calculation: {
-            method: 'baker_percentage', // Low hydration standard method
+            method: 'baker_percentage',
             requiresYeast: true,
             requiresSteam: false,
             allowOil: true,
@@ -304,6 +306,7 @@ export const europeStyles: DoughStyle[] = [
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png',
         },
+        recommendedFlavorComponents: ["salted_butter_normandy", "malt_powder", "lard_pork_fat", "sesame_seeds", "poppy_seeds"]
     },
     {
         id: 'english_muffin',
@@ -325,8 +328,8 @@ export const europeStyles: DoughStyle[] = [
         ],
         specs: {
             hydration: { ideal: 78, min: 75, max: 82 },
-            ovenTemp: { ideal: 200, min: 180, max: 220 }, // Griddle temp
-            fermentationTime: '12-24h', // Cold ferment helps nooks
+            ovenTemp: { ideal: 200, min: 180, max: 220 },
+            fermentationTime: '12-24h',
             difficulty: 'Medium',
             ballWeight: { recommended: 65, min: 55, max: 80 }
         },
@@ -386,12 +389,13 @@ export const europeStyles: DoughStyle[] = [
             hero: '/images/styles/english_muffin_toasted.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "cream_cheese", "strawberry_jam", "citrus_zest"]
     },
     {
         id: 'khachapuri-adjaruli',
         name: "styles.khachapuri_adjaruli",
-        region: 'Europe', // Or switch to Asia/General, but culturally Georgian cuisine is often grouped with Eastern Europe/Black Sea.
+        region: 'Europe',
         subRegion: 'Georgia',
         category: 'Enriched',
         recipeStyle: RecipeStyle.FLATBREAD,
@@ -476,7 +480,8 @@ export const europeStyles: DoughStyle[] = [
             hero: '/images/styles/khachapuri_adjarian.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "fior_di_latte", "pecorino_romano", "cherry_tomatoes_confit", "basil_fresh"]
     },
     {
         id: 'danish-rugbrod',
@@ -489,8 +494,8 @@ export const europeStyles: DoughStyle[] = [
         description: "styles.danish_rugbrod_desc",
         history_context: "danish_rugbrod_history",
         base_formula: [
-            { name: 'styles.danish_rugbrod_ing_rye', percentage: 100 }, // Or split 70/30 Rye/Wheat
-            { name: 'styles.ingredients_water', percentage: 90 }, // Rye absorbs a lot
+            { name: 'styles.danish_rugbrod_ing_rye', percentage: 100 },
+            { name: 'styles.ingredients_water', percentage: 90 },
             { name: 'styles.danish_rugbrod_ing_kernels', percentage: 50 },
             { name: 'styles.danish_rugbrod_ing_seeds', percentage: 30 },
             { name: 'styles.danish_rugbrod_ing_starter', percentage: 30 },
@@ -499,10 +504,10 @@ export const europeStyles: DoughStyle[] = [
         ],
         specs: {
             hydration: { ideal: 90, min: 80, max: 100 },
-            ovenTemp: { ideal: 180, min: 160, max: 200 }, // Low and slow
+            ovenTemp: { ideal: 180, min: 160, max: 200 },
             fermentationTime: '12-24h',
             difficulty: 'Hard',
-            ballWeight: { recommended: 900, min: 700, max: 1200 } // Loaf
+            ballWeight: { recommended: 900, min: 700, max: 1200 }
         },
         calculation: {
             method: 'baker_percentage',
@@ -567,7 +572,8 @@ export const europeStyles: DoughStyle[] = [
             hero: '/images/styles/danish_rye_slice.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "seeds", "sunflower_seeds", "caraway_seeds"]
     },
     {
         id: 'tiger-bread',
@@ -650,7 +656,8 @@ export const europeStyles: DoughStyle[] = [
             hero: '/images/styles/tiger_bread_crackled.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "sesame_seeds", "poppy_seeds", "butter_dry_84"]
     },
     {
         id: 'irish-soda-bread',
@@ -658,13 +665,13 @@ export const europeStyles: DoughStyle[] = [
         region: 'Europe',
         subRegion: 'Ireland',
         category: 'Bread',
-        recipeStyle: RecipeStyle.COUNTRY_LOAF, // Technically chemically leavened
+        recipeStyle: RecipeStyle.COUNTRY_LOAF,
         tags: ['styles.irish_soda_bread_tag_quick', 'styles.irish_soda_bread_tag_noyeast', 'styles.irish_soda_bread_tag_buttermilk'],
         description: "styles.irish_soda_bread_desc",
         history_context: "irish_soda_bread_history",
         base_formula: [
             { name: 'styles.irish_soda_bread_ing_flour', percentage: 100 },
-            { name: 'styles.irish_soda_bread_ing_buttermilk', percentage: 90 }, // Very high because it's a batter/dough hybrid
+            { name: 'styles.irish_soda_bread_ing_buttermilk', percentage: 90 },
             { name: 'styles.irish_soda_bread_ing_soda', percentage: 2 },
             { name: 'styles.ingredients_salt', percentage: 1.5 }
         ],
@@ -731,6 +738,7 @@ export const europeStyles: DoughStyle[] = [
             hero: '/images/styles/irish_soda_bread_rustic.png',
             dough: '/images/styles/placeholder-dough.png',
             crumb: '/images/styles/placeholder-dough.png'
-        }
+        },
+        recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "raisins", "seeds", "butter_dry_84"]
     }
 ];

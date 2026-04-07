@@ -25,6 +25,7 @@ import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
+import { validateDoughConfig } from '@/features/calculator/domain/validators/DoughConfigValidator';
 
 interface CalculatorContextType {
     config: DoughConfig;
@@ -205,54 +206,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
     // --- Validation ---
     useEffect(() => {
-        const validationErrors: FormErrors = {};
-
-        if (config.numPizzas < 1 || config.numPizzas > 100) {
-            validationErrors.numPizzas = 'A value between 1 and 100 is recommended.';
-        }
-        // Dynamic Weight Validation based on Style
-        let minW = 100;
-        let maxW = 2000;
-
-        // Try to find the full definition
-        const fullStyle = STYLES_DATA.find(s => s.id === config.stylePresetId);
-
-        if (fullStyle?.technicalProfile?.ballWeight) {
-            minW = fullStyle.technicalProfile.ballWeight.min;
-            maxW = fullStyle.technicalProfile.ballWeight.max;
-        } else if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
-            const rangeStr = DOUGH_WEIGHT_RANGES[config.recipeStyle] || '';
-            const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
-            if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
-                minW = nums[0];
-                maxW = nums[1];
-            }
-        }
-
-        if (config.doughBallWeight < minW || config.doughBallWeight > maxW) {
-            validationErrors.doughBallWeight = `A value between ${minW}g and ${maxW}g is recommended.`;
-        }
-        if (config.hydration < 0 || config.hydration > 120) {
-            validationErrors.hydration = 'A value between 0% and 120% is recommended.';
-        }
-        if (config.scale < 0.25 || config.scale > 4) {
-            validationErrors.scale = 'A scale multiplier between 0.25x and 4x is recommended.';
-        }
-        if (config.bakingTempC < 150 || config.bakingTempC > 500) {
-            validationErrors.bakingTempC = 'A value between 150°C and 500°C is recommended.';
-        }
-        const maxYeast = isAnySourdough(config.yeastType) ? 50 : 5;
-        if (config.yeastPercentage < 0 || config.yeastPercentage > maxYeast) {
-            validationErrors.yeastPercentage = `A value between 0% and ${maxYeast}% is recommended.`;
-        }
-        if (config.fermentationTechnique !== FermentationTechnique.DIRECT) {
-            if (
-                config.prefermentFlourPercentage < 10 ||
-                config.prefermentFlourPercentage > 100
-            ) {
-                validationErrors.prefermentFlourPercentage = 'A value between 10% and 100% is recommended.';
-            }
-        }
+        const validationErrors = validateDoughConfig(config);
         setErrors(validationErrors);
     }, [config]);
 

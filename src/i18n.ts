@@ -1,3 +1,4 @@
+
 import React, { ReactNode } from 'react';
 import i18n from 'i18next';
 import { initReactI18next, useTranslation as useI18nextTranslation } from 'react-i18next';
@@ -39,6 +40,7 @@ i18n
   .init({
     lng: getInitialLocale(),
     fallbackLng: 'en',
+<<<<<<< HEAD
     supportedLngs: SUPPORTED_LOCALES,
     ns: ['common'], // Default namespace loaded initially
     defaultNS: 'common',
@@ -46,6 +48,14 @@ i18n
     // even if not explicitly loaded by the component.
     fallbackNS: ['common', 'auth', 'calculator', 'dashboard', 'marketing', 'method', 'styles', 'doughbot', 'profile', 'settings'],
     load: 'currentOnly',
+=======
+    supportedLngs: ['en', 'pt', 'es'],
+    ns: ['common', 'ui', 'calculator', 'styles', 'learn', 'errors'], // New namespaces
+    defaultNS: 'common',
+    // fallbackNS ensures compatibility during migration by resolving keys from all namespaces
+    fallbackNS: ['ui', 'common', 'calculator', 'styles', 'learn', 'errors'],
+    load: 'languageOnly',
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     debug: import.meta.env.DEV,
     interpolation: {
       escapeValue: false,
@@ -55,14 +65,13 @@ i18n
     },
     react: {
       useSuspense: false, // Prevent white screen during transition
-      nsMode: 'fallback' // Important for looking up keys in fallback namespaces
+      nsMode: 'fallback'
     },
     parseMissingKeyHandler: (key: string, defaultValue?: string) => {
       if (defaultValue) return defaultValue;
       console.warn(`[i18n] Missing key: ${key}`);
 
       // Fallback to a readable version of the key's last segment
-      // Also strip common technical suffixes like _name, _desc, _tag
       const parts = key.split(/[.:]/);
       const lastPart = parts[parts.length - 1];
 
@@ -115,27 +124,51 @@ export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 export const useTranslation = (ns?: string | string[]) => {
   const { t, i18n } = useI18nextTranslation(ns);
 
+<<<<<<< HEAD
   const setLocale = (preference: LocalePreference) => {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(LOCALE_STORAGE_KEY, preference);
     }
     const nextLocale = preference === 'system' ? getSystemLocale() : preference;
     void i18n.changeLanguage(nextLocale);
+=======
+  const setLocale = (l: Locale) => {
+    i18n.changeLanguage(l);
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
   };
 
   const tWrapper = (key: string, replacements?: Record<string, any>): string => {
-    // Handle dot-separated namespaces by converting them to colon-separated
-    // This allows keys like 'styles.name' to correctly resolve to the 'styles' namespace
-    const namespaces = ['common', 'auth', 'calculator', 'dashboard', 'marketing', 'method', 'styles', 'doughbot', 'profile', 'settings'];
+    // Advanced remapping for legacy keys to new architecture
     let normalizedKey = key;
 
-    for (const ns of namespaces) {
-      if (key.startsWith(`${ns}.`)) {
-        normalizedKey = key.replace(`${ns}.`, `${ns}:`);
+    // Direct legacy mappings
+    const mappings = [
+      { prefix: 'method.', targetNs: 'learn', stripPrefix: true },
+      { prefix: 'marketing.learn.', targetNs: 'learn', stripPrefix: true },
+      { prefix: 'marketing.', targetNs: 'ui', stripPrefix: true }, // Covers community_page, etc.
+      { prefix: 'dashboard.', targetNs: 'ui', keepPrefix: true }, // dashboard.foo -> ui:dashboard.foo
+      { prefix: 'auth.', targetNs: 'ui', keepPrefix: true },
+      { prefix: 'profile.', targetNs: 'ui', keepPrefix: true },
+      { prefix: 'doughbot.', targetNs: 'ui', keepPrefix: true },
+      { prefix: 'mylab.', targetNs: 'ui', keepPrefix: true },
+      { prefix: 'settings.', targetNs: 'ui', stripPrefix: true }, // settings.general -> ui:general
+      { prefix: 'calculator.', targetNs: 'calculator', stripPrefix: true }, // calculator.foo -> calculator:foo
+      { prefix: 'styles.', targetNs: 'styles', stripPrefix: true }, // styles.foo -> styles:foo
+    ];
+
+    for (const mapping of mappings) {
+      if (key.startsWith(mapping.prefix)) {
+        if (mapping.stripPrefix) {
+          normalizedKey = `${mapping.targetNs}:${key.substring(mapping.prefix.length)}`;
+        } else if (mapping.keepPrefix) {
+          // Explicitly format as ns:key.subKey
+          normalizedKey = `${mapping.targetNs}:${key}`;
+        }
         break;
       }
     }
 
+<<<<<<< HEAD
     const result = t(normalizedKey, replacements) as unknown;
 
     if (typeof result === 'string') {
@@ -164,6 +197,24 @@ export const useTranslation = (ns?: string | string[]) => {
 
   const currentLanguage = normalizeLocale(i18n.resolvedLanguage || i18n.language);
   const localePreference = getStoredLocalePreference();
+=======
+    // If no mapping matched, but it looks like a namespaced key (e.g. "ns:key"), leave it.
+    // If it's a simple key "save", it will fallback to common/ui.
+    // If it is "common.foo", rewrite to "common:foo"
+    if (normalizedKey === key) {
+      if (key.startsWith('common.')) {
+        normalizedKey = key.replace('common.', 'common:');
+      } else if (key.startsWith('ui.')) {
+        normalizedKey = key.replace('ui.', 'ui:');
+      }
+    }
+
+    return t(normalizedKey, replacements) as unknown as string;
+  };
+
+  // Ensure we return a valid Locale from types, even if detection picked an unsupported one
+  const currentLanguage = (i18n.resolvedLanguage || i18n.language)?.split('-')[0];
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
   return {
     locale: currentLanguage as Locale,

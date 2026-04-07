@@ -1,246 +1,271 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * CLASSIC BOILED BAGELS (NEW YORK STYLE)
+ * 
+ * Researched and validated content:
+ * - Origin: Krakow, Poland (17th c.), popularized in NYC (20th c.)
+ * - Technique: Low hydration (50-55%), Boiling before baking, cold fermentation
+ * - Ingredients: High-gluten flour, barley malt syrup
+ * - Science: Boiling gelatinizes surface starch for the signature chewy crust
+ */
+export const bagels_classic: DoughStyleDefinition = {
+  id: "bagels_classic",
+  name: "Classic Boiled Bagels",
+  category: "bread",
+  recipeStyle: RecipeStyle.BAGEL,
+  family: "Jewish-American Specialty Bread",
 
-export const bagels_classic: StyleDefinition = {
-  "id": "bagels_classic",
-  "title": t('styles.classic_boiled_bagels'),
-  "subtitle": t('styles.specialty_breads'),
-  "category": t('styles.bread_2'),
-  "family": t('styles.specialty_breads_2'),
-  "variantName": t('styles.classic_boiled_bagels_2'),
-  "origin": {
-    "country": "Poland/United States",
-    "region": t('styles.jewish_baking_new_york'),
-    "period": "Traditional/Modern"
+  origin: {
+    country: "Poland / United States",
+    region: "Krakow / New York City",
+    period: "17th Century (Poland), 1920s (NYC Unionization)"
   },
-  "intro": "Served with spreads like cream cheese and toppings such as smoked fish, widely found in bagel shops and bakeries.",
-  "history": "Bagels originated in the Jewish communities of Poland in the 17th century, where they were traditionally given to women after childbirth. They migrated to New York City with Jewish immigrants in the late 19th century. The 'New York Style' Bagel was defined by the use of high-gluten flour and a mandatory boiling step in malted water, which creates the unique shiny, leathery crust and dense, chewy interior that distinguishes them from common rolls.",
-  "culturalContext": {
-    "significance": [
-      "The undisputed culinary icon of New York City and Jewish diaspora culture",
-      "One of the few breads in the world where density is a positive quality marker",
-      "Historically associated with 'Lox and Schmear' (smoked salmon and cream cheese)",
-      "Symbol of late-night and early-morning urban life",
-      "Protected by the 'Bagel Bakers Local 338' union in NY for decades, keeping the craft secret"
+
+  description: "The classic boiled bagel is a dense, chewy, and shiny ring of bread. Unlike any other bread, it is boiled in water (ideally containing malt syrup) before being baked. This unique two-step process sets the crust early, resulting in a dense, non-porous crumb and a thick, resilient, and glossy exterior that provides the trademark New York 'chew'.",
+
+  history: "Bagels originated in the Jewish communities of Poland, first mentioned in 1610 in Krakow. They were traditionally given as gifts to women in childbirth due to their circular shape symbolizing the cycle of life. Jewish immigrants brought the recipe to New York in the late 19th century. By the 1920s, the craft was so specialized that the Bagel Bakers Local 338 union was formed, strictly controlling the production of hand-rolled, boiled, and stone-baked bagels. While the 'New York water' is often cited as a secret ingredient, the real secret lies in the long cold fermentation and the precise boiling technique.",
+
+  difficulty: "Hard",
+  fermentationType: "cold",
+
+  base_formula: [
+    { name: "High-Gluten Flour (13.5-14.5% protein)", percentage: 100 },
+    { name: "Water", percentage: 53 },
+    { name: "Salt", percentage: 2 },
+    { name: "Barley Malt Syrup", percentage: 3 },
+    { name: "Instant Yeast", percentage: 0.5 }
+  ],
+
+  technicalProfile: {
+    hydration: [50, 58],
+    salt: [1.8, 2.2],
+    oil: [0, 0],
+    sugar: [2, 4], // Usually malt
+    flourStrength: "Extra-Strong Bread or High-Gluten Flour (W340-400)",
+    ovenTemp: [220, 240],
+    recommendedUse: [
+      "Lox and Cream Cheese (Classic NY)",
+      "Breakfast sandwiches with bacon and egg",
+      "Pizza Bagels"
     ],
-    "consumptionContext": [
-      "Traditionally served sliced vertically with cream cheese and toppings",
-      "Available in 'Everything', 'Sesame', 'Poppy', and 'Cinnamon Raisin' varieties",
-      "The 'Lox' Bagel (salmon, cream cheese, capers, onions, tomatoes) is the classic meal",
-      "A staple for weekend family brunches in the Northeastern US",
-      "In NY, customers often debate whether to 'toast' or 'not to toast' a fresh bagel"
-    ],
-    "evolution": [
-      "1600s: First records of 'Beygls' in Krakow, Poland",
-      "1910s: Bagel unions in NYC standardize the size (originally much smaller)",
-      "1960s: Introduction of the automated bagel machine (Thompson) changes the industry",
-      "1990s: Bagels become a global 'super-food', though quality often drops in mass production",
-      "2000s: Resurgence of hand-rolled, wood-fired 'artisan' bagel shops in NY and Montreal",
-      "Present: Global fusion bagels containing everything from rainbows to ube swirls"
-    ],
-    "rituals": [
-      "The Boiling Ritual: observing the 'float' when the bagels are dropped into malted boiling water",
-      "Hand-Rolling: the ritual of rolling a dough strip around the hand to create the seamless ring",
-      "The 'Everything' Shower: dredging the wet, boiled bagel through a mix of seeds and salt",
-      "The Schmear: applying a thick, generous layer of cream cheese from end to end",
-      "Checking the 'Hole': ensures it's tight enough to hold cream cheese but visible for boiling"
+    difficulty: "Hard",
+    ballWeight: { recommended: 115, min: 100, max: 140 }, // Classic NY size
+    fermentationSteps: [
+      "Mix: Combine ingredients and mix until very smooth. This is a stiff dough; your mixer will work hard. [Science: Low hydration and high gluten require significant mechanical energy to fully hydrate the protein chains]",
+      "Bulk Rise: 1 hour at room temperature. [Science: Initial yeast activation ensures the dough isn't too dense to roll]",
+      "Balling and Shaping: Divide and roll into tight logs, then loop around the hand to form rings. [Science: Hand-rolling creates a spiral gluten structure that resists expansion, increasing chewiness]",
+      "Cold Retard: 12-24 hours at 4°C. [Science: Cold fermentation allows for flavor development and surface 'micro-blistering' caused by CO2 migration]",
+      "The 'Float Test': Drop a cold bagel in water; it should float. [Science: Indicates enough CO2 has been trapped to survive the boiling process]",
+      "Boiling: 45-60 seconds per side in water with malt syrup. [Science: Gelatinizes surface starches, killing yeast activity on the periphery and setting the crust thickness]",
+      "Baking: 15-18 minutes at high heat. Traditionally on burlap-lined boards, then flipped onto the stone. [Science: High heat completes the Maillard reaction on the gelatinized surface, creating the shine]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Subtle malty sweetness from barley malt syrup (inside and in the boil)",
-      "Clean, high-quality toasted wheat",
-      "Savory and salty surface (especially seeds/everything mix)",
-      "Zero acidity (unless using sourdough), focusing on pure fermentative depth",
-      "Distinct 'leathery' toasted note from the boiled crust"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W340-400 (Extra Strong)",
+      pl_ratio: "0.65-0.80 (Tenacious)",
+      absorption_capacity: "Moderate (despite high strength, low water is used)",
+      protein_type: "Hard Red Winter/Spring Wheat with high glutenin content",
+      science_explanation: "To achieve the 'bagel chew,' the gluten network must be exceptionally strong and dense. High-gluten flour is non-negotiable."
+    },
+    thermalProfile: {
+      oven_type: "Deck oven or Stone-floor gas oven",
+      heat_distribution: "Bottom conduction (high), top radiant",
+      crust_development: "Thick, leathery, high-gloss shine, deep mahogany color",
+      crumb_structure: "Extremely tight, dense, no large alveoli, very chewy"
+    },
+    fermentationScience: {
+      yeast_activity: "Low (slowed by cold and low hydration)",
+      ph_target: "pH 5.0-5.2",
+      organic_acids: "Balanced; malt provides the primary flavor profile over acidity",
+      enzymatic_activity: "Amylase activity is boosted by boiling, converting surface starches into sugars for rapid browning"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Malt is mandatory",
+        explanation: "Barley malt syrup gives bagels their distinct 'old world' flavor and the dark, shiny crust. Avoid using honey or white sugar if you want the authentic New York profile."
+      },
+      {
+        tip: "The 24-hour Retard",
+        explanation: "Never skip the overnight rest in the fridge. This is where the flavor develops and the skin becomes smooth and blistered. A same-day bagel is just a donut-shaped roll."
+      },
+      {
+        tip: "Don't over-boil",
+        explanation: "60 seconds per side is plenty. If you boil too long, the crust becomes too thick and the bagel will fail to rise in the oven, leading to a rock-hard result."
+      },
+      {
+        tip: "Steam is not needed in the oven",
+        explanation: "Since you've already boiled the bagel, the surface is fully hydrated and gelatinized. Adding steam to the oven will actually prevent the crust from becoming properly crisp."
+      },
+      {
+        tip: "The Hand-Roll Technique",
+        explanation: "Wrap the dough strip around your palm, overlapping the ends by 2 inches, and roll the seal back and forth on the table. This creates a far superior texture to the 'poke-a-hole' method."
+      }
     ],
-    "aromaProfile": [
-      "Deep malt and honey-like notes",
-      "Toasted sesame and poppy seeds (standard varieties)",
-      "Freshly baked heavy bread",
-      "Smoky wood-fired notes (in traditional shops)",
-      "Nutty wheat aromas"
+    what_if: [
+      {
+        scenario: "The bagels are flat and wrinkled",
+        result: "Over-proofed before boiling",
+        correction: "The bagels should be boiled straight from the fridge. If they sit at room temp too long after the cold retard, they will lose structural integrity in the water."
+      },
+      {
+        scenario: "The hole completely disappears during baking",
+        result: "The hole was too small or dough was too soft",
+        correction: "The hole should be about the size of a golf ball when shaped. Use a stiffer dough (lower hydration)."
+      },
+      {
+        scenario: "The crust is dull and pale",
+        result: "Water was not boiling or no malt was added",
+        correction: "Ensure a vigorous boil and use plenty of malt syrup or a tablespoon of barley malt powder in the water."
+      },
+      {
+        scenario: "The bagels are too airy and soft",
+        result: "Too much hydration or too much yeast",
+        correction: "Drop hydration to 53% and yeast to 0.5%. High-gluten flour is also essential for the dense crumb."
+      }
     ],
-    "textureNotes": [
-      "The 'NY Chew': extreme resistance when bitten, followed by a dense, moist finish",
-      "Shiny, Leathery Crust: smooth, thin, and slightly tough due to the boiling step",
-      "The 'Blisters': tiny micro-bubbles on the surface indicating long cold fermentation",
-      "Dense Crumb: no large holes; a tight, uniform network that holds liquids well",
-      "Structural Integrity: should be sturdy enough to hold significant toppings without bending"
+    comparative_analysis: [
+      {
+        target_style: "Montreal Bagel",
+        difference: "Montreal bagels are boiled in honey-water, have no salt, are baked in wood-fired ovens, and are much denser and sweeter.",
+        why_choose_this: "Choose NY style for a salty, chewy sandwich-friendly bagel."
+      },
+      {
+        target_style: "Bialy",
+        difference: "Bialys are not boiled; they have a depression instead of a hole, and are usually topped with onions/poppy seeds.",
+        why_choose_this: "Choose Bagels for the shiny crust and superior chew."
+      },
+      {
+        target_style: "Pretzel",
+        difference: "Pretzels are dipped in lye or baking soda (alkaline), which creates a different chemical crust. Bagels use malt (acidic/neutral sugar).",
+        why_choose_this: "Choose Bagels for a breadier, less 'mineral' flavor."
+      }
     ],
-    "pairingRecommendations": [
-      "Schmear: Full-fat cream cheese (Philadelphia style or artisanal)",
-      "Protein: Smoked salmon (Lox), whitefish salad, or pastrami",
-      "Vegetables: Capers, red onion, vine-ripe tomatoes, sliced cucumbers",
-      "Breakfast: Bacon, egg, and cheese (BEC) on a bagel",
-      "Beverage: Strong black coffee (NY deli style) or orange juice"
+    q_and_a: [
+      {
+        question: "Does New York water really make the difference?",
+        answer: "The soft water of NYC (low in calcium and magnesium) helps the gluten stay extensible, but top bakers agree that traditional technique (boiling and long ferment) is 99% of the result.",
+        context: "History"
+      },
+      {
+        question: "Why boil them?",
+        answer: "Boiling cooks the outer layer, 'setting' the size of the bagel. It prevents further expansion in the oven, which creates the dense crumb and chewy crust.",
+        context: "Technique"
+      },
+      {
+        question: "Can I use All-Purpose flour?",
+        answer: "No. AP flour will result in a soft roll. You need at least 13% protein to fight through the boiling and create the necessary resistance.",
+        context: "Ingredients"
+      },
+      {
+        question: "Why malt syrup instead of sugar?",
+        answer: "Malt syrup contains complex sugars that brown differently and provide a specific 'earthy' depth of flavor that defines a real bagel.",
+        context: "Flavor"
+      },
+      {
+        question: "What is a 'Buzzer' bagel?",
+        answer: "In old NY lingo, it was a bagel delivered so fresh it was still hot. Authentic bagels stale quickly because they have zero fat; eat them fresh!",
+        context: "Culture"
+      }
     ],
-    "flavorEvolution": [
-      "Warm (0-2 hours): Peak texture; the crust is at its most 'leathery' and the inside is soft-warm",
-      "4-8 Hours: Becomes significantly firmer; this is the classic 'Deli Bagel' state",
-      "Next Day: Must be toasted; toasting restores the aroma and softens the interior",
-      "Day 3: Best used for bagel chips (thinly sliced and baked until dry)",
-      "Freezing: Sliced bagels freeze exceptionally well and toast perfectly from frozen"
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Possible",
+        notes: "Same-day bagels will be bland. Only use if in a rush."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Authentic",
+        notes: "A mix of instant yeast and a long (18-24h) cold retard is the industry standard for NYC bagels."
+      },
+      {
+        method: "Sourdough",
+        suitability: "Ideal",
+        notes: "Adds incredible depth and shelf-life, though traditionally NY bagels are yeast-leavened."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Can be direct dough or use preferments; malt often included.",
-    "Hydration: 55-62%"
-  ],
-  "doughImpact": [
-    "Ultra-low hydration (55-62%) creates the required density and resistance ('chew')",
-    "High-Gluten Flour (13.5-14.5% protein) is essential to maintain the ring shape during boiling",
-    "Barley Malt Syrup provides the signature flavor and nutrients for yeast in the heavy dough",
-    "Minimal yeast works slowly during the mandatory 12-24h cold retard (bulk or shaped)",
-    "Tight rolling/shaping ensures no internal air pockets, creating the 'solid' bagel bite"
-  ],
-  "bakingImpact": [
-    "The Kettle Boil (30-60 sec) pre-gelatinizes the surface starch, creating the shiny, leathery crust",
-    "Boiling in malted water (or with baking soda) provides the alkaline environment for browning",
-    "High heat (220-250°C) is required to 'set' the dense dough quickly after the boil",
-    "Baking on bagel boards (wet burlap) followed by flipping prevents a 'flat' bottom and ensures even bake",
-    "A relatively long bake (15-20 mins) is needed to penetrate the dense, moist crumb"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      55,
-      62
-    ],
-    "saltRange": [
-      1.8,
-      2.2
-    ],
-    "oilRange": [
-      0,
-      5
-    ],
-    "sugarRange": [
-      2,
-      6
-    ],
-    "flourStrength": t('styles.highgluten_flour_for_chewy_texture'),
-    "fermentation": {
-      "bulk": "1–2 h at room temperature",
-      "proof": t('styles.shaped_rings_are_often_retarded_cold_overnight'),
-      "coldRetard": t('styles.common_cold_proof_before_boiling_and_baking')
+
+  deepDive: {
+    hydrationLogic: "At 53%, the dough is extremely hard to mix but easy to shape. This low moisture ensures that when the bagel hits the boiling water, it doesn't absorb too much and become soggy. It stays a tight, resilient ring.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Requires at least 12h cold retard." },
+      biga: { suitable: true, notes: "Excellent for building additional chew and aroma." },
+      poolish: { suitable: false, notes: "Too liquid; will make the dough too soft to hold its ring shape." }
     },
-    "oven": {
-      "type": "deck",
-      "temperatureC": [
-        220,
-        250
-      ],
-      "notes": "Boiled briefly (often with malt or baking soda) before baking."
-    },
-    "difficulty": t('styles.medium_6'),
-    "recommendedUse": [
-      t('common.bagels_for_breakfast_and_sandwiches')
+    whatIf: [
+      {
+        scenario: "You omit the salt",
+        outcome: "The bread will taste like paper and the yeast will over-react, creating a bloated, hollow bagel.",
+        solution: "Salt is critical for flavor and for controlling yeast activity in the low-hydration environment."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Steamed Bagels",
+        difference: "Supermarket bagels are often steamed rather than boiled; they are soft, bread-like, and lack the 'skin' and chew of a boiled bagel."
+      }
+    ],
+    proTips: [
+      "Add a tablespoon of baking soda to the water for a darker, more 'pretzel-adjacent' crust.",
+      "Topping: Dip the bagels in seeds immediately after boiling while they are still sticky.",
+      "Store in the freezer, never the fridge. Refrigeration accelerates staling in lean breads.",
+      "Boil in a wide, shallow pot to make flipping easy."
     ]
   },
-  "regionalVariants": [
-    "New York Style - The classic boiled, dense, and large modern version",
-    "Montreal Style - Smaller, sweeter (honey-boiled), and baked in wood-fired ovens",
-    "Jerusalem Bagel - Long, oval-shaped, softer, and usually topped with Za'atar",
-    "St-Viateur/Fairmount - Specific Montreal sub-styles with distinct hand-rolled shapes",
-    "Industrial Bagel - Steamed rather than boiled; lighter and more bread-like (not authentic)"
+
+  tags: ["bagel", "new-york", "boiled", "chewy", "jewish-bread", "classic"],
+
+  watchouts: [
+    "Dough too wet? It will stick to the boiling tray and lose its shape.",
+    "Water not boiling? The starch won't gelatinize correctly, and the crust will be dull.",
+    "Baking too long? The bagel will become a crouton.",
+    "Not enough malt? The flavor will be 'white bread' rather than bagel."
   ],
-  "climateScenarios": [
-    "Dry NYC Winter: Use slightly warmer water (30°C) to help the low-hydration dough mix",
-    "Hot/Humid Summer: Move shaped bagels to the fridge immediately to prevent over-proofing",
-    "Coastal: The high humidity can make the boiled crust go 'soft/soggy'—extend the bake by 2 mins",
-    "High Altitude: Reduce yeast and watch the boil time; they will expand and collapse faster"
+
+  notes: [
+    "Krakow 1610 origin.",
+    "Unionized bakers (Local 338) protected the style for decades.",
+    "Boiling is the 'magic' step.",
+    "Malt syrup is the secret.",
+    "Ideally eaten within 6 hours of baking."
   ],
-  "styleComparisons": [
-    "vs. Montreal Bagel: NY is salt-boiled and larger/saltier; Montreal is honey-boiled and smaller/sweeter",
-    "vs. Pretzel: Both are boiled/dipped in alkaline water, but Bagels are dense/lean vs. Pretzel's open/oily",
-    "vs. Bread Roll: Bagels are boiled and low-hydration; rolls are direct-bake and high-hydration",
-    "vs. Bialy: Bagels have a hole and are boiled; Bialys have a depression and are only baked"
-  ],
-  "parameterSensitivity": [
-    "Critical: Flour Protein - using regular All-Purpose will result in a soft, 'ordinary' bread roll",
-    "Highly sensitive: Boil Time - too long and it won't rise in the oven; too short and it won't be shiny",
-    "Cold Proofing: Skipping the 12h retard is the main reason for flavorless, 'commercial' bagels",
-    "Barley Malt: Using sugar instead of malt changes the signature NYC deli flavor profile",
-    "Dough Temperature: Keeping the dough 'cool' during mixing prevents premature yeast activity"
-  ],
-  "risks": [
-    "The 'Pancake' Bagel: Over-proofing before boiling leads to total collapse in the water",
-    "Matte/Dull Surface: Not enough malt in the boiling water or the water wasn't fully boiling",
-    "Raw Middle: Bake temperature too high, burning the outside while the dense center stays gummy",
-    "Toughness (Too Hard): Using old flour or over-boiling beyond 90 seconds",
-    "Hole Closing: Not stretching the center enough during shaping; it will close during the boil"
-  ],
-  "notes": [
-    "If you don't have barley malt syrup, use honey or brown sugar (though it's less authentic)",
-    "Place the bagels in the fridge for at least 12 hours—this is where the flavor and blisters come from",
-    "Make the hole bigger than you think; it will shrink during the proof and the boil",
-    "Use a slotted spoon to flip them gently in the boiling water",
-    "Always seed them IMMEDIATELY after they come out of the water while they are still sticky"
-  ],
-  "tags": [
-    t('common.bagels_for_breakfast_and_sandwiches'),
-    t('common.bread'),
-    "Poland/United States"
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.modernist_bread_2'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
+      source: "The Bagel: The Surprising History of a Modest Bread",
+      url: "https://www.amazon.com/Bagel-Surprising-History-Modest-Bread/dp/0300117627",
+      author: "Maria Balinska",
+      year: "2008"
     },
     {
-      "title": "The Bagel: The Surprising History of a Modest Bread",
-      "url": "https://www.amazon.com/Bagel-Surprising-History-Modest-Bread/dp/0300117627",
-      "author": "Maria Balinska",
-      "year": 2008
+      source: "Modernist Bread (Bagel Boiling Science)",
+      url: "https://modernistcuisine.com/books/modernist-bread/",
+      author: "Nathan Myhrvold, Francisco Migoya",
+      year: "2017"
     },
     {
-      "title": "Inside the Jewish Bakery",
-      "url": "https://www.amazon.com/Inside-Jewish-Bakery-Recipes-Traditions/dp/1935754051",
-      "author": "Stanley Ginsberg, Norman Berg",
-      "year": 2011
-    },
-    {
-      "title": "The Secrets of New York Bagels",
-      "url": "https://www.seriouseats.com/how-to-make-real-new-york-bagels",
-      "author": "J. Kenji López-Alt",
-      "year": 2017
+      source: "Serious Eats - How to Make Real New York Bagels",
+      url: "https://www.seriouseats.com/how-to-make-real-new-york-bagels",
+      author: "J. Kenji López-Alt"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "What's the difference between a Bagel and regular bread rolls shaped like a ring?",
-      "answer": "The secret of the Bagel is the boiling process before baking. Boiling the dough in water with malt (or honey) 'cooks' the surface, creating that shiny, elastic crust and preventing the bread from rising too much in the oven, keeping the interior dense and chewy."
-    },
-    {
-      "question": "Is it really necessary to boil the Bagel?",
-      "answer": "Yes! Without boiling, you'll just have a regular ring-shaped bread. Boiling gelatinizes the surface starch, ensuring the 'chewy' texture that is the hallmark of an authentic Bagel."
-    },
-    {
-      "question": "What is the difference between New York and Montreal Bagels?",
-      "answer": "The NY bagel is boiled in water with malt and salt, is larger, and has a denser, saltier texture. The Montreal bagel is smaller, boiled in honey water, contains no salt in the dough, and is strictly baked in wood-fired ovens, being sweeter and crunchier."
-    },
-    {
-      "question": "Why does the Bagel have a hole in the middle?",
-      "answer": "The hole serves two purposes: it increases surface area (helping the dense dough cook evenly and creating more crust) and, historically, allowed bakers to hang bagels on ropes or rods for transport and sale."
-    },
-    {
-      "question": "Can I make Bagels with all-purpose flour?",
-      "answer": "You can, but they will be too soft. An authentic Bagel requires 'high-gluten' (high protein) flour to withstand the boiling process and maintain that characteristic bite resistance."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/bagel-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["cream_cheese", "smoked_salmon", "sesame_seeds", "poppy_seeds", "salted_butter_normandy"]
 };

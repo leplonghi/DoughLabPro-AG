@@ -17,7 +17,7 @@ const SensoryProfilesPage: React.FC = () => {
                 <p>Successful pizza is symphony of flavors and textures. Secret isn't single ingredient but harmonious balance between fundamental tastes. Successful combo stimulates different palate parts simultaneously creating complex satisfying experience.</p>
             </LearnSection>
             <LearnSection title={t('learn.umami_taste_of_satisfaction')}>
-                <p>Umami, or "fifth taste", is savory depth flavor associated with glutamates. In pizza, umami is naturally present in key ingredients:</p>
+                <p>Umami, or t('learn.fifth_taste_447'), is savory depth flavor associated with glutamates. In pizza, umami is naturally present in key ingredients:</p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.ripe_tomatoes')}</strong> Especially when cooked concentrate glutamates.</li>
                     <li><strong>{t('learn.aged_cheeses')}</strong> Parmesan is one of richest natural sources.</li>

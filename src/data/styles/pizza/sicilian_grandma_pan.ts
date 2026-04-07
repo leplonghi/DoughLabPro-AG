@@ -1,242 +1,284 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * SICILIAN / GRANDMA PAN PIZZA
+ * 
+ * Researched and validated content:
+ * - 17th century Palermo sfincione origins
+ * - Long Island early 20th century Grandma pizza evolution
+ * - Technique: Cheese directly on dough (Grandma style)
+ * - Texture: "Sfincione" (thick sponge) dialect meaning
+ */
+export const sicilian_grandma_pan: DoughStyleDefinition = {
+  id: "sicilian_grandma_pan",
+  name: "Sicilian/Grandma Pan Pizza",
+  category: "pizza",
+  recipeStyle: RecipeStyle.GRANDMA_STYLE,
+  family: "Italian-American Pan Pizza",
 
-export const sicilian_grandma_pan: StyleDefinition = {
-  "id": "sicilian_grandma_pan",
-  "title": t('styles.sicilian_grandma_pan_title'),
-  "subtitle": t('styles.american_pan_pizza_3'),
-  "category": t('styles.pizza_13'),
-  "family": t('styles.american_pan_pizza_4'),
-  "variantName": t('styles.sicilian_grandma_pan_variant'),
-  "origin": {
-    "country": t('styles.united_states_11'),
-    "region": t('styles.italianamerican_communities'),
-    "period": "20th century"
+  origin: {
+    country: "Italy/United States",
+    region: "Sicily, Italy / Long Island, New York",
+    period: "17th century (sfincione) / Early 20th century (Grandma)"
   },
-  "intro": t('styles.sicilian_grandma_pan_intro'),
-  "history": "Originating in Italian-American kitchens, the 'Grandma' style is a leaner, thinner, and crunchier version of the classic Sicilian Sfincione. It was born from home cooks adapting professional techniques to standard home ovens and sheet pans, characterized by a 'sauce-over-cheese' application and a punchy garlic-infused oil flavor.",
-  "culturalContext": {
-    "significance": [
-      "Represents the soul of Italian-American home cooking and the 'immigrant kitchen' tradition",
-      "Symbol of domestic ingenuity - making restaurant-quality food with home equipment",
-      "Known as the 'back pocket' pizza - something a grandmother could whip up with pantry staples",
-      "Has experienced a major 'cool factor' resurgence in high-end NYC pizzerias",
-      "Celebrates the humble sheet pan as a legitimate professional baking tool"
+
+  description: "Sicilian pizza originated as 'sfincione' in 17th century Palermo, meaning 'thick sponge.' Grandma pizza is its Italian-American descendant, created by Long Island grandmothers in the early 20th century using home ovens and sheet pans to recreate their homeland's flavors.",
+
+  history: "Sicilian pizza traces back to 17th century Palermo as 'sfincione,' becoming popular in western Sicily by the mid-19th century. Traditional sfincione featured thick, spongy, focaccia-like crust topped with onions sautéed in olive oil, anchovies, tomatoes, herbs, and hard sheep's milk cheese like caciocavallo. When Italian immigrants brought sfincione to America, particularly New York, it evolved into American Sicilian pizza with mozzarella replacing traditional cheeses. Grandma pizza emerged in early 20th century Long Island as first-generation Italian-American grandmothers adapted sfincione to home kitchens, using standard sheet pans and home ovens. The term 'Grandma pizza' gained wider recognition in the mid-1990s. Unlike thick Sicilian, Grandma pizza is thinner with a crispier bottom from olive oil-coated pans, and often features cheese placed directly on dough before sauce.",
+
+  difficulty: "Medium",
+  fermentationType: "direct",
+
+  base_formula: [
+    { name: "Bread flour", percentage: 100 },
+    { name: "Water", percentage: 70 },
+    { name: "Salt", percentage: 2.2 },
+    { name: "Olive oil", percentage: 4 },
+    { name: "Sugar", percentage: 1.5 },
+    { name: "Dry yeast", percentage: 0.5 }
+  ],
+
+  technicalProfile: {
+    hydration: [65, 75],
+    salt: [2, 2.5],
+    oil: [3, 6],
+    sugar: [1, 3],
+    flourStrength: "Bread flour, 12-13% protein for structure",
+    ovenTemp: [220, 260],
+    recommendedUse: [
+      "Family-style square pizza for gatherings",
+      "Hearty meal pizza with substantial toppings"
     ],
-    "consumptionContext": [
-      "Traditionally served at large family gatherings and Sunday dinners",
-      "Commonly sold as 'square' slices in Long Island and NYC pizzerias",
-      "Ideal candidate for home pizza parties due to its forgiving nature",
-      "Served on large rectangular trays, cut into squares or rectangles",
-      "Often consumed at room temperature, making it a staple of Italian-American buffets"
-    ],
-    "evolution": [
-      "Late 19th Century: Sicilian immigrants bring Sfincione traditions to the US",
-      "1950s-70s: Home cooks adapt deep-dish Sicilian styles to shallow household sheet pans",
-      "1980s: Pizzerias in Long Island start labeling this rustic home style as 'Grandma Pizza'",
-      "1990s: Umberto’s of New Hyde Park popularizes the style professionally",
-      "2010s: Gourmet 'Grandma' versions with cold-fermentation become trendy in artisan pizzerias",
-      "Present: Recognized as a distinct and respected third category alongside NY and Sicilian"
-    ],
-    "rituals": [
-      "The 'well-seasoned' pan: Grandma pans are often heirloom items, never scrubbed with soap",
-      "Sauce stripes: Applying sauce in diagonal lines over the cheese for visual and flavor contrast",
-      "Garlic oil brush: Liberally brushing the edges with garlic-infused oil before or after baking",
-      "The 'bottom check': Using a spatula to peek at the fried, golden-brown underside",
-      "Post-bake basil tearing: Hand-tearing fresh basil over the hot pie to release oils"
+    difficulty: "Medium",
+    ballWeight: { recommended: 850, min: 600, max: 1200 },
+    fermentationSteps: [
+      "Mix: Combine bread flour, water, yeast, salt, sugar, and olive oil until smooth. [Science: Bread flour provides structure to support thick, heavy toppings]",
+      "Bulk Fermentation: 1-2 hours at room temperature. [Science: Initial yeast activity develops gas and flavor]",
+      "Pan Proof: Transfer to heavily oiled sheet pan and proof for 2-4 hours. [Science: Dough rises to fill pan, creating characteristic 'sfincione' sponginess]",
+      "Layer: For Grandma style, place cheese directly on dough before adding sauce. [Science: Prevents moisture from making the thick crust soggy in the center]",
+      "Bake: 425-475°F for 15-25 minutes. [Science: Moderate temperature allows even cooking through the thick layer of dough]",
+      "Rest: Allow to rest in pan for 5 minutes. [Science: Helps the spongy crumb structure set before cutting]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Strong garlic and olive oil presence with deeply toasted wheat notes",
-      "Tangy, uncooked tomato sweetness contrasted with salty mozzarella",
-      "Caramelized cheese 'frico' edges where the dough meets the pan",
-      "Fruity, spicy notes from high-quality extra virgin olive oil",
-      "Savory herbs: heavy on dried oregano and fresh basil"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W280-320 (Moderate-high strength)",
+      pl_ratio: "0.55-0.65 (Balanced)",
+      absorption_capacity: "Moderate to high (65-75%)",
+      protein_type: "Bread flour with strong gluten network",
+      science_explanation: "High-protein bread flour is essential to support the weight of the dough as it rises in the pan and to hold up under substantial toppings without collapsing the airy crumb"
+    },
+    thermalProfile: {
+      oven_type: "Conventional or deck oven with sheet pan",
+      heat_distribution: "Moderate conduction from pan bottom, even air circulation",
+      crust_development: "Crispy, olive oil-fried bottom with tender, bready sides",
+      crumb_structure: "Thick, spongy, focaccia-like crumb with medium-sized alveoli"
+    },
+    fermentationScience: {
+      yeast_activity: "Standard active fermentation",
+      ph_target: "pH 5.4 - 5.7",
+      organic_acids: "Balanced lactic and acetic profile",
+      enzymatic_activity: "Moderate; long pan proof allows for gradual sugar conversion and flavor development"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Heavy olive oil coating is key",
+        explanation: "The pan should be generously coated in olive oil. This essentially 'fries' the bottom of the crust, creating a crispy, golden texture that contrasts perfectly with the spongy interior."
+      },
+      {
+        tip: "Grandma style: cheese before sauce",
+        explanation: "By placing a thin layer of sliced mozzarella directly on the dough before the sauce, you create a barrier that prevents the sauce from soaking into the dough and making it gummy."
+      },
+      {
+        tip: "The pan proof is non-negotiable",
+        explanation: "Allow the dough to proof in the pan for at least 2-3 hours. This is what creates the 'sfincione' (sponge) texture. If you bake too soon, the pizza will be dense and heavy."
+      },
+      {
+        tip: "Use a heavy-duty sheet pan",
+        explanation: "High-quality steel or aluminum pans provide better heat conduction than thin consumer pans, ensuring a more even bake and a crispier bottom."
+      },
+      {
+        tip: "Teaching the generation",
+        explanation: "Grandma pizza is traditionally a family ritual. Passing down the technique of dimpling the dough and layering the sauce in 'streaks' preserves the homespun character of the style."
+      }
     ],
-    "aromaProfile": [
-      "Pungent roasted garlic and warm olive oil",
-      "San Marzano tomato acidity and sweetness",
-      "Fried dough notes - similar to a savory donut or focaccia",
-      "Toasted cheese and dried oregano",
-      "Freshly torn basil (post-bake)"
+    what_if: [
+      {
+        scenario: "Dough doesn't reach the corners of the pan",
+        result: "Dough is too cold or gluten is too tight",
+        correction: "Let the dough rest for 15 minutes and try stretching it again; ensure it's at room temperature before panning."
+      },
+      {
+        scenario: "Center of the pizza is gummy/unbaked",
+        result: "Too much sauce or under-baked",
+        correction: "Use the cheese-first layer technique and extend bake time; ensure the oven is fully preheated."
+      },
+      {
+        scenario: "Bottom is pale instead of crispy",
+        result: "Insufficient oil in the pan",
+        correction: "Be more generous with olive oil on the pan surface next time; check if the oven's bottom heat is sufficient."
+      },
+      {
+        scenario: "Crust is dense like a biscuit",
+        result: "Under-proofed in the pan",
+        correction: "Extend the pan proofing time until the dough has doubled in height and looks bubbly."
+      }
     ],
-    "textureNotes": [
-      "Crispy, fried-in-oil bottom crust with a golden shimmer",
-      "Dense yet tender interior crumb - thinner than Sicilian, more substantial than NY",
-      "Crunchy, caramelized cheese perimeter",
-      "Slightly chewy gluten structure that holds up to heavy toppings",
-      "Surface contrast between dry, baked cheese and moist, pooled sauce"
+    comparative_analysis: [
+      {
+        target_style: "Neapolitan",
+        difference: "Sicilian is thick and spongy; Neapolitan is thin with puffy edges",
+        why_choose_this: "Choose Sicilian for a heartier, more filling meal that feeds a crowd."
+      },
+      {
+        target_style: "Detroit Style",
+        difference: "Sicilian is softer; Detroit has signature crispy cheese edges (frico) from blue steel pans",
+        why_choose_this: "Choose Sicilian/Grandma for an Italian-American home-style feel with less fat than Detroit."
+      },
+      {
+        target_style: "Focaccia",
+        difference: "Sicilian pizza is significantly topped; focaccia is usually a simpler flatbread focused on oil and salt",
+        why_choose_this: "Choose Sicilian when you want the breadiness of focaccia combined with a full pizza topping set."
+      }
     ],
-    "pairingRecommendations": [
-      "Classic: Garlic oil, mozzarella, plum tomato sauce, basil",
-      "Toppings: Sliced meatballs, spicy pepperoni, roasted red peppers",
-      "Cheese: Dry mozzarella base with Pecorino Romano finish",
-      "Beverage: Chianti, Italian pilsner, or a bold red sangria",
-      "Dipping: Extra marinara or hot honey for the crust edges"
+    q_and_a: [
+      {
+        question: "What's the difference between Sicilian and Grandma pizza?",
+        answer: "Sicilian pizza (sfincione) is the original thick, spongy pizza from Sicily. Grandma pizza is an Italian-American adaptation—it's thinner than Sicilian, crispier on the bottom, and typically features cheese placed directly on the dough before sauce.",
+        context: "Style variations"
+      },
+      {
+        question: "Why is it called 'Grandma pizza'?",
+        answer: "The name honors Italian-American grandmothers who created this style in their home kitchens using standard sheet pans and home ovens, adapting traditional Sicilian recipes to available American ingredients.",
+        context: "Culture/History"
+      },
+      {
+        question: "What does 'sfincione' mean?",
+        answer: "Sfincione is a Sicilian dialect word meaning 'thick sponge,' describing the characteristic thick, spongy, focaccia-like texture of the original Sicilian pizza.",
+        context: "Etymology"
+      },
+      {
+        question: "Does Sicilian pizza always have anchovies?",
+        answer: "Traditional Sicilian 'sfincione' almost always includes anchovies and onions. Americanized Sicilian/Grandma styles often omit them in favor of standard mozzarella and pepperoni.",
+        context: "Toppings"
+      },
+      {
+        question: "Can I use sourdough for this style?",
+        answer: "Yes, many modern 'artisanal' Sicilian pizzerias use sourdough to add more complex acidity and improve digestibility, though commercial yeast is traditional for the 'Grandma' home style.",
+        context: "Fermentation"
+      }
     ],
-    "flavorEvolution": [
-      "Hot (0-5 mins): Maximum crispness, garlic aroma is most aggressive",
-      "Warm (10-20 mins): Dough absorbs some oil and sauce, becoming more flavorful and tender",
-      "Room Temp: Excellent portability; flavors of the sauce and herbs become more prominent",
-      "Next Day: Reheats perfectly in an oven (375°F/190°C) to restore that fried-bottom crunch",
-      "Cold: A popular 'breakfast' pizza; the garlic and fat flavors are very concentrated"
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Ideal",
+        notes: "The traditional home method for Grandma pizza. Fast and reliable results for same-day baking."
+      },
+      {
+        method: "Hybrid",
+        suitability: "Authentic",
+        notes: "Cold Retard. Standard in pizzerias to develop more flavor and better 'sfincione' crumb structure."
+      },
+      {
+        method: "Poolish",
+        suitability: "Possible",
+        notes: "Can be used to increase extensibility if you are using high-protein flour and want a very airy crumb."
+      }
     ]
   },
-  "technicalFoundations": [
-    t('styles.sicilian_grandma_pan_tech_1'),
-    t('styles.sicilian_grandma_pan_tech_2')
-  ],
-  "doughImpact": [
-    "High hydration (70%+) allows for a relatively thin dough to remain tender inside",
-    "Generous oil in the pan fries the dough, creating a unique semi-fried texture",
-    "Longer proofing directly in the pan leads to a more relaxed, easily dimpled dough",
-    "Minimal handling after panned preservation of small fermentation bubbles",
-    "Bread flour (high protein) provides the strength to support heavy sauce and cheese layers"
-  ],
-  "bakingImpact": [
-    "Moderate temperatures (220-260°C) allow for a thorough 'fry' in the pan without burning the interior",
-    "The metal pan acts as a heat conductor, ensuring the bottom is crisper than the top",
-    "Sauce-on-top application protects the cheese from over-browning during the 15-20 min bake",
-    "Low-moisture mozzarella prevents the pizza from becoming soggy during the longer bake time",
-    "Steam trapped under the pan helps with a slight rise while the bottom fries"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      65,
-      75
-    ],
-    "saltRange": [
-      2,
-      2.5
-    ],
-    "oilRange": [
-      3,
-      6
-    ],
-    "sugarRange": [
-      1,
-      3
-    ],
-    "flourStrength": t('styles.bread_flour_or_strong_allpurpose'),
-    "fermentation": {
-      "bulk": t('styles.sicilian_grandma_pan_fermentation_bulk'),
-      "proof": t('styles.sicilian_grandma_pan_fermentation_proof'),
-      "coldRetard": t('styles.optional_1224_h')
+
+  deepDive: {
+    hydrationLogic: "Sicilian pizza uses moderate to high hydration (65-75%) to achieve the 'thick sponge' texture. Higher hydration allows for more steam production during baking, which creates the large bubbles and light weight characteristic of sfincione despite its height.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Excellent for capturing the classic Italian-American Sunday dinner flavor profile." },
+      biga: { suitable: true, notes: "Great for adding structural strength to a very high hydration version (75%+)." },
+      poolish: { suitable: true, notes: "Improves extensibility, making it easier to press the dough into the corners of the pan." }
     },
-    "oven": {
-      "type": "electric_home",
-      "temperatureC": [
-        220,
-        260
-      ],
-      "notes": t('styles.baked_in_oiled_rectangular_pans_thickness_depends_')
-    },
-    "difficulty": t('styles.hard_24'),
-    "recommendedUse": [
-      t('styles.sicilian_grandma_pan_use_1'),
-      t('styles.sicilian_grandma_pan_use_2')
+    whatIf: [
+      {
+        scenario: "You use high-protein flour with low hydration",
+        outcome: "The pizza will be tough and bread-like rather than spongy and light",
+        solution: "Increase hydration or use a blend of bread and all-purpose flour"
+      },
+      {
+        scenario: "You skip the olive oil in the pan",
+        outcome: "The dough will likely stick and you will miss the characteristic 'fried' bottom crunch",
+        solution: "Always use at least 20-30g of olive oil for a standard half-sheet pan"
+      },
+      {
+        scenario: "You put the pizza in a cold oven",
+        outcome: "The dough won't get the 'oven spring' needed for lightness, resulting in a dense cake",
+        solution: "Preheat for at least 45-60 minutes, ideally with a baking steel or stone underneath the pan"
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Sfincione Palermitano",
+        difference: "Sfincione uses hard sheep cheese (caciocavallo) and onions; American Sicilian uses mozzarella and is more topping-diverse"
+      },
+      {
+        vsStyle: "Bakery Pizza",
+        difference: "Bakery pizza is often sold at room temperature and is denser; Sicilian/Grandma is served hot and is spongier"
+      }
+    ],
+    proTips: [
+      "Use 'Saporito' style heavy pizza sauce for an authentic New York Sicilian flavor",
+      "Dimple the dough deep with your fingertips before topping to hold the oil and sauce",
+      "Traditional sfincione seasoning includes toasted breadcrumbs on top",
+      "Long Island 'Grandma' pans are often seasoned steel rather than aluminum",
+      "The 1990s marked the transition of Grandma style from a home secret to a pizzeria staple"
     ]
   },
-  "regionalVariants": [
-    "Long Island Grandma - The original, typically thinner with 'sauce over cheese'",
-    "Brooklyn Square - Often uses a heavier sauce and more fermentation time",
-    "Sfincione (Sicilian Ancestor) - Thicker, topped with anchovies, onions, and breadcrumbs",
-    "L.A. Artisan Grandma - Modern high-hydration sourdough variations",
-    "Upside-Down Square - Heavy on cheese first, sauce applied in solid blocks"
+
+  tags: ["sicilian", "pan pizza", "grandma style", "sfincione", "square pizza"],
+
+  watchouts: [
+    "Over-proofing causes dough to collapse, losing airy texture",
+    "Insufficient olive oil results in stuck dough and pale bottom",
+    "Too much sauce makes thick crust soggy in center",
+    "Dough too cold when panning makes corners hard to fill",
+    "Under-baking leaves the center gummy"
   ],
-  "climateScenarios": [
-    "Hot/Humid (>25°C, >70% RH): Use cold water (4°C), reduce yeast by 25%, bulk ferment in fridge",
-    "Cold/Dry (<15°C, <40% RH): Increase yeast by 10%, use warm water (30°C), cover pan tightly to prevent skin",
-    "Coastal/High Humidity: May require 2-3% more salt to tighten gluten and prevent sogginess",
-    "Desert/Low Humidity: Increase hydration by 2% to compensate for rapid evaporation during panning"
+
+  notes: [
+    "Sfincione means 'thick sponge' in Sicilian dialect",
+    "Grandma pizza named after Italian-American grandmothers who created it",
+    "Cheese-before-sauce is signature Grandma pizza technique",
+    "Traditionally cut into squares/rectangles, never wedges",
+    "Immersion blender sauce (pulsed) keeps the tomatoes vibrant"
   ],
-  "styleComparisons": [
-    "vs. Sicilian: Grandma is thinner (~1/2 inch vs ~1 inch), crunchier, and denser",
-    "vs. Detroit: Grandma uses traditional mozzarella, sauce stripes on top, no massive cheese crown",
-    "vs. NY: Grandma is panned and fried in oil, whereas NY is stretched and baked on a stone",
-    "vs. Focaccia: Grandma dough is similar but much thinner and focused on crispiness rather than height"
-  ],
-  "parameterSensitivity": [
-    "Critical: Oil quantity in the pan - too little leads to sticking, too much makes it greasy",
-    "Highly sensitive: Proof time in the pan - under-proofed is gummy; over-proofed is bread-like",
-    "Sauce viscosity: Too thin and it soaks into the dough; too thick and it won't cook the top cheese",
-    "Cheese quality: High-fat, low-moisture mozzarella is essential for the characteristic sear",
-    "Oven temperature: Too low and the bottom won't fry before the top dries out"
-  ],
-  "risks": [
-    "Soggy Bottom: Caused by under-baking or insufficient oil in the pan",
-    "Sticking to Pan: Usually due to using a non-seasoned pan or not enough fat",
-    "Tough Crumb: Over-mixing the dough or using flour with too high protein without enough water",
-    "Sauce Bleeding: Sauce seeping through the cheese into the dough, creating a 'gum line'",
-    "Burnt Garlic: If garlic is raw in the sauce, it may burn during the 20-minute bake"
-  ],
-  "notes": [
-    "Always use a dark blue steel or heavy aluminum pan for the best thermal mass",
-    "Don't be afraid of oil - the 'fry' is what defines the Grandma style",
-    "Letting the dough rest for 30 mins after panning makes it easier to push into corners",
-    "Traditional Grandma sauce is chunky and simple: crushed tomatoes, garlic, oregano, salt",
-    "For the best crunch, finish on the floor of the oven for the last 2 minutes"
-  ],
-  "tags": [
-    t('styles.sicilian_grandma_pan_tag_1'),
-    t('styles.sicilian_grandma_pan_tag_2'),
-    t('common.pizza'),
-    t('common.united_states')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "oregano_dried", "anchovies", "cebola", "azeitonas"],
+
+  references: [
     {
-      "title": t('styles.modernist_pizza_11'),
-      "url": "https://modernistcuisine.com/books/modernist-pizza/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2021
+      source: "Sicilian Pizza and Grandma Pizza History",
+      url: "https://en.wikipedia.org/wiki/Sicilian_pizza"
     },
     {
-      "title": "The Pizza Bible",
-      "url": "https://www.amazon.com/Pizza-Bible-Worlds-Favorite-Styles/dp/1607746267",
-      "author": "Tony Gemignani",
-      "year": 2014
+      source: "Goldbelly - Grandma Pizza Guide",
+      url: "https://www.goldbelly.com/digest/what-is-grandma-style-pizza/"
     },
     {
-      "title": "Pizza: A Slice of American History",
-      "url": "https://www.amazon.com/Pizza-Slice-American-History-Ronk/dp/141971203X",
-      "author": "Liz Ronk",
-      "year": 2012
+      source: "Modernist Pizza",
+      url: "https://modernistcuisine.com/books/modernist-pizza/",
+      author: "Nathan Myhrvold, Francisco Migoya",
+      year: "2021"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "What is the difference between Sicilian and Grandma pizza?",
-      "answer": "Sicilian pizza is traditionally thicker (1 inch+), proofed for a long time in the pan to create a soft, sponge-like crumb. Grandma pizza is thinner (about 1/2 to 3/4 inch), proofed for a shorter time, and has a much crunchier, denser, fried-in-oil bottom. Essentially, Sicilian is 'bread-like' while Grandma is 'cracker-like with a chew'."
-    },
-    {
-      "question": "Why does the sauce go over the cheese?",
-      "answer": "Placing sauce over the cheese (often in stripes or spots) protects the cheese from over-caramelizing during the moderately long bake time. It also prevents the moisture from the sauce from seeping into the dough, which would cause a soggy 'gum line'. Plus, the exposed sauce thickens and intensifies in flavor as it bakes."
-    },
-    {
-      "question": "What kind of pan should I use?",
-      "answer": "Professional pizzerias use blue steel rectangular pans (typically 12x18 inches). For home use, a heavy-duty rimmed baking sheet (half-sheet pan) works perfectly. Darker pans are better as they absorb more heat, resulting in a crispier bottom crust."
-    },
-    {
-      "question": "How do I get the dough to reach the corners of the pan?",
-      "answer": "Cold dough is elastic and will snap back. Once you've oiled the pan and stretched the dough as far as it comfortably goes, let it rest for 15-30 minutes. This relaxes the gluten, allowing you to easily dimple and push it all the way to the edges and corners without it pulling back."
-    },
-    {
-      "question": "Can I use fresh mozzarella for Grandma pizza?",
-      "answer": "It is not recommended as the primary cheese. Fresh mozzarella has a high water content which will release into the dough during the 15-20 minute bake, resulting in a soggy mess. Use a high-fat, low-moisture 'brick' mozzarella or a blend with Pecorino Romano for the best results. You can add fresh mozzarella as a post-bake garnish if desired."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/sicilian-grandma-pan-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  }
 };

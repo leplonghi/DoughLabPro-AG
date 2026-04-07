@@ -1,247 +1,282 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * DETROIT STYLE PIZZA
+ * 
+ * Researched and validated content with authoritative sources:
+ * - Buddy's Rendezvous (Original Detroit style, 1946)
+ * - Detroit automotive industry heritage
+ * - Wisconsin brick cheese tradition
+ * - Frico technique and science
+ */
+export const detroit_style_classic: DoughStyleDefinition = {
+  id: "detroit_style_classic",
+  name: "Detroit Style Pizza",
+  category: "pizza",
+  recipeStyle: RecipeStyle.DETROIT,
 
-export const detroit_style_classic: StyleDefinition = {
-  "id": "detroit_style_classic",
-  "title": "Detroit Style Classic (Blue Steel Pan)",
-  "subtitle": t('styles.detroit_pizza'),
-  "category": t('styles.pizza_4'),
-  "family": t('styles.detroit_pizza_2'),
-  "variantName": "Detroit Style Classic (Blue Steel Pan)",
-  "origin": {
-    "country": t('styles.united_states_7'),
-    "region": t('styles.detroit'),
-    "period": t('styles.mid_20th_century')
+  origin: {
+    country: "United States",
+    region: "Detroit, Michigan",
+    period: "1946, Buddy's Rendezvous"
   },
-  "intro": "Served in rectangles with a crispy cheese crown, often topped with sauce stripes after baking.",
-  "history": "Detroit-style pizza originated in mid-20th-century Detroit using automotive parts pans, producing a thick, airy crumb and caramelized cheese edges.",
-  "culturalContext": {
-    "significance": [
-      "Symbol of Detroit's industrial heritage and working-class ingenuity",
-      "Born from necessity: automotive workers repurposed blue steel parts trays as pizza pans",
-      "Represents Detroit's cultural identity and resilience during economic decline",
-      "Regional pride: Detroit's answer to New York, Chicago, and Neapolitan styles",
-      "Renaissance food: experiencing national revival as Detroit's culinary ambassador"
+
+  description: "Detroit-style pizza is a rectangular pizza with a thick, airy crust and signature crispy, caramelized cheese edges called 'frico'. Invented in 1946 at Buddy's Rendezvous using repurposed automotive industry steel pans, it embodies Detroit's industrial heritage and culinary innovation.",
+
+  history: "Detroit-style pizza originated in 1946 at Buddy's Rendezvous, a neighborhood bar owned by Gus Guerra on Detroit's east side. Guerra, with help from his wife Anna or employee Connie Piccinato, developed the pizza drawing inspiration from Sicilian-style pizza. Legend has it that Guerra acquired the distinctive blue steel pans from a friend who worked in an automotive factory, where they were originally used to hold small parts or as drip pans. These heavy, thick steel pans became crucial to the style, conducting heat evenly and creating a soft, airy crust with a crunchy exterior. The pizza gained wider recognition nationally after the 2008 financial crisis, as Detroit natives moved across the country seeking to recreate the beloved taste of home.",
+
+  difficulty: "Medium",
+  fermentationType: "cold",
+
+  base_formula: [
+    { name: "Bread flour", percentage: 100 },
+    { name: "Water", percentage: 72 },
+    { name: "Salt", percentage: 2.2 },
+    { name: "Olive oil", percentage: 3 },
+    { name: "Sugar", percentage: 1 },
+    { name: "Dry yeast", percentage: 0.5 }
+  ],
+
+  technicalProfile: {
+    hydration: [70, 75],
+    salt: [2, 2.5],
+    oil: [2, 4],
+    sugar: [0.5, 1.5],
+    flourStrength: "Bread flour, 12-13% protein for structure and chew",
+    ovenTemp: [245, 275],
+    recommendedUse: [
+      "Classic Detroit square with pepperoni and brick cheese",
+      "Variations with sausage, mushrooms, or other toppings"
     ],
-    "consumptionContext": [
-      "Originally neighborhood bar food and family pizzeria staple",
-      "Served in rectangular slices, often square-cut into smaller pieces",
-      "Casual dining: eaten with hands, often with beer at local taverns",
-      "Takeout tradition: whole pans for family dinners, parties, gatherings",
-      "Modern: Upscale versions in trendy restaurants, but roots remain working-class"
-    ],
-    "evolution": [
-      "1946: Gus Guerra creates first Detroit-style pizza at Buddy's Rendezvous",
-      "1950s-1960s: Style spreads to neighborhood pizzerias across Detroit",
-      "1970s-1990s: Remains regional specialty, little known outside Michigan",
-      "2000s: Slow recognition as distinct style, featured in pizza competitions",
-      "2012-present: National explosion - chains like Jet's Pizza, Via 313 spread the style",
-      "Modern: Featured on food shows, adopted by artisan pizzerias nationwide"
-    ],
-    "rituals": [
-      "The 'frico' hunt: seeking out the crispiest, most caramelized cheese edges",
-      "Sauce stripes on top - applied after baking in traditional style",
-      "Blue steel pan seasoning: each pan develops unique patina over years",
-      "Corner piece preference: most coveted for maximum crispy edges",
-      "Eating cold next day: thick crust holds up well, develops cult following"
+    difficulty: "Medium",
+    ballWeight: { recommended: 600, min: 500, max: 800 },
+    fermentationSteps: [
+      "Mix: Combine flour, water, salt, oil, sugar, and yeast until smooth. [Science: High hydration (70-75%) creates light, airy crumb with open structure]",
+      "Bulk Fermentation: 24-72 hours cold fermentation at 4°C. [Science: Long cold retard develops complex flavors and improves texture]",
+      "Press into Pan: Press dough into heavily oiled blue steel pan. [Science: Oil creates fried bottom; pressing maintains airy texture]",
+      "Final Proof: 2-4 hours at room temperature until doubled. [Science: Dough rises to fill pan, creating characteristic thickness]",
+      "Top: Spread Wisconsin brick cheese ALL THE WAY to edges. [Science: Cheese against hot steel creates frico - caramelized, crispy edges]",
+      "Bake: 475-525°F for 12-15 minutes until cheese edges are deeply caramelized. [Science: High heat caramelizes cheese while interior stays airy]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Rich, caramelized Wisconsin brick cheese with nutty, slightly tangy notes",
-      "Crispy, fried 'frico' edges with intense umami and salt",
-      "Tangy tomato sauce with oregano, applied in stripes for concentrated flavor",
-      "Yeasty, slightly sweet dough with hint of olive oil",
-      "Contrast of crispy bottom, airy interior, and molten cheese"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W320-360 (High strength)",
+      pl_ratio: "0.55-0.65 (Balanced)",
+      absorption_capacity: "High (70-75%)",
+      protein_type: "Bread flour (12-13% protein)",
+      science_explanation: "Bread flour with high hydration creates strong gluten network that supports airy, focaccia-like texture while maintaining structure"
+    },
+    thermalProfile: {
+      oven_type: "Conventional or deck oven with blue steel pan",
+      heat_distribution: "Intense conduction from steel pan bottom",
+      crust_development: "Crispy, fried bottom; caramelized cheese edges (frico)",
+      crumb_structure: "Light, airy, focaccia-like with open holes"
+    },
+    fermentationScience: {
+      yeast_activity: "Retarded (cold fermentation)",
+      ph_target: "pH 5.2-5.4",
+      organic_acids: "Balanced lactic and acetic from long fermentation",
+      enzymatic_activity: "High (cold fermentation develops flavor)"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Blue steel pans are essential",
+        explanation: "The original automotive industry blue steel pans (or modern replicas) conduct heat evenly and create the signature crispy bottom and caramelized cheese edges. Aluminum pans don't work the same way."
+      },
+      {
+        tip: "Wisconsin brick cheese is non-negotiable",
+        explanation: "Brick cheese has the perfect fat content and melting properties to create frico. Mozzarella doesn't caramelize the same way. The cheese MUST reach the pan edges to create the signature crispy crust."
+      },
+      {
+        tip: "Heavy oil coating is crucial",
+        explanation: "Generously oil the pan before pressing dough. This creates the 'fried' bottom crust texture that's characteristic of Detroit style. Don't be shy with the oil."
+      },
+      {
+        tip: "Cheese to the edges - always",
+        explanation: "Spread cheese all the way to the pan edges, even slightly up the sides. As it melts, it will caramelize against the hot steel, creating the beloved frico crust."
+      },
+      {
+        tip: "Corner pieces are gold",
+        explanation: "Corner pieces have the maximum crispy cheese edge ratio and are the most prized. Friendly competition for corners is a Detroit tradition."
+      }
     ],
-    "aromaProfile": [
-      "Caramelized cheese with toasted, nutty notes",
-      "Fried dough and olive oil from pan-frying effect",
-      "Tomato sauce with oregano and garlic",
-      "Yeasty fermentation with slight sweetness",
-      "Overall: rich, savory, indulgent pizza aroma"
+    what_if: [
+      {
+        scenario: "No crispy cheese edges (frico)",
+        result: "Cheese didn't reach pan edges or oven temperature too low",
+        correction: "Spread cheese all the way to edges, even slightly up sides. Increase oven temperature to 500-525°F for proper caramelization."
+      },
+      {
+        scenario: "Bottom crust is pale and soft",
+        result: "Insufficient pan oiling or oven temperature too low",
+        correction: "Use generous oil coating in pan. Ensure oven reaches 475-525°F. Blue steel pans are essential for heat conduction."
+      },
+      {
+        scenario: "Dough is dense and heavy",
+        result: "Insufficient hydration or over-proofing",
+        correction: "Ensure 70-75% hydration. Don't over-proof - dough should double, not triple. High hydration creates airy texture."
+      },
+      {
+        scenario: "Pizza sticks to pan",
+        result: "Insufficient oil or pan not properly seasoned",
+        correction: "Use generous oil coating. Season blue steel pans like cast iron before first use."
+      }
     ],
-    "textureNotes": [
-      "Crispy, almost fried bottom crust from oil in blue steel pan",
-      "Light, airy, focaccia-like interior with large irregular holes",
-      "Crispy, lacy cheese 'frico' crust at edges - crunchy and caramelized",
-      "Tender, pillowy center that's never dense or heavy",
-      "Overall: multiple textural contrasts in every bite"
+    comparative_analysis: [
+      {
+        target_style: "Sicilian",
+        difference: "Detroit is lighter, airier with crispy cheese edges; Sicilian is denser, bread-like with traditional layering",
+        why_choose_this: "Choose Detroit for signature frico edges and lighter, airier texture"
+      },
+      {
+        target_style: "Chicago Deep Dish",
+        difference: "Detroit has bread-like crust with cheese edges; Chicago has biscuit-like crust with sauce on top",
+        why_choose_this: "Choose Detroit for crispy cheese edges and focaccia-like interior"
+      },
+      {
+        target_style: "Grandma Pizza",
+        difference: "Detroit uses steel pans and brick cheese; Grandma uses sheet pans and mozzarella",
+        why_choose_this: "Choose Detroit for authentic frico edges and industrial heritage"
+      }
     ],
-    "pairingRecommendations": [
-      "Classic: Pepperoni, brick cheese, sauce stripes on top",
-      "Traditional: Mushrooms, Italian sausage, green peppers",
-      "Beverage: Cold beer (lager or IPA), Faygo (Detroit soda), or Vernors ginger ale",
-      "Cheese: Wisconsin brick cheese is essential - don't substitute with mozzarella alone",
-      "Avoid: Delicate toppings that can't handle thick crust and intense cheese"
+    q_and_a: [
+      {
+        question: "What makes Detroit-style pizza unique?",
+        answer: "Detroit-style pizza is defined by its rectangular shape (from automotive industry pans), thick but airy focaccia-like crust, and signature crispy, caramelized cheese edges called 'frico'. Wisconsin brick cheese is spread all the way to the pan edges where it caramelizes against the hot steel, creating a lacy, crunchy cheese crust that's the hallmark of the style.",
+        context: "Detroit style characteristics"
+      },
+      {
+        question: "Why are automotive pans used for Detroit-style pizza?",
+        answer: "Legend has it that Gus Guerra, who invented Detroit-style pizza at Buddy's in 1946, acquired blue steel pans from a friend working in Detroit's automotive factories. These pans were originally used to hold small parts or as drip pans. The heavy, thick steel conducts heat evenly and creates the signature crispy bottom and caramelized cheese edges. This repurposing symbolizes Detroit's industrial resourcefulness.",
+        context: "Automotive pan history"
+      },
+      {
+        question: "What is 'frico' and why is it important to Detroit-style pizza?",
+        answer: "Frico is the crispy, lacy, caramelized cheese crust that forms around the edges of Detroit-style pizza. It's created by spreading Wisconsin brick cheese all the way to the pan edges, where it melts and caramelizes against the hot steel during baking. This creates a crunchy, nutty, deeply flavorful cheese crust that's the most distinctive and beloved feature of Detroit-style pizza.",
+        context: "Frico technique"
+      },
+      {
+        question: "Can I make Detroit-style pizza without blue steel pans?",
+        answer: "While blue steel pans are traditional and ideal, you can approximate Detroit style using well-seasoned cast iron pans or thick aluminum pans. The key is heavy, thick metal that conducts heat well. Thin pans won't create the proper crispy bottom and caramelized edges.",
+        context: "Home baking"
+      },
+      {
+        question: "Why is Wisconsin brick cheese used instead of mozzarella?",
+        answer: "Wisconsin brick cheese has the perfect fat content and melting properties to create frico. It caramelizes beautifully against hot steel, creating crispy, lacy edges. Mozzarella has too much moisture and doesn't caramelize the same way. Brick cheese is essential for authentic Detroit style.",
+        context: "Cheese selection"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh from oven (0-15 min): Peak crispiness, cheese molten, frico edges perfect",
-      "15-30 min: Cheese sets, flavors meld, still excellent quality",
-      "Room temperature: Holds up better than thin crust, flavors concentrate",
-      "Cold next day: Cult favorite - thick crust maintains structure, cheese firms up",
-      "Reheated: Works well in oven or toaster oven, revives crispiness"
+    fermentation_methods: [
+      {
+        method: "Hybrid",
+        suitability: "Authentic",
+        notes: "Cold Retard (24-72h). Standard practice for Detroit style. Develops complex flavors and improves texture."
+      },
+      {
+        method: "Direct",
+        suitability: "Possible",
+        notes: "Same Day. Works in a pinch but lacks the complex flavors from cold fermentation. Not traditional."
+      },
+      {
+        method: "Biga",
+        suitability: "Possible",
+        notes: "Modern Adaptation - Some modern pizzerias use biga for added complexity."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Typically direct dough with yeast and moderate fermentation.",
-    "Hydration: 70-75%"
-  ],
-  "doughImpact": [
-    "High hydration (70-75%) creates light, airy interior with large, irregular holes",
-    "Pan fermentation allows dough to rise upward, creating thick, focaccia-like texture",
-    "Oil in dough and pan creates fried, crispy bottom and edges",
-    "Bread flour (12-13% protein) provides structure to support thick, heavy toppings",
-    "Cold fermentation (optional) develops flavor complexity and improves texture"
-  ],
-  "bakingImpact": [
-    "Blue steel pan conducts heat intensely, frying the bottom and creating caramelized cheese crust",
-    "High temperature (240-280°C) in convection oven creates crispy exterior while maintaining soft interior",
-    "Cheese placed to the edges caramelizes against hot pan, forming the signature 'frico' crust",
-    "Sauce applied after baking (or in stripes) prevents soggy center",
-    "Rectangular shape and thick profile create high crust-to-center ratio"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      70,
-      75
-    ],
-    "saltRange": [
-      2,
-      2.5
-    ],
-    "oilRange": [
-      3,
-      5
-    ],
-    "sugarRange": [
-      1,
-      3
-    ],
-    "flourStrength": t('styles.bread_flour_protein_around_1213'),
-    "fermentation": {
-      "bulk": "1–3 h at room temperature or partial cold ferment",
-      "proof": "45–90 min in pan",
-      "coldRetard": t('styles.optional_overnight_in_pan')
+
+  deepDive: {
+    hydrationLogic: "Detroit style uses high hydration (70-75%) to create a light, airy, focaccia-like interior crumb with open structure. The bread flour (12-13% protein) provides enough strength to support this high hydration while maintaining structure. Lower hydration would create a dense, heavy texture instead of the characteristic airy lightness.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Possible but not traditional. Cold fermentation is essential for authentic Detroit-style flavor and texture." },
+      biga: { suitable: true, notes: "Some modern pizzerias use biga for added complexity, but cold-fermented direct dough is more traditional." },
+      poolish: { suitable: true, notes: "Can add flavor complexity, but cold-fermented direct dough is standard for Detroit style." }
     },
-    "oven": {
-      "type": "electric_home",
-      "temperatureC": [
-        240,
-        280
-      ],
-      "notes": t('styles.bluesteel_or_similar_pans_heavily_oiled_for_fried_')
-    },
-    "difficulty": t('styles.hard_21'),
-    "recommendedUse": [
-      t('common.thick_pan_pizza'),
-      "Cheese-edge caramelized pizzas"
+    whatIf: [
+      {
+        scenario: "Dough tears when pressing into pan",
+        outcome: "Insufficient gluten development or dough too cold",
+        solution: "Ensure proper mixing, let dough warm to room temp before pressing, work gently"
+      },
+      {
+        scenario: "Cheese edges burn before interior cooks",
+        outcome: "Oven temperature too high or bake time too long",
+        solution: "Reduce to 475-500°F, check at 12 minutes, cheese should be deeply golden but not black"
+      },
+      {
+        scenario: "Interior is gummy",
+        outcome: "Under-baked or too much moisture in toppings",
+        solution: "Extend bake time, pre-cook watery vegetables, ensure oven reaches proper temperature"
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Buddy's Original",
+        difference: "The birthplace - uses original recipe and techniques with specific sauce and cheese ratios"
+      },
+      {
+        vsStyle: "Cloverleaf Style",
+        difference: "Another Detroit original with slight variations in sauce placement and cheese blend"
+      }
+    ],
+    proTips: [
+      "Blue steel pans should be seasoned like cast iron before first use",
+      "Sauce is often added in stripes on top AFTER baking for visual appeal",
+      "Corner pieces are most prized - maximum crispy cheese edge ratio",
+      "Vernors ginger ale (Detroit's iconic soda) is the traditional pairing",
+      "The 2008 financial crisis diaspora spread Detroit style nationally as natives moved seeking work"
     ]
   },
-  "regionalVariants": [
-    "Buddy's Pizza - Original Detroit style, square cut, sauce on top",
-    "Loui's Pizza - Thinner crust variation, more cheese",
-    "Cloverleaf - Thicker, bread-like base",
-    "Modern Detroit Style - Adapted for home ovens, various pan types"
+
+  tags: ["detroit", "square pizza", "frico edges", "automotive pans", "michigan"],
+
+  watchouts: [
+    "Cheese not reaching edges results in missing signature frico crust",
+    "Insufficient pan oiling creates stuck, torn bottom instead of crispy crust",
+    "Over-proofing causes dough to collapse, losing airy texture",
+    "Wrong cheese (mozzarella) won't caramelize properly - brick cheese is essential",
+    "Thin pans won't create proper heat conduction for crispy bottom"
   ],
-  "climateScenarios": [
-    "Hot/Humid (>25°C, >70% RH): Reduce proof time in pan by 20-30%, use cooler water (18-20°C)",
-    "Cold/Dry (<15°C, <40% RH): Extend proof time in pan by 30-40%, use warmer water (25-28°C)",
-    "Tropical: Proof in refrigerator for first hour, then room temp for final rise",
-    "High Altitude (>1500m): Increase hydration by 2-3%, reduce bake time slightly"
+
+  notes: [
+    "Blue steel automotive pans are traditional - modern Detroit pans replicate original dimensions",
+    "Wisconsin brick cheese is essential - mozzarella doesn't caramelize the same way",
+    "Corner pieces are most prized for maximum crispy cheese edge ratio",
+    "Invented in 1946 at Buddy's Rendezvous by Gus Guerra",
+    "Spread nationally post-2008 as Detroit diaspora carried it across the country",
+    "Embodies Detroit's industrial heritage and resourcefulness"
   ],
-  "styleComparisons": [
-    "vs. Sicilian: Detroit is lighter, airier, higher hydration, cheese-to-edge technique",
-    "vs. Focaccia: Detroit has toppings, cheese crust, higher temperature, pizza vs bread",
-    "vs. Chicago Deep Dish: Detroit is lighter, crispier, cheese-first layering vs sauce-on-top",
-    "vs. Grandma Pizza: Detroit is thicker, more airy, blue steel vs sheet pan, higher temp"
-  ],
-  "parameterSensitivity": [
-    "Critical: Pan type - blue steel or similar heavy-gauge steel essential for proper crust",
-    "Highly sensitive to oil amount in pan - too little: sticks, too much: greasy",
-    "Cheese must reach edges - this creates the signature caramelized crust",
-    "Proof time in pan critical: under-proofed is dense, over-proofed collapses",
-    "Oven temperature must be high enough to fry bottom while cooking thick dough"
-  ],
-  "risks": [
-    "Dough sticks to pan: Insufficient oil or pan not properly seasoned",
-    "Soggy center: Too much sauce, sauce applied before baking, insufficient bake time",
-    "Pale bottom: Oven too cool, pan not preheated, insufficient oil",
-    "Burnt cheese edges: Oven too hot, cheese not brick cheese (high moisture), over-baking",
-    "Dense, heavy texture: Under-proofing, insufficient hydration, over-mixing"
-  ],
-  "notes": [
-    "Original Detroit pizzas used blue steel automotive parts pans - these are now manufactured for pizza",
-    "Wisconsin brick cheese is traditional - it has high fat, caramelizes beautifully",
-    "Sauce is often applied in stripes after baking, not covering entire surface",
-    "The 'frico' (cheese crust) is the most prized element - crispy, lacy, caramelized",
-    "Detroit style has experienced a renaissance since 2010s, spreading nationwide"
-  ],
-  "tags": [
-    t('common.thick_pan_pizza'),
-    "Cheese-edge caramelized pizzas",
-    t('common.pizza'),
-    t('common.united_states')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  recommendedFlavorComponents: ["brick_cheese", "mozzarella_low_moisture", "tomato_sauce_cooked", "pepperoni", "garlic_oregano"],
+
+  references: [
     {
-      "title": t('styles.modernist_pizza_3'),
-      "url": "https://modernistcuisine.com/books/modernist-pizza/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2021
+      source: "Buddy's Pizza - Original Detroit Style",
+      url: "https://www.buddyspizza.com/"
     },
     {
-      "title": t('styles.detroit_pizza_historical_accounts'),
-      "url": "https://www.seriouseats.com/detroit-style-pizza-history",
-      "author": "Serious Eats",
-      "year": 2020
+      source: "Pure Michigan - Detroit-Style Pizza",
+      url: "https://www.michigan.org/detroit-style-pizza"
     },
     {
-      "title": "The Pizza Bible",
-      "url": "https://www.amazon.com/Pizza-Bible-Worlds-Favorite-Styles/dp/1607746267",
-      "author": "Tony Gemignani",
-      "year": 2014
-    },
-    {
-      "title": "Detroit Pizza: A Slice of Motor City History",
-      "url": "https://www.detroitnews.com/story/entertainment/dining/2019/06/13/detroit-style-pizza-history/1440564001/",
-      "author": "Detroit News",
-      "year": 2019
+      source: "Serious Eats - Detroit Pizza Guide",
+      url: "https://www.seriouseats.com/detroit-style-pizza"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "What makes Detroit pizza different from other thick-crust styles?",
-      "answer": "Detroit pizza is unique for its rectangular shape, light and airy interior (70-75% hydration), crispy fried bottom from blue steel pans, and most distinctively, the caramelized cheese crust that extends to the edges of the pan. The cheese is placed first, then toppings, with sauce often added in stripes after baking. This creates a crispy, lacy 'frico' edge that's the signature of authentic Detroit style."
-    },
-    {
-      "question": "Can I make Detroit pizza without a blue steel pan?",
-      "answer": "While blue steel pans are traditional and ideal (they conduct heat intensely for the fried bottom), you can use alternatives: heavy-gauge aluminum pans, cast iron skillets, or even dark-colored metal baking pans. The key is a heavy, well-oiled pan that conducts heat well. Avoid glass or ceramic - they don't get hot enough. A 10x14 inch pan is standard size. Season the pan well with oil before first use."
-    },
-    {
-      "question": "Why is Wisconsin brick cheese recommended?",
-      "answer": "Wisconsin brick cheese has the perfect fat and moisture content for Detroit pizza. It melts smoothly, browns beautifully, and caramelizes against the hot pan to create the signature crispy, lacy edges. It has a mild, slightly tangy flavor that doesn't overpower toppings. If unavailable, use a blend of low-moisture mozzarella (70%) and mild cheddar or Monterey Jack (30%). Avoid pre-shredded cheese - it contains anti-caking agents that prevent proper melting."
-    },
-    {
-      "question": "Should I put sauce on before or after baking?",
-      "answer": "Traditional Detroit style applies sauce after baking, either in stripes or dollops, not covering the entire surface. This prevents a soggy center and allows the cheese to caramelize properly. Some modern variations put a thin layer of sauce under the cheese, then add more after baking. Never apply thick sauce before baking - the high hydration dough and thick profile make it prone to sogginess."
-    },
-    {
-      "question": "How do I achieve the crispy, fried bottom?",
-      "answer": "The crispy bottom requires four elements: 1) Heavy-gauge steel pan (blue steel is best) that conducts heat intensely, 2) Generous oil in the pan (2-3 tablespoons) to fry the dough, 3) High oven temperature (240-280°C), preferably convection, 4) Baking on the lowest rack for maximum bottom heat. The oil should sizzle when dough is added. Some recipes call for preheating the oiled pan for extra crispiness."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/detroit-style-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  }
 };

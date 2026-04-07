@@ -1,3 +1,4 @@
+import { describe, it, beforeAll, afterAll, expect, vi } from 'vitest';
 import * as sinon from 'sinon';
 import * as fft from 'firebase-functions-test';
 import * as proxyquire from 'proxyquire';
@@ -9,9 +10,13 @@ describe('Community Functions', () => {
     let collectionStub: sinon.SinonStub;
     let runTransactionStub: sinon.SinonStub;
 
+<<<<<<< HEAD
     before(function () {
         this.timeout(10000);
 
+=======
+    beforeAll(() => {
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
         // Mock Firestore chain
         collectionStub = sinon.stub();
         runTransactionStub = sinon.stub();
@@ -46,7 +51,7 @@ describe('Community Functions', () => {
         });
     });
 
-    after(() => {
+    afterAll(() => {
         test.cleanup();
     });
 

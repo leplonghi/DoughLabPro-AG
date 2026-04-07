@@ -25,11 +25,11 @@ const HealthBar: React.FC<{ score: number }> = ({ score }) => {
     const { t } = useTranslation();
     // Score 0-100
     let color = 'bg-red-500';
-    let text = 'Weak';
+    let text = t('ui.weak_345');
 
-    if (score > 80) { color = 'bg-dlp-brand'; text = 'Peak Health'; }
-    else if (score > 50) { color = 'bg-dlp-brand'; text = 'Good'; }
-    else if (score > 30) { color = 'bg-yellow-500'; text = 'Fair'; }
+    if (score > 80) { color = 'bg-dlp-brand'; text = t('ui.peak_health_346'); }
+    else if (score > 50) { color = 'bg-dlp-brand'; text = t('ui.good_347'); }
+    else if (score > 30) { color = 'bg-yellow-500'; text = t('ui.fair_348'); }
 
     return (
         <div className="mb-6">

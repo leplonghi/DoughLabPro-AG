@@ -1,250 +1,276 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * FOCACCIA GENOVESE (FUGASSA)
+ * 
+ * Researched and validated content:
+ * - Origin: Genoa, Liguria (Italy)
+ * - Technique: Triple proofing, salamoia (brine) application, deep dimpling (oeggi)
+ * - Ingredients: Soft wheat flour, malt, high-quality extra virgin olive oil
+ * - Science: Brine prevents surface drying and creates the texture contrast
+ */
+export const focaccia_genovese: DoughStyleDefinition = {
+  id: "focaccia_genovese",
+  name: "Focaccia Genovese",
+  category: "bread",
+  recipeStyle: RecipeStyle.FOCACCIA,
+  family: "Italian Rustic Flatbread",
 
-export const focaccia_genovese: StyleDefinition = {
-  "id": "focaccia_genovese",
-  "title": t('styles.focaccia_genovese'),
-  "subtitle": t('styles.italian_rustic__high_hydration_3'),
-  "category": t('styles.bread_6'),
-  "family": t('styles.italian_rustic__high_hydration_4'),
-  "variantName": t('styles.focaccia_genovese_2'),
-  "origin": {
-    "country": t('styles.italy_3'),
-    "region": "Liguria (Genoa)",
-    "period": t('styles.traditional_2')
+  origin: {
+    country: "Italy",
+    region: "Genoa, Liguria",
+    period: "Renaissance origins, formalized in 19th century"
   },
-  "intro": "Eaten plain or with simple toppings, often as a snack or accompaniment to meals and drinks.",
-  "history": "Focaccia Genovese (Fügassa in Ligurian dialect) is the ancestor of modern flatbreads, rooted in the maritime history of Genoa. Originally eaten by sailors and dockworkers for stamina, it was historically baked in communal ovens. The addition of a 'Salami' (brine) of water, salt, and oil in the holes was a clever way to keep the bread moist and savory during long voyages.",
-  "culturalContext": {
-    "significance": [
-      "The culinary heartbeat of Genoa and the Ligurian coast",
-      "One of the few savory breads traditionally eaten dipped in breakfast coffee (cappuccino)",
-      "Protected as a traditional agri-food product (PAT) in Italy",
-      "Symbol of Ligurian hospitality and the 'merenda' (afternoon snack) culture",
-      "Historically baked on 'testi' (terracotta or metal discs) before modern pans"
+
+  description: "Focaccia Genovese, known locally as 'Fugassa', is the iconic flatbread of Genoa. It is characterized by its golden, crispy exterior and remarkably soft, spongy interior. Its most defining feature is the 'salamoia' (brine) that pools in deep fingertip dimples, creating a contrast of salty, oily, and airy textures.",
+
+  history: "The term 'focaccia' derives from the Latin 'focus' (hearth), referring to flatbreads baked in the ashes. In Genoa, focaccia became a staple of the working class and sailors due to its shelf life and caloric density. By the Renaissance, it was so popular that it was frequently consumed during wedding masses, leading the Church to briefly ban it inside places of worship. The modern 19th-century version focuses on high-quality Ligurian olive oil and the specific triple-proofing technique that differentiates it from thicker, breadier versions found elsewhere in Italy. In 1996, the 'Marchio Collettivo' (Collective Mark) was established to protect the authentic Genoese recipe.",
+
+  difficulty: "Medium",
+  fermentationType: "direct", // Usually direct with long rests, though preferments are possible
+
+  base_formula: [
+    { name: "Type 0 or 00 Flour (medium strength)", percentage: 100 },
+    { name: "Water", percentage: 60 },
+    { name: "Salt", percentage: 2.5 },
+    { name: "Extra Virgin Olive Oil", percentage: 10 },
+    { name: "Malt Extract (or honey)", percentage: 2 },
+    { name: "Fresh Yeast", percentage: 3 }
+  ],
+
+  technicalProfile: {
+    hydration: [55, 65], // Internal; surface brine adds effective moisture
+    salt: [2.5, 3],
+    oil: [8, 12],
+    sugar: [1, 2], // Usually as malt
+    flourStrength: "Medium-strength Type 0 flour (11-12% protein, W240-280)",
+    ovenTemp: [220, 240],
+    recommendedUse: [
+      "Morning breakfast dipped in caffè latte (Genoese tradition)",
+      "Accompaniment for wine (Giancu de Pua)",
+      "Sandwich base for Mortadella or Prosciutto"
     ],
-    "consumptionContext": [
-      "Eaten at any time of day: breakfast, lunch, snack, or dinner",
-      "Specifically enjoyed dipped in coffee or dry white wine (like Vermentino)",
-      "Sold in long strips or large rectangular pieces, often wrapped in wax paper",
-      "Eaten exclusively upside down (salt side down) to maximize flavor impact on the tongue",
-      "Commonly shared with friends at local bakeries (sciamadde) in Genoa"
-    ],
-    "evolution": [
-      "Ancient Times: Ligurians bake simple flatbreads on hot hearthstones",
-      "1500s: Use of yeast becomes common; the church tries to ban it during fasts to no avail",
-      "1800s: The 'Genoese Salami' (salamoia) brine technique is perfected",
-      "1900s: Industrial sheet pans become the standard, but the traditional 2cm height remains",
-      "2000s: Sourdough/Levain variations become popular among artisan bakers",
-      "Present: Global recognition as the benchmark for all oily flatbreads"
-    ],
-    "rituals": [
-      "The 'Pizzicate' (Dimpling): using fingertips to create deep holes that trap pools of gold oil",
-      "The Brine Bath: pouring 'la salamoia' over the dough just before the final proof",
-      "Upside-Down Eating: the mandatory ritual of flipping the slice so the salt hits the taste buds first",
-      "The Bread-Coffee Dip: a ritual that shocks outsiders but defines the Genoese morning",
-      "Checking the Bottom: lifting the focaccia to ensure it is 'fried' golden by the oil in the pan"
+    difficulty: "Medium",
+    ballWeight: { recommended: 600, min: 400, max: 1000 }, // Based on pan size
+    fermentationSteps: [
+      "Mix: Combine flour, water, malt, half the oil, and yeast. Add salt halfway through mixing. [Science: Malt provides simple sugars for rapid yeast activation and deep crust color]",
+      "Bulk Rest: 30-60 minutes at room temperature. [Science: Initial gluten relaxation before the first stretch]",
+      "Pan Stretch: Place in generously oiled pan and stretch. If it resists, rest 15 mins and repeat. [Science: Gluten memory requires relaxation to fill corners without tearing]",
+      "Intermediate Proof: 60-90 minutes in the pan until doubled. [Science: Dough builds volume and air pockets before dimpling]",
+      "Dimpling & Brine: Deeply dimple with fingertips and pour 'salamoia' (emulsion of water, salt, and oil) over the top. [Science: Brine pools in dimples, preventing the surface from hardening too early and creating the 'eyes' (oeggi)]",
+      "Final Proof: 45-60 minutes until brine is partially absorbed. [Science: Moisture migrates into the top layer of dough for a spongy-crisp finish]",
+      "Bake: 12-15 minutes at high heat with a final brush of oil post-bake. [Science: High thermal mass of the pan fries the bottom while brine steams the top]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Intense fruity bitterness and richness from Extra Virgin Olive Oil",
-      "Sharp, crystalline salt bursts from the brine-filled dimples",
-      "Mild wheat sweetness balanced with savory malt",
-      "No sourness (if made traditionally); clean and focus on the oil",
-      "Subtle herb notes if using traditional Ligurian toppings like rosemary"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W240-280 (Medium)",
+      pl_ratio: "0.50-0.60 (Extensible)",
+      absorption_capacity: "Moderate (60-65%)",
+      protein_type: "Soft wheat with high extensibility",
+      science_explanation: "Focaccia doesn't need the massive strength of bread; it needs extensibility to spread into pan corners and enough protein to support the high oil and sugar (malt) content."
+    },
+    thermalProfile: {
+      oven_type: "Electric deck or ventilated home oven",
+      heat_distribution: "Bottom conduction from pan, top convection",
+      crust_development: "Soft, golden, almost fried bottom; moist, salty top",
+      crumb_structure: "Spongy, even, with large pools of oil and salt"
+    },
+    fermentationScience: {
+      yeast_activity: "High (due to malt and high yeast ratio)",
+      ph_target: "pH 5.4-5.6",
+      organic_acids: "Mostly lactic, keeping the flavor sweet and wheaty",
+      enzymatic_activity: "Alpha-amylase activity is critical for the characteristic hazelnut crust color"
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Malt is the color secret",
+        explanation: "Authentic Focaccia Genovese uses barley malt. It provides the essential sugars for the Maillard reaction at lower temperature/time, resulting in that unique hazelnut brown color without drying out the crumb."
+      },
+      {
+        tip: "Dimple with the 'pads', not the 'tips'",
+        explanation: "Use the pads of your first three fingers at an angle. You want to create deep wells (oeggi) without piercing through the dough to the pan bottom."
+      },
+      {
+        tip: "The 1:1:1 Brine Ratio",
+        explanation: "A good starting point for your salamoia is equal parts water and oil with 2.5% salt by weight of the water. Whisk until cloudy and pour immediately."
+      },
+      {
+        tip: "The 'Caffè Latte' Test",
+        explanation: "Try dipping a plain piece of focaccia in your morning coffee with milk. If the oil and salt perfectly balance the sweetness of the coffee, you've made true Fugassa."
+      },
+      {
+        tip: "Wait for the 'Sizzle'",
+        explanation: "When you pull it from the oven, brush it once more with EVOO. You should hear a slight sizzle as the crust absorbs the final hit of fat."
+      }
     ],
-    "aromaProfile": [
-      "Dominant aroma of warm, high-quality Ligurian olive oil",
-      "Freshly baked white bread with a hint of toasted yeast",
-      "Salty sea-air scent from the surface brine",
-      "Herbal notes (rosemary or onion) if applicable",
-      "Nutty, earthy wheat aromas"
+    what_if: [
+      {
+        scenario: "The focaccia is too bready and tall",
+        result: "Too much flour for the pan or over-proofing",
+        correction: "Genoese focaccia should be under 2cm thick. Use less dough or a larger pan. Ensure the final proof in brine isn't too long."
+      },
+      {
+        scenario: "The bottom is soft and greasy",
+        result: "Oven temperature too low or not enough heat from the bottom",
+        correction: "Place the pan on the lowest rack or directly on a preheated stone to fry the bottom crust."
+      },
+      {
+        scenario: "The dimples disappear (smooth surface)",
+        result: "Dimpling was too shallow or dough had too much tension",
+        correction: "Dimple firmly until you feel the pan bottom. Let the dough relax longer before the final dimpling."
+      },
+      {
+        scenario: "The top is too salty",
+        result: "Salt in brine didn't dissolve or ratio was too high",
+        correction: "Dissolve salt in the water before mixing with oil. Use a maximum of 30g salt per liter of brine water."
+      }
     ],
-    "textureNotes": [
-      "The 'Ligurian Crunch': a micro-thin, crispy top skin and fried bottom",
-      "Soft and sponge-like interior that 'wakes up' when bitten",
-      "Variable height - usually no more than 2cm (about 1 inch) thick",
-      "Contrasting pools of soft, salty center within the dimples",
-      "Extremely oily to the touch—your fingers should shine after eating"
+    comparative_analysis: [
+      {
+        target_style: "Focaccia Barese",
+        difference: "Barese uses re-milled semolina and often includes potatoes in the dough; it's thicker and topped with tomatoes and olives.",
+        why_choose_this: "Choose Genovese for a thinner, oilier, and more purist experience."
+      },
+      {
+        target_style: "Sicilian Sfincione",
+        difference: "Sfincione is much thicker, bread-like, and always topped with a rich tomato/onion/anchovy sauce.",
+        why_choose_this: "Choose Genovese for the ultimate expression of olive oil and salt balance."
+      },
+      {
+        target_style: "Pizza al Taglio",
+        difference: "Pizza al Taglio is focused on structure and toppings; Focaccia Genovese is focused on the dough's own flavor and the brine interaction.",
+        why_choose_this: "Choose Genovese when you want a versatile snack or table bread."
+      }
     ],
-    "pairingRecommendations": [
-      "Beverage: Vermentino (white wine), dry Gin & Tonic, or Cappuccino for breakfast",
-      "Toppings: Sliced onions (Cipolle), fresh rosemary, or sage",
-      "Accompaniment: Ligurian olives (Taggiasca), mortadella, or soft stracchino cheese",
-      "Sauce: Never dipped in sauce; the oil and brine are the sauce",
-      "Dessert: Sometimes sprinkled with sugar (Focaccia Dolce) for a sweet variant"
+    q_and_a: [
+      {
+        question: "Why do Genoese eat focaccia for breakfast?",
+        answer: "It's a historical tradition. The salt and oil provide a high-energy start for dock workers and sailors, and the contrast with sweet coffee is a beloved local flavor profile.",
+        context: "Culture"
+      },
+      {
+        question: "Is it okay to use Rosemary?",
+        answer: "While Rosemary is popular globally, the 'Classica' Genovese is just oil, salt, and malt. Adding herbs makes it 'Focaccia alle Erbe,' which is common but secondary to the plain classic.",
+        context: "Tradition"
+      },
+      {
+        question: "What is salamoia?",
+        answer: "It's a brine made of water, salt, and extra virgin olive oil. It is applied just before the final proof to create the signature moist dimples and crispy peaks.",
+        context: "Technique"
+      },
+      {
+        question: "Why is malt extract important?",
+        answer: "It accelerates fermentation and improves the crust's color and aroma via the Maillard reaction, which is essential for the short bake times of thin focaccia.",
+        context: "Science"
+      },
+      {
+        question: "Can I use butter instead of oil?",
+        answer: "Absolutely not. Focaccia Genovese is defined by Extra Virgin Olive Oil. Butter would make it a different type of enriched bread altogether.",
+        context: "Ingredients"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh (0-2 hours): Peak perfection; the oil is vibrant and the crust is crisp",
-      "4-8 hours: The 'focaccia of the sailors'; becomes denser and chewier",
-      "Next Day: Best reheated in a pan to restore the 'fry' or cut into cubes for soup",
-      "Structural Loss: Will become 'soggy' if kept in plastic; must be kept in paper",
-      "Cold: A popular 'snack in the pocket' for hikers in the Cinque Terre"
+    fermentation_methods: [
+      {
+        method: "Direct",
+        suitability: "Authentic",
+        notes: "Most traditional for Genovese bakers. Relies on timing and malt for development."
+      },
+      {
+        method: "Biga",
+        suitability: "Possible",
+        notes: "Can be used to add structural strength if pushing hydration higher than 70%."
+      },
+      {
+        method: "Poolish",
+        suitability: "Ideal",
+        notes: "Excellent for home bakers to achieve a very extensible dough that fills the pan easily."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Direct dough or mild preferment; long fermentation improves flavor.",
-    "Hydration: 70-80%"
-  ],
-  "doughImpact": [
-    "High hydration (70-80%) allows the dough to spread easily and creates a tender crumb",
-    "Liberal oil in the dough (5-10%) and pan provides the signature 'fried' richness",
-    "Long bulk fermentation (with folds) ensures flexibility for stretching and dimpling",
-    "The use of malt or a small amount of sugar assists in browning despite the high oil film",
-    "Minimal handling during the final stretch prevents degassing and maintains even height"
-  ],
-  "bakingImpact": [
-    "Moderate heat (220-250°C) allows the oil to 'fry' the crust while keeping the center soft",
-    "Baking in a heavy-duty pan is mandatory to saturate the dough in oil bottom-up",
-    "The brine (water/oil/salt) creates 'micro-steam' in the dimples, preventing a hard crust",
-    "A relatively short 15-20 minute bake prevents excess drying of the thin loaf",
-    "Higher initial bottom heat is desirable to jumpstart the oil-frying reaction"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      70,
-      80
-    ],
-    "saltRange": [
-      2.5,
-      3
-    ],
-    "oilRange": [
-      5,
-      10
-    ],
-    "sugarRange": [
-      0,
-      3
-    ],
-    "flourStrength": t('styles.allpurpose_or_bread_flour_medium_strength'),
-    "fermentation": {
-      "bulk": "2–4 h at 23–25°C, possibly including cold retard",
-      "proof": "30–90 min in pan after dimpling and brine application",
-      "coldRetard": t('styles.often_824_h_for_depth_of_flavor')
+
+  deepDive: {
+    hydrationLogic: "While usually cited at 60-65% internal hydration, the 'effective' hydration of Focaccia Genovese is much higher due to the salamoia (brine). The water in the brine evaporates into the oven, creating a mini-steam chamber for the dough, while the salt and oil stay behind to season and fry the surface.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Reliable and fast." },
+      biga: { suitable: true, notes: "Good for high-quality, long-lasting artisan versions." },
+      poolish: { suitable: true, notes: "Best for maximum extensibility and airy interior." }
     },
-    "oven": {
-      "type": "electric_home",
-      "temperatureC": [
-        220,
-        250
-      ],
-      "notes": t('styles.baked_in_oiled_sheet_pans_for_crisp_bottom_and_ten')
-    },
-    "difficulty": t('styles.expert_4'),
-    "recommendedUse": [
-      t('common.flatbread_snack'),
-      t('common.table_bread'),
-      t('common.sandwich_base')
+    whatIf: [
+      {
+        scenario: "You skip the brine and just use oil",
+        outcome: "The surface will be hard and dry; the salt will likely fall off. You miss the 'spongy-crisp' contrast.",
+        solution: "Never skip the water in the surface application; it's the key to the 'Genoese' texture."
+      },
+      {
+        scenario: "You use a cold pan",
+        outcome: "The bottom will be pale and doughy.",
+        solution: "Preheat the oven with a heavy tray or stone inside, or use a blue steel pan for best heat conduction."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Focaccia di Recco",
+        difference: "Completely different style: Recco is unleavened, paper-thin, and filled with crescenza cheese. Genovese is leavened and spongy."
+      }
+    ],
+    proTips: [
+      "Lightly dust the top with flour AFTER brining but BEFORE baking for a rustic look.",
+      "Use 3-finger pressure to create the oeggi.",
+      "Ligurian olive oil (Taggiasca) is the gold standard.",
+      "Don't be afraid of a long bake; color is flavor."
     ]
   },
-  "regionalVariants": [
-    "Focaccia di Recco - The paper-thin cheese-filled non-yeasted cousin",
-    "Focaccia con le Cipolle - Loaded with thin, sweet white onions (very traditional)",
-    "Focaccia di Voltri - A thinner, crunchier variant from the Voltri district of Genoa",
-    "Focaccia Barese - Apulian cousin using tomatoes, olives, and often boiled potatoes",
-    "Focaccia Veneta - Sweet, tall variant eaten during festivals like Christmas"
+
+  tags: ["focaccia", "genovese", "ligurian", "oil-bread", "classic-italian"],
+
+  watchouts: [
+    "Dough too cold when stretching will shrink back and create thick spots.",
+    "Insufficient oil in the pan leads to a stuck, torn bottom.",
+    "Oven too cold creates a bready, dry texture without the 'fry'.",
+    "Not dissolving salt in brine leads to 'salt spots' instead of even seasoning."
   ],
-  "climateScenarios": [
-    "Genoese Mistral (Cold/Dry): Use warm water (32°C) and cover pan with a damp cloth",
-    "Mediterranean Summer (Hot): Reduce yeast by 30% and perform bulk ferment in the fridge",
-    "Coastal Fog (High Humidity): Reduce water by 3-5% to prevent the dough from being too slack",
-    "High Altitude: Reduce yeast and sugar; the dough will rise too fast and lose 'oil-tension'"
+
+  notes: [
+    "Fugassa in Ligurian dialect means 'flatbread baked on the focus'.",
+    "Dimples are called 'oeggi' (eyes).",
+    "Malt extract is non-negotiable for the traditional hazelnut color.",
+    "Pairs perfectly with a glass of Vermentino or Pigato wine.",
+    "Originally a survival food for sailors."
   ],
-  "styleComparisons": [
-    "vs. Pizza: Focaccia is much oilier, has a brine finish, and is eaten at any time (including breakfast)",
-    "vs. Ciabatta: Both are hydrated, but Focaccia is an oil-enriched dough vs Ciabatta's lean dough",
-    "vs. Focaccia Barese: Genovese is thinner, focuses on oil/brine vs Barese's focus on toppings",
-    "vs. American Pan Pizza: Focaccia is less 'doughy' and has a unique salty/briny top vs dry cheese"
-  ],
-  "parameterSensitivity": [
-    "Critical: Oil Quality - if the olive oil isn't excellent, the bread will be bland and greasy",
-    "Highly sensitive: Brine Ratio - too much water and it becomes soggy; too much salt is inedible",
-    "Dimple Depth: If you don't push through to the bottom, the oil pools will be shallow and evaporate",
-    "Flour Strength: Needs enough protein to resist the oil, but not so much that it becomes 'rubbery'",
-    "Proof Time in Pan: Under-proofing leads to 'tough' flatbread; it must be airy before the brine"
-  ],
-  "risks": [
-    "The 'Leathery' Top: Caused by omitting the brine or not using enough steam in the oven",
-    "Greasy Mess: Using low-quality or rancid oil, or oil with a low smoke point",
-    "Sticking to Pan: Not using enough oil in the corners before panning",
-    "Salt Overdose: Forgeting that the brine contains salt and over-salting the dough itself",
-    "Dense Bottom: Oven floor not hot enough to start the oil-frying process quickly"
-  ],
-  "notes": [
-    "Don't be shy with the oil - if you're not making a mess, you're not doing it right",
-    "Use Taggiasca olive oil if possible for the most authentic Ligurian flavor",
-    "Turn the focaccia upside down on your plate so the salt hits your tongue first",
-    "The brine should look like a milky emulsion of oil and water (salamoia)",
-    "If using rosemary, push the needles into the dimples so they don't burn"
-  ],
-  "tags": [
-    t('common.flatbread_snack'),
-    t('common.table_bread'),
-    t('common.sandwich_base'),
-    t('common.bread'),
-    t('common.italy')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.modernist_bread_5'),
-      "url": "https://modernistcuisine.com/books/modernist-bread/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2017
+      source: "Consorzio Focaccia Genovese - Official Recipe",
+      url: "https://www.panificatori.it/consorzio-focaccia-genovese/"
     },
     {
-      "title": "La Focaccia di Genova",
-      "url": "https://www.panificatori.it/focaccia-genovese/",
-      "author": "Associazione Panificatori di Genova",
-      "year": 2022
+      source: "Modernist Bread (Genoese Focaccia Profile)",
+      url: "https://modernistcuisine.com/books/modernist-bread/",
+      author: "Nathan Myhrvold, Francisco Migoya",
+      year: "2017"
     },
     {
-      "title": "Cucinare in Liguria",
-      "url": "https://www.amazon.it/Cucinare-Liguria-Ricette-Liguri-Tradizionali/dp/8876483562",
-      "author": "Enzo Rossi",
-      "year": 1995
-    },
-    {
-      "title": "Savouring Italy",
-      "url": "https://www.amazon.com/Savouring-Italy-Michele-Scicolone/dp/1875169680",
-      "author": "Michele Scicolone",
-      "year": 1999
+      source: "Cucinare in Liguria",
+      url: "https://www.amazon.it/Cucinare-Liguria-Ricette-Liguri-Tradizionali/dp/8876483562",
+      author: "Enzo Rossi",
+      year: "1995"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "O que torna a Focaccia Genovese única?",
-      "answer": "A característica principal é a 'salamoia' (salmoura) - uma mistura de água, sal e muito azeite que é vertida nos buracos da massa antes de assar. Isso cria poças de sabor e mantém o interior úmido enquanto a superfície doura."
-    },
-    {
-      "question": "É verdade que os italianos comem focaccia no café da manhã?",
-      "answer": "Sim! Em Gênova, é um ritual sagrado mergulhar um pedaço de focaccia genovese quentinha no cappuccino ou no caffè latte. O contraste do salgado do azeite com o doce do café é considerado sublime pelos locais."
-    },
-    {
-      "question": "Por que devo comer a focaccia de cabeça para baixo?",
-      "answer": "É uma tradição genovesa. Ao virar o lado do sal para baixo, ele toca as papilas gustativas da língua primeiro, proporcionando uma explosão de sabor muito mais intensa e imediata."
-    },
-    {
-      "question": "Qual o segredo para os buracos perfeitos?",
-      "answer": "Use as pontas dos dedos e force-as contra a assadeira, mas sem furar a massa. Esses buracos devem ser profundos para 'segurar' o azeite e a salmoura. Se forem rasos, a salmoura evapora e o pão fica seco."
-    },
-    {
-      "question": "Posso usar qualquer azeite?",
-      "answer": "Pode, mas como o azeite é o ingrediente principal de sabor, o resultado final depende 100% da qualidade dele. Azeites virgens e frutados (especialmente os da Ligúria) são os ideais para este estilo."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/focaccia-genovese-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "rosemary_fresh", "garlic_fresh", "balsamic_modena", "burrata", "stracciatella"]
 };

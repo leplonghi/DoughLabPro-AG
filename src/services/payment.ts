@@ -1,6 +1,10 @@
 import { getFunctions, httpsCallable } from "firebase/functions";
 import i18n from '@/i18n';
+<<<<<<< HEAD
 import { logEvent } from '@/services/analytics';
+=======
+import { monitor } from '@/infrastructure/monitoring';
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
 const t = i18n.t.bind(i18n);
 
@@ -14,6 +18,7 @@ class PaymentFlowError extends Error {
     }
 }
 
+<<<<<<< HEAD
 export const getPaymentErrorMessage = (
     error: unknown,
     action: "checkout" | "billingPortal"
@@ -61,6 +66,9 @@ export const getPaymentErrorMessage = (
 };
 
 export const checkoutProSubscription = async (countryHint?: string) => {
+=======
+export const checkoutProSubscription = async (planKey: string = 'standard') => {
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     const functions = getFunctions();
     const createCheckoutSession = httpsCallable(functions, "createCheckoutSession");
 
@@ -69,6 +77,7 @@ export const checkoutProSubscription = async (countryHint?: string) => {
     const cancelUrl = `${window.location.origin}/#/upgrade/cancel`;
 
     try {
+<<<<<<< HEAD
         logEvent('checkout_session_requested', {
             source: 'plans',
             countryHint: countryHint || 'unknown',
@@ -79,6 +88,15 @@ export const checkoutProSubscription = async (countryHint?: string) => {
             successUrl,
             cancelUrl,
             countryHint,
+=======
+        monitor.trackEvent('checkout_started', { planKey });
+
+        const result: any = await createCheckoutSession({
+            planKey,
+            successUrl,
+            cancelUrl,
+            countryHint: navigator.language.split('-')[1] // Optional hint
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
         });
 
         const { url } = result.data || {};
@@ -86,6 +104,7 @@ export const checkoutProSubscription = async (countryHint?: string) => {
             throw new PaymentFlowError("stripe/checkout-url-missing", t('ui.stripe_failed_to_initialize'));
         }
 
+<<<<<<< HEAD
         logEvent('checkout_redirect_ready', { source: 'plans' });
         window.location.assign(url);
     } catch (error) {
@@ -120,6 +139,20 @@ export const openBillingPortal = async () => {
             source: 'plans',
             reason: getPaymentErrorMessage(error, 'billingPortal'),
         });
+=======
+        const { error } = await (stripe as any).redirectToCheckout({
+            sessionId,
+        });
+
+        if (error) {
+            console.error("Stripe Redirect Error:", error);
+            monitor.trackError(error, { phase: 'stripe_redirect' });
+            throw error;
+        }
+    } catch (error: any) {
+        console.error("Payment Error:", error);
+        monitor.trackError(error, { phase: 'checkout_session_creation' });
+>>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
         throw error;
     }
 };

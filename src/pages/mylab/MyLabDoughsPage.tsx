@@ -58,7 +58,7 @@ const MyLabDoughsPage: React.FC<MyLabDoughsPageProps> = ({ onNavigate }) => {
                                         px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide
                                         ${batch.status === BatchStatus.IN_PROGRESS ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'}
                                     `}>
-                                        {batch.status === BatchStatus.IN_PROGRESS ? 'Fermenting' : 'Planned'}
+                                        {batch.status === BatchStatus.IN_PROGRESS ? t('ui.fermenting_416') : t('ui.planned_417')}
                                     </div>
                                     <BeakerIcon className="h-5 w-5 text-slate-300 group-hover:text-dlp-brand transition-colors" />
                                 </div>

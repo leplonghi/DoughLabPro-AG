@@ -46,8 +46,8 @@ export const LogisticsSection: React.FC = () => {
                     const sizeRef = preset.sizes[0];
                     if (sizeRef) {
                         const count = v.count;
-                        if (sizeRef.sauceGrams) toppingAgg['Pizza Sauce'] = (toppingAgg['Pizza Sauce'] || 0) + sizeRef.sauceGrams * count;
-                        if (sizeRef.cheeseGrams) toppingAgg['Mozzarella Cheese'] = (toppingAgg['Mozzarella Cheese'] || 0) + sizeRef.cheeseGrams * count;
+                        if (sizeRef.sauceGrams) toppingAgg[t('ui.pizza_sauce_236')] = (toppingAgg[t('ui.pizza_sauce_236')] || 0) + sizeRef.sauceGrams * count;
+                        if (sizeRef.cheeseGrams) toppingAgg[t('ui.mozzarella_cheese_238')] = (toppingAgg[t('ui.mozzarella_cheese_238')] || 0) + sizeRef.cheeseGrams * count;
                         if (sizeRef.toppingsGrams) toppingAgg['Toppings (Generic)'] = (toppingAgg['Toppings (Generic)'] || 0) + sizeRef.toppingsGrams * count;
                     }
                 }
@@ -99,7 +99,7 @@ export const LogisticsSection: React.FC = () => {
                                     : 'text-slate-400 hover:text-[#51a145] hover:bg-white'}
                             `}
                         >
-                            {val === 0 ? 'Exact' : `+${val}% ${val === 20 ? 'Party' : 'Safe'}`}
+                            {val === 0 ? t('ui.exact_240') : `+${val}% ${val === 20 ? t('ui.party_241') : t('ui.safe_242')}`}
                         </button>
                     ))}
                 </div>

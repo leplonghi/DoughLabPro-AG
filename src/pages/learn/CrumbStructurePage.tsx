@@ -67,7 +67,7 @@ const CrumbStructurePage: React.FC = () => {
                     Water acts as a plasticizer. Higher hydration (70%+) allows gluten strands to slide past each other more easily, enabling thinner cell walls and larger alveoli.
                 </p>
                 <p className="mt-4">
-                    <strong>Low Hydration (60%):</strong> Tighter network, smaller bubbles, uniform "sandwich bread" crumb.<br />
+                    <strong>Low Hydration (60%):</strong> Tighter network, smaller bubbles, uniform t('learn.sandwich_bread_443') crumb.<br />
                     <strong>High Hydration (75%+):</strong> Extensible network, large irregular bubbles, "wild" open crumb.
                 </p>
             </LearnSection>

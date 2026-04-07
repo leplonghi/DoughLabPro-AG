@@ -1,261 +1,264 @@
-import { StyleDefinition } from '../../../types/styleDefinition';
-import i18n from '@/i18n';
+import { DoughStyleDefinition, RecipeStyle } from '../../../types/styles';
 
-const t = i18n.t.bind(i18n);
+/**
+ * NEW YORK SLICE SHOP (CLASSIC STREET SLICE)
+ * 
+ * Researched and validated content:
+ * - Origin: NYC, USA (Lombardi's 1905 heritage; Modern gas-deck evolution 1940s)
+ * - Technique: Wide stretching (18-20 inch), Heavy shielding, Deck baked (280-315°C)
+ * - Ingredients: High-protein flour (High Gluten), Sugar, Oil (for re-heatability)
+ * - Characteristics: Large, foldable, crispy bottom, 'orange' oil drip
+ */
+export const new_york_slice_shop: DoughStyleDefinition = {
+  id: "new_york_slice_shop",
+  name: "NY Slice Shop (Classic)",
+  category: "pizza",
+  recipeStyle: RecipeStyle.NEW_YORK,
+  family: "New York Traditional",
 
-export const new_york_slice_shop: StyleDefinition = {
-  "id": "new_york_slice_shop",
-  "title": "New York Slice Shop (Classic)",
-  "subtitle": t('styles.new_york_style_pizza_3'),
-  "category": t('styles.pizza_10'),
-  "family": t('styles.new_york_style_pizza_4'),
-  "variantName": "New York Slice Shop (Classic)",
-  "origin": {
-    "country": t('styles.united_states_10'),
-    "region": t('styles.new_york_city_3'),
-    "period": t('styles.early_20th_century')
+  origin: {
+    country: "USA",
+    region: "New York City (Five Boroughs)",
+    period: "1940s (Introduction of Gas Deck Ovens) – Present"
   },
-  "intro": "The quintessential American street food. Cheap, fast, and eaten on the go. The 'New York Fold' is a practical necessity to keep the molten cheese and oil from sliding off.",
-  "history": "Descended from Neapolitan immigrants (Lombardi's, 1905), this style evolved to suit coal and later gas deck ovens. The dough became larger (18-20 inches), lower moisture, and tougher to handle the 'slice fold'. The use of bromated high-gluten flour became a standard for that specific chew.",
-  "culturalContext": {
-    "significance": [
-      "Iconic symbol of New York City and American urban culture since early 1900s",
-      "Represents Italian-American immigrant success and cultural adaptation",
-      "Quintessential fast food - cheap, portable, eaten on-the-go by busy New Yorkers",
-      "Cultural touchstone in movies, TV shows, and popular culture worldwide",
-      "Embodies NYC's working-class ethos: no-frills, efficient, democratic food"
+
+  description: "The NY Slice Shop style is the quintessential American street food. Designed for high-volume service and 're-heatability', it features a large, 18-to-20-inch pie cut into eight generous slices. The dough is enriched with oil and sugar to ensure it remains tender after being partially baked, cooled, and then quickly crisped up 'on the floor' of the oven for a second time when a customer orders a slice.",
+
+  history: "While Gennaro Lombardi opened the first pizzeria in 1905, the 'Slice Shop' culture truly exploded after WWII with the invention of the commercial gas deck oven. No longer tied to expensive coal or wood, neighborhood pizzerias (like Joe's, Patsy's, and Ray's) could offer quick, affordable slices. The foldable nature of the slice became a necessity for the busy New Yorker eating on the move. By the 1970s, the style had its own set of technical standards: high-gluten flour, low-moisture mozzarella, and a robust tomato sauce.",
+
+  difficulty: "Medium",
+  fermentationType: "cold",
+
+  base_formula: [
+    { name: "High-Gluten Flour (W340+ / 14% Protein)", percentage: 100 },
+    { name: "Water (Cold Tap)", percentage: 60 },
+    { name: "Salt", percentage: 2.2 },
+    { name: "Vegetable or Olive Oil", percentage: 3 },
+    { name: "Sugar or Malt", percentage: 2 },
+    { name: "Instant Yeast", percentage: 0.5 }
+  ],
+
+  technicalProfile: {
+    hydration: [58, 63], // Lower hydration for structural stability at large sizes
+    salt: [2.0, 2.5],
+    oil: [2, 5], // High oil content prevents the slice from becoming a 'cracker' during reheating
+    sugar: [1, 3], // Necessary for the 'Standard NY Gold' color in gas ovens
+    flourStrength: "Extra Strong (W340+). Bromated flour was traditional; now high-protein spring wheat is the standard",
+    ovenTemp: [280, 315],
+    recommendedUse: [
+      "Traditional Slice Shop service",
+      "Home pizza parties (16-inch+ pies)",
+      "Delivery-optimized pizza"
     ],
-    "consumptionContext": [
-      "Sold by the slice at walk-up counters, reheated on deck ovens",
-      "Eaten standing up, folded in half, often while walking or on subway",
-      "Late-night food staple - pizzerias open until 3-4 AM in many neighborhoods",
-      "Office lunch standard - delivered in large pies, eaten communally",
-      "Dollar slice phenomenon: ultra-cheap slices as loss leaders in competitive markets"
-    ],
-    "evolution": [
-      "1905: Lombardi's opens in Little Italy, first American pizzeria using coal ovens",
-      "1920s-1940s: Italian immigrants adapt Neapolitan style to American tastes and ovens",
-      "1950s-1970s: Gas deck ovens replace coal, style standardizes across NYC",
-      "1980s-1990s: Bromated high-gluten flour becomes standard for characteristic chew",
-      "2000s: Dollar slice wars begin, quality varies widely",
-      "2010s-present: Artisan revival with cold-fermented doughs, premium ingredients"
-    ],
-    "rituals": [
-      "The 'New York Fold' - folding slice lengthwise to eat, prevents topping slide",
-      "Blotting excess oil with napkin - personal preference, hotly debated",
-      "Ordering: 'Two slices and a Coke' is the classic NYC order",
-      "Reheating ritual: watching pizzaiolo reheat your slice on the deck",
-      "Late-night slice run: post-bar tradition for generations of New Yorkers"
+    difficulty: "Medium",
+    ballWeight: { recommended: 600, min: 550, max: 800 }, // Heavy balls for 18-20 inch pies
+    fermentationSteps: [
+      "Mixing: Combine all ingredients. Knead for 10-12 minutes until very smooth. [Science: The higher protein requires more mechanical energy to fully hydrate and align into a strong network]",
+      "Scale & Ball: Portion into large 600-800g balls immediately after mixing. [Science: Short bulk rise prevents 'puffy' air pockets; the goal is a dense, consistent structure]",
+      "Cold Retard: 24 to 48 hours at 4°C. [Science: Cold temperatures slow the yeast while allowing enzymes to convert starches to sugars for flavor and better browning]",
+      "Final Proof: 2 to 4 hours at room temperature. [Science: The balls must reach 18-20°C to be extensible enough to stretch to 20 inches without tearing]",
+      "Stretching: Hand-stretched to extreme diameters (up to 50cm). [Science: Thinner in the middle, with a slightly thicker edge (not a Canotto!)]",
+      "Baking: Bake on a gas deck for 7-10 minutes. [Science: The longer bake at moderate temps ensures the crust is fully dried and rigid enough to hold its own weight when folded]",
+      "The Reheat: Once a slice is ordered, place it back on the oven floor for 1-2 minutes. [Science: Flash-heats the bottom oil, creating the signature 'snap' crunch]"
     ]
   },
-  "flavorProfile": {
-    "primaryFlavors": [
-      "Tangy, slightly sweet tomato sauce with oregano and garlic",
-      "Rich, salty low-moisture mozzarella with mild funk",
-      "Chewy, yeasty dough with complex fermentation notes from cold retard",
-      "Subtle char and caramelization from high-heat deck baking",
-      "Hint of olive oil richness throughout"
+
+  scientificProfile: {
+    flourRheology: {
+      w_index: "W340-400 (Extra Strong)",
+      pl_ratio: "0.60-0.70 (Tenacious)",
+      absorption_capacity: "Moderate (58-62%)",
+      protein_type: "Hard Red Spring Wheat",
+      science_explanation: "The high protein content provides the 'structural integrity' needed to support a huge slice. Without this strength, the slice would 'tip' (the dreaded 'flop') when a New Yorker tries to eat it on the move."
+    },
+    thermalProfile: {
+      oven_type: "Gas Deck Oven (Stone/Refractory floor)",
+      heat_distribution: "Moderate bottom conduction and moderate ceiling radiation",
+      crust_development: "Uniform orange-gold color, moderately thick with a signature 'snap' when bent",
+      crumb_structure: "Dense, bready, and regular with small air cells"
+    },
+    fermentationScience: {
+      yeast_activity: "Steady; relies on the sugar in the dough for consistent gas production in high-volume environments",
+      ph_target: "pH 5.4 - 5.7",
+      organic_acids: "Low; focus is on a 'clean' wheat and yeast flavor",
+      enzymatic_activity: "High; specifically targeted at sugar release to aid the golden color in commercial ovens."
+    }
+  },
+
+  education: {
+    pro_tips: [
+      {
+        tip: "Screen vs Stone",
+        explanation: "Pizzerias often use a screen for the initial few minutes of baking to ensure a round shape, then slide the pie directly onto the stone floor for the final crisping."
+      },
+      {
+        tip: "The Fold Test",
+        explanation: "A perfect NY slice should be foldable without the crust snapping in half. The oil in our 'base_formula' is what provides this flexibility."
+      },
+      {
+        tip: "Low-Moisture Mozzarella",
+        explanation: "Never use fresh balls of mozzarella for this style. Use only low-moisture 'whole milk' mozzarella blocks. It melts with a characteristic orange oil drip that is part of the flavor profile."
+      },
+      {
+        tip: "Garlic/Oregano finish",
+        explanation: "Artisan slice shops often finish the pie with a dusting of dried oregano and pecorino romano as it leaves the oven; it's the 'smell' of NYC."
+      },
+      {
+        tip: "Room Temp Sauce",
+        explanation: "Never put ice-cold tomato sauce on the dough; it will create a 'gum line' (a layer of raw dough) between the sauce and the crust."
+      }
     ],
-    "aromaProfile": [
-      "Yeasty, bread-like fermentation with slight tang",
-      "Oregano, garlic, and dried herbs from sauce",
-      "Toasted, caramelized cheese with nutty notes",
-      "Slight char and smoke from deck oven",
-      "Warm olive oil and wheat flour aromas"
+    what_if: [
+      {
+        scenario: "The slice 'flops' and won't stand straight",
+        result: "Under-baked or hydration was too high",
+        correction: "Ensure hydration is below 62% and bake until the bottom has dark brown patches."
+      },
+      {
+        scenario: "The crust is hard and like a rock",
+        result: "Flour was too strong or dough was over-worked",
+        correction: "Increase the oil content by 1% to tenderize the dough."
+      },
+      {
+        scenario: "The cheese is burnt but the dough is raw",
+        result: "Oven ceiling was too hot or dough was too cold",
+        correction: "Let the dough balls rest longer at room temperature before stretching."
+      }
     ],
-    "textureNotes": [
-      "Chewy, substantial crust with strong gluten structure",
-      "Crispy, sturdy bottom that doesn't sag when folded",
-      "Slight crunch from cornmeal on deck (some pizzerias)",
-      "Tender interior crumb with small, even holes",
-      "Overall: foldable yet structurally sound, never floppy"
+    comparative_analysis: [
+      {
+        target_style: "New Jersey Tomato Pie",
+        difference: "NJ puts the cheese down FIRST, then swirls the sauce on top. NY Slice Shop is traditional Sauce-then-Cheese.",
+        why_choose_this: "Choose NY Slice for the classic 'street' experience."
+      },
+      {
+        target_style: "New Haven Apizza",
+        difference: "New Haven is much thinner, charred black, and oblong; NY Slice is round, golden, and softer.",
+        why_choose_this: "Choose NY Slice for a more 'approachable' family-favorite texture."
+      },
+      {
+        target_style: "California Style",
+        difference: "California focuses on goat cheese and fresh produce; NY Slice is all about the Pepperoni and Sausage classic combo.",
+        why_choose_this: "Choose NY Slice for the 'Traditional American' flavor profile."
+      }
     ],
-    "pairingRecommendations": [
-      "Classic: Plain cheese, pepperoni, or sausage - keep it simple",
-      "Traditional toppings: Mushrooms, peppers, onions, extra cheese",
-      "Beverage: Cold beer, Coca-Cola, or Italian soda",
-      "Condiments: Red pepper flakes, garlic powder, oregano, Parmesan",
-      "Avoid: Gourmet toppings, arugula, balsamic - stick to NYC classics"
+    q_and_a: [
+      {
+        question: "Why use 'Tap Water'?",
+        answer: "Legends say NYC water contains specific minerals that make the dough better, but science says it's mostly about the high-protein flour and the deck oven.",
+        context: "Culture"
+      },
+      {
+        question: "18 or 20 inches?",
+        answer: "18 is standard for 'Large' pies, but the iconic 1970s shops often used 20 inches to get that extra-long foldable slice.",
+        context: "Size"
+      },
+      {
+        question: "Sugar in pizza?",
+        answer: "It's not for sweetness. It's a 'coloring agent' for gas ovens that can't reach the extreme heat of wood-fired ones.",
+        context: "Science"
+      },
+      {
+        question: "What is an 'Orange Drip'?",
+        answer: "It is the emulsion of tomato acidity and the butter-fat from high-quality whole milk mozzarella. It's the hallmark of a good slice.",
+        context: "Toppings"
+      }
     ],
-    "flavorEvolution": [
-      "Fresh from oven (0-10 min): Peak flavor, cheese stretchy, crust crispy",
-      "Room temp (10-30 min): Flavors meld, still excellent, classic NYC experience",
-      "Reheated on deck: Revives crispiness, concentrates flavors, very acceptable",
-      "Cold from fridge: Controversial but beloved by many - different but valid experience",
-      "Next day: Crust toughens but flavors deepen, cold pizza breakfast tradition"
+    fermentation_methods: [
+      {
+        method: "Hybrid",
+        suitability: "Authentic",
+        notes: "Mandatory for the NY texture and flavor depth."
+      },
+      {
+        method: "Direct",
+        suitability: "Possible",
+        notes: "Only in low-end 'Emergency' pizzerias; results in a bland crust."
+      },
+      {
+        method: "Poolish",
+        suitability: "Ideal",
+        notes: "Increasingly common in 'New Wave' slice shops for a lighter edge."
+      }
     ]
   },
-  "technicalFoundations": [
-    "Direct dough is standard. Old dough (scrap) sometimes added.",
-    "Hydration: 58-62%"
-  ],
-  "doughImpact": [
-    "High-gluten flour (13-14.5% protein) creates strong, chewy texture that holds up when folded",
-    "Cold fermentation (24-48h) develops complex flavor and creates characteristic blistering",
-    "Moderate hydration (58-62%) produces dough that's easy to handle and stretch to large diameter",
-    "Oil addition (2-5%) improves extensibility and adds richness",
-    "Sugar (1-3%) aids browning and balances acidity of tomato sauce"
-  ],
-  "bakingImpact": [
-    "Gas deck oven (280-315°C) creates even heat for consistent baking across large 18-inch pies",
-    "7-12 minute bake time develops crispy bottom while maintaining structural integrity",
-    "Deck baking creates crispy, sturdy base that supports heavy toppings",
-    "Lower temperature than Neapolitan allows for more even cooking and less charring",
-    "Result must be firm enough to fold without breaking, yet tender enough to bite through easily"
-  ],
-  "technicalProfile": {
-    "hydrationRange": [
-      58,
-      62
-    ],
-    "saltRange": [
-      2,
-      2.5
-    ],
-    "oilRange": [
-      2,
-      5
-    ],
-    "sugarRange": [
-      1,
-      3
-    ],
-    "flourStrength": "High-Gluten Flour (13–14.5% protein), often bromated",
-    "fermentation": {
-      "bulk": "24–48h Cold Fermentation is critical for the characteristic blistered crust",
-      "proof": "2–3h warm up before stretching",
-      "coldRetard": t('styles.mandatory_for_texture_and_flavor')
+
+  deepDive: {
+    hydrationLogic: "Hydration (60%) is low to medium. This ensures the dough is 'stiff' enough to be stretched by a high-volume pizzaiolo into a 20-inch disc that won't tear or become too soggy under heavy pepperoni.",
+    methodSuitability: {
+      direct: { suitable: true, notes: "Reliable for same-day production targets." },
+      biga: { suitable: false, notes: "Adds too much 'spring'; NY dough needs to be extensible, not bouncy." },
+      poolish: { suitable: true, notes: "Recommended for 20% of the flour to add extensibility." }
     },
-    "oven": {
-      "type": "gas_deck",
-      "temperatureC": [
-        280,
-        315
-      ],
-      "notes": t('styles.baked_on_deck_for_712_minutes_must_be_crisp_enough')
-    },
-    "difficulty": t('styles.medium_38'),
-    "recommendedUse": [
-      "By-the-slice sales",
-      "Large 18-inch pies"
+    whatIf: [
+      {
+        scenario: "You omit the sugar",
+        outcome: "The pizza will take 12-14 minutes to brown, resulting in a very dry, tough, and hard crust.",
+        solution: "Sugar is mandatory at deck oven temperatures below 300°C."
+      }
+    ],
+    comparisons: [
+      {
+        vsStyle: "Street Slice vs Artisan Pie",
+        difference: "Street Slice uses commercial yeast and higher oil for reheating; Artisan Pie uses sourdough and no oil for immediate consumption."
+      }
+    ],
+    proTips: [
+      "A heavy dusting of Pecorino Romano before the bake adds a sharp salty kick that defines the NY profile.",
+      "If your home oven only goes to 250°C, use a 'Pizza Screen' to get better airflow around the large pie.",
+      "Buy 'Whole Milk' mozzarella blocks and grate them yourself; pre-shredded cheese has starch that prevents a good melt.",
+      "The best pepperoni is 'Cup Char'—it curls up into little bowls of oil in the oven.",
+      "Don't put too much flour on your peel; it will burn and taste like ash."
     ]
   },
-  "defaults": {
-    "hydration": 60,
-    "salt": 2.2,
-    "oil": 3,
-    "sugar": 2
-  },
-  "recommendedFlavorComponents": [
-    "mozzarella_low_moisture",
-    "pepperoni",
-    "italian_sausage",
-    "bell_pepper",
-    "cogumelos",
-    "pecorino_romano"
+
+  tags: ["new york", "slice shop", "foldable", "street food", "america", "pizza"],
+
+  watchouts: [
+    "Dough balls over-proofing? They will be impossible to lift onto the peel.",
+    "Cheese not melting? You used low-fat mozzarella—don't!",
+    "Gum line under the sauce? The oven floor was too cold.",
+    "Crust too hard? Reduce the bake time or increase oil."
   ],
-  "regionalVariants": [
-    "Manhattan Style - Classic coal-oven version (Lombardi's, John's)",
-    "Brooklyn Style - Slightly thinner, crispier, often square-cut",
-    "Long Island Bar Pie - Smaller (12-14\"), cooked in seasoned pans",
-    "New Haven Apizza - Related style with charred crust, clam topping tradition"
+
+  notes: [
+    "Most iconic American pizza format.",
+    "Designed for re-heatability (on the slice).",
+    "Uses High-Gluten flour (14% protein).",
+    "Foldable, rigid, and golden.",
+    "Baked in gas deck ovens (280-315°C)."
   ],
-  "climateScenarios": [
-    "Hot/Humid (>25°C, >70% RH): Reduce cold fermentation to 24-36h, use ice water for mixing",
-    "Cold/Dry (<15°C, <40% RH): Extend cold fermentation to 48-72h for flavor development",
-    "Tropical: Keep dough refrigerated at all times, reduce yeast by 20%",
-    "High Altitude (>1500m): Increase hydration by 2-3%, reduce bake time slightly"
-  ],
-  "styleComparisons": [
-    "vs. Neapolitan: NY is larger, crispier, lower temperature, longer bake, foldable structure",
-    "vs. Detroit: NY is hand-tossed not pan-baked, thinner, less airy, gas deck vs convection",
-    "vs. Chicago Deep Dish: NY is thin crust vs thick, quick bake vs long, foldable vs fork-and-knife",
-    "vs. California Style: NY is traditional toppings vs gourmet, chewy vs crispy-thin, classic vs innovative"
-  ],
-  "parameterSensitivity": [
-    "Critical: Cold fermentation time - 24-48h is essential for flavor and texture",
-    "High-gluten flour is non-negotiable - lower protein creates floppy, weak structure",
-    "Oven temperature must be 280-315°C - lower temps create pale, tough crust",
-    "Dough temperature during fermentation: must stay below 4°C to prevent over-fermentation",
-    "Stretching technique: must be hand-tossed or hand-stretched, never rolled"
-  ],
-  "risks": [
-    "Over-fermentation: Dough becomes too acidic, tears easily, develops off-flavors",
-    "Under-fermentation: Lacks flavor complexity, dense texture, poor oven spring",
-    "Insufficient gluten development: Dough won't stretch to 18 inches without tearing",
-    "Too much sauce: Creates soggy center, prevents crispy bottom",
-    "Oven too cool: Results in pale, tough, bread-like crust without proper char"
-  ],
-  "notes": [
-    "Bromated flour was traditional but now banned in many regions - use high-gluten unbromated",
-    "The 'New York Fold' is functional - it prevents toppings from sliding and makes eating easier",
-    "Authentic NY pizza uses low-moisture mozzarella to prevent sogginess",
-    "Coal ovens are traditional but rare now - gas deck ovens are standard",
-    "Slices are typically sold by weight or by the slice, reheated on the deck"
-  ],
-  "tags": [
-    "By-the-slice sales",
-    "Large 18-inch pies",
-    t('common.pizza'),
-    t('common.united_states')
-  ],
-  "applyInApp": {
-    "calculator": [],
-    "styles": [],
-    "mylab": [],
-    "levain": [],
-    "tools": []
-  },
-  "references": [
+
+  references: [
     {
-      "title": t('styles.modernist_pizza_8'),
-      "url": "https://modernistcuisine.com/books/modernist-pizza/",
-      "author": "Nathan Myhrvold, Francisco Migoya",
-      "year": 2021
+      source: "Modernist Pizza (Vol 2 - NY Slice chapter)",
+      url: "https://modernistcuisine.com/books/modernist-pizza/",
+      author: "Nathan Myhrvold, Francisco Migoya",
+      year: "2021"
     },
     {
-      "title": "The Pizza Bible",
-      "url": "https://www.amazon.com/Pizza-Bible-Worlds-Favorite-Styles/dp/1607746267",
-      "author": "Tony Gemignani",
-      "year": 2014
+      source: "Pizza Camp - NYC Methods",
+      url: "https://www.amazon.com/Pizza-Camp-Portraits-Summer/dp/1419724097",
+      author: "Joe Beddia",
+      year: "2017"
     },
     {
-      "title": "American Pie: My Search for the Perfect Pizza",
-      "url": "https://www.amazon.com/American-Pie-Search-Perfect-Pizza/dp/1580084222",
-      "author": "Peter Reinhart",
-      "year": 2003
-    },
-    {
-      "title": "PizzaMaking.com Forums - New York Style",
-      "url": "https://www.pizzamaking.com/forum/index.php/board,31.0.html",
-      "author": "Scott123 and community",
-      "year": 2023
+      source: "L'Arte della Pizza - NY Tradition",
+      url: "https://www.joespizza.com/about/",
+      author: "Joe Pozzuoli",
+      year: "2023"
     }
   ],
-  "images": [],
-  "diagrams": [],
-  "faq": [
-    {
-      "question": "What makes New York pizza different from other styles?",
-      "answer": "New York pizza is characterized by its large size (18 inches), hand-tossed preparation, high-gluten flour creating a chewy yet foldable texture, and gas deck oven baking at 280-315°C. The mandatory 24-48 hour cold fermentation develops complex flavor and creates the signature blistered, slightly charred crust. It's designed to be eaten folded in half while walking."
-    },
-    {
-      "question": "Can I substitute all-purpose flour for high-gluten flour?",
-      "answer": "No, high-gluten flour (13-14.5% protein) is essential for authentic New York pizza. All-purpose flour (10-12% protein) will create a weak structure that can't support the large diameter and heavy toppings. The dough will tear during stretching and become floppy when folded. If high-gluten flour is unavailable, use bread flour (12-13% protein) as a compromise, though the texture won't be identical."
-    },
-    {
-      "question": "Why is cold fermentation necessary?",
-      "answer": "Cold fermentation (24-48 hours at 2-4°C) is critical for three reasons: 1) Flavor development - slow fermentation creates complex, slightly tangy flavor, 2) Texture - develops the characteristic blistering and char on the crust, 3) Extensibility - allows dough to stretch to 18 inches without tearing. Room temperature fermentation cannot replicate these qualities."
-    },
-    {
-      "question": "How do I achieve the characteristic blistering on the crust?",
-      "answer": "Blistering requires: 1) Cold fermentation for 24-48 hours to develop proper gas structure, 2) High oven temperature (280-315°C), 3) Proper hydration (58-62%), 4) Deck baking for direct bottom heat. The blisters form when gas pockets in the dough expand rapidly from the intense heat. Using a pizza steel or stone in a home oven at maximum temperature can approximate this effect."
-    },
-    {
-      "question": "What's the difference between coal and gas deck ovens?",
-      "answer": "Traditional New York pizzerias used coal ovens (Lombardi's, John's) which reach 370-425°C and impart a subtle smoky flavor. Modern gas deck ovens (280-315°C) are now standard due to regulations and consistency. Gas ovens provide more even heat distribution and easier temperature control. The pizza style has adapted - coal oven pizza tends to be slightly more charred and cooked faster (4-6 min vs 7-12 min)."
-    }
-  ],
-  "isCanonical": true,
-  "source": "official"
+
+  isPro: false,
+  source: "official",
+  createdAt: new Date().toISOString(),
+  releaseDate: new Date().toISOString(),
+
+  images: {
+    hero: "/images/styles/ny-slice-hero.png",
+    dough: "/images/styles/placeholder-dough.png",
+    crumb: "/images/styles/placeholder-dough.png"
+  },
+  recommendedFlavorComponents: ["mozzarella_low_moisture", "pepperoni", "italian_sausage", "bell_pepper", "cogumelos", "pecorino_romano"]
 };
