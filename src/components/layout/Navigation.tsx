@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Page } from '@/types';
 import UserMenu from '@/components/layout/UserMenu';
 import { useTranslation } from '@/i18n';
 import {
     CalculatorIcon,
     AcademicCapIcon,
-    Bars3Icon,
-    CloseIcon,
-    BookOpenIcon,
     BeakerIcon,
     UsersIcon,
     WrenchScrewdriverIcon,
-    UserCircleIcon,
     BatchesIcon
 } from '@/components/ui/Icons';
 import { useUser } from '@/contexts/UserProvider';
@@ -27,12 +23,6 @@ interface HeaderComponentProps extends Omit<NavigationProps, 'activePage'> {
     activePage: Page;
     handleNavigate: (page: Page) => void;
 }
-
-const ProBadge = () => (
-    <span className="ml-2 inline-flex items-center rounded bg-dlp-bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-dlp-accent uppercase tracking-wide border border-dlp-border">PRO</span>
-);
-
-
 
 const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { isAuthenticated, hasProAccess, openPaywall } = useUser();
@@ -50,7 +40,6 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
     return (
         <header className="fixed top-0 left-0 w-full z-50 hidden border-b border-dlp-border bg-dlp-bg-card/90 backdrop-blur-md sm:block transition-all duration-200 shadow-dlp-sm">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Left Section: Logo & main links */}
                 <div className="flex items-center gap-6">
                     <button onClick={() => handleNavigate('mylab')} aria-label={t('common.nav.home')} className="flex flex-shrink-0 items-center">
                         <Logo className="h-9 w-auto" />
@@ -64,12 +53,14 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                                 <button
                                     key={link.page}
                                     onClick={() => handleNavigate(link.page as Page)}
-                                    className={`group rounded-xl px-4 py-2 text-sm font-bold tracking-tight transition-all flex items-center gap-2 border ${isActive
-                                        ? 'text-dlp-brand bg-slate-50/80 border-slate-100 shadow-sm'
-                                        : 'text-slate-500 border-transparent hover:bg-slate-50 hover:text-slate-800'
+                                className={`group flex items-center gap-2 rounded-2xl border px-4 py-2.5 text-sm font-bold tracking-tight transition-all ${isActive
+                                        ? 'border-emerald-200/80 bg-[linear-gradient(135deg,rgba(67,176,93,0.14)_0%,rgba(255,255,255,0.9)_100%)] text-dlp-brand shadow-[0_18px_36px_-26px_rgba(47,139,73,0.42)]'
+                                        : 'border-transparent bg-white/40 text-dlp-text-muted hover:border-emerald-100 hover:bg-white/80 hover:text-dlp-text-primary'
                                         }`}
                                 >
-                                    <Icon className="h-5 w-5 text-dlp-brand transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" />
+                                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all duration-300 ${isActive ? 'bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_100%)] text-white shadow-[0_10px_20px_-14px_rgba(47,139,73,0.7)]' : 'bg-emerald-50/90 text-dlp-brand/75 group-hover:bg-emerald-100 group-hover:text-dlp-brand'}`}>
+                                        <Icon className="h-[18px] w-[18px] transition-all duration-300 group-hover:scale-110" />
+                                    </span>
                                     {link.label}
                                 </button>
                             );
@@ -77,7 +68,6 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                     </nav>
                 </div>
 
-                {/* Right Section: User Avatar & Plan Status */}
                 <div className="flex flex-shrink-0 items-center gap-4">
                     {isAuthenticated && (
                         <div className="flex items-center gap-3 border-r border-dlp-border pr-4 mr-1">
@@ -104,10 +94,8 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
     );
 };
 
-const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean; setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ activePage, handleNavigate, onNavigate, onOpenAuth, isMobileMenuOpen, setIsMobileMenuOpen }) => {
-    const { hasProAccess, openPaywall } = useUser();
+const MobileHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { t } = useTranslation(['common', 'profile', 'auth']);
-    const hasPro = hasProAccess;
 
     const navLinks = [
         { id: 'calculator', page: 'calculator', label: t('common.nav.calculator'), icon: CalculatorIcon },
@@ -116,67 +104,60 @@ const MobileHeader: React.FC<HeaderComponentProps & { isMobileMenuOpen: boolean;
         { id: 'learn', page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
         { id: 'tools', page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
         { id: 'community', page: 'community', label: t('common.nav.community'), icon: UsersIcon },
-        { id: 'profile', page: 'profile', label: t('common.nav.profile'), icon: UserCircleIcon },
     ];
 
-    const onMobileNavigate = (page: Page, requiresPro: boolean = false) => {
-        if (requiresPro && !hasPro) {
-            setIsMobileMenuOpen(false);
-            openPaywall();
-        } else {
-            handleNavigate(page);
-        }
-    }
-
     return (
-        <header className="fixed top-0 left-0 w-full z-50 border-b border-dlp-border bg-dlp-bg-card/90 backdrop-blur-md sm:hidden transition-all duration-200 shadow-dlp-sm">
-            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-                <button onClick={() => handleNavigate('mylab')} aria-label={t('common.nav.home')} className="flex flex-shrink-0 items-center">
-                    <Logo className="h-9 w-auto" />
-                </button>
-                <div className="flex items-center gap-2">
-
-                    <UserMenu onNavigate={onNavigate} onOpenAuthModal={onOpenAuth} />
-                    <button onClick={() => setIsMobileMenuOpen(prev => !prev)} className="rounded-md p-2 text-dlp-text-muted hover:bg-dlp-bg-muted">
-                        {isMobileMenuOpen ? <CloseIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+        <>
+            <header className="fixed top-0 left-0 w-full z-50 border-b border-dlp-border bg-dlp-bg-card/90 backdrop-blur-md sm:hidden transition-all duration-200 shadow-dlp-sm">
+                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+                    <button onClick={() => handleNavigate('mylab')} aria-label={t('common.nav.home')} className="flex flex-shrink-0 items-center">
+                        <Logo className="h-9 w-auto" />
                     </button>
+                    <div className="flex items-center gap-2">
+                        <UserMenu onNavigate={onNavigate} onOpenAuthModal={onOpenAuth} />
+                    </div>
                 </div>
-            </div>
-            {isMobileMenuOpen && (
-                <nav className="space-y-1 p-4 border-t border-dlp-border bg-dlp-bg-card shadow-dlp-md absolute w-full left-0 max-h-[80vh] overflow-y-auto">
-                    {navLinks.map((link: any) => {
-                        const Icon = link.icon;
-                        return (
-                            <button
-                                key={link.id}
-                                onClick={() => onMobileNavigate(link.page, link.requiresPro)}
-                                className="flex w-full items-center gap-3 rounded-lg p-3 text-base font-semibold text-dlp-text-primary hover:bg-dlp-bg-muted"
-                            >
-                                <Icon className="h-6 w-6 text-dlp-brand" />
-                                <span className="flex-grow text-left">{link.label}</span>
-                                {link.requiresPro && !hasPro && <ProBadge />}
-                            </button>
-                        );
-                    })}
-                </nav>
-            )}
-        </header>
+            </header>
+
+            <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/70 bg-white/75 backdrop-blur-2xl shadow-[0_-16px_40px_-26px_rgba(15,23,42,0.28)] sm:hidden">
+                <div className="mx-auto max-w-7xl px-2.5 py-2.5">
+                    <div className="grid grid-cols-6 gap-2 pb-safe">
+                        {navLinks.map((link) => {
+                            const Icon = link.icon;
+                            const isActive = activePage === link.page || activePage.startsWith(link.page + '/');
+                            return (
+                                <button
+                                    key={link.id}
+                                    onClick={() => handleNavigate(link.page as Page)}
+                                    className={`group flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-[1.15rem] border px-1.5 py-2.5 text-[10px] font-semibold transition-all ${
+                                        isActive
+                                            ? 'border-emerald-200/80 bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_100%)] text-white shadow-[0_14px_30px_-18px_rgba(47,139,73,0.7)]'
+                                            : 'border-white/60 bg-white/70 text-dlp-text-muted shadow-[0_10px_24px_-20px_rgba(15,23,42,0.18)] hover:border-emerald-100 hover:bg-emerald-50/85 hover:text-dlp-text-primary'
+                                    }`}
+                                >
+                                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all ${isActive ? 'bg-white/18 text-white' : 'bg-emerald-50 text-dlp-brand/80 group-hover:bg-emerald-100 group-hover:text-dlp-brand'}`}>
+                                        <Icon className="h-[18px] w-[18px] transition-transform duration-300 group-hover:scale-105" />
+                                    </span>
+                                    <span className={`w-full truncate text-center leading-none ${isActive ? 'text-white/95' : ''}`}>{link.label}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+            </nav>
+        </>
     );
 };
 
-
 const Navigation: React.FC<NavigationProps> = (props) => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
     const handleNavigate = React.useCallback((page: Page) => {
         props.onNavigate(page);
-        setIsMobileMenuOpen(false);
     }, [props.onNavigate]);
 
     return (
         <>
             <DesktopHeader {...props} handleNavigate={handleNavigate} />
-            <MobileHeader {...props} handleNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+            <MobileHeader {...props} handleNavigate={handleNavigate} />
         </>
     );
 };

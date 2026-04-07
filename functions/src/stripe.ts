@@ -4,13 +4,109 @@ import * as admin from "firebase-admin";
 import Stripe from "stripe";
 import { getCountryPricing, CountryPricing } from "./countryPricing";
 
+if (!admin.apps.length) {
+    admin.initializeApp();
+}
+
 // Initialize Stripe with the secret key from environment variables
 // Make sure to set this using: firebase functions:config:set stripe.secret="sk_test_..."
 const stripe = new Stripe(functions.config().stripe?.secret || "sk_test_placeholder", {
-    apiVersion: "2023-10-16" as any, // Use a recent API version
+    apiVersion: "2026-02-25.clover" as any,
 });
 
 const db = admin.firestore();
+const ALLOWED_PLAN_KEYS = new Set(["standard"]);
+
+function assertStripeConfigured() {
+    const secret = functions.config().stripe?.secret;
+    if (typeof secret !== "string" || !secret || secret === "sk_test_placeholder") {
+        throw new functions.https.HttpsError(
+            "failed-precondition",
+            "Stripe secret is not configured for checkout."
+        );
+    }
+}
+
+export function getAllowedCheckoutHosts(): string[] {
+    const configuredHosts = String(functions.config().app?.allowed_hosts || "")
+        .split(",")
+        .map((host) => host.trim().toLowerCase())
+        .filter(Boolean);
+    const projectId = process.env.GCLOUD_PROJECT || process.env.PROJECT_ID || "";
+    const defaultHosts = [
+        "localhost:3000",
+        "localhost:4173",
+        "localhost:5173",
+        "127.0.0.1:3000",
+        "127.0.0.1:4173",
+        "127.0.0.1:5173",
+    ];
+
+    if (projectId) {
+        defaultHosts.push(`${projectId}.web.app`, `${projectId}.firebaseapp.com`);
+    }
+
+    return [...new Set([...defaultHosts, ...configuredHosts])];
+}
+
+export function assertAllowedCheckoutUrl(urlValue: unknown, fieldName: "successUrl" | "cancelUrl"): string {
+    if (typeof urlValue !== "string" || !urlValue) {
+        throw new functions.https.HttpsError(
+            "invalid-argument",
+            `The function must be called with a valid "${fieldName}".`
+        );
+    }
+
+    let parsedUrl: URL;
+
+    try {
+        parsedUrl = new URL(urlValue);
+    } catch {
+        throw new functions.https.HttpsError(
+            "invalid-argument",
+            `The function must be called with a valid "${fieldName}".`
+        );
+    }
+
+    const isLocalhost = parsedUrl.hostname === "localhost" || parsedUrl.hostname === "127.0.0.1";
+    const isSecureProtocol = parsedUrl.protocol === "https:" || (parsedUrl.protocol === "http:" && isLocalhost);
+
+    if (!isSecureProtocol) {
+        throw new functions.https.HttpsError(
+            "invalid-argument",
+            `${fieldName} must use HTTPS unless it points to localhost.`
+        );
+    }
+
+    const allowedHosts = getAllowedCheckoutHosts();
+    if (!allowedHosts.includes(parsedUrl.host.toLowerCase())) {
+        throw new functions.https.HttpsError(
+            "invalid-argument",
+            `${fieldName} must point to an approved first-party domain.`
+        );
+    }
+
+    return parsedUrl.toString();
+}
+
+function normalizePlanKey(planKey: unknown): string {
+    if (typeof planKey !== "string") {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid plan info");
+    }
+
+    const normalized = planKey.trim().toLowerCase();
+    if (!ALLOWED_PLAN_KEYS.has(normalized)) {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid plan info");
+    }
+
+    return normalized;
+}
+
+function normalizeCountryHint(countryHint: unknown): string | undefined {
+    if (typeof countryHint !== "string") return undefined;
+    const normalized = countryHint.trim().toUpperCase();
+    return /^[A-Z]{2}$/.test(normalized) ? normalized : undefined;
+}
 
 /**
  * Resolves the effective country for a user.
@@ -48,7 +144,9 @@ async function resolveEffectiveCountry(userId: string, ip?: string): Promise<{ c
  * Creates a Stripe Checkout Session for a "Pro" subscription.
  * Call this function from the client with { planKey, successUrl, cancelUrl, countryHint }.
  */
-export const createCheckoutSession = functions.https.onCall(async (data, context) => {
+export const createCheckoutSession = functions.https.onCall(async (data: any, context: any) => {
+    assertStripeConfigured();
+
     // 1. Ensure user is authenticated
     if (!context.auth) {
         throw new functions.https.HttpsError(
@@ -57,23 +155,21 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
         );
     }
 
-    const { planKey = 'standard', successUrl, cancelUrl, countryHint } = data;
+    const requestData = (data && typeof data === "object") ? data : {};
+    const { successUrl, cancelUrl, countryHint } = requestData;
+    const planKey = normalizePlanKey(requestData.planKey ?? "standard");
     const userId = context.auth.uid;
     const userEmail = context.auth.token.email;
-
-    if (!successUrl || !cancelUrl) {
-        throw new functions.https.HttpsError(
-            "invalid-argument",
-            "The function must be called with \"successUrl\" and \"cancelUrl\"."
-        );
-    }
+    const safeSuccessUrl = assertAllowedCheckoutUrl(successUrl, "successUrl");
+    const safeCancelUrl = assertAllowedCheckoutUrl(cancelUrl, "cancelUrl");
+    const safeCountryHint = normalizeCountryHint(countryHint);
 
     // 2. Resolve Country & Price
     let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId); // Use helper
 
     // Allow hint if not locked to override the Provisional default
-    if (!isLocked && typeof countryHint === 'string' && countryHint.length === 2) {
-        targetCountry = countryHint.toUpperCase();
+    if (!isLocked && safeCountryHint) {
+        targetCountry = safeCountryHint;
     }
 
     const pricing = getCountryPricing(targetCountry);
@@ -104,9 +200,9 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
                     },
                 },
             ],
-            success_url: successUrl,
-            cancel_url: cancelUrl,
-            customer_email: userEmail,
+            success_url: safeSuccessUrl,
+            cancel_url: safeCancelUrl,
+            ...(userEmail ? { customer_email: userEmail } : {}),
             client_reference_id: userId,
             metadata: {
                 userId: userId,
@@ -121,7 +217,10 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
             }
         });
 
-        return { sessionId: session.id };
+        return {
+            sessionId: session.id,
+            url: session.url,
+        };
     } catch (error: any) {
         console.error("Stripe Checkout Error:", error);
         throw new functions.https.HttpsError(
@@ -133,11 +232,62 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
 });
 
 /**
+ * Creates a Stripe Billing Portal session for the authenticated customer.
+ */
+export const createBillingPortalSession = functions.https.onCall(async (data: any, context: any) => {
+    assertStripeConfigured();
+
+    if (!context.auth) {
+        throw new functions.https.HttpsError(
+            "unauthenticated",
+            "The function must be called while authenticated."
+        );
+    }
+
+    const requestData = (data && typeof data === "object") ? data : {};
+    const safeReturnUrl = assertAllowedCheckoutUrl(requestData.returnUrl, "cancelUrl");
+    const userId = context.auth.uid;
+
+    const userDoc = await db.collection("users").doc(userId).get();
+    const userData = userDoc.data();
+    const stripeCustomerId = userData?.stripeCustomerId;
+
+    if (typeof stripeCustomerId !== "string" || !stripeCustomerId) {
+        throw new functions.https.HttpsError(
+            "failed-precondition",
+            "No active billing profile was found for this account."
+        );
+    }
+
+    try {
+        const session = await stripe.billingPortal.sessions.create({
+            customer: stripeCustomerId,
+            return_url: safeReturnUrl,
+        });
+
+        return { url: session.url };
+    } catch (error: any) {
+        console.error("Stripe Billing Portal Error:", error);
+        throw new functions.https.HttpsError(
+            "internal",
+            "Unable to create Stripe billing portal session.",
+            error.message
+        );
+    }
+});
+
+/**
  * Handle Stripe Webhooks
  * This function listens for events from Stripe (like payment success)
  * and updates Firestore accordingly.
  */
-export const handleStripeWebhook = functions.https.onRequest(async (req, res) => {
+export const handleStripeWebhook = functions.https.onRequest(async (req: any, res: any) => {
+    if (!functions.config().stripe?.secret || functions.config().stripe?.secret === "sk_test_placeholder") {
+        console.error("Stripe secret not configured.");
+        res.status(500).send("Stripe secret not configured");
+        return;
+    }
+
     const signature = req.headers["stripe-signature"];
     const endpointSecret = functions.config().stripe?.webhook_secret;
 
@@ -229,7 +379,7 @@ export const handleStripeWebhook = functions.https.onRequest(async (req, res) =>
 
                 if (!snapshot.empty) {
                     const batch = db.batch();
-                    snapshot.docs.forEach(doc => {
+                    snapshot.docs.forEach((doc: any) => {
                         batch.update(doc.ref, {
                             isPro: false,
                             plan: "free",

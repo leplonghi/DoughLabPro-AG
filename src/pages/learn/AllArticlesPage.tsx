@@ -3,11 +3,15 @@ import { useTranslation } from '@/i18n';
 import { useRouter } from '@/contexts/RouterContext';
 import { allLearnArticles, learnCategories } from '@/data/learn';
 import { LibraryPageLayout } from './LibraryPageLayout';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import { MagnifyingGlassIcon, ChevronDownIcon, ChevronUpIcon, BookOpenIcon } from '@/components/ui/Icons';
+import { getPageMeta } from '@/app/appShell';
 
 export const AllArticlesPage: React.FC = () => {
     const { t } = useTranslation();
     const { navigate } = useRouter();
+    const learnMeta = getPageMeta('learn');
     const [searchQuery, setSearchQuery] = useState('');
     const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>(
         learnCategories.reduce((acc, cat) => ({ ...acc, [cat]: true }), {})
@@ -41,23 +45,32 @@ export const AllArticlesPage: React.FC = () => {
     return (
         <LibraryPageLayout>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-900 mb-4">{t('learn.all_articles')}</h1>
+                <AppShellHeader
+                    eyebrow={learnMeta.eyebrow}
+                    title={t('learn.all_articles')}
+                    description="Browse the full knowledge library in one place, with faster scanning by category and cleaner reading paths."
+                >
+                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                        {allLearnArticles.length} total articles
+                    </div>
+                </AppShellHeader>
+
+                <AppSurface className="mb-8 p-5">
                     <div className="relative">
                         <input
                             type="text"
                             placeholder={t('learn.search_library')}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:border-dlp-brand focus:ring-2 focus:ring-lime-200 outline-none transition-all"
+                            className="w-full pl-10 pr-4 py-3 rounded-full border border-slate-200 focus:border-dlp-brand focus:ring-2 focus:ring-lime-200 outline-none transition-all"
                         />
                         <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                     </div>
-                </div>
+                </AppSurface>
 
                 <div className="space-y-6">
                     {Object.entries(groupedArticles).map(([category, articles]: [string, typeof allLearnArticles]) => (
-                        <div key={category} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                        <AppSurface key={category} className="overflow-hidden">
                             <button
                                 onClick={() => toggleCategory(category)}
                                 className="w-full flex items-center justify-between p-6 bg-slate-50 hover:bg-slate-100 transition-colors text-left"
@@ -98,13 +111,13 @@ export const AllArticlesPage: React.FC = () => {
                                     ))}
                                 </div>
                             )}
-                        </div>
+                        </AppSurface>
                     ))}
 
                     {Object.keys(groupedArticles).length === 0 && (
-                        <div className="text-center py-12">
+                        <AppSurface className="text-center py-12">
                             <p className="text-slate-500">{t('learn.no_articles_found_matching_your_search')}</p>
-                        </div>
+                        </AppSurface>
                     )}
                 </div>
             </div>

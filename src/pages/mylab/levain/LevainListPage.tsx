@@ -10,6 +10,9 @@ import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import { useTranslation } from '@/i18n';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
+import { getPageMeta } from '@/app/appShell';
 
 interface LevainListPageProps {
     onNavigate: (page: Page, params?: string) => void;
@@ -38,6 +41,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const plan = getCurrentPlan(user);
+    const labMeta = getPageMeta('mylab/levain');
 
     const handleAddLevainClick = () => {
         if (!canUseFeature(plan, 'levain.multipleLevains') && levains.length >= 1) {
@@ -96,13 +100,14 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
 
     return (
         <MyLabLayout activePage="mylab/levain" onNavigate={onNavigate}>
-            <div className="animate-[fadeIn_0.5s_ease-in_out]">
-                <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-                    <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-slate-900 ">{t('mylab.levain_pet')}</h1>
-                        <p className="mt-2 text-sm text-slate-500 ">
-                            Track your starters as partners in your dough lab.
-                        </p>
+            <div className="animate-[fadeIn_0.5s_ease-in_out] space-y-8">
+                <AppShellHeader
+                    eyebrow={labMeta.eyebrow}
+                    title={t('mylab.levain_pet')}
+                    description="Track every starter in one place, review status at a glance, and move into a detail page without losing context."
+                >
+                    <div className="inline-flex items-center rounded-full border border-lime-200 bg-white/90 px-3 py-1 text-xs font-bold text-[#3d6d35]">
+                        {levains.length} {levains.length === 1 ? 'starter' : 'starters'}
                     </div>
                     <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                         {levains.length >= 1 && !canUseFeature(plan, 'levain.lab_full') ? (
@@ -133,10 +138,10 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                             <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" style={{ display: 'none' }} />
                         </div>
                     </div>
-                </div>
+                </AppShellHeader>
 
                 {levains.length === 0 ? (
-                    <div className="text-center rounded-2xl border border-dashed border-slate-300  bg-slate-50  p-12">
+                    <AppSurface className="border-dashed border-slate-300 bg-[linear-gradient(180deg,_rgba(250,252,247,0.96)_0%,_rgba(255,255,255,0.96)_100%)] p-12 text-center">
                         <div className="mx-auto h-16 w-16 bg-lime-100  rounded-full flex items-center justify-center mb-4">
                             <BeakerIcon className="h-8 w-8 text-dlp-brand-hover " />
                         </div>
@@ -150,12 +155,12 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                             onClick={handleAddLevainClick}
                             className="mt-6 rounded-xl bg-dlp-brand py-2.5 px-6 font-bold text-white shadow-lg hover:bg-dlp-brand hover:text-white-hover transition-all"
                         >{t('mylab.create_levain')}</button>
-                    </div>
+                    </AppSurface>
                 ) : (
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {levains.map(starter => {
                             return (
-                                <div key={starter.id} className="group relative overflow-hidden rounded-2xl border border-slate-200  bg-white  p-6 shadow-sm transition-all hover:shadow-md hover:border-lime-300">
+                                <AppSurface key={starter.id} className="group relative overflow-hidden border-slate-200 p-6 transition-all hover:border-lime-300 hover:shadow-lg">
                                     <div className="flex items-start justify-between mb-4">
                                         <div className="p-3 bg-orange-100  rounded-xl text-orange-600  group-hover:bg-orange-500 group-hover:text-white transition-colors">
                                             <BeakerIcon className="h-6 w-6" />
@@ -176,13 +181,13 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                                             className="w-full py-2 rounded-lg bg-slate-50  text-sm font-semibold text-slate-700  hover:bg-lime-50 hover:text-lime-700 transition-colors"
                                         >{t('mylab.view_details_3')}</button>
                                     </div>
-                                </div>
+                                </AppSurface>
                             )
                         })}
 
                         {!canUseFeature(plan, 'levain.lab_full') && levains.length >= 1 && (
                             <LockedTeaser featureKey="levain.multipleLevains">
-                                <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-lime-200 bg-lime-50/50 p-6 h-full min-h-[200px]">
+                                <AppSurface className="flex h-full min-h-[200px] flex-col items-center justify-center border-2 border-dashed border-lime-200 bg-lime-50/60 p-6 text-center">
                                     <div className="p-3 bg-lime-100 rounded-full text-dlp-brand-hover mb-3">
                                         <PlusCircleIcon className="h-8 w-8" />
                                     </div>
@@ -190,7 +195,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                                     <p className="mt-2 text-xs text-center text-lime-700 max-w-[200px]">
                                         Free plan includes 1 Levain Pet.
                                     </p>
-                                </div>
+                                </AppSurface>
                             </LockedTeaser>
                         )}
                     </div>

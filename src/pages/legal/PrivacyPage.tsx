@@ -5,7 +5,7 @@ import { useTranslation } from '@/i18n';
 const PrivacyPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <LegalPageLayout title={t('general.privacy_policy')} lastUpdated="August 1, 2024">
+    <LegalPageLayout title={t('general.privacy_policy')} lastUpdated="April 6, 2026">
       <ul>
         <li><strong>{t('ui.local_storage')}</strong> We store user preferences (like theme and mode) and cached data (like your last calculator configuration) directly on your device to speed up the application and allow offline functionality.</li>
         <li><strong>{t('ui.cookies')}</strong> Used primarily for authentication and security purposes by our identity providers (like Google/Firebase).</li>

@@ -4,7 +4,8 @@ import { useStyles } from '@/contexts/StylesProvider';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
-import { PageHero } from '@/components/ui/PageHero';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { StyleCard } from '@/components/styles/StyleCard';
 import { StylesFilterDrawer } from '@/components/styles/StylesFilterDrawer';
@@ -30,6 +31,7 @@ import {
 import { ScrollText, MoreHorizontal } from 'lucide-react'; // Those missing from reg
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
 import { AdCard } from '@/marketing/ads/AdCard';
+import { getPageMeta } from '@/app/appShell';
 
 // ========================================================
 // 1. CONSTANTS & CONFIG
@@ -85,6 +87,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
     const { styles: stylesData } = useStyles();
     const { userStyles, isFavorite, deleteUserStyle } = useUser();
     const { t } = useTranslation(['common', 'styles']);
+    const stylesMeta = getPageMeta('styles');
     const CATEGORY_FILTERS = getCategoryFilters(t);
 
     // State
@@ -195,15 +198,18 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
 
     return (
         <LibraryPageLayout>
-            <PageHero
-                title={t('styles.discover_professional_dough_specifications_from_ar')}
-                subtitle={t('styles_page.hero_subtitle')}
-                backgroundClass="bg-gradient-to-br from-[#1c2e1c] to-[#2d4a2d]"
-                badges={
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider shadow-sm">
-                        <Globe className="w-4 h-4" />{t('common.global_library')}</div>
-                }
-            />
+            <AppShellHeader
+                eyebrow={stylesMeta.eyebrow}
+                title={stylesMeta.title}
+                description={stylesMeta.description}
+            >
+                <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                    {allStyles.length} styles in the catalog
+                </div>
+                <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                    Global library
+                </div>
+            </AppShellHeader>
 
             {/* Actions Bar - Simplified for new layout */}
             <div className="flex justify-end mb-6">
@@ -217,7 +223,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
 
             {/* Sticky Filter Header */}
             <div className="sticky top-2 z-30 mb-8 transition-all duration-300">
-                <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-stone-200/80 shadow-lg shadow-stone-200/20 p-4 space-y-4">
+                <AppSurface className="bg-white/90 backdrop-blur-md p-4 space-y-4">
 
                     {/* Top Row: Search & Meta Controls */}
                     <div className="flex flex-col md:flex-row gap-4 justify-between items-center pb-4 border-b border-stone-100">
@@ -351,7 +357,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                         </div>
 
                     </div>
-                </div>
+                </AppSurface>
             </div>
 
             {/* Results Grid */}

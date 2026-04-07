@@ -10,11 +10,18 @@ import { middleEastStyles } from './regions/middle_east';
 
 // --- REGIONAL COLLECTIONS (V1 Legacy - Old Schema) ---
 import { northAmericaStyles as americasStyles } from './regions/north_america';
+import { STYLE_GOLD_STANDARD_OVERRIDES } from './editorial/goldStandardOverrides';
+import { STYLE_EDITORIAL_OVERRIDES } from './editorial/flagshipOverrides';
+import { STYLE_LIBRARY_CURATION_OVERRIDES } from './editorial/libraryCuration';
 
 // --- SUPPLEMENTARY LIBRARY MODULES ---
 import { Challah, BurgerBun, Shokupan as ShokupanLegacy, Panettone } from './library/bread/enriched';
 import { NYChocolateChip, FrenchCroissant, CinnamonRoll, FudgyBrownie } from './library/pastry/sweets';
 import { burger_buns_enriched } from './bread/burger_buns_enriched';
+import { baguette_tradition_francaise } from './bread/baguette_tradition_francaise';
+import { japanese_shokupan } from './bread/japanese_shokupan';
+import { naan_flatbread } from './bread/naan_flatbread';
+import { pain_au_chocolat } from './pastry/pain_au_chocolat';
 
 /**
  * ADAPTER: Convert new DoughStyle to DoughStyleDefinition (App Legacy)
@@ -111,14 +118,68 @@ function adaptNewStyleToLegacy(style: DoughStyle): DoughStyleDefinition {
     };
 }
 
+function applyEditorialOverride(style: DoughStyleDefinition): DoughStyleDefinition {
+    const override = {
+        ...(STYLE_LIBRARY_CURATION_OVERRIDES[style.id] || {}),
+        ...(STYLE_GOLD_STANDARD_OVERRIDES[style.id] || {}),
+        ...(STYLE_EDITORIAL_OVERRIDES[style.id] || {}),
+    };
+
+    if (!Object.keys(override).length) return style;
+
+    return {
+        ...style,
+        ...override,
+        origin: {
+            ...style.origin,
+            ...override.origin,
+        },
+        technicalProfile: {
+            ...style.technicalProfile,
+            ...override.technicalProfile,
+        },
+        pairings: {
+            ...style.pairings,
+            ...override.pairings,
+        },
+        images: style.images || override.images
+            ? {
+                  ...(style.images || {
+                      hero: "/images/styles/placeholder-dough.png",
+                      dough: "/images/styles/placeholder-dough.png",
+                      crumb: "/images/styles/placeholder-dough.png",
+                  }),
+                  ...(override.images || {}),
+              }
+            : undefined,
+    };
+}
+
 /**
  * ADAPTER V3: Convert StyleDefinition (Gold Standard) to DoughStyleDefinition (App Legacy)
  */
 function adaptV3ToLegacy(style: any): DoughStyleDefinition {
+    const categoryValue = String(style.category || '').toLowerCase();
+    const normalizedCategory = categoryValue.includes('pizza')
+        ? 'pizza'
+        : categoryValue.includes('flat')
+            ? 'flatbread'
+            : categoryValue.includes('pastry') || categoryValue.includes('viennoiserie')
+                ? 'pastry'
+                : categoryValue.includes('cookie')
+                    ? 'cookie'
+                    : categoryValue.includes('bun')
+                        ? 'burger_bun'
+                        : categoryValue.includes('enriched')
+                            ? 'enriched_bread'
+                            : categoryValue.includes('bread')
+                                ? 'bread'
+                                : 'other';
+
     return {
         id: style.id,
         name: style.title || style.name || 'Unknown Style',
-        category: style.category?.toLowerCase() || 'bread',
+        category: normalizedCategory,
         recipeStyle: style.recipeStyle,
         origin: {
             country: style.origin?.country || 'Unknown',
@@ -169,7 +230,7 @@ const allNewStyles: DoughStyle[] = [
     ...middleEastStyles
 ];
 
-const adaptedStyles = allNewStyles.map(adaptNewStyleToLegacy);
+const adaptedStyles = allNewStyles.map(style => applyEditorialOverride(adaptNewStyleToLegacy(style)));
 
 /**
  * THE CENTRAL REGISTRY
@@ -179,7 +240,7 @@ const adaptedStyles = allNewStyles.map(adaptNewStyleToLegacy);
 // Flatten all sources into one massive list
 const RAW_STYLES: DoughStyleDefinition[] = [
     adaptedStyles,
-    americasStyles,
+    americasStyles.map(applyEditorialOverride),
     [
         // Enriched Breads (Legacy imports)
         // Filter out ShokupanLegacy if it conflicts with new Asia Shokupan, or keep as variant
@@ -195,7 +256,11 @@ const RAW_STYLES: DoughStyleDefinition[] = [
         FudgyBrownie,
 
         // New Additions
-        adaptV3ToLegacy(burger_buns_enriched)
+        applyEditorialOverride(adaptV3ToLegacy(burger_buns_enriched)),
+        applyEditorialOverride(adaptV3ToLegacy(baguette_tradition_francaise)),
+        applyEditorialOverride(adaptV3ToLegacy(japanese_shokupan)),
+        applyEditorialOverride(adaptV3ToLegacy(naan_flatbread)),
+        applyEditorialOverride(adaptV3ToLegacy(pain_au_chocolat)),
     ]
 ].flat(2) as DoughStyleDefinition[];
 
@@ -211,6 +276,9 @@ RAW_STYLES.forEach(style => {
 
 // Convert Map back to Array for the app to consume
 export const STYLES_DATA = Array.from(STYLES_MAP.values()).sort((a, b) => {
+    const orderA = a.libraryCuration?.displayOrder ?? 9999;
+    const orderB = b.libraryCuration?.displayOrder ?? 9999;
+    if (orderA !== orderB) return orderA - orderB;
     const nameA = a.name || '';
     const nameB = b.name || '';
     return nameA.localeCompare(nameB);

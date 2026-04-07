@@ -28,10 +28,15 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return (
         <ToastContext.Provider value={{ addToast }}>
             {children}
-            <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none">
+            <div
+                className="fixed bottom-24 right-4 z-50 flex flex-col gap-2 pointer-events-none sm:bottom-4"
+                aria-live="polite"
+                aria-atomic="true"
+            >
                 {toasts.map((toast) => (
                     <div
                         key={toast.id}
+                        role="status"
                         className={`rounded-md px-4 py-2 text-white shadow-lg pointer-events-auto animate-fade-in ${toast.type === 'success' ? 'bg-dlp-success' :
                             toast.type === 'error' ? 'bg-dlp-error' :
                                 toast.type === 'warning' ? 'bg-dlp-warning' : 'bg-dlp-info'

@@ -3,16 +3,21 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from '../../contexts/RouterContext';
 import { useUser } from '../../contexts/UserProvider';
 import { communityStore } from '../store/communityStore';
+import { uploadImage } from '@/services/storageService';
 import { ArrowLeft, Loader2, Image as ImageIcon, Sparkles, ChefHat, Droplets, UploadCloud, CheckCircle2, History } from 'lucide-react';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import { OvenType, RecipeStyle, FermentationTechnique, Batch, YeastType } from '@/types';
 import SliderInput from '../../components/ui/SliderInput';
 import { useTranslation } from '@/i18n';
+import { getPageMeta } from '@/app/appShell';
 
 export const CommunityCreatePostPage: React.FC = () => {
   const { t } = useTranslation();
     const { navigate } = useRouter();
     const { user, batches } = useUser();
+    const communityMeta = getPageMeta('community');
 
     // -- Mode Selection --
     const [mode, setMode] = useState<'select' | 'create'>('select'); // 'select' = choose source, 'create' = editing form
@@ -83,24 +88,6 @@ export const CommunityCreatePostPage: React.FC = () => {
         }
     };
 
-    const uploadImage = async (fileToUpload: File, userId: string): Promise<string> => {
-        try {
-            const { storage } = await import('@/firebase/storage');
-            const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
-            // Mock fallback if offline/no firebase
-            if (!storage) return 'https://images.unsplash.com/photo-1542834371-41040eb34996?auto=format&fit=crop&q=80&w=1000';
-
-            const fileName = `${userId}_${Date.now()}_${fileToUpload.name}`;
-            const storageRef = ref(storage, `community_uploads/${fileName}`);
-            await uploadBytes(storageRef, fileToUpload);
-            return await getDownloadURL(storageRef);
-        } catch (err) {
-            console.error('Upload failed', err);
-            // Return placeholder for mock purposes if fail
-            return 'https://images.unsplash.com/photo-1542834371-41040eb34996?auto=format&fit=crop&q=80&w=1000';
-        }
-    };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!user?.uid) return setError('You must be logged in to post.');
@@ -113,7 +100,8 @@ export const CommunityCreatePostPage: React.FC = () => {
 
             // Upload if new file
             if (file) {
-                photoUrl = await uploadImage(file, user.uid);
+                const path = `community_uploads/${user.uid}/${Date.now()}_${file.name}`;
+                photoUrl = await uploadImage(file, path);
             }
 
             const newPost = {
@@ -167,19 +155,19 @@ export const CommunityCreatePostPage: React.FC = () => {
     return (
         <LibraryPageLayout>
             <div className="max-w-3xl mx-auto pb-20">
-
-                {/* Header */}
-                <div className="flex items-center gap-4 mb-8">
+                <AppShellHeader
+                    eyebrow={communityMeta.eyebrow}
+                    title={t('community.new_community_post')}
+                    description="Share a bake with clear context, strong visuals, and the technical details that actually help other bakers."
+                >
                     <button
                         onClick={() => mode === 'create' ? setMode('select') : navigate('community')}
-                        className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
                     >
-                        <ArrowLeft className="h-5 w-5 text-gray-600" />
+                        <ArrowLeft className="h-4 w-4" />
+                        {mode === 'create' ? 'Change source' : t('community.back_to_community')}
                     </button>
-                    <div>
-                        <h1 className="text-2xl font-bold text-gray-900">{t('community.new_community_post')}</h1>
-                    </div>
-                </div>
+                </AppShellHeader>
 
                 {error && (
                     <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm border border-red-100 mb-6 flex items-center gap-2">
@@ -189,7 +177,7 @@ export const CommunityCreatePostPage: React.FC = () => {
 
                 {mode === 'select' ? (
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <section>
+                        <AppSurface className="p-6 sm:p-8">
                             <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('community.how_do_you_want_to_start')}</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <button
@@ -244,13 +232,12 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </AppSurface>
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-6 animate-in fade-in slide-in-from-right-8 duration-300">
 
-                        {/* Main Content Card */}
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <AppSurface className="overflow-hidden">
                             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
 
                                 {/* Photo Upload Section */}
@@ -332,10 +319,9 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </AppSurface>
 
-                        {/* Technical Stats Accordion/Section */}
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+                        <AppSurface className="p-6 md:p-8">
                             <div className="flex items-center gap-2 mb-6">
                                 <span className="h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">
                                     %
@@ -380,7 +366,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </AppSurface>
 
                         {/* Submit Actions */}
                         <div className="flex justify-end pt-4">

@@ -6,6 +6,9 @@ import { AffiliateDisclaimer } from '@/components/ui/AffiliateDisclaimer';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { useRouter } from '@/contexts/RouterContext';
 import { FireIcon } from '@/components/ui/Icons';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
+import { getPageMeta } from '@/app/appShell';
 
 const ChoiceButton: React.FC<{
   active: boolean;
@@ -36,6 +39,7 @@ const SettingsPage: React.FC = () => {
   const { unit, setUnit } = useCalculator();
   const { navigate } = useRouter();
   const [unitSystem, setUnitSystem] = React.useState<UnitSystem>(UnitSystem.METRIC);
+  const settingsMeta = getPageMeta('settings');
 
   const handleAnalyzeOven = (ovenId: string) => {
     // Navigate to tools page with oven profiler and the selected oven
@@ -43,16 +47,21 @@ const SettingsPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-2xl animate-[fadeIn_0.5s_ease-in-out]">
-      <button
-        onClick={() => window.history.back()}
-        className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors"
+    <div className="mx-auto max-w-4xl animate-[fadeIn_0.5s_ease-in-out] space-y-8">
+      <AppShellHeader
+        eyebrow={settingsMeta.eyebrow}
+        title={t('general.general_settings')}
+        description="Keep measurement units, environment defaults, and oven context aligned so the rest of the workflow feels predictable."
       >
-        &larr; {t('common.back')}
-      </button>
+        <button
+          onClick={() => window.history.back()}
+          className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+        >
+          &larr; {t('common.back')}
+        </button>
+      </AppShellHeader>
 
-      <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-10">
-        <h1 className="text-2xl font-bold text-slate-900 mb-6">{t('general.general_settings')}</h1>
+      <AppSurface className="p-6 sm:p-10">
 
         <div className="space-y-8">
           {/* Unit System */}
@@ -217,7 +226,7 @@ const SettingsPage: React.FC = () => {
           </div>
 
         </div>
-      </div>
+      </AppSurface>
       <div className="mt-8">
         <AffiliateDisclaimer variant="footer" className="bg-transparent border-0 px-0" />
       </div>

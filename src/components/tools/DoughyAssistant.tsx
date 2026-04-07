@@ -245,7 +245,7 @@ export const DoughyAssistant: React.FC = () => {
     return (
         <>
             {/* Main Wrapper with pointer-events-none to prevent blocking clicks when closed */}
-            <div className={`fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4 print:hidden ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+            <div className={`fixed bottom-24 right-4 z-[100] flex flex-col items-end gap-4 print:hidden sm:bottom-6 sm:right-6 ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
 
                 <AnimatePresence>
                     {isOpen && (

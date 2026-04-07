@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useRef } from 'react';
 import CalculatorForm from '@/components/CalculatorForm';
-import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
 import { ResultsDisplay } from '@/components/ResultsDisplay';
 import {
   DoughConfig,
@@ -19,6 +18,8 @@ import UnitSelector from '@/components/calculator/UnitSelector';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
 import { InfoIcon, SettingsIcon } from '@/components/ui/Icons';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import OnboardingTooltip from '@/components/onboarding/OnboardingTooltip';
 import { AdCard } from '@/marketing/ads/AdCard';
 import { ModeSelectionScreen } from '@/components/calculator/ModeSelectionScreen';
@@ -26,6 +27,7 @@ import { SchedulerSection } from '@/components/dashboard/sections/SchedulerSecti
 import { AssemblySection } from '@/components/dashboard/sections/AssemblySection';
 import { LogisticsSection } from '@/components/dashboard/sections/LogisticsSection';
 import { Calendar, Layers, Truck } from 'lucide-react';
+import { getPageMeta } from '@/app/appShell';
 
 const ProductionDashboardTabs = () => {
   const [activeTab, setActiveTab] = useState<'scheduler' | 'batch' | 'logistics'>('scheduler');
@@ -110,6 +112,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
   const formRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const saveButtonRef = useRef<HTMLButtonElement>(null);
+  const calculatorMeta = getPageMeta('calculator');
 
   const selectedLevain = useMemo(() => {
     if (props.config.yeastType === YeastType.USER_LEVAIN) {
@@ -132,22 +135,39 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
 
   return (
     <div className="space-y-8 animate-slide-up pb-24">
-      {/* 1. Scientific Control Center Selection */}
-      <section className="p-0 border-none shadow-none">
-        <div className="flex items-center gap-2 mb-2 px-6">
-          <h2 className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-[0.2em]">{t('calculator.mode', { defaultValue: 'MODE:' })}</h2>
+      <AppShellHeader
+        eyebrow={calculatorMeta.eyebrow}
+        title={calculatorMeta.title}
+        description={calculatorMeta.description}
+      >
+        <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+          {props.hasProAccess ? 'Pro bake workspace active' : 'Free bake workspace'}
+        </div>
+      </AppShellHeader>
+
+      <AppSurface className="p-5 sm:p-6">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-black font-heading uppercase tracking-[0.2em] text-slate-400">
+              {t('calculator.mode', { defaultValue: 'MODE:' })}
+            </p>
+            <h2 className="mt-2 text-xl font-bold text-slate-900">Choose the right build surface for this bake</h2>
+          </div>
+          <div className="hidden rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500 sm:block">
+            Switch between guided, basic, and advanced control
+          </div>
         </div>
         <ModeSelectionScreen
           selectedMode={props.calculatorMode}
           onSelectMode={props.onCalculatorModeChange}
         />
-      </section>
+      </AppSurface>
 
       {/* 2. Laboratory Interface Area */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
         {/* Left Form: Calibration */}
         <div className="space-y-8" ref={formRef}>
-          <div className="flex items-center justify-between bg-white px-6 py-3 rounded-xl border-[0.5px] border-slate-100 shadow-sm">
+          <AppSurface className="flex items-center justify-between px-6 py-3">
             <div className="flex items-center gap-4">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{t('calculator.settings', { defaultValue: 'Settings:' })}</span>
               <UnitSelector unit={props.unit} onUnitChange={props.onUnitChange} />
@@ -163,9 +183,9 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
                 </div>
               </div>
             </div>
-          </div>
+          </AppSurface>
 
-          <div className="bg-white rounded-2xl border-[0.5px] border-slate-100 p-0.5 shadow-sm">
+          <AppSurface className="p-0.5">
             <CalculatorForm
               {...props}
               levains={levains}
@@ -174,7 +194,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
               onSavePreset={handleSavePreset}
               isFavorite={isFavorite}
             />
-          </div>
+          </AppSurface>
         </div>
 
         {/* Right Panel: Results & Analytics */}
@@ -222,7 +242,6 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           onFinish={() => { }}
         />
       )}
-      <DoughyAssistant />
     </div>
   );
 };

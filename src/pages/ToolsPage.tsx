@@ -10,12 +10,13 @@ import {
     SparklesIcon,
     LockClosedIcon
 } from '@/components/ui/Icons';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import LearnAffiliateBlock from '@/components/learn/LearnAffiliateBlock';
-import { useUser } from '@/contexts/UserProvider';
-import { canUseFeature, getCurrentPlan, FeatureKey } from '@/permissions';
 import { LibraryPageLayout } from './learn/LibraryPageLayout';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
+import { getPageMeta } from '@/app/appShell';
 
 interface ToolsPageProps {
     onNavigate: (page: Page) => void;
@@ -70,8 +71,7 @@ const ToolCardView: React.FC<{
 
 const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     const { t } = useTranslation();
-    const { user } = useUser();
-    const plan = getCurrentPlan(user);
+    const toolsMeta = getPageMeta('tools');
 
     const TOOLS: ToolCardType[] = [
         {
@@ -118,25 +118,45 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     return (
         <LibraryPageLayout>
             <div className="mx-auto max-w-7xl animate-fade-in pb-20">
-                {/* Hero Section */}
-                <div className="bg-gradient-to-br from-[#3A6B3A] to-[#558B55] rounded-3xl p-6 md:p-8 mb-8 shadow-2xl relative overflow-hidden mx-4 sm:mx-6">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-dlp-brand/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none"></div>
-
-                    <div className="relative z-10 text-center max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-900/50 border border-lime-700/50 text-lime-300 text-xs font-bold uppercase tracking-wider mb-4">
-                            <WrenchScrewdriverIcon className="w-4 h-4" />{t('common.professional_utilities')}</div>
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">{t('common.baking_tools')}</h1>
-                        <p className="text-base md:text-lg text-lime-100/90 mb-4 leading-relaxed">
-                            Professional-grade tools for diagnostics, analysis and optimization.
-                        </p>
-                        <p className="text-sm text-lime-200 font-medium">
-                            Unlock Pro tools for advanced oven analytics and dough diagnostics.
-                        </p>
+                <AppShellHeader
+                    eyebrow={toolsMeta.eyebrow}
+                    title={toolsMeta.title}
+                    description={toolsMeta.description}
+                >
+                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                        {TOOLS.length} focused utilities
                     </div>
-                </div>
+                    <div className="rounded-full border border-lime-200 bg-lime-50 px-4 py-2 text-sm font-semibold text-[#2f6a27] shadow-sm">
+                        Pro unlocks diagnostics and oven analysis
+                    </div>
+                </AppShellHeader>
 
                 <div className="px-4 sm:px-6">
+                    <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+                        <AppSurface className="p-5 sm:p-6">
+                            <div className="flex items-center gap-3">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lime-50 text-dlp-brand-hover">
+                                    <WrenchScrewdriverIcon className="h-6 w-6" />
+                                </div>
+                                <div>
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">How to use this area</p>
+                                    <h2 className="mt-1 text-xl font-bold text-slate-900">Start with the utility, then return to the workflow</h2>
+                                </div>
+                            </div>
+                            <p className="mt-4 text-sm leading-7 text-slate-600">
+                                Utilities should feel like support tools, not separate products. Use them to fix hydration, profile an oven, or diagnose a dough issue, then move straight back into the bake flow.
+                            </p>
+                        </AppSurface>
+                        <AppSurface className="p-5 sm:p-6 bg-slate-950 text-white">
+                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Best fit</p>
+                            <div className="mt-4 space-y-3 text-sm text-slate-300">
+                                <div>FormulaLab for the main build.</div>
+                                <div>Hydration Adjuster for small corrections.</div>
+                                <div>Dough Diagnostic and Oven Profiler when results drift.</div>
+                            </div>
+                        </AppSurface>
+                    </div>
+
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {TOOLS.map((tool) => {
                             if (tool.comingSoon) {

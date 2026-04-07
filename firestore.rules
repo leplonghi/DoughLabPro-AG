@@ -8,10 +8,54 @@ service cloud.firestore {
       return request.auth != null;
     }
     function isOwner(userId) {
-      return request.auth.uid == userId;
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    function touchesProtectedUserFields() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasAny([
+        'plan',
+        'isPro',
+        'isAdmin',
+        'proSince',
+        'proExpiresAt',
+        'stripeCustomerId',
+        'stripeSubscriptionId',
+        'billingCountry',
+        'billingCurrency',
+        'priceTier',
+        'firstPaidAt'
+      ]);
+    }
+    function createsSafeUserProfile() {
+      return request.resource.data.keys().hasOnly([
+        'name',
+        'email',
+        'avatar',
+        'gender',
+        'birthDate',
+        'location',
+        'bio',
+        'website',
+        'instagramHandle',
+        'skillLevel',
+        'onboardingCompleted',
+        'primaryInterest',
+        'bakingFrequency',
+        'enableSmartSchedule',
+        'trials',
+        'createdAt',
+        'updatedAt'
+      ]);
     }
 
-    // User Data (Private)
+    // User Profile (Private, but entitlements are backend-only)
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && createsSafeUserProfile();
+      allow update: if isOwner(userId) && !touchesProtectedUserFields();
+      allow delete: if false;
+    }
+
+    // User Data Subcollections (Private)
     match /users/{userId}/{document=**} {
       allow read, write: if isSignedIn() && isOwner(userId);
     }
@@ -19,35 +63,52 @@ service cloud.firestore {
     // Community: Posts
     match /community_posts/{postId} {
       allow read: if true;
-      allow create: if isSignedIn();
-      // Allow update if owner OR if only updating counters (likes/comments)
-      allow update: if isSignedIn(); // Simplified for now to ensure counters work
+      allow create: if isSignedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.likes == 0
+        && request.resource.data.comments == 0
+        && request.resource.data.clones == 0;
+      allow update: if isSignedIn()
+        && resource.data.uid == request.auth.uid
+        && !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'uid',
+          'likes',
+          'comments',
+          'clones',
+          'createdAt'
+        ]);
       allow delete: if isSignedIn() && resource.data.uid == request.auth.uid;
     }
 
     // Community: Comments
     match /community_comments/{commentId} {
       allow read: if true;
-      allow create: if isSignedIn();
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
       allow update, delete: if isSignedIn() && resource.data.uid == request.auth.uid;
     }
 
     // Community: Likes
     match /community_likes/{likeId} {
       allow read: if true;
-      allow write: if isSignedIn();
+      allow create: if isSignedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.id == request.resource.data.postId + '_' + request.auth.uid;
+      allow delete: if isSignedIn() && resource.data.uid == request.auth.uid;
     }
     
     // Community: Clones
     match /community_clones/{cloneId} {
        allow read: if true;
-       allow create: if isSignedIn();
+       allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
     }
 
     // Community: Follows
     match /community_follows/{followId} {
        allow read: if true;
-       allow write: if isSignedIn();
+       allow create: if isSignedIn()
+         && request.resource.data.followerUid == request.auth.uid
+         && request.resource.id == request.auth.uid + '_' + request.resource.data.targetUid;
+       allow delete: if isSignedIn() && resource.data.followerUid == request.auth.uid;
     }
     
     // Fallback

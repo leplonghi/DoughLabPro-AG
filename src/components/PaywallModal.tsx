@@ -1,8 +1,8 @@
 import React from 'react';
 import { PaywallOrigin } from '@/types';
 import { CheckCircleIcon, StarIcon } from './ui/Icons';
-import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
+import { useLocalizedPricing } from '@/hooks/useLocalizedPricing';
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -18,12 +18,13 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
     origin,
 }) => {
     const { t } = useTranslation();
+    const { symbol, currency, planPrices, isProvisional } = useLocalizedPricing();
 
     if (!isOpen) return null;
 
     const handleUpgrade = () => {
         onClose();
-        window.location.href = '/upgrade';
+        window.location.hash = '#/upgrade';
     };
 
     return (
@@ -74,26 +75,38 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
                             {t('paywall.pricing.plan_name')}
                         </p>
                         <div className="flex items-baseline justify-center gap-1">
-                            <span className="text-3xl font-extrabold text-dlp-text-primary">$4.99</span>
+                            <span className="text-3xl font-extrabold text-dlp-text-primary">{symbol}{planPrices.standard.toFixed(2)}</span>
                             <span className="text-dlp-text-secondary font-medium">
-                                {t('paywall.pricing.per_month')}
+                                {t('paywall.pricing.per_month')} • {currency}
                             </span>
                         </div>
                         <p className="text-xs text-dlp-accent mt-2 font-medium">
-                            {t('paywall.pricing.cancel_anytime', { currency: 'USD' })}
+                            {t('paywall.pricing.cancel_anytime', { currency })}
                         </p>
+                        {isProvisional && (
+                            <p className="text-[11px] text-dlp-text-muted mt-2">
+                                Final billing country is confirmed securely at checkout.
+                            </p>
+                        )}
                     </div>
 
                     <button
                         onClick={handleUpgrade}
                         className="w-full py-3.5 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover hover:from-dlp-accent-hover hover:to-dlp-accent text-white font-bold rounded-xl shadow-lg shadow-dlp-accent/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] ring-1 ring-dlp-accent/50"
                     >
-                        {t('paywall.cta_trial')}
+                        View Pro Plan
+                    </button>
+
+                    <button
+                        onClick={onNavigateToPlans}
+                        className="w-full mt-3 py-2 text-sm text-dlp-text-secondary hover:text-dlp-text-primary font-medium transition-colors"
+                    >
+                        Compare plans
                     </button>
 
                     <button
                         onClick={onClose}
-                        className="w-full mt-3 py-2 text-sm text-dlp-text-muted hover:text-dlp-text-secondary font-medium transition-colors"
+                        className="w-full mt-2 py-2 text-sm text-dlp-text-muted hover:text-dlp-text-secondary font-medium transition-colors"
                     >
                         {t('paywall.cta_later')}
                     </button>

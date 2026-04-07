@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateMonthlyRanking = exports.generateWeeklyRanking = exports.onNewComment = exports.onNewClone = exports.onNewLike = void 0;
+exports.generateMonthlyRanking = exports.generateWeeklyRanking = exports.onDeletedComment = exports.onNewComment = exports.onNewClone = exports.onDeletedLike = exports.onNewLike = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 if (!admin.apps.length) {
@@ -36,27 +36,51 @@ const POINTS = {
  */
 exports.onNewLike = functions.firestore
     .document("community_likes/{likeId}")
-    .onCreate(async (snap, context) => {
+    .onCreate(async (snap) => {
     const data = snap.data();
     const postId = data === null || data === void 0 ? void 0 : data.postId;
-    // const userId = data?.['uid']; // Unused
     if (!postId)
         return;
     const postRef = db.collection("community_posts").doc(postId);
     await db.runTransaction(async (transaction) => {
-        var _a, _b;
+        var _a;
         const postDoc = await transaction.get(postRef);
         if (!postDoc.exists)
             return;
-        // 1. Increment likes count
-        const currentLikes = ((_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.likes) || 0;
-        transaction.update(postRef, { likes: currentLikes + 1 });
-        // 2. Award points to post owner
-        const ownerUid = (_b = postDoc.data()) === null || _b === void 0 ? void 0 : _b.uid;
+        transaction.update(postRef, {
+            likes: admin.firestore.FieldValue.increment(1),
+        });
+        const ownerUid = (_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.uid;
         if (ownerUid) {
             const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
             transaction.set(leaderboardRef, {
                 points: admin.firestore.FieldValue.increment(POINTS.LIKE),
+                lastActive: admin.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+        }
+    });
+});
+exports.onDeletedLike = functions.firestore
+    .document("community_likes/{likeId}")
+    .onDelete(async (snap) => {
+    const data = snap.data();
+    const postId = data === null || data === void 0 ? void 0 : data.postId;
+    if (!postId)
+        return;
+    const postRef = db.collection("community_posts").doc(postId);
+    await db.runTransaction(async (transaction) => {
+        var _a;
+        const postDoc = await transaction.get(postRef);
+        if (!postDoc.exists)
+            return;
+        transaction.update(postRef, {
+            likes: admin.firestore.FieldValue.increment(-1),
+        });
+        const ownerUid = (_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.uid;
+        if (ownerUid) {
+            const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
+            transaction.set(leaderboardRef, {
+                points: admin.firestore.FieldValue.increment(-POINTS.LIKE),
                 lastActive: admin.firestore.FieldValue.serverTimestamp()
             }, { merge: true });
         }
@@ -68,22 +92,21 @@ exports.onNewLike = functions.firestore
  */
 exports.onNewClone = functions.firestore
     .document("community_clones/{cloneId}")
-    .onCreate(async (snap, context) => {
+    .onCreate(async (snap) => {
     const data = snap.data();
     const postId = data === null || data === void 0 ? void 0 : data.postId;
     if (!postId)
         return;
     const postRef = db.collection("community_posts").doc(postId);
     await db.runTransaction(async (transaction) => {
-        var _a, _b;
+        var _a;
         const postDoc = await transaction.get(postRef);
         if (!postDoc.exists)
             return;
-        // 1. Increment clones count
-        const currentClones = ((_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.cloneCount) || 0;
-        transaction.update(postRef, { cloneCount: currentClones + 1 });
-        // 2. Award points to post owner
-        const ownerUid = (_b = postDoc.data()) === null || _b === void 0 ? void 0 : _b.uid;
+        transaction.update(postRef, {
+            clones: admin.firestore.FieldValue.increment(1),
+        });
+        const ownerUid = (_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.uid;
         if (ownerUid) {
             const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
             transaction.set(leaderboardRef, {
@@ -99,26 +122,51 @@ exports.onNewClone = functions.firestore
  */
 exports.onNewComment = functions.firestore
     .document("community_comments/{commentId}")
-    .onCreate(async (snap, context) => {
+    .onCreate(async (snap) => {
     const data = snap.data();
     const postId = data === null || data === void 0 ? void 0 : data.postId;
     if (!postId)
         return;
     const postRef = db.collection("community_posts").doc(postId);
     await db.runTransaction(async (transaction) => {
-        var _a, _b;
+        var _a;
         const postDoc = await transaction.get(postRef);
         if (!postDoc.exists)
             return;
-        // 1. Increment comment count
-        const currentComments = ((_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.commentCount) || 0;
-        transaction.update(postRef, { commentCount: currentComments + 1 });
-        // 2. Award points to post owner
-        const ownerUid = (_b = postDoc.data()) === null || _b === void 0 ? void 0 : _b.uid;
+        transaction.update(postRef, {
+            comments: admin.firestore.FieldValue.increment(1),
+        });
+        const ownerUid = (_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.uid;
         if (ownerUid) {
             const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
             transaction.set(leaderboardRef, {
                 points: admin.firestore.FieldValue.increment(POINTS.COMMENT),
+                lastActive: admin.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+        }
+    });
+});
+exports.onDeletedComment = functions.firestore
+    .document("community_comments/{commentId}")
+    .onDelete(async (snap) => {
+    const data = snap.data();
+    const postId = data === null || data === void 0 ? void 0 : data.postId;
+    if (!postId)
+        return;
+    const postRef = db.collection("community_posts").doc(postId);
+    await db.runTransaction(async (transaction) => {
+        var _a;
+        const postDoc = await transaction.get(postRef);
+        if (!postDoc.exists)
+            return;
+        transaction.update(postRef, {
+            comments: admin.firestore.FieldValue.increment(-1),
+        });
+        const ownerUid = (_a = postDoc.data()) === null || _a === void 0 ? void 0 : _a.uid;
+        if (ownerUid) {
+            const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
+            transaction.set(leaderboardRef, {
+                points: admin.firestore.FieldValue.increment(-POINTS.COMMENT),
                 lastActive: admin.firestore.FieldValue.serverTimestamp()
             }, { merge: true });
         }
@@ -132,7 +180,7 @@ exports.onNewComment = functions.firestore
 exports.generateWeeklyRanking = functions.pubsub
     .schedule("0 2 * * *")
     .timeZone("UTC")
-    .onRun(async (context) => {
+    .onRun(async (_context) => {
     // Logic: Aggregate points from the last 7 days or snapshot current leaderboard
     // For simplicity, we'll take the top 50 from 'leaderboard' collection 
     // (assuming 'points' is a running total, or we reset it? 
@@ -161,7 +209,7 @@ exports.generateWeeklyRanking = functions.pubsub
 exports.generateMonthlyRanking = functions.pubsub
     .schedule("0 2 1 * *")
     .timeZone("UTC")
-    .onRun(async (context) => {
+    .onRun(async (_context) => {
     // Similar logic for monthly
     const snapshot = await db.collection("leaderboard")
         .orderBy("points", "desc")

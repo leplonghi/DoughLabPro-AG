@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import { ArrowDownTrayIcon } from '@/components/ui/Icons';
-// Import the logo component directly or import the path if it's an image
-import { Logo } from '@/components/ui/Logo';
 import { useTranslation } from '@/i18n';
 
 interface PDFExportButtonProps {
@@ -173,6 +169,8 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             await new Promise(resolve => setTimeout(resolve, 800));
 
             // 4. Capture with html2canvas
+            const { default: html2canvas } = await import('html2canvas');
+            const { default: jsPDF } = await import('jspdf');
             const canvas = await html2canvas(container, {
                 scale: 2, // High resolution (300DPI equivalent roughly)
                 useCORS: true,

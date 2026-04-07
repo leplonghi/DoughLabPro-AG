@@ -26,8 +26,11 @@ import { User, Gender, Oven, Page, Levain, UnitSystem } from '@/types';
 import OvenModal from '@/components/OvenModal';
 import LevainModal from '@/components/LevainModal';
 import { LockFeature } from '@/components/auth/LockFeature';
-
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
+import StatusBadge from '@/components/ui/StatusBadge';
+import { getPageMeta } from '@/app/appShell';
 
 interface ProfilePageProps {
   onNavigate: (page: Page, params?: string) => void;
@@ -65,6 +68,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
   const [editingLevain, setEditingLevain] = useState<Levain | null>(null);
 
   const [isWizardOpen, setIsWizardOpen] = useState(false);
+  const profileMeta = getPageMeta('profile');
 
   useEffect(() => {
     if (user) {
@@ -86,7 +90,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
   if (!user) {
     return (
       <div className="mx-auto max-w-4xl text-center pt-20">
-        <p className="text-slate-900">{t('profile.not_logged_in')}</p>
+        <p className="text-dlp-text-primary">{t('profile.not_logged_in')}</p>
       </div>
     );
   }
@@ -172,22 +176,34 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     const isActive = activeTab === id;
     return (
       <button
+        type="button"
         onClick={() => setActiveTab(id)}
-        className={`flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-xl transition-all ${isActive
-          ? 'bg-dlp-brand text-white shadow-lg shadow-dlp-brand/30'
-          : 'text-slate-600 hover:bg-slate-100'
+        aria-pressed={isActive}
+        className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all ${isActive
+          ? 'bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_52%,_#1d5b32_100%)] text-white shadow-lg shadow-dlp-brand/30'
+          : 'bg-white/72 text-dlp-text-secondary hover:bg-lime-50'
           }`}
       >
-        <Icon className={`h-4 w-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+        <Icon className={`h-4 w-4 ${isActive ? 'text-white' : 'text-dlp-text-muted'}`} />
         {label}
       </button>
     );
   };
 
   return (
-    <div className="mx-auto max-w-5xl animate-fade-in pb-20">
+    <div className="mx-auto max-w-5xl animate-fade-in space-y-8 pb-20">
+      <AppShellHeader
+        eyebrow={profileMeta.eyebrow}
+        title={profileMeta.title}
+        description={profileMeta.description}
+      >
+        <StatusBadge tone={hasProAccess ? 'brand' : 'neutral'} className="border-white/70 bg-white/80 px-4 py-2 text-sm normal-case tracking-normal shadow-sm">
+          {hasProAccess ? t('common.general.pro_member') : 'Free Member'}
+        </StatusBadge>
+      </AppShellHeader>
+
       {/* Header Card */}
-      <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl border border-slate-100 mb-8 mt-4">
+      <AppSurface surface="elevated" tone="brand" className="relative overflow-hidden shadow-xl">
         <div className="h-32 bg-gradient-to-r from-lime-400 to-dlp-brand-hover opacity-90"></div>
         <div className="relative px-8 pb-8 flex flex-col sm:flex-row items-center sm:items-end -mt-12 gap-6">
           <div className="relative">
@@ -224,16 +240,18 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
           <div className="flex gap-3">
             <button
+              type="button"
               onClick={() => setIsWizardOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-lime-100 hover:bg-lime-200 text-lime-800 rounded-xl font-medium transition-colors text-sm"
+              className="flex items-center gap-2 rounded-xl bg-lime-100 px-4 py-2 text-sm font-medium text-lime-800 transition-colors hover:bg-lime-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
               title={t('auth.onboarding.title', { defaultValue: 'Update Preferences' })}
             >
               <SparklesIcon className="h-4 w-4" />
               {t('common.preferences', { defaultValue: 'Preferences' })}
             </button>
             <button
+              type="button"
               onClick={() => setIsEditing(!isEditing)}
-              className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium transition-colors text-sm"
+              className="dlp-button-secondary flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
             >
               <PencilIcon className="h-4 w-4" />
               {isEditing ? t('profile.cancel') : t('profile.edit_profile')}
@@ -247,14 +265,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           {renderTabButton('mylab', t('profile_page.tabs.mylab'), BeakerIcon)}
           {renderTabButton('settings', t('profile_page.tabs.settings'), SettingsIcon)}
         </div>
-      </div>
+      </AppSurface>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content Area */}
         <div className="lg:col-span-2 space-y-8">
 
           {activeTab === 'overview' && (
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-slate-100 space-y-8 animate-fadeIn">
+            <AppSurface className="space-y-8 border-slate-100 p-6 animate-fadeIn">
               {isEditing ? (
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-2">{t('common.general.edit_profile')}</h3>
@@ -273,28 +291,34 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('profile.name')}</label>
+                      <label htmlFor="profile-name" className="block text-sm font-medium text-slate-700 mb-1">{t('profile.name')}</label>
                       <input
+                        id="profile-name"
                         type="text"
                         name="name"
                         value={formData.name || ''}
                         onChange={handleInputChange}
+                        autoComplete="name"
                         className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('profile.email')}</label>
+                      <label htmlFor="profile-email" className="block text-sm font-medium text-slate-700 mb-1">{t('profile.email')}</label>
                       <input
+                        id="profile-email"
                         type="email"
                         name="email"
                         value={formData.email || ''}
                         disabled
+                        autoComplete="email"
+                        spellCheck={false}
                         className="w-full rounded-xl border-slate-200 bg-slate-50 text-slate-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.skills')}</label>
+                      <label htmlFor="profile-skill-level" className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.skills')}</label>
                       <select
+                        id="profile-skill-level"
                         name="skillLevel"
                         value={formData.skillLevel || ''}
                         onChange={handleInputChange}
@@ -305,44 +329,53 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.location')}</label>
+                      <label htmlFor="profile-location" className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.location')}</label>
                       <input
+                        id="profile-location"
                         type="text"
                         name="location"
                         placeholder={t('common.general.city_country')}
                         value={formData.location || ''}
                         onChange={handleInputChange}
+                        autoComplete="address-level2"
                         className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.website')}</label>
+                      <label htmlFor="profile-website" className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.website')}</label>
                       <input
-                        type="text"
+                        id="profile-website"
+                        type="url"
                         name="website"
                         placeholder={t('profile_page.placeholders.website')}
                         value={formData.website || ''}
                         onChange={handleInputChange}
+                        autoComplete="url"
+                        spellCheck={false}
                         className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.instagram_handle')}</label>
+                      <label htmlFor="profile-instagram" className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.instagram_handle')}</label>
                       <div className="relative">
-                        <span className="absolute left-3 top-2.5 text-slate-400">@</span>
+                        <span aria-hidden="true" className="absolute left-3 top-2.5 text-slate-400">@</span>
                         <input
+                          id="profile-instagram"
                           type="text"
                           name="instagramHandle"
                           placeholder={t('profile_page.placeholders.instagram_username')}
                           value={formData.instagramHandle || ''}
                           onChange={handleInputChange}
+                          autoComplete="off"
+                          spellCheck={false}
                           className="w-full rounded-xl border-slate-200 pl-7 focus:border-dlp-brand focus:ring-dlp-brand"
                         />
                       </div>
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.bio')}</label>
+                      <label htmlFor="profile-bio" className="block text-sm font-medium text-slate-700 mb-1">{t('common.general.bio')}</label>
                       <textarea
+                        id="profile-bio"
                         name="bio"
                         rows={3}
                         placeholder={t('common.general.tell_us_about_your_pizza_journey')}
@@ -353,8 +386,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                     </div>
                   </div>
                   <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                    <button onClick={handleCancel} className="px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg">{t('common.cancel')}</button>
-                    <button onClick={handleSave} className="px-6 py-2 bg-dlp-brand hover:bg-dlp-brand hover:text-white-hover text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all">{t('common.general.save_changes')}</button>
+                    <button type="button" onClick={handleCancel} className="rounded-xl px-4 py-2 font-medium text-dlp-text-secondary transition-colors hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2">{t('common.cancel')}</button>
+                    <button type="button" onClick={handleSave} className="dlp-button-primary rounded-xl px-6 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2">{t('common.general.save_changes')}</button>
                   </div>
                 </div>
               ) : (
@@ -370,7 +403,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         )}
                         <div className="flex flex-wrap gap-2 mt-2">
                           {user.skillLevel && (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize">
+                            <span className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-medium capitalize text-dlp-brand">
                               {user.skillLevel}
                             </span>
                           )}
@@ -426,13 +459,13 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   </div>
                 </>
               )}
-            </div>
+            </AppSurface>
           )}
 
           {activeTab === 'mylab' && (
             <div className="space-y-8 animate-fadeIn">
               {/* Ovens Section */}
-              <div className="bg-white rounded-3xl p-6 shadow-lg border border-slate-100">
+              <AppSurface className="border-slate-100 p-6">
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-orange-100 text-orange-600 rounded-xl">
@@ -475,10 +508,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                     ))
                   )}
                 </div>
-              </div>
+              </AppSurface>
 
               {/* Levains Section */}
-              <div className="bg-white rounded-3xl p-6 shadow-lg border border-slate-100">
+              <AppSurface className="border-slate-100 p-6">
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-pink-100 text-pink-600 rounded-xl">
@@ -524,12 +557,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                     ))
                   )}
                 </div>
-              </div>
+              </AppSurface>
             </div>
           )}
 
           {activeTab === 'settings' && (
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-slate-100 space-y-8 animate-fadeIn">
+            <AppSurface className="space-y-8 border-slate-100 p-6 animate-fadeIn">
               {/* App Preferences */}
               <div>
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -572,7 +605,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   <span>{t('auth.sign_out')}</span>
                 </button>
               </div>
-            </div>
+            </AppSurface>
           )}
         </div>
 
@@ -580,21 +613,21 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         <div className="space-y-6">
           {/* Pro Card */}
           {!hasProAccess ? (
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <AppSurface tone="brand" className="relative overflow-hidden p-6 shadow-xl">
               <div className="absolute top-0 right-0 p-3 opacity-10">
                 <SparklesIcon className="h-32 w-32" />
               </div>
-              <h3 className="text-xl font-bold mb-2 relative z-10">{t('common.general.upgrade_to_pro_2')}</h3>
-              <p className="text-slate-300 text-sm mb-6 relative z-10">
+              <h3 className="relative z-10 mb-2 text-xl font-bold text-dlp-text-primary">{t('common.general.upgrade_to_pro_2')}</h3>
+              <p className="relative z-10 mb-6 text-sm text-dlp-text-secondary">
                 {t('profile_page.unlock_pro_desc')}
               </p>
               <button
-                onClick={() => onNavigate('settings')} // Or a dedicated pro page
-                className="w-full py-3 bg-gradient-to-r from-lime-400 to-dlp-brand-hover hover:from-lime-300 hover:to-dlp-brand text-slate-900 font-bold rounded-xl shadow-lg shadow-dlp-brand/20 transition-all active:scale-95 relative z-10"
+                onClick={() => onNavigate('plans')}
+                className="dlp-button-primary relative z-10 w-full rounded-xl py-3"
               >{t('common.go_pro_now')}</button>
-            </div>
+            </AppSurface>
           ) : (
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 border border-amber-100 text-amber-900">
+            <AppSurface className="border-amber-100 bg-gradient-to-br from-amber-50 to-orange-50 p-6 text-amber-900">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-amber-200 rounded-full text-amber-700">
                   <SparklesIcon className="h-5 w-5" />
@@ -602,16 +635,16 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                 <h3 className="font-bold text-lg">{t('common.general.pro_member')}</h3>
               </div>
               <p className="text-sm opacity-80">{t('common.ui.you_have_full_access_to_all_lab_pro_features')}</p>
-            </div>
+            </AppSurface>
           )}
 
           {/* Resources Card */}
-          <div className="bg-white rounded-3xl p-6 shadow-lg border border-slate-100">
-            <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-              <BookOpenIcon className="h-5 w-5 text-dlp-brand" />{t('common.resources')}</h3>
+          <AppSurface className="border-slate-100 p-6">
+            <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-800">
+              <BookOpenIcon className="h-5 w-5 text-dlp-brand" />{t('profile.resources_title', { defaultValue: 'Resources' })}</h3>
             <div className="space-y-3">
-              <button onClick={() => onNavigate('references')} className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-left group">
-                <div className="h-10 w-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <button onClick={() => onNavigate('learn/references')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-dlp-brand transition-transform group-hover:scale-110">
                   <BookmarkSquareIcon className="h-5 w-5" />
                 </div>
                 <div>
@@ -619,8 +652,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   <p className="text-xs text-slate-500">{t('common.ui.books_guides__standards')}</p>
                 </div>
               </button>
-              <button onClick={() => onNavigate('flours')} className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-left group">
-                <div className="h-10 w-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <button onClick={() => onNavigate('learn/ingredients/flours')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-lime-100 text-dlp-brand transition-transform group-hover:scale-110">
                   <FlourIcon className="h-5 w-5" />
                 </div>
                 <div>
@@ -629,7 +662,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                 </div>
               </button>
             </div>
-          </div>
+          </AppSurface>
         </div>
       </div>
 

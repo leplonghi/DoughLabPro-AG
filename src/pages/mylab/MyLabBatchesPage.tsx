@@ -11,12 +11,15 @@ import {
     StarIcon,
     SolidStarIcon
 } from '@/components/ui/Icons';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import MyLabLayout from './MyLabLayout';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import { SocialShare } from "@/marketing/social/SocialShare";
+import { getPageMeta } from '@/app/appShell';
 
 interface MyLabBatchesPageProps {
     onNavigate: (page: Page, params?: string) => void;
@@ -123,6 +126,7 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
 }) => {
     const { user, batches, hasProAccess, openPaywall } = useUser();
     const { t } = useTranslation();
+    const labMeta = getPageMeta('mylab');
     const plan = getCurrentPlan(user);
 
     const filteredBatches = useMemo(() => {
@@ -141,16 +145,18 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
     return (
         <MyLabLayout activePage="mylab/fornadas" onNavigate={onNavigate}>
             <div className="animate-fade-in space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-slate-900 ">{t('mylab.my_batches')}</h1>
-                        <p className="text-sm text-slate-500 ">{t('mylab.track_your_baking_journey_and_perfect_your_recipes')}</p>
+                <AppShellHeader
+                    eyebrow={labMeta.eyebrow}
+                    title={t('mylab.my_batches')}
+                    description={t('mylab.track_your_baking_journey_and_perfect_your_recipes')}
+                >
+                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                        {filteredBatches.length} saved entries
                     </div>
-
                     {!hasReachedFreeLimit ? (
                         <button
                             onClick={handleCreateDraft}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95"
+                            className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 py-3 px-5 font-bold text-white shadow-lg transition-colors hover:bg-slate-800"
                         >
                             <PlusCircleIcon className="h-5 w-5" />
                             <span>{t('mylab.new_batch')}</span>
@@ -158,17 +164,17 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                     ) : (
                         <button
                             onClick={() => openPaywall('mylab')}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-100 text-slate-500 py-2.5 px-5 font-bold cursor-not-allowed opacity-75"
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-500"
                         >
                             <PlusCircleIcon className="h-5 w-5" />
                             <span>{t('mylab.limit_reached')}</span>
                         </button>
                     )}
-                </div>
+                </AppShellHeader>
 
                 {/* Content */}
                 {batches.filter(b => b.status !== BatchStatus.DRAFT).length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-20 px-4 rounded-3xl border-2 border-dashed border-slate-200  bg-slate-50/50  text-center">
+                    <AppSurface className="flex flex-col items-center justify-center py-20 px-4 border-2 border-dashed border-slate-200 bg-slate-50/50 text-center">
                         <div className="bg-white  p-4 rounded-full shadow-sm mb-6">
                             <BatchesIcon className="h-12 w-12 text-dlp-brand" />
                         </div>
@@ -178,7 +184,7 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
                         </p>
                         <button onClick={handleCreateDraft} className="inline-flex items-center gap-2 rounded-xl bg-dlp-brand py-3 px-6 font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover hover:shadow-xl hover:scale-105 transition-all">
                             <PlusCircleIcon className="h-5 w-5" />{t('mylab.start_first_bake')}</button>
-                    </div>
+                    </AppSurface>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredBatches.map(batch => (

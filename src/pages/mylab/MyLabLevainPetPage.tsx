@@ -11,6 +11,9 @@ import { useToast } from '@/components/ToastProvider';
 
 import { LevainMarketingPage } from './levain/LevainMarketingPage';
 import { useTranslation } from '@/i18n';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
+import { getPageMeta } from '@/app/appShell';
 
 interface MyLabLevainPetPageProps {
     onNavigate: (page: Page) => void;
@@ -21,6 +24,7 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
     const { levains, hasProAccess, addLevain, hasActiveTrial } = useUser();
     const { addToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const levainMeta = getPageMeta('mylab/levain-pet');
 
     const activeLevain = levains.find(l => l.status === 'ativo');
     const isTrial = hasActiveTrial('levain');
@@ -55,38 +59,39 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
             <div className="space-y-8 animate-fade-in max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-6">
 
                 {isTrial && (
-                    <div className="bg-gradient-to-r from-dlp-brand/10 to-transparent border border-dlp-brand/20 p-4 rounded-xl flex items-center gap-3">
+                    <AppSurface className="flex items-center gap-3 border-dlp-brand/20 bg-gradient-to-r from-dlp-brand/10 to-transparent p-4">
                         <span className="flex h-3 w-3 relative">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-dlp-brand"></span>
                         </span>
                         <div>
-                            <p className="text-sm font-bold text-lime-800">7-Day Free Trial Active</p>
+                            <p className="text-sm font-bold text-lime-800">Levain Trial Active</p>
                             <p className="text-xs text-lime-700/80">{t('mylab.enjoy_full_access_to_levain_manager_your_trial_exp')}</p>
                         </div>
-                    </div>
+                    </AppSurface>
                 )}
 
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className="flex flex-col gap-1">
-                        <h1 className="text-3xl font-bold tracking-tight text-slate-900">{t('mylab.levain_dashboard')}</h1>
-                        <p className="text-slate-500 text-lg">
-                            Monitor your starter's health, feeding schedule, and activity.
-                        </p>
+                <AppShellHeader
+                    eyebrow={levainMeta.eyebrow}
+                    title={t('mylab.levain_dashboard')}
+                    description="Monitor health, review feeding cadence, and keep your active starter connected to the rest of the lab."
+                >
+                    <div className="inline-flex items-center rounded-full border border-orange-200 bg-white/90 px-3 py-1 text-xs font-bold text-orange-700">
+                        {activeLevain ? 'Active Culture' : 'No Active Culture'}
                     </div>
                     <button
+                        type="button"
                         onClick={() => setIsModalOpen(true)}
-                        className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 hover:scale-105 transition-all active:scale-95"
+                        className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
                     >
                         <PlusCircleIcon className="h-5 w-5" />{t('mylab.new_starter')}</button>
-                </div>
+                </AppShellHeader>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-6">
                         {activeLevain ? (
-                            <div className="relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg border border-slate-100">
+                            <AppSurface className="relative overflow-hidden border-slate-100 p-8">
                                 <div className="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full bg-orange-500/10 blur-3xl"></div>
 
                                 <div className="relative z-10">
@@ -130,22 +135,23 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </AppSurface>
                         ) : (
-                            <div className="rounded-3xl border-2 border-dashed border-slate-200 bg-slate-50/50 p-12 text-center">
+                            <AppSurface className="border-2 border-dashed border-slate-200 bg-slate-50/60 p-12 text-center">
                                 <div className="mx-auto h-16 w-16 rounded-full bg-slate-100 flex items-center justify-center mb-4">
                                     <FireIcon className="h-8 w-8 text-slate-400" />
                                 </div>
                                 <h3 className="text-lg font-bold text-slate-900">{t('mylab.no_active_levain')}</h3>
                                 <p className="text-slate-500 mt-2 max-w-sm mx-auto">
-                                    Start your sourdough journey by creating a new starter or activating an existing one.
+                                    Create your first levain to start tracking feeding rhythm, health, and behavior from one place.
                                 </p>
                                 <button
-                                    className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700"
+                                    type="button"
+                                    className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
                                     onClick={() => setIsModalOpen(true)}
                                 >
                                     <PlusCircleIcon className="h-4 w-4" />{t('mylab.create_starter')}</button>
-                            </div>
+                            </AppSurface>
                         )}
 
                         {/* Advanced Analytics Section */}
@@ -159,18 +165,18 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
 
                             <LockedTeaser featureKey="levain.lab_full">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="h-64 bg-white rounded-3xl border border-slate-100 shadow-sm p-6 flex flex-col items-center justify-center relative overflow-hidden group">
+                                    <AppSurface className="group relative flex h-64 flex-col items-center justify-center overflow-hidden border-slate-100 p-6">
                                         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-50"></div>
                                         <ChartBarIcon className="h-12 w-12 text-blue-200 mb-3 group-hover:scale-110 transition-transform" />
                                         <span className="text-slate-900 font-bold relative z-10">{t('mylab.activity_chart')}</span>
                                         <span className="text-xs text-slate-500 mt-1 relative z-10">{t('mylab.rise_vs_time')}</span>
-                                    </div>
-                                    <div className="h-64 bg-white rounded-3xl border border-slate-100 shadow-sm p-6 flex flex-col items-center justify-center relative overflow-hidden group">
+                                    </AppSurface>
+                                    <AppSurface className="group relative flex h-64 flex-col items-center justify-center overflow-hidden border-slate-100 p-6">
                                         <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent opacity-50"></div>
                                         <BeakerIcon className="h-12 w-12 text-purple-200 mb-3 group-hover:scale-110 transition-transform" />
-                                        <span className="text-slate-900 font-bold relative z-10">pH History</span>
+                                        <span className="text-slate-900 font-bold relative z-10">Acidity History</span>
                                         <span className="text-xs text-slate-500 mt-1 relative z-10">{t('mylab.acidity_tracking')}</span>
-                                    </div>
+                                    </AppSurface>
                                 </div>
                             </LockedTeaser>
                         </div>
@@ -178,17 +184,17 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
 
                     {/* Sidebar */}
                     <div className="space-y-6">
-                        <div className="rounded-3xl bg-white border border-orange-200 p-6 shadow-xl relative overflow-hidden">
+                        <AppSurface className="relative overflow-hidden border-orange-200 p-6">
                             <div className="absolute top-0 right-0 -mt-10 -mr-10 h-32 w-32 rounded-full bg-orange-500/10 blur-2xl"></div>
                             <h3 className="font-bold text-lg mb-2 relative z-10 text-slate-900">{t('mylab.feeding_schedule')}</h3>
                             <p className="text-slate-600 text-sm mb-4 relative z-10">
-                                Next feeding recommended in:
+                                Next recommended feeding:
                             </p>
                             <div className="text-3xl font-black text-orange-600 mb-1 relative z-10">4h 30m</div>
                             <div className="h-1.5 w-full bg-orange-100 rounded-full overflow-hidden relative z-10">
                                 <div className="h-full bg-orange-500 w-[60%]"></div>
                             </div>
-                        </div>
+                        </AppSurface>
 
                         <AdCard context="mylab_sidebar" />
                     </div>

@@ -1,56 +1,209 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleStripeWebhook = exports.createCheckoutSession = void 0;
+exports.handleStripeWebhook = exports.createBillingPortalSession = exports.createCheckoutSession = exports.assertAllowedCheckoutUrl = exports.getAllowedCheckoutHosts = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const stripe_1 = require("stripe");
+const countryPricing_1 = require("./countryPricing");
+if (!admin.apps.length) {
+    admin.initializeApp();
+}
 // Initialize Stripe with the secret key from environment variables
 // Make sure to set this using: firebase functions:config:set stripe.secret="sk_test_..."
 const stripe = new stripe_1.default(((_a = functions.config().stripe) === null || _a === void 0 ? void 0 : _a.secret) || "sk_test_placeholder", {
-    apiVersion: "2023-10-16", // Use a recent API version
+    apiVersion: "2026-02-25.clover",
 });
+const db = admin.firestore();
+const ALLOWED_PLAN_KEYS = new Set(["standard"]);
+function assertStripeConfigured() {
+    var _a;
+    const secret = (_a = functions.config().stripe) === null || _a === void 0 ? void 0 : _a.secret;
+    if (typeof secret !== "string" || !secret || secret === "sk_test_placeholder") {
+        throw new functions.https.HttpsError("failed-precondition", "Stripe secret is not configured for checkout.");
+    }
+}
+function getAllowedCheckoutHosts() {
+    var _a;
+    const configuredHosts = String(((_a = functions.config().app) === null || _a === void 0 ? void 0 : _a.allowed_hosts) || "")
+        .split(",")
+        .map((host) => host.trim().toLowerCase())
+        .filter(Boolean);
+    const projectId = process.env.GCLOUD_PROJECT || process.env.PROJECT_ID || "";
+    const defaultHosts = [
+        "localhost:3000",
+        "localhost:4173",
+        "localhost:5173",
+        "127.0.0.1:3000",
+        "127.0.0.1:4173",
+        "127.0.0.1:5173",
+    ];
+    if (projectId) {
+        defaultHosts.push(`${projectId}.web.app`, `${projectId}.firebaseapp.com`);
+    }
+    return [...new Set([...defaultHosts, ...configuredHosts])];
+}
+exports.getAllowedCheckoutHosts = getAllowedCheckoutHosts;
+function assertAllowedCheckoutUrl(urlValue, fieldName) {
+    if (typeof urlValue !== "string" || !urlValue) {
+        throw new functions.https.HttpsError("invalid-argument", `The function must be called with a valid "${fieldName}".`);
+    }
+    let parsedUrl;
+    try {
+        parsedUrl = new URL(urlValue);
+    }
+    catch (_a) {
+        throw new functions.https.HttpsError("invalid-argument", `The function must be called with a valid "${fieldName}".`);
+    }
+    const isLocalhost = parsedUrl.hostname === "localhost" || parsedUrl.hostname === "127.0.0.1";
+    const isSecureProtocol = parsedUrl.protocol === "https:" || (parsedUrl.protocol === "http:" && isLocalhost);
+    if (!isSecureProtocol) {
+        throw new functions.https.HttpsError("invalid-argument", `${fieldName} must use HTTPS unless it points to localhost.`);
+    }
+    const allowedHosts = getAllowedCheckoutHosts();
+    if (!allowedHosts.includes(parsedUrl.host.toLowerCase())) {
+        throw new functions.https.HttpsError("invalid-argument", `${fieldName} must point to an approved first-party domain.`);
+    }
+    return parsedUrl.toString();
+}
+exports.assertAllowedCheckoutUrl = assertAllowedCheckoutUrl;
+function normalizePlanKey(planKey) {
+    if (typeof planKey !== "string") {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid plan info");
+    }
+    const normalized = planKey.trim().toLowerCase();
+    if (!ALLOWED_PLAN_KEYS.has(normalized)) {
+        throw new functions.https.HttpsError("invalid-argument", "Invalid plan info");
+    }
+    return normalized;
+}
+function normalizeCountryHint(countryHint) {
+    if (typeof countryHint !== "string")
+        return undefined;
+    const normalized = countryHint.trim().toUpperCase();
+    return /^[A-Z]{2}$/.test(normalized) ? normalized : undefined;
+}
+/**
+ * Resolves the effective country for a user.
+ *
+ * Strategy:
+ * 1. Locked Billing Country (if exists in DB) -> Strongest
+ * 2. Provisional/IP Country (if free user) -> Weakest
+ */
+async function resolveEffectiveCountry(userId, ip) {
+    const userDoc = await db.collection("users").doc(userId).get();
+    const userData = userDoc.data();
+    // 1. Check for locked billing country
+    if (userData === null || userData === void 0 ? void 0 : userData.billingCountry) {
+        return { country: userData.billingCountry, isLocked: true };
+    }
+    // 2. Fallback: Use IP Geolocation (Provisional)
+    // In a real generic function, we might use a geoip library. 
+    // For now, we'll try to get it from headers or default to US.
+    // If we rely on Cloud Functions 'x-appengine-country' header (if available) passed via context, that's better.
+    // But here we might just default to 'US' if we can't determine.
+    // Note: In Cloud Functions, you often get geolocation headers.
+    // We will assume 'US' if IP resolution is too complex for this snippet,
+    // or rely on client-provided hint if safe (but here we want backend security).
+    // Let's assume we default to 'US' but allow the caller to pass a "hint" if verified.
+    // actually, for this task, let's just return 'US' if we can't lock it, 
+    // but in 'createCheckoutSession' we can try to respect the user's intent if reasonable.
+    return { country: "US", isLocked: false };
+}
 /**
  * Creates a Stripe Checkout Session for a "Pro" subscription.
- * Call this function from the client with { priceId, successUrl, cancelUrl }.
+ * Call this function from the client with { planKey, successUrl, cancelUrl, countryHint }.
  */
 exports.createCheckoutSession = functions.https.onCall(async (data, context) => {
+    var _a;
+    assertStripeConfigured();
     // 1. Ensure user is authenticated
     if (!context.auth) {
         throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
     }
-    const { priceId, successUrl, cancelUrl } = data;
+    const requestData = (data && typeof data === "object") ? data : {};
+    const { successUrl, cancelUrl, countryHint } = requestData;
+    const planKey = normalizePlanKey((_a = requestData.planKey) !== null && _a !== void 0 ? _a : "standard");
     const userId = context.auth.uid;
     const userEmail = context.auth.token.email;
-    if (!priceId || !successUrl || !cancelUrl) {
-        throw new functions.https.HttpsError("invalid-argument", "The function must be called with one argument \"priceId\", \"successUrl\", and \"cancelUrl\".");
+    const safeSuccessUrl = assertAllowedCheckoutUrl(successUrl, "successUrl");
+    const safeCancelUrl = assertAllowedCheckoutUrl(cancelUrl, "cancelUrl");
+    const safeCountryHint = normalizeCountryHint(countryHint);
+    // 2. Resolve Country & Price
+    let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId); // Use helper
+    // Allow hint if not locked to override the Provisional default
+    if (!isLocked && safeCountryHint) {
+        targetCountry = safeCountryHint;
+    }
+    const pricing = (0, countryPricing_1.getCountryPricing)(targetCountry);
+    const planPrice = pricing.plans[planKey];
+    if (!planPrice) {
+        throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
     }
     try {
-        // 2. Create the session
-        const session = await stripe.checkout.sessions.create({
-            mode: "subscription",
-            payment_method_types: ["card"],
-            line_items: [
+        // 3. Create the session with dynamic pricing based on country
+        const session = await stripe.checkout.sessions.create(Object.assign(Object.assign({ mode: "subscription", payment_method_types: ["card"], line_items: [
                 {
-                    price: priceId,
                     quantity: 1,
+                    price_data: {
+                        currency: pricing.currency,
+                        unit_amount: Math.round(planPrice * 100),
+                        product_data: {
+                            name: `DoughLab Pro (${planKey})`,
+                            description: `Subscription for ${targetCountry}`,
+                        },
+                        recurring: {
+                            interval: 'month',
+                        },
+                    },
                 },
-            ],
-            success_url: successUrl,
-            cancel_url: cancelUrl,
-            customer_email: userEmail,
-            client_reference_id: userId,
-            metadata: {
+            ], success_url: safeSuccessUrl, cancel_url: safeCancelUrl }, (userEmail ? { customer_email: userEmail } : {})), { client_reference_id: userId, metadata: {
                 userId: userId,
-                // Add any other metadata you need
-            },
-        });
-        // 3. Return the session ID to the client
-        return { sessionId: session.id };
+                targetCountry: targetCountry,
+                lockedStatus: isLocked ? 'LOCKED' : 'PROVISIONAL'
+            }, subscription_data: {
+                metadata: {
+                    userId: userId,
+                    billingCountry: targetCountry
+                }
+            } }));
+        return {
+            sessionId: session.id,
+            url: session.url,
+        };
     }
     catch (error) {
         console.error("Stripe Checkout Error:", error);
         throw new functions.https.HttpsError("internal", "Unable to create Stripe checkout session.", error.message);
+    }
+});
+/**
+ * Creates a Stripe Billing Portal session for the authenticated customer.
+ */
+exports.createBillingPortalSession = functions.https.onCall(async (data, context) => {
+    assertStripeConfigured();
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
+    }
+    const requestData = (data && typeof data === "object") ? data : {};
+    const safeReturnUrl = assertAllowedCheckoutUrl(requestData.returnUrl, "cancelUrl");
+    const userId = context.auth.uid;
+    const userDoc = await db.collection("users").doc(userId).get();
+    const userData = userDoc.data();
+    const stripeCustomerId = userData === null || userData === void 0 ? void 0 : userData.stripeCustomerId;
+    if (typeof stripeCustomerId !== "string" || !stripeCustomerId) {
+        throw new functions.https.HttpsError("failed-precondition", "No active billing profile was found for this account.");
+    }
+    try {
+        const session = await stripe.billingPortal.sessions.create({
+            customer: stripeCustomerId,
+            return_url: safeReturnUrl,
+        });
+        return { url: session.url };
+    }
+    catch (error) {
+        console.error("Stripe Billing Portal Error:", error);
+        throw new functions.https.HttpsError("internal", "Unable to create Stripe billing portal session.", error.message);
     }
 });
 /**
@@ -59,9 +212,14 @@ exports.createCheckoutSession = functions.https.onCall(async (data, context) => 
  * and updates Firestore accordingly.
  */
 exports.handleStripeWebhook = functions.https.onRequest(async (req, res) => {
-    var _a;
+    var _a, _b, _c, _d, _e, _f, _g;
+    if (!((_a = functions.config().stripe) === null || _a === void 0 ? void 0 : _a.secret) || ((_b = functions.config().stripe) === null || _b === void 0 ? void 0 : _b.secret) === "sk_test_placeholder") {
+        console.error("Stripe secret not configured.");
+        res.status(500).send("Stripe secret not configured");
+        return;
+    }
     const signature = req.headers["stripe-signature"];
-    const endpointSecret = (_a = functions.config().stripe) === null || _a === void 0 ? void 0 : _a.webhook_secret;
+    const endpointSecret = (_c = functions.config().stripe) === null || _c === void 0 ? void 0 : _c.webhook_secret;
     if (!endpointSecret) {
         console.error("Stripe Webhook Secret not configured.");
         res.status(500).send("Webhook Secret not configured");
@@ -77,7 +235,6 @@ exports.handleStripeWebhook = functions.https.onRequest(async (req, res) => {
         res.status(400).send(`Webhook Error: ${err.message}`);
         return;
     }
-    const db = admin.firestore();
     try {
         switch (event.type) {
             case "checkout.session.completed": {
@@ -85,32 +242,59 @@ exports.handleStripeWebhook = functions.https.onRequest(async (req, res) => {
                 const userId = session.client_reference_id;
                 const subscriptionId = session.subscription;
                 const customerId = session.customer;
+                // Get Country from payment method (Strongest Signal)
+                // In checkout.session.completed, we might need to expand fields or look at customer_details
+                const paymentCountry = ((_e = (_d = session.customer_details) === null || _d === void 0 ? void 0 : _d.address) === null || _e === void 0 ? void 0 : _e.country) ||
+                    ((_f = session.metadata) === null || _f === void 0 ? void 0 : _f.targetCountry); // Fallback to what we set if address missing
                 if (userId) {
-                    // Update user to PRO
-                    await db.collection("users").doc(userId).update({
+                    const userRef = db.collection("users").doc(userId);
+                    const userDoc = await userRef.get();
+                    const userData = userDoc.data();
+                    const updateData = {
                         isPro: true,
                         plan: "lab_pro",
                         proSince: admin.firestore.FieldValue.serverTimestamp(),
                         stripeCustomerId: customerId,
                         stripeSubscriptionId: subscriptionId
-                    });
+                    };
+                    // LOCKING LOGIC
+                    if (!(userData === null || userData === void 0 ? void 0 : userData.billingCountry) && paymentCountry) {
+                        // Lock it now!
+                        updateData.billingCountry = paymentCountry;
+                        updateData.billingCurrency = (_g = session.currency) === null || _g === void 0 ? void 0 : _g.toUpperCase();
+                        updateData.firstPaidAt = new Date().toISOString();
+                        const pricing = (0, countryPricing_1.getCountryPricing)(paymentCountry);
+                        updateData.priceTier = pricing.tier;
+                        console.log(`Locking billing country for ${userId} to ${paymentCountry}`);
+                    }
+                    else if ((userData === null || userData === void 0 ? void 0 : userData.billingCountry) && paymentCountry) {
+                        // Mismatch check
+                        if (userData.billingCountry !== paymentCountry) {
+                            console.warn(`Suspicious: User ${userId} locked to ${userData.billingCountry} paid with method from ${paymentCountry}`);
+                            // Log 'suspicious_country_mismatch'
+                            await db.collection("suspicious_activity").add({
+                                userId,
+                                event: "payment_country_mismatch",
+                                lockedCountry: userData.billingCountry,
+                                paymentCountry: paymentCountry,
+                                timestamp: admin.firestore.FieldValue.serverTimestamp()
+                            });
+                        }
+                    }
+                    await userRef.update(updateData);
                     console.log(`User ${userId} upgraded to Pro via Checkout Session.`);
-                }
-                else {
-                    console.warn("No client_reference_id found in Checkout Session.");
                 }
                 break;
             }
             case "customer.subscription.deleted": {
                 const subscription = event.data.object;
                 // find user by stripeSubscriptionId
-                // This might require a composite index or just querying
                 const snapshot = await db.collection("users")
                     .where("stripeSubscriptionId", "==", subscription.id)
                     .get();
                 if (!snapshot.empty) {
                     const batch = db.batch();
-                    snapshot.docs.forEach(doc => {
+                    snapshot.docs.forEach((doc) => {
                         batch.update(doc.ref, {
                             isPro: false,
                             plan: "free",
@@ -122,7 +306,6 @@ exports.handleStripeWebhook = functions.https.onRequest(async (req, res) => {
                 }
                 break;
             }
-            // Handle other events like payment_failed if needed
             default:
                 console.log(`Unhandled event type ${event.type}`);
         }

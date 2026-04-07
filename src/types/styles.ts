@@ -101,6 +101,11 @@ export enum RecipeStyle {
 }
 
 export type StyleSource = 'official' | 'user_manual' | 'user_ai';
+export type CitationSourceType = 'book' | 'article' | 'institutional' | 'video' | 'internal' | 'image' | 'other';
+export type StyleContentCompleteness = 'core' | 'rich' | 'expert';
+export type StyleEditorialStatus = 'official' | 'community' | 'experimental';
+export type StyleLibraryTier = 'flagship' | 'core' | 'specialist' | 'community';
+export type StyleLibraryVisibility = 'featured' | 'standard' | 'hidden';
 
 export interface Reference {
     source: string;
@@ -108,12 +113,18 @@ export interface Reference {
     year?: string;
     url?: string;
     notes?: string;
+    sourceType?: CitationSourceType;
+    publisher?: string;
+    accessedAt?: string;
 }
 
 export interface StyleImages {
     hero: string;
     dough: string;
     crumb: string;
+    process?: string;
+    result?: string;
+    variations?: string[];
 }
 
 export interface StylePairings {
@@ -279,6 +290,143 @@ export interface BaseFormulaIngredient {
     role?: string;
 }
 
+export interface Citation {
+    id: string;
+    label: string;
+    sourceType: CitationSourceType;
+    title: string;
+    authors?: string[];
+    publisher?: string;
+    year?: string;
+    url?: string;
+    accessedAt?: string;
+    notes?: string;
+}
+
+export interface CitationAnchor {
+    sectionId: string;
+    blockId: string;
+    citationIds: string[];
+}
+
+export interface MediaAsset {
+    id: string;
+    type: 'image' | 'diagram';
+    role: 'hero' | 'process' | 'dough' | 'crumb' | 'result' | 'variation' | 'comparison';
+    src: string;
+    alt: string;
+    caption: string;
+    credit?: string;
+    sourceUrl?: string;
+}
+
+export interface EditorialTextBlock {
+    id: string;
+    title?: string;
+    body: string;
+    citationIds?: string[];
+}
+
+export interface StyleVariation {
+    id: string;
+    name: string;
+    category: 'regional' | 'technical' | 'service' | 'formula';
+    changes: string;
+    rationale: string;
+    expectedResult: string;
+    linkedImageIds?: string[];
+    citationIds?: string[];
+}
+
+export interface FlexibilityGuide {
+    id: string;
+    scenario: string;
+    substitutions?: string[];
+    processChanges: string;
+    tradeoffs: string;
+    citationIds?: string[];
+}
+
+export interface StyleIntegrationLinks {
+    calculatorPresetId?: string;
+    learnArticleIds?: string[];
+    flavorComponentIds?: string[];
+    myLabTemplateIds?: string[];
+    communityReferenceIds?: string[];
+}
+
+export interface StyleEditorialSummary {
+    promise: string;
+    bestFor: string;
+    whenToUse: string;
+    notIdealFor: string;
+    signatureTrait: string;
+}
+
+export interface StyleLibraryCuration {
+    tier: StyleLibraryTier;
+    visibility: StyleLibraryVisibility;
+    displayOrder: number;
+    rationale: string;
+    isIndispensable?: boolean;
+    redundancyGroup?: string;
+    canonicalStyleId?: string;
+}
+
+export interface StyleComparisonItem {
+    id: string;
+    targetStyleId?: string;
+    targetStyleName: string;
+    difference: string;
+    whenToChoose: string;
+    riskOfConfusion?: string;
+    citationIds?: string[];
+}
+
+export interface StyleEditorialViewModel {
+    id: string;
+    title: string;
+    subtitle: string;
+    familyLabel: string;
+    categoryLabel: string;
+    regionLabel: string;
+    difficulty: DoughStyleDefinition['difficulty'];
+    hydrationRange: [number, number];
+    signatureTrait: string;
+    contentCompleteness: StyleContentCompleteness;
+    editorialStatus: StyleEditorialStatus;
+    libraryCuration: StyleLibraryCuration;
+    editorialSummary: StyleEditorialSummary;
+    identity: EditorialTextBlock[];
+    quickRead: EditorialTextBlock[];
+    technicalProfile: Array<{ id: string; label: string; value: string; detail?: string }>;
+    processTimeline: Array<{
+        id: string;
+        phase: string;
+        title: string;
+        duration: string;
+        temperature?: string;
+        summary: string;
+        science?: string;
+        criticalPoint?: string;
+        citationIds?: string[];
+    }>;
+    scienceNotes: EditorialTextBlock[];
+    variations: StyleVariation[];
+    flexibilityGuides: FlexibilityGuide[];
+    comparisonSet: StyleComparisonItem[];
+    pairingContext: {
+        canonical: string[];
+        modern: string[];
+        regional: string[];
+        contextNotes: string[];
+    };
+    integrationLinks: StyleIntegrationLinks;
+    mediaGallery: MediaAsset[];
+    citations: Citation[];
+    citationAnchors: CitationAnchor[];
+}
+
 export interface DoughStyleDefinition {
     id: string;
     name: string;
@@ -339,6 +487,26 @@ export interface DoughStyleDefinition {
     releaseDate: string;
 
     images?: StyleImages;
+    editorialSummary?: StyleEditorialSummary;
+    identity?: EditorialTextBlock[];
+    technicalProfileNotes?: EditorialTextBlock[];
+    processTimeline?: StyleEditorialViewModel['processTimeline'];
+    scienceNotes?: EditorialTextBlock[];
+    flexibilityGuides?: FlexibilityGuide[];
+    comparisonSet?: StyleComparisonItem[];
+    pairingContext?: {
+        canonical?: string[];
+        modern?: string[];
+        regional?: string[];
+        contextNotes?: string[];
+    };
+    integrationLinks?: StyleIntegrationLinks;
+    mediaGallery?: MediaAsset[];
+    citations?: Citation[];
+    imageCredits?: Citation[];
+    contentCompleteness?: StyleContentCompleteness;
+    editorialStatus?: StyleEditorialStatus;
+    libraryCuration?: StyleLibraryCuration;
     // Legacy mapping (can be deprecated eventually)
     relatedLearn?: string[]; // Keeping for now, likely mapped to learnLinkTags
 

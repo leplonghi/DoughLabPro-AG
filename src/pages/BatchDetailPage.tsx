@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { Batch, BatchStatus, Page, CommunityBatch, DoughConfig, DoughResult } from '@/types';
 import { useTranslation } from '@/i18n';
@@ -37,6 +36,11 @@ import { TimelineStep } from '@/logic/reverseTimeline';
 import { AffiliateIngredientRow } from '@/components/calculator/AffiliateIngredientRow';
 import { RecipeCardGenerator } from '@/components/tools/RecipeCardGenerator';
 import { ShareIcon as ShareIconSolid } from '@heroicons/react/24/solid'; // Adjust if valid, relying on existing Icons import mostly
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
+import { getPageMeta } from '@/app/appShell';
+
+const DoughyAssistant = React.lazy(() => import('@/components/tools/DoughyAssistant').then((module) => ({ default: module.DoughyAssistant })));
 
 interface BatchDetailPageProps {
     batchId: string | null;
@@ -141,6 +145,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
     const { user, batches, updateBatch, addBatch, deleteBatch, hasProAccess, openPaywall } = useUser();
     const { t } = useTranslation(['common', 'dashboard', 'calculator', 'method']);
     const { addToast } = useToast();
+    const batchMeta = getPageMeta('batch');
 
     const [editableBatch, setEditableBatch] = useState<Batch | null>(null);
     const [isEditingNotes, setIsEditingNotes] = useState(false);
@@ -276,35 +281,48 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
 
     return (
         <div className="animate-fade-in">
-            <button
-                onClick={() => window.history.back()}
-                className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-500  hover:text-slate-800 transition-colors"
+            <AppShellHeader
+                eyebrow={batchMeta.eyebrow}
+                title={batchMeta.title}
+                description={batchMeta.description}
             >
-                &larr; Back
-            </button>
+                <button
+                    onClick={() => window.history.back()}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+                >
+                    &larr; Back
+                </button>
+                <button onClick={handleSave} className="flex items-center gap-2 rounded-full bg-slate-950 py-3 px-5 text-sm font-bold text-white shadow-lg transition-colors hover:bg-slate-800">
+                    <SaveIcon className="h-4 w-4" />
+                    {t('common.save_changes')}
+                </button>
+            </AppShellHeader>
 
-            {/* Header */}
-            <div className="mb-8 space-y-2">
-                <input
-                    type="text"
-                    name="name"
-                    value={editableBatch.name}
-                    onChange={(e) => setEditableBatch({ ...editableBatch, name: e.target.value })}
-                    className="w-full bg-transparent text-3xl font-bold tracking-tight text-slate-900  sm:text-4xl focus:outline-none focus:ring-0 border-0 p-0 placeholder-slate-400"
-                />
-                <div className="flex items-center gap-4">
-                    <p className="text-sm text-slate-500 ">
-                        {new Date(editableBatch.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
-                    </p>
-                    <ResultBadge rating={editableBatch.rating} />
-
+            <AppSurface className="mb-8 p-6">
+                <div className="space-y-2">
+                    <input
+                        type="text"
+                        name="name"
+                        value={editableBatch.name}
+                        onChange={(e) => setEditableBatch({ ...editableBatch, name: e.target.value })}
+                        className="w-full bg-transparent text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl focus:outline-none focus:ring-0 border-0 p-0 placeholder-slate-400"
+                    />
+                    <div className="flex flex-wrap items-center gap-4">
+                        <p className="text-sm text-slate-500 ">
+                            {new Date(editableBatch.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+                        </p>
+                        <ResultBadge rating={editableBatch.rating} />
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
+                            {editableBatch.status}
+                        </span>
+                    </div>
                 </div>
-            </div>
+            </AppSurface>
 
             <div className="flex flex-col lg:flex-row gap-8 items-start">
                 {/* Main Content */}
                 <div className="w-full lg:w-2/3 space-y-6">
-                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                    <AppSurface className="p-6">
                         <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.data_title')}</h3>
                         <dl className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6">
                             <KeyStatCard label={t('batch_detail.hydration')} value={`${doughConfig.hydration}%`} icon={<InfoIcon className="h-6 w-6" />} />
@@ -314,16 +332,16 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             <KeyStatCard label={t('general.avg_temp')} value={t(`form.temp_${doughConfig.ambientTemperature.toLowerCase()}`)} icon={<InfoIcon className="h-6 w-6" />} />
                             <KeyStatCard label={t('general.oven_2')} value={editableBatch.ovenType ? t(`profile.ovens.types.${editableBatch.ovenType.toLowerCase()}`) : 'N/A'} icon={<FireIcon className="h-6 w-6" />} />
                         </dl>
-                    </div>
+                    </AppSurface>
 
                     {doughResult && (
-                        <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                        <AppSurface className="p-6">
                             <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.ingredients_title')}</h3>
                             <IngredientTable result={doughResult} doughConfig={doughConfig} />
-                        </div>
+                        </AppSurface>
                     )}
 
-                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                    <AppSurface className="p-6">
                         <div className="flex justify-between items-center mb-4">
                             <h3 className="font-bold text-lg text-slate-900 ">{t('batch_detail.process_title')}</h3>
                             {!isEditingNotes && (
@@ -344,7 +362,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                         ) : (
                             <div className="prose prose-sm max-w-none min-h-[10rem] whitespace-pre-wrap text-slate-700 ">{editableBatch.notes || <p className="italic text-slate-400 ">{t('batch_detail.no_notes')}</p>}</div>
                         )}
-                    </div>
+                    </AppSurface>
                     <AdCard context="batch_detail" />
                 </div>
 
@@ -363,7 +381,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                     </div>
 
                     {/* Related Learn Insights */}
-                    <div className="rounded-2xl bg-gradient-to-br from-lime-50 to-white p-6 shadow-sm border border-lime-100">
+                    <AppSurface className="bg-gradient-to-br from-lime-50 to-white p-6 border-lime-100">
                         <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-lime-900">
                             <BookOpenIcon className="h-5 w-5 text-dlp-brand-hover" />
                             {t('batch_detail.learn_insights')}
@@ -421,8 +439,8 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                 </a>
                             ))}
                         </div>
-                    </div>
-                    <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
+                    </AppSurface>
+                    <AppSurface className="p-6">
                         <RecommendedProducts
                             tags={[
                                 doughConfig.style?.toLowerCase() || 'general',
@@ -432,8 +450,8 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             ].filter(Boolean)}
                             title={t('general.tools_for_this_recipe')}
                         />
-                    </div>
-                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                    </AppSurface>
+                    <AppSurface className="p-6">
                         <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.rating')}</h3>
                         <div className="flex items-center justify-center gap-1">
                             {[1, 2, 3, 4, 5].map(star => (
@@ -442,8 +460,8 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                                 </button>
                             ))}
                         </div>
-                    </div>
-                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                    </AppSurface>
+                    <AppSurface className="p-6">
                         <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.photos_title')}</h3>
                         <div className="aspect-video w-full rounded-xl bg-slate-100 overflow-hidden flex items-center justify-center relative">
                             {editableBatch.photoUrl ? (
@@ -473,8 +491,8 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                         >
                             {editableBatch.photoUrl ? t('batch_detail.change_photo') : t('batch_detail.add_photo')}
                         </button>
-                    </div>
-                    <div className="rounded-2xl bg-white  p-6 shadow-sm border border-slate-200 ">
+                    </AppSurface>
+                    <AppSurface className="p-6">
                         <h3 className="font-bold text-lg mb-4 text-slate-900 ">{t('batch_detail.actions_title')}</h3>
                         <div className="space-y-3">
                             <button onClick={() => onLoadAndNavigate(doughConfig)} className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-100  py-3 font-bold text-slate-700  hover:bg-slate-200 transition-colors"><BatchesIcon className="h-5 w-5" /> {t('batch_detail.actions.repeat')}</button>
@@ -510,17 +528,14 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
 
                             <button onClick={handleDelete} className="w-full flex items-center justify-center gap-2 rounded-xl text-red-600  py-3 font-bold hover:bg-red-50 transition-colors"><TrashIcon className="h-5 w-5" /> {t('batch_detail.actions.delete')}</button>
                         </div>
-                    </div>
+                    </AppSurface>
                 </div>
             </div>
             <div className="mt-8 flex items-center justify-between border-t border-slate-200  pt-6">
                 <button onClick={() => onNavigate('mylab/fornadas')} className="text-sm font-bold text-dlp-brand-hover  hover:underline">
                     &larr; {t('batch_detail.back_to_diary')}
                 </button>
-                <button onClick={handleSave} className="flex items-center gap-2 rounded-xl bg-dlp-brand py-3 px-6 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95">
-                    <SaveIcon className="h-5 w-5" />
-                    {t('common.save_changes')}
-                </button>
+                <span className="text-sm text-slate-500">Changes stay local until you save from the top action.</span>
             </div>
 
             <ShareBatchModal
@@ -529,7 +544,9 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 onClose={() => setIsShareModalOpen(false)}
             />
 
-            <DoughyAssistant />
+            <Suspense fallback={null}>
+                <DoughyAssistant />
+            </Suspense>
 
             {isShareCardOpen && editableBatch.doughResult && (
                 <RecipeCardGenerator

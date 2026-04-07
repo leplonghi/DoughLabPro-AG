@@ -33,10 +33,15 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 overflow-hidden">
-            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={onClose} />
+        <div className="fixed inset-0 z-50 overflow-hidden" role="presentation">
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
 
-            <div className="absolute inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl flex flex-col animate-slide-in-right">
+            <div
+                className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col overflow-hidden bg-white shadow-2xl animate-slide-in-right [overscroll-behavior:contain]"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="styles-filter-drawer-title"
+            >
                 {/* Header */}
                 <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-white z-10">
                     <div className="flex items-center gap-2">
@@ -44,11 +49,16 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                             <Filter className="w-5 h-5" />
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold text-slate-900">{t('general.advanced_filters')}</h2>
+                            <h2 id="styles-filter-drawer-title" className="text-lg font-bold text-slate-900">{t('general.advanced_filters')}</h2>
                             <p className="text-xs text-slate-500">{t('general.refine_your_style_search')}</p>
                         </div>
                     </div>
-                    <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 transition-colors">
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        aria-label="Close filters"
+                        className="rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+                    >
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -69,8 +79,10 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                                 const isSelected = selectedDifficulty.includes(diff.id);
                                 return (
                                     <button
+                                        type="button"
                                         key={diff.id}
                                         onClick={() => onToggleDifficulty(diff.id)}
+                                        aria-pressed={isSelected}
                                         className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all flex items-center gap-2 ${isSelected
                                             ? 'bg-dlp-brand text-white border-dlp-brand-hover shadow-md'
                                             : 'bg-white text-slate-600 border-slate-200 hover:border-lime-300 hover:bg-lime-50'
@@ -88,14 +100,16 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
 
                     {/* Regions */}
                     <section>
-                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Region / Origin</h3>
+                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{t('general.region')}</h3>
                         <div className="grid grid-cols-2 gap-2">
                             {availableRegions.map(region => {
                                 const isSelected = selectedRegions.includes(region);
                                 return (
                                     <button
+                                        type="button"
                                         key={region}
                                         onClick={() => onToggleRegion(region)}
+                                        aria-pressed={isSelected}
                                         className={`px-3 py-2 rounded-lg text-xs font-medium border text-left transition-all flex items-center justify-between ${isSelected
                                             ? 'bg-sky-50 text-sky-700 border-sky-200'
                                             : 'bg-white text-slate-600 border-slate-200 hover:border-sky-200 hover:bg-sky-50/50'
@@ -119,8 +133,10 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                                 const isSelected = selectedTags.includes(tag);
                                 return (
                                     <button
+                                        type="button"
                                         key={tag}
                                         onClick={() => onToggleTag(tag)}
+                                        aria-pressed={isSelected}
                                         className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${isSelected
                                             ? 'bg-slate-800 text-white border-slate-900'
                                             : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300'
@@ -137,12 +153,14 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                 {/* Footer */}
                 <div className="p-5 border-t border-slate-100 bg-slate-50 flex gap-3">
                     <button
+                        type="button"
                         onClick={onClearAll}
-                        className="flex-1 py-3 px-4 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-white hover:text-red-500 transition-colors"
+                        className="flex-1 py-3 px-4 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-white hover:text-red-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
                     >{t('common.reset_all')}</button>
                     <button
+                        type="button"
                         onClick={onClose}
-                        className="flex-[2] py-3 px-4 rounded-xl bg-dlp-brand text-white font-bold shadow-lg hover:bg-dlp-brand hover:text-white-hover hover:shadow-xl transition-all"
+                        className="flex-[2] py-3 px-4 rounded-xl bg-dlp-brand text-white font-bold shadow-lg hover:bg-dlp-brand hover:text-white-hover hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
                     >{t('common.show_results')}</button>
                 </div>
             </div>

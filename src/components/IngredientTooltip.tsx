@@ -1,6 +1,8 @@
 import React from 'react';
 import { Increment, UserIngredient } from '@/types/ingredients';
 import { FlavorComponent } from '@/types/flavor';
+import InlineNotice from '@/components/ui/InlineNotice';
+import StatusBadge from '@/components/ui/StatusBadge';
 import { InformationCircleIcon, BookOpenIcon, LightBulbIcon, BeakerIcon } from '@heroicons/react/24/outline';
 
 interface IngredientTooltipProps {
@@ -22,7 +24,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
             </div>
 
             {isVisible && (
-                <div className="absolute z-50 w-80 p-4 bg-white rounded-xl shadow-2xl border border-slate-200 bottom-full left-0 mb-2 animate-fade-in">
+                <div className="dlp-surface-elevated dlp-tone-neutral absolute bottom-full left-0 z-50 mb-2 w-80 rounded-[1.4rem] p-4 animate-fade-in">
                     {/* Header */}
                     <div className="flex items-start gap-3 mb-3 pb-3 border-b border-slate-100">
                         <div className="flex-1">
@@ -30,14 +32,14 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                             <p className="text-xs text-slate-500 uppercase tracking-wide mt-0.5">{ingredient.category}</p>
                         </div>
                         {ingredient.source === 'user' && (
-                            <span className="px-2 py-0.5 bg-violet-100 text-violet-700 text-[10px] font-bold rounded-full">
+                            <StatusBadge tone="info" size="sm">
                                 Custom
-                            </span>
+                            </StatusBadge>
                         )}
                         {ingredient.source === 'official' && (
-                            <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full">
+                            <StatusBadge tone="brand" size="sm">
                                 Official
-                            </span>
+                            </StatusBadge>
                         )}
                     </div>
 
@@ -51,7 +53,7 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
 
                             {/* Origin & History */}
                             {flavorComponent.origin && (
-                                <div className="mb-3 p-2 bg-amber-50 rounded-lg">
+                                <InlineNotice tone="warning" className="mb-3">
                                     <div className="flex items-center gap-1.5 mb-1">
                                         <BookOpenIcon className="h-3 w-3 text-amber-600" />
                                         <span className="text-[10px] uppercase font-bold text-amber-700">Origin</span>
@@ -60,42 +62,42 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                                     {flavorComponent.historyContext && (
                                         <p className="text-[11px] text-amber-700 mt-1 italic">{flavorComponent.historyContext}</p>
                                     )}
-                                </div>
+                                </InlineNotice>
                             )}
 
                             {/* Technical Implementation */}
                             {flavorComponent.technicalNotes && (
-                                <div className="mb-3 p-2 bg-blue-50 rounded-lg">
+                                <InlineNotice tone="info" className="mb-3">
                                     <div className="flex items-center gap-1.5 mb-1">
                                         <BeakerIcon className="h-3 w-3 text-blue-600" />
                                         <span className="text-[10px] uppercase font-bold text-blue-700">Implementation</span>
                                     </div>
                                     <p className="text-xs text-blue-900">{flavorComponent.technicalNotes}</p>
-                                </div>
+                                </InlineNotice>
                             )}
 
                             {/* Classic Combinations */}
                             {flavorComponent.classicCombinations && flavorComponent.classicCombinations.length > 0 && (
-                                <div className="mb-3 p-2 bg-purple-50 rounded-lg">
+                                <InlineNotice tone="info" className="mb-3">
                                     <div className="flex items-center gap-1.5 mb-1">
-                                        <LightBulbIcon className="h-3 w-3 text-purple-600" />
-                                        <span className="text-[10px] uppercase font-bold text-purple-700">Classic Pairings</span>
+                                        <LightBulbIcon className="h-3 w-3 text-blue-600" />
+                                        <span className="text-[10px] uppercase font-bold text-blue-700">Classic Pairings</span>
                                     </div>
                                     <div className="flex flex-wrap gap-1">
                                         {flavorComponent.classicCombinations.slice(0, 3).map((combo, i) => (
-                                            <span key={i} className="text-[10px] px-1.5 py-0.5 bg-purple-100 text-purple-800 rounded">
+                                            <span key={i} className="text-[10px] px-1.5 py-0.5 bg-white/80 text-blue-700 rounded-full border border-blue-100">
                                                 {combo}
                                             </span>
                                         ))}
                                     </div>
-                                </div>
+                                </InlineNotice>
                             )}
 
                             {/* Application Moment */}
                             <div className="mb-3 flex items-center gap-2">
                                 <span className="text-[10px] uppercase font-bold text-slate-400">Application:</span>
-                                <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${flavorComponent.applicationMoment === 'post_oven'
-                                        ? 'bg-purple-100 text-purple-700'
+                                <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${flavorComponent.applicationMoment === 'post_oven'
+                                        ? 'bg-blue-50 text-blue-700'
                                         : flavorComponent.applicationMoment === 'mid_bake'
                                             ? 'bg-orange-100 text-orange-700'
                                             : 'bg-orange-100 text-orange-700'
@@ -139,23 +141,23 @@ export const IngredientTooltip: React.FC<IngredientTooltipProps> = ({ ingredient
                         <div className="space-y-2">
                             <div className="grid grid-cols-2 gap-2">
                                 {ingredient.technicalProfile.moistureLevel && (
-                                    <div className="p-2 bg-slate-50 rounded">
+                                    <div className="rounded-xl border border-slate-100 bg-slate-50 p-2">
                                         <span className="text-[10px] uppercase text-slate-400 block">Moisture</span>
                                         <span className="text-xs font-bold text-slate-700">{ingredient.technicalProfile.moistureLevel}</span>
                                     </div>
                                 )}
                                 {ingredient.technicalProfile.fatContent && (
-                                    <div className="p-2 bg-slate-50 rounded">
+                                    <div className="rounded-xl border border-slate-100 bg-slate-50 p-2">
                                         <span className="text-[10px] uppercase text-slate-400 block">Fat</span>
                                         <span className="text-xs font-bold text-slate-700">{ingredient.technicalProfile.fatContent}</span>
                                     </div>
                                 )}
                             </div>
                             {ingredient.technicalProfile.thermalBehavior && (
-                                <div className="p-2 bg-blue-50 rounded-lg">
+                                <InlineNotice tone="info">
                                     <span className="text-[10px] uppercase font-bold text-blue-700 block mb-1">Thermal Behavior</span>
                                     <p className="text-xs text-blue-900">{ingredient.technicalProfile.thermalBehavior}</p>
-                                </div>
+                                </InlineNotice>
                             )}
                         </div>
                     )}

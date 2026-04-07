@@ -1,12 +1,15 @@
 import React from 'react';
 import { useRouter } from '@/contexts/RouterContext';
 import { getArticlesByCategory } from '@/data/learn';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import { ArrowLeftIcon, BookOpenIcon, ClockIcon, BeakerIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 import { LEARN_CATEGORIES } from '@/data/learn/categories';
 import { LEARN_TRACKS } from '@/data/learn/tracks';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config';
+import { getPageMeta } from '@/app/appShell';
 
 interface CategoryPageProps {
     categoryId?: string;
@@ -15,6 +18,7 @@ interface CategoryPageProps {
 const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
     const { navigate } = useRouter();
     const { t } = useTranslation();
+    const learnMeta = getPageMeta('learn');
 
     // Decode category from URL (e.g. "Ingredient%20Science" -> t('learn.ingredient_science'))
     const decodedCategory = categoryId ? decodeURIComponent(categoryId) : '';
@@ -34,59 +38,61 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
     return (
         <LibraryPageLayout>
             <div className="mx-auto max-w-7xl animate-fade-in pb-20">
-                {/* 1. DYNAMIC HERO SECTION */}
-                <div className="mb-8 mx-4 sm:mx-6">
-                    <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-stone-900 group">
-                        {/* Background Image */}
+                <AppShellHeader
+                    eyebrow={`${learnMeta.eyebrow} • ${track?.title || 'Category'}`}
+                    title={decodedCategory}
+                    description={categoryData?.description || t('learn.category_default_desc', { defaultValue: 'Explore our comprehensive knowledge base.' })}
+                >
+                    <button
+                        onClick={() => navigate('learn')}
+                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+                    >
+                        <ArrowLeftIcon className="h-4 w-4" />
+                        {t('learn.back_to_learn')}
+                    </button>
+                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                        {articles.length} articles
+                    </div>
+                </AppShellHeader>
+
+                <AppSurface className="mb-8 overflow-hidden p-0">
+                    <div className="relative h-56 md:h-72 bg-stone-900">
                         <div
-                            className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                            className="absolute inset-0 bg-cover bg-center opacity-60"
                             style={{ backgroundImage: `url(${bgImage})` }}
                         />
-                        {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-
-                        <div className="relative z-10 p-8 md:p-12 max-w-4xl">
-                            {/* Breadcrumb */}
-                            <nav className="flex items-center text-xs md:text-sm text-stone-300 mb-6 font-medium">
-                                <button onClick={() => navigate('learn')} className="hover:text-white transition-colors flex items-center gap-1">
-                                    <ArrowLeftIcon className="w-3 h-3" />{t('learn.back_to_learn')}</button>
-                                <span className="mx-3 text-stone-500">/</span>
-                                <span className="text-lime-400 uppercase tracking-widest">{track?.title}</span>
-                            </nav>
-
+                        <div className="relative z-10 flex h-full items-end p-8 md:p-12">
                             <div className="flex items-start gap-6">
-                                <div className={`hidden md:flex p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-xl`}>
+                                <div className="hidden rounded-2xl border border-white/20 bg-white/10 p-4 text-white shadow-xl backdrop-blur-md md:flex">
                                     {React.cloneElement((categoryData?.icon || <BookOpenIcon />) as React.ReactElement, { className: "w-10 h-10" })}
                                 </div>
                                 <div>
-                                    <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                                    <div className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-lime-300">
+                                        {track?.title || 'DoughLab Academy'}
+                                    </div>
+                                    <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                                         {decodedCategory}
-                                    </h1>
-                                    <p className="text-lg md:text-xl text-stone-200 leading-relaxed max-w-2xl">
-                                        {categoryData?.description || t('learn.category_default_desc', { defaultValue: 'Explore our comprehensive knowledge base.' })}
-                                    </p>
+                                    </h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </AppSurface>
 
-                {/* 2. ARTICLES GRID */}
                 <div className="px-4 sm:px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {articles.map(article => (
-                            <div
+                            <AppSurface
                                 key={article.id}
                                 onClick={() => navigate('learn/article', article.id)}
                                 className={`
-                                    bg-white rounded-xl border border-stone-200 overflow-hidden 
+                                    overflow-hidden 
                                     hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer 
                                     group flex flex-col h-full relative
-                                    ${themeColor.ring} hover:ring-1 hover:border-transparent
                                 `}
                             >
-                                {/* Top Color Bar */}
                                 <div className={`h-1.5 w-full ${themeColor.bg.replace('50', '500')}`} /> {/* e.g. bg-dlp-brand */}
 
                                 <div className="p-6 flex-1 flex flex-col">
@@ -103,7 +109,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                                         </div>
                                     </div>
 
-                                    <h3 className={`text-xl font-bold text-slate-900 mb-3 group-hover:${themeColor.text} transition-colors line-clamp-2`}>
+                                    <h3 className="text-xl font-bold text-slate-900 mb-3 transition-colors line-clamp-2 group-hover:text-dlp-brand-hover">
                                         {article.title}
                                     </h3>
                                     <p className="text-slate-500 text-sm line-clamp-3 mb-6 flex-1 leading-relaxed">
@@ -114,24 +120,24 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                                         <div className={`
                                             w-8 h-8 rounded-full flex items-center justify-center 
                                             bg-stone-50 text-stone-400 
-                                            group-hover:bg-${track?.colorTheme || 'lime'}-100 group-hover:text-${track?.colorTheme || 'lime'}-600 
+                                            group-hover:bg-white group-hover:text-dlp-brand-hover
                                             transition-all duration-300
                                         `}>
                                             <ArrowLeftIcon className="w-4 h-4 rotate-180" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </AppSurface>
                         ))}
                     </div>
 
                     {articles.length === 0 && (
-                        <div className="text-center py-20 bg-stone-50 rounded-3xl border border-dashed border-stone-300">
+                        <AppSurface className="text-center py-20 bg-stone-50 border-dashed border-stone-300">
                             <BeakerIcon className="w-12 h-12 text-stone-300 mx-auto mb-4" />
                             <p className="text-slate-500 text-lg font-medium">{t('learn.content_brewing')}</p>
                             <p className="text-slate-400 text-sm">{t('learn.no_articles_found_in_this_category_yet')}</p>
                             <button onClick={() => navigate('learn')} className="mt-6 text-dlp-brand-hover hover:text-lime-700 font-bold text-sm uppercase tracking-wide">{t('learn.return_to_learn_home')}</button>
-                        </div>
+                        </AppSurface>
                     )}
                 </div>
             </div>

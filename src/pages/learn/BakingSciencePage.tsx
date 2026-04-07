@@ -40,19 +40,19 @@ const BakingSciencePage: React.FC<BakingSciencePageProps> = ({ onNavigate }) => 
   const { t } = useTranslation();
     const categories = [
         {
-            page: 'learn/article/starch-gelatinization' as Page,
+            page: 'learn/starch-gelatinization' as Page,
             title: 'Starch Gelatinization',
             description: 'How starch absorbs water, swells and sets the crumb structure.',
             icon: <BeakerIcon className="h-8 w-8" />,
         },
         {
-            page: 'learn/article/crust-formation-dynamics' as Page,
+            page: 'learn/crust-formation' as Page,
             title: 'Crust Formation Dynamics',
             description: 'How heat, moisture and Maillard reactions shape crust texture and color.',
             icon: <FireIcon className="h-8 w-8" />,
         },
         {
-            page: 'learn/article/baking-profiles-by-style' as Page,
+            page: 'learn/baking-profiles' as Page,
             title: 'Baking Profiles by Style',
             description: 'Temperature, heat curves and timing for major global pizza and bread styles.',
             icon: <ClockIcon className="h-8 w-8" />,
@@ -64,7 +64,7 @@ const BakingSciencePage: React.FC<BakingSciencePageProps> = ({ onNavigate }) => 
             icon: <BookOpenIcon className="h-8 w-8" />,
         },
         {
-            page: 'learn/article/baking-surfaces-and-heat-transfer' as Page,
+            page: 'learn/baking-surfaces' as Page,
             title: 'Baking Surfaces',
             description: 'Understanding how different surfaces affect heat transfer.',
             icon: <ChartBarIcon className="h-8 w-8" />,

@@ -8,7 +8,8 @@ describe('Community Functions', () => {
     let myFunctions;
     let collectionStub;
     let runTransactionStub;
-    before(() => {
+    before(function () {
+        this.timeout(10000);
         // Mock Firestore chain
         collectionStub = sinon.stub();
         runTransactionStub = sinon.stub();
@@ -33,8 +34,9 @@ describe('Community Functions', () => {
         };
         // Use proxyquire to load index with mocked admin
         // We use .noCallThru() to prevent loading the real firebase-admin
-        myFunctions = proxyquire('../index', {
-            'firebase-admin': adminStub
+        myFunctions = proxyquire.noCallThru().load('../index', {
+            'firebase-admin': adminStub,
+            './stripe': {}
         });
     });
     after(() => {
@@ -74,7 +76,7 @@ describe('Community Functions', () => {
         // Execute
         await wrapped(snap, { params: { likeId: 'like_abc' } });
         // Assertions
-        sinon.assert.calledWith(transaction.update, postRef, { likes: 6 });
+        sinon.assert.calledWith(transaction.update, postRef, { likes: 'INCREMENT_MOCK' });
         sinon.assert.calledWith(transaction.set, leaderboardRef, sinon.match.has('points'));
     });
 });

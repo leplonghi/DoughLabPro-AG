@@ -25,6 +25,9 @@ import {
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
 import { exportBatchToPDF } from '@/services/exportService';
+import AppSurface from '@/components/ui/AppSurface';
+import EmptyStateCard from '@/components/ui/EmptyStateCard';
+import MetricCard from '@/components/ui/MetricCard';
 import TechnicalMethodPanel from '@/components/calculator/TechnicalMethodPanel';
 import { generateTechnicalMethod } from '@/logic/methodGenerator';
 import { useUser } from '@/contexts/UserProvider';
@@ -82,7 +85,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     if (!results) {
         return (
-            <div className="dlp-card border-none bg-slate-50/50 p-8 text-center h-full flex flex-col items-center justify-center text-slate-400 min-h-[400px]">
+            <EmptyStateCard className="min-h-[400px] border-none">
                 <div className="mb-4 w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-premium border border-slate-100 transition-all duration-500 hover:scale-110 hover:rotate-12">
                     <BeakerIcon className="h-10 w-10 text-dlp-brand" />
                 </div>
@@ -90,7 +93,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 <p className="text-sm mt-3 max-w-xs mx-auto text-slate-500 leading-relaxed">
                     Set your parameters to generate a scientifically precise dough formula.
                 </p>
-            </div>
+            </EmptyStateCard>
         );
     }
 
@@ -151,7 +154,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     return (
         <div ref={resultRef} className="space-y-6 animate-slide-up">
             {/* Main Result Card: Dough Recipe */}
-            <div className="dlp-card bg-white p-6 shadow-sm border-slate-100">
+            <AppSurface surface="elevated" tone="neutral" className="p-6">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                     <div>
                         <h2 className="text-xl font-bold font-heading text-slate-800 flex items-center gap-3">
@@ -166,36 +169,28 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
                 {/* Metric Boxes */}
                 <div className="grid grid-cols-3 gap-4 mb-10">
-                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                            <FlourIcon className="w-4 h-4 text-dlp-brand-lime" />
-                        </div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.total_flour')}</p>
-                        <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalFlour)}</p>
-                    </div>
-                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                            <ScaleIcon className="w-4 h-4 text-dlp-brand-lime" />
-                        </div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.total_dough')}</p>
-                        <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough)}</p>
-                    </div>
-                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                            <CubeIcon className="w-4 h-4 text-dlp-brand-lime" />
-                        </div>
-                        {calculationMode === 'flour' ? (
-                            <>
-                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.est_yield', { defaultValue: 'Est. Yield' })}</p>
-                                <p className="text-lg font-bold font-heading text-slate-800">{results.projectedYield || 0} Pcs</p>
-                            </>
-                        ) : (
-                            <>
-                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.weight_per_piece', { defaultValue: 'Per piece' })}</p>
-                                <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough / config.numPizzas)}</p>
-                            </>
-                        )}
-                    </div>
+                    <MetricCard
+                        label={t('results.total_flour')}
+                        value={<span className="text-lg font-bold font-heading">{displayValue(results.totalFlour)}</span>}
+                        icon={<FlourIcon className="w-4 h-4 text-dlp-brand-lime" />}
+                        className="items-center text-center"
+                    />
+                    <MetricCard
+                        label={t('results.total_dough')}
+                        value={<span className="text-lg font-bold font-heading">{displayValue(results.totalDough)}</span>}
+                        icon={<ScaleIcon className="w-4 h-4 text-dlp-brand-lime" />}
+                        className="items-center text-center"
+                    />
+                    <MetricCard
+                        label={calculationMode === 'flour' ? t('results.est_yield', { defaultValue: 'Est. Yield' }) : t('results.weight_per_piece', { defaultValue: 'Per piece' })}
+                        value={
+                            <span className="text-lg font-bold font-heading">
+                                {calculationMode === 'flour' ? `${results.projectedYield || 0} Pcs` : displayValue(results.totalDough / config.numPizzas)}
+                            </span>
+                        }
+                        icon={<CubeIcon className="w-4 h-4 text-dlp-brand-lime" />}
+                        className="items-center text-center"
+                    />
                 </div>
 
                 {/* Ingredients List */}
@@ -260,40 +255,40 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                 <div className="grid grid-cols-2 gap-4 mt-6">
                     <button
                         onClick={() => setIsShareModalOpen(true)}
-                        className="group flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-white border border-slate-100 text-slate-500 font-bold text-[10px] uppercase tracking-[0.1em] hover:bg-slate-50 transition-all font-heading shadow-sm active:translate-y-0.5"
+                        className="dlp-button-secondary group flex items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] font-heading active:translate-y-0.5"
                     >
                         <ShareIcon className="h-4 w-4 text-dlp-brand/60 group-hover:text-dlp-brand transition-all duration-300 group-hover:scale-110" />
                         {t('results.social_card', { defaultValue: 'SOCIAL CARD' })}
                     </button>
                     <button
                         onClick={handleExportPDF}
-                        className="group flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-white border border-slate-100 text-slate-500 font-bold text-[10px] uppercase tracking-[0.1em] hover:bg-slate-50 transition-all font-heading shadow-sm active:translate-y-0.5"
+                        className="dlp-button-secondary group flex items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] font-heading active:translate-y-0.5"
                     >
                         <DownloadIcon className="h-4 w-4 text-dlp-brand/60 group-hover:text-dlp-brand transition-all duration-300 group-hover:scale-110" />
                         {t('results.pdf', { defaultValue: 'PDF' })}
                     </button>
                 </div>
 
-            </div>
+            </AppSurface>
 
             {/* Smart Schedule Integrated */}
             {user?.enableSmartSchedule && (
-                <div className="dlp-card p-0 overflow-hidden border-teal-100/50">
+                <AppSurface surface="glass" tone="brand" className="overflow-hidden border-teal-100/50 p-0">
                     <ReverseSchedule config={config} levain={selectedLevain || undefined} />
-                </div>
+                </AppSurface>
             )}
 
             {/* Step-by-Step Method Panel */}
-            <div className="dlp-card border-slate-100 p-0 overflow-hidden">
+            <AppSurface surface="glass" tone="neutral" className="overflow-hidden p-0">
                 <div className="p-6">
                     <TechnicalMethodPanel steps={technicalSteps} />
                 </div>
-            </div>
+            </AppSurface>
 
             {/* Recommended Lab Gear */}
-            <div className="dlp-card border-slate-100 p-8">
+            <AppSurface surface="glass" tone="neutral" className="p-8">
                 <RecommendedProducts tags={[config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']} title={t('common.general.tools_for_this_formula')} />
-            </div>
+            </AppSurface>
 
 
             <SocialShareModal isOpen={isShareModalOpen} onClose={() => setIsShareModalOpen(false)} config={config} results={results} />

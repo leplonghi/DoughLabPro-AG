@@ -8,10 +8,10 @@ import { useRouter } from '@/contexts/RouterContext';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { FLOURS } from '@/flours-constants';
 import { useStyles } from '@/contexts/StylesProvider';
-import AuthModal from '@/components/AuthModal';
 import { LearnProvider } from '@/contexts/LearnContext';
 import { FeatureKey } from '@/permissions';
 import { useTranslation } from '@/i18n';
+import PublicLandingPage from '@/components/marketing/PublicLandingPage';
 
 // Lazy Load Pages
 const CalculatorPage = React.lazy(() => import('@/pages/CalculatorPage'));
@@ -60,6 +60,10 @@ const HygieneSafetyPage = React.lazy(() => import('@/pages/learn/HygieneSafetyPa
 const EquipmentPage = React.lazy(() => import('@/pages/learn/EquipmentPage'));
 const SensoryGuidePage = React.lazy(() => import('@/pages/learn/SensoryGuidePage'));
 const BakingSciencePage = React.lazy(() => import('@/pages/learn/BakingSciencePage'));
+const BakingProfilesPage = React.lazy(() => import('@/pages/learn/baking/BakingProfilesPage'));
+const BakingSurfacesPage = React.lazy(() => import('@/pages/learn/baking/BakingSurfacesPage'));
+const CrustFormationPage = React.lazy(() => import('@/pages/learn/baking/CrustFormationPage'));
+const StarchGelatinizationPage = React.lazy(() => import('@/pages/learn/baking/StarchGelatinizationPage'));
 const LearnArticlePage = React.lazy(() => import('@/pages/learn/LearnArticlePage'));
 const AllArticlesPage = React.lazy(() => import('@/pages/learn/AllArticlesPage'));
 const CategoryPage = React.lazy(() => import('@/pages/learn/CategoryPage'));
@@ -67,6 +71,7 @@ const SearchResultsPage = React.lazy(() => import('@/pages/learn/SearchResultsPa
 
 // Ingredient Sub-Pages
 const IngredientsFloursPage = React.lazy(() => import('@/pages/learn/ingredients/FloursPage'));
+const YeastsPage = React.lazy(() => import('@/pages/learn/ingredients/YeastsPage'));
 const CheesesPage = React.lazy(() => import('@/pages/learn/ingredients/CheesesPage'));
 const MeatsPage = React.lazy(() => import('@/pages/learn/ingredients/MeatsPage'));
 const VegetablesPage = React.lazy(() => import('@/pages/learn/ingredients/VegetablesPage'));
@@ -109,10 +114,7 @@ const ProductionDashboard = React.lazy(() => import('@/pages/ProductionDashboard
 // --- Placeholder Pages ---
 const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
 const UpgradePage = React.lazy(() => import('@/pages/UpgradePage'));
-
-function LandingPage() {
-    return <div className="p-8 text-center">Landing Page (Coming Soon)</div>;
-}
+const AuthModal = React.lazy(() => import('@/components/AuthModal'));
 
 interface AppRouterProps {
     onStartBatch: () => void;
@@ -241,10 +243,10 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             case 'mylab/levain':
                 return protect(<LevainListPage onNavigate={navigate} />);
             case 'plans':
-                return protect(
+            case 'upgrade':
+                return (
                     <PlansPage
-                        onGrantAccess={() => { }}
-                        onNavigateHome={() => navigate('mylab')}
+                        onRequireAuth={() => setIsAuthModalOpen(true)}
                     />
                 );
             case 'pro/activated':
@@ -277,6 +279,14 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protect(<OvenSciencePage />);
             case 'learn/baking-science':
                 return protect(<BakingSciencePage onNavigate={navigate} />);
+            case 'learn/baking-profiles':
+                return protect(<BakingProfilesPage />);
+            case 'learn/baking-surfaces':
+                return protect(<BakingSurfacesPage />);
+            case 'learn/crust-formation':
+                return protect(<CrustFormationPage />);
+            case 'learn/starch-gelatinization':
+                return protect(<StarchGelatinizationPage />);
             case 'learn/temperature-control':
                 return protect(<TemperatureControlPage />);
             case 'learn/storage':
@@ -291,6 +301,8 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 return protect(<IngredientsPage onNavigate={navigate} />);
             case 'learn/ingredients/flours':
                 return protect(<IngredientsFloursPage />);
+            case 'learn/ingredients/yeasts':
+                return protect(<YeastsPage />);
             case 'learn/ingredients/cheeses':
                 return protect(<CheesesPage />);
             case 'learn/ingredients/meats':
@@ -360,7 +372,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
             case 'legal/contact':
                 return <ContactPage />;
             case 'landing':
-                return <LandingPage />;
+                return <PublicLandingPage onNavigate={navigate} onOpenAuth={() => setIsAuthModalOpen(true)} />;
             case 'styles':
                 return protect(<DoughStylesPage onNavigateToDetail={(id) => navigate('styles/detail', id)} onUseInCalculator={(s) => handleLoadStyleFromModule(s, navigate)} />);
             case 'tools':
@@ -399,12 +411,10 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 );
             case 'community':
                 return protect(<CommunityPage />);
-            case 'upgrade':
-                return protect(<UpgradePage />);
             case 'upgrade/success':
-                return protect(<UpgradePage success={true} />);
+                return <UpgradePage success={true} />;
             case 'upgrade/cancel':
-                return protect(<UpgradePage cancel={true} />);
+                return <UpgradePage cancel={true} />;
             default:
                 return protect(
                     <MyLabPage
@@ -423,10 +433,12 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                     {renderPage()}
                 </Suspense>
             </ErrorBoundary>
-            <AuthModal
-                isOpen={isAuthModalOpen}
-                onClose={() => setIsAuthModalOpen(false)}
-            />
+            <Suspense fallback={null}>
+                <AuthModal
+                    isOpen={isAuthModalOpen}
+                    onClose={() => setIsAuthModalOpen(false)}
+                />
+            </Suspense>
         </>
     );
 }

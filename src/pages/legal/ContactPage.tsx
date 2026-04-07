@@ -5,7 +5,7 @@ import { useTranslation } from '@/i18n';
 const ContactPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <LegalPageLayout title={t('general.contact_information')} lastUpdated="August 1, 2024">
+    <LegalPageLayout title={t('general.contact_information')} lastUpdated="April 6, 2026">
       <h3>1. Customer Support</h3>
       <p>For general inquiries, technical support, or assistance with your account, please contact our support team:</p>
       <ul className="list-disc pl-5 mt-2">

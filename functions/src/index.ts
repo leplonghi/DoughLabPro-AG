@@ -24,29 +24,55 @@ const POINTS = {
  */
 export const onNewLike = functions.firestore
     .document("community_likes/{likeId}")
-    .onCreate(async (snap, context) => {
+    .onCreate(async (snap: any) => {
         const data = snap.data();
         const postId = data?.postId;
-        // const userId = data?.['uid']; // Unused
 
         if (!postId) return;
 
         const postRef = db.collection("community_posts").doc(postId);
 
-        await db.runTransaction(async (transaction) => {
+        await db.runTransaction(async (transaction: any) => {
             const postDoc = await transaction.get(postRef);
             if (!postDoc.exists) return;
-            // 1. Increment likes count
-            const currentLikes = postDoc.data()?.likes || 0;
-            transaction.update(postRef, { likes: currentLikes + 1 });
+            transaction.update(postRef, {
+                likes: admin.firestore.FieldValue.increment(1),
+            });
 
-            // 2. Award points to post owner
             const ownerUid = postDoc.data()?.uid;
-
             if (ownerUid) {
                 const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
                 transaction.set(leaderboardRef, {
                     points: admin.firestore.FieldValue.increment(POINTS.LIKE),
+                    lastActive: admin.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+            }
+        });
+    });
+
+export const onDeletedLike = functions.firestore
+    .document("community_likes/{likeId}")
+    .onDelete(async (snap: any) => {
+        const data = snap.data();
+        const postId = data?.postId;
+
+        if (!postId) return;
+
+        const postRef = db.collection("community_posts").doc(postId);
+
+        await db.runTransaction(async (transaction: any) => {
+            const postDoc = await transaction.get(postRef);
+            if (!postDoc.exists) return;
+
+            transaction.update(postRef, {
+                likes: admin.firestore.FieldValue.increment(-1),
+            });
+
+            const ownerUid = postDoc.data()?.uid;
+            if (ownerUid) {
+                const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
+                transaction.set(leaderboardRef, {
+                    points: admin.firestore.FieldValue.increment(-POINTS.LIKE),
                     lastActive: admin.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
             }
@@ -59,7 +85,7 @@ export const onNewLike = functions.firestore
  */
 export const onNewClone = functions.firestore
     .document("community_clones/{cloneId}")
-    .onCreate(async (snap, context) => {
+    .onCreate(async (snap: any) => {
         const data = snap.data();
         const postId = data?.postId;
 
@@ -67,15 +93,14 @@ export const onNewClone = functions.firestore
 
         const postRef = db.collection("community_posts").doc(postId);
 
-        await db.runTransaction(async (transaction) => {
+        await db.runTransaction(async (transaction: any) => {
             const postDoc = await transaction.get(postRef);
             if (!postDoc.exists) return;
 
-            // 1. Increment clones count
-            const currentClones = postDoc.data()?.cloneCount || 0;
-            transaction.update(postRef, { cloneCount: currentClones + 1 });
+            transaction.update(postRef, {
+                clones: admin.firestore.FieldValue.increment(1),
+            });
 
-            // 2. Award points to post owner
             const ownerUid = postDoc.data()?.uid;
             if (ownerUid) {
                 const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
@@ -93,7 +118,7 @@ export const onNewClone = functions.firestore
  */
 export const onNewComment = functions.firestore
     .document("community_comments/{commentId}")
-    .onCreate(async (snap, context) => {
+    .onCreate(async (snap: any) => {
         const data = snap.data();
         const postId = data?.postId;
 
@@ -101,20 +126,48 @@ export const onNewComment = functions.firestore
 
         const postRef = db.collection("community_posts").doc(postId);
 
-        await db.runTransaction(async (transaction) => {
+        await db.runTransaction(async (transaction: any) => {
             const postDoc = await transaction.get(postRef);
             if (!postDoc.exists) return;
 
-            // 1. Increment comment count
-            const currentComments = postDoc.data()?.commentCount || 0;
-            transaction.update(postRef, { commentCount: currentComments + 1 });
+            transaction.update(postRef, {
+                comments: admin.firestore.FieldValue.increment(1),
+            });
 
-            // 2. Award points to post owner
             const ownerUid = postDoc.data()?.uid;
             if (ownerUid) {
                 const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
                 transaction.set(leaderboardRef, {
                     points: admin.firestore.FieldValue.increment(POINTS.COMMENT),
+                    lastActive: admin.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+            }
+        });
+    });
+
+export const onDeletedComment = functions.firestore
+    .document("community_comments/{commentId}")
+    .onDelete(async (snap: any) => {
+        const data = snap.data();
+        const postId = data?.postId;
+
+        if (!postId) return;
+
+        const postRef = db.collection("community_posts").doc(postId);
+
+        await db.runTransaction(async (transaction: any) => {
+            const postDoc = await transaction.get(postRef);
+            if (!postDoc.exists) return;
+
+            transaction.update(postRef, {
+                comments: admin.firestore.FieldValue.increment(-1),
+            });
+
+            const ownerUid = postDoc.data()?.uid;
+            if (ownerUid) {
+                const leaderboardRef = db.collection("leaderboard").doc(ownerUid);
+                transaction.set(leaderboardRef, {
+                    points: admin.firestore.FieldValue.increment(-POINTS.COMMENT),
                     lastActive: admin.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
             }
@@ -130,7 +183,7 @@ export const onNewComment = functions.firestore
 export const generateWeeklyRanking = functions.pubsub
     .schedule("0 2 * * *")
     .timeZone("UTC")
-    .onRun(async (context) => {
+    .onRun(async (_context: any) => {
         // Logic: Aggregate points from the last 7 days or snapshot current leaderboard
         // For simplicity, we'll take the top 50 from 'leaderboard' collection 
         // (assuming 'points' is a running total, or we reset it? 
@@ -146,7 +199,7 @@ export const generateWeeklyRanking = functions.pubsub
             .limit(50)
             .get();
 
-        const rankings = snapshot.docs.map((doc, index) => ({
+        const rankings = snapshot.docs.map((doc: any, index: number) => ({
             rank: index + 1,
             userId: doc.id,
             ...doc.data()
@@ -169,14 +222,14 @@ export const generateWeeklyRanking = functions.pubsub
 export const generateMonthlyRanking = functions.pubsub
     .schedule("0 2 1 * *")
     .timeZone("UTC")
-    .onRun(async (context) => {
+    .onRun(async (_context: any) => {
         // Similar logic for monthly
         const snapshot = await db.collection("leaderboard")
             .orderBy("points", "desc")
             .limit(100)
             .get();
 
-        const rankings = snapshot.docs.map((doc, index) => ({
+        const rankings = snapshot.docs.map((doc: any, index: number) => ({
             rank: index + 1,
             userId: doc.id,
             ...doc.data()

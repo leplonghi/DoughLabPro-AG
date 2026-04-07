@@ -2,12 +2,16 @@ import React, { useEffect } from 'react';
 import { learnContent } from '@/data/learn-content';
 import { useRouter } from '@/contexts/RouterContext';
 import { LearnArticleRenderer } from '@/components/learn/LearnArticleRenderer';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
+import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import { ArrowLeftIcon, CalculatorIcon, ClockIcon, TagIcon, BookmarkSquareIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 import { LEARN_CATEGORIES } from '@/data/learn/categories';
 import { TRACK_IMAGES, TRACK_COLORS } from '@/data/learn/ui-config';
 import { LEARN_TRACKS } from '@/data/learn/tracks';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
+import { getPageMeta } from '@/app/appShell';
 
 interface LearnArticlePageProps {
     articleId?: string;
@@ -16,6 +20,7 @@ interface LearnArticlePageProps {
 const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
     const { navigate } = useRouter();
     const { t } = useTranslation();
+    const learnMeta = getPageMeta('learn');
 
     const article = articleId ? learnContent[articleId] : undefined;
 
@@ -70,123 +75,104 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
     ].filter(Boolean) as string[];
 
     return (
-        <div className="min-h-screen bg-stone-50 font-sans selection:bg-lime-200 selection:text-lime-900">
-            {/* 1. HERO HEADER WITH IMAGE */}
-            <div className="relative h-[400px] w-full bg-stone-900 overflow-hidden">
-                {/* Background Image */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center opacity-60"
-                    style={{ backgroundImage: `url(${bgImage})` }}
-                />
-                {/* Gradients */}
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/60 to-transparent" />
-
-                {/* Navigation Bar (Transparent on top of hero) */}
-                <div className="absolute top-0 w-full z-40 bg-gradient-to-b from-black/50 to-transparent">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between text-white">
-                        <button
-                            onClick={() => navigate('learn')}
-                            className="flex items-center gap-2 hover:text-lime-300 transition-colors font-medium text-sm group"
-                        >
-                            <div className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-white/20 transition-colors">
-                                <ArrowLeftIcon className="w-4 h-4" />
-                            </div>{t('learn.back_to_academy')}</button>
-                    </div>
+        <LibraryPageLayout>
+            <AppShellHeader
+                eyebrow={`${learnMeta.eyebrow} • ${article.category}`}
+                title={article.title}
+                description={article.subtitle}
+            >
+                <button
+                    onClick={() => navigate('learn')}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+                >
+                    <ArrowLeftIcon className="h-4 w-4" />
+                    {t('learn.back_to_academy')}
+                </button>
+                <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                    {estimatedReadTime} min read
                 </div>
+            </AppShellHeader>
 
-                {/* Hero Content */}
-                <div className="absolute bottom-0 w-full p-8 pb-12">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="max-w-3xl animate-slide-up-fade">
-                            <div className="flex items-center gap-3 mb-4">
-                                <span className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md border border-white/20 text-white ${themeColor.bg.replace('50', '500')}/80`}>
-                                    {article.category}
-                                </span>
-                                <span className="flex items-center gap-1 text-stone-300 text-xs font-medium">
-                                    <ClockIcon className="w-3.5 h-3.5" />
-                                    {estimatedReadTime} min read
-                                </span>
+            <div className="grid gap-8 lg:grid-cols-12">
+                <article className="lg:col-span-8">
+                    <AppSurface className="overflow-hidden">
+                        <div className="relative h-64 w-full overflow-hidden md:h-80">
+                            <div
+                                className="absolute inset-0 bg-cover bg-center"
+                                style={{ backgroundImage: `url(${bgImage})` }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+                            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <span className={`rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-white backdrop-blur ${themeColor.bg.replace('50', '500')}/80`}>
+                                        {article.category}
+                                    </span>
+                                    <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-black/20 px-3 py-1 text-xs font-semibold text-slate-200 backdrop-blur">
+                                        <ClockIcon className="h-3.5 w-3.5" />
+                                        {estimatedReadTime} min read
+                                    </span>
+                                </div>
                             </div>
-
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight shadow-sm">
-                                {article.title}
-                            </h1>
-
-                            <p className="text-lg md:text-xl text-stone-200 leading-relaxed max-w-2xl font-medium">
-                                {article.subtitle}
-                            </p>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10 pb-20">
-                <div className="lg:grid lg:grid-cols-12 lg:gap-12">
-                    {/* Left Column: Content (8 cols) */}
-                    <article className="lg:col-span-8">
-                        {/* Article Body Card */}
-                        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-stone-100">
-                            {/* Article content renderer */}
+                        <div className="p-8 md:p-12">
                             <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:leading-loose prose-img:rounded-2xl prose-img:shadow-lg prose-a:text-dlp-brand-hover hover:prose-a:text-dlp-brand">
                                 {/* @ts-ignore - passing embedded prop */}
                                 <LearnArticleRenderer articleData={article} embedded={true} />
                             </div>
                         </div>
-                    </article>
+                    </AppSurface>
+                </article>
 
-                    {/* Right Column: Sidebar (4 cols) */}
-                    <aside className="hidden lg:block lg:col-span-4 space-y-8 mt-8 lg:mt-0">
-                        <div className="sticky top-8 space-y-8">
-
-                            {/* 1. Calculator CTA Card (Contextual) */}
-                            <div className="bg-slate-900 rounded-2xl p-6 shadow-xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-dlp-brand/20 rounded-full blur-[40px] -mr-10 -mt-10 group-hover:bg-dlp-brand group-hover:text-white hover:text-white/30 transition-colors"></div>
-                                <div className="relative z-10">
-                                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white mb-4 backdrop-blur-sm">
-                                        <CalculatorIcon className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-2">{t('learn.apply_this_science')}</h3>
-                                    <p className="text-slate-400 text-sm mb-6">
-                                        Put this theory into practice. Create a new formulation using the DoughLab Calculator.
-                                    </p>
-                                    <button
-                                        onClick={() => navigate('calculator')}
-                                        className="w-full bg-dlp-brand hover:bg-lime-400 text-slate-900 font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-dlp-brand/25 flex items-center justify-center gap-2"
-                                    >{t('learn.open_calculator')}<ArrowLeftIcon className="w-4 h-4 rotate-180" />
-                                    </button>
+                <aside className="lg:col-span-4">
+                    <div className="space-y-6 lg:sticky lg:top-28">
+                        <AppSurface className="relative overflow-hidden bg-slate-950 p-6 text-white">
+                            <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-dlp-brand/20 blur-[44px]" />
+                            <div className="relative z-10">
+                                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
+                                    <CalculatorIcon className="h-6 w-6" />
                                 </div>
+                                <h3 className="text-xl font-bold">{t('learn.apply_this_science')}</h3>
+                                <p className="mt-2 text-sm leading-6 text-slate-300">
+                                    Put this lesson into practice right away and test the effect in your next formula.
+                                </p>
+                                <button
+                                    onClick={() => navigate('calculator')}
+                                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-100"
+                                >
+                                    {t('learn.open_calculator')}
+                                    <ArrowLeftIcon className="h-4 w-4 rotate-180" />
+                                </button>
                             </div>
+                        </AppSurface>
 
-                            {/* 2. Key Topics (Visual TOC) */}
-                            {sections.length > 0 && (
-                                <div className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
-                                    <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <BookmarkSquareIcon className="w-4 h-4 text-dlp-brand-hover" />{t('learn.in_this_article')}</h4>
-                                    <ul className="space-y-3">
-                                        {sections.map((section, idx) => (
-                                            <li
-                                                key={idx}
-                                                className="flex items-start gap-3 text-sm text-slate-600 hover:text-lime-700 transition-colors cursor-default"
-                                            >
-                                                <div className="w-1.5 h-1.5 rounded-full bg-stone-300 mt-1.5 group-hover:bg-dlp-brand group-hover:text-white hover:text-white" />
-                                                {section}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
+                        {sections.length > 0 && (
+                            <AppSurface className="p-6">
+                                <h4 className="mb-4 flex items-center gap-2 font-bold text-slate-900">
+                                    <BookmarkSquareIcon className="h-4 w-4 text-dlp-brand-hover" />
+                                    {t('learn.in_this_article')}
+                                </h4>
+                                <ul className="space-y-3">
+                                    {sections.map((section, idx) => (
+                                        <li key={idx} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
+                                            <div className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-300" />
+                                            {section}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </AppSurface>
+                        )}
 
-                            {/* 3. Recommended Tools (Native Ad) */}
+                        <AppSurface className="p-6">
                             <RecommendedProducts
                                 tags={[article.category.toLowerCase(), ...(article.tags || [])]}
                                 title={t('learn.essentials_for_this_technique')}
-                                className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm"
+                                className="rounded-none border-0 bg-transparent p-0 shadow-none"
                             />
-                        </div>
-                    </aside>
-                </div>
-            </main>
-        </div>
+                        </AppSurface>
+                    </div>
+                </aside>
+            </div>
+        </LibraryPageLayout>
     );
 };
 

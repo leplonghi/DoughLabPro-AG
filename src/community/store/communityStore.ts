@@ -10,8 +10,6 @@ import {
     limit,
     startAfter,
     Timestamp,
-    increment,
-    updateDoc,
     serverTimestamp,
     DocumentSnapshot,
     setDoc,
@@ -87,10 +85,6 @@ export const communityStore = {
             createdAt: serverTimestamp(),
         });
 
-        // Increment comment count on post
-        const postRef = doc(db, POSTS_COLLECTION, commentData.postId);
-        await updateDoc(postRef, { comments: increment(1) });
-
         return docRef.id;
     },
 
@@ -110,12 +104,9 @@ export const communityStore = {
         const likeRef = doc(db, LIKES_COLLECTION, likeId);
         const likeSnap = await getDoc(likeRef);
 
-        const postRef = doc(db, POSTS_COLLECTION, postId);
-
         if (likeSnap.exists()) {
             // Unlike
             await deleteDoc(likeRef);
-            await updateDoc(postRef, { likes: increment(-1) });
             return false;
         } else {
             // Like
@@ -124,7 +115,6 @@ export const communityStore = {
                 uid,
                 createdAt: serverTimestamp()
             });
-            await updateDoc(postRef, { likes: increment(1) });
             return true;
         }
     },
@@ -143,9 +133,6 @@ export const communityStore = {
             uid,
             createdAt: serverTimestamp()
         });
-
-        const postRef = doc(db, POSTS_COLLECTION, postId);
-        await updateDoc(postRef, { clones: increment(1) });
     },
 
     // --- FOLLOWS ---

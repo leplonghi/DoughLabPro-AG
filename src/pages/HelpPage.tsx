@@ -16,6 +16,9 @@ import {
     Target
 } from 'lucide-react';
 import { useTranslation } from '@/i18n';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
+import { getPageMeta } from '@/app/appShell';
 
 // Components
 import { Card } from '@/components/ui/Card';
@@ -62,6 +65,7 @@ const HelpSection: React.FC<HelpSectionProps> = ({ title, icon: Icon, children, 
 
 export default function HelpPage() {
     const { t } = useTranslation();
+    const helpMeta = getPageMeta('help');
     const [searchQuery, setSearchQuery] = useState('');
 
     const guideSections = [
@@ -250,33 +254,30 @@ export default function HelpPage() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8 pb-12 animate-fade-in">
-
-            {/* Header */}
-            <div className="text-center space-y-4 py-8">
-                <div className="inline-flex items-center justify-center p-3 rounded-full bg-dlp-bg-soft mb-2 shadow-sm">
-                    <HelpCircle className="w-8 h-8 text-dlp-accent" />
+            <AppShellHeader
+                eyebrow={helpMeta.eyebrow}
+                title="How can we help you?"
+                description="Use the Help Center to understand the product structure faster, find the right workflow, and unblock yourself without hunting through disconnected screens."
+            >
+                <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                    Guides, FAQs, and account help
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold text-dlp-text-primary tracking-tight">
-                    How can we help you?
-                </h1>
-                <p className="text-lg text-dlp-text-secondary max-w-2xl mx-auto">
-                    Welcome to the DoughLab Help Center. Explore our guides to master the app and improve your baking.
-                </p>
+            </AppShellHeader>
 
-                {/* Search Bar */}
-                <div className="relative max-w-lg mx-auto mt-6">
+            <AppSurface className="p-5">
+                <div className="relative max-w-lg">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <Search className="h-5 w-5 text-dlp-text-muted" />
                     </div>
                     <input
                         type="text"
-                        className="block w-full pl-10 pr-3 py-3 border border-dlp-border rounded-xl leading-5 bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-all shadow-sm"
+                        className="block w-full pl-10 pr-3 py-3 border border-dlp-border rounded-full leading-5 bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-all shadow-sm"
                         placeholder={t('general.search_for_topics')}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
-            </div>
+            </AppSurface>
 
             {/* Main Sections */}
             <div className="space-y-6">
@@ -304,20 +305,20 @@ export default function HelpPage() {
                 <h2 className="text-2xl font-bold text-dlp-text-primary px-2">{t('general.frequently_asked_questions')}</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="p-5 rounded-xl bg-dlp-bg-card border border-dlp-border shadow-sm hover:shadow-md transition-all">
+                        <AppSurface key={index} className="p-5 hover:shadow-md transition-all">
                             <h3 className="font-semibold text-dlp-text-primary mb-2 flex items-start gap-2">
                                 <span className="text-dlp-accent font-bold">Q.</span> {faq.q}
                             </h3>
                             <p className="text-dlp-text-secondary text-sm pl-6">
                                 {faq.a}
                             </p>
-                        </div>
+                        </AppSurface>
                     ))}
                 </div>
             </div>
 
             {/* Contact Support */}
-            <div className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-dlp-accent/10 to-dlp-accent/10 border border-dlp-accent/20 text-center">
+            <AppSurface className="mt-12 p-8 bg-gradient-to-br from-dlp-accent/10 to-dlp-accent/10 border-dlp-accent/20 text-center">
                 <h3 className="text-xl font-bold text-dlp-text-primary mb-2">{t('ui.still_have_questions')}</h3>
                 <p className="text-dlp-text-secondary mb-6">
                     We're here to help! Reach out to our support team for personal assistance.
@@ -326,7 +327,7 @@ export default function HelpPage() {
                     href="mailto:support@doughlab.com"
                     className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-dlp-accent hover:bg-dlp-accent-hover transition-colors shadow-lg hover:shadow-xl transform active:scale-95"
                 >{t('common.contact_support')}</a>
-            </div>
+            </AppSurface>
 
         </div>
     );

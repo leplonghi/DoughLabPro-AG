@@ -1,4 +1,3 @@
-import jsPDF from 'jspdf';
 import { Batch, DoughConfig, DoughResult } from '../types';
 import { FLOURS } from '../flours-constants';
 import { generateTechnicalMethod } from '../logic/methodGenerator';
@@ -22,6 +21,7 @@ export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: 
     try {
         if (!batch) throw new Error("Batch data is missing");
 
+        const { default: jsPDF } = await import('jspdf');
         const doc = new jsPDF();
 
         // Page Config

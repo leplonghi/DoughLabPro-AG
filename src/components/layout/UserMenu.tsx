@@ -58,48 +58,75 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
         setIsOpen(false);
     };
 
-    // Get initials for avatar
-    const initials = user?.name
-        ? user.name.split(' ').map((n) => n[0]).join('').substring(0, 2).toUpperCase()
-        : 'U';
+    const displayName = user?.name || user?.email || 'User';
+    const initials = displayName
+        .split(' ')
+        .map((n) => n[0])
+        .join('')
+        .substring(0, 2)
+        .toUpperCase();
 
     return (
         <div className="relative" ref={menuRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-center w-9 h-9 rounded-full bg-dlp-bg-card border border-dlp-accent text-dlp-accent font-semibold hover:bg-dlp-bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+                className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-emerald-200/80 bg-white/80 text-dlp-brand shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+                aria-label={t('common.nav.profile')}
             >
-                {initials}
+                {user?.avatar ? (
+                    <img
+                        src={user.avatar}
+                        alt={displayName}
+                        className="h-full w-full object-cover"
+                    />
+                ) : (
+                    <span className="text-sm font-bold tracking-tight">{initials}</span>
+                )}
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-xl bg-dlp-bg-card shadow-dlp-lg ring-1 ring-dlp-border focus:outline-none z-50 overflow-hidden animate-fade-in">
+                <div className="absolute right-0 z-50 mt-3 w-72 origin-top-right overflow-hidden rounded-[1.35rem] border border-white/75 bg-white/88 shadow-[0_26px_60px_-32px_rgba(15,23,42,0.3)] ring-1 ring-emerald-100/70 backdrop-blur-xl focus:outline-none animate-fade-in">
                     {/* User Info Header */}
-                    <div className="px-4 py-3 border-b border-dlp-border bg-dlp-bg-muted">
-                        <p className="text-sm font-semibold text-dlp-text-primary truncate">
-                            {user?.name || 'User'}
-                        </p>
-                        <p className="text-xs text-dlp-text-muted truncate mt-0.5">
-                            {user?.email || ''}
-                        </p>
+                    <div className="border-b border-dlp-border bg-[linear-gradient(135deg,rgba(237,250,239,0.95)_0%,rgba(255,255,255,0.92)_100%)] px-4 py-3">
+                        <div className="flex items-center gap-3">
+                            <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white bg-white shadow-sm">
+                                {user?.avatar ? (
+                                    <img
+                                        src={user.avatar}
+                                        alt={displayName}
+                                        className="h-full w-full object-cover"
+                                    />
+                                ) : (
+                                    <span className="text-sm font-bold tracking-tight text-dlp-brand">{initials}</span>
+                                )}
+                            </div>
+                            <div className="min-w-0">
+                                <p className="truncate text-sm font-semibold text-dlp-text-primary">
+                                    {displayName}
+                                </p>
+                                <p className="mt-0.5 truncate text-xs text-dlp-text-muted">
+                                    {user?.email || ''}
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Menu Items */}
-                    <div className="py-1">
+                    <div className="py-1.5">
                         <button
                             onClick={() => handleItemClick('profile')}
-                            className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
+                            className="group flex w-full items-center px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
-                            <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
+                            <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
                             {t('common.nav.profile')}
                         </button>
 
                         <button
                             onClick={() => handleItemClick('settings')}
-                            className="flex w-full items-center justify-between px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
+                            className="group flex w-full items-center justify-between px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
                             <div className="flex items-center">
-                                <SettingsIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
+                                <SettingsIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
                                 {t('common.nav.settings')}
                             </div>
                             <ChevronRightIcon className="h-4 w-4 text-dlp-text-muted" />
@@ -107,27 +134,27 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
 
                         <button
                             onClick={() => handleItemClick('help')}
-                            className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
+                            className="group flex w-full items-center px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
-                            <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
+                            <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
                             {t('common.nav.help')}
                         </button>
 
                         <button
                             onClick={() => handleItemClick('legal')}
-                            className="flex w-full items-center px-4 py-2.5 text-sm text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors group"
+                            className="group flex w-full items-center px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
-                            <ClockIcon className="mr-3 h-5 w-5 text-dlp-text-muted group-hover:text-dlp-text-secondary" />
+                            <ClockIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
                             {t('common.nav.legal')}
                         </button>
 
-                        <div className="border-t border-dlp-border my-1"></div>
+                        <div className="my-1 border-t border-dlp-border"></div>
 
                         <button
                             onClick={handleLogout}
-                            className="flex w-full items-center px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors group"
+                            className="group flex w-full items-center px-4 py-3 text-sm text-red-600 transition-colors hover:bg-red-50"
                         >
-                            <ArrowRightOnRectangleIcon className="mr-3 h-5 w-5 text-red-500 group-hover:text-red-600" />
+                            <ArrowRightOnRectangleIcon className="mr-3 h-5 w-5 text-red-500 transition-colors group-hover:text-red-600" />
                             {t('auth.sign_out')}
                         </button>
                     </div>

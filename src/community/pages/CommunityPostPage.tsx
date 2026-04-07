@@ -4,6 +4,8 @@ import { useRouter } from '../../contexts/RouterContext';
 import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { PostHeader } from '../components/PostHeader';
 import { PostPhotos } from '../components/PostPhotos';
@@ -12,6 +14,7 @@ import { PostMethod } from '../components/PostMethod';
 import { PostActions } from '../components/PostActions';
 import { PostComments } from '../components/PostComments';
 import { useTranslation } from '@/i18n';
+import { getPageMeta } from '@/app/appShell';
 
 interface CommunityPostPageProps {
     postId: string;
@@ -20,6 +23,7 @@ interface CommunityPostPageProps {
 export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) => {
   const { t } = useTranslation();
     const { navigate } = useRouter();
+    const communityMeta = getPageMeta('community');
     const [post, setPost] = useState<CommunityPost | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -81,16 +85,22 @@ export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) 
 
     return (
         <LibraryPageLayout>
-            <div className="max-w-2xl mx-auto">
-                <button
-                    onClick={() => navigate('community')}
-                    className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors"
+            <div className="max-w-5xl mx-auto">
+                <AppShellHeader
+                    eyebrow={communityMeta.eyebrow}
+                    title={post.title || 'Untitled Bake'}
+                    description={post.description || communityMeta.description}
                 >
-                    <ArrowLeft className="h-5 w-5" />
-                    <span>{t('community.back_to_community')}</span>
-                </button>
+                    <button
+                        onClick={() => navigate('community')}
+                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+                    >
+                        <ArrowLeft className="h-4 w-4" />
+                        <span>{t('community.back_to_community')}</span>
+                    </button>
+                </AppShellHeader>
 
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <AppSurface className="overflow-hidden">
                     <PostHeader
                         uid={post.uid}
                         username={post.username}
@@ -129,7 +139,7 @@ export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) 
                             onCommentAdded={handleCommentAdded}
                         />
                     </div>
-                </div>
+                </AppSurface>
             </div>
         </LibraryPageLayout>
     );

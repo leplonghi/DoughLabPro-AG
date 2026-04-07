@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import html2canvas from 'html2canvas';
 import { DownloadIcon, ShareIcon } from 'lucide-react';
 import { DoughConfig, DoughResult } from '@/types';
 
@@ -19,6 +18,7 @@ export const RecipeCardGenerator: React.FC<RecipeCardGeneratorProps> = ({ config
         setIsGenerating(true);
         try {
             // Wait for fonts or images if needed, but simple DOM is usually fast
+            const { default: html2canvas } = await import('html2canvas');
             const canvas = await html2canvas(cardRef.current, {
                 scale: 2, // Retina quality
                 backgroundColor: '#ffffff',

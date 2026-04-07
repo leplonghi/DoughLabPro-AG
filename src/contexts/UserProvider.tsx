@@ -37,8 +37,6 @@ import {
   getDocs,
   getDoc,
 } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '@/firebase/auth';
 import { PlanId } from '@/permissions';
 import { isProUser } from '@/lib/permissions';
 import { useBatchManager } from '@/hooks/useBatchManager';
@@ -69,13 +67,13 @@ const getStatusFromLastFeeding = (levain: Levain): LevainStatus => {
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useTranslation(['common', 'ui', 'styles']);
   const { addToast } = useToast();
-  const { loginWithGoogle, logout: authLogout } = useAuth();
+  const { loginWithGoogle, logout: authLogout, firebaseUser: authFirebaseUser, loading: authLoading } = useAuth();
 
   // Local state mirrors
-  const [firebaseUser, setFirebaseUser] = useState<any>(null);
   const [user, setUser] = useState<User | null>(null);
   const [userLoading, setUserLoading] = useState(true);
   const [planLoading, setPlanLoading] = useState(true);
+  const firebaseUser = authFirebaseUser;
 
   const [ovens, setOvens] = useState<Oven[]>([]);
   const [levains, setLevains] = useState<Levain[]>([]);
@@ -113,7 +111,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   });
 
   // Entitlements
-  const [isSessionPro, setIsSessionPro] = useState<boolean>(false);
   const [cooldownHours, setCooldownHours] = useState(0);
 
   // Paywall
@@ -121,9 +118,17 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [paywallOrigin, setPaywallOrigin] = useState<PaywallOrigin | null>(null);
 
   const openPaywall = useCallback((origin: PaywallOrigin = 'general') => {
+    logEvent('paywall_opened', {
+      origin,
+      plan: user?.plan || 'free',
+      hasProAccess: isProUser(user),
+    });
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('doughlab-upgrade-origin', origin);
+    }
     setPaywallOrigin(origin);
     setIsPaywallOpen(true);
-  }, []);
+  }, [user]);
 
   const closePaywall = useCallback(() => {
     setIsPaywallOpen(false);
@@ -132,69 +137,32 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Sync User - Race-Safe Implementation
   useEffect(() => {
-    if (!auth) return;
+    if (authLoading) return;
 
-    const unsub = onAuthStateChanged(auth, async (authUser) => {
-      setFirebaseUser(authUser);
+    if (!authFirebaseUser) {
+      setUser(null);
+      setUserLoading(false);
+      setPlanLoading(false);
+      setOvens([]);
+      setLevains([]);
+      setGoals([]);
+      setTestSeries([]);
+      setUserStyles([]);
+      setFavorites([]);
+      setCustomPresets([]);
+      setCustomToppings([]);
+      return;
+    }
 
-      if (!authUser) {
-        // Check for VIP Guest URL or Persistence
-        const urlParams = new URLSearchParams(window.location.search);
-        const vipParam = urlParams.get('vip');
+    let isMounted = true;
+    setUserLoading(true);
+    setPlanLoading(true);
 
-        if (vipParam === 'true') {
-          localStorage.setItem('dough-lab-vip-mode', 'true');
-        } else if (vipParam === 'false') {
-          localStorage.removeItem('dough-lab-vip-mode');
-        }
-
-        const isVip = vipParam === 'true' || localStorage.getItem('dough-lab-vip-mode') === 'true';
-
-        if (isVip) {
-          const guestAuth = { uid: 'vip-guest-user', email: 'vip@doughlab.pro' };
-          setFirebaseUser(guestAuth);
-          setUser({
-            uid: 'vip-guest-user',
-            name: 'VIP Guest',
-            email: 'vip@doughlab.pro',
-            avatar: undefined,
-            plan: 'lab_pro',
-            isPro: true,
-            isAdmin: false,
-          } as User);
-
-          setUserLoading(false);
-          setPlanLoading(false);
-          return;
-        }
-
-        setUser(null);
-        setUserLoading(false);
-        setPlanLoading(false);
-        // Clear data on logout
-        setOvens([]);
-        setLevains([]);
-        setGoals([]);
-        setTestSeries([]);
-        setUserStyles([]);
-        setFavorites([]);
-        setFavorites([]);
-        setCustomPresets([]);
-        setCustomToppings([]);
-        return;
-      }
-
-      setUserLoading(true);
-      setPlanLoading(true);
-
+    const syncProfile = async () => {
       try {
-        const ref = doc(db, 'users', authUser.uid);
-        // Note: getDoc is imported from firebase/firestore
-        // We need to ensure we are using the correct db instance
-        // The file imports db from @/firebase/db
-
-        // We use a try-catch block for the fetch
+        const ref = doc(db, 'users', authFirebaseUser.uid);
         let profileData: any = {};
+
         try {
           const snap = await getDoc(ref);
           if (snap.exists()) {
@@ -204,47 +172,25 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           console.error("Error fetching user profile:", err);
         }
 
-        const email = authUser.email ? authUser.email.toLowerCase() : '';
-        const isAdminEmail = email === 'leplonghi@gmail.com';
-
-        // Auto-fix Firestore for admin
-        if (isAdminEmail && (profileData.plan !== 'lab_pro' || !profileData.isAdmin)) {
-          console.log(t('ui.autoupgrading_admin_user_in_firestore'));
-          try {
-            await updateDoc(ref, {
-              isAdmin: true,
-              plan: 'lab_pro',
-              isPro: true,
-              updatedAt: new Date().toISOString()
-            });
-            // Update local profileData to reflect the change immediately
-            profileData.isAdmin = true;
-            profileData.plan = 'lab_pro';
-            profileData.isPro = true;
-          } catch (err) {
-            console.error("Failed to auto-upgrade admin:", err);
-          }
-        }
+        const email = authFirebaseUser.email ? authFirebaseUser.email.toLowerCase() : '';
 
         const plan: PlanId =
           profileData.plan === "lab_pro" ||
             profileData.plan === "pro" ||
-            profileData.isPro ||
-            profileData.isAdmin ||
-            isAdminEmail // Keep admin override
+            profileData.isPro
             ? "lab_pro"
             : profileData.plan === "calculator_unlock"
               ? "calculator_unlock"
               : "free";
 
         const mergedProfile: User = {
-          uid: authUser.uid,
-          name: profileData.name || authUser.displayName || 'Baker',
-          email: authUser.email || '',
-          avatar: profileData.avatar || authUser.photoURL || undefined,
-          plan, // Normalized plan
-          isPro: plan === 'lab_pro', // Derived from plan
-          isAdmin: !!profileData.isAdmin || isAdminEmail,
+          uid: authFirebaseUser.uid,
+          name: profileData.name || authFirebaseUser.displayName || (authFirebaseUser.isAnonymous ? 'Guest Baker' : 'Baker'),
+          email: authFirebaseUser.email || email,
+          avatar: profileData.avatar || authFirebaseUser.photoURL || undefined,
+          plan,
+          isPro: plan === 'lab_pro',
+          isAdmin: false,
           trialEndsAt: profileData.trialEndsAt,
           proSince: profileData.proSince,
           proExpiresAt: profileData.proExpiresAt,
@@ -255,15 +201,23 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           trials: profileData.trials || {},
         };
 
-        setUser(mergedProfile);
+        if (isMounted) {
+          setUser(mergedProfile);
+        }
       } finally {
-        setUserLoading(false);
-        setPlanLoading(false);
+        if (isMounted) {
+          setUserLoading(false);
+          setPlanLoading(false);
+        }
       }
-    });
+    };
 
-    return () => unsub();
-  }, []);
+    void syncProfile();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [authFirebaseUser, authLoading]);
 
 
 
@@ -798,22 +752,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Entitlements
   const grantProAccess = useCallback(async () => {
-    if (user && firebaseUser) {
-      const now = new Date().toISOString();
-      await updateUser({
-        isPro: true,
-        plan: 'lab_pro',
-        proSince: now
-      });
-      addToast('Welcome to Pro! You have unlocked all features.', 'success');
-    }
-    setIsSessionPro(true);
-  }, [user, updateUser, firebaseUser, addToast]);
+    addToast('Pro access is granted after a verified billing or trial event.', 'info');
+  }, [addToast]);
 
-  const grantSessionProAccess = useCallback(() => setIsSessionPro(true), []);
+  const grantSessionProAccess = useCallback(() => {
+    addToast('Session-only Pro unlocks are disabled for security.', 'info');
+  }, [addToast]);
+
   const grant24hPass = useCallback(() => {
-    setIsSessionPro(true);
-  }, []);
+    addToast('Temporary passes must be issued by the backend.', 'info');
+  }, [addToast]);
 
   const hasActiveTrial = useCallback((featureKey: string) => {
     if (!user?.trials?.[featureKey]) return false;
@@ -832,7 +780,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addToast('7-Day Trial Started! Enjoy!', 'success');
   }, [user, updateUser, addToast]);
 
-  const hasProAccess = isProUser(user) || isSessionPro;
+  const hasProAccess = isProUser(user);
   const isPassOnCooldown = false;
 
   const value: UserContextType = useMemo(() => ({

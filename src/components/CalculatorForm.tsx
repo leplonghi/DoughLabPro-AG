@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   DoughConfig,
   YeastType,
@@ -87,6 +87,10 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   isFavorite,
 }) => {
   const { t } = useTranslation(['common', 'calculator']);
+  const [isSaveDialogOpen, setIsSaveDialogOpen] = useState(false);
+  const [presetName, setPresetName] = useState('');
+  const [presetError, setPresetError] = useState<string | null>(null);
+  const [isSavingPreset, setIsSavingPreset] = useState(false);
   const isWizard = calculatorMode === 'wizard';
   const isBasic = calculatorMode === 'basic';
   const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
@@ -161,8 +165,32 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   const handleSavePreset = async () => {
     if (!onSavePreset) return;
     const defaultName = suggestPresetName(config);
-    const name = window.prompt(t('calculator.enter_preset_name', { defaultValue: 'Enter a name for your custom preset:' }), defaultName);
-    if (name) await onSavePreset(name);
+    setPresetName(defaultName);
+    setPresetError(null);
+    setIsSaveDialogOpen(true);
+  };
+
+  const handleConfirmSavePreset = async () => {
+    if (!onSavePreset) return;
+    const trimmedName = presetName.trim();
+
+    if (!trimmedName) {
+      setPresetError('Enter a name for this preset.');
+      return;
+    }
+
+    setIsSavingPreset(true);
+    setPresetError(null);
+
+    try {
+      await onSavePreset(trimmedName);
+      setIsSaveDialogOpen(false);
+    } catch (error) {
+      console.error(error);
+      setPresetError('We could not save this preset right now.');
+    } finally {
+      setIsSavingPreset(false);
+    }
   };
 
   const StepBanner = ({ step, title, description }: { step: number, title: string, description: string }) => {
@@ -317,6 +345,66 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             >
               {t('calculator.upgrade_to_pro')}
             </button>
+          </div>
+        </div>
+      )}
+
+      {isSaveDialogOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
+          onClick={() => setIsSaveDialogOpen(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="save-preset-title"
+            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h3 id="save-preset-title" className="text-xl font-bold text-slate-900">
+              Save Custom Preset
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Save this formula so you can load it again from the calculator and My Lab.
+            </p>
+
+            <label htmlFor="preset-name" className="mt-5 block text-sm font-medium text-slate-700">
+              Preset name
+            </label>
+            <input
+              id="preset-name"
+              name="preset-name"
+              type="text"
+              autoComplete="off"
+              value={presetName}
+              onChange={(event) => setPresetName(event.target.value)}
+              className="mt-2 block w-full rounded-xl border border-slate-300 px-3 py-2.5 text-slate-900 shadow-sm transition-colors focus:border-dlp-brand focus:outline-none focus:ring-2 focus:ring-dlp-brand"
+              placeholder="Saturday dough setup…"
+            />
+
+            {presetError && (
+              <div className="mt-3 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+                {presetError}
+              </div>
+            )}
+
+            <div className="mt-5 flex gap-3">
+              <button
+                type="button"
+                onClick={() => setIsSaveDialogOpen(false)}
+                className="flex-1 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmSavePreset}
+                disabled={isSavingPreset}
+                className="flex-1 rounded-xl bg-dlp-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-dlp-brand-hover disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isSavingPreset ? 'Saving…' : 'Save Preset'}
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -2,6 +2,7 @@
     "name": "Name",
     "email": "Email",
     "free_member": "Free Member",
+    "resources_title": "Resources",
     "not_logged_in": "Please log in to view your profile.",
     "edit_profile": "Edit Profile",
     "cancel": "Cancel",

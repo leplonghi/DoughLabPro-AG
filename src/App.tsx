@@ -5,36 +5,21 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import RequireAuth from '@/components/RequireAuth';
 import FloatingActionButton from '@/components/ui/FloatingActionButton';
-import AuthModal from '@/components/AuthModal';
 import { PaywallModal } from '@/components/PaywallModal';
 import LevainOnboardingModal from '@/components/onboarding/LevainOnboardingModal';
 import { Logo } from '@/components/ui/Logo';
 import { TourGuide } from '@/components/onboarding/TourGuide';
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
-import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
-
-// Contexts
-import { ToastProvider, useToast } from '@/components/ToastProvider';
-import { UserProvider, useUser } from '@/contexts/UserProvider';
-import { AuthProvider, useAuth } from '@/contexts/AuthContext';
-import { I18nProvider, useTranslation } from '@/i18n';
-import { CalculatorProvider, useCalculator } from '@/contexts/CalculatorContext';
-import { DoughSessionProvider, useDoughSession } from '@/contexts/DoughSessionContext';
-import { StylesProvider } from '@/contexts/StylesProvider';
-import { RouterProvider, useRouter } from '@/contexts/RouterContext';
-
-// Domain-specific providers
-import { BatchesProviderComponent } from '@/contexts/BatchesProvider';
-import { LevainProvider } from '@/contexts/LevainProvider';
-import { GoalsProvider } from '@/contexts/GoalsProvider';
-import { FloursProvider } from '@/contexts/FloursProvider';
-import { ConsistencyProvider } from '@/contexts/ConsistencyProvider';
-import { InsightsProvider } from '@/contexts/InsightsProvider';
-import { RecipesProvider } from '@/contexts/RecipesProvider';
-import { DoughsProvider } from '@/contexts/DoughsProvider';
-import { SensoryProvider } from '@/contexts/SensoryProvider';
-import { TimelineProvider } from '@/contexts/TimelineProvider';
-import { MarketingProvider } from '@/marketing/MarketingContext';
+import { useToast } from '@/components/ToastProvider';
+import { useUser } from '@/contexts/UserProvider';
+import { useAuth } from '@/contexts/AuthContext';
+import { useTranslation } from '@/i18n';
+import { useCalculator } from '@/contexts/CalculatorContext';
+import { useDoughSession } from '@/contexts/DoughSessionContext';
+import { useRouter } from '@/contexts/RouterContext';
+import AppProviders from '@/app/AppProviders';
+import { PUBLIC_ROUTES } from '@/app/appShell';
+import { logEvent } from '@/services/analytics';
 
 import AppRouter from '@/AppRouter';
 import { PrimaryPage, BatchStatus } from '@/types';
@@ -42,12 +27,10 @@ import { FLOURS } from '@/flours-constants';
 
 // Lazy Load Assistant
 const AssistantPage = React.lazy(() => import('@/components/AssistantPage'));
-
-
-console.log('[App] BatchesProvider imported:', BatchesProviderComponent);
+const AuthModal = React.lazy(() => import('@/components/AuthModal'));
+const DoughyAssistant = React.lazy(() => import('@/components/tools/DoughyAssistant').then((module) => ({ default: module.DoughyAssistant })));
 
 function AppContent() {
-  console.log('[App] AppContent rendering');
   const { route, navigate } = useRouter();
   const { loading: authLoading } = useAuth();
   const {
@@ -61,8 +44,7 @@ function AppContent() {
     isPaywallOpen,
     closePaywall,
     openPaywall,
-    paywallOrigin,
-    grantSessionProAccess
+    paywallOrigin
   } = useUser();
 
   const { config, results, hasInteracted } = useCalculator();
@@ -75,7 +57,6 @@ function AppContent() {
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
   const [showLevainOnboarding, setShowLevainOnboarding] = useState(false);
   const [showMainOnboarding, setShowMainOnboarding] = useState(false);
-
   // Main Onboarding Logic
   // Main Onboarding Logic - DISABLED BY USER REQUEST
   // useEffect(() => {
@@ -117,15 +98,6 @@ function AppContent() {
     setShowLevainOnboarding(false);
   };
 
-  // Test Pro Logic
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('test_pro') === 'true') {
-      grantSessionProAccess();
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  }, [grantSessionProAccess]);
-
   const isSummaryBarVisible = route === 'calculator' && !!results;
 
   const handleStartBatch = React.useCallback(async () => {
@@ -148,6 +120,12 @@ function AppContent() {
         status: BatchStatus.PLANNED,
         isFavorite: false,
       });
+      logEvent('bake_started', {
+        source: 'calculator',
+        batchId: newBatch.id,
+        firstBake: batches.length === 0,
+        style: config.recipeStyle,
+      });
       addToast(`${t('ui.bake_')}${newBatch.name}" started!`, 'success');
       // Deep Linking: Navigate to the specific batch so the URL updates
       navigate(`batch/${newBatch.id}`);
@@ -156,35 +134,52 @@ function AppContent() {
 
   const handleCreateDraftAndNavigate = React.useCallback(async () => {
     const draft = await createDraftBatch();
+    logEvent('draft_bake_created', {
+      source: route,
+      firstDraft: batches.length === 0,
+      batchId: draft.id,
+    });
     navigate(`batch/${draft.id}`);
-  }, [createDraftBatch, navigate]);
+  }, [batches.length, createDraftBatch, navigate, route]);
 
   // Global Authentication Check
   if (authLoading) {
     return <div className="flex h-screen items-center justify-center"><LoadingSpinner /></div>;
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !PUBLIC_ROUTES.has(route)) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-dlp-bg-soft p-4 relative overflow-hidden">
-        <div className="z-10 text-center max-w-md w-full">
-          <div className="mb-8 flex justify-center">
-            <Logo className="h-24 w-auto" />
-          </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(81,161,69,0.15),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(187,247,208,0.5),_transparent_35%)]" />
+          <div className="z-10 text-center max-w-xl w-full rounded-[2rem] border border-white/80 bg-white/80 p-8 shadow-dlp-lg backdrop-blur-sm">
+            <div className="mb-8 flex justify-center">
+              <Logo className="h-24 w-auto" />
+            </div>
 
-          <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">{t('ui.welcome_title')}</h1>
-          <p className="text-lg text-dlp-text-secondary mb-8 leading-relaxed">
+          <h1 className="text-3xl font-semibold text-dlp-text-primary mb-3 tracking-tight text-balance">{t('ui.welcome_title')}</h1>
+          <p className="text-lg text-dlp-text-secondary mb-2 leading-relaxed">
             {t('ui.app_tagline')}
-            <br />
-            <span className="text-sm text-dlp-text-muted mt-2 block">{t('ui.sign_in_to_access_your_lab_recipes_and_tools')}</span>
           </p>
+          <span className="text-sm text-dlp-text-muted block mb-8">{t('ui.sign_in_to_access_your_lab_recipes_and_tools')}</span>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="w-full py-3.5 bg-dlp-accent hover:bg-dlp-accent-hover text-[#065F46] font-bold rounded-xl shadow-dlp-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full rounded-xl bg-dlp-accent py-3.5 font-bold text-[#065F46] shadow-dlp-sm transition-all transform hover:scale-[1.02] hover:bg-dlp-accent-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
             >
-              {t('ui.sign_in_button')}
+              Access Your Lab
+            </button>
+            <button
+              onClick={() => navigate('plans')}
+              className="w-full rounded-xl border border-dlp-border bg-white py-3.5 font-bold text-dlp-text-primary transition-colors hover:bg-dlp-bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+            >
+              Compare Plans & Pricing
+            </button>
+            <button
+              onClick={() => navigate('landing')}
+              className="w-full py-2 text-sm font-medium text-dlp-text-muted transition-colors hover:text-dlp-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+            >
+              Explore Product Tour
             </button>
 
             <p className="text-xs text-dlp-text-muted mt-6">
@@ -204,13 +199,22 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-dlp-bg-soft font-sans text-dlp-text-primary transition-colors duration-300 flex flex-col">
+      <a
+        href="#main-content"
+        className="sr-only z-[120] rounded-lg bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-lg focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Skip to main content
+      </a>
       <Navigation
         activePage={route as PrimaryPage}
         onNavigate={navigate}
         onOpenAuth={() => setIsAuthModalOpen(true)}
       />
 
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 py-8 md:py-10 mt-20">
+      <main
+        id="main-content"
+        className="flex-grow w-full max-w-[1440px] mx-auto mt-20 px-4 py-8 pb-28 md:py-10 md:pb-10"
+      >
         {isAssistantOpen ? (
           <Suspense fallback={<LoadingSpinner />}>
             <RequireAuth onOpenAuth={() => setIsAuthModalOpen(true)}>
@@ -235,7 +239,9 @@ function AppContent() {
 
       <Footer onNavigate={navigate} />
 
-      <DoughyAssistant />
+      <Suspense fallback={null}>
+        <DoughyAssistant />
+      </Suspense>
 
       {showLevainOnboarding && (
         <LevainOnboardingModal
@@ -260,15 +266,17 @@ function AppContent() {
         }}
         origin={paywallOrigin}
       />
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
+      <Suspense fallback={null}>
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
+        />
+      </Suspense>
       <TourGuide />
 
       {/* Persistence Indicator */}
       {lastSaved && (
-        <div className="fixed bottom-4 right-4 bg-dlp-bg-surface border border-dlp-border shadow-lg rounded-full px-4 py-2 text-xs text-dlp-text-muted transition-opacity duration-1000 animate-fade-in-out pointer-events-none z-50 flex items-center gap-2">
+        <div className="fixed bottom-24 right-4 bg-dlp-bg-surface border border-dlp-border shadow-lg rounded-full px-4 py-2 text-xs text-dlp-text-muted transition-opacity duration-1000 animate-fade-in-out pointer-events-none z-50 flex items-center gap-2 sm:bottom-4">
           <div className="w-2 h-2 rounded-full bg-dlp-brand"></div>
           {t('ui.changes_saved')}
         </div>
@@ -279,46 +287,9 @@ function AppContent() {
 
 function App() {
   return (
-    <I18nProvider>
-      <AuthProvider>
-        <ToastProvider>
-          <UserProvider>
-            <MarketingProvider>
-              {/* Domain-specific providers */}
-              <BatchesProviderComponent>
-                <LevainProvider>
-                  <GoalsProvider>
-                    <FloursProvider>
-                      <ConsistencyProvider>
-                        <InsightsProvider>
-                          <RecipesProvider>
-                            <DoughsProvider>
-                              <SensoryProvider>
-                                <TimelineProvider>
-                                  <RouterProvider>
-                                    <DoughSessionProvider>
-                                      <CalculatorProvider>
-                                        <StylesProvider>
-                                          <AppContent />
-                                        </StylesProvider>
-                                      </CalculatorProvider>
-                                    </DoughSessionProvider>
-                                  </RouterProvider>
-                                </TimelineProvider>
-                              </SensoryProvider>
-                            </DoughsProvider>
-                          </RecipesProvider>
-                        </InsightsProvider>
-                      </ConsistencyProvider>
-                    </FloursProvider>
-                  </GoalsProvider>
-                </LevainProvider>
-              </BatchesProviderComponent>
-            </MarketingProvider>
-          </UserProvider>
-        </ToastProvider>
-      </AuthProvider>
-    </I18nProvider>
+    <AppProviders>
+      <AppContent />
+    </AppProviders>
   );
 }
 

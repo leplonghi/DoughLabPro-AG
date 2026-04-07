@@ -6,51 +6,49 @@ import { CommunityProfileSidebar } from '../components/CommunityProfileSidebar';
 import { CommunityTopics } from '../components/CommunityTopics';
 import { SuggestedBakers } from '../components/SuggestedBakers';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
+import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppSurface from '@/components/ui/AppSurface';
 import { Plus, Sparkles } from 'lucide-react';
 import { useRouter } from '../../contexts/RouterContext';
 import { useTranslation } from '@/i18n';
+import { getPageMeta } from '@/app/appShell';
 
 export const CommunityPage: React.FC = () => {
     const { t } = useTranslation();
     const [activeFilter, setActiveFilter] = useState<'latest' | 'trending' | 'top'>('latest');
     const { navigate } = useRouter();
+    const communityMeta = getPageMeta('community');
 
     return (
         <LibraryPageLayout>
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
-                {/* Header Section */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight flex items-center gap-2">{t('community.community_feed')}<Sparkles className="h-6 w-6 text-yellow-500 fill-yellow-500 animate-pulse" />
-                        </h1>
-                        <p className="text-gray-500 mt-1 text-sm sm:text-base">
-                            Discover the secret formulas behind the world's best homemade pizzas.
-                        </p>
+                <AppShellHeader
+                    eyebrow={communityMeta.eyebrow}
+                    title={communityMeta.title}
+                    description={communityMeta.description}
+                >
+                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                        Bakers share formulas, notes, and results
                     </div>
-
                     <button
                         onClick={() => navigate('community/create')}
-                        className="group flex items-center justify-center gap-2 bg-gradient-to-r from-dlp-brand-hover to-dlp-brand hover:from-lime-700 hover:to-dlp-brand-hover text-white px-6 py-3 rounded-full shadow-lg shadow-dlp-brand-hover/20 transition-all hover:scale-105 active:scale-95 font-semibold text-sm"
+                        className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-slate-800 active:scale-95"
                     >
                         <Plus className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" />
                         <span>{t('community.share_your_bake')}</span>
                     </button>
-                </div>
+                </AppShellHeader>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-                    {/* Main Feed - Centered & Focused */}
                     <div className="lg:col-span-8 space-y-6">
-                        {/* Sticky Filters */}
-                        <div className="sticky top-20 z-10 bg-white/80 backdrop-blur-md py-3 -mx-4 px-4 border-b border-gray-100/50 mb-4 sm:rounded-xl sm:mx-0 sm:border sm:px-4">
+                        <AppSurface className="sticky top-[112px] z-10 p-4 sm:p-5">
                             <CommunityFilters activeFilter={activeFilter} onFilterChange={(f) => setActiveFilter(f as any)} />
-                        </div>
+                        </AppSurface>
 
                         <CommunityFeed filter={activeFilter} />
                     </div>
 
-                    {/* Sidebar - Profile & Trends */}
                     <div className="hidden lg:block lg:col-span-4 space-y-6">
                         <div className="sticky top-24 space-y-6">
                             <CommunityProfileSidebar />
@@ -59,8 +57,7 @@ export const CommunityPage: React.FC = () => {
 
                             <CommunityTopics />
 
-                            {/* Pro Tip Card */}
-                            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-5 border border-indigo-100 shadow-sm">
+                            <AppSurface className="bg-gradient-to-br from-indigo-50 to-purple-50 p-5 border-indigo-100">
                                 <h3 className="font-bold text-indigo-900 mb-2 text-sm flex items-center gap-2">
                                     <span className="text-lg">💡</span> Baker's Tip
                                 </h3>
@@ -68,9 +65,8 @@ export const CommunityPage: React.FC = () => {
                                     Higher hydration isn't always better! For home ovens,
                                     <strong className="text-indigo-900"> 65-70% hydration</strong> often yields the best balance of open crumb and crispiness without being impossible to handle.
                                 </p>
-                            </div>
+                            </AppSurface>
 
-                            {/* Footer links */}
                             <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-400 px-2">
                                 <span className="hover:text-gray-600 cursor-pointer">{t('community.guidelines')}</span>
                                 <span className="hover:text-gray-600 cursor-pointer">{t('community.privacy')}</span>

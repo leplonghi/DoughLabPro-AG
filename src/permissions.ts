@@ -119,9 +119,6 @@ export const FEATURE_PLAN_MAP: Record<FeatureKey, PlanId[]> = {
 export function getCurrentPlan(user: User | null): PlanId {
     if (!user) return 'free';
 
-    // Safety fallback for admin
-    if (user.email === 'leplonghi@gmail.com' || user.isAdmin) return 'lab_pro';
-
     const plan = user.plan;
     if (plan === 'pro') return 'lab_pro';
 

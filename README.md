@@ -1,20 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# DoughLab Pro
 
-# Run and deploy your AI Studio app
+Applied baking app focused on dough formulation, fermentation workflows, My Lab logging, learning content, community sharing, and subscription unlocks.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/drive/16Y2JvwiOLD6G0sG3suIkvdVMwN_hzka5
+- `Vite + React + TypeScript`
+- `Firebase Auth / Firestore / Storage`
+- `Firebase Functions`
+- `Stripe Checkout`
 
-## Run Locally
+## Local setup
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
+1. Install frontend dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Copy `.env.example` to `.env.local` and fill the Firebase, Stripe, and Gemini values.
+3. Install backend dependencies:
+   `cd functions && npm install`
+4. Configure Firebase Functions runtime config for Stripe and allowed hosts:
+   `firebase functions:config:set stripe.secret="sk_test_..." stripe.webhook_secret="whsec_..." app.allowed_hosts="yourdomain.com,your-project.web.app"`
+5. Run the app:
    `npm run dev`
+
+## Verification
+
+- Frontend typecheck: `npm run typecheck`
+- Frontend build: `npm run build`
+- Functions build: `npm run functions:build`
+- Functions tests: `npm run functions:test`
+
+## Security notes
+
+- Never commit `.env`, `.env.local`, Stripe keys, or Firebase admin credentials.
+- Rotate any leaked Stripe key immediately and clean it from git history before deploying.
+- Publish `firestore.rules` and `storage.rules` together with the Functions release.
+
+## Deployment checklist
+
+- Set the production Stripe publishable key in `VITE_STRIPE_PUBLISHABLE_KEY`.
+- Set production Stripe secrets in Firebase Functions config.
+- Confirm `app.allowed_hosts` matches the production domains exactly.
+- Run the four verification commands above before every release.

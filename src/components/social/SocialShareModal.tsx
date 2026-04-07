@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import html2canvas from 'html2canvas';
 import { DoughConfig, DoughResult } from '@/types';
 import { CloseIcon, DownloadIcon, ShareIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
@@ -24,6 +23,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
         try {
             // Wait for fonts/images
             await new Promise(resolve => setTimeout(resolve, 500));
+            const { default: html2canvas } = await import('html2canvas');
 
             const canvas = await html2canvas(cardRef.current, {
                 scale: 2, // Retina quality

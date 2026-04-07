@@ -4,9 +4,8 @@ import { ChevronDownIcon } from '@/components/ui/Icons';
 import LegalPageLayout from './LegalPageLayout';
 import { useTranslation } from '@/i18n';
 
-// --- Placeholders for Company Data ---
 const COMPANY_NAME = 'DoughLabPro';
-const LAST_UPDATED_DATE = 'August 1, 2024';
+const LAST_UPDATED_DATE = 'April 6, 2026';
 
 const sections = [
     { id: 'overview', title: 'Legal Overview' },
@@ -125,7 +124,7 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = () => {
                     <div className="rounded-2xl bg-dlp-bg-card p-6 shadow-dlp-lg ring-1 ring-dlp-border sm:p-10">
 
                         <LegalSection id="overview" title={t('general.legal_overview')}>
-                            <p>This section consolidates the legal documentation governing your use of DoughLabPro. These documents constitute a binding legal agreement between you (t('common.user')) and {COMPANY_NAME} (t('common.company'), "we", "us").</p>
+                            <p>This section consolidates the legal documentation governing your use of DoughLabPro. These documents form the contractual and policy framework between you and {COMPANY_NAME}.</p>
                             <p><strong>By accessing or using DoughLabPro, you acknowledge that you have read, understood, and agree to be bound by these Terms.</strong> If you do not agree, you must immediately cease usage of the Application.</p>
                         </LegalSection>
 

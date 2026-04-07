@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext'; // Assuming this exists
+import { useUser } from '@/contexts/UserProvider';
 import { getCountryPricing, CountryPricing, DEFAULT_PRICING } from '../data/countryPricing';
-import { useTranslation } from '@/i18n';
 
 export interface LocalizedPricing {
     countryCode: string;
@@ -15,7 +14,7 @@ export interface LocalizedPricing {
 }
 
 export function useLocalizedPricing(): LocalizedPricing {
-    const { user, userLoading } = useAuth();
+    const { user, userLoading } = useUser();
     const [pricing, setPricing] = useState<LocalizedPricing>({
         countryCode: 'US',
         currency: 'USD',
