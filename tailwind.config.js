@@ -16,16 +16,9 @@ export default {
                         surface: '#FFFFFFF2',
                     },
                     text: {
-<<<<<<< HEAD
                         primary: '#0D1B12',
                         secondary: '#294031',
                         muted: '#5F7868',
-=======
-                        primary: '#111827',
-                        secondary: '#7d8692ff',
-                        muted: '#a6acb8ff',
-                        inverted: '#FFFFFF',
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                     },
                     accent: {
                         DEFAULT: '#43b05d',
@@ -34,7 +27,6 @@ export default {
                         dark: '#194a2d',
                     },
                     brand: {
-<<<<<<< HEAD
                         DEFAULT: '#43b05d',
                         hover: '#2f8b49',
                         light: '#DCFCE7',
@@ -42,34 +34,16 @@ export default {
                         dark: '#194a2d',
                         lime: '#8DE0A1',
                     },
+                    primary: '#43b05d',
                     success: '#43b05d',
-=======
-                        DEFAULT: '#51a145',
-                        hover: '#36782c',
-                        green: '#3e8b32ff',
-                        dark: '#216416ff',
-                        lime: '#51a145',
-                    },
-                    // Semantic names for Refactor
-                    primary: '#51a145', // Brand Green
-                    surface: {
-                        flour: '#FDFBF7', // Off-white typical of flour
-                        water: '#F0F9FF', // Light blue hint
-                    },
-                    success: '#669225ff',
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                     warning: '#F59E0B',
                     error: '#EF4444',
                     border: '#D7E9DB',
                 }
             },
             fontFamily: {
-<<<<<<< HEAD
                 sans: ['Manrope', 'sans-serif'],
-=======
-                sans: ['Inter', 'sans-serif'],
                 heading: ['Outfit', 'sans-serif'],
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             },
             boxShadow: {
                 'dlp-sm': '0 1px 2px rgba(0, 0, 0, 0.04)',

@@ -172,9 +172,10 @@ export const processScheduledNotifications = functions.pubsub
                     }
                 } catch (error) {
                     console.error(`Error processing notification ${doc.id}:`, error);
+                    const message = error instanceof Error ? error.message : String(error);
                     await doc.ref.update({
                         status: 'FAILED',
-                        error: error.message,
+                        error: message,
                     });
                 }
             });

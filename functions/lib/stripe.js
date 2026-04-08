@@ -6,20 +6,16 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const stripe_1 = require("stripe");
 const countryPricing_1 = require("./countryPricing");
-<<<<<<< HEAD
+const handler_1 = require("./infrastructure/handler");
 if (!admin.apps.length) {
     admin.initializeApp();
 }
-=======
-const handler_1 = require("./infrastructure/handler");
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 // Initialize Stripe with the secret key from environment variables
 // Make sure to set this using: firebase functions:config:set stripe.secret="sk_test_..."
 const stripe = new stripe_1.default(((_a = functions.config().stripe) === null || _a === void 0 ? void 0 : _a.secret) || "sk_test_placeholder", {
     apiVersion: "2026-02-25.clover",
 });
 const db = admin.firestore();
-<<<<<<< HEAD
 const ALLOWED_PLAN_KEYS = new Set(["standard"]);
 function assertStripeConfigured() {
     var _a;
@@ -88,8 +84,6 @@ function normalizeCountryHint(countryHint) {
     const normalized = countryHint.trim().toUpperCase();
     return /^[A-Z]{2}$/.test(normalized) ? normalized : undefined;
 }
-=======
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 /**
  * Resolves the effective country for a user.
  *
@@ -121,103 +115,41 @@ async function resolveEffectiveCountry(userId, ip) {
  * Creates a Stripe Checkout Session for a "Pro" subscription.
  * Call this function from the client with { planKey, successUrl, cancelUrl, countryHint }.
  */
-<<<<<<< HEAD
-exports.createCheckoutSession = functions.https.onCall(async (data, context) => {
-    var _a;
-    assertStripeConfigured();
-    // 1. Ensure user is authenticated
-    if (!context.auth) {
-        throw new functions.https.HttpsError("unauthenticated", "The function must be called while authenticated.");
-    }
-    const requestData = (data && typeof data === "object") ? data : {};
-    const { successUrl, cancelUrl, countryHint } = requestData;
-    const planKey = normalizePlanKey((_a = requestData.planKey) !== null && _a !== void 0 ? _a : "standard");
-    const userId = context.auth.uid;
-    const userEmail = context.auth.token.email;
-    const safeSuccessUrl = assertAllowedCheckoutUrl(successUrl, "successUrl");
-    const safeCancelUrl = assertAllowedCheckoutUrl(cancelUrl, "cancelUrl");
-    const safeCountryHint = normalizeCountryHint(countryHint);
-    // 2. Resolve Country & Price
-    let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId); // Use helper
-    // Allow hint if not locked to override the Provisional default
-    if (!isLocked && safeCountryHint) {
-        targetCountry = safeCountryHint;
-    }
-    const pricing = (0, countryPricing_1.getCountryPricing)(targetCountry);
-    const planPrice = pricing.plans[planKey];
-    if (!planPrice) {
-        throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
-    }
-    try {
-        // 3. Create the session with dynamic pricing based on country
-        const session = await stripe.checkout.sessions.create(Object.assign(Object.assign({ mode: "subscription", payment_method_types: ["card"], line_items: [
-                {
-                    quantity: 1,
-                    price_data: {
-                        currency: pricing.currency,
-                        unit_amount: Math.round(planPrice * 100),
-                        product_data: {
-                            name: `DoughLab Pro (${planKey})`,
-                            description: `Subscription for ${targetCountry}`,
-                        },
-                        recurring: {
-                            interval: 'month',
-                        },
-                    },
-                },
-            ], success_url: safeSuccessUrl, cancel_url: safeCancelUrl }, (userEmail ? { customer_email: userEmail } : {})), { client_reference_id: userId, metadata: {
-                userId: userId,
-                targetCountry: targetCountry,
-                lockedStatus: isLocked ? 'LOCKED' : 'PROVISIONAL'
-            }, subscription_data: {
-                metadata: {
-                    userId: userId,
-                    billingCountry: targetCountry
-                }
-            } }));
-        return {
-            sessionId: session.id,
-            url: session.url,
-        };
-    }
-    catch (error) {
-        console.error("Stripe Checkout Error:", error);
-        throw new functions.https.HttpsError("internal", "Unable to create Stripe checkout session.", error.message);
-    }
-=======
 exports.createCheckoutSession = (0, handler_1.createHandler)("createCheckoutSession", {
     requireAuth: true,
     rateLimit: { points: 5, duration: 60, keyPrefix: "checkout" } // 5 attempts per minute
 }, async (data, context) => {
+    assertStripeConfigured();
     const { planKey = 'standard', successUrl, cancelUrl, countryHint } = data;
     const userId = context.auth.uid;
     const userEmail = context.auth.token.email;
     if (!successUrl || !cancelUrl) {
         throw new functions.https.HttpsError("invalid-argument", "The function must be called with \"successUrl\" and \"cancelUrl\".");
     }
+    const normalizedPlanKey = normalizePlanKey(planKey);
+    const safeSuccessUrl = assertAllowedCheckoutUrl(successUrl, "successUrl");
+    const safeCancelUrl = assertAllowedCheckoutUrl(cancelUrl, "cancelUrl");
+    const safeCountryHint = normalizeCountryHint(countryHint);
     // 2. Resolve Country & Price
     let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId);
     // Allow hint if not locked to override the Provisional default
-    if (!isLocked && typeof countryHint === 'string' && countryHint.length === 2) {
-        targetCountry = countryHint.toUpperCase();
+    if (!isLocked && safeCountryHint) {
+        targetCountry = safeCountryHint;
     }
     const pricing = (0, countryPricing_1.getCountryPricing)(targetCountry);
-    const planPrice = pricing.plans[planKey];
+    const planPrice = pricing.plans[normalizedPlanKey];
     if (!planPrice) {
         throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
     }
     // 3. Create the session with dynamic pricing based on country
-    const session = await stripe.checkout.sessions.create({
-        mode: "subscription",
-        payment_method_types: ["card"],
-        line_items: [
+    const session = await stripe.checkout.sessions.create(Object.assign(Object.assign({ mode: "subscription", payment_method_types: ["card"], line_items: [
             {
                 quantity: 1,
                 price_data: {
                     currency: pricing.currency,
                     unit_amount: Math.round(planPrice * 100),
                     product_data: {
-                        name: `DoughLab Pro (${planKey})`,
+                        name: `DoughLab Pro (${normalizedPlanKey})`,
                         description: `Subscription for ${targetCountry}`,
                     },
                     recurring: {
@@ -225,25 +157,17 @@ exports.createCheckoutSession = (0, handler_1.createHandler)("createCheckoutSess
                     },
                 },
             },
-        ],
-        success_url: successUrl,
-        cancel_url: cancelUrl,
-        customer_email: userEmail,
-        client_reference_id: userId,
-        metadata: {
+        ], success_url: safeSuccessUrl, cancel_url: safeCancelUrl }, (userEmail ? { customer_email: userEmail } : {})), { client_reference_id: userId, metadata: {
             userId: userId,
             targetCountry: targetCountry,
             lockedStatus: isLocked ? 'LOCKED' : 'PROVISIONAL'
-        },
-        subscription_data: {
+        }, subscription_data: {
             metadata: {
                 userId: userId,
                 billingCountry: targetCountry
             }
-        }
-    });
-    return { sessionId: session.id };
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
+        } }));
+    return { sessionId: session.id, url: session.url || null };
 });
 /**
  * Creates a Stripe Billing Portal session for the authenticated customer.
@@ -280,16 +204,12 @@ exports.createBillingPortalSession = functions.https.onCall(async (data, context
  * and updates Firestore accordingly.
  */
 exports.handleStripeWebhook = functions.https.onRequest(async (req, res) => {
-<<<<<<< HEAD
     var _a, _b, _c, _d, _e, _f, _g;
     if (!((_a = functions.config().stripe) === null || _a === void 0 ? void 0 : _a.secret) || ((_b = functions.config().stripe) === null || _b === void 0 ? void 0 : _b.secret) === "sk_test_placeholder") {
         console.error("Stripe secret not configured.");
         res.status(500).send("Stripe secret not configured");
         return;
     }
-=======
-    var _a, _b, _c, _d, _e;
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     const signature = req.headers["stripe-signature"];
     const endpointSecret = (_c = functions.config().stripe) === null || _c === void 0 ? void 0 : _c.webhook_secret;
     if (!endpointSecret) {
@@ -316,13 +236,8 @@ exports.handleStripeWebhook = functions.https.onRequest(async (req, res) => {
                 const customerId = session.customer;
                 // Get Country from payment method (Strongest Signal)
                 // In checkout.session.completed, we might need to expand fields or look at customer_details
-<<<<<<< HEAD
                 const paymentCountry = ((_e = (_d = session.customer_details) === null || _d === void 0 ? void 0 : _d.address) === null || _e === void 0 ? void 0 : _e.country) ||
                     ((_f = session.metadata) === null || _f === void 0 ? void 0 : _f.targetCountry); // Fallback to what we set if address missing
-=======
-                const paymentCountry = ((_c = (_b = session.customer_details) === null || _b === void 0 ? void 0 : _b.address) === null || _c === void 0 ? void 0 : _c.country) ||
-                    ((_d = session.metadata) === null || _d === void 0 ? void 0 : _d.targetCountry); // Fallback to what we set if address missing
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                 if (userId) {
                     const userRef = db.collection("users").doc(userId);
                     const userDoc = await userRef.get();
@@ -338,11 +253,7 @@ exports.handleStripeWebhook = functions.https.onRequest(async (req, res) => {
                     if (!(userData === null || userData === void 0 ? void 0 : userData.billingCountry) && paymentCountry) {
                         // Lock it now!
                         updateData.billingCountry = paymentCountry;
-<<<<<<< HEAD
                         updateData.billingCurrency = (_g = session.currency) === null || _g === void 0 ? void 0 : _g.toUpperCase();
-=======
-                        updateData.billingCurrency = (_e = session.currency) === null || _e === void 0 ? void 0 : _e.toUpperCase();
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                         updateData.firstPaidAt = new Date().toISOString();
                         const pricing = (0, countryPricing_1.getCountryPricing)(paymentCountry);
                         updateData.priceTier = pricing.tier;

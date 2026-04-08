@@ -63,7 +63,7 @@ export const PILLAR_NAV_ITEMS: Record<AppPillar, ShellNavItem[]> = {
   ],
   pro: [
     { id: 'pro-plans', label: 'Plans', page: 'plans', icon: SparklesIcon },
-    { id: 'pro-upgrade', label: 'Upgrade', page: 'upgrade', icon: SparklesIcon },
+    { id: 'pro-billing', label: 'Billing', page: 'plans', icon: SparklesIcon },
     { id: 'pro-help', label: 'Help', page: 'help', icon: DocumentTextIcon },
   ],
 };

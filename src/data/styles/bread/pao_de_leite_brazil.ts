@@ -13,7 +13,7 @@ export const pao_de_leite_brazil: DoughStyleDefinition = {
   id: "pao_de_leite_brazil",
   name: "Pão de Leite (Brazilian Bakery Style)",
   category: "bread",
-  recipeStyle: RecipeStyle.ENRICHED_LOAF,
+  recipeStyle: RecipeStyle.ENRICHED_BRIOCHE_CLASSIC,
   family: "Brazilian Professional Bakery",
 
   origin: {
@@ -27,7 +27,7 @@ export const pao_de_leite_brazil: DoughStyleDefinition = {
   history: "Evolved from the European soft rolls introduced by Portuguese and German immigrants, the Brazilian version became distinct by its high sugar content and the intensive use of milk powder to achieve a specific 'creamy' aroma. In the 1980s, industrial versions like the 'Bisnaguinha' became icons of Brazilian childhood, but the artisanal 'padaria' version remains the gold standard for its superior butter content and fresh milk profile.",
 
   difficulty: "Medium",
-  fermentationType: "hybrid",
+  fermentationType: "preferment",
 
   base_formula: [
     { name: "Strong Wheat Flour (W250-280)", percentage: 100 },
@@ -168,14 +168,19 @@ export const pao_de_leite_brazil: DoughStyleDefinition = {
     ],
     fermentation_methods: [
       {
-        method: "Hybrid",
-        suitability: "Ideal",
-        notes: "A bit of levain adds shelf-life, while yeast provides the necessary 'puffy' volume."
-      },
-      {
         method: "Direct",
         suitability: "Authentic",
         notes: "Standard for fast-turnover Brazilian bakeries."
+      },
+      {
+        method: "Poolish",
+        suitability: "Possible",
+        notes: "A light preferment can improve aroma and softness while preserving the bakery profile."
+      },
+      {
+        method: "Biga",
+        suitability: "Possible",
+        notes: "A firmer preferment improves structure for pull-apart shapes in warmer kitchens."
       }
     ]
   },

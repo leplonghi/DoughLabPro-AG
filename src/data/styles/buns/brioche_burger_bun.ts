@@ -27,7 +27,7 @@ export const brioche_burger_bun: DoughStyleDefinition = {
     history: "While Brioche has been a staple of French baking since the 1400s, it wasn't used for burgers until the 'Gourmet Burger' revolution of the early 21st century. Chefs like Daniel Boulud in NYC began using enriched doughs to match the quality of premium Wagyu and dry-aged beef. It solved the problem of standard buns being too dry or too weak, elevating the burger from fast food to high-gastronomy.",
 
     difficulty: "Hard",
-    fermentationType: "hybrid",
+    fermentationType: "preferment",
 
     base_formula: [
         { name: "Strong Bread Flour (W300+)", percentage: 100 },
@@ -168,23 +168,18 @@ export const brioche_burger_bun: DoughStyleDefinition = {
             }
         ],
         fermentation_methods: [
-            {
-                method: "Hybrid",
-                suitability: "Authentic",
-                notes: "A tiny bit of levain (sourdough) added to the yeast mix provides incredible shelf life and subtle depth."
-            },
-            {
-                method: "Direct",
-                suitability: "Possible",
-                notes: "Fast, but the buns will go stale much faster (within 24h)."
-            },
-            {
-                method: "Tangzhong",
-                suitability: "Ideal",
-                notes: "The modern professional secret for softness and durability."
-            }
-        ]
-    },
+      {
+        method: "Direct",
+        suitability: "Possible",
+        notes: "Fast, but the buns will go stale much faster (within 24h)."
+      },
+      {
+        method: "Biga",
+        suitability: "Ideal",
+        notes: "A mild preferment improves aroma while keeping the bun structure strong for burgers."
+      }
+    ]
+  },
 
     deepDive: {
         hydrationLogic: "Hydration (60%) is high for a bun but necessary because of the absorption capacity of the milk and the Tangzhong gel. The butter provides 'internal lubrication' that mimics high hydration.",

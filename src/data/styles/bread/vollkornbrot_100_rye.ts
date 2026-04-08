@@ -122,7 +122,7 @@ export const vollkornbrot_100_rye: DoughStyleDefinition = {
         correction: "Rye needs salt (2%+) to balance the sourness."
       }
     ],
-    comparisons: [
+    comparative_analysis: [
       {
         target_style: "Wheat Sourdough",
         difference: "Wheat = Gluten/Air/Elasticity. Rye = Pentosans/Gel/Plasticity.",
@@ -153,9 +153,9 @@ export const vollkornbrot_100_rye: DoughStyleDefinition = {
     ],
     fermentation_methods: [
       {
-        method: "Levain",
-        suitability: "Mandatory",
-        notes: "Chemical acidification (vinegar) is possible but cheating."
+        method: "Sourdough",
+        suitability: "Authentic",
+        notes: "Rye sourdough is the canonical method because acidity protects structure."
       }
     ]
   },
@@ -164,7 +164,8 @@ export const vollkornbrot_100_rye: DoughStyleDefinition = {
     hydrationLogic: "High hydration is needed because pentosans absorb 10x their weight in water versus gluten's 2x.",
     methodSuitability: {
       direct: { suitable: false, notes: "Requires acid." },
-      biga: { suitable: false, notes: "Use Rye Sour." }
+      biga: { suitable: false, notes: "Use Rye Sour." },
+      poolish: { suitable: false, notes: "Poolish does not deliver the acidity profile needed for full rye stability." }
     },
     whatIf: [
       {

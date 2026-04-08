@@ -52,6 +52,17 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
     const [checkoutError, setCheckoutError] = React.useState<string | null>(null);
     const canManageBilling = hasProAccess && !!user?.stripeCustomerId;
 
+    React.useEffect(() => {
+        logEvent('pricing_page_viewed', {
+            isAuthenticated,
+            hasProAccess,
+            countryCode,
+            currency,
+            provisionalPricing: isProvisional,
+            origin: getUpgradeOrigin(),
+        });
+    }, [isAuthenticated, hasProAccess, countryCode, currency, isProvisional]);
+
     const handleContinueFree = () => {
         logEvent('pricing_continue_free_clicked', {
             isAuthenticated,
@@ -84,6 +95,12 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
 
         try {
             await checkoutProSubscription(countryCode);
+            logEvent('checkout_redirected', {
+                origin: upgradeOrigin,
+                countryCode,
+                currency,
+                price: planPrices.standard,
+            });
         } catch (error) {
             const message = getPaymentErrorMessage(error, 'checkout');
             setCheckoutError(message);
@@ -106,6 +123,9 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
 
         try {
             await openBillingPortal();
+            logEvent('billing_portal_open_succeeded', {
+                origin: 'plans',
+            });
         } catch (error) {
             console.error(error);
             const message = getPaymentErrorMessage(error, 'billingPortal');

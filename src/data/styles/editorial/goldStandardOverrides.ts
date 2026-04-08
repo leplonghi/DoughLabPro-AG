@@ -1,5 +1,4 @@
 import { DoughStyleDefinition, EditorialTextBlock, StyleComparisonItem } from '@/types/styles';
-import { StyleDefinition } from '@/types/styleDefinition';
 import { arepa_corn_flatbread } from '@/data/styles/bread/arepa_corn_flatbread';
 import { bagels_classic } from '@/data/styles/bread/bagels_classic';
 import { baguette_tradition_francaise } from '@/data/styles/bread/baguette_tradition_francaise';
@@ -35,7 +34,7 @@ const textBlocks = (items: string[], prefix: string, title: string): EditorialTe
         citationIds: ['ref-1'],
     }));
 
-const buildComparisons = (style: StyleDefinition): StyleComparisonItem[] =>
+const buildComparisons = (style: any): StyleComparisonItem[] =>
     (style.styleComparisons || []).slice(0, 4).map((value, index) => {
         const [targetStyleName, difference] = value.split(' - ');
         return {
@@ -48,7 +47,7 @@ const buildComparisons = (style: StyleDefinition): StyleComparisonItem[] =>
         };
     });
 
-const convertGoldStyle = (style: StyleDefinition): Partial<DoughStyleDefinition> => ({
+const convertGoldStyle = (style: any): Partial<DoughStyleDefinition> => ({
     editorialStatus: 'official',
     contentCompleteness: 'expert',
     editorialSummary: {
@@ -123,7 +122,7 @@ const convertGoldStyle = (style: StyleDefinition): Partial<DoughStyleDefinition>
     },
 });
 
-const GOLD_STANDARD_SOURCE_BY_ID: Record<string, StyleDefinition> = {
+const GOLD_STANDARD_SOURCE_BY_ID: Record<string, any> = {
     'pizza-napoletana': neapolitan_avpn_classic,
     'pizza-teglia-romana': roman_teglia_pan,
     'pizza-tonda-romana': roman_scrocchiarella,

@@ -27,7 +27,7 @@ export const neapolitan_contemporary_high_hydration: DoughStyleDefinition = {
   history: "The style emerged as a 'rebellion' against the rigid rules of the AVPN (Associazione Verace Pizza Napoletana). Figures like Franco Pepe and Francesco Martucci began experimenting with different flour blends and hydration levels that were previously forbidden. By 2015, the 'Pizza a Canotto' trend took over social media (Instagram), making the puffy, honeycombed edge a global sensation. Today, it represents the 'Gourmet' side of Neapolitan pizza, focusing on technical precision and high-quality cold-cuts or slow-cooked toppings added after the pizza leaves the oven.",
 
   difficulty: "Hard",
-  fermentationType: "indirect",
+  fermentationType: "preferment",
 
   base_formula: [
     { name: "Strong Italian Flour (Type 0, W320-350)", percentage: 100 },

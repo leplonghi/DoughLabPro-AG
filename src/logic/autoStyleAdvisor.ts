@@ -78,6 +78,7 @@ const STYLE_CHARACTERISTICS: Record<
   [RecipeStyle.COOKIE_SHORTBREAD]: { hydrationRange: [0, 5], idealW: [120, 160], idealOvenTemp: [160, 170], name: 'Shortbread' },
   [RecipeStyle.PRETZEL]: { hydrationRange: [50, 55], idealW: [280, 320], idealOvenTemp: [220, 240], name: 'Pretzel' },
   [RecipeStyle.FRENCH_CROISSANT]: { hydrationRange: [50, 60], idealW: [320, 380], idealOvenTemp: [200, 220], name: 'French Croissant' },
+  [RecipeStyle.PANETTONE_ARTISANAL]: { hydrationRange: [42, 55], idealW: [360, 420], idealOvenTemp: [165, 185], name: 'Panettone' },
   [RecipeStyle.PUFF_PASTRY]: { hydrationRange: [45, 55], idealW: [300, 350], idealOvenTemp: [200, 220], name: 'Puff Pastry' },
 };
 

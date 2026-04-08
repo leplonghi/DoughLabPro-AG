@@ -71,6 +71,7 @@ export const RECIPE_STYLE_TO_ID: Record<RecipeStyle, string> = {
     [RecipeStyle.COOKIE_BROWN_BUTTER]: 'cookies',
     [RecipeStyle.COOKIE_SHORTBREAD]: 'shortbread',
     [RecipeStyle.FRENCH_CROISSANT]: 'croissant',
+    [RecipeStyle.PANETTONE_ARTISANAL]: 'panettone',
     [RecipeStyle.PUFF_PASTRY]: 'puff_pastry',
 
     // Legacy

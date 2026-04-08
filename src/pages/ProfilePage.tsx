@@ -190,6 +190,22 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     );
   };
 
+  const hasPendingProfileChanges = Boolean(
+    user &&
+    (
+      (formData.name || '') !== (user.name || '') ||
+      (formData.email || '') !== (user.email || '') ||
+      (formData.birthDate || '') !== (user.birthDate || '') ||
+      (formData.gender || '') !== (user.gender || '') ||
+      (formData.location || '') !== (user.location || '') ||
+      (formData.bio || '') !== (user.bio || '') ||
+      (formData.website || '') !== (user.website || '') ||
+      (formData.instagramHandle || '') !== (user.instagramHandle || '') ||
+      (formData.skillLevel || '') !== (user.skillLevel || '') ||
+      (formData.avatar || '') !== (user.avatar || '')
+    )
+  );
+
   return (
     <div className="mx-auto max-w-5xl animate-fade-in space-y-8 pb-20">
       <AppShellHeader
@@ -387,7 +403,18 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   </div>
                   <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                     <button type="button" onClick={handleCancel} className="rounded-xl px-4 py-2 font-medium text-dlp-text-secondary transition-colors hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2">{t('common.cancel')}</button>
-                    <button type="button" onClick={handleSave} className="dlp-button-primary rounded-xl px-6 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2">{t('common.general.save_changes')}</button>
+                    <button
+                      type="button"
+                      onClick={handleSave}
+                      disabled={!hasPendingProfileChanges}
+                      className={`rounded-xl px-6 py-2.5 font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2 ${
+                        hasPendingProfileChanges
+                          ? 'dlp-button-primary'
+                          : 'cursor-not-allowed border border-dlp-border bg-white/90 text-dlp-text-muted shadow-sm'
+                      }`}
+                    >
+                      {t('common.general.save_changes')}
+                    </button>
                   </div>
                 </div>
               ) : (
