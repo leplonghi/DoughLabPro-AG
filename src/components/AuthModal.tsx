@@ -183,19 +183,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 <div className="h-32 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover flex items-center justify-center relative overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center mix-blend-overlay"></div>
                     <div className="text-center z-10 p-4">
-<<<<<<< HEAD
                         <h2 id="auth-modal-title" className="text-3xl font-bold text-white drop-shadow-md text-balance">
                             {view === 'forgot-password' ? 'Reset Password' : 'Access DoughLab'}
                         </h2>
                         <p id="auth-modal-description" className="text-white/90 text-sm font-medium mt-1 drop-shadow-sm">
                             {view === 'forgot-password' ? 'Recover your account access.' : 'Sign in, save your lab, and continue where you left off.'}
-=======
-                        <h2 className="text-3xl font-bold text-white drop-shadow-md">
-                            {view === 'forgot-password' ? t('ui.reset_password_357') : t('ui.doughlab_pro_358')}
-                        </h2>
-                        <p className="text-white/90 text-sm font-medium mt-1 drop-shadow-sm">
-                            {view === 'forgot-password' ? t('ui.recover_your_access_359') : 'Bem-vindo ao DoughLab Pro'}
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                         </p>
                     </div>
                     <button

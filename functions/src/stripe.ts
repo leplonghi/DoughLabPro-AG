@@ -147,39 +147,20 @@ async function resolveEffectiveCountry(userId: string, ip?: string): Promise<{ c
  * Creates a Stripe Checkout Session for a "Pro" subscription.
  * Call this function from the client with { planKey, successUrl, cancelUrl, countryHint }.
  */
-<<<<<<< HEAD
-export const createCheckoutSession = functions.https.onCall(async (data: any, context: any) => {
-    assertStripeConfigured();
-
-    // 1. Ensure user is authenticated
-    if (!context.auth) {
-        throw new functions.https.HttpsError(
-            "unauthenticated",
-            "The function must be called while authenticated."
-        );
-    }
-
-    const requestData = (data && typeof data === "object") ? data : {};
-    const { successUrl, cancelUrl, countryHint } = requestData;
-    const planKey = normalizePlanKey(requestData.planKey ?? "standard");
-    const userId = context.auth.uid;
-    const userEmail = context.auth.token.email;
-    const safeSuccessUrl = assertAllowedCheckoutUrl(successUrl, "successUrl");
-    const safeCancelUrl = assertAllowedCheckoutUrl(cancelUrl, "cancelUrl");
-    const safeCountryHint = normalizeCountryHint(countryHint);
-=======
 export const createCheckoutSession = createHandler<{
     planKey?: string;
     successUrl: string;
     cancelUrl: string;
     countryHint?: string;
-}, { sessionId: string }>(
+}, { sessionId: string; url: string | null }>(
     "createCheckoutSession",
     {
         requireAuth: true,
         rateLimit: { points: 5, duration: 60, keyPrefix: "checkout" } // 5 attempts per minute
     },
     async (data, context) => {
+        assertStripeConfigured();
+
         const { planKey = 'standard', successUrl, cancelUrl, countryHint } = data;
         const userId = context.auth!.uid;
         const userEmail = context.auth!.token.email;
@@ -191,24 +172,21 @@ export const createCheckoutSession = createHandler<{
             );
         }
 
+        const normalizedPlanKey = normalizePlanKey(planKey);
+        const safeSuccessUrl = assertAllowedCheckoutUrl(successUrl, "successUrl");
+        const safeCancelUrl = assertAllowedCheckoutUrl(cancelUrl, "cancelUrl");
+        const safeCountryHint = normalizeCountryHint(countryHint);
+
         // 2. Resolve Country & Price
         let { country: targetCountry, isLocked } = await resolveEffectiveCountry(userId);
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
         // Allow hint if not locked to override the Provisional default
-        if (!isLocked && typeof countryHint === 'string' && countryHint.length === 2) {
-            targetCountry = countryHint.toUpperCase();
+        if (!isLocked && safeCountryHint) {
+            targetCountry = safeCountryHint;
         }
 
-<<<<<<< HEAD
-    // Allow hint if not locked to override the Provisional default
-    if (!isLocked && safeCountryHint) {
-        targetCountry = safeCountryHint;
-    }
-=======
         const pricing = getCountryPricing(targetCountry);
-        const planPrice = pricing.plans[planKey as keyof CountryPricing['plans']];
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
+        const planPrice = pricing.plans[normalizedPlanKey as keyof CountryPricing['plans']];
 
         if (!planPrice) {
             throw new functions.https.HttpsError('invalid-argument', 'Invalid plan info');
@@ -225,7 +203,7 @@ export const createCheckoutSession = createHandler<{
                         currency: pricing.currency,
                         unit_amount: Math.round(planPrice * 100), // cents
                         product_data: {
-                            name: `DoughLab Pro (${planKey})`,
+                            name: `DoughLab Pro (${normalizedPlanKey})`,
                             description: `Subscription for ${targetCountry}`,
                         },
                         recurring: {
@@ -251,21 +229,7 @@ export const createCheckoutSession = createHandler<{
             }
         });
 
-<<<<<<< HEAD
-        return {
-            sessionId: session.id,
-            url: session.url,
-        };
-    } catch (error: any) {
-        console.error("Stripe Checkout Error:", error);
-        throw new functions.https.HttpsError(
-            "internal",
-            "Unable to create Stripe checkout session.",
-            error.message
-        );
-=======
-        return { sessionId: session.id };
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
+        return { sessionId: session.id, url: session.url || null };
     }
 );
 

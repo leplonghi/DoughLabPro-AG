@@ -464,20 +464,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     tone="info"
                                 />
                                 <LabFeatureCard
-<<<<<<< HEAD
                                     icon={<ChartBarIcon className="h-6 w-6 text-dlp-brand-hover" />}
-=======
-                                    icon={<DocumentTextIcon className="h-6 w-6 text-teal-500" />}
-                                    title={t('mylab.sensory_diary')}
-                                    description={t('mylab.your_collection_of_baking_notes_and_tasting_observ')}
-                                    onClick={() => onNavigate('mylab/diario-sensorial')}
-                                    bgClass="bg-teal-50"
-                                    isLocked={!hasProAccess}
-                                    onUnlock={() => openPaywall('mylab_sensory_diary')}
-                                />
-                                <LabFeatureCard
-                                    icon={<ChartBarIcon className="h-6 w-6 text-pink-500" />}
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                                     title={t('mylab.deep_insights')}
                                     description={t('mylab.desc_insights')}
                                     onClick={() => onNavigate('mylab/insights')}

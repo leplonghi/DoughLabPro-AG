@@ -114,15 +114,7 @@ const ProductionDashboard = React.lazy(() => import('@/pages/ProductionDashboard
 // --- Placeholder Pages ---
 const HelpPage = React.lazy(() => import('@/pages/HelpPage'));
 const UpgradePage = React.lazy(() => import('@/pages/UpgradePage'));
-<<<<<<< HEAD
 const AuthModal = React.lazy(() => import('@/components/AuthModal'));
-=======
-const NotificationsPage = React.lazy(() => import('@/pages/NotificationsPage'));
-
-function LandingPage() {
-    return <div className="p-8 text-center">Landing Page (Coming Soon)</div>;
-}
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
 interface AppRouterProps {
     onStartBatch: () => void;
@@ -419,13 +411,6 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 );
             case 'community':
                 return protect(<CommunityPage />);
-<<<<<<< HEAD
-=======
-            case 'notifications':
-                return protect(<NotificationsPage />);
-            case 'upgrade':
-                return protect(<UpgradePage />);
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             case 'upgrade/success':
                 return <UpgradePage success={true} />;
             case 'upgrade/cancel':

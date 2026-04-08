@@ -10,7 +10,6 @@ import LevainOnboardingModal from '@/components/onboarding/LevainOnboardingModal
 import { Logo } from '@/components/ui/Logo';
 import { TourGuide } from '@/components/onboarding/TourGuide';
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
-<<<<<<< HEAD
 import { useToast } from '@/components/ToastProvider';
 import { useUser } from '@/contexts/UserProvider';
 import { useAuth } from '@/contexts/AuthContext';
@@ -21,34 +20,6 @@ import { useRouter } from '@/contexts/RouterContext';
 import AppProviders from '@/app/AppProviders';
 import { PUBLIC_ROUTES } from '@/app/appShell';
 import { logEvent } from '@/services/analytics';
-=======
-import { DoughyAssistant } from '@/components/tools/DoughyAssistant';
-import { FloatingNotificationWidget } from '@/components/notifications/FloatingNotificationWidget';
-
-// Contexts
-import { ToastProvider, useToast } from '@/components/ToastProvider';
-import { UserProvider, useUser } from '@/contexts/UserProvider';
-import { AuthProvider, useAuth } from '@/contexts/AuthContext';
-import { I18nProvider, useTranslation } from '@/i18n';
-import { CalculatorProvider, useCalculator } from '@/contexts/CalculatorContext';
-import { DoughSessionProvider, useDoughSession } from '@/contexts/DoughSessionContext';
-import { StylesProvider } from '@/contexts/StylesProvider';
-import { RouterProvider, useRouter } from '@/contexts/RouterContext';
-import { NotificationProvider } from '@/contexts/NotificationContext';
-
-// Domain-specific providers
-import { BatchesProviderComponent } from '@/contexts/BatchesProvider';
-import { LevainProvider } from '@/contexts/LevainProvider';
-import { GoalsProvider } from '@/contexts/GoalsProvider';
-import { FloursProvider } from '@/contexts/FloursProvider';
-import { ConsistencyProvider } from '@/contexts/ConsistencyProvider';
-import { InsightsProvider } from '@/contexts/InsightsProvider';
-import { RecipesProvider } from '@/contexts/RecipesProvider';
-import { DoughsProvider } from '@/contexts/DoughsProvider';
-import { SensoryProvider } from '@/contexts/SensoryProvider';
-import { TimelineProvider } from '@/contexts/TimelineProvider';
-import { MarketingProvider } from '@/marketing/MarketingContext';
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
 import AppRouter from '@/AppRouter';
 import { PrimaryPage, BatchStatus } from '@/types';
@@ -56,12 +27,8 @@ import { FLOURS } from '@/flours-constants';
 
 // Lazy Load Assistant
 const AssistantPage = React.lazy(() => import('@/components/AssistantPage'));
-<<<<<<< HEAD
 const AuthModal = React.lazy(() => import('@/components/AuthModal'));
 const DoughyAssistant = React.lazy(() => import('@/components/tools/DoughyAssistant').then((module) => ({ default: module.DoughyAssistant })));
-=======
-
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
 function AppContent() {
   const { route, navigate } = useRouter();
@@ -272,14 +239,9 @@ function AppContent() {
 
       <Footer onNavigate={navigate} />
 
-<<<<<<< HEAD
       <Suspense fallback={null}>
         <DoughyAssistant />
       </Suspense>
-=======
-      <DoughyAssistant />
-      <FloatingNotificationWidget />
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
       {showLevainOnboarding && (
         <LevainOnboardingModal
@@ -325,54 +287,9 @@ function AppContent() {
 
 function App() {
   return (
-<<<<<<< HEAD
     <AppProviders>
       <AppContent />
     </AppProviders>
-=======
-    <I18nProvider>
-      <AuthProvider>
-        <ToastProvider>
-          <UserProvider>
-            <MarketingProvider>
-              <NotificationProvider>
-                {/* Domain-specific providers */}
-                <BatchesProviderComponent>
-                  <LevainProvider>
-                    <GoalsProvider>
-                      <FloursProvider>
-                        <ConsistencyProvider>
-                          <InsightsProvider>
-                            <RecipesProvider>
-                              <DoughsProvider>
-                                <SensoryProvider>
-                                  <TimelineProvider>
-                                    <RouterProvider>
-                                      <DoughSessionProvider>
-                                        <CalculatorProvider>
-                                          <StylesProvider>
-                                            <AppContent />
-                                          </StylesProvider>
-                                        </CalculatorProvider>
-                                      </DoughSessionProvider>
-                                    </RouterProvider>
-                                  </TimelineProvider>
-                                </SensoryProvider>
-                              </DoughsProvider>
-                            </RecipesProvider>
-                          </InsightsProvider>
-                        </ConsistencyProvider>
-                      </FloursProvider>
-                    </GoalsProvider>
-                  </LevainProvider>
-                </BatchesProviderComponent>
-              </NotificationProvider>
-            </MarketingProvider>
-          </UserProvider>
-        </ToastProvider>
-      </AuthProvider>
-    </I18nProvider>
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
   );
 }
 

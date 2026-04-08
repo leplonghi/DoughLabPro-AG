@@ -40,7 +40,6 @@ i18n
   .init({
     lng: getInitialLocale(),
     fallbackLng: 'en',
-<<<<<<< HEAD
     supportedLngs: SUPPORTED_LOCALES,
     ns: ['common'], // Default namespace loaded initially
     defaultNS: 'common',
@@ -48,14 +47,6 @@ i18n
     // even if not explicitly loaded by the component.
     fallbackNS: ['common', 'auth', 'calculator', 'dashboard', 'marketing', 'method', 'styles', 'doughbot', 'profile', 'settings'],
     load: 'currentOnly',
-=======
-    supportedLngs: ['en', 'pt', 'es'],
-    ns: ['common', 'ui', 'calculator', 'styles', 'learn', 'errors'], // New namespaces
-    defaultNS: 'common',
-    // fallbackNS ensures compatibility during migration by resolving keys from all namespaces
-    fallbackNS: ['ui', 'common', 'calculator', 'styles', 'learn', 'errors'],
-    load: 'languageOnly',
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     debug: import.meta.env.DEV,
     interpolation: {
       escapeValue: false,
@@ -124,17 +115,12 @@ export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 export const useTranslation = (ns?: string | string[]) => {
   const { t, i18n } = useI18nextTranslation(ns);
 
-<<<<<<< HEAD
   const setLocale = (preference: LocalePreference) => {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(LOCALE_STORAGE_KEY, preference);
     }
     const nextLocale = preference === 'system' ? getSystemLocale() : preference;
     void i18n.changeLanguage(nextLocale);
-=======
-  const setLocale = (l: Locale) => {
-    i18n.changeLanguage(l);
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
   };
 
   const tWrapper = (key: string, replacements?: Record<string, any>): string => {
@@ -168,7 +154,6 @@ export const useTranslation = (ns?: string | string[]) => {
       }
     }
 
-<<<<<<< HEAD
     const result = t(normalizedKey, replacements) as unknown;
 
     if (typeof result === 'string') {
@@ -197,24 +182,6 @@ export const useTranslation = (ns?: string | string[]) => {
 
   const currentLanguage = normalizeLocale(i18n.resolvedLanguage || i18n.language);
   const localePreference = getStoredLocalePreference();
-=======
-    // If no mapping matched, but it looks like a namespaced key (e.g. "ns:key"), leave it.
-    // If it's a simple key "save", it will fallback to common/ui.
-    // If it is "common.foo", rewrite to "common:foo"
-    if (normalizedKey === key) {
-      if (key.startsWith('common.')) {
-        normalizedKey = key.replace('common.', 'common:');
-      } else if (key.startsWith('ui.')) {
-        normalizedKey = key.replace('ui.', 'ui:');
-      }
-    }
-
-    return t(normalizedKey, replacements) as unknown as string;
-  };
-
-  // Ensure we return a valid Locale from types, even if detection picked an unsupported one
-  const currentLanguage = (i18n.resolvedLanguage || i18n.language)?.split('-')[0];
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
   return {
     locale: currentLanguage as Locale,

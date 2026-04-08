@@ -3,16 +3,12 @@ import { checkoutProSubscription, getPaymentErrorMessage, openBillingPortal } fr
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from '@/i18n';
-<<<<<<< HEAD
 import { useLocalizedPricing } from '@/hooks/useLocalizedPricing';
 import { useToast } from '@/components/ToastProvider';
 import { useUser } from '@/contexts/UserProvider';
 import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
 import { getPageMeta } from '@/app/appShell';
-=======
-// import { useNavigate } from 'react-router-dom'; // Unused in this version as we use window.location
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
 interface UpgradePageProps {
     success?: boolean;
@@ -22,7 +18,6 @@ interface UpgradePageProps {
 export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
-<<<<<<< HEAD
     const [isPortalLoading, setIsPortalLoading] = useState(false);
     const [checkoutError, setCheckoutError] = useState<string | null>(null);
     const { symbol, currency, countryCode, planPrices, isProvisional } = useLocalizedPricing();
@@ -30,20 +25,12 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
     const { hasProAccess, user } = useUser();
     const upgradeMeta = getPageMeta('upgrade');
     const canManageBilling = hasProAccess && !!user?.stripeCustomerId;
-=======
-    // Standard subscription plan key
-    const PRO_PLAN_KEY = "standard";
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
     const handleUpgrade = async () => {
         setIsLoading(true);
         setCheckoutError(null);
         try {
-<<<<<<< HEAD
             await checkoutProSubscription(countryCode);
-=======
-            await checkoutProSubscription(PRO_PLAN_KEY);
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
         } catch (error) {
             console.error(error);
             setCheckoutError(getPaymentErrorMessage(error, 'checkout'));
@@ -145,19 +132,11 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
                     <div className="py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12 lg:min-w-[360px]">
                         <p className="text-lg leading-6 font-medium text-gray-900">Monthly subscription</p>
                         <div className="mt-4 flex items-center justify-center text-5xl font-extrabold text-gray-900">
-<<<<<<< HEAD
                             <span>{symbol}{planPrices.standard.toFixed(2)}</span>
                             <span className="ml-3 text-xl font-medium text-gray-500">{currency}</span>
                         </div>
                         <p className="mt-4 text-sm text-gray-500">
                             Cancel anytime. Secure billing is finalized by your payment country.
-=======
-                            <span>$4.99</span>
-                            <span className="ml-3 text-xl font-medium text-gray-500">/{t('general.month')}</span>
-                        </div>
-                        <p className="mt-4 text-sm text-gray-500">
-                            {t('paywall.pricing.cancel_anytime', { currency: 'USD' })}
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                         </p>
                         {isProvisional && (
                             <p className="mt-2 text-xs text-gray-400">

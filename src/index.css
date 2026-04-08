@@ -65,7 +65,7 @@
 }
 
 html {
-  font-size: 15px;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
@@ -344,7 +344,6 @@ body::before {
   }
 }
 
-<<<<<<< HEAD
 @keyframes floatGlow {
   0%, 100% {
     transform: translate3d(0, 0, 0);
@@ -352,7 +351,9 @@ body::before {
   }
   50% {
     transform: translate3d(0, -8px, 0);
-=======
+  }
+}
+
 @keyframes slideInLeft {
   from {
     opacity: 0;
@@ -384,17 +385,14 @@ body::before {
   }
 
   to {
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     opacity: 1;
   }
 }
 
-<<<<<<< HEAD
 .animate-float-glow {
   animation: floatGlow 7s ease-in-out infinite;
 }
 
-=======
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -674,8 +672,6 @@ body::before {
   border-color: var(--dlp-brand);
 }
 
-
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -702,6 +698,17 @@ body::before {
 :focus-visible {
   outline: 2px solid rgba(83, 192, 108, 0.45);
   outline-offset: 2px;
+}
+
+input,
+textarea,
+select {
+  color: var(--dlp-text-primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--dlp-text-muted);
 }
 
 /* Range Input Stylings */

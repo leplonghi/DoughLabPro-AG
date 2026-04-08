@@ -35,20 +35,20 @@ const ProductionDashboardTabs = () => {
   const [activeTab, setActiveTab] = useState<'scheduler' | 'batch' | 'logistics'>('scheduler');
 
   return (
-    <div className="bg-white rounded-2xl border-[0.5px] border-slate-100 shadow-sm overflow-hidden flex flex-col h-full">
+    <div className="dlp-surface-soft rounded-2xl overflow-hidden flex flex-col">
       {/* Header & Tabs Container */}
-      <div className="border-b border-slate-100 p-2">
+      <div className="border-b border-dlp-border px-3 py-2">
         {/* Title Area */}
-        <div className="px-4 py-3 flex items-center justify-between">
-          <h3 className="text-sm font-bold text-[#1B4332] flex items-center gap-2 uppercase tracking-wider">
+        <div className="px-2 py-2 flex items-center justify-between">
+          <h3 className="text-xs font-bold text-[#1B4332] flex items-center gap-2 uppercase tracking-wider">
             <Layers size={16} className="text-[#51a145]" />
             Production & Logistics
           </h3>
-          <span className="text-[10px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded-full uppercase tracking-widest">Commercial Tools</span>
+          <span className="text-[9px] font-bold text-dlp-text-muted bg-white/70 px-2 py-1 rounded-full uppercase tracking-widest">Commercial Tools</span>
         </div>
 
         {/* Cleaner Tabs */}
-        <div className="flex bg-slate-50 p-1 rounded-xl">
+        <div className="flex bg-white/70 p-1 rounded-xl border border-white/70">
           {[
             { id: 'scheduler', icon: Calendar, label: t('ui.schedule_309') },
             { id: 'batch', icon: Layers, label: t('ui.batch_310') },
@@ -57,10 +57,10 @@ const ProductionDashboardTabs = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all duration-200
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200
                 ${activeTab === tab.id
-                  ? 'bg-white text-[#51a145] shadow-sm border border-slate-100/50'
-                  : 'text-slate-400 hover:text-slate-600 hover:bg-white/50'}`}
+                  ? 'bg-white text-[#51a145] shadow-sm border border-white/80'
+                  : 'text-dlp-text-muted hover:text-dlp-text-secondary hover:bg-white/60'}`}
             >
               <tab.icon size={14} className={activeTab === tab.id ? 'text-[#51a145]' : 'text-slate-400'} />
               {tab.label}
@@ -70,7 +70,7 @@ const ProductionDashboardTabs = () => {
       </div>
 
       {/* Content Area */}
-      <div className="p-6 bg-white min-h-[300px]">
+      <div className="p-4 bg-white/80 min-h-[220px]">
         {activeTab === 'scheduler' && <SchedulerSection />}
         {activeTab === 'batch' && <AssemblySection />}
         {activeTab === 'logistics' && <LogisticsSection />}
@@ -141,8 +141,9 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
         eyebrow={calculatorMeta.eyebrow}
         title={calculatorMeta.title}
         description={calculatorMeta.description}
+        size="compact"
       >
-        <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+        <div className="rounded-full border border-emerald-200/70 bg-white/80 px-3 py-1 text-xs font-semibold text-dlp-text-secondary shadow-sm">
           {props.hasProAccess ? 'Pro bake workspace active' : 'Free bake workspace'}
         </div>
       </AppShellHeader>
@@ -244,102 +245,6 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           onFinish={() => { }}
         />
       )}
-<<<<<<< HEAD
-=======
-
-      {/* Floating Help with Contextual Tips */}
-      <FloatingHelpButton
-        tips={[
-          {
-            id: 'hydration',
-            title: t('floating_help.hydration.title'),
-            icon: '💧',
-            content: (
-              <div className="space-y-2">
-                <p>{t('floating_help.hydration.what_is')}</p>
-                <div className="bg-emerald-50 rounded-lg p-2 text-xs">
-                  <p className="font-bold mb-1">{t('floating_help.hydration.guide_title')}</p>
-                  <ul className="space-y-0.5">
-                    <li>• {t('floating_help.hydration.guide_firm')}</li>
-                    <li>• {t('floating_help.hydration.guide_classic')}</li>
-                    <li>• {t('floating_help.hydration.guide_wet')}</li>
-                  </ul>
-                </div>
-              </div>
-            )
-          },
-          {
-            id: 'fermentation',
-            title: t('floating_help.fermentation.title'),
-            icon: '🦠',
-            content: (
-              <div className="space-y-2">
-                <p><strong>{t('floating_help.fermentation.main_types')}</strong></p>
-                <ul className="text-xs space-y-1">
-                  <li>• {t('floating_help.fermentation.direct')}</li>
-                  <li>• {t('floating_help.fermentation.cold')}</li>
-                  <li>• {t('floating_help.fermentation.biga_poolish')}</li>
-                  <li>• {t('floating_help.fermentation.sourdough')}</li>
-                </ul>
-                <p className="text-xs mt-2 text-emerald-700">{t('floating_help.fermentation.tip')}</p>
-              </div>
-            )
-          },
-          {
-            id: 'flour',
-            title: t('floating_help.flour.title'),
-            icon: '🌾',
-            content: (
-              <div className="space-y-2">
-                <p className="text-xs"><strong>{t('floating_help.flour.protein_key')}</strong></p>
-                <ul className="text-xs space-y-1">
-                  <li>• {t('floating_help.flour.cakes')}</li>
-                  <li>• {t('floating_help.flour.soft_breads')}</li>
-                  <li>• {t('floating_help.flour.pizza_artisan')}</li>
-                  <li>• {t('floating_help.flour.bagels')}</li>
-                </ul>
-                <p className="text-xs mt-2 bg-amber-50 p-2 rounded">{t('floating_help.flour.warning')}</p>
-              </div>
-            )
-          },
-          {
-            id: 'salt',
-            title: t('floating_help.salt.title'),
-            icon: '🧂',
-            content: (
-              <div className="space-y-2">
-                <p className="text-xs"><strong>{t('floating_help.salt.functions')}</strong></p>
-                <ul className="text-xs space-y-0.5">
-                  <li>✓ {t('floating_help.salt.strengthens')}</li>
-                  <li>✓ {t('floating_help.salt.controls')}</li>
-                  <li>✓ {t('floating_help.salt.enhances')}</li>
-                </ul>
-                <div className="bg-red-50 rounded p-2 mt-2">
-                  <p className="text-xs font-bold text-red-800">{t('floating_help.salt.warning')}</p>
-                </div>
-              </div>
-            )
-          },
-          {
-            id: 'temperature',
-            title: t('floating_help.temperature.title'),
-            icon: '🌡️',
-            content: (
-              <div className="space-y-2">
-                <p className="text-xs"><strong>{t('floating_help.temperature.ideal')}</strong></p>
-                <div className="bg-blue-50 rounded p-2 text-xs">
-                  <p className="font-bold mb-1">{t('floating_help.temperature.pro_tip_title')}</p>
-                  <p>{t('floating_help.temperature.pro_tip_content')}</p>
-                </div>
-                <p className="text-xs mt-2">{t('floating_help.temperature.warning')}</p>
-              </div>
-            )
-          }
-        ]}
-      />
-
-      <DoughyAssistant />
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
     </div>
   );
 };

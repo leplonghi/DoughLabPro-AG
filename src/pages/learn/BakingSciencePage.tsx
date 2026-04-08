@@ -40,35 +40,20 @@ const BakingSciencePage: React.FC<BakingSciencePageProps> = ({ onNavigate }) => 
   const { t } = useTranslation();
     const categories = [
         {
-<<<<<<< HEAD
             page: 'learn/starch-gelatinization' as Page,
             title: 'Starch Gelatinization',
-=======
-            page: 'learn/article/starch-gelatinization' as Page,
-            title: t('learn.starch_gelatinization_314'),
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             description: 'How starch absorbs water, swells and sets the crumb structure.',
             icon: <BeakerIcon className="h-8 w-8" />,
         },
         {
-<<<<<<< HEAD
             page: 'learn/crust-formation' as Page,
             title: 'Crust Formation Dynamics',
-=======
-            page: 'learn/article/crust-formation-dynamics' as Page,
-            title: t('learn.crust_formation_dynamics_315'),
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             description: 'How heat, moisture and Maillard reactions shape crust texture and color.',
             icon: <FireIcon className="h-8 w-8" />,
         },
         {
-<<<<<<< HEAD
             page: 'learn/baking-profiles' as Page,
             title: 'Baking Profiles by Style',
-=======
-            page: 'learn/article/baking-profiles-by-style' as Page,
-            title: t('learn.baking_profiles_by_style_316'),
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             description: 'Temperature, heat curves and timing for major global pizza and bread styles.',
             icon: <ClockIcon className="h-8 w-8" />,
         },
@@ -79,13 +64,8 @@ const BakingSciencePage: React.FC<BakingSciencePageProps> = ({ onNavigate }) => 
             icon: <BookOpenIcon className="h-8 w-8" />,
         },
         {
-<<<<<<< HEAD
             page: 'learn/baking-surfaces' as Page,
             title: 'Baking Surfaces',
-=======
-            page: 'learn/article/baking-surfaces-and-heat-transfer' as Page,
-            title: t('learn.baking_surfaces_318'),
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
             description: 'Understanding how different surfaces affect heat transfer.',
             icon: <ChartBarIcon className="h-8 w-8" />,
         }

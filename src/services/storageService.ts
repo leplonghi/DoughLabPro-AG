@@ -16,7 +16,6 @@ const sanitizePathSegment = (segment: string) =>
         .join("/");
 
 export const uploadImage = async (file: File, path: string): Promise<string> => {
-<<<<<<< HEAD
     if (!app) throw new Error('Firebase not initialized');
     if (!file.type.startsWith(IMAGE_CONTENT_TYPE_PREFIX)) {
         throw new Error('Only image uploads are supported.');
@@ -29,9 +28,6 @@ export const uploadImage = async (file: File, path: string): Promise<string> => 
     if (!safePath) {
         throw new Error('Invalid upload path.');
     }
-=======
-    if (!app) throw new Error(t('common.firebase_not_initialized_456'));
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
     const storage = getStorage(app);
     const storageRef = ref(storage, safePath);

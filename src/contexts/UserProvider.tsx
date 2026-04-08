@@ -155,60 +155,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       return;
     }
 
-<<<<<<< HEAD
     let isMounted = true;
     setUserLoading(true);
     setPlanLoading(true);
-=======
-      if (!authUser) {
-        // Check for VIP Guest URL or Persistence
-        const urlParams = new URLSearchParams(window.location.search);
-        const vipParam = urlParams.get('vip');
-
-        if (vipParam === 'true') {
-          localStorage.setItem('dough-lab-vip-mode', 'true');
-        } else if (vipParam === 'false') {
-          localStorage.removeItem('dough-lab-vip-mode');
-        }
-
-        const isVip = vipParam === 'true' || localStorage.getItem('dough-lab-vip-mode') === 'true';
-
-        if (isVip) {
-          const guestAuth = { uid: 'vip-guest-user', email: 'vip@doughlab.pro' };
-          setFirebaseUser(guestAuth);
-          setUser({
-            uid: 'vip-guest-user',
-            name: t('common.vip_guest_418'),
-            email: 'vip@doughlab.pro',
-            avatar: undefined,
-            plan: 'lab_pro',
-            isPro: true,
-            isAdmin: false,
-          } as User);
-
-          setUserLoading(false);
-          setPlanLoading(false);
-          return;
-        }
-
-        setUser(null);
-        setUserLoading(false);
-        setPlanLoading(false);
-        // Clear data on logout
-        setOvens([]);
-        setLevains([]);
-        setGoals([]);
-        setTestSeries([]);
-        setUserStyles([]);
-        setFavorites([]);
-        setCustomPresets([]);
-        setCustomToppings([]);
-        return;
-      }
-
-      setUserLoading(true);
-      setPlanLoading(true);
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
     const syncProfile = async () => {
       try {
@@ -224,31 +173,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           monitor.trackError(err, { context: 'fetch_user_profile' });
         }
 
-<<<<<<< HEAD
         const email = authFirebaseUser.email ? authFirebaseUser.email.toLowerCase() : '';
-=======
-        const email = authUser.email ? authUser.email.toLowerCase() : '';
-        const isAdminEmail = email === 'leplonghi@gmail.com';
-
-        // Auto-fix Firestore for admin
-        if (isAdminEmail && (profileData.plan !== 'lab_pro' || !profileData.isAdmin)) {
-          console.log(t('ui.autoupgrading_admin_user_in_firestore'));
-          try {
-            await updateDoc(ref, {
-              isAdmin: true,
-              plan: 'lab_pro',
-              isPro: true,
-              updatedAt: new Date().toISOString()
-            });
-            // Update local profileData to reflect the change immediately
-            profileData.isAdmin = true;
-            profileData.plan = 'lab_pro';
-            profileData.isPro = true;
-          } catch (err: any) {
-            monitor.trackError(err, { context: 'auto_upgrade_admin' });
-          }
-        }
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
 
         const plan: PlanId =
           profileData.plan === "lab_pro" ||
@@ -260,7 +185,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
               : "free";
 
         const mergedProfile: User = {
-<<<<<<< HEAD
           uid: authFirebaseUser.uid,
           name: profileData.name || authFirebaseUser.displayName || (authFirebaseUser.isAnonymous ? 'Guest Baker' : 'Baker'),
           email: authFirebaseUser.email || email,
@@ -268,15 +192,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           plan,
           isPro: plan === 'lab_pro',
           isAdmin: false,
-=======
-          uid: authUser.uid,
-          name: profileData.name || authUser.displayName || t('common.baker_419'),
-          email: authUser.email || '',
-          avatar: profileData.avatar || authUser.photoURL || undefined,
-          plan, // Normalized plan
-          isPro: plan === 'lab_pro', // Derived from plan
-          isAdmin: !!profileData.isAdmin || isAdminEmail,
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
           trialEndsAt: profileData.trialEndsAt,
           proSince: profileData.proSince,
           proExpiresAt: profileData.proExpiresAt,

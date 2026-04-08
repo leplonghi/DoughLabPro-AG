@@ -168,7 +168,6 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
 
                 {/* Metric Boxes */}
-<<<<<<< HEAD
                 <div className="grid grid-cols-3 gap-4 mb-10">
                     <MetricCard
                         label={t('results.total_flour')}
@@ -192,39 +191,6 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         icon={<CubeIcon className="w-4 h-4 text-dlp-brand-lime" />}
                         className="items-center text-center"
                     />
-=======
-                <div className="grid grid-cols-3 gap-4 mb-10" id="tour-results-metrics">
-                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                            <FlourIcon className="w-4 h-4 text-dlp-brand-lime" />
-                        </div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.total_flour')}</p>
-                        <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalFlour)}</p>
-                    </div>
-                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                            <ScaleIcon className="w-4 h-4 text-dlp-brand-lime" />
-                        </div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.total_dough')}</p>
-                        <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough)}</p>
-                    </div>
-                    <div className="bg-slate-50/50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center group hover:bg-white hover:shadow-premium transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                            <CubeIcon className="w-4 h-4 text-dlp-brand-lime" />
-                        </div>
-                        {calculationMode === 'flour' ? (
-                            <>
-                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.est_yield', { defaultValue: 'Est. Yield' })}</p>
-                                <p className="text-lg font-bold font-heading text-slate-800">{results.projectedYield || 0} Pcs</p>
-                            </>
-                        ) : (
-                            <>
-                                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-1">{t('results.weight_per_piece', { defaultValue: 'Per piece' })}</p>
-                                <p className="text-lg font-bold font-heading text-slate-800">{displayValue(results.totalDough / config.numPizzas)}</p>
-                            </>
-                        )}
-                    </div>
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                 </div>
 
                 {/* Ingredients List */}
@@ -314,11 +280,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             )}
 
             {/* Step-by-Step Method Panel */}
-<<<<<<< HEAD
             <AppSurface surface="glass" tone="neutral" className="overflow-hidden p-0">
-=======
-            <div className="dlp-card border-slate-100 p-0 overflow-hidden" id="tour-method">
->>>>>>> 89c086a8769ca6110a35413482560dfd7ca5b839
                 <div className="p-6">
                     <TechnicalMethodPanel steps={technicalSteps} />
                 </div>
