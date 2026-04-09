@@ -1,5 +1,6 @@
-import { collection, addDoc, query, where, getDocs, Timestamp, orderBy, limit } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs, Timestamp, orderBy, limit as fsLimit } from 'firebase/firestore';
 import { db } from '../firebase/db';
+import { ANALYTICS_QUERY_LIMITS } from '@/constants';
 
 export interface NotificationAnalyticsEvent {
     userId: string;
@@ -43,6 +44,27 @@ export class NotificationAnalyticsService {
 
     constructor(userId: string) {
         this.userId = userId;
+    }
+
+    private buildAnalyticsQuery(startDate?: Date, endDate?: Date) {
+        const filters = [
+            where('userId', '==', this.userId),
+        ];
+
+        if (startDate) {
+            filters.push(where('timestamp', '>=', startDate.toISOString()));
+        }
+
+        if (endDate) {
+            filters.push(where('timestamp', '<=', endDate.toISOString()));
+        }
+
+        return query(
+            collection(db, 'notificationAnalytics'),
+            ...filters,
+            orderBy('timestamp', 'desc'),
+            fsLimit(ANALYTICS_QUERY_LIMITS.notificationEvents)
+        );
     }
 
     /**
@@ -137,12 +159,7 @@ export class NotificationAnalyticsService {
      */
     async getEngagementMetrics(startDate: Date, endDate: Date): Promise<NotificationEngagementMetrics> {
         try {
-            const q = query(
-                collection(db, 'notificationAnalytics'),
-                where('userId', '==', this.userId),
-                where('timestamp', '>=', startDate.toISOString()),
-                where('timestamp', '<=', endDate.toISOString())
-            );
+            const q = this.buildAnalyticsQuery(startDate, endDate);
 
             const snapshot = await getDocs(q);
             const events = snapshot.docs.map(doc => doc.data() as NotificationAnalyticsEvent);
@@ -216,12 +233,7 @@ export class NotificationAnalyticsService {
      */
     async getMetricsByType(startDate: Date, endDate: Date): Promise<NotificationTypeMetrics[]> {
         try {
-            const q = query(
-                collection(db, 'notificationAnalytics'),
-                where('userId', '==', this.userId),
-                where('timestamp', '>=', startDate.toISOString()),
-                where('timestamp', '<=', endDate.toISOString())
-            );
+            const q = this.buildAnalyticsQuery(startDate, endDate);
 
             const snapshot = await getDocs(q);
             const events = snapshot.docs.map(doc => doc.data() as NotificationAnalyticsEvent);
@@ -263,7 +275,7 @@ export class NotificationAnalyticsService {
     /**
      * Get most engaged notification types
      */
-    async getMostEngagedTypes(limit: number = 5): Promise<Array<{ type: string; engagementRate: number }>> {
+    async getMostEngagedTypes(resultLimit: number = 5): Promise<Array<{ type: string; engagementRate: number }>> {
         const last30Days = new Date();
         last30Days.setDate(last30Days.getDate() - 30);
 
@@ -275,7 +287,7 @@ export class NotificationAnalyticsService {
                 engagementRate: m.sent > 0 ? ((m.clicked + m.snoozed) / m.sent) * 100 : 0,
             }))
             .sort((a, b) => b.engagementRate - a.engagementRate)
-            .slice(0, limit);
+            .slice(0, resultLimit);
     }
 
     /**
@@ -286,11 +298,7 @@ export class NotificationAnalyticsService {
         startDate.setDate(startDate.getDate() - days);
 
         try {
-            const q = query(
-                collection(db, 'notificationAnalytics'),
-                where('userId', '==', this.userId),
-                where('timestamp', '>=', startDate.toISOString())
-            );
+            const q = this.buildAnalyticsQuery(startDate);
 
             const snapshot = await getDocs(q);
             const events = snapshot.docs.map(doc => doc.data() as NotificationAnalyticsEvent);

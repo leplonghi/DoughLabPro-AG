@@ -17,31 +17,31 @@ export const PostTechnicalPanel: React.FC<PostTechnicalPanelProps> = ({ post }) 
     };
 
     return (
-        <div className="flex items-center gap-3 px-4 py-3 overflow-x-auto no-scrollbar">
+        <div className="flex flex-wrap items-center gap-2.5 px-4 py-3">
             {/* Hydration Pill */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg border border-blue-100/50 shadow-sm flex-shrink-0">
+            <div className="flex items-center gap-1.5 rounded-lg border border-blue-100/50 bg-blue-50 px-3 py-1.5 text-blue-700 shadow-sm">
                 <Droplets className="h-3.5 w-3.5" />
                 <span className="text-xs font-bold">{post.hydration}%</span>
                 <span className="text-[10px] opacity-70 uppercase tracking-tight">{t('form.hydration')}</span>
             </div>
 
             {/* Time Pill */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg border border-purple-100/50 shadow-sm flex-shrink-0">
+            <div className="flex items-center gap-1.5 rounded-lg border border-purple-100/50 bg-purple-50 px-3 py-1.5 text-purple-700 shadow-sm">
                 <Clock className="h-3.5 w-3.5" />
                 <span className="text-xs font-bold">{formatTime(post.fermentationTime)}</span>
             </div>
 
             {/* Oven Pill */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 text-orange-700 rounded-lg border border-orange-100/50 shadow-sm flex-shrink-0">
+            <div className="min-w-0 flex items-center gap-1.5 rounded-lg border border-orange-100/50 bg-orange-50 px-3 py-1.5 text-orange-700 shadow-sm">
                 <Thermometer className="h-3.5 w-3.5" />
-                <span className="text-xs font-bold truncate max-w-[80px]">
+                <span className="max-w-[11rem] truncate text-xs font-bold">
                     {post.ovenType ? post.ovenType.replace(/_/g, ' ') : 'Home Oven'}
                 </span>
             </div>
 
             {/* Salt Percentage (New) if available in your type, otherwise just skip or use default logic */}
             {post.saltPct !== undefined && (
-                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg border border-gray-100 shadow-sm flex-shrink-0">
+                <div className="flex items-center gap-1.5 rounded-lg border border-gray-100 bg-gray-50 px-3 py-1.5 text-gray-700 shadow-sm">
                     <span className="text-xs font-bold opacity-60">{t('community.nacl')}</span>
                     <span className="text-xs font-bold">{post.saltPct}%</span>
                 </div>

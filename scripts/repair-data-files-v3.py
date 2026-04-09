@@ -1,5 +1,4 @@
 import os
-import re
 
 TARGET_DIR = 'src/data/styles/regions'
 

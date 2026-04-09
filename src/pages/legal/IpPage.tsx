@@ -1,20 +1,55 @@
 import React from 'react';
 import LegalPageLayout from './LegalPageLayout';
 import { useTranslation } from '@/i18n';
+import {
+  LEGAL_COMPANY_NAME,
+  LEGAL_EMAIL,
+  LEGAL_LAST_UPDATED,
+} from './legalConfig';
 
 const IpPage: React.FC = () => {
   const { t } = useTranslation();
+
   return (
-    <LegalPageLayout title={t('general.intellectual_property')} lastUpdated="August 1, 2024">
-      <h3>1. Copyright Protection</h3>
-      <p>The Service and its original content, features, and functionality are and will remain the exclusive property of DoughLabPro and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of DoughLabPro.</p>
+    <LegalPageLayout title={t('general.intellectual_property')} lastUpdated={LEGAL_LAST_UPDATED}>
+      <h3>1. Ownership of the service</h3>
+      <p>
+        The DoughLabPro brand, interface, product structure, software, documentation, page design, editorial materials,
+        and other original elements of the service are owned by {LEGAL_COMPANY_NAME} or its licensors and are protected
+        by applicable intellectual property laws.
+      </p>
 
-      <h3>2. User Generated Content License</h3>
-      <p>By posting any User Content on the Service, you expressly grant, and you represent and warrant that you have all rights necessary to grant, to DoughLabPro a royalty-free, sublicensable, transferable, perpetual, irrevocable, non-exclusive, worldwide license to use, reproduce, modify, publish, list information regarding, edit, translate, distribute, syndicate, publicly perform, publicly display, and make derivative works of all such User Content and your name, voice, and/or likeness as contained in your User Content, in whole or in part, and in any form, media or technology, whether now known or hereafter developed, for use in connection with the Service and DoughLabPro’s (and its successors’ and affiliates’) business, including without limitation for promoting and redistributing part or all of the Service (and derivative works thereof) in any media formats and through any media channels.</p>
+      <h3>2. User-generated content</h3>
+      <p>
+        You retain ownership of the content you create and upload. By using the service, you grant DoughLabPro the
+        limited, non-exclusive rights necessary to host, store, display, back up, moderate, and operate that content
+        within the service and related support or compliance workflows.
+      </p>
+      <p>
+        This license is not a transfer of ownership and does not authorize DoughLabPro to sell your content as if it
+        were our own. It is limited to service operation, improvement, support, moderation, legal defense, and the
+        normal display of content within the community or product context you selected.
+      </p>
 
-      <h3>3. Copyright Complaints (DMCA)</h3>
-      <p>We respect the intellectual property rights of others. It is our policy to respond to any claim that Content posted on the Service infringes the copyright or other intellectual property infringement (t('common.infringement')) of any person.</p>
-      <p>If you are a copyright owner, or authorized on behalf of one, and you believe that the copyrighted work has been copied in a way that constitutes copyright infringement that is taking place through the Service, you must submit your notice in writing to the attention of t('common.copyright_infringement') at legal@doughlabpro.com and include in your notice a detailed description of the alleged Infringement.</p>
+      <h3>3. Feedback</h3>
+      <p>
+        If you submit suggestions, bug reports, product ideas, or workflow feedback, we may use that feedback to improve
+        the service without any obligation to compensate you, unless a separate written agreement states otherwise.
+      </p>
+
+      <h3>4. Infringement reports</h3>
+      <p>
+        If you believe content in the service infringes copyright, trademark, image rights, or other intellectual
+        property rights, send a detailed notice to{' '}
+        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+      </p>
+      <p>Please include enough detail for review, such as:</p>
+      <ul className="list-disc pl-5 space-y-1">
+        <li>your identification and contact details;</li>
+        <li>the protected work or right allegedly infringed;</li>
+        <li>the exact URL, account, or content location involved;</li>
+        <li>the basis for the claim and any supporting documents you can provide.</li>
+      </ul>
     </LegalPageLayout>
   );
 };

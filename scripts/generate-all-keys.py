@@ -1,7 +1,5 @@
 import json
 import re
-import os
-from pathlib import Path
 
 # Carregar textos hardcoded
 with open('docs/i18n-generated/hardcoded-texts.json', 'r', encoding='utf-8') as f:

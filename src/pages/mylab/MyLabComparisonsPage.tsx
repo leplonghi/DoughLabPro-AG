@@ -46,6 +46,32 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
     };
 
     const selectedBatches = validBatches.filter(b => selectedBatchIds.includes(b.id));
+    const comparisonSections = [
+        {
+            title: null,
+            rows: [
+                { label: t('mylab.style_2'), values: selectedBatches.map(b => b.doughConfig.recipeStyle) },
+                { label: t('form.hydration'), values: selectedBatches.map(b => `${b.doughConfig.hydration}%`), highlight: true },
+                { label: t('results.flour'), values: selectedBatches.map(b => `${b.doughConfig.flourAmount}g`) },
+                { label: t('results.salt'), values: selectedBatches.map(b => `${b.doughConfig.salt}%`) },
+                { label: t('results.yeast'), values: selectedBatches.map(b => `${b.doughConfig.yeastValue}${b.doughConfig.yeastType === 'sourdough' ? '%' : 'g'}`) },
+            ],
+        },
+        {
+            title: t('mylab.process'),
+            rows: [
+                { label: t('mylab.bulk_ferm'), values: selectedBatches.map(b => b.bulkTimeHours ? `${b.bulkTimeHours}h` : '-') },
+                { label: t('mylab.proofing'), values: selectedBatches.map(b => b.proofTimeHours ? `${b.proofTimeHours}h` : '-') },
+                { label: t('mylab.oven_type'), values: selectedBatches.map(b => b.ovenType || '-') },
+            ],
+        },
+        {
+            title: t('mylab.outcome'),
+            rows: [
+                { label: t('mylab.notes'), values: selectedBatches.map(b => b.notes || '-'), isLongText: true },
+            ],
+        },
+    ];
 
     return (
         <MyLabLayout activePage="mylab/comparacoes" onNavigate={onNavigate}>
@@ -153,7 +179,48 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                 <h1 className="text-2xl font-bold text-slate-900">{t('mylab.comparison_result')}</h1>
                             </div>
 
-                            <div className="overflow-x-auto rounded-3xl border border-slate-200 shadow-sm bg-white">
+                            <div className="grid gap-4 md:hidden">
+                                {selectedBatches.map((batch, batchIndex) => (
+                                    <div key={batch.id} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                        <div className="mb-4 border-b border-slate-100 pb-4">
+                                            <div className="font-bold text-slate-900 text-lg">{batch.name}</div>
+                                            <div className="mt-1 text-xs text-slate-500">{new Date(batch.createdAt).toLocaleDateString()}</div>
+                                            {batch.rating && (
+                                                <div className={`mt-3 inline-flex rounded-full px-2.5 py-1 text-xs font-bold ${batch.rating >= 4 ? 'bg-emerald-100 text-emerald-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                                                    Rating: {batch.rating}/5
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="space-y-5">
+                                            {comparisonSections.map((section) => (
+                                                <div key={section.title ?? 'overview'} className="space-y-3">
+                                                    {section.title ? (
+                                                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                                                            {section.title}
+                                                        </div>
+                                                    ) : null}
+                                                    <div className="space-y-2">
+                                                        {section.rows.map((row) => (
+                                                            <div
+                                                                key={row.label}
+                                                                className={`rounded-2xl border px-3 py-2.5 ${row.highlight ? 'border-lime-200 bg-lime-50/60' : 'border-slate-100 bg-slate-50/70'}`}
+                                                            >
+                                                                <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">{row.label}</div>
+                                                                <div className={`mt-1 text-sm text-slate-800 ${row.isLongText ? 'leading-relaxed' : 'font-semibold'}`}>
+                                                                    {row.values[batchIndex]}
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="hidden overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm md:block">
                                 <table className="w-full border-collapse">
                                     <thead>
                                         <tr className="bg-slate-50">
@@ -172,21 +239,26 @@ const MyLabComparisonsPage: React.FC<MyLabComparisonsPageProps> = ({ onNavigate 
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-100">
-                                        <ComparisonRow label={t('mylab.style_2')} values={selectedBatches.map(b => b.doughConfig.recipeStyle)} />
-                                        <ComparisonRow label={t('form.hydration')} values={selectedBatches.map(b => `${b.doughConfig.hydration}%`)} highlight />
-                                        <ComparisonRow label={t('results.flour')} values={selectedBatches.map(b => `${b.doughConfig.flourAmount}g`)} />
-                                        <ComparisonRow label={t('results.salt')} values={selectedBatches.map(b => `${b.doughConfig.salt}%`)} />
-                                        <ComparisonRow label={t('results.yeast')} values={selectedBatches.map(b => `${b.doughConfig.yeastValue}${b.doughConfig.yeastType === 'sourdough' ? '%' : 'g'}`)} />
-
-                                        <tr className="bg-slate-50/50"><td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold text-slate-400 uppercase">{t('mylab.process')}</td></tr>
-
-                                        <ComparisonRow label={t('mylab.bulk_ferm')} values={selectedBatches.map(b => b.bulkTimeHours ? `${b.bulkTimeHours}h` : '-')} />
-                                        <ComparisonRow label={t('mylab.proofing')} values={selectedBatches.map(b => b.proofTimeHours ? `${b.proofTimeHours}h` : '-')} />
-                                        <ComparisonRow label={t('mylab.oven_type')} values={selectedBatches.map(b => b.ovenType || '-')} />
-
-                                        <tr className="bg-slate-50/50"><td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold text-slate-400 uppercase">{t('mylab.outcome')}</td></tr>
-
-                                        <ComparisonRow label={t('mylab.notes')} values={selectedBatches.map(b => b.notes || '-')} isLongText />
+                                        {comparisonSections.map((section) => (
+                                            <React.Fragment key={section.title ?? 'overview'}>
+                                                {section.title ? (
+                                                    <tr className="bg-slate-50/50">
+                                                        <td colSpan={selectedBatches.length + 1} className="p-2 px-4 text-xs font-bold uppercase text-slate-400">
+                                                            {section.title}
+                                                        </td>
+                                                    </tr>
+                                                ) : null}
+                                                {section.rows.map((row) => (
+                                                    <ComparisonRow
+                                                        key={row.label}
+                                                        label={row.label}
+                                                        values={row.values}
+                                                        highlight={row.highlight}
+                                                        isLongText={row.isLongText}
+                                                    />
+                                                ))}
+                                            </React.Fragment>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

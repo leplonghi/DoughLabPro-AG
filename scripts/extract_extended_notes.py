@@ -1,7 +1,6 @@
 
 import re
 import json
-import os
 
 files = [
     r"c:\Users\eduar\OneDrive\Desktop\Antigravity\doughlabpro\src\data\styles\regions\north_america.ts",

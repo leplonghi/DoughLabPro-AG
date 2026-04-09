@@ -28,6 +28,13 @@ Applied baking app focused on dough formulation, fermentation workflows, My Lab 
 - Functions build: `npm run functions:build`
 - Functions tests: `npm run functions:test`
 
+## Documentation Map
+
+- Main docs hub: [`docs/README.md`](./docs/README.md)
+- Operations and rollback steps: [`docs/runbooks`](./docs/runbooks)
+- Architecture and product blueprints: [`docs/architecture`](./docs/architecture)
+- Historical reports and archived material: [`docs/archive`](./docs/archive)
+
 ## Security notes
 
 - Never commit `.env`, `.env.local`, Stripe keys, or Firebase admin credentials.

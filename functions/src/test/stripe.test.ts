@@ -67,6 +67,9 @@ describe("Stripe URL guards", () => {
                     standard: 4.99
                 }
             })
+        },
+        "./infrastructure/handler": {
+            createHandler: (_name: unknown, _options: unknown, logic: unknown) => logic
         }
     });
 

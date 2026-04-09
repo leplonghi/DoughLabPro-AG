@@ -1,21 +1,25 @@
 import React from 'react';
-import { useTranslation } from '@/i18n';
 
 interface SectionHeaderProps {
     title: string;
     icon?: React.ReactNode;
     action?: React.ReactNode;
+    description?: string;
+    eyebrow?: string;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, icon, action }) => {
-  const { t } = useTranslation();
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, icon, action, description, eyebrow }) => {
     return (
-        <div className="flex items-center justify-between mb-6 border-b border-dlp-border pb-2">
-            <h2 className="text-xl font-bold text-dlp-text-primary flex items-center gap-2">
-                {icon}
-                {title}
-            </h2>
-            {action}
+        <div className="mb-4 flex flex-col gap-2 border-b border-dlp-border/70 pb-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                {eyebrow ? <p className="text-[10px] font-black uppercase tracking-[0.18em] text-dlp-text-muted">{eyebrow}</p> : null}
+                <h2 className="flex items-center gap-2 text-lg font-black tracking-tight text-dlp-text-primary">
+                    {icon}
+                    {title}
+                </h2>
+                {description ? <p className="mt-1 text-sm leading-6 text-dlp-text-secondary">{description}</p> : null}
+            </div>
+            {action ? <div className="shrink-0">{action}</div> : null}
         </div>
     );
 };

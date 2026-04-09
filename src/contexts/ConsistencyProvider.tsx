@@ -2,9 +2,10 @@ import React, { createContext, useContext, ReactNode, useState, useEffect, useCa
 import { TestSeries } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
-import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
+import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy, limit } from 'firebase/firestore';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { USER_DATA_QUERY_LIMITS } from '@/constants';
 
 interface ConsistencyContextType {
     testSeries: TestSeries[];
@@ -33,7 +34,11 @@ export const ConsistencyProvider: React.FC<{ children: ReactNode }> = ({ childre
         }
 
         const collRef = collection(db, 'users', firebaseUser.uid, 'testSeries');
-        const q = query(collRef, orderBy('createdAt', 'desc'));
+        const q = query(
+            collRef,
+            orderBy('createdAt', 'desc'),
+            limit(USER_DATA_QUERY_LIMITS.testSeries)
+        );
 
         return onSnapshot(
             q,

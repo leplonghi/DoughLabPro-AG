@@ -1,7 +1,5 @@
 
 import json
-import sys
-import collections
 
 def dedupe_json(file_path):
     print(f"Processing {file_path}...")

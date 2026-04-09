@@ -1,33 +1,42 @@
 import React from 'react';
-import { useTranslation } from '@/i18n';
+import AppSurface from '@/components/ui/AppSurface';
 
 interface PageHeroProps {
     title: string;
     subtitle?: string;
     badges?: React.ReactNode;
-    backgroundClass?: string;
+    action?: React.ReactNode;
+    eyebrow?: string;
+    tone?: 'brand' | 'neutral' | 'info' | 'success' | 'warning' | 'danger';
 }
 
-export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, badges, backgroundClass = "bg-gradient-to-br from-dlp-accent to-dlp-accent-hover" }) => {
-  const { t } = useTranslation();
+export const PageHero: React.FC<PageHeroProps> = ({
+    title,
+    subtitle,
+    badges,
+    action,
+    eyebrow = 'Overview',
+    tone = 'brand',
+}) => {
     return (
-        <div className={`relative rounded-3xl p-8 md:p-12 shadow-dlp-lg mb-8 overflow-hidden ${backgroundClass}`}>
-            <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>
-            <div className="relative z-10">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <AppSurface tone={tone} surface="glass" density="compact" className="mb-4 rounded-[1.2rem]">
+            <div className="relative">
+                <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                     <div>
-                        {badges && <div className="mb-4">{badges}</div>}
-                        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+                        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-dlp-text-muted">{eyebrow}</p>
+                        {badges ? <div className="mt-2 flex flex-wrap items-center gap-2">{badges}</div> : null}
+                        <h1 className="mt-2 text-[1.55rem] font-black leading-[1] tracking-[-0.045em] text-dlp-text-primary sm:text-[1.9rem]">
                             {title}
                         </h1>
                         {subtitle && (
-                            <p className="text-lg text-white/90 font-medium max-w-2xl">
+                            <p className="mt-2 max-w-2xl text-sm leading-6 text-dlp-text-secondary sm:text-[15px]">
                                 {subtitle}
                             </p>
                         )}
                     </div>
+                    {action ? <div className="shrink-0">{action}</div> : null}
                 </div>
             </div>
-        </div>
+        </AppSurface>
     );
 };

@@ -2,7 +2,7 @@
  * AdminTools Component
  * 
  * In-app admin panel for managing user Pro access.
- * Only accessible when logged in as leplonghi@gmail.com
+ * Only accessible when the authenticated profile is marked as admin.
  */
 
 import React, { useState } from 'react';
@@ -19,8 +19,8 @@ export const AdminTools: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
 
-    // Only show to admin
-    if (!user || user.email !== 'leplonghi@gmail.com') {
+    // Only show to admin profiles provisioned by the backend.
+    if (!user || !user.isAdmin) {
         return null;
     }
 
@@ -46,7 +46,7 @@ export const AdminTools: React.FC = () => {
                 isAdmin: true,
                 proSince: userSnap.exists() && userSnap.data().proSince ? userSnap.data().proSince : now,
                 updatedAt: now,
-                email: firebaseUser.email || 'leplonghi@gmail.com',
+                email: firebaseUser.email || '',
                 name: firebaseUser.displayName || t('ui.admin_384'),
             };
 

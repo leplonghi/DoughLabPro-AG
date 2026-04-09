@@ -49,6 +49,7 @@ export const AllArticlesPage: React.FC = () => {
                     eyebrow={learnMeta.eyebrow}
                     title={t('learn.all_articles')}
                     description="Browse the full knowledge library in one place, with faster scanning by category and cleaner reading paths."
+                    variant="editorial"
                 >
                     <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
                         {allLearnArticles.length} total articles

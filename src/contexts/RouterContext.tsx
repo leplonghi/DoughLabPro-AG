@@ -1,10 +1,11 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode, useTransition } from 'react';
 import { Page } from '@/types';
 import { CanonicalRoute, normalizeNavigateInput, parseHash, toHash } from '@/app/routing';
 
 interface RouterContextType {
     route: CanonicalRoute;
     routeParams: string | null;
+    isNavigating: boolean;
     navigate: (page: Page, params?: string) => void;
 }
 
@@ -13,6 +14,7 @@ const RouterContext = createContext<RouterContextType | undefined>(undefined);
 export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [route, setRoute] = useState<CanonicalRoute>('mylab');
     const [routeParams, setRouteParams] = useState<string | null>(null);
+    const [isNavigating, startTransition] = useTransition();
 
     const navigate = useCallback((page: Page, params?: string) => {
         const normalized = normalizeNavigateInput(page, params);
@@ -21,16 +23,20 @@ export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         if (window.location.hash !== newHash) {
             window.location.hash = newHash;
         } else {
-            setRoute(normalized.route);
-            setRouteParams(normalized.params);
+            startTransition(() => {
+                setRoute(normalized.route);
+                setRouteParams(normalized.params);
+            });
         }
-    }, []);
+    }, [startTransition]);
 
     useEffect(() => {
         const handleHashChange = () => {
             const parsed = parseHash(window.location.hash);
-            setRoute(parsed.route);
-            setRouteParams(parsed.params);
+            startTransition(() => {
+                setRoute(parsed.route);
+                setRouteParams(parsed.params);
+            });
         };
 
         window.addEventListener('hashchange', handleHashChange);
@@ -39,10 +45,10 @@ export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         return () => {
             window.removeEventListener('hashchange', handleHashChange);
         };
-    }, [navigate]);
+    }, [startTransition]);
 
     return (
-        <RouterContext.Provider value={{ route, routeParams, navigate }}>
+        <RouterContext.Provider value={{ route, routeParams, isNavigating, navigate }}>
             {children}
         </RouterContext.Provider>
     );

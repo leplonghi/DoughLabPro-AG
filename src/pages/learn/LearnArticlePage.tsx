@@ -80,6 +80,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                 eyebrow={`${learnMeta.eyebrow} • ${article.category}`}
                 title={article.title}
                 description={article.subtitle}
+                variant="editorial"
             >
                 <button
                     onClick={() => navigate('learn')}

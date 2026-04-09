@@ -3,6 +3,13 @@
 ## Goal
 Keep the app visually green-first, clean, and coherent without letting local Tailwind colors redefine cards page by page.
 
+## Core Entry Points
+- `AppPageLayout`: canonical page shell for new pages and major route sections.
+- `LibraryPageLayout`: now a thin wrapper over `AppPageLayout`.
+- `AppShellHeader`: canonical top hero for route-level pages.
+- `AppSectionBlock`: canonical titled section block for feature areas inside a page.
+- `AppSurface`: lowest-level surface primitive for all cards, rails, drawers, and tiles.
+
 ## Surface Variants
 - `base`: standard reading cards
 - `elevated`: more premium sections and key summaries
@@ -26,6 +33,9 @@ Keep the app visually green-first, clean, and coherent without letting local Tai
 - Default titles and body copy should use the design-system ink colors, not page-local slate stacks.
 - New cards must start from shared primitives:
   - `AppSurface`
+  - `AppPageLayout`
+  - `AppShellHeader`
+  - `AppSectionBlock`
   - `MetricCard`
   - `StatusBadge`
   - `InlineNotice`
@@ -39,8 +49,11 @@ Keep the app visually green-first, clean, and coherent without letting local Tai
 3. Choose `tone`.
 4. Use semantic badges/notices instead of local color pills.
 5. Avoid raw Tailwind color classes unless the use is truly semantic and intentional.
+6. New route pages should start with `AppPageLayout` plus `AppShellHeader`.
+7. Feature sections should prefer `AppSectionBlock` or `SectionCard` with `title`.
 
 ## Review Guidance
 - If a new card looks dark navy, SaaS blue, or slate-heavy, it is probably outside the system.
 - If a blue tone is driving an entire card background, it should almost always be reworked into `neutral`, `brand`, or `soft`.
 - If a component needs a new visual treatment more than once, promote it into a shared primitive instead of repeating custom class stacks.
+- `scripts/check-visual-colors.mjs` is the visual drift guard. Use `--strict --changed-only` to fail on new drift without blocking the whole legacy surface at once.

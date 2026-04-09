@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { SparklesIcon, CloseIcon, BeakerIcon, FireIcon, ClockIcon, ScaleIcon } from '@/components/ui/Icons';
-import { generateStyleFromDescription } from '@/ai/assistantClient';
 import { DoughStyleDefinition } from '@/types';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
@@ -75,6 +74,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
     setLoadingStep(0);
 
     try {
+      const { generateStyleFromDescription } = await import('@/ai/assistantClient');
       const generatedStyle = await generateStyleFromDescription(description);
 
       // Artificial delay to let the user see the "analysis" steps (UX best practice for AI tools)

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { communityStore } from '../store/communityStore';
 import { CommunityPost } from '../types';
 import { useUser } from '@/contexts/UserProvider';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ToastProvider';
 import { DoughConfig, BatchStatus, BakeType, RecipeStyle, FermentationTechnique, YeastType, AmbientTemperature } from '@/types';
 import { useTranslation } from '@/i18n';
@@ -9,6 +10,7 @@ import { useTranslation } from '@/i18n';
 export const useCommunityClone = () => {
     const [loading, setLoading] = useState(false);
     const { user, addBatch } = useUser();
+    const { firebaseUser } = useAuth();
     const { addToast } = useToast();
 
     const clonePost = async (post: CommunityPost) => {
@@ -16,11 +18,15 @@ export const useCommunityClone = () => {
             addToast("You must be logged in to clone recipes.", "error");
             return;
         }
+        if (!firebaseUser || firebaseUser.isAnonymous) {
+            addToast("Sign in with a full account to clone community recipes.", "error");
+            return;
+        }
 
         setLoading(true);
         try {
             // 1. Record clone in community stats
-            await communityStore.recordClone(post.id, user.uid);
+            await communityStore.recordClone(post.id, firebaseUser.uid);
 
             // 2. Reconstruct DoughConfig (best effort)
             // Note: This is an approximation since CommunityPost doesn't store full config yet.

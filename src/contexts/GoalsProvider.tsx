@@ -2,9 +2,10 @@ import React, { createContext, useContext, ReactNode, useState, useEffect, useCa
 import { Goal } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
-import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
+import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy, limit } from 'firebase/firestore';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { USER_DATA_QUERY_LIMITS } from '@/constants';
 
 interface GoalsContextType {
     goals: Goal[];
@@ -33,7 +34,11 @@ export const GoalsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         }
 
         const collRef = collection(db, 'users', firebaseUser.uid, 'goals');
-        const q = query(collRef, orderBy('createdAt', 'desc'));
+        const q = query(
+            collRef,
+            orderBy('createdAt', 'desc'),
+            limit(USER_DATA_QUERY_LIMITS.goals)
+        );
 
         return onSnapshot(
             q,

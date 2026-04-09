@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from '../../contexts/RouterContext';
 import { useUser } from '../../contexts/UserProvider';
+import { useAuth } from '@/contexts/AuthContext';
 import { communityStore } from '../store/communityStore';
 import { uploadImage } from '@/services/storageService';
 import { ArrowLeft, Loader2, Image as ImageIcon, Sparkles, ChefHat, Droplets, UploadCloud, CheckCircle2, History } from 'lucide-react';
@@ -17,10 +18,13 @@ export const CommunityCreatePostPage: React.FC = () => {
   const { t } = useTranslation();
     const { navigate } = useRouter();
     const { user, batches } = useUser();
+    const { firebaseUser } = useAuth();
     const communityMeta = getPageMeta('community');
+    const canWriteCommunity = !!firebaseUser && !firebaseUser.isAnonymous;
 
     // -- Mode Selection --
     const [mode, setMode] = useState<'select' | 'create'>('select'); // 'select' = choose source, 'create' = editing form
+    const [sourceType, setSourceType] = useState<'manual' | 'mylab'>('manual');
 
     // -- Form State --
     const [title, setTitle] = useState('');
@@ -90,7 +94,23 @@ export const CommunityCreatePostPage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!canWriteCommunity) {
+            setError('Sign in with a full account to publish to the community.');
+            return;
+        }
         if (!user?.uid) return setError('You must be logged in to post.');
+        const cleanTitle = title.trim();
+        const cleanDescription = description.trim();
+
+        if (cleanTitle.length < 3) {
+            setError('Use a title with at least 3 characters.');
+            return;
+        }
+
+        if (cleanDescription.length < 10) {
+            setError('Add at least 10 characters in your method/description.');
+            return;
+        }
 
         setLoading(true);
         setError(null);
@@ -104,12 +124,14 @@ export const CommunityCreatePostPage: React.FC = () => {
                 photoUrl = await uploadImage(file, path);
             }
 
+            const tags = [selectedStyle.toLowerCase(), method.toLowerCase(), 'homemade'].filter(Boolean);
+
             const newPost = {
                 uid: user.uid,
                 username: user.name || 'Baker',
-                userPhotoURL: user.avatar,
-                title,
-                description,
+                ...(user.avatar ? { userPhotoURL: user.avatar } : {}),
+                title: cleanTitle,
+                description: cleanDescription,
                 hydration,
                 saltPct: salt,
                 fermentationTime,
@@ -119,13 +141,9 @@ export const CommunityCreatePostPage: React.FC = () => {
                 styleKey: selectedStyle,
                 method,
                 photos: [photoUrl],
-                likes: 0,
-                comments: 0,
-                clones: 0,
-                tags: [selectedStyle.toLowerCase(), method.toLowerCase(), 'homemade'],
+                tags,
                 visibility: 'public' as const,
-                createdAt: new Date() as any,
-                batchId: sourceBatchId || undefined // Link to original batch if exists
+                ...(sourceBatchId ? { batchId: sourceBatchId } : {}),
             };
 
             await communityStore.createPost(newPost);
@@ -179,10 +197,28 @@ export const CommunityCreatePostPage: React.FC = () => {
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <AppSurface className="p-6 sm:p-8">
                             <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('community.how_do_you_want_to_start')}</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="mb-4 inline-flex w-full rounded-xl border border-slate-200 bg-slate-50 p-1 sm:w-auto">
                                 <button
+                                    type="button"
+                                    onClick={() => setSourceType('manual')}
+                                    className={`rounded-lg px-4 py-2 text-sm font-semibold ${sourceType === 'manual' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'}`}
+                                >
+                                    {t('community.start_from_scratch')}
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setSourceType('mylab')}
+                                    className={`rounded-lg px-4 py-2 text-sm font-semibold ${sourceType === 'mylab' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'}`}
+                                >
+                                    {t('community.from_my_lab')}
+                                </button>
+                            </div>
+
+                            {sourceType === 'manual' ? (
+                                <button
+                                    disabled={!canWriteCommunity}
                                     onClick={() => { setSourceBatchId(null); setMode('create'); }}
-                                    className="p-6 rounded-2xl border-2 border-dashed border-gray-300 hover:border-dlp-brand hover:bg-lime-50/10 transition-all text-left group"
+                                    className="w-full p-6 rounded-2xl border-2 border-dashed border-gray-300 hover:border-dlp-brand hover:bg-lime-50/10 transition-all text-left group disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     <div className="h-12 w-12 bg-lime-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-lime-200 transition-colors">
                                         <Sparkles className="h-6 w-6 text-lime-700" />
@@ -190,7 +226,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                     <h3 className="font-bold text-gray-900 mb-1">{t('community.start_from_scratch')}</h3>
                                     <p className="text-sm text-gray-500">{t('community.fill_in_your_formula_manually')}</p>
                                 </button>
-
+                            ) : (
                                 <div className="p-6 rounded-2xl bg-white border border-gray-200 shadow-sm">
                                     <div className="flex items-center gap-3 mb-4">
                                         <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center">
@@ -209,8 +245,9 @@ export const CommunityCreatePostPage: React.FC = () => {
                                             batches.slice(0, 5).map(batch => (
                                                 <button
                                                     key={batch.id}
+                                                    disabled={!canWriteCommunity}
                                                     onClick={() => handleBatchSelect(batch)}
-                                                    className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors text-left group"
+                                                    className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors text-left group disabled:cursor-not-allowed disabled:opacity-50"
                                                 >
                                                     <div className="h-10 w-10 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                                                         {batch.photoUrl ? (
@@ -231,7 +268,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                         )}
                                     </div>
                                 </div>
-                            </div>
+                            )}
                         </AppSurface>
                     </div>
                 ) : (

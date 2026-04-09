@@ -6,7 +6,7 @@ if os.path.exists(target):
     try:
         with open(target, 'r', encoding='utf-16-le') as f:
             print(f.read(4000))
-    except Exception as e:
+    except Exception:
         try:
             with open(target, 'r', encoding='utf-8') as f:
                 print(f.read(4000))

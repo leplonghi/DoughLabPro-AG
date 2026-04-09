@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type AppSurfaceTone = 'brand' | 'info' | 'success' | 'warning' | 'danger' | 'neutral';
-export type AppSurfaceVariant = 'base' | 'elevated' | 'glass' | 'soft' | 'interactive';
+export type AppSurfaceVariant = 'base' | 'elevated' | 'glass' | 'soft' | 'interactive' | 'rail';
 export type AppSurfaceDensity = 'compact' | 'default' | 'spacious';
 
 interface AppSurfaceProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -18,6 +18,7 @@ const surfaceClasses: Record<AppSurfaceVariant, string> = {
   glass: 'dlp-surface-glass',
   soft: 'dlp-surface-soft',
   interactive: 'dlp-surface-interactive',
+  rail: 'dlp-surface-rail',
 };
 
 const toneClasses: Record<AppSurfaceTone, string> = {
@@ -30,9 +31,9 @@ const toneClasses: Record<AppSurfaceTone, string> = {
 };
 
 const densityClasses: Record<AppSurfaceDensity, string> = {
-  compact: 'p-4',
-  default: 'p-5 sm:p-6',
-  spacious: 'p-6 sm:p-8',
+  compact: 'p-3.5 sm:p-4',
+  default: 'p-4 sm:p-5',
+  spacious: 'p-5 sm:p-6',
 };
 
 export const AppSurface: React.FC<AppSurfaceProps> = ({
@@ -49,7 +50,7 @@ export const AppSurface: React.FC<AppSurfaceProps> = ({
   return (
     <div
       className={[
-        'relative overflow-hidden rounded-[1.75rem] border shadow-premium transition-all duration-300',
+        'relative overflow-hidden rounded-[1.45rem] border text-dlp-text-primary shadow-premium transition-all duration-300',
         surfaceClasses[resolvedSurface],
         toneClasses[tone],
         density ? densityClasses[density] : '',
@@ -59,7 +60,8 @@ export const AppSurface: React.FC<AppSurfaceProps> = ({
         .join(' ')}
       {...props}
     >
-      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent" />
+      <div className="pointer-events-none absolute -right-8 top-[-1.5rem] h-20 w-20 rounded-full bg-emerald-300/10 blur-3xl" />
       {children}
     </div>
   );

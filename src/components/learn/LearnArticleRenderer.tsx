@@ -115,10 +115,10 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
             {!embedded && (
                 <div className="sticky top-16 z-40 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="flex space-x-2 overflow-x-auto py-3 no-scrollbar justify-center">
+                        <div className="flex flex-wrap justify-center gap-2 py-3">
                             <button
                                 onClick={() => handleModeChange('technical')}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'technical'
+                                className={`flex min-h-11 w-full items-center justify-center gap-2 rounded-full border-2 px-6 py-3 text-sm font-bold transition-all sm:w-auto ${localMode === 'technical'
                                     ? 'bg-dlp-brand-hover border-dlp-brand-hover text-white shadow-lg shadow-lime-900/20 scale-105'
                                     : 'bg-white border-stone-200 text-stone-500 hover:border-dlp-brand hover:text-dlp-brand-hover'
                                     }`}
@@ -128,7 +128,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                             </button>
                             <button
                                 onClick={() => handleModeChange('grandma')}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'grandma'
+                                className={`flex min-h-11 w-full items-center justify-center gap-2 rounded-full border-2 px-6 py-3 text-sm font-bold transition-all sm:w-auto ${localMode === 'grandma'
                                     ? 'bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-900/20 scale-105'
                                     : 'bg-white border-stone-200 text-stone-500 hover:border-amber-400 hover:text-amber-600'
                                     }`}
@@ -138,7 +138,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
                             </button>
                             <button
                                 onClick={() => handleModeChange('summary')}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap border-2 ${localMode === 'summary'
+                                className={`flex min-h-11 w-full items-center justify-center gap-2 rounded-full border-2 px-6 py-3 text-sm font-bold transition-all sm:w-auto ${localMode === 'summary'
                                     ? 'bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-900/20 scale-105'
                                     : 'bg-white border-stone-200 text-stone-500 hover:border-purple-400 hover:text-purple-600'
                                     }`}

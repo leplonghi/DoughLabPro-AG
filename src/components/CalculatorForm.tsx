@@ -4,13 +4,14 @@ import {
   YeastType,
   BakeType,
   FormErrors,
-  CalculationMode,
   Levain,
   Oven,
   FlourDefinition,
   OnboardingState,
   DoughResult,
   CustomPreset,
+  QuantityInputMode,
+  IngredientConfig,
 } from '@/types';
 import { WizardMode } from '@/components/calculator/wizard/WizardMode';
 import {
@@ -18,20 +19,18 @@ import {
   SparklesIcon,
   RotateCcwIcon,
 } from '@/components/ui/Icons';
-import FormSection from '@/components/calculator/AccordionSection';
 import IngredientsSection from '@/components/calculator/sections/IngredientsSection';
 import StyleSection from '@/components/calculator/sections/StyleSection';
 import FermentationSection from '@/components/calculator/sections/FermentationSection';
 import QuantitySection from '@/components/calculator/sections/QuantitySection';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
-import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { getRange } from '@/logic/validationLogic';
 import { getAllowedFermentationTechniques } from '@/logic/fermentationLogic';
-import { YEAST_OPTIONS, DOUGH_STYLE_PRESETS, DOUGH_WEIGHT_RANGES } from '@/constants';
-import { STYLES_DATA, getStyleById } from '@/data/styles/registry';
+import { YEAST_OPTIONS } from '@/constants';
 import { suggestPresetName } from '@/logic/customPresets';
 import { useTranslation } from '@/i18n';
-import { AssemblySection } from '@/components/calculator/ingredients/AssemblySection';
+import { DOUGH_STYLE_PRESETS } from '@/features/calculator/data/stylePresets';
+import { getStyleWeightBounds } from '@/utils/styleWeight';
 
 import { LockFeature } from "@/components/auth/LockFeature";
 
@@ -50,8 +49,8 @@ interface CalculatorFormProps {
   };
   defaultOven?: Oven;
   selectedFlour?: FlourDefinition;
-  calculationMode: CalculationMode;
-  onCalculationModeChange: (mode: CalculationMode) => void;
+  quantityInputMode: QuantityInputMode;
+  onQuantityInputModeChange: (mode: QuantityInputMode) => void;
   calculatorMode: 'wizard' | 'basic' | 'advanced';
   hasProAccess: boolean;
   onOpenPaywall: () => void;
@@ -75,8 +74,8 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   inputRefs,
   defaultOven,
   selectedFlour,
-  calculationMode,
-  onCalculationModeChange,
+  quantityInputMode,
+  onQuantityInputModeChange,
   calculatorMode,
   hasProAccess,
   onOpenPaywall,
@@ -92,7 +91,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   const [presetError, setPresetError] = useState<string | null>(null);
   const [isSavingPreset, setIsSavingPreset] = useState(false);
   const isWizard = calculatorMode === 'wizard';
-  const isBasic = calculatorMode === 'basic';
+  const isGuided = calculatorMode === 'basic';
   const isAnySourdough = config.yeastType === YeastType.SOURDOUGH_STARTER || config.yeastType === YeastType.USER_LEVAIN;
 
   const allowedTechniques = useMemo(() => {
@@ -107,10 +106,16 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     return DOUGH_STYLE_PRESETS.find(p => p.id === config.stylePresetId);
   }, [config.stylePresetId]);
 
+  const styleWeightBounds = useMemo(() => {
+    return getStyleWeightBounds({
+      stylePresetId: config.stylePresetId,
+      recipeStyle: config.recipeStyle,
+    });
+  }, [config.stylePresetId, config.recipeStyle]);
+
   const hasStyle = !!config.stylePresetId || !!config.selectedStyleId || !!config.baseStyleName;
   const hasQuantity = hasStyle && config.numPizzas > 0 && config.doughBallWeight > 0;
-  const minW = 10, maxW = 2000;
-  const assemblyStyle = config.stylePresetId ? getStyleById(config.stylePresetId) : getStyleById('new_york_slice_v2');
+  const { min: minW, max: maxW } = styleWeightBounds;
 
   const handleStyleChange = (id: string) => {
     const custom = customPresets.find(p => p.id === id);
@@ -135,8 +140,8 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         inputRefs={inputRefs}
         defaultOven={defaultOven}
         selectedFlour={selectedFlour}
-        calculationMode={calculationMode}
-        onCalculationModeChange={onCalculationModeChange}
+        quantityInputMode={quantityInputMode}
+        onQuantityInputModeChange={onQuantityInputModeChange}
         hasProAccess={hasProAccess}
         onOpenPaywall={onOpenPaywall}
         results={results}
@@ -158,7 +163,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
     }
   };
 
-  const handleIngredientsUpdate = (ingredients: any[]) => {
+  const handleIngredientsUpdate = (ingredients: IngredientConfig[]) => {
     onConfigChange({ ingredients });
   };
 
@@ -194,15 +199,20 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
   };
 
   const StepBanner = ({ step, title, description }: { step: number, title: string, description: string }) => {
-    if (!isBasic) return null;
+    if (!isGuided) return null;
     return (
-      <div className="mb-3 flex items-start gap-3 animate-slide-up">
-        <div className="flex-shrink-0 w-7 h-7 rounded-full bg-white border-2 border-[#51a145] text-[#51a145] flex items-center justify-center text-[10px] font-bold shadow-sm">
+      <div className="mb-4 flex items-start gap-3 animate-slide-up">
+        <div className="flex-shrink-0">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-emerald-300/70 bg-white text-[10px] font-bold text-[#2f8b49] shadow-[0_10px_22px_-18px_rgba(47,139,73,0.55)]">
           {step}
+          </div>
         </div>
-        <div>
-          <h4 className="text-[13px] font-bold font-heading text-slate-800 uppercase tracking-wide">{title}</h4>
-          <p className="text-[10px] text-slate-500 mt-0.5">{description}</p>
+        <div className="min-w-0 pt-0.5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#75907d]">
+            Guided Flow
+          </p>
+          <h4 className="mt-1 text-[15px] font-bold font-heading text-slate-900 dark:text-slate-50">{title}</h4>
+          <p className="mt-1 text-[12px] leading-relaxed text-slate-600 dark:text-slate-300">{description}</p>
         </div>
       </div>
     );
@@ -210,16 +220,15 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 
 
   return (
-    <div className="space-y-4 max-w-4xl mx-auto px-1 py-4">
-      {/* 1. Style Selection */}
-      <div className="animate-slide-up" id="tour-style-section">
+    <div className="dlp-flow-stack max-w-4xl mx-auto px-1 py-4">
+      <div className="dlp-flow-node animate-slide-up" id="tour-style-section">
         <StepBanner step={1} title={t('common.general.choose_your_style')} description={t('calculator.choose_style_desc')} />
         <StyleSection
           config={config}
           onBakeTypeChange={onBakeTypeChange}
           onStyleChange={handleStyleChange}
           recipeStylesToShow={recipeStylesToShow}
-          isBasic={isBasic}
+          isBasic={isGuided}
           currentPreset={currentPreset}
           onResetPreset={() => onStyleChange('')}
           customPresets={customPresets}
@@ -227,19 +236,19 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         />
       </div>
 
-      {/* 2. Quantity */}
-      {(!isBasic || hasStyle) && (
-        <div className="animate-slide-up" id="tour-quantity-section">
+      {(!isGuided || hasStyle) && (
+        <div className="dlp-flow-node animate-slide-up" id="tour-quantity-section">
           <StepBanner step={2} title={t('common.general.define_quantity')} description={t('calculator.define_quantity_desc')} />
           <QuantitySection
             config={config}
             onConfigChange={onConfigChange}
-            calculationMode={calculationMode}
-            onCalculationModeChange={onCalculationModeChange}
+            quantityInputMode={quantityInputMode}
+            onQuantityInputModeChange={onQuantityInputModeChange}
             errors={errors}
             numPizzasRef={inputRefs?.numPizzas}
             minDoughBallWeight={minW}
             maxDoughBallWeight={maxW}
+            recommendedDoughBallWeight={styleWeightBounds.recommended}
             getInputClasses={(hasError) =>
               `block w-full rounded-2xl border-slate-200 bg-slate-50 py-2.5 px-4 text-xl font-bold text-slate-800 placeholder-slate-400 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none ${hasError ? 'border-rose-300 bg-rose-50' : ''
               }`
@@ -248,10 +257,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
         </div>
       )}
 
-      {/* 3+ Flow */}
-      {(!isBasic || hasQuantity) && (
-        <div className="space-y-4">
-          <div className="animate-slide-up" id="tour-ingredients-section">
+      {(!isGuided || hasQuantity) && (
+        <div className="dlp-flow-stack">
+          <div className="dlp-flow-node animate-slide-up" id="tour-ingredients-section">
             <StepBanner step={3} title={t('common.general.customize_ingredients')} description={t('calculator.customize_ing_desc')} />
             <IngredientsSection
               config={config}
@@ -260,7 +268,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               handleNumberChange={handleNumberChange}
               handleSelectChange={handleSelectChange}
               handleIngredientsUpdate={handleIngredientsUpdate}
-              isBasic={isBasic}
+              isGuided={isGuided}
               isAnySourdough={isAnySourdough}
               levains={levains}
               selectedLevain={selectedLevain}
@@ -271,13 +279,13 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             />
           </div>
 
-          <div className="animate-slide-up" id="tour-fermentation-section">
+          <div className="dlp-flow-node animate-slide-up" id="tour-fermentation-section">
             <StepBanner step={4} title={t('common.general.fermentation_strategy')} description={t('calculator.fermentation_strategy_desc')} />
             <FermentationSection
               config={config}
               onConfigChange={onConfigChange}
               errors={errors}
-              isBasic={isBasic}
+              isBasic={isGuided}
               isAnySourdough={isAnySourdough}
               hasProAccess={hasProAccess}
               onOpenPaywall={onOpenPaywall}
@@ -286,7 +294,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             />
           </div>
 
-          <div className="animate-slide-up" id="tour-environment-section">
+          <div className="dlp-flow-node animate-slide-up" id="tour-environment-section">
             <StepBanner step={5} title={t('common.general.baking_environment')} description={t('calculator.baking_env_desc')} />
             <EnvironmentSection
               config={config}
@@ -295,29 +303,16 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
             />
           </div>
 
-          {assemblyStyle && (
-            <div className="animate-slide-up" id="tour-assembly-section">
-              <StepBanner step={6} title={t('calculator.assembly_toppings')} description={t('calculator.assembly_toppings_desc_pizza')} />
-              <AssemblySection
-                style={assemblyStyle}
-                selectedIncrements={config.assemblyIncrements || []}
-                onUpdateIncrements={(incs) => onConfigChange({ assemblyIncrements: incs })}
-                bakingTempC={config.bakingTempC}
-                bakeType={config.bakeType}
-              />
-            </div>
-          )}
         </div>
       )}
 
-      {/* Action Area */}
-      <div className="pt-6 border-t border-slate-100 space-y-3">
-        {!isBasic && (
+      <div className="pt-6 border-t border-slate-200/70 space-y-3">
+        {!isGuided && (
           <LockFeature featureKey="calculator.save_preset">
             <button
               id="tour-save-preset"
               onClick={handleSavePreset}
-              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white border border-slate-200 py-3.5 px-6 text-sm font-bold text-[#1B4332] shadow-sm hover:border-[#1B4332] hover:bg-emerald-50/30 transition-all active:scale-[0.98]"
+              className="dlp-calc-panel w-full flex items-center justify-center gap-3 rounded-[1.4rem] py-3.5 px-6 text-sm font-bold text-[#16351f] transition-all hover:-translate-y-0.5 hover:border-emerald-300/75 active:scale-[0.985]"
             >
               <BookmarkSquareIcon size={18} />
               {t('calculator.save_as_custom_style')}
@@ -329,14 +324,13 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
           id="tour-reset-form"
           type="button"
           onClick={onReset}
-          className="w-full flex items-center justify-center gap-3 rounded-2xl bg-slate-50 py-3.5 px-6 text-sm font-bold text-slate-500 hover:bg-slate-100 transition-all active:scale-[0.98]"
+          className="dlp-calc-panel--subtle w-full flex items-center justify-center gap-3 rounded-[1.4rem] border py-3.5 px-6 text-sm font-bold text-slate-600 transition-all hover:-translate-y-0.5 hover:border-slate-300 active:scale-[0.985] dark:text-slate-200"
         >
           <RotateCcwIcon size={18} />
           {t('calculator.reset_fields')}
         </button>
       </div>
 
-      {/* Pro Teaser */}
       {!hasProAccess && (
         <div className="mt-6 group relative overflow-hidden rounded-[2.5rem] bg-[#1B4332] p-6 text-white shadow-2xl transition-all hover:scale-[1.01]">
           <div className="absolute top-0 right-0 p-12 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-700">
@@ -385,7 +379,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               value={presetName}
               onChange={(event) => setPresetName(event.target.value)}
               className="mt-2 block w-full rounded-xl border border-slate-300 px-3 py-2.5 text-slate-900 shadow-sm transition-colors focus:border-dlp-brand focus:outline-none focus:ring-2 focus:ring-dlp-brand"
-              placeholder="Saturday dough setup…"
+              placeholder="Saturday dough setup..."
             />
 
             {presetError && (
@@ -408,7 +402,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
                 disabled={isSavingPreset}
                 className="flex-1 rounded-xl bg-dlp-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-dlp-brand-hover disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {isSavingPreset ? 'Saving…' : 'Save Preset'}
+                {isSavingPreset ? 'Saving...' : 'Save Preset'}
               </button>
             </div>
           </div>
@@ -419,5 +413,3 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
 };
 
 export default CalculatorForm;
-
-

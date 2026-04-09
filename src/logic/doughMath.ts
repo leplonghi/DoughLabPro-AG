@@ -1,5 +1,15 @@
 
-import { DoughConfig, DoughResult, IngredientConfig, YeastType, FermentationTechnique, Levain, CalculationMode } from '../types';
+import {
+  DoughConfig,
+  DoughResult,
+  IngredientConfig,
+  YeastType,
+  FermentationTechnique,
+  Levain,
+  CalculationMode,
+  QuantityInputMode,
+  AmbientTemperature
+} from '../types';
 
 // --- Helpers ---
 
@@ -151,6 +161,63 @@ export function syncIngredientsFromConfig(config: DoughConfig): IngredientConfig
   });
 }
 
+function normalizeQuantityInputMode(mode: CalculationMode | QuantityInputMode): QuantityInputMode {
+  return mode === 'TARGET_TIME' ? 'target_time' : mode;
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function getTechniqueBaseHours(technique: FermentationTechnique): number {
+  switch (technique) {
+    case FermentationTechnique.BIGA:
+      return 20;
+    case FermentationTechnique.POOLISH:
+      return 16;
+    case FermentationTechnique.DIRECT:
+    default:
+      return 6;
+  }
+}
+
+function getAmbientTempFactor(temp: AmbientTemperature): number {
+  switch (temp) {
+    case AmbientTemperature.COLD:
+      return 1.2;
+    case AmbientTemperature.HOT:
+      return 0.75;
+    case AmbientTemperature.MILD:
+    default:
+      return 1.0;
+  }
+}
+
+function inferYeastForTargetTime(config: DoughConfig): number {
+  if (!config.targetTime) return config.yeastPercentage;
+
+  const target = new Date(config.targetTime).getTime();
+  if (Number.isNaN(target)) return config.yeastPercentage;
+
+  const hoursUntilTarget = (target - Date.now()) / (1000 * 60 * 60);
+  if (!Number.isFinite(hoursUntilTarget) || hoursUntilTarget <= 0) {
+    return config.yeastPercentage;
+  }
+
+  const baseHours = getTechniqueBaseHours(config.fermentationTechnique);
+  const ambientFactor = getAmbientTempFactor(config.ambientTemperature);
+
+  if ([YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(config.yeastType)) {
+    // Sourdough inoculation %
+    const inferredStarterPct = 18 * (baseHours / hoursUntilTarget) * ambientFactor;
+    return clamp(inferredStarterPct, 8, 35);
+  }
+
+  // Commercial yeast %
+  const inferredYeastPct = 0.65 * (baseHours / hoursUntilTarget) * ambientFactor;
+  return clamp(inferredYeastPct, 0.05, 2.5);
+}
+
 
 // --- Calculation Logic ---
 
@@ -169,9 +236,10 @@ export const calculateDoughUniversal = (
   calculationMode: CalculationMode,
   userLevain?: Levain | null
 ): DoughResult => {
+  const normalizedMode = normalizeQuantityInputMode(calculationMode);
   // Ensure we have ingredients
   const normalizedConfig = normalizeDoughConfigWithIngredients(config);
-  const ingredients = normalizedConfig.ingredients || [];
+  const ingredients = normalizedConfig.ingredients?.map((ingredient) => ({ ...ingredient })) || [];
 
   // ============================================
   // REACTIVE HYDRATION ENGINE (Step 2 Implementation)
@@ -217,6 +285,15 @@ export const calculateDoughUniversal = (
     waterIng.bakerPercentage = requiredAddedWater;
   }
 
+  // 3. Explicit target-time path: infer inoculation/yeast from desired serving time
+  if (normalizedMode === 'target_time') {
+    const inferredYeast = inferYeastForTargetTime(config);
+    const yeastIng = ingredients.find((i) => i.role === 'yeast' || i.role === 'starter');
+    if (yeastIng && !yeastIng.manualOverride) {
+      yeastIng.bakerPercentage = inferredYeast;
+    }
+  }
+
   // ============================================
   // Standard Calculation (with updated percentages)
   // ============================================
@@ -235,7 +312,7 @@ export const calculateDoughUniversal = (
     totalPercentage += ing.bakerPercentage;
   });
 
-  if (calculationMode === 'flour' && config.totalFlour) {
+  if (normalizedMode === 'flour' && config.totalFlour) {
     // Mode: t('ui.i_have_1kg_of_flour_how_much_dough_does_it_make')
     totalFlour = config.totalFlour;
     totalTargetWeight = totalFlour * (totalPercentage / 100);

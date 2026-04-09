@@ -43,7 +43,7 @@ def audit_files(valid_keys):
             matches = t_pattern.findall(content)
             for key in matches:
                 # Validate key existence
-                parts = key.split('.')
+                key.split('.')
                 # Validation logic for nested keys is tricky if we just have the set of full paths
                 # But our flatten_keys produces full paths like 'common.save'
                 

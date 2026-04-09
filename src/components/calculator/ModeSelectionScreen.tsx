@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
-import { SparklesIcon } from '@/components/ui/Icons';
+import { CheckIcon } from '@/components/ui/Icons';
 
 interface ModeSelectionScreenProps {
     onSelectMode: (mode: 'wizard' | 'basic' | 'advanced') => void;
@@ -12,101 +12,78 @@ export const ModeSelectionScreen: React.FC<ModeSelectionScreenProps> = ({ onSele
 
     const modes = [
         {
-            id: 'wizard',
-            title: t('calculator.wizard_mode_title', { defaultValue: 'Dough Wizard' }),
-            description: t('calculator.wizard_desc', { defaultValue: 'Step-by-step guidance for beginners.' }),
-            icon: "🪄",
-            activeStyle: 'bg-blue-900 shadow-lg shadow-blue-500/20',
-            textColor: 'text-blue-50',
-            descColor: 'text-blue-200/80',
-            hoverTextColor: 'group-hover:text-blue-700',
-            hoverDescColor: 'group-hover:text-blue-600/80',
-            checkBg: 'bg-blue-800',
-            hoverBorder: '',
-            hoverBg: 'hover:bg-blue-50/50',
-            groupHoverText: 'group-hover:text-blue-700',
-            tag: t('calculator.easiest', { defaultValue: 'Easiest' }),
-        },
-        {
             id: 'basic',
             title: t('calculator.guided_mode_title', { defaultValue: 'Guided Mode' }),
-            description: t('calculator.guided_desc', { defaultValue: 'Classic calculator with safety rails.' }),
+            description: t('calculator.guided_desc', { defaultValue: 'Best default. Safe recipe with almost no setup mistakes.' }),
             icon: "🧭",
-            activeStyle: 'bg-[#18540e] shadow-lg shadow-[#18540e]/20',
-            textColor: 'text-emerald-50',
-            descColor: 'text-emerald-200/80',
-            hoverTextColor: 'group-hover:text-[#18540e]',
-            hoverDescColor: 'group-hover:text-[#18540e]/80',
-            checkBg: 'bg-[#2d8a1a]',
-            hoverBorder: '',
-            hoverBg: 'hover:bg-[#18540e]/5',
-            groupHoverText: 'group-hover:text-[#18540e]',
-            tag: t('calculator.standard', { defaultValue: t('calculator.standard_390') }),
+            tag: t('calculator.standard', { defaultValue: 'Recommended' }),
+            helper: t('calculator.workflow_guided_helper', { defaultValue: 'Fastest path to a solid first bake.' }),
+        },
+        {
+            id: 'wizard',
+            title: t('calculator.wizard_mode_title', { defaultValue: 'Dough Wizard' }),
+            description: t('calculator.wizard_desc', { defaultValue: 'Step-by-step flow that teaches while you configure.' }),
+            icon: "🪄",
+            tag: t('calculator.easiest', { defaultValue: 'Guided Steps' }),
+            helper: t('calculator.workflow_wizard_helper', { defaultValue: 'Great when you want clarity, not complexity.' }),
         },
         {
             id: 'advanced',
             title: t('calculator.pro_mode_title', { defaultValue: 'Pro Mode' }),
             description: t('calculator.pro_desc', { defaultValue: 'Full control for technical experts.' }),
             icon: "⚡",
-            activeStyle: 'bg-[#51a145] shadow-lg shadow-[#51a145]/20',
-            textColor: 'text-white',
-            descColor: 'text-white/80',
-            hoverTextColor: 'group-hover:text-[#51a145]',
-            hoverDescColor: 'group-hover:text-[#51a145]/80',
-            checkBg: 'bg-[#36782c]',
-            hoverBorder: '',
-            hoverBg: 'hover:bg-[#51a145]/5',
-            groupHoverText: 'group-hover:text-[#51a145]',
             tag: t('calculator.advanced', { defaultValue: t('calculator.advanced_391') }),
+            helper: t('calculator.workflow_advanced_helper', { defaultValue: 'Use when you need full parameter freedom.' }),
         }
     ] as const;
 
     return (
-        <div className="">
-            <div className="flex items-center gap-2 mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1B4332] opacity-60">MODE:</span>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div>
+            <div className="grid grid-cols-1 gap-2.5 md:grid-cols-3 md:gap-3">
                 {modes.map((mode) => {
                     const isSelected = selectedMode === mode.id;
+                    const tagLabel = mode.id === 'basic'
+                        ? t('calculator.standard_390', { defaultValue: mode.tag })
+                        : mode.id === 'wizard'
+                            ? t('calculator.easiest', { defaultValue: mode.tag })
+                            : t('calculator.advanced_391', { defaultValue: mode.tag });
 
                     return (
                         <button
                             key={mode.id}
                             onClick={() => onSelectMode(mode.id)}
                             className={`
-                                relative group flex flex-row items-center p-3 rounded-xl transition-all duration-300 text-left gap-3 h-[60px]
+                                relative group flex min-h-[96px] w-full flex-col items-start justify-between gap-2 rounded-2xl border px-3.5 py-3 text-left transition-all duration-300
                                 ${isSelected
-                                    ? mode.activeStyle
-                                    : `bg-white shadow-sm hover:shadow-md text-slate-600 ${mode.hoverBorder} ${mode.hoverBg}`
+                                    ? 'border-emerald-300/70 bg-[linear-gradient(155deg,rgba(255,255,255,0.96)_0%,rgba(238,249,240,0.94)_100%)] text-dlp-text-primary shadow-[0_16px_32px_-20px_rgba(47,139,73,0.42)] ring-1 ring-emerald-200/70'
+        : 'border-emerald-100 bg-white/90 text-dlp-text-secondary shadow-[0_10px_22px_-18px_rgba(21,38,23,0.2)] hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/70'
                                 }
                             `}
                         >
-                            <div className={`
-                                w-8 h-8 rounded-lg flex items-center justify-center text-lg transition-all duration-300
-                                ${isSelected ? 'bg-white shadow-sm' : `bg-slate-50 text-slate-400 ${mode.groupHoverText}`}
-                            `}>
-                                {mode.icon}
+                            <div className="flex w-full items-start justify-between gap-2">
+                                <div className={`flex h-9 w-9 items-center justify-center rounded-xl text-lg transition-all duration-300 ${isSelected ? 'bg-emerald-100 text-emerald-700 shadow-[inset_0_0_0_1px_rgba(47,139,73,0.16)]' : 'bg-emerald-50 text-emerald-700 group-hover:bg-emerald-100'}`}>
+                                    {mode.icon}
+                                </div>
+                                <span className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] ${isSelected ? 'border-emerald-200/80 bg-emerald-50/80 text-emerald-700' : 'border-emerald-100 bg-white text-emerald-700'}`}>
+                                    {tagLabel}
+                                </span>
                             </div>
 
-                            <div className="flex-grow min-w-0 flex flex-col justify-center">
-                                <h3 className={`text-xs font-bold font-heading truncate transition-colors ${isSelected ? mode.textColor : `text-slate-700 ${mode.hoverTextColor}`}`}>
+                            <div className="w-full space-y-1">
+                                <h3 className={`text-sm font-bold transition-colors ${isSelected ? 'text-dlp-text-primary' : 'text-dlp-text-primary group-hover:text-emerald-800'}`}>
                                     {mode.title}
                                 </h3>
-                                <p className={`text-[10px] leading-tight truncate transition-colors ${isSelected ? mode.descColor : `text-slate-400 ${mode.hoverDescColor}`}`}>
+                                <p className={`text-[11px] leading-snug ${isSelected ? 'text-dlp-text-secondary' : 'text-dlp-text-muted group-hover:text-dlp-text-secondary'}`}>
                                     {mode.description}
+                                </p>
+                                <p className={`text-[10px] leading-snug ${isSelected ? 'text-dlp-text-muted' : 'text-dlp-text-muted/90'}`}>
+                                    {mode.helper}
                                 </p>
                             </div>
 
-                            {isSelected ? (
-                                <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center shadow-md transition-all duration-500 animate-in zoom-in-50 ${mode.checkBg}`}>
-                                    <CheckIcon className="w-3 h-3 text-white" />
-                                </div>
-                            ) : (
-                                <span className="flex-shrink-0 px-2 py-0.5 rounded text-[9px] font-bold text-slate-400 bg-slate-100 uppercase tracking-widest border border-slate-200/50">
-                                    {mode.id === 'basic' ? t('calculator.standard_390') : mode.id === 'advanced' ? t('calculator.advanced_391') : ''}
-                                </span>
-                            )}
+                            <span className={`absolute right-3 top-3 inline-flex h-5 w-5 items-center justify-center rounded-full border transition-all ${isSelected ? 'border-emerald-300 bg-emerald-600 text-white shadow-[0_8px_18px_-10px_rgba(47,139,73,0.7)]' : 'border-emerald-200 bg-white text-emerald-500'}`}>
+                                {isSelected ? <CheckIcon className="h-3.5 w-3.5" /> : <span className="h-2 w-2 rounded-full bg-emerald-200" />}
+                            </span>
                         </button>
                     );
                 })}
@@ -114,12 +91,4 @@ export const ModeSelectionScreen: React.FC<ModeSelectionScreenProps> = ({ onSele
         </div>
     );
 };
-// Helper for the check icon which might not be imported as CheckIcon
-const CheckIcon = ({ className }: { className?: string }) => (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-    </svg>
-);
-
-
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DoughbotResult } from "../types/doughbot";
-import { diagnoseDoughIssue } from "@/ai/assistantClient";
 import { useTranslation } from '@/i18n';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 export const useDoughbot = () => {
     const { t } = useTranslation();
@@ -22,6 +22,7 @@ export const useDoughbot = () => {
         setError(null);
 
         try {
+            const { diagnoseDoughIssue } = await importWithChunkRecovery(() => import("@/ai/assistantClient"));
             const diagnosis = await diagnoseDoughIssue(problem, description, context);
             setResult(diagnosis);
         } catch (err) {

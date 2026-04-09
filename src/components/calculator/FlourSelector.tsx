@@ -11,6 +11,8 @@ interface FlourSelectorProps {
     onFlourChange: (flourId: string) => void;
     currentHydration: number;
     className?: string;
+    disabled?: boolean;
+    disabledReason?: string;
 }
 
 export const FlourSelector: React.FC<FlourSelectorProps> = ({
@@ -18,6 +20,8 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
     onFlourChange,
     currentHydration,
     className = '',
+    disabled = false,
+    disabledReason,
 }) => {
     const { t } = useTranslation(['calculator']);
 
@@ -87,24 +91,23 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
     };
 
     return (
-        <div className={`rounded-xl border border-dlp-border bg-white shadow-sm transition-all overflow-hidden ${className}`}>
-            {/* Header Bar */}
-            <div className="flex items-center justify-between px-4 py-3 bg-slate-50 border-b border-dlp-border/50">
-                <label htmlFor="flourId" className="text-sm font-bold text-dlp-text-secondary flex items-center gap-2">
+        <div className={`dlp-calc-panel overflow-hidden rounded-[1.7rem] border transition-all ${className}`}>
+            <div className="flex items-center justify-between border-b border-slate-200/70 px-4 py-3">
+                <label htmlFor="flourId" className="flex items-center gap-2 text-sm font-bold text-dlp-text-secondary dark:text-slate-100">
                     <Wheat className="h-4 w-4 text-dlp-accent" />
                     {t('calculator.flour_type')}
                 </label>
             </div>
 
             <div className="p-4 space-y-4">
-                {/* Flour Selector Dropdown */}
                 <div>
                     <select
                         id="flourId"
                         name="flourId"
                         value={selectedFlourId}
                         onChange={(e) => onFlourChange(e.target.value)}
-                        className="block w-full rounded-md border-dlp-border shadow-dlp-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2"
+                        disabled={disabled}
+                        className="dlp-calc-field block w-full rounded-[1rem] border bg-transparent px-3 py-3 text-sm font-medium text-slate-800 outline-none disabled:cursor-not-allowed disabled:opacity-70 dark:text-slate-100"
                     >
                         {Object.entries(floursByCategory).map(([category, items]) => {
                             const flours = items as FlourDefinition[];
@@ -124,23 +127,21 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                     </select>
                 </div>
 
-                {/* Blend Builder (Pro Feature) */}
                 {isBlend && (
-                    <div className="rounded-lg border border-dlp-border bg-dlp-bg-muted p-3">
+                    <div className="dlp-calc-panel--subtle rounded-[1.2rem] border p-3">
                         <LockedTeaser featureKey="calculator.flour_blend">
                             <div className="space-y-3">
-                                <h4 className="text-sm font-bold text-dlp-text-primary">Custom Blend Builder</h4>
-                                <p className="text-xs text-dlp-text-secondary mb-2">
+                                <h4 className="text-sm font-bold text-dlp-text-primary dark:text-slate-50">Custom Blend Builder</h4>
+                                <p className="mb-2 text-xs text-dlp-text-secondary dark:text-slate-300">
                                     Mix two flours to achieve specific protein/W targets.
                                 </p>
 
-                                {/* Placeholder UI for Blend - Non-functional visual only for now */}
                                 <div className="grid grid-cols-2 gap-2 text-xs opacity-75">
-                                    <div className="p-2 border border-dlp-border rounded bg-white">
+                                    <div className="dlp-calc-metric rounded-xl p-2">
                                         <div className="font-bold text-dlp-accent">70%</div>
                                         <div>High Gluten</div>
                                     </div>
-                                    <div className="p-2 border border-dlp-border rounded bg-white">
+                                    <div className="dlp-calc-metric rounded-xl p-2">
                                         <div className="font-bold text-dlp-accent">30%</div>
                                         <div>Whole Wheat</div>
                                     </div>
@@ -157,49 +158,43 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                     </div>
                 )}
 
-                {/* Flour Info Card (Tech Specs Style) - Integrated into the body */}
                 {selectedFlour && !isBlend && (
-                    <div className="bg-slate-50/50 rounded-lg border border-dlp-border/60 p-3 relative overflow-hidden">
-                        {/* Decorative Background Hint */}
+                    <div className="dlp-calc-panel--subtle relative overflow-hidden rounded-[1.25rem] border p-4">
                         <div className="absolute -right-4 -top-4 opacity-[0.03] pointer-events-none">
                             <Activity className="w-24 h-24" />
                         </div>
 
                         <div className="flex flex-col gap-3 relative z-10">
-                            {/* Title */}
-                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
-                                <h4 className="text-xs font-bold uppercase text-dlp-text-muted tracking-wider">Flour Specs</h4>
+                            <div className="flex items-center justify-between border-b border-slate-200/70 pb-2">
+                                <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Flour Specs</h4>
                             </div>
 
-                            {/* Specs Row */}
                             <div className="flex flex-wrap gap-2">
                                 {selectedFlour.protein && (
-                                    <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-bold border border-amber-100 shadow-sm">
+                                    <div className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700">
                                         <Activity className="w-3.5 h-3.5 mr-1.5" />
                                         {selectedFlour.protein}% Protein
                                     </div>
                                 )}
                                 {selectedFlour.strengthW && (
-                                    <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-slate-50 text-slate-700 text-xs font-bold border border-slate-100 shadow-sm">
+                                    <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-100">
                                         <Dumbbell className="w-3.5 h-3.5 mr-1.5" />
                                         W {selectedFlour.strengthW}
                                     </div>
                                 )}
                             </div>
 
-                            {/* Hydration Hint */}
                             {selectedFlour.hydrationHint && (
-                                <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium border border-blue-100 shadow-sm w-fit">
+                                <div className="inline-flex w-fit items-center rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700">
                                     <Droplets className="w-3.5 h-3.5 mr-1.5" />
                                     Recommended: {selectedFlour.hydrationHint.min}% - {selectedFlour.hydrationHint.max}%
                                 </div>
                             )}
 
-                            {/* Notes */}
                             {selectedFlour.notes && (
                                 <div className="flex items-start gap-2 pt-1">
                                     <ScrollText className="w-3.5 h-3.5 text-dlp-text-muted mt-0.5 flex-shrink-0" />
-                                    <p className="text-xs text-dlp-text-secondary italic leading-relaxed">
+                                    <p className="text-xs italic leading-relaxed text-dlp-text-secondary dark:text-slate-300">
                                         "{selectedFlour.notes}"
                                     </p>
                                 </div>
@@ -208,11 +203,10 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                     </div>
                 )}
 
-                {/* Hydration Warning/Info */}
                 {
                     hydrationWarning && !isBlend && (
                         <div
-                            className={`rounded-lg p-3 flex items-start gap-2 animate-fade-in ${hydrationWarning.level === 'high'
+                            className={`animate-fade-in flex items-start gap-2 rounded-[1.15rem] p-3 ${hydrationWarning.level === 'high'
                                 ? 'bg-red-50 border border-red-200'
                                 : hydrationWarning.level === 'low'
                                     ? 'bg-blue-50 border border-blue-200'
@@ -255,6 +249,12 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                         </div>
                     )
                 }
+
+                {disabled && (
+                    <div className="rounded-[1rem] border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+                        {disabledReason || 'This parameter is locked in Guided mode.'}
+                    </div>
+                )}
             </div>
         </div >
     );

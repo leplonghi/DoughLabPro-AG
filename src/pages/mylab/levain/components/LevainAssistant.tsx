@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import { CloseIcon, SparklesIcon } from '@/components/ui/Icons';
-import { askLevainAssistant } from '@/ai/assistantClient';
 import { Levain } from '@/types';
 
 interface LevainAssistantProps {
@@ -41,6 +40,7 @@ const LevainAssistant: React.FC<LevainAssistantProps> = ({ isOpen, onClose, leva
             setIsLoading(true);
             setError('');
             setQuestion(prompt);
+            const { askLevainAssistant } = await import('@/ai/assistantClient');
             const response = await askLevainAssistant(levain, prompt);
             setAnswer(response);
         } catch (err) {

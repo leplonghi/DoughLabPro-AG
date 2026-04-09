@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from '@/contexts/RouterContext';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
 import { learnContent } from '@/data/learn-content';
 import { useTranslation } from '@/i18n';
@@ -21,7 +20,6 @@ const LearnHomePage: React.FC = () => {
     const { navigate } = useRouter();
     const { t } = useTranslation(['common', 'marketing']);
     const [searchQuery, setSearchQuery] = useState('');
-    const learnMeta = getPageMeta('learn');
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -37,30 +35,31 @@ const LearnHomePage: React.FC = () => {
     const featuredArticle = learnContent[featuredArticleId] || Object.values(learnContent)[0];
 
     return (
-        <LibraryPageLayout>
-            <div className="mx-auto max-w-7xl animate-fade-in pb-12">
-                <AppShellHeader
-                    eyebrow={learnMeta.eyebrow}
-                    title={learnMeta.title}
-                    description={learnMeta.description}
-                >
-                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
-                        {totalArticles} articles in the library
-                    </div>
-                    <form onSubmit={handleSearch} className="relative w-full min-w-[280px] max-w-md">
-                        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                            <MagnifyingGlassIcon className="h-4 w-4 text-slate-400" />
+        <LibraryPageLayout
+            pageHeader={{
+                page: 'learn',
+                children: (
+                    <>
+                        <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                            {totalArticles} articles in the library
                         </div>
-                        <input
-                            type="text"
-                            className="block w-full rounded-full border border-slate-200 bg-white pl-10 pr-4 py-3 text-sm text-slate-700 placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-dlp-brand/30 focus:border-dlp-brand transition-all"
-                            placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics...' })}
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                    </form>
-                </AppShellHeader>
-
+                        <form onSubmit={handleSearch} className="relative w-full min-w-[280px] max-w-md">
+                            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                                <MagnifyingGlassIcon className="h-4 w-4 text-slate-400" />
+                            </div>
+                            <input
+                                type="text"
+                                className="block w-full rounded-full border border-slate-200 bg-white pl-10 pr-4 py-3 text-sm text-slate-700 placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-dlp-brand/30 focus:border-dlp-brand transition-all"
+                                placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics...' })}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </form>
+                    </>
+                ),
+            }}
+        >
+            <div className="mx-auto max-w-7xl animate-fade-in pb-12">
                 <div className="px-4 sm:px-6 space-y-8">
                     {featuredArticle && (
                         <AppSurface className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"

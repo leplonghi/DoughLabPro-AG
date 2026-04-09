@@ -7,7 +7,7 @@ if os.path.exists(target):
             content = f.read()
             # print first chunk
             print(content[:2000])
-    except Exception as e:
+    except Exception:
         try:
             with open(target, 'r', encoding='utf-8') as f:
                 content = f.read()

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useUser } from '@/contexts/UserProvider';
 import { Batch, BatchStatus, Page, CommunityBatch, DoughConfig, DoughResult } from '@/types';
 import { useTranslation } from '@/i18n';
@@ -21,7 +21,6 @@ import {
 } from '@/components/ui/Icons';
 import { uploadImage } from '@/services/storageService';
 import { FLOURS } from '@/flours-constants';
-import { exportBatchToPDF } from '@/services/exportService';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { allLearnArticles } from '@/data/learn';
 import { BookOpenIcon } from '@/components/ui/Icons';
@@ -39,8 +38,7 @@ import { ShareIcon as ShareIconSolid } from '@heroicons/react/24/solid'; // Adju
 import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
 import { getPageMeta } from '@/app/appShell';
-
-const DoughyAssistant = React.lazy(() => import('@/components/tools/DoughyAssistant').then((module) => ({ default: module.DoughyAssistant })));
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 interface BatchDetailPageProps {
     batchId: string | null;
@@ -243,14 +241,15 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
         }
     };
 
-    const handleExportPDF = () => {
+    const handleExportPDF = async () => {
         if (!canUseFeature(userPlan, 'export.pdf_json')) {
             openPaywall('mylab');
             return;
         }
         if (!editableBatch) return;
         try {
-            exportBatchToPDF(editableBatch, t);
+            const { exportBatchToPDF } = await importWithChunkRecovery(() => import('@/services/exportService'));
+            await exportBatchToPDF(editableBatch, t);
         } catch (e) {
             addToast(t('toasts.pdf_export_error'), 'error');
         }
@@ -543,11 +542,6 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 isOpen={isShareModalOpen}
                 onClose={() => setIsShareModalOpen(false)}
             />
-
-            <Suspense fallback={null}>
-                <DoughyAssistant />
-            </Suspense>
-
             {isShareCardOpen && editableBatch.doughResult && (
                 <RecipeCardGenerator
                     config={editableBatch.doughConfig}

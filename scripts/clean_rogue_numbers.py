@@ -34,10 +34,10 @@ def clean_line(line):
             # Check for pattern: key: 'Some Value 123',
             m = re.search(r"(\b" + key + r"\s*:\s*['\"])(.*?)(\s+\d+)(['\"],?)", line)
             if m:
-                prefix = m.group(1)
+                m.group(1)
                 value = m.group(2)
                 suffix = m.group(3) # The space + number
-                closing = m.group(4)
+                m.group(4)
                 
                 # Filter: Don't clean "Type 1", "W 200", "T 65" or dates/times if any?
                 # The bad numbers seem to be random ids?

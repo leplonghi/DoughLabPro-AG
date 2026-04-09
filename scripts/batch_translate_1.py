@@ -9,11 +9,6 @@ def save_json(path, data):
     with open(path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-def update_nested(data, target_key, new_value):
-    # This is a simplified updater, assuming unique keys or specific paths can be targeted if implemented fully.
-    # For this script, we will traverse and update if key matches AND value equals old_value (English).
-    pass
-
 def apply_translations(base_dir, lang, translation_map):
     # translation_map is { namespace: { key: new_value } }
     

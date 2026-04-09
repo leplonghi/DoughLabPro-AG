@@ -25,7 +25,58 @@ interface HeaderComponentProps extends Omit<NavigationProps, 'activePage'> {
     handleNavigate: (page: Page) => void;
 }
 
-const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
+const UtilityControls: React.FC<{ mobile?: boolean; onNavigate: (page: Page) => void }> = React.memo(({ mobile = false, onNavigate }) => {
+    const { t } = useTranslation(['common']);
+
+    if (mobile) {
+        return (
+            <div className="flex items-center gap-1.5">
+                <button
+                    type="button"
+                    onClick={() => onNavigate('notifications')}
+                    className="group relative flex h-9 w-9 items-center justify-center rounded-full border border-emerald-200/70 bg-white/80 text-dlp-text-secondary shadow-[0_10px_24px_-20px_rgba(47,139,73,0.5)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:text-dlp-text-primary"
+                    aria-label={t('ui.notifications_325', { defaultValue: 'Notifications' })}
+                >
+                    <BellIcon className="h-4 w-4 text-emerald-500 transition-transform duration-300 group-hover:scale-110" />
+                    <span className="pointer-events-none absolute -top-1 -right-1 h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_2px_rgba(255,255,255,0.9)]" />
+                </button>
+                <button
+                    type="button"
+                    onClick={() => onNavigate('tools')}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-200/70 bg-white/80 text-dlp-text-secondary shadow-[0_10px_24px_-20px_rgba(47,139,73,0.5)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:text-dlp-text-primary"
+                    aria-label={t('common.nav.tools')}
+                >
+                    <WrenchScrewdriverIcon className="h-4 w-4 text-emerald-600" />
+                </button>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex items-center gap-2">
+            <button
+                type="button"
+                onClick={() => onNavigate('notifications')}
+                className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-emerald-200/70 bg-white/80 text-dlp-text-secondary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white hover:text-dlp-text-primary focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+                aria-label={t('ui.notifications_325', { defaultValue: 'Notifications' })}
+            >
+                <BellIcon className="h-5 w-5 text-emerald-500 transition-transform duration-300 group-hover:scale-110" />
+                <span className="pointer-events-none absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_0_3px_rgba(255,255,255,0.9)]" />
+            </button>
+
+            <button
+                type="button"
+                onClick={() => onNavigate('tools')}
+                className="flex items-center gap-2 rounded-full border border-emerald-200/70 bg-white/80 px-3 py-2 text-xs font-semibold text-dlp-text-secondary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white hover:text-dlp-text-primary focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+            >
+                <WrenchScrewdriverIcon className="h-4 w-4 text-emerald-600" />
+                {t('common.nav.tools')}
+            </button>
+        </div>
+    );
+});
+
+const DesktopHeader: React.FC<HeaderComponentProps> = React.memo(({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { isAuthenticated, hasProAccess, openPaywall } = useUser();
     const { t } = useTranslation(['common', 'profile', 'auth']);
 
@@ -34,12 +85,11 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
         { page: 'mylab', label: t('common.nav.lab'), icon: BeakerIcon },
         { page: 'styles', label: t('common.nav.styles'), icon: BatchesIcon },
         { page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
-        { page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
         { page: 'community', label: t('common.nav.community'), icon: UsersIcon },
     ];
 
     return (
-        <header className="fixed top-0 left-0 w-full z-50 hidden border-b border-dlp-border bg-white/95 backdrop-blur-lg sm:block transition-all duration-200 shadow-sm">
+        <header className="fixed top-0 left-0 w-full z-50 hidden border-b border-dlp-border bg-[color:var(--dlp-bg-card)]/95 backdrop-blur-lg sm:block transition-all duration-200 shadow-sm">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center gap-6">
                     <button
@@ -59,11 +109,11 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                                     key={link.page}
                                     onClick={() => handleNavigate(link.page as Page)}
                                 className={`group flex items-center gap-2 rounded-2xl border px-4 py-2.5 text-sm font-bold tracking-tight transition-all ${isActive
-                                        ? 'border-emerald-200/80 bg-[linear-gradient(135deg,rgba(67,176,93,0.14)_0%,rgba(255,255,255,0.9)_100%)] text-dlp-brand shadow-[0_18px_36px_-26px_rgba(47,139,73,0.42)]'
+                                        ? 'border-emerald-200/90 bg-[linear-gradient(135deg,rgba(250,255,251,0.96)_0%,rgba(235,248,239,0.92)_100%)] text-emerald-800 shadow-[0_14px_30px_-22px_rgba(47,139,73,0.34)]'
                                         : 'border-transparent bg-white/40 text-dlp-text-muted hover:border-emerald-100 hover:bg-white/80 hover:text-dlp-text-primary'
                                         }`}
                                 >
-                                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all duration-300 ${isActive ? 'bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_100%)] text-white shadow-[0_10px_20px_-14px_rgba(47,139,73,0.7)]' : 'bg-emerald-50/90 text-dlp-brand/75 group-hover:bg-emerald-100 group-hover:text-dlp-brand'}`}>
+                                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all duration-300 ${isActive ? 'border border-emerald-200 bg-emerald-100 text-emerald-700 shadow-[inset_0_0_0_1px_rgba(47,139,73,0.12)]' : 'bg-emerald-50/90 text-dlp-brand/75 group-hover:bg-emerald-100 group-hover:text-dlp-brand'}`}>
                                         <Icon className="h-[18px] w-[18px] transition-all duration-300 group-hover:scale-110" />
                                     </span>
                                     {link.label}
@@ -74,14 +124,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
                 </div>
 
                 <div className="flex flex-shrink-0 items-center gap-4">
-                    <button
-                        onClick={() => handleNavigate('settings')}
-                        className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-emerald-200/70 bg-white/80 text-dlp-text-secondary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white hover:text-dlp-text-primary focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
-                        aria-label={t('common.nav.settings')}
-                    >
-                        <BellIcon className="h-5 w-5 text-emerald-500 transition-transform duration-300 group-hover:scale-110" />
-                        <span className="pointer-events-none absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_0_3px_rgba(255,255,255,0.9)]" />
-                    </button>
+                    <UtilityControls onNavigate={handleNavigate} />
 
                     {isAuthenticated && (
                         <div className="flex items-center gap-3 border-r border-dlp-border pr-4 mr-1">
@@ -107,18 +150,17 @@ const DesktopHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavig
             </div>
         </header>
     );
-};
+});
 
-const MobileHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
+const MobileHeader: React.FC<HeaderComponentProps> = React.memo(({ activePage, handleNavigate, onNavigate, onOpenAuth }) => {
     const { t } = useTranslation(['common', 'profile', 'auth']);
 
     const navLinks = [
-        { id: 'calculator', page: 'calculator', label: t('common.nav.calculator'), icon: CalculatorIcon },
-        { id: 'mylab', page: 'mylab', label: t('common.nav.lab'), icon: BeakerIcon },
+        { id: 'calculator', page: 'calculator', label: t('common.nav.calculator'), mobileLabel: t('common.nav.calculator_short', { defaultValue: 'Calc' }), icon: CalculatorIcon },
+        { id: 'mylab', page: 'mylab', label: t('common.nav.lab'), mobileLabel: t('common.nav.lab_short', { defaultValue: 'Lab' }), icon: BeakerIcon },
         { id: 'styles', page: 'styles', label: t('common.nav.styles'), icon: BatchesIcon },
         { id: 'learn', page: 'learn', label: t('common.nav.learn'), icon: AcademicCapIcon },
-        { id: 'tools', page: 'tools', label: t('common.nav.tools'), icon: WrenchScrewdriverIcon },
-        { id: 'community', page: 'community', label: t('common.nav.community'), icon: UsersIcon },
+        { id: 'community', page: 'community', label: t('common.nav.community'), mobileLabel: t('common.nav.community_short', { defaultValue: 'Community' }), icon: UsersIcon },
     ];
 
     return (
@@ -129,14 +171,17 @@ const MobileHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNaviga
                         <Logo className="h-9 w-auto" />
                     </button>
                     <div className="flex items-center gap-2">
+                        <UtilityControls mobile onNavigate={handleNavigate} />
                         <UserMenu onNavigate={onNavigate} onOpenAuthModal={onOpenAuth} />
                     </div>
                 </div>
             </header>
 
-            <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/70 bg-[linear-gradient(135deg,_rgba(255,255,255,0.9)_0%,_rgba(234,248,236,0.85)_100%)] backdrop-blur-2xl shadow-[0_-18px_46px_-28px_rgba(15,23,42,0.3)] sm:hidden">
-                <div className="mx-auto max-w-7xl px-2.5 py-2.5">
-                    <div className="grid grid-cols-6 gap-2 pb-safe">
+            <nav className="fixed bottom-0 left-0 right-0 z-50 overflow-x-clip sm:hidden">
+                <div className="absolute inset-x-0 bottom-0 top-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,251,248,0.99)_56%,rgba(243,247,244,1)_100%)]" />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(74,123,89,0.18),transparent)]" />
+                <div className="relative mx-auto max-w-7xl border-t border-[#d8e7db] px-2 pt-1.5 pb-[calc(env(safe-area-inset-bottom,0px)+6px)]">
+                    <div className="grid grid-cols-5 items-end gap-0">
                         {navLinks.map((link) => {
                             const Icon = link.icon;
                             const isActive = activePage === link.page || activePage.startsWith(link.page + '/');
@@ -144,16 +189,43 @@ const MobileHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNaviga
                                 <button
                                     key={link.id}
                                     onClick={() => handleNavigate(link.page as Page)}
-                                    className={`group flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-[1.2rem] border px-1.5 py-2.5 text-[10px] font-semibold transition-all ${
-                                        isActive
-                                            ? 'border-emerald-200/80 bg-[linear-gradient(135deg,_rgba(67,176,93,0.98)_0%,_rgba(47,139,73,0.98)_100%)] text-white shadow-[0_16px_34px_-20px_rgba(47,139,73,0.7)]'
-                                            : 'border-white/70 bg-white/80 text-dlp-text-muted shadow-[0_12px_26px_-22px_rgba(15,23,42,0.18)] hover:border-emerald-200 hover:bg-emerald-50/85 hover:text-dlp-text-primary'
-                                    }`}
+                                    className="group relative flex min-w-0 flex-col items-center justify-end gap-1 px-1 py-1.5 font-semibold transition-all duration-300"
+                                    style={{ color: isActive ? '#1f7a36' : '#31483a' }}
+                                    aria-label={link.label}
                                 >
-                                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all ${isActive ? 'bg-white/18 text-white' : 'bg-emerald-50/90 text-dlp-brand/80 group-hover:bg-emerald-100 group-hover:text-dlp-brand'}`}>
-                                        <Icon className="h-[18px] w-[18px] transition-transform duration-300 group-hover:scale-105" />
+                                    <span
+                                        className={`pointer-events-none absolute top-0 h-[2px] rounded-full bg-[linear-gradient(90deg,rgba(48,123,71,0),rgba(48,123,71,0.96),rgba(48,123,71,0))] transition-all duration-300 ${
+                                            isActive ? 'w-9 opacity-100' : 'w-4 opacity-0 group-hover:opacity-35'
+                                        }`}
+                                    />
+                                    <span className="relative flex h-9 w-9 items-center justify-center">
+                                        <span
+                                            className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+                                                isActive
+                                                    ? '-translate-y-0.5'
+                                                    : 'group-hover:-translate-y-0.5'
+                                            }`}
+                                            style={{
+                                                color: isActive ? '#1f7a36' : '#486052',
+                                                textShadow: 'none',
+                                            }}
+                                        >
+                                            <Icon className={`h-[18px] w-[18px] transition-all duration-300 ${isActive ? 'scale-[1.08]' : 'group-hover:scale-[1.08]'}`} />
+                                        </span>
                                     </span>
-                                    <span className={`w-full truncate text-center leading-none ${isActive ? 'text-white/95' : ''}`}>{link.label}</span>
+                                    <span
+                                        className={`min-h-[2.1rem] w-full max-w-[4.75rem] px-0.5 text-center leading-[1.12] tracking-tight whitespace-normal break-words transition-all duration-300 ${
+                                            isActive
+                                                ? 'translate-y-0 text-[11px]'
+                                                : 'translate-y-0.5 text-[10.5px] group-hover:translate-y-0'
+                                        }`}
+                                        style={{
+                                            color: isActive ? '#1f7a36' : '#31483a',
+                                            textShadow: 'none',
+                                        }}
+                                    >
+                                        {link.mobileLabel ?? link.label}
+                                    </span>
                                 </button>
                             );
                         })}
@@ -162,7 +234,7 @@ const MobileHeader: React.FC<HeaderComponentProps> = ({ activePage, handleNaviga
             </nav>
         </>
     );
-};
+});
 
 const Navigation: React.FC<NavigationProps> = (props) => {
     const handleNavigate = React.useCallback((page: Page) => {
@@ -177,4 +249,4 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     );
 };
 
-export default Navigation;
+export default React.memo(Navigation);

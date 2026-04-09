@@ -6,6 +6,7 @@ import { useUser } from '../../contexts/UserProvider';
 import { CloneButton } from './CloneButton';
 import { LockFeature } from '../../components/auth/LockFeature';
 import { useTranslation } from '@/i18n';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface PostActionsProps {
     post: CommunityPost;
@@ -16,7 +17,9 @@ interface PostActionsProps {
 export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, commentCount }) => {
   const { t } = useTranslation();
     const { user, isFavorite, toggleFavorite } = useUser();
-    const { isLiked, toggleLike, loading: likeLoading, loaded, initialLiked } = useCommunityLike(post.id, user?.stripeCustomerId || 'unknown');
+    const { firebaseUser } = useAuth();
+    const communityActorId = firebaseUser && !firebaseUser.isAnonymous ? firebaseUser.uid : undefined;
+    const { isLiked, toggleLike, loading: likeLoading, loaded, initialLiked } = useCommunityLike(post.id, communityActorId);
 
     const displayLikes = loaded
         ? post.likes + (isLiked ? 1 : 0) - (initialLiked ? 1 : 0)

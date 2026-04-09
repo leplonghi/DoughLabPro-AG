@@ -42,6 +42,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                     eyebrow={`${learnMeta.eyebrow} • ${track?.title || 'Category'}`}
                     title={decodedCategory}
                     description={categoryData?.description || t('learn.category_default_desc', { defaultValue: 'Explore our comprehensive knowledge base.' })}
+                    variant="editorial"
                 >
                     <button
                         onClick={() => navigate('learn')}

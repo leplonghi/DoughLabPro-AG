@@ -63,6 +63,9 @@ describe("Stripe URL guards", () => {
                     standard: 4.99
                 }
             })
+        },
+        "./infrastructure/handler": {
+            createHandler: (_name, _options, logic) => logic
         }
     });
     it("includes configured and first-party default hosts", () => {

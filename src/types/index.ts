@@ -133,7 +133,22 @@ export enum UnitSystem {
     US_CUSTOMARY = 'US_CUSTOMARY',
 }
 
-export type CalculationMode = 'mass' | 'flour' | 'TARGET_TIME';
+export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced';
+export type QuantityInputMode = 'mass' | 'flour' | 'target_time';
+/**
+ * @deprecated Use QuantityInputMode. Kept for backward compatibility while
+ * migrating older components still emitting TARGET_TIME.
+ */
+export type CalculationMode = QuantityInputMode | 'TARGET_TIME';
+
+export type CalculatorFunnelEvent =
+    | 'calculator_opened'
+    | 'mode_selected'
+    | 'style_selected'
+    | 'first_result_generated'
+    | 'start_batch_clicked'
+    | 'paywall_opened_from_calculator'
+    | 'checkout_started_from_calculator';
 
 export interface IngredientConfig {
     id: string;

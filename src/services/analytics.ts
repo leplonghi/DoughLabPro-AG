@@ -1,3 +1,5 @@
+import type { CalculatorFunnelEvent } from '@/types';
+
 type AnalyticsParams = Record<string, unknown>;
 
 const ANALYTICS_QUEUE_KEY = 'doughlab.analytics.queue';
@@ -80,4 +82,8 @@ export const logEvent = (eventName: string, params?: AnalyticsParams) => {
     if (import.meta.env.DEV) {
         console.debug(`[Analytics] ${eventName}`, safeParams || {});
     }
+};
+
+export const logCalculatorEvent = (eventName: CalculatorFunnelEvent, params?: AnalyticsParams) => {
+    logEvent(eventName, params);
 };

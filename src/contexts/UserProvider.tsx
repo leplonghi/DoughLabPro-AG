@@ -191,7 +191,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           avatar: profileData.avatar || authFirebaseUser.photoURL || undefined,
           plan,
           isPro: plan === 'lab_pro',
-          isAdmin: false,
+          isAdmin: Boolean(profileData.isAdmin),
           trialEndsAt: profileData.trialEndsAt,
           proSince: profileData.proSince,
           proExpiresAt: profileData.proExpiresAt,

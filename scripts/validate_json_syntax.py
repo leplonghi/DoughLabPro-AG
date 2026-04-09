@@ -1,6 +1,5 @@
 import os
 import json
-import sys
 
 def check_json(path):
     try:

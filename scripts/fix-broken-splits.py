@@ -11,7 +11,6 @@ def fix_file(filepath):
     new_lines = []
     changes = 0
     for line in lines:
-        original = line
         # 1. Fix split strings: key: 'Str1', 'Str2',
         # Matches: key: '...', '...',
         match = re.match(r"^(\s*\w+:\s*)'([^']+)', '([^']+)',\s*$", line)

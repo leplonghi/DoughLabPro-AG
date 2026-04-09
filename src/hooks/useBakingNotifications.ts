@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { TimelineStep } from '@/logic/reverseTimeline';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 
 export const useBakingNotifications = (schedule: TimelineStep[], isEnabled: boolean) => {
     const { t } = useTranslation();

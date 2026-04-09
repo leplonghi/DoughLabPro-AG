@@ -1,6 +1,5 @@
 import re
 import json
-import os
 
 SOURCE_FILE = r'src/logic/methodGenerator.ts'
 OUTPUT_JSON = r'extracted_method_strings.json'

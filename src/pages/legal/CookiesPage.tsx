@@ -1,40 +1,71 @@
 import React from 'react';
 import LegalPageLayout from './LegalPageLayout';
 import { useTranslation } from '@/i18n';
+import {
+  LEGAL_EMAIL,
+  LEGAL_LAST_UPDATED,
+} from './legalConfig';
 
 const CookiesPage: React.FC = () => {
   const { t } = useTranslation();
+
   return (
-    <LegalPageLayout title={t('general.cookie_policy')} lastUpdated="August 1, 2024">
-      <h3>1. What Are Cookies</h3>
-      <p>Cookies are small text files that are placed on your computer or mobile device by websites that you visit. They are widely used in order to make websites work, or work more efficiently, as well as to provide information to the owners of the site.</p>
+    <LegalPageLayout title={t('general.cookie_policy')} lastUpdated={LEGAL_LAST_UPDATED}>
+      <h3>1. What this policy covers</h3>
+      <p>
+        DoughLabPro uses cookies, local storage, browser permissions, service workers, and similar technologies to keep
+        the app working, remember preferences, maintain authentication, support analytics, and enable optional reminders
+        or integrations.
+      </p>
 
-      <h3>2. How We Use Cookies</h3>
-      <p>We use cookies for several reasons detailed below. Unfortunately, in most cases, there are no industry standard options for disabling cookies without completely disabling the functionality and features they add to this site. It is recommended that you leave on all cookies if you are not sure whether you need them or not in case they are used to provide a service that you use.</p>
-
-      <h3>3. The Cookies We Set</h3>
+      <h3>2. Essential technologies</h3>
+      <p>These technologies are necessary for core operation and security. Examples include:</p>
       <ul className="list-disc pl-5 space-y-1">
-        <li>
-          <strong>{t('ui.account_related_cookies')}</strong> If you create an account with us, then we will use cookies for the management of the signup process and general administration. These cookies will usually be deleted when you log out however in some cases they may remain afterwards to remember your site preferences when logged out.
-        </li>
-        <li>
-          <strong>{t('ui.login_related_cookies')}</strong> We use cookies when you are logged in so that we can remember this fact. This prevents you from having to log in every single time you visit a new page. These cookies are typically removed or cleared when you log out to ensure that you can only access restricted features and areas when logged in.
-        </li>
-        <li>
-          <strong>{t('ui.site_preferences_cookies')}</strong> In order to provide you with a great experience on this site, we provide the functionality to set your preferences for how this site runs when you use it. In order to remember your preferences, we need to set cookies so that this information can be called whenever you interact with a page that is affected by your preferences.
-        </li>
+        <li>authentication and secure session technologies from Firebase or Google;</li>
+        <li>checkout or billing continuity technologies used by payment providers such as Stripe;</li>
+        <li>core app storage used for route recovery, account state, and interface stability.</li>
       </ul>
 
-      <h3>4. Third Party Cookies</h3>
-      <p>In some special cases, we also use cookies provided by trusted third parties. The following section details which third party cookies you might encounter through this site.</p>
+      <h3>3. Preference and functional storage</h3>
+      <p>
+        The app stores functional preferences directly in the browser or device, including language, unit preferences,
+        onboarding state, calculator mode, notification settings, scheduled local reminders, and cached workspace data.
+      </p>
+
+      <h3>4. Analytics and performance technologies</h3>
+      <p>
+        Depending on the deployment configuration, DoughLabPro may send sanitized usage events to tools such as `gtag`,
+        `dataLayer`, or `plausible`. These events help us understand feature adoption, diagnose failures, and improve
+        reliability. Where possible, direct identifiers are redacted or minimized before analytics events are emitted.
+      </p>
+
+      <h3>5. Third-party technologies</h3>
+      <p>Third-party providers may also set their own technologies when you use specific features, such as:</p>
       <ul className="list-disc pl-5 space-y-1">
-        <li>
-          <strong>{t('ui.google_analytics')}</strong> This site uses Google Analytics which is one of the most widespread and trusted analytics solutions on the web for helping us to understand how you use the site and ways that we can improve your experience. These cookies may track things such as how long you spend on the site and the pages that you visit so we can continue to produce engaging content.
-        </li>
+        <li>Google account login and Firebase session management;</li>
+        <li>Stripe checkout and billing portal flows;</li>
+        <li>browser notification permissions and service-worker based reminder behavior on your device.</li>
       </ul>
 
-      <h3>5. Disabling Cookies</h3>
-      <p>You can prevent the setting of cookies by adjusting the settings on your browser (see your browser Help for how to do this). Be aware that disabling cookies will affect the functionality of this and many other websites that you visit. Disabling cookies will usually result in also disabling certain functionality and features of this site.</p>
+      <h3>6. How to manage these technologies</h3>
+      <ul className="list-disc pl-5 space-y-1">
+        <li>You can clear cookies and local storage through your browser settings.</li>
+        <li>You can revoke notification permissions through your browser or operating system settings.</li>
+        <li>You can sign out to remove active authenticated sessions from the product side, although some provider technologies may remain until cleared by the browser.</li>
+        <li>Blocking all cookies or storage mechanisms may reduce app functionality, including login, billing, saved preferences, and reminders.</li>
+      </ul>
+
+      <h3>7. Relationship with the Privacy Policy</h3>
+      <p>
+        This Cookie Policy should be read together with the Privacy Policy, which explains the purposes, legal bases,
+        sharing, retention, and rights applicable to personal data processed through these technologies.
+      </p>
+
+      <h3>8. Contact</h3>
+      <p>
+        Questions about cookies, local storage, or tracking technologies can be sent to{' '}
+        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+      </p>
     </LegalPageLayout>
   );
 };

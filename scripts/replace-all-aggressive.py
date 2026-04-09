@@ -1,6 +1,5 @@
 import json
 import re
-import os
 
 # Carregar mapeamento
 with open('docs/i18n-generated/text-to-key-mapping.json', 'r', encoding='utf-8') as f:
@@ -46,7 +45,6 @@ def replace_all_patterns(file_path, text_map):
             
             # Padrão 5: Texto solto em JSX (entre tags)
             # Cuidado: só substituir se não estiver em comentário ou string
-            pattern5 = f'(?<!\\w)(?<!["\'])({escaped_text})(?!["\'])(?!\\w)'
             # Verificar se está entre > e <
             if re.search(f'>{escaped_text}<', content):
                 # Já foi tratado no padrão 1

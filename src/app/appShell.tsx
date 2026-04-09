@@ -10,6 +10,7 @@ import {
   UsersIcon,
   WrenchScrewdriverIcon,
 } from '@/components/ui/Icons';
+import i18n from '@/i18n';
 import { Page } from '@/types';
 import React from 'react';
 
@@ -251,13 +252,116 @@ export function isContextRouteActive(currentRoute: Page, itemPage: Page) {
 }
 
 export function getPageMeta(route: Page): ShellPageMeta {
+  const isPortuguese = String(i18n.resolvedLanguage || i18n.language || 'en').toLowerCase().startsWith('pt');
   const match = PREFIX_META.find((entry) => route === entry.prefix || route.startsWith(`${entry.prefix}/`));
-  if (match) return match.meta;
+  if (match) {
+    const { pillar, showHeader = true } = match.meta;
+
+    if (route === 'calculator' || route.startsWith('calculator/')) {
+      return {
+        eyebrow: isPortuguese ? 'Espaço de Fornada' : 'Bake Workspace',
+        title: isPortuguese ? 'Planeje a próxima fornada' : 'Plan the next bake',
+        description: isPortuguese
+          ? 'Monte a fórmula, ajuste o processo e siga direto para uma fornada rastreada sem sair do fluxo.'
+          : 'Build a formula, tune the process, and move straight into a tracked bake without leaving the workspace.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    if (route === 'mylab' || route.startsWith('mylab')) {
+      return {
+        eyebrow: isPortuguese ? 'Sistema do Lab' : 'Lab System',
+        title: isPortuguese ? 'Gerencie seu lab de panificação' : 'Run your baking lab',
+        description: isPortuguese
+          ? 'Acompanhe fornadas, cuide do levain, compare resultados e mantenha seu ciclo de melhoria ativo toda semana.'
+          : 'Track bakes, manage levain, compare outcomes, and keep the improvement loop active every week.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    if (route === 'learn' || route.startsWith('learn/')) {
+      return {
+        eyebrow: isPortuguese ? 'Biblioteca' : 'Library',
+        title: isPortuguese ? 'Estude com contexto de padeiro' : 'Study with a baker’s context',
+        description: isPortuguese
+          ? 'Vá da teoria para a prática com guias, ingredientes, ciência e próximos passos aplicáveis.'
+          : 'Move from theory to application with guides, ingredients, science, and next-step actions.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    if (route === 'styles' || route.startsWith('styles/')) {
+      return {
+        eyebrow: isPortuguese ? 'Biblioteca' : 'Library',
+        title: isPortuguese ? 'Explore estilos de massa' : 'Browse dough styles',
+        description: isPortuguese
+          ? 'Compare estilos regionais e carregue-os no seu fluxo com mais clareza.'
+          : 'Explore regional dough systems and load them into your workflow with a clearer, more comparable structure.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    if (route === 'community' || route.startsWith('community/')) {
+      return {
+        eyebrow: isPortuguese ? 'Comunidade' : 'Community',
+        title: isPortuguese ? 'Aprenda com outros padeiros' : 'Learn from other bakers',
+        description: isPortuguese
+          ? 'Explore fornadas, fórmulas e criadores em um espaço útil, sem ruído.'
+          : 'Explore shared bakes, formulas, and creators in a space focused on useful inspiration, not noise.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    if (route === 'profile' || route.startsWith('profile/')) {
+      return {
+        eyebrow: isPortuguese ? 'Conta' : 'Account',
+        title: isPortuguese ? 'Gerencie seu perfil de padeiro' : 'Manage your baker profile',
+        description: isPortuguese
+          ? 'Mantenha sua identidade, preferências, equipamentos e contexto de panificação alinhados em um só lugar.'
+          : 'Keep your identity, preferences, equipment, and baking context aligned in one place.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    if (route === 'settings' || route.startsWith('settings/')) {
+      return {
+        eyebrow: isPortuguese ? 'Configurações da conta' : 'Account Settings',
+        title: isPortuguese ? 'Ajuste os padrões do workspace' : 'Tune the workspace defaults',
+        description: isPortuguese
+          ? 'Defina unidades, ambiente padrão e preferências para o app ficar consistente.'
+          : 'Set units, environment defaults, and baking preferences so the rest of the product feels consistent.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    if (route === 'help' || route.startsWith('help/')) {
+      return {
+        eyebrow: isPortuguese ? 'Suporte' : 'Support',
+        title: isPortuguese ? 'Resolva dúvidas rapidamente' : 'Get unstuck quickly',
+        description: isPortuguese
+          ? 'Encontre respostas e entenda os fluxos do produto sem sair do sistema.'
+          : 'Find answers, clarify workflows, and understand the product without leaving the system.',
+        pillar,
+        showHeader,
+      };
+    }
+
+    return match.meta;
+  }
 
   return {
-    eyebrow: 'Workspace',
+    eyebrow: isPortuguese ? 'Workspace' : 'Workspace',
     title: 'DoughLab Pro',
-    description: 'A connected baking system for planning, tracking, learning, and improving every session.',
+    description: isPortuguese
+      ? 'Um sistema conectado para planejar, registrar, aprender e evoluir em cada fornada.'
+      : 'A connected baking system for planning, tracking, learning, and improving every session.',
     pillar: getPillarForRoute(route),
   };
 }

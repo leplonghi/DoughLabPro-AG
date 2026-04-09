@@ -2,11 +2,12 @@ import React, { createContext, useContext, ReactNode, useState, useEffect, useCa
 import { Levain, FeedingEvent, LevainStatus } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
-import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, writeBatch, Timestamp, orderBy } from 'firebase/firestore';
+import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, writeBatch, Timestamp, orderBy, limit } from 'firebase/firestore';
 import { hoursBetween } from '@/helpers';
 import { logEvent } from '@/services/analytics';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { USER_DATA_QUERY_LIMITS } from '@/constants';
 
 interface LevainContextType {
     levains: Levain[];
@@ -56,7 +57,11 @@ export const LevainProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         }
 
         const collRef = collection(db, 'users', firebaseUser.uid, 'levains');
-        const q = query(collRef, orderBy('createdAt', 'desc'));
+        const q = query(
+            collRef,
+            orderBy('createdAt', 'desc'),
+            limit(USER_DATA_QUERY_LIMITS.levains)
+        );
 
         return onSnapshot(
             q,

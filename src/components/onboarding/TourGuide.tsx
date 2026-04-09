@@ -82,9 +82,22 @@ export const TourGuide: React.FC = () => {
     useEffect(() => {
         const hasSeenTour = localStorage.getItem('has_seen_tour');
         if (!hasSeenTour) {
+            if (window.innerWidth < 1024) {
+                localStorage.setItem('has_seen_tour', 'true');
+                return;
+            }
             // Delay slightly to allow UI to render
             setTimeout(() => setIsVisible(true), 1000);
         }
+    }, []);
+
+    useEffect(() => {
+        const onEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') handleClose();
+        };
+
+        window.addEventListener('keydown', onEscape);
+        return () => window.removeEventListener('keydown', onEscape);
     }, []);
 
     useEffect(() => {
@@ -128,26 +141,28 @@ export const TourGuide: React.FC = () => {
 
     switch (step.position) {
         case 'bottom':
-            top = targetRect.bottom + gap + window.scrollY;
-            left = targetRect.left + (targetRect.width / 2) - (tooltipWidth / 2) + window.scrollX;
+            top = targetRect.bottom + gap;
+            left = targetRect.left + (targetRect.width / 2) - (tooltipWidth / 2);
             break;
         case 'top':
-            top = targetRect.top - tooltipHeight - gap + window.scrollY;
-            left = targetRect.left + (targetRect.width / 2) - (tooltipWidth / 2) + window.scrollX;
+            top = targetRect.top - tooltipHeight - gap;
+            left = targetRect.left + (targetRect.width / 2) - (tooltipWidth / 2);
             break;
         case 'right':
-            top = targetRect.top + (targetRect.height / 2) - (tooltipHeight / 2) + window.scrollY;
-            left = targetRect.right + gap + window.scrollX;
+            top = targetRect.top + (targetRect.height / 2) - (tooltipHeight / 2);
+            left = targetRect.right + gap;
             break;
         case 'left':
-            top = targetRect.top + (targetRect.height / 2) - (tooltipHeight / 2) + window.scrollY;
-            left = targetRect.left - tooltipWidth - gap + window.scrollX;
+            top = targetRect.top + (targetRect.height / 2) - (tooltipHeight / 2);
+            left = targetRect.left - tooltipWidth - gap;
             break;
     }
 
     // Boundary checks (simple)
     if (left < 10) left = 10;
     if (left + tooltipWidth > window.innerWidth) left = window.innerWidth - tooltipWidth - 10;
+    if (top < 10) top = 10;
+    if (top + tooltipHeight > window.innerHeight - 10) top = window.innerHeight - tooltipHeight - 10;
 
     return createPortal(
         <div className="fixed inset-0 z-[100] pointer-events-none">
@@ -158,8 +173,8 @@ export const TourGuide: React.FC = () => {
             <div
                 className="absolute transition-all duration-500 ease-in-out border-2 border-dlp-accent rounded-lg shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
                 style={{
-                    top: targetRect.top + window.scrollY - 4,
-                    left: targetRect.left + window.scrollX - 4,
+                    top: targetRect.top - 4,
+                    left: targetRect.left - 4,
                     width: targetRect.width + 8,
                     height: targetRect.height + 8,
                 }}

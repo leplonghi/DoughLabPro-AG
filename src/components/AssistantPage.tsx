@@ -1,9 +1,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { DoughConfig, DoughResult, SavedDoughConfig, FlourDefinition, Oven, ChatMessage } from '../types';
-import { askGeneralAssistant } from '../ai/assistantClient';
 import { SparklesIcon, UserCircleIcon, SpinnerIcon } from './ui/Icons';
 import { useTranslation } from '@/i18n';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 interface AssistantPageProps {
   config?: DoughConfig;
@@ -43,6 +43,7 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
     setIsLoading(true);
 
     try {
+      const { askGeneralAssistant } = await importWithChunkRecovery(() => import('../ai/assistantClient'));
       const response = await askGeneralAssistant({
         question,
         doughConfig: props.config,

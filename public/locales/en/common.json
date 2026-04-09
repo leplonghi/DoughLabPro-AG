@@ -4187,6 +4187,29 @@
         "search_placeholder": "Search placeholder"
     },
     "processing": "Processing",
+    "doughy_assistant": {
+        "title": "Doughy",
+        "status": "Online",
+        "welcome": "I am Doughy. Tell me your goal and constraints, and I will give you a clear next step.",
+        "placeholder": "Describe your dough goal or issue...",
+        "error": "I had trouble processing that. Please try again in one sentence.",
+        "chips": {
+            "rescue_label": "Rescue dough",
+            "rescue_text": "My dough is failing. Help me recover it fast.",
+            "recipe_label": "Build recipe",
+            "recipe_text": "Build a recipe for my current style and oven.",
+            "learn_label": "Explain why",
+            "learn_text": "Explain what changed in my dough in simple terms.",
+            "calc_label": "Open calculator",
+            "calc_text": "How should I configure the calculator for this?",
+            "style_label": "Compare styles",
+            "style_text": "Which style is best for my goal and oven?",
+            "rescue_flow_label": "Run rescue flow",
+            "rescue_flow_text": "Open the rescue flow and diagnose this issue.",
+            "tips_label": "Quick fixes",
+            "tips_text": "Give me the top 3 adjustments with the highest impact."
+        }
+    },
     "results": {
         "panic_button": "Panic button"
     },

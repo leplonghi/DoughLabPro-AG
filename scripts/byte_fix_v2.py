@@ -1,4 +1,3 @@
-import os
 
 def check_and_fix(filepath):
     print(f"Checking {filepath}...")
@@ -9,7 +8,6 @@ def check_and_fix(filepath):
     changes = 0
     
     for line in lines:
-        original = line
         
         # Check specific broken lines by content content
         if "method:" in line and "baker_percentage" in line:

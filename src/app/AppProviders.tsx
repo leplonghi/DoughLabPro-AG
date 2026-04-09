@@ -8,28 +8,74 @@ import { DoughSessionProvider } from '@/contexts/DoughSessionContext';
 import { StylesProvider } from '@/contexts/StylesProvider';
 import { RouterProvider } from '@/contexts/RouterContext';
 import { MarketingProvider } from '@/marketing/MarketingContext';
+import { FloursProvider } from '@/contexts/FloursProvider';
+import { BatchesProvider } from '@/contexts/BatchesProvider';
+import { LevainProvider } from '@/contexts/LevainProvider';
+import { InsightsProvider } from '@/contexts/InsightsProvider';
+import { TimelineProvider } from '@/contexts/TimelineProvider';
+import { GoalsProvider } from '@/contexts/GoalsProvider';
+import { ConsistencyProvider } from '@/contexts/ConsistencyProvider';
+import { DoughsProvider } from '@/contexts/DoughsProvider';
+import { RecipesProvider } from '@/contexts/RecipesProvider';
+import { SensoryProvider } from '@/contexts/SensoryProvider';
+import { NotificationProvider } from '@/contexts/NotificationContext';
+import { LearnProvider } from '@/contexts/LearnContext';
+
+const CoreProviders: React.FC<{ children: ReactNode }> = ({ children }) => (
+    <I18nProvider>
+        <AuthProvider>
+            <ToastProvider>
+                <UserProvider>
+                    <MarketingProvider>
+                        <RouterProvider>{children}</RouterProvider>
+                    </MarketingProvider>
+                </UserProvider>
+            </ToastProvider>
+        </AuthProvider>
+    </I18nProvider>
+);
+
+const LabProviders: React.FC<{ children: ReactNode }> = ({ children }) => (
+    <FloursProvider>
+        <BatchesProvider>
+            <LevainProvider>
+                <InsightsProvider>
+                    <TimelineProvider>
+                        <GoalsProvider>
+                            <ConsistencyProvider>
+                                <DoughsProvider>
+                                    <RecipesProvider>
+                                        <SensoryProvider>{children}</SensoryProvider>
+                                    </RecipesProvider>
+                                </DoughsProvider>
+                            </ConsistencyProvider>
+                        </GoalsProvider>
+                    </TimelineProvider>
+                </InsightsProvider>
+            </LevainProvider>
+        </BatchesProvider>
+    </FloursProvider>
+);
+
+const ProductProviders: React.FC<{ children: ReactNode }> = ({ children }) => (
+    <NotificationProvider>
+        <LearnProvider>
+            <DoughSessionProvider>
+                <CalculatorProvider>
+                    <StylesProvider>{children}</StylesProvider>
+                </CalculatorProvider>
+            </DoughSessionProvider>
+        </LearnProvider>
+    </NotificationProvider>
+);
 
 export const AppProviders: React.FC<{ children: ReactNode }> = ({ children }) => {
     return (
-        <I18nProvider>
-            <AuthProvider>
-                <ToastProvider>
-                    <UserProvider>
-                        <MarketingProvider>
-                            <RouterProvider>
-                                <DoughSessionProvider>
-                                    <CalculatorProvider>
-                                        <StylesProvider>
-                                            {children}
-                                        </StylesProvider>
-                                    </CalculatorProvider>
-                                </DoughSessionProvider>
-                            </RouterProvider>
-                        </MarketingProvider>
-                    </UserProvider>
-                </ToastProvider>
-            </AuthProvider>
-        </I18nProvider>
+        <CoreProviders>
+            <LabProviders>
+                <ProductProviders>{children}</ProductProviders>
+            </LabProviders>
+        </CoreProviders>
     );
 };
 

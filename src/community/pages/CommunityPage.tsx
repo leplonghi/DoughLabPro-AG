@@ -6,7 +6,6 @@ import { CommunityProfileSidebar } from '../components/CommunityProfileSidebar';
 import { CommunityTopics } from '../components/CommunityTopics';
 import { SuggestedBakers } from '../components/SuggestedBakers';
 import { LibraryPageLayout } from '../../components/ui/LibraryPageLayout';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
 import { Plus, Sparkles } from 'lucide-react';
 import { useRouter } from '../../contexts/RouterContext';
@@ -17,28 +16,28 @@ export const CommunityPage: React.FC = () => {
     const { t } = useTranslation();
     const [activeFilter, setActiveFilter] = useState<'latest' | 'trending' | 'top'>('latest');
     const { navigate } = useRouter();
-    const communityMeta = getPageMeta('community');
 
     return (
-        <LibraryPageLayout>
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                <AppShellHeader
-                    eyebrow={communityMeta.eyebrow}
-                    title={communityMeta.title}
-                    description={communityMeta.description}
-                >
-                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
-                        Bakers share formulas, notes, and results
-                    </div>
-                    <button
-                        onClick={() => navigate('community/create')}
-                        className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-slate-800 active:scale-95"
-                    >
-                        <Plus className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" />
-                        <span>{t('community.share_your_bake')}</span>
-                    </button>
-                </AppShellHeader>
-
+        <LibraryPageLayout
+            pageHeader={{
+                page: 'community',
+                children: (
+                    <>
+                        <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                            Bakers share formulas, notes, and results
+                        </div>
+                        <button
+                            onClick={() => navigate('community/create')}
+                            className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-slate-800 active:scale-95"
+                        >
+                            <Plus className="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" />
+                            <span>{t('community.share_your_bake')}</span>
+                        </button>
+                    </>
+                ),
+            }}
+        >
+            <div className="mx-auto w-full max-w-6xl">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
                     <div className="lg:col-span-8 space-y-6">

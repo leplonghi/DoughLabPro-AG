@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
@@ -17,8 +18,9 @@ export default {
                     },
                     text: {
                         primary: '#0D1B12',
-                        secondary: '#294031',
-                        muted: '#5F7868',
+                        secondary: '#23372B',
+                        tertiary: '#2D4436',
+                        muted: '#385141',
                     },
                     accent: {
                         DEFAULT: '#43b05d',

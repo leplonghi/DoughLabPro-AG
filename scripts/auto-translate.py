@@ -1,5 +1,4 @@
 import json
-import re
 
 # Dicionário de traduções comuns EN -> PT
 TRANSLATIONS_PT = {

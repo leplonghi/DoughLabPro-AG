@@ -41,17 +41,17 @@ const LevainLayout: React.FC<LevainLayoutProps> = ({ children, levainName, activ
 
       {/* Tabs Navigation */}
       <div className="mb-6">
-        <AppSurface className="border border-white/80 px-5 py-2">
-          <nav className="-mb-px flex space-x-6 overflow-x-auto no-scrollbar" aria-label={t('mylab.tabs')}>
+        <AppSurface className="border border-white/80 px-3 py-3 sm:px-5 sm:py-2">
+          <nav className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-4" aria-label={t('mylab.tabs')}>
             {navItems.map(item => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => onTabChange(item.id)}
                 aria-pressed={activeTab === item.id}
-                className={`whitespace-nowrap flex items-center gap-2 py-3 px-1 border-b-2 font-bold text-sm transition-all ${activeTab === item.id
-                    ? 'border-dlp-brand text-dlp-brand-hover '
-                    : 'border-transparent text-slate-500 hover:text-slate-700  hover:border-slate-300'
+                className={`flex items-center justify-center gap-2 rounded-2xl border px-3 py-3 text-center text-sm font-bold transition-all sm:justify-start sm:rounded-none sm:border-x-0 sm:border-t-0 sm:px-1 sm:py-3 ${activeTab === item.id
+                    ? 'border-dlp-brand bg-emerald-50/90 text-dlp-brand-hover sm:bg-transparent'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 sm:hover:bg-transparent'
                   }`}
               >
                 {item.icon}

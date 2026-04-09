@@ -54,8 +54,21 @@ const ToppingsPage: React.FC = () => {
                                                 ))}
                                             </div>
                                         </div>
-                                        <div className="overflow-x-auto">
-                                            <table className="min-w-full text-sm text-left">
+                                        <div className="md:hidden space-y-2 px-4 pb-4">
+                                            {combo.sizes.map(size => (
+                                                <div key={`mobile-${size.sizeCm}`} className="rounded-xl border border-dlp-border bg-dlp-bg-muted/50 p-3">
+                                                    <div className="text-sm font-semibold text-dlp-text-primary">{size.sizeCm} cm</div>
+                                                    <div className="mt-2 grid grid-cols-2 gap-2 text-xs text-dlp-text-secondary">
+                                                        <div>Sauce: {size.sauceGrams || '–'} g</div>
+                                                        <div>Cheese: {size.cheeseGrams || '–'} g</div>
+                                                        <div>Topping: {size.toppingsGrams ?? '–'} g</div>
+                                                        <div>Finish Oil: {size.oilFinishGrams ?? '–'} g</div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="hidden md:block">
+                                            <table className="w-full text-sm text-left">
                                                 <thead className="bg-dlp-bg-muted">
                                                     <tr>
                                                         <th className="px-6 py-3 font-medium text-dlp-text-secondary">{t('general.size')}</th>

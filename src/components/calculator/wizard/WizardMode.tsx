@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DoughConfig, FormErrors, BakeType, YeastType, FlourDefinition, Levain, DoughResult } from '@/types';
+import { DoughConfig, FormErrors, BakeType, YeastType, FlourDefinition, Levain, DoughResult, Oven, QuantityInputMode, CustomPreset, FermentationTechnique } from '@/types';
 import { useTranslation } from '@/i18n';
 import StyleSection from '@/components/calculator/sections/StyleSection';
 import QuantitySection from '@/components/calculator/sections/QuantitySection';
@@ -20,8 +20,7 @@ import {
     SparklesIcon
 } from '@/components/ui/Icons';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
-import { DOUGH_STYLE_PRESETS } from '@/constants';
-import { getStyleById } from '@/data/styles/registry';
+import { DOUGH_STYLE_PRESETS, getCalculatorStyleById } from '@/features/calculator/data/stylePresets';
 
 interface WizardModeProps {
     config: DoughConfig;
@@ -35,14 +34,14 @@ interface WizardModeProps {
     inputRefs?: {
         numPizzas?: React.RefObject<HTMLInputElement>;
     };
-    defaultOven?: any;
+    defaultOven?: Oven;
     selectedFlour?: FlourDefinition;
-    calculationMode: any;
-    onCalculationModeChange: any;
+    quantityInputMode: QuantityInputMode;
+    onQuantityInputModeChange: (mode: QuantityInputMode) => void;
     hasProAccess: boolean;
     onOpenPaywall: () => void;
     results: DoughResult | null;
-    customPresets?: any[];
+    customPresets?: CustomPreset[];
     isFavorite?: (id: string, type: string) => boolean;
 }
 
@@ -58,8 +57,8 @@ export const WizardMode: React.FC<WizardModeProps> = ({
     inputRefs,
     defaultOven,
     selectedFlour,
-    calculationMode,
-    onCalculationModeChange,
+    quantityInputMode,
+    onQuantityInputModeChange,
     hasProAccess,
     onOpenPaywall,
     results,
@@ -107,13 +106,13 @@ export const WizardMode: React.FC<WizardModeProps> = ({
             // We might need to implement a "Smart Yeast" feature here or just set defaults.
             // But preserving `fermentationTechnique` is key.
             onConfigChange({
-                fermentationTechnique: 'DIRECT' as any,
+                fermentationTechnique: FermentationTechnique.DIRECT,
                 yeastPercentage: 0.8 // Faster for same-day
             });
         } else {
             // Cold fermentation cases
             onConfigChange({
-                fermentationTechnique: 'DIRECT' as any, // Most people do direct to fridge
+                fermentationTechnique: FermentationTechnique.DIRECT, // Most people do direct to fridge
                 // We might want to set a "Cold Fermentation" flag if we had one, 
                 // but typically this is implied by process.
                 yeastPercentage: 0.3 // Lower yeast for longer times
@@ -142,12 +141,12 @@ export const WizardMode: React.FC<WizardModeProps> = ({
     return (
         <div className="space-y-4">
             {/* Steps Navigation - Enhanced Mobile Scrollable */}
-            <div className="flex gap-3 overflow-x-auto pb-3 no-scrollbar sm:hidden">
+            <div className="grid grid-cols-4 gap-2 pb-2 sm:hidden">
                 {[1, 2, 3, 4].map(s => (
                     <button
                         key={s}
                         onClick={() => s < currentStep && setCurrentStep(s)}
-                        className={`flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center text-base font-black border-2 transition-all duration-300
+                        className={`flex aspect-square w-full items-center justify-center rounded-2xl border-2 text-base font-black transition-all duration-300
                             ${s === currentStep ? 'bg-gradient-to-br from-[#51a145] to-[#36782c] border-[#51a145] text-white shadow-lg shadow-[#51a145]/30 scale-110' : s < currentStep ? 'bg-emerald-50 border-emerald-300 text-emerald-700 hover:scale-105' : 'bg-white border-slate-200 text-slate-300'}
                         `}
                     >
@@ -231,14 +230,14 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                     <QuantitySection
                         config={config}
                         onConfigChange={onConfigChange}
-                        calculationMode={calculationMode}
-                        onCalculationModeChange={onCalculationModeChange}
+                        quantityInputMode={quantityInputMode}
+                        onQuantityInputModeChange={onQuantityInputModeChange}
                         errors={errors}
                         getInputClasses={(err) => `block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${err ? 'border-red-300' : ''}`}
                         numPizzasRef={inputRefs?.numPizzas}
                         // Determine min/max based on style if possible
-                        minDoughBallWeight={getStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.min || 150}
-                        maxDoughBallWeight={getStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.max || 1000}
+                            minDoughBallWeight={getCalculatorStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.min || 150}
+                            maxDoughBallWeight={getCalculatorStyleById(config.stylePresetId || 'neapolitan')?.technicalProfile?.ballWeight?.max || 1000}
                     />
 
                     <div className="flex justify-between pt-6 border-t border-slate-100">

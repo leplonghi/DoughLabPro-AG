@@ -10,9 +10,7 @@ import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import { useTranslation } from '@/i18n';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
-import { getPageMeta } from '@/app/appShell';
 
 interface LevainListPageProps {
     onNavigate: (page: Page, params?: string) => void;
@@ -41,7 +39,6 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const plan = getCurrentPlan(user);
-    const labMeta = getPageMeta('mylab/levain');
 
     const handleAddLevainClick = () => {
         if (!canUseFeature(plan, 'levain.multipleLevains') && levains.length >= 1) {
@@ -99,47 +96,53 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
     };
 
     return (
-        <MyLabLayout activePage="mylab/levain" onNavigate={onNavigate}>
-            <div className="animate-[fadeIn_0.5s_ease-in_out] space-y-8">
-                <AppShellHeader
-                    eyebrow={labMeta.eyebrow}
-                    title={t('mylab.levain_pet')}
-                    description="Track every starter in one place, review status at a glance, and move into a detail page without losing context."
-                >
-                    <div className="inline-flex items-center rounded-full border border-lime-200 bg-white/90 px-3 py-1 text-xs font-bold text-[#3d6d35]">
-                        {levains.length} {levains.length === 1 ? 'starter' : 'starters'}
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                        {levains.length >= 1 && !canUseFeature(plan, 'levain.lab_full') ? (
-                            <LockedTeaser featureKey="levain.multipleLevains">
+        <MyLabLayout
+            activePage="mylab/levain"
+            onNavigate={onNavigate}
+            pageHeader={{
+                title: t('mylab.levain_pet'),
+                description: 'Track every starter in one place, review status at a glance, and move into a detail page without losing context.',
+                children: (
+                    <>
+                        <div className="inline-flex items-center rounded-full border border-lime-200 bg-white/90 px-3 py-1 text-xs font-bold text-[#3d6d35]">
+                            {levains.length} {levains.length === 1 ? 'starter' : 'starters'}
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                            {levains.length >= 1 && !canUseFeature(plan, 'levain.lab_full') ? (
+                                <LockedTeaser featureKey="levain.multipleLevains">
+                                    <button
+                                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all opacity-50 cursor-not-allowed"
+                                    >
+                                        <PlusCircleIcon className="h-5 w-5" />
+                                        <span>{t('mylab.add_levain')}</span>
+                                    </button>
+                                </LockedTeaser>
+                            ) : (
                                 <button
-                                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all opacity-50 cursor-not-allowed"
+                                    onClick={handleAddLevainClick}
+                                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95"
                                 >
                                     <PlusCircleIcon className="h-5 w-5" />
                                     <span>{t('mylab.add_levain')}</span>
                                 </button>
-                            </LockedTeaser>
-                        ) : (
-                            <button
-                                onClick={handleAddLevainClick}
-                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95"
-                            >
-                                <PlusCircleIcon className="h-5 w-5" />
-                                <span>{t('mylab.add_levain')}</span>
-                            </button>
-                        )}
-                        <div className="flex gap-2">
-                            <button onClick={handleImportClick} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 transition-colors">
-                                <DownloadIcon className="h-5 w-5" />{t('mylab.import')}</button>
-                            <LockedTeaser featureKey="levain.exportPDF">
-                                <button onClick={handleExport} disabled={levains.length === 0} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 disabled:opacity-50 transition-colors">
-                                    <ShareIcon className="h-5 w-5" />{t('mylab.export')}</button>
-                            </LockedTeaser>
-                            <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" style={{ display: 'none' }} />
+                            )}
+                            <div className="flex gap-2">
+                                <button onClick={handleImportClick} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 transition-colors">
+                                    <DownloadIcon className="h-5 w-5" />{t('mylab.import')}
+                                </button>
+                                <LockedTeaser featureKey="levain.exportPDF">
+                                    <button onClick={handleExport} disabled={levains.length === 0} className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white  border border-slate-200  py-2.5 px-4 font-semibold text-slate-700  shadow-sm hover:bg-slate-50 disabled:opacity-50 transition-colors">
+                                        <ShareIcon className="h-5 w-5" />{t('mylab.export')}
+                                    </button>
+                                </LockedTeaser>
+                                <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" style={{ display: 'none' }} />
+                            </div>
                         </div>
-                    </div>
-                </AppShellHeader>
-
+                    </>
+                ),
+            }}
+        >
+            <div className="animate-[fadeIn_0.5s_ease-in_out] space-y-8">
                 {levains.length === 0 ? (
                     <AppSurface className="border-dashed border-slate-300 bg-[linear-gradient(180deg,_rgba(250,252,247,0.96)_0%,_rgba(255,255,255,0.96)_100%)] p-12 text-center">
                         <div className="mx-auto h-16 w-16 bg-lime-100  rounded-full flex items-center justify-center mb-4">

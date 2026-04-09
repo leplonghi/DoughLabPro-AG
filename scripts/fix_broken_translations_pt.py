@@ -1,6 +1,5 @@
 
 import json
-import os
 
 # Path to the Portuguese calculator translation file
 file_path = r'c:\Users\eduar\OneDrive\Desktop\Antigravity\doughlabpro\public\locales\pt\calculator.json'

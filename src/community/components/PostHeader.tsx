@@ -23,7 +23,7 @@ export const PostHeader: React.FC<PostHeaderProps> = ({ uid, username, userPhoto
     const [isDeleting, setIsDeleting] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
-    const isOwner = user && uid && (user.uid === uid || user.stripeCustomerId === uid);
+    const isOwner = user && uid && user.uid === uid;
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

@@ -1,4 +1,3 @@
-import os
 
 def fix_line_at_index(filepath, line_index, expected_part, new_line_content):
     print(f"Checking {filepath} at line {line_index+1}...")

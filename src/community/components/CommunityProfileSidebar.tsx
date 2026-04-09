@@ -15,8 +15,8 @@ export const CommunityProfileSidebar: React.FC = () => {
 
     useEffect(() => {
         const fetchStats = async () => {
-            if (!user?.uid && !user?.stripeCustomerId) return;
-            const uid = user.uid || user.stripeCustomerId || 'unknown';
+            if (!user?.uid) return;
+            const uid = user.uid;
             try {
                 // Fetch user posts to aggregate stats
                 // Note: accurate global stats typically require a backend counter

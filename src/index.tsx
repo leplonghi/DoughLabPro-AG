@@ -4,19 +4,18 @@ import App from './App';
 import './design-tokens.css';
 import './index.css';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
+import { installChunkRecoveryHandlers } from '@/utils/chunkRecovery';
 // Import i18n for side-effect initialization
 import '@/i18n';
 
-// ========================================
-// DoughLabPro Design System Enforcement
-// ========================================
-// IMPORTANT: This app is LIGHT MODE ONLY
-// - Force remove any dark mode classes
-// - Clear any theme preferences
-// - This is a PERMANENT design decision
-// ========================================
-document.documentElement.classList.remove('dark');
-localStorage.removeItem('theme');
+const forceLightTheme = () => {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem('theme', 'light');
+  document.documentElement.classList.remove('dark');
+};
+
+forceLightTheme();
+installChunkRecoveryHandlers();
 
 
 const rootElement = document.getElementById('root');

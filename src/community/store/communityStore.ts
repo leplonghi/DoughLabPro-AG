@@ -13,8 +13,7 @@ import {
     serverTimestamp,
     DocumentSnapshot,
     setDoc,
-    deleteDoc,
-    getCountFromServer
+    deleteDoc
 } from 'firebase/firestore';
 import { db } from '../../firebase/db';
 import { CommunityPost, CommunityComment, CommunityLike, CommunityClone, CommunityFollow } from '../types';
@@ -26,11 +25,24 @@ const LIKES_COLLECTION = 'community_likes';
 const CLONES_COLLECTION = 'community_clones';
 const FOLLOWS_COLLECTION = 'community_follows';
 
+const sanitizeFirestorePayload = <T extends Record<string, any>>(payload: T): Partial<T> => {
+    return Object.entries(payload).reduce((acc, [key, value]) => {
+        if (value === undefined) return acc;
+        if (Array.isArray(value)) {
+            acc[key as keyof T] = value.filter((item) => item !== undefined) as T[keyof T];
+            return acc;
+        }
+        acc[key as keyof T] = value;
+        return acc;
+    }, {} as Partial<T>);
+};
+
 export const communityStore = {
     // --- POSTS ---
     createPost: async (postData: Omit<CommunityPost, 'id' | 'createdAt' | 'likes' | 'comments' | 'clones'>) => {
+        const sanitizedPostData = sanitizeFirestorePayload(postData);
         const docRef = await addDoc(collection(db, POSTS_COLLECTION), {
-            ...postData,
+            ...sanitizedPostData,
             likes: 0,
             comments: 0,
             clones: 0,
@@ -165,17 +177,5 @@ export const communityStore = {
         const followId = `${followerUid}_${targetUid}`;
         const followSnap = await getDoc(doc(db, FOLLOWS_COLLECTION, followId));
         return followSnap.exists();
-    },
-
-    getFollowersCount: async (uid: string) => {
-        const q = query(collection(db, FOLLOWS_COLLECTION), where('targetUid', '==', uid));
-        const snapshot = await getCountFromServer(q);
-        return snapshot.data().count;
-    },
-
-    getFollowingCount: async (uid: string) => {
-        const q = query(collection(db, FOLLOWS_COLLECTION), where('followerUid', '==', uid));
-        const snapshot = await getCountFromServer(q);
-        return snapshot.data().count;
     }
 };

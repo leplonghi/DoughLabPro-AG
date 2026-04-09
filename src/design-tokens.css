@@ -11,8 +11,9 @@
 
   /* Text */
   --dlp-text-primary: #111827;
-  --dlp-text-secondary: #4B5563;
-  --dlp-text-muted: #6B7280;
+  --dlp-text-secondary: #23372B;
+  --dlp-text-tertiary: #2D4436;
+  --dlp-text-muted: #385141;
 
   /* Accent */
   --dlp-accent: #51a145;

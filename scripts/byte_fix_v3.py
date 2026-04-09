@@ -1,4 +1,3 @@
-import os
 
 def check_and_fix(filepath):
     print(f"Checking {filepath}...")

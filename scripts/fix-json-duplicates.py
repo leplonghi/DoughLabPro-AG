@@ -1,6 +1,4 @@
 import json
-import sys
-from collections import OrderedDict
 
 def remove_duplicates(file_path):
     """Remove duplicate keys from JSON file, keeping the last occurrence"""

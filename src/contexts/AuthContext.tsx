@@ -42,9 +42,23 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setLoading(false);
             return;
         }
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                setFirebaseUser(user);
+        let isMounted = true;
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (!isMounted) return;
+
+            // Release app boot blocker immediately after auth state is known.
+            setLoading(false);
+
+            if (!user) {
+                setFirebaseUser(null);
+                setAppUser(null);
+                return;
+            }
+
+            setFirebaseUser(user);
+
+            // Continue profile + claims hydration in background for better perceived speed.
+            void (async () => {
                 // Check for custom claims
                 let isProClaim = false;
                 let planClaim = 'free';
@@ -68,6 +82,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     try {
                         const userDocRef = doc(db, 'users', user.uid);
                         const userDoc = await getDoc(userDocRef);
+                        if (!isMounted) return;
+
                         if (userDoc.exists()) {
                             const userData = userDoc.data() as User;
                             // Override with claims if present (claims are authoritative from admin)
@@ -90,6 +106,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                                 newUser.avatar = user.photoURL;
                             }
                             await setDoc(userDocRef, newUser);
+                            if (!isMounted) return;
+
                             setAppUser({
                                 uid: user.uid,
                                 ...newUser,
@@ -99,6 +117,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                         }
                     } catch (error) {
                         console.error("Error fetching user data:", error);
+                        if (!isMounted) return;
                         // Fallback for guest/dev mode if DB fails
                         setAppUser({
                             uid: user.uid,
@@ -109,14 +128,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                         });
                     }
                 }
-            } else {
-                setFirebaseUser(null);
-                setAppUser(null);
-            }
-            setLoading(false);
+            })();
         });
 
-        return () => unsubscribe();
+        return () => {
+            isMounted = false;
+            unsubscribe();
+        };
     }, []);
 
     const loginWithGoogle = async () => {

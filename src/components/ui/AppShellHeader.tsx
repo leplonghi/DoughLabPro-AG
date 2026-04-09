@@ -5,40 +5,85 @@ interface AppShellHeaderProps {
   title: string;
   description: string;
   children?: React.ReactNode;
-  size?: 'default' | 'compact';
+  size?: 'default' | 'compact' | 'micro';
+  variant?: 'workspace' | 'editorial';
 }
+
+const sizeTokens = {
+  micro: {
+    title: 'text-[1.28rem] sm:text-[1.42rem]',
+    description: 'mt-1 text-[12px] leading-[1.35] sm:text-[12.5px]',
+    paddingY: 'py-4 sm:py-5',
+    actionWidth: 'lg:max-w-[42%]',
+  },
+  compact: {
+    title: 'text-[1.42rem] sm:text-[1.64rem]',
+    description: 'mt-1.5 text-[12.5px] leading-[1.38] sm:text-[13px]',
+    paddingY: 'py-5 sm:py-6',
+    actionWidth: 'lg:max-w-[44%]',
+  },
+  default: {
+    title: 'text-[1.62rem] sm:text-[1.92rem]',
+    description: 'mt-2 text-[13px] leading-[1.45] sm:text-[14px]',
+    paddingY: 'py-6 sm:py-7',
+    actionWidth: 'lg:max-w-[46%]',
+  },
+} as const;
 
 export const AppShellHeader: React.FC<AppShellHeaderProps> = ({
   eyebrow,
   title,
   description,
   children,
-  size = 'default',
+  size = 'micro',
+  variant = 'workspace',
 }) => {
-  const isCompact = size === 'compact';
+  const sizeToken = sizeTokens[size];
+
   return (
-    <section className={`glass-panel glass-sheen relative mb-8 overflow-hidden border border-white/80 bg-[linear-gradient(140deg,_rgba(255,255,255,0.78)_0%,_rgba(240,251,242,0.84)_46%,_rgba(225,245,229,0.82)_100%)] shadow-[0_34px_84px_-42px_rgba(18,47,24,0.28)] ${isCompact ? 'rounded-[1.6rem] px-5 py-5 sm:px-6 lg:px-7' : 'rounded-[2.2rem] px-6 py-7 sm:px-8 lg:px-10'}`}>
-      <div className={`pointer-events-none absolute -right-16 top-0 rounded-full bg-emerald-300/25 blur-3xl ${isCompact ? 'h-32 w-32' : 'h-48 w-48'}`} />
-      <div className={`pointer-events-none absolute bottom-0 left-0 rounded-full bg-lime-200/30 blur-3xl ${isCompact ? 'h-28 w-28' : 'h-40 w-40'}`} />
-      <div className={`relative flex flex-col ${isCompact ? 'gap-4' : 'gap-6'} lg:flex-row lg:items-end lg:justify-between`}>
-        <div className="max-w-3xl">
-          <div className={`inline-flex items-center rounded-full border border-emerald-200/70 bg-white/72 font-bold uppercase text-[#2f7a3c] shadow-[0_10px_30px_-20px_rgba(47,122,60,0.7)] backdrop-blur-xl ${isCompact ? 'px-3 py-0.5 text-[10px] tracking-[0.2em]' : 'px-3 py-1 text-[11px] tracking-[0.24em]'}`}>
-            {eyebrow}
+    <header
+      className={[
+        'relative isolate overflow-hidden border-b border-emerald-950/10',
+        // Keep the header aligned to the app gutters instead of forcing viewport width.
+        'mx-[calc(var(--app-page-gutter,1rem)*-1)]',
+        'bg-[radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.22)_0%,transparent_52%),radial-gradient(circle_at_82%_14%,rgba(214,255,233,0.22)_0%,transparent_50%),linear-gradient(135deg,#51a145_0%,#2f8b49_38%,#1B4332_100%)]',
+      ].join(' ')}
+      data-variant={variant}
+      data-size={size}
+      aria-label={`${eyebrow}: ${title}`}
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-[0.18] [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.24)_1px,transparent_0)] [background-size:14px_14px]" />
+      <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/65 to-transparent" />
+      <div className="pointer-events-none absolute -left-10 -top-12 h-32 w-32 rounded-full bg-white/12 blur-3xl" />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-200/14 blur-3xl" />
+
+      <div className={['relative px-[var(--app-page-gutter,1rem)]', sizeToken.paddingY].join(' ')}>
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <h1 className={`font-black leading-[1.02] tracking-[-0.04em] text-white dlp-clamp-2 ${sizeToken.title}`}>
+              {title}
+            </h1>
+            <p className={`max-w-2xl text-emerald-50/85 dlp-clamp-2 ${sizeToken.description}`}>
+              {description}
+            </p>
           </div>
-          <h1 className={`mt-4 max-w-3xl font-black tracking-tight text-slate-950 ${isCompact ? 'text-2xl sm:text-[2.25rem] sm:leading-[1.02]' : 'text-3xl sm:text-[2.85rem] sm:leading-[0.98]'}`}>
-            {title}
-          </h1>
-          <p className={`mt-3 max-w-2xl leading-7 text-slate-700 ${isCompact ? 'text-sm sm:text-base' : 'text-base sm:text-lg'}`}>
-            {description}
-          </p>
+
+          {children ? (
+            <div
+              className={[
+                'grid grid-cols-1 gap-2 min-w-0',
+                '[&>*]:min-w-0 [&>*]:max-w-full [&>*]:w-full',
+                'sm:flex sm:flex-wrap sm:items-center sm:[&>*]:w-auto',
+                sizeToken.actionWidth,
+                'lg:justify-end lg:pl-4',
+              ].join(' ')}
+            >
+              {children}
+            </div>
+          ) : null}
         </div>
-        {children ? (
-          <div className={`flex flex-wrap items-center lg:justify-end ${isCompact ? 'gap-2' : 'gap-3'}`}>
-            {children}
-          </div>
-        ) : null}
       </div>
-    </section>
+    </header>
   );
 };
 

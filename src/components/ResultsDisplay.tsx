@@ -5,26 +5,24 @@ import {
     Unit,
     UnitSystem,
     FlourDefinition,
-    CalculationMode,
-    BakeType,
+    QuantityInputMode,
     Levain,
+    Batch,
+    BatchStatus,
 } from '@/types';
 import { gramsToVolume } from '@/helpers';
 import {
     ShareIcon,
     DownloadIcon,
     BatchesIcon,
-    LockClosedIcon,
     BeakerIcon,
     ScaleIcon,
-    InfoIcon,
     FlourIcon,
     CubeIcon,
     ListBulletIcon,
 } from '@/components/ui/Icons';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
-import { exportBatchToPDF } from '@/services/exportService';
 import AppSurface from '@/components/ui/AppSurface';
 import EmptyStateCard from '@/components/ui/EmptyStateCard';
 import MetricCard from '@/components/ui/MetricCard';
@@ -34,9 +32,11 @@ import { useUser } from '@/contexts/UserProvider';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
 import SocialShareModal from '@/components/social/SocialShareModal';
 import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
-import { getStyleById } from '@/data/styles';
 import { ReverseSchedule } from '@/components/calculator/ReverseSchedule';
 import { AffiliateIngredientRow } from '@/components/calculator/AffiliateIngredientRow';
+import { useRouter } from '@/contexts/RouterContext';
+import { logCalculatorEvent } from '@/services/analytics';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 
 interface ResultsDisplayProps {
@@ -49,12 +49,13 @@ interface ResultsDisplayProps {
     onStartBatch: () => void;
     selectedFlour?: FlourDefinition;
     calculatorMode: 'wizard' | 'basic' | 'advanced';
-    calculationMode: CalculationMode;
+    quantityInputMode: QuantityInputMode;
     hasProAccess: boolean;
-    onOpenPaywall: (origin: any) => void;
+    onOpenPaywall: (origin: string) => void;
     saveButtonRef?: React.Ref<HTMLButtonElement>;
     onboardingStep?: number;
     selectedLevain?: Levain | null;
+    showExtras?: boolean;
 }
 
 export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
@@ -68,11 +69,13 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     onOpenPaywall,
     saveButtonRef,
     selectedLevain,
-    calculationMode,
+    quantityInputMode,
+    showExtras = false,
 }) => {
     const { addToast } = useToast();
     const { t } = useTranslation(['common', 'calculator', 'method']);
     const { user } = useUser();
+    const { navigate } = useRouter();
     const resultRef = useRef<HTMLDivElement>(null);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
@@ -85,12 +88,15 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     if (!results) {
         return (
-            <EmptyStateCard className="min-h-[400px] border-none">
-                <div className="mb-4 w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-premium border border-slate-100 transition-all duration-500 hover:scale-110 hover:rotate-12">
+            <EmptyStateCard className="min-h-[400px] border-none dlp-calc-panel">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-emerald-200/70 bg-white shadow-[0_18px_30px_-22px_rgba(47,139,73,0.45)] transition-all duration-500 hover:scale-105">
                     <BeakerIcon className="h-10 w-10 text-dlp-brand" />
                 </div>
-                <h3 className="text-2xl font-bold font-heading text-slate-800">{t('common.general.your_formula_awaits')}</h3>
-                <p className="text-sm mt-3 max-w-xs mx-auto text-slate-500 leading-relaxed">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#75907d]">
+                    Ready When You Are
+                </p>
+                <h3 className="mt-2 text-2xl font-bold font-heading text-slate-800 dark:text-slate-50">{t('common.general.your_formula_awaits')}</h3>
+                <p className="mt-3 max-w-xs mx-auto text-sm leading-relaxed text-slate-500 dark:text-slate-300">
                     Set your parameters to generate a scientifically precise dough formula.
                 </p>
             </EmptyStateCard>
@@ -111,26 +117,27 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         return displayValue(grams);
     };
 
-    const handleShare = async () => {
-        if (!canUseFeature(userPlan, 'community.share_and_clone')) {
-            addToast("Pro feature: Share your formulas with the community.", "info");
-            onOpenPaywall('calculator');
-            return;
-        }
-        try {
-            await navigator.clipboard.writeText(window.location.href);
-            addToast(t('results.share_link'), "success");
-        } catch (e) { addToast(t('results.share_error'), "error"); }
-    };
-
     const handleExportPDF = async () => {
         if (!canUseFeature(userPlan, 'export.pdf_json')) {
             addToast("Pro feature: Export formulas as professional PDFs.", "info");
+            logCalculatorEvent('paywall_opened_from_calculator', { source: 'export_pdf' });
             onOpenPaywall('calculator');
             return;
         }
         try {
-            const batchMock: any = { name: `${config.recipeStyle} Formula`, createdAt: new Date().toISOString(), doughConfig: config, doughResult: results, notes: config.notes };
+            const { exportBatchToPDF } = await importWithChunkRecovery(() => import('@/services/exportService'));
+            const now = new Date().toISOString();
+            const batchMock: Batch = {
+                id: `tmp-${Date.now()}`,
+                name: `${config.recipeStyle} Formula`,
+                createdAt: now,
+                updatedAt: now,
+                status: BatchStatus.DRAFT,
+                isFavorite: false,
+                doughConfig: config,
+                doughResult: results,
+                notes: config.notes,
+            };
             addToast(t('results.export_pdf_aria'), "info");
             await exportBatchToPDF(batchMock, t);
         } catch (e) {
@@ -153,59 +160,67 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     return (
         <div ref={resultRef} className="space-y-6 animate-slide-up">
-            {/* Main Result Card: Dough Recipe */}
-            <AppSurface surface="elevated" tone="neutral" className="p-6">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <AppSurface surface="elevated" tone="neutral" className="p-5 sm:p-6">
+                <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
                     <div>
-                        <h2 className="text-xl font-bold font-heading text-slate-800 flex items-center gap-3">
-                            <BeakerIcon className="w-6 h-6 text-dlp-brand-lime" />
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#75907d]">
+                            Formula Output
+                        </p>
+                        <h2 className="mt-2 flex items-center gap-3 text-xl font-bold font-heading text-slate-800 dark:text-slate-50">
+                            <BeakerIcon className="h-6 w-6 text-dlp-brand" />
                             {t('results.title', { defaultValue: 'Dough Recipe' })}
                         </h2>
+                        <p className="mt-2 inline-flex items-center rounded-full border border-emerald-200/70 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/50 dark:text-emerald-100">
+                            {t('results.total_dough')}: {displayValue(results.totalDough)}
+                        </p>
                     </div>
-
-
+                    <div className="dlp-calc-panel--subtle rounded-[1.1rem] border px-4 py-3">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                            Batch profile
+                        </p>
+                        <p className="mt-1 text-sm font-semibold text-slate-800 dark:text-slate-50">
+                            {config.recipeStyle || t('common.general.custom', { defaultValue: 'Custom' })}
+                        </p>
+                    </div>
                 </div>
 
-
-                {/* Metric Boxes */}
-                <div className="grid grid-cols-3 gap-4 mb-10">
+                <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <MetricCard
                         label={t('results.total_flour')}
                         value={<span className="text-lg font-bold font-heading">{displayValue(results.totalFlour)}</span>}
-                        icon={<FlourIcon className="w-4 h-4 text-dlp-brand-lime" />}
+                        icon={<FlourIcon className="w-4 h-4 text-dlp-brand" />}
                         className="items-center text-center"
                     />
                     <MetricCard
                         label={t('results.total_dough')}
                         value={<span className="text-lg font-bold font-heading">{displayValue(results.totalDough)}</span>}
-                        icon={<ScaleIcon className="w-4 h-4 text-dlp-brand-lime" />}
+                        icon={<ScaleIcon className="w-4 h-4 text-dlp-brand" />}
                         className="items-center text-center"
                     />
                     <MetricCard
-                        label={calculationMode === 'flour' ? t('results.est_yield', { defaultValue: 'Est. Yield' }) : t('results.weight_per_piece', { defaultValue: 'Per piece' })}
+                        label={quantityInputMode === 'flour' ? t('results.est_yield', { defaultValue: 'Est. Yield' }) : t('results.weight_per_piece', { defaultValue: 'Per piece' })}
                         value={
                             <span className="text-lg font-bold font-heading">
-                                {calculationMode === 'flour' ? `${results.projectedYield || 0} Pcs` : displayValue(results.totalDough / config.numPizzas)}
+                                {quantityInputMode === 'flour' ? `${results.projectedYield || 0} Pcs` : displayValue(results.totalDough / config.numPizzas)}
                             </span>
                         }
-                        icon={<CubeIcon className="w-4 h-4 text-dlp-brand-lime" />}
+                        icon={<CubeIcon className="w-4 h-4 text-dlp-brand" />}
                         className="items-center text-center"
                     />
                 </div>
 
-                {/* Ingredients List */}
-                <div className="space-y-1 px-1 mb-8" id="tour-results-ingredients">
-                    <div className="flex items-center gap-3 mb-1">
-                        <ListBulletIcon className="w-4 h-4 text-dlp-brand-lime" />
-                        <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-800">
+                <div className="mb-8 dlp-calc-panel--subtle rounded-[1.7rem] border p-4 sm:p-5" id="tour-results-ingredients">
+                    <div className="mb-4 flex items-center gap-3">
+                        <ListBulletIcon className="h-4 w-4 text-dlp-brand" />
+                        <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-800 dark:text-slate-100">
                             {t('results.ingredients_title', { defaultValue: 'INGREDIENTS' })}
                         </h4>
-                        <div className="h-px flex-1 bg-slate-100"></div>
+                        <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800"></div>
                     </div>
 
                     {results.preferment && (
-                        <div className="mb-4 bg-slate-50/30 rounded-2xl p-3 border border-dashed border-slate-200">
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 px-2">Preferment / Levain</p>
+                        <div className="mb-4 rounded-[1.25rem] border border-dashed border-emerald-200/80 bg-white/70 p-3 dark:border-emerald-900/60 dark:bg-emerald-950/20">
+                            <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Preferment / Levain</p>
                             <div className="space-y-0.5">
                                 {renderIngredientRow(t('results.flour'), results.preferment.flour, 'flour')}
                                 {renderIngredientRow(t('results.water'), results.preferment.water, 'water')}
@@ -238,58 +253,76 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                     </div>
                 </div>
 
-                {/* Primary Action Button */}
                 <div className="relative group mt-4">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-dlp-brand to-teal-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                     <button
                         id="tour-log-batch"
-                        onClick={onStartBatch}
+                        onClick={() => {
+                            logCalculatorEvent('start_batch_clicked', {
+                                recipeStyle: config.recipeStyle,
+                                bakeType: config.bakeType
+                            });
+                            onStartBatch();
+                        }}
                         ref={saveButtonRef}
-                        className="relative dlp-button-primary w-full py-4 text-sm uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all bg-dlp-brand text-[#1B4332] font-bold rounded-2xl border-none"
+                        className="relative dlp-button-primary flex w-full items-center justify-center gap-3 rounded-2xl border-none bg-dlp-brand py-4 text-sm font-bold uppercase tracking-[0.18em] text-[#1B4332] shadow-xl transition-all hover:shadow-2xl active:scale-[0.98]"
                     >
                         <BatchesIcon className="h-5 w-5" />
                         {t('common.diary_page.new_batch', { defaultValue: 'Log New Bake' })}
                     </button>
                 </div>
 
-                {/* Bottom Secondary Actions */}
-                <div className="grid grid-cols-2 gap-4 mt-6" id="tour-actions">
+                <div className="mt-6 grid grid-cols-2 gap-3" id="tour-actions">
                     <button
                         onClick={() => setIsShareModalOpen(true)}
-                        className="dlp-button-secondary group flex items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] font-heading active:translate-y-0.5"
+                        className="dlp-button-secondary group flex items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[10px] font-bold uppercase tracking-[0.14em] font-heading active:translate-y-0.5"
                     >
                         <ShareIcon className="h-4 w-4 text-dlp-brand/60 group-hover:text-dlp-brand transition-all duration-300 group-hover:scale-110" />
                         {t('results.social_card', { defaultValue: 'SOCIAL CARD' })}
                     </button>
                     <button
                         onClick={handleExportPDF}
-                        className="dlp-button-secondary group flex items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[10px] font-bold uppercase tracking-[0.1em] font-heading active:translate-y-0.5"
+                        className="dlp-button-secondary group flex items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[10px] font-bold uppercase tracking-[0.14em] font-heading active:translate-y-0.5"
                     >
                         <DownloadIcon className="h-4 w-4 text-dlp-brand/60 group-hover:text-dlp-brand transition-all duration-300 group-hover:scale-110" />
                         {t('results.pdf', { defaultValue: 'PDF' })}
                     </button>
                 </div>
 
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    <button onClick={() => navigate('mylab')} className="dlp-calc-panel--subtle rounded-xl border px-3 py-2 text-xs font-semibold text-[#1B4332] transition-colors hover:border-emerald-200 hover:bg-emerald-50/90 dark:text-emerald-100">
+                        My Lab
+                    </button>
+                    <button onClick={() => navigate('learn')} className="dlp-calc-panel--subtle rounded-xl border px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 dark:text-slate-100">
+                        Learn
+                    </button>
+                    <button onClick={() => navigate('styles')} className="dlp-calc-panel--subtle rounded-xl border px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 dark:text-slate-100">
+                        Compare Styles
+                    </button>
+                    <button onClick={() => navigate('community')} className="dlp-calc-panel--subtle rounded-xl border px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 dark:text-slate-100">
+                        Community
+                    </button>
+                </div>
+
             </AppSurface>
 
-            {/* Smart Schedule Integrated */}
-            {user?.enableSmartSchedule && (
-                <AppSurface surface="glass" tone="brand" className="overflow-hidden border-teal-100/50 p-0">
+            {showExtras && user?.enableSmartSchedule && (
+                <AppSurface surface="rail" tone="brand" className="overflow-hidden p-0">
                     <ReverseSchedule config={config} levain={selectedLevain || undefined} />
                 </AppSurface>
             )}
 
-            {/* Step-by-Step Method Panel */}
-            <AppSurface surface="glass" tone="neutral" className="overflow-hidden p-0">
+            <AppSurface surface="rail" tone="neutral" className="overflow-hidden p-0">
                 <div className="p-6">
                     <TechnicalMethodPanel steps={technicalSteps} />
                 </div>
             </AppSurface>
 
-            {/* Recommended Lab Gear */}
-            <AppSurface surface="glass" tone="neutral" className="p-8">
-                <RecommendedProducts tags={[config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']} title={t('common.general.tools_for_this_formula')} />
-            </AppSurface>
+            {showExtras && (
+                <AppSurface surface="rail" tone="neutral" className="p-8">
+                    <RecommendedProducts tags={[config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']} title={t('common.general.tools_for_this_formula')} />
+                </AppSurface>
+            )}
 
 
             <SocialShareModal isOpen={isShareModalOpen} onClose={() => setIsShareModalOpen(false)} config={config} results={results} />

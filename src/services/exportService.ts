@@ -1,7 +1,7 @@
 import { Batch, DoughConfig, DoughResult } from '../types';
 import { FLOURS } from '../flours-constants';
 import { generateTechnicalMethod } from '../logic/methodGenerator';
-import { useTranslation } from 'react-i18next';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 
 const COLORS = {
@@ -23,7 +23,7 @@ export const exportBatchToPDF = async (batch: Batch, t: (key: string, options?: 
     try {
         if (!batch) throw new Error(t('common.batch_data_is_missing_175'));
 
-        const { default: jsPDF } = await import('jspdf');
+        const { default: jsPDF } = await importWithChunkRecovery(() => import('jspdf'));
         const doc = new jsPDF();
 
         // Page Config

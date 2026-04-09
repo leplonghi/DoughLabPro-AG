@@ -6,10 +6,8 @@ import {
   YeastType,
   DoughConfig,
   UnitSystem,
-  FermentationTechnique,
-  DoughStylePreset
+  FermentationTechnique
 } from '@/types';
-import i18n from '@/i18n';
 
 export const AMBIENT_TEMPERATURE_OPTIONS = [
   { value: AmbientTemperature.COLD, labelKey: 'calculator.temp_cold', tempRange: '< 18°C' },
@@ -68,61 +66,17 @@ export const DEFAULT_CONFIG: DoughConfig = {
   ingredients: [],
 };
 
-// --- DYNAMIC STYLE LOADING ---
-import { STYLES_DATA } from '@/data/styles/registry';
+export const USER_DATA_QUERY_LIMITS = {
+  batches: 200,
+  flours: 100,
+  levains: 50,
+  goals: 50,
+  testSeries: 50,
+} as const;
 
-const getBakeTypeFromCategory = (catRaw: string): BakeType => {
-  const cat = catRaw.toLowerCase();
-  if (['pizza', 'calzone'].includes(cat)) return BakeType.PIZZAS;
-  if (['pastry', 'cookie', 'cookies', 'cookies_confectionery', 'enriched_bread', 'sweet'].includes(cat)) return BakeType.SWEETS_PASTRY;
-  return BakeType.BREADS_SAVORY; // bread, flatbread, burger_bun, other
-};
-
-const getIngredientPct = (style: any, keywords: string[]): number => {
-  if (!style.base_formula) return 0;
-  const ing = style.base_formula.find((i: any) =>
-    keywords.some(k => i.name.toLowerCase().includes(k))
-  );
-  return ing ? ing.percentage : 0;
-};
-
-export const DOUGH_STYLE_PRESETS: DoughStylePreset[] = STYLES_DATA.map(style => {
-  // Determine Type
-  let type = getBakeTypeFromCategory(style.category);
-
-  // Specific Overrides based on RecipeStyle if Category is ambiguous
-  if (style.recipeStyle === RecipeStyle.BRIOCHE) type = BakeType.SWEETS_PASTRY;
-  if (style.recipeStyle === RecipeStyle.BURGER_BUN) type = BakeType.BREADS_SAVORY;
-
-  // Calculate Defaults (Average of Range)
-  const hydration = (style.technicalProfile.hydration[0] + style.technicalProfile.hydration[1]) / 2;
-  const salt = (style.technicalProfile.salt[0] + style.technicalProfile.salt[1]) / 2;
-
-  // Extract or Default others
-  // If base_formula is present, priority to it. Else, legacy defaults.
-  const oilPct = getIngredientPct(style, ['oil', 'azeite', 'butter', 'fat']) ||
-    (style.technicalProfile.oil ? (style.technicalProfile.oil[0] + style.technicalProfile.oil[1]) / 2 : 0);
-
-  const sugarPct = getIngredientPct(style, ['sugar', 'honey', 'malt', 'sugar']) ||
-    (style.technicalProfile.sugar ? (style.technicalProfile.sugar[0] + style.technicalProfile.sugar[1]) / 2 : 0);
-
-  const yeastPct = getIngredientPct(style, ['yeast', 'levain', 'starter', 'fermento']) || 0.2; // Default low
-
-  return {
-    id: style.id,
-    name: style.name,
-    type: type,
-    recipeStyle: style.recipeStyle || RecipeStyle.NEAPOLITAN,
-    defaultHydration: hydration,
-    defaultSalt: salt,
-    defaultOil: oilPct,
-    defaultSugar: sugarPct,
-    defaultYeastPct: yeastPct,
-    region: style.origin.region || style.origin.country,
-    country: style.origin.country,
-    description: style.description,
-  };
-});
+export const ANALYTICS_QUERY_LIMITS = {
+  notificationEvents: 500,
+} as const;
 
 export const ENVIRONMENT_TEMPERATURE_GUIDELINES = {
   [AmbientTemperature.COLD]: {

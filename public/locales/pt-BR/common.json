@@ -1,0 +1,40 @@
+{
+  "common": {
+    "nav": {
+      "home": "Início",
+      "calculator": "Calculadora",
+      "lab": "Meu Lab",
+      "styles": "Estilos",
+      "learn": "Aprender",
+      "tools": "Ferramentas",
+      "community": "Comunidade",
+      "settings": "Configurações"
+    },
+    "dark_mode": "Modo escuro",
+    "light_mode": "Modo claro",
+    "thinking": "Pensando..."
+  },
+  "doughy_assistant": {
+    "title": "Doughy",
+    "status": "Online",
+    "welcome": "Sou o Doughy. Me diga seu objetivo e suas limitações que eu te passo o próximo passo com clareza.",
+    "placeholder": "Descreva seu objetivo ou problema com a massa...",
+    "error": "Não consegui processar agora. Tente novamente em uma frase curta.",
+    "chips": {
+      "rescue_label": "Resgatar massa",
+      "rescue_text": "Minha massa deu ruim. Me ajuda a recuperar rápido.",
+      "recipe_label": "Montar receita",
+      "recipe_text": "Monte uma receita para meu estilo e forno atuais.",
+      "learn_label": "Explicar o motivo",
+      "learn_text": "Explique de forma simples o que mudou na minha massa.",
+      "calc_label": "Abrir calculadora",
+      "calc_text": "Como configuro a calculadora para este caso?",
+      "style_label": "Comparar estilos",
+      "style_text": "Qual estilo combina melhor com meu objetivo e meu forno?",
+      "rescue_flow_label": "Rodar resgate",
+      "rescue_flow_text": "Abra o fluxo de resgate e diagnostique esse problema.",
+      "tips_label": "Ajustes rápidos",
+      "tips_text": "Me dê os 3 ajustes com maior impacto agora."
+    }
+  }
+}

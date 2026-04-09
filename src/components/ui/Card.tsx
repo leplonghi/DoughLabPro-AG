@@ -1,4 +1,5 @@
 import React from 'react';
+import AppSurface from '@/components/ui/AppSurface';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
@@ -6,11 +7,14 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Card: React.FC<CardProps> = ({ children, className = '', ...props }) => {
     return (
-        <div
-            className={`dlp-surface-base dlp-tone-neutral overflow-hidden rounded-2xl ${className}`}
+        <AppSurface
+            surface="glass"
+            tone="neutral"
+            density="compact"
+            className={['rounded-[1.2rem]', className].filter(Boolean).join(' ')}
             {...props}
         >
             {children}
-        </div>
+        </AppSurface>
     );
 };

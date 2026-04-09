@@ -6,7 +6,7 @@ import { XMarkIcon, SparklesIcon, BeakerIcon, BookOpenIcon, PlusCircleIcon, Info
 import { IngredientAIService } from '@/services/IngredientAIService';
 import { DoughStyleDefinition } from '@/types/styles';
 import { AIValidationResponse, IncrementCategory } from '@/types/ingredients';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 import { FLAVOR_COMPONENTS } from '@/data/flavorComponents';
 import { FlavorComponent } from '@/types/flavor';
 

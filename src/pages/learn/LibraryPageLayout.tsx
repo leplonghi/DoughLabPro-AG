@@ -1,15 +1,13 @@
 import React from 'react';
+import AppPageLayout, { AppPageHeaderConfig } from '@/components/ui/AppPageLayout';
 
 interface LibraryPageLayoutProps {
     children: React.ReactNode;
+    pageHeader?: AppPageHeaderConfig | false;
 }
 
-export const LibraryPageLayout: React.FC<LibraryPageLayoutProps> = ({ children }) => {
-    return (
-        <div className="text-slate-900 selection:bg-lime-200 selection:text-lime-900">
-            {children}
-        </div>
-    );
+export const LibraryPageLayout: React.FC<LibraryPageLayoutProps> = ({ children, pageHeader = false }) => {
+    return <AppPageLayout width="wide" density="default" pageHeader={pageHeader}>{children}</AppPageLayout>;
 };
 
 

@@ -1,33 +1,48 @@
 import React from 'react';
 import LegalPageLayout from './LegalPageLayout';
-import { useTranslation } from '@/i18n';
+import {
+  LEGAL_COMPANY_NAME,
+  LEGAL_LAST_UPDATED,
+} from './legalConfig';
 
 const EulaPage: React.FC = () => {
-  const { t } = useTranslation();
   return (
-    <LegalPageLayout title="End User License Agreement (EULA)" lastUpdated="August 1, 2024">
-      <h3>1. Introduction</h3>
-      <p>This End User License Agreement (t('common.agreement')) is a legal agreement between you (either an individual or a single entity) and DoughLabPro (t('common.licensor')) for the DoughLabPro software product, which includes computer software and may include associated media, printed materials, and "online" or electronic documentation (t('common.software_product')).</p>
-      <p>BY INSTALLING, COPYING, OR OTHERWISE USING THE SOFTWARE PRODUCT, YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT.</p>
+    <LegalPageLayout title="End User License Agreement (EULA)" lastUpdated={LEGAL_LAST_UPDATED}>
+      <h3>1. Scope of the license</h3>
+      <p>
+        This EULA governs the software layer of DoughLabPro made available to you through web, hosted, or app-like
+        environments. Subject to compliance with applicable terms, {LEGAL_COMPANY_NAME} grants you a limited,
+        non-exclusive, non-transferable, revocable license to access and use the software for your internal personal or
+        business baking workflows.
+      </p>
 
-      <h3>2. Grant of License</h3>
-      <p>DoighLabPro grants you the following rights provided that you comply with all terms and conditions of this EULA:</p>
+      <h3>2. Ownership</h3>
+      <p>
+        DoughLabPro and its software, interface, source structure, documentation, and related materials remain the
+        property of {LEGAL_COMPANY_NAME} and its licensors. This EULA grants only a limited right to use the service; it
+        does not transfer ownership of the software or any intellectual property rights.
+      </p>
+
+      <h3>3. Restrictions</h3>
       <ul className="list-disc pl-5 space-y-1">
-        <li><strong>{t('ui.installation_and_use')}</strong> You may install and use an unlimited number of copies of the Software Product.</li>
-        <li><strong>{t('ui.reproduction_and_distribution')}</strong> You may not reproduce and distribute copies of the Software Product without explicit permission.</li>
+        <li>Do not sublicense, resell, lease, or commercially redistribute the software without written authorization.</li>
+        <li>Do not reverse engineer, decompile, or disassemble the software except where non-waivable law expressly permits it.</li>
+        <li>Do not remove, obscure, or alter legal notices, attribution, or proprietary marks embedded in the service.</li>
+        <li>Do not use the software in a way that violates the Terms of Use, Privacy Policy, or applicable law.</li>
       </ul>
 
-      <h3>3. Description of Other Rights and Limitations</h3>
-      <ul className="list-disc pl-5 space-y-1">
-        <li><strong>{t('ui.limitations_on_reverse_engineering_decompilation_a')}</strong> You may not reverse engineer, decompile, or disassemble the Software Product, except and only to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation.</li>
-        <li><strong>{t('ui.separation_of_components')}</strong> The Software Product is licensed as a single product. Its component parts may not be separated for use on more than one computer.</li>
-        <li><strong>{t('ui.software_transfer')}</strong> You may permanently transfer all of your rights under this EULA, provided you retain no copies, you transfer all of the Software Product (including all component parts, the media and printed materials, any upgrades, and this EULA), and the recipient agrees to the terms of this EULA.</li>
-        <li><strong>{t('ui.termination')}</strong> Without prejudice to any other rights, DoughLabPro may terminate this EULA if you fail to comply with the terms and conditions of this EULA. In such event, you must destroy all copies of the Software Product and all of its component parts.</li>
-      </ul>
+      <h3>4. Updates and hosted delivery</h3>
+      <p>
+        DoughLabPro may be updated automatically because the product is delivered through hosted infrastructure.
+        Continued use after updates means you accept the revised software environment, subject to the current legal
+        documents published by the service.
+      </p>
 
-      <h3>4. Copyright</h3>
-      <p>All title and copyrights in and to the Software Product (including but not limited to any images, photographs, animations, video, audio, music, text, and "applets" incorporated into the Software Product), the accompanying printed materials, and any copies of the Software Product are owned by DoughLabPro or its suppliers. The Software Product is protected by copyright laws and international treaty provisions. Therefore, you must treat the Software Product like any other copyrighted material.</p>
-
+      <h3>5. Termination</h3>
+      <p>
+        This license ends automatically if you breach the governing terms or if your access is lawfully suspended or
+        terminated. Upon termination, your right to use the software stops immediately.
+      </p>
     </LegalPageLayout>
   );
 };

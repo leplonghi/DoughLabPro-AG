@@ -1,6 +1,5 @@
 import os
 import re
-import json
 
 # Textos comuns e suas chaves
 COMMON_TRANSLATIONS = {
@@ -48,7 +47,6 @@ def add_use_translation(content):
     # Adicionar import
     if "from '@/i18n'" not in content:
         # Encontrar última linha de import
-        import_lines = []
         lines = content.split('\n')
         last_import_idx = 0
         

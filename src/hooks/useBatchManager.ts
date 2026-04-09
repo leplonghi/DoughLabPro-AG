@@ -4,6 +4,7 @@ import {
   collection,
   query,
   orderBy,
+  limit,
   onSnapshot,
   addDoc,
   updateDoc,
@@ -14,7 +15,7 @@ import {
 } from 'firebase/firestore';
 import { User as FirebaseUser } from '@firebase/auth';
 import { Batch, BatchStatus } from '@/types';
-import { DEFAULT_CONFIG } from '@/constants';
+import { DEFAULT_CONFIG, USER_DATA_QUERY_LIMITS } from '@/constants';
 import { useTranslation } from '@/i18n';
 import { sanitizeForFirestore } from '@/helpers';
 
@@ -40,7 +41,11 @@ export function useBatchManager(
 
     const uid = firebaseUser.uid;
     const collRef = collection(db, 'users', uid, 'batches');
-    const q = query(collRef, orderBy('createdAt', 'desc'));
+    const q = query(
+      collRef,
+      orderBy('createdAt', 'desc'),
+      limit(USER_DATA_QUERY_LIMITS.batches)
+    );
 
     const unsubscribe = onSnapshot(
       q,

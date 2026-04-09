@@ -78,4 +78,15 @@ describe('DoughConfigValidator', () => {
         });
         expect(validateDoughConfig(config).yeastPercentage).toBeTruthy();
     });
+
+    it('should use style preset ball-weight bounds when available', () => {
+        const config = createConfig({
+            bakeType: BakeType.BREADS_SAVORY,
+            recipeStyle: RecipeStyle.FOCACCIA,
+            stylePresetId: 'focaccia-genovese',
+            doughBallWeight: 500,
+        });
+
+        expect(validateDoughConfig(config).doughBallWeight).toBeUndefined();
+    });
 });

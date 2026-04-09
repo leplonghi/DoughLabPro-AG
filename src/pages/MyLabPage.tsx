@@ -4,7 +4,6 @@ import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import MyLabLayout from '@/pages/mylab/MyLabLayout';
 import LearnAffiliateBlock from '@/components/learn/LearnAffiliateBlock';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface, { AppSurfaceTone } from '@/components/ui/AppSurface';
 import InlineNotice from '@/components/ui/InlineNotice';
 import MetricCard from '@/components/ui/MetricCard';
@@ -30,7 +29,6 @@ import {
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { useTranslation } from '@/i18n';
 import { useToast } from '@/components/ToastProvider';
-import { getPageMeta } from '@/app/appShell';
 
 interface MyLabPageProps {
     onNavigate: (page: Page) => void;
@@ -57,10 +55,11 @@ const getElapsedHours = (dateValue: string) => {
 };
 
 const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch }) => {
-    const { t } = useTranslation(['common', 'dashboard']);
+    const { t, locale } = useTranslation(['common', 'dashboard']);
+    const isPortuguese = locale === 'pt-BR';
+    const localized = React.useCallback((pt: string, en: string) => (isPortuguese ? pt : en), [isPortuguese]);
     const { hasProAccess, openPaywall, batches, customPresets, levains } = useUser();
     const { addToast } = useToast();
-    const labMeta = getPageMeta('mylab');
 
     // Stats Calculation
     const totalBakes = batches.length;
@@ -90,8 +89,8 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
             items.push({
                 id: 'first-bake',
                 title: 'Create your first lab entry',
-                description: 'Start a draft bake so DoughLab can begin learning from your process and giving you better recommendations.',
-                actionLabel: 'Start first bake',
+                description: localized('Comece uma fornada rascunho para o DoughLab aprender com seu processo e melhorar as recomendacoes.', 'Start a draft bake so DoughLab can begin learning from your process and giving you better recommendations.'),
+                actionLabel: localized('Comecar primeira fornada', 'Start first bake'),
                 action: 'start-bake',
                 icon: <PlusCircleIcon className="h-5 w-5" />,
                 tone: 'brand'
@@ -105,9 +104,9 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
             if (hoursSinceFeeding !== null && hoursSinceFeeding >= idealInterval) {
                 items.push({
                     id: 'feed-levain',
-                    title: `${priorityLevain.name} needs attention`,
-                    description: `It has been ${hoursSinceFeeding}h since the last feeding. Logging a refresh now keeps your starter predictable.`,
-                    actionLabel: 'Open levain tracker',
+                    title: localized(`${priorityLevain.name} precisa de atencao`, `${priorityLevain.name} needs attention`),
+                    description: localized(`Ja se passaram ${hoursSinceFeeding}h desde a ultima alimentacao. Registrar um reforco agora ajuda a manter seu levain previsivel.`, `It has been ${hoursSinceFeeding}h since the last feeding. Logging a refresh now keeps your starter predictable.`),
+                    actionLabel: localized('Abrir controle do levain', 'Open levain tracker'),
                     action: 'open-levain',
                     icon: <FireIcon className="h-5 w-5" />,
                     tone: 'warning'
@@ -118,9 +117,9 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
         if (latestBakeHoursAgo !== null && latestBakeHoursAgo >= 7 * 24) {
             items.push({
                 id: 'resume-practice',
-                title: 'Resume your bake rhythm',
-                description: `Your last logged bake was ${Math.floor(latestBakeHoursAgo / 24)} days ago. A fresh run will keep your timeline and insights useful.`,
-                actionLabel: 'Log a new bake',
+                title: localized('Retome seu ritmo de fornadas', 'Resume your bake rhythm'),
+                description: localized(`Sua ultima fornada registrada foi ha ${Math.floor(latestBakeHoursAgo / 24)} dias. Um novo registro ajuda a manter timeline e insights uteis.`, `Your last logged bake was ${Math.floor(latestBakeHoursAgo / 24)} days ago. A fresh run will keep your timeline and insights useful.`),
+                actionLabel: localized('Registrar nova fornada', 'Log a new bake'),
                 action: 'start-bake',
                 icon: <ClockIcon className="h-5 w-5" />,
                 tone: 'info'
@@ -130,9 +129,9 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
         if (lowRatedBake) {
             items.push({
                 id: 'review-low-rating',
-                title: `Review "${lowRatedBake.name}"`,
-                description: 'You have a recent bake below your target rating. Compare notes and tweak one variable before the next run.',
-                actionLabel: 'Open bake log',
+                title: localized(`Revise "${lowRatedBake.name}"`, `Review "${lowRatedBake.name}"`),
+                description: localized('Voce tem uma fornada recente abaixo da sua nota alvo. Compare as anotacoes e ajuste uma variavel antes da proxima rodada.', 'You have a recent bake below your target rating. Compare notes and tweak one variable before the next run.'),
+                actionLabel: localized('Abrir registro da fornada', 'Open bake log'),
                 action: 'open-bakes',
                 icon: <ClipboardDocumentCheckIcon className="h-5 w-5" />,
                 tone: 'warning'
@@ -142,9 +141,9 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
         if (totalBakes > 0 && customPresets.length === 0) {
             items.push({
                 id: 'save-preset',
-                title: 'Turn a good formula into a preset',
-                description: 'Saving one reusable formula makes repeat production faster and helps standardize your next sessions.',
-                actionLabel: 'Open calculator',
+                title: localized('Transforme uma boa formula em preset', 'Turn a good formula into a preset'),
+                description: localized('Salvar uma formula reutilizavel acelera a repeticao e ajuda a padronizar as proximas sessoes.', 'Saving one reusable formula makes repeat production faster and helps standardize your next sessions.'),
+                actionLabel: localized('Abrir calculadora', 'Open calculator'),
                 action: 'open-calculator',
                 icon: <DocumentTextIcon className="h-5 w-5" />,
                 tone: 'info'
@@ -154,9 +153,9 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
         if (totalBakes >= 3) {
             items.push({
                 id: 'open-insights',
-                title: 'Check your production pattern',
-                description: 'You already have enough data to inspect trends, compare outcomes and spot what improves consistency.',
-                actionLabel: 'Open insights',
+                title: localized('Veja seu padrao de producao', 'Check your production pattern'),
+                description: localized('Voce ja tem dados suficientes para analisar tendencias, comparar resultados e identificar o que melhora sua consistencia.', 'You already have enough data to inspect trends, compare outcomes and spot what improves consistency.'),
+                actionLabel: localized('Abrir insights', 'Open insights'),
                 action: 'open-insights',
                 icon: <ChartBarIcon className="h-5 w-5" />,
                 tone: 'success'
@@ -165,7 +164,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
         const deduped = items.filter((item, index, arr) => arr.findIndex((candidate) => candidate.id === item.id) === index);
         return deduped.slice(0, 3);
-    }, [customPresets.length, levains, recentBakes, totalBakes]);
+    }, [customPresets.length, levains, localized, recentBakes, totalBakes]);
 
     const cadenceSummary = useMemo(() => {
         const recentBakeTimestamps = batches
@@ -199,16 +198,16 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
         if (localStorage.getItem(reminderKey)) return;
 
         if (cadenceSummary.levainNeedingAttention) {
-            addToast(`${cadenceSummary.levainNeedingAttention.name} is ready for a refresh.`, 'info');
+            addToast(localized(`${cadenceSummary.levainNeedingAttention.name} esta pronto para uma nova alimentacao.`, `${cadenceSummary.levainNeedingAttention.name} is ready for a refresh.`), 'info');
             localStorage.setItem(reminderKey, 'levain');
             return;
         }
 
         if ((cadenceSummary.daysSinceLastBake ?? 0) >= 7) {
-            addToast('Your lab has been quiet for a week. Log one bake to keep insights fresh.', 'info');
+            addToast(localized('Seu lab esta parado ha uma semana. Registre uma fornada para manter os insights atualizados.', 'Your lab has been quiet for a week. Log one bake to keep insights fresh.'), 'info');
             localStorage.setItem(reminderKey, 'bake');
         }
-    }, [addToast, cadenceSummary.daysSinceLastBake, cadenceSummary.levainNeedingAttention]);
+    }, [addToast, cadenceSummary.daysSinceLastBake, cadenceSummary.levainNeedingAttention, localized]);
 
     // Limit Logic
     const isLimitReached = !hasProAccess && totalBakes >= 1;
@@ -244,25 +243,27 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
     };
 
     return (
-        <MyLabLayout activePage="mylab" onNavigate={onNavigate}>
-            <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-6 space-y-8 animate-fade-in">
-
-                <AppShellHeader
-                    eyebrow={labMeta.eyebrow}
-                    title={labMeta.title}
-                    description={labMeta.description}
-                >
-                    <StatusBadge tone="neutral" className="border-white/70 bg-white/80 px-4 py-2 text-sm normal-case tracking-normal shadow-sm">
-                        {cadenceSummary.activeDaysLast30} active days in the last 30
-                    </StatusBadge>
-                    <button
-                        onClick={handleNewBake}
-                        className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-white shadow-lg transition-all active:scale-95 ${isLimitReached ? 'cursor-not-allowed bg-slate-400 hover:bg-slate-500' : 'dlp-button-primary border-none px-5 py-3 text-sm'}`}
-                    >
-                        {isLimitReached ? <LockClosedIcon className="h-5 w-5" /> : <PlusCircleIcon className="h-5 w-5" />}
-                        {isLimitReached ? t('mylab.limit_reached') : t('mylab.new_bake')}
-                    </button>
-                </AppShellHeader>
+        <MyLabLayout
+            activePage="mylab"
+            onNavigate={onNavigate}
+            pageHeader={{
+                children: (
+                    <>
+                        <StatusBadge tone="neutral" className="border-white/70 bg-white/80 px-4 py-2 text-sm normal-case tracking-normal shadow-sm">
+                            {cadenceSummary.activeDaysLast30} {localized('dias ativos nos ultimos 30', 'active days in the last 30')}
+                        </StatusBadge>
+                        <button
+                            onClick={handleNewBake}
+                            className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-white shadow-lg transition-all active:scale-95 ${isLimitReached ? 'cursor-not-allowed bg-slate-400 hover:bg-slate-500' : 'dlp-button-primary border-none px-5 py-3 text-sm'}`}
+                        >
+                            {isLimitReached ? <LockClosedIcon className="h-5 w-5" /> : <PlusCircleIcon className="h-5 w-5" />}
+                            {isLimitReached ? t('mylab.limit_reached') : t('mylab.new_bake')}
+                        </button>
+                    </>
+                ),
+            }}
+        >
+            <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-4 space-y-5 animate-fade-in dlp-flow-stack">
 
                 <AppSurface surface="elevated" tone="neutral" className="p-5 sm:p-6">
                     <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_auto] lg:items-center">
@@ -281,7 +282,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     if (totalBakes >= 50) return t('ui.master_pizzaiolo_375');
                                     if (totalBakes >= 20) return t('ui.pizzaiolo_376');
                                     if (totalBakes >= 5) return t('ui.enthusiast_377');
-                                    return 'Home Baker'; // Level 1
+                                    return localized('Padeiro caseiro', 'Home Baker'); // Level 1
                                 })()}
                             </span>
                             <div className="mb-0.5 flex items-center justify-between text-xs font-bold text-dlp-text-primary">
@@ -291,7 +292,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     if (totalBakes >= 5) return '2';
                                     return '1';
                                 })()}</span>
-                                <span className="text-[10px] text-dlp-text-muted">{totalBakes} Bakes</span>
+                                <span className="text-[10px] text-dlp-text-muted">{totalBakes} {localized('fornadas', 'Bakes')}</span>
                             </div>
                             {/* Progress Bar to Next Level */}
                             <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
@@ -320,7 +321,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             <MetricCard
                                 label={t('mylab.success_rate')}
                                 value={<span className={successRate >= 80 ? 'text-dlp-brand' : 'text-amber-500'}>{successRate}%</span>}
-                                hint="Based on your rated bakes."
+                                hint={localized('Baseado nas suas fornadas avaliadas.', 'Based on your rated bakes.')}
                                 tone={successRate >= 80 ? 'success' : 'warning'}
                             />
                             <MetricCard
@@ -331,13 +332,13 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     <div className="h-2 w-2 rounded-full bg-dlp-brand animate-pulse"></div>
                                   </div>
                                 }
-                                hint="Your lab is ready for another run."
+                                hint={localized('Seu lab esta pronto para outra rodada.', 'Your lab is ready for another run.')}
                                 tone="success"
                             />
                             <MetricCard
-                                label="Last bake"
-                                value={cadenceSummary.daysSinceLastBake === null ? 'No data' : `${cadenceSummary.daysSinceLastBake}d`}
-                                hint={cadenceSummary.daysSinceLastBake === null ? 'Start a bake to unlock your timeline.' : 'Time since your last logged session.'}
+                                label={localized('Ultima fornada', 'Last bake')}
+                                value={cadenceSummary.daysSinceLastBake === null ? localized('Sem dados', 'No data') : `${cadenceSummary.daysSinceLastBake}d`}
+                                hint={cadenceSummary.daysSinceLastBake === null ? localized('Comece uma fornada para liberar sua timeline.', 'Start a bake to unlock your timeline.') : localized('Tempo desde sua ultima sessao registrada.', 'Time since your last logged session.')}
                                 tone="neutral"
                             />
                         </div>
@@ -348,10 +349,10 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                     <AppSurface surface="glass" tone="neutral" className="p-5 sm:p-6">
                         <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
                             <BoltIcon className="h-5 w-5 text-amber-500" />
-                            <h2 className="text-base font-bold text-slate-800">Next best actions</h2>
+                            <h2 className="text-base font-bold text-slate-800">{localized('Proximas melhores acoes', 'Next best actions')}</h2>
                         </div>
                         <p className="text-sm text-slate-500 -mt-2">
-                            Small moves that keep your lab active, your data useful and your next bake easier to improve.
+                            {localized('Pequenos movimentos que mantem seu lab ativo, seus dados uteis e sua proxima fornada mais facil de melhorar.', 'Small moves that keep your lab active, your data useful and your next bake easier to improve.')}
                         </p>
                         <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
                             {recommendations.map((recommendation) => (
@@ -367,7 +368,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                             {recommendation.icon}
                                         </div>
                                         <StatusBadge tone={recommendation.tone} size="sm" className="bg-white/80">
-                                            Priority
+                                            {localized('Prioridade', 'Priority')}
                                         </StatusBadge>
                                     </div>
                                     <h3 className="mt-4 text-base font-bold text-slate-900">{recommendation.title}</h3>
@@ -573,7 +574,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 </div>
                             ) : (
                                 <InlineNotice tone="neutral" className="text-center text-xs">
-                                    No custom presets yet. Save one in the Calculator!
+                                    {localized('Ainda nao ha presets personalizados. Salve um na Calculadora.', 'No custom presets yet. Save one in the Calculator!')}
                                 </InlineNotice>
                             )}
                         </div>
@@ -586,26 +587,26 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                         <AppSurface surface="soft" tone="neutral" className="p-6">
                             <div className="flex items-center justify-between gap-3">
                                 <div>
-                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Lab cadence</p>
-                                    <h3 className="mt-2 text-xl font-bold text-slate-900">Keep the feedback loop alive</h3>
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">{localized('Ritmo do lab', 'Lab cadence')}</p>
+                                    <h3 className="mt-2 text-xl font-bold text-slate-900">{localized('Mantenha o ciclo de feedback vivo', 'Keep the feedback loop alive')}</h3>
                                 </div>
                                 <StatusBadge tone="brand" className="px-3 py-1 text-xs">
-                                    {cadenceSummary.activeDaysLast30} active days / 30
+                                    {cadenceSummary.activeDaysLast30} {localized('dias ativos / 30', 'active days / 30')}
                                 </StatusBadge>
                             </div>
 
                             <div className="mt-4 space-y-3 text-sm text-slate-600">
                                 <InlineNotice tone="neutral">
                                     {cadenceSummary.daysSinceLastBake === null
-                                        ? 'No bakes logged yet. Your first bake unlocks the full learning loop.'
+                                        ? localized('Nenhuma fornada registrada ainda. Sua primeira fornada libera o ciclo completo de aprendizado.', 'No bakes logged yet. Your first bake unlocks the full learning loop.')
                                         : cadenceSummary.daysSinceLastBake === 0
-                                            ? 'You baked today. Review the result while it is still fresh.'
-                                            : `Your last logged bake was ${cadenceSummary.daysSinceLastBake} day(s) ago.`}
+                                            ? localized('Voce assou hoje. Revise o resultado enquanto ainda esta fresco.', 'You baked today. Review the result while it is still fresh.')
+                                            : localized(`Sua ultima fornada registrada foi ha ${cadenceSummary.daysSinceLastBake} dia(s).`, `Your last logged bake was ${cadenceSummary.daysSinceLastBake} day(s) ago.`)}
                                 </InlineNotice>
                                 <InlineNotice tone={cadenceSummary.levainNeedingAttention ? 'warning' : 'success'}>
                                     {cadenceSummary.levainNeedingAttention
-                                        ? `${cadenceSummary.levainNeedingAttention.name} is ready for another feeding cycle.`
-                                        : 'Your levain tracker is under control. Keep logging feedings to protect consistency.'}
+                                        ? localized(`${cadenceSummary.levainNeedingAttention.name} esta pronto para outro ciclo de alimentacao.`, `${cadenceSummary.levainNeedingAttention.name} is ready for another feeding cycle.`)
+                                        : localized('Seu controle de levain esta sob controle. Continue registrando as alimentacoes para proteger a consistencia.', 'Your levain tracker is under control. Keep logging feedings to protect consistency.')}
                                 </InlineNotice>
                             </div>
 
@@ -614,13 +615,13 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     onClick={handleNewBake}
                                     className="dlp-button-primary flex-1 rounded-xl px-4 py-2.5 text-sm"
                                 >
-                                    Start Next Bake
+                                    {localized('Iniciar proxima fornada', 'Start Next Bake')}
                                 </button>
                                 <button
                                     onClick={() => onNavigate('mylab/insights')}
                                     className="dlp-button-secondary flex-1 rounded-xl px-4 py-2.5 text-sm"
                                 >
-                                    Review Insights
+                                    {localized('Revisar insights', 'Review Insights')}
                                 </button>
                             </div>
                         </AppSurface>

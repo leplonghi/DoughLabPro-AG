@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const vitest_1 = require("vitest");
+const mocha_1 = require("mocha");
 const sinon = require("sinon");
 const fft = require("firebase-functions-test");
 const proxyquire = require("proxyquire");
 const test = fft();
-(0, vitest_1.describe)('Community Functions', () => {
+(0, mocha_1.describe)('Community Functions', () => {
     let myFunctions;
     let collectionStub;
     let runTransactionStub;
-    (0, vitest_1.beforeAll)(() => {
+    (0, mocha_1.before)(() => {
         // Mock Firestore chain
         collectionStub = sinon.stub();
         runTransactionStub = sinon.stub();
@@ -36,13 +36,15 @@ const test = fft();
         // We use .noCallThru() to prevent loading the real firebase-admin
         myFunctions = proxyquire.noCallThru().load('../index', {
             'firebase-admin': adminStub,
-            './stripe': {}
+            './stripe': {},
+            './infrastructure/backup': {},
+            './infrastructure/monitoring': {}
         });
     });
-    (0, vitest_1.afterAll)(() => {
+    (0, mocha_1.after)(() => {
         test.cleanup();
     });
-    (0, vitest_1.it)('onNewLike should increment likes and award points', async () => {
+    (0, mocha_1.it)('onNewLike should increment likes and award points', async () => {
         const wrapped = test.wrap(myFunctions.onNewLike);
         // Mock data
         const snap = test.firestore.makeDocumentSnapshot({

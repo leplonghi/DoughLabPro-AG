@@ -1,7 +1,6 @@
 import os
 import re
 import json
-from pathlib import Path
 
 # Carregar traduções existentes
 with open('public/locales/en/translation.json', 'r', encoding='utf-8') as f:

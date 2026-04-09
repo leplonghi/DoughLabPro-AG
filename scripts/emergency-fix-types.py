@@ -3,7 +3,6 @@ import re
 
 def fix_broken_types(root_dir):
     print(f"Scanning {root_dir}...")
-    fixed_count = 0
     files_fixed = 0
     
     # Patterns to revert

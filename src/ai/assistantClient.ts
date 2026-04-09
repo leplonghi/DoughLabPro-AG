@@ -1,14 +1,39 @@
-
-import { GoogleGenAI } from "@google/genai";
 import { DoughConfig, DoughResult, Batch, FlourDefinition, Oven, RecipeStyle, Levain, FeedingEvent, DoughStyleDefinition } from '../types';
-
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 import { DOUGHY_SYSTEM_PROMPT } from './doughyPrompt';
 import i18n from '../i18n';
 
 // Helper for functions that don't receive t via arguments
 const t = i18n.t.bind(i18n);
+
+interface GoogleGenAIResponse {
+  text?: string | null;
+}
+
+interface GoogleGenAIClient {
+  models: {
+    generateContent(input: Record<string, unknown>): Promise<GoogleGenAIResponse>;
+  };
+}
+
+let aiClientPromise: Promise<GoogleGenAIClient> | null = null;
+
+async function getAiClient(): Promise<GoogleGenAIClient> {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+
+  if (!apiKey) {
+    throw new Error(t('assistant_page.error'));
+  }
+
+  if (!aiClientPromise) {
+    aiClientPromise = importWithChunkRecovery(() => import('@google/genai')).then(({ GoogleGenAI }) => (
+      new GoogleGenAI({ apiKey }) as unknown as GoogleGenAIClient
+    ));
+  }
+
+  return aiClientPromise;
+}
 
 // This function builds a detailed system prompt for the AI model.
 function buildGeneralSystemPrompt(t: (key: string) => string): string {
@@ -117,6 +142,7 @@ export async function askGeneralAssistant(input: AssistantInput): Promise<string
   const userPrompt = buildRichContext(t, question, doughConfig, flour, oven, lastBatch, userPlan);
 
   try {
+    const ai = await getAiClient();
     // FIX: Updated model from gemini-1.5-pro to gemini-3-pro-preview for complex tasks
     const response = await ai.models.generateContent({
       model: 'gemini-2.0-flash-exp', // Updated to latest fast model or keep pro-preview if preferred
@@ -186,6 +212,7 @@ export async function askLevainAssistant(levain: Levain, question: string): Prom
   }
 
   try {
+    const ai = await getAiClient();
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: userPrompt,
@@ -247,6 +274,7 @@ export async function generateStyleFromDescription(description: string): Promise
     Be technically accurate. If data is missing, infer reasonable defaults based on baking science.`;
 
   try {
+    const ai = await getAiClient();
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: description,
@@ -311,6 +339,7 @@ export async function diagnoseDoughIssue(
   `;
 
   try {
+    const ai = await getAiClient();
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: userPrompt,

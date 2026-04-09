@@ -29,3 +29,23 @@ functions/temp_*.js
 # Environment Variables
 .env
 .env.*
+
+# Generated diagnostics and migration artifacts
+tsc_*.txt
+tsc_*.out
+scan_results.*
+translations_bundle_*.json
+translations_extended_bundle_*.json
+styles_batch_*.json
+new_i18n_keys*.json
+chunks_*.json
+extracted_*.json
+temp_*.json
+build_output.txt
+audit_report.txt
+missing_keys.txt
+missing_translations.json
+untranslated_report.json
+i18n_analysis_report.json
+style-analysis-report.json
+hardcoded-strings-report.json

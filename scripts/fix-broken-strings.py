@@ -75,7 +75,7 @@ def fix_line(line):
                     # Value part starts with '
                     # Ends with ', (hopefully)
                     if value_part.startswith("'") and value_part.endswith("',"):
-                        inner = value_part[1:-2] # Strip ' and ',
+                        value_part[1:-2] # Strip ' and ',
                         # inner is "Part1', Part2...End"
                         # Actually split was at ', 
                         # inner = "Part1', Part2...End"

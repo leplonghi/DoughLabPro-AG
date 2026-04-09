@@ -16,7 +16,7 @@ import {
     Target
 } from 'lucide-react';
 import { useTranslation } from '@/i18n';
-import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
 import { getPageMeta } from '@/app/appShell';
 
@@ -253,16 +253,21 @@ export default function HelpPage() {
     );
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 pb-12 animate-fade-in">
-            <AppShellHeader
-                eyebrow={helpMeta.eyebrow}
-                title="How can we help you?"
-                description="Use the Help Center to understand the product structure faster, find the right workflow, and unblock yourself without hunting through disconnected screens."
-            >
-                <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
-                    Guides, FAQs, and account help
-                </div>
-            </AppShellHeader>
+        <AppPageLayout
+            width="content"
+            density="default"
+            pageHeader={{
+                page: 'help',
+                title: 'How can we help you?',
+                description: 'Use the Help Center to understand the product structure faster, find the right workflow, and unblock yourself without hunting through disconnected screens.',
+                children: (
+                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                        Guides, FAQs, and account help
+                    </div>
+                ),
+            }}
+        >
+            <div className="max-w-4xl mx-auto space-y-8 pb-12 animate-fade-in">
 
             <AppSurface className="p-5">
                 <div className="relative max-w-lg">
@@ -329,6 +334,7 @@ export default function HelpPage() {
                 >{t('common.contact_support')}</a>
             </AppSurface>
 
-        </div>
+            </div>
+        </AppPageLayout>
     );
 }

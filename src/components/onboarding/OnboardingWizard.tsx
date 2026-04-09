@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 import { useUser } from '@/contexts/UserProvider';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import {

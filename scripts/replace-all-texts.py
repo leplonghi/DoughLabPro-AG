@@ -1,6 +1,5 @@
 import json
 import re
-import os
 
 # Carregar mapeamento
 with open('docs/i18n-generated/text-to-key-mapping.json', 'r', encoding='utf-8') as f:

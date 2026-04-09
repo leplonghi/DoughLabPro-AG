@@ -1,4 +1,4 @@
-import { describe, it, beforeAll, afterAll } from 'vitest';
+import { describe, it, before, after } from 'mocha';
 import * as sinon from 'sinon';
 import * as fft from 'firebase-functions-test';
 import * as proxyquire from 'proxyquire';
@@ -10,7 +10,7 @@ describe('Community Functions', () => {
     let collectionStub: sinon.SinonStub;
     let runTransactionStub: sinon.SinonStub;
 
-    beforeAll(() => {
+    before(() => {
         // Mock Firestore chain
         collectionStub = sinon.stub();
         runTransactionStub = sinon.stub();
@@ -41,11 +41,13 @@ describe('Community Functions', () => {
         // We use .noCallThru() to prevent loading the real firebase-admin
         myFunctions = proxyquire.noCallThru().load('../index', {
             'firebase-admin': adminStub,
-            './stripe': {}
+            './stripe': {},
+            './infrastructure/backup': {},
+            './infrastructure/monitoring': {}
         });
     });
 
-    afterAll(() => {
+    after(() => {
         test.cleanup();
     });
 

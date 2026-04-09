@@ -19,11 +19,11 @@ def fix_line(line):
     
     if match:
         prefix = match.group(1)
-        quote_start = match.group(2)
+        match.group(2)
         bool_val = match.group(3)
         rest_content = match.group(4) # might be " // comment" or garbage
-        quote_end = match.group(5)
-        comma = match.group(6)
+        match.group(5)
+        match.group(6)
         trailing = match.group(7) # comments after the quotes?
         
         # We want to unquote.

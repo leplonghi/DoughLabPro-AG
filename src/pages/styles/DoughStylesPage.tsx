@@ -221,8 +221,8 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                 </div>
             </div>
 
-            {/* Sticky Filter Header */}
-            <div className="sticky top-2 z-30 mb-8 transition-all duration-300">
+            {/* Filter Header */}
+            <div className="mb-6 transition-all duration-300">
                 <AppSurface className="bg-white/90 backdrop-blur-md p-4 space-y-4">
 
                     {/* Top Row: Search & Meta Controls */}
@@ -278,9 +278,9 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                     <div className="flex flex-col gap-3">
 
                         {/* TYPE Filter Row */}
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-start gap-4">
                             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">{t('styles.type_2')}</span>
-                            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar mask-linear-fade flex-grow">
+                            <div className="flex flex-wrap gap-2 flex-grow">
                                 {CATEGORY_FILTERS.map(cat => {
                                     const isActive = selectedCategory === cat.id;
 
@@ -295,7 +295,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                             key={cat.id}
                                             onClick={() => setSelectedCategory(cat.id as any)}
                                             className={`
-                                                whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-2
+                                                px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-2
                                                 ${isActive
                                                     ? 'bg-[#51a145] border-[#51a145] text-white shadow-md transform scale-105'
                                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
@@ -313,13 +313,13 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                         </div>
 
                         {/* REGION Filter Row */}
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-start gap-4">
                             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider w-12 flex-shrink-0">{t('general.region')}</span>
-                            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar mask-linear-fade flex-grow">
+                            <div className="flex flex-wrap gap-2 flex-grow">
                                 <button
                                     onClick={() => setSelectedRegions([])}
                                     className={`
-                                        whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
+                                        px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
                                         ${selectedRegions.length === 0
                                             ? 'bg-slate-900 border-slate-900 text-white shadow-md transform scale-105'
                                             : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
@@ -342,7 +342,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                                 }
                                             }}
                                             className={`
-                                                whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
+                                                px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
                                                 ${isActive
                                                     ? 'bg-white border-dlp-brand text-lime-700 ring-1 ring-dlp-brand shadow-sm'
                                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'

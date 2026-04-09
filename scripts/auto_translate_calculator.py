@@ -961,7 +961,7 @@ def process_file(lang, common_dict):
                         # e.g. medium_45 -> check if "Medium" maps to something
                         match = re.match(r"^([a-zA-Z_]+)_\d+$", k)
                         if match:
-                             base_key = match.group(1)
+                             match.group(1)
                              # Try to find base key in en_node (might be tricky if at same level)
                              # But we can try to translate the VALUE itself using the dict
                              pass 

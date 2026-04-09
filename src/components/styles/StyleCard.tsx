@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { DoughStyleDefinition } from '@/types/styles';
 import { useRouter } from '@/contexts/RouterContext';
 import { useUser } from '@/contexts/UserProvider';
@@ -55,25 +55,34 @@ export const StyleCard: React.FC<StyleCardProps> = ({
     const { t } = useTranslation(['common', 'styles']);
     const { navigate } = useRouter();
     const { isFavorite, toggleFavorite } = useUser();
+    const [imageFailed, setImageFailed] = useState(false);
     const favorited = isFavorite(style.id);
     const meta = getStyleCatalogMeta(style, { allStyles, t });
     const isUserStyle = style.source?.startsWith('user') || false;
+    const usesSafePlaceholderHero = useMemo(
+        () => imageFailed || !meta.image || meta.image.includes('/images/styles/placeholder-dough.png'),
+        [imageFailed, meta.image],
+    );
 
     return (
         <article className="dlp-surface-interactive dlp-tone-neutral group flex h-full flex-col overflow-hidden rounded-[28px] border">
-            <div className="relative h-56 overflow-hidden bg-dlp-bg-muted">
-                <img
-                    src={meta.image}
-                    alt={`${meta.title} style reference`}
-                    loading="lazy"
-                    width={640}
-                    height={480}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    onError={(event) => {
-                        (event.target as HTMLImageElement).src = '/images/styles/placeholder-dough.png';
-                    }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#16351f]/85 via-[#16351f]/18 to-transparent" />
+            <div
+                className="dlp-media-hero h-56"
+                data-media-state={usesSafePlaceholderHero ? 'placeholder' : 'visual'}
+            >
+                {!usesSafePlaceholderHero ? (
+                    <img
+                        src={meta.image}
+                        alt={`${meta.title} style reference`}
+                        loading="lazy"
+                        width={640}
+                        height={480}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        onError={() => setImageFailed(true)}
+                    />
+                ) : (
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(141,224,161,0.34)_0%,transparent_30%),radial-gradient(circle_at_80%_18%,rgba(67,176,93,0.18)_0%,transparent_28%),linear-gradient(160deg,rgba(249,253,249,0.98)_0%,rgba(236,244,237,0.98)_54%,rgba(226,238,228,0.98)_100%)]" />
+                )}
 
                 <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
                     <CategoryBadge category={style.category} className="bg-white/90 shadow-sm backdrop-blur" />
@@ -84,7 +93,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({
                         {meta.completeness}
                     </StatusBadge>
                     {style.isPro && (
-                        <StatusBadge tone="brand" size="sm" className="border-white/40 bg-white/88 text-dlp-brand-dark backdrop-blur">
+              <StatusBadge tone="brand" size="sm" className="border-white/40 bg-white/90 text-dlp-brand-dark backdrop-blur">
                             Pro
                         </StatusBadge>
                     )}
@@ -123,13 +132,15 @@ export const StyleCard: React.FC<StyleCardProps> = ({
                     </button>
                 </div>
 
-                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                    <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+                <div className="absolute inset-x-4 bottom-4">
+                    <div className="dlp-media-hero-copy rounded-[1.4rem] px-4 py-4">
+                    <div className="dlp-media-hero-kicker mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
                         <Globe className="h-3.5 w-3.5" />
                         <span>{meta.regionLabel}</span>
                     </div>
-                    <h3 className="text-2xl font-black tracking-tight">{meta.title}</h3>
-                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/85">{meta.description}</p>
+                    <h3 className="dlp-media-hero-title text-2xl font-black tracking-tight">{meta.title}</h3>
+                    <p className="dlp-media-hero-body mt-2 max-w-xl text-sm leading-relaxed">{meta.description}</p>
+                    </div>
                 </div>
             </div>
 

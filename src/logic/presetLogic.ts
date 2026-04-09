@@ -1,6 +1,6 @@
 import { DoughStyleDefinition, RecipeStyle, StyleCategory, BakeType } from '@/types';
 import { DoughStylePreset } from '@/types';
-import { STYLES_DATA } from '@/data/styles/registry';
+import { DOUGH_STYLE_PRESETS } from '@/features/calculator/data/stylePresets';
 import { useTranslation } from '@/i18n';
 
 // Helper to calculate average of a range tuple [min, max]
@@ -37,29 +37,14 @@ const inferRecipeStyle = (style: DoughStyleDefinition): RecipeStyle => {
     return RecipeStyle.NEAPOLITAN;
 };
 
-export const generatePresetsIds = (): string[] => STYLES_DATA.map(s => s.id);
+export const generatePresetsIds = (): string[] => DOUGH_STYLE_PRESETS.map(s => s.id);
 
 /**
  * Generates Calculator Presets dynamically from the Styles Registry.
  * This ensures the calculator always uses the latest Single Source of Truth.
  */
 export const getDynamicPresets = (): DoughStylePreset[] => {
-    return STYLES_DATA.map(style => {
-        const tech = style.technicalProfile;
-
-        return {
-            id: style.id,
-            name: style.name,
-            type: getBakeTypeFromCategory(style.category),
-            recipeStyle: inferRecipeStyle(style),
-            defaultHydration: getAvg(tech.hydration),
-            defaultSalt: getAvg(tech.salt),
-            defaultOil: getAvg(tech.oil || tech.fat || [0, 0]),
-            defaultSugar: getAvg(tech.sugar || [0, 0]),
-            region: style.origin?.country || style.country || 'Universal',
-            description: style.description || '',
-        };
-    });
+    return DOUGH_STYLE_PRESETS;
 };
 
 // Export a static list for immediate consumption (calculated at module load time)

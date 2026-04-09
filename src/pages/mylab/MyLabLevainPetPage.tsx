@@ -11,9 +11,7 @@ import { useToast } from '@/components/ToastProvider';
 
 import { LevainMarketingPage } from './levain/LevainMarketingPage';
 import { useTranslation } from '@/i18n';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
-import { getPageMeta } from '@/app/appShell';
 
 interface MyLabLevainPetPageProps {
     onNavigate: (page: Page) => void;
@@ -24,7 +22,6 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
     const { levains, hasProAccess, addLevain, hasActiveTrial } = useUser();
     const { addToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const levainMeta = getPageMeta('mylab/levain-pet');
 
     const activeLevain = levains.find(l => l.status === 'ativo');
     const isTrial = hasActiveTrial('levain');
@@ -55,7 +52,28 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
     }
 
     return (
-        <MyLabLayout activePage="mylab/levain-pet" onNavigate={onNavigate}>
+        <MyLabLayout
+            activePage="mylab/levain-pet"
+            onNavigate={onNavigate}
+            pageHeader={{
+                title: t('mylab.levain_dashboard'),
+                description: 'Monitor health, review feeding cadence, and keep your active starter connected to the rest of the lab.',
+                children: (
+                    <>
+                        <div className="inline-flex items-center rounded-full border border-orange-200 bg-white/90 px-3 py-1 text-xs font-bold text-orange-700">
+                            {activeLevain ? 'Active Culture' : 'No Active Culture'}
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => setIsModalOpen(true)}
+                            className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
+                        >
+                            <PlusCircleIcon className="h-5 w-5" />{t('mylab.new_starter')}
+                        </button>
+                    </>
+                ),
+            }}
+        >
             <div className="space-y-8 animate-fade-in max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-6">
 
                 {isTrial && (
@@ -70,22 +88,6 @@ const MyLabLevainPetPage: React.FC<MyLabLevainPetPageProps> = ({ onNavigate }) =
                         </div>
                     </AppSurface>
                 )}
-
-                <AppShellHeader
-                    eyebrow={levainMeta.eyebrow}
-                    title={t('mylab.levain_dashboard')}
-                    description="Monitor health, review feeding cadence, and keep your active starter connected to the rest of the lab."
-                >
-                    <div className="inline-flex items-center rounded-full border border-orange-200 bg-white/90 px-3 py-1 text-xs font-bold text-orange-700">
-                        {activeLevain ? 'Active Culture' : 'No Active Culture'}
-                    </div>
-                    <button
-                        type="button"
-                        onClick={() => setIsModalOpen(true)}
-                        className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
-                    >
-                        <PlusCircleIcon className="h-5 w-5" />{t('mylab.new_starter')}</button>
-                </AppShellHeader>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Main Content */}

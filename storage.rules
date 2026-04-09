@@ -4,9 +4,19 @@ service firebase.storage {
     function isSignedIn() {
       return request.auth != null;
     }
+
+    function isRegisteredUser() {
+      return isSignedIn()
+        && request.auth.token.firebase != null
+        && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
     
     function isOwner(userId) {
       return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isRegisteredOwner(userId) {
+      return isRegisteredUser() && request.auth.uid == userId;
     }
     function isImageUpload() {
       return request.resource != null
@@ -34,7 +44,7 @@ service firebase.storage {
     // Path: community_uploads/{uid}/TIMESTAMP_name
     match /community_uploads/{userId}/{allPaths=**} {
       allow read: if true;
-      allow write: if isOwner(userId) && isImageUpload();
+      allow write: if isRegisteredOwner(userId) && isImageUpload();
     }
 
     // Batch Photos (User Uploads)

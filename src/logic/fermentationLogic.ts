@@ -1,6 +1,5 @@
 import { FermentationTechnique, RecipeStyle, BakeType } from '../types';
 import { useTranslation } from '@/i18n';
-import { STYLES_DATA } from '@/data/styles/registry';
 
 /**
  * Returns all fermentation techniques that are ALLOWED (not blocked) for a given style.
@@ -48,51 +47,6 @@ export function getTechniqueRecommendation(
 ): { recommended: boolean; warning?: string; suitability?: string } {
     if (!styleId) {
         return { recommended: true };
-    }
-
-    const styleDefinition = STYLES_DATA.find(s => s.id === styleId);
-
-    if (!styleDefinition?.deepDive?.methodSuitability) {
-        return { recommended: true };
-    }
-
-    const { methodSuitability } = styleDefinition.deepDive;
-
-    // Check the specific technique
-    switch (technique) {
-        case FermentationTechnique.DIRECT:
-            if (methodSuitability.direct) {
-                return {
-                    recommended: methodSuitability.direct.suitable,
-                    warning: !methodSuitability.direct.suitable ? methodSuitability.direct.notes : undefined,
-                    suitability: methodSuitability.direct.suitable ? 'authentic' : 'not_recommended'
-                };
-            }
-            break;
-
-        case FermentationTechnique.POOLISH:
-            if (methodSuitability.poolish) {
-                return {
-                    recommended: methodSuitability.poolish.suitable,
-                    warning: !methodSuitability.poolish.suitable ? methodSuitability.poolish.notes : undefined,
-                    suitability: methodSuitability.poolish.suitable ? 'suitable' : 'variation'
-                };
-            }
-            break;
-
-        case FermentationTechnique.BIGA:
-            if (methodSuitability.biga) {
-                return {
-                    recommended: methodSuitability.biga.suitable,
-                    warning: !methodSuitability.biga.suitable ? methodSuitability.biga.notes : undefined,
-                    suitability: methodSuitability.biga.suitable ? 'suitable' : 'variation'
-                };
-            }
-            break;
-
-        case FermentationTechnique.SOURDOUGH:
-            // Sourdough is generally always acceptable as an alternative
-            return { recommended: true, suitability: 'alternative' };
     }
 
     return { recommended: true };

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUser } from '@/contexts/UserProvider';
 import { Page } from '@/types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 import {
     UserCircleIcon,
     SettingsIcon,
@@ -85,7 +85,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 z-50 mt-3 w-72 origin-top-right overflow-hidden rounded-[1.35rem] border border-white/75 bg-white/88 shadow-[0_26px_60px_-32px_rgba(15,23,42,0.3)] ring-1 ring-emerald-100/70 backdrop-blur-xl focus:outline-none animate-fade-in">
+                <div className="absolute right-0 z-50 mt-3 w-72 origin-top-right overflow-hidden rounded-[1.35rem] border border-dlp-border bg-[color:var(--dlp-bg-card)] shadow-[0_26px_60px_-32px_rgba(15,23,42,0.3)] ring-1 ring-emerald-100/70 backdrop-blur-xl focus:outline-none animate-fade-in">
                     {/* User Info Header */}
                     <div className="border-b border-dlp-border bg-[linear-gradient(135deg,rgba(237,250,239,0.95)_0%,rgba(255,255,255,0.92)_100%)] px-4 py-3">
                         <div className="flex items-center gap-3">

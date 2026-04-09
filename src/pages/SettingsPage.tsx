@@ -6,9 +6,8 @@ import { AffiliateDisclaimer } from '@/components/ui/AffiliateDisclaimer';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { useRouter } from '@/contexts/RouterContext';
 import { FireIcon } from '@/components/ui/Icons';
-import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
-import { getPageMeta } from '@/app/appShell';
 
 const ChoiceButton: React.FC<{
   active: boolean;
@@ -39,7 +38,6 @@ const SettingsPage: React.FC = () => {
   const { unit, setUnit } = useCalculator();
   const { navigate } = useRouter();
   const [unitSystem, setUnitSystem] = React.useState<UnitSystem>(UnitSystem.METRIC);
-  const settingsMeta = getPageMeta('settings');
 
   const handleAnalyzeOven = (ovenId: string) => {
     // Navigate to tools page with oven profiler and the selected oven
@@ -47,19 +45,24 @@ const SettingsPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl animate-[fadeIn_0.5s_ease-in-out] space-y-8">
-      <AppShellHeader
-        eyebrow={settingsMeta.eyebrow}
-        title={t('general.general_settings')}
-        description="Keep measurement units, environment defaults, and oven context aligned so the rest of the workflow feels predictable."
-      >
-        <button
-          onClick={() => window.history.back()}
-          className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
-        >
-          &larr; {t('common.back')}
-        </button>
-      </AppShellHeader>
+    <AppPageLayout
+      width="content"
+      density="default"
+      pageHeader={{
+        page: 'settings',
+        title: t('general.general_settings'),
+        description: 'Keep measurement units, environment defaults, and oven context aligned so the rest of the workflow feels predictable.',
+        children: (
+          <button
+            onClick={() => window.history.back()}
+            className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+          >
+            &larr; {t('common.back')}
+          </button>
+        ),
+      }}
+    >
+      <div className="mx-auto max-w-4xl animate-[fadeIn_0.5s_ease-in-out] space-y-8">
 
       <AppSurface className="p-6 sm:p-10">
 
@@ -230,7 +233,8 @@ const SettingsPage: React.FC = () => {
       <div className="mt-8">
         <AffiliateDisclaimer variant="footer" className="bg-transparent border-0 px-0" />
       </div>
-    </div>
+      </div>
+    </AppPageLayout>
 
   );
 };

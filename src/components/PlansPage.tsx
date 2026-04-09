@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
 import { CheckIcon, SparklesIcon } from '@/components/ui/Icons';
-import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
 import InlineNotice from '@/components/ui/InlineNotice';
 import StatusBadge from '@/components/ui/StatusBadge';
@@ -12,6 +12,7 @@ import { useToast } from '@/components/ToastProvider';
 import { getPageMeta } from '@/app/appShell';
 import { useRouter } from '@/contexts/RouterContext';
 import { logEvent } from '@/services/analytics';
+import { logCalculatorEvent } from '@/services/analytics';
 
 interface PlansPageProps {
     onRequireAuth?: () => void;
@@ -46,7 +47,6 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
     const { addToast } = useToast();
     const { symbol, currency, countryCode, planPrices, isProvisional } = useLocalizedPricing();
     const { navigate } = useRouter();
-    const plansMeta = getPageMeta('plans');
     const [isPortalLoading, setIsPortalLoading] = React.useState(false);
     const [isCheckoutLoading, setIsCheckoutLoading] = React.useState(false);
     const [checkoutError, setCheckoutError] = React.useState<string | null>(null);
@@ -86,6 +86,13 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
         setCheckoutError(null);
 
         const upgradeOrigin = getUpgradeOrigin();
+        if (upgradeOrigin === 'calculator') {
+            logCalculatorEvent('checkout_started_from_calculator', {
+                countryCode,
+                currency,
+                price: planPrices.standard,
+            });
+        }
         logEvent('checkout_started', {
             origin: upgradeOrigin,
             countryCode,
@@ -139,16 +146,19 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
     };
 
     return (
-        <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out] px-4 py-12 sm:px-6 lg:px-8">
-            <AppShellHeader
-                eyebrow={plansMeta.eyebrow}
-                title={plansMeta.title}
-                description={plansMeta.description}
-            >
-                <StatusBadge tone="brand" className="border-white/70 bg-white/85 px-4 py-2 text-sm normal-case tracking-normal shadow-sm">
-                    Core workflow free. Repeatability, history, and pro analysis on Pro.
-                </StatusBadge>
-            </AppShellHeader>
+        <AppPageLayout
+            width="wide"
+            density="default"
+            pageHeader={{
+                page: 'plans',
+                children: (
+                    <StatusBadge tone="brand" className="border-white/70 bg-white/85 px-4 py-2 text-sm normal-case tracking-normal shadow-sm">
+                        Core workflow free. Repeatability, history, and pro analysis on Pro.
+                    </StatusBadge>
+                ),
+            }}
+        >
+            <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out] pb-12">
 
             {checkoutError && (
                 <div className="mx-auto mb-6 max-w-5xl">
@@ -260,7 +270,8 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                     )}
                 </AppSurface>
             </div>
-        </div>
+            </div>
+        </AppPageLayout>
     );
 };
 

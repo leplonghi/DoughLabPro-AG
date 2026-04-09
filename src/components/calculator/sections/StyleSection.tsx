@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { DoughConfig, BakeType, DoughStylePreset, CustomPreset } from '@/types';
 import { BookOpenIcon, MagnifyingGlassIcon, PizzaSliceIcon, FlourIcon, SparklesIcon } from '@/components/ui/Icons';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
@@ -33,6 +33,9 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     const { t } = useTranslation(['common', 'calculator', 'styles']);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('All');
+    const [previewStyleId, setPreviewStyleId] = useState<string | null>(null);
+    const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const longPressTriggeredRef = useRef(false);
 
     // Filtering Logic
     const { uniqueCountries, filteredStyles } = useMemo(() => {
@@ -60,6 +63,43 @@ const StyleSection: React.FC<StyleSectionProps> = ({
         { id: BakeType.BREADS_SAVORY, label: t('calculator.breads'), icon: <FlourIcon /> },
         { id: BakeType.SWEETS_PASTRY, label: t('calculator.pastry'), icon: <SparklesIcon /> },
     ];
+
+    const clearLongPressTimer = () => {
+        if (longPressTimerRef.current) {
+            clearTimeout(longPressTimerRef.current);
+            longPressTimerRef.current = null;
+        }
+    };
+
+    useEffect(() => () => clearLongPressTimer(), []);
+
+    useEffect(() => {
+        if (previewStyleId && !filteredStyles.some((style) => style.id === previewStyleId)) {
+            setPreviewStyleId(null);
+        }
+    }, [filteredStyles, previewStyleId]);
+
+    const startPreviewHold = (styleId: string) => {
+        longPressTriggeredRef.current = false;
+        clearLongPressTimer();
+        longPressTimerRef.current = setTimeout(() => {
+            longPressTriggeredRef.current = true;
+            setPreviewStyleId(styleId);
+        }, 320);
+    };
+
+    const stopPreviewHold = () => {
+        clearLongPressTimer();
+    };
+
+    const handleStyleCardClick = (presetId: string) => {
+        if (longPressTriggeredRef.current) {
+            longPressTriggeredRef.current = false;
+            return;
+        }
+        setPreviewStyleId(null);
+        onStyleChange(presetId);
+    };
 
     return (
         <AccordionSection
@@ -89,7 +129,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             icon={<BookOpenIcon />}
         >
             {/* 1. Category Tabs */}
-            <div className="grid grid-cols-3 gap-3 mb-6 bg-slate-100/50 p-1.5 rounded-[1.5rem] border border-slate-100">
+            <div className="dlp-calc-rail mb-4 grid grid-cols-3 gap-1.5 rounded-[1.35rem] p-1.5 sm:mb-6 sm:gap-2 sm:rounded-[1.6rem]">
                 {BAKE_TYPES.map((type) => {
                     const isActive = config.bakeType === type.id;
                     return (
@@ -97,30 +137,30 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                             key={type.id}
                             onClick={() => onBakeTypeChange(type.id)}
                             className={`
-                                relative group/item flex items-center justify-center gap-2 py-3 px-4 rounded-[1.2rem] transition-all duration-300
+                                dlp-calc-option relative group/item flex items-center justify-center gap-1.5 rounded-[1.1rem] px-2.5 py-2.5 sm:gap-2 sm:rounded-[1.2rem] sm:px-4 sm:py-3
                                 ${isActive
-                                    ? 'bg-[#51a145] text-white shadow-lg shadow-[#51a145]/30 scale-[1.02]'
-                                    : 'bg-white text-slate-500 hover:text-[#51a145] hover:shadow-md'
+                                    ? 'dlp-calc-option--active'
+                                    : ''
                                 }
                             `}
                         >
                             <span className={`transition-transform duration-500 ${isActive ? 'scale-110' : 'opacity-70 group-hover/item:scale-110 group-hover/item:opacity-100 group-hover/item:text-[#51a145]'}`}>
                                 {React.cloneElement(type.icon as React.ReactElement, { size: 18 })}
                             </span>
-                            <span className="text-xs font-bold font-heading hidden sm:inline">{type.label}</span>
+                            <span className="hidden text-xs font-bold font-heading sm:inline">{type.label}</span>
                         </button>
                     );
                 })}
             </div>
 
             {/* 2. Style Search Bar */}
-            <div className="relative mb-6 group">
+            <div className="group relative mb-4 sm:mb-5">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
                     <MagnifyingGlassIcon className="h-4 w-4 text-slate-400 group-focus-within:text-[#51a145] transition-colors" />
                 </div>
                 <input
                     type="text"
-                    className="block w-full rounded-2xl border-slate-200 bg-slate-50 py-3 pl-11 pr-12 text-sm placeholder-slate-400 focus:border-[#51a145] focus:bg-white focus:ring-4 focus:ring-[#51a145]/5 transition-all outline-none"
+                    className="dlp-calc-field block w-full rounded-[1.25rem] border py-3 pl-11 pr-12 text-sm text-slate-800 placeholder-slate-400 outline-none dark:text-slate-100 sm:rounded-[1.45rem] sm:py-3.5"
                     placeholder={t('calculator.find_a_style')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -135,21 +175,54 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             </div>
 
             {/* 3. Country & Custom Presets */}
-            <div className="space-y-6 mb-8">
+            <div className="mb-7 space-y-4 sm:mb-8 sm:space-y-6">
                 {/* Country Filter Chips */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+                <div className="grid gap-2 sm:hidden">
+                    <div className="grid grid-cols-2 gap-2">
+                        <button
+                            onClick={() => setSelectedCountry('All')}
+                            className={`rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.14em] transition-all
+                                ${selectedCountry === 'All' ? 'dlp-calc-option dlp-calc-option--active' : 'dlp-calc-panel--subtle border text-slate-600 hover:text-[#51a145]'}
+                            `}
+                        >
+                            All
+                        </button>
+                        <button
+                            onClick={() => setSelectedCountry(t('calculator.favorites_259'))}
+                            className={`flex items-center justify-center gap-1.5 rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.14em] transition-all
+                                ${selectedCountry === t('calculator.favorites_259') ? 'border border-amber-200 bg-amber-50 text-amber-700 shadow-sm' : 'dlp-calc-panel--subtle border text-slate-600 hover:text-[#51a145]'}
+                            `}
+                        >
+                            <BookmarkIcon className="h-3 w-3" /> {t('ui.favorites')}
+                        </button>
+                    </div>
+                    <select
+                        value={selectedCountry !== 'All' && selectedCountry !== t('calculator.favorites_259') ? selectedCountry : 'All'}
+                        onChange={(event) => setSelectedCountry(event.target.value)}
+                        className="dlp-calc-field w-full rounded-[1.05rem] border px-3.5 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-800 outline-none"
+                    >
+                        <option value="All">All regions</option>
+                        {uniqueCountries.map(country => (
+                            <option key={country} value={country}>
+                                {t('countries.' + country.toLowerCase(), { defaultValue: country })}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className="hidden flex-wrap items-center gap-2 pb-2 sm:flex">
                     <button
                         onClick={() => setSelectedCountry('All')}
-                        className={`flex-shrink-0 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all
-                            ${selectedCountry === 'All' ? 'bg-[#51a145] text-white shadow-md' : 'bg-white shadow-sm text-slate-500 hover:text-[#51a145] hover:shadow-md'}
+                        className={`flex-shrink-0 rounded-full px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] transition-all
+                            ${selectedCountry === 'All' ? 'dlp-calc-option dlp-calc-option--active' : 'dlp-calc-panel--subtle border text-slate-600 hover:text-[#51a145]'}
                         `}
                     >
                         All
                     </button>
                     <button
                         onClick={() => setSelectedCountry(t('calculator.favorites_259'))}
-                        className={`flex-shrink-0 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all flex items-center gap-2
-                            ${selectedCountry === t('calculator.favorites_259') ? 'bg-amber-50 rounded-full shadow-sm text-amber-600' : 'bg-white shadow-sm text-slate-500 hover:text-[#51a145] hover:shadow-md'}
+                        className={`flex flex-shrink-0 items-center gap-2 rounded-full px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] transition-all
+                            ${selectedCountry === t('calculator.favorites_259') ? 'border border-amber-200 bg-amber-50 text-amber-700 shadow-sm' : 'dlp-calc-panel--subtle border text-slate-600 hover:text-[#51a145]'}
                         `}
                     >
                         <BookmarkIcon className="h-3 w-3" /> {t('ui.favorites')}
@@ -158,8 +231,8 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                         <button
                             key={country}
                             onClick={() => setSelectedCountry(country)}
-                            className={`flex-shrink-0 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all
-                                ${selectedCountry === country ? 'bg-[#51a145] text-white shadow-md' : 'bg-white shadow-sm text-slate-500 hover:text-[#51a145] hover:shadow-md'}
+                            className={`flex-shrink-0 rounded-full px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] transition-all
+                                ${selectedCountry === country ? 'dlp-calc-option dlp-calc-option--active' : 'dlp-calc-panel--subtle border text-slate-600 hover:text-[#51a145]'}
                             `}
                         >
                             {t('countries.' + country.toLowerCase(), { defaultValue: country })}
@@ -174,7 +247,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                             <BookmarkIcon className="h-3 w-3" />
                             {t('styles.my_custom_presets')}
                         </h3>
-                        <div className="flex items-center gap-3 overflow-x-auto pb-4 no-scrollbar">
+                        <div className="grid gap-3 pb-2 sm:grid-cols-2 xl:grid-cols-3">
                             {customPresets
                                 .filter(p => p.config.bakeType === config.bakeType)
                                 .map(preset => {
@@ -183,16 +256,17 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                         <button
                                             key={preset.id}
                                             onClick={() => onStyleChange(preset.id)}
+                                            data-selected={isSelected ? 'true' : 'false'}
                                             className={`
-                                                flex-shrink-0 relative group/item flex flex-col p-4 rounded-2xl transition-all duration-300 text-left min-w-[140px]
+                                                dlp-calc-panel dlp-style-tile relative group/item flex min-h-[112px] w-full flex-col rounded-[1.5rem] p-4 text-left transition-all duration-300
                                                 ${isSelected
-                                                    ? 'bg-[#51a145] text-white shadow-lg shadow-[#51a145]/30 scale-[1.02] z-10'
-                                                    : 'bg-white shadow-sm hover:shadow-md text-slate-600 hover:text-[#51a145] hover:-translate-y-1'
+                                                    ? 'border-emerald-300/80 bg-[linear-gradient(180deg,rgba(239,250,242,0.98),rgba(229,246,234,0.98))] text-[#16351f] shadow-[0_24px_36px_-26px_rgba(47,139,73,0.45)]'
+                                                    : 'text-slate-600 hover:-translate-y-1 hover:border-emerald-200/80'
                                                 }
                                             `}
                                         >
-                                            <span className="text-xs font-bold font-heading line-clamp-1">{preset.name}</span>
-                                            <span className={`text-[10px] mt-1 transition-colors ${isSelected ? 'text-emerald-100' : 'text-slate-400 group-hover/item:text-[#51a145]/70'}`}>
+                                            <span className="dlp-style-tile__title text-xs font-bold font-heading line-clamp-1">{preset.name}</span>
+                                            <span className="dlp-style-tile__meta mt-1 text-[10px] transition-colors">
                                                 {new Date(preset.createdAt).toLocaleDateString()}
                                             </span>
                                         </button>
@@ -206,28 +280,65 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             {/* 4. The Library Grid */}
             <div className="relative min-h-[200px]">
                 {filteredStyles.length > 0 ? (
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5">
                         {filteredStyles.map((preset) => {
                             const isSelected = config.stylePresetId === preset.id;
+                            const isPreviewing = previewStyleId === preset.id;
                             return (
                                 <button
                                     key={preset.id}
-                                    onClick={() => onStyleChange(preset.id)}
+                                    onClick={() => handleStyleCardClick(preset.id)}
+                                    onPointerDown={() => startPreviewHold(preset.id)}
+                                    onPointerUp={stopPreviewHold}
+                                    onPointerLeave={stopPreviewHold}
+                                    onPointerCancel={stopPreviewHold}
+                                    onContextMenu={(event) => event.preventDefault()}
+                                    data-selected={isSelected ? 'true' : 'false'}
+                                    data-preview={isPreviewing ? 'true' : 'false'}
+                                    aria-pressed={isSelected}
                                     className={`
-                                        relative group/item flex flex-col p-4 rounded-3xl transition-all duration-300 text-left min-h-[90px]
+                                        dlp-calc-panel dlp-style-tile relative group/item flex min-h-[104px] flex-col rounded-[1.7rem] p-4 text-left transition-all duration-300
+                                        ${isPreviewing ? 'col-span-2 min-h-[196px] p-5 shadow-[0_28px_52px_-30px_rgba(47,139,73,0.36)]' : ''}
                                         ${isSelected
-                                            ? 'bg-[#51a145] text-white shadow-lg z-10 scale-[1.04]'
-                                            : 'bg-white shadow-sm text-slate-700 hover:shadow-xl hover:shadow-[#51a145]/20 hover:-translate-y-1'
+                                            ? 'border-emerald-300/80 bg-[linear-gradient(180deg,rgba(240,250,243,0.98),rgba(229,246,234,0.98))] text-[#16351f] shadow-[0_24px_40px_-28px_rgba(47,139,73,0.44)]'
+                                            : 'text-slate-700 hover:-translate-y-1 hover:border-emerald-200/80'
                                         }
                                     `}
                                 >
-                                    <div className={`mb-auto text-xs font-bold font-heading transition-colors ${isSelected ? 'text-white' : 'text-slate-800 group-hover/item:text-[#51a145]'}`}>
+                                    <div className="dlp-style-tile__title mb-auto text-[13px] font-bold font-heading leading-snug transition-colors">
                                         {t(preset.name)}
                                     </div>
-                                    <div className={`text-[9px] mt-2 leading-relaxed line-clamp-2 uppercase tracking-wide font-bold transition-colors ${isSelected ? 'text-emerald-100 opacity-90' : 'text-slate-400 group-hover/item:text-[#51a145]/70'}`}>
+                                    <div className="dlp-style-tile__meta mt-2 text-[9px] font-bold uppercase tracking-[0.16em] leading-relaxed line-clamp-2 transition-colors">
                                         {t(preset.description || '')}
                                     </div>
-                                    {isSelected && <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+                                    {isPreviewing ? (
+                                        <div className="mt-4 space-y-3">
+                                            <div className="grid grid-cols-2 gap-2 text-left">
+                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                    <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Hydration</div>
+                                                    <div className="mt-1 text-sm font-black text-dlp-text-primary">{Math.round(preset.defaultHydration)}%</div>
+                                                </div>
+                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                    <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Salt</div>
+                                                    <div className="mt-1 text-sm font-black text-dlp-text-primary">{Math.round(preset.defaultSalt * 10) / 10}%</div>
+                                                </div>
+                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                    <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Region</div>
+                                                    <div className="mt-1 text-[11px] font-bold leading-snug text-dlp-text-primary line-clamp-2">{preset.region || preset.country || 'Global'}</div>
+                                                </div>
+                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                    <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Enrichment</div>
+                                                    <div className="mt-1 text-[11px] font-bold leading-snug text-dlp-text-primary">
+                                                        {preset.defaultOil > 0 || preset.defaultSugar > 0 ? 'Enriched' : 'Lean dough'}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">
+                                                Solte e toque para selecionar
+                                            </div>
+                                        </div>
+                                    ) : null}
+                                    {isSelected && <div className="absolute right-4 top-4 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(82,180,107,0.12)]" />}
                                 </button>
                             );
                         })}

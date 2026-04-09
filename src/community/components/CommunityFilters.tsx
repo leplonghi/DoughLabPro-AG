@@ -16,8 +16,8 @@ export const CommunityFilters: React.FC<CommunityFiltersProps> = ({ activeFilter
     ];
 
     return (
-        <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
-            <div className="flex items-center gap-2 mr-2 text-gray-400">
+        <div className="mb-6 flex flex-wrap items-center gap-2 pb-1">
+            <div className="mr-2 flex basis-full items-center gap-2 text-dlp-text-muted sm:basis-auto">
                 <Filter className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider">{t('community.sort_by')}</span>
             </div>
@@ -31,7 +31,7 @@ export const CommunityFilters: React.FC<CommunityFiltersProps> = ({ activeFilter
                         key={filter.id}
                         onClick={() => onFilterChange(filter.id)}
                         className={`
-              flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
+              inline-flex min-h-10 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all
               ${isActive
                                 ? 'bg-dlp-accent text-white border border-dlp-accent shadow-dlp-sm'
                                 : 'bg-dlp-bg-card text-dlp-text-secondary hover:bg-dlp-bg-muted border border-dlp-border'}

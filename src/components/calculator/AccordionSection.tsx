@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from '@/i18n';
 
 interface AccordionSectionProps {
     id?: string;
@@ -18,26 +17,36 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
     children,
     className = '',
 }) => {
-    const { t } = useTranslation();
     return (
-        <div id={id} className={`dlp-card p-3.5 animate-slide-up bg-white/70 backdrop-blur-sm transition-all duration-300 hover:shadow-premium group ${className}`}>
-            <div className="mb-2.5 flex items-start gap-3">
+        <section
+            id={id}
+            className={`dlp-calc-panel animate-slide-up group overflow-hidden rounded-[2rem] p-4 sm:p-5 ${className}`}
+        >
+            <div className="pointer-events-none mb-4 h-px w-full bg-[linear-gradient(90deg,rgba(81,161,69,0.22),rgba(81,161,69,0.08),transparent)]" />
+            <div className="mb-4 flex items-start gap-3">
                 {icon && (
-                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#2D6A4F] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-[#2D6A4F]/10">
+                    <div className="dlp-calc-panel--subtle flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl text-[#2D6A4F] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
                         {React.cloneElement(icon as React.ReactElement, { size: 16, strokeWidth: 2.5 })}
                     </div>
                 )}
-                <div className="pt-0.5">
-                    <h3 className="text-lg font-bold font-heading text-slate-900 leading-tight">{title}</h3>
+                <div className="min-w-0 pt-0.5">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6f8a77]">
+                        Calculator Section
+                    </p>
+                    <h3 className="mt-1 text-[1.15rem] font-bold font-heading text-slate-900 leading-tight dark:text-slate-50">
+                        {title}
+                    </h3>
                     {description && (
-                        <p className="text-[11px] text-slate-500 mt-1 max-w-lg leading-relaxed">{description}</p>
+                        <p className="mt-1.5 max-w-2xl text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
+                            {description}
+                        </p>
                     )}
                 </div>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
                 {children}
             </div>
-        </div>
+        </section>
     );
 };
 

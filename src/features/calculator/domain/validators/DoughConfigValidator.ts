@@ -1,6 +1,5 @@
 import { DoughConfig, FormErrors, FermentationTechnique, YeastType } from '@/types';
-import { DOUGH_WEIGHT_RANGES } from '@/constants';
-import { STYLES_DATA } from '@/data/styles/registry';
+import { getStyleWeightBounds } from '@/utils/styleWeight';
 
 const isAnySourdough = (yeastType: YeastType) =>
     [YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(yeastType);
@@ -16,23 +15,10 @@ export const validateDoughConfig = (config: DoughConfig): FormErrors => {
     }
 
     // 2. Ball Weight
-    let minW = 20; // Absolute safety min
-    let maxW = 3000; // Absolute safety max
-
-    // Try to find the full definition for context-aware limits
-    const fullStyle = STYLES_DATA.find(s => s.id === config.stylePresetId);
-
-    if (fullStyle?.technicalProfile?.ballWeight) {
-        minW = fullStyle.technicalProfile.ballWeight.min;
-        maxW = fullStyle.technicalProfile.ballWeight.max;
-    } else if (config.recipeStyle && DOUGH_WEIGHT_RANGES[config.recipeStyle]) {
-        const rangeStr = DOUGH_WEIGHT_RANGES[config.recipeStyle] || '';
-        const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
-        if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
-            minW = nums[0];
-            maxW = nums[1];
-        }
-    }
+    const { min: minW, max: maxW } = getStyleWeightBounds({
+        stylePresetId: config.stylePresetId,
+        recipeStyle: config.recipeStyle,
+    });
 
     if (config.doughBallWeight < minW) {
         errors.doughBallWeight = `Weight is too low for this style (min ${minW}g).`;

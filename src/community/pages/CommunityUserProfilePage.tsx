@@ -25,7 +25,7 @@ export const CommunityUserProfilePage: React.FC<CommunityUserProfilePageProps> =
     const [savedLoading, setSavedLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const isOwnProfile = currentUser?.uid === uid || currentUser?.stripeCustomerId === uid;
+    const isOwnProfile = currentUser?.uid === uid;
 
     // Derived profile info
     const userProfile = isOwnProfile ? {

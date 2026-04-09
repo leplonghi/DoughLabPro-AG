@@ -3,7 +3,7 @@ import { useNotifications } from '@/contexts/NotificationContext';
 import { useRouter } from '@/contexts/RouterContext';
 import { Bell, X, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import { NotificationPriority } from '@/types/notifications';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 
 
 export const FloatingNotificationWidget: React.FC = () => {

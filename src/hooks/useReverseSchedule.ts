@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { FermentationTechnique } from '@/types';
 import { addMinutes, subMinutes, subHours, isBefore, format } from '@/logic/dateUtils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/i18n';
 
 
 export interface ScheduleStep {

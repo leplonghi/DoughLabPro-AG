@@ -6,9 +6,8 @@ import { useTranslation } from '@/i18n';
 import { useLocalizedPricing } from '@/hooks/useLocalizedPricing';
 import { useToast } from '@/components/ToastProvider';
 import { useUser } from '@/contexts/UserProvider';
-import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
-import { getPageMeta } from '@/app/appShell';
 
 interface UpgradePageProps {
     success?: boolean;
@@ -23,7 +22,6 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
     const { symbol, currency, countryCode, planPrices, isProvisional } = useLocalizedPricing();
     const { addToast } = useToast();
     const { hasProAccess, user } = useUser();
-    const upgradeMeta = getPageMeta('upgrade');
     const canManageBilling = hasProAccess && !!user?.stripeCustomerId;
 
     const handleUpgrade = async () => {
@@ -85,17 +83,19 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
     }
 
     return (
-        <div className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <AppShellHeader
-                    eyebrow={upgradeMeta.eyebrow}
-                    title={upgradeMeta.title}
-                    description={upgradeMeta.description}
-                >
+        <AppPageLayout
+            width="wide"
+            density="default"
+            pageHeader={{
+                page: 'upgrade',
+                children: (
                     <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
                         Monthly subscription, cancel anytime
                     </div>
-                </AppShellHeader>
+                ),
+            }}
+        >
+            <div className="max-w-7xl mx-auto pb-12">
 
                 <AppSurface className="max-w-6xl mx-auto overflow-hidden lg:flex">
                     <div className="flex-1 bg-white px-6 py-8 lg:p-12">
@@ -188,7 +188,7 @@ export const UpgradePage: React.FC<UpgradePageProps> = ({ success, cancel }) => 
                     </div>
                 </AppSurface>
             </div>
-        </div>
+        </AppPageLayout>
     );
 };
 

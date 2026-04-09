@@ -40,7 +40,7 @@ function createHandler(name, options, logic) {
                     stack: error.stack,
                     userId: (_b = context.auth) === null || _b === void 0 ? void 0 : _b.uid
                 });
-                throw new functions.https.HttpsError("internal", "An internal error occurred.", error.message);
+                throw new functions.https.HttpsError("internal", "An internal error occurred.");
             }
         });
     });

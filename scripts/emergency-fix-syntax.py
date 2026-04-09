@@ -4,7 +4,6 @@ import re
 TARGET_DIR = 'src/data/styles/regions'
 
 def fix_line(line):
-    original = line
     
     # 1. Remove trailing single quote after ]
     # e.g. salt: [2.0, 2.5']', -> salt: [2.0, 2.5'],

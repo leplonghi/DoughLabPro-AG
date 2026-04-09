@@ -1,10 +1,13 @@
-import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
+import { collection, getDocs, query, limit } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { DoughStyleDefinition } from '@/types/styles';
-import { STYLES_DATA, mapRawStyleToDoughStyleDefinition } from '@/data/stylesData';
-import { useTranslation } from '@/i18n';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 const STYLES_COLLECTION = 'styles';
+
+async function loadLocalStylesModule() {
+    return importWithChunkRecovery(() => import('@/data/stylesData'));
+}
 
 /**
  * Fetches styles from Firestore.
@@ -13,6 +16,7 @@ const STYLES_COLLECTION = 'styles';
 export async function fetchStyles(): Promise<DoughStyleDefinition[]> {
     if (!db) {
         console.warn('Firestore not initialized, falling back to static styles.');
+        const { STYLES_DATA } = await loadLocalStylesModule();
         return STYLES_DATA;
     }
 
@@ -26,8 +30,11 @@ export async function fetchStyles(): Promise<DoughStyleDefinition[]> {
 
         if (snapshot.empty) {
             console.log('No styles found in Firestore, using local fallback.');
+            const { STYLES_DATA } = await loadLocalStylesModule();
             return STYLES_DATA;
         }
+
+        const { mapRawStyleToDoughStyleDefinition } = await loadLocalStylesModule();
 
         const remoteStyles = snapshot.docs.map(doc => {
             const data = doc.data();
@@ -41,6 +48,7 @@ export async function fetchStyles(): Promise<DoughStyleDefinition[]> {
 
     } catch (error) {
         console.error('Error fetching styles from Firestore:', error);
+        const { STYLES_DATA } = await loadLocalStylesModule();
         return STYLES_DATA;
     }
 }

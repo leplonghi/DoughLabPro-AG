@@ -209,7 +209,7 @@ export const HydrationConverterPage: React.FC = () => {
                             adjustment.type === 'add_water' ? 'bg-gradient-to-br from-blue-600 to-blue-800' :
                                 'bg-gradient-to-br from-amber-600 to-amber-800'
                             }`}>
-                            <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('/patterns/noise.png')]"></div>
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.12),transparent_38%)]"></div>
 
                             <h3 className="relative z-10 text-white/80 text-sm font-bold uppercase tracking-widest mb-6 border-b border-white/20 pb-4 inline-block">
                                 {t('general.required_correction')}

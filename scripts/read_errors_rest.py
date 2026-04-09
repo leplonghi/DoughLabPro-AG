@@ -6,7 +6,7 @@ if os.path.exists(target):
         with open(target, 'r', encoding='utf-16-le') as f:
             content = f.read()
             print(content[4000:])
-    except Exception as e:
+    except Exception:
         try:
             with open(target, 'r', encoding='utf-8') as f:
                 content = f.read()

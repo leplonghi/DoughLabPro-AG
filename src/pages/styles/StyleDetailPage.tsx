@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { DoughStyleDefinition, EditorialTextBlock } from '@/types/styles';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
 import AppShellHeader from '@/components/ui/AppShellHeader';
@@ -29,7 +29,7 @@ import {
 } from '@/components/ui/Icons';
 
 interface StyleDetailPageProps {
-    style?: DoughStyleDefinition | null;
+    styleId?: string | null;
     onLoadAndNavigate: (style: DoughStyleDefinition) => void;
     onBack: () => void;
     onNavigate?: (page: string, params?: string) => void;
@@ -56,12 +56,21 @@ const TextBlockCard: React.FC<{ block: EditorialTextBlock }> = ({ block }) => (
     </div>
 );
 
-export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadAndNavigate, onBack, onNavigate }) => {
+export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ styleId, onLoadAndNavigate, onBack, onNavigate }) => {
     const { t } = useTranslation(['common', 'styles']);
-    const { styles: allStyles } = useStyles();
+    const { styles: allStyles, isLoading, ensureStylesLoaded } = useStyles();
     const { isFavorite, toggleFavorite } = useUser();
     const [selectedFlavorComponent, setSelectedFlavorComponent] = useState<FlavorComponent | null>(null);
     const stylesMeta = getPageMeta('styles');
+
+    useEffect(() => {
+        void ensureStylesLoaded();
+    }, [ensureStylesLoaded]);
+
+    const style = useMemo(
+        () => (styleId ? allStyles.find((item) => item.id === styleId) || null : null),
+        [allStyles, styleId],
+    );
 
     const editorial = useMemo(
         () =>
@@ -97,11 +106,13 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
         );
     }, [editorial]);
 
-    if (!style || !editorial) {
+    if (isLoading || !style || !editorial) {
         return (
             <LibraryPageLayout>
                 <div className="flex min-h-[60vh] items-center justify-center">
-                    <div className="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-600 shadow-sm">Loading style reference…</div>
+                    <div className="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-600 shadow-sm">
+                        {isLoading ? 'Loading style reference…' : 'Style not found.'}
+                    </div>
                 </div>
             </LibraryPageLayout>
         );
@@ -113,7 +124,7 @@ export const StyleDetailPage: React.FC<StyleDetailPageProps> = ({ style, onLoadA
 
     return (
         <LibraryPageLayout>
-            <AppShellHeader eyebrow={stylesMeta.eyebrow} title={editorial.title} description={editorial.subtitle}>
+            <AppShellHeader eyebrow={stylesMeta.eyebrow} title={editorial.title} description={editorial.subtitle} variant="editorial">
                 <button onClick={onBack} className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50">
                     <ArrowLeft className="h-4 w-4" />
                     Back to styles

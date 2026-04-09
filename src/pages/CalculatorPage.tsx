@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import CalculatorForm from '@/components/CalculatorForm';
 import { ResultsDisplay } from '@/components/ResultsDisplay';
 import {
@@ -11,52 +11,58 @@ import {
   FormErrors,
   Oven,
   FlourDefinition,
-  CalculationMode,
+  QuantityInputMode,
+  DifficultyLevel,
   OnboardingState,
 } from '@/types';
 import UnitSelector from '@/components/calculator/UnitSelector';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
-import { InfoIcon, SettingsIcon } from '@/components/ui/Icons';
-import AppShellHeader from '@/components/ui/AppShellHeader';
+import { InfoIcon } from '@/components/ui/Icons';
+import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
 import OnboardingTooltip from '@/components/onboarding/OnboardingTooltip';
 import { AdCard } from '@/marketing/ads/AdCard';
 import { ModeSelectionScreen } from '@/components/calculator/ModeSelectionScreen';
 import { SchedulerSection } from '@/components/dashboard/sections/SchedulerSection';
-import { AssemblySection } from '@/components/dashboard/sections/AssemblySection';
+import { AssemblySection as ProductionAssemblySection } from '@/components/dashboard/sections/AssemblySection';
 import { LogisticsSection } from '@/components/dashboard/sections/LogisticsSection';
-import { FloatingHelpButton } from '@/components/ui/FloatingHelpButton';
 import { Calendar, Layers, Truck } from 'lucide-react';
-import { getPageMeta } from '@/app/appShell';
+import DifficultyLevelSelector from '@/components/calculator/DifficultyLevelSelector';
+import { logCalculatorEvent } from '@/services/analytics';
+import { ReverseSchedule } from '@/components/calculator/ReverseSchedule';
+import { RecommendedProducts } from '@/components/ui/RecommendedProducts';
+import { AssemblySection as ToppingsAssemblySection } from '@/components/calculator/ingredients/AssemblySection';
+import { getCalculatorStyleById } from '@/features/calculator/data/stylePresets';
 
 const ProductionDashboardTabs = () => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const isPortuguese = locale === 'pt-BR';
   const [activeTab, setActiveTab] = useState<'scheduler' | 'batch' | 'logistics'>('scheduler');
+  const tabs: Array<{ id: 'scheduler' | 'batch' | 'logistics'; icon: typeof Calendar; label: string }> = [
+    { id: 'scheduler', icon: Calendar, label: t('ui.schedule_309') },
+    { id: 'batch', icon: Layers, label: t('ui.batch_310') },
+    { id: 'logistics', icon: Truck, label: t('ui.logistics_311') }
+  ];
 
   return (
     <div className="dlp-surface-soft rounded-2xl overflow-hidden flex flex-col">
-      {/* Header & Tabs Container */}
       <div className="border-b border-dlp-border px-3 py-2">
-        {/* Title Area */}
         <div className="px-2 py-2 flex items-center justify-between">
           <h3 className="text-xs font-bold text-[#1B4332] flex items-center gap-2 uppercase tracking-wider">
             <Layers size={16} className="text-[#51a145]" />
-            Production & Logistics
+            {isPortuguese ? 'Producao e Logistica' : 'Production & Logistics'}
           </h3>
-          <span className="text-[9px] font-bold text-dlp-text-muted bg-white/70 px-2 py-1 rounded-full uppercase tracking-widest">Commercial Tools</span>
+          <span className="text-[9px] font-bold text-dlp-text-muted bg-white/70 px-2 py-1 rounded-full uppercase tracking-widest">
+            {isPortuguese ? 'Ferramentas comerciais' : 'Commercial Tools'}
+          </span>
         </div>
 
-        {/* Cleaner Tabs */}
         <div className="flex bg-white/70 p-1 rounded-xl border border-white/70">
-          {[
-            { id: 'scheduler', icon: Calendar, label: t('ui.schedule_309') },
-            { id: 'batch', icon: Layers, label: t('ui.batch_310') },
-            { id: 'logistics', icon: Truck, label: t('ui.logistics_311') }
-          ].map((tab) => (
+          {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id)}
               className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200
                 ${activeTab === tab.id
                   ? 'bg-white text-[#51a145] shadow-sm border border-white/80'
@@ -69,14 +75,23 @@ const ProductionDashboardTabs = () => {
         </div>
       </div>
 
-      {/* Content Area */}
       <div className="p-4 bg-white/80 min-h-[220px]">
         {activeTab === 'scheduler' && <SchedulerSection />}
-        {activeTab === 'batch' && <AssemblySection />}
+        {activeTab === 'batch' && <ProductionAssemblySection />}
         {activeTab === 'logistics' && <LogisticsSection />}
       </div>
     </div>
   );
+};
+
+const getCalculatorVariant = (): 'A' | 'B' => {
+  if (typeof window === 'undefined') return 'A';
+  const storageKey = 'doughlab-calculator-variant';
+  const stored = window.localStorage.getItem(storageKey);
+  if (stored === 'A' || stored === 'B') return stored;
+  const assigned = Math.random() > 0.5 ? 'B' : 'A';
+  window.localStorage.setItem(storageKey, assigned);
+  return assigned;
 };
 
 interface CalculatorPageProps {
@@ -94,10 +109,12 @@ interface CalculatorPageProps {
   onStartBatch: () => void;
   defaultOven?: Oven;
   selectedFlour?: FlourDefinition;
-  calculationMode: CalculationMode;
-  onCalculationModeChange: (mode: CalculationMode) => void;
+  quantityInputMode: QuantityInputMode;
+  onQuantityInputModeChange: (mode: QuantityInputMode) => void;
   calculatorMode: 'wizard' | 'basic' | 'advanced';
   onCalculatorModeChange: (mode: 'wizard' | 'basic' | 'advanced') => void;
+  difficultyLevel: DifficultyLevel;
+  onDifficultyLevelChange: (level: DifficultyLevel) => void;
   hasProAccess: boolean;
   onOpenPaywall: () => void;
   onboardingState?: OnboardingState;
@@ -109,12 +126,20 @@ interface CalculatorPageProps {
 }
 
 const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
-  const { t } = useTranslation(['common', 'calculator', 'dashboard', 'method', 'ui']);
+  const { t, locale } = useTranslation(['common', 'calculator', 'dashboard', 'method', 'ui']);
+  const isPortuguese = locale === 'pt-BR';
   const { levains, addCustomPreset, customPresets, isFavorite } = useUser();
   const formRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const saveButtonRef = useRef<HTMLButtonElement>(null);
-  const calculatorMeta = getPageMeta('calculator');
+  const hasTrackedOpenRef = useRef(false);
+  const hasTrackedFirstResultRef = useRef(false);
+  const [showExtrasDrawer, setShowExtrasDrawer] = useState(false);
+  const [calculatorVariant] = useState<'A' | 'B'>(() => getCalculatorVariant());
+  const toppingsAssemblyStyle = useMemo(
+    () => getCalculatorStyleById(props.config.stylePresetId || 'new_york_slice_v2'),
+    [props.config.stylePresetId]
+  );
 
   const selectedLevain = useMemo(() => {
     if (props.config.yeastType === YeastType.USER_LEVAIN) {
@@ -135,42 +160,59 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
     }
   };
 
-  return (
-    <div className="space-y-8 animate-slide-up pb-24">
-      <AppShellHeader
-        eyebrow={calculatorMeta.eyebrow}
-        title={calculatorMeta.title}
-        description={calculatorMeta.description}
-        size="compact"
-      >
-        <div className="rounded-full border border-emerald-200/70 bg-white/80 px-3 py-1 text-xs font-semibold text-dlp-text-secondary shadow-sm">
-          {props.hasProAccess ? 'Pro bake workspace active' : 'Free bake workspace'}
-        </div>
-      </AppShellHeader>
+  useEffect(() => {
+    if (!hasTrackedOpenRef.current) {
+      logCalculatorEvent('calculator_opened', {
+        calculatorMode: props.calculatorMode,
+        difficultyLevel: props.difficultyLevel,
+        variant: calculatorVariant
+      });
+      hasTrackedOpenRef.current = true;
+    }
+  }, [props.calculatorMode, props.difficultyLevel, calculatorVariant]);
 
-      <AppSurface className="p-5 sm:p-6">
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <div>
-            <p className="text-[10px] font-black font-heading uppercase tracking-[0.2em] text-slate-400">
-              {t('calculator.mode', { defaultValue: 'MODE:' })}
+  useEffect(() => {
+    if (props.results && !hasTrackedFirstResultRef.current) {
+      logCalculatorEvent('first_result_generated', {
+        calculatorMode: props.calculatorMode,
+        difficultyLevel: props.difficultyLevel,
+        variant: calculatorVariant
+      });
+      hasTrackedFirstResultRef.current = true;
+    }
+  }, [props.results, props.calculatorMode, props.difficultyLevel, calculatorVariant]);
+
+  return (
+    <AppPageLayout width="wide" density="default" pageHeader={{ page: 'calculator' }}>
+      <div className="space-y-8 animate-slide-up pb-24">
+      <AppSurface surface="rail" className="p-4 sm:p-5">
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-900 dark:text-slate-50">
+              {isPortuguese ? 'Escolha seu fluxo' : t('calculator.choose_workflow', { defaultValue: 'Choose your workflow' })}
+            </h2>
+            <p className="text-[12px] leading-relaxed text-slate-500 dark:text-slate-300">
+              {isPortuguese ? 'Comece no guiado, use o wizard para passo a passo e o avancado para controle total.' : t('calculator.workflow_hint', { defaultValue: 'Guided first, Wizard for step-by-step, Advanced for full control.' })}
             </p>
-            <h2 className="mt-2 text-xl font-bold text-slate-900">Choose the right build surface for this bake</h2>
-          </div>
-          <div className="hidden rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500 sm:block">
-            Switch between guided, basic, and advanced control
           </div>
         </div>
         <ModeSelectionScreen
           selectedMode={props.calculatorMode}
           onSelectMode={props.onCalculatorModeChange}
         />
+        {props.calculatorMode === 'advanced' && (
+          <div className="mt-4 border-t border-emerald-100 pt-4">
+            <DifficultyLevelSelector
+              value={props.difficultyLevel}
+              onChange={props.onDifficultyLevelChange}
+            />
+          </div>
+        )}
       </AppSurface>
 
-      {/* 2. Laboratory Interface Area */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
-        {/* Left Form: Calibration */}
         <div className="space-y-8" ref={formRef}>
-          <AppSurface className="flex items-center justify-between px-6 py-3">
+          <AppSurface surface="rail" className="flex items-center justify-between px-6 py-3">
             <div className="flex items-center gap-4">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{t('calculator.settings', { defaultValue: 'Settings:' })}</span>
               <UnitSelector unit={props.unit} onUnitChange={props.onUnitChange} />
@@ -188,9 +230,11 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             </div>
           </AppSurface>
 
-          <AppSurface className="p-0.5">
+          <AppSurface surface="soft" className="p-1.5">
             <CalculatorForm
               {...props}
+              quantityInputMode={props.quantityInputMode}
+              onQuantityInputModeChange={props.onQuantityInputModeChange}
               levains={levains}
               customPresets={customPresets}
               selectedLevain={selectedLevain}
@@ -200,7 +244,6 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           </AppSurface>
         </div>
 
-        {/* Right Panel: Results & Analytics */}
         <div className="lg:sticky lg:top-24 space-y-8" ref={resultsRef}>
           <ResultsDisplay
             results={props.results}
@@ -212,22 +255,90 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             onStartBatch={props.onStartBatch}
             selectedFlour={props.selectedFlour}
             calculatorMode={props.calculatorMode}
-            calculationMode={props.calculationMode}
+            quantityInputMode={props.quantityInputMode}
             hasProAccess={props.hasProAccess}
             onOpenPaywall={props.onOpenPaywall}
             saveButtonRef={saveButtonRef}
             onboardingStep={props.onboardingState?.step}
             selectedLevain={selectedLevain}
+            showExtras={false}
           />
 
           {!props.hasProAccess && <AdCard context="calculator_sidebar" />}
 
-          {/* Business Insights Tab Bar */}
           <div className="animate-slide-up" style={{ animationDelay: '200ms' }}>
-            <ProductionDashboardTabs />
+            <AppSurface surface="rail" tone="neutral" className="p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                    {isPortuguese ? 'EXTRAS' : t('calculator.extras', { defaultValue: 'EXTRAS' })}
+                  </p>
+                  <h3 className="mt-1 text-sm font-bold text-slate-800">
+                    {isPortuguese ? 'Abra as ferramentas de producao e logistica' : t('calculator.open_extras_drawer', { defaultValue: 'Open production and logistics tools' })}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setShowExtrasDrawer(true)}
+                  className="rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm transition hover:bg-emerald-700"
+                >
+                  {isPortuguese ? 'Abrir extras' : t('calculator.open_extras', { defaultValue: 'Open Extras' })}
+                </button>
+              </div>
+            </AppSurface>
           </div>
         </div>
       </div>
+
+      {showExtrasDrawer && (
+        <div className="fixed inset-0 z-[90] bg-black/45 backdrop-blur-sm p-4 sm:p-6" onClick={() => setShowExtrasDrawer(false)}>
+          <div
+            className="mx-auto mt-12 max-w-4xl rounded-3xl border border-emerald-100 bg-white p-5 shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                  {isPortuguese ? 'EXTRAS' : t('calculator.extras', { defaultValue: 'EXTRAS' })}
+                </p>
+                <h3 className="mt-1 text-lg font-bold text-slate-900">
+                  {isPortuguese ? 'Producao e Logistica' : t('calculator.production_and_logistics', { defaultValue: 'Production & Logistics' })}
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowExtrasDrawer(false)}
+                className="rounded-full border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-600 hover:bg-slate-50"
+              >
+                {isPortuguese ? 'Fechar' : t('common.close', { defaultValue: 'Close' })}
+              </button>
+            </div>
+            <ProductionDashboardTabs />
+            <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+              <AppSurface surface="glass" tone="neutral" className="p-4">
+                <ReverseSchedule config={props.config} levain={selectedLevain || undefined} />
+              </AppSurface>
+              <AppSurface surface="glass" tone="neutral" className="p-4">
+                <RecommendedProducts
+                  tags={[props.config.recipeStyle?.toLowerCase() || 'general', 'calculator', 'baking']}
+                  title={t('common.general.tools_for_this_formula')}
+                />
+              </AppSurface>
+            </div>
+            {toppingsAssemblyStyle && (
+              <div className="mt-4">
+                <AppSurface surface="glass" tone="neutral" className="p-4">
+                  <ToppingsAssemblySection
+                    style={toppingsAssemblyStyle}
+                    selectedIncrements={props.config.assemblyIncrements || []}
+                    onUpdateIncrements={(incs) => props.onConfigChange({ assemblyIncrements: incs })}
+                    bakingTempC={props.config.bakingTempC}
+                    bakeType={props.config.bakeType}
+                  />
+                </AppSurface>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {props.onboardingState?.isActive && (
         <OnboardingTooltip
@@ -245,10 +356,9 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
           onFinish={() => { }}
         />
       )}
-    </div>
+      </div>
+    </AppPageLayout>
   );
 };
 
 export default CalculatorPage;
-
-

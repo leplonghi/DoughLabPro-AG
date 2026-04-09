@@ -1,11 +1,10 @@
-import React, { useDeferredValue, useMemo, useState } from 'react';
+import React, { useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { DoughStyleDefinition, StyleCategory } from '@/types/styles';
 import { useStyles } from '@/contexts/StylesProvider';
 import { useTranslation } from '@/i18n';
 import { useUser } from '@/contexts/UserProvider';
 import { normalizeDoughStyle } from '@/utils/styleAdapter';
 import { LibraryPageLayout } from '@/components/ui/LibraryPageLayout';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
 import { StyleCard } from '@/components/styles/StyleCard';
 import { getPageMeta } from '@/app/appShell';
@@ -78,7 +77,7 @@ const groupByFamily = (styles: Array<ReturnType<typeof getStyleCatalogMeta>>) =>
         }, {});
 
 export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCalculator }) => {
-    const { styles: officialStyles } = useStyles();
+    const { styles: officialStyles, isLoading, ensureStylesLoaded } = useStyles();
     const { userStyles, isFavorite } = useUser();
     const { t } = useTranslation(['common', 'styles']);
     const stylesMeta = getPageMeta('styles');
@@ -92,6 +91,10 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
     const [showSpecialist, setShowSpecialist] = useState(false);
 
     const deferredSearch = useDeferredValue(searchQuery);
+
+    useEffect(() => {
+        void ensureStylesLoaded();
+    }, [ensureStylesLoaded]);
 
     const allStyles = useMemo(() => {
         const normalizedUserStyles = userStyles.map(normalizeDoughStyle);
@@ -199,104 +202,67 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
     const activeCategoryLine = categoryEditorialLines[selectedCategory] || categoryEditorialLines.all;
 
     return (
-        <LibraryPageLayout>
-            <AppShellHeader
-                eyebrow={stylesMeta.eyebrow}
-                title="Styles Knowledge System"
-                description="Study styles deeply, compare them side by side, and move straight into your next bake with linked tools and references."
-            >
-                <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
-                    {filteredItems.length} visible styles
-                </div>
-                <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
-                    Catalog + detail architecture
-                </div>
-            </AppShellHeader>
-
-            <AppSurface className="mb-8 overflow-hidden p-0">
-                <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
-                    <div className="p-6 md:p-8">
-                        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-lime-200 bg-lime-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-lime-700">
+        <LibraryPageLayout
+            pageHeader={{
+                page: 'styles',
+                title: 'Styles Knowledge System',
+                description: 'Study styles deeply, compare them side by side, and move straight into your next bake with linked tools and references.',
+                children: (
+                    <>
+                        <div className="rounded-full border border-emerald-200 bg-white/92 px-4 py-2 text-sm font-semibold text-dlp-text-secondary shadow-sm">
+                            {filteredItems.length} visible styles
+                        </div>
+                        <div className="rounded-full border border-emerald-200 bg-emerald-50/85 px-4 py-2 text-sm font-semibold text-emerald-800 shadow-sm">
+                            Catalog + detail architecture
+                        </div>
+                    </>
+                ),
+            }}
+        >
+            <div className="dlp-flow-stack">
+            <AppSurface tone="brand" surface="glass" density="compact" className="dlp-flow-node mb-4 p-3.5 sm:p-4">
+                <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+                    <div>
+                        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/88 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-700">
                             <BookOpen className="h-4 w-4" />
                             Editorial system
                         </div>
-                        <h2 className="max-w-3xl text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
-                            A reference library built for studying styles, not just skimming cards.
-                        </h2>
-                        <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-                            Every style follows the same knowledge architecture: origin, technical profile, process logic, comparisons,
-                            flexibility guides, gallery, citations, and direct links into the rest of the app.
+                        <p className="mt-2 text-sm leading-6 text-dlp-text-secondary">
+                            {activeCategoryLine}
                         </p>
-
-                        <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Browse</div>
-                                <p className="mt-2 text-sm font-medium text-slate-700">Scan by family, region, difficulty, and signature trait.</p>
-                            </div>
-                            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Compare</div>
-                                <p className="mt-2 text-sm font-medium text-slate-700">Put nearby styles side by side before choosing what to bake.</p>
-                            </div>
-                            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Apply</div>
-                                <p className="mt-2 text-sm font-medium text-slate-700">Jump into Calculator, Learn, Flavor, Lab, and Community from the same source.</p>
-                            </div>
+                    </div>
+                    <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                        <div className="rounded-2xl border border-emerald-200/70 bg-white/90 px-3 py-2.5 shadow-sm">
+                            <dt className="text-[11px] font-semibold text-dlp-text-muted">Official</dt>
+                            <dd className="mt-1 text-lg font-black tracking-tight text-dlp-text-primary">{isLoading ? '…' : allStyles.filter(style => style.source === 'official').length}</dd>
                         </div>
-                    </div>
-
-                    <div className="border-l border-slate-100 bg-slate-50/80 p-6 md:p-8">
-                        <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Catalog status</div>
-                        <dl className="mt-5 grid grid-cols-2 gap-4">
-                            <div className="rounded-3xl bg-white p-4 shadow-sm">
-                                <dt className="text-sm text-slate-500">Official styles</dt>
-                                <dd className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-                                    {allStyles.filter(style => style.source === 'official').length}
-                                </dd>
-                            </div>
-                            <div className="rounded-3xl bg-white p-4 shadow-sm">
-                                <dt className="text-sm text-slate-500">Community styles</dt>
-                                <dd className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-                                    {allStyles.filter(style => style.source !== 'official').length}
-                                </dd>
-                            </div>
-                            <div className="rounded-3xl bg-white p-4 shadow-sm">
-                                <dt className="text-sm text-slate-500">Favorite styles</dt>
-                                <dd className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-                                    {catalogItems.filter(({ style }) => isFavorite(style.id)).length}
-                                </dd>
-                            </div>
-                            <div className="rounded-3xl bg-white p-4 shadow-sm">
-                                <dt className="text-sm text-slate-500">Compare slots</dt>
-                                <dd className="mt-2 text-3xl font-black tracking-tight text-slate-950">{selectedForCompare.length}/3</dd>
-                            </div>
-                            <div className="rounded-3xl bg-white p-4 shadow-sm">
-                                <dt className="text-sm text-slate-500">Flagship styles</dt>
-                                <dd className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-                                    {catalogItems.filter(({ meta }) => meta.libraryTier === 'flagship').length}
-                                </dd>
-                            </div>
-                            <div className="rounded-3xl bg-white p-4 shadow-sm">
-                                <dt className="text-sm text-slate-500">Specialist hidden</dt>
-                                <dd className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-                                    {catalogItems.filter(({ meta }) => meta.visibility === 'hidden').length}
-                                </dd>
-                            </div>
-                        </dl>
-                    </div>
+                        <div className="rounded-2xl border border-emerald-200/70 bg-white/90 px-3 py-2.5 shadow-sm">
+                            <dt className="text-[11px] font-semibold text-dlp-text-muted">Community</dt>
+                            <dd className="mt-1 text-lg font-black tracking-tight text-dlp-text-primary">{isLoading ? '…' : allStyles.filter(style => style.source !== 'official').length}</dd>
+                        </div>
+                        <div className="rounded-2xl border border-emerald-200/70 bg-white/90 px-3 py-2.5 shadow-sm">
+                            <dt className="text-[11px] font-semibold text-dlp-text-muted">Favorites</dt>
+                            <dd className="mt-1 text-lg font-black tracking-tight text-dlp-text-primary">{isLoading ? '…' : catalogItems.filter(({ style }) => isFavorite(style.id)).length}</dd>
+                        </div>
+                        <div className="rounded-2xl border border-emerald-200/70 bg-white/90 px-3 py-2.5 shadow-sm">
+                            <dt className="text-[11px] font-semibold text-dlp-text-muted">Compare</dt>
+                            <dd className="mt-1 text-lg font-black tracking-tight text-dlp-text-primary">{selectedForCompare.length}/3</dd>
+                        </div>
+                    </dl>
                 </div>
             </AppSurface>
 
-            <AppSurface className="sticky top-3 z-30 mb-8 border-slate-200/80 bg-white/90 p-5 backdrop-blur">
+            <AppSurface tone="neutral" surface="rail" className="dlp-flow-node mb-5 border-emerald-200/70 p-4 sm:p-5">
                 <div className="grid gap-4 xl:grid-cols-[1.5fr_1fr]">
                     <div className="grid gap-4">
                         <div className="relative">
-                            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-500" />
                             <input
                                 type="text"
                                 value={searchQuery}
                                 onChange={(event) => setSearchQuery(event.target.value)}
                                 placeholder="Search by style, region, trait, or teaching angle"
-                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3.5 pl-11 pr-4 text-sm text-slate-700 outline-none transition focus:border-dlp-brand focus:bg-white focus:ring-2 focus:ring-dlp-brand/20"
+                                className="w-full rounded-2xl border border-emerald-200 bg-white/92 py-3.5 pl-11 pr-4 text-sm text-dlp-text-primary outline-none transition focus:border-dlp-brand focus:bg-white focus:ring-2 focus:ring-dlp-brand/20"
                             />
                         </div>
 
@@ -306,10 +272,10 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                     key={category}
                                     type="button"
                                     onClick={() => setSelectedCategory(category)}
-                                    className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
                                         selectedCategory === category
-                                            ? 'bg-slate-950 text-white'
-                                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                            ? 'border-emerald-600 bg-emerald-600 text-white shadow-[0_14px_28px_-18px_rgba(47,139,73,0.6)]'
+                                            : 'border-emerald-200 bg-white/92 text-dlp-text-secondary hover:border-emerald-300 hover:bg-emerald-50/80'
                                     }`}
                                 >
                                     {CATEGORY_LABELS[category]}
@@ -317,20 +283,20 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             ))}
                         </div>
 
-                        <p className="text-sm text-slate-500">{activeCategoryLine}</p>
-                        <div className="mt-3 flex flex-wrap gap-2">
+                        <p className="text-sm text-dlp-text-secondary">{activeCategoryLine}</p>
+                        <div className="mt-1 flex flex-wrap gap-2">
                             <button
                                 type="button"
                                 onClick={() => setShowSpecialist(current => !current)}
                                 className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] transition ${
                                     showSpecialist
-                                        ? 'bg-amber-100 text-amber-800'
-                                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                                        ? 'border border-amber-200 bg-amber-100 text-amber-800'
+                                        : 'border border-emerald-200 bg-white/90 text-dlp-text-secondary hover:border-emerald-300 hover:bg-emerald-50/80'
                                 }`}
                             >
                                 {showSpecialist ? 'Hide specialist styles' : 'Reveal specialist styles'}
                             </button>
-                            <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                            <div className="rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-800">
                                 Flagships lead the default browse
                             </div>
                         </div>
@@ -343,8 +309,8 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                 onClick={() => setMode('browse')}
                                 className={`rounded-2xl border px-4 py-3 text-sm font-bold transition ${
                                     mode === 'browse'
-                                        ? 'border-slate-950 bg-slate-950 text-white'
-                                        : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                                        ? 'border-emerald-600 bg-emerald-600 text-white shadow-[0_14px_28px_-18px_rgba(47,139,73,0.6)]'
+                                        : 'border-emerald-200 bg-white/92 text-dlp-text-secondary hover:border-emerald-300 hover:bg-emerald-50/80'
                                 }`}
                             >
                                 Browse
@@ -354,8 +320,8 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                 onClick={() => setMode('compare')}
                                 className={`rounded-2xl border px-4 py-3 text-sm font-bold transition ${
                                     mode === 'compare'
-                                        ? 'border-slate-950 bg-slate-950 text-white'
-                                        : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                                        ? 'border-emerald-600 bg-emerald-600 text-white shadow-[0_14px_28px_-18px_rgba(47,139,73,0.6)]'
+                                        : 'border-emerald-200 bg-white/92 text-dlp-text-secondary hover:border-emerald-300 hover:bg-emerald-50/80'
                                 }`}
                             >
                                 Compare
@@ -365,8 +331,8 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                 onClick={() => setMode('favorites')}
                                 className={`rounded-2xl border px-4 py-3 text-sm font-bold transition ${
                                     mode === 'favorites'
-                                        ? 'border-slate-950 bg-slate-950 text-white'
-                                        : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                                        ? 'border-emerald-600 bg-emerald-600 text-white shadow-[0_14px_28px_-18px_rgba(47,139,73,0.6)]'
+                                        : 'border-emerald-200 bg-white/92 text-dlp-text-secondary hover:border-emerald-300 hover:bg-emerald-50/80'
                                 }`}
                             >
                                 Favorites
@@ -377,7 +343,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             <select
                                 value={selectedDifficulty}
                                 onChange={(event) => setSelectedDifficulty(event.target.value as typeof selectedDifficulty)}
-                                className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-600 outline-none transition focus:border-dlp-brand focus:ring-2 focus:ring-dlp-brand/20"
+                                className="rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 text-sm font-semibold text-dlp-text-secondary outline-none transition focus:border-dlp-brand focus:ring-2 focus:ring-dlp-brand/20"
                             >
                                 <option value="all">All difficulty levels</option>
                                 <option value="Easy">Easy</option>
@@ -389,7 +355,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             <select
                                 value={selectedRegion}
                                 onChange={(event) => setSelectedRegion(event.target.value)}
-                                className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-600 outline-none transition focus:border-dlp-brand focus:ring-2 focus:ring-dlp-brand/20"
+                                className="rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 text-sm font-semibold text-dlp-text-secondary outline-none transition focus:border-dlp-brand focus:ring-2 focus:ring-dlp-brand/20"
                             >
                                 <option value="all">All regions</option>
                                 {availableRegions.map(region => (
@@ -402,6 +368,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                     </div>
                 </div>
             </AppSurface>
+            </div>
 
             {mode === 'compare' ? (
                 <AppSurface className="mb-8">
@@ -426,38 +393,20 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                     </div>
 
                     {compareItems.length > 0 ? (
-                        <div className="overflow-x-auto">
-                            <table className="min-w-full divide-y divide-slate-200">
-                                <thead>
-                                    <tr className="text-left text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-                                        <th className="px-4 py-3">Dimension</th>
-                                        {compareItems.map(({ meta }) => (
-                                            <th key={meta.id} className="px-4 py-3 text-slate-700">
-                                                {meta.title}
-                                            </th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-slate-100">
-                                    {[
-                                        { label: 'Family', value: (item: typeof compareItems[number]) => item.meta.familyLabel },
-                                        { label: 'Region', value: (item: typeof compareItems[number]) => item.meta.regionLabel },
-                                        { label: 'Difficulty', value: (item: typeof compareItems[number]) => item.meta.difficulty },
-                                        { label: 'Hydration', value: (item: typeof compareItems[number]) => `${item.meta.hydrationRange[0]}-${item.meta.hydrationRange[1]}%` },
-                                        { label: 'Signature trait', value: (item: typeof compareItems[number]) => item.meta.signatureTrait },
-                                        { label: 'Editorial depth', value: (item: typeof compareItems[number]) => item.meta.completeness },
-                                    ].map((row) => (
-                                        <tr key={row.label}>
-                                            <td className="px-4 py-4 text-sm font-semibold text-slate-500">{row.label}</td>
-                                            {compareItems.map((item) => (
-                                                <td key={`${item.meta.id}-${row.label}`} className="px-4 py-4 text-sm text-slate-700">
-                                                    {row.value(item)}
-                                                </td>
-                                            ))}
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                            {compareItems.map(({ meta }) => (
+                                <AppSurface key={meta.id} className="border-slate-200 bg-slate-50 p-4">
+                                    <h4 className="text-lg font-black tracking-tight text-slate-900">{meta.title}</h4>
+                                    <div className="mt-3 space-y-2 text-sm text-slate-700">
+                                        <p><span className="font-semibold text-slate-500">Family:</span> {meta.familyLabel}</p>
+                                        <p><span className="font-semibold text-slate-500">Region:</span> {meta.regionLabel}</p>
+                                        <p><span className="font-semibold text-slate-500">Difficulty:</span> {meta.difficulty}</p>
+                                        <p><span className="font-semibold text-slate-500">Hydration:</span> {meta.hydrationRange[0]}-{meta.hydrationRange[1]}%</p>
+                                        <p><span className="font-semibold text-slate-500">Trait:</span> {meta.signatureTrait}</p>
+                                        <p><span className="font-semibold text-slate-500">Depth:</span> {meta.completeness}</p>
+                                    </div>
+                                </AppSurface>
+                            ))}
                         </div>
                     ) : (
                         <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50 px-6 py-10 text-center text-slate-500">

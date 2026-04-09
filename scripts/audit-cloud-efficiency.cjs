@@ -15,6 +15,9 @@ const auditResults = {
     orphans: []
 };
 
+const FIRESTORE_QUERY_WINDOW = 12;
+const FIRESTORE_DIRECT_READ_WINDOW = 4;
+
 // Utility to recursively find strings in files
 function searchFiles(dir, includes, targetStrings) {
     let results = [];
@@ -41,18 +44,68 @@ function searchFiles(dir, includes, targetStrings) {
     return results;
 }
 
+function collectFiles(dir, includes) {
+    let results = [];
+    const files = fs.readdirSync(dir);
+
+    files.forEach(file => {
+        const fullPath = path.join(dir, file);
+        const stat = fs.statSync(fullPath);
+
+        if (stat.isDirectory()) {
+            results = results.concat(collectFiles(fullPath, includes));
+        } else if (includes.some(ext => file.endsWith(ext))) {
+            results.push(fullPath);
+        }
+    });
+
+    return results;
+}
+
 // 1. Audit Firestore Queries
 function auditFirestore() {
     console.log('\nChecking Firestore Queries...');
-    const matches = searchFiles(SRC_DIR, ['.ts', '.tsx'], ['collection(']);
-    matches.forEach(m => {
-        if (!m.content.includes('.limit(') && !m.content.includes('doc(')) {
-            auditResults.firestore.push({
-                file: m.file,
-                issue: 'Potential uncapped query (missing .limit())',
-                snippet: m.content
-            });
-        }
+    const files = collectFiles(SRC_DIR, ['.ts', '.tsx']);
+
+    files.forEach(file => {
+        const content = fs.readFileSync(file, 'utf8');
+        const lines = content.split('\n');
+
+        lines.forEach((line, index) => {
+            const isQueryDefinition = /\bquery\s*\(/.test(line);
+            const isDirectRead = /\b(onSnapshot|getDocs|getCountFromServer)\s*\(/.test(line);
+            const snippet = lines.slice(index, index + FIRESTORE_QUERY_WINDOW).join('\n');
+            const inlineReadSnippet = lines.slice(index, index + FIRESTORE_DIRECT_READ_WINDOW).join('\n');
+            const hasLimit = /\b\w*limit\s*\(/i.test(snippet);
+
+            if (isQueryDefinition) {
+                const readsFromCollection =
+                    /(collection|collectionGroup)\s*\(/.test(snippet) &&
+                    !/\bdoc\s*\(/.test(snippet);
+
+                if (readsFromCollection && !hasLimit) {
+                    auditResults.firestore.push({
+                        file,
+                        issue: 'Potential uncapped read query (missing limit())',
+                        snippet: line.trim(),
+                    });
+                }
+
+                return;
+            }
+
+            const readsDirectlyFromCollection =
+                /(collection|collectionGroup)\s*\(/.test(inlineReadSnippet) &&
+                !/\bdoc\s*\(/.test(inlineReadSnippet);
+
+            if (isDirectRead && readsDirectlyFromCollection && !/\b\w*limit\s*\(/i.test(inlineReadSnippet)) {
+                auditResults.firestore.push({
+                    file,
+                    issue: 'Potential uncapped read query (missing limit())',
+                    snippet: line.trim(),
+                });
+            }
+        });
     });
 }
 
@@ -89,13 +142,14 @@ function auditOrphans() {
     console.log('Checking for orphaned scripts/files in root...');
     const files = fs.readdirSync(ROOT_DIR);
     const scripts = files.filter(f => f.endsWith('.cjs') || f.endsWith('.py') || (f.endsWith('.js') && !f.includes('config')));
+    const pkg = fs.readFileSync(path.join(ROOT_DIR, 'package.json'), 'utf8');
+    const docsCorpus = fs.readdirSync(ROOT_DIR)
+        .filter(file => file.endsWith('.md'))
+        .map(file => fs.readFileSync(path.join(ROOT_DIR, file), 'utf8'))
+        .join('\n');
 
     scripts.forEach(script => {
-        // Simple check: is it mentioned in package.json or README?
-        const pkg = fs.readFileSync(path.join(ROOT_DIR, 'package.json'), 'utf8');
-        const readme = fs.readFileSync(path.join(ROOT_DIR, 'README.md'), 'utf8');
-
-        if (!pkg.includes(script) && !readme.includes(script)) {
+        if (!pkg.includes(script) && !docsCorpus.includes(script)) {
             auditResults.orphans.push({
                 file: script,
                 issue: 'Potential orphaned script (not in package.json/README)'

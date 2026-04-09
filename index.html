@@ -6,104 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DoughLabPro</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/logo.png" />
-
-  <!-- Tailwind CSS -->
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            dlp: {
-              bg: 'var(--dlp-bg)',
-              'bg-soft': 'var(--dlp-bg-soft)',
-              'bg-card': 'var(--dlp-bg-card)',
-              'bg-muted': 'var(--dlp-bg-muted)',
-              border: 'var(--dlp-border)',
-              'border-strong': 'var(--dlp-border-strong)',
-              'text-primary': 'var(--dlp-text-primary)',
-              'text-secondary': 'var(--dlp-text-secondary)',
-              'text-muted': 'var(--dlp-text-muted)',
-              accent: 'var(--dlp-accent)',
-              'accent-hover': 'var(--dlp-accent-hover)',
-              'accent-light': 'var(--dlp-accent-light)',
-              success: 'var(--dlp-success)',
-              warning: 'var(--dlp-warning)',
-              error: 'var(--dlp-error)',
-              info: 'var(--dlp-info)',
-            }
-          },
-          spacing: {
-            'dlp-xxs': 'var(--dlp-space-xxs)',
-            'dlp-xs': 'var(--dlp-space-xs)',
-            'dlp-sm': 'var(--dlp-space-sm)',
-            'dlp-md': 'var(--dlp-space-md)',
-            'dlp-lg': 'var(--dlp-space-lg)',
-            'dlp-xl': 'var(--dlp-space-xl)',
-            'dlp-2xl': 'var(--dlp-space-2xl)',
-            'dlp-3xl': 'var(--dlp-space-3xl)',
-            'dlp-4xl': 'var(--dlp-space-4xl)',
-            'dlp-5xl': 'var(--dlp-space-5xl)',
-          },
-          boxShadow: {
-            'dlp-sm': 'var(--dlp-shadow-sm)',
-            'dlp-md': 'var(--dlp-shadow-md)',
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          keyframes: {
-            slideInRight: {
-              from: { transform: 'translateX(100%)', opacity: '0' },
-              to: { transform: 'translateX(0)', opacity: '1' },
-            },
-            slideOutRight: {
-              from: { transform: 'translateX(0)', opacity: '1' },
-              to: { transform: 'translateX(100%)', opacity: '0' },
-            },
-            fadeIn: {
-              from: { opacity: '0' },
-              to: { opacity: '1' },
-            }
-          },
-          animation: {
-            'slide-in-right': 'slideInRight 0.4s ease-out forwards',
-            'slide-out-right': 'slideOutRight 0.4s ease-in forwards',
-            'fade-in': 'fadeIn 0.3s ease-out forwards',
-          },
-        },
-      },
-    };
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- PDF Generation Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <!-- Import Map -->
-  <script type="importmap">
-{
-  "imports": {
-    "@/": "./src/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
-    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
-    "@firebase/auth": "https://aistudiocdn.com/@firebase/auth@^1.11.1",
-    "@firebase/app": "https://aistudiocdn.com/@firebase/app@^0.14.6",
-    "vite": "https://aistudiocdn.com/vite@^7.2.4",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
-    "path": "https://aistudiocdn.com/path@^0.12.7"
-  }
-}
-</script>
 </head>
 
 <body>

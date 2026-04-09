@@ -6,11 +6,9 @@ import {
     WrenchScrewdriverIcon,
     FireIcon,
     BeakerIcon,
-
     SparklesIcon,
     LockClosedIcon
 } from '@/components/ui/Icons';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
 import LearnAffiliateBlock from '@/components/learn/LearnAffiliateBlock';
 import { LibraryPageLayout } from './learn/LibraryPageLayout';
@@ -35,33 +33,40 @@ const ToolCardView: React.FC<{
     return (
         <button
             onClick={onClick}
-            className="group h-full text-left flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative overflow-hidden hover:border-dlp-brand"
+            className="group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-emerald-100/90 bg-[linear-gradient(155deg,rgba(255,255,255,0.94)_0%,rgba(241,249,243,0.88)_100%)] p-4 text-left shadow-[0_16px_34px_-24px_rgba(21,38,23,0.3)] transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-[0_22px_42px_-24px_rgba(47,139,73,0.34)]"
         >
-            <div className="flex items-start justify-between mb-4 relative z-10">
-                <div className={`p-3 rounded-xl transition-colors duration-300 ${isLocked ? 'bg-slate-100 text-slate-400' : 'bg-lime-50 text-dlp-brand-hover group-hover:bg-dlp-brand group-hover:text-white'}`}>
-                    {React.cloneElement(icon as React.ReactElement, { className: "h-8 w-8" })}
+            <div className="relative z-10 mb-3 flex items-start justify-between">
+                <div className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-colors duration-300 ${isLocked ? 'border-slate-200 bg-slate-100 text-slate-400' : 'border-emerald-200 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-100'}`}>
+                    {React.cloneElement(icon as React.ReactElement, { className: "h-5 w-5" })}
                 </div>
                 <div className="flex gap-2">
                     {isNew && (
-                        <span className="px-2 py-1 text-xs font-bold text-lime-700 bg-lime-100 rounded-full">{t('common.new')}</span>
+                        <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+                            {t('common.new', { defaultValue: 'New' })}
+                        </span>
                     )}
                     {isLocked && (
-                        <span className="px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-amber-900 bg-gradient-to-r from-amber-200 to-yellow-400 rounded-full flex items-center gap-1 shadow-sm">
-                            <LockClosedIcon className="h-3 w-3" />{t('common.pro')}</span>
+                        <span className="flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
+                            <LockClosedIcon className="h-3 w-3" />
+                            {t('common.pro', { defaultValue: 'Pro' })}
+                        </span>
                     )}
                 </div>
             </div>
 
             <div className="relative z-10">
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-lime-700 transition-colors duration-300 mb-2">
+                <h3 className="mb-1.5 text-[1.15rem] font-bold tracking-tight text-dlp-text-primary transition-colors duration-300 group-hover:text-emerald-800">
                     {title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm leading-6 text-dlp-text-secondary">
                     {description}
                 </p>
                 {isLocked && preview && (
-                    <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs text-slate-500 italic">
-                        <span className="font-semibold text-slate-600 not-italic">{t('common.tools_page.pro_insight')}</span> {preview}
+                    <div className="mt-3 rounded-xl border border-emerald-100 bg-white/75 p-2.5 text-xs italic text-dlp-text-muted">
+                        <span className="font-semibold not-italic text-dlp-text-secondary">
+                            {t('common.tools_page.pro_insight', { defaultValue: 'Pro insight:' })}
+                        </span>{' '}
+                        {preview}
                     </div>
                 )}
             </div>
@@ -71,14 +76,13 @@ const ToolCardView: React.FC<{
 
 const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     const { t } = useTranslation();
-    const toolsMeta = getPageMeta('tools');
 
     const TOOLS: ToolCardType[] = [
 
         {
             id: 'doughbot',
-            title: t('ui.dough_diagnostic_378'),
-            description: 'AI-powered diagnostic tool to troubleshoot dough issues and get instant solutions.',
+            title: t('ui.dough_diagnostic_378', { defaultValue: 'Dough Diagnostic' }),
+            description: t('common.tools_page.dough_diagnostic_desc', { defaultValue: 'Troubleshoot dough issues quickly and get corrective actions.' }),
             isPro: true,
             route: 'tools/doughbot',
             icon: <SparklesIcon />,
@@ -88,8 +92,8 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         },
         {
             id: 'oven-profiler',
-            title: t('ui.oven_profiler_379'),
-            description: 'Analyze your oven\'s heat distribution and optimize baking parameters for your specific model.',
+            title: t('ui.oven_profiler_379', { defaultValue: 'Oven Profiler' }),
+            description: t('common.tools_page.oven_profiler_desc', { defaultValue: 'Map heat behavior and tune bake settings for your oven.' }),
             isPro: true,
             route: 'tools/oven-profiler',
             icon: <FireIcon />,
@@ -98,8 +102,8 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         },
         {
             id: 'hydration-converter',
-            title: t('ui.hydration_adjuster_380'),
-            description: 'Calculate exactly how much water or flour to add to correct your dough\'s hydration.',
+            title: t('ui.hydration_adjuster_380', { defaultValue: 'Hydration Adjuster' }),
+            description: t('common.tools_page.hydration_adjuster_desc', { defaultValue: 'Adjust hydration with precise flour/water corrections.' }),
             isPro: false,
             route: 'tools/hydration-converter',
             icon: <BeakerIcon />,
@@ -108,46 +112,47 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
     ];
 
     return (
-        <LibraryPageLayout>
-            <div className="mx-auto max-w-7xl animate-fade-in pb-20">
-                <AppShellHeader
-                    eyebrow={toolsMeta.eyebrow}
-                    title={toolsMeta.title}
-                    description={toolsMeta.description}
-                >
-                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
-                        {TOOLS.length} focused utilities
-                    </div>
-                    <div className="rounded-full border border-lime-200 bg-lime-50 px-4 py-2 text-sm font-semibold text-[#2f6a27] shadow-sm">
-                        Pro unlocks diagnostics and oven analysis
-                    </div>
-                </AppShellHeader>
-
-                <div className="px-4 sm:px-6">
-                    <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-                        <AppSurface className="p-5 sm:p-6">
-                            <div className="flex items-center gap-3">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lime-50 text-dlp-brand-hover">
-                                    <WrenchScrewdriverIcon className="h-6 w-6" />
+        <LibraryPageLayout
+            pageHeader={{
+                page: 'tools',
+                children: (
+                    <>
+                        <div className="rounded-full border border-emerald-200 bg-white/90 px-3 py-1 text-xs font-semibold text-dlp-text-secondary shadow-sm">
+                            {TOOLS.length} focused utilities
+                        </div>
+                        <div className="rounded-full border border-emerald-200/90 bg-emerald-50/80 px-3 py-1 text-xs font-semibold text-emerald-800 shadow-sm">
+                            {t('common.tools_page.pro_unlocks', { defaultValue: 'Pro unlocks diagnostics and oven analysis' })}
+                        </div>
+                    </>
+                ),
+            }}
+        >
+            <div className="mx-auto max-w-7xl animate-fade-in pb-20 dlp-flow-stack">
+                <div className="px-4 sm:px-6 dlp-flow-node">
+                    <AppSurface tone="brand" surface="glass" density="compact" className="mb-4 p-3.5 sm:p-4">
+                        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                            <div className="min-w-0">
+                                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-700">
+                                    <WrenchScrewdriverIcon className="h-4 w-4" />
+                                    Utility lane
                                 </div>
-                                <div>
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">How to use this area</p>
-                                    <h2 className="mt-1 text-xl font-bold text-slate-900">Start with the utility, then return to the workflow</h2>
+                                <p className="mt-1.5 max-w-3xl text-sm leading-6 text-dlp-text-secondary">
+                                    Open the utility you need, solve the issue quickly, and return straight to the main bake workflow without losing context.
+                                </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                <div className="rounded-full border border-emerald-200 bg-white/90 px-3 py-1 text-xs font-semibold text-dlp-text-secondary shadow-sm">
+                                    FormulaLab stays the main build
+                                </div>
+                                <div className="rounded-full border border-emerald-200 bg-emerald-50/85 px-3 py-1 text-xs font-semibold text-emerald-800 shadow-sm">
+                                    Hydration for quick fixes
+                                </div>
+                                <div className="rounded-full border border-emerald-200 bg-white/90 px-3 py-1 text-xs font-semibold text-dlp-text-secondary shadow-sm">
+                                    Diagnostics when results drift
                                 </div>
                             </div>
-                            <p className="mt-4 text-sm leading-7 text-slate-600">
-                                Utilities should feel like support tools, not separate products. Use them to fix hydration, profile an oven, or diagnose a dough issue, then move straight back into the bake flow.
-                            </p>
-                        </AppSurface>
-                        <AppSurface className="p-5 sm:p-6 bg-slate-950 text-white">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Best fit</p>
-                            <div className="mt-4 space-y-3 text-sm text-slate-300">
-                                <div>FormulaLab for the main build.</div>
-                                <div>Hydration Adjuster for small corrections.</div>
-                                <div>Dough Diagnostic and Oven Profiler when results drift.</div>
-                            </div>
-                        </AppSurface>
-                    </div>
+                        </div>
+                    </AppSurface>
 
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {TOOLS.map((tool) => {
@@ -188,7 +193,7 @@ const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
                     </div>
                 </div>
 
-                <div className="px-4 sm:px-6 mt-12 space-y-8">
+                <div className="px-4 sm:px-6 mt-8 space-y-6 dlp-flow-node">
                     <LearnAffiliateBlock placementKeys={['tools_general']} />
                     <AdCard context="tools_footer" />
                 </div>

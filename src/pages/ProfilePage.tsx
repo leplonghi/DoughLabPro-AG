@@ -6,7 +6,6 @@ import {
   PencilIcon,
   StarIcon,
   TrashIcon,
-  SolidStarIcon,
   BookmarkSquareIcon,
   FlourIcon,
   ShieldCheckIcon,
@@ -16,21 +15,16 @@ import {
   UserCircleIcon,
   GlobeAltIcon,
   FireIcon,
-  CheckIcon,
   SparklesIcon,
   BookOpenIcon,
-  UploadIcon,
 } from '@/components/ui/Icons';
 import { ImageUpload } from '@/components/ui/ImageUpload';
 import { User, Gender, Oven, Page, Levain, UnitSystem } from '@/types';
 import OvenModal from '@/components/OvenModal';
 import LevainModal from '@/components/LevainModal';
-import { LockFeature } from '@/components/auth/LockFeature';
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
-import AppShellHeader from '@/components/ui/AppShellHeader';
+import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
-import StatusBadge from '@/components/ui/StatusBadge';
-import { getPageMeta } from '@/app/appShell';
 
 interface ProfilePageProps {
   onNavigate: (page: Page, params?: string) => void;
@@ -55,7 +49,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     goals,
     batches
   } = useUser();
-  const { t } = useTranslation(['common', 'profile', 'auth']);
+  const { t, locale, localePreference, followsSystemLanguage } = useTranslation(['common', 'profile', 'auth', 'settings']);
 
   const [activeTab, setActiveTab] = useState<'overview' | 'mylab' | 'settings'>('overview');
   const [isEditing, setIsEditing] = useState(false);
@@ -68,7 +62,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
   const [editingLevain, setEditingLevain] = useState<Levain | null>(null);
 
   const [isWizardOpen, setIsWizardOpen] = useState(false);
-  const profileMeta = getPageMeta('profile');
 
   useEffect(() => {
     if (user) {
@@ -179,12 +172,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         type="button"
         onClick={() => setActiveTab(id)}
         aria-pressed={isActive}
-        className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all ${isActive
-          ? 'bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_52%,_#1d5b32_100%)] text-white shadow-lg shadow-dlp-brand/30'
-          : 'bg-white/72 text-dlp-text-secondary hover:bg-lime-50'
+        className={`flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold transition-all sm:px-4 sm:text-sm ${isActive
+          ? 'bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_52%,_#1d5b32_100%)] text-white shadow-md shadow-dlp-brand/20'
+          : 'bg-white/80 text-dlp-text-secondary hover:bg-lime-50'
           }`}
       >
-        <Icon className={`h-4 w-4 ${isActive ? 'text-white' : 'text-dlp-text-muted'}`} />
+        <Icon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${isActive ? 'text-white' : 'text-dlp-text-muted'}`} />
         {label}
       </button>
     );
@@ -206,31 +199,90 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     )
   );
 
-  return (
-    <div className="mx-auto max-w-5xl animate-fade-in space-y-8 pb-20">
-      <AppShellHeader
-        eyebrow={profileMeta.eyebrow}
-        title={profileMeta.title}
-        description={profileMeta.description}
-      >
-        <StatusBadge tone={hasProAccess ? 'brand' : 'neutral'} className="border-white/70 bg-white/80 px-4 py-2 text-sm normal-case tracking-normal shadow-sm">
-          {hasProAccess ? t('common.general.pro_member') : 'Free Member'}
-        </StatusBadge>
-      </AppShellHeader>
+  const currentLanguageLabel = locale === 'pt-BR' ? 'Português (Brasil)' : 'English';
+  const languageModeLabel = followsSystemLanguage
+    ? t('settings:language.system_title', { defaultValue: 'Automatic' })
+    : t('settings:language.active', { defaultValue: 'Manual' });
 
+  const renderMembershipPanel = () => {
+    if (!hasProAccess) {
+      return (
+        <AppSurface tone="brand" className="relative overflow-hidden p-5 shadow-lg">
+          <div className="absolute top-0 right-0 p-3 opacity-10">
+            <SparklesIcon className="h-24 w-24" />
+          </div>
+          <h3 className="relative z-10 mb-1 text-lg font-bold text-dlp-text-primary">{t('common.general.upgrade_to_pro_2')}</h3>
+          <p className="relative z-10 mb-4 text-sm text-dlp-text-secondary">
+            {t('profile_page.unlock_pro_desc')}
+          </p>
+          <button
+            onClick={() => onNavigate('plans')}
+            className="dlp-button-primary relative z-10 w-full rounded-xl py-2.5 text-sm"
+          >
+            {t('common.go_pro_now')}
+          </button>
+        </AppSurface>
+      );
+    }
+
+    return (
+      <AppSurface className="border-amber-100 bg-gradient-to-br from-amber-50 to-orange-50 p-5 text-amber-900">
+        <div className="mb-2 flex items-center gap-3">
+          <div className="rounded-full bg-amber-200 p-2 text-amber-700">
+            <SparklesIcon className="h-5 w-5" />
+          </div>
+          <h3 className="text-base font-bold">{t('common.general.pro_member')}</h3>
+        </div>
+        <p className="text-sm opacity-80">{t('common.ui.you_have_full_access_to_all_lab_pro_features')}</p>
+      </AppSurface>
+    );
+  };
+
+  const renderResourcesPanel = () => (
+    <AppSurface className="border-slate-100 p-5">
+      <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-800">
+        <BookOpenIcon className="h-5 w-5 text-dlp-brand" />
+        {t('profile.resources_title', { defaultValue: 'Resources' })}
+      </h3>
+      <div className="space-y-2">
+        <button onClick={() => onNavigate('learn/references')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-dlp-brand transition-transform group-hover:scale-110">
+            <BookmarkSquareIcon className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-sm font-bold text-slate-700">{t('profile.resources.tech_references')}</p>
+            <p className="text-xs text-slate-500">{t('common.ui.books_guides__standards')}</p>
+          </div>
+        </button>
+        <button onClick={() => onNavigate('learn/ingredients/flours')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-lime-100 text-dlp-brand transition-transform group-hover:scale-110">
+            <FlourIcon className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-sm font-bold text-slate-700">{t('profile.resources.flours_library')}</p>
+            <p className="text-xs text-slate-500">{t('common.general.database_of_flour_types')}</p>
+          </div>
+        </button>
+      </div>
+    </AppSurface>
+  );
+
+  return (
+    <AppPageLayout width="content" density="default" pageHeader={{ page: 'profile' }}>
+    <div className="mx-auto max-w-5xl animate-fade-in space-y-6 pb-16">
       {/* Header Card */}
-      <AppSurface surface="elevated" tone="brand" className="relative overflow-hidden shadow-xl">
-        <div className="h-32 bg-gradient-to-r from-lime-400 to-dlp-brand-hover opacity-90"></div>
-        <div className="relative px-8 pb-8 flex flex-col sm:flex-row items-center sm:items-end -mt-12 gap-6">
+      <AppSurface surface="elevated" tone="brand" className="relative overflow-hidden shadow-lg">
+        <div className="h-24 bg-gradient-to-r from-lime-400 to-dlp-brand-hover opacity-90 sm:h-28"></div>
+        <div className="relative -mt-10 flex flex-col items-center gap-4 px-5 pb-5 sm:-mt-12 sm:flex-row sm:items-end sm:gap-5 sm:px-6 sm:pb-6">
           <div className="relative">
             {user.avatar ? (
               <img
                 src={user.avatar}
                 alt={user.name}
-                className="h-28 w-28 rounded-full object-cover ring-4 ring-white shadow-md bg-white"
+                className="h-24 w-24 rounded-full bg-white object-cover ring-4 ring-white shadow-md sm:h-28 sm:w-28"
               />
             ) : (
-              <div className="flex h-28 w-28 items-center justify-center rounded-full bg-slate-100 text-4xl font-bold text-slate-400 ring-4 ring-white shadow-md">
+              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-slate-100 text-3xl font-bold text-slate-400 ring-4 ring-white shadow-md sm:h-28 sm:w-28 sm:text-4xl">
                 {user.name.charAt(0).toUpperCase()}
               </div>
             )}
@@ -241,24 +293,24 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
             )}
           </div>
 
-          <div className="flex-1 text-center sm:text-left mb-2">
-            <h1 className="text-3xl font-bold text-slate-900">{user.name}</h1>
-            <p className="text-slate-500 font-medium flex items-center justify-center sm:justify-start gap-2">
+          <div className="mb-1 flex-1 text-center sm:text-left">
+            <h1 className="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">{user.name}</h1>
+            <p className="flex items-center justify-center gap-2 text-sm font-medium text-slate-500 sm:justify-start sm:text-base">
               {user.email}
               {hasProAccess && <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{t('common.general.pro_4')}</span>}
             </p>
             {user.location && (
-              <p className="text-sm text-slate-400 mt-1 flex items-center justify-center sm:justify-start gap-1">
+              <p className="mt-1 flex items-center justify-center gap-1 text-xs text-slate-400 sm:justify-start sm:text-sm">
                 <GlobeAltIcon className="h-3 w-3" /> {user.location}
               </p>
             )}
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex w-full flex-wrap justify-center gap-2 sm:w-auto sm:justify-end">
             <button
               type="button"
               onClick={() => setIsWizardOpen(true)}
-              className="flex items-center gap-2 rounded-xl bg-lime-100 px-4 py-2 text-sm font-medium text-lime-800 transition-colors hover:bg-lime-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+              className="flex items-center gap-2 rounded-xl bg-lime-100 px-3.5 py-2 text-sm font-medium text-lime-800 transition-colors hover:bg-lime-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
               title={t('auth.onboarding.title', { defaultValue: 'Update Preferences' })}
             >
               <SparklesIcon className="h-4 w-4" />
@@ -267,7 +319,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => setIsEditing(!isEditing)}
-              className="dlp-button-secondary flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+              className="dlp-button-secondary flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
             >
               <PencilIcon className="h-4 w-4" />
               {isEditing ? t('profile.cancel') : t('profile.edit_profile')}
@@ -276,19 +328,19 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="px-6 pb-2 sm:px-8 border-t border-slate-100 pt-2 flex gap-2 overflow-x-auto no-scrollbar">
+	        <div className="flex flex-wrap gap-2 border-t border-slate-100 px-4 pb-3 pt-3 sm:px-6">
           {renderTabButton('overview', t('profile_page.tabs.overview'), UserCircleIcon)}
           {renderTabButton('mylab', t('profile_page.tabs.mylab'), BeakerIcon)}
           {renderTabButton('settings', t('profile_page.tabs.settings'), SettingsIcon)}
         </div>
       </AppSurface>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Main Content Area */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="space-y-6 lg:col-span-2">
 
           {activeTab === 'overview' && (
-            <AppSurface className="space-y-8 border-slate-100 p-6 animate-fadeIn">
+            <AppSurface className="animate-fadeIn space-y-6 border-slate-100 p-5 sm:p-6">
               {isEditing ? (
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-2">{t('common.general.edit_profile')}</h3>
@@ -465,20 +517,20 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   {/* Stats Row */}
                   <div className="border-t border-slate-100 pt-6">
                     <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">{t('common.general.activity_stats')}</h4>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                      <div className="rounded-2xl border border-slate-100 bg-slate-50 p-3 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{batches.length}</span>
                         <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.batches_2')}</span>
                       </div>
-                      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                      <div className="rounded-2xl border border-slate-100 bg-slate-50 p-3 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{levains.length}</span>
                         <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.levains')}</span>
                       </div>
-                      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                      <div className="rounded-2xl border border-slate-100 bg-slate-50 p-3 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{ovens.length}</span>
                         <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.ovens')}</span>
                       </div>
-                      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                      <div className="rounded-2xl border border-slate-100 bg-slate-50 p-3 text-center">
                         <span className="block text-2xl font-bold text-slate-800">{goals.length}</span>
                         <span className="text-xs text-slate-500 font-medium uppercase">{t('common.general.goals')}</span>
                       </div>
@@ -492,7 +544,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           {activeTab === 'mylab' && (
             <div className="space-y-8 animate-fadeIn">
               {/* Ovens Section */}
-              <AppSurface className="border-slate-100 p-6">
+              <AppSurface className="border-slate-100 p-5 sm:p-6">
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-orange-100 text-orange-600 rounded-xl">
@@ -538,7 +590,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
               </AppSurface>
 
               {/* Levains Section */}
-              <AppSurface className="border-slate-100 p-6">
+              <AppSurface className="border-slate-100 p-5 sm:p-6">
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-pink-100 text-pink-600 rounded-xl">
@@ -589,7 +641,54 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           )}
 
           {activeTab === 'settings' && (
-            <AppSurface className="space-y-8 border-slate-100 p-6 animate-fadeIn">
+            <AppSurface className="animate-fadeIn space-y-6 border-slate-100 p-5 sm:p-6">
+              <div>
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-800">
+                  <SettingsIcon className="h-5 w-5 text-slate-500" />
+                  {t('common.preferences', { defaultValue: 'Preferences' })}
+                </h3>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('settings/language')}
+                    className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 text-left transition-all hover:border-emerald-200 hover:bg-emerald-50/50"
+                  >
+                    <div className="space-y-1">
+                      <p className="text-sm font-bold text-slate-800">
+                        {t('settings:language.title', { defaultValue: 'Language' })}
+                      </p>
+                      <p className="text-sm text-slate-500">
+                        {currentLanguageLabel} • {languageModeLabel}
+                      </p>
+                    </div>
+                    <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 transition-colors group-hover:text-dlp-brand" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('settings')}
+                    className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 text-left transition-all hover:border-emerald-200 hover:bg-emerald-50/50"
+                  >
+                    <div className="space-y-1">
+                      <p className="text-sm font-bold text-slate-800">
+                        {t('common.app_preferences', { defaultValue: 'App preferences' })}
+                      </p>
+                      <p className="text-sm text-slate-500">
+                        {t('common.go_to_global_settings', { defaultValue: 'Units, environment and defaults' })}
+                      </p>
+                    </div>
+                    <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 transition-colors group-hover:text-dlp-brand" />
+                  </button>
+                </div>
+                {!followsSystemLanguage && localePreference ? (
+                  <p className="mt-3 text-sm text-slate-500">
+                    {t('settings:language.manual_override_notice', {
+                      defaultValue: 'A manual language is active right now. Open Language to return to automatic detection.',
+                    })}
+                  </p>
+                ) : null}
+              </div>
+
               {/* App Preferences */}
               <div>
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -632,64 +731,19 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                   <span>{t('auth.sign_out')}</span>
                 </button>
               </div>
+
+              <div className="space-y-4 border-t border-slate-100 pt-6 lg:hidden">
+                {renderMembershipPanel()}
+                {renderResourcesPanel()}
+              </div>
             </AppSurface>
           )}
         </div>
 
         {/* Sidebar (Right) */}
-        <div className="space-y-6">
-          {/* Pro Card */}
-          {!hasProAccess ? (
-            <AppSurface tone="brand" className="relative overflow-hidden p-6 shadow-xl">
-              <div className="absolute top-0 right-0 p-3 opacity-10">
-                <SparklesIcon className="h-32 w-32" />
-              </div>
-              <h3 className="relative z-10 mb-2 text-xl font-bold text-dlp-text-primary">{t('common.general.upgrade_to_pro_2')}</h3>
-              <p className="relative z-10 mb-6 text-sm text-dlp-text-secondary">
-                {t('profile_page.unlock_pro_desc')}
-              </p>
-              <button
-                onClick={() => onNavigate('plans')}
-                className="dlp-button-primary relative z-10 w-full rounded-xl py-3"
-              >{t('common.go_pro_now')}</button>
-            </AppSurface>
-          ) : (
-            <AppSurface className="border-amber-100 bg-gradient-to-br from-amber-50 to-orange-50 p-6 text-amber-900">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-amber-200 rounded-full text-amber-700">
-                  <SparklesIcon className="h-5 w-5" />
-                </div>
-                <h3 className="font-bold text-lg">{t('common.general.pro_member')}</h3>
-              </div>
-              <p className="text-sm opacity-80">{t('common.ui.you_have_full_access_to_all_lab_pro_features')}</p>
-            </AppSurface>
-          )}
-
-          {/* Resources Card */}
-          <AppSurface className="border-slate-100 p-6">
-            <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-800">
-              <BookOpenIcon className="h-5 w-5 text-dlp-brand" />{t('profile.resources_title', { defaultValue: 'Resources' })}</h3>
-            <div className="space-y-3">
-              <button onClick={() => onNavigate('learn/references')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-dlp-brand transition-transform group-hover:scale-110">
-                  <BookmarkSquareIcon className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-bold text-slate-700 text-sm">{t('profile.resources.tech_references')}</p>
-                  <p className="text-xs text-slate-500">{t('common.ui.books_guides__standards')}</p>
-                </div>
-              </button>
-              <button onClick={() => onNavigate('learn/ingredients/flours')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-lime-100 text-dlp-brand transition-transform group-hover:scale-110">
-                  <FlourIcon className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-bold text-slate-700 text-sm">{t('profile.resources.flours_library')}</p>
-                  <p className="text-xs text-slate-500">{t('common.general.database_of_flour_types')}</p>
-                </div>
-              </button>
-            </div>
-          </AppSurface>
+        <div className="hidden space-y-5 lg:block">
+          {renderMembershipPanel()}
+          {renderResourcesPanel()}
         </div>
       </div>
 
@@ -714,6 +768,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         />
       )}
     </div>
+    </AppPageLayout>
   );
 };
 

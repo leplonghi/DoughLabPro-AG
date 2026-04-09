@@ -56,8 +56,7 @@ export function createHandler<T_Req, T_Res>(
 
                 throw new functions.https.HttpsError(
                     "internal",
-                    "An internal error occurred.",
-                    error.message
+                    "An internal error occurred."
                 );
             }
         });

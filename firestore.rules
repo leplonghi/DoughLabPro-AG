@@ -7,10 +7,25 @@ service cloud.firestore {
     function isSignedIn() {
       return request.auth != null;
     }
+
+    function isRegisteredUser() {
+      return isSignedIn()
+        && request.auth.token.firebase != null
+        && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
     
     function isOwner(userId) {
       return isSignedIn() && request.auth.uid == userId;
     }
+
+    function isRegisteredOwner(userId) {
+      return isRegisteredUser() && request.auth.uid == userId;
+    }
+
+    function belongsToTenant(orgId) {
+      return false;
+    }
+
     function touchesProtectedUserFields() {
       return request.resource.data.diff(resource.data).affectedKeys().hasAny([
         'plan',
@@ -48,6 +63,62 @@ service cloud.firestore {
       ]);
     }
 
+    function touchesCommunityCounters() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasAny([
+        'likes',
+        'comments',
+        'clones'
+      ]);
+    }
+
+    function createsValidCommunityPost() {
+      return request.resource.data.uid == request.auth.uid
+        && request.resource.data.visibility in ['public', 'private']
+        && request.resource.data.likes == 0
+        && request.resource.data.comments == 0
+        && request.resource.data.clones == 0
+        && request.resource.data.photos is list
+        && request.resource.data.tags is list
+        && request.resource.data.keys().hasOnly([
+          'uid',
+          'username',
+          'userPhotoURL',
+          'batchId',
+          'styleKey',
+          'hydration',
+          'flour',
+          'saltPct',
+          'levainPct',
+          'prefermentUsed',
+          'method',
+          'fermentationNotes',
+          'fermentationTime',
+          'temp',
+          'ovenType',
+          'photos',
+          'likes',
+          'comments',
+          'clones',
+          'tags',
+          'visibility',
+          'createdAt',
+          'title',
+          'description'
+        ]);
+    }
+
+    function createsValidCommunityComment() {
+      return request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly([
+          'postId',
+          'uid',
+          'username',
+          'userPhotoURL',
+          'text',
+          'createdAt'
+        ]);
+    }
+
     // User Profile (Private, but entitlements are backend-only)
     match /users/{userId} {
       allow read: if isOwner(userId);
@@ -69,33 +140,62 @@ service cloud.firestore {
     // --- Community: Posts ---
     match /community_posts/{postId} {
       allow read: if true;
-      allow create: if isSignedIn();
-      // Allow update if owner OR if only updating counters (likes/comments)
-      allow update: if isSignedIn(); // Simplified for now to ensure counters work
-      allow delete: if isSignedIn() && resource.data.uid == request.auth.uid;
+      allow create: if isRegisteredUser() && createsValidCommunityPost();
+      allow update: if isRegisteredOwner(resource.data.uid)
+        && request.resource.data.uid == resource.data.uid
+        && !touchesCommunityCounters();
+      allow delete: if isRegisteredOwner(resource.data.uid);
     }
 
     // --- Community: Comments ---
     match /community_comments/{commentId} {
       allow read: if true;
-      allow create: if isSignedIn();
-      allow update, delete: if isSignedIn() && resource.data.uid == request.auth.uid;
+      allow create: if isRegisteredUser() && createsValidCommunityComment();
+      allow update, delete: if isRegisteredOwner(resource.data.uid);
     }
 
     // --- Community: Likes & Stats ---
     match /community_likes/{likeId} {
       allow read: if true;
-      allow write: if isSignedIn();
+      allow create: if isRegisteredUser()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.postId is string
+        && likeId == (request.resource.data.postId + '_' + request.auth.uid)
+        && request.resource.data.keys().hasOnly([
+          'postId',
+          'uid',
+          'createdAt'
+        ]);
+      allow delete: if isRegisteredOwner(resource.data.uid)
+        && likeId == (resource.data.postId + '_' + request.auth.uid);
     }
     
     match /community_clones/{cloneId} {
        allow read: if true;
-       allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+       allow create: if isRegisteredUser()
+         && request.resource.data.uid == request.auth.uid
+         && request.resource.data.postId is string
+         && request.resource.data.keys().hasOnly([
+           'postId',
+           'uid',
+           'createdAt'
+         ]);
     }
 
     match /community_follows/{followId} {
        allow read: if true;
-       allow write: if isSignedIn();
+       allow create: if isRegisteredUser()
+         && request.resource.data.followerUid == request.auth.uid
+         && request.resource.data.targetUid is string
+         && followId == (request.auth.uid + '_' + request.resource.data.targetUid)
+         && request.resource.data.keys().hasOnly([
+           'followerUid',
+           'targetUid',
+           'createdAt'
+         ]);
+       allow delete: if isRegisteredUser()
+         && resource.data.followerUid == request.auth.uid
+         && followId == (request.auth.uid + '_' + resource.data.targetUid);
     }
     
     // Fallback

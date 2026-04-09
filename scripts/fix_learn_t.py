@@ -25,9 +25,7 @@ def process_file(filepath):
     print(f"Fixing missing t in {filepath}...")
     
     lines = content.splitlines()
-    new_lines = []
     
-    imported_added = False
     
     # We want to add import i18n from '@/i18n';
     # And const t = i18n.t.bind(i18n);

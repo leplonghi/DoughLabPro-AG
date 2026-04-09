@@ -1,4 +1,3 @@
-import sys
 import os
 
 files = ['tsc_errors_2.txt', 'tsc_errors.txt']

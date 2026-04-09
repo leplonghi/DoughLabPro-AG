@@ -1,308 +1,236 @@
-import React, { useState, useEffect } from 'react';
-import { useNotificationAnalytics } from '@/services/notificationAnalytics';
+import React, { useEffect, useState } from 'react';
+import { useNotificationAnalytics, NotificationEngagementMetrics, NotificationTypeMetrics } from '@/services/notificationAnalytics';
 import { useUser } from '@/contexts/UserProvider';
 import { BarChart3, TrendingUp, Bell, MousePointer, X, Clock, Zap } from 'lucide-react';
+import AppSurface from '@/components/ui/AppSurface';
 
-export const NotificationAnalyticsDashboard: React.FC = () => {
-    const { user } = useUser();
-    const analytics = useNotificationAnalytics(user?.uid || '');
-
-    const [timeRange, setTimeRange] = useState<7 | 30 | 90>(30);
-    const [metrics, setMetrics] = useState<any>(null);
-    const [typeMetrics, setTypeMetrics] = useState<any[]>([]);
-    const [performance, setPerformance] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        loadAnalytics();
-    }, [timeRange]);
-
-    const loadAnalytics = async () => {
-        setLoading(true);
-        try {
-            const endDate = new Date();
-            const startDate = new Date();
-            startDate.setDate(startDate.getDate() - timeRange);
-
-            const [metricsData, typeData, perfData] = await Promise.all([
-                analytics.getEngagementMetrics(startDate, endDate),
-                analytics.getMetricsByType(startDate, endDate),
-                analytics.getPerformanceOverTime(timeRange),
-            ]);
-
-            setMetrics(metricsData);
-            setTypeMetrics(typeData);
-            setPerformance(perfData);
-        } catch (error) {
-            console.error('Failed to load analytics:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
-            </div>
-        );
-    }
-
-    if (!metrics) {
-        return (
-            <div className="text-center py-12">
-                <Bell className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600 dark:text-gray-400">No analytics data available</p>
-            </div>
-        );
-    }
-
-    return (
-        <div className="space-y-6">
-            {/* Header */}
-            <div className="flex items-center justify-between">
-                <div>
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                        Notification Analytics
-                    </h2>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Track engagement and performance
-                    </p>
-                </div>
-
-                {/* Time Range Selector */}
-                <div className="flex gap-2">
-                    {[7, 30, 90].map((days) => (
-                        <button
-                            key={days}
-                            onClick={() => setTimeRange(days as 7 | 30 | 90)}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${timeRange === days
-                                    ? 'bg-green-600 text-white'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                                }`}
-                        >
-                            {days}d
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <MetricCard
-                    icon={<Bell className="w-6 h-6" />}
-                    label="Total Sent"
-                    value={metrics.totalSent}
-                    color="blue"
-                />
-                <MetricCard
-                    icon={<MousePointer className="w-6 h-6" />}
-                    label="Clicked"
-                    value={metrics.totalClicked}
-                    color="green"
-                />
-                <MetricCard
-                    icon={<TrendingUp className="w-6 h-6" />}
-                    label="CTR"
-                    value={`${metrics.clickThroughRate.toFixed(1)}%`}
-                    color="purple"
-                />
-                <MetricCard
-                    icon={<Zap className="w-6 h-6" />}
-                    label="Engagement"
-                    value={`${metrics.engagementRate.toFixed(1)}%`}
-                    color="orange"
-                />
-            </div>
-
-            {/* Additional Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <StatCard
-                    label="Dismissed"
-                    value={metrics.totalDismissed}
-                    icon={<X className="w-5 h-5 text-red-500" />}
-                />
-                <StatCard
-                    label="Snoozed"
-                    value={metrics.totalSnoozed}
-                    icon={<Clock className="w-5 h-5 text-yellow-500" />}
-                />
-                <StatCard
-                    label="Avg Time to Click"
-                    value={metrics.averageTimeToClick ? `${Math.round(metrics.averageTimeToClick)}s` : 'N/A'}
-                    icon={<Clock className="w-5 h-5 text-blue-500" />}
-                />
-            </div>
-
-            {/* Popular Actions */}
-            {metrics.popularActions.length > 0 && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Popular Actions
-                    </h3>
-                    <div className="space-y-3">
-                        {metrics.popularActions.map((action: any, index: number) => (
-                            <div key={index} className="flex items-center justify-between">
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300 capitalize">
-                                    {action.action}
-                                </span>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                        <div
-                                            className="bg-green-600 h-2 rounded-full"
-                                            style={{
-                                                width: `${(action.count / metrics.popularActions[0].count) * 100}%`,
-                                            }}
-                                        />
-                                    </div>
-                                    <span className="text-sm font-bold text-gray-900 dark:text-white w-12 text-right">
-                                        {action.count}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {/* Performance by Type */}
-            {typeMetrics.length > 0 && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Performance by Type
-                    </h3>
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="border-b border-gray-200 dark:border-gray-700">
-                                    <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Type
-                                    </th>
-                                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Sent
-                                    </th>
-                                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Clicked
-                                    </th>
-                                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        CTR
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {typeMetrics.slice(0, 10).map((type: any, index: number) => (
-                                    <tr
-                                        key={index}
-                                        className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                                    >
-                                        <td className="py-3 px-4 text-sm text-gray-900 dark:text-white">
-                                            {type.type.replace(/_/g, ' ')}
-                                        </td>
-                                        <td className="py-3 px-4 text-sm text-right text-gray-700 dark:text-gray-300">
-                                            {type.sent}
-                                        </td>
-                                        <td className="py-3 px-4 text-sm text-right text-gray-700 dark:text-gray-300">
-                                            {type.clicked}
-                                        </td>
-                                        <td className="py-3 px-4 text-sm text-right">
-                                            <span
-                                                className={`font-medium ${type.ctr > 50
-                                                        ? 'text-green-600'
-                                                        : type.ctr > 25
-                                                            ? 'text-yellow-600'
-                                                            : 'text-red-600'
-                                                    }`}
-                                            >
-                                                {type.ctr.toFixed(1)}%
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            )}
-
-            {/* Performance Chart */}
-            {performance.length > 0 && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Performance Over Time
-                    </h3>
-                    <div className="h-64 flex items-end justify-between gap-1">
-                        {performance.map((day: any, index: number) => {
-                            const maxSent = Math.max(...performance.map((d: any) => d.sent));
-                            const height = maxSent > 0 ? (day.sent / maxSent) * 100 : 0;
-
-                            return (
-                                <div key={index} className="flex-1 flex flex-col items-center gap-1">
-                                    <div className="w-full flex flex-col gap-1">
-                                        <div
-                                            className="w-full bg-green-600 rounded-t transition-all hover:bg-green-700"
-                                            style={{ height: `${height}%`, minHeight: day.sent > 0 ? '4px' : '0' }}
-                                            title={`Sent: ${day.sent}, Clicked: ${day.clicked}`}
-                                        />
-                                    </div>
-                                    <span className="text-[10px] text-gray-500 dark:text-gray-400 rotate-45 origin-left">
-                                        {new Date(day.date).getDate()}
-                                    </span>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            )}
-        </div>
-    );
-};
+type TimeRange = 7 | 30 | 90;
+type PerformancePoint = { date: string; sent: number; clicked: number; ctr: number };
 
 const MetricCard: React.FC<{
-    icon: React.ReactNode;
-    label: string;
-    value: string | number;
-    color: 'blue' | 'green' | 'purple' | 'orange';
-}> = ({ icon, label, value, color }) => {
-    const colorClasses = {
-        blue: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600',
-        green: 'bg-green-50 dark:bg-green-900/20 text-green-600',
-        purple: 'bg-purple-50 dark:bg-purple-900/20 text-purple-600',
-        orange: 'bg-orange-50 dark:bg-orange-900/20 text-orange-600',
-    };
-
-    return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <div className={`inline-flex p-3 rounded-lg ${colorClasses[color]} mb-3`}>
-                {icon}
-            </div>
-            <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                {value}
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-                {label}
-            </div>
-        </div>
-    );
-};
+  icon: React.ReactNode;
+  label: string;
+  value: string | number;
+  accentClass: string;
+}> = ({ icon, label, value, accentClass }) => (
+  <AppSurface surface="glass" tone="neutral" density="compact" className="rounded-[1.15rem]">
+    <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full ${accentClass}`}>
+      {icon}
+    </span>
+    <div className="mt-4 text-[1.8rem] font-black leading-none tracking-tight text-slate-950">{value}</div>
+    <div className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-dlp-text-muted">{label}</div>
+  </AppSurface>
+);
 
 const StatCard: React.FC<{
-    label: string;
-    value: string | number;
-    icon: React.ReactNode;
-}> = ({ label, value, icon }) => {
+  label: string;
+  value: string | number;
+  icon: React.ReactNode;
+}> = ({ label, value, icon }) => (
+  <AppSurface surface="glass" tone="neutral" density="compact" className="rounded-[1.1rem]">
+    <div className="flex items-center gap-3">
+      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/82 shadow-sm">{icon}</span>
+      <div className="min-w-0">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-dlp-text-muted">{label}</div>
+        <div className="mt-1 text-xl font-black tracking-tight text-slate-950">{value}</div>
+      </div>
+    </div>
+  </AppSurface>
+);
+
+export const NotificationAnalyticsDashboard: React.FC = () => {
+  const { user } = useUser();
+  const analytics = useNotificationAnalytics(user?.uid || '');
+
+  const [timeRange, setTimeRange] = useState<TimeRange>(30);
+  const [metrics, setMetrics] = useState<NotificationEngagementMetrics | null>(null);
+  const [typeMetrics, setTypeMetrics] = useState<NotificationTypeMetrics[]>([]);
+  const [performance, setPerformance] = useState<PerformancePoint[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadAnalytics = async () => {
+      setLoading(true);
+      try {
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setDate(startDate.getDate() - timeRange);
+
+        const [metricsData, typeData, perfData] = await Promise.all([
+          analytics.getEngagementMetrics(startDate, endDate),
+          analytics.getMetricsByType(startDate, endDate),
+          analytics.getPerformanceOverTime(timeRange),
+        ]);
+
+        setMetrics(metricsData);
+        setTypeMetrics(typeData);
+        setPerformance(perfData);
+      } catch (error) {
+        console.error('Failed to load analytics:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    void loadAnalytics();
+  }, [analytics, timeRange]);
+
+  if (loading) {
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex items-center gap-4">
-            <div className="flex-shrink-0">
-                {icon}
-            </div>
-            <div className="flex-1 min-w-0">
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                    {label}
-                </div>
-                <div className="text-xl font-bold text-gray-900 dark:text-white">
-                    {value}
-                </div>
-            </div>
+      <AppSurface surface="glass" tone="neutral" density="compact" className="flex h-44 items-center justify-center rounded-[1.2rem]">
+        <div className="flex items-center gap-3 text-sm font-semibold text-dlp-text-secondary">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-200 border-t-emerald-600" />
+          Loading analytics
         </div>
+      </AppSurface>
     );
+  }
+
+  if (!metrics) {
+    return (
+      <AppSurface surface="soft" tone="neutral" density="compact" className="rounded-[1.2rem] py-10 text-center">
+        <Bell className="mx-auto mb-3 h-10 w-10 text-emerald-300" />
+        <p className="text-sm font-semibold text-dlp-text-primary">No analytics data available yet</p>
+        <p className="mt-1 text-sm text-dlp-text-secondary">As your notifications fire, this area will show engagement and timing trends.</p>
+      </AppSurface>
+    );
+  }
+
+  const maxSent = Math.max(...performance.map((point) => point.sent), 0);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-dlp-text-muted">Analytics</p>
+          <h2 className="mt-1 text-lg font-black tracking-tight text-slate-950">Notification performance</h2>
+          <p className="mt-1 text-sm text-dlp-text-secondary">See delivery, clicks, and which reminders actually bring bakers back.</p>
+        </div>
+        <div className="inline-flex rounded-full border border-emerald-100 bg-white/82 p-1 shadow-sm">
+          {[7, 30, 90].map((days) => (
+            <button
+              key={days}
+              onClick={() => setTimeRange(days as TimeRange)}
+              className={`rounded-full px-3 py-2 text-xs font-semibold transition ${
+                timeRange === days
+                  ? 'bg-emerald-600 text-white shadow-[0_12px_24px_-18px_rgba(47,139,73,0.65)]'
+                  : 'text-dlp-text-secondary hover:bg-emerald-50 hover:text-dlp-text-primary'
+              }`}
+            >
+              {days}d
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+        <MetricCard icon={<Bell className="h-5 w-5 text-emerald-700" />} label="Total sent" value={metrics.totalSent} accentClass="bg-emerald-50 text-emerald-700" />
+        <MetricCard icon={<MousePointer className="h-5 w-5 text-lime-700" />} label="Clicked" value={metrics.totalClicked} accentClass="bg-lime-50 text-lime-700" />
+        <MetricCard icon={<TrendingUp className="h-5 w-5 text-sky-700" />} label="CTR" value={`${metrics.clickThroughRate.toFixed(1)}%`} accentClass="bg-sky-50 text-sky-700" />
+        <MetricCard icon={<Zap className="h-5 w-5 text-amber-700" />} label="Engagement" value={`${metrics.engagementRate.toFixed(1)}%`} accentClass="bg-amber-50 text-amber-700" />
+      </div>
+
+      <div className="grid gap-3 md:grid-cols-3">
+        <StatCard label="Dismissed" value={metrics.totalDismissed} icon={<X className="h-4.5 w-4.5 text-rose-600" />} />
+        <StatCard label="Snoozed" value={metrics.totalSnoozed} icon={<Clock className="h-4.5 w-4.5 text-amber-600" />} />
+        <StatCard
+          label="Avg time to click"
+          value={metrics.averageTimeToClick ? `${Math.round(metrics.averageTimeToClick)}s` : 'N/A'}
+          icon={<Clock className="h-4.5 w-4.5 text-sky-600" />}
+        />
+      </div>
+
+      {metrics.popularActions.length > 0 && (
+        <AppSurface surface="glass" tone="neutral" density="compact" className="rounded-[1.2rem]">
+          <h3 className="text-base font-black tracking-tight text-slate-950">Popular actions</h3>
+          <div className="mt-4 space-y-3">
+            {metrics.popularActions.map((action, index) => {
+              const width = metrics.popularActions[0] ? (action.count / metrics.popularActions[0].count) * 100 : 0;
+              return (
+                <div key={`${action.action}-${index}`} className="grid grid-cols-[minmax(0,1fr)_72px] items-center gap-3">
+                  <div>
+                    <div className="flex items-center justify-between gap-3 text-sm font-semibold text-slate-950">
+                      <span className="capitalize">{action.action}</span>
+                      <span className="text-dlp-text-secondary">{action.count}</span>
+                    </div>
+                    <div className="mt-2 h-2 rounded-full bg-emerald-50">
+                      <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-lime-500" style={{ width: `${width}%` }} />
+                    </div>
+                  </div>
+                  <div className="text-right text-xs font-semibold uppercase tracking-[0.14em] text-dlp-text-muted">actions</div>
+                </div>
+              );
+            })}
+          </div>
+        </AppSurface>
+      )}
+
+      {typeMetrics.length > 0 && (
+        <AppSurface surface="glass" tone="neutral" density="compact" className="rounded-[1.2rem]">
+          <h3 className="text-base font-black tracking-tight text-slate-950">Performance by type</h3>
+          <div className="mt-4 space-y-3">
+            {typeMetrics.slice(0, 8).map((type) => (
+              <div key={type.type} className="rounded-[1rem] border border-emerald-100/80 bg-white/80 px-3 py-3">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold capitalize text-slate-950">{type.type.replace(/_/g, ' ')}</p>
+                  <span
+                    className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                      type.ctr > 50
+                        ? 'border border-emerald-200 bg-emerald-50 text-emerald-700'
+                        : type.ctr > 25
+                          ? 'border border-amber-200 bg-amber-50 text-amber-700'
+                          : 'border border-rose-200 bg-rose-50 text-rose-700'
+                    }`}
+                  >
+                    {type.ctr.toFixed(1)}% CTR
+                  </span>
+                </div>
+                <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+                  <div className="rounded-xl bg-emerald-50/70 px-2 py-2">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-dlp-text-muted">Sent</div>
+                    <div className="mt-1 text-base font-black text-slate-950">{type.sent}</div>
+                  </div>
+                  <div className="rounded-xl bg-lime-50/70 px-2 py-2">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-dlp-text-muted">Clicked</div>
+                    <div className="mt-1 text-base font-black text-slate-950">{type.clicked}</div>
+                  </div>
+                  <div className="rounded-xl bg-slate-50 px-2 py-2">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-dlp-text-muted">Dismissed</div>
+                    <div className="mt-1 text-base font-black text-slate-950">{type.dismissed}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </AppSurface>
+      )}
+
+      {performance.length > 0 && (
+        <AppSurface surface="glass" tone="neutral" density="compact" className="rounded-[1.2rem]">
+          <h3 className="text-base font-black tracking-tight text-slate-950">Performance over time</h3>
+          <div className="mt-4">
+            <div className="flex h-44 items-end gap-2 rounded-[1rem] border border-emerald-100/80 bg-white/72 p-3">
+              {performance.map((point) => {
+                const barHeight = maxSent > 0 ? Math.max((point.sent / maxSent) * 100, point.sent > 0 ? 10 : 0) : 0;
+                return (
+                  <div key={point.date} className="flex min-w-0 flex-1 flex-col items-center gap-2">
+                    <div className="flex h-full w-full items-end">
+                      <div
+                        className="w-full rounded-t-[10px] bg-gradient-to-t from-emerald-600 to-lime-400"
+                        style={{ height: `${barHeight}%` }}
+                        title={`Sent: ${point.sent}, Clicked: ${point.clicked}, CTR: ${point.ctr.toFixed(1)}%`}
+                      />
+                    </div>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-dlp-text-muted">
+                      {new Date(point.date).getDate()}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </AppSurface>
+      )}
+    </div>
+  );
 };

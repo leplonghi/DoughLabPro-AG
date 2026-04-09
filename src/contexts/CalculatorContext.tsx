@@ -7,32 +7,46 @@ import {
     Unit,
     UnitSystem,
     CalculationMode,
+    QuantityInputMode,
+    DifficultyLevel,
     DoughResult,
     FormErrors,
     ProRecipe,
     DoughStyleDefinition,
     RecipeStyle,
-    IngredientConfig
+    IngredientConfig,
+    DoughStylePreset
 } from '@/types';
-import { DOUGH_STYLE_PRESETS, DEFAULT_CONFIG, DOUGH_WEIGHT_RANGES } from '@/constants';
+import { DEFAULT_CONFIG, DOUGH_WEIGHT_RANGES } from '@/constants';
 import { FLOURS } from '@/flours-constants';
 import { calculateDoughUniversal, syncIngredientsFromConfig } from '@/logic/doughMath';
 import { normalizeDoughConfig } from '@/logic/normalization';
 import { convertStyleToDoughConfig } from '@/utils/doughConversion';
-import { STYLES_DATA } from '@/data/styles/registry';
-import { logEvent } from '@/services/analytics';
+import { logCalculatorEvent, logEvent } from '@/services/analytics';
 import { useUser } from '@/contexts/UserProvider';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
 import { useDoughSession } from '@/contexts/DoughSessionContext';
 import { validateDoughConfig } from '@/features/calculator/domain/validators/DoughConfigValidator';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
+import { getStyleWeightBounds } from '@/utils/styleWeight';
 
 interface CalculatorContextType {
     config: DoughConfig;
     setConfig: React.Dispatch<React.SetStateAction<DoughConfig>>;
     calculatorMode: 'wizard' | 'basic' | 'advanced';
     setCalculatorMode: (mode: 'wizard' | 'basic' | 'advanced') => void;
+    difficultyLevel: DifficultyLevel;
+    setDifficultyLevel: React.Dispatch<React.SetStateAction<DifficultyLevel>>;
+    quantityInputMode: QuantityInputMode;
+    setQuantityInputMode: React.Dispatch<React.SetStateAction<QuantityInputMode>>;
+    /**
+     * @deprecated Keep while migrating components to quantityInputMode.
+     */
     calculationMode: CalculationMode;
+    /**
+     * @deprecated Keep while migrating components to setQuantityInputMode.
+     */
     setCalculationMode: React.Dispatch<React.SetStateAction<CalculationMode>>;
     unit: Unit;
     setUnit: React.Dispatch<React.SetStateAction<Unit>>;
@@ -59,11 +73,59 @@ const CalculatorContext = createContext<CalculatorContextType | undefined>(undef
 const isAnySourdough = (yeastType: YeastType) =>
     [YeastType.SOURDOUGH_STARTER, YeastType.USER_LEVAIN].includes(yeastType);
 
+const normalizeQuantityInputMode = (mode: CalculationMode | QuantityInputMode): QuantityInputMode => {
+    if (mode === 'TARGET_TIME' || mode === 'target_time') return 'target_time';
+    return mode;
+};
+
+const getCalculatorVariant = (): 'A' | 'B' => {
+    if (typeof window === 'undefined') return 'A';
+    const storageKey = 'doughlab-calculator-variant';
+    const stored = window.localStorage.getItem(storageKey);
+    return stored === 'B' ? 'B' : 'A';
+};
+
+const loadCalculatorStylePresets = () => importWithChunkRecovery(() => import('@/features/calculator/data/stylePresets'));
+
+const clampToStyleWeightBounds = (config: DoughConfig): DoughConfig => {
+    if (!config.stylePresetId) return config;
+
+    const { min, max, recommended } = getStyleWeightBounds({
+        stylePresetId: config.stylePresetId,
+        recipeStyle: config.recipeStyle,
+    });
+
+    const currentWeight = config.doughBallWeight;
+    const nextWeight =
+        currentWeight <= 0 ? recommended :
+            currentWeight < min ? min :
+                currentWeight > max ? max :
+                    currentWeight;
+
+    if (nextWeight === currentWeight) return config;
+    return { ...config, doughBallWeight: nextWeight };
+};
+
+const getDefaultYieldCount = (presetId: string, bakeType: BakeType, recipeStyle: RecipeStyle): number => {
+    if (bakeType === BakeType.BREADS_SAVORY) return 2;
+
+    if (bakeType === BakeType.SWEETS_PASTRY) {
+        if (recipeStyle === RecipeStyle.COOKIES || presetId.includes('cookie') || presetId.includes('brownie')) {
+            return 12;
+        }
+
+        return 8;
+    }
+
+    return 4;
+};
+
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { t } = useTranslation(['common', 'calculator', 'styles']);
     const { user, levains, preferredFlourId, ovens } = useUser();
     const { addToast } = useToast();
     const previousErrorsRef = useRef<FormErrors>({});
+    const [stylePresets, setStylePresets] = useState<DoughStylePreset[]>([]);
 
     // --- State ---
     const [calculatorMode, setCalculatorMode] = useState<'wizard' | 'basic' | 'advanced'>(() => {
@@ -72,9 +134,9 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             if (storedMode === 'wizard' || storedMode === 'basic' || storedMode === 'advanced') {
                 return storedMode;
             }
-            return 'wizard'; // Default to wizard mode for most didactic experience
+            return 'basic'; // Guided-first default
         } catch {
-            return 'wizard';
+            return 'basic';
         }
     });
 
@@ -86,6 +148,24 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         }
     }, [calculatorMode]);
 
+    useEffect(() => {
+        let active = true;
+
+        loadCalculatorStylePresets()
+            .then(({ DOUGH_STYLE_PRESETS }) => {
+                if (active) {
+                    setStylePresets(DOUGH_STYLE_PRESETS);
+                }
+            })
+            .catch((error) => {
+                console.error('Failed to load calculator style presets', error);
+            });
+
+        return () => {
+            active = false;
+        };
+    }, []);
+
     const { session, updateSession, updateDough, isSaving } = useDoughSession();
 
     const [hasInteracted, setHasInteracted] = useState(false);
@@ -93,7 +173,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     // Smart Defaults (formerly initialConfig)
     const smartDefaults = useMemo(() => {
         let config = { ...DEFAULT_CONFIG, stylePresetId: undefined };
-        const preset = DOUGH_STYLE_PRESETS.find(p => p.id === DEFAULT_CONFIG.stylePresetId);
+        const preset = stylePresets.find(p => p.id === DEFAULT_CONFIG.stylePresetId);
         if (preset?.preferredFlourProfileId) {
             config.flourId = preset.preferredFlourProfileId;
         } else if (preferredFlourId) {
@@ -107,7 +187,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         }
 
         return config;
-    }, [preferredFlourId, ovens]);
+    }, [preferredFlourId, ovens, stylePresets]);
 
     // --- State Mapping ---
     // Map Session State to DoughConfig
@@ -132,13 +212,26 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             recipeStyle: (d.recipeStyle as RecipeStyle) || DEFAULT_CONFIG.recipeStyle,
 
             // If ingredients array is in session, use it, else generic normalization deals with it
-            ingredients: (d as any).ingredients || undefined,
+            ingredients: (d as { ingredients?: IngredientConfig[] }).ingredients || undefined,
         };
 
         let normalized = normalizeDoughConfig(mappedConfig);
+        normalized = clampToStyleWeightBounds(normalized);
         normalized.ingredients = syncIngredientsFromConfig(normalized);
         return normalized;
     }, [session.dough]);
+
+    // Silent bootstrap correction: fix old saved sessions that violate the selected style's weight bounds.
+    // This prevents "red toast during loading screen" and avoids persisting invalid configs forever.
+    useEffect(() => {
+        if (hasInteracted) return;
+        if (!config.stylePresetId) return;
+        if (typeof session.dough.ballWeight !== 'number') return;
+
+        if (config.doughBallWeight !== session.dough.ballWeight) {
+            updateDough({ ballWeight: config.doughBallWeight });
+        }
+    }, [hasInteracted, config.stylePresetId, config.doughBallWeight, session.dough.ballWeight, updateDough]);
 
     // setConfig Wrapper to update Session
     const setConfig = useCallback((action: React.SetStateAction<DoughConfig>) => {
@@ -160,7 +253,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             salt: newConfig.salt,
             ballWeight: newConfig.doughBallWeight,
             yieldCount: newConfig.numPizzas,
-            prefermentType: newConfig.fermentationTechnique as any,
+            prefermentType: newConfig.fermentationTechnique as FermentationTechnique,
             // Spread likely fields
             oil: newConfig.oil,
             sugar: newConfig.sugar,
@@ -199,7 +292,8 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         }
     }, [user, hasInteracted, updateDough, session.dough.flourId, smartDefaults]);
 
-    const [calculationMode, setCalculationMode] = useState<CalculationMode>('mass');
+    const [difficultyLevel, setDifficultyLevelState] = useState<DifficultyLevel>('beginner');
+    const [quantityInputMode, setQuantityInputModeState] = useState<QuantityInputMode>('mass');
     const [unit, setUnit] = useState<Unit>('g');
     const [unitSystem, setUnitSystem] = useState<UnitSystem>(UnitSystem.METRIC);
     const [errors, setErrors] = useState<FormErrors>({});
@@ -213,6 +307,13 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     useEffect(() => {
         const currentErrors = errors;
         const previousErrors = previousErrorsRef.current;
+
+        // Don't show global error toasts until the user has interacted with the calculator.
+        // Inline field errors still render, but we avoid startup/loading toasts.
+        if (!hasInteracted) {
+            previousErrorsRef.current = currentErrors;
+            return;
+        }
 
         Object.entries(currentErrors).forEach(([key, message]) => {
             if (typeof message === 'string' && previousErrors[key as keyof FormErrors] !== message) {
@@ -233,18 +334,28 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         const userLevain = config.yeastType === YeastType.USER_LEVAIN
             ? levains.find(l => l.id === config.levainId)
             : null;
-        return calculateDoughUniversal(config, calculatorMode, calculationMode, userLevain);
-    }, [config, hasErrors, levains, calculatorMode, calculationMode]);
+        return calculateDoughUniversal(config, calculatorMode, quantityInputMode, userLevain);
+    }, [config, hasErrors, levains, calculatorMode, quantityInputMode]);
 
     // --- Handlers ---
 
     const handleConfigChange = useCallback((newConfig: Partial<DoughConfig>) => {
         setHasInteracted(true);
+        const selectedPreset = config.stylePresetId
+            ? stylePresets.find((preset) => preset.id === config.stylePresetId)
+            : undefined;
+
+        const guidedLocks: Partial<DoughConfig> = {};
+        if (calculatorMode === 'basic' && selectedPreset) {
+            guidedLocks.hydration = selectedPreset.defaultHydration;
+            guidedLocks.flourId = selectedPreset.preferredFlourProfileId || config.flourId;
+        }
 
         let updatedConfig = {
             ...config,
             ...newConfig,
-            stylePresetId: (calculatorMode === 'wizard' || calculatorMode === 'basic') ? config.stylePresetId : undefined
+            ...guidedLocks,
+            stylePresetId: newConfig.stylePresetId ?? config.stylePresetId
         };
 
         updatedConfig = normalizeDoughConfig(updatedConfig);
@@ -252,12 +363,12 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         updatedConfig.ingredients = syncedIngredients;
 
         setConfig(updatedConfig);
-    }, [calculatorMode, config]);
+    }, [calculatorMode, config, stylePresets]);
 
     const handleBakeTypeChange = useCallback(
         (bakeType: BakeType) => {
             setHasInteracted(true);
-            const firstMatchingPreset = DOUGH_STYLE_PRESETS.find(
+            const firstMatchingPreset = stylePresets.find(
                 (p) => p.type === bakeType,
             );
 
@@ -284,6 +395,11 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                     bakeType,
                     recipeStyle: recipeStyle,
                     ...presetValues,
+                    doughBallWeight: getStyleWeightBounds({
+                        stylePresetId: firstMatchingPreset.id,
+                        recipeStyle,
+                    }).recommended,
+                    numPizzas: getDefaultYieldCount(firstMatchingPreset.id, bakeType, recipeStyle),
                     stylePresetId: firstMatchingPreset.id,
                 };
                 newConf = normalizeDoughConfig(newConf);
@@ -296,45 +412,45 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 setConfig(newConf);
             }
         },
-        [smartDefaults, config.yeastType, config],
+        [smartDefaults, config.yeastType, config, stylePresets],
     );
 
     const handleStyleChange = useCallback((presetId: string) => {
         setHasInteracted(true);
-        const preset = DOUGH_STYLE_PRESETS.find((p) => p.id === presetId);
+        const preset = stylePresets.find((p) => p.id === presetId);
 
-        // Try to find the full definition in the registry to get ingredients
-        const fullStyle = STYLES_DATA.find(s => s.id === presetId);
+        if (!preset) return;
 
-        if (preset) {
-            const { defaultHydration, defaultSalt, defaultOil, defaultYeastPct, defaultSugar, preferredFlourProfileId, recipeStyle, type } = preset;
+        const applyStyleSelection = async () => {
+            const { getCalculatorStyleById } = await loadCalculatorStylePresets();
+            const fullStyle = getCalculatorStyleById(presetId);
+            const { defaultHydration, defaultSalt, defaultOil, defaultYeastPct, defaultSugar, preferredFlourProfileId, recipeStyle } = preset;
             const presetValues: Partial<DoughConfig> = {
                 hydration: defaultHydration,
                 salt: defaultSalt,
                 oil: defaultOil,
                 sugar: defaultSugar || 0,
             };
+
             if (defaultYeastPct !== undefined && !isAnySourdough(config.yeastType)) {
                 presetValues.yeastPercentage = defaultYeastPct;
             }
+
             if (preferredFlourProfileId) {
                 presetValues.flourId = preferredFlourProfileId;
             }
 
-            // If we found a full style definition, try to extract ingredients from it
-            // Defaults (based on Pizza standard)
             let targetWeight = 250;
             let targetCount = 4;
-
-            // If we found a full style definition, try to extract ingredients and specific defaults
-            let ingredients: any[] | undefined = undefined;
+            let ingredients: IngredientConfig[] | undefined;
+            let convertedWeight: number | undefined;
 
             if (fullStyle) {
                 const converted = convertStyleToDoughConfig(fullStyle);
+                convertedWeight = converted.doughBallWeight;
                 if (converted.ingredients && converted.ingredients.length > 0) {
                     ingredients = converted.ingredients;
                 }
-                // Use converted defaults if available explicitly
                 if (fullStyle.technicalProfile?.ballWeight?.recommended) {
                     targetWeight = fullStyle.technicalProfile.ballWeight.recommended;
                 } else if (converted.doughBallWeight) {
@@ -343,32 +459,21 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 if (converted.numPizzas) targetCount = converted.numPizzas;
             }
 
-            // Refine Quantity Defaults based on BakeType/Style if not explicit
-            if (preset.type === BakeType.BREADS_SAVORY) targetCount = 2;
+            targetCount = getDefaultYieldCount(presetId, preset.type, recipeStyle);
+
             if (preset.type === BakeType.SWEETS_PASTRY) {
-                // Cookies
                 if (recipeStyle === RecipeStyle.COOKIES || presetId.includes('cookie') || presetId.includes('brownie')) {
-                    targetCount = 12;
                     targetWeight = 80;
                 } else {
-                    // Generic Pastry (Croissants, Cinnamon Rolls)
-                    targetCount = 8;
                     targetWeight = 100;
                 }
             }
 
-            // Override with Range Data if available and standard
-            if (DOUGH_WEIGHT_RANGES[recipeStyle]) {
-                const rangeStr = DOUGH_WEIGHT_RANGES[recipeStyle] || '';
-                const nums = rangeStr.replace('g', '').split('-').map(s => parseFloat(s.trim()));
-                // Only override if we haven't got a specific "converted" weight
-                if (!fullStyle || !convertStyleToDoughConfig(fullStyle).doughBallWeight) {
-                    if (nums.length === 2 && !isNaN(nums[0]) && !isNaN(nums[1])) {
-                        targetWeight = (nums[0] + nums[1]) / 2;
-                    } else if (nums.length === 1 && !isNaN(nums[0])) {
-                        targetWeight = nums[0];
-                    }
-                }
+            if (!convertedWeight) {
+                targetWeight = getStyleWeightBounds({
+                    stylePresetId: presetId,
+                    recipeStyle,
+                }).recommended;
             }
 
             let newConf = {
@@ -382,12 +487,8 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
             newConf = normalizeDoughConfig(newConf);
 
-            // If we have specific ingredients from the registry, use them.
-            // Otherwise, sync from the sliders.
             if (ingredients) {
                 newConf.ingredients = ingredients;
-                // Sync scalar sliders to match the authentic recipe's ingredients definitions
-                // This ensures the sliders start at the correct positions (e.g. 75% sugar for Brownie)
                 const totalHydration = ingredients.filter(i => i.role === 'water').reduce((sum, i) => sum + (i.bakerPercentage || 0), 0);
                 const totalSalt = ingredients.filter(i => i.role === 'salt').reduce((sum, i) => sum + (i.bakerPercentage || 0), 0);
                 const totalFat = ingredients.filter(i => i.role === 'fat').reduce((sum, i) => sum + (i.bakerPercentage || 0), 0);
@@ -396,17 +497,21 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 if (totalHydration > 0) newConf.hydration = totalHydration;
                 if (totalSalt > 0) newConf.salt = totalSalt;
                 if (totalFat > 0) newConf.oil = totalFat;
-                // For sugar, we allow 0 if the recipe is explicitly Savory but has sugar role? 
-                // Usually safe to sync.
                 if (totalSugar > 0) newConf.sugar = totalSugar;
-
             } else {
                 newConf.ingredients = syncIngredientsFromConfig(newConf);
             }
 
             setConfig(newConf);
-        }
-    }, [config.yeastType, config]);
+            logCalculatorEvent('style_selected', {
+                stylePresetId: preset.id,
+                recipeStyle: preset.recipeStyle,
+                bakeType: preset.type
+            });
+        };
+
+        void applyStyleSelection();
+    }, [config, stylePresets]);
 
     const handleYeastTypeChange = useCallback((yeastType: YeastType) => {
         setHasInteracted(true);
@@ -454,7 +559,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         navigate('calculator');
     }, [config, addToast]);
 
-    const handleLoadStyleFromModule = useCallback((style: any, navigate: (page: string) => void) => {
+    const handleLoadStyleFromModule = useCallback((style: DoughStyleDefinition, navigate: (page: string) => void) => {
         // Standardize using the robust utility
         const converted = convertStyleToDoughConfig(style);
 
@@ -462,7 +567,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         let targetWeight = converted.doughBallWeight || 250;
         let targetCount = converted.numPizzas || 4;
 
-        const matchingPreset = DOUGH_STYLE_PRESETS.find(p => p.id === style.id);
+        const matchingPreset = stylePresets.find(p => p.id === style.id);
         const recipeStyle = converted.recipeStyle || RecipeStyle.NEAPOLITAN;
         const bakeType = converted.bakeType || BakeType.PIZZAS;
 
@@ -506,7 +611,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
         setCalculatorMode('advanced');
         handleLoadAndNavigate(normalized, navigate);
-    }, [config, handleLoadAndNavigate]);
+    }, [config, handleLoadAndNavigate, stylePresets]);
 
     const resetConfig = useCallback(() => {
         setConfig({ ...smartDefaults, stylePresetId: undefined, ingredients: syncIngredientsFromConfig(smartDefaults) });
@@ -516,32 +621,44 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     // Mode switching logic (wizard <-> basic <-> advanced)
     const setCalculatorModeWrapper = useCallback((newMode: 'wizard' | 'basic' | 'advanced') => {
         setCalculatorMode(newMode);
-        // Both wizard and basic modes reset to preset values
-        if (newMode === 'wizard' || newMode === 'basic') {
-            const preset = DOUGH_STYLE_PRESETS.find(p => p.recipeStyle === config.recipeStyle);
-            if (preset) {
-                const { defaultHydration, defaultSalt, defaultOil, defaultSugar } = preset;
-                let newConf = {
-                    ...config,
-                    hydration: defaultHydration,
-                    salt: defaultSalt,
-                    oil: defaultOil,
-                    sugar: defaultSugar || 0,
-                    stylePresetId: preset.id,
-                };
-                newConf = normalizeDoughConfig(newConf);
-                newConf.ingredients = syncIngredientsFromConfig(newConf);
-                setConfig(newConf);
-            }
-        }
-    }, [config]);
+        logCalculatorEvent('mode_selected', { axis: 'ui_mode', value: newMode, variant: getCalculatorVariant() });
+    }, []);
+
+    const setQuantityInputMode: React.Dispatch<React.SetStateAction<QuantityInputMode>> = useCallback((action) => {
+        setQuantityInputModeState((prev) => {
+            const next = typeof action === 'function' ? action(prev) : action;
+            logCalculatorEvent('mode_selected', { axis: 'quantity_mode', value: next, variant: getCalculatorVariant() });
+            return next;
+        });
+    }, []);
+
+    const setDifficultyLevel: React.Dispatch<React.SetStateAction<DifficultyLevel>> = useCallback((action) => {
+        setDifficultyLevelState((prev) => {
+            const next = typeof action === 'function' ? action(prev) : action;
+            logCalculatorEvent('mode_selected', { axis: 'difficulty_level', value: next, variant: getCalculatorVariant() });
+            return next;
+        });
+    }, []);
+
+    const setCalculationMode: React.Dispatch<React.SetStateAction<CalculationMode>> = useCallback((action) => {
+        setQuantityInputModeState((prev) => {
+            const next = typeof action === 'function' ? action(prev) : action;
+            const normalized = normalizeQuantityInputMode(next);
+            logCalculatorEvent('mode_selected', { axis: 'quantity_mode', value: normalized, variant: getCalculatorVariant() });
+            return normalized;
+        });
+    }, []);
 
     const value = useMemo(() => ({
         config,
         setConfig,
         calculatorMode,
         setCalculatorMode: setCalculatorModeWrapper,
-        calculationMode,
+        difficultyLevel,
+        setDifficultyLevel,
+        quantityInputMode,
+        setQuantityInputMode,
+        calculationMode: quantityInputMode,
         setCalculationMode,
         unit,
         setUnit,
@@ -563,7 +680,8 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         config,
         calculatorMode,
         setCalculatorModeWrapper,
-        calculationMode,
+        difficultyLevel,
+        quantityInputMode,
         unit,
         unitSystem,
         errors,

@@ -1,15 +1,11 @@
 import React, { useState, Suspense, useMemo, useEffect } from 'react';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import AppLoadingScreen from '@/components/ui/AppLoadingScreen';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import RequireAuth from '@/components/RequireAuth';
 import FloatingActionButton from '@/components/ui/FloatingActionButton';
-import { PaywallModal } from '@/components/PaywallModal';
-import LevainOnboardingModal from '@/components/onboarding/LevainOnboardingModal';
 import { Logo } from '@/components/ui/Logo';
-import { TourGuide } from '@/components/onboarding/TourGuide';
-import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
 import { useToast } from '@/components/ToastProvider';
 import { useUser } from '@/contexts/UserProvider';
 import { useAuth } from '@/contexts/AuthContext';
@@ -20,18 +16,26 @@ import { useRouter } from '@/contexts/RouterContext';
 import AppProviders from '@/app/AppProviders';
 import { PUBLIC_ROUTES } from '@/app/appShell';
 import { logEvent } from '@/services/analytics';
+import type { DoughyAssistantContextSnapshot } from '@/components/tools/doughyAssistant.types';
 
 import AppRouter from '@/AppRouter';
 import { PrimaryPage, BatchStatus } from '@/types';
 import { FLOURS } from '@/flours-constants';
+import { lazyWithChunkRecovery } from '@/utils/chunkRecovery';
 
 // Lazy Load Assistant
-const AssistantPage = React.lazy(() => import('@/components/AssistantPage'));
-const AuthModal = React.lazy(() => import('@/components/AuthModal'));
-const DoughyAssistant = React.lazy(() => import('@/components/tools/DoughyAssistant').then((module) => ({ default: module.DoughyAssistant })));
+const AssistantPage = lazyWithChunkRecovery(() => import('@/components/AssistantPage'));
+const AuthModal = lazyWithChunkRecovery(() => import('@/components/AuthModal'));
+const DoughyAssistantShell = lazyWithChunkRecovery(() => import('@/components/tools/DoughyAssistantShell'));
+const PaywallModal = lazyWithChunkRecovery(() => import('@/components/PaywallModal').then((module) => ({ default: module.PaywallModal })));
+const LevainOnboardingModal = lazyWithChunkRecovery(() => import('@/components/onboarding/LevainOnboardingModal'));
+const TourGuide = lazyWithChunkRecovery(() => import('@/components/onboarding/TourGuide').then((module) => ({ default: module.TourGuide })));
+const OnboardingWizard = lazyWithChunkRecovery(() =>
+  import('@/components/onboarding/OnboardingWizard').then((module) => ({ default: module.OnboardingWizard }))
+);
 
 function AppContent() {
-  const { route, navigate } = useRouter();
+  const { route, navigate, isNavigating } = useRouter();
   const { loading: authLoading } = useAuth();
   const {
     user,
@@ -57,6 +61,21 @@ function AppContent() {
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
   const [showLevainOnboarding, setShowLevainOnboarding] = useState(false);
   const [showMainOnboarding, setShowMainOnboarding] = useState(false);
+  const [shouldMountAssistantShell, setShouldMountAssistantShell] = useState(false);
+  const [shouldMountTourGuide, setShouldMountTourGuide] = useState(false);
+
+  useEffect(() => {
+    if (shouldMountAssistantShell) return;
+    if (PUBLIC_ROUTES.has(route)) return;
+    const id = window.setTimeout(() => setShouldMountAssistantShell(true), 900);
+    return () => window.clearTimeout(id);
+  }, [route, shouldMountAssistantShell]);
+
+  useEffect(() => {
+    if (shouldMountTourGuide) return;
+    const id = window.setTimeout(() => setShouldMountTourGuide(true), 1400);
+    return () => window.clearTimeout(id);
+  }, [shouldMountTourGuide]);
   // Main Onboarding Logic
   // Main Onboarding Logic - DISABLED BY USER REQUEST
   // useEffect(() => {
@@ -80,6 +99,15 @@ function AppContent() {
     return [...batches]
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0];
   }, [batches]);
+
+  const assistantContextSnapshot = useMemo<DoughyAssistantContextSnapshot>(() => ({
+    doughConfig: config,
+    doughResult: results,
+    flour: FLOURS.find((flour) => flour.id === config.flourId),
+    oven: ovens.find((oven) => oven.isDefault) || ovens[0],
+    lastBatch,
+    userPlan: hasProAccess ? 'pro' : 'free',
+  }), [config, results, ovens, lastBatch, hasProAccess]);
 
   // Levain Onboarding Logic
   useEffect(() => {
@@ -144,7 +172,7 @@ function AppContent() {
 
   // Global Authentication Check
   if (authLoading) {
-    return <div className="flex h-screen items-center justify-center"><LoadingSpinner /></div>;
+    return <AppLoadingScreen fullScreen />;
   }
 
   if (!isAuthenticated && !PUBLIC_ROUTES.has(route)) {
@@ -189,19 +217,23 @@ function AppContent() {
 
         </div>
 
-        <AuthModal
-          isOpen={isAuthModalOpen}
-          onClose={() => setIsAuthModalOpen(false)}
-        />
+        {isAuthModalOpen && (
+          <Suspense fallback={null}>
+            <AuthModal
+              isOpen={isAuthModalOpen}
+              onClose={() => setIsAuthModalOpen(false)}
+            />
+          </Suspense>
+        )}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-dlp-bg-soft font-sans text-dlp-text-primary transition-colors duration-300 flex flex-col">
+    <div className="min-h-screen overflow-x-clip bg-dlp-bg-soft font-sans text-dlp-text-primary transition-colors duration-300 flex flex-col">
       <a
         href="#main-content"
-        className="sr-only z-[120] rounded-lg bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-lg focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        className="sr-only z-[120] rounded-lg bg-white px-4 py-2 text-sm font-semibold text-dlp-text-primary shadow-lg focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
       >
         Skip to main content
       </a>
@@ -210,13 +242,20 @@ function AppContent() {
         onNavigate={navigate}
         onOpenAuth={() => setIsAuthModalOpen(true)}
       />
+      <div
+        className={[
+          'pointer-events-none fixed inset-x-0 top-0 z-[110] h-1 origin-left bg-gradient-to-r from-lime-300 via-emerald-500 to-lime-300 shadow-[0_0_18px_rgba(16,185,129,0.35)] transition-all duration-200',
+          isNavigating ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0',
+        ].join(' ')}
+        aria-hidden="true"
+      />
 
       <main
         id="main-content"
-        className="flex-grow w-full max-w-[1440px] mx-auto mt-20 px-4 py-8 pb-28 md:py-10 md:pb-10"
+        className="mx-auto mt-16 flex w-full max-w-[1440px] min-w-0 flex-grow overflow-x-clip px-4 pt-3 pb-28 md:pt-4 md:pb-10"
       >
         {isAssistantOpen ? (
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<AppLoadingScreen fullScreen={false} />}>
             <RequireAuth onOpenAuth={() => setIsAuthModalOpen(true)}>
               <AssistantPage
                 config={config}
@@ -239,40 +278,56 @@ function AppContent() {
 
       <Footer onNavigate={navigate} />
 
-      <Suspense fallback={null}>
-        <DoughyAssistant />
-      </Suspense>
+      {shouldMountAssistantShell && (
+        <Suspense fallback={null}>
+          <DoughyAssistantShell contextSnapshot={assistantContextSnapshot} />
+        </Suspense>
+      )}
 
       {showLevainOnboarding && (
-        <LevainOnboardingModal
-          onComplete={handleOnboardingComplete}
-          onNavigate={navigate}
-        />
+        <Suspense fallback={null}>
+          <LevainOnboardingModal
+            onComplete={handleOnboardingComplete}
+            onNavigate={navigate}
+          />
+        </Suspense>
       )}
 
       {showMainOnboarding && (
-        <OnboardingWizard
-          onComplete={handleMainOnboardingComplete}
-          onClose={() => setShowMainOnboarding(false)}
-        />
+        <Suspense fallback={null}>
+          <OnboardingWizard
+            onComplete={handleMainOnboardingComplete}
+            onClose={() => setShowMainOnboarding(false)}
+          />
+        </Suspense>
       )}
 
-      <PaywallModal
-        isOpen={isPaywallOpen}
-        onClose={closePaywall}
-        onNavigateToPlans={() => {
-          closePaywall();
-          navigate('plans');
-        }}
-        origin={paywallOrigin}
-      />
-      <Suspense fallback={null}>
-        <AuthModal
-          isOpen={isAuthModalOpen}
-          onClose={() => setIsAuthModalOpen(false)}
-        />
-      </Suspense>
-      <TourGuide />
+      {isPaywallOpen && (
+        <Suspense fallback={null}>
+          <PaywallModal
+            isOpen={isPaywallOpen}
+            onClose={closePaywall}
+            onNavigateToPlans={() => {
+              closePaywall();
+              navigate('plans');
+            }}
+            origin={paywallOrigin}
+          />
+        </Suspense>
+      )}
+      {isAuthModalOpen && (
+        <Suspense fallback={null}>
+          <AuthModal
+            isOpen={isAuthModalOpen}
+            onClose={() => setIsAuthModalOpen(false)}
+          />
+        </Suspense>
+      )}
+      {shouldMountTourGuide && (
+        <Suspense fallback={null}>
+          <TourGuide />
+        </Suspense>
+      )}
 
       {/* Persistence Indicator */}
       {lastSaved && (

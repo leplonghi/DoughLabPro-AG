@@ -7,7 +7,7 @@ test('public landing and plans remain reachable', async ({ page }) => {
     await expect(page.getByRole('button', { name: /start free/i })).toBeVisible();
 
     await page.getByRole('button', { name: /view plans/i }).click();
-    await expect(page.getByRole('heading', { name: /choose your plan/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /compare free and pro clearly/i })).toBeVisible();
     await expect(page.getByRole('button', { name: /continue with free/i })).toBeVisible();
 });
 

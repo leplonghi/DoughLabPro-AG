@@ -1,12 +1,11 @@
 
 import json
-import os
 
 def generate_tool_calls():
     try:
         with open('extracted_notes_lines.json', 'r', encoding='utf-16') as f:
             data = json.load(f)
-    except:
+    except (UnicodeError, json.JSONDecodeError):
         with open('extracted_notes_lines.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
 

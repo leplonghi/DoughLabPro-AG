@@ -11,7 +11,6 @@ import {
     StarIcon,
     SolidStarIcon
 } from '@/components/ui/Icons';
-import AppShellHeader from '@/components/ui/AppShellHeader';
 import AppSurface from '@/components/ui/AppSurface';
 import MyLabLayout from './MyLabLayout';
 import { LockFeature } from '@/components/auth/LockFeature';
@@ -19,7 +18,6 @@ import { canUseFeature, getCurrentPlan } from '@/permissions';
 import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import { SocialShare } from "@/marketing/social/SocialShare";
-import { getPageMeta } from '@/app/appShell';
 
 interface MyLabBatchesPageProps {
     onNavigate: (page: Page, params?: string) => void;
@@ -126,7 +124,6 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
 }) => {
     const { user, batches, hasProAccess, openPaywall } = useUser();
     const { t } = useTranslation();
-    const labMeta = getPageMeta('mylab');
     const plan = getCurrentPlan(user);
 
     const filteredBatches = useMemo(() => {
@@ -143,35 +140,39 @@ const MyLabBatchesPage: React.FC<MyLabBatchesPageProps> = ({
     const hasReachedFreeLimit = !canUseFeature(plan, 'mylab.unlimited_advanced') && filteredBatches.length >= 3;
 
     return (
-        <MyLabLayout activePage="mylab/fornadas" onNavigate={onNavigate}>
+        <MyLabLayout
+            activePage="mylab/fornadas"
+            onNavigate={onNavigate}
+            pageHeader={{
+                title: t('mylab.my_batches'),
+                description: t('mylab.track_your_baking_journey_and_perfect_your_recipes'),
+                children: (
+                    <>
+                        <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
+                            {filteredBatches.length} saved entries
+                        </div>
+                        {!hasReachedFreeLimit ? (
+                            <button
+                                onClick={handleCreateDraft}
+                                className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 py-3 px-5 font-bold text-white shadow-lg transition-colors hover:bg-slate-800"
+                            >
+                                <PlusCircleIcon className="h-5 w-5" />
+                                <span>{t('mylab.new_batch')}</span>
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => openPaywall('mylab')}
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-500"
+                            >
+                                <PlusCircleIcon className="h-5 w-5" />
+                                <span>{t('mylab.limit_reached')}</span>
+                            </button>
+                        )}
+                    </>
+                ),
+            }}
+        >
             <div className="animate-fade-in space-y-6">
-                <AppShellHeader
-                    eyebrow={labMeta.eyebrow}
-                    title={t('mylab.my_batches')}
-                    description={t('mylab.track_your_baking_journey_and_perfect_your_recipes')}
-                >
-                    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm">
-                        {filteredBatches.length} saved entries
-                    </div>
-                    {!hasReachedFreeLimit ? (
-                        <button
-                            onClick={handleCreateDraft}
-                            className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 py-3 px-5 font-bold text-white shadow-lg transition-colors hover:bg-slate-800"
-                        >
-                            <PlusCircleIcon className="h-5 w-5" />
-                            <span>{t('mylab.new_batch')}</span>
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => openPaywall('mylab')}
-                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-500"
-                        >
-                            <PlusCircleIcon className="h-5 w-5" />
-                            <span>{t('mylab.limit_reached')}</span>
-                        </button>
-                    )}
-                </AppShellHeader>
-
                 {/* Content */}
                 {batches.filter(b => b.status !== BatchStatus.DRAFT).length === 0 ? (
                     <AppSurface className="flex flex-col items-center justify-center py-20 px-4 border-2 border-dashed border-slate-200 bg-slate-50/50 text-center">

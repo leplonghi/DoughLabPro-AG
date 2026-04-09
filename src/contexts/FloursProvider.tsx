@@ -1,9 +1,10 @@
 import React, { createContext, useContext, ReactNode, useState, useEffect, useCallback, useMemo } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/firebase/db';
-import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
+import { collection, query, onSnapshot, addDoc, updateDoc, deleteDoc, doc, Timestamp, orderBy, limit } from 'firebase/firestore';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { USER_DATA_QUERY_LIMITS } from '@/constants';
 
 // Placeholder interface - expand as needed
 interface FlourInventoryItem {
@@ -51,7 +52,11 @@ export const FloursProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         }
 
         const collRef = collection(db, 'users', firebaseUser.uid, 'flours');
-        const q = query(collRef, orderBy('createdAt', 'desc'));
+        const q = query(
+            collRef,
+            orderBy('createdAt', 'desc'),
+            limit(USER_DATA_QUERY_LIMITS.flours)
+        );
 
         return onSnapshot(
             q,
