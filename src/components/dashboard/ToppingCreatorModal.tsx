@@ -66,7 +66,7 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm" />
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
@@ -80,76 +80,76 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-3xl bg-white p-6 shadow-2xl transition-all border border-slate-100">
+                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-3xl bg-dlp-bg-card p-6 shadow-dlp-lg transition-all border border-dlp-border">
                                 <div className="flex justify-between items-center mb-6">
-                                    <Dialog.Title as="h3" className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                                        <Plus size={20} className="text-[#51a145]" />
+                                    <Dialog.Title as="h3" className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
+                                        <Plus size={20} className="text-dlp-primary" />
                                         Create New Filling Preset
                                     </Dialog.Title>
-                                    <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-                                        <X size={20} className="text-slate-400" />
+                                    <button onClick={onClose} className="p-2 hover:bg-dlp-bg-muted rounded-full transition-colors">
+                                        <X size={20} className="text-dlp-text-muted" />
                                     </button>
                                 </div>
 
                                 <div className="space-y-5">
                                     {/* Name */}
                                     <div>
-                                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Preset Name</label>
+                                        <label className="block text-[10px] font-bold text-dlp-text-muted uppercase tracking-wider mb-1.5 ml-1">Preset Name</label>
                                         <input
                                             type="text"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
                                             placeholder="e.g. Special Truffle Margherita"
-                                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 ring-[#51a145]/20 focus:border-[#51a145] outline-none font-bold text-slate-700 transition-all"
+                                            className="w-full px-4 py-3 bg-dlp-bg-muted border border-dlp-border rounded-2xl focus:ring-2 ring-dlp-primary/20 focus:border-dlp-primary outline-none font-bold text-dlp-text-primary transition-all"
                                         />
                                     </div>
 
                                     {/* Grams Grid */}
                                     <div className="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Sauce (g)</label>
+                                            <label className="block text-[10px] font-bold text-dlp-text-muted uppercase tracking-wider mb-1.5 ml-1">Sauce (g)</label>
                                             <input
                                                 type="number"
                                                 value={sauceGrams}
                                                 onChange={(e) => setSauceGrams(parseInt(e.target.value) || 0)}
-                                                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 ring-[#51a145]/20 focus:border-[#51a145] outline-none font-mono font-bold text-slate-700"
+                                                className="w-full px-3 py-2.5 bg-dlp-bg-muted border border-dlp-border rounded-xl focus:ring-2 ring-dlp-primary/20 focus:border-dlp-primary outline-none font-mono font-bold text-dlp-text-primary"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Cheese (g)</label>
+                                            <label className="block text-[10px] font-bold text-dlp-text-muted uppercase tracking-wider mb-1.5 ml-1">Cheese (g)</label>
                                             <input
                                                 type="number"
                                                 value={cheeseGrams}
                                                 onChange={(e) => setCheeseGrams(parseInt(e.target.value) || 0)}
-                                                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 ring-[#51a145]/20 focus:border-[#51a145] outline-none font-mono font-bold text-slate-700"
+                                                className="w-full px-3 py-2.5 bg-dlp-bg-muted border border-dlp-border rounded-xl focus:ring-2 ring-dlp-primary/20 focus:border-dlp-primary outline-none font-mono font-bold text-dlp-text-primary"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Others (g)</label>
+                                            <label className="block text-[10px] font-bold text-dlp-text-muted uppercase tracking-wider mb-1.5 ml-1">Others (g)</label>
                                             <input
                                                 type="number"
                                                 value={toppingsGrams}
                                                 onChange={(e) => setToppingsGrams(parseInt(e.target.value) || 0)}
-                                                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 ring-[#51a145]/20 focus:border-[#51a145] outline-none font-mono font-bold text-slate-700"
+                                                className="w-full px-3 py-2.5 bg-dlp-bg-muted border border-dlp-border rounded-xl focus:ring-2 ring-dlp-primary/20 focus:border-dlp-primary outline-none font-mono font-bold text-dlp-text-primary"
                                             />
                                         </div>
                                     </div>
 
                                     {/* Notes */}
                                     <div>
-                                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Notes / Description</label>
+                                        <label className="block text-[10px] font-bold text-dlp-text-muted uppercase tracking-wider mb-1.5 ml-1">Notes / Description</label>
                                         <textarea
                                             value={notes}
                                             onChange={(e) => setNotes(e.target.value)}
                                             placeholder="Ingredients and special instructions..."
                                             rows={3}
-                                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 ring-[#51a145]/20 focus:border-[#51a145] outline-none text-sm text-slate-600 transition-all resize-none"
+                                            className="w-full px-4 py-3 bg-dlp-bg-muted border border-dlp-border rounded-2xl focus:ring-2 ring-dlp-primary/20 focus:border-dlp-primary outline-none text-sm text-dlp-text-secondary transition-all resize-none"
                                         />
                                     </div>
 
-                                    <div className="bg-emerald-50 p-4 rounded-2xl flex items-start gap-3">
-                                        <Info size={16} className="text-[#51a145] mt-0.5 shrink-0" />
-                                        <p className="text-[11px] text-[#2d5a27] leading-relaxed">
+                                    <div className="bg-dlp-primary-light p-4 rounded-2xl flex items-start gap-3">
+                                        <Info size={16} className="text-dlp-primary mt-0.5 shrink-0" />
+                                        <p className="text-[11px] text-dlp-text-primary leading-relaxed">
                                             This preset will be used to calculate your cumulative shopping list and logistics preparation. You can reuse it in future sessions.
                                         </p>
                                     </div>
@@ -158,14 +158,14 @@ export const ToppingCreatorModal: React.FC<ToppingCreatorModalProps> = ({ isOpen
                                 <div className="mt-8 flex gap-3">
                                     <button
                                         onClick={onClose}
-                                        className="flex-1 py-3 px-4 rounded-xl border border-slate-200 font-bold text-slate-500 hover:bg-slate-50 transition-colors"
+                                        className="flex-1 py-3 px-4 rounded-xl border border-dlp-border font-bold text-dlp-text-secondary hover:bg-dlp-bg-muted transition-colors"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         onClick={handleSave}
                                         disabled={!name || isSaving}
-                                        className="flex-[2] py-3 px-4 rounded-xl bg-[#51a145] hover:bg-[#36782c] disabled:opacity-50 disabled:hover:bg-[#51a145] text-white font-bold shadow-lg shadow-[#51a145]/20 transition-all flex items-center justify-center gap-2"
+                                        className="flex-[2] py-3 px-4 rounded-xl bg-dlp-primary hover:bg-dlp-primary-hover disabled:opacity-50 disabled:hover:bg-dlp-primary text-white font-bold shadow-lg shadow-dlp-primary/20 transition-all flex items-center justify-center gap-2"
                                     >
                                         {isSaving ? 'Saving...' : (
                                             <>

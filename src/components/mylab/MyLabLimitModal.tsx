@@ -32,7 +32,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-slate-900/75 backdrop-blur-sm transition-opacity" />
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -46,11 +46,11 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                            <Dialog.Panel className="relative transform overflow-hidden rounded-2xl bg-dlp-bg-card text-left shadow-dlp-lg transition-all sm:my-8 sm:w-full sm:max-w-lg">
                                 <div className="absolute right-4 top-4 z-10">
                                     <button
                                         type="button"
-                                        className="rounded-full bg-slate-100 p-1 text-slate-400 hover:text-slate-500 hover:bg-slate-200 transition-colors"
+                                        className="rounded-full bg-dlp-bg-muted p-1 text-dlp-text-muted hover:text-dlp-text-secondary hover:bg-dlp-border transition-colors"
                                         onClick={onClose}
                                     >
                                         <span className="sr-only">{t('common.close')}</span>
@@ -60,7 +60,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
 
                                 <div className="p-1">
                                     {/* Image Container */}
-                                    <div className="relative h-56 bg-slate-100 w-full overflow-hidden rounded-t-xl group">
+                                    <div className="relative h-56 bg-dlp-bg-muted w-full overflow-hidden rounded-t-xl group">
                                         <img
                                             src="/images/marketing/mylab-pro.png"
                                             alt={t('common.mylab.pro_lab_analytics')}
@@ -73,13 +73,13 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                 </div>
 
                                 <div className="px-6 pb-8 pt-2 text-center">
-                                    <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-dlp-primary/20 ring-4 ring-white">
+                                    <div className="w-16 h-16 bg-dlp-primary-light rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-dlp-primary/20 ring-4 ring-white">
                                         <LockClosedIcon className="w-8 h-8 text-dlp-primary-hover" />
                                     </div>
 
-                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-slate-900 mb-2">{t('common.mylab.lab_capacity_reached')}</Dialog.Title>
+                                    <Dialog.Title as="h3" className="text-2xl font-black leading-tight text-dlp-text-primary mb-2">{t('common.mylab.lab_capacity_reached')}</Dialog.Title>
 
-                                    <p className="text-slate-600 mb-8 leading-relaxed">
+                                    <p className="text-dlp-text-secondary mb-8 leading-relaxed">
                                         <Trans i18nKey="common.mylab.limit_reach_desc">
                                             You've reached the <strong>1-batch limit</strong> for the Free plan. Upgrade to <strong>DoughLab Pro</strong> to unlock unlimited storage, advanced analytics, and historical tracking.
                                         </Trans>
@@ -96,7 +96,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
 
                                         <button
                                             type="button"
-                                            className="w-full py-3 text-sm font-bold text-slate-500 hover:text-slate-700 transition-colors"
+                                            className="w-full py-3 text-sm font-bold text-dlp-text-muted hover:text-dlp-text-primary transition-colors"
                                             onClick={onClose}
                                         >{t('common.mylab.maybe_later')}</button>
                                     </div>

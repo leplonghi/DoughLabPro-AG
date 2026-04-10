@@ -30,6 +30,7 @@ const StyleDetailPage = lazyWithChunkRecovery(() => import('@/pages/styles/Style
 const SettingsPage = lazyWithChunkRecovery(() => import('@/pages/SettingsPage'));
 const NotificationsPage = lazyWithChunkRecovery(() => import('@/pages/NotificationsPage').then(module => ({ default: module.NotificationsPage })));
 const LanguagePage = lazyWithChunkRecovery(() => import('@/pages/settings/LanguagePage'));
+const DesignSystemPage = lazyWithChunkRecovery(() => import('@/pages/DesignSystemPage'));
 const TermsPage = lazyWithChunkRecovery(() => import('@/pages/legal/TermsPage'));
 const PrivacyPage = lazyWithChunkRecovery(() => import('@/pages/legal/PrivacyPage'));
 const CookiesPage = lazyWithChunkRecovery(() => import('@/pages/legal/CookiesPage'));
@@ -233,6 +234,7 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 SettingsPage,
                 NotificationsPage,
                 LanguagePage,
+                DesignSystemPage,
             },
         }) ||
         resolveLibraryRoute({
