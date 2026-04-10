@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { LockClosedIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { SparklesIcon } from '@heroicons/react/24/solid';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
 import { Trans } from 'react-i18next';
+import { ProBadgeIcon } from '@/components/ui/Icons';
 
 interface MyLabLimitModalProps {
     isOpen: boolean;
@@ -92,7 +92,7 @@ export const MyLabLimitModal: React.FC<MyLabLimitModalProps> = ({ isOpen, onClos
                                             onClick={handleUpgrade}
                                         >
                                             <span className="absolute inset-0 rounded-xl bg-white/20 group-hover:opacity-0 transition-opacity"></span>
-                                            <SparklesIcon className="w-5 h-5 text-lime-100" />{t('common.mylab.unlock_unlimited_lab')}</button>
+                                            <ProBadgeIcon className="w-5 h-5 text-lime-100" />{t('common.mylab.unlock_unlimited_lab')}</button>
 
                                         <button
                                             type="button"

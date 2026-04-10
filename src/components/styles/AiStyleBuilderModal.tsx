@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SparklesIcon, CloseIcon, BeakerIcon, FireIcon, ClockIcon, ScaleIcon } from '@/components/ui/Icons';
+import { AssistantIcon, CloseIcon, BeakerIcon, FireIcon, ClockIcon, ScaleIcon } from '@/components/ui/Icons';
 import { DoughStyleDefinition } from '@/types';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
@@ -97,7 +97,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-white">
           <h2 className="text-lg font-bold text-indigo-900 flex items-center gap-2">
-            <SparklesIcon className="h-5 w-5 text-indigo-500" />{t('common.ai_style_builder')}</h2>
+            <AssistantIcon className="h-5 w-5 text-indigo-500" />{t('common.ai_style_builder')}</h2>
           <button onClick={onClose} className="p-1 text-slate-400 hover:bg-slate-100 rounded-full">
             <CloseIcon className="h-5 w-5" />
           </button>
@@ -147,7 +147,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
               </>
             ) : (
               <>
-                <SparklesIcon className="h-4 w-4" />{t('common.generate_style')}</>
+                <AssistantIcon className="h-4 w-4" />{t('common.generate_style')}</>
             )}
           </button>
         </div>
