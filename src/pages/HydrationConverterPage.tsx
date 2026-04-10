@@ -100,7 +100,7 @@ export const HydrationConverterPage: React.FC = () => {
                                         type="number"
                                         value={flour}
                                         onChange={(e) => setFlour(Math.max(0, Number(e.target.value)))}
-                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-brand focus:ring-dlp-brand font-mono font-bold text-slate-900 bg-slate-50"
+                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-primary focus:ring-dlp-primary font-mono font-bold text-slate-900 bg-slate-50"
                                     />
                                 </div>
                                 <div>
@@ -109,7 +109,7 @@ export const HydrationConverterPage: React.FC = () => {
                                         type="number"
                                         value={water}
                                         onChange={(e) => setWater(Math.max(0, Number(e.target.value)))}
-                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-brand focus:ring-dlp-brand font-mono font-bold text-slate-900 bg-slate-50"
+                                        className="w-full rounded-xl border-slate-300 py-2.5 px-3 focus:border-dlp-primary focus:ring-dlp-primary font-mono font-bold text-slate-900 bg-slate-50"
                                     />
                                 </div>
                             </div>
@@ -126,7 +126,7 @@ export const HydrationConverterPage: React.FC = () => {
                                 </div>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input type="checkbox" checked={useLevain} onChange={(e) => setUseLevain(e.target.checked)} className="sr-only peer" />
-                                    <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-lime-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dlp-brand"></div>
+                                    <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-lime-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dlp-primary"></div>
                                 </label>
                             </div>
 
@@ -184,7 +184,7 @@ export const HydrationConverterPage: React.FC = () => {
                                 <div>
                                     <div className="flex justify-between items-baseline mb-2">
                                         <label className="block text-sm font-bold text-slate-700">{t('general.target_hydration')}</label>
-                                        <span className="text-2xl font-black text-dlp-brand">{targetHydration}%</span>
+                                        <span className="text-2xl font-black text-dlp-primary">{targetHydration}%</span>
                                     </div>
                                     <input
                                         type="range"
@@ -193,7 +193,7 @@ export const HydrationConverterPage: React.FC = () => {
                                         step="0.5"
                                         value={targetHydration}
                                         onChange={(e) => setTargetHydration(Number(e.target.value))}
-                                        className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-dlp-brand"
+                                        className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-dlp-primary"
                                     />
                                     <div className="flex justify-between text-xs text-slate-400 mt-2 font-medium">
                                         <span>40% ({t('ui.dry')})</span>

@@ -37,14 +37,14 @@ const LearnCategoryCard: React.FC<{
         onClick={onClick}
         className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
     >
-        <div className="flex-shrink-0 text-dlp-brand">{icon}</div>
+        <div className="flex-shrink-0 text-dlp-primary">{icon}</div>
         <div className="mt-4 flex-grow">
-            <h3 className="text-lg font-bold text-slate-800 group-hover:text-dlp-brand-hover transition-colors">
+            <h3 className="text-lg font-bold text-slate-800 group-hover:text-dlp-primary-hover transition-colors">
                 {title}
             </h3>
             <p className="mt-2 text-sm text-slate-900 leading-relaxed">{description}</p>
         </div>
-        <p className="mt-4 text-sm font-semibold text-slate-600 group-hover:text-dlp-brand-hover transition-colors">
+        <p className="mt-4 text-sm font-semibold text-slate-600 group-hover:text-dlp-primary-hover transition-colors">
             Explore &rarr;
         </p>
     </button>
@@ -131,7 +131,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
     return (
         <div className="mx-auto max-w-7xl animate-[fadeIn_0.5s_ease-in-out]">
             <div className="text-center">
-                <AcademicCapIcon className="mx-auto h-12 w-12 text-dlp-brand" />
+                <AcademicCapIcon className="mx-auto h-12 w-12 text-dlp-primary" />
                 <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('learn.ingredient_guide')}</h1>
                 <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-700">
                     Explore the universe of flavors that go on top of your dough.

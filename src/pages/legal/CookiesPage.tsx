@@ -64,7 +64,7 @@ const CookiesPage: React.FC = () => {
       <h3>8. Contact</h3>
       <p>
         Questions about cookies, local storage, or tracking technologies can be sent to{' '}
-        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a>.
       </p>
     </LegalPageLayout>
   );

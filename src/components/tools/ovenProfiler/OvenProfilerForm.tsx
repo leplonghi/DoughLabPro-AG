@@ -12,7 +12,7 @@ interface OvenProfilerFormProps {
 
 const Tooltip: React.FC<{ label: string; content: string }> = ({ label, content }) => (
     <div className="group relative inline-block ml-2 align-middle">
-        <button className="text-slate-400 hover:text-dlp-brand-hover transition-colors block">
+        <button className="text-slate-400 hover:text-dlp-primary-hover transition-colors block">
             <InfoIcon className="h-4 w-4" />
         </button>
         <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-64 -translate-x-1/2 rounded-xl bg-white p-3 text-xs text-slate-700 opacity-0 shadow-xl transition-opacity duration-300 group-hover:opacity-100 border border-slate-200">
@@ -66,7 +66,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                             key={type.id}
                             onClick={() => setField('ovenType', type.id)}
                             className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${profile.ovenType === type.id
-                                ? 'border-dlp-brand bg-lime-50 text-dlp-brand shadow-md'
+                                ? 'border-dlp-primary bg-lime-50 text-dlp-primary shadow-md'
                                 : 'border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
                                 }`}
                         >
@@ -85,7 +85,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                                 name="maxTemperature"
                                 value={profile.maxTemperature}
                                 onChange={handleChange}
-                                className={`block w-full rounded-xl border-2 py-3 px-4 text-xl font-bold font-mono shadow-sm focus:outline-none focus:ring-4 focus:ring-lime-100 transition-all ${errors.maxTemperature ? 'border-red-300 text-red-600 bg-red-50' : 'border-slate-200 text-slate-800 focus:border-dlp-brand'
+                                className={`block w-full rounded-xl border-2 py-3 px-4 text-xl font-bold font-mono shadow-sm focus:outline-none focus:ring-4 focus:ring-lime-100 transition-all ${errors.maxTemperature ? 'border-red-300 text-red-600 bg-red-50' : 'border-slate-200 text-slate-800 focus:border-dlp-primary'
                                     }`}
                             />
                             <div className="absolute right-3 top-3.5 text-slate-400 font-bold text-sm">°C</div>
@@ -134,7 +134,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                                 key={surface.id}
                                 onClick={() => setField('surface', surface.id)}
                                 className={`w-full text-left p-4 rounded-xl border-2 transition-all group ${profile.surface === surface.id
-                                    ? 'border-dlp-brand ring-1 ring-dlp-brand shadow-md transform scale-[1.02]'
+                                    ? 'border-dlp-primary ring-1 ring-dlp-primary shadow-md transform scale-[1.02]'
                                     : 'border-slate-100 hover:border-slate-300'
                                     }`}
                             >
@@ -155,7 +155,7 @@ export const OvenProfilerForm: React.FC<OvenProfilerFormProps> = ({
                                 name="preheatMinutes"
                                 value={profile.preheatMinutes}
                                 onChange={handleChange}
-                                className="block w-full rounded-xl border-slate-200 py-2.5 px-3 bg-slate-50 focus:bg-white focus:border-dlp-brand focus:outline-none focus:ring-2 focus:ring-lime-100 font-mono text-slate-900"
+                                className="block w-full rounded-xl border-slate-200 py-2.5 px-3 bg-slate-50 focus:bg-white focus:border-dlp-primary focus:outline-none focus:ring-2 focus:ring-lime-100 font-mono text-slate-900"
                             />
                             <ClockIcon className="absolute right-3 top-3 w-4 h-4 text-slate-400" />
                         </div>

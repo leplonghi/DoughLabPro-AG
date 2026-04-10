@@ -31,7 +31,7 @@ const TermsPage: React.FC = () => {
       <p>
         You are responsible for keeping your credentials secure and for all activity performed through your account,
         including guest, email, or third-party login methods. If you suspect unauthorized access, contact{' '}
-        <a href={`mailto:${LEGAL_SUPPORT_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_SUPPORT_EMAIL}</a>.
+        <a href={`mailto:${LEGAL_SUPPORT_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_SUPPORT_EMAIL}</a>.
       </p>
 
       <h3>4. Acceptable use</h3>
@@ -110,7 +110,7 @@ const TermsPage: React.FC = () => {
       <h3>14. Contact</h3>
       <p>
         For contractual or legal notices, contact{' '}
-        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a>.
       </p>
     </LegalPageLayout>
   );

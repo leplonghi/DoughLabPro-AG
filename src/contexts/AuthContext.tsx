@@ -2,8 +2,8 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 import {
     User as FirebaseUser,
     GoogleAuthProvider,
-    signInWithCredential,
-    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     signInAnonymously,
     signOut,
     onAuthStateChanged,
@@ -11,11 +11,9 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail
 } from 'firebase/auth';
-import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { auth, googleProvider } from '@/firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/db';
-import { isNativePlatform } from '@/capacitor/platform';
 import { User } from '@/types';
 import { useTranslation } from '@/i18n';
 
@@ -38,6 +36,29 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
     const [appUser, setAppUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+
+    // Handle redirect result from Google Sign-In
+    useEffect(() => {
+        if (!auth) return;
+
+        let isMounted = true;
+        const handleRedirectResult = async () => {
+            try {
+                const result = await getRedirectResult(auth);
+                if (result) {
+                    console.log('✓ Google Sign-In redirect successful');
+                }
+            } catch (error) {
+                console.error('Error handling redirect result:', error);
+            }
+        };
+
+        handleRedirectResult();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     useEffect(() => {
         if (!auth) {
@@ -145,24 +166,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             console.warn(t('auth.firebase_auth_not_initialized'));
             return;
         }
-
-        if (isNativePlatform()) {
-            const result = await FirebaseAuthentication.signInWithGoogle({
-                skipNativeAuth: true,
-            });
-            const idToken = result.credential?.idToken;
-
-            if (!idToken) {
-                throw new Error('Google Sign-In did not return an ID token.');
-            }
-
-            const credential = GoogleAuthProvider.credential(idToken);
-            await signInWithCredential(auth, credential);
-            return;
-        }
-
         const provider = googleProvider || new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
+        await signInWithRedirect(auth, provider);
     };
 
     const loginWithEmail = async (email: string, pass: string) => {
@@ -214,14 +219,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const logout = async () => {
-        if (isNativePlatform()) {
-            try {
-                await FirebaseAuthentication.signOut();
-            } catch (error) {
-                console.warn('Native sign-out did not complete cleanly.', error);
-            }
-        }
-
         if (auth) {
             await signOut(auth);
         }

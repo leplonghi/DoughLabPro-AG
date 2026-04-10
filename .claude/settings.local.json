@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"^export|^interface|^type\" /c/Antigravity/doughlabpro/.claude/worktrees/hardcore-noyce/src/types/*.ts)",
+      "Bash(grep -r \"interface.*User\\\\|type.*User\\\\|interface.*Batch\\\\|interface.*Levain\" /c/Antigravity/doughlabpro/.claude/worktrees/hardcore-noyce/src/types/*.ts)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm install:*)",
+      "Bash(firebase emulators:start --only auth,firestore,functions,storage)",
+      "Bash(firebase --version)",
+      "Bash(netstat -ano)",
+      "Bash(powershell -NoProfile -Command 'Get-NetTCPConnection -State Listen | Where-Object {9099,4400,8080,9199 -contains $_.LocalPort} | Format-Table LocalAddress,LocalPort,State')",
+      "Bash(firebase emulators:start --only=auth,firestore,storage,functions)",
+      "Bash(curl -s http://localhost:9099/identitytoolkit.v2.IdentityToolkit/GetOAuthIdpConfig)",
+      "Bash(curl -s -I http://localhost:9199/)",
+      "Bash(grep -E \"\\\\.\\(tsx|ts\\)$\")",
+      "Bash(xargs grep:*)",
+      "Bash(xargs sed:*)"
+    ]
+  }
+}

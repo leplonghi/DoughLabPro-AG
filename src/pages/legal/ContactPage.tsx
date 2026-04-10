@@ -15,14 +15,14 @@ const ContactPage: React.FC = () => {
       <h3>1. Customer support</h3>
       <p>
         For technical assistance, account access issues, billing questions, or product support, contact{' '}
-        <a href={`mailto:${LEGAL_SUPPORT_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_SUPPORT_EMAIL}</a>.
+        <a href={`mailto:${LEGAL_SUPPORT_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_SUPPORT_EMAIL}</a>.
       </p>
 
       <h3>2. Privacy and LGPD requests</h3>
       <p>
         For requests involving privacy, personal data, LGPD rights, deletion, correction, access, portability, or
         objections to specific processing, contact{' '}
-        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a>.
       </p>
       <p>To help us handle the request securely and efficiently, please include:</p>
       <ul className="list-disc pl-5 space-y-1">
@@ -34,7 +34,7 @@ const ContactPage: React.FC = () => {
       <h3>3. Legal notices and intellectual property matters</h3>
       <p>
         For formal notices, copyright complaints, infringement reports, contractual issues, or other legal matters,
-        contact <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+        contact <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a>.
       </p>
 
       <h3>4. Response handling</h3>
@@ -47,7 +47,7 @@ const ContactPage: React.FC = () => {
       <h3>5. Corporate identification</h3>
       <p>
         If you require formal corporate identification or verified contact details for a legal or contractual purpose,
-        request them through <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+        request them through <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a>.
       </p>
     </LegalPageLayout>
   );

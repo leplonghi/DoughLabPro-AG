@@ -32,7 +32,7 @@ export const AffiliateIngredientLink: React.FC<AffiliateIngredientLinkProps> = (
             rel="noopener noreferrer"
             className={`
                 group relative inline-flex items-center 
-                decoration-dotted underline decoration-dlp-accent/50 hover:decoration-dlp-accent 
+                decoration-dotted underline decoration-dlp-primary/50 hover:decoration-dlp-primary 
                 cursor-help transition-colors
                 ${className}
             `}
@@ -40,7 +40,7 @@ export const AffiliateIngredientLink: React.FC<AffiliateIngredientLinkProps> = (
         >
             {ingredientName}
             {showIcon && (
-                <span className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] text-dlp-accent">
+                <span className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] text-dlp-primary">
                     ↗
                 </span>
             )}

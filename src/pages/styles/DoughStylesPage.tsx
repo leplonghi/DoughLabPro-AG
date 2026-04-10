@@ -230,14 +230,14 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                         {/* Search Bar */}
                         <div className="relative w-full md:w-96 group">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-dlp-brand-hover transition-colors" />
+                                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-dlp-primary-hover transition-colors" />
                             </div>
                             <input
                                 type="text"
                                 placeholder={t('styles_page.search_placeholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-dlp-brand/50 focus:border-dlp-brand transition-all duration-200 sm:text-sm"
+                                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-dlp-primary/50 focus:border-dlp-primary transition-all duration-200 sm:text-sm"
                             />
                         </div>
 
@@ -266,7 +266,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                 <Filter className="w-4 h-4" />
                                 <span>{t('general.filters')}</span>
                                 {activeFilterCount > 0 && (
-                                    <span className="ml-1 bg-dlp-brand-hover text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                                    <span className="ml-1 bg-dlp-primary-hover text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                                         {activeFilterCount}
                                     </span>
                                 )}
@@ -344,7 +344,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                             className={`
                                                 px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-1.5
                                                 ${isActive
-                                                    ? 'bg-white border-dlp-brand text-lime-700 ring-1 ring-dlp-brand shadow-sm'
+                                                    ? 'bg-white border-dlp-primary text-lime-700 ring-1 ring-dlp-primary shadow-sm'
                                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                                                 }
                                             `}
@@ -377,7 +377,7 @@ const DoughStylesPage: React.FC<DoughStylesPageProps> = ({ onNavigateToDetail, o
                                 setSelectedDifficulty([]);
                                 setSelectedRegions([]);
                             }}
-                            className="text-dlp-brand-hover font-bold hover:underline"
+                            className="text-dlp-primary-hover font-bold hover:underline"
                         >{t('common.clear_all_filters')}</button>
                     </div>
                 ) : (

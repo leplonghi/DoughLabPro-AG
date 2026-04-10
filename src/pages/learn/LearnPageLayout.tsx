@@ -39,11 +39,11 @@ const LearnPageLayout: React.FC<LearnPageLayoutProps> = ({
                         </button>
 
                         <nav className="hidden sm:flex items-center text-sm text-stone-500">
-                            <button onClick={() => navigate('learn')} className="hover:text-dlp-brand-hover transition-colors">{t('nav.learn')}</button>
+                            <button onClick={() => navigate('learn')} className="hover:text-dlp-primary-hover transition-colors">{t('nav.learn')}</button>
                             <span className="mx-2">/</span>
                             {category && (
                                 <>
-                                    <button onClick={() => navigate('learn/category', encodeURIComponent(category))} className="hover:text-dlp-brand-hover transition-colors">
+                                    <button onClick={() => navigate('learn/category', encodeURIComponent(category))} className="hover:text-dlp-primary-hover transition-colors">
                                         {category}
                                     </button>
                                     <span className="mx-2">/</span>

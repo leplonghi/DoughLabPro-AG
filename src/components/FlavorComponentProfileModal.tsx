@@ -55,7 +55,7 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                                 {component.category}
                             </span>
                             {component.isStandard && (
-                                <span className="px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                                <span className="px-2 py-0.5 rounded-full bg-dlp-primary/10 text-dlp-primary-hover text-xs font-bold uppercase tracking-wide flex items-center gap-1">
                                     <CheckCircleIcon className="w-3 h-3" /> Standard
                                 </span>
                             )}

@@ -54,7 +54,7 @@ export const CommunityProfileSidebar: React.FC = () => {
                         )}
                     </div>
                     {hasProAccess && (
-                        <div className="absolute bottom-0 right-0 bg-dlp-accent text-white text-[10px] font-semibold px-2 py-0.5 rounded-full shadow-dlp-sm border border-dlp-bg-card">{t('community.pro')}</div>
+                        <div className="absolute bottom-0 right-0 bg-dlp-primary text-white text-[10px] font-semibold px-2 py-0.5 rounded-full shadow-dlp-sm border border-dlp-bg-card">{t('community.pro')}</div>
                     )}
                 </div>
 
@@ -71,7 +71,7 @@ export const CommunityProfileSidebar: React.FC = () => {
 
                 <button
                     onClick={() => navigate('community/create')}
-                    className="mt-4 w-full flex items-center justify-center gap-2 bg-dlp-accent hover:bg-lime-700 text-white py-2 rounded-lg text-sm font-medium transition-colors"
+                    className="mt-4 w-full flex items-center justify-center gap-2 bg-dlp-primary hover:bg-lime-700 text-white py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                     <PlusCircle className="h-4 w-4" />{t('community.new_post')}</button>
 
@@ -94,7 +94,7 @@ export const CommunityProfileSidebar: React.FC = () => {
             {/* Stats - Locked for Free */}
             <div className="bg-dlp-bg-card rounded-lg shadow-dlp-sm border border-dlp-border overflow-hidden">
                 <div className="p-4 border-b border-dlp-border font-semibold text-sm flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-dlp-accent" />{t('community.performance_stats')}</div>
+                    <TrendingUp className="h-4 w-4 text-dlp-primary" />{t('community.performance_stats')}</div>
 
                 <LockFeature featureKey="community.profile_full" className="p-4">
                     <div className="space-y-4">
@@ -117,7 +117,7 @@ export const CommunityProfileSidebar: React.FC = () => {
             {/* Badges - Locked for Free */}
             <div className="bg-dlp-bg-card rounded-lg shadow-dlp-sm border border-dlp-border overflow-hidden">
                 <div className="p-4 border-b border-dlp-border font-semibold text-sm flex items-center gap-2">
-                    <Award className="h-4 w-4 text-dlp-accent" />{t('community.achievements')}</div>
+                    <Award className="h-4 w-4 text-dlp-primary" />{t('community.achievements')}</div>
 
                 <LockFeature featureKey="community.profile_full" className="p-4">
                     <div className="grid grid-cols-4 gap-2">

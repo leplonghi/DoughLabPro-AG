@@ -1,6 +1,6 @@
 import React from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
-import { AssistantIcon } from '@/components/ui/Icons';
+import { SparklesIcon } from '@/components/ui/Icons';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { useDoughbot } from '@/hooks/useDoughbot';
 import { DoughbotResults } from '@/components/tools/doughbot/DoughbotResults';
@@ -97,7 +97,7 @@ const DoughbotPage: React.FC = () => {
                   <button
                     key={stage}
                     onClick={() => setDescription(prev => prev.includes(`Stage: ${stage}`) ? prev : `Stage: ${stage}. ${prev}`)}
-                    className="px-4 py-3 rounded-xl text-sm font-semibold border transition-all hover:scale-[1.02] active:scale-[0.98] border-slate-200 bg-slate-50 text-slate-600 hover:border-dlp-brand hover:text-dlp-brand focus:ring-2 focus:ring-dlp-brand/50 focus:border-dlp-brand"
+                    className="px-4 py-3 rounded-xl text-sm font-semibold border transition-all hover:scale-[1.02] active:scale-[0.98] border-slate-200 bg-slate-50 text-slate-600 hover:border-dlp-primary hover:text-dlp-primary focus:ring-2 focus:ring-dlp-primary/50 focus:border-dlp-primary"
                   >
                     {stage}
                   </button>
@@ -125,7 +125,7 @@ const DoughbotPage: React.FC = () => {
                     key={item.val}
                     onClick={() => setProblem(item.val)}
                     className={`relative p-4 rounded-xl text-left border-2 transition-all duration-200 ${problem === item.val
-                        ? 'border-dlp-brand bg-lime-50/50 ring-1 ring-dlp-brand shadow-md transform scale-[1.02]'
+                        ? 'border-dlp-primary bg-lime-50/50 ring-1 ring-dlp-primary shadow-md transform scale-[1.02]'
                         : 'border-slate-100 bg-white hover:border-slate-300 hover:bg-slate-50'
                       }`}
                   >
@@ -133,7 +133,7 @@ const DoughbotPage: React.FC = () => {
                     <div className="font-bold text-slate-800 text-sm">{item.label}</div>
                     <div className="text-xs text-slate-500 mt-1">{item.desc}</div>
                     {problem === item.val && (
-                      <div className="absolute top-3 right-3 text-dlp-brand">
+                      <div className="absolute top-3 right-3 text-dlp-primary">
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
@@ -154,11 +154,11 @@ const DoughbotPage: React.FC = () => {
                     rows={3}
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="block w-full rounded-xl border-slate-300 bg-slate-50 py-3 px-4 shadow-sm focus:border-dlp-brand focus:outline-none focus:ring-dlp-brand sm:text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:bg-white"
+                    className="block w-full rounded-xl border-slate-300 bg-slate-50 py-3 px-4 shadow-sm focus:border-dlp-primary focus:outline-none focus:ring-dlp-primary sm:text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:bg-white"
                     placeholder={t('doughbot.description_placeholder_detailed')}
                   />
                   <div className="absolute right-3 bottom-3 text-slate-400">
-                    <AssistantIcon className="w-4 h-4 opacity-50" />
+                    <SparklesIcon className="w-4 h-4 opacity-50" />
                   </div>
                 </div>
               </div>
@@ -183,7 +183,7 @@ const DoughbotPage: React.FC = () => {
                   <LoadingSpinner className="w-5 h-5 text-white" />
                 ) : (
                   <>
-                    <AssistantIcon className="h-5 w-5 text-lime-400 animate-pulse" />
+                    <SparklesIcon className="h-5 w-5 text-lime-400 animate-pulse" />
                     <span>{t('ui.analyze_with_dough_intelligence')}</span>
                   </>
                 )}
@@ -210,7 +210,7 @@ const DoughbotPage: React.FC = () => {
 
               <div className="text-center max-w-lg mx-auto space-y-6">
                 <div className="w-20 h-20 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <AssistantIcon className="w-10 h-10 text-dlp-brand-hover" />
+                  <SparklesIcon className="w-10 h-10 text-dlp-primary-hover" />
                 </div>
 
                 <div>
@@ -237,7 +237,7 @@ const DoughbotPage: React.FC = () => {
                   </p>
                   <button
                     onClick={() => openPaywall('doughbot')}
-                    className="w-full py-3 bg-dlp-brand hover:bg-lime-400 text-slate-900 font-bold rounded-lg transition-colors shadow-lg shadow-dlp-brand/25"
+                    className="w-full py-3 bg-dlp-primary hover:bg-lime-400 text-slate-900 font-bold rounded-lg transition-colors shadow-lg shadow-dlp-primary/25"
                   >
                     {t('doughbot.upgrade_cta')}
                   </button>

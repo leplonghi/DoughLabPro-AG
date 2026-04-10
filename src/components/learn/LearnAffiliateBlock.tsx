@@ -74,7 +74,7 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                     <ExternalLink
                         key={product.id}
                         href={product.affiliateLink}
-                        className="group flex bg-dlp-bg-card rounded-lg border border-dlp-border overflow-hidden hover:border-dlp-accent hover:shadow-dlp-md transition-all h-20"
+                        className="group flex bg-dlp-bg-card rounded-lg border border-dlp-border overflow-hidden hover:border-dlp-primary hover:shadow-dlp-md transition-all h-20"
                     >
                         {/* Image - Fixed width */}
                         <div className="w-20 shrink-0 bg-slate-50 relative overflow-hidden">
@@ -90,13 +90,13 @@ const LearnAffiliateBlock: React.FC<LearnAffiliateBlockProps> = ({ placementKeys
                         {/* Content */}
                         <div className="flex-1 p-2.5 flex flex-col justify-between min-w-0">
                             <div className="flex justify-between items-start gap-2">
-                                <span className="text-xs font-semibold text-dlp-accent bg-dlp-accent/10 px-2 py-0.5 rounded-full shrink-0">
+                                <span className="text-xs font-semibold text-dlp-primary bg-dlp-primary/10 px-2 py-0.5 rounded-full shrink-0">
                                     {product.category === 'equipment' ? t('learn.tool_398') : t('learn.ingredient_399')}
                                 </span>
-                                <ExternalLinkIcon className="h-3.5 w-3.5 text-dlp-text-muted group-hover:text-dlp-accent transition-colors shrink-0" />
+                                <ExternalLinkIcon className="h-3.5 w-3.5 text-dlp-text-muted group-hover:text-dlp-primary transition-colors shrink-0" />
                             </div>
 
-                            <h5 className="font-bold text-dlp-text-primary text-sm leading-tight truncate group-hover:text-dlp-accent-hover transition-colors">
+                            <h5 className="font-bold text-dlp-text-primary text-sm leading-tight truncate group-hover:text-dlp-primary-hover transition-colors">
                                 {product.name}
                             </h5>
                         </div>

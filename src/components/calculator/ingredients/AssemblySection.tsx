@@ -105,11 +105,11 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                         <h3 className="text-base font-bold text-slate-800">
                             {t('calculator.assembly_components')}
                         </h3>
-                        {health.status === 'healthy' && <ShieldCheckIcon className="h-4 w-4 text-dlp-brand" />}
+                        {health.status === 'healthy' && <ShieldCheckIcon className="h-4 w-4 text-dlp-primary" />}
                         {health.status !== 'healthy' && <ExclamationTriangleIcon className="h-4 w-4 text-amber-500" />}
                         {/* Ultra-Didactic Info Tooltip */}
                         <div className="group relative">
-                            <InformationCircleIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-dlp-brand transition-colors" />
+                            <InformationCircleIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-dlp-primary transition-colors" />
                             <DidacticTooltip
                                 title={t('calculator.what_are_assembly_components')}
                                 description={t('calculator.assembly_components_simple')}
@@ -224,7 +224,7 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                                                     type="number"
                                                     value={quantities[item.id] || getSuggestedQuantity(item)}
                                                     onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value) || 0)}
-                                                    className="w-16 px-2 py-1 text-xs border border-slate-200 rounded focus:border-dlp-brand focus:ring-1 focus:ring-dlp-brand"
+                                                    className="w-16 px-2 py-1 text-xs border border-slate-200 rounded focus:border-dlp-primary focus:ring-1 focus:ring-dlp-primary"
                                                     min="0"
                                                     step="10"
                                                 />
@@ -354,7 +354,7 @@ export const AssemblySection: React.FC<AssemblySectionProps> = ({ style, selecte
                         content={t('calculator.try_these_first')}
                         icon="⭐"
                     >
-                        <InformationCircleIcon className="h-3.5 w-3.5 text-slate-300 cursor-help hover:text-dlp-brand transition-colors" />
+                        <InformationCircleIcon className="h-3.5 w-3.5 text-slate-300 cursor-help hover:text-dlp-primary transition-colors" />
                     </SimpleTooltip>
                 </div>
                 <div className="flex flex-wrap gap-1.5">

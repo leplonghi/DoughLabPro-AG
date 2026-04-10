@@ -94,7 +94,7 @@ const PairingToolPage: React.FC = () => {
                         id="pairing-ingredient"
                         value={selectedIngredient}
                         onChange={(e) => setSelectedIngredient(e.target.value as keyof typeof PAIRING_GUIDES)}
-                        className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-medium text-slate-800 focus:border-dlp-brand focus:bg-white focus:outline-none focus:ring-4 focus:ring-dlp-brand/10"
+                        className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-medium text-slate-800 focus:border-dlp-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-dlp-primary/10"
                     >
                         {Object.entries(PAIRING_GUIDES).map(([value, guide]) => (
                             <option key={value} value={value}>

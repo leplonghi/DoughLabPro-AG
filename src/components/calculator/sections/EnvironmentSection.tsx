@@ -114,7 +114,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                         </label>
                         {isUsingDefaultOvenMax && (
                             <div className="flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/55 dark:text-emerald-100">
-                                <div className="w-1 h-1 rounded-full bg-dlp-brand animate-pulse" />
+                                <div className="w-1 h-1 rounded-full bg-dlp-primary animate-pulse" />
                                 {defaultOven?.name} PROfILE
                             </div>
                         )}
@@ -139,7 +139,7 @@ const EnvironmentSection: React.FC<EnvironmentSectionProps> = ({
                         <div className="mt-3 text-right">
                             <button
                                 onClick={() => onConfigChange({ bakingTempC: defaultOven.maxTemperature })}
-                                className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1B4332] hover:underline decoration-dlp-brand decoration-2 underline-offset-4 dark:text-emerald-100"
+                                className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1B4332] hover:underline decoration-dlp-primary decoration-2 underline-offset-4 dark:text-emerald-100"
                             >
                                 Revert to {defaultOven.name} ({defaultOven.maxTemperature}°C)
                             </button>

@@ -50,7 +50,7 @@ const LevainLayout: React.FC<LevainLayoutProps> = ({ children, levainName, activ
                 onClick={() => onTabChange(item.id)}
                 aria-pressed={activeTab === item.id}
                 className={`flex items-center justify-center gap-2 rounded-2xl border px-3 py-3 text-center text-sm font-bold transition-all sm:justify-start sm:rounded-none sm:border-x-0 sm:border-t-0 sm:px-1 sm:py-3 ${activeTab === item.id
-                    ? 'border-dlp-brand bg-emerald-50/90 text-dlp-brand-hover sm:bg-transparent'
+                    ? 'border-dlp-primary bg-emerald-50/90 text-dlp-primary-hover sm:bg-transparent'
                     : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 sm:hover:bg-transparent'
                   }`}
               >

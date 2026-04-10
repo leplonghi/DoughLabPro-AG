@@ -23,12 +23,12 @@ const TimelineStep: React.FC<{ step: ScheduleStep; index: number; isLast: boolea
 
     const getIcon = () => {
         switch (step.id) {
-            case 'target': return <PizzaSliceIcon className="h-6 w-6 text-dlp-accent" />;
+            case 'target': return <PizzaSliceIcon className="h-6 w-6 text-dlp-primary" />;
             case 'preheat': return <FireIcon className="h-6 w-6 text-orange-500" />;
             case 'mix_poolish':
             case 'mix_biga': return <BeakerIcon className="h-6 w-6 text-indigo-500" />;
             case 'mix_final': return <BowlIcon className="h-6 w-6 text-indigo-500" />;
-            case 'ball': return <ShapingIcon className="h-6 w-6 text-dlp-brand" />;
+            case 'ball': return <ShapingIcon className="h-6 w-6 text-dlp-primary" />;
             default: return <ClockIcon className="h-6 w-6 text-slate-400" />;
         }
     };
@@ -39,7 +39,7 @@ const TimelineStep: React.FC<{ step: ScheduleStep; index: number; isLast: boolea
                 <div className="absolute top-10 left-[19px] bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700 group-last:hidden" />
             )}
 
-            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border-2 border-dlp-bg-muted shadow-sm z-10 group-hover:border-dlp-accent transition-colors">
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border-2 border-dlp-bg-muted shadow-sm z-10 group-hover:border-dlp-primary transition-colors">
                 {getIcon()}
             </div>
 
@@ -56,7 +56,7 @@ const TimelineStep: React.FC<{ step: ScheduleStep; index: number; isLast: boolea
                         )}
                     </div>
                     <div className="text-right">
-                        <span className="block font-mono text-sm font-bold text-dlp-accent bg-dlp-accent/10 px-2 py-1 rounded">
+                        <span className="block font-mono text-sm font-bold text-dlp-primary bg-dlp-primary/10 px-2 py-1 rounded">
                             {format(step.time, 'HH:mm')}
                         </span>
                         <span className="text-[10px] text-gray-400 block mt-1">

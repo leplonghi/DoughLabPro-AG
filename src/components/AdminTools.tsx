@@ -85,7 +85,7 @@ export const AdminTools: React.FC = () => {
             <div className="mb-3 text-xs opacity-80 space-y-1">
                 <div>UID: {firebaseUser?.uid.slice(0, 8)}...</div>
                 <div>Email: {firebaseUser?.email}</div>
-                <div>Current Plan: <strong className="text-dlp-accent">{user.plan}</strong></div>
+                <div>Current Plan: <strong className="text-dlp-primary">{user.plan}</strong></div>
                 <div>isPro: <strong className={user.isPro ? 'text-dlp-success' : 'text-dlp-error'}>{user.isPro ? 'true' : 'false'}</strong></div>
             </div>
 
@@ -94,7 +94,7 @@ export const AdminTools: React.FC = () => {
                 disabled={loading}
                 className={`w-full p-2.5 rounded-lg font-bold text-sm transition-all ${loading
                     ? 'bg-dlp-text-muted cursor-not-allowed opacity-60'
-                    : 'bg-dlp-accent hover:bg-dlp-accent-hover text-white shadow-md hover:shadow-lg'
+                    : 'bg-dlp-primary hover:bg-dlp-primary-hover text-white shadow-md hover:shadow-lg'
                     }`}
             >
                 {loading ? '⏳ Processing...' : '✨ Grant Pro Access'}

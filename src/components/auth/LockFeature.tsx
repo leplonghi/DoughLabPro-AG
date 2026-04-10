@@ -84,7 +84,7 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-dlp-bg/40 backdrop-blur-[1px] z-10 p-3 text-center transition-all duration-300">
                 <div className="flex flex-col items-center justify-center p-3 bg-dlp-bg-card/90 backdrop-blur-md rounded-xl shadow-dlp-lg border border-dlp-border transform transition-all hover:scale-105">
                     {showLockIcon && (
-                        <div className="bg-dlp-accent/10 text-dlp-accent p-2 rounded-full mb-2 shadow-dlp-sm">
+                        <div className="bg-dlp-primary/10 text-dlp-primary p-2 rounded-full mb-2 shadow-dlp-sm">
                             <LockClosedIcon className="w-4 h-4" />
                         </div>
                     )}
@@ -97,7 +97,7 @@ export const LockFeature: React.FC<LockFeatureProps> = ({
 
                     <button
                         onClick={handleUnlockClick}
-                        className="bg-dlp-accent hover:bg-dlp-accent-hover text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors shadow-dlp-sm"
+                        className="bg-dlp-primary hover:bg-dlp-primary-hover text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors shadow-dlp-sm"
                     >{t('auth.view_plans')}</button>
                 </div>
             </div>

@@ -84,12 +84,12 @@ export const PostComments: React.FC<PostCommentsProps> = ({ postId, onCommentAdd
                         disabled={!canWriteCommunity}
                         aria-disabled={!canWriteCommunity}
                         placeholder={t('community.add_a_comment')}
-                        className="w-full pl-4 pr-12 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-dlp-brand"
+                        className="w-full pl-4 pr-12 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-dlp-primary"
                     />
                     <button
                         type="submit"
                         disabled={!newComment.trim() || submitting || !canWriteCommunity}
-                        className="absolute right-1.5 top-1.5 p-1.5 bg-dlp-brand-hover text-white rounded-full hover:bg-lime-700 disabled:opacity-50 disabled:hover:bg-dlp-brand hover:text-white-hover transition-colors"
+                        className="absolute right-1.5 top-1.5 p-1.5 bg-dlp-primary-hover text-white rounded-full hover:bg-lime-700 disabled:opacity-50 disabled:hover:bg-dlp-primary hover:text-white-hover transition-colors"
                     >
                         <Send className="h-4 w-4" />
                     </button>

@@ -94,7 +94,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                                     group flex flex-col h-full relative
                                 `}
                             >
-                                <div className={`h-1.5 w-full ${themeColor.bg.replace('50', '500')}`} /> {/* e.g. bg-dlp-brand */}
+                                <div className={`h-1.5 w-full ${themeColor.bg.replace('50', '500')}`} /> {/* e.g. bg-dlp-primary */}
 
                                 <div className="p-6 flex-1 flex flex-col">
                                     <div className="flex items-center justify-between mb-4">
@@ -110,7 +110,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                                         </div>
                                     </div>
 
-                                    <h3 className="text-xl font-bold text-slate-900 mb-3 transition-colors line-clamp-2 group-hover:text-dlp-brand-hover">
+                                    <h3 className="text-xl font-bold text-slate-900 mb-3 transition-colors line-clamp-2 group-hover:text-dlp-primary-hover">
                                         {article.title}
                                     </h3>
                                     <p className="text-slate-500 text-sm line-clamp-3 mb-6 flex-1 leading-relaxed">
@@ -121,7 +121,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                                         <div className={`
                                             w-8 h-8 rounded-full flex items-center justify-center 
                                             bg-stone-50 text-stone-400 
-                                            group-hover:bg-white group-hover:text-dlp-brand-hover
+                                            group-hover:bg-white group-hover:text-dlp-primary-hover
                                             transition-all duration-300
                                         `}>
                                             <ArrowLeftIcon className="w-4 h-4 rotate-180" />
@@ -137,7 +137,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
                             <BeakerIcon className="w-12 h-12 text-stone-300 mx-auto mb-4" />
                             <p className="text-slate-500 text-lg font-medium">{t('learn.content_brewing')}</p>
                             <p className="text-slate-400 text-sm">{t('learn.no_articles_found_in_this_category_yet')}</p>
-                            <button onClick={() => navigate('learn')} className="mt-6 text-dlp-brand-hover hover:text-lime-700 font-bold text-sm uppercase tracking-wide">{t('learn.return_to_learn_home')}</button>
+                            <button onClick={() => navigate('learn')} className="mt-6 text-dlp-primary-hover hover:text-lime-700 font-bold text-sm uppercase tracking-wide">{t('learn.return_to_learn_home')}</button>
                         </AppSurface>
                     )}
                 </div>

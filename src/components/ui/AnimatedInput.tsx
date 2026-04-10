@@ -83,7 +83,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
     ${type === 'number' ? 'pr-20' : ''}
     ${error
             ? 'border-red-300 focus:border-red-500 bg-red-50/30'
-            : 'border-slate-200 focus:border-dlp-brand bg-white hover:border-slate-300'
+            : 'border-slate-200 focus:border-dlp-primary bg-white hover:border-slate-300'
         }
     ${disabled ? 'opacity-50 cursor-not-allowed bg-slate-50' : ''}
     ${showFloatingLabel ? 'pt-6 pb-2' : ''}
@@ -97,7 +97,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
                     className={`
             absolute left-4 pointer-events-none transition-all duration-300
             ${showFloatingLabel
-                            ? 'top-2 text-xs font-semibold text-dlp-brand'
+                            ? 'top-2 text-xs font-semibold text-dlp-primary'
                             : 'top-1/2 -translate-y-1/2 text-base text-slate-500'
                         }
             ${error ? 'text-red-500' : ''}
@@ -112,7 +112,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
             <div className="relative">
                 {/* Left Icon */}
                 {icon && iconPosition === 'left' && (
-                    <div className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors duration-300 ${isFocused ? 'text-dlp-brand' : 'text-slate-400'
+                    <div className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors duration-300 ${isFocused ? 'text-dlp-primary' : 'text-slate-400'
                         }`}>
                         {icon}
                     </div>
@@ -139,7 +139,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
 
                 {/* Right Icon */}
                 {icon && iconPosition === 'right' && !type.includes('number') && (
-                    <div className={`absolute right-3 top-1/2 -translate-y-1/2 transition-colors duration-300 ${isFocused ? 'text-dlp-brand' : 'text-slate-400'
+                    <div className={`absolute right-3 top-1/2 -translate-y-1/2 transition-colors duration-300 ${isFocused ? 'text-dlp-primary' : 'text-slate-400'
                         }`}>
                         {icon}
                     </div>

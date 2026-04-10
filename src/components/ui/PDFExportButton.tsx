@@ -55,7 +55,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
             header.style.display = 'flex';
             header.style.justifyContent = 'space-between';
             header.style.alignItems = 'center';
-            header.style.borderBottom = '2px solid #51a145'; // dlp-brand
+            header.style.borderBottom = '2px solid #51a145'; // dlp-primary
             header.style.paddingBottom = '20px';
             header.style.marginBottom = '30px';
 
@@ -155,7 +155,7 @@ const PDFExportButton: React.FC<PDFExportButtonProps> = ({
                 .pdf-mode .rounded-xl, .pdf-mode .rounded-2xl { border-radius: 6px !important; }
                 
                 /* Specific component tweaks */
-                .pdf-mode .text-dlp-brand-hover { color: #1B4332 !important; }
+                .pdf-mode .text-dlp-primary-hover { color: #1B4332 !important; }
                 .pdf-mode .bg-lime-50 { background-color: #f7fee7 !important; border: 1px solid #d9f99d; }
                 .pdf-mode .bg-slate-50 { background-color: #f8fafc !important; }
                 

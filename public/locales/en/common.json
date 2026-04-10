@@ -4025,7 +4025,7 @@
         "please_upload_an_image_file_jpg_png_webp": "Please upload an image file (JPG, PNG, WEBP).",
         "image_must_be_smaller_than_5mb": "Image must be smaller than 5MB.",
         "failed_to_upload_image_please_try_again": "Failed to upload image. Please try again.",
-        "h6_w6_textdlpaccent": "h-6 w-6 text-dlp-accent",
+        "h6_w6_textdlpaccent": "h-6 w-6 text-dlp-primary",
         "download_pdf": "Download PDF",
         "error_generating_pdf": "Error generating PDF:",
         "blur2px": "blur-[2px]",

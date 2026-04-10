@@ -71,7 +71,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                             <div className="p-5 border-b border-dlp-border flex justify-between items-center bg-slate-50">
                                 <div>
                                     <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
-                                        <AlertCircle className="w-5 h-5 text-dlp-accent" />
+                                        <AlertCircle className="w-5 h-5 text-dlp-primary" />
                                         Dough Rescue
                                     </h3>
                                     <p className="text-xs text-dlp-text-muted">Don't panic. Everything is fixable.</p>
@@ -132,7 +132,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
 
                                         <button
                                             onClick={onClose}
-                                            className="w-full py-3 bg-dlp-accent hover:bg-dlp-accent-hover text-white rounded-xl font-bold shadow-dlp-sm transition-all"
+                                            className="w-full py-3 bg-dlp-primary hover:bg-dlp-primary-hover text-white rounded-xl font-bold shadow-dlp-sm transition-all"
                                         >
                                             Got it, trying this now
                                         </button>

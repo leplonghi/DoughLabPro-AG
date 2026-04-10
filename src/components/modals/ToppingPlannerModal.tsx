@@ -69,36 +69,36 @@ export const ToppingPlannerModal: React.FC<{ onClose: () => void; totalBalls: nu
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
-            <div className="relative w-full max-w-3xl bg-dlp-bg-card rounded-2xl p-6 shadow-dlp-lg" onClick={e => e.stopPropagation()}>
+            <div className="relative w-full max-w-3xl bg-white rounded-2xl p-6 shadow-xl" onClick={e => e.stopPropagation()}>
                 <h2 className="text-xl font-bold mb-4">{t('general.ingredients_planner')}</h2>
-                <div className="p-3 rounded-lg bg-dlp-bg-muted text-center font-semibold mb-4 text-dlp-text-primary">
+                <div className="p-3 rounded-lg bg-slate-100 text-center font-semibold mb-4">
                     Total Pieces in Bake: {totalBalls}
                 </div>
 
                 <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                     {flavors.map((flavor, flavorIndex) => (
-                        <div key={flavorIndex} className="p-4 border border-dlp-border rounded-lg">
+                        <div key={flavorIndex} className="p-4 border rounded-lg">
                             <div className="flex items-center gap-3 mb-3">
-                                <input type="text" value={flavor.name} onChange={e => handleFlavorChange(flavorIndex, 'name', e.target.value)} className="font-semibold text-lg flex-grow border-0 p-1 focus:ring-0 text-dlp-text-primary" />
-                                <input type="number" value={flavor.assignedBalls} onChange={e => handleFlavorChange(flavorIndex, 'assignedBalls', e.target.value)} className="w-20 rounded-md border border-dlp-border bg-dlp-bg-muted text-sm text-dlp-text-primary focus:border-dlp-primary focus:ring-dlp-primary" />
+                                <input type="text" value={flavor.name} onChange={e => handleFlavorChange(flavorIndex, 'name', e.target.value)} className="font-semibold text-lg flex-grow border-0 p-1 focus:ring-0" />
+                                <input type="number" value={flavor.assignedBalls} onChange={e => handleFlavorChange(flavorIndex, 'assignedBalls', e.target.value)} className="w-20 rounded-md border-slate-300 text-sm" />
                                 {flavors.length > 1 && <button onClick={() => removeFlavor(flavorIndex)}><TrashIcon className="h-5 w-5 text-red-500" /></button>}
                             </div>
                             <div className="space-y-2">
                                 {flavor.ingredients.map((ing, ingIndex) => (
                                     <div key={ingIndex} className="flex items-center gap-2">
-                                        <input type="text" value={ing.name} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'name', e.target.value)} placeholder={t('general.ingredient')} className="flex-grow rounded-md border border-dlp-border bg-dlp-bg-muted text-sm text-dlp-text-primary focus:border-dlp-primary focus:ring-dlp-primary placeholder-dlp-text-muted" />
-                                        <input type="text" value={ing.amount} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'amount', e.target.value)} placeholder={t('general.qtyunit')} className="w-24 rounded-md border border-dlp-border bg-dlp-bg-muted text-sm text-dlp-text-primary focus:border-dlp-primary focus:ring-dlp-primary placeholder-dlp-text-muted" />
-                                        {flavor.ingredients.length > 1 && <button onClick={() => removeIngredient(flavorIndex, ingIndex)}><CloseIcon className="h-4 w-4 text-dlp-text-muted hover:text-dlp-text-secondary transition-colors" /></button>}
+                                        <input type="text" value={ing.name} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'name', e.target.value)} placeholder={t('general.ingredient')} className="flex-grow rounded-md border-slate-300 text-sm" />
+                                        <input type="text" value={ing.amount} onChange={e => handleIngredientChange(flavorIndex, ingIndex, 'amount', e.target.value)} placeholder={t('general.qtyunit')} className="w-24 rounded-md border-slate-300 text-sm" />
+                                        {flavor.ingredients.length > 1 && <button onClick={() => removeIngredient(flavorIndex, ingIndex)}><CloseIcon className="h-4 w-4 text-slate-400" /></button>}
                                     </div>
                                 ))}
-                                <button onClick={() => addIngredient(flavorIndex)} className="text-xs font-semibold text-dlp-primary hover:text-dlp-primary-hover flex items-center gap-1"><PlusCircleIcon className="h-4 w-4" />{t('common.add_ingredient')}</button>
+                                <button onClick={() => addIngredient(flavorIndex)} className="text-xs font-semibold text-dlp-primary-hover flex items-center gap-1"><PlusCircleIcon className="h-4 w-4" />{t('common.add_ingredient')}</button>
                             </div>
                         </div>
                     ))}
-                    <button onClick={addFlavor} disabled={remainingBalls <= 0} className="w-full text-sm font-semibold text-dlp-primary hover:text-dlp-primary-hover flex items-center justify-center gap-1 p-2 border-2 border-dashed border-dlp-border rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"><PlusCircleIcon className="h-5 w-5" />{t('common.add_variation')}</button>
+                    <button onClick={addFlavor} disabled={remainingBalls <= 0} className="w-full text-sm font-semibold text-dlp-primary-hover flex items-center justify-center gap-1 p-2 border-2 border-dashed rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"><PlusCircleIcon className="h-5 w-5" />{t('common.add_variation')}</button>
                 </div>
 
-                <button onClick={calculateToppings} disabled={remainingBalls !== 0} className="mt-4 w-full bg-dlp-primary text-white font-semibold py-2 rounded-lg shadow-dlp-lg shadow-dlp-primary/20 hover:bg-dlp-primary-hover disabled:bg-dlp-bg-muted disabled:text-dlp-text-muted disabled:cursor-not-allowed">
+                <button onClick={calculateToppings} disabled={remainingBalls !== 0} className="mt-4 w-full bg-dlp-primary text-white font-semibold py-2 rounded-lg disabled:bg-slate-400 disabled:cursor-not-allowed">
                     {remainingBalls !== 0 ? `${remainingBalls} piece(s) remaining to allocate` : t('ui.calculate_shopping_list_431')}
                 </button>
 

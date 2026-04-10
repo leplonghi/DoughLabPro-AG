@@ -23,7 +23,7 @@ const ToppingsPage: React.FC = () => {
     return (
         <div className="mx-auto max-w-4xl animate-[fadeIn_0.5s_ease-in-out]">
             <div className="text-center">
-                <PizzaSliceIcon className="mx-auto h-12 w-12 text-dlp-brand" />
+                <PizzaSliceIcon className="mx-auto h-12 w-12 text-dlp-primary" />
                 <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{t('common.toppings_library')}</h1>
                 <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
                     Explore classic and modern pizza topping combinations, with quantity guides for different sizes.
@@ -36,7 +36,7 @@ const ToppingsPage: React.FC = () => {
 
                     const content = (
                         <div key={category}>
-                            <h2 className="text-2xl font-bold capitalize text-dlp-text-primary border-b-2 border-dlp-accent pb-2 mb-6">
+                            <h2 className="text-2xl font-bold capitalize text-dlp-text-primary border-b-2 border-dlp-primary pb-2 mb-6">
                                 {category}
                             </h2>
                             <div className="space-y-8">

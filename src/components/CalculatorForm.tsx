@@ -378,7 +378,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
               autoComplete="off"
               value={presetName}
               onChange={(event) => setPresetName(event.target.value)}
-              className="mt-2 block w-full rounded-xl border border-slate-300 px-3 py-2.5 text-slate-900 shadow-sm transition-colors focus:border-dlp-brand focus:outline-none focus:ring-2 focus:ring-dlp-brand"
+              className="mt-2 block w-full rounded-xl border border-slate-300 px-3 py-2.5 text-slate-900 shadow-sm transition-colors focus:border-dlp-primary focus:outline-none focus:ring-2 focus:ring-dlp-primary"
               placeholder="Saturday dough setup..."
             />
 
@@ -400,7 +400,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
                 type="button"
                 onClick={handleConfirmSavePreset}
                 disabled={isSavingPreset}
-                className="flex-1 rounded-xl bg-dlp-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-dlp-brand-hover disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex-1 rounded-xl bg-dlp-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-dlp-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSavingPreset ? 'Saving...' : 'Save Preset'}
               </button>

@@ -173,8 +173,8 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                         active={true}
                     />
                     <div className="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50 mb-4">
-                        <p className="text-[11px] text-dlp-brand flex items-start gap-2 italic">
-                            <span className="bg-white p-1 rounded-full shadow-sm"><LightBulbIcon className="w-3 h-3 text-dlp-brand" /></span>
+                        <p className="text-[11px] text-dlp-primary flex items-start gap-2 italic">
+                            <span className="bg-white p-1 rounded-full shadow-sm"><LightBulbIcon className="w-3 h-3 text-dlp-primary" /></span>
                             {t('calculator.wizard_style_tip', { defaultValue: 'Start with a classic style. You can customize everything later.' })}
                         </p>
                     </div>
@@ -222,8 +222,8 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                         active={true}
                     />
                     <div className="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50 mb-4">
-                        <p className="text-[11px] text-dlp-brand flex items-start gap-2 italic">
-                            <span className="bg-white p-1 rounded-full shadow-sm"><LightBulbIcon className="w-3 h-3 text-dlp-brand" /></span> {t('calculator.wizard_quantity_tip', { defaultValue: 'You can define the total flour weight or the number of units.' })}
+                        <p className="text-[11px] text-dlp-primary flex items-start gap-2 italic">
+                            <span className="bg-white p-1 rounded-full shadow-sm"><LightBulbIcon className="w-3 h-3 text-dlp-primary" /></span> {t('calculator.wizard_quantity_tip', { defaultValue: 'You can define the total flour weight or the number of units.' })}
                         </p>
                     </div>
 
@@ -274,15 +274,15 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                         active={true}
                     />
                     <div className="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50 mb-4">
-                        <p className="text-[11px] text-dlp-brand flex items-start gap-2 italic">
-                            <span className="bg-white p-1 rounded-full shadow-sm"><BeakerIcon className="w-3 h-3 text-dlp-brand" /></span> {t('calculator.wizard_dough_tip', { defaultValue: 'Higher hydration makes softer dough but harder to handle.' })}
+                        <p className="text-[11px] text-dlp-primary flex items-start gap-2 italic">
+                            <span className="bg-white p-1 rounded-full shadow-sm"><BeakerIcon className="w-3 h-3 text-dlp-primary" /></span> {t('calculator.wizard_dough_tip', { defaultValue: 'Higher hydration makes softer dough but harder to handle.' })}
                         </p>
                     </div>
 
                     {/* Flour Selector (Crucial for Hydration) */}
                     <div>
                         <h3 className="text-lg font-bold text-dlp-text-primary mb-3 flex items-center gap-2">
-                            <span className="bg-white p-1.5 rounded-full shadow-sm border border-slate-100"><FlourIcon className="w-5 h-5 text-dlp-brand" /></span>
+                            <span className="bg-white p-1.5 rounded-full shadow-sm border border-slate-100"><FlourIcon className="w-5 h-5 text-dlp-primary" /></span>
                             {t('calculator.wz_flour_title', { defaultValue: 'Your Flour' })}
                         </h3>
                         <div className="bg-white p-4 rounded-xl border border-slate-200">
@@ -298,7 +298,7 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                     {/* Texture Selector */}
                     <div>
                         <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
-                            <span className="bg-white p-1.5 rounded-full shadow-sm border border-slate-100"><BeakerIcon className="w-5 h-5 text-dlp-brand" /></span>
+                            <span className="bg-white p-1.5 rounded-full shadow-sm border border-slate-100"><BeakerIcon className="w-5 h-5 text-dlp-primary" /></span>
                             {t('calculator.wz_texture_title', { defaultValue: 'Consistency & Texture' })}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -308,14 +308,14 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                                 className={`
                                     relative p-4 rounded-2xl border-2 text-left transition-all duration-300 hover:scale-[1.02]
                                     ${config.hydration < 60
-                                        ? 'border-dlp-brand bg-gradient-to-br from-dlp-brand to-dlp-brand-hover/5 shadow-sm'
-                                        : 'border-slate-100 bg-white hover:border-dlp-brand/20'}
+                                        ? 'border-dlp-primary bg-gradient-to-br from-dlp-primary to-dlp-primary-hover/5 shadow-sm'
+                                        : 'border-slate-100 bg-white hover:border-dlp-primary/20'}
                                 `}
                             >
                                 <div className="mb-3 inline-flex p-2 rounded-full bg-white shadow-sm border border-slate-100">
-                                    <CubeIcon className="w-6 h-6 text-dlp-brand" />
+                                    <CubeIcon className="w-6 h-6 text-dlp-primary" />
                                 </div>
-                                <h4 className={`font-bold mb-1 ${config.hydration < 60 ? 'text-dlp-brand' : 'text-slate-800'}`}>{t('calculator.wz_texture_easy_title', { defaultValue: 'Firm & Easy' })}</h4>
+                                <h4 className={`font-bold mb-1 ${config.hydration < 60 ? 'text-dlp-primary' : 'text-slate-800'}`}>{t('calculator.wz_texture_easy_title', { defaultValue: 'Firm & Easy' })}</h4>
                                 <p className="text-[11px] text-slate-500 mb-2">{t('calculator.wz_texture_easy_desc', { defaultValue: 'Easier to handle dough. Ideal for beginners. Results in crispier crusts.' })}</p>
                                 <span className="inline-block px-2 py-1 bg-slate-100 text-slate-500 rounded text-[9px] font-bold uppercase tracking-widest">{t('calculator.wz_hydration_easy', { defaultValue: '~58% Hydration' })}</span>
                             </button>
@@ -326,14 +326,14 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                                 className={`
                                     relative p-4 rounded-2xl border-2 text-left transition-all duration-300 hover:scale-[1.02]
                                     ${config.hydration >= 60 && config.hydration < 68
-                                        ? 'border-dlp-brand bg-gradient-to-br from-dlp-brand to-dlp-brand-hover/5 shadow-sm'
-                                        : 'border-slate-100 bg-white hover:border-dlp-brand/30'}
+                                        ? 'border-dlp-primary bg-gradient-to-br from-dlp-primary to-dlp-primary-hover/5 shadow-sm'
+                                        : 'border-slate-100 bg-white hover:border-dlp-primary/30'}
                                 `}
                             >
                                 <div className="mb-3 inline-flex p-2 rounded-full bg-white shadow-sm border border-slate-100">
-                                    <ScaleIcon className="w-6 h-6 text-dlp-brand" />
+                                    <ScaleIcon className="w-6 h-6 text-dlp-primary" />
                                 </div>
-                                <h4 className={`font-bold mb-1 ${config.hydration >= 60 && config.hydration < 68 ? 'text-dlp-brand' : 'text-slate-800'}`}>{t('calculator.wz_texture_balanced_title', { defaultValue: 'Balanced' })}</h4>
+                                <h4 className={`font-bold mb-1 ${config.hydration >= 60 && config.hydration < 68 ? 'text-dlp-primary' : 'text-slate-800'}`}>{t('calculator.wz_texture_balanced_title', { defaultValue: 'Balanced' })}</h4>
                                 <p className="text-[11px] text-slate-500 mb-2">{t('calculator.wz_texture_balanced_desc', { defaultValue: 'The sweet spot between ease and lightness. Airy and soft crusts.' })}</p>
                                 <span className="inline-block px-2 py-1 bg-slate-100 text-slate-500 rounded text-[9px] font-bold uppercase tracking-widest">{t('calculator.wz_hydration_balanced', { defaultValue: '~63% Hydration' })}</span>
                             </button>
@@ -344,14 +344,14 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                                 className={`
                                     relative p-4 rounded-2xl border-2 text-left transition-all duration-300 hover:scale-[1.02]
                                     ${config.hydration >= 68
-                                        ? 'border-dlp-brand bg-gradient-to-br from-dlp-brand to-dlp-brand-hover/5 shadow-sm'
-                                        : 'border-slate-100 bg-white hover:border-dlp-brand/30'}
+                                        ? 'border-dlp-primary bg-gradient-to-br from-dlp-primary to-dlp-primary-hover/5 shadow-sm'
+                                        : 'border-slate-100 bg-white hover:border-dlp-primary/30'}
                                 `}
                             >
                                 <div className="mb-3 inline-flex p-2 rounded-full bg-white shadow-sm border border-slate-100">
-                                    <CloudIcon className="w-6 h-6 text-dlp-brand" />
+                                    <CloudIcon className="w-6 h-6 text-dlp-primary" />
                                 </div>
-                                <h4 className={`font-bold mb-1 ${config.hydration >= 68 ? 'text-dlp-brand' : 'text-slate-800'}`}>{t('calculator.wz_texture_airy_title', { defaultValue: 'Cloud (Advanced)' })}</h4>
+                                <h4 className={`font-bold mb-1 ${config.hydration >= 68 ? 'text-dlp-primary' : 'text-slate-800'}`}>{t('calculator.wz_texture_airy_title', { defaultValue: 'Cloud (Advanced)' })}</h4>
                                 <p className="text-[11px] text-slate-500 mb-2">{t('calculator.wz_texture_airy_desc', { defaultValue: 'Very wet and sticky dough. Requires technique, but produces incredible alveoli.' })}</p>
                                 <span className="inline-block px-2 py-1 bg-slate-100 text-slate-500 rounded text-[9px] font-bold uppercase tracking-widest">{t('calculator.wz_hydration_airy', { defaultValue: '70%+ Hydration' })}</span>
                             </button>
@@ -361,7 +361,7 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                     {/* Time Selector */}
                     <div>
                         <h3 className="text-lg font-bold text-dlp-text-primary mb-3 flex items-center gap-2">
-                            <span className="bg-white p-1.5 rounded-full shadow-sm border border-slate-100"><ClockIcon className="w-5 h-5 text-dlp-brand" /></span>
+                            <span className="bg-white p-1.5 rounded-full shadow-sm border border-slate-100"><ClockIcon className="w-5 h-5 text-dlp-primary" /></span>
                             {t('calculator.wz_ferment_title', { defaultValue: 'Fermentation' })}
                         </h3>
                         {/* Note: We just simulate simplified choice, assuming Direct for simplicity in Wizard. */}
@@ -371,15 +371,15 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                                 className={`
                                     flex items-start gap-4 p-4 rounded-2xl border-2 transition-all duration-300
                                     ${config.yeastPercentage > 0.4
-                                        ? 'border-dlp-brand bg-gradient-to-br from-dlp-brand to-dlp-brand-hover/5 shadow-sm'
-                                        : 'border-slate-100 bg-white hover:border-dlp-brand/20'}
+                                        ? 'border-dlp-primary bg-gradient-to-br from-dlp-primary to-dlp-primary-hover/5 shadow-sm'
+                                        : 'border-slate-100 bg-white hover:border-dlp-primary/20'}
                                 `}
                             >
                                 <div className="flex-shrink-0 p-2 rounded-full bg-white shadow-sm border border-slate-100">
-                                    <RocketIcon className="w-6 h-6 text-dlp-brand" />
+                                    <RocketIcon className="w-6 h-6 text-dlp-primary" />
                                 </div>
                                 <div>
-                                    <h4 className={`font-bold ${config.yeastPercentage > 0.4 ? 'text-dlp-brand' : 'text-slate-800'}`}>{t('calculator.wz_time_fast_title', { defaultValue: 'Fast (Today)' })}</h4>
+                                    <h4 className={`font-bold ${config.yeastPercentage > 0.4 ? 'text-dlp-primary' : 'text-slate-800'}`}>{t('calculator.wz_time_fast_title', { defaultValue: 'Fast (Today)' })}</h4>
                                     <p className="text-[11px] text-slate-500 mt-1">{t('calculator.wz_time_fast_desc', { defaultValue: "Ready in 3-4 hours. Mild flavor, ideal for when you're in a rush." })}</p>
                                 </div>
                             </button>
@@ -389,15 +389,15 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                                 className={`
                                     flex items-start gap-4 p-4 rounded-2xl border-2 transition-all duration-300
                                     ${config.yeastPercentage <= 0.4
-                                        ? 'border-dlp-brand bg-gradient-to-br from-dlp-brand to-dlp-brand-hover/5 shadow-sm'
-                                        : 'border-slate-100 bg-white hover:border-dlp-brand/20'}
+                                        ? 'border-dlp-primary bg-gradient-to-br from-dlp-primary to-dlp-primary-hover/5 shadow-sm'
+                                        : 'border-slate-100 bg-white hover:border-dlp-primary/20'}
                                 `}
                             >
                                 <div className="flex-shrink-0 p-2 rounded-full bg-white shadow-sm border border-slate-100">
-                                    <MoonIcon className="w-6 h-6 text-dlp-brand" />
+                                    <MoonIcon className="w-6 h-6 text-dlp-primary" />
                                 </div>
                                 <div>
-                                    <h4 className={`font-bold ${config.yeastPercentage <= 0.4 ? 'text-dlp-brand' : 'text-slate-800'}`}>{t('calculator.wz_time_slow_title', { defaultValue: 'Slow (Tomorrow+)' })}</h4>
+                                    <h4 className={`font-bold ${config.yeastPercentage <= 0.4 ? 'text-dlp-primary' : 'text-slate-800'}`}>{t('calculator.wz_time_slow_title', { defaultValue: 'Slow (Tomorrow+)' })}</h4>
                                     <p className="text-[11px] text-slate-500 mt-1">{t('calculator.wz_time_slow_desc', { defaultValue: 'Rest in the fridge (Cold Ferment). Complex flavor and maximum digestibility.' })}</p>
                                 </div>
                             </button>
@@ -433,8 +433,8 @@ export const WizardMode: React.FC<WizardModeProps> = ({
                             active={true}
                         />
                         <div className="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50 mb-4">
-                            <p className="text-[11px] text-dlp-brand flex items-start gap-2 italic">
-                                <span className="bg-white p-1 rounded-full shadow-sm"><FireIcon className="w-3 h-3 text-dlp-brand" /></span> {t('calculator.wizard_env_tip', { defaultValue: 'Tell us about your kitchen and oven for the best results.' })}
+                            <p className="text-[11px] text-dlp-primary flex items-start gap-2 italic">
+                                <span className="bg-white p-1 rounded-full shadow-sm"><FireIcon className="w-3 h-3 text-dlp-primary" /></span> {t('calculator.wizard_env_tip', { defaultValue: 'Tell us about your kitchen and oven for the best results.' })}
                             </p>
                         </div>
 

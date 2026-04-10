@@ -93,7 +93,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({
                         {meta.completeness}
                     </StatusBadge>
                     {style.isPro && (
-              <StatusBadge tone="brand" size="sm" className="border-white/40 bg-white/90 text-dlp-brand-dark backdrop-blur">
+              <StatusBadge tone="brand" size="sm" className="border-white/40 bg-white/90 text-dlp-primary-dark backdrop-blur">
                             Pro
                         </StatusBadge>
                     )}
@@ -125,7 +125,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({
                                 metadata: { category: style.category },
                             })
                         }
-                        className="rounded-full bg-white/90 p-2 text-dlp-text-muted shadow-sm backdrop-blur transition-colors hover:text-pink-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+                        className="rounded-full bg-white/90 p-2 text-dlp-text-muted shadow-sm backdrop-blur transition-colors hover:text-pink-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                         aria-label={favorited ? `Remove ${meta.title} from favorites` : `Add ${meta.title} to favorites`}
                     >
                         <Heart className={`h-5 w-5 ${favorited ? 'fill-current text-pink-500' : ''}`} />
@@ -147,7 +147,7 @@ export const StyleCard: React.FC<StyleCardProps> = ({
             <div className="flex flex-1 flex-col p-5">
                 <div className="mb-4 flex flex-wrap gap-2">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
-                        <Droplets className="h-3.5 w-3.5 text-dlp-brand-hover" />
+                        <Droplets className="h-3.5 w-3.5 text-dlp-primary-hover" />
                         {meta.hydrationRange[0]}-{meta.hydrationRange[1]}%
                     </span>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">

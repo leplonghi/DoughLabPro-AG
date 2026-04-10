@@ -105,7 +105,7 @@ const PrivacyPage: React.FC = () => {
 
       <h3>11. How to exercise privacy and LGPD rights</h3>
       <p>
-        Send your request to <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+        Send your request to <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a>.
         We may request information reasonably necessary to confirm identity, understand scope, or validate authority.
         When applicable, requests will be handled within the deadlines established by law or within a reasonable
         operational timeframe when technical review is required.
@@ -136,8 +136,8 @@ const PrivacyPage: React.FC = () => {
 
       <h3>15. Contact</h3>
       <p>
-        Privacy and LGPD channel: <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a><br />
-        General support: <a href={`mailto:${LEGAL_SUPPORT_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_SUPPORT_EMAIL}</a>
+        Privacy and LGPD channel: <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a><br />
+        General support: <a href={`mailto:${LEGAL_SUPPORT_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_SUPPORT_EMAIL}</a>
       </p>
     </LegalPageLayout>
   );

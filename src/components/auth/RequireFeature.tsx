@@ -49,7 +49,7 @@ export const RequireFeature: React.FC<RequireFeatureProps> = ({ featureKey, chil
                     >{t('auth.back_to_lab')}</button>
                     <button
                         onClick={() => openPaywall ? openPaywall('general') : navigate('plans')}
-                        className="px-6 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-dlp-brand to-dlp-brand-hover hover:shadow-lg hover:scale-105 transition-all"
+                        className="px-6 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-dlp-primary to-dlp-primary-hover hover:shadow-lg hover:scale-105 transition-all"
                     >{t('auth.view_plans')}</button>
                 </div>
             </div>

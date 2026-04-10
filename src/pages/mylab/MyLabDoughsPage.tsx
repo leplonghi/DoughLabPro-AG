@@ -30,7 +30,7 @@ const MyLabDoughsPage: React.FC<MyLabDoughsPageProps> = ({ onNavigate }) => {
                     </div>
                     <button
                         onClick={() => onNavigate('calculator')}
-                        className="flex items-center gap-2 bg-dlp-brand text-white px-4 py-2 rounded-xl hover:bg-dlp-brand hover:text-white-hover transition-colors shadow-lg shadow-dlp-brand/20"
+                        className="flex items-center gap-2 bg-dlp-primary text-white px-4 py-2 rounded-xl hover:bg-dlp-primary hover:text-white-hover transition-colors shadow-lg shadow-dlp-primary/20"
                     >
                         <PlusCircleIcon className="h-5 w-5" />{t('mylab.start_new_dough')}</button>
                 </div>
@@ -60,10 +60,10 @@ const MyLabDoughsPage: React.FC<MyLabDoughsPageProps> = ({ onNavigate }) => {
                                     `}>
                                         {batch.status === BatchStatus.IN_PROGRESS ? t('ui.fermenting_416') : t('ui.planned_417')}
                                     </div>
-                                    <BeakerIcon className="h-5 w-5 text-slate-300 group-hover:text-dlp-brand transition-colors" />
+                                    <BeakerIcon className="h-5 w-5 text-slate-300 group-hover:text-dlp-primary transition-colors" />
                                 </div>
 
-                                <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-dlp-brand-hover transition-colors">
+                                <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-dlp-primary-hover transition-colors">
                                     {batch.name}
                                 </h3>
                                 <p className="text-sm text-slate-500 mb-4">

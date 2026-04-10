@@ -38,7 +38,7 @@ const LegalPageLayout: React.FC<LegalPageLayoutProps> = ({ title, lastUpdated, c
         </AppShellHeader>
 
         <AppSurface className="p-6 sm:p-10">
-          <div className="prose max-w-none text-dlp-text-secondary prose-a:text-dlp-accent prose-headings:text-dlp-text-primary">
+          <div className="prose max-w-none text-dlp-text-secondary prose-a:text-dlp-primary prose-headings:text-dlp-text-primary">
             {children}
           </div>
         </AppSurface>

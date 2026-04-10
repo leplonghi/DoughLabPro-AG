@@ -33,7 +33,7 @@ export const CommunityFilters: React.FC<CommunityFiltersProps> = ({ activeFilter
                         className={`
               inline-flex min-h-10 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all
               ${isActive
-                                ? 'bg-dlp-accent text-white border border-dlp-accent shadow-dlp-sm'
+                                ? 'bg-dlp-primary text-white border border-dlp-primary shadow-dlp-sm'
                                 : 'bg-dlp-bg-card text-dlp-text-secondary hover:bg-dlp-bg-muted border border-dlp-border'}
             `}
                     >

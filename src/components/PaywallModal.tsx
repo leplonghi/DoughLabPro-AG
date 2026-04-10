@@ -40,7 +40,7 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
                 {/* Header / Hero */}
                 <div className="bg-gradient-to-br from-dlp-bg-card to-dlp-bg-muted p-8 text-center relative overflow-hidden border-b border-dlp-border">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-dlp-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-dlp-primary/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-dlp-primary-light/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
                     <div className="relative z-10">
                         <div className="mx-auto w-16 h-16 bg-gradient-to-br from-dlp-primary to-dlp-primary-hover rounded-full flex items-center justify-center mb-4 shadow-lg shadow-dlp-primary/30">

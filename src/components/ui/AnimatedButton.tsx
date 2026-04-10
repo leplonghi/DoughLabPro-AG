@@ -43,8 +43,8 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = ({
     const variantClasses = {
         primary: 'bg-gradient-to-br from-[#51a145] to-[#36782c] text-white hover:brightness-110 hover:shadow-lg hover:shadow-emerald-500/30 shadow-md shadow-emerald-900/10',
         secondary: 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:shadow-md',
-        outline: 'border-2 border-dlp-brand text-dlp-brand hover:bg-dlp-brand hover:text-white hover:shadow-md',
-        ghost: 'text-dlp-brand hover:bg-dlp-brand/10 hover:shadow-sm',
+        outline: 'border-2 border-dlp-primary text-dlp-primary hover:bg-dlp-primary hover:text-white hover:shadow-md',
+        ghost: 'text-dlp-primary hover:bg-dlp-primary/10 hover:shadow-sm',
         danger: 'bg-red-500 text-white hover:bg-red-600 hover:shadow-lg hover:shadow-red-500/30',
     };
 

@@ -63,7 +63,7 @@ export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) 
         return (
             <LibraryPageLayout>
                 <div className="flex items-center justify-center min-h-[50vh]">
-                    <Loader2 className="h-8 w-8 animate-spin text-dlp-brand-hover" />
+                    <Loader2 className="h-8 w-8 animate-spin text-dlp-primary-hover" />
                 </div>
             </LibraryPageLayout>
         );
@@ -76,7 +76,7 @@ export const CommunityPostPage: React.FC<CommunityPostPageProps> = ({ postId }) 
                     <p className="text-gray-500 mb-4">{error || 'Post not found'}</p>
                     <button
                         onClick={() => navigate('community')}
-                        className="text-dlp-brand-hover font-medium hover:underline"
+                        className="text-dlp-primary-hover font-medium hover:underline"
                     >{t('community.return_to_community')}</button>
                 </div>
             </LibraryPageLayout>

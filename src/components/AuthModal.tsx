@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ToastProvider';
-import { isNativePlatform } from '@/capacitor/platform';
 import {
     CloseIcon,
     GoogleIcon,
@@ -23,7 +22,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const { t } = useTranslation(['common', 'auth']);
     const { loginWithGoogle, loginWithEmail, registerWithEmail, resetPassword, loginAsGuest } = useAuth();
     const { addToast } = useToast();
-    const isNative = isNativePlatform();
 
     const [view, setView] = useState<AuthView>('login');
     const [email, setEmail] = useState('');
@@ -65,13 +63,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         try {
             await loginWithGoogle();
             onClose();
-            addToast(isNative ? 'Signed in successfully.' : 'Signed in with Google.', 'success');
+            addToast('Signed in with Google.', 'success');
         } catch (err: any) {
             console.error(err);
-            if (!isNative && err.code === 'auth/unauthorized-domain') {
+            if (err.code === 'auth/unauthorized-domain') {
                 setError('This domain is not authorized for Google Sign-In. Contact support to finish setup.');
-            } else if (isNative && (err.code === 'auth/cancelled-popup-request' || err.code === 'auth/popup-closed-by-user')) {
-                setError('Google sign-in was cancelled before completion.');
             } else {
                 setError(err.message || 'Google sign-in failed. Try again in a moment.');
             }
@@ -285,7 +281,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-lg shadow-dlp-primary/20 transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
+                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-md transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                             >
                                 {isLoading ? <SpinnerIcon className="h-5 w-5 animate-spin" /> : 'Sign In'}
                             </button>
@@ -342,7 +338,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-lg shadow-dlp-primary/20 transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
+                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-md transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                             >
                                 {isLoading ? <SpinnerIcon className="h-5 w-5 animate-spin" /> : 'Create Account'}
                             </button>
@@ -353,7 +349,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         <div className="space-y-4">
                             {resetSent ? (
                                 <div className="text-center py-6">
-                                    <div className="mx-auto w-12 h-12 bg-lime-100 text-lime-700 rounded-full flex items-center justify-center mb-4">
+                                    <div className="mx-auto w-12 h-12 bg-lime-100 text-dlp-primary rounded-full flex items-center justify-center mb-4">
                                         <CheckCircleIcon className="w-6 h-6" />
                                     </div>
                                     <h3 className="text-lg font-semibold text-dlp-text-primary">{t('general.check_your_email')}</h3>
@@ -387,7 +383,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     <button
                                         type="submit"
                                         disabled={isLoading}
-                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-lg shadow-dlp-primary/20 transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
+                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-md transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                                     >
                                         {isLoading ? <SpinnerIcon className="h-5 w-5 animate-spin" /> : 'Send Reset Link'}
                                     </button>
@@ -419,10 +415,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 onClick={handleGoogleLogin}
                                 disabled={isLoading}
-                                className="flex w-full items-center justify-center gap-3 rounded-xl border border-dlp-border bg-dlp-bg-card px-4 py-2.5 font-medium text-dlp-text-secondary transition-all hover:bg-dlp-bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
+                                className="flex w-full items-center justify-center gap-3 rounded-xl border border-dlp-border bg-dlp-bg-card px-4 py-2.5 font-medium text-dlp-text-secondary transition-all hover:border-dlp-border-strong hover:bg-dlp-bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                             >
                                 <GoogleIcon className="w-5 h-5" />
-                                <span>{isNative ? 'Continue with Google on this device' : 'Continue with Google'}</span>
+                                <span>Continue with Google</span>
                             </button>
 
                             <button

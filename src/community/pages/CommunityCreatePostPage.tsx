@@ -162,7 +162,7 @@ export const CommunityCreatePostPage: React.FC = () => {
             type="button"
             onClick={onClick}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${active
-                    ? 'bg-dlp-brand text-white shadow-md'
+                    ? 'bg-dlp-primary text-white shadow-md'
                     : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
         >
@@ -218,7 +218,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                 <button
                                     disabled={!canWriteCommunity}
                                     onClick={() => { setSourceBatchId(null); setMode('create'); }}
-                                    className="w-full p-6 rounded-2xl border-2 border-dashed border-gray-300 hover:border-dlp-brand hover:bg-lime-50/10 transition-all text-left group disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="w-full p-6 rounded-2xl border-2 border-dashed border-gray-300 hover:border-dlp-primary hover:bg-lime-50/10 transition-all text-left group disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     <div className="h-12 w-12 bg-lime-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-lime-200 transition-colors">
                                         <Sparkles className="h-6 w-6 text-lime-700" />
@@ -280,7 +280,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                 {/* Photo Upload Section */}
                                 <div className="p-6 md:p-8 col-span-1">
                                     <label className="block text-sm font-bold text-gray-900 mb-4">{t('community.the_result')}</label>
-                                    <label className="relative aspect-square md:aspect-[3/4] rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 hover:border-dlp-brand hover:bg-lime-50/10 transition-all cursor-pointer flex flex-col items-center justify-center overflow-hidden group">
+                                    <label className="relative aspect-square md:aspect-[3/4] rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 hover:border-dlp-primary hover:bg-lime-50/10 transition-all cursor-pointer flex flex-col items-center justify-center overflow-hidden group">
                                         {previewUrl ? (
                                             <>
                                                 <img src={previewUrl} className="w-full h-full object-cover" />
@@ -292,7 +292,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                         ) : (
                                             <div className="text-center p-4">
                                                 <div className="h-12 w-12 bg-white rounded-full shadow-sm flex items-center justify-center mx-auto mb-3">
-                                                    <UploadCloud className="h-6 w-6 text-dlp-brand-hover" />
+                                                    <UploadCloud className="h-6 w-6 text-dlp-primary-hover" />
                                                 </div>
                                                 <p className="text-sm font-medium text-gray-900">{t('community.upload_photo')}</p>
                                                 <p className="text-xs text-gray-400 mt-1">{t('community.tap_to_browse')}</p>
@@ -311,7 +311,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                             value={title}
                                             onChange={e => setTitle(e.target.value)}
                                             placeholder="e.g. 72h Cold Ferment Margherita"
-                                            className="w-full text-lg font-medium placeholder:text-gray-300 border-0 border-b border-gray-200 focus:border-dlp-brand focus:ring-0 px-0 py-2 transition-colors bg-transparent"
+                                            className="w-full text-lg font-medium placeholder:text-gray-300 border-0 border-b border-gray-200 focus:border-dlp-primary focus:ring-0 px-0 py-2 transition-colors bg-transparent"
                                             required
                                         />
                                     </div>
@@ -323,7 +323,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                             onChange={e => setDescription(e.target.value)}
                                             placeholder={t('community.share_your_process')}
                                             rows={4}
-                                            className="w-full rounded-xl bg-gray-50 border-transparent focus:bg-white focus:border-dlp-brand focus:ring-dlp-brand transition-all text-sm"
+                                            className="w-full rounded-xl bg-gray-50 border-transparent focus:bg-white focus:border-dlp-primary focus:ring-dlp-primary transition-all text-sm"
                                             required
                                         />
                                     </div>
@@ -334,7 +334,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                             <select
                                                 value={selectedStyle}
                                                 onChange={e => setSelectedStyle(e.target.value as RecipeStyle)}
-                                                className="w-full rounded-lg border-gray-200 text-sm focus:border-dlp-brand focus:ring-dlp-brand"
+                                                className="w-full rounded-lg border-gray-200 text-sm focus:border-dlp-primary focus:ring-dlp-primary"
                                             >
                                                 {Object.values(RecipeStyle).map(s => (
                                                     <option key={s} value={s}>{s.replace(/_/g, ' ')}</option>
@@ -346,7 +346,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                                             <select
                                                 value={method}
                                                 onChange={e => setMethod(e.target.value as FermentationTechnique)}
-                                                className="w-full rounded-lg border-gray-200 text-sm focus:border-dlp-brand focus:ring-dlp-brand"
+                                                className="w-full rounded-lg border-gray-200 text-sm focus:border-dlp-primary focus:ring-dlp-primary"
                                             >
                                                 {Object.values(FermentationTechnique).map(m => (
                                                     <option key={m} value={m}>{m.replace(/_/g, ' ')}</option>
@@ -410,7 +410,7 @@ export const CommunityCreatePostPage: React.FC = () => {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="px-8 py-3 bg-dlp-brand-hover hover:bg-lime-700 text-white rounded-xl font-bold shadow-lg shadow-dlp-brand-hover/20 disabled:opacity-50 transition-all flex items-center gap-2"
+                                className="px-8 py-3 bg-dlp-primary-hover hover:bg-lime-700 text-white rounded-xl font-bold shadow-lg shadow-dlp-primary-hover/20 disabled:opacity-50 transition-all flex items-center gap-2"
                             >
                                 {loading && <Loader2 className="h-5 w-5 animate-spin" />}
                                 Publish Post

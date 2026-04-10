@@ -122,7 +122,7 @@ const DoughLabLoaderGraphic: React.FC = () => (
         <stop offset="0.55" stopColor="#f4d896" />
         <stop offset="1" stopColor="#e8b868" />
       </linearGradient>
-      <linearGradient id="dlp-accent" x1="76" y1="62" x2="172" y2="168" gradientUnits="userSpaceOnUse">
+      <linearGradient id="dlp-primary" x1="76" y1="62" x2="172" y2="168" gradientUnits="userSpaceOnUse">
         <stop stopColor="#7dd37a" />
         <stop offset="1" stopColor="#3f8e40" />
       </linearGradient>
@@ -151,7 +151,7 @@ const DoughLabLoaderGraphic: React.FC = () => (
       <path
         d="M120 36 A84 84 0 0 1 192 82"
         fill="none"
-        stroke="url(#dlp-accent)"
+        stroke="url(#dlp-primary)"
         strokeWidth="4"
         strokeLinecap="round"
       />
@@ -216,7 +216,7 @@ const DoughLabLoaderGraphic: React.FC = () => (
       <path
         className="dlp-loader-scan"
         d="M71 118h98"
-        stroke="url(#dlp-accent)"
+        stroke="url(#dlp-primary)"
         strokeWidth="2"
         strokeLinecap="round"
         strokeDasharray="10 8"

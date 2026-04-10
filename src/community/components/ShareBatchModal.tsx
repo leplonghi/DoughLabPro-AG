@@ -113,7 +113,7 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                     {/* Photo Selection */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">{t('community.photo')}</label>
-                        <div className="relative aspect-video rounded-xl bg-gray-100 overflow-hidden flex items-center justify-center border-2 border-dashed border-gray-300 hover:border-dlp-brand transition-colors group">
+                        <div className="relative aspect-video rounded-xl bg-gray-100 overflow-hidden flex items-center justify-center border-2 border-dashed border-gray-300 hover:border-dlp-primary transition-colors group">
                             {selectedPhoto ? (
                                 <img src={selectedPhoto} alt={t('community.bake')} className="w-full h-full object-cover" />
                             ) : (
@@ -143,7 +143,7 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-dlp-brand focus:border-dlp-brand"
+                            className="w-full rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-dlp-primary focus:border-dlp-primary"
                         />
                     </div>
 
@@ -154,7 +154,7 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                             rows={3}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            className="w-full rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-dlp-brand focus:border-dlp-brand"
+                            className="w-full rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-dlp-primary focus:border-dlp-primary"
                         />
                     </div>
 
@@ -176,7 +176,7 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                                 onChange={(e) => setTagInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleAddTag()}
                                 placeholder={t('community.add_a_tag')}
-                                className="flex-1 rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-dlp-brand focus:border-dlp-brand text-sm"
+                                className="flex-1 rounded-xl border-gray-300 bg-white text-gray-900 focus:ring-dlp-primary focus:border-dlp-primary text-sm"
                             />
                             <button
                                 onClick={handleAddTag}
@@ -194,7 +194,7 @@ export const ShareBatchModal: React.FC<ShareBatchModalProps> = ({ batch, isOpen,
                     <button
                         onClick={handleShare}
                         disabled={isSubmitting || isUploading}
-                        className="px-6 py-2 rounded-xl bg-dlp-brand text-white font-bold shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        className="px-6 py-2 rounded-xl bg-dlp-primary text-white font-bold shadow-lg shadow-dlp-primary/20 hover:bg-dlp-primary hover:text-white-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                     >
                         {isSubmitting ? 'Sharing...' : 'Share Now'}
                     </button>

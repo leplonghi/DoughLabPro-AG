@@ -127,9 +127,9 @@ const LevainModal: React.FC<LevainModalProps> = ({
 
     const Tooltip = ({ text }: { text: string }) => (
         <div className="group relative inline-block ml-2">
-            <InfoIcon className="h-4 w-4 text-dlp-text-muted cursor-help hover:text-dlp-primary transition-colors" />
+            <InfoIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-dlp-primary-hover transition-colors" />
             <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 transition-opacity group-hover:opacity-100 z-50">
-                <div className="bg-dlp-bg-card text-dlp-text-primary text-xs rounded py-1 px-2 text-center shadow-lg w-max max-w-[200px] border border-dlp-border">
+                <div className="bg-white text-slate-700 text-xs rounded py-1 px-2 text-center shadow-lg w-max max-w-[200px] border border-slate-200">
                     {text}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white"></div>
                 </div>
@@ -302,7 +302,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                         </button>
                         <button
                             type="submit"
-                            className="rounded-xl bg-dlp-primary px-5 py-2.5 text-sm font-bold text-white shadow-dlp-lg shadow-dlp-primary/20 hover:bg-dlp-primary-hover transition-all transform hover:-translate-y-0.5"
+                            className="rounded-xl bg-dlp-primary px-5 py-2.5 text-sm font-bold text-white shadow-dlp-md hover:bg-dlp-primary-hover hover:shadow-dlp-lg transition-all transform hover:-translate-y-0.5"
                         >
                             {t('common.save')}
                         </button>

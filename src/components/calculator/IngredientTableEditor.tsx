@@ -78,7 +78,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                 <button
                     onClick={handleAdd}
                     disabled={isAdding}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-dlp-accent text-white rounded-lg text-xs font-bold hover:bg-dlp-accent-hover transition-colors disabled:opacity-50"
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-dlp-primary text-white rounded-lg text-xs font-bold hover:bg-dlp-primary-hover transition-colors disabled:opacity-50"
                 >
                     <Plus className="w-3.5 h-3.5" />{t('calculator.add_new')}</button>
             </div>
@@ -114,7 +114,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                         return true;
                     })
                     .map(ing => (
-                        <div key={ing.id} className={`grid grid-cols-12 gap-2 p-3 items-center group transition-colors ${editingId === ing.id ? 'bg-dlp-accent/5' : 'hover:bg-dlp-bg-muted/30'}`}>
+                        <div key={ing.id} className={`grid grid-cols-12 gap-2 p-3 items-center group transition-colors ${editingId === ing.id ? 'bg-dlp-primary/5' : 'hover:bg-dlp-bg-muted/30'}`}>
 
                             {editingId === ing.id ? (
                                 // Edit Mode
@@ -125,7 +125,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                                             type="text"
                                             value={t(editForm.name || '')}
                                             onChange={e => handleChange('name', e.target.value)}
-                                            className="w-full px-2 py-1 text-sm border border-dlp-border rounded focus:border-dlp-accent focus:ring-1 focus:ring-dlp-accent outline-none bg-white text-dlp-text-primary"
+                                            className="w-full px-2 py-1 text-sm border border-dlp-border rounded focus:border-dlp-primary focus:ring-1 focus:ring-dlp-primary outline-none bg-white text-dlp-text-primary"
                                             placeholder={t('calculator.name')}
                                         />
                                         <div className="flex gap-2 mt-1">
@@ -157,7 +157,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                                                 step="0.1"
                                                 value={editForm.bakerPercentage}
                                                 onChange={e => handleChange('bakerPercentage', parseFloat(e.target.value))}
-                                                className="w-full px-2 py-1 pr-6 text-sm text-right border border-dlp-border rounded focus:border-dlp-accent focus:ring-1 focus:ring-dlp-accent outline-none bg-white font-mono text-dlp-text-primary"
+                                                className="w-full px-2 py-1 pr-6 text-sm text-right border border-dlp-border rounded focus:border-dlp-primary focus:ring-1 focus:ring-dlp-primary outline-none bg-white font-mono text-dlp-text-primary"
                                             />
                                             <span className="absolute right-2 top-1.5 text-xs text-dlp-text-muted">%</span>
                                         </div>
@@ -184,7 +184,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                                         <span className="font-mono text-sm text-dlp-text-secondary">{calculateWeight(ing.bakerPercentage)}g</span>
                                     </div>
                                     <div className="col-span-1 flex justify-end gap-1 opacity-10 group-hover:opacity-100 transition-opacity">
-                                        <button onClick={() => handleEdit(ing)} className="p-1.5 text-dlp-text-secondary hover:text-dlp-accent hover:bg-dlp-bg-muted rounded transition-colors" title={t('common.edit')}>
+                                        <button onClick={() => handleEdit(ing)} className="p-1.5 text-dlp-text-secondary hover:text-dlp-primary hover:bg-dlp-bg-muted rounded transition-colors" title={t('common.edit')}>
                                             <Edit2 className="w-3.5 h-3.5" />
                                         </button>
                                         <button onClick={() => handleDelete(ing.id)} className="p-1.5 text-dlp-text-secondary hover:text-dlp-error hover:bg-red-50 rounded transition-colors" title={t('calculator.remove')}>
@@ -198,14 +198,14 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
 
                 {/* Add New Form */}
                 {isAdding && (
-                    <div className="grid grid-cols-12 gap-2 p-3 items-start bg-dlp-accent/5 animate-fade-in-down border-t-2 border-dlp-accent/20">
+                    <div className="grid grid-cols-12 gap-2 p-3 items-start bg-dlp-primary/5 animate-fade-in-down border-t-2 border-dlp-primary/20">
                         <div className="col-span-5">
                             <input
                                 autoFocus
                                 type="text"
                                 value={editForm.name}
                                 onChange={e => handleChange('name', e.target.value)}
-                                className="w-full px-2 py-1 text-sm border border-dlp-border rounded focus:border-dlp-accent focus:ring-1 focus:ring-dlp-accent outline-none bg-white text-dlp-text-primary placeholder:text-dlp-text-muted/50"
+                                className="w-full px-2 py-1 text-sm border border-dlp-border rounded focus:border-dlp-primary focus:ring-1 focus:ring-dlp-primary outline-none bg-white text-dlp-text-primary placeholder:text-dlp-text-muted/50"
                                 placeholder={t('calculator.new_ingredient_name')}
                             />
                             <div className="flex gap-2 mt-2">
@@ -237,7 +237,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                                     step="0.1"
                                     value={editForm.bakerPercentage}
                                     onChange={e => handleChange('bakerPercentage', parseFloat(e.target.value))}
-                                    className="w-full px-2 py-1 pr-6 text-sm text-right border border-dlp-border rounded focus:border-dlp-accent focus:ring-1 focus:ring-dlp-accent outline-none bg-white font-mono text-dlp-text-primary"
+                                    className="w-full px-2 py-1 pr-6 text-sm text-right border border-dlp-border rounded focus:border-dlp-primary focus:ring-1 focus:ring-dlp-primary outline-none bg-white font-mono text-dlp-text-primary"
                                     placeholder="0"
                                 />
                                 <span className="absolute right-2 top-1.5 text-xs text-dlp-text-muted">%</span>
@@ -247,7 +247,7 @@ export const IngredientTableEditor: React.FC<IngredientTableEditorProps> = ({ in
                             {calculateWeight(Number(editForm.bakerPercentage || 0))}g
                         </div>
                         <div className="col-span-1 flex flex-col justify-start gap-1">
-                            <button onClick={handleSave} className="p-1.5 bg-dlp-success text-white rounded hover:bg-dlp-accent-hover transition-colors shadow-sm" title={t('common.add')}><Plus className="w-4 h-4" /></button>
+                            <button onClick={handleSave} className="p-1.5 bg-dlp-success text-white rounded hover:bg-dlp-primary-hover transition-colors shadow-sm" title={t('common.add')}><Plus className="w-4 h-4" /></button>
                             <button onClick={cleanup} className="p-1.5 text-dlp-error hover:bg-dlp-error/10 rounded transition-colors" title={t('common.cancel')}><X className="w-4 h-4" /></button>
                         </div>
                     </div>

@@ -33,7 +33,7 @@ export const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onNavigate
                 <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                     <div>
                         <div className="inline-flex items-center gap-2 rounded-full border border-lime-200 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[#2f5d28]">
-                            <SparklesIcon className="h-4 w-4 text-dlp-accent" />
+                            <SparklesIcon className="h-4 w-4 text-dlp-primary" />
                             DoughLab Pro
                         </div>
 
@@ -80,7 +80,7 @@ export const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onNavigate
                         <div className="mt-8 grid gap-3 sm:grid-cols-3">
                             {benefitItems.map((item) => (
                                 <div key={item} className="rounded-2xl border border-white/70 bg-white/70 p-4 backdrop-blur-sm">
-                                    <CheckIcon className="h-5 w-5 text-dlp-accent" />
+                                    <CheckIcon className="h-5 w-5 text-dlp-primary" />
                                     <p className="mt-3 text-sm font-medium leading-6 text-slate-700">{item}</p>
                                 </div>
                             ))}
@@ -112,11 +112,11 @@ export const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onNavigate
 
                         <div className="mt-6 space-y-3">
                             <div className="flex items-center gap-3 rounded-xl bg-slate-50 px-4 py-3">
-                                <BeakerIcon className="h-5 w-5 text-dlp-accent" />
+                                <BeakerIcon className="h-5 w-5 text-dlp-primary" />
                                 <span className="text-sm font-medium text-slate-700">Unlimited bake history and lab records</span>
                             </div>
                             <div className="flex items-center gap-3 rounded-xl bg-slate-50 px-4 py-3">
-                                <BookOpenIcon className="h-5 w-5 text-dlp-accent" />
+                                <BookOpenIcon className="h-5 w-5 text-dlp-primary" />
                                 <span className="text-sm font-medium text-slate-700">Advanced learning, exports, and pro analysis</span>
                             </div>
                         </div>

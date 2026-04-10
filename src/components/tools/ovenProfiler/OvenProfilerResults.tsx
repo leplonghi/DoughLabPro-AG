@@ -48,7 +48,7 @@ export const OvenProfilerResults: React.FC<OvenProfilerResultsProps> = ({ analys
             <div className="flex justify-center pt-2">
                 <button
                     onClick={handleSave}
-                    className="flex items-center gap-2 px-6 py-3 bg-dlp-accent text-white font-bold rounded-xl hover:bg-dlp-accent-hover transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    className="flex items-center gap-2 px-6 py-3 bg-dlp-primary text-white font-bold rounded-xl hover:bg-dlp-primary-hover transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                     <BookmarkSquareIcon className="h-5 w-5" />
                     {t('common.save_as_default_oven') || "Save as Default Oven"}
