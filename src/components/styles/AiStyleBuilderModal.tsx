@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AssistantIcon, CloseIcon, BeakerIcon, FireIcon, ClockIcon, ScaleIcon } from '@/components/ui/Icons';
+import { AssistantIcon, SparklesIcon, CloseIcon, BeakerIcon, FireIcon, ClockIcon, ScaleIcon } from '@/components/ui/Icons';
 import { DoughStyleDefinition } from '@/types';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';

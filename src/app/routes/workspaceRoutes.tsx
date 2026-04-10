@@ -105,6 +105,7 @@ interface WorkspaceRouteContext {
     SettingsPage: React.ComponentType;
     NotificationsPage: React.ComponentType;
     LanguagePage: React.ComponentType;
+    DesignSystemPage: React.ComponentType;
   };
 }
 
