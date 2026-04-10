@@ -14,7 +14,13 @@
       "Bash(curl -s -I http://localhost:9199/)",
       "Bash(grep -E \"\\\\.\\(tsx|ts\\)$\")",
       "Bash(xargs grep:*)",
-      "Bash(xargs sed:*)"
+      "Bash(xargs sed:*)",
+      "mcp__Desktop_Commander__stop_search",
+      "Bash(grep -l \"dlp-accent\\\\|dlp-brand\\\\|slate-\\\\|indigo-\" /c/Antigravity/doughlabpro/src/components/*Modal.tsx /c/Antigravity/doughlabpro/src/components/**/\\\\*Modal.tsx)",
+      "Skill(commit-commands:commit-push-pr)",
+      "Skill(commit-commands:commit-push-pr:*)",
+      "Read(//c/Antigravity/doughlabpro/**)",
+      "Bash(gh pr create --title 'Phase 3 Modal Audit: Consolidate design tokens \\(dlp-accent → dlp-primary\\)' --body ':*)"
     ]
   }
 }

@@ -197,6 +197,8 @@ export function resolveWorkspaceRoute({
       return protect(<components.ProfilePage onNavigate={navigate} />);
     case 'settings':
       return protect(<components.SettingsPage />);
+    case 'design-system':
+      return protect(<components.DesignSystemPage />);
     case 'notifications':
       return protect(<components.NotificationsPage />);
     case 'settings/language':

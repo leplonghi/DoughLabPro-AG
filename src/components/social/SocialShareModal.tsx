@@ -157,7 +157,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                     <button
                         onClick={handleDownload}
                         disabled={isGenerating}
-                        className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-dlp-text-primary py-3 text-sm font-bold text-dlp-bg-card shadow-dlp-lg transition-transform active:scale-95 disabled:opacity-50 hover:bg-dlp-text-secondary"
+                        className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-dlp-primary py-3 text-sm font-bold text-white shadow-dlp-lg transition-transform active:scale-95 disabled:opacity-50 hover:bg-dlp-primary-hover"
                     >
                         {isGenerating ? (
                             <span>{t('ui.generating')}</span>

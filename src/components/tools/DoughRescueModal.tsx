@@ -68,7 +68,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                             exit={{ opacity: 0, scale: 0.95 }}
                             className="bg-white rounded-2xl shadow-xl max-w-md w-full overflow-hidden border border-dlp-border"
                         >
-                            <div className="p-5 border-b border-dlp-border flex justify-between items-center bg-slate-50">
+                            <div className="p-5 border-b border-dlp-border flex justify-between items-center bg-dlp-bg-muted">
                                 <div>
                                     <h3 className="text-lg font-bold text-dlp-text-primary flex items-center gap-2">
                                         <AlertCircle className="w-5 h-5 text-dlp-primary" />
@@ -111,7 +111,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                                             ← Back to issues
                                         </button>
 
-                                        <div className={`p-5 rounded-xl ${selectedIssue.color} bg-opacity-30`}>
+                                        <div className={`p-5 rounded-xl ${selectedIssue.color}`}>
                                             <div className="flex items-center gap-3 mb-3">
                                                 <selectedIssue.icon className={`w-8 h-8 ${selectedIssue.color.split(' ')[0]}`} />
                                                 <h4 className="text-xl font-bold text-dlp-text-primary">{selectedIssue.label}</h4>
@@ -124,7 +124,7 @@ export const DoughRescueModal: React.FC<DoughRescueModalProps> = ({ isOpen, onCl
                                             </div>
                                         </div>
 
-                                        <div className="bg-slate-50 p-4 rounded-xl border border-dlp-border text-center">
+                                        <div className="bg-dlp-bg-muted p-4 rounded-xl border border-dlp-border text-center">
                                             <p className="text-sm text-dlp-text-secondary italic">
                                                 "Dough is alive. It responds to time and patience better than force."
                                             </p>
