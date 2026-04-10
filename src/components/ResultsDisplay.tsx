@@ -27,6 +27,7 @@ import AppSurface from '@/components/ui/AppSurface';
 import EmptyStateCard from '@/components/ui/EmptyStateCard';
 import MetricCard from '@/components/ui/MetricCard';
 import TechnicalMethodPanel from '@/components/calculator/TechnicalMethodPanel';
+import GuidanceTooltipTrigger from '@/components/guidance/GuidanceTooltipTrigger';
 import { generateTechnicalMethod } from '@/logic/methodGenerator';
 import { useUser } from '@/contexts/UserProvider';
 import { canUseFeature, getCurrentPlan } from '@/permissions';
@@ -78,7 +79,6 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     const { navigate } = useRouter();
     const resultRef = useRef<HTMLDivElement>(null);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-
     const userPlan = getCurrentPlan(user);
 
     const technicalSteps = useMemo(() => {
@@ -160,7 +160,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
     return (
         <div ref={resultRef} className="space-y-6 animate-slide-up">
-            <AppSurface surface="elevated" tone="neutral" className="p-5 sm:p-6">
+            <AppSurface id="calculator-results-card" surface="elevated" tone="neutral" className="p-5 sm:p-6">
                 <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
                     <div>
                         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#75907d]">
@@ -175,12 +175,21 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
                         </p>
                     </div>
                     <div className="dlp-calc-panel--subtle rounded-[1.1rem] border px-4 py-3">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                            Batch profile
-                        </p>
-                        <p className="mt-1 text-sm font-semibold text-slate-800 dark:text-slate-50">
-                            {config.recipeStyle || t('common.general.custom', { defaultValue: 'Custom' })}
-                        </p>
+                        <div className="flex items-start justify-between gap-3">
+                            <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                                    Batch profile
+                                </p>
+                                <p className="mt-1 text-sm font-semibold text-slate-800 dark:text-slate-50">
+                                    {config.recipeStyle || t('common.general.custom', { defaultValue: 'Custom' })}
+                                </p>
+                            </div>
+                            <GuidanceTooltipTrigger
+                                itemId="calculator-results-tip"
+                                onAction={() => navigate('mylab')}
+                                completeOnAction
+                            />
+                        </div>
                     </div>
                 </div>
 

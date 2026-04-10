@@ -1,8 +1,8 @@
 import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
-import { BeakerIcon, ChartBarIcon, ClockIcon, LockClosedIcon, SparklesIcon } from '@heroicons/react/24/outline';
-import { FireIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from '@/i18n';
+import { FireIcon, SparklesIcon } from '@/components/ui/Icons';
+import { BeakerIcon, ChartBarIcon, ClockIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 
 export const LevainMarketingPage: React.FC = () => {
   const { t } = useTranslation();

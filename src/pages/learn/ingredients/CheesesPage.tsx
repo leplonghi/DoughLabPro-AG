@@ -1,6 +1,6 @@
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ToastProvider';
+import { isNativePlatform } from '@/capacitor/platform';
 import {
     CloseIcon,
     GoogleIcon,
@@ -22,6 +23,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const { t } = useTranslation(['common', 'auth']);
     const { loginWithGoogle, loginWithEmail, registerWithEmail, resetPassword, loginAsGuest } = useAuth();
     const { addToast } = useToast();
+    const isNative = isNativePlatform();
 
     const [view, setView] = useState<AuthView>('login');
     const [email, setEmail] = useState('');
@@ -63,11 +65,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         try {
             await loginWithGoogle();
             onClose();
-            addToast('Signed in with Google.', 'success');
+            addToast(isNative ? 'Signed in successfully.' : 'Signed in with Google.', 'success');
         } catch (err: any) {
             console.error(err);
-            if (err.code === 'auth/unauthorized-domain') {
+            if (!isNative && err.code === 'auth/unauthorized-domain') {
                 setError('This domain is not authorized for Google Sign-In. Contact support to finish setup.');
+            } else if (isNative && (err.code === 'auth/cancelled-popup-request' || err.code === 'auth/popup-closed-by-user')) {
+                setError('Google sign-in was cancelled before completion.');
             } else {
                 setError(err.message || 'Google sign-in failed. Try again in a moment.');
             }
@@ -180,7 +184,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header Image/Gradient */}
-                <div className="h-32 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover flex items-center justify-center relative overflow-hidden">
+                <div className="h-32 bg-gradient-to-br from-dlp-primary to-dlp-primary-hover flex items-center justify-center relative overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center mix-blend-overlay"></div>
                     <div className="text-center z-10 p-4">
                         <h2 id="auth-modal-title" className="text-3xl font-bold text-white drop-shadow-md text-balance">
@@ -245,7 +249,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                         spellCheck={false}
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card py-2.5 pl-10 pr-3 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-accent focus:ring-2 focus:ring-dlp-accent focus-visible:outline-none"
+                                        className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card py-2.5 pl-10 pr-3 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary focus-visible:outline-none"
                                         placeholder="you@example.com…"
                                         required
                                     />
@@ -264,7 +268,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                         autoComplete="current-password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card py-2.5 pl-10 pr-3 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-accent focus:ring-2 focus:ring-dlp-accent focus-visible:outline-none"
+                                        className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card py-2.5 pl-10 pr-3 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary focus-visible:outline-none"
                                         placeholder="Enter your password…"
                                         required
                                     />
@@ -273,7 +277,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     <button
                                         type="button"
                                         onClick={() => setView('forgot-password')}
-                                        className="text-xs font-medium text-dlp-accent hover:text-dlp-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                        className="text-xs font-medium text-dlp-primary hover:text-dlp-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                                     >Forgot Password?</button>
                                 </div>
                             </div>
@@ -281,7 +285,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-accent px-4 py-3 font-semibold text-white shadow-dlp-md transition-all hover:bg-dlp-accent-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-lg shadow-dlp-primary/20 transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                             >
                                 {isLoading ? <SpinnerIcon className="h-5 w-5 animate-spin" /> : 'Sign In'}
                             </button>
@@ -299,7 +303,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     autoComplete="name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-accent focus:ring-2 focus:ring-dlp-accent focus-visible:outline-none"
+                                    className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary focus-visible:outline-none"
                                     placeholder="Your name…"
                                     required
                                 />
@@ -314,7 +318,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     spellCheck={false}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-accent focus:ring-2 focus:ring-dlp-accent focus-visible:outline-none"
+                                    className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary focus-visible:outline-none"
                                     placeholder="you@example.com…"
                                     required
                                 />
@@ -328,7 +332,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     autoComplete="new-password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-accent focus:ring-2 focus:ring-dlp-accent focus-visible:outline-none"
+                                    className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary focus-visible:outline-none"
                                     placeholder="Create a password (min 6 chars)…"
                                     required
                                     minLength={6}
@@ -338,7 +342,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-accent px-4 py-3 font-semibold text-white shadow-dlp-md transition-all hover:bg-dlp-accent-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-lg shadow-dlp-primary/20 transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                             >
                                 {isLoading ? <SpinnerIcon className="h-5 w-5 animate-spin" /> : 'Create Account'}
                             </button>
@@ -349,7 +353,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         <div className="space-y-4">
                             {resetSent ? (
                                 <div className="text-center py-6">
-                                    <div className="mx-auto w-12 h-12 bg-lime-100 text-dlp-accent rounded-full flex items-center justify-center mb-4">
+                                    <div className="mx-auto w-12 h-12 bg-lime-100 text-lime-700 rounded-full flex items-center justify-center mb-4">
                                         <CheckCircleIcon className="w-6 h-6" />
                                     </div>
                                     <h3 className="text-lg font-semibold text-dlp-text-primary">{t('general.check_your_email')}</h3>
@@ -357,7 +361,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     </p>
                                     <button
                                         onClick={() => setView('login')}
-                                        className="mt-6 w-full rounded-xl bg-dlp-bg-muted px-4 py-2.5 font-medium text-dlp-text-secondary transition-colors hover:bg-dlp-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                        className="mt-6 w-full rounded-xl bg-dlp-bg-muted px-4 py-2.5 font-medium text-dlp-text-secondary transition-colors hover:bg-dlp-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                                     >{t('auth.back_to_login')}</button>
                                 </div>
                             ) : (
@@ -375,7 +379,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                             spellCheck={false}
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-accent focus:ring-2 focus:ring-dlp-accent focus-visible:outline-none"
+                                            className="block w-full rounded-xl border border-dlp-border bg-dlp-bg-card px-3 py-2.5 text-dlp-text-primary placeholder-dlp-text-muted transition-colors focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary focus-visible:outline-none"
                                             placeholder="you@example.com…"
                                             required
                                         />
@@ -383,14 +387,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                     <button
                                         type="submit"
                                         disabled={isLoading}
-                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-accent px-4 py-3 font-semibold text-white shadow-dlp-md transition-all hover:bg-dlp-accent-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-dlp-primary px-4 py-3 font-semibold text-white shadow-dlp-lg shadow-dlp-primary/20 transition-all hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                                     >
                                         {isLoading ? <SpinnerIcon className="h-5 w-5 animate-spin" /> : 'Send Reset Link'}
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => setView('login')}
-                                        className="w-full px-4 py-2.5 text-sm font-medium text-dlp-text-secondary transition-colors hover:text-dlp-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                        className="w-full px-4 py-2.5 text-sm font-medium text-dlp-text-secondary transition-colors hover:text-dlp-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                                     >{t('auth.cancel')}</button>
                                 </form>
                             )}
@@ -415,16 +419,16 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                             <button
                                 onClick={handleGoogleLogin}
                                 disabled={isLoading}
-                                className="flex w-full items-center justify-center gap-3 rounded-xl border border-dlp-border bg-dlp-bg-card px-4 py-2.5 font-medium text-dlp-text-secondary transition-all hover:border-dlp-border-strong hover:bg-dlp-bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                className="flex w-full items-center justify-center gap-3 rounded-xl border border-dlp-border bg-dlp-bg-card px-4 py-2.5 font-medium text-dlp-text-secondary transition-all hover:bg-dlp-bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                             >
                                 <GoogleIcon className="w-5 h-5" />
-                                <span>Continue with Google</span>
+                                <span>{isNative ? 'Continue with Google on this device' : 'Continue with Google'}</span>
                             </button>
 
                             <button
                                 onClick={handleGuestLogin}
                                 disabled={isLoading}
-                                className="w-full px-4 py-2.5 text-sm font-medium text-dlp-text-muted transition-colors hover:text-dlp-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+                                className="w-full px-4 py-2.5 text-sm font-medium text-dlp-text-muted transition-colors hover:text-dlp-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                             >Continue as Guest</button>
                         </div>
                     )}

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, SignalIcon, BeakerIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
 type PairingGuide = {
@@ -124,7 +124,7 @@ const PairingToolPage: React.FC = () => {
 
                     <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
                         <h3 className="flex items-center gap-2 text-lg font-bold text-slate-900">
-                            <SparklesIcon className="h-5 w-5 text-amber-500" />
+                <SignalIcon className="h-5 w-5 text-amber-500" />
                             Bold Pairings
                         </h3>
                         <ul className="mt-4 space-y-2 text-sm text-slate-700">

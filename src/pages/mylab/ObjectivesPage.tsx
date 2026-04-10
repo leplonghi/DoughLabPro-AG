@@ -4,7 +4,7 @@ import MyLabLayout from './MyLabLayout';
 import { useUser } from '../../contexts/UserProvider';
 import { useTranslation } from '../../i18n';
 import i18n from '../../i18n';
-import { SparklesIcon, PlusCircleIcon, CheckCircleIcon, TrashIcon, PencilIcon } from '@/components/ui/Icons';
+import { AssistantIcon, PlusCircleIcon, CheckCircleIcon, TrashIcon, PencilIcon } from '@/components/ui/Icons';
 import GoalModal from '../../components/mylab/GoalModal';
 import { LockFeature } from '@/components/auth/LockFeature';
 
@@ -128,7 +128,7 @@ const ObjectivesPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                             {/* AI Suggestions */}
                             <div>
                                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-slate-900 ">
-                                    <SparklesIcon className="h-5 w-5 text-dlp-brand" />{t('common.mylab.ai_suggestions')}</h3>
+                                    <AssistantIcon className="h-5 w-5 text-dlp-brand" />{t('common.mylab.ai_suggestions')}</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     {suggestions.map(sugg => (
                                         <div key={sugg.title} className="rounded-2xl bg-slate-50  p-5 border border-slate-200  hover:border-lime-300 transition-colors">

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { CloseIcon, SparklesIcon } from '@/components/ui/Icons';
+import { AssistantIcon, CloseIcon } from '@/components/ui/Icons';
 import { Levain } from '@/types';
 
 interface LevainAssistantProps {
@@ -57,7 +57,7 @@ const LevainAssistant: React.FC<LevainAssistantProps> = ({ isOpen, onClose, leva
                 <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
                     <div>
                         <h3 className="flex items-center gap-2 text-lg font-bold text-slate-900">
-                            <SparklesIcon className="h-5 w-5 text-indigo-500" />
+                            <AssistantIcon className="h-5 w-5 text-indigo-500" />
                             Levain Assistant
                         </h3>
                         <p className="mt-1 text-sm text-slate-500">{levain.name} is the current context for this conversation.</p>

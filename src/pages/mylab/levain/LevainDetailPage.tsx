@@ -3,7 +3,7 @@ import { Page, YeastType } from '@/types';
 import { useUser } from '@/contexts/UserProvider';
 import LevainLayout from './LevainLayout';
 import MyLabLayout from '../MyLabLayout';
-import { PlusCircleIcon, SparklesIcon, LockClosedIcon, StarIcon, ClockIcon, BeakerIcon, BookOpenIcon } from '@/components/ui/Icons';
+import { PlusCircleIcon, AssistantIcon, LockClosedIcon, StarIcon, ClockIcon, BeakerIcon, BookOpenIcon } from '@/components/ui/Icons';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { getArticleById } from '@/data/learn';
 import LevainFeedingForm from './components/LevainFeedingForm';
@@ -117,7 +117,7 @@ const LevainDetailPage: React.FC<LevainDetailPageProps> = ({ levainId, onNavigat
                             onClick={() => setIsAssistantOpen(true)}
                             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-indigo-50  text-indigo-600  border border-indigo-100  py-3 px-6 font-bold hover:bg-indigo-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
                         >
-                            <SparklesIcon className="h-5 w-5" />{t('mylab.ask_ai')}</button>
+                            <AssistantIcon className="h-5 w-5" />{t('mylab.ask_ai')}</button>
                     </LockFeature>
 
                     <SocialShare

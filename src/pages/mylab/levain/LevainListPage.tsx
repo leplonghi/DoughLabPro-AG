@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { useUser } from '@/contexts/UserProvider';
+import { useGuidance } from '@/contexts/GuidanceContext';
 import { Page, Levain } from '@/types';
 import { PlusCircleIcon, BeakerIcon, DownloadIcon, ShareIcon } from '@/components/ui/Icons';
+import GuidanceTooltipTrigger from '@/components/guidance/GuidanceTooltipTrigger';
 import MyLabLayout from '../MyLabLayout';
 import LevainModal from '@/components/LevainModal';
 import { importLevains, exportLevains } from '@/services/storageService';
@@ -39,6 +41,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const plan = getCurrentPlan(user);
+    const { openTooltip, resetGuidance } = useGuidance();
 
     const handleAddLevainClick = () => {
         if (!canUseFeature(plan, 'levain.multipleLevains') && levains.length >= 1) {
@@ -108,6 +111,16 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                             {levains.length} {levains.length === 1 ? 'starter' : 'starters'}
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    resetGuidance();
+                                    openTooltip(levains.length === 0 ? 'levain-empty-tip' : 'levain-card-tip');
+                                }}
+                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-white px-4 py-2.5 font-semibold text-emerald-700 shadow-sm transition-colors hover:bg-emerald-50"
+                            >
+                                {t('guidance.help.reset_cta', { defaultValue: 'View tips again' })}
+                            </button>
                             {levains.length >= 1 && !canUseFeature(plan, 'levain.lab_full') ? (
                                 <LockedTeaser featureKey="levain.multipleLevains">
                                     <button
@@ -144,7 +157,14 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
         >
             <div className="animate-[fadeIn_0.5s_ease-in_out] space-y-8">
                 {levains.length === 0 ? (
-                    <AppSurface className="border-dashed border-slate-300 bg-[linear-gradient(180deg,_rgba(250,252,247,0.96)_0%,_rgba(255,255,255,0.96)_100%)] p-12 text-center">
+                    <AppSurface id="levain-empty-card" className="relative border-dashed border-slate-300 bg-[linear-gradient(180deg,_rgba(250,252,247,0.96)_0%,_rgba(255,255,255,0.96)_100%)] p-12 text-center">
+                        <div className="absolute right-4 top-4">
+                            <GuidanceTooltipTrigger
+                                itemId="levain-empty-tip"
+                                onAction={handleAddLevainClick}
+                                completeOnAction
+                            />
+                        </div>
                         <div className="mx-auto h-16 w-16 bg-lime-100  rounded-full flex items-center justify-center mb-4">
                             <BeakerIcon className="h-8 w-8 text-dlp-brand-hover " />
                         </div>
@@ -164,6 +184,9 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                         {levains.map(starter => {
                             return (
                                 <AppSurface key={starter.id} className="group relative overflow-hidden border-slate-200 p-6 transition-all hover:border-lime-300 hover:shadow-lg">
+                                    <div className="absolute right-4 top-4 z-10">
+                                        <GuidanceTooltipTrigger itemId="levain-card-tip" />
+                                    </div>
                                     <div className="flex items-start justify-between mb-4">
                                         <div className="p-3 bg-orange-100  rounded-xl text-orange-600  group-hover:bg-orange-500 group-hover:text-white transition-colors">
                                             <BeakerIcon className="h-6 w-6" />

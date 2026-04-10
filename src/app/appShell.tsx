@@ -1,12 +1,13 @@
 import {
   AcademicCapIcon,
+  ComposeIcon,
   BeakerIcon,
   BatchesIcon,
   CalculatorIcon,
   ChartBarIcon,
   DocumentTextIcon,
   FireIcon,
-  SparklesIcon,
+  ProBadgeIcon,
   UsersIcon,
   WrenchScrewdriverIcon,
 } from '@/components/ui/Icons';
@@ -36,7 +37,7 @@ export const PRIMARY_NAV_ITEMS: Array<ShellNavItem & { pillar: AppPillar }> = [
   { id: 'lab', label: 'Lab', page: 'mylab', icon: BeakerIcon, pillar: 'lab' },
   { id: 'library', label: 'Library', page: 'learn', icon: AcademicCapIcon, pillar: 'library' },
   { id: 'community', label: 'Community', page: 'community', icon: UsersIcon, pillar: 'community' },
-  { id: 'pro', label: 'Pro', page: 'plans', icon: SparklesIcon, pillar: 'pro' },
+  { id: 'pro', label: 'Pro', page: 'plans', icon: ProBadgeIcon, pillar: 'pro' },
 ];
 
 export const PILLAR_NAV_ITEMS: Record<AppPillar, ShellNavItem[]> = {
@@ -60,11 +61,11 @@ export const PILLAR_NAV_ITEMS: Record<AppPillar, ShellNavItem[]> = {
   ],
   community: [
     { id: 'community-home', label: 'Feed', page: 'community', icon: UsersIcon },
-    { id: 'community-post', label: 'Share Bake', page: 'community/create', icon: SparklesIcon },
+    { id: 'community-post', label: 'Share Bake', page: 'community/create', icon: ComposeIcon },
   ],
   pro: [
-    { id: 'pro-plans', label: 'Plans', page: 'plans', icon: SparklesIcon },
-    { id: 'pro-billing', label: 'Billing', page: 'plans', icon: SparklesIcon },
+    { id: 'pro-plans', label: 'Plans', page: 'plans', icon: ProBadgeIcon },
+    { id: 'pro-billing', label: 'Billing', page: 'plans', icon: ProBadgeIcon },
     { id: 'pro-help', label: 'Help', page: 'help', icon: DocumentTextIcon },
   ],
 };

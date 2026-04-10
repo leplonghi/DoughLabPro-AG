@@ -1,7 +1,7 @@
 import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
 import { LearnSection } from './LearnComponents';
-import { BeakerIcon, FireIcon, SparklesIcon, CubeIcon } from '@/components/ui/Icons';
+import { BeakerIcon, FireIcon, SignalIcon, CubeIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
 const FermentationBiochemistryPage: React.FC = () => {
@@ -14,7 +14,7 @@ const FermentationBiochemistryPage: React.FC = () => {
                 </p>
             </LearnSection>
 
-            <LearnSection title={t('learn.yeast_metabolism_the_primary_engine')} icon={<SparklesIcon className="h-5 w-5" />}>
+            <LearnSection title={t('learn.yeast_metabolism_the_primary_engine')} icon={<SignalIcon className="h-5 w-5" />}>
                 <p>{t('learn.the_primary_microorganism_in_most_baking_is')}<em>{t('learn.saccharomyces_cerevisiae_2')}</em>. Its metabolism can be broken down into two main pathways depending on oxygen availability, though in dough, it is primarily anaerobic fermentation.
                 </p>
                 <h3 className="font-bold mt-4 mb-2">1. Respiration (Aerobic)</h3>

@@ -42,17 +42,19 @@ export const AppPageLayout: React.FC<AppPageLayoutProps> = ({
   showAffiliateDisclaimer = true,
   pageHeader = false,
 }) => {
-  const resolvedMeta = pageHeader && pageHeader.page ? getPageMeta(pageHeader.page) : null;
+  const headerConfig: AppPageHeaderConfig | null =
+    pageHeader && typeof pageHeader === 'object' ? pageHeader : null;
+  const resolvedMeta = headerConfig?.page ? getPageMeta(headerConfig.page) : null;
   const shouldRenderHeader = Boolean(
-    pageHeader &&
-    !pageHeader.hidden &&
-    (pageHeader.page || pageHeader.title || pageHeader.description || pageHeader.eyebrow) &&
+    headerConfig &&
+    !headerConfig.hidden &&
+    (headerConfig.page || headerConfig.title || headerConfig.description || headerConfig.eyebrow) &&
     (!resolvedMeta || resolvedMeta.showHeader !== false),
   );
 
-  const headerEyebrow = pageHeader?.eyebrow ?? resolvedMeta?.eyebrow ?? '';
-  const headerTitle = pageHeader?.title ?? resolvedMeta?.title ?? '';
-  const headerDescription = pageHeader?.description ?? resolvedMeta?.description ?? '';
+  const headerEyebrow = headerConfig?.eyebrow ?? resolvedMeta?.eyebrow ?? '';
+  const headerTitle = headerConfig?.title ?? resolvedMeta?.title ?? '';
+  const headerDescription = headerConfig?.description ?? resolvedMeta?.description ?? '';
 
   return (
     <div className="min-h-screen bg-[var(--dlp-bg-soft)] text-[var(--dlp-text-primary)]">
@@ -72,10 +74,10 @@ export const AppPageLayout: React.FC<AppPageLayoutProps> = ({
               eyebrow={headerEyebrow}
               title={headerTitle}
               description={headerDescription}
-              size={pageHeader?.size ?? 'micro'}
-              variant={pageHeader?.variant ?? 'workspace'}
+              size={headerConfig?.size ?? 'micro'}
+              variant={headerConfig?.variant ?? 'workspace'}
             >
-              {pageHeader?.children}
+              {headerConfig?.children}
             </AppShellHeader>
           ) : null}
           {children}

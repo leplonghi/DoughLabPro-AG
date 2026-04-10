@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUser } from '@/contexts/UserProvider';
-import { LockClosedIcon, SparklesIcon } from '@/components/ui/Icons';
+import { LockClosedIcon, ProBadgeIcon } from '@/components/ui/Icons';
 import { canUseFeature, PlanType, PermissionKey } from '@/permissions';
 import { useTranslation } from '@/i18n';
 
@@ -64,7 +64,7 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
                     onClick={() => openPaywall('general')}
                     className="bg-gradient-to-r from-[#51a145] to-[#3e8b32] hover:from-[#3e8b32] hover:to-[#216416] text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 group-hover:scale-105"
                 >
-                    <SparklesIcon className="h-4 w-4 text-lime-400" />{t('common.unlock_now')}</button>
+                    <ProBadgeIcon className="h-4 w-4 text-lime-400" />{t('common.unlock_now')}</button>
             </div>
         </div>
     );

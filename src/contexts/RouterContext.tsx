@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode, useTransition } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode, useLayoutEffect, useTransition } from 'react';
 import { Page } from '@/types';
 import { CanonicalRoute, normalizeNavigateInput, parseHash, toHash } from '@/app/routing';
 
@@ -46,6 +46,11 @@ export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             window.removeEventListener('hashchange', handleHashChange);
         };
     }, [startTransition]);
+
+    useLayoutEffect(() => {
+        if (typeof window === 'undefined') return;
+        window.scrollTo(0, 0);
+    }, [route, routeParams]);
 
     return (
         <RouterContext.Provider value={{ route, routeParams, isNavigating, navigate }}>

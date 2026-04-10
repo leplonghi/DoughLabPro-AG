@@ -4,22 +4,7 @@ import { X, Send, AlertCircle } from 'lucide-react';
 import { useTranslation } from '@/i18n';
 import { DoughRescueModal } from './DoughRescueModal';
 import type { DoughyAssistantContextSnapshot } from '@/components/tools/doughyAssistant.types';
-
-const AbstractDoughyAvatar = () => (
-    <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="doughyPanelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#84CC16" />
-                <stop offset="100%" stopColor="#10B981" />
-            </linearGradient>
-        </defs>
-        <circle cx="50" cy="50" r="45" fill="url(#doughyPanelGradient)" />
-        <path d="M30 40 Q50 20 70 40 T90 60" stroke="white" strokeWidth="4" fill="none" opacity="0.5" />
-        <circle cx="35" cy="45" r="5" fill="white" />
-        <circle cx="65" cy="45" r="5" fill="white" />
-        <path d="M35 65 Q50 75 65 65" stroke="white" strokeWidth="4" strokeLinecap="round" fill="none" />
-    </svg>
-);
+import DoughyAvatar from './DoughyAvatar';
 
 interface Suggestion {
     id: string;
@@ -64,7 +49,7 @@ const getInitialMessages = (t: (key: string, options?: Record<string, unknown>) 
     {
         id: '1',
         text: t('doughy_assistant.welcome', {
-            defaultValue: 'I am Doughy. Tell me your goal and constraints, and I will give you a clear next step.'
+            defaultValue: 'I am Doughy. Tell me your goal or dough issue, and I will give you the clearest next step.'
         }),
         sender: 'bot',
         timestamp: new Date(),
@@ -200,8 +185,12 @@ export const DoughyAssistantPanel: React.FC<DoughyAssistantPanelProps> = ({ isOp
                             <div className="bg-[#1B4332] p-4 flex items-center justify-between shrink-0 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-30"></div>
                                 <div className="flex items-center gap-3 relative z-10">
-                                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border-2 border-white/40 shadow-inner overflow-hidden">
-                                        <AbstractDoughyAvatar />
+                                    <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 border-white/40 bg-white/20 shadow-inner backdrop-blur-md">
+                                        <DoughyAvatar
+                                            className="h-full w-full"
+                                            imageClassName="h-full w-full scale-[1.08] object-contain"
+                                            alt={t('doughy_assistant.avatar_alt', { defaultValue: 'Doughy assistant avatar' })}
+                                        />
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-white text-sm tracking-wide">
@@ -210,6 +199,9 @@ export const DoughyAssistantPanel: React.FC<DoughyAssistantPanelProps> = ({ isOp
                                         <p className="text-emerald-100/90 text-[10px] font-medium uppercase tracking-wider flex items-center gap-1.5">
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse"></span>
                                             {t('doughy_assistant.status', { defaultValue: 'Online' })}
+                                        </p>
+                                        <p className="mt-0.5 text-[11px] text-emerald-50/80">
+                                            {t('doughy_assistant.panel_subtitle', { defaultValue: 'Recipes, rescue and next steps' })}
                                         </p>
                                     </div>
                                 </div>

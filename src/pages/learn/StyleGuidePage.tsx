@@ -1,7 +1,7 @@
 // Force rebuild
 import React from 'react';
 import TechnicalPageLayout from './TechnicalPageLayout';
-import { BookOpenIcon, GlobeAltIcon, FireIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, GlobeAltIcon, FireIcon, SignalIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from './LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -25,7 +25,7 @@ const StyleGuidePage: React.FC = () => {
                 </ul>
             </LearnSection>
 
-            <LearnSection title="2. New York Style" icon={<SparklesIcon className="h-5 w-5" />}>
+            <LearnSection title="2. New York Style" icon={<SignalIcon className="h-5 w-5" />}>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li><strong>{t('learn.base')}</strong> Firmer and wider, resulting in large, structured slices.</li>
                     <li><strong>{t('learn.rim')}</strong> Crispy outside, but soft and chewy inside.</li>

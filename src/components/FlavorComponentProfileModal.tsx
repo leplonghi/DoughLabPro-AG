@@ -33,7 +33,7 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                     {[1, 2, 3, 4, 5].map((i) => (
                         <div
                             key={i}
-                            className={`h-2 w-8 rounded-full ${i <= value ? 'bg-dlp-accent' : 'bg-dlp-border'
+                            className={`h-2 w-8 rounded-full ${i <= value ? 'bg-dlp-primary' : 'bg-dlp-border'
                                 }`}
                         />
                     ))}
@@ -51,11 +51,11 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                     <div>
                         <div className="flex items-center gap-3 mb-1">
                             <h2 className="text-2xl font-bold font-display">{component.name}</h2>
-                            <span className="px-2 py-0.5 rounded-full bg-dlp-accent/10 text-dlp-accent text-xs font-bold uppercase tracking-wide">
+                            <span className="px-2 py-0.5 rounded-full bg-dlp-primary/10 text-dlp-primary text-xs font-bold uppercase tracking-wide">
                                 {component.category}
                             </span>
                             {component.isStandard && (
-                                <span className="px-2 py-0.5 rounded-full bg-dlp-brand/10 text-dlp-brand-hover text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                                <span className="px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 text-xs font-bold uppercase tracking-wide flex items-center gap-1">
                                     <CheckCircleIcon className="w-3 h-3" /> Standard
                                 </span>
                             )}
@@ -154,7 +154,7 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     {component.classicCombinations.map((combo, idx) => (
                                         <li key={idx} className="flex items-center gap-2 text-sm text-dlp-text-primary">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-dlp-accent flex-shrink-0" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-dlp-primary flex-shrink-0" />
                                             {combo}
                                         </li>
                                     ))}
@@ -174,11 +174,11 @@ const FlavorComponentProfileModal: React.FC<FlavorComponentProfileModalProps> = 
                                     href={ref.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group block p-3 rounded-xl border border-dlp-border hover:border-dlp-accent hover:bg-dlp-bg-muted transition-all relative"
+                                    className="group block p-3 rounded-xl border border-dlp-border hover:border-dlp-primary hover:bg-dlp-bg-muted transition-all relative"
                                 >
                                     <div className="flex justify-between items-start">
                                         <div>
-                                            <h5 className="text-sm font-bold text-dlp-text-primary group-hover:text-dlp-accent transition-colors flex items-center gap-2">
+                                            <h5 className="text-sm font-bold text-dlp-text-primary group-hover:text-dlp-primary transition-colors flex items-center gap-2">
                                                 {ref.title}
                                                 <ExternalLinkIcon className="w-3 h-3 opacity-50 group-hover:opacity-100" />
                                             </h5>

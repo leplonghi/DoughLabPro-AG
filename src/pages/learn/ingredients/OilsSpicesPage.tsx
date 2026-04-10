@@ -1,7 +1,7 @@
 
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, SignalIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -19,7 +19,7 @@ const OilsSpicesPage: React.FC = () => {
         </p>
       </LearnSection>
 
-      <LearnSection title={t('learn.fresh_herbs_vibrancy_and_delicacy')} icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.fresh_herbs_vibrancy_and_delicacy')} icon={<SignalIcon className="h-5 w-5" />}>
         <h4>a) Basil</h4>
         <p>
           Iconic aroma comes from compounds like linalool, extremely heat sensitive. Documented by Italian tradition and AVPN rules, fresh basil should be added <strong>post-oven</strong> to preserve scent.

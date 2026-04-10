@@ -4,10 +4,13 @@ import { LockedTeaser } from "@/marketing/fomo/components/LockedTeaser";
 import { AdCard } from "@/marketing/ads/AdCard";
 import MyLabLayout from '@/pages/mylab/MyLabLayout';
 import LearnAffiliateBlock from '@/components/learn/LearnAffiliateBlock';
+import GuidanceTooltipTrigger from '@/components/guidance/GuidanceTooltipTrigger';
 import AppSurface, { AppSurfaceTone } from '@/components/ui/AppSurface';
 import InlineNotice from '@/components/ui/InlineNotice';
 import MetricCard from '@/components/ui/MetricCard';
 import StatusBadge from '@/components/ui/StatusBadge';
+import { AssistantIcon, SparklesIcon as SignalIcon } from '@/components/ui/Icons';
+import { useGuidance } from '@/contexts/GuidanceContext';
 import { useUser } from '@/contexts/UserProvider';
 import { Page } from '@/types';
 import {
@@ -19,7 +22,6 @@ import {
     ArrowsRightLeftIcon,
     DocumentTextIcon,
     ChartBarIcon,
-    SparklesIcon,
     LockClosedIcon,
     ClockIcon,
     BoltIcon,
@@ -60,6 +62,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
     const localized = React.useCallback((pt: string, en: string) => (isPortuguese ? pt : en), [isPortuguese]);
     const { hasProAccess, openPaywall, batches, customPresets, levains } = useUser();
     const { addToast } = useToast();
+    const { openTooltip, resetGuidance } = useGuidance();
 
     // Stats Calculation
     const totalBakes = batches.length;
@@ -212,7 +215,6 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
     // Limit Logic
     const isLimitReached = !hasProAccess && totalBakes >= 1;
     const [showLimitModal, setShowLimitModal] = useState(false);
-
     const handleNewBake = () => {
         if (isLimitReached) {
             setShowLimitModal(true);
@@ -264,8 +266,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
             }}
         >
             <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-4 space-y-5 animate-fade-in dlp-flow-stack">
-
-                <AppSurface surface="elevated" tone="neutral" className="p-5 sm:p-6">
+                <AppSurface id="tour-mylab-overview" surface="elevated" tone="neutral" className="p-5 sm:p-6">
                     <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_auto] lg:items-center">
                         <div className="flex items-center gap-3 min-w-[200px]">
                         <div className="h-12 w-12 bg-gradient-to-br from-lime-400 to-dlp-brand-hover rounded-full flex items-center justify-center flex-shrink-0 text-white font-black text-lg shadow-lg shadow-dlp-brand/30 border-2 border-white">
@@ -342,14 +343,20 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 tone="neutral"
                             />
                         </div>
+                        <div className="flex justify-end lg:self-start">
+                            <GuidanceTooltipTrigger itemId="mylab-overview-tip" />
+                        </div>
                     </div>
                 </AppSurface>
 
                 {recommendations.length > 0 && (
-                    <AppSurface surface="glass" tone="neutral" className="p-5 sm:p-6">
+                    <AppSurface id="tour-mylab-actions" surface="glass" tone="neutral" className="p-5 sm:p-6">
                         <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
                             <BoltIcon className="h-5 w-5 text-amber-500" />
                             <h2 className="text-base font-bold text-slate-800">{localized('Proximas melhores acoes', 'Next best actions')}</h2>
+                            <div className="ml-auto">
+                                <GuidanceTooltipTrigger itemId="mylab-actions-tip" />
+                            </div>
                         </div>
                         <p className="text-sm text-slate-500 -mt-2">
                             {localized('Pequenos movimentos que mantem seu lab ativo, seus dados uteis e sua proxima fornada mais facil de melhorar.', 'Small moves that keep your lab active, your data useful and your next bake easier to improve.')}
@@ -410,6 +417,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     tone="brand"
                                     isLocked={!hasProAccess}
                                     onUnlock={() => openPaywall('mylab_timeline')}
+                                    guidanceItemId="mylab-timeline-tip"
                                 />
                                 <LabFeatureCard
                                     icon={<BeakerIcon className="h-6 w-6 text-blue-600" />}
@@ -417,6 +425,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     description={t('mylab.desc_my_bakes')}
                                     onClick={() => onNavigate('mylab/bakes')}
                                     tone="info"
+                                    guidanceItemId="mylab-bakes-tip"
                                 />
                                 <LabFeatureCard
                                     icon={<FireIcon className="h-6 w-6 text-orange-500" />}
@@ -424,6 +433,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     description={t('mylab.desc_levain_tracker')}
                                     onClick={() => onNavigate('mylab/levain')}
                                     tone="warning"
+                                    guidanceItemId="mylab-levain-tip"
                                 />
                                 <LabFeatureCard
                                     icon={<ScaleIcon className="h-6 w-6 text-blue-600" />}
@@ -456,6 +466,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     tone="success"
                                     isLocked={!hasProAccess}
                                     onUnlock={() => openPaywall('mylab_consistency')}
+                                    guidanceItemId="mylab-consistency-tip"
                                 />
                                 <LabFeatureCard
                                     icon={<ArrowsRightLeftIcon className="h-6 w-6 text-blue-600" />}
@@ -482,14 +493,17 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                         </div>
 
                         {/* Recent Activity Feed */}
-                        <div className="space-y-4 pt-4">
-                            <div className="flex items-center justify-between">
+                        <div id="tour-mylab-recent-activity" className="space-y-4 pt-4">
+                            <div className="flex items-center justify-between gap-3">
                                 <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
                                     <ArchiveBoxIcon className="h-5 w-5 text-slate-500" />{t('mylab.recent_activity')}</h2>
-                                <button
-                                    onClick={() => onNavigate('mylab/bakes')}
-                                    className="text-sm text-dlp-brand-hover font-bold hover:underline"
-                                >{t('mylab.view_log')}</button>
+                                <div className="flex items-center gap-2">
+                                    <GuidanceTooltipTrigger itemId="mylab-recent-tip" />
+                                    <button
+                                        onClick={() => onNavigate('mylab/bakes')}
+                                        className="text-sm text-dlp-brand-hover font-bold hover:underline"
+                                    >{t('mylab.view_log')}</button>
+                                </div>
                             </div>
 
                             {recentBakes.length > 0 ? (
@@ -590,9 +604,21 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">{localized('Ritmo do lab', 'Lab cadence')}</p>
                                     <h3 className="mt-2 text-xl font-bold text-slate-900">{localized('Mantenha o ciclo de feedback vivo', 'Keep the feedback loop alive')}</h3>
                                 </div>
-                                <StatusBadge tone="brand" className="px-3 py-1 text-xs">
-                                    {cadenceSummary.activeDaysLast30} {localized('dias ativos / 30', 'active days / 30')}
-                                </StatusBadge>
+                                <div className="flex items-center gap-2">
+                                    <StatusBadge tone="brand" className="px-3 py-1 text-xs">
+                                        {cadenceSummary.activeDaysLast30} {localized('dias ativos / 30', 'active days / 30')}
+                                    </StatusBadge>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            resetGuidance();
+                                            openTooltip('mylab-overview-tip');
+                                        }}
+                                        className="rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
+                                    >
+                                        {localized('Ver dicas', 'View tips')}
+                                    </button>
+                                </div>
                             </div>
 
                             <div className="mt-4 space-y-3 text-sm text-slate-600">
@@ -632,7 +658,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             <div className="relative z-10">
                                 <div className="flex items-center gap-2 mb-4">
                                     <div className="p-1.5 bg-lime-400/10 rounded-lg">
-                                        <SparklesIcon className="h-4 w-4 text-lime-400" />
+                                        <SignalIcon className="h-4 w-4 text-lime-400" />
                                     </div>
                                     <span className="text-xs font-bold uppercase tracking-wider text-lime-400">{t('mylab.daily_tip')}</span>
                                 </div>
@@ -653,12 +679,12 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                             <div className="relative overflow-hidden rounded-2xl border border-blue-200/70 bg-[linear-gradient(150deg,_#244965_0%,_#2b5b7b_52%,_#367294_100%)] p-6 text-white shadow-lg transition-all hover:shadow-[0_24px_60px_-32px_rgba(35,73,101,0.45)] group cursor-pointer"
                                 onClick={() => onNavigate('tools/doughbot')}>
                                 <div className="absolute top-0 right-0 p-4">
-                                    <SparklesIcon className="h-5 w-5 text-indigo-200 animate-pulse" />
+                                    <AssistantIcon className="h-5 w-5 text-indigo-200 animate-pulse" />
                                 </div>
 
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <SparklesIcon className="h-5 w-5 text-indigo-200" />
+                                        <AssistantIcon className="h-5 w-5 text-indigo-200" />
                                         <span className="text-xs font-bold uppercase tracking-wide text-indigo-200">{t('mylab.ai_beta')}</span>
                                     </div>
                                     <h3 className="font-bold text-white text-lg mb-2">{t('mylab.fermentation_engine')}</h3>
@@ -679,7 +705,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                                     <div className="relative z-10">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <SparklesIcon className="h-5 w-5 text-indigo-200" />
+                                            <AssistantIcon className="h-5 w-5 text-indigo-200" />
                                             <span className="text-xs font-bold uppercase tracking-wide text-indigo-200">{t('mylab.ai_beta')}</span>
                                         </div>
                                         <h3 className="font-bold text-white text-lg mb-2">{t('mylab.fermentation_engine')}</h3>
@@ -718,6 +744,7 @@ interface LabFeatureCardProps {
     tone: AppSurfaceTone;
     isLocked?: boolean;
     onUnlock?: () => void;
+    guidanceItemId?: string;
 }
 
 const toneBackgroundClass: Record<AppSurfaceTone, string> = {
@@ -729,7 +756,7 @@ const toneBackgroundClass: Record<AppSurfaceTone, string> = {
     neutral: 'bg-slate-50 text-slate-700',
 };
 
-const LabFeatureCard: React.FC<LabFeatureCardProps> = ({ icon, title, description, onClick, tone, isLocked, onUnlock }) => {
+const LabFeatureCard: React.FC<LabFeatureCardProps> = ({ icon, title, description, onClick, tone, isLocked, onUnlock, guidanceItemId }) => {
 
     const handleClick = () => {
         if (isLocked && onUnlock) {
@@ -740,16 +767,29 @@ const LabFeatureCard: React.FC<LabFeatureCardProps> = ({ icon, title, descriptio
     };
 
     return (
-        <button
+        <div
+            role="button"
+            tabIndex={0}
             onClick={handleClick}
+            onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    handleClick();
+                }
+            }}
             className={`
-                relative flex items-center gap-4 p-4 rounded-2xl border text-left transition-all duration-300 w-full group
+                relative flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-all duration-300 group cursor-pointer
                 ${isLocked
                     ? 'bg-slate-50 border-slate-100 opacity-90 hover:opacity-100'
                     : 'dlp-surface-interactive dlp-tone-neutral shadow-sm hover:border-lime-200 hover:-translate-y-1'
                 }
             `}
         >
+            {guidanceItemId ? (
+                <div className="absolute right-3 top-3 z-10">
+                    <GuidanceTooltipTrigger itemId={guidanceItemId} />
+                </div>
+            ) : null}
             {/* Icon Container */}
             <div className={`
                 h-14 w-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 shadow-sm
@@ -778,7 +818,7 @@ const LabFeatureCard: React.FC<LabFeatureCardProps> = ({ icon, title, descriptio
             `}>
                 <ArrowRightIcon className="h-4 w-4" />
             </div>
-        </button>
+        </div>
     );
 };
 

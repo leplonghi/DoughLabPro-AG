@@ -1,5 +1,5 @@
 import React from 'react';
-import { SparklesIcon } from '@/components/ui/Icons';
+import { ProBadgeIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
 interface UiModeToggleProps {
@@ -36,7 +36,7 @@ const UiModeToggle: React.FC<UiModeToggleProps> = ({ calculatorMode, setCalculat
                     : 'text-slate-600 hover:text-slate-900'
                     }`}
             >
-                <SparklesIcon className={`h-3 w-3 ${calculatorMode === 'advanced' ? 'text-dlp-brand-hover' : 'text-slate-400'}`} />{t('calculator.pro')}</button>
+                <ProBadgeIcon className={`h-3 w-3 ${calculatorMode === 'advanced' ? 'text-dlp-brand-hover' : 'text-slate-400'}`} />{t('calculator.pro')}</button>
         </div>
     );
 };

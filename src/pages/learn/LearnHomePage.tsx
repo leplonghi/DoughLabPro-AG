@@ -5,7 +5,6 @@ import AppSurface from '@/components/ui/AppSurface';
 import { learnContent } from '@/data/learn-content';
 import { useTranslation } from '@/i18n';
 import {
-    SparklesIcon,
     MagnifyingGlassIcon,
     ArrowRightIcon,
     AcademicCapIcon,

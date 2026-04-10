@@ -47,3 +47,29 @@ Applied baking app focused on dough formulation, fermentation workflows, My Lab 
 - Set production Stripe secrets in Firebase Functions config.
 - Confirm `app.allowed_hosts` matches the production domains exactly.
 - Run the four verification commands above before every release.
+
+## Mobile shell
+
+The project now includes a Capacitor foundation for Android and iOS:
+
+- Capacitor config: `capacitor.config.ts`
+- Android project: `android/`
+- iOS project: `ios/`
+
+Basic mobile workflow:
+
+1. Build and sync native shells:
+   `npm run mobile:sync`
+2. Open Android Studio:
+   `npm run mobile:open:android`
+3. Open Xcode:
+   `npm run mobile:open:ios`
+
+Notes:
+
+- Mobile shells currently wrap the existing web app.
+- Native Google sign-in now expects Firebase platform files in the native projects:
+  - `android/app/google-services.json`
+  - `ios/App/App/GoogleService-Info.plist`
+- Authentication, billing, notifications, and account deletion still need mobile-specific work before store submission.
+- Full rollout plan lives in `docs/MOBILE_APP_STORE_PLAN.md`.

@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import { Dialog, Transition, Tab } from '@headlessui/react';
 import { Fragment } from 'react';
-import { XMarkIcon, SparklesIcon, BeakerIcon, BookOpenIcon, PlusCircleIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, BeakerIcon, BookOpenIcon, PlusCircleIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 import { IngredientAIService } from '@/services/IngredientAIService';
 import { DoughStyleDefinition } from '@/types/styles';
 import { AIValidationResponse, IncrementCategory } from '@/types/ingredients';
 import { useTranslation } from '@/i18n';
 import { FLAVOR_COMPONENTS } from '@/data/flavorComponents';
 import { FlavorComponent } from '@/types/flavor';
+import { AssistantIcon } from '@/components/ui/Icons';
 
 interface IngredientCreatorModalProps {
     isOpen: boolean;
@@ -376,7 +377,7 @@ export default function IngredientCreatorModal({ isOpen, onClose, currentStyle, 
 
                                 {step === 'processing' && (
                                     <div className="py-12 text-center space-y-4">
-                                        <SparklesIcon className="h-12 w-12 text-dlp-brand animate-pulse mx-auto" />
+                                        <AssistantIcon className="h-12 w-12 text-dlp-brand animate-pulse mx-auto" />
                                         <p className="text-slate-500 font-medium">Analyzing molecular properties...</p>
                                     </div>
                                 )}

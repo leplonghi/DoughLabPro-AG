@@ -1,7 +1,7 @@
 
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, SignalIcon, BeakerIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -73,7 +73,7 @@ const ReadyToppingsPage: React.FC = () => {
         </ul>
       </LearnSection>
 
-      <LearnSection title={t('learn.high_quality_preserves')} icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.high_quality_preserves')} icon={<SignalIcon className="h-5 w-5" />}>
         <p>
           Professional shortcut to intense flavor.
         </p>

@@ -17,7 +17,7 @@ import {
     RocketIcon,
     MoonIcon,
     LightBulbIcon,
-    SparklesIcon
+    SignalIcon
 } from '@/components/ui/Icons';
 import EnvironmentSection from '@/components/calculator/sections/EnvironmentSection';
 import { DOUGH_STYLE_PRESETS, getCalculatorStyleById } from '@/features/calculator/data/stylePresets';
@@ -158,7 +158,7 @@ export const WizardMode: React.FC<WizardModeProps> = ({
             {/* Header Enhanced */}
             <div className="mb-6 pt-4 text-center sm:hidden">
                 <h2 className="text-2xl font-black text-[#1B4332] flex items-center justify-center gap-2">
-                    <span className="bg-gradient-to-br from-[#51a145] to-[#36782c] p-2 rounded-2xl shadow-lg shadow-[#51a145]/20"><SparklesIcon className="w-6 h-6 text-white" /></span>
+                    <span className="bg-gradient-to-br from-[#51a145] to-[#36782c] p-2 rounded-2xl shadow-lg shadow-[#51a145]/20"><SignalIcon className="w-6 h-6 text-white" /></span>
                     {t('calculator.wizard_mode_title', { defaultValue: 'Dough Wizard' })}
                 </h2>
             </div>

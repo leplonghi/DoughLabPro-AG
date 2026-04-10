@@ -1,6 +1,6 @@
 import React from 'react';
 import TechnicalPageLayout from './learn/TechnicalPageLayout';
-import { SparklesIcon } from '@/components/ui/Icons';
+import { AssistantIcon } from '@/components/ui/Icons';
 import { LockFeature } from '@/components/auth/LockFeature';
 import { useDoughbot } from '@/hooks/useDoughbot';
 import { DoughbotResults } from '@/components/tools/doughbot/DoughbotResults';
@@ -158,7 +158,7 @@ const DoughbotPage: React.FC = () => {
                     placeholder={t('doughbot.description_placeholder_detailed')}
                   />
                   <div className="absolute right-3 bottom-3 text-slate-400">
-                    <SparklesIcon className="w-4 h-4 opacity-50" />
+                    <AssistantIcon className="w-4 h-4 opacity-50" />
                   </div>
                 </div>
               </div>
@@ -183,7 +183,7 @@ const DoughbotPage: React.FC = () => {
                   <LoadingSpinner className="w-5 h-5 text-white" />
                 ) : (
                   <>
-                    <SparklesIcon className="h-5 w-5 text-lime-400 animate-pulse" />
+                    <AssistantIcon className="h-5 w-5 text-lime-400 animate-pulse" />
                     <span>{t('ui.analyze_with_dough_intelligence')}</span>
                   </>
                 )}
@@ -210,7 +210,7 @@ const DoughbotPage: React.FC = () => {
 
               <div className="text-center max-w-lg mx-auto space-y-6">
                 <div className="w-20 h-20 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <SparklesIcon className="w-10 h-10 text-dlp-brand-hover" />
+                  <AssistantIcon className="w-10 h-10 text-dlp-brand-hover" />
                 </div>
 
                 <div>

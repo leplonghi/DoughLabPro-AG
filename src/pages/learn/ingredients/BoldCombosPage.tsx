@@ -1,7 +1,7 @@
 
 import React from 'react';
 import TechnicalPageLayout from '../TechnicalPageLayout';
-import { BeakerIcon, SparklesIcon } from '@/components/ui/Icons';
+import { BeakerIcon, SignalIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -61,7 +61,7 @@ const BoldCombosPage: React.FC = () => {
         </p>
       </LearnSection>
 
-      <LearnSection title={t('learn.ingredients_and_pairings')} icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.ingredients_and_pairings')} icon={<SignalIcon className="h-5 w-5" />}>
         <IngredientDetail
           title={t('learn.pepperoni')}
           combos={[t('learn.honey'), t('learn.pickled_jalapeño')]}

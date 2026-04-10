@@ -1293,6 +1293,21 @@
   "wisconsin_brick_cheese": "Wisconsin Brick Cheese",
   "yeast_inactivity_136": "Yeast inactivity",
   "you_have_full_access_to_all_lab_pro_features": "You have full access to all Lab Pro features.",
+  "doughy_assistant": {
+    "title": "Doughy",
+    "status": "Online",
+    "button_label": "Abrir assistente Doughy",
+    "avatar_alt": "Avatar do assistente Doughy",
+    "launcher_badge": "Assistente IA",
+    "launcher_title": "Pergunte ao Doughy",
+    "launcher_description": "Receitas, diagnostico da massa e proximo passo.",
+    "intro_title": "Sou o Doughy",
+    "intro_description": "Posso montar sua receita, diagnosticar o que aconteceu com a massa e sugerir o proximo ajuste.",
+    "close_intro": "Fechar apresentacao do Doughy",
+    "panel_subtitle": "Receitas, correcoes e proximos passos",
+    "welcome": "Sou o Doughy. Me diga sua meta ou problema com a massa, e eu te mostro o proximo passo com clareza.",
+    "placeholder": "Descreva sua meta ou problema com a massa..."
+  },
   "floating_help": {
     "button_label": "Help",
     "title": "Quick Tips",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from '@/contexts/RouterContext';
 import IngredientPageLayout from './IngredientPageLayout';
-import { SparklesIcon, BeakerIcon, FireIcon, CalculatorIcon, FlaskIcon } from '@/components/ui/Icons';
+import { SignalIcon, BeakerIcon, FireIcon, CalculatorIcon, FlaskIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnProTip, LearnCriticalPoint, LearnHistory } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -73,7 +73,7 @@ const OilsPage: React.FC = () => {
         </p>
       </LearnSection>
 
-      <LearnSection title={t('learn.strategic_application')} icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.strategic_application')} icon={<SignalIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-2">
           <li><strong>{t('learn.postoven_drizzle')}</strong> Best for maximizing aroma of expensive EVOO.</li>
           <li><strong>{t('learn.greased_pan')}</strong> Essential for Detroit/Sicilian styles to conduct heat and prevent sticking.</li>

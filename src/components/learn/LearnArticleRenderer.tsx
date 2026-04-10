@@ -5,7 +5,7 @@ import { generateArticleSummary } from '@/pages/learn/summaryGenerator';
 import { CollapseSection, SubCollapse } from '@/pages/learn/LearnComponents';
 import {
     BookOpenIcon, ScaleIcon, ChartBarIcon, FireIcon, AdjustmentsIcon,
-    SparklesIcon, CalculatorIcon, LightBulbIcon, ExclamationCircleIcon,
+    SignalIcon, CalculatorIcon, LightBulbIcon, ExclamationCircleIcon,
     BeakerIcon, CheckIcon, UserCircleIcon, ListBulletIcon, WrenchScrewdriverIcon,
     PhotoIcon, QuestionMarkCircleIcon, CloseIcon, GlobeAmericasIcon, CloudIcon
 } from '@/components/ui/Icons';
@@ -337,7 +337,7 @@ export const LearnArticleRenderer: React.FC<LearnArticleRendererProps> = ({ arti
 
                         {/* Variants & Implications */}
                         {finalData.variantsAndImplications && finalData.variantsAndImplications.length > 0 && (
-                            <StandardSection title={t('learn.variants_implications', { defaultValue: 'Variants & Implications' })} icon={<SparklesIcon className="h-5 w-5" />}>
+                            <StandardSection title={t('learn.variants_implications', { defaultValue: 'Variants & Implications' })} icon={<SignalIcon className="h-5 w-5" />}>
                                 <div className="space-y-4">
                                     {finalData.variantsAndImplications.map((variant, i) => (
                                         <SubCollapse key={i} title={variant.variant || variant.name || 'Variant'}>

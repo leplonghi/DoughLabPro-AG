@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { DoughStyleDefinition } from '@/types';
-import { BookOpenIcon, ChevronDownIcon, GlobeAltIcon, SparklesIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, ChevronDownIcon, GlobeAltIcon, ComposeIcon } from '@/components/ui/Icons';
 import { useTranslation } from '@/i18n';
 
 interface StyleContextBarProps {
@@ -21,7 +21,7 @@ const StyleContextBar: React.FC<StyleContextBarProps> = ({ style }) => {
       >
         <div className="flex items-center gap-3">
           <div className="p-1.5 bg-white rounded-full border border-slate-200 shadow-sm text-dlp-brand-hover">
-            {style.source === 'official' ? <BookOpenIcon className="h-4 w-4" /> : <SparklesIcon className="h-4 w-4" />}
+            {style.source === 'official' ? <BookOpenIcon className="h-4 w-4" /> : <ComposeIcon className="h-4 w-4" />}
           </div>
           <div>
             <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">{t('calculator.target_style')}</p>

@@ -20,6 +20,7 @@ import { RecipesProvider } from '@/contexts/RecipesProvider';
 import { SensoryProvider } from '@/contexts/SensoryProvider';
 import { NotificationProvider } from '@/contexts/NotificationContext';
 import { LearnProvider } from '@/contexts/LearnContext';
+import { GuidanceProvider } from '@/contexts/GuidanceContext';
 
 const CoreProviders: React.FC<{ children: ReactNode }> = ({ children }) => (
     <I18nProvider>
@@ -27,7 +28,9 @@ const CoreProviders: React.FC<{ children: ReactNode }> = ({ children }) => (
             <ToastProvider>
                 <UserProvider>
                     <MarketingProvider>
-                        <RouterProvider>{children}</RouterProvider>
+                        <RouterProvider>
+                            <GuidanceProvider>{children}</GuidanceProvider>
+                        </RouterProvider>
                     </MarketingProvider>
                 </UserProvider>
             </ToastProvider>

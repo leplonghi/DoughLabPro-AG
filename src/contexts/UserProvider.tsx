@@ -199,6 +199,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           stripeSubscriptionId: profileData.stripeSubscriptionId,
           gender: profileData.gender,
           birthDate: profileData.birthDate,
+          guidancePreferences: profileData.guidancePreferences,
           trials: profileData.trials || {},
         };
 

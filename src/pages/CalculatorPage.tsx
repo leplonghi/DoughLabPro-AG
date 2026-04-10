@@ -18,10 +18,9 @@ import {
 import UnitSelector from '@/components/calculator/UnitSelector';
 import { useUser } from '@/contexts/UserProvider';
 import { useTranslation } from '@/i18n';
-import { InfoIcon } from '@/components/ui/Icons';
 import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
-import OnboardingTooltip from '@/components/onboarding/OnboardingTooltip';
+import GuidanceTooltipTrigger from '@/components/guidance/GuidanceTooltipTrigger';
 import { AdCard } from '@/marketing/ads/AdCard';
 import { ModeSelectionScreen } from '@/components/calculator/ModeSelectionScreen';
 import { SchedulerSection } from '@/components/dashboard/sections/SchedulerSection';
@@ -140,7 +139,6 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
     () => getCalculatorStyleById(props.config.stylePresetId || 'new_york_slice_v2'),
     [props.config.stylePresetId]
   );
-
   const selectedLevain = useMemo(() => {
     if (props.config.yeastType === YeastType.USER_LEVAIN) {
       return levains.find(l => l.id === props.config.levainId) || levains.find(l => l.isDefault) || levains[0];
@@ -185,7 +183,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
   return (
     <AppPageLayout width="wide" density="default" pageHeader={{ page: 'calculator' }}>
       <div className="space-y-8 animate-slide-up pb-24">
-      <AppSurface surface="rail" className="p-4 sm:p-5">
+      <AppSurface id="calculator-workflow-card" surface="rail" className="p-4 sm:p-5">
         <div className="mb-2 flex items-center justify-between gap-3">
           <div className="min-w-0">
             <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-900 dark:text-slate-50">
@@ -195,6 +193,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
               {isPortuguese ? 'Comece no guiado, use o wizard para passo a passo e o avancado para controle total.' : t('calculator.workflow_hint', { defaultValue: 'Guided first, Wizard for step-by-step, Advanced for full control.' })}
             </p>
           </div>
+          <GuidanceTooltipTrigger itemId="calculator-workflow-tip" />
         </div>
         <ModeSelectionScreen
           selectedMode={props.calculatorMode}
@@ -212,22 +211,12 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
         <div className="space-y-8" ref={formRef}>
-          <AppSurface surface="rail" className="flex items-center justify-between px-6 py-3">
+          <AppSurface id="calculator-inputs-card" surface="rail" className="flex items-center justify-between px-6 py-3">
             <div className="flex items-center gap-4">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{t('calculator.settings', { defaultValue: 'Settings:' })}</span>
               <UnitSelector unit={props.unit} onUnitChange={props.onUnitChange} />
             </div>
-            <div className="group relative">
-              <div className="p-2.5 rounded-xl bg-slate-50 text-slate-400 hover:text-[#1B4332] hover:bg-emerald-50 transition-all cursor-help">
-                <span className="sr-only">Info</span>
-                <InfoIcon size={16} />
-              </div>
-              <div className="pointer-events-none absolute bottom-full right-0 z-10 mb-4 w-64 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                <div className="bg-[#1B4332] text-white p-4 rounded-2xl text-[11px] leading-relaxed shadow-xl border border-white/10 italic">
-                  {t('form.tooltips.ui_mode')}
-                </div>
-              </div>
-            </div>
+            <GuidanceTooltipTrigger itemId="calculator-inputs-tip" />
           </AppSurface>
 
           <AppSurface surface="soft" className="p-1.5">
@@ -338,23 +327,6 @@ const CalculatorPage: React.FC<CalculatorPageProps> = (props) => {
             )}
           </div>
         </div>
-      )}
-
-      {props.onboardingState?.isActive && (
-        <OnboardingTooltip
-          targetElement={
-            props.onboardingState.step === 1 ? formRef.current :
-              props.onboardingState.step === 3 ? resultsRef.current :
-                props.onboardingState.step === 4 ? saveButtonRef.current : null
-          }
-          step={props.onboardingState.step}
-          totalSteps={6}
-          title={t(`onboarding.step${props.onboardingState.step}_title`)}
-          description={t(`onboarding.step${props.onboardingState.step}_desc`)}
-          onNext={props.onOnboardingNextStep!}
-          onBack={props.onOnboardingBackStep!}
-          onFinish={() => { }}
-        />
       )}
       </div>
     </AppPageLayout>

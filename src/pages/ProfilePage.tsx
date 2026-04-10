@@ -15,6 +15,7 @@ import {
   UserCircleIcon,
   GlobeAltIcon,
   FireIcon,
+  ProBadgeIcon,
   SparklesIcon,
   BookOpenIcon,
 } from '@/components/ui/Icons';
@@ -22,9 +23,10 @@ import { ImageUpload } from '@/components/ui/ImageUpload';
 import { User, Gender, Oven, Page, Levain, UnitSystem } from '@/types';
 import OvenModal from '@/components/OvenModal';
 import LevainModal from '@/components/LevainModal';
-import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
 import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
+import GuidanceTooltipTrigger from '@/components/guidance/GuidanceTooltipTrigger';
+import { useGuidance } from '@/contexts/GuidanceContext';
 
 interface ProfilePageProps {
   onNavigate: (page: Page, params?: string) => void;
@@ -49,6 +51,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     goals,
     batches
   } = useUser();
+  const { openTooltip, resetGuidance } = useGuidance();
   const { t, locale, localePreference, followsSystemLanguage } = useTranslation(['common', 'profile', 'auth', 'settings']);
 
   const [activeTab, setActiveTab] = useState<'overview' | 'mylab' | 'settings'>('overview');
@@ -60,8 +63,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
   const [isLevainModalOpen, setIsLevainModalOpen] = useState(false);
   const [editingLevain, setEditingLevain] = useState<Levain | null>(null);
-
-  const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -209,7 +210,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
       return (
         <AppSurface tone="brand" className="relative overflow-hidden p-5 shadow-lg">
           <div className="absolute top-0 right-0 p-3 opacity-10">
-            <SparklesIcon className="h-24 w-24" />
+            <ProBadgeIcon className="h-24 w-24" />
           </div>
           <h3 className="relative z-10 mb-1 text-lg font-bold text-dlp-text-primary">{t('common.general.upgrade_to_pro_2')}</h3>
           <p className="relative z-10 mb-4 text-sm text-dlp-text-secondary">
@@ -227,10 +228,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
 
     return (
       <AppSurface className="border-amber-100 bg-gradient-to-br from-amber-50 to-orange-50 p-5 text-amber-900">
-        <div className="mb-2 flex items-center gap-3">
-          <div className="rounded-full bg-amber-200 p-2 text-amber-700">
-            <SparklesIcon className="h-5 w-5" />
-          </div>
+          <div className="mb-2 flex items-center gap-3">
+            <div className="rounded-full bg-amber-200 p-2 text-amber-700">
+            <ProBadgeIcon className="h-5 w-5" />
+            </div>
           <h3 className="text-base font-bold">{t('common.general.pro_member')}</h3>
         </div>
         <p className="text-sm opacity-80">{t('common.ui.you_have_full_access_to_all_lab_pro_features')}</p>
@@ -239,11 +240,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
   };
 
   const renderResourcesPanel = () => (
-    <AppSurface className="border-slate-100 p-5">
-      <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-800">
-        <BookOpenIcon className="h-5 w-5 text-dlp-brand" />
-        {t('profile.resources_title', { defaultValue: 'Resources' })}
-      </h3>
+    <AppSurface id="profile-resources-card" className="border-slate-100 p-5">
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <h3 className="flex items-center gap-2 font-bold text-slate-800">
+          <BookOpenIcon className="h-5 w-5 text-dlp-brand" />
+          {t('profile.resources_title', { defaultValue: 'Resources' })}
+        </h3>
+        <GuidanceTooltipTrigger itemId="profile-resources-tip" />
+      </div>
       <div className="space-y-2">
         <button onClick={() => onNavigate('learn/references')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-dlp-brand transition-transform group-hover:scale-110">
@@ -288,7 +292,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
             )}
             {hasProAccess && (
               <div className="absolute bottom-1 right-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white p-1.5 rounded-full shadow-sm ring-2 ring-white" title={t('common.general.pro_member')}>
-                <SparklesIcon className="h-4 w-4" />
+                <ProBadgeIcon className="h-4 w-4" />
               </div>
             )}
           </div>
@@ -309,7 +313,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           <div className="flex w-full flex-wrap justify-center gap-2 sm:w-auto sm:justify-end">
             <button
               type="button"
-              onClick={() => setIsWizardOpen(true)}
+              onClick={() => {
+                resetGuidance();
+                openTooltip('profile-preferences-tip');
+              }}
               className="flex items-center gap-2 rounded-xl bg-lime-100 px-3.5 py-2 text-sm font-medium text-lime-800 transition-colors hover:bg-lime-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
               title={t('auth.onboarding.title', { defaultValue: 'Update Preferences' })}
             >
@@ -332,6 +339,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           {renderTabButton('overview', t('profile_page.tabs.overview'), UserCircleIcon)}
           {renderTabButton('mylab', t('profile_page.tabs.mylab'), BeakerIcon)}
           {renderTabButton('settings', t('profile_page.tabs.settings'), SettingsIcon)}
+          <div className="ml-auto">
+            <GuidanceTooltipTrigger
+              itemId="profile-preferences-tip"
+              onAction={() => {
+                resetGuidance();
+              }}
+            />
+          </div>
         </div>
       </AppSurface>
 
@@ -340,7 +355,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         <div className="space-y-6 lg:col-span-2">
 
           {activeTab === 'overview' && (
-            <AppSurface className="animate-fadeIn space-y-6 border-slate-100 p-5 sm:p-6">
+            <AppSurface id="profile-overview-card" className="animate-fadeIn space-y-6 border-slate-100 p-5 sm:p-6">
               {isEditing ? (
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-2">{t('common.general.edit_profile')}</h3>
@@ -641,12 +656,15 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           )}
 
           {activeTab === 'settings' && (
-            <AppSurface className="animate-fadeIn space-y-6 border-slate-100 p-5 sm:p-6">
+            <AppSurface id="profile-settings-card" className="animate-fadeIn space-y-6 border-slate-100 p-5 sm:p-6">
               <div>
-                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-800">
+                <div className="mb-4 flex items-start justify-between gap-3">
+                  <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800">
                   <SettingsIcon className="h-5 w-5 text-slate-500" />
-                  {t('common.preferences', { defaultValue: 'Preferences' })}
-                </h3>
+                    {t('common.preferences', { defaultValue: 'Preferences' })}
+                  </h3>
+                  <GuidanceTooltipTrigger itemId="settings-preferences-tip" />
+                </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <button
                     type="button"
@@ -759,14 +777,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         onSave={handleSaveLevain}
         levainToEdit={editingLevain}
       />
-
-      {isWizardOpen && (
-        <OnboardingWizard
-          onComplete={() => setIsWizardOpen(false)}
-          onClose={() => setIsWizardOpen(false)}
-          initialStep={1}
-        />
-      )}
     </div>
     </AppPageLayout>
   );

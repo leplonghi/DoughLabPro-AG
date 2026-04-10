@@ -1,7 +1,7 @@
 
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, SignalIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -85,7 +85,7 @@ const MeatsPage: React.FC = () => {
         </ul>
       </LearnSection>
 
-      <LearnSection title={t('learn.risks_and_common_care')} icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.risks_and_common_care')} icon={<SignalIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>Excess Fat (Oil-Out):</strong> Multiple fatty meats (pepperoni + bacon) lead to oily pizza. Balance with lower fat cheese or less quantity.</li>
           <li><strong>{t('learn.raw_fresh_meats')}</strong> High risk of releasing water and undercooking. Pre-cooking is safest effective practice.</li>

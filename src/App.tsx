@@ -2,10 +2,9 @@ import React, { useState, Suspense, useMemo, useEffect } from 'react';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import AppLoadingScreen from '@/components/ui/AppLoadingScreen';
-import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import RequireAuth from '@/components/RequireAuth';
-import FloatingActionButton from '@/components/ui/FloatingActionButton';
 import { Logo } from '@/components/ui/Logo';
+import GuidanceHost from '@/components/guidance/GuidanceHost';
 import { useToast } from '@/components/ToastProvider';
 import { useUser } from '@/contexts/UserProvider';
 import { useAuth } from '@/contexts/AuthContext';
@@ -28,17 +27,11 @@ const AssistantPage = lazyWithChunkRecovery(() => import('@/components/Assistant
 const AuthModal = lazyWithChunkRecovery(() => import('@/components/AuthModal'));
 const DoughyAssistantShell = lazyWithChunkRecovery(() => import('@/components/tools/DoughyAssistantShell'));
 const PaywallModal = lazyWithChunkRecovery(() => import('@/components/PaywallModal').then((module) => ({ default: module.PaywallModal })));
-const LevainOnboardingModal = lazyWithChunkRecovery(() => import('@/components/onboarding/LevainOnboardingModal'));
-const TourGuide = lazyWithChunkRecovery(() => import('@/components/onboarding/TourGuide').then((module) => ({ default: module.TourGuide })));
-const OnboardingWizard = lazyWithChunkRecovery(() =>
-  import('@/components/onboarding/OnboardingWizard').then((module) => ({ default: module.OnboardingWizard }))
-);
 
 function AppContent() {
   const { route, navigate, isNavigating } = useRouter();
   const { loading: authLoading } = useAuth();
   const {
-    user,
     isAuthenticated,
     hasProAccess,
     ovens,
@@ -51,18 +44,15 @@ function AppContent() {
     paywallOrigin
   } = useUser();
 
-  const { config, results, hasInteracted } = useCalculator();
-  const { session, isSaving } = useDoughSession();
+  const { config, results } = useCalculator();
+  const { session } = useDoughSession();
   const lastSaved = session.meta.lastSaved;
   const { addToast } = useToast();
   const { t } = useTranslation();
 
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
-  const [showLevainOnboarding, setShowLevainOnboarding] = useState(false);
-  const [showMainOnboarding, setShowMainOnboarding] = useState(false);
   const [shouldMountAssistantShell, setShouldMountAssistantShell] = useState(false);
-  const [shouldMountTourGuide, setShouldMountTourGuide] = useState(false);
 
   useEffect(() => {
     if (shouldMountAssistantShell) return;
@@ -70,28 +60,6 @@ function AppContent() {
     const id = window.setTimeout(() => setShouldMountAssistantShell(true), 900);
     return () => window.clearTimeout(id);
   }, [route, shouldMountAssistantShell]);
-
-  useEffect(() => {
-    if (shouldMountTourGuide) return;
-    const id = window.setTimeout(() => setShouldMountTourGuide(true), 1400);
-    return () => window.clearTimeout(id);
-  }, [shouldMountTourGuide]);
-  // Main Onboarding Logic
-  // Main Onboarding Logic - DISABLED BY USER REQUEST
-  // useEffect(() => {
-  //   if (user && isAuthenticated && !user.onboardingCompleted) {
-  //     // Check if we maybe stored it locally for guests/interim
-  //     const localCompleted = localStorage.getItem('dlp_onboarding_completed') === 'true';
-  //     if (!localCompleted) {
-  //       setShowMainOnboarding(true);
-  //     }
-  //   }
-  // }, [user, isAuthenticated]);
-
-  const handleMainOnboardingComplete = () => {
-    localStorage.setItem('dlp_onboarding_completed', 'true');
-    setShowMainOnboarding(false);
-  };
 
   // Last batch calculation
   const lastBatch = useMemo(() => {
@@ -108,25 +76,6 @@ function AppContent() {
     lastBatch,
     userPlan: hasProAccess ? 'pro' : 'free',
   }), [config, results, ovens, lastBatch, hasProAccess]);
-
-  // Levain Onboarding Logic
-  useEffect(() => {
-    const hasSeenOnboarding = localStorage.getItem('levain_pet_onboarding_seen_v1');
-    if (!hasSeenOnboarding && route.startsWith('mylab/levain')) {
-      setShowLevainOnboarding(true);
-    }
-  }, [route]);
-
-  const handleOnboardingComplete = () => {
-    try {
-      localStorage.setItem('levain_pet_onboarding_seen_v1', 'true');
-    } catch (error) {
-      console.error(t('common.failed_to_save_onboarding_status_to_localstorage'), error);
-    }
-    setShowLevainOnboarding(false);
-  };
-
-  const isSummaryBarVisible = route === 'calculator' && !!results;
 
   const handleStartBatch = React.useCallback(async () => {
     if (!results) return;
@@ -284,24 +233,6 @@ function AppContent() {
         </Suspense>
       )}
 
-      {showLevainOnboarding && (
-        <Suspense fallback={null}>
-          <LevainOnboardingModal
-            onComplete={handleOnboardingComplete}
-            onNavigate={navigate}
-          />
-        </Suspense>
-      )}
-
-      {showMainOnboarding && (
-        <Suspense fallback={null}>
-          <OnboardingWizard
-            onComplete={handleMainOnboardingComplete}
-            onClose={() => setShowMainOnboarding(false)}
-          />
-        </Suspense>
-      )}
-
       {isPaywallOpen && (
         <Suspense fallback={null}>
           <PaywallModal
@@ -323,11 +254,7 @@ function AppContent() {
           />
         </Suspense>
       )}
-      {shouldMountTourGuide && (
-        <Suspense fallback={null}>
-          <TourGuide />
-        </Suspense>
-      )}
+      <GuidanceHost />
 
       {/* Persistence Indicator */}
       {lastSaved && (

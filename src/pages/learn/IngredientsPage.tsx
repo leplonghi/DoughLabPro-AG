@@ -7,7 +7,7 @@ import {
     AcademicCapIcon,
     CubeIcon,
     TagIcon,
-    SparklesIcon,
+    SignalIcon,
     BeakerIcon,
     BookOpenIcon,
     PuzzlePieceIcon,
@@ -100,7 +100,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
             page: 'learn/ingredients/oils-spices' as Page,
             title: 'Herbs & Spices',
             description: 'The aromatic science of oregano, basil, and other spices and their correct usage.',
-            icon: <SparklesIcon className="h-8 w-8" />,
+            icon: <SignalIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/classic-combos' as Page,
@@ -112,7 +112,7 @@ const IngredientsPage: React.FC<IngredientsPageProps> = ({ onNavigate }) => {
             page: 'learn/ingredients/bold-combos' as Page,
             title: t('learn.bold_combos_209'),
             description: 'Get inspired by creative and surprising combinations for your pizzas.',
-            icon: <SparklesIcon className="h-8 w-8" />,
+            icon: <SignalIcon className="h-8 w-8" />,
         },
         {
             page: 'learn/ingredients/pairing-tool' as Page,

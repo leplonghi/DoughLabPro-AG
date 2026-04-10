@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from '@/i18n';
-import { CheckIcon, SparklesIcon } from '@/components/ui/Icons';
+import { CheckIcon, ProBadgeIcon } from '@/components/ui/Icons';
 import AppPageLayout from '@/components/ui/AppPageLayout';
 import AppSurface from '@/components/ui/AppSurface';
 import InlineNotice from '@/components/ui/InlineNotice';
@@ -214,7 +214,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                         <div>
                             <h2 className="flex items-center gap-2 text-2xl font-bold text-dlp-text-primary">
                                 {t('common.pro_2')}
-                                <SparklesIcon className="h-6 w-6 text-dlp-accent" />
+                                <ProBadgeIcon className="h-6 w-6 text-dlp-accent" />
                             </h2>
                             <p className="mt-2 text-dlp-text-muted">For bakers who want memory, analysis, and a cleaner path from experiment to repeatable result.</p>
                         </div>

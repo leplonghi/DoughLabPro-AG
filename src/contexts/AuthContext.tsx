@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 import {
     User as FirebaseUser,
     GoogleAuthProvider,
+    signInWithCredential,
     signInWithPopup,
     signInAnonymously,
     signOut,
@@ -10,9 +11,11 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail
 } from 'firebase/auth';
+import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { auth, googleProvider } from '@/firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/db';
+import { isNativePlatform } from '@/capacitor/platform';
 import { User } from '@/types';
 import { useTranslation } from '@/i18n';
 
@@ -142,6 +145,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             console.warn(t('auth.firebase_auth_not_initialized'));
             return;
         }
+
+        if (isNativePlatform()) {
+            const result = await FirebaseAuthentication.signInWithGoogle({
+                skipNativeAuth: true,
+            });
+            const idToken = result.credential?.idToken;
+
+            if (!idToken) {
+                throw new Error('Google Sign-In did not return an ID token.');
+            }
+
+            const credential = GoogleAuthProvider.credential(idToken);
+            await signInWithCredential(auth, credential);
+            return;
+        }
+
         const provider = googleProvider || new GoogleAuthProvider();
         await signInWithPopup(auth, provider);
     };
@@ -195,6 +214,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const logout = async () => {
+        if (isNativePlatform()) {
+            try {
+                await FirebaseAuthentication.signOut();
+            } catch (error) {
+                console.warn('Native sign-out did not complete cleanly.', error);
+            }
+        }
+
         if (auth) {
             await signOut(auth);
         }

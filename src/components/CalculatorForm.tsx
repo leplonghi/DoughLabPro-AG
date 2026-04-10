@@ -16,7 +16,7 @@ import {
 import { WizardMode } from '@/components/calculator/wizard/WizardMode';
 import {
   BookmarkSquareIcon,
-  SparklesIcon,
+  ProBadgeIcon,
   RotateCcwIcon,
 } from '@/components/ui/Icons';
 import IngredientsSection from '@/components/calculator/sections/IngredientsSection';
@@ -334,7 +334,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({
       {!hasProAccess && (
         <div className="mt-6 group relative overflow-hidden rounded-[2.5rem] bg-[#1B4332] p-6 text-white shadow-2xl transition-all hover:scale-[1.01]">
           <div className="absolute top-0 right-0 p-12 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-700">
-            <SparklesIcon size={120} />
+            <ProBadgeIcon size={120} />
           </div>
           <div className="relative z-10 text-center max-w-sm mx-auto">
             <h3 className="text-xl font-bold font-heading mb-2">{t('calculator.stop_guessing_start_mastering')}</h3>

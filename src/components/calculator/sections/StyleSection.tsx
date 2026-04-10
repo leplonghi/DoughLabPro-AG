@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { DoughConfig, BakeType, DoughStylePreset, CustomPreset } from '@/types';
-import { BookOpenIcon, MagnifyingGlassIcon, PizzaSliceIcon, FlourIcon, SparklesIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, MagnifyingGlassIcon, PizzaSliceIcon, FlourIcon, SignalIcon, ComposeIcon } from '@/components/ui/Icons';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import ChoiceButton from '@/components/ui/ChoiceButton';
 import AccordionSection from '@/components/calculator/AccordionSection';
@@ -61,7 +61,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
     const BAKE_TYPES = [
         { id: BakeType.PIZZAS, label: t('calculator.pizzas'), icon: <PizzaSliceIcon /> },
         { id: BakeType.BREADS_SAVORY, label: t('calculator.breads'), icon: <FlourIcon /> },
-        { id: BakeType.SWEETS_PASTRY, label: t('calculator.pastry'), icon: <SparklesIcon /> },
+        { id: BakeType.SWEETS_PASTRY, label: t('calculator.pastry'), icon: <SignalIcon /> },
     ];
 
     const clearLongPressTimer = () => {
@@ -129,7 +129,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             icon={<BookOpenIcon />}
         >
             {/* 1. Category Tabs */}
-            <div className="dlp-calc-rail mb-4 grid grid-cols-3 gap-1.5 rounded-[1.35rem] p-1.5 sm:mb-6 sm:gap-2 sm:rounded-[1.6rem]">
+            <div className="dlp-calc-rail mb-3 grid grid-cols-3 gap-1 rounded-[1.2rem] p-1 sm:mb-6 sm:gap-2 sm:rounded-[1.6rem] sm:p-1.5">
                 {BAKE_TYPES.map((type) => {
                     const isActive = config.bakeType === type.id;
                     return (
@@ -137,7 +137,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                             key={type.id}
                             onClick={() => onBakeTypeChange(type.id)}
                             className={`
-                                dlp-calc-option relative group/item flex items-center justify-center gap-1.5 rounded-[1.1rem] px-2.5 py-2.5 sm:gap-2 sm:rounded-[1.2rem] sm:px-4 sm:py-3
+                                dlp-calc-option relative group/item flex min-h-[2.9rem] items-center justify-center gap-1 rounded-[1rem] px-2 py-2.5 sm:gap-2 sm:rounded-[1.2rem] sm:px-4 sm:py-3
                                 ${isActive
                                     ? 'dlp-calc-option--active'
                                     : ''
@@ -154,7 +154,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             </div>
 
             {/* 2. Style Search Bar */}
-            <div className="group relative mb-4 sm:mb-5">
+            <div className="group relative mb-3 sm:mb-5">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
                     <MagnifyingGlassIcon className="h-4 w-4 text-slate-400 group-focus-within:text-[#51a145] transition-colors" />
                 </div>
@@ -175,7 +175,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             </div>
 
             {/* 3. Country & Custom Presets */}
-            <div className="mb-7 space-y-4 sm:mb-8 sm:space-y-6">
+            <div className="mb-5 space-y-3 sm:mb-8 sm:space-y-6">
                 {/* Country Filter Chips */}
                 <div className="grid gap-2 sm:hidden">
                     <div className="grid grid-cols-2 gap-2">
@@ -243,11 +243,11 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                 {/* My Custom Presets */}
                 {customPresets.some(p => p.config.bakeType === config.bakeType) && (
                     <div className="animate-fade-in">
-                        <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                        <h3 className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 sm:mb-4">
                             <BookmarkIcon className="h-3 w-3" />
                             {t('styles.my_custom_presets')}
                         </h3>
-                        <div className="grid gap-3 pb-2 sm:grid-cols-2 xl:grid-cols-3">
+                        <div className="grid gap-2 pb-1 sm:grid-cols-2 sm:gap-3 xl:grid-cols-3">
                             {customPresets
                                 .filter(p => p.config.bakeType === config.bakeType)
                                 .map(preset => {
@@ -258,14 +258,14 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                             onClick={() => onStyleChange(preset.id)}
                                             data-selected={isSelected ? 'true' : 'false'}
                                             className={`
-                                                dlp-calc-panel dlp-style-tile relative group/item flex min-h-[112px] w-full flex-col rounded-[1.5rem] p-4 text-left transition-all duration-300
+                                                dlp-calc-panel dlp-style-tile relative group/item flex min-h-[104px] w-full flex-col rounded-[1.3rem] p-3.5 text-left transition-all duration-300 sm:min-h-[112px] sm:rounded-[1.5rem] sm:p-4
                                                 ${isSelected
                                                     ? 'border-emerald-300/80 bg-[linear-gradient(180deg,rgba(239,250,242,0.98),rgba(229,246,234,0.98))] text-[#16351f] shadow-[0_24px_36px_-26px_rgba(47,139,73,0.45)]'
                                                     : 'text-slate-600 hover:-translate-y-1 hover:border-emerald-200/80'
                                                 }
                                             `}
                                         >
-                                            <span className="dlp-style-tile__title text-xs font-bold font-heading line-clamp-1">{preset.name}</span>
+                                            <span className="dlp-style-tile__title text-[13px] font-bold font-heading leading-snug line-clamp-2 sm:text-xs sm:line-clamp-1">{preset.name}</span>
                                             <span className="dlp-style-tile__meta mt-1 text-[10px] transition-colors">
                                                 {new Date(preset.createdAt).toLocaleDateString()}
                                             </span>
@@ -280,7 +280,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
             {/* 4. The Library Grid */}
             <div className="relative min-h-[200px]">
                 {filteredStyles.length > 0 ? (
-                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5">
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-4 lg:grid-cols-5">
                         {filteredStyles.map((preset) => {
                             const isSelected = config.stylePresetId === preset.id;
                             const isPreviewing = previewStyleId === preset.id;
@@ -297,36 +297,36 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                                     data-preview={isPreviewing ? 'true' : 'false'}
                                     aria-pressed={isSelected}
                                     className={`
-                                        dlp-calc-panel dlp-style-tile relative group/item flex min-h-[104px] flex-col rounded-[1.7rem] p-4 text-left transition-all duration-300
-                                        ${isPreviewing ? 'col-span-2 min-h-[196px] p-5 shadow-[0_28px_52px_-30px_rgba(47,139,73,0.36)]' : ''}
+                                        dlp-calc-panel dlp-style-tile relative group/item flex min-h-[118px] flex-col rounded-[1.35rem] p-3.5 text-left transition-all duration-300 sm:min-h-[104px] sm:rounded-[1.7rem] sm:p-4
+                                        ${isPreviewing ? 'min-h-[208px] p-4 shadow-[0_28px_52px_-30px_rgba(47,139,73,0.36)] sm:col-span-2 sm:min-h-[196px] sm:p-5' : ''}
                                         ${isSelected
                                             ? 'border-emerald-300/80 bg-[linear-gradient(180deg,rgba(240,250,243,0.98),rgba(229,246,234,0.98))] text-[#16351f] shadow-[0_24px_40px_-28px_rgba(47,139,73,0.44)]'
                                             : 'text-slate-700 hover:-translate-y-1 hover:border-emerald-200/80'
                                         }
                                     `}
                                 >
-                                    <div className="dlp-style-tile__title mb-auto text-[13px] font-bold font-heading leading-snug transition-colors">
+                                    <div className="dlp-style-tile__title mb-auto text-[15px] font-bold font-heading leading-[1.15] tracking-[-0.02em] transition-colors sm:text-[13px] sm:leading-snug">
                                         {t(preset.name)}
                                     </div>
-                                    <div className="dlp-style-tile__meta mt-2 text-[9px] font-bold uppercase tracking-[0.16em] leading-relaxed line-clamp-2 transition-colors">
+                                    <div className="dlp-style-tile__meta mt-1.5 text-[10px] font-bold uppercase tracking-[0.12em] leading-relaxed line-clamp-3 transition-colors sm:mt-2 sm:text-[9px] sm:tracking-[0.16em] sm:line-clamp-2">
                                         {t(preset.description || '')}
                                     </div>
                                     {isPreviewing ? (
-                                        <div className="mt-4 space-y-3">
+                                        <div className="mt-3 space-y-2.5 sm:mt-4 sm:space-y-3">
                                             <div className="grid grid-cols-2 gap-2 text-left">
-                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                <div className="rounded-[1rem] border border-emerald-100 bg-white/90 px-3 py-2">
                                                     <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Hydration</div>
                                                     <div className="mt-1 text-sm font-black text-dlp-text-primary">{Math.round(preset.defaultHydration)}%</div>
                                                 </div>
-                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                <div className="rounded-[1rem] border border-emerald-100 bg-white/90 px-3 py-2">
                                                     <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Salt</div>
                                                     <div className="mt-1 text-sm font-black text-dlp-text-primary">{Math.round(preset.defaultSalt * 10) / 10}%</div>
                                                 </div>
-                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                <div className="rounded-[1rem] border border-emerald-100 bg-white/90 px-3 py-2">
                                                     <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Region</div>
                                                     <div className="mt-1 text-[11px] font-bold leading-snug text-dlp-text-primary line-clamp-2">{preset.region || preset.country || 'Global'}</div>
                                                 </div>
-                                                <div className="rounded-2xl border border-emerald-100 bg-white/90 px-3 py-2">
+                                                <div className="rounded-[1rem] border border-emerald-100 bg-white/90 px-3 py-2">
                                                     <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-dlp-text-muted">Enrichment</div>
                                                     <div className="mt-1 text-[11px] font-bold leading-snug text-dlp-text-primary">
                                                         {preset.defaultOil > 0 || preset.defaultSugar > 0 ? 'Enriched' : 'Lean dough'}
@@ -361,7 +361,7 @@ const StyleSection: React.FC<StyleSectionProps> = ({
                     <div className="bg-gradient-to-r from-[#51a145] to-[#1B4332] text-white p-5 rounded-3xl shadow-xl shadow-emerald-900/10 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center">
-                                <SparklesIcon className="text-white" />
+                                <ComposeIcon className="text-white" />
                             </div>
                             <span className="text-lg font-bold font-heading">{config.baseStyleName}</span>
                         </div>

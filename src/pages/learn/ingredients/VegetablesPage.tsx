@@ -1,6 +1,6 @@
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, SignalIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -42,7 +42,7 @@ const VegetablesPage: React.FC = () => {
         </ul>
       </LearnSection>
 
-      <LearnSection title={t('learn.raw_application_when_it_works')} icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.raw_application_when_it_works')} icon={<SignalIcon className="h-5 w-5" />}>
         <p>
           Some vegetables can or should be used raw, depending on the cut and baking time.
         </p>

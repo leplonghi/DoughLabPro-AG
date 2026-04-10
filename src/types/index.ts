@@ -150,6 +150,49 @@ export type CalculatorFunnelEvent =
     | 'paywall_opened_from_calculator'
     | 'checkout_started_from_calculator';
 
+export type GuidanceRouteScope = 'global' | 'calculator' | 'mylab' | 'levain' | 'help' | 'profile' | 'settings';
+export type GuidanceVariant = 'orientation' | 'hint' | 'reference';
+export type GuidanceTrigger = 'first-visit' | 'empty-state' | 'after-result' | 'manual';
+
+export interface GuidanceProgress {
+    dismissed?: boolean;
+    completed?: boolean;
+    lastSeenAt?: string;
+    lastDismissedAt?: string;
+    lastCompletedAt?: string;
+    timesSeen?: number;
+}
+
+export interface GuidanceRouteProgress {
+    lastSeenAt?: string;
+    timesSeen?: number;
+}
+
+export interface GuidancePreferences {
+    version: 1;
+    items: Record<string, GuidanceProgress>;
+    routes: Record<string, GuidanceRouteProgress>;
+}
+
+export interface GuidanceItem {
+    id: string;
+    scope: GuidanceRouteScope;
+    route: string | string[];
+    trigger: GuidanceTrigger;
+    variant: GuidanceVariant;
+    title: string;
+    body: string;
+    ctaLabel?: string;
+    cardId?: string;
+    placement?: 'top' | 'bottom' | 'left' | 'right';
+    priority: number;
+    dismissible: boolean;
+    requiresAuth?: boolean;
+    titleKey?: string;
+    bodyKey?: string;
+    ctaKey?: string;
+}
+
 export interface IngredientConfig {
     id: string;
     name: string;
@@ -299,6 +342,7 @@ export interface User {
     primaryInterest?: 'pizza' | 'bread' | 'sourdough' | 'other';
     bakingFrequency?: 'daily' | 'weekly' | 'monthly' | 'occasionally';
     enableSmartSchedule?: boolean;
+    guidancePreferences?: GuidancePreferences;
     // Billing & Localization
     billingCountry?: string | null; // ISO code, locked after first payment
     billingCurrency?: string | null;

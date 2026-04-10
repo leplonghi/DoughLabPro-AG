@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { DoughConfig, DoughResult, SavedDoughConfig, FlourDefinition, Oven, ChatMessage } from '../types';
-import { SparklesIcon, UserCircleIcon, SpinnerIcon } from './ui/Icons';
+import { AssistantIcon, UserCircleIcon, SpinnerIcon } from './ui/Icons';
 import { useTranslation } from '@/i18n';
 import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
@@ -73,7 +73,7 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
         ? 'bg-dlp-error/10 text-dlp-error self-start'
         : 'bg-dlp-bg-muted text-dlp-text-primary self-start';
 
-    const icon = isUser ? <UserCircleIcon className="h-6 w-6" /> : <SparklesIcon className="h-6 w-6 text-dlp-accent" />;
+    const icon = isUser ? <UserCircleIcon className="h-6 w-6" /> : <AssistantIcon className="h-6 w-6 text-dlp-accent" />;
 
     return (
       <div className={`flex items-start gap-3 w-full ${isUser ? 'justify-end' : 'justify-start'}`}>
@@ -90,7 +90,7 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
     <div className="mx-auto max-w-4xl flex flex-col h-[calc(100vh-8rem)] rounded-2xl bg-dlp-bg-card shadow-dlp-lg ring-1 ring-dlp-border">
       <div className="flex-shrink-0 p-4 border-b border-dlp-border">
         <h1 className="text-2xl font-bold text-dlp-text-primary flex items-center gap-3">
-          <SparklesIcon className="h-6 w-6 text-dlp-accent" />
+          <AssistantIcon className="h-6 w-6 text-dlp-accent" />
           {t('assistant_page.title_short')}
         </h1>
       </div>
@@ -101,7 +101,7 @@ const AssistantPage: React.FC<AssistantPageProps> = (props) => {
         ))}
         {isLoading && (
           <div className="flex items-start gap-3 w-full justify-start">
-            <div className="flex-shrink-0"><SparklesIcon className="h-6 w-6 text-dlp-accent" /></div>
+            <div className="flex-shrink-0"><AssistantIcon className="h-6 w-6 text-dlp-accent" /></div>
             <div className="max-w-md rounded-2xl p-4 bg-dlp-bg-muted flex items-center gap-2">
               <SpinnerIcon className="h-5 w-5 animate-spin" />
               <span className="text-sm font-medium">{t('common.thinking')}</span>

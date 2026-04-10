@@ -1,6 +1,6 @@
 import React from 'react';
 import IngredientPageLayout from './IngredientPageLayout';
-import { BookOpenIcon, SparklesIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
+import { BookOpenIcon, SignalIcon, BeakerIcon, FireIcon } from '@/components/ui/Icons';
 import { LearnSection, LearnKeyTakeaway } from '../LearnComponents';
 import { useTranslation } from '@/i18n';
 
@@ -96,7 +96,7 @@ const SaucesPage: React.FC = () => {
         </ul>
       </LearnSection>
 
-      <LearnSection title={t('learn.risks_and_common_care_2')} icon={<SparklesIcon className="h-5 w-5" />}>
+      <LearnSection title={t('learn.risks_and_common_care_2')} icon={<SignalIcon className="h-5 w-5" />}>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li><strong>{t('learn.excess_water')}</strong> Main cause of soggy pizza. Always reduce moisture, either by cooking or using denser pulp tomatoes.</li>
           <li><strong>{t('learn.too_sweet')}</strong> Sugars caramelize fast and can burn in high heat, tasting bitter.</li>
