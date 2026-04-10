@@ -94,7 +94,7 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
         <div className={`dlp-calc-panel overflow-hidden rounded-[1.7rem] border transition-all ${className}`}>
             <div className="flex items-center justify-between border-b border-slate-200/70 px-4 py-3">
                 <label htmlFor="flourId" className="flex items-center gap-2 text-sm font-bold text-dlp-text-secondary dark:text-slate-100">
-                    <Wheat className="h-4 w-4 text-dlp-accent" />
+                    <Wheat className="h-4 w-4 text-dlp-primary" />
                     {t('calculator.flour_type')}
                 </label>
             </div>
@@ -138,11 +138,11 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
 
                                 <div className="grid grid-cols-2 gap-2 text-xs opacity-75">
                                     <div className="dlp-calc-metric rounded-xl p-2">
-                                        <div className="font-bold text-dlp-accent">70%</div>
+                                        <div className="font-bold text-dlp-primary">70%</div>
                                         <div>High Gluten</div>
                                     </div>
                                     <div className="dlp-calc-metric rounded-xl p-2">
-                                        <div className="font-bold text-dlp-accent">30%</div>
+                                        <div className="font-bold text-dlp-primary">30%</div>
                                         <div>Whole Wheat</div>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@ export const FlourSelector: React.FC<FlourSelectorProps> = ({
                                 <InfoIcon className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                             )}
                             {hydrationWarning.icon === 'check' && (
-                                <CheckCircleIcon className="h-5 w-5 text-dlp-brand-hover flex-shrink-0 mt-0.5" />
+                                <CheckCircleIcon className="h-5 w-5 text-dlp-primary-hover flex-shrink-0 mt-0.5" />
                             )}
                             <div className="flex-1">
                                 <p

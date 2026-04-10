@@ -116,7 +116,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                             </div>
                         </div>
                         <div className="p-8 md:p-12">
-                            <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:leading-loose prose-img:rounded-2xl prose-img:shadow-lg prose-a:text-dlp-brand-hover hover:prose-a:text-dlp-brand">
+                            <div className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-p:leading-loose prose-img:rounded-2xl prose-img:shadow-lg prose-a:text-dlp-primary-hover hover:prose-a:text-dlp-primary">
                                 {/* @ts-ignore - passing embedded prop */}
                                 <LearnArticleRenderer articleData={article} embedded={true} />
                             </div>
@@ -127,7 +127,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                 <aside className="lg:col-span-4">
                     <div className="space-y-6 lg:sticky lg:top-28">
                         <AppSurface className="relative overflow-hidden bg-slate-950 p-6 text-white">
-                            <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-dlp-brand/20 blur-[44px]" />
+                            <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-dlp-primary/20 blur-[44px]" />
                             <div className="relative z-10">
                                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
                                     <CalculatorIcon className="h-6 w-6" />
@@ -149,7 +149,7 @@ const LearnArticlePage: React.FC<LearnArticlePageProps> = ({ articleId }) => {
                         {sections.length > 0 && (
                             <AppSurface className="p-6">
                                 <h4 className="mb-4 flex items-center gap-2 font-bold text-slate-900">
-                                    <BookmarkSquareIcon className="h-4 w-4 text-dlp-brand-hover" />
+                                    <BookmarkSquareIcon className="h-4 w-4 text-dlp-primary-hover" />
                                     {t('learn.in_this_article')}
                                 </h4>
                                 <ul className="space-y-3">

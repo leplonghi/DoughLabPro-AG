@@ -22,13 +22,7 @@ export default {
                         tertiary: '#2D4436',
                         muted: '#385141',
                     },
-                    accent: {
-                        DEFAULT: '#43b05d',
-                        hover: '#2f8b49',
-                        light: '#DCFCE7',
-                        dark: '#194a2d',
-                    },
-                    brand: {
+                    primary: {
                         DEFAULT: '#43b05d',
                         hover: '#2f8b49',
                         light: '#DCFCE7',
@@ -36,7 +30,6 @@ export default {
                         dark: '#194a2d',
                         lime: '#8DE0A1',
                     },
-                    primary: '#43b05d',
                     success: '#43b05d',
                     warning: '#F59E0B',
                     error: '#EF4444',

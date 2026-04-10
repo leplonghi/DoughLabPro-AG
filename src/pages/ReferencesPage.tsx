@@ -30,7 +30,7 @@ const ReferenceItem: React.FC<ReferenceItemProps> = ({ title, type, description,
         {link && (
           <ExternalLink
             href={link}
-            className="flex items-center gap-1 text-sm font-bold text-dlp-brand-hover  hover:underline"
+            className="flex items-center gap-1 text-sm font-bold text-dlp-primary-hover  hover:underline"
             aria-label={`Visit ${title}`}
           >
             <span>{t('general.visit')}</span>
@@ -67,7 +67,7 @@ const ReferencesPage: React.FC = () => {
         <div className="px-4 sm:px-6">
           <AppSurface className="p-6 sm:p-10">
             <div className="text-center">
-              <BookOpenIcon className="mx-auto h-12 w-12 text-dlp-brand" />
+              <BookOpenIcon className="mx-auto h-12 w-12 text-dlp-primary" />
               <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
                 {t('common.reference_library', { defaultValue: 'Reference Library' })}
               </h2>

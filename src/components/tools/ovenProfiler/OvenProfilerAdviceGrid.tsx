@@ -9,14 +9,14 @@ interface OvenProfilerAdviceGridProps {
 
 const AdviceItem: React.FC<{ text: string }> = ({ text }) => (
     <li className="flex items-start gap-3 text-sm text-slate-600">
-        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-dlp-brand"></span>
+        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-dlp-primary"></span>
         <span className="leading-relaxed">{text}</span>
     </li>
 );
 
 const Tooltip: React.FC<{ label: string; content: string }> = ({ label, content }) => (
     <div className="group relative inline-block ml-2 align-middle">
-        <button className="text-slate-400 hover:text-dlp-brand-hover transition-colors block">
+        <button className="text-slate-400 hover:text-dlp-primary-hover transition-colors block">
             <InfoIcon className="h-4 w-4" />
         </button>
         <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-64 -translate-x-1/2 rounded-xl bg-white p-3 text-xs text-slate-700 opacity-0 shadow-xl transition-opacity duration-300 group-hover:opacity-100 border border-slate-200">

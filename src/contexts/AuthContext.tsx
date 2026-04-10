@@ -2,7 +2,8 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 import {
     User as FirebaseUser,
     GoogleAuthProvider,
-    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     signInAnonymously,
     signOut,
     onAuthStateChanged,
@@ -35,6 +36,29 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
     const [appUser, setAppUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+
+    // Handle redirect result from Google Sign-In
+    useEffect(() => {
+        if (!auth) return;
+
+        let isMounted = true;
+        const handleRedirectResult = async () => {
+            try {
+                const result = await getRedirectResult(auth);
+                if (result) {
+                    console.log('✓ Google Sign-In redirect successful');
+                }
+            } catch (error) {
+                console.error('Error handling redirect result:', error);
+            }
+        };
+
+        handleRedirectResult();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     useEffect(() => {
         if (!auth) {
@@ -143,7 +167,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             return;
         }
         const provider = googleProvider || new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
+        await signInWithRedirect(auth, provider);
     };
 
     const loginWithEmail = async (email: string, pass: string) => {

@@ -51,7 +51,7 @@ export const ProFeatureLock: React.FC<ProFeatureLockProps> = ({
             {/* Lock Overlay */}
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/70 backdrop-blur-[1px] z-10 p-6 text-center transition-all duration-300">
                 <div className="rounded-full bg-lime-50 p-4 mb-3 shadow-sm ring-1 ring-lime-100 group-hover:scale-110 transition-transform">
-                    <LockClosedIcon className="h-6 w-6 text-dlp-brand" />
+                    <LockClosedIcon className="h-6 w-6 text-dlp-primary" />
                 </div>
 
                 <h3 className="text-lg font-bold text-slate-900 mb-1">{t('common.pro_feature')}</h3>

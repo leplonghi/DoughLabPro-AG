@@ -268,7 +268,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
             <div className="text-center p-8">
                 <h2 className="text-xl font-bold text-slate-900 ">{t('batch_detail.not_found')}</h2>
                 <p className="mt-2 text-slate-600 ">{t('batch_detail.not_found_desc')}</p>
-                <button onClick={() => onNavigate('mylab/fornadas')} className="mt-4 rounded-xl bg-dlp-brand py-2.5 px-5 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">
+                <button onClick={() => onNavigate('mylab/fornadas')} className="mt-4 rounded-xl bg-dlp-primary py-2.5 px-5 text-sm font-bold text-white shadow-lg shadow-dlp-primary/20 hover:bg-dlp-primary hover:text-white-hover transition-all">
                     {t('batch_detail.back_to_diary')}
                 </button>
             </div>
@@ -352,10 +352,10 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                         </div>
                         {isEditingNotes ? (
                             <div>
-                                <textarea rows={10} value={tempNotes} onChange={(e) => setTempNotes(e.target.value)} placeholder={t('batch_detail.notes_placeholder')} className="block w-full rounded-xl border-slate-300  bg-white  text-slate-900  shadow-sm focus:border-dlp-brand focus:ring-dlp-brand" autoFocus />
+                                <textarea rows={10} value={tempNotes} onChange={(e) => setTempNotes(e.target.value)} placeholder={t('batch_detail.notes_placeholder')} className="block w-full rounded-xl border-slate-300  bg-white  text-slate-900  shadow-sm focus:border-dlp-primary focus:ring-dlp-primary" autoFocus />
                                 <div className="mt-2 flex justify-end gap-2">
                                     <button onClick={() => setIsEditingNotes(false)} className="rounded-xl py-2 px-4 text-sm font-bold text-slate-600  hover:bg-slate-100 transition-colors">{t('common.cancel')}</button>
-                                    <button onClick={handleSaveNotesClick} className="rounded-xl bg-dlp-brand py-2 px-4 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all">{t('common.save')}</button>
+                                    <button onClick={handleSaveNotesClick} className="rounded-xl bg-dlp-primary py-2 px-4 text-sm font-bold text-white shadow-lg shadow-dlp-primary/20 hover:bg-dlp-primary hover:text-white-hover transition-all">{t('common.save')}</button>
                                 </div>
                             </div>
                         ) : (
@@ -382,7 +382,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                     {/* Related Learn Insights */}
                     <AppSurface className="bg-gradient-to-br from-lime-50 to-white p-6 border-lime-100">
                         <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-lime-900">
-                            <BookOpenIcon className="h-5 w-5 text-dlp-brand-hover" />
+                            <BookOpenIcon className="h-5 w-5 text-dlp-primary-hover" />
                             {t('batch_detail.learn_insights')}
                         </h3>
                         <div className="space-y-3">
@@ -504,7 +504,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                             <LockedTeaser featureKey="community.feed">
                                 <button
                                     onClick={handleShareClick}
-                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-dlp-brand to-dlp-brand-hover py-3 font-bold text-white shadow-lg shadow-dlp-brand/20 hover:from-dlp-brand-hover hover:to-lime-700 transition-all"
+                                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-dlp-primary to-dlp-primary-hover py-3 font-bold text-white shadow-lg shadow-dlp-primary/20 hover:from-dlp-primary-hover hover:to-lime-700 transition-all"
                                 >
                                     <FeedIcon className="h-5 w-5" />{t('common.share_in_community')}
                                 </button>
@@ -531,7 +531,7 @@ const BatchDetailPage: React.FC<BatchDetailPageProps> = ({ batchId, onNavigate, 
                 </div>
             </div>
             <div className="mt-8 flex items-center justify-between border-t border-slate-200  pt-6">
-                <button onClick={() => onNavigate('mylab/fornadas')} className="text-sm font-bold text-dlp-brand-hover  hover:underline">
+                <button onClick={() => onNavigate('mylab/fornadas')} className="text-sm font-bold text-dlp-primary-hover  hover:underline">
                     &larr; {t('batch_detail.back_to_diary')}
                 </button>
                 <span className="text-sm text-slate-500">Changes stay local until you save from the top action.</span>

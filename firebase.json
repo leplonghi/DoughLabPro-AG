@@ -23,6 +23,30 @@
   "storage": {
     "rules": "storage.rules"
   },
+  "auth": {
+    "provider": "password"
+  },
+  "emulator": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "functions": {
+      "port": 5001
+    },
+    "hub": {
+      "port": 4400
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4000
+    }
+  },
   "hosting": {
     "public": "dist",
     "ignore": [

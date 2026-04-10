@@ -12,7 +12,7 @@ export const HydrationVisualizer: React.FC<{ hydrationPercentage: number }> = ({
 
     if (hydrationPercentage >= 55 && hydrationPercentage <= 68) {
         config = {
-            color: 'text-dlp-brand-hover bg-emerald-50 border-emerald-200',
+            color: 'text-dlp-primary-hover bg-emerald-50 border-emerald-200',
             icon: ThumbsUp,
             title: 'Standard / Neapolitan',
             desc: 'Balanced & Easy to handle'

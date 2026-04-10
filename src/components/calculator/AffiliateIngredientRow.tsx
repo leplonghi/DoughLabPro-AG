@@ -30,7 +30,7 @@ const AFFILIATE_LINKS = {
 const getIngredientIcon = (label: string) => {
     const labelStr = String(label || '');
     const l = labelStr.toLowerCase();
-    const iconClass = "w-4 h-4 text-dlp-brand-lime/80";
+    const iconClass = "w-4 h-4 text-dlp-primary-lime/80";
     if (l.includes('flour')) return <FlourIcon className={iconClass} />;
     if (l.includes('water')) return <WaterIcon className={iconClass} />;
     if (l.includes('salt')) return <SaltIcon className={iconClass} />;
@@ -64,7 +64,7 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
                             <p className="font-semibold text-slate-700 leading-tight">{labelStr}</p>
                             {isYeast && (
                                 <InfoTooltip content="Instant Yeast is more concentrated than Fresh Yeast. 1g Instant ≈ 3g Fresh.">
-                                    <InfoIcon className="w-3.5 h-3.5 text-slate-300 hover:text-dlp-brand-lime transition-colors cursor-help" />
+                                    <InfoIcon className="w-3.5 h-3.5 text-slate-300 hover:text-dlp-primary-lime transition-colors cursor-help" />
                                 </InfoTooltip>
                             )}
                         </div>
@@ -88,7 +88,7 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
                     {isFlour && hydration > 65 && (
                         <ExternalLink
                             href={AFFILIATE_LINKS.strongFlour}
-                            className="flex items-center gap-1.5 text-[10px] text-dlp-brand-lime hover:underline font-medium"
+                            className="flex items-center gap-1.5 text-[10px] text-dlp-primary-lime hover:underline font-medium"
                         >
                             <ShoppingBag className="w-3 h-3" />
                             <span>Recommended: High Protein Flour (W300+)</span>
@@ -99,7 +99,7 @@ export const AffiliateIngredientRow: React.FC<AffiliateIngredientRowProps> = ({
                     {isSalt && (
                         <ExternalLink
                             href={AFFILIATE_LINKS.precisionScale}
-                            className="flex items-center gap-1.5 text-[10px] text-slate-400 hover:text-dlp-brand-lime transition-colors font-medium"
+                            className="flex items-center gap-1.5 text-[10px] text-slate-400 hover:text-dlp-primary-lime transition-colors font-medium"
                         >
                             <ExternalLinkIcon className="w-3 h-3" />
                             <span>Need precision? Get a 0.01g Scale</span>

@@ -45,7 +45,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                 {/* Header */}
                 <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-white z-10">
                     <div className="flex items-center gap-2">
-                        <div className="p-2 bg-lime-50 rounded-lg text-dlp-brand-hover">
+                        <div className="p-2 bg-lime-50 rounded-lg text-dlp-primary-hover">
                             <Filter className="w-5 h-5" />
                         </div>
                         <div>
@@ -57,7 +57,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                         type="button"
                         onClick={onClose}
                         aria-label="Close filters"
-                        className="rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+                        className="rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -84,7 +84,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                                         onClick={() => onToggleDifficulty(diff.id)}
                                         aria-pressed={isSelected}
                                         className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all flex items-center gap-2 ${isSelected
-                                            ? 'bg-dlp-brand text-white border-dlp-brand-hover shadow-md'
+                                            ? 'bg-dlp-primary text-white border-dlp-primary-hover shadow-md'
                                             : 'bg-white text-slate-600 border-slate-200 hover:border-lime-300 hover:bg-lime-50'
                                             }`}
                                     >
@@ -160,7 +160,7 @@ export const StylesFilterDrawer: React.FC<StylesFilterDrawerProps> = ({
                     <button
                         type="button"
                         onClick={onClose}
-                        className="flex-[2] py-3 px-4 rounded-xl bg-dlp-brand text-white font-bold shadow-lg hover:bg-dlp-brand hover:text-white-hover hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+                        className="flex-[2] py-3 px-4 rounded-xl bg-dlp-primary text-white font-bold shadow-lg hover:bg-dlp-primary hover:text-white-hover hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
                     >{t('common.show_results')}</button>
                 </div>
             </div>

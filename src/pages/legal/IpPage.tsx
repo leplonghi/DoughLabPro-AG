@@ -41,7 +41,7 @@ const IpPage: React.FC = () => {
       <p>
         If you believe content in the service infringes copyright, trademark, image rights, or other intellectual
         property rights, send a detailed notice to{' '}
-        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-accent hover:underline">{LEGAL_EMAIL}</a>.
+        <a href={`mailto:${LEGAL_EMAIL}`} className="text-dlp-primary hover:underline">{LEGAL_EMAIL}</a>.
       </p>
       <p>Please include enough detail for review, such as:</p>
       <ul className="list-disc pl-5 space-y-1">

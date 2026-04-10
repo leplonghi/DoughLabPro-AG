@@ -127,7 +127,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
 
     const Tooltip = ({ text }: { text: string }) => (
         <div className="group relative inline-block ml-2">
-            <InfoIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-dlp-brand-hover transition-colors" />
+            <InfoIcon className="h-4 w-4 text-slate-400 cursor-help hover:text-dlp-primary-hover transition-colors" />
             <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 transition-opacity group-hover:opacity-100 z-50">
                 <div className="bg-white text-slate-700 text-xs rounded py-1 px-2 text-center shadow-lg w-max max-w-[200px] border border-slate-200">
                     {text}
@@ -164,7 +164,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder="e.g. Bubbles, The Beast"
                         />
                     </div>
@@ -184,7 +184,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                 max="200"
                                 value={formData.hydration}
                                 onChange={handleChange}
-                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             />
                         </div>
                         <div>
@@ -199,7 +199,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                 min="0"
                                 value={formData.totalWeight}
                                 onChange={handleChange}
-                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             />
                         </div>
                     </div>
@@ -211,7 +211,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             <select
                                 value={isCustomFlour ? 'custom' : formData.baseFlourType}
                                 onChange={handleFlourSelect}
-                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             >
                                 {PRESET_FLOURS.map(flour => (
                                     <option key={flour} value={flour}>{flour}</option>
@@ -226,7 +226,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                     value={formData.baseFlourType || ''}
                                     onChange={handleChange}
                                     placeholder={t('general.enter_custom_flour_type')}
-                                    className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 animate-fadeIn text-dlp-text-primary placeholder-dlp-text-muted"
+                                    className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 animate-fadeIn text-dlp-text-primary placeholder-dlp-text-muted"
                                     autoFocus
                                 />
                             )}
@@ -240,7 +240,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             <select
                                 value={isCustomInterval ? 'custom' : formData.idealFeedingIntervalHours}
                                 onChange={handleIntervalSelect}
-                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             >
                                 {PRESET_INTERVALS.map(interval => (
                                     <option key={interval.value} value={interval.value}>{interval.label}</option>
@@ -256,7 +256,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                                         min="1"
                                         value={formData.idealFeedingIntervalHours}
                                         onChange={handleChange}
-                                        className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
+                                        className="block w-full rounded-xl border-dlp-border bg-dlp-bg-card shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                                         placeholder={t('general.hours')}
                                     />
                                     <span className="text-sm text-dlp-text-muted font-medium">hours</span>
@@ -272,7 +272,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             type="checkbox"
                             checked={formData.notificationEnabled || false}
                             onChange={handleChange}
-                            className="h-5 w-5 rounded border-dlp-border text-dlp-accent focus:ring-dlp-accent"
+                            className="h-5 w-5 rounded border-dlp-border text-dlp-primary focus:ring-dlp-primary"
                         />
                         <label htmlFor="notificationEnabled" className="ml-3 block text-sm font-medium text-dlp-text-secondary">{t('common.enable_feeding_reminders')}</label>
                     </div>
@@ -287,7 +287,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                             rows={3}
                             value={formData.notes || ''}
                             onChange={handleChange}
-                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder={t('ui.origin_story_flavor_profile_or_special_instruction')}
                         />
                     </div>
@@ -302,7 +302,7 @@ const LevainModal: React.FC<LevainModalProps> = ({
                         </button>
                         <button
                             type="submit"
-                            className="rounded-xl bg-dlp-accent px-5 py-2.5 text-sm font-bold text-white shadow-dlp-md hover:bg-dlp-accent-hover hover:shadow-dlp-lg transition-all transform hover:-translate-y-0.5"
+                            className="rounded-xl bg-dlp-primary px-5 py-2.5 text-sm font-bold text-white shadow-dlp-md hover:bg-dlp-primary-hover hover:shadow-dlp-lg transition-all transform hover:-translate-y-0.5"
                         >
                             {t('common.save')}
                         </button>

@@ -285,7 +285,7 @@ const IngredientsSection: React.FC<IngredientsSectionProps> = ({
                           <div className="grid grid-cols-2 gap-3">
                             <div className="dlp-calc-metric rounded-[1.2rem] p-3">
                               <span className="mb-1 block text-[9px] font-bold uppercase tracking-[0.18em] text-slate-400">Status</span>
-                              <span className={`text-[11px] font-bold ${selectedLevain.status === 'ativo' ? 'text-dlp-brand-hover' : 'text-amber-600'}`}>
+                              <span className={`text-[11px] font-bold ${selectedLevain.status === 'ativo' ? 'text-dlp-primary-hover' : 'text-amber-600'}`}>
                                 {selectedLevain.status === 'ativo' ? 'Active & Ready' : t('calculator.needs_attention_395')}
                               </span>
                             </div>

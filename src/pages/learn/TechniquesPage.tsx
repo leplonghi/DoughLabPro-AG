@@ -15,14 +15,14 @@ const TechniqueCard: React.FC<{
     onClick={onClick}
     className="group h-full text-left flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
   >
-    <div className="flex-shrink-0 text-dlp-brand">{icon}</div>
+    <div className="flex-shrink-0 text-dlp-primary">{icon}</div>
     <div className="mt-4 flex-grow">
-      <h3 className="text-lg font-bold text-slate-900 group-hover:text-dlp-brand-hover transition-colors">
+      <h3 className="text-lg font-bold text-slate-900 group-hover:text-dlp-primary-hover transition-colors">
         {title}
       </h3>
       <p className="mt-2 text-sm text-slate-900 leading-relaxed">{description}</p>
     </div>
-    <p className="mt-4 text-sm font-semibold text-slate-500 group-hover:text-dlp-brand transition-colors">
+    <p className="mt-4 text-sm font-semibold text-slate-500 group-hover:text-dlp-primary transition-colors">
       Read More &rarr;
     </p>
   </button>

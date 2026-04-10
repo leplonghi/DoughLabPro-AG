@@ -46,7 +46,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
             <button
               type="button"
               onClick={this.handleReload}
-              className="rounded-xl bg-dlp-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-dlp-brand-hover"
+              className="rounded-xl bg-dlp-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-dlp-primary-hover"
             >
               Recarregar pagina
             </button>

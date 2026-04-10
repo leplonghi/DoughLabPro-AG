@@ -59,7 +59,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, 
                 <LockFeature featureKey="community.comment" mode="tooltip" customMessage={t('community.unlock_full_community_2')}>
                     <button
                         onClick={onCommentClick}
-                        className="flex items-center gap-1.5 text-gray-600 hover:text-dlp-brand-hover transition-colors"
+                        className="flex items-center gap-1.5 text-gray-600 hover:text-dlp-primary-hover transition-colors"
                     >
                         <MessageCircle className="h-5 w-5" />
                         <span className="text-sm font-medium">{commentCount ?? post.comments}</span>
@@ -74,7 +74,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ post, onCommentClick, 
                 {/* Bookmark */}
                 <button
                     onClick={handleBookmark}
-                    className={`transition-colors ${isSaved ? 'text-dlp-brand-hover' : 'text-gray-400 hover:text-gray-600'}`}
+                    className={`transition-colors ${isSaved ? 'text-dlp-primary-hover' : 'text-gray-400 hover:text-gray-600'}`}
                 >
                     <Bookmark className={`h-5 w-5 ${isSaved ? 'fill-current' : ''}`} />
                 </button>

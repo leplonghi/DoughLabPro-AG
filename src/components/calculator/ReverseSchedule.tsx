@@ -155,7 +155,7 @@ export const ReverseSchedule: React.FC<ReverseScheduleProps> = ({
                     return (
                         <div key={step.id} className="ml-6 relative">
                             {/* Dot */}
-                            <div className={`absolute -left-[31px] w-4 h-4 rounded-full border-2 border-white shadow-sm ${isFirst ? 'bg-dlp-brand' : isLast ? 'bg-amber-600' : 'bg-slate-300'}`}></div>
+                            <div className={`absolute -left-[31px] w-4 h-4 rounded-full border-2 border-white shadow-sm ${isFirst ? 'bg-dlp-primary' : isLast ? 'bg-amber-600' : 'bg-slate-300'}`}></div>
 
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                                 <div>

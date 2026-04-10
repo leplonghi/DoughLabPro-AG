@@ -20,7 +20,7 @@ export const RequireAuth: React.FC<{ children: React.ReactNode; onOpenAuth?: () 
                     {onOpenAuth && (
                         <button
                             onClick={onOpenAuth}
-                            className="px-4 py-2 bg-dlp-accent hover:bg-dlp-accent-hover text-white rounded-md font-medium transition-colors"
+                            className="px-4 py-2 bg-dlp-primary hover:bg-dlp-primary-hover text-white rounded-md font-medium transition-colors"
                         >{t('auth.log_in')}</button>
                     )}
                 </div>

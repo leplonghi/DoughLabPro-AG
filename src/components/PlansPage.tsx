@@ -184,7 +184,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                     <p className="text-sm text-dlp-text-muted">{t('general.forever_free')}</p>
 
                     <div className="mt-8 rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4">
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-dlp-brand">Main flow</p>
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-dlp-primary">Main flow</p>
                         <p className="mt-2 text-sm leading-6 text-dlp-text-secondary">
                             Discover the app, calculate formulas, start a bake, and get your first My Lab history without paying upfront.
                         </p>
@@ -193,7 +193,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                     <ul className="mt-8 space-y-4">
                         {coreFeatures.map((feature) => (
                             <li key={feature} className="flex items-center gap-3">
-                                <CheckIcon className="h-5 w-5 text-dlp-accent" />
+                                <CheckIcon className="h-5 w-5 text-dlp-primary" />
                                 <span className="text-dlp-text-secondary">{feature}</span>
                             </li>
                         ))}
@@ -214,7 +214,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                         <div>
                             <h2 className="flex items-center gap-2 text-2xl font-bold text-dlp-text-primary">
                                 {t('common.pro_2')}
-                                <SparklesIcon className="h-6 w-6 text-dlp-accent" />
+                                <SparklesIcon className="h-6 w-6 text-dlp-primary" />
                             </h2>
                             <p className="mt-2 text-dlp-text-muted">For bakers who want memory, analysis, and a cleaner path from experiment to repeatable result.</p>
                         </div>
@@ -232,7 +232,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                     )}
 
                     <div className="mt-8 rounded-2xl border border-white/70 bg-white/72 p-4">
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-dlp-brand">Advanced layer</p>
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-dlp-primary">Advanced layer</p>
                         <p className="mt-2 text-sm leading-6 text-dlp-text-secondary">
                             Pro sharpens the same main flow instead of creating a separate product: more history, deeper diagnostics, better decision support.
                         </p>
@@ -241,7 +241,7 @@ const PlansPage: React.FC<PlansPageProps> = ({ onRequireAuth }) => {
                     <ul className="mt-8 space-y-4">
                         {advancedFeatures.map((feature) => (
                             <li key={feature} className="flex items-center gap-3">
-                                <CheckIcon className="h-5 w-5 text-dlp-accent" />
+                                <CheckIcon className="h-5 w-5 text-dlp-primary" />
                                 <span className="font-medium text-dlp-text-secondary">{feature}</span>
                             </li>
                         ))}

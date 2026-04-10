@@ -1,6 +1,6 @@
 import React from 'react';
 
 export const LoadingSpinner: React.FC<{ className?: string }> = ({ className }) => (
-    <div className={`animate-spin rounded-full border-2 border-current border-t-transparent ${className || 'h-6 w-6 text-dlp-accent'}`} />
+    <div className={`animate-spin rounded-full border-2 border-current border-t-transparent ${className || 'h-6 w-6 text-dlp-primary'}`} />
 );
 export default LoadingSpinner;

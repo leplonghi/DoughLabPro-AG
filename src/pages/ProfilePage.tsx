@@ -173,7 +173,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
         onClick={() => setActiveTab(id)}
         aria-pressed={isActive}
         className={`flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold transition-all sm:px-4 sm:text-sm ${isActive
-          ? 'bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_52%,_#1d5b32_100%)] text-white shadow-md shadow-dlp-brand/20'
+          ? 'bg-[linear-gradient(135deg,_#43b05d_0%,_#2f8b49_52%,_#1d5b32_100%)] text-white shadow-md shadow-dlp-primary/20'
           : 'bg-white/80 text-dlp-text-secondary hover:bg-lime-50'
           }`}
       >
@@ -241,12 +241,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
   const renderResourcesPanel = () => (
     <AppSurface className="border-slate-100 p-5">
       <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-800">
-        <BookOpenIcon className="h-5 w-5 text-dlp-brand" />
+        <BookOpenIcon className="h-5 w-5 text-dlp-primary" />
         {t('profile.resources_title', { defaultValue: 'Resources' })}
       </h3>
       <div className="space-y-2">
         <button onClick={() => onNavigate('learn/references')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-dlp-brand transition-transform group-hover:scale-110">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-dlp-primary transition-transform group-hover:scale-110">
             <BookmarkSquareIcon className="h-5 w-5" />
           </div>
           <div>
@@ -255,7 +255,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           </div>
         </button>
         <button onClick={() => onNavigate('learn/ingredients/flours')} className="group flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors hover:bg-emerald-50/70">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-lime-100 text-dlp-brand transition-transform group-hover:scale-110">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-lime-100 text-dlp-primary transition-transform group-hover:scale-110">
             <FlourIcon className="h-5 w-5" />
           </div>
           <div>
@@ -272,7 +272,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
     <div className="mx-auto max-w-5xl animate-fade-in space-y-6 pb-16">
       {/* Header Card */}
       <AppSurface surface="elevated" tone="brand" className="relative overflow-hidden shadow-lg">
-        <div className="h-24 bg-gradient-to-r from-lime-400 to-dlp-brand-hover opacity-90 sm:h-28"></div>
+        <div className="h-24 bg-gradient-to-r from-lime-400 to-dlp-primary-hover opacity-90 sm:h-28"></div>
         <div className="relative -mt-10 flex flex-col items-center gap-4 px-5 pb-5 sm:-mt-12 sm:flex-row sm:items-end sm:gap-5 sm:px-6 sm:pb-6">
           <div className="relative">
             {user.avatar ? (
@@ -310,7 +310,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => setIsWizardOpen(true)}
-              className="flex items-center gap-2 rounded-xl bg-lime-100 px-3.5 py-2 text-sm font-medium text-lime-800 transition-colors hover:bg-lime-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+              className="flex items-center gap-2 rounded-xl bg-lime-100 px-3.5 py-2 text-sm font-medium text-lime-800 transition-colors hover:bg-lime-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
               title={t('auth.onboarding.title', { defaultValue: 'Update Preferences' })}
             >
               <SparklesIcon className="h-4 w-4" />
@@ -319,7 +319,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => setIsEditing(!isEditing)}
-              className="dlp-button-secondary flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2"
+              className="dlp-button-secondary flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
             >
               <PencilIcon className="h-4 w-4" />
               {isEditing ? t('profile.cancel') : t('profile.edit_profile')}
@@ -367,7 +367,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         value={formData.name || ''}
                         onChange={handleInputChange}
                         autoComplete="name"
-                        className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
+                        className="w-full rounded-xl border-slate-200 focus:border-dlp-primary focus:ring-dlp-primary"
                       />
                     </div>
                     <div>
@@ -390,7 +390,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         name="skillLevel"
                         value={formData.skillLevel || ''}
                         onChange={handleInputChange}
-                        className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
+                        className="w-full rounded-xl border-slate-200 focus:border-dlp-primary focus:ring-dlp-primary"
                       >
                         <option value="">{t('common.general.select_level')}</option>
                         {skillLevels.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
@@ -406,7 +406,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         value={formData.location || ''}
                         onChange={handleInputChange}
                         autoComplete="address-level2"
-                        className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
+                        className="w-full rounded-xl border-slate-200 focus:border-dlp-primary focus:ring-dlp-primary"
                       />
                     </div>
                     <div>
@@ -420,7 +420,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         onChange={handleInputChange}
                         autoComplete="url"
                         spellCheck={false}
-                        className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
+                        className="w-full rounded-xl border-slate-200 focus:border-dlp-primary focus:ring-dlp-primary"
                       />
                     </div>
                     <div>
@@ -436,7 +436,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                           onChange={handleInputChange}
                           autoComplete="off"
                           spellCheck={false}
-                          className="w-full rounded-xl border-slate-200 pl-7 focus:border-dlp-brand focus:ring-dlp-brand"
+                          className="w-full rounded-xl border-slate-200 pl-7 focus:border-dlp-primary focus:ring-dlp-primary"
                         />
                       </div>
                     </div>
@@ -449,7 +449,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         placeholder={t('common.general.tell_us_about_your_pizza_journey')}
                         value={formData.bio || ''}
                         onChange={handleInputChange}
-                        className="w-full rounded-xl border-slate-200 focus:border-dlp-brand focus:ring-dlp-brand"
+                        className="w-full rounded-xl border-slate-200 focus:border-dlp-primary focus:ring-dlp-primary"
                       />
                     </div>
                   </div>
@@ -459,7 +459,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       type="button"
                       onClick={handleSave}
                       disabled={!hasPendingProfileChanges}
-                      className={`rounded-xl px-6 py-2.5 font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-brand focus-visible:ring-offset-2 ${
+                      className={`rounded-xl px-6 py-2.5 font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2 ${
                         hasPendingProfileChanges
                           ? 'dlp-button-primary'
                           : 'cursor-not-allowed border border-dlp-border bg-white/90 text-dlp-text-muted shadow-sm'
@@ -482,7 +482,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         )}
                         <div className="flex flex-wrap gap-2 mt-2">
                           {user.skillLevel && (
-                            <span className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-medium capitalize text-dlp-brand">
+                            <span className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-medium capitalize text-dlp-primary">
                               {user.skillLevel}
                             </span>
                           )}
@@ -498,7 +498,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                       <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">{t('common.ui.contact__social')}</h4>
                       <div className="space-y-2">
                         {user.website && (
-                          <a href={user.website} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-dlp-brand-hover hover:text-lime-700">
+                          <a href={user.website} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-dlp-primary-hover hover:text-lime-700">
                             <GlobeAltIcon className="h-4 w-4" /> {user.website}
                           </a>
                         )}
@@ -619,7 +619,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         </div>
                         <p className="text-sm text-slate-500 mb-4">{levain.hydration}% Hydration • {levain.status}</p>
                         <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <button onClick={() => onNavigate('mylab/levain')} title={t('common.general.manage')} className="p-1.5 text-slate-400 hover:text-dlp-brand hover:bg-lime-50 rounded-lg transition-colors">
+                          <button onClick={() => onNavigate('mylab/levain')} title={t('common.general.manage')} className="p-1.5 text-slate-400 hover:text-dlp-primary hover:bg-lime-50 rounded-lg transition-colors">
                             <ArrowTopRightOnSquareIcon className="h-4 w-4" />
                           </button>
                           <button onClick={() => setDefaultLevain(levain.id)} title={t('common.general.set_default')} className="p-1.5 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors">
@@ -661,7 +661,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         {currentLanguageLabel} • {languageModeLabel}
                       </p>
                     </div>
-                    <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 transition-colors group-hover:text-dlp-brand" />
+                    <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 transition-colors group-hover:text-dlp-primary" />
                   </button>
 
                   <button
@@ -677,7 +677,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                         {t('common.go_to_global_settings', { defaultValue: 'Units, environment and defaults' })}
                       </p>
                     </div>
-                    <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 transition-colors group-hover:text-dlp-brand" />
+                    <ArrowTopRightOnSquareIcon className="h-4 w-4 text-slate-400 transition-colors group-hover:text-dlp-primary" />
                   </button>
                 </div>
                 {!followsSystemLanguage && localePreference ? (
@@ -698,7 +698,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
                     <label className="block text-sm font-medium text-slate-700 mb-2">{t('form.unit_system')}</label>
                     <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 text-center">
                       <p className="text-slate-500 text-sm mb-3">{t('common.ui.unit_system_selection_is_currently_managed_in_glob')}</p>
-                      <button onClick={() => onNavigate('settings')} className="text-dlp-brand-hover font-bold text-sm hover:underline">{t('common.go_to_global_settings')}</button>
+                      <button onClick={() => onNavigate('settings')} className="text-dlp-primary-hover font-bold text-sm hover:underline">{t('common.go_to_global_settings')}</button>
                     </div>
                   </div>
                 </div>

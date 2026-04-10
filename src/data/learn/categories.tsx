@@ -34,7 +34,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
         icon: <ScaleIcon className="w-8 h-8" />,
         bg: 'bg-white',
         border: 'border-lime-200',
-        text: 'text-dlp-brand-hover',
+        text: 'text-dlp-primary-hover',
         gradient: 'from-lime-50 to-white',
         hoverBorder: 'hover:border-lime-400'
     },

@@ -57,7 +57,7 @@ const UtilityControls: React.FC<{ mobile?: boolean; onNavigate: (page: Page) => 
             <button
                 type="button"
                 onClick={() => onNavigate('notifications')}
-                className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-emerald-200/70 bg-white/80 text-dlp-text-secondary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white hover:text-dlp-text-primary focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+                className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-emerald-200/70 bg-white/80 text-dlp-text-secondary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white hover:text-dlp-text-primary focus:outline-none focus:ring-2 focus:ring-dlp-primary focus:ring-offset-2"
                 aria-label={t('ui.notifications_325', { defaultValue: 'Notifications' })}
             >
                 <BellIcon className="h-5 w-5 text-emerald-500 transition-transform duration-300 group-hover:scale-110" />
@@ -67,7 +67,7 @@ const UtilityControls: React.FC<{ mobile?: boolean; onNavigate: (page: Page) => 
             <button
                 type="button"
                 onClick={() => onNavigate('tools')}
-                className="flex items-center gap-2 rounded-full border border-emerald-200/70 bg-white/80 px-3 py-2 text-xs font-semibold text-dlp-text-secondary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white hover:text-dlp-text-primary focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+                className="flex items-center gap-2 rounded-full border border-emerald-200/70 bg-white/80 px-3 py-2 text-xs font-semibold text-dlp-text-secondary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white hover:text-dlp-text-primary focus:outline-none focus:ring-2 focus:ring-dlp-primary focus:ring-offset-2"
             >
                 <WrenchScrewdriverIcon className="h-4 w-4 text-emerald-600" />
                 {t('common.nav.tools')}
@@ -113,7 +113,7 @@ const DesktopHeader: React.FC<HeaderComponentProps> = React.memo(({ activePage, 
                                         : 'border-transparent bg-white/40 text-dlp-text-muted hover:border-emerald-100 hover:bg-white/80 hover:text-dlp-text-primary'
                                         }`}
                                 >
-                                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all duration-300 ${isActive ? 'border border-emerald-200 bg-emerald-100 text-emerald-700 shadow-[inset_0_0_0_1px_rgba(47,139,73,0.12)]' : 'bg-emerald-50/90 text-dlp-brand/75 group-hover:bg-emerald-100 group-hover:text-dlp-brand'}`}>
+                                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all duration-300 ${isActive ? 'border border-emerald-200 bg-emerald-100 text-emerald-700 shadow-[inset_0_0_0_1px_rgba(47,139,73,0.12)]' : 'bg-emerald-50/90 text-dlp-primary/75 group-hover:bg-emerald-100 group-hover:text-dlp-primary'}`}>
                                         <Icon className="h-[18px] w-[18px] transition-all duration-300 group-hover:scale-110" />
                                     </span>
                                     {link.label}
@@ -135,10 +135,10 @@ const DesktopHeader: React.FC<HeaderComponentProps> = React.memo(({ activePage, 
                                     </span>
                                     <button
                                         onClick={() => openPaywall('general')}
-                                        className="text-sm font-semibold text-dlp-accent hover:text-dlp-accent-hover transition-all hover:scale-105 active:scale-95 relative group"
+                                        className="text-sm font-semibold text-dlp-primary hover:text-dlp-primary-hover transition-all hover:scale-105 active:scale-95 relative group"
                                     >
                                         <span className="relative z-10">{t('paywall.title').replace('DoughLab ', '')}</span>
-                                        <span className="absolute inset-0 bg-dlp-brand/5 rounded-lg scale-0 group-hover:scale-100 transition-transform" />
+                                        <span className="absolute inset-0 bg-dlp-primary/5 rounded-lg scale-0 group-hover:scale-100 transition-transform" />
                                     </button>
                                 </>
                             )}

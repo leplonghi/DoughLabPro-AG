@@ -58,7 +58,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ isOpen, onClose, co
                 </button>
 
                 <h3 className="mb-6 text-xl font-bold text-dlp-text-primary flex items-center gap-2">
-                    <ShareIcon className="h-5 w-5 text-dlp-accent" />{t('common.share_your_formula')}</h3>
+                    <ShareIcon className="h-5 w-5 text-dlp-primary" />{t('common.share_your_formula')}</h3>
 
                 {/* The Card to be Captured */}
                 <div className="flex justify-center mb-8 overflow-hidden rounded-xl shadow-dlp-md">

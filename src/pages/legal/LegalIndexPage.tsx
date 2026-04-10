@@ -24,7 +24,7 @@ const LegalSection: React.FC<{ id: string; title: string; children: React.ReactN
     <div className="border-b border-dlp-border pb-4">
       <h2 className="text-3xl font-bold tracking-tight text-dlp-text-primary sm:text-4xl">{title}</h2>
     </div>
-    <div className="prose mt-6 max-w-none text-dlp-text-secondary prose-a:text-dlp-accent prose-headings:text-dlp-text-primary">
+    <div className="prose mt-6 max-w-none text-dlp-text-secondary prose-a:text-dlp-primary prose-headings:text-dlp-text-primary">
       {children}
     </div>
   </section>
@@ -124,7 +124,7 @@ const LegalIndexPage: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                     window.history.pushState(null, '', `#/legal?section=${section.id}`);
                   }
                 }}
-                className="flex w-full items-center rounded-lg p-3 text-sm font-semibold text-dlp-text-secondary transition-colors hover:bg-dlp-bg-soft hover:text-dlp-accent"
+                className="flex w-full items-center rounded-lg p-3 text-sm font-semibold text-dlp-text-secondary transition-colors hover:bg-dlp-bg-soft hover:text-dlp-primary"
               >
                 <span className="truncate">{section.title}</span>
               </a>

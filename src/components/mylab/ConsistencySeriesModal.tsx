@@ -94,7 +94,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="e.g. Hydration Test 60-80%"
-                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
@@ -105,7 +105,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             placeholder={t('common.mylab.goal_of_this_experiment')}
-                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
@@ -115,7 +115,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             <select
                                 value={variable}
                                 onChange={(e) => setVariable(e.target.value as TestSeriesVariable)}
-                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3"
                             >
                                 <option value="hydration">{t('common.mylab.variable_hydration')}</option>
                                 <option value="fermentation_time">{t('common.mylab.variable_fermentation_time')}</option>
@@ -138,7 +138,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                                 value={stepsString}
                                 onChange={(e) => setStepsString(e.target.value)}
                                 placeholder="e.g. 60%, 65%, 70%"
-                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
+                                className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3"
                             />
                         </div>
                     </div>
@@ -152,7 +152,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
                             placeholder={t('common.mylab.specific_instructions_or_observations')}
-                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-brand focus:ring-dlp-brand sm:text-sm py-2.5 px-3"
+                            className="block w-full rounded-xl border-gray-200 bg-white shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3"
                         />
                     </div>
 
@@ -165,7 +165,7 @@ const ConsistencySeriesModal: React.FC<ConsistencySeriesModalProps> = ({
                         <button
                             type="submit"
                             disabled={loading}
-                            className="rounded-xl bg-dlp-brand px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-dlp-brand/20 hover:bg-dlp-brand hover:text-white-hover transition-all active:scale-95 disabled:opacity-50"
+                            className="rounded-xl bg-dlp-primary px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-dlp-primary/20 hover:bg-dlp-primary hover:text-white-hover transition-all active:scale-95 disabled:opacity-50"
                         >
                             {loading ? t('common.mylab.saving') : t('common.mylab.save_series')}
                         </button>

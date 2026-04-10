@@ -40,7 +40,7 @@ const HelpSection: React.FC<HelpSectionProps> = ({ title, icon: Icon, children, 
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div className="flex items-center gap-4">
-                    <div className="p-2 rounded-xl bg-dlp-accent/10 text-dlp-accent">
+                    <div className="p-2 rounded-xl bg-dlp-primary/10 text-dlp-primary">
                         <Icon className="w-6 h-6" />
                     </div>
                     <h3 className="text-lg font-semibold text-dlp-text-primary">{title}</h3>
@@ -77,7 +77,7 @@ export default function HelpPage() {
                 <div className="space-y-4 text-sm md:text-base">
                     <p>{t('common.the')}<strong>{t('nav.calculator')}</strong> is the heart of DoughLab. Here you can create precise dough formulas tailored to your needs.
                     </p>
-                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-primary">
                         <li>
                             <strong>{t('ui.configuration')}</strong> Start by entering your desired dough weight (Total, per Ball, or Total Flour) and the number of balls.
                             Adjust hydration, salt, and yeast percentages.
@@ -136,7 +136,7 @@ export default function HelpPage() {
                 <div className="space-y-4 text-sm md:text-base">
                     <p>{t('common.the')}<strong>{t('general.styles_library')}</strong> is an encyclopedia of pizza styles from around the world.
                     </p>
-                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-primary">
                         <li>
                             <strong>{t('ui.explore')}</strong> Browse styles by region (Italy, USA, Licensed). Each style card shows key characteristics like hydration, oven temp, and difficulty.
                         </li>
@@ -158,7 +158,7 @@ export default function HelpPage() {
                 <div className="space-y-4 text-sm md:text-base">
                     <p>{t('common.connect_with_other_bakers_in_the')}<strong>{t('nav.community')}</strong> section.
                     </p>
-                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-primary">
                         <li>
                             <strong>{t('ui.share_your_bakes')}</strong> Post photos and details of your latest creations. You can link directly to a Batch from My Lab to share the exact recipe and method.
                         </li>
@@ -207,7 +207,7 @@ export default function HelpPage() {
                 <div className="space-y-4 text-sm md:text-base">
                     <p>{t('common.manage_your_app_experience_in')}<strong>{t('nav.settings')}</strong>.
                     </p>
-                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-accent">
+                    <ul className="list-disc pl-5 space-y-2 marker:text-dlp-primary">
                         <li>
                             <strong>{t('ui.profile')}</strong> Update your name, bio, and avatar.
                         </li>
@@ -276,7 +276,7 @@ export default function HelpPage() {
                     </div>
                     <input
                         type="text"
-                        className="block w-full pl-10 pr-3 py-3 border border-dlp-border rounded-full leading-5 bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:border-dlp-accent transition-all shadow-sm"
+                        className="block w-full pl-10 pr-3 py-3 border border-dlp-border rounded-full leading-5 bg-dlp-bg-card text-dlp-text-primary placeholder-dlp-text-muted focus:outline-none focus:ring-2 focus:ring-dlp-primary focus:border-dlp-primary transition-all shadow-sm"
                         placeholder={t('general.search_for_topics')}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -312,7 +312,7 @@ export default function HelpPage() {
                     {faqs.map((faq, index) => (
                         <AppSurface key={index} className="p-5 hover:shadow-md transition-all">
                             <h3 className="font-semibold text-dlp-text-primary mb-2 flex items-start gap-2">
-                                <span className="text-dlp-accent font-bold">Q.</span> {faq.q}
+                                <span className="text-dlp-primary font-bold">Q.</span> {faq.q}
                             </h3>
                             <p className="text-dlp-text-secondary text-sm pl-6">
                                 {faq.a}
@@ -323,14 +323,14 @@ export default function HelpPage() {
             </div>
 
             {/* Contact Support */}
-            <AppSurface className="mt-12 p-8 bg-gradient-to-br from-dlp-accent/10 to-dlp-accent/10 border-dlp-accent/20 text-center">
+            <AppSurface className="mt-12 p-8 bg-gradient-to-br from-dlp-primary/10 to-dlp-primary/10 border-dlp-primary/20 text-center">
                 <h3 className="text-xl font-bold text-dlp-text-primary mb-2">{t('ui.still_have_questions')}</h3>
                 <p className="text-dlp-text-secondary mb-6">
                     We're here to help! Reach out to our support team for personal assistance.
                 </p>
                 <a
                     href="mailto:support@doughlab.com"
-                    className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-dlp-accent hover:bg-dlp-accent-hover transition-colors shadow-lg hover:shadow-xl transform active:scale-95"
+                    className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-dlp-primary hover:bg-dlp-primary-hover transition-colors shadow-lg hover:shadow-xl transform active:scale-95"
                 >{t('common.contact_support')}</a>
             </AppSurface>
 

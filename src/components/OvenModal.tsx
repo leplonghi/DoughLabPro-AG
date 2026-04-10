@@ -96,7 +96,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder={t('general.my_home_oven')}
                         />
                     </div>
@@ -111,7 +111,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 name="type"
                                 value={formData.type}
                                 onChange={handleChange}
-                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             >
                                 {Object.values(OvenType).map((type) => (
                                     <option key={type} value={type}>
@@ -133,7 +133,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 max="600"
                                 value={formData.maxTemperature}
                                 onChange={handleChange}
-                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary"
+                                className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary"
                             />
                         </div>
                     </div>
@@ -146,7 +146,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 type="checkbox"
                                 checked={formData.hasStone}
                                 onChange={handleChange}
-                                className="h-5 w-5 rounded border-dlp-border text-dlp-accent focus:ring-dlp-accent"
+                                className="h-5 w-5 rounded border-dlp-border text-dlp-primary focus:ring-dlp-primary"
                             />
                             <label htmlFor="hasStone" className="ml-2 block text-sm font-medium text-dlp-text-secondary">
                                 {t('profile.ovens.has_stone')}
@@ -159,7 +159,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                                 type="checkbox"
                                 checked={formData.hasSteel}
                                 onChange={handleChange}
-                                className="h-5 w-5 rounded border-dlp-border text-dlp-accent focus:ring-dlp-accent"
+                                className="h-5 w-5 rounded border-dlp-border text-dlp-primary focus:ring-dlp-primary"
                             />
                             <label htmlFor="hasSteel" className="ml-2 block text-sm font-medium text-dlp-text-secondary">
                                 {t('profile.ovens.has_steel')}
@@ -177,7 +177,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                             rows={3}
                             value={formData.notes || ''}
                             onChange={handleChange}
-                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-accent focus:ring-dlp-accent sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
+                            className="block w-full rounded-xl border-dlp-border bg-dlp-bg-muted shadow-sm focus:border-dlp-primary focus:ring-dlp-primary sm:text-sm py-2.5 px-3 text-dlp-text-primary placeholder-dlp-text-muted"
                             placeholder={t('general.optional_notes_about_your_oven')}
                         />
                     </div>
@@ -192,7 +192,7 @@ const OvenModal: React.FC<OvenModalProps> = ({
                         </button>
                         <button
                             type="submit"
-                            className="rounded-xl bg-dlp-accent px-5 py-2.5 text-sm font-bold text-white shadow-dlp-md hover:bg-dlp-accent-hover hover:shadow-dlp-lg transition-all transform hover:-translate-y-0.5"
+                            className="rounded-xl bg-dlp-primary px-5 py-2.5 text-sm font-bold text-white shadow-dlp-md hover:bg-dlp-primary-hover hover:shadow-dlp-lg transition-all transform hover:-translate-y-0.5"
                         >
                             {t('common.save')}
                         </button>

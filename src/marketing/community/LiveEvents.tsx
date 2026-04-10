@@ -15,7 +15,7 @@ export const LiveEvents: React.FC = () => {
                 </div>
             </div>
             <div className="p-4">
-                <button className="w-full py-2 bg-dlp-brand text-black font-bold rounded-lg hover:bg-lime-400">{t('community.join_stream')}</button>
+                <button className="w-full py-2 bg-dlp-primary text-black font-bold rounded-lg hover:bg-lime-400">{t('community.join_stream')}</button>
             </div>
         </div>
     );

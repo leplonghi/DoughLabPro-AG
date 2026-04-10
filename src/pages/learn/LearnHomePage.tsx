@@ -49,7 +49,7 @@ const LearnHomePage: React.FC = () => {
                             </div>
                             <input
                                 type="text"
-                                className="block w-full rounded-full border border-slate-200 bg-white pl-10 pr-4 py-3 text-sm text-slate-700 placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-dlp-brand/30 focus:border-dlp-brand transition-all"
+                                className="block w-full rounded-full border border-slate-200 bg-white pl-10 pr-4 py-3 text-sm text-slate-700 placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-dlp-primary/30 focus:border-dlp-primary transition-all"
                                 placeholder={t('learn.search_placeholder', { defaultValue: 'Search topics...' })}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -91,7 +91,7 @@ const LearnHomePage: React.FC = () => {
                                             <ClockIcon className="w-3.5 h-3.5" />
                                             10 min read
                                         </div>
-                                        <div className="text-dlp-brand-hover flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer">{t('learn.read_article')}<ArrowRightIcon className="w-3 h-3" />
+                                        <div className="text-dlp-primary-hover flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer">{t('learn.read_article')}<ArrowRightIcon className="w-3 h-3" />
                                         </div>
                                     </div>
                                 </div>

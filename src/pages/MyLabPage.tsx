@@ -268,7 +268,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                 <AppSurface surface="elevated" tone="neutral" className="p-5 sm:p-6">
                     <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_auto] lg:items-center">
                         <div className="flex items-center gap-3 min-w-[200px]">
-                        <div className="h-12 w-12 bg-gradient-to-br from-lime-400 to-dlp-brand-hover rounded-full flex items-center justify-center flex-shrink-0 text-white font-black text-lg shadow-lg shadow-dlp-brand/30 border-2 border-white">
+                        <div className="h-12 w-12 bg-gradient-to-br from-lime-400 to-dlp-primary-hover rounded-full flex items-center justify-center flex-shrink-0 text-white font-black text-lg shadow-lg shadow-dlp-primary/30 border-2 border-white">
                             {(() => {
                                 if (totalBakes >= 50) return '4';
                                 if (totalBakes >= 20) return '3';
@@ -311,7 +311,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                         progress = 100;
                                     }
                                     return (
-                                        <div className="h-full bg-dlp-brand rounded-full transition-all duration-1000" style={{ width: `${progress}%` }}></div>
+                                        <div className="h-full bg-dlp-primary rounded-full transition-all duration-1000" style={{ width: `${progress}%` }}></div>
                                     );
                                 })()}
                             </div>
@@ -320,7 +320,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                         <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
                             <MetricCard
                                 label={t('mylab.success_rate')}
-                                value={<span className={successRate >= 80 ? 'text-dlp-brand' : 'text-amber-500'}>{successRate}%</span>}
+                                value={<span className={successRate >= 80 ? 'text-dlp-primary' : 'text-amber-500'}>{successRate}%</span>}
                                 hint={localized('Baseado nas suas fornadas avaliadas.', 'Based on your rated bakes.')}
                                 tone={successRate >= 80 ? 'success' : 'warning'}
                             />
@@ -329,7 +329,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                 value={
                                   <div className="flex items-center gap-2 text-lg font-black text-dlp-text-primary">
                                     <span>{t('mylab.operational')}</span>
-                                    <div className="h-2 w-2 rounded-full bg-dlp-brand animate-pulse"></div>
+                                    <div className="h-2 w-2 rounded-full bg-dlp-primary animate-pulse"></div>
                                   </div>
                                 }
                                 hint={localized('Seu lab esta pronto para outra rodada.', 'Your lab is ready for another run.')}
@@ -394,7 +394,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                         {/* Section: Daily Operations */}
                         <div className="space-y-4">
                             <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
-                                <BoltIcon className="h-5 w-5 text-dlp-brand-hover" />
+                                <BoltIcon className="h-5 w-5 text-dlp-primary-hover" />
                                 <h2 className="text-base font-bold text-slate-800">{t('mylab.daily_operations')}</h2>
                             </div>
                             <p className="text-sm text-slate-500 -mt-2">
@@ -403,7 +403,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <LabFeatureCard
-                                    icon={<ClockIcon className="h-6 w-6 text-dlp-brand-hover" />}
+                                    icon={<ClockIcon className="h-6 w-6 text-dlp-primary-hover" />}
                                     title={t('mylab.smart_timeline')}
                                     description={t('mylab.desc_smart_timeline')}
                                     onClick={() => onNavigate('mylab/timeline')}
@@ -449,7 +449,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <LabFeatureCard
-                                    icon={<ClipboardDocumentCheckIcon className="h-6 w-6 text-dlp-brand" />}
+                                    icon={<ClipboardDocumentCheckIcon className="h-6 w-6 text-dlp-primary" />}
                                     title={t('mylab.consistency_logic')}
                                     description={t('mylab.desc_consistency')}
                                     onClick={() => onNavigate('mylab/consistency')}
@@ -465,7 +465,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     tone="info"
                                 />
                                 <LabFeatureCard
-                                    icon={<ChartBarIcon className="h-6 w-6 text-dlp-brand-hover" />}
+                                    icon={<ChartBarIcon className="h-6 w-6 text-dlp-primary-hover" />}
                                     title={t('mylab.deep_insights')}
                                     description={t('mylab.desc_insights')}
                                     onClick={() => onNavigate('mylab/insights')}
@@ -488,7 +488,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     <ArchiveBoxIcon className="h-5 w-5 text-slate-500" />{t('mylab.recent_activity')}</h2>
                                 <button
                                     onClick={() => onNavigate('mylab/bakes')}
-                                    className="text-sm text-dlp-brand-hover font-bold hover:underline"
+                                    className="text-sm text-dlp-primary-hover font-bold hover:underline"
                                 >{t('mylab.view_log')}</button>
                             </div>
 
@@ -501,7 +501,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                             className="group flex items-center justify-between p-4 rounded-xl border border-slate-100 bg-white hover:border-lime-200 hover:shadow-md transition-all cursor-pointer"
                                         >
                                             <div className="flex items-center gap-4">
-                                                <div className={`h-10 w-10 rounded-xl flex items-center justify-center font-bold text-sm ${batch.rating && batch.rating >= 4 ? 'bg-emerald-50 text-dlp-brand-hover' : 'bg-slate-100 text-slate-400'}`}>
+                                                <div className={`h-10 w-10 rounded-xl flex items-center justify-center font-bold text-sm ${batch.rating && batch.rating >= 4 ? 'bg-emerald-50 text-dlp-primary-hover' : 'bg-slate-100 text-slate-400'}`}>
                                                     {batch.rating || '-'}
                                                 </div>
                                                 <div>
@@ -515,7 +515,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="flex items-center gap-2 text-slate-400 group-hover:text-dlp-brand transition-colors">
+                                            <div className="flex items-center gap-2 text-slate-400 group-hover:text-dlp-primary transition-colors">
                                                 <span className="text-xs font-semibold hidden sm:block">{t('mylab.view_details')}</span>
                                                 <ChevronRightIcon className="h-5 w-5" />
                                             </div>
@@ -528,7 +528,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                     <p className="text-sm font-medium text-slate-500">{t('mylab.no_recent_bakes_recorded')}</p>
                                     <button
                                         onClick={() => onNavigate('calculator')}
-                                        className="mt-2 text-dlp-brand-hover font-bold text-sm hover:underline"
+                                        className="mt-2 text-dlp-primary-hover font-bold text-sm hover:underline"
                                     >{t('mylab.start_your_first_bake')}</button>
                                 </InlineNotice>
                             )}
@@ -556,7 +556,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                             className="group flex items-center justify-between p-3 rounded-xl border border-slate-100 bg-white hover:border-lime-200 hover:shadow-md transition-all cursor-pointer"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className="h-8 w-8 rounded-lg bg-lime-50 text-dlp-brand-hover flex items-center justify-center font-bold text-xs">
+                                                <div className="h-8 w-8 rounded-lg bg-lime-50 text-dlp-primary-hover flex items-center justify-center font-bold text-xs">
                                                     CP
                                                 </div>
                                                 <div>
@@ -568,7 +568,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                                                     </p>
                                                 </div>
                                             </div>
-                                            <ChevronRightIcon className="h-4 w-4 text-slate-300 group-hover:text-dlp-brand" />
+                                            <ChevronRightIcon className="h-4 w-4 text-slate-300 group-hover:text-dlp-primary" />
                                         </div>
                                     ))}
                                 </div>
@@ -721,9 +721,9 @@ interface LabFeatureCardProps {
 }
 
 const toneBackgroundClass: Record<AppSurfaceTone, string> = {
-    brand: 'bg-lime-50 text-dlp-brand-hover',
+    brand: 'bg-lime-50 text-dlp-primary-hover',
     info: 'bg-blue-50 text-blue-700',
-    success: 'bg-emerald-50 text-dlp-brand-hover',
+    success: 'bg-emerald-50 text-dlp-primary-hover',
     warning: 'bg-amber-50 text-amber-700',
     danger: 'bg-red-50 text-red-700',
     neutral: 'bg-slate-50 text-slate-700',
@@ -774,7 +774,7 @@ const LabFeatureCard: React.FC<LabFeatureCardProps> = ({ icon, title, descriptio
             {/* Action Arrow (visible on hover or generic) */}
             <div className={`
                 h-8 w-8 rounded-full flex items-center justify-center transition-all bg-slate-50
-                ${isLocked ? 'opacity-0' : 'text-slate-300 group-hover:text-dlp-brand-hover group-hover:bg-lime-50'}
+                ${isLocked ? 'opacity-0' : 'text-slate-300 group-hover:text-dlp-primary-hover group-hover:bg-lime-50'}
             `}>
                 <ArrowRightIcon className="h-4 w-4" />
             </div>

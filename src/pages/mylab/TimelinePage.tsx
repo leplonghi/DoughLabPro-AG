@@ -75,7 +75,7 @@ const TimelinePage: React.FC<{ onNavigate: (page: Page, params?: string) => void
   const EventIcon: React.FC<{ type: TimelineEvent['type'], icon: ReactNode }> = ({ type, icon }) => {
     const bgColors = {
       'BATCH': 'bg-blue-500',
-      'LEVAIN_CREATED': 'bg-dlp-brand',
+      'LEVAIN_CREATED': 'bg-dlp-primary',
       'LEVAIN_FED': 'bg-amber-500',
     };
     return (

@@ -193,19 +193,19 @@ function AppContent() {
           <div className="space-y-3">
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="w-full rounded-xl bg-dlp-accent py-3.5 font-bold text-[#065F46] shadow-dlp-sm transition-all transform hover:scale-[1.02] hover:bg-dlp-accent-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+              className="w-full rounded-xl bg-dlp-primary py-3.5 font-bold text-[#065F46] shadow-dlp-sm transition-all transform hover:scale-[1.02] hover:bg-dlp-primary-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
             >
               Access Your Lab
             </button>
             <button
               onClick={() => navigate('plans')}
-              className="w-full rounded-xl border border-dlp-border bg-white py-3.5 font-bold text-dlp-text-primary transition-colors hover:bg-dlp-bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+              className="w-full rounded-xl border border-dlp-border bg-white py-3.5 font-bold text-dlp-text-primary transition-colors hover:bg-dlp-bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
             >
               Compare Plans & Pricing
             </button>
             <button
               onClick={() => navigate('landing')}
-              className="w-full py-2 text-sm font-medium text-dlp-text-muted transition-colors hover:text-dlp-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-accent focus-visible:ring-offset-2"
+              className="w-full py-2 text-sm font-medium text-dlp-text-muted transition-colors hover:text-dlp-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dlp-primary focus-visible:ring-offset-2"
             >
               Explore Product Tour
             </button>
@@ -332,7 +332,7 @@ function AppContent() {
       {/* Persistence Indicator */}
       {lastSaved && (
         <div className="fixed bottom-24 right-4 bg-dlp-bg-surface border border-dlp-border shadow-lg rounded-full px-4 py-2 text-xs text-dlp-text-muted transition-opacity duration-1000 animate-fade-in-out pointer-events-none z-50 flex items-center gap-2 sm:bottom-4">
-          <div className="w-2 h-2 rounded-full bg-dlp-brand"></div>
+          <div className="w-2 h-2 rounded-full bg-dlp-primary"></div>
           {t('ui.changes_saved')}
         </div>
       )}

@@ -70,7 +70,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
         <div className="relative" ref={menuRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-emerald-200/80 bg-white/80 text-dlp-brand shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white focus:outline-none focus:ring-2 focus:ring-dlp-accent focus:ring-offset-2"
+                className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-emerald-200/80 bg-white/80 text-dlp-primary shadow-[0_12px_30px_-20px_rgba(47,139,73,0.45)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-white focus:outline-none focus:ring-2 focus:ring-dlp-primary focus:ring-offset-2"
                 aria-label={t('common.nav.profile')}
             >
                 {user?.avatar ? (
@@ -97,7 +97,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                                         className="h-full w-full object-cover"
                                     />
                                 ) : (
-                                    <span className="text-sm font-bold tracking-tight text-dlp-brand">{initials}</span>
+                                    <span className="text-sm font-bold tracking-tight text-dlp-primary">{initials}</span>
                                 )}
                             </div>
                             <div className="min-w-0">
@@ -117,7 +117,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             onClick={() => handleItemClick('profile')}
                             className="group flex w-full items-center px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
-                            <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
+                            <UserCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-primary" />
                             {t('common.nav.profile')}
                         </button>
 
@@ -126,7 +126,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             className="group flex w-full items-center justify-between px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
                             <div className="flex items-center">
-                                <SettingsIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
+                                <SettingsIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-primary" />
                                 {t('common.nav.settings')}
                             </div>
                             <ChevronRightIcon className="h-4 w-4 text-dlp-text-muted" />
@@ -136,7 +136,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             onClick={() => handleItemClick('help')}
                             className="group flex w-full items-center px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
-                            <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
+                            <QuestionMarkCircleIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-primary" />
                             {t('common.nav.help')}
                         </button>
 
@@ -144,7 +144,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, onOpenAuthModal 
                             onClick={() => handleItemClick('legal')}
                             className="group flex w-full items-center px-4 py-3 text-sm text-dlp-text-secondary transition-colors hover:bg-emerald-50/70"
                         >
-                            <ClockIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-brand" />
+                            <ClockIcon className="mr-3 h-5 w-5 text-dlp-text-muted transition-colors group-hover:text-dlp-primary" />
                             {t('common.nav.legal')}
                         </button>
 

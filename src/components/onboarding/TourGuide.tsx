@@ -171,7 +171,7 @@ export const TourGuide: React.FC = () => {
 
             {/* Spotlight Effect */}
             <div
-                className="absolute transition-all duration-500 ease-in-out border-2 border-dlp-accent rounded-lg shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
+                className="absolute transition-all duration-500 ease-in-out border-2 border-dlp-primary rounded-lg shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
                 style={{
                     top: targetRect.top - 4,
                     left: targetRect.left - 4,
@@ -193,7 +193,7 @@ export const TourGuide: React.FC = () => {
                 </button>
 
                 <div className="mb-4">
-                    <span className="inline-block px-2 py-1 rounded bg-dlp-bg-muted text-dlp-accent text-xs font-bold mb-2 border border-dlp-border">
+                    <span className="inline-block px-2 py-1 rounded bg-dlp-bg-muted text-dlp-primary text-xs font-bold mb-2 border border-dlp-border">
                         Step {currentStep + 1} of {TOUR_STEPS.length}
                     </span>
                     <h3 className="text-lg font-bold text-dlp-text-primary">{step.title}</h3>
@@ -209,7 +209,7 @@ export const TourGuide: React.FC = () => {
                     >{t('common.skip_tour')}</button>
                     <button
                         onClick={handleNext}
-                        className="flex items-center gap-1 bg-dlp-accent text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-dlp-accent-hover transition-colors shadow-dlp-sm"
+                        className="flex items-center gap-1 bg-dlp-primary text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-dlp-primary-hover transition-colors shadow-dlp-sm"
                     >
                         {currentStep === TOUR_STEPS.length - 1 ? 'Finish' : 'Next'}
                         <ChevronRightIcon className="h-4 w-4" />

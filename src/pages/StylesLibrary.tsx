@@ -262,7 +262,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                                 value={searchQuery}
                                 onChange={(event) => setSearchQuery(event.target.value)}
                                 placeholder="Search by style, region, trait, or teaching angle"
-                                className="w-full rounded-2xl border border-emerald-200 bg-white/92 py-3.5 pl-11 pr-4 text-sm text-dlp-text-primary outline-none transition focus:border-dlp-brand focus:bg-white focus:ring-2 focus:ring-dlp-brand/20"
+                                className="w-full rounded-2xl border border-emerald-200 bg-white/92 py-3.5 pl-11 pr-4 text-sm text-dlp-text-primary outline-none transition focus:border-dlp-primary focus:bg-white focus:ring-2 focus:ring-dlp-primary/20"
                             />
                         </div>
 
@@ -343,7 +343,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             <select
                                 value={selectedDifficulty}
                                 onChange={(event) => setSelectedDifficulty(event.target.value as typeof selectedDifficulty)}
-                                className="rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 text-sm font-semibold text-dlp-text-secondary outline-none transition focus:border-dlp-brand focus:ring-2 focus:ring-dlp-brand/20"
+                                className="rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 text-sm font-semibold text-dlp-text-secondary outline-none transition focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary/20"
                             >
                                 <option value="all">All difficulty levels</option>
                                 <option value="Easy">Easy</option>
@@ -355,7 +355,7 @@ export const StylesLibraryPage: React.FC<StylesLibraryPageProps> = ({ onUseInCal
                             <select
                                 value={selectedRegion}
                                 onChange={(event) => setSelectedRegion(event.target.value)}
-                                className="rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 text-sm font-semibold text-dlp-text-secondary outline-none transition focus:border-dlp-brand focus:ring-2 focus:ring-dlp-brand/20"
+                                className="rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 text-sm font-semibold text-dlp-text-secondary outline-none transition focus:border-dlp-primary focus:ring-2 focus:ring-dlp-primary/20"
                             >
                                 <option value="all">All regions</option>
                                 {availableRegions.map(region => (

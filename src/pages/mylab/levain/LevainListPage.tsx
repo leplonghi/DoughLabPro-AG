@@ -111,7 +111,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                             {levains.length >= 1 && !canUseFeature(plan, 'levain.lab_full') ? (
                                 <LockedTeaser featureKey="levain.multipleLevains">
                                     <button
-                                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all opacity-50 cursor-not-allowed"
+                                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-primary py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-primary/20 transition-all opacity-50 cursor-not-allowed"
                                     >
                                         <PlusCircleIcon className="h-5 w-5" />
                                         <span>{t('mylab.add_levain')}</span>
@@ -120,7 +120,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                             ) : (
                                 <button
                                     onClick={handleAddLevainClick}
-                                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-brand py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-brand/20 transition-all hover:bg-dlp-brand hover:text-white-hover hover:scale-105 active:scale-95"
+                                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-dlp-primary py-2.5 px-5 font-bold text-white shadow-lg shadow-dlp-primary/20 transition-all hover:bg-dlp-primary hover:text-white-hover hover:scale-105 active:scale-95"
                                 >
                                     <PlusCircleIcon className="h-5 w-5" />
                                     <span>{t('mylab.add_levain')}</span>
@@ -146,7 +146,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                 {levains.length === 0 ? (
                     <AppSurface className="border-dashed border-slate-300 bg-[linear-gradient(180deg,_rgba(250,252,247,0.96)_0%,_rgba(255,255,255,0.96)_100%)] p-12 text-center">
                         <div className="mx-auto h-16 w-16 bg-lime-100  rounded-full flex items-center justify-center mb-4">
-                            <BeakerIcon className="h-8 w-8 text-dlp-brand-hover " />
+                            <BeakerIcon className="h-8 w-8 text-dlp-primary-hover " />
                         </div>
                         <h2 className="text-xl font-bold text-slate-900 ">
                             You don't have a Levain Pet yet.
@@ -156,7 +156,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                         </p>
                         <button
                             onClick={handleAddLevainClick}
-                            className="mt-6 rounded-xl bg-dlp-brand py-2.5 px-6 font-bold text-white shadow-lg hover:bg-dlp-brand hover:text-white-hover transition-all"
+                            className="mt-6 rounded-xl bg-dlp-primary py-2.5 px-6 font-bold text-white shadow-lg hover:bg-dlp-primary hover:text-white-hover transition-all"
                         >{t('mylab.create_levain')}</button>
                     </AppSurface>
                 ) : (
@@ -191,7 +191,7 @@ const LevainListPage: React.FC<LevainListPageProps> = ({ onNavigate }) => {
                         {!canUseFeature(plan, 'levain.lab_full') && levains.length >= 1 && (
                             <LockedTeaser featureKey="levain.multipleLevains">
                                 <AppSurface className="flex h-full min-h-[200px] flex-col items-center justify-center border-2 border-dashed border-lime-200 bg-lime-50/60 p-6 text-center">
-                                    <div className="p-3 bg-lime-100 rounded-full text-dlp-brand-hover mb-3">
+                                    <div className="p-3 bg-lime-100 rounded-full text-dlp-primary-hover mb-3">
                                         <PlusCircleIcon className="h-8 w-8" />
                                     </div>
                                     <h3 className="font-bold text-lime-800 text-lg">{t('mylab.add_another_levain')}</h3>
