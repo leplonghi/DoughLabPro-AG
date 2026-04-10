@@ -8,7 +8,6 @@ import { useRouter } from '@/contexts/RouterContext';
 import { useCalculator } from '@/contexts/CalculatorContext';
 import { FLOURS } from '@/flours-constants';
 import { FeatureKey } from '@/permissions';
-import PublicLandingPage from '@/components/marketing/PublicLandingPage';
 import { logCalculatorEvent } from '@/services/analytics';
 import { resolveCommunityRoute } from '@/app/routes/communityRoutes';
 import { resolveLibraryRoute } from '@/app/routes/libraryRoutes';
@@ -322,7 +321,6 @@ export default function AppRouter({ onStartBatch, onCreateDraftBatch }: AppRoute
                 EulaPage,
                 IpPage,
                 ContactPage,
-                PublicLandingPage,
                 UpgradePage,
             },
         }) ||

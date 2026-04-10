@@ -17,7 +17,6 @@ interface SupportRouteContext {
     EulaPage: React.ComponentType;
     IpPage: React.ComponentType;
     ContactPage: React.ComponentType;
-    PublicLandingPage: React.ComponentType<{ onNavigate: NavigateFn; onOpenAuth: () => void }>;
     UpgradePage: React.ComponentType<{ success?: boolean; cancel?: boolean }>;
   };
 }
@@ -48,7 +47,9 @@ export function resolveSupportRoute({
     case 'legal/contact':
       return <components.ContactPage />;
     case 'landing':
-      return <components.PublicLandingPage onNavigate={navigate} onOpenAuth={onOpenAuth} />;
+      // Redirect unauthenticated users directly to auth
+      onOpenAuth();
+      return null;
     case 'upgrade/success':
       return <components.UpgradePage success={true} />;
     case 'upgrade/cancel':
