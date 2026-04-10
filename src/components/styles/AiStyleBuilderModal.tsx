@@ -3,6 +3,7 @@ import { AssistantIcon, SparklesIcon, CloseIcon, BeakerIcon, FireIcon, ClockIcon
 import { DoughStyleDefinition } from '@/types';
 import { useToast } from '@/components/ToastProvider';
 import { useTranslation } from '@/i18n';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 interface AiStyleBuilderModalProps {
   isOpen: boolean;
@@ -74,7 +75,7 @@ const AiStyleBuilderModal: React.FC<AiStyleBuilderModalProps> = ({ isOpen, onClo
     setLoadingStep(0);
 
     try {
-      const { generateStyleFromDescription } = await import('@/ai/assistantClient');
+      const { generateStyleFromDescription } = await importWithChunkRecovery(() => import('@/ai/assistantClient'));
       const generatedStyle = await generateStyleFromDescription(description);
 
       // Artificial delay to let the user see the "analysis" steps (UX best practice for AI tools)

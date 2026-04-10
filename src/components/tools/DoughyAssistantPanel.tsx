@@ -5,6 +5,7 @@ import { useTranslation } from '@/i18n';
 import { DoughRescueModal } from './DoughRescueModal';
 import type { DoughyAssistantContextSnapshot } from '@/components/tools/doughyAssistant.types';
 import DoughyAvatar from './DoughyAvatar';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 interface Suggestion {
     id: string;
@@ -124,7 +125,7 @@ export const DoughyAssistantPanel: React.FC<DoughyAssistantPanelProps> = ({ isOp
         setMessages(prev => [...prev, loadingMsg]);
 
         try {
-            const { askGeneralAssistant } = await import('@/ai/assistantClient');
+            const { askGeneralAssistant } = await importWithChunkRecovery(() => import('@/ai/assistantClient'));
             const response = await askGeneralAssistant({
                 question: textToSend,
                 doughConfig: contextSnapshot.doughConfig,

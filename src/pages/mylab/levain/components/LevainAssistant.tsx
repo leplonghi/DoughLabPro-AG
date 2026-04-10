@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AssistantIcon, CloseIcon } from '@/components/ui/Icons';
 import { Levain } from '@/types';
+import { importWithChunkRecovery } from '@/utils/chunkRecovery';
 
 interface LevainAssistantProps {
     isOpen: boolean;
@@ -40,7 +41,7 @@ const LevainAssistant: React.FC<LevainAssistantProps> = ({ isOpen, onClose, leva
             setIsLoading(true);
             setError('');
             setQuestion(prompt);
-            const { askLevainAssistant } = await import('@/ai/assistantClient');
+            const { askLevainAssistant } = await importWithChunkRecovery(() => import('@/ai/assistantClient'));
             const response = await askLevainAssistant(levain, prompt);
             setAnswer(response);
         } catch (err) {

@@ -3,12 +3,14 @@ import { X } from 'lucide-react';
 import { useTranslation } from '@/i18n';
 import type { DoughyAssistantContextSnapshot } from '@/components/tools/doughyAssistant.types';
 import DoughyAvatar from '@/components/tools/DoughyAvatar';
+import { importWithChunkRecovery, lazyWithChunkRecovery } from '@/utils/chunkRecovery';
 
-const LazyDoughyAssistantPanel = React.lazy(() =>
+const LazyDoughyAssistantPanel = lazyWithChunkRecovery(() =>
     import('@/components/tools/DoughyAssistantPanel')
 );
 
-const preloadDoughyAssistantPanel = () => import('@/components/tools/DoughyAssistantPanel');
+const preloadDoughyAssistantPanel = () =>
+    importWithChunkRecovery(() => import('@/components/tools/DoughyAssistantPanel'));
 
 interface DoughyAssistantShellProps {
     contextSnapshot: DoughyAssistantContextSnapshot;
