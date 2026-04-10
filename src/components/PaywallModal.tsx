@@ -39,11 +39,11 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
             <div className="relative w-full max-w-lg bg-dlp-bg-card rounded-2xl shadow-dlp-lg overflow-hidden transform transition-all animate-scale-in ring-1 ring-white/50">
                 {/* Header / Hero */}
                 <div className="bg-gradient-to-br from-dlp-bg-card to-dlp-bg-muted p-8 text-center relative overflow-hidden border-b border-dlp-border">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-dlp-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-dlp-accent-light/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-dlp-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-dlp-primary/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
                     <div className="relative z-10">
-                        <div className="mx-auto w-16 h-16 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover rounded-full flex items-center justify-center mb-4 shadow-lg shadow-dlp-accent/30">
+                        <div className="mx-auto w-16 h-16 bg-gradient-to-br from-dlp-primary to-dlp-primary-hover rounded-full flex items-center justify-center mb-4 shadow-lg shadow-dlp-primary/30">
                             <StarIcon className="w-8 h-8 text-white" />
                         </div>
                         <h2 className="text-2xl font-extrabold text-dlp-text-primary mb-2 tracking-tight">
@@ -67,7 +67,7 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
 
                     <div className="bg-dlp-bg-muted rounded-xl p-4 mb-6 border border-dlp-border text-center relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-1">
-                            <span className="bg-dlp-accent text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
+                            <span className="bg-dlp-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
                                 {t('paywall.pricing.best_value')}
                             </span>
                         </div>
@@ -80,7 +80,7 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
                                 {t('paywall.pricing.per_month')} • {currency}
                             </span>
                         </div>
-                        <p className="text-xs text-dlp-accent mt-2 font-medium">
+                        <p className="text-xs text-dlp-primary mt-2 font-medium">
                             {t('paywall.pricing.cancel_anytime', { currency })}
                         </p>
                         {isProvisional && (
@@ -92,7 +92,7 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
 
                     <button
                         onClick={handleUpgrade}
-                        className="w-full py-3.5 bg-gradient-to-br from-dlp-accent to-dlp-accent-hover hover:from-dlp-accent-hover hover:to-dlp-accent text-white font-bold rounded-xl shadow-lg shadow-dlp-accent/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] ring-1 ring-dlp-accent/50"
+                        className="w-full py-3.5 bg-gradient-to-br from-dlp-primary to-dlp-primary-hover hover:from-dlp-primary-hover hover:to-dlp-primary text-white font-bold rounded-xl shadow-lg shadow-dlp-primary/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] ring-1 ring-dlp-primary/50"
                     >
                         View Pro Plan
                     </button>
@@ -119,7 +119,7 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
 const BenefitItem: React.FC<{ text: string }> = ({ text }) => (
     <div className="flex items-center gap-3">
         <div className="flex-shrink-0 w-5 h-5 rounded-full bg-dlp-bg-muted flex items-center justify-center border border-dlp-border">
-            <CheckCircleIcon className="w-3.5 h-3.5 text-dlp-accent" />
+            <CheckCircleIcon className="w-3.5 h-3.5 text-dlp-primary" />
         </div>
         <span className="text-dlp-text-secondary text-sm font-medium">{text}</span>
     </div>
