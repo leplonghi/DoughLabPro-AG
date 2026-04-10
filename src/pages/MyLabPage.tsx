@@ -263,7 +263,7 @@ const MyLabPage: React.FC<MyLabPageProps> = ({ onNavigate, onCreateDraftBatch })
                 ),
             }}
         >
-            <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 pt-4 space-y-5 animate-fade-in dlp-flow-stack">
+            <div className="pb-12 pt-4 space-y-5 animate-fade-in dlp-flow-stack">
 
                 <AppSurface surface="elevated" tone="neutral" className="p-5 sm:p-6">
                     <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_auto] lg:items-center">

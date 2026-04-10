@@ -201,7 +201,7 @@ function AppContent() {
 
       <main
         id="main-content"
-        className="mx-auto mt-16 flex w-full max-w-[1440px] min-w-0 flex-grow overflow-x-clip px-4 pt-3 pb-28 md:pt-4 md:pb-10"
+        className="mx-auto mt-16 flex w-full max-w-[1680px] min-w-0 flex-grow overflow-x-clip px-3 pt-3 pb-28 sm:px-4 lg:px-6 xl:px-8 md:pt-4 md:pb-10"
       >
         {isAssistantOpen ? (
           <Suspense fallback={<AppLoadingScreen fullScreen={false} />}>

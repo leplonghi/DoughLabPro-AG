@@ -14,19 +14,19 @@ const sizeTokens = {
     title: 'text-[1.28rem] sm:text-[1.42rem]',
     description: 'mt-1 text-[12px] leading-[1.35] sm:text-[12.5px]',
     paddingY: 'py-4 sm:py-5',
-    actionWidth: 'lg:max-w-[42%]',
+    actionWidth: 'lg:max-w-[48%] xl:max-w-[42rem]',
   },
   compact: {
     title: 'text-[1.42rem] sm:text-[1.64rem]',
     description: 'mt-1.5 text-[12.5px] leading-[1.38] sm:text-[13px]',
     paddingY: 'py-5 sm:py-6',
-    actionWidth: 'lg:max-w-[44%]',
+    actionWidth: 'lg:max-w-[50%] xl:max-w-[44rem]',
   },
   default: {
     title: 'text-[1.62rem] sm:text-[1.92rem]',
     description: 'mt-2 text-[13px] leading-[1.45] sm:text-[14px]',
     paddingY: 'py-6 sm:py-7',
-    actionWidth: 'lg:max-w-[46%]',
+    actionWidth: 'lg:max-w-[52%] xl:max-w-[48rem]',
   },
 } as const;
 

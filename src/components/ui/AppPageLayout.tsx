@@ -25,13 +25,13 @@ interface AppPageLayoutProps {
 }
 
 const widthClasses: Record<NonNullable<AppPageLayoutProps['width']>, string> = {
-  content: 'max-w-5xl',
-  wide: 'max-w-7xl',
+  content: 'max-w-6xl',
+  wide: 'max-w-[96rem]',
 };
 
 const densityClasses: Record<NonNullable<AppPageLayoutProps['density']>, string> = {
-  compact: '[--app-page-gutter:0.75rem] px-[var(--app-page-gutter)] py-3 sm:[--app-page-gutter:1.25rem] sm:px-[var(--app-page-gutter)] sm:py-4 lg:[--app-page-gutter:1.5rem] lg:px-[var(--app-page-gutter)]',
-  default: '[--app-page-gutter:1rem] px-[var(--app-page-gutter)] py-4 sm:[--app-page-gutter:1.5rem] sm:px-[var(--app-page-gutter)] sm:py-5 lg:[--app-page-gutter:2rem] lg:px-[var(--app-page-gutter)]',
+  compact: '[--app-page-gutter:0.75rem] px-[var(--app-page-gutter)] py-3 sm:[--app-page-gutter:1rem] sm:px-[var(--app-page-gutter)] sm:py-4 lg:[--app-page-gutter:1.5rem] lg:px-[var(--app-page-gutter)] xl:[--app-page-gutter:2rem]',
+  default: '[--app-page-gutter:0.75rem] px-[var(--app-page-gutter)] py-4 sm:[--app-page-gutter:1rem] sm:px-[var(--app-page-gutter)] sm:py-5 lg:[--app-page-gutter:1.5rem] lg:px-[var(--app-page-gutter)] xl:[--app-page-gutter:2rem]',
 };
 
 export const AppPageLayout: React.FC<AppPageLayoutProps> = ({
