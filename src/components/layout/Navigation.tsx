@@ -180,7 +180,7 @@ const MobileHeader: React.FC<HeaderComponentProps> = React.memo(({ activePage, h
             <nav className="fixed bottom-0 left-0 right-0 z-50 overflow-x-clip sm:hidden">
                 <div className="absolute inset-x-0 bottom-0 top-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,251,248,0.99)_56%,rgba(243,247,244,1)_100%)]" />
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(74,123,89,0.18),transparent)]" />
-                <div className="relative mx-auto max-w-7xl border-t border-[#d8e7db] px-2 pt-1.5 pb-[calc(env(safe-area-inset-bottom,0px)+6px)]">
+                <div className="relative mx-auto max-w-7xl border-t border-[#d8e7db] px-1 pt-1 pb-[calc(env(safe-area-inset-bottom,0px)+6px)]">
                     <div className="grid grid-cols-5 items-end gap-0">
                         {navLinks.map((link) => {
                             const Icon = link.icon;
@@ -189,7 +189,7 @@ const MobileHeader: React.FC<HeaderComponentProps> = React.memo(({ activePage, h
                                 <button
                                     key={link.id}
                                     onClick={() => handleNavigate(link.page as Page)}
-                                    className="group relative flex min-w-0 flex-col items-center justify-end gap-1 px-1 py-1.5 font-semibold transition-all duration-300"
+                                    className="group relative flex min-w-0 flex-col items-center justify-end gap-0.5 px-0.5 py-1.5 font-semibold transition-all duration-300"
                                     style={{ color: isActive ? '#1f7a36' : '#31483a' }}
                                     aria-label={link.label}
                                 >
@@ -198,26 +198,26 @@ const MobileHeader: React.FC<HeaderComponentProps> = React.memo(({ activePage, h
                                             isActive ? 'w-9 opacity-100' : 'w-4 opacity-0 group-hover:opacity-35'
                                         }`}
                                     />
-                                    <span className="relative flex h-9 w-9 items-center justify-center">
+                                    <span className="relative flex h-11 w-11 items-center justify-center">
                                         <span
-                                            className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+                                            className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
                                                 isActive
-                                                    ? '-translate-y-0.5'
-                                                    : 'group-hover:-translate-y-0.5'
+                                                    ? '-translate-y-0.5 bg-emerald-50/95 shadow-[0_10px_22px_-16px_rgba(31,122,54,0.45)]'
+                                                    : 'group-hover:-translate-y-0.5 bg-transparent'
                                             }`}
                                             style={{
                                                 color: isActive ? '#1f7a36' : '#486052',
                                                 textShadow: 'none',
                                             }}
                                         >
-                                            <Icon className={`h-[18px] w-[18px] transition-all duration-300 ${isActive ? 'scale-[1.08]' : 'group-hover:scale-[1.08]'}`} />
+                                            <Icon className={`h-[22px] w-[22px] transition-all duration-300 ${isActive ? 'scale-[1.08]' : 'group-hover:scale-[1.05]'}`} />
                                         </span>
                                     </span>
                                     <span
-                                        className={`min-h-[2.1rem] w-full max-w-[4.75rem] px-0.5 text-center leading-[1.12] tracking-tight whitespace-normal break-words transition-all duration-300 ${
+                                        className={`min-h-[2rem] w-full max-w-[5.25rem] px-0.5 text-center leading-[1.08] tracking-tight whitespace-normal break-words transition-all duration-300 ${
                                             isActive
-                                                ? 'translate-y-0 text-[11px]'
-                                                : 'translate-y-0.5 text-[10.5px] group-hover:translate-y-0'
+                                                ? 'translate-y-0 text-[11.5px]'
+                                                : 'translate-y-0.5 text-[11px] group-hover:translate-y-0'
                                         }`}
                                         style={{
                                             color: isActive ? '#1f7a36' : '#31483a',
