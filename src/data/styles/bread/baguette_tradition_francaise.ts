@@ -268,14 +268,42 @@ export const baguette_tradition_francaise: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["clean sweet wheat", "mild lactic tang from poolish", "caramelized crust nuttiness", "light mineral depth from T65 flour"],
+    aromaProfile: ["steam-cracked golden crust", "fresh yeast warmth", "toasted wheat bran", "the 'singing' crack of a cooling baguette"],
+    textureNotes: ["thin shattering crispy crust", "open irregular irregular alveolage interior", "translucent crumb wall", "slight chew without toughness"],
+    pairingRecommendations: ["Beurre d'Isigny (salted Normandy butter)", "Comté or Brie de Meaux", "Radishes with fleur de sel", "Beaujolais Nouveau or Crémant d'Alsace"],
+    flavorEvolution: ["Fresh from oven: explosive caramelized crust", "1 hour later: crust softens, crumb sets", "Next day: best for bruschetta or pan con tomate"]
+  },
+
+  culturalContext: "The Baguette Tradition Française is not merely bread — it is a UNESCO Intangible Cultural Heritage (2022) and a symbol of French artisanal identity. French law (Décret Pain 1993) mandates it contains only four ingredients, protecting it from industrial shortcuts. In France, stopping at the boulangerie twice a day for a fresh baguette is a living social ritual, not a culinary option.",
+
+  globalPresence: "The baguette is arguably the most-copied bread format worldwide, appearing in every continent's bakeries. However, authentic Tradition Française (with its legal four-ingredient restriction) is only produced in France, making it one of the few breads with true geographic and legal protection outside wine.",
+
+  pairings: {
+    canonical: ["Beurre cru + Comté AOP (the French farmhouse staple)", "Pâté de campagne + cornichons", "Tartine au miel (honey tartine) for breakfast"],
+    modern: ["Smashed avocado + fleur de sel + lemon zest", "Burrata + heirloom tomato + basil + EVOO", "Garlic rubbed + anchovy butter"],
+    regional: ["Beaujolais Nouveau (classic pairing)", "Thermidor-style shrimp on toasted baguette slice", "Pan con tomate (Catalan twist on day-old baguette)"]
+  },
+
+  experimentSuggestions: [
+    "Autolyse 20 min vs 60 min and compare dough extensibility, scoring ease, and ear development.",
+    "Use 15% poolish vs no poolish and compare the crumb aroma and creamy factor.",
+    "Score at 30° vs 45° angle and compare the 'ear' formation and lateral expansion.",
+    "Steam via lava-rock pan vs no steam and compare the crust shine, color, and crunchiness.",
+    "Use T55 vs T65 flour and compare the crumb color, mineral flavor, and caramelization."
+  ],
+
+  learnLinkTags: ["poolish-biga", "autolyse", "oven-spring", "maillard-reaction", "steam-injection", "flour-rheology"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/baguette-tradition-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/baguette_tradition_francaise_hero.png",
+    dough: "/images/styles/baguette_tradition_francaise_dough.png",
+    crumb: "/images/styles/baguette_tradition_francaise_crumb.png"
   }
 };

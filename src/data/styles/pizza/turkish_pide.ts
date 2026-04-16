@@ -83,14 +83,41 @@ export const turkishPide: DoughStyleDefinition = {
     watchouts: ["Don't over-fill or the boat will collapse in the oven."],
     notes: ["Status: seed — requires pipeline expansion before publishing."],
 
+    flavorProfile: {
+        primaryFlavors: ["buttery enriched wheat", "savory spiced ground meat", "salty sharp white cheese", "fresh parsley brightness"],
+        aromaProfile: ["butter-toasted dough edges", "cumin and red pepper spice", "egg-washed golden crust", "fresh herb finish"],
+        textureNotes: ["soft pillowy dough with slight chew", "boat-shaped open center", "golden egg-washed crust", "contrast of bread and savory filling"],
+        pairingRecommendations: ["Ayran (salted yogurt drink, traditional)", "Turkish black tea", "Pickled vegetables (turşu)", "Cacık (tzatziki-style yogurt dip)"]
+    },
+
+    culturalContext: "Pide is one of Turkey's most beloved dishes — a staple of pidecis (pide restaurants) across Anatolia since the Ottoman era. The boat shape is intentional: it frames the filling as a presentation. Different regions of Turkey take pride in their local pide variants: Trabzon pide with eggs and butter, Samsun pide with extra keşkek, each a point of local gastronomy identity.",
+
+    globalPresence: "Pide is well-known throughout the Middle East, the Balkans, and among Turkish diaspora communities in Germany, the Netherlands, and Australia. It is one of the most recognizable Turkish dishes exported globally and appears on menus of Turkish kebab and pizza restaurants worldwide.",
+
+    pairings: {
+        canonical: ["Kıymalı pide (ground meat + onion + spice)", "Peynerli pide (white cheese + egg)", "Kaşarlı pide (kashar cheese melt)"],
+        modern: ["Spinach + egg + feta crumble", "Mushroom + truffle oil + kashar", "Spiced lamb + pomegranate molasses + pine nuts"],
+        regional: ["Ayran (chilled salted yogurt drink)", "Turşu (pickled vegetables)", "Baklava or künefe as dessert"]
+    },
+
+    experimentSuggestions: [
+        "Replace butter with sheep-tail fat (kuyruk yağı) for an authentic Anatolian flavor profile and compare richness.",
+        "Apply egg wash before baking vs after 5 minutes of baking and compare golden color depth.",
+        "Try kıymalı filling cooked vs raw before filling and compare moisture and spice penetration during the bake.",
+        "Test a 2h room-temp rise vs 24h cold retard on the same recipe and compare the dough aroma and texture.",
+        "Pinch and twist ends tightly vs leave open and compare filling containment and edge color."
+    ],
+
+    learnLinkTags: ["enriched-dough", "gluten-network", "yeast-biology", "maillard-reaction", "fermentation-chemistry"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
     images: {
-        hero: "/images/styles/placeholder-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png",
+        hero: "/images/styles/turkish_pide_hero.png",
+        dough: "/images/styles/turkish_pide_dough.png",
+        crumb: "/images/styles/turkish_pide_crumb.png",
     },
     recommendedFlavorComponents: ["ground_beef", "onion", "parsley", "feta"],
 };

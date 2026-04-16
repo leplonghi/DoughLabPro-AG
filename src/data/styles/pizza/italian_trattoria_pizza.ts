@@ -250,15 +250,43 @@ export const italian_trattoria_pizza: DoughStyleDefinition = {
         }
     ],
 
+    flavorProfile: {
+        primaryFlavors: ["clean wheaten sweetness", "fruity olive oil finish", "mild malt caramelization", "bright fresh-herb cornicione"],
+        aromaProfile: ["long-maturation lactic warmth", "deck-oven toasted wheat", "grassy EVOO drizzle", "dry wild oregano"],
+        textureNotes: ["crispy outer crust with soft center", "even-sized cornicione", "stable slice (doesn't flop)", "uniform golden color throughout"],
+        pairingRecommendations: ["Fior di latte mozzarella", "Crushed San Marzano tomato (raw base)", "Chianti Classico DOCG", "Acqua Minerale Frizzante (Sanpellegrino)"],
+        flavorEvolution: ["Fresh: grassy EVOO and malt toast bloom", "3 min: malt caramelization develops", "Cold the next day: flavor deepens, crust firms"]
+    },
+
+    culturalContext: "The Italian Trattoria Pizza represents the industrialization of Italian pizza culture — the 1980s formalization of the craft through schools like Scuola Italiana Pizzaioli. It's the export style: what most of the world thinks of when they order 'Italian pizza' in a sit-down restaurant from Tokyo to Toronto.",
+
+    globalPresence: "This is the most widely replicated Italian pizza style globally. Italian restaurants on every continent serve this style as their standard, making it far more internationally prevalent than even authentic Neapolitan, which requires specialized equipment.",
+
+    pairings: {
+        canonical: ["Margherita: tomato + fior di latte + basil + EVOO", "Diavola: spicy salami + tomato + mozzarella", "Quattro Stagioni: artichoke + ham + mushroom + olives"],
+        modern: ["Tartufo bianco + scamorza + thyme", "Bresaola + rucola + parmesan shavings (post-bake)", "Pistacchio cream + burrata + mortadella"],
+        regional: ["Chianti Classico DOCG or Vermentino di Sardegna", "Limoncello diéstifó in limone as post-pizza digestif", "Tiramisù as post-pizza dessert"]
+    },
+
+    experimentSuggestions: [
+        "Use 15% Biga (60% hydration, 0.5% yeast, 16h at 18°C) in the recipe and compare the fragrance and cornicione color.",
+        "Try 0.5% diastatic malt instead of 1% and compare Maillard browning at 330°C.",
+        "Use Type 0 vs Type 00 flour in the same recipe and compare the flavor intensity and browning.",
+        "Mature the balls for 24h vs 72h at 4°C and compare digestibility, extensibility, and flavor depth.",
+        "Drizzle EVOO center before topping vs after baking and compare olive fragrance integration."
+    ],
+
+    learnLinkTags: ["cold-retard", "gluten-network", "maillard-reaction", "poolish-biga", "flour-rheology", "baker-math"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/pizza-classica-piatto-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/italian_trattoria_pizza_hero.png",
+        dough: "/images/styles/italian_trattoria_pizza_dough.png",
+        crumb: "/images/styles/italian_trattoria_pizza_crumb.png"
     },
     recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_raw", "basil_fresh", "olive_oil_extra_virgin", "pecorino_romano"]
 };

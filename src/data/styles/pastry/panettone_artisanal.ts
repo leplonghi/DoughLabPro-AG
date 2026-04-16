@@ -256,9 +256,9 @@ export const panettone_artisanal: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/panettone-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/panettone_artisanal_hero.png",
+    dough: "/images/styles/panettone_artisanal_dough.png",
+    crumb: "/images/styles/panettone_artisanal_crumb.png"
   },
   recommendedFlavorComponents: ["salted_butter_normandy", "candied_citrus", "raisins", "citrus_zest", "honey_raw", "vanilla_madagascar"]
 };

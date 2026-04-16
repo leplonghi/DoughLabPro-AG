@@ -266,14 +266,44 @@ export const neapolitan_avpn_classic: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["clean wheat", "bright tomato acidity", "milky fior di latte", "grassy extra virgin olive oil"],
+    aromaProfile: ["wood smoke", "charred wheat crust", "fresh basil", "yeast-lactic sweetness"],
+    textureNotes: ["pillowy-soft cornicione", "paper-thin pliable center", "moist yielding crumb", "leopard-spotted char crust"],
+    pairingRecommendations: ["San Marzano tomato + fior di latte + fresh basil", "Bufala mozzarella + prosciutto crudo + fresh basil", "Margherita with aged Parmigiano finish"],
+    flavorEvolution: ["Fresh (seconds from oven): bright acidity and milky sweetness", "5 minutes later: crust softens, char notes deepen", "15+ minutes: best consumed immediately; texture changes rapidly"]
+  },
+
+  culturalContext: "Recognized as UNESCO Intangible Cultural Heritage in 2017, the Neapolitan pizza-making tradition (pizzaiuolo) is a living expression of Neapolitan identity, pride, and hospitality. The 'pizza sospesa' custom — prepaying for a stranger's pizza — embodies the communal generosity that defines Neapolitan culture.",
+
+  globalPresence: "Italian immigration spread the Neapolitan pizza tradition to the Americas, Australia, and Northern Europe throughout the 20th century. AVPN has certified over 800 pizzerias across 50+ countries, preserving traditional methods from Tokyo's La Piola to Buenos Aires's El Cuartito.",
+
+  regulatoryNotes: "Protected by AVPN (Associazione Verace Pizza Napoletana) since 1984; European Union TSG (Specialità Tradizionale Garantita) status since 2010 (EU Reg. 97/2010). Strict specifications define flour type (Type 00 or 0), water, salt, yeast, tomato (San Marzano DOP), mozzarella, hand-kneading, and wood-fired oven at 430-480°C.",
+
+  pairings: {
+    canonical: ["San Marzano tomato + fior di latte (Margherita)", "Tomato + garlic + oregano (Marinara)", "Bufala mozzarella + prosciutto di Parma"],
+    modern: ["Stracciatella + confit cherry tomatoes + basil oil", "N'duja + fior di latte + honey drizzle", "Ricotta + sausage + broccoli rabe"],
+    regional: ["Pizza a portafoglio (folded street-eat, Naples)", "Fritta (fried dough, working-class Naples)", "Margherita con doppia mozzarella (popular Neapolitan upgrade)"]
+  },
+
+  experimentSuggestions: [
+    "Compare 8h vs 24h room-temperature fermentation and taste the lactic complexity difference in the cornicione.",
+    "Try a 48h cold retard after balling vs standard room-temp proof and compare the depth of flavor and alveolatura.",
+    "Bake on a steel vs clay platform in a home oven at max temp and compare crust char pattern and bottom texture.",
+    "Substitute 5% of Type 00 with semola rimacinata and note the effect on color, aroma, and crunch.",
+    "Test San Marzano DOP whole tomatoes hand-crushed vs domestic canned tomatoes and compare the sugar-acid balance."
+  ],
+
+  learnLinkTags: ["gluten-network", "fermentation-chemistry", "maillard-reaction", "oven-spring", "ph-acidity", "flour-rheology", "yeast-biology"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/neapolitan-avpn-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/neapolitan_avpn_classic_hero.png",
+    dough: "/images/styles/neapolitan_avpn_classic_dough.png",
+    crumb: "/images/styles/neapolitan_avpn_classic_crumb.png"
   }
 };

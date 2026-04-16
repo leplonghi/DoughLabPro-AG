@@ -259,9 +259,9 @@ export const cookie_classic_soft: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/classic-soft-cookie-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/cookie_classic_soft_hero.png",
+        dough: "/images/styles/cookie_classic_soft_dough.png",
+        crumb: "/images/styles/cookie_classic_soft_crumb.png"
     },
     recommendedFlavorComponents: ["dark_chocolate_70", "salted_butter_normandy", "vanilla_madagascar", "pecan_nuts"]
 };

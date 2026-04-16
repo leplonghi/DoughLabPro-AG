@@ -1,4 +1,9 @@
 {
+  "welcome_title": "DoughLab Pro",
+  "app_tagline": "The Science Behind Every Dough",
+  "sign_in_to_access_your_lab_recipes_and_tools": "Sign in to access the lab, your recipes, and precision tools.",
+  "sign_in_button": "Enter the Lab",
+  "terms_agreement": "By entering, you agree to our Terms of Service and Privacy Policy.",
   "doughlab_pro_logo": "DoughLab Pro",
   "generating": "Generating...",
   "timeline": {

@@ -257,15 +257,43 @@ export const roman_teglia_pan: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["complex lactic wheat depth", "light olive oil richness", "mild honeycomb yeast sweetness", "vibrant gourmet toppings"],
+    aromaProfile: ["long-ferment lactic perfume", "roasted olive oil under crust", "caramelized bottom from steel", "fresh rosemary or seasonal toppings"],
+    textureNotes: ["glassy thin crispy bottom", "massively open honeycomb crumb", "feather-light to volume ratio", "crispy-then-yielding bite"],
+    pairingRecommendations: ["Potato + rosemary + EVOO (classic Roman white)", "Supplì (fried rice ball) as opener before taglio", "Frascati DOC white wine", "Chinotto or Lurisia sparkling water"],
+    flavorEvolution: ["Hot from pan: honeycomb steam-release and crispy base", "Warm: flavors integrate, toppings settle", "Room temperature: excellent cold, crumb firms pleasantly"]
+  },
+
+  culturalContext: "Pizza al Taglio is the ultimate Roman democratic food — sold by weight in every neighborhood bakery (panetteria) and pizzeria, cut with scissors, and eaten folded in paper like a sandwich. Angelo Iezzi's 1987 technical revolution transformed this humble street food into a vehicle for artisan toppings and high-gastronomy ambition.",
+
+  globalPresence: "Gabriele Bonci's Pizzarium, featured in countless international food media outlets, single-handedly introduced gourmet 'Pizza al Taglio' to global food culture. New York's Bonci Chicago and Sirenuse in London helped cement the style's international gourmet credibility.",
+
+  pairings: {
+    canonical: ["Potato + rosemary + coarse salt + EVOO (Bianca)", "Tomato + fior di latte + basil (Rossa)", "Zucchini + pancetta + scamorza"],
+    modern: ["Burrata + anchovy + confit pepper", "Broccolini + nduja + smoked scamorza", "Pumpkin cream + gorgonzola + walnuts"],
+    regional: ["Supplì as pre-taglio snack (classic Roman aperitivo)", "Tramezzini (triangular sandwiches) alongside at panificio", "Amatriciana (guanciale + pecorino + tomato) as topping"]
+  },
+
+  experimentSuggestions: [
+    "Try an 80% hydration vs 65% hydration on the same flour and compare alveolatura size and crust crispness.",
+    "Perform 4 stretch-and-folds vs 2 during bulk fermentation and compare the open crumb structure.",
+    "Par-bake the plain dough for 8 minutes, cool, then add toppings and finish baking — compare topping freshness vs single-bake.",
+    "Use a blue-steel pan vs an aluminum pan and compare bottom crispness and heat conduction speed.",
+    "Test a poolish (20% flour pre-ferment) vs direct dough and compare the aroma and crumb openness."
+  ],
+
+  learnLinkTags: ["hydration-101", "gluten-network", "poolish-biga", "cold-retard", "oven-spring", "fermentation-chemistry", "autolyse"],
+
   isPro: true,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/roman-teglia-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/roman_teglia_pan_hero.png",
+    dough: "/images/styles/roman_teglia_pan_dough.png",
+    crumb: "/images/styles/roman_teglia_pan_crumb.png"
   },
   recommendedFlavorComponents: ["pecorino_romano", "mozzarella_low_moisture", "rosemary_fresh", "potato_slices", "stracciatella", "anchovies"]
 };

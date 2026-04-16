@@ -268,9 +268,72 @@ export const focaccia_genovese: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/focaccia-genovese-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/focaccia_genovese_hero.png",
+    dough: "/images/styles/focaccia_genovese_dough.png",
+    crumb: "/images/styles/focaccia_genovese_crumb.png"
   },
-  recommendedFlavorComponents: ["olive_oil_extra_virgin", "rosemary_fresh", "garlic_fresh", "balsamic_modena", "burrata", "stracciatella"]
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "rosemary_fresh", "garlic_fresh", "balsamic_modena", "burrata", "stracciatella"],
+
+  flavorProfile: {
+    primaryFlavors: ["fruity Ligurian olive oil", "salty brine", "fermented yeast complexity", "malty sweetness", "subtle wheat earthiness"],
+    aromaProfile: ["warm grassy olive oil", "toasted wheat crust", "sea salt minerality", "faintly yeasty from fermentation"],
+    textureDescriptors: ["crispy burnished exterior", "open airy sponge interior", "pools of oil in dimples", "yields on bite without tearing"],
+    tasteJourney: "The first sensation is the salty crunch of the crust glazed in oil brine. Then the crumb opens up — soft, airy, spongy — soaked with the best olive oil you can source. A long, pleasant fermentation note lingers on the finish.",
+    mouthfeel: "Uniquely bipolar: the outside is crispy and fractured; the inside is cloud-like and yielding. The olive oil coats the palate luxuriously. No heaviness despite its richness.",
+    bakersNotes: "The salamoia (water + salt + EVOO) is not just a topping — it is a technical ingredient. The brine saturates the dimples and steams from within during baking, creating the bubbly texture. Never use cheap olive oil; you taste it in every bite."
+  },
+
+  culturalContext: {
+    significance: "Focaccia Genovese ('Fugassa') is one of Italy's most protected breads. In Genoa, it is not a starter or side — it is breakfast. Walking into a Ligurian bakery at 7am and ordering a slice with a cappuccino is a Genoese rite of passage.",
+    rituals: ["Eaten dunked into a cappuccino or caffè latte — an unusual but quintessential Genoese morning ritual", "Sold by weight at bakeries (fornai) across Liguria every morning", "Handed to children as an after-school snack (merenda)", "Historically eaten aboard Genoese merchant ships as a preserved travel bread"],
+    symbolism: "Represents Ligurian identity and maritime heritage. The recipe is protected by the Consorzio Focaccia Genovese — any focaccia claiming to be 'Genovese' must adhere to specific ingredient and technique standards.",
+    modernRole: "The blueprint for all artisan focaccia globally. Has inspired Roman (bianca), Sicilian (sfincione), and California-style thick focaccias. In 2023, 'focaccia art' (vegetable mosaics on focaccia surface) became a global social media phenomenon."
+  },
+
+  globalPresence: {
+    primaryMarkets: ["Italy", "USA", "UK", "Australia"],
+    growingMarkets: ["Japan", "Brazil", "Canada"],
+    penetrationLevel: "global",
+    trend: "Accelerating. Focaccia art and sourdough focaccia are the fastest-growing bread trends on social media globally. Home bakers have adopted it as the 'entry-level artisan bread'.",
+    diasporaImpact: "Italian diaspora in the Americas introduced focaccia to Brazilian and Argentine bakeries. US bakeries have made it a staple of modern Italian-American restaurants and artisan bakeshops."
+  },
+
+  pairings: {
+    beverages: [
+      { name: "Caffè Latte / Cappuccino", type: "traditional", notes: "The Genoese morning ritual — dip the focaccia directly into the frothy coffee" },
+      { name: "Vermentino di Liguria (White Wine)", type: "traditional", notes: "The local Ligurian white: mineral, citrusy, and perfect with the salty-oily bread" },
+      { name: "Prosecco", type: "elevated", notes: "Works as an aperitivo starter — the bubbles cut through the olive oil richness" },
+      { name: "Sparkling Mineral Water", type: "classic", notes: "Refreshes the palate between bites, letting each bite taste like the first" }
+    ],
+    foods: [
+      { name: "Prosciutto di Parma", pairing: "perfect", notes: "Sweet prosciutto against salty-oily bread is a timeless Italian combination" },
+      { name: "Burrata & Cherry Tomatoes", pairing: "elevated", notes: "Modern fine-dining interpretation — the creamy burrata soaks into the dimples" },
+      { name: "Stracchino Cheese", pairing: "classic", notes: "The authentic Genoese version — sliced Stracchino melting into warm focaccia" },
+      { name: "Olive Tapenade", pairing: "classic", notes: "Intensifies the olive oil character without overwhelming it" }
+    ],
+    occasions: ["Italian breakfast (7am with coffee)", "Aperitivo hour", "Dinner party bread basket", "Beach picnic loaf"]
+  },
+
+  experimentSuggestions: [
+    {
+      title: "Sourdough Focaccia Genovese",
+      description: "Replace the commercial yeast entirely with a 100% hydration liquid levain (20% preferment). Extend bulk fermentation to 5-6 hours at room temperature.",
+      difficulty: "Medium",
+      expectedOutcome: "Deeper, more complex flavor with pronounced lactic tang. Slightly more irregular crumb. Worth every extra hour."
+    },
+    {
+      title: "Lemon & Anchovy Focaccia",
+      description: "Press anchovy fillets and thin lemon zest strips into the dimples before baking. Finish with a squeeze of lemon after baking.",
+      difficulty: "Easy",
+      expectedOutcome: "Intensely savory with a citrus brightness. A classic Ligurian combination that elevates the bread into a complete starter."
+    },
+    {
+      title: "Focaccia di Recco Style (Cheese-filled)",
+      description: "Make two thin sheets of focaccia dough. Layer Stracchino or fresh ricotta between the sheets. Seal edges and bake at 280°C.",
+      difficulty: "Hard",
+      expectedOutcome: "A crispy, blistered outer shell with a molten, stretchy cheese interior. Technically a different bread (Focaccia di Recco) but born from the same tradition."
+    }
+  ],
+
+  learnLinkTags: ["italian-bread", "liguria", "olive-oil", "flatbread", "focaccia", "genoa", "fugassa", "salamoia", "artisan-bread", "breakfast-bread"]
 };

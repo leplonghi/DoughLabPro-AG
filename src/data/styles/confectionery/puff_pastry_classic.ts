@@ -203,9 +203,9 @@ export const puff_pastry_classic: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/puff-pastry-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/puff_pastry_classic_hero.png",
+        dough: "/images/styles/puff_pastry_classic_dough.png",
+        crumb: "/images/styles/puff_pastry_classic_crumb.png"
     },
     recommendedFlavorComponents: ["butter_dry_84"]
 };

@@ -1,0 +1,14 @@
+src/data/styles/regions/asia.ts(424,17): error TS2322: Type '"Old Dough (Lao Mian)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/asia.ts(478,5): error TS2322: Type '"none"' is not assignable to type '"direct" | "preferment" | "levain" | "cold" | "hybrid" | "indirect"'.
+src/data/styles/regions/asia.ts(578,17): error TS2322: Type '"None"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(126,17): error TS2322: Type '"Cold Fermentation"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(127,17): error TS2322: Type '"Mandatory"' is not assignable to type '"Ideal" | "Possible" | "Not Recommended" | "Historical" | "Authentic"'.
+src/data/styles/regions/europe.ts(276,17): error TS2322: Type '"Poolish or Sourdough Starter"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(464,30): error TS2339: Property 'VOLLKORNBROT' does not exist on type 'typeof RecipeStyle'.
+src/data/styles/regions/europe.ts(578,17): error TS2322: Type '"Sourdough (Rye Culture)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(579,17): error TS2322: Type '"Mandatory"' is not assignable to type '"Ideal" | "Possible" | "Not Recommended" | "Historical" | "Authentic"'.
+src/data/styles/regions/europe.ts(766,30): error TS2339: Property 'QUICK_BREAD' does not exist on type 'typeof RecipeStyle'.
+src/data/styles/regions/europe.ts(875,17): error TS2322: Type '"None (Chemical)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(876,17): error TS2322: Type '"Mandatory"' is not assignable to type '"Ideal" | "Possible" | "Not Recommended" | "Historical" | "Authentic"'.
+src/data/styles/regions/north_america.ts(139,17): error TS2322: Type '"Direct (Cold Cure)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/hooks/useFavorites.ts(3,26): error TS2307: Cannot find module '@/components/ui/Toast' or its corresponding type declarations.

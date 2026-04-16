@@ -144,9 +144,15 @@ export interface EducationalContent {
 export interface FlavorProfile {
     primaryFlavors: string[];
     aromaProfile: string[];
-    textureNotes: string[];
-    pairingRecommendations: string[];
+    // Legacy fields
+    textureNotes?: string[];
+    pairingRecommendations?: string[];
     flavorEvolution?: string[];
+    // New rich fields
+    textureDescriptors?: string[];
+    tasteJourney?: string;
+    mouthfeel?: string;
+    bakersNotes?: string;
 }
 
 // Deep Dive Module for Expert Consulting
@@ -218,12 +224,33 @@ export interface DoughStyle {
     technical?: any;
 
     // Expanded Context
-    regulatory_info?: string;
-    global_presence?: string;
+    regulatory_info?: string | {
+        primaryMarkets?: string[];
+        growingMarkets?: string[];
+        penetrationLevel?: string;
+        trend?: string;
+        diasporaImpact?: string;
+        [key: string]: any;
+    };
+    global_presence?: string | {
+        primaryMarkets?: string[];
+        growingMarkets?: string[];
+        penetrationLevel?: string;
+        trend?: string;
+        diasporaImpact?: string;
+        [key: string]: any;
+    };
     variations?: any[];
     recommendedFlavorComponents?: string[];
     watchouts?: string[];
-    experimentSuggestions?: string[];
-    culturalContext?: string;
+    experimentSuggestions?: any[]; // Might be string[] or object[]
+    pairings?: any; // To hold the rich pairings data
+    culturalContext?: string | {
+        significance?: string;
+        rituals?: string[];
+        symbolism?: string;
+        modernRole?: string;
+        [key: string]: any;
+    };
     notes?: string[];
 }

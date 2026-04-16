@@ -246,9 +246,9 @@ export const soft_flour_bun: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/soft-flour-bun-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/soft_flour_bun_hero.png",
+        dough: "/images/styles/soft_flour_bun_dough.png",
+        crumb: "/images/styles/soft_flour_bun_crumb.png"
     },
     recommendedFlavorComponents: ["sesame_seeds"]
 };

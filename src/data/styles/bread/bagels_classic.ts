@@ -257,15 +257,42 @@ export const bagels_classic: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["malt-forward wheat depth", "dense chewy bread character", "subtle barley sweetness", "toasted crust richness"],
+    aromaProfile: ["boiled malt crust warmth", "toasted wheat sheen", "sesame or poppy seed if topped", "yeasty breadiness"],
+    textureNotes: ["extremely dense non-porous crumb", "thick leathery high-gloss crust", "signature resistance when bitten (the 'chew')", "springy core beneath a crunchy exterior"],
+    pairingRecommendations: ["Cream cheese + smoked salmon (Nova lox)", "Barley malt butter", "Toasted sesame with everything seasoning", "Sliced turkey + mustard (deli classic)"]
+  },
+
+  culturalContext: "The New York bagel is equal parts food and identity — shaped by 17th-century Polish Jewish tradition but forged into an American icon by the early 20th-century Bagel Bakers Local 338 union, which strictly controlled hand-rolling, boiling, and stone-baking as labor patrimony. The Sunday bagel run is a secular ritual in NYC Jewish communities.",
+
+  globalPresence: "While the NY bagel is America's most recognizable specialty bread globally, variations exist in Montreal (sweeter, boiled in honey water), London (salt bagels from Jewish East End tradition), and Israel (Jerusalem bagels — sesame rings sold at Damascus Gate). The steam-baked supermarket version has diluted the style internationally.",
+
+  pairings: {
+    canonical: ["Lox + cream cheese + capers + red onion (the essential NY classic)", "Plain toasted + salted butter + soft scrambled egg", "Everything bagel + whitefish salad"],
+    modern: ["Sesame bagel + avocado + everything seasoning + poached egg", "Pumpernickel bagel + brie + thin-sliced apple", "Bagel chip nachos with cream cheese dip"],
+    regional: ["Dr. Brown's Cel-Ray soda (NYC deli tradition)", "Nova lox (cold-smoked Atlantic salmon)", "Russ & Daughters-style: sable fish + sturgeon"]
+  },
+
+  experimentSuggestions: [
+    "Boil 45 seconds per side vs 90 seconds per side and compare crust thickness and shine after baking.",
+    "Add baking soda to boiling water (1 tbsp) and compare the crust color and flavor versus plain malt water.",
+    "Try the hand-roll loop method vs the poke-a-hole method and compare crumb density and chewiness.",
+    "Use bread flour (12.5% protein) vs high-gluten flour (14% protein) and compare the finished chew and crust.",
+    "Cold retard 12h vs 24h after shaping and compare the flavor depth and crust blistering."
+  ],
+
+  learnLinkTags: ["cold-retard", "gluten-network", "maillard-reaction", "malt-sugars", "flour-rheology"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/bagel-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/bagels_classic_hero.png",
+    dough: "/images/styles/bagels_classic_dough.png",
+    crumb: "/images/styles/bagels_classic_crumb.png"
   },
   recommendedFlavorComponents: ["cream_cheese", "smoked_salmon", "sesame_seeds", "poppy_seeds", "salted_butter_normandy"]
 };

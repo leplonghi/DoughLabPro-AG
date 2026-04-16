@@ -258,15 +258,43 @@ export const new_haven_apizza: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["complex char-bitter crust", "bright tomato acidity", "sharp pecorino romano", "briny ocean clam"],
+    aromaProfile: ["coal smoke and wood char", "toasted high-gluten wheat", "garlic and oregano", "fresh briny clam liquor"],
+    textureNotes: ["chewy yet crispy foundation", "irregular char blisters", "thin but not crackerlike", "oblong rustic edges"],
+    pairingRecommendations: ["Fresh littleneck clams + garlic + olive oil (White Clam Pie)", "Pecorino Romano generously grated", "Local pale ale or dry lager", "Tomato + garlic + no cheese (original Tomato Pie)"],
+    flavorEvolution: ["Seconds from oven: coal smoke and char peak", "5 minutes: char mellows, wheat and pecorino shine", "10 minutes: char becomes nutty, crust firms completely"]
+  },
+
+  culturalContext: "New Haven apizza is a point of fierce local pride for Connecticut residents. The competition between Frank Pepe's, Sally's, and Modern Apizza is woven into local identity — devotees debate these pizzerias the way others discuss religion. Yale students and working-class Italian-Americans have shared these pizzas across the same Wooster Street tables since 1925.",
+
+  globalPresence: "Food media (Zagat, Eater, NY Times) consistently rank New Haven apizza among America's best, attracting pilgrims from across the country. Frank Pepe expanded to suburban locations but purists claim only the original Wooster Street location produces the authentic coal-fired flavor.",
+
+  pairings: {
+    canonical: ["White Clam Pie: fresh clams + garlic + oregano + pecorino", "Tomato Pie: raw tomato + garlic + no cheese", "'Mootz': mozzarella added as optional topping"],
+    modern: ["Hot honey + soppressata + pecorino", "Burrata + prosciutto (post-bake)", "Fig + gorgonzola + walnuts"],
+    regional: ["New Haven brown brew (local craft lager)", "Italian ice (post-pizza dessert tradition)", "Canned Foxsboro Dry Ginger Ale (New Haven classic)"]
+  },
+
+  experimentSuggestions: [
+    "Extend the cold retard to 96h vs 24h and compare the color and intensity of char at the same bake temperature.",
+    "Use fresh littleneck clam liquor in the tomato sauce (no cream) and compare the ocean-mineral flavor layer.",
+    "Dust with pecorino romano both before AND after baking and taste the difference in salt punch and crust adherence.",
+    "Test high-gluten flour (14.5% protein) vs standard bread flour (12.5%) on the same recipe and compare chew and char.",
+    "Bake on a prehated steel vs ceramic stone and compare bottom char pattern and heat conduction speed."
+  ],
+
+  learnLinkTags: ["gluten-network", "cold-retard", "maillard-reaction", "fermentation-chemistry", "flour-rheology", "ph-acidity"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/new-haven-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/new_haven_apizza_hero.png",
+    dough: "/images/styles/new_haven_apizza_dough.png",
+    crumb: "/images/styles/new_haven_apizza_crumb.png"
   },
   recommendedFlavorComponents: ["pecorino_romano", "fresh_clams", "garlic_fresh", "oregano_dried", "olive_oil_extra_virgin", "mozzarella_low_moisture"]
 };

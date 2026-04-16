@@ -259,9 +259,9 @@ export const cinnamon_rolls_classic: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/cinnamon-roll-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/cinnamon_rolls_classic_hero.png",
+    dough: "/images/styles/cinnamon_rolls_classic_dough.png",
+    crumb: "/images/styles/cinnamon_rolls_classic_crumb.png"
   },
   recommendedFlavorComponents: ["salted_butter_normandy", "brown_sugar", "cinnamon_ceylon", "cream_cheese", "pecan_nuts", "vanilla_madagascar"]
 };

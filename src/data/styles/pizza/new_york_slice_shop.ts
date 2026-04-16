@@ -260,15 +260,43 @@ export const new_york_slice_shop: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["clean high-gluten wheat", "mild tomato sweetness", "savory low-moisture mozzarella", "dried oregano and garlic"],
+    aromaProfile: ["gas-oven toasted wheat", "orange-fat mozzarella drip", "dried oregano", "pepperoni spice char"],
+    textureNotes: ["rigid-yet-foldable", "crispy snapping bottom", "dense bready crumb", "slightly chewy golden crust"],
+    pairingRecommendations: ["Pepperoni cup-char", "Whole milk mozzarella block (grated)", "Pecorino Romano dusting", "Fizzy cola or lager beer"],
+    flavorEvolution: ["Fresh: vibrant oregano hit and orange fat drip", "Reheated on deck: crust crisps further, fat re-emulsifies", "Cold the next day: dense and chewy, excellent eaten cold"]
+  },
+
+  culturalContext: "The New York slice is the archetypal American street food — democratized by Italian-American immigrants and refined through decades of gas-deck oven culture in the five boroughs. Eating a folded slice while walking is a New York rite of passage, as iconic as the subway or the yellow cab.",
+
+  globalPresence: "NY-style pizza is the most globally replicated pizza format. From Seoul to São Paulo, 'NY-style' appears on menus worldwide, though authentic deck-oven results remain elusive outside the US due to flour protein differences and oven type.",
+
+  pairings: {
+    canonical: ["Pepperoni + low-moisture mozzarella", "Sausage + bell pepper + onion", "Plain cheese slice + Red pepper flakes"],
+    modern: ["'White slice': ricotta + garlic + olive oil", "Clam pie (New Haven crossover)", "Hot honey + sopressata"],
+    regional: ["'Grandma slice' (L.I. style with thick focaccia base)", "Vodka sauce slice (Brooklyn)", "Square Sicilian slice (Queens)"]
+  },
+
+  experimentSuggestions: [
+    "Replace commercial yeast with 20% poolish (1:1 flour:water + 0.1% yeast, 16h at 18°C) and compare the edge extensibility.",
+    "Omit sugar completely and note how many extra minutes the crust needs to achieve the same gold color at 290°C.",
+    "Try bromated high-gluten flour (if available) vs standard bread flour and compare the fold strength of the finished slice.",
+    "Reheat a slice on the oven floor for 90 seconds vs in a conventional oven at 200°C and compare bottom snap.",
+    "Make a 'cup-char' pepperoni by using thick-cut (4mm) slices and compare the pooled fat flavor to standard thin-cut."
+  ],
+
+  learnLinkTags: ["gluten-network", "cold-retard", "maillard-reaction", "yeast-biology", "flour-rheology", "baker-math"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/ny-slice-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/new_york_slice_shop_hero.png",
+    dough: "/images/styles/new_york_slice_shop_dough.png",
+    crumb: "/images/styles/new_york_slice_shop_crumb.png"
   },
   recommendedFlavorComponents: ["mozzarella_low_moisture", "pepperoni", "italian_sausage", "bell_pepper", "cogumelos", "pecorino_romano"]
 };

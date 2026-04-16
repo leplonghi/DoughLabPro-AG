@@ -86,14 +86,41 @@ export const sfincioneSiciliano: DoughStyleDefinition = {
     watchouts: ["Under-baking leaves raw dough center; the thick base needs full heat penetration."],
     notes: ["Status: seed — requires pipeline expansion before publishing."],
 
+    flavorProfile: {
+        primaryFlavors: ["slow-cooked onion sweetness", "briny anchovy umami", "nutty caciocavallo sharpness", "toasted semolina"],
+        aromaProfile: ["caramelized onion depth", "salty anchovy pungency", "toasted breadcrumb (molica)", "fruity Sicilian olive oil"],
+        textureNotes: ["pillowy thick sponge base", "crunchy breadcrumb topping", "soft yielding interior", "slightly oiled crackling bottom"],
+        pairingRecommendations: ["Nero d'Avola Sicilian red wine", "Panelle (chickpea fritters) street food pairing", "Pecorino siciliano shaving on top", "Local Sicilian Perricone wine"]
+    },
+
+    culturalContext: "Sfincione Palermitano is the true 'street pizza' of Palermo, sold from three-wheeled carts (carrettini) in the Ballarò and Capo markets since the 1800s. The vendor's cry 'caldo e cialdo!' ('hot and piping!') is a sonic emblem of Palermo's street life. Unlike its American 'Sicilian pizza' cousin, the real Sfincione rarely uses mozzarella — it's the caciocavallo and anchovies that define it.",
+
+    globalPresence: "Sfincione remains relatively unknown outside of Sicily, which preserves its authenticity. Palermo's designation as a UNESCO Creative City of Gastronomy in 2015 has increased international awareness, drawing food tourists to discover the original version in Ballarò market.",
+
+    pairings: {
+        canonical: ["Caciocavallo ragusano + anchovy + onion (traditional)", "Nero d'Avola red wine", "Panelle chickpea fritters (street market pairing)"],
+        modern: ["Sun-dried tomato + tuna + capers", "Bufala mozzarella + Pachino cherry tomatoes", "Sardines + wild fennel + raisins (Sicilian agrodolce)"],
+        regional: ["Arancinò (saffron rice ball) as starter", "Cannolì as dessert after sfincione", "Granita di limone as palate cleanser"]
+    },
+
+    experimentSuggestions: [
+        "Caramelize onions for 45 min vs 20 min and compare the sweetness depth in the Sfincione topping.",
+        "Try 100% semolina rimacinata vs 50/50 blend and compare the crumb color, aroma, and bottom texture.",
+        "Add fresh fennel seeds to the topping and compare the aromatic complexity with the anchovy base.",
+        "Toast breadcrumbs in anchovy oil before topping and compare the 'molica' flavor intensity.",
+        "Proof the dough in an oiled tin overnight in the fridge and compare alveolatura with same-day room-temp proof."
+    ],
+
+    learnLinkTags: ["hydration-101", "gluten-network", "fermentation-chemistry", "maillard-reaction", "salt-function"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
     images: {
-        hero: "/images/styles/placeholder-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png",
+        hero: "/images/styles/sfincione_siciliano_hero.png",
+        dough: "/images/styles/sfincione_siciliano_dough.png",
+        crumb: "/images/styles/sfincione_siciliano_crumb.png",
     },
     recommendedFlavorComponents: ["caciocavallo", "anchovy", "onion_caramelized", "tomato_sauce_cooked"],
 };

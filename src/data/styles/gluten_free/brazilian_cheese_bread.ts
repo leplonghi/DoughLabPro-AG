@@ -257,9 +257,9 @@ export const brazilian_cheese_bread: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/pao-de-queijo-pizza-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/brazilian_cheese_bread_hero.png",
+        dough: "/images/styles/brazilian_cheese_bread_dough.png",
+        crumb: "/images/styles/brazilian_cheese_bread_crumb.png"
     },
     recommendedFlavorComponents: ["minas_cheese", "catupiry", "mozzarella_low_moisture", "guava_paste"]
 };

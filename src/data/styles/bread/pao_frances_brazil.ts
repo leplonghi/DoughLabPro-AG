@@ -260,9 +260,72 @@ export const pao_frances_brazil: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/pao-frances-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/pao_frances_brazil_hero.png",
+    dough: "/images/styles/pao_frances_brazil_dough.png",
+    crumb: "/images/styles/pao_frances_brazil_crumb.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture", "prosciutto_crudo", "malt_powder"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture", "prosciutto_crudo", "malt_powder"],
+
+  flavorProfile: {
+    primaryFlavors: ["clean crispy wheat crust", "airy light crumb", "faintly sweet malt", "very subtle fermentation", "pure neutral wheat"],
+    aromaProfile: ["morning bakery wheat aroma", "fresh hot crust", "malty toasted grain", "neutral yeasty warmth"],
+    textureDescriptors: ["brittle crust that shatters like glass (vidro quebrado)", "open airy miolo interior", "ear (pestana) that tears with almost no resistance", "light and almost insubstantial feeling"],
+    tasteJourney: "The defining experience is the sound and sensation of the crust breaking. Brazilians call it 'vidro quebrado' (broken glass). The interior crumb is soft, airy, and practically flavourless — a perfect white canvas for toppings.",
+    mouthfeel: "The crust shocks the teeth with its brittleness then immediately gives way to an almost weightless, airy interior. It is designed to disappear without heaviness. The lightest, most vaporous crumb of any yeast bread in the Brazilian bakery.",
+    bakersNotes: "The pestana (ear/cut) must be done at 45 degrees with a very sharp blade just before loading. Steam injection in the first 8 minutes is non-negotiable for the 'efeito vidro' (glass effect crust). Brazilian commercial bakeries inject live steam at 100°C; home bakers should use a Dutch oven or steam tray."
+  },
+
+  culturalContext: {
+    significance: "Brazil consumes more Pão Francês per capita than any other bread — approximately 1 billion units sold daily nationwide. Despite its name, it is a uniquely Brazilian creation, as far from a French baguette as a pretzel is from a bagel. It is the universal Brazilian bread — eaten by every social class, every morning, everywhere.",
+    rituals: ["Every Brazilian family buys Pão Francês fresh every single morning — it is non-negotiable for café da manhã (breakfast)", "The 'paozinho' is handed to children at school, eaten as afternoon snack (merenda)", "Supermarket lines in Brazil have dedicated 'pão francês hour' between 6-9am", "The standard café da manhã: pão francês with butter, ham, and cheese alongside café com leite"],
+    symbolism: "It represents Brazilian democratic food culture — this bread does not belong to any social class or region. It is simultaneously the most consumed bread in favelas and in luxury apartment buildings. The ABNT (Brazilian Technical Standards) has an official standard for it (NBR 16170) — a technical document for a bread is a statement of cultural importance.",
+    modernRole: "Despite industrial competition, 80% of Pão Francês in Brazil is still baked in local padarias every morning. Artisan bakers are now revisiting the concept with longer fermentation, better flour, and the 'pão francês de qualidade' movement gaining momentum through social media."
+  },
+
+  globalPresence: {
+    primaryMarkets: ["Brazil (nationwide — 1B units/day)"],
+    growingMarkets: ["Portugal (Brazilian padarias)", "USA (Brazilian-American communities)", "Japan (novel curiosity for bread enthusiasts)"],
+    penetrationLevel: "national_dominant",
+    trend: "Virtually unknown outside Brazil and the Brazilian diaspora. Inside Brazil, it is the most dominant bread in history — nothing else comes close. The artisan revival movement ('pão francês artesanal') is generating international food media interest.",
+    diasporaImpact: "Brazilian padarias (bakeries) in Florida, Massachusetts, and London are introducing Pão Francês to international audiences. Often described as 'more delicate than a baguette, lighter than any other roll' by international tasters."
+  },
+
+  pairings: {
+    beverages: [
+      { name: "Café com Leite (Brazilian White Coffee)", type: "traditional", notes: "The inviolable Brazilian morning ritual — Pão Francês with butter and café com leite is the national breakfast" },
+      { name: "Suco de Laranja Natural (Fresh Orange Juice)", type: "traditional", notes: "The complete Brazilian café da manhã — juice, coffee, and pão francês with butter and ham" },
+      { name: "Cerveja Gelada (Cold Lager Beer)", type: "modern", notes: "For lunch sandwiches — a cold Brahma or Skol with a pão francês hamburger" },
+      { name: "Achocolatado (Chocolate Milk)", type: "traditional", notes: "Children's breakfast classic — cold chocolate milk with warm pão francês com manteiga" }
+    ],
+    foods: [
+      { name: "Manteiga + Presunto + Queijo (Butter/Ham/Cheese)", pairing: "perfect", notes: "The defining Brazilian breakfast sandwich — simple, daily, universal" },
+      { name: "Pão com Ovo (Egg in Bread)", pairing: "classic", notes: "Hollowed pão francês baked with an egg inside — a beloved breakfast hack" },
+      { name: "X-Burguer (Brazilian Hamburger)", pairing: "elevated", notes: "Split and used as a burger bun — the 'X-Burguer' in Brazilian lanchonetes (fast food) traditionally uses pão francês" },
+      { name: "Mortadela & Cream Cheese", pairing: "classic", notes: "The 'misto quente' from any Brazilian padaria — grilled on the chapa (flat-top grill)" }
+    ],
+    occasions: ["Daily Brazilian breakfast", "Padaria morning purchase", "School merenda (snack)", "Lanchonete lunch sandwich"]
+  },
+
+  experimentSuggestions: [
+    {
+      title: "Pão Francês com Poolish",
+      description: "Build a small poolish (15-20% of flour) the night before. Use in place of direct mixing for Brazilian-standard doughs. Extend final proof by 30 minutes.",
+      difficulty: "Medium",
+      expectedOutcome: "More complex fermentation flavour without becoming sourdough. Better crust colour and slightly more pronounced open crumb. A genuine upgrade to the standard padaria recipe."
+    },
+    {
+      title: "Pão Francês Integral (30% Whole Wheat)",
+      description: "Replace 30% of bread flour with fine whole wheat flour. Increase hydration by 3-4%. The bran will reduce crust brittleness slightly.",
+      difficulty: "Easy",
+      expectedOutcome: "A nuttier, more substantial version with a slightly denser crumb. More nutritious without compromising the essential character."
+    },
+    {
+      title: "Pão Francês com Empuxo de Cerveja",
+      description: "Replace 30% of water with a light lager beer (Brazilian Skol or Brahma). The yeast in the beer feeds the fermentation while adding a faint malty depth.",
+      difficulty: "Medium",
+      expectedOutcome: "Slightly more complex, with a faint beer malt aftertaste. Better crust color due to the sugars in the beer. A subtle but noticeable improvement."
+    }
+  ],
+
+  learnLinkTags: ["brazilian-bread", "roll", "padaria", "direct-fermentation", "crispy-crust", "pestana", "brazil", "pao-frances", "breakfast-roll", "artisan-revival"]
 };

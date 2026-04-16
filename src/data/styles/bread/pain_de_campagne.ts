@@ -201,9 +201,72 @@ export const pain_de_campagne: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/pain-de-campagne-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/pain_de_campagne_hero.png",
+    dough: "/images/styles/pain_de_campagne_dough.png",
+    crumb: "/images/styles/pain_de_campagne_crumb.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw"],
+
+  flavorProfile: {
+    primaryFlavors: ["mild sourdough tang", "earthy whole wheat", "nutty rye grain", "thick caramelised crust", "meaty rustic crumb"],
+    aromaProfile: ["wood-fired wheat", "faint lactic sourness", "rustic grain barn", "caramelised crust"],
+    textureDescriptors: ["thick crackly crust", "dense and meaty crumb", "chewy with a satisfying bite", "keeps moisture for days"],
+    tasteJourney: "A long, slow taste journey. The thick crust delivers deep caramelised notes. The crumb is meaty and substantial with a faint sourness from the levain. The rye adds earthiness that unfolds over time.",
+    mouthfeel: "Dense and satisfying — not light, but not heavy. The crumb is moist and chewy. Built for hearty eating with cheese or soup, not delicate canapé work.",
+    bakersNotes: "The blend of flours is the signature move: minimum 80% T65 with 10-20% whole wheat and a small amount of rye. More rye = shorter shelf life despite the claims. The levain percentage and fermentation temperature determine the sourness level."
+  },
+
+  culturalContext: {
+    significance: "Pain de Campagne was the bread of pre-industrial France — the enormous communal miche that fed an entire village for a week. Before the baguette became Paris's symbol, the Miche de Campagne was France's bread. It represents rural, humble, pre-industrial French life.",
+    rituals: ["The communal four banal (communal oven) once a week was the social center — the baker was the village's most important figure", "A thick slice with butter and fruit jam is still the quintessential Sunday French breakfast", "Served with cheese boards at any serious French meal", "In Lyonnais bouchons, thick slices of Campagne accompany every course"],
+    symbolism: "Symbolizes French agricultural heritage, the 'terroir' of rural France, and the honest simplicity of a bread that needed only flour, water, salt, and time. The large format was also practical — a 1.5kg loaf was a week's supply.",
+    modernRole: "Pain de Campagne has undergone a significant artisan revival as consumers reject industrial bread. Natural levain (sourdough) versions are now seen as the gold standard of French artisan bakeries globally."
+  },
+
+  globalPresence: {
+    primaryMarkets: ["France", "Belgium", "USA (artisan bakeries)", "UK"],
+    growingMarkets: ["Australia", "Canada", "Japan", "Brazil"],
+    penetrationLevel: "regional_expanding",
+    trend: "Strong global growth driven by the sourdough revival. 'Country loaf' is a global descriptor for any rustic, naturally leavened wheat-rye loaf.",
+    diasporaImpact: "French bakeries in London, New York, and Tokyo have brought Pain de Campagne to global audiences. Its characteristics have been absorbed into the broader 'artisan sourdough' category internationally."
+  },
+
+  pairings: {
+    beverages: [
+      { name: "Côtes du Rhône (Red Wine)", type: "traditional", notes: "A rustic French wine for a rustic French bread — earthy, medium-bodied, and herb-forward" },
+      { name: "Normandy Cidre (Dry Apple Cider)", type: "traditional", notes: "The old Norman/Breton combination — dry cider with thick country bread and cheese is timeless" },
+      { name: "Café Crème", type: "traditional", notes: "The Sunday morning treatment: thick slices toasted, buttered, with café crème" },
+      { name: "Lager Beer", type: "modern", notes: "The clean bitterness works well with the earthy rye notes in the crumb" }
+    ],
+    foods: [
+      { name: "Comté & Pâté de campagne", pairing: "perfect", notes: "The cheese board combination — aged Comté with thick, meaty campagne slices" },
+      { name: "Onion Soup (French Gratinée)", pairing: "classic", notes: "The authentic Soupe à l'Oignon requires thick Campagne croutons under the melted Gruyère" },
+      { name: "Foie Gras", pairing: "elevated", notes: "The contrast of luxurious, fatty foie gras against the earthy, honest bread is a classic of French gastronomy" },
+      { name: "Radishes & Normandy Butter", pairing: "classic", notes: "The simplest and most satisfying — the French approach to eating bread" }
+    ],
+    occasions: ["Sunday family lunch", "Cheese board dinner", "French bistro meal", "Artisan bakery purchase"]
+  },
+
+  experimentSuggestions: [
+    {
+      title: "High-Rye Campagne (30% Rye)",
+      description: "Increase the rye flour percentage to 30%. This darkens the crumb, intensifies earthiness, and extends shelf life further.",
+      difficulty: "Medium",
+      expectedOutcome: "A deeper, more complex bread with pronounced rye earthiness. Closer to German country breads than the French original."
+    },
+    {
+      title: "Walnut & Honey Campagne",
+      description: "Incorporate 15% chopped walnuts and 2% honey into the dough during final mixing. The honey feeds the levain subtly.",
+      difficulty: "Easy",
+      expectedOutcome: "A slightly sweet, nutty variation. Outstanding with blue cheese (Roquefort) or aged Gruyère."
+    },
+    {
+      title: "Ancient Grain Campagne (Einkorn/Emmer Blend)",
+      description: "Replace the whole wheat with 15% einkorn and 5% emmer flour. Both are low-gluten, so handle with care during shaping.",
+      difficulty: "Hard",
+      expectedOutcome: "A more aromatic, complex bread with a slightly denser crumb. Extraordinary nutty flavor but requires experienced shaping."
+    }
+  ],
+
+  learnLinkTags: ["french-bread", "sourdough", "levain", "country-loaf", "whole-wheat", "rye", "artisan-bread", "miche", "rustic", "french-village"]
 };

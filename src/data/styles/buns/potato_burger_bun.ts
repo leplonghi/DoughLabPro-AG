@@ -255,9 +255,9 @@ export const potato_burger_bun: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/potato-burger-bun-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/potato_burger_bun_hero.png",
+        dough: "/images/styles/potato_burger_bun_dough.png",
+        crumb: "/images/styles/potato_burger_bun_crumb.png"
     },
     recommendedFlavorComponents: ["salted_butter_normandy", "sesame_seeds", "poppy_seeds"]
 };

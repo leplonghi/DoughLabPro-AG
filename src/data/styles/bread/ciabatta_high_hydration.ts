@@ -270,14 +270,41 @@ export const ciabatta_high_hydration: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["mild tangy wheat depth from biga", "clean olive oil finish", "airy neutral crumb with subtle lactic note", "crispy shattering crust sweetness"],
+    aromaProfile: ["biga-fermented Italian tang", "hearth toasted wheat", "olive oil mineral note", "steam-driven thin crust aroma"],
+    textureNotes: ["gigantic irregular alveoli", "gelatinized translucent crumb walls", "shattering paper-thin crust", "light as a cloud for its size"],
+    pairingRecommendations: ["High-quality EVOO + aged balsamic", "Prosciutto crudo + arugula + parmesan", "Stracciatella + cherry tomatoes + basil", "Pinot Grigio or Soave Classico"]
+  },
+
+  culturalContext: "Ciabatta is one of the youngest great European breads — invented in 1982 as a deliberate cultural and commercial response to French baguettes dominating the Italian sandwich market. Arnaldo Cavallari's genius was realizing that Italy didn't need to fight the baguette with tradition, but with innovation. Within a decade, ciabatta itself became Italy's most recognized bread export.",
+
+  globalPresence: "Ciabatta is now a global commodity bread — produced industrially in virtually every country. However, authentic hand-crafted ciabatta using biga and minimal handling is still a rarity outside artisan Italian bakeries. The bread's reputation suffered somewhat from mass-market frozen versions, which share the name but little of the original's character.",
+
+  pairings: {
+    canonical: ["Classic Panino: prosciutto + mozzarella + tomato", "Bruschetta al pomodoro (grilled slice + fresh tomato + EVOO)", "EVOO + fleur de sel (pure dipping experience)"],
+    modern: ["Grilled portobello + stracciatella + truffle oil", "Nduja spread + fresh ricotta + honey", "Pressed panino: mortadella + provolone + pickled peppers"],
+    regional: ["Prosecco DOC (Veneto native pairing)", "Valpolicella Ripasso with prosciutto panino", "Aperol Spritz with bruschetta as aperitivo"]
+  },
+
+  experimentSuggestions: [
+    "Compare 75% vs 85% hydration ciabattas and document the alveoli size, handleability, and crust shattering.",
+    "Try biga (12h, 44% hydration) vs poolish (12h, 100% hydration) and compare the final crumb tang and openness.",
+    "Perform 2 fold sets vs 4 fold sets during bulk and compare the gluten strength and baking height.",
+    "Bake with Dutch oven lid on (steam trap) vs open hearth and compare crust thinness and break pattern.",
+    "Use semolina dusted board vs flour dusted board for the cut slippers and compare the bottom crust texture."
+  ],
+
+  learnLinkTags: ["poolish-biga", "gluten-network", "hydration-101", "oven-spring", "steam-injection", "flour-rheology"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/ciabatta-high-hydration-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/ciabatta_high_hydration_hero.png",
+    dough: "/images/styles/ciabatta_high_hydration_dough.png",
+    crumb: "/images/styles/ciabatta_high_hydration_crumb.png"
   }
 };

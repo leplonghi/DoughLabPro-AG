@@ -258,9 +258,9 @@ export const yeasted_donuts: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/donut-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/yeasted_donuts_hero.png",
+    dough: "/images/styles/yeasted_donuts_dough.png",
+    crumb: "/images/styles/yeasted_donuts_crumb.png"
   },
   recommendedFlavorComponents: ["vanilla_madagascar", "dark_chocolate_70", "strawberry_jam", "vanilla_glaze", "nutmeg", "salted_butter_normandy"]
 };

@@ -269,14 +269,41 @@ export const detroit_style_classic: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["deep caramelized cheese umami", "sweet-acidic tomato", "yeasty focaccia crust", "rich brick cheese butteriness"],
+    aromaProfile: ["nutty caramelized frico", "yeast-lactic bread aroma", "slightly mineral steel pan note", "toasted olive oil"],
+    textureNotes: ["crispy-lacy cheese frico edges", "fried crispy bottom", "airy light focaccia-like crumb", "molten interior cheese layer"],
+    pairingRecommendations: ["Wisconsin brick cheese (essential)", "Vernors ginger ale (traditional Detroit)", "Italian sausage + tomato stripe", "Dark Michigan lager"]
+  },
+
+  culturalContext: "Detroit-style pizza was born from automotive industry ingenuity — the repurposed steel pans that defined the style mirror Detroit's resilient blue-collar identity. The style went from neighborhood bar staple to national food trend after the 2008 financial crisis as Detroit natives carried it across the country seeking new opportunities.",
+
+  globalPresence: "Detroit-style pizza exploded nationally after 2010, driven by chains like Jet's Pizza and artisan shops like Via 313 (Austin). International awareness is growing through social media and culinary journalism, though few outside the US replicate the authentic blue-steel-pan frico technique.",
+
+  pairings: {
+    canonical: ["Wisconsin brick cheese + pepperoni (traditional)", "Italian sausage + tomato stripe (Buddy's original)", "Three-cheese blend + fresh basil"],
+    modern: ["Hot honey + salami + pickled jalapeño", "Mortadella + pistachio + stracciatella (post-bake)", "Mushroom + truffle oil + aged provolone"],
+    regional: ["Vernors ginger ale (Detroit's 160-year-old ginger soda)", "Stroh's lager (historic Detroit brewery pairing)", "Coney Island chili as a topping (Detroit crossover)"]
+  },
+
+  experimentSuggestions: [
+    "Season a new blue-steel pan with 3 rounds of high-heat oil baking before first use and compare frico quality vs unseasoned.",
+    "Use 100% Wisconsin brick cheese vs a 50/50 mozzarella blend and compare caramelization intensity and flavor at the edges.",
+    "Apply tomato sauce in racing stripes on top after baking vs before baking and compare color and tomato brightness.",
+    "Test a 72h cold retard vs 24h and compare the open crumb structure and flavor depth in the crust.",
+    "Substitute olive oil with rendered bacon fat for the pan oiling and assess the flavor difference in the bottom crust."
+  ],
+
+  learnLinkTags: ["hydration-101", "gluten-network", "maillard-reaction", "cold-retard", "oven-spring", "fermentation-chemistry"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/detroit-style-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/detroit_style_classic_hero.png",
+    dough: "/images/styles/detroit_style_classic_dough.png",
+    crumb: "/images/styles/detroit_style_classic_crumb.png"
   }
 };

@@ -250,15 +250,42 @@ export const sourdough_san_francisco: DoughStyleDefinition = {
         }
     ],
 
+    flavorProfile: {
+        primaryFlavors: ["sharp vinegar-like lactic tang", "roasted wheat depth", "thick crunchy crust bitterness", "chewy dense crumb sweetness"],
+        aromaProfile: ["acetic acid tang (bright and sharp)", "deep mahogany crust roast", "cool-fermented complexity", "blistered crust mineral note"],
+        textureNotes: ["thick dark blistered crust", "chewy medium-to-wide alveolation", "translucent high-protein cell walls", "dense satisfying crumb with real resistance"],
+        pairingRecommendations: ["Salted butter (the acidity cuts through fat beautifully)", "Clam chowder (iconic SF bread bowl)", "Sharp aged cheddar + whole grain mustard", "Reuben: corned beef + sauerkraut + Swiss"]
+    },
+
+    culturalContext: "San Francisco Sourdough is a living piece of American food history — Boudin Bakery's mother dough has been maintained continuously since 1849, surviving the 1906 earthquake when the baker carried it out in a pot. The distinctly sharp tang became the defining flavor benchmark for American sourdough. SF sourdough is as much a microbiology story as it is a bread story: Fructilactobacillus sanfranciscensis was named after the city itself.",
+
+    globalPresence: "SF Sourdough sparked the global sourdough renaissance of the 2010s, which peaked dramatically during the COVID-19 lockdowns when millions of home bakers began growing starters. The style's influence is felt globally, though the authentic acetic-forward tang is rarely replicated outside of its Bay Area origin climate and specialized starter management.",
+
+    pairings: {
+        canonical: ["Clam chowder bread bowl (the ultimate SF food tourist experience)", "Salted butter + fleur de sel on a thick crust slice", "Reuben sandwich: corned beef + sauerkraut + Swiss + Thousand Island"],
+        modern: ["Avocado + poached egg + everything bagel spice on sourdough toast", "Smashed butter beans + roasted garlic + lemon zest", "Dark chocolate + smoked maldon salt on toasted slice"],
+        regional: ["Anchor Steam Beer (San Francisco institution)", "Dungeness crab with sourdough bread (SF waterfront classic)", "California Chardonnay with sourdough and farmstead cheese"]
+    },
+
+    experimentSuggestions: [
+        "Ferment the stiff levain at 18°C vs 24°C and compare the acetic vs lactic acid ratio in the final bread.",
+        "Cold retard 12h vs 24h in the banneton and compare the blister pattern and tang intensity.",
+        "Bake at 230°C vs 250°C and compare the crust thickness, color, and crumb spring.",
+        "Use 65% hydration vs 75% hydration with the same levain and compare manageability, crumb openness, and crust.",
+        "Feed the starter with 100% white bread flour vs 10% whole rye and compare the bacterial activity and sourness after 3 cycles."
+    ],
+
+    learnLinkTags: ["wild-yeast-starters", "cold-retard", "oven-spring", "maillard-reaction", "fermentation-chemistry", "flour-rheology"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/sf-sourdough-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/sourdough_san_francisco_hero.png",
+        dough: "/images/styles/sourdough_san_francisco_dough.png",
+        crumb: "/images/styles/sourdough_san_francisco_crumb.png"
     },
     recommendedFlavorComponents: ["salted_butter_normandy", "brie_de_meaux", "malt_powder", "pecorino_romano", "rosemary_fresh"]
 };

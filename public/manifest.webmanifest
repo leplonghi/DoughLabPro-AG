@@ -1,14 +1,17 @@
 {
     "name": "DoughLabPro",
     "short_name": "DoughLabPro",
-    "description": "O laboratório definitivo para suas criações de panificação.",
-    "start_url": "/",
+    "description": "O laboratório definitivo para suas criações de panificação. Calcule hidratação, gerencie fermentação e explore mais de 80 estilos de massa.",
+    "start_url": "/?utm_source=pwa",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#65a765",
     "orientation": "portrait",
     "scope": "/",
     "lang": "pt-BR",
+    "dir": "ltr",
+    "categories": ["food", "lifestyle", "utilities"],
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "/pwa-192x192.png",
@@ -27,6 +30,45 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshots/screenshot-mobile-1.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Calculadora de Panificação"
+        },
+        {
+            "src": "/screenshots/screenshot-mobile-2.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Biblioteca de Estilos"
+        },
+        {
+            "src": "/screenshots/screenshot-mobile-3.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Detalhes do Estilo"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Calculadora",
+            "short_name": "Calc",
+            "description": "Abrir calculadora de panificação",
+            "url": "/calculator?utm_source=pwa_shortcut",
+            "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Estilos de Massa",
+            "short_name": "Estilos",
+            "description": "Explorar biblioteca de estilos",
+            "url": "/styles?utm_source=pwa_shortcut",
+            "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
         }
     ]
 }

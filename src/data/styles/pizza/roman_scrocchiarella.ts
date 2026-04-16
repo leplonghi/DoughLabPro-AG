@@ -250,15 +250,43 @@ export const roman_scrocchiarella: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["toasted wheat-biscuit", "mild seed oil richness", "caramelized malt crust", "bright tomato and sharp pecorino"],
+    aromaProfile: ["cracker-toasted wheat", "sunflower oil warmth", "dried oregano", "malt caramelization"],
+    textureNotes: ["audibly shattering cracker-like crust", "zero crumb (monolithic disc texture)", "rigid and self-supporting slice", "non-greasy uniform crispness"],
+    pairingRecommendations: ["Roman 'Amatriciana' (guanciale + pecorino + tomato)", "Sun-dried tomato + anchovies", "Low-moisture 'pizza mozzarella'", "Castelli Romani white wine (Frascati)"],
+    flavorEvolution: ["Just baked: pure crunch with toasty malt sweetness", "10 min: crunch persists, oregano intensifies", "Cold: becomes dense cracker, can be eaten like bread"]
+  },
+
+  culturalContext: "The Roman Scrocchiarella embodies the Roman philosophy of 'poco ma buono' (little but good) — a thin, audibly crunchy pizza that lets the toppings speak without the distraction of a puffy edge. Born in post-WWII Roman neighborhoods as a practical, affordable street food, it remains a pillar of local identity in the 'pizzerie di quartiere.'",
+
+  globalPresence: "While not as internationally famous as Neapolitan, Roman Scrocchiarella has found a following among pizza enthusiasts seeking the cracker-crisp end of the spectrum. Italian pizzerias abroad increasingly feature a 'Roman style' thin option alongside Neapolitan varieties.",
+
+  pairings: {
+    canonical: ["Tomato + mozzarella per pizza + oregano", "'Bianca': olive oil + garlic + rosemary", "Margherita with Pecorino Romano dusting"],
+    modern: ["Prosciutto crudo + rucola + shaved parmesan (post-bake)", "N'duja + stracchino + honey drizzle", "Zucchini blossoms + anchovy + provola"],
+    regional: ["Carciofi alla romana (artichoke + mint + garlic)", "Pizza 'Rossa' (just tomato, garlic, basil)", "Porchetta di Ariccia slice post-bake (Roman tradition)"]
+  },
+
+  experimentSuggestions: [
+    "Roll one disc with the rolling pin until translucent (2mm), bake next to a hand-stretched disc and compare the crunch-to-chew ratio.",
+    "Swap sunflower oil for cold-pressed arachid oil (peanut oil) and compare the crisping speed and aroma at 310°C.",
+    "Add 0.5% diastatic malt to the recipe and compare Maillard browning uniformity vs no-malt version.",
+    "Use a 'buca-sfoglia' (dough docker) on half and leave the other half undocked to compare bubble formation.",
+    "Test 24h cold retard vs 48h and compare the depth of flavor in the thin cracker-like crust."
+  ],
+
+  learnLinkTags: ["gluten-network", "maillard-reaction", "cold-retard", "hydration-101", "salt-function", "fermentation-chemistry"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/roman-scrocchiarella-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/roman_scrocchiarella_hero.png",
+    dough: "/images/styles/roman_scrocchiarella_dough.png",
+    crumb: "/images/styles/roman_scrocchiarella_crumb.png"
   },
   recommendedFlavorComponents: ["olive_oil_extra_virgin", "pecorino_romano", "anchovies", "cebola", "mozzarella_low_moisture", "oregano_dried"]
 };

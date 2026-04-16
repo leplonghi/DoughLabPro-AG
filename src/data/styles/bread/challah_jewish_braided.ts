@@ -264,9 +264,72 @@ export const challah_jewish_braided: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/challah-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/challah_jewish_braided_hero.png",
+        dough: "/images/styles/challah_jewish_braided_dough.png",
+        crumb: "/images/styles/challah_jewish_braided_crumb.png"
     },
-    recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "sesame_seeds", "poppy_seeds"]
+    recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "sesame_seeds", "poppy_seeds"],
+
+    flavorProfile: {
+        primaryFlavors: ["rich eggy sweetness", "light honey warmth", "toasted sesame crust", "buttery wheat", "delicate caramel from glaze"],
+        aromaProfile: ["warm egg glaze toasting", "honey and vanilla notes", "yeasty fresh bread", "sesame nuttiness"],
+        textureDescriptors: ["feather-light pillowy crumb", "glossy deep mahogany crust", "pulls apart in long soft strands", "never crumbles"],
+        tasteJourney: "The crust delivers a faint crunch and sweet caramel hit from the egg wash glaze. The crumb unfolds in rich, buttery layers — sweet enough without being dessert, with an elegant egg richness throughout.",
+        mouthfeel: "Extraordinarily light and airy despite its richness. The crumb almost melts with residual egg fat and oil. No heaviness — leaves a clean, sweet finish.",
+        bakersNotes: "The secret is the two-stage egg wash: apply before final proof, then again 5 minutes before baking. This builds the iconic deep mahogany without burning."
+    },
+
+    culturalContext: {
+        significance: "Challah is the bread of the Jewish Sabbath and holiday table. It has survived exile, diaspora, and migration across centuries — unchanged in its ritual meaning. Two loaves are placed on the Shabbat table to remember the double portion of Manna God provided in the desert.",
+        rituals: ["Two loaves (lechem mishneh) are placed on the Shabbat table every Friday night", "Hafrashat Challah — a small piece of dough is separated and burned as a symbolic tithe", "Different braid counts carry different meanings (3 = divine symbolism, 6 = hours of creation, 12 = 12 tribes of Israel)", "Rosh Hashanah version is round (to represent the cycle of the year) and dipped in honey"],
+        symbolism: "The braid represents love and unity — three strands woven together like body, mind, and soul. The golden color represents the divine light of Shabbat.",
+        modernRole: "Challah has transcended its religious roots. It is now the preferred bread for French Toast, a gourmet bakery staple globally, and is often found in high-end restaurants alongside butter and honey."
+    },
+
+    globalPresence: {
+        primaryMarkets: ["Israel", "USA (New York, Los Angeles, Chicago)", "UK", "France"],
+        growingMarkets: ["Australia", "Germany", "Canada", "Brazil (São Paulo Jewish community)"],
+        penetrationLevel: "global",
+        trend: "Experiencing strong global demand as gourmet bakeries embrace enriched breads. Viral social media content around braiding techniques drives massive engagement.",
+        diasporaImpact: "The Ashkenazi Jewish diaspora brought Challah to every major city. NYC's delis and bakeries have made it a mainstream American bread far beyond Jewish households."
+    },
+
+    pairings: {
+        beverages: [
+            { name: "Sweet Riesling", type: "traditional", notes: "The classic Shabbat wine — its sweetness complements the honey-egg glaze" },
+            { name: "Kiddush Wine (Manischewitz)", type: "traditional", notes: "The ritual Kiddush blessing over wine uses sweet grape wine with Challah" },
+            { name: "Chai Latte", type: "modern", notes: "The spice profile echoes the honey-warmth of Challah beautifully" },
+            { name: "Freshly Brewed Coffee", type: "modern", notes: "Classic pairing for Challah French Toast on Sunday mornings" }
+        ],
+        foods: [
+            { name: "Honey & Cultured Butter", pairing: "perfect", notes: "The most elemental pairing — eaten at Rosh Hashanah to welcome a sweet new year" },
+            { name: "Smoked Salmon & Cream Cheese", pairing: "elevated", notes: "A modern Jewish deli interpretation" },
+            { name: "French Toast", pairing: "modern", notes: "Challah is the #1 choice for French Toast due to its egg richness" },
+            { name: "Brisket (Shabbat dinner)", pairing: "classic", notes: "The ceremonial pairing — Challah torn by hand to share before the meal" }
+        ],
+        occasions: ["Shabbat dinner (Friday night)", "Rosh Hashanah & Yom Kippur", "Hanukkah celebration", "Jewish wedding (braided loaves as gift)"]
+    },
+
+    experimentSuggestions: [
+        {
+            title: "Saffron & Orange Zest Challah",
+            description: "Bloom 0.5g of saffron in warm water before mixing. Add the zest of one orange. Reduce honey slightly.",
+            difficulty: "Medium",
+            expectedOutcome: "A golden-hued, fragrant bread with floral and citrus notes. Spectacular for Rosh Hashanah gifting."
+        },
+        {
+            title: "Babka-Swirl Challah (Chocolate)",
+            description: "Laminate the challah dough with a chocolate-cocoa paste before braiding. The braid becomes a swirled pattern.",
+            difficulty: "Hard",
+            expectedOutcome: "A visually dramatic bread with alternating dark and gold layers. Each slice reveals a new swirl pattern."
+        },
+        {
+            title: "Whole Wheat Ancient Grain Challah",
+            description: "Replace 30% of bread flour with emmer or spelt flour. Reduce kneading time as spelt is more fragile.",
+            difficulty: "Medium",
+            expectedOutcome: "Nuttier, denser, and slightly more rustic. A more nutritious traditional interpretation."
+        }
+    ],
+
+    learnLinkTags: ["jewish", "enriched-bread", "braided", "egg-bread", "shabbat", "ritual-bread", "ashkenazi", "kosher", "holiday-bread", "french-toast"]
 };

@@ -173,42 +173,62 @@ function AppContent() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-dlp-bg-soft p-4 relative overflow-hidden">
-        <div className="z-10 text-center max-w-md w-full">
-          <div className="mb-8 flex flex-col items-center gap-4">
-            <div className="w-24 h-24 bg-white rounded-full p-1 shadow-xl border-2 border-emerald-100 overflow-hidden relative group">
-              <img src="/doughy-avatar.png" alt={t('ui:assistant_page.title_short')} className="w-full h-full object-cover scale-110 transition-transform group-hover:scale-125 duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="h-[100dvh] w-full flex flex-col items-center justify-between premium-bg p-8 pt-12 pb-16 text-center select-none overflow-hidden touch-none overscroll-none">
+        {/* Immersive Floating Orbs */}
+        <div className="floating-orb w-[500px] h-[500px] -top-32 -left-32 bg-dlp-accent opacity-20" />
+        <div className="floating-orb w-[400px] h-[400px] -bottom-32 -right-32 bg-dlp-brand opacity-20" style={{ animationDelay: '-10s' }} />
+        <div className="floating-orb w-[300px] h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white opacity-40 blur-[120px]" />
+
+        <div className="relative z-10 w-full max-w-sm flex flex-col items-center justify-between h-full gap-8">
+          {/* Mascot Section - Removed checkerboard circle */}
+          <div className="animate-slideDown" style={{ animationFillMode: 'both' }}>
+            <div className="relative group">
+              <div className="absolute inset-0 bg-dlp-accent/10 blur-3xl rounded-full scale-150 group-hover:opacity-30 transition-opacity duration-1000" />
+              <div className="relative z-10 transform transition-all duration-1000 group-hover:scale-110 group-hover:rotate-3 animate-float px-2">
+                <img
+                  src="/doughy-avatar.png"
+                  alt="Doughy"
+                  className="w-40 h-40 md:w-56 md:h-56 object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.18)]"
+                />
+                {/* Subtle reflection under character */}
+                <div className="w-20 h-2 bg-black/5 blur-md rounded-full mx-auto mt-[-5px] scale-x-150 animate-pulse" />
+              </div>
             </div>
-            <Logo className="h-12 w-auto" />
           </div>
 
-          <h1 className="text-2xl font-semibold text-dlp-text-primary mb-3 tracking-tight">{t('ui.welcome_title')}</h1>
-          <p className="text-lg text-dlp-text-secondary mb-8 leading-relaxed">
-            {t('ui.app_tagline')}
-            <br />
-            <span className="text-sm text-dlp-text-muted mt-2 block">{t('ui.sign_in_to_access_your_lab_recipes_and_tools')}</span>
-          </p>
+          {/* Branding Section - Removed redundant title */}
+          <div className="space-y-4 animate-fadeIn" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
+            <Logo className="h-14 md:h-20 w-auto mx-auto drop-shadow-2xl" />
+            <p className="text-xl md:text-2xl text-dlp-text-secondary font-semibold tracking-tight leading-tight px-4">
+              {t('ui:app_tagline')}
+            </p>
+            <div className="w-10 h-1 bg-gradient-to-r from-transparent via-dlp-accent/40 to-transparent mx-auto mt-6" />
+          </div>
 
-          <div className="space-y-4">
-            <button
-              onClick={() => setIsAuthModalOpen(true)}
-              className="w-full py-3.5 bg-dlp-accent hover:bg-dlp-accent-hover text-[#065F46] font-bold rounded-xl shadow-dlp-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]"
-            >
-              {t('ui.sign_in_button')}
-            </button>
+          {/* Action Section - Tightened for mobile fit */}
+          <div className="w-full space-y-6 animate-slideUp" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
+            <div className="space-y-6">
+              <p className="text-sm md:text-base text-dlp-text-muted/80 font-medium max-w-[280px] mx-auto leading-relaxed">
+                {t('ui:sign_in_to_access_your_lab_recipes_and_tools')}
+              </p>
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="lab-button w-full text-base md:text-lg uppercase tracking-[0.2em] py-5 shadow-2xl active:scale-95 transition-transform"
+              >
+                {t('ui:sign_in_button')}
+              </button>
+            </div>
 
-            <p className="text-xs text-dlp-text-muted mt-6">
-              {t('ui.terms_agreement')}
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-dlp-text-muted/40 px-6 leading-relaxed">
+              {t('ui:terms_agreement')}
             </p>
           </div>
-
         </div>
 
         {isAuthModalOpen && (
           <Suspense fallback={
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
-              <LoadingSpinner className="h-12 w-12 text-dlp-accent" />
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-md">
+              <LoadingSpinner className="h-16 w-16 text-dlp-accent" />
             </div>
           }>
             <AuthModal

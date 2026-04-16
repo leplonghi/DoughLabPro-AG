@@ -91,9 +91,72 @@ export const kaisersemmelAustrian: DoughStyleDefinition = {
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
     images: {
-        hero: "/images/styles/placeholder-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png",
+        hero: "/images/styles/kaisersemmel_austrian_hero.png",
+        dough: "/images/styles/kaisersemmel_austrian_dough.png",
+        crumb: "/images/styles/kaisersemmel_austrian_crumb.png",
     },
     recommendedFlavorComponents: ["butter_unsalted", "jam", "cold_cuts"],
+
+    flavorProfile: {
+        primaryFlavors: ["clean wheaty crunch", "subtle lard richness", "malty warmth", "neutral but deeply satisfying", "faintly salty"],
+        aromaProfile: ["fresh-baked wheat aroma", "warm lard undertone", "toasted crust", "yeasty bakery morning smell"],
+        textureDescriptors: ["thin crackling crust that shatters", "soft open interior crumb", "five-petal tear pattern when broken", "light and airy throughout"],
+        tasteJourney: "The audible crackle as you bite through the crust is part of the experience. The flavour is clean and cereal-forward — the lard gives a very faint richness without being heavy. The crumb practically disappears on the palate.",
+        mouthfeel: "Crispy on the outside with almost no resistance. The interior crumb is cloud-like and dissolves quickly. Zero heaviness — engineered to be a perfect vehicle for toppings.",
+        bakersNotes: "Steam in the first 8 minutes is non-negotiable for the crackle. The lard can be replaced with butter, but the texture shifts slightly. The five-petal fold must be done while the dough is slightly relaxed — not too tight or the pattern disappears in proofing."
+    },
+
+    culturalContext: {
+        significance: "The Kaisersemmel (Emperor Roll) is the undisputed symbol of Viennese breakfast. Named after the Habsburg Emperor, it is the most consumed bread roll in Austria. Walk into any Viennese bakery at 7am and the aroma of freshly baked Kaisersemmel is inescapable.",
+        rituals: ["The Viennese 'Frühstück' (breakfast) is incomplete without a Kaisersemmel with butter and honey or cold cuts", "Bought fresh every single morning — day-old Kaisersemmel are considered unacceptable", "The folding pattern is traditionally done by hand; many bakers still refuse to use stamps as 'cheating'", "Paired with the legendary Melange (Viennese coffee) in every coffeehouse"],
+        symbolism: "The five-petal pattern is said to represent the five senses or the five fingers of a hand working the dough. It is a symbol of Viennese craft and culinary identity. The name 'Kaiser' (Emperor) reflects its elevated status in Austrian culture.",
+        modernRole: "Remains Austria's bestselling bread roll. Has been adopted across Central Europe (Germany, Czech Republic, Hungary) as a staple. Becoming a global artisan curiosity — the folding technique attracts enormous attention on social media."
+    },
+
+    globalPresence: {
+        primaryMarkets: ["Austria", "Germany", "Czech Republic", "Hungary", "Switzerland"],
+        growingMarkets: ["USA (artisan bakeries)", "UK", "Australia"],
+        penetrationLevel: "regional",
+        trend: "Growing artisan interest globally. The unique folding technique is a social media draw. Seen in premium bakeries worldwide as a 'specialty roll'.",
+        diasporaImpact: "Austrian and German immigrants brought the Semmel tradition to the Americas. Deli bakeries in cities with German heritage communities (Milwaukee, Cincinnati) have preserved the tradition."
+    },
+
+    pairings: {
+        beverages: [
+            { name: "Viennese Melange (Coffee)", type: "traditional", notes: "The absolute classic — the Viennese coffeehouse breakfast" },
+            { name: "Austrian Grüner Veltliner (White Wine)", type: "elevated", notes: "Mineral and crisp — pairs with cold cut-filled Kaisersemmel at lunch" },
+            { name: "Buttermilch (Buttermilk)", type: "traditional", notes: "A traditional Austrian pairing — the acidity cuts beautifully through the lard richness" },
+            { name: "Light Czech Pilsner", type: "modern", notes: "For mid-day sandwiches — the bitterness complements the neutral wheaty flavour" }
+        ],
+        foods: [
+            { name: "Unsalted Butter & Honey", pairing: "perfect", notes: "The quintessential Viennese breakfast combination" },
+            { name: "Liptauer Cheese Spread", pairing: "classic", notes: "Paprika-spiced Austrian cheese — the ultimate pub-style topping" },
+            { name: "Leberkäse (Bavarian Meat Loaf)", pairing: "classic", notes: "The Viennese street food staple — hot Leberkäse in a Semmel with mustard" },
+            { name: "Prosciutto & Emmenthal", pairing: "elevated", notes: "Elevated coffeehouse sandwich version" }
+        ],
+        occasions: ["Viennese breakfast (Frühstück)", "Coffeehouse mid-morning snack", "Lunch sandwiches", "Jause (Austrian afternoon snack)"]
+    },
+
+    experimentSuggestions: [
+        {
+            title: "Poolish Kaisersemmel",
+            description: "Build a 10-15% poolish (equal flour and water with a tiny amount of yeast) the night before. This adds flavor depth without changing the authentic character.",
+            difficulty: "Medium",
+            expectedOutcome: "More complex, faintly fermented flavour with slightly improved crust crackle. Comparable to the best Viennese bakeries."
+        },
+        {
+            title: "Whole Wheat Kaiser (30%)",
+            description: "Replace 30% of the bread flour with whole wheat flour. Adjust water upward by 2-3% to compensate for bran absorption.",
+            difficulty: "Easy",
+            expectedOutcome: "Slightly denser, nuttier, with a less dramatic crackle. A modern health-conscious version."
+        },
+        {
+            title: "Caraway & Fennel Semmel",
+            description: "Incorporate 1% ground caraway and 0.5% fennel seed into the dough. Top with a caraway sprinkle before baking.",
+            difficulty: "Easy",
+            expectedOutcome: "A distinctly Austrian-flavored roll — the caraway is commonly found in Austrian breads and pairs perfectly with cold cuts."
+        }
+    ],
+
+    learnLinkTags: ["austrian-bread", "vienna", "roll", "breakfast-roll", "lard-enriched", "emperor-roll", "five-petal", "central-european", "semmel"]
 };

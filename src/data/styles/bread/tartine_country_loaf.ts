@@ -240,9 +240,72 @@ export const tartine_country_loaf: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/tartine-country-loaf-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/tartine_country_loaf_hero.png",
+    dough: "/images/styles/tartine_country_loaf_dough.png",
+    crumb: "/images/styles/tartine_country_loaf_crumb.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "olive_oil_extra_virgin"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "olive_oil_extra_virgin"],
+
+  flavorProfile: {
+    primaryFlavors: ["mild lactic sourness", "creamy whole wheat", "toasted caramelised crust", "complex fermentation depth", "clean sweet grain"],
+    aromaProfile: ["wild fermentation", "yogurt-like lactic tang", "toasted wheat", "caramelised Maillard crust", "earthy sourdough"],
+    textureNotes: ["crackling thick crust", "open wild irregular crumb (alveoli)", "gelatinous pearlescent crumb sheen", "chewy and moist interior", "blistered crust surface"],
+    pairingRecommendations: ["Salted cultured butter", "Avocado with flaky salt", "Aged Comté or Gruyère", "Smoked salmon and crème fraîche", "Quality olive oil and fleur de sel"],
+    flavorEvolution: ["Day 1: peak crust crunch and lactic freshness", "Day 2: crust softens, acidity mellows and deepens", "Day 3-4: ideal for grilled cheese and toast", "Flavour actually peaks at 24-48h after baking for full complexity"]
+  },
+
+  culturalContext: {
+    significance: [
+      "Tartine Bakery's Country Loaf is the bread that triggered the global sourdough renaissance",
+      "Chad Robertson's 2010 book 'Tartine Bread' became the bible of a generation of artisan bakers",
+      "Defined the aesthetic of the 'Instagram sourdough' era — the ear, the open crumb, the blistered crust",
+      "Shifted sourdough from 'sour health bread' to 'chef's bread' — a sophisticated, mild lactic product",
+      "Represents the California ethos: natural, slow, minimal ingredients, maximal craft"
+    ],
+    consumptionContext: [
+      "Daily table bread at artisan restaurants",
+      "Avocado toast standard at California-style brunch cafes",
+      "Grilled cheese with artisan bread — the 'adult' version",
+      "The sourdough starter 'pet' is part of the consumption ritual — you must keep it alive",
+      "Shared in long slices at communal dinner tables"
+    ],
+    evolution: [
+      "Evolved from traditional San Francisco sourdough but purposely moved away from its aggressive acidity",
+      "Chad Robertson trained in France and brought pain de campagne sensibilities to California",
+      "2010 Tartine Bread book sparked the global home-baking sourdough movement",
+      "The COVID-19 lockdown of 2020 triggered a worldwide sourdough revival — Tartine style was the template",
+      "Now considered the benchmark for high-hydration sourdough worldwide"
+    ],
+    rituals: [
+      "The 'Wobble Test' — you only stop bulk fermentation when the dough wobbles like jelly",
+      "The Dutch Oven ritual — preheating for 45 min, loading the dough, and the steam-reveal at 20 min",
+      "The 24-hour wait before the first slice — patience is part of the method",
+      "Scoring the shallow 'ear' angle is a baker's rite of passage",
+      "The floating starter test — a spoonful of levain dropped in water; sinks means not ready"
+    ]
+  },
+
+  globalPresence: {
+    regions: ["USA, especially California (origin)", "UK and Scandinavia (strong artisan bakery scene)", "Australia and New Zealand", "Global via food media and social media"],
+    popularity: "world benchmark for modern sourdough",
+    exportStatus: "The method and ethos are globally exported; fresh bread is local",
+    internationalRecognition: "Universally recognized as the pinnacle of modern artisan sourdough baking"
+  },
+
+  pairings: {
+    beverages: ["Natural wine (especially orange wine)", "Cold-brew coffee", "Craft IPA", "Good quality Pinot Noir"],
+    foods: ["Cultured salted butter", "Avocado with flaky salt and citrus", "Aged hard cheeses (Comté, Manchego)", "Smoked salmon", "Grilled cheese with Gruyère", "Olive oil and a good finishing salt"],
+    occasions: ["Artisan restaurant table bread", "Weekend brunch", "Cheese and charcuterie boards", "Gift loaf for food-loving friends"],
+    seasons: ["Year-round; the sourdough starter routine adapts to seasons"]
+  },
+
+  experimentSuggestions: [
+    { title: "Heritage Wheat Blend", description: "Substitute 20% of the bread flour with Einkorn or Emmer for deeper, nuttier grain flavour. Reduce hydration by 3-5% to compensate for the weaker gluten network." },
+    { title: "Rye Exploration", description: "Add 10% dark rye flour to the formula — it dramatically speeds fermentation and adds earthiness. Reduce bulk time by 15-20%." },
+    { title: "Cold Country Loaf", description: "Extend the cold retard to 36-48h at 3°C for maximum crust blistering and acidity development — the bread used by professional bakeries." },
+    { title: "Demi-wheat Version", description: "Use 20% whole wheat instead of 10% for a richer, more nutritious crumb. Increase hydration by 3% and extend autolyse to 90 min." },
+    { title: "Open Crumb Study", description: "Bake one loaf with minimal degassing during shaping and one with tight shaping — compare the crumb openness versus structural integrity." }
+  ],
+
+  learnLinkTags: ["tartine", "sourdough", "levain", "high-hydration", "dutch-oven", "wild-yeast", "artisan-bread", "open-crumb", "chad-robertson"]
 };

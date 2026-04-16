@@ -250,15 +250,42 @@ export const pizza_argentina_fugazzeta: DoughStyleDefinition = {
         }
     ],
 
+    flavorProfile: {
+        primaryFlavors: ["sweet caramelized onion", "creamy melted muzarella", "lard-enriched bread richness", "mild wheat depth"],
+        aromaProfile: ["caramelized onion sweetness", "pan-fried bread bottom aroma", "savory frico cheese edge", "oregano pizzero finish"],
+        textureNotes: ["thick spongy media masa interior", "golden fried bottom crust", "double-dough border with molten cheese layer", "crispy onion strings on top"],
+        pairingRecommendations: ["Fainá chickpea flatbread (pizza a caballo)", "Moscato wine (Buenos Aires tradition)", "Quilmes lager (Argentina's national beer)", "Chimichurri pizzero drizzle"]
+    },
+
+    culturalContext: "Fugazzeta is the crown jewel of Buenos Aires pizza culture — invented in 1932 by Juan Banchero in the La Boca neighborhood, it stands as Argentina's proudest culinary departure from its Italian roots. Porteños (Buenos Aires residents) have such fierce loyalty to their pizza style that the concept of eating it folded or without a fork is considered barbarian.",
+
+    globalPresence: "Argentine pizza remains largely an internal cultural treasure, with diaspora pockets in Spain and the US (particularly Miami) spreading awareness. Argentine-themed restaurants internationally often feature Fugazzeta as their signature, intriguing pizza-lovers accustomed to Italian standards.",
+
+    pairings: {
+        canonical: ["Mozzarella stuffed Fugazzeta + raw onion + oregano pizzero", "Fainá placed on top (pizza a caballo)", "Fugazzeta Rellena: ham + double mozzarella"],
+        modern: ["Burrata on top + fresh thyme", "Smoked provolone + caramelized onion jam", "Nduja stuffed crust + sweet onion topping"],
+        regional: ["Quilmes Cristal lager", "Moscato d'Asti wine (Italian-Argentine bridge)", "Facturas (Argentine pastries) as post-pizza dessert in La Boca"]
+    },
+
+    experimentSuggestions: [
+        "Replace oil with traditional lard (grasa de pella) and compare the flavor depth and crust texture.",
+        "Pre-salt and press the onions for 30 min before topping vs no treatment and compare bitterness and crunch.",
+        "Use cuartirolo cheese vs low-moisture mozzarella and compare the creaminess and melt profile in the stuffed layer.",
+        "Try a poolish (15% flour) in the dough vs direct mix and compare the crumb 'silkiness' and flavor.",
+        "Bake on cast-iron pan vs aluminum pan and compare the fried-bottom color and flavor depth."
+    ],
+
+    learnLinkTags: ["enriched-dough", "gluten-network", "hydration-101", "maillard-reaction", "fermentation-chemistry"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/argentina-fugazzeta-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/pizza_argentina_fugazzeta_hero.png",
+        dough: "/images/styles/pizza_argentina_fugazzeta_dough.png",
+        crumb: "/images/styles/pizza_argentina_fugazzeta_crumb.png"
     },
     recommendedFlavorComponents: ["mozzarella_low_moisture", "cebola", "oregano_dried", "olive_oil_extra_virgin", "presunto"]
 };

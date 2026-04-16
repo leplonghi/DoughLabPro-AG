@@ -235,8 +235,70 @@ export const shokupan_milk_bread: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/shokupan-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
-    }
+        hero: "/images/styles/shokupan_milk_bread_hero.png",
+        dough: "/images/styles/shokupan_milk_bread_dough.png",
+        crumb: "/images/styles/shokupan_milk_bread_crumb.png"
+    },
+
+    flavorProfile: {
+        primaryFlavors: ["milky sweetness", "buttery richness", "fresh cream", "lightly sweet", "clean neutral wheat"],
+        aromaProfile: ["warm milk", "heavy cream", "subtle caramel", "fresh bread", "condensed milk"],
+        textureNotes: ["impossibly soft and fluffy cotton crumb", "feathery shreddy layers", "thin petal-like crust", "mochi-like bounce", "melts in the mouth"],
+        pairingRecommendations: ["Matcha cream for Matcha Sando", "Strawberry and whipped cream (Fruit Sando)", "Quality salted butter", "Red bean paste (Anko)", "Katsu cutlet with tonkatsu sauce"],
+        flavorEvolution: ["Day 1 fresh (Nama): sweetest, most pillowy — eat without toasting", "Day 2: crumb still soft, perfect for Katsu Sando", "Day 3: best thick-toasted with salted butter and honey", "Day 4+: French Toast or Brick Toast"]
+    },
+
+    culturalContext: {
+        significance: [
+            "'Shokupan' literally means 'eating bread' — it is Japan's everyday loaf",
+            "The 'Nama Shokupan' (luxury raw bread) craze of 2013 turned bread into fine dining",
+            "Nogami bakery in Osaka created queues lasting hours for a single $10 loaf",
+            "Reflects Japan's philosophy of kaizen (continuous improvement) applied to a simple food",
+            "The Fruit Sando made Shokupan globally iconic via social media"
+        ],
+        consumptionContext: [
+            "Eaten fresh (Nama) without toasting as the highest expression of quality",
+            "Sliced thick for Katsu Sando (pork cutlet sandwich)",
+            "Used for Fruit Sando (strawberry and whipped cream sandwich) — a Japanese convenience store icon",
+            "Toasted thick with salted butter and honey for breakfast",
+            "Used for Japanese Brick Toast (thick slab toasted in a toaster oven)"
+        ],
+        evolution: [
+            "Bread arrived in Japan via Portuguese traders in the 16th century",
+            "Modern Shokupan became a daily staple during the post-WWII US wheat aid era",
+            "Tangzhong method popularised by Yvonne Chen's book in 2007 transformed home baking",
+            "2013 'Nama Shokupan' luxury boom created a new premium bread category",
+            "Global Shokupan trend now drives premium milk bread offerings worldwide"
+        ],
+        rituals: [
+            "'The Drop' — dropping the tin from 10cm height immediately upon exit from oven prevents collapse",
+            "Slicing only with a warmed serrated knife to avoid crushing the delicate crumb",
+            "Eating Nama Shokupan without cutting the crust — it's soft enough to eat whole",
+            "The windowpane test is treated as a sacred milestone — only true gluten development allows passage"
+        ]
+    },
+
+    globalPresence: {
+        regions: ["Japan (origin and home)", "Taiwan, South Korea, Hong Kong (Asian bread culture)", "USA and Australia (Asian bakery scene)", "Global via 'Milk Bread' trend"],
+        popularity: "fast-growing global cult status",
+        exportStatus: "Fresh bread is local; the recipe has spread globally through food media and Asian bakeries",
+        internationalRecognition: "Widely recognised as the gold standard for softness in bread"
+    },
+
+    pairings: {
+        beverages: ["Japanese milk tea (Royal Milk Tea)", "Matcha latte", "Cold brew coffee", "Strawberry milk"],
+        foods: ["Katsu (pork cutlet) with tonkatsu sauce", "Strawberry and whipped cream (Fruit Sando)", "Red bean paste (Anko)", "Matcha cream", "Salted butter and honey", "Tamagoyaki egg"],
+        occasions: ["Japanese-style breakfast", "Café brunch", "Convenience store snack", "Premium bakery gift"],
+        seasons: ["Year-round; strawberry Fruit Sando peaks in spring (strawberry season)"]
+    },
+
+    experimentSuggestions: [
+        { title: "Yudane vs Tangzhong Comparison", description: "Bake one loaf with Tangzhong (1:5 cooked to 65°C) and one with Yudane (boiling water 1:1) to feel the softness vs chewiness difference." },
+        { title: "Matcha Shokupan", description: "Add 2% high-quality matcha powder to the flour for a green tinted loaf with a grassy, slightly astringent counterpoint to the milky sweetness." },
+        { title: "Hokkaido Luxury Variation", description: "Replace all water with heavy cream and add condensed milk (5%) for the ultra-rich Hokkaido-style milk bread version." },
+        { title: "Sourdough Adaptation", description: "Replace instant yeast with a mild, young liquid levain (15%) for a subtly tangy, longer-lasting Shokupan with improved digest." },
+        { title: "Mountain Top vs Square", description: "Bake one loaf with the lid on (square, Pullman) and one without (mountain crown) to compare the different crust-to-crumb ratios." }
+    ],
+
+    learnLinkTags: ["tangzhong", "yudane", "japanese-bread", "milk-bread", "shokupan", "nama-shokupan", "soft-bread", "enriched-dough"]
 };

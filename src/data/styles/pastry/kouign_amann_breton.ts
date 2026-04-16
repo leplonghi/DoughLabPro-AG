@@ -94,9 +94,9 @@ export const kouignAmannBreton: DoughStyleDefinition = {
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
     images: {
-        hero: "/images/styles/placeholder-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png",
+        hero: "/images/styles/kouign_amann_breton_hero.png",
+        dough: "/images/styles/kouign_amann_breton_dough.png",
+        crumb: "/images/styles/kouign_amann_breton_crumb.png",
     },
     recommendedFlavorComponents: ["salted_butter", "granulated_sugar", "sea_salt"],
 };

@@ -221,9 +221,72 @@ export const arepa_corn_flatbread: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/arepa-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/arepa_corn_flatbread_hero.png",
+    dough: "/images/styles/arepa_corn_flatbread_dough.png",
+    crumb: "/images/styles/arepa_corn_flatbread_crumb.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture"] // Cheese and Butter are standard
+  recommendedFlavorComponents: ["salted_butter_normandy", "mozzarella_low_moisture"],
+
+  flavorProfile: {
+    primaryFlavors: ["toasted corn", "starchy neutral", "subtly sweet maize", "earthy grain", "buttery richness"],
+    aromaProfile: ["warm toasted corn", "griddled starch", "faintly smoky", "milky from cheese fill"],
+    textureDescriptors: ["crackling crispy shell", "moist and almost creamy interior", "dense corn gel structure", "shatters on bite"],
+    tasteJourney: "The first bite breaks through a crackling corn shell into a steaming, starchy interior. The flavoris clean and neutral — a canvas that transforms entirely based on its filling. Finished with butter, it becomes milky and rich.",
+    mouthfeel: "Dry and slightly gritty from the corn hull during the first bite, then transitioning to moist and gelatinous interior. Very satisfying contrast.",
+    bakersNotes: "The interior texture is controlled entirely by hydration. Under-hydrated = crumbly and dry. Over-hydrated = won't hold shape. The 'thumb press' test — if it leaves a clean impression without cracking, hydration is right."
+  },
+
+  culturalContext: {
+    significance: "The Arepa is a pre-Columbian staple that has survived millennia. It is the most consumed bread in Colombia and Venezuela, eaten at every meal of the day. It represents culinary identity so deeply that the two nations have a historic 'Arepa War' over its true origin.",
+    rituals: ["Consumed as everyday breakfast across both nations", "Reina Pepiada (Chicken & Avocado Arepa) is the Venezuelan flagship", "Arepa de Choclo (fresh corn) is a Colombian sweet version for special occasions"],
+    symbolism: "The circular shape symbolizes the sun in indigenous cosmology. Today it symbolizes national pride, comfort food, and the resourcefulness of South American street food culture.",
+    modernRole: "In Venezuela, the Arepa became a symbol of the economic crisis — when flour became scarce, political commentary was written through 'Arepa queues'. In Colombia, Arepas have become gourmet, with Michelin-level restaurants serving deconstructed versions."
+  },
+
+  globalPresence: {
+    primaryMarkets: ["Colombia", "Venezuela", "Panama", "USA (Miami, New York)"],
+    growingMarkets: ["Spain", "Netherlands (large Venezuelan diaspora)", "Canada"],
+    penetrationLevel: "regional",
+    trend: "Rising globally as Latin food culture expands. Positioned as a naturally gluten-free option in health-focused markets.",
+    diasporaImpact: "The Venezuelan and Colombian diaspora has spread Arepa shops across Europe and North America. 'ArepaZone' in Washington DC and similar spots have turned it into a gourmet proposition."
+  },
+
+  pairings: {
+    beverages: [
+      { name: "Papelón con Limón", type: "traditional", notes: "Venezuelan panela lemonade — the classic street food pairing" },
+      { name: "Café Tinto (Black Coffee)", type: "traditional", notes: "How most Colombians start their morning" },
+      { name: "Chicha de Maíz", type: "traditional", notes: "Fermented corn drink — ancient pre-Columbian pairing" },
+      { name: "Light Pilsner Beer", type: "modern", notes: "Works beautifully as a dinner pairing with savory fillings" }
+    ],
+    foods: [
+      { name: "Reina Pepiada", pairing: "perfect", notes: "Chicken + avocado mayo — Venezuela's most famous filling" },
+      { name: "Black Beans & Queso Blanco", pairing: "classic", notes: "The everyday breakfast across both countries" },
+      { name: "Huevos Pericos", pairing: "classic", notes: "Scrambled eggs with tomato and scallion — Colombian morning staple" },
+      { name: "Pernil (Slow-roasted Pork)", pairing: "elevated", notes: "For dinner parties and celebrations" }
+    ],
+    occasions: ["Daily breakfast", "Street food lunch", "Party canapé base", "Gluten-free dinner alternative"]
+  },
+
+  experimentSuggestions: [
+    {
+      title: "Purple Sweet Potato Arepa",
+      description: "Replace 20% of Masarepa with purple sweet potato purée for a dramatic violet color, natural sweetness, and added moisture.",
+      difficulty: "Easy",
+      expectedOutcome: "Vibrant purple hue with a softer, moister crumb and subtle sweetness that pairs beautifully with goat cheese."
+    },
+    {
+      title: "Choclo Corn Arepa (Fresh Corn)",
+      description: "Blend fresh sweet corn kernels to replace the water. Use yellow Masarepa for maximum corn intensity.",
+      difficulty: "Easy",
+      expectedOutcome: "Much sweeter, softer, and more aromatic than the standard version. Almost dessert-like when paired with syrup."
+    },
+    {
+      title: "Smoked Paprika & Chipotle Arepa",
+      description: "Add 2% smoked paprika and 1% chipotle powder to the dough for a smoky, spiced variation.",
+      difficulty: "Easy",
+      expectedOutcome: "Deeply flavored shell with a warm heat that builds. Outstanding with pulled chicken and crema."
+    }
+  ],
+
+  learnLinkTags: ["corn-bread", "gluten-free", "latin-america", "venezuela", "colombia", "flatbread", "masarepa", "pre-columbian", "street-food"]
 };

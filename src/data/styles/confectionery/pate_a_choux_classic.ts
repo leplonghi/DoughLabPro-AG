@@ -91,9 +91,9 @@ export const pateAChouxClassic: DoughStyleDefinition = {
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
     images: {
-        hero: "/images/styles/placeholder-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png",
+        hero: "/images/styles/pate_a_choux_classic_hero.png",
+        dough: "/images/styles/pate_a_choux_classic_dough.png",
+        crumb: "/images/styles/pate_a_choux_classic_crumb.png",
     },
     recommendedFlavorComponents: ["pastry_cream", "chocolate_ganache", "whipped_cream"],
 };

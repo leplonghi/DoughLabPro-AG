@@ -216,8 +216,73 @@ export const pain_de_mie_pullman: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/pain-de-mie-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
-  }
+    hero: "/images/styles/pain_de_mie_pullman_hero.png",
+    dough: "/images/styles/pain_de_mie_pullman_dough.png",
+    crumb: "/images/styles/pain_de_mie_pullman_crumb.png"
+  },
+
+  recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "jam"],
+
+  flavorProfile: {
+    primaryFlavors: ["very mild butter sweetness", "clean neutral wheat", "milky softness", "faintly yeasty", "no crust bitterness"],
+    aromaProfile: ["warm enriched dough", "butter and milk", "barely perceptible yeast", "neutral bakery warmth"],
+    textureDescriptors: ["impossibly fine and uniform crumb", "virtually no crust", "melts on the palate", "slices cleanly without tearing"],
+    tasteJourney: "Intentionally neutral. The flavour is a whisper — designed to be a canvas, not a statement. The butter and milk give a creamy background richness. Every bite is consistent, every slice identical. That's the point.",
+    mouthfeel: "The softest possible bread crumb. There is almost no resistance — it compresses and dissolves. No crust, no chew, no crunch. The ultimate soft bread experience.",
+    bakersNotes: "The lid is the entire secret. Without it, you get a brioche-shaped loaf with a nice crust. With it, the sugar and eggs cannot caramelise — they steam instead, creating the white, soft, non-crust unique to Pullman. Generously grease the lid or it will seize."
+  },
+
+  culturalContext: {
+    significance: "Pain de Mie is the bread of precision, privilege, and practicality. In Paris, it was aristocratic — the crust was literally cut off (hence 'crumb bread'). In George Pullman's railway cars, it was logistical genius. Today, it is the gold standard for club sandwiches, canapés, and toast in fine dining.",
+    rituals: ["In high-end hotel restaurants globally, Club Sandwiches use only Pullman bread trimmed of crust", "French patisseries use Pain de Mie for the base of their 'toast canapés' for aperitif service", "Croque Monsieur — France's iconic hot sandwich — traditionally uses Pain de Mie for its soft, heat-resistant structure", "In Japan, Pain de Mie-style 'shokupan' has evolved into an art form known as the '1.5 pound premium milk bread'"],
+    symbolism: "The perfectly uniform, crustless slice is a symbol of precision and control. In an industry where artisan irregularity is celebrated, Pain de Mie represents the opposite aesthetic: mathematical perfection, repeatability, and technical mastery over chaos.",
+    modernRole: "Used extensively by professional pastry chefs and caterers globally. Its uniformity makes it indispensable for canapés, French Toast strips, and any application requiring exact geometry. High-end versions use brioche-level enrichment baked in the Pullman pan."
+  },
+
+  globalPresence: {
+    primaryMarkets: ["France", "USA", "Japan (as Shokupan inspiration)", "UK"],
+    growingMarkets: ["Brazil", "Canada", "Australia"],
+    penetrationLevel: "professional_standard",
+    trend: "Stable in professional kitchens. Growing home baker interest in Pullman pans as the perfect sandwich loaf tool. Japanese milk bread culture has reinvigorated global interest in enriched, closed-pan breads.",
+    diasporaImpact: "French culinary tradition exported this bread globally through hotel and restaurant culture. Virtually every 4-5 star hotel in the world uses some version of Pain de Mie for its breakfast and catering services."
+  },
+
+  pairings: {
+    beverages: [
+      { name: "Freshly Brewed Coffee", type: "traditional", notes: "The French hotel breakfast — thick golden toast with butter and jam alongside café au lait" },
+      { name: "Champagne", type: "elevated", notes: "For canapés — the neutrality of Pain de Mie lets the topping shine without competing" },
+      { name: "Earl Grey Tea", type: "traditional", notes: "Classic afternoon tea pairing — finger sandwiches on Pullman with cucumber and cream cheese" },
+      { name: "Fresh Orange Juice", type: "modern", notes: "The simple, clean breakfast pairing" }
+    ],
+    foods: [
+      { name: "Croque Monsieur", pairing: "perfect", notes: "The ultimate use — Pain de Mie's soft structure and neutral flavour are specifically designed for this hot sandwich" },
+      { name: "Smoked Salmon & Cream Cheese Canapés", pairing: "elevated", notes: "Cut into perfect rounds or squares — the uniform crumb holds shape under pressure" },
+      { name: "Cultured Butter & Fine Jam", pairing: "classic", notes: "The French hotel breakfast in its purest form — quality butter on perfectly toasted Pain de Mie" },
+      { name: "Club Sandwich (Triple Decker)", pairing: "classic", notes: "The definitive use in catering — the square loaf enables perfect geometric trimming" }
+    ],
+    occasions: ["Hotel breakfast service", "Afternoon tea canapés", "Fine dining club sandwiches", "Home French Toast Sunday"]
+  },
+
+  experimentSuggestions: [
+    {
+      title: "Brioche Pullman",
+      description: "Push enrichment to brioche levels: 15% butter, 20% eggs. Bake in the Pullman pan with the lid. The result is somewhere between Pain de Mie and light brioche.",
+      difficulty: "Hard",
+      expectedOutcome: "An extraordinarily rich, buttery crumb with uniform square form. Exceptional French Toast. A showpiece for any catering event."
+    },
+    {
+      title: "Matcha Milk Pullman",
+      description: "Add 2% high-grade culinary matcha to the dry ingredients. Use full-fat milk instead of water. Inspired by Japanese milk bread culture.",
+      difficulty: "Easy",
+      expectedOutcome: "A beautiful pale green loaf with subtle earthy-sweet matcha notes. Spectacular as toast with honey butter or as a sandwich with smoked salmon."
+    },
+    {
+      title: "Charcoal Black Pullman",
+      description: "Add 1.5% activated charcoal to the flour. Use the standard Pain de Mie recipe. The charcoal is purely aesthetic.",
+      difficulty: "Easy",
+      expectedOutcome: "A dramatic glossy black loaf. The texture and flavour are completely unchanged. Spectacular visual impact for canapé presentations."
+    }
+  ],
+
+  learnLinkTags: ["french-bread", "enriched-bread", "sandwich-loaf", "pullman", "pain-de-mie", "crustless", "club-sandwich", "canapé", "hotel-bread", "uniform-crumb"]
 };

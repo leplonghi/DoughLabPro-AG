@@ -250,15 +250,43 @@ export const neapolitan_home_oven_adapted: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["toasted honey wheat", "mild lactic yeast sweetness", "bright tomato freshness", "grassy olive oil"],
+    aromaProfile: ["caramelized honey crust", "fresh basil", "lactic ferment warmth", "toasted stone/steel"],
+    textureNotes: ["soft yielding interior", "charred-golden exterior", "moist yet stable center", "slightly chewy crust with char patches"],
+    pairingRecommendations: ["Low-moisture fior di latte", "San Marzano tomato + fresh basil", "Prosciutto cotto + mushroom", "Craft IPA or sparkling water with lemon"],
+    flavorEvolution: ["Fresh from oven: honey char and basil brightness", "5 minutes: crust firms slightly, oil integrates"]
+  },
+
+  culturalContext: "This style was born from the obsession of home bakers worldwide who discovered modern baking steels and online communities in the 2010s. It democratized the quest for Neapolitan-quality pizza in domestic kitchens, turning Saturday pizza nights into a serious science project.",
+
+  globalPresence: "Baking steels and stones, popularized globally by brands like Baking Steel Inc. and Polished Pans, ignited a worldwide home-pizza renaissance. Communities like r/pizza and PizzaMaking.com became international knowledge hubs, spreading this adapted technique from Australia to Scandinavia.",
+
+  pairings: {
+    canonical: ["Fior di latte + San Marzano tomato + basil (Margherita spirit)", "Low-moisture mozzarella + cooked tomato", "White base: olive oil + garlic + rosemary"],
+    modern: ["Burrata added post-bake + confit cherry tomato", "Truffle cream base + mushroom + parmesan", "Mortadella (post-bake) + pistachio cream"],
+    regional: ["'Bianca Romana' style (oil + rosemary, no sauce)", "Buffalo mozzarella (well-drained) + fresh basil", "Smoked provola + 'nduja (Calabrian twist)"]
+  },
+
+  experimentSuggestions: [
+    "Use an upside-down cast iron skillet as a baking 'steel' and compare bottom char and thermal mass vs ceramic stone.",
+    "Try activating the broiler/grill for the last 90 seconds of baking to mimic wood-fired dome radiation.",
+    "Replace sugar with 1.5% wildflower honey and taste the difference in crust sweetness and aroma at 260°C.",
+    "Add an autolyse step (30 min flour + water rest before yeast) and compare gluten extensibility and final crust texture.",
+    "Swap 15% bread flour for Type 00 and compare the crumb tenderness and bottom char pattern."
+  ],
+
+  learnLinkTags: ["maillard-reaction", "hydration-101", "cold-retard", "yeast-biology", "oven-spring", "autolyse"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/home-oven-neapolitan-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/neapolitan_home_oven_adapted_hero.png",
+    dough: "/images/styles/neapolitan_home_oven_adapted_dough.png",
+    crumb: "/images/styles/neapolitan_home_oven_adapted_crumb.png"
   },
   recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "basil_fresh", "parmesan", "olive_oil_extra_virgin"]
 };

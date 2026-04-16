@@ -1,0 +1,428 @@
+[
+  {
+    "styleId": "neapolitan_avpn_classic",
+    "fileName": "neapolitan_avpn_classic_hero.png",
+    "currentPath": "/images/styles/neapolitan_avpn_classic_hero.png",
+    "prompt": "Professional food photography. classic neapolitan pizza with leopard char spots, buffalo mozzarella, fresh basil. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "neapolitan_contemporary_high_hydration",
+    "fileName": "neapolitan_contemporary_high_hydration_hero.png",
+    "currentPath": "/images/styles/neapolitan_contemporary_high_hydration_hero.png",
+    "prompt": "Professional food photography. contemporary neapolitan pizza, highly blistered crust, artistic plating. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "neapolitan_home_oven_adapted",
+    "fileName": "neapolitan_home_oven_adapted_hero.png",
+    "currentPath": "/images/styles/neapolitan_home_oven_adapted_hero.png",
+    "prompt": "Professional food photography. neapolitan-style pizza made in home oven, slightly imperfect char. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "new_york_slice_shop",
+    "fileName": "new_york_slice_shop_hero.png",
+    "currentPath": "/images/styles/new_york_slice_shop_hero.png",
+    "prompt": "Professional food photography. classic New York-style pizza slice being folded, greasy, cheesy. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "chicago_deep_dish",
+    "fileName": "chicago_deep_dish_hero.png",
+    "currentPath": "/images/styles/chicago_deep_dish_hero.png",
+    "prompt": "Professional food photography. Chicago deep dish pizza, thick cornmeal crust, chunky tomato sauce on top, cast iron pan. Shot from 45-degree overhead shot showing the entire round pizza. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "detroit_style_classic",
+    "fileName": "detroit_style_classic_hero.png",
+    "currentPath": "/images/styles/detroit_style_classic_hero.png",
+    "prompt": "Professional food photography. Detroit-style pizza, rectangular, crispy caramelized cheese edge crust. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "california_style",
+    "fileName": "california_style_hero.png",
+    "currentPath": "/images/styles/california_style_hero.png",
+    "prompt": "Professional food photography. California-style gourmet pizza with arugula, prosciutto, seasonal vegetables. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "brazilian_pizzeria_gas_deck",
+    "fileName": "brazilian_pizzeria_gas_deck_hero.png",
+    "currentPath": "/images/styles/brazilian_pizzeria_gas_deck_hero.png",
+    "prompt": "Professional food photography. Brazilian-style pizza, gas deck oven, thick cheese layer, catupiry. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "roman_teglia_pan",
+    "fileName": "roman_teglia_pan_hero.png",
+    "currentPath": "/images/styles/roman_teglia_pan_hero.png",
+    "prompt": "Professional food photography. Roman pizza al teglia, thick focaccia-like, topped generously, rectangular pan. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "roman_scrocchiarella",
+    "fileName": "roman_scrocchiarella_hero.png",
+    "currentPath": "/images/styles/roman_scrocchiarella_hero.png",
+    "prompt": "Professional food photography. Roman thin-crust scrocchiarella, ultra-crispy, minimal toppings. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "roman_pinsa_modern",
+    "fileName": "roman_pinsa_modern_hero.png",
+    "currentPath": "/images/styles/roman_pinsa_modern_hero.png",
+    "prompt": "Professional food photography. modern Roman pinsa, oval shape, light airy crust, artisan toppings. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "sicilian_grandma_pan",
+    "fileName": "sicilian_grandma_pan_hero.png",
+    "currentPath": "/images/styles/sicilian_grandma_pan_hero.png",
+    "prompt": "Professional food photography. Sicilian grandma-style pan pizza, thick focaccia base, chunky toppings. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "sfincione_siciliano",
+    "fileName": "sfincione_siciliano_hero.png",
+    "currentPath": "/images/styles/sfincione_siciliano_hero.png",
+    "prompt": "Professional food photography. Sicilian sfincione, thick fluffy crust, tomato onion anchovy topping. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "new_haven_apizza",
+    "fileName": "new_haven_apizza_hero.png",
+    "currentPath": "/images/styles/new_haven_apizza_hero.png",
+    "prompt": "Professional food photography. New Haven apizza, charred coal-fired crust, minimalist white clam pizza. Shot from 45-degree overhead shot showing the entire round pizza. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "st_louis_thin",
+    "fileName": "st_louis_thin_hero.png",
+    "currentPath": "/images/styles/st_louis_thin_hero.png",
+    "prompt": "Professional food photography. St. Louis thin-crust pizza, cracker-thin, provel cheese, square cut. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "italian_trattoria_pizza",
+    "fileName": "italian_trattoria_pizza_hero.png",
+    "currentPath": "/images/styles/italian_trattoria_pizza_hero.png",
+    "prompt": "Professional food photography. rustic Italian trattoria wood-fired pizza, classic margherita. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "turkish_pide",
+    "fileName": "turkish_pide_hero.png",
+    "currentPath": "/images/styles/turkish_pide_hero.png",
+    "prompt": "Professional food photography. Turkish pide, boat-shaped flatbread, egg and ground meat filling. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pizza_argentina_fugazzeta",
+    "fileName": "pizza_argentina_fugazzeta_hero.png",
+    "currentPath": "/images/styles/pizza_argentina_fugazzeta_hero.png",
+    "prompt": "Professional food photography. Argentine fugazzeta, thick onion focaccia pizza, caramelized onions. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pizza_frita_montanara",
+    "fileName": "pizza_frita_montanara_hero.png",
+    "currentPath": "/images/styles/pizza_frita_montanara_hero.png",
+    "prompt": "Professional food photography. Neapolitan fried pizza montanara, puffy golden deep-fried dough, ricotta topping. Shot from 45-degree overhead shot showing the entire round pizza. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pao_frances_brazil",
+    "fileName": "pao_frances_brazil_hero.png",
+    "currentPath": "/images/styles/pao_frances_brazil_hero.png",
+    "prompt": "Professional food photography. fresh Brazilian pão francês rolls, golden glossy crust, pestana cut visible. Shot from 3/4 angle showing crust texture and crumb cross-section. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pao_sovado_brazil",
+    "fileName": "pao_sovado_brazil_hero.png",
+    "currentPath": "/images/styles/pao_sovado_brazil_hero.png",
+    "prompt": "Professional food photography. Brazilian pão sovado, soft round rolls, shiny egg wash surface. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pao_de_leite_brazil",
+    "fileName": "pao_de_leite_brazil_hero.png",
+    "currentPath": "/images/styles/pao_de_leite_brazil_hero.png",
+    "prompt": "Professional food photography. Brazilian pão de leite, fluffy milk bread rolls, golden brown top. Shot from Close-up 3/4 angle showing golden crust and soft interior. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "baguette_tradition_francaise",
+    "fileName": "baguette_tradition_francaise_hero.png",
+    "currentPath": "/images/styles/baguette_tradition_francaise_hero.png",
+    "prompt": "Professional food photography. classic French baguette tradition, crispy golden crust, cross-sections showing open crumb. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "sourdough_san_francisco",
+    "fileName": "sourdough_san_francisco_hero.png",
+    "currentPath": "/images/styles/sourdough_san_francisco_hero.png",
+    "prompt": "Professional food photography. San Francisco sourdough boule, dark blistered crust, elegant scoring. Shot from 3/4 angle showing crust texture and crumb cross-section. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "tartine_country_loaf",
+    "fileName": "tartine_country_loaf_hero.png",
+    "currentPath": "/images/styles/tartine_country_loaf_hero.png",
+    "prompt": "Professional food photography. Tartine-style country loaf, rustic ear score, beautiful open crumb. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "ciabatta_high_hydration",
+    "fileName": "ciabatta_high_hydration_hero.png",
+    "currentPath": "/images/styles/ciabatta_high_hydration_hero.png",
+    "prompt": "Professional food photography. Italian ciabatta, flat rustic shape, large irregular holes, dusted with flour. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "focaccia_genovese",
+    "fileName": "focaccia_genovese_hero.png",
+    "currentPath": "/images/styles/focaccia_genovese_hero.png",
+    "prompt": "Professional food photography. Genovese focaccia, dimpled golden surface, rosemary, olive oil sheen. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "challah_braided",
+    "fileName": "challah_braided_hero.png",
+    "currentPath": "/images/styles/challah_braided_hero.png",
+    "prompt": "Professional food photography. beautiful braided challah, golden sesame-topped, Sunday baker aesthetic. Shot from Close-up 3/4 angle showing golden crust and soft interior. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "challah_jewish_braided",
+    "fileName": "challah_jewish_braided_hero.png",
+    "currentPath": "/images/styles/challah_jewish_braided_hero.png",
+    "prompt": "Professional food photography. traditional Jewish challah, six-strand braid, glossy. Shot from Close-up 3/4 angle showing golden crust and soft interior. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "shokupan_milk_bread",
+    "fileName": "shokupan_milk_bread_hero.png",
+    "currentPath": "/images/styles/shokupan_milk_bread_hero.png",
+    "prompt": "Professional food photography. Japanese shokupan milk bread loaf, perfectly square, cotton-soft white interior. Shot from Close-up 3/4 angle showing golden crust and soft interior. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "naan_flatbread",
+    "fileName": "naan_flatbread_hero.png",
+    "currentPath": "/images/styles/naan_flatbread_hero.png",
+    "prompt": "Professional food photography. tandoor-baked naan bread, charred spots, buttery sheen, folded slightly. Shot from 3/4 angle showing crust texture and crumb cross-section. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pita_bread_flatbread",
+    "fileName": "pita_bread_flatbread_hero.png",
+    "currentPath": "/images/styles/pita_bread_flatbread_hero.png",
+    "prompt": "Professional food photography. freshly baked pita bread, puffed up, slight char spots. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pretzel_dough_classic",
+    "fileName": "pretzel_dough_classic_hero.png",
+    "currentPath": "/images/styles/pretzel_dough_classic_hero.png",
+    "prompt": "Professional food photography. deep brown classic German pretzel, coarse salt, glossy lye crust. Shot from 3/4 angle showing crust texture and crumb cross-section. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "turkish_simit",
+    "fileName": "turkish_simit_hero.png",
+    "currentPath": "/images/styles/turkish_simit_hero.png",
+    "prompt": "Professional food photography. Turkish simit bread ring, sesame-encrusted, golden, street food aesthetic. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pain_de_campagne",
+    "fileName": "pain_de_campagne_hero.png",
+    "currentPath": "/images/styles/pain_de_campagne_hero.png",
+    "prompt": "Professional food photography. rustic French pain de campagne, country loaf, wheat scoring, linen cloth. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pain_de_mie_pullman",
+    "fileName": "pain_de_mie_pullman_hero.png",
+    "currentPath": "/images/styles/pain_de_mie_pullman_hero.png",
+    "prompt": "Professional food photography. perfect Pullman loaf, straight sides, soft white crumb, sliced. Shot from Close-up 3/4 angle showing golden crust and soft interior. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "bagels_classic",
+    "fileName": "bagels_classic_hero.png",
+    "currentPath": "/images/styles/bagels_classic_hero.png",
+    "prompt": "Professional food photography. fresh New York bagels, shiny boiled surface, sesame and poppy seeds. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "wheat_tortilla",
+    "fileName": "wheat_tortilla_hero.png",
+    "currentPath": "/images/styles/wheat_tortilla_hero.png",
+    "prompt": "Professional food photography. fresh handmade flour tortilla, char spots from comal, slightly puffed. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "arepa_corn_flatbread",
+    "fileName": "arepa_corn_flatbread_hero.png",
+    "currentPath": "/images/styles/arepa_corn_flatbread_hero.png",
+    "prompt": "Professional food photography. Venezuelan/Colombian arepa, golden brown, griddled, split open showing filling. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "kaisersemmel_austrian",
+    "fileName": "kaisersemmel_austrian_hero.png",
+    "currentPath": "/images/styles/kaisersemmel_austrian_hero.png",
+    "prompt": "Professional food photography. Austrian kaisersemmel roll, five-petal pattern, crispy crust. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "injera_flatbread",
+    "fileName": "injera_flatbread_hero.png",
+    "currentPath": "/images/styles/injera_flatbread_hero.png",
+    "prompt": "Professional food photography. Ethiopian injera flatbread, spongy fermented teff, served with stews. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pane_pugliese",
+    "fileName": "pane_pugliese_hero.png",
+    "currentPath": "/images/styles/pane_pugliese_hero.png",
+    "prompt": "Professional food photography. rustic Pugliese bread, semola durum, round loaf with golden crust. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "vollkornbrot_100_rye",
+    "fileName": "vollkornbrot_100_rye_hero.png",
+    "currentPath": "/images/styles/vollkornbrot_100_rye_hero.png",
+    "prompt": "Professional food photography. dense German vollkornbrot rye bread, dark, sliced, on cutting board. Shot from 3/4 angle showing crust texture and crumb cross-section. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "seventy_percent_rye_sour",
+    "fileName": "seventy_percent_rye_sour_hero.png",
+    "currentPath": "/images/styles/seventy_percent_rye_sour_hero.png",
+    "prompt": "Professional food photography. 70% rye sourdough, dark dense loaf, tangy aroma visual cues. Shot from 3/4 angle showing crust texture and crumb cross-section. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "whole_wheat_100",
+    "fileName": "whole_wheat_100_hero.png",
+    "currentPath": "/images/styles/whole_wheat_100_hero.png",
+    "prompt": "Professional food photography. 100% whole wheat loaf, hearty rustic slice, nutty appearance. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "brioche_burger_bun",
+    "fileName": "brioche_burger_bun_hero.png",
+    "currentPath": "/images/styles/brioche_burger_bun_hero.png",
+    "prompt": "Professional food photography. golden brioche burger bun, sesame seeds, soft interior, split open. Shot from 3/4 front angle showing height and texture. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "potato_burger_bun",
+    "fileName": "potato_burger_bun_hero.png",
+    "currentPath": "/images/styles/potato_burger_bun_hero.png",
+    "prompt": "Professional food photography. potato burger bun, pillowy soft, assembled as gourmet burger. Shot from 3/4 front angle showing height and texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "soft_flour_bun",
+    "fileName": "soft_flour_bun_hero.png",
+    "currentPath": "/images/styles/soft_flour_bun_hero.png",
+    "prompt": "Professional food photography. soft standard burger bun, classic bakery style, on wooden board. Shot from 3/4 front angle showing height and texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "croissant_classic",
+    "fileName": "croissant_classic_hero.png",
+    "currentPath": "/images/styles/croissant_classic_hero.png",
+    "prompt": "Professional food photography. classic French croissant, all layers visible from side, golden flaky. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pain_au_chocolat",
+    "fileName": "pain_au_chocolat_hero.png",
+    "currentPath": "/images/styles/pain_au_chocolat_hero.png",
+    "prompt": "Professional food photography. pain au chocolat, flaky layers, melted chocolate visible from end. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pain_aux_raisins",
+    "fileName": "pain_aux_raisins_hero.png",
+    "currentPath": "/images/styles/pain_aux_raisins_hero.png",
+    "prompt": "Professional food photography. pain aux raisins spiral, golden, glazed, cream pastry filling. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "cinnamon_rolls_classic",
+    "fileName": "cinnamon_rolls_classic_hero.png",
+    "currentPath": "/images/styles/cinnamon_rolls_classic_hero.png",
+    "prompt": "Professional food photography. classic cinnamon rolls in pan, cream cheese frosting dripping. Shot from Side angle showing all layers, flaky texture. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "sweet_rolls_neutral",
+    "fileName": "sweet_rolls_neutral_hero.png",
+    "currentPath": "/images/styles/sweet_rolls_neutral_hero.png",
+    "prompt": "Professional food photography. soft sweet rolls, glossy glaze, pull-apart pan style. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "panettone_artisanal",
+    "fileName": "panettone_artisanal_hero.png",
+    "currentPath": "/images/styles/panettone_artisanal_hero.png",
+    "prompt": "Professional food photography. artisanal panettone, tall domed shape, candied fruits, dusted sugar. Shot from Close-up 3/4 angle showing golden crust and soft interior. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "babka_sweet_bread",
+    "fileName": "babka_sweet_bread_hero.png",
+    "currentPath": "/images/styles/babka_sweet_bread_hero.png",
+    "prompt": "Professional food photography. chocolate babka, twisted swirl cut, caramel glaze. Shot from Close-up 3/4 angle showing golden crust and soft interior. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "stollen_german",
+    "fileName": "stollen_german_hero.png",
+    "currentPath": "/images/styles/stollen_german_hero.png",
+    "prompt": "Professional food photography. German Christmas stollen, powdered sugar dusted, marzipan center visible. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "colomba_pasquale",
+    "fileName": "colomba_pasquale_hero.png",
+    "currentPath": "/images/styles/colomba_pasquale_hero.png",
+    "prompt": "Professional food photography. Italian colomba pasquale, dove shape, almond icing, candied orange. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "kouign_amann_breton",
+    "fileName": "kouign_amann_breton_hero.png",
+    "currentPath": "/images/styles/kouign_amann_breton_hero.png",
+    "prompt": "Professional food photography. Kouign-amann, caramelized sugar crust, flaky layers visible. Shot from Side angle showing all layers, flaky texture. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pastel_de_nata_portuguese",
+    "fileName": "pastel_de_nata_portuguese_hero.png",
+    "currentPath": "/images/styles/pastel_de_nata_portuguese_hero.png",
+    "prompt": "Professional food photography. Portuguese pastel de nata, custard tart, charred top, ceramic tile bg. Shot from Side angle showing all layers, flaky texture. dramatic low-key lighting. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "yeasted_donuts",
+    "fileName": "yeasted_donuts_hero.png",
+    "currentPath": "/images/styles/yeasted_donuts_hero.png",
+    "prompt": "Professional food photography. fluffy yeast donuts, glazed, filled, colorful bakery display. Shot from Side angle showing all layers, flaky texture. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "berliner_bomboloni",
+    "fileName": "berliner_bomboloni_hero.png",
+    "currentPath": "/images/styles/berliner_bomboloni_hero.png",
+    "prompt": "Professional food photography. Berliner/bomboloni, fried dough balls, dusted sugar, jam filling. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "malasadas_fried_dough",
+    "fileName": "malasadas_fried_dough_hero.png",
+    "currentPath": "/images/styles/malasadas_fried_dough_hero.png",
+    "prompt": "Professional food photography. Hawaiian malasadas, fried in sugar, warm from fryer aesthetic. Shot from Side angle showing all layers, flaky texture. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "cookie_ny_choc_chip",
+    "fileName": "cookie_ny_choc_chip_hero.png",
+    "currentPath": "/images/styles/cookie_ny_choc_chip_hero.png",
+    "prompt": "Professional food photography. New York-style chocolate chip cookie, gooey center, crispy edges. Shot from Top-down flat lay or stacked 3/4 view. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "cookie_classic_soft",
+    "fileName": "cookie_classic_soft_hero.png",
+    "currentPath": "/images/styles/cookie_classic_soft_hero.png",
+    "prompt": "Professional food photography. classic soft chocolate chip cookie, melty chips, warm bakery. Shot from Top-down flat lay or stacked 3/4 view. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "cookie_shortbread_classic",
+    "fileName": "cookie_shortbread_classic_hero.png",
+    "currentPath": "/images/styles/cookie_shortbread_classic_hero.png",
+    "prompt": "Professional food photography. shortbread cookies, buttery golden, Scottish style. Shot from Top-down flat lay or stacked 3/4 view. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pate_sucree_classic",
+    "fileName": "pate_sucree_classic_hero.png",
+    "currentPath": "/images/styles/pate_sucree_classic_hero.png",
+    "prompt": "Professional food photography. pâte sucrée tart shell, crispy, golden, unfilled and filled versions. Shot from Top-down flat lay or stacked 3/4 view. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pate_sablee_classic",
+    "fileName": "pate_sablee_classic_hero.png",
+    "currentPath": "/images/styles/pate_sablee_classic_hero.png",
+    "prompt": "Professional food photography. pâte sablée tart, crumbly butter pastry, fruit tart styled. Shot from Top-down flat lay or stacked 3/4 view. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pate_a_choux_classic",
+    "fileName": "pate_a_choux_classic_hero.png",
+    "currentPath": "/images/styles/pate_a_choux_classic_hero.png",
+    "prompt": "Professional food photography. pâte à choux, cream puffs and éclairs, chocolate glaze. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "pastry_danish_classic",
+    "fileName": "pastry_danish_classic_hero.png",
+    "currentPath": "/images/styles/pastry_danish_classic_hero.png",
+    "prompt": "Professional food photography. Danish pastry, laminated dough, fruit custard spiral. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "puff_pastry_classic",
+    "fileName": "puff_pastry_classic_hero.png",
+    "currentPath": "/images/styles/puff_pastry_classic_hero.png",
+    "prompt": "Professional food photography. classic puff pastry, croissant-like layers, vol-au-vent or mille-feuille. Shot from Side angle showing all layers, flaky texture. bright natural window light, clean shadows. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  },
+  {
+    "styleId": "brazilian_cheese_bread",
+    "fileName": "brazilian_cheese_bread_hero.png",
+    "currentPath": "/images/styles/brazilian_cheese_bread_hero.png",
+    "prompt": "Professional food photography. Brazilian pão de queijo, golden cheese bread balls, stretchy interior. Shot from 3/4 angle showing crust texture and crumb cross-section. warm side lighting, golden hour tones. Rustic wooden surface or marble table background. Shallow depth of field. Mouthwatering, editorial quality. No text. No watermarks. 16:9 aspect ratio."
+  }
+]

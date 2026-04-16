@@ -269,14 +269,41 @@ export const chicago_deep_dish: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["buttery corn oil richness", "chunky tomato brightness", "savory fennel sausage", "deep mozzarella cream"],
+    aromaProfile: ["toasted corn oil", "sweet cooked tomato", "caramelized cheese", "dried Italian herbs"],
+    textureNotes: ["flaky biscuit-like crust", "almost-fried crispy bottom", "molten molten cheese interior", "thick substantial bite"],
+    pairingRecommendations: ["Italian fennel sausage", "Spinach + ricotta filling", "Deep-dish Barbera d'Asti wine", "Vernors ginger ale (traditional Chicago)"]
+  },
+
+  culturalContext: "Chicago deep dish pizza is a Midwestern emblem of hearty, unpretentious hospitality — born during WWII rationing and designed to be a full meal, not a snack. While locals often eat tavern-style thin crust for daily dining, deep dish is their pride on the world stage, central to Chicago's culinary identity.",
+
+  globalPresence: "Pizzeria Uno franchises and Lou Malnati's shipping brought deep dish to international audiences. Though rarely replicated authentically abroad due to the specialized panning technique and corn oil tradition, it remains a bucket-list food experience that drives culinary tourism to Chicago.",
+
+  pairings: {
+    canonical: ["Italian sausage + chunky tomato", "Cheese + spinach (vegetarian classic)", "Pepperoni + bell pepper + mushroom"],
+    modern: ["Short rib + caramelized onion + fontina", "Artichoke heart + sun-dried tomato + ricotta", "Clam + white wine cream + breadcrumb"],
+    regional: ["Giordano's stuffed variation (two-crust)", "Lou Malnati's butter crust with fresh uncooked tomatoes", "Pequod's pan pizza with caramelized crust edge"]
+  },
+
+  experimentSuggestions: [
+    "Swap corn oil for clarified butter (50/50) and compare the flakiness and bottom crunch profile.",
+    "Try laminating 20g of cold butter into the dough like rough puff pastry for a Lou Malnati's-style buttery layering.",
+    "Use fresh, hand-crushed whole San Marzano tomatoes vs cooked sauce for the top layer and compare brightness.",
+    "Bake in a seasoned cast iron skillet vs standard aluminum pan and compare heat conduction and bottom texture.",
+    "Test a 2h same-day dough vs overnight cold retard and assess the flavor depth difference in the crust."
+  ],
+
+  learnLinkTags: ["enriched-dough", "maillard-reaction", "gluten-network", "baker-math", "fermentation-chemistry"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/chicago-deep-dish-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/chicago_deep_dish_hero.png",
+    dough: "/images/styles/chicago_deep_dish_dough.png",
+    crumb: "/images/styles/chicago_deep_dish_crumb.png"
   }
 };

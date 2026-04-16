@@ -1,0 +1,188 @@
+src/data/styles/bread/pain_de_mie_pullman.ts(224,3): error TS1117: An object literal cannot have multiple properties with the same name.
+src/data/styles/bread/pao_sovado_brazil.ts(271,5): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/pao_sovado_brazil.ts(302,5): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/pao_sovado_brazil.ts(309,17): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(309,59): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(309,91): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(309,104): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(310,13): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(310,68): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(310,85): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(310,118): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(310,133): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pao_sovado_brazil.ts(316,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pao_sovado_brazil.ts(317,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pao_sovado_brazil.ts(318,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pao_sovado_brazil.ts(319,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pao_sovado_brazil.ts(320,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pita_bread_flatbread.ts(241,5): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/pita_bread_flatbread.ts(271,5): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/pita_bread_flatbread.ts(278,17): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(278,41): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(278,58): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(278,79): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(279,13): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(279,23): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(279,34): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(279,46): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(279,62): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(279,72): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(279,95): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pita_bread_flatbread.ts(285,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pita_bread_flatbread.ts(286,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pita_bread_flatbread.ts(287,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pita_bread_flatbread.ts(288,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pita_bread_flatbread.ts(289,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pretzel_dough_classic.ts(259,5): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/pretzel_dough_classic.ts(290,5): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/pretzel_dough_classic.ts(297,17): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(297,51): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(297,67): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(297,77): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(298,13): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(298,24): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(298,53): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(298,82): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(298,104): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/pretzel_dough_classic.ts(304,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pretzel_dough_classic.ts(305,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pretzel_dough_classic.ts(306,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pretzel_dough_classic.ts(307,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/pretzel_dough_classic.ts(308,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/shokupan_milk_bread.ts(252,9): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/shokupan_milk_bread.ts(282,9): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/shokupan_milk_bread.ts(289,21): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(289,59): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(289,75): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(289,95): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(290,17): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(290,60): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(290,106): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(290,131): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(290,147): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(290,174): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/shokupan_milk_bread.ts(296,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/shokupan_milk_bread.ts(297,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/shokupan_milk_bread.ts(298,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/shokupan_milk_bread.ts(299,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/shokupan_milk_bread.ts(300,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/tartine_country_loaf.ts(258,5): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/tartine_country_loaf.ts(289,5): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/tartine_country_loaf.ts(296,17): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(296,58): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(296,78): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(296,91): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(297,13): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(297,39): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(297,77): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(297,116): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(297,133): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(297,164): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/tartine_country_loaf.ts(303,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/tartine_country_loaf.ts(304,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/tartine_country_loaf.ts(305,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/tartine_country_loaf.ts(306,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/tartine_country_loaf.ts(307,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/turkish_simit.ts(109,9): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/turkish_simit.ts(139,9): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/turkish_simit.ts(146,21): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(146,63): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(146,87): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(147,17): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(147,59): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(147,85): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(147,114): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(147,151): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/turkish_simit.ts(153,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/turkish_simit.ts(154,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/turkish_simit.ts(155,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/turkish_simit.ts(156,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/turkish_simit.ts(157,9): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/vollkornbrot_100_rye.ts(242,5): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(272,5): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(279,17): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(279,45): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(279,58): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(279,78): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(280,13): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(280,27): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(280,56): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(280,74): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(280,100): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(280,122): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/vollkornbrot_100_rye.ts(286,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/vollkornbrot_100_rye.ts(287,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/vollkornbrot_100_rye.ts(288,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/vollkornbrot_100_rye.ts(289,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/vollkornbrot_100_rye.ts(290,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/wheat_tortilla.ts(239,5): error TS2322: Type 'string[]' is not assignable to type 'string'.
+src/data/styles/bread/wheat_tortilla.ts(269,5): error TS2353: Object literal may only specify known properties, and 'regions' does not exist in type 'GlobalPresenceObj'.
+src/data/styles/bread/wheat_tortilla.ts(276,17): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(276,29): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(276,64): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(276,77): error TS2322: Type 'string' is not assignable to type '{ name: string; type?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(277,13): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(277,40): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(277,55): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(277,94): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(277,111): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(277,146): error TS2322: Type 'string' is not assignable to type '{ name: string; pairing?: string; notes: string; }'.
+src/data/styles/bread/wheat_tortilla.ts(283,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/wheat_tortilla.ts(284,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/wheat_tortilla.ts(285,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/wheat_tortilla.ts(286,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/bread/wheat_tortilla.ts(287,5): error TS2322: Type '{ title: string; description: string; }' is not assignable to type 'string | ExperimentSuggestion'.
+  Type '{ title: string; description: string; }' is missing the following properties from type 'ExperimentSuggestion': difficulty, expectedOutcome
+src/data/styles/regions/asia.ts(424,17): error TS2322: Type '"Old Dough (Lao Mian)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/asia.ts(478,5): error TS2322: Type '"none"' is not assignable to type '"direct" | "preferment" | "levain" | "cold" | "hybrid" | "indirect"'.
+src/data/styles/regions/asia.ts(578,17): error TS2322: Type '"None"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(126,17): error TS2322: Type '"Cold Fermentation"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(127,17): error TS2322: Type '"Mandatory"' is not assignable to type '"Ideal" | "Possible" | "Not Recommended" | "Historical" | "Authentic"'.
+src/data/styles/regions/europe.ts(276,17): error TS2322: Type '"Poolish or Sourdough Starter"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(464,30): error TS2339: Property 'VOLLKORNBROT' does not exist on type 'typeof RecipeStyle'.
+src/data/styles/regions/europe.ts(578,17): error TS2322: Type '"Sourdough (Rye Culture)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(579,17): error TS2322: Type '"Mandatory"' is not assignable to type '"Ideal" | "Possible" | "Not Recommended" | "Historical" | "Authentic"'.
+src/data/styles/regions/europe.ts(766,30): error TS2339: Property 'QUICK_BREAD' does not exist on type 'typeof RecipeStyle'.
+src/data/styles/regions/europe.ts(875,17): error TS2322: Type '"None (Chemical)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/data/styles/regions/europe.ts(876,17): error TS2322: Type '"Mandatory"' is not assignable to type '"Ideal" | "Possible" | "Not Recommended" | "Historical" | "Authentic"'.
+src/data/styles/regions/north_america.ts(139,17): error TS2322: Type '"Direct (Cold Cure)"' is not assignable to type '"Direct" | "Biga" | "Poolish" | "Sourdough" | "Hybrid" | "Scald" | "Tangzhong"'.
+src/hooks/useFavorites.ts(3,26): error TS2307: Cannot find module '@/components/ui/Toast' or its corresponding type declarations.

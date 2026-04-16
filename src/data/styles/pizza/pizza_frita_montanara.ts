@@ -231,15 +231,42 @@ export const pizza_frita_montanara: DoughStyleDefinition = {
         }
     ],
 
+    flavorProfile: {
+        primaryFlavors: ["airy oil-toasted wheat", "bright bright Naples marinara", "sharp parmesan crust", "fresh sweet basil finish"],
+        aromaProfile: ["hot sunflower oil fry crust", "wood-fired char contrast", "vibrant basil and tomato", "toasted parmesan perfume"],
+        textureNotes: ["explosive puff-crisp exterior", "extreme honeycomb alveolatura interior", "savory-donut lightness", "grease-free thanks to vertical drain + oven finish"],
+        pairingRecommendations: ["Simple marinara (hot) as sauce", "Parmigiano Reggiano dust (not mozzarella)", "Fresh basil added after oven phase", "Sparkling Campanian white wine"]
+    },
+
+    culturalContext: "Pizza Frita is Naples' answer to post-WWII food scarcity — when wood for pizza ovens was too expensive, resourceful Neapolitan cooks turned to the street fryer. Immortalized by Sophia Loren in Vittorio De Sica's 1954 film 'L'Oro di Napoli', it remains a symbol of Neapolitan ingenuity and the street food soul of the city's working-class identity.",
+
+    globalPresence: "International attention surged when gourmet pizzaiolos like Antonio Starita (Materdei) and Isabella De Cham began presenting Montanara at international food events. The style is now found in select artisan pizzerias in New York and London, commanding premium prices as a modern sophisticated appetizer.",
+
+    pairings: {
+        canonical: ["Hot marinara + fine parmesan dust + fresh basil", "No cheese during fry phase (top only post-fry)", "Smoked buffalo ricotta drizzle (modern)"],
+        modern: ["Stracciatella + cherry tomato confit + basil", "Prosciutto di Parma + burrata (post-bake add, no further heat)", "Black truffle shaver + scamorza pre-oven"],
+        regional: ["Sparkling Falanghina DOC (Campanian white)", "Limoncello shot as digestif after", "Babà al Rum (Neapolitan dessert) as sweet follow-up"]
+    },
+
+    experimentSuggestions: [
+        "Measure oil temp with thermometer: fry at 165°C vs 175°C vs 185°C and compare oil absorption and puff quality.",
+        "Try the dimple technique before frying vs no dimple and compare the vertical shape and topping stability.",
+        "Drain vertically for 30 seconds vs laying flat and compare oil on the surface before topping.",
+        "Use peanut oil vs sunflower oil for frying and compare the flavor neutrality and crust color.",
+        "Skip the oven phase (pure fry only) vs full Montanara double-cook and compare the surface grease and crunch."
+    ],
+
+    learnLinkTags: ["gluten-network", "cold-retard", "maillard-reaction", "oven-spring", "fermentation-chemistry"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/pizza-frita-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/pizza_frita_montanara_hero.png",
+        dough: "/images/styles/pizza_frita_montanara_dough.png",
+        crumb: "/images/styles/pizza_frita_montanara_crumb.png"
     },
     recommendedFlavorComponents: ["tomato_sauce_cooked", "parmesan", "basil_fresh"]
 };

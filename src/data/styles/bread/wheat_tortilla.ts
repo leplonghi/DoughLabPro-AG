@@ -221,9 +221,71 @@ export const wheat_tortilla: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/wheat-tortilla-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/wheat_tortilla_hero.png",
+    dough: "/images/styles/wheat_tortilla_dough.png",
+    crumb: "/images/styles/wheat_tortilla_crumb.png"
   },
-  recommendedFlavorComponents: ["lard_pork_fat", "salted_butter_normandy", "cheddar_cheese"]
+  recommendedFlavorComponents: ["lard_pork_fat", "salted_butter_normandy", "cheddar_cheese"],
+
+  flavorProfile: {
+    primaryFlavors: ["neutral wheat", "fatty richness from lard", "faintly salty", "very subtle sweetness", "clean and fresh"],
+    aromaProfile: ["warm toasted wheat", "lard-rendered pork fat", "neutral flour", "slight caramelised spots", "clean fresh bread"],
+    textureNotes: ["paper-thin and translucent", "laminated flaky layers", "pliable and flexible when warm", "steam-puffed blisters (ampollas)", "chewy without toughness"],
+    pairingRecommendations: ["Carnitas with salsa verde", "Refried beans and Cheddar (Quesadilla)", "Fajita-grilled peppers and steak", "Carne Asada Burrito", "Scrambled eggs and chorizo"],
+    flavorEvolution: ["Fresh off the comal: peak pliability and subtle lard flavour", "Within 1 hour: still excellent — keep in a tortillero", "Day-old: best reheated 20 sec on a dry griddle", "Frozen and reheated: almost as good as fresh"]
+  },
+
+  culturalContext: {
+    significance: [
+      "The foundation of Northern Mexican and Tex-Mex cuisine — without it, there is no Burrito",
+      "Born from the Spanish introduction of wheat and pigs to the Americas after 1519",
+      "The Sobaquera (arm-length tortilla of Sonora) is a testament to the craft's ambition",
+      "Lard was historically the prestige fat — today it signals authenticity and flavour over modern shortcuts",
+      "Making tortillas by hand is a cultural inheritance passed from grandmother to grandchild"
+    ],
+    consumptionContext: [
+      "The wrapper for Burritos, Fajitas, and Quesadillas",
+      "Northern Mexican breakfast: tortilla with eggs and salsa",
+      "Griddled and eaten plain with butter (Sobaquera style)",
+      "The structure for 'Smash Quesadillas' and 'Birria Tacos'",
+      "Torn and used to scoop beans at a home meal"
+    ],
+    evolution: [
+      "Corn tortillas predate Spanish contact; wheat tortillas emerged post-1519 in Northern Mexico",
+      "The Sonoran Sobaquera tradition created the largest versions — hand-stretched over the fist or arm",
+      "The American 'burrito-size' commercial tortilla (12 inches+) evolved for US fast food chains",
+      "Industrial production added gums and preservatives for 3-week shelf life — the enemy of the authentic",
+      "Artisan revival promotes fresh-ground masa harina for corn and stone-milled wheat for flour tortillas"
+    ],
+    rituals: [
+      "The 'long rest' after portioning is sacred — you cannot rush gluten relaxation",
+      "Rolling out a perfect circle is the benchmark skill — irregular shapes signal beginner technique",
+      "Stacking hot tortillas immediately in a cloth-lined Tortillero is non-negotiable for softness",
+      "In Sonoran tradition, stretching the tortilla by hand over the fist is a theatrical skill"
+    ]
+  },
+
+  globalPresence: {
+    regions: ["Northern Mexico (Sonora, Chihuahua, Baja California) — origin", "Tex-Mex USA (Texas, New Mexico, California)", "Global via Mexican fast food chains"],
+    popularity: "globally ubiquitous via fast food; authentic version is regional",
+    exportStatus: "One of the highest-volume exported flatbreads in North America",
+    internationalRecognition: "Widely recognised globally — associated with Burritos and Tex-Mex cuisine"
+  },
+
+  pairings: {
+    beverages: ["Horchata", "Mexican beer (Modelo, Pacifico)", "Margarita", "Agua fresca (hibiscus, tamarind)"],
+    foods: ["Carnitas with guacamole", "Carne Asada", "Grilled fajita vegetables and steak", "Refried beans", "Cheese (Oaxacan, Cheddar, Jack)", "Salsa verde and roja"],
+    occasions: ["Everyday Mexican meal", "Tex-Mex restaurant", "Street food market", "Family weekend cook-up"],
+    seasons: ["Year-round"]
+  },
+
+  experimentSuggestions: [
+    { title: "Lard vs Shortening vs Butter", description: "Make three identical batches using lard, vegetable shortening, and butter respectively. Compare flakiness, flavour, and flexibility — lard consistently wins for authentic texture." },
+    { title: "Sobaquera Giant Tortilla", description: "Double the ball size (100g) and practice hand-stretching over the fist after rolling — aim for 14+ inches for a Sonoran-style Sobaquera." },
+    { title: "Blue Corn Hybrid", description: "Replace 20% of the all-purpose flour with blue corn masa harina for a nutty, earthy tortilla with a lavender-grey crumb." },
+    { title: "Sourdough Flour Tortilla", description: "Add 10% active sourdough discard to the dough liquid — boosts flavour subtly without adding leavening. The rest time must be extended to 45 min." },
+    { title: "Flavored Tortilla", description: "Add 1 tbsp roasted chipotle powder and 1 tsp achiote paste to the dough for a deeply coloured, smoky, flavour-forward tortilla perfect for black bean burritos." }
+  ],
+
+  learnLinkTags: ["wheat-tortilla", "sonoran", "flatbread", "lard", "mexican", "unleavened", "burrito", "tex-mex"]
 };

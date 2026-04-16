@@ -242,8 +242,71 @@ export const pretzel_dough_classic: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/pretzel_laugen_real.png", // Assuming this exists or using placeholder
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
-  }
+    hero: "/images/styles/pretzel_dough_classic_hero.png",
+    dough: "/images/styles/pretzel_dough_classic_dough.png",
+    crumb: "/images/styles/pretzel_dough_classic_crumb.png"
+  },
+
+  flavorProfile: {
+    primaryFlavors: ["salty", "malty", "mineral from lye", "buttery wheat", "faintly bitter"],
+    aromaProfile: ["roasted malt", "alkaline mineral", "warm bread", "coarse salt", "subtle butter"],
+    textureNotes: ["glass-thin mahogany crust", "cotton-cottony white interior", "chewy belly", "crispy thin arm ends", "three distinct textures in one bite"],
+    pairingRecommendations: ["Obatzda (Bavarian cream cheese spread)", "Weißwurst and süßer Senf (sweet mustard)", "Bavarian Weißbier", "Radler (beer-lemonade)", "Sharp aged Emmental"],
+    flavorEvolution: ["Fresh: peak minerality and crunch — eat within hours", "4 hours later: crust softens significantly", "Day-old: best reheated 3 min at 200°C to revive the crust", "Never refrigerate — makes crust leathery"]
+  },
+
+  culturalContext: {
+    significance: [
+      "The Bavarian pretzel (Brezel) is a symbol of Bavaria and Germany recognized worldwide",
+      "Historically monks and bakers used it as a 'seal of authenticity' — the knot symbolized prayer",
+      "Central icon of the Biergarten and Oktoberfest experience",
+      "Legend of Anton Pfannenbrenner (1839) makes it part of Munich Royal Court history",
+      "Protected by informal tradition — Bavarian bakers take lye-dipping as a point of professional honour"
+    ],
+    consumptionContext: [
+      "Brotzeit (bread-time snack) in Bavarian beer gardens",
+      "Sliced open and spread with butter (Butterbrezel)",
+      "Served with Weißwurst on Sunday mornings",
+      "Handheld snack at Oktoberfest and Christmas markets",
+      "Airport and train station kiosks across Germany"
+    ],
+    evolution: [
+      "Pretzels date to at least the 12th century in medieval illuminated manuscripts",
+      "Lye-dipping technique emerged around the 19th century in Bavaria and Swabia",
+      "The Bavarian (uniform) vs Swabian (fat belly + thin arms + scored) regional split developed over centuries",
+      "Industrialisation spread pretzel culture globally via German immigrant communities in the USA",
+      "Artisan revival now focuses on butter-enriched traditional dough and proper NaOH lye"
+    ],
+    rituals: [
+      "Always pulled apart by hand — never cut",
+      "The thick 'belly' is the prestige bite — given to the guest of honour",
+      "Served cross-wise on a wooden board at Biergarten tables as a communal snack",
+      "The lye-dipping is never visible to guests — it's a backstage bakers' ritual",
+      "Brezelsalz (coarse compressed salt) applied only to the belly is a non-negotiable detail"
+    ]
+  },
+
+  globalPresence: {
+    regions: ["Bavaria and Swabia (origin)", "All of Germany and Austria", "German diaspora in USA (Pennsylvania, Wisconsin, Texas)", "Global beer bar snack"],
+    popularity: "iconic global recognition",
+    exportStatus: "Widely exported as packaged pretzels; artisan Laugenbrezel remain a local product",
+    internationalRecognition: "The pretzel shape itself is one of the most recognized food symbols globally"
+  },
+
+  pairings: {
+    beverages: ["Bavarian Weißbier (Hefeweizen)", "Dunkel Lager", "Radler", "Apfelschorle (apple spritzer)"],
+    foods: ["Obatzda", "Weißwurst + sweet mustard", "Aged Emmental or Bergkäse", "Bavarian Leberkäse", "Cold cuts and pickles (Brotzeit plate)"],
+    occasions: ["Oktoberfest", "Biergarten", "Sunday Brotzeit", "Christmas markets", "Beer hall snack"],
+    seasons: ["Year-round — peak at Oktoberfest (September/October)"]
+  },
+
+  experimentSuggestions: [
+    { title: "Baked Baking Soda Alternative", description: "For home bakers: bake baking soda at 120°C for 1 hour to make sodium carbonate (weaker but safer lye). Dip pretzels in 6% sodium carbonate solution and compare the browning and flavour." },
+    { title: "Pâte Fermentée Pretzel", description: "Add 10-15% old dough to the mix for rich, complex wheat flavour that balances the alkaline mineral crust notes." },
+    { title: "Swabian Style", description: "Roll the arms paper-thin and score the belly deeply before dipping — creates the dramatic 'exploded belly' look of Swabian Brezeln." },
+    { title: "Butterbrezel Variant", description: "After baking, slice open and brush the inside with softened Bavarian butter. An Austrian bakery classic." },
+    { title: "Seeded Laugenbrezel", description: "Before dipping in lye, brush with water and press poppy or caraway seeds into the dough surface — they survive the lye bath and baking beautifully." }
+  ],
+
+  learnLinkTags: ["lye-bread", "bavarian", "laugengebäck", "alkaline-baking", "maillard-reaction", "biergarten", "german-bakery", "pretzel"]
 };

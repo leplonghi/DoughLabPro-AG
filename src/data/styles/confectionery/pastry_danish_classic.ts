@@ -209,9 +209,9 @@ export const pastry_danish_classic: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/danish-pastry-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/pastry_danish_classic_hero.png",
+        dough: "/images/styles/pastry_danish_classic_dough.png",
+        crumb: "/images/styles/pastry_danish_classic_crumb.png"
     },
     recommendedFlavorComponents: ["butter_dry_84", "vanilla_bean"] // Need vanilla?
 };

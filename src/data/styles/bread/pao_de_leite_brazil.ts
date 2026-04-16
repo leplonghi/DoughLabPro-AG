@@ -258,9 +258,72 @@ export const pao_de_leite_brazil: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/pao-de-leite-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/pao_de_leite_brazil_hero.png",
+    dough: "/images/styles/pao_de_leite_brazil_dough.png",
+    crumb: "/images/styles/pao_de_leite_brazil_crumb.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "requeijao_cremoso", "mortadella", "minas_cheese"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "requeijao_cremoso", "mortadella", "minas_cheese"],
+
+  flavorProfile: {
+    primaryFlavors: ["rich milky sweetness", "buttery warmth", "delicate vanilla-eggy note", "pillowy enriched wheat", "caramelised glaze"],
+    aromaProfile: ["milk powder warmth", "butter and honey", "fresh-baked yeasty sweetness", "nostalgic bakery morning"],
+    textureDescriptors: ["impossibly soft crumb", "pull-apart feathery strands", "thin glossy mahogany crust", "no resistance on bite"],
+    tasteJourney: "An immediate hit of milky sweetness from the glaze. Then the crumb pulls apart in silky, pillowy strands — deeply buttery and enriched. The sugar level is noticeable but never cloying. It disappears on the palate before you have time to analyze it.",
+    mouthfeel: "The softest leavened bread in Brazilian bakery culture. The crumb is so fine it almost melts. The butter creates a slick richness that coats the palate gently.",
+    bakersNotes: "Milk powder (leite em pó) is the key differentiator — not fresh milk. The powder concentrates the milk proteins and creates a specific 'padaria aroma' that fresh milk cannot replicate. Too much sugar = uneven browning (common failure). Maintain 8-10% sugar maximum."
+  },
+
+  culturalContext: {
+    significance: "Pão de Leite is the bread of Brazilian childhood and the gold standard of padaria (bakery) culture. The 'bisnaguinha' (small industrial version) was Brazil's most iconic lunchbox bread throughout the 1980-2000s. Artisanal versions in premium padarias are now social media subjects.",
+    rituals: ["Eaten as breakfast in virtually every Brazilian home — buttered and with café com leite", "The pull-apart format creates a social eating ritual at family tables", "Hotel breakfast buffets use it as the premium soft bread offering", "Nativity and first communion celebrations often include Pão de Leite as the soft bread option"],
+    symbolism: "Represents the warmth and comfort of Brazilian family mornings. The 'bisnaguinha' shape is imprinted on Brazilian childhood memory — it is simultaneously nostalgic and aspirational (the padaria version versus the industrial one).",
+    modernRole: "Artisan padarias have elevated Pão de Leite significantly — premium versions use real butter, high-fat cream, and imported flour. Viral content of bakeries pulling massive pull-apart loaves apart on social media generates enormous engagement."
+  },
+
+  globalPresence: {
+    primaryMarkets: ["Brazil (nationwide)"],
+    growingMarkets: ["Portugal", "USA (Brazilian diaspora in Florida, New York)", "Japan (influencing Japanese milk bread culture)"],
+    penetrationLevel: "national_dominant",
+    trend: "Growing internationally as Brazilian bakery culture spreads. Recognized as a 'softer, sweeter' version of Japanese Shokupan by international bakers who travel to Brazil.",
+    diasporaImpact: "Brazilian community bakeries (padarias brasileiras) in Florida, New York, and London have introduced Pão de Leite to international audiences. It is becoming a point of Brazilian culinary pride abroad."
+  },
+
+  pairings: {
+    beverages: [
+      { name: "Café com Leite (Brazilian Coffee with Milk)", type: "traditional", notes: "The defining breakfast — the national ritual. Sweet bread + strong coffee + hot milk" },
+      { name: "Vitamina de Banana (Banana Milkshake)", type: "traditional", notes: "Thick Brazilian fruit smoothie — the softness of the bread contrasts beautifully with the cold drink" },
+      { name: "Chocolate Quente (Hot Chocolate)", type: "traditional", notes: "For children's breakfast and afternoon merenda — pull-apart bread dipped in hot chocolate" },
+      { name: "Light Sparkling Wine", type: "modern", notes: "Modern brunch pairing — the very slight fizz works against the richness" }
+    ],
+    foods: [
+      { name: "Requeijão Cremoso (Brazilian Cream Cheese)", pairing: "perfect", notes: "The most beloved Brazilian bread spread — creamy, slightly salty requeijão on warm Pão de Leite" },
+      { name: "Mortadela Bologna", pairing: "classic", notes: "The iconic Brazilian padaria sandwich — thick mortadela between soft pão de leite is a lunchtime institution" },
+      { name: "Minas Cheese (Queijo Minas)", pairing: "classic", notes: "Fresh Minas cheese with a drizzle of honey — the artisanal breakfast version" },
+      { name: "Goiabada (Guava Paste) & Cream Cheese", pairing: "elevated", notes: "'Romeu e Julieta' filling inside Pão de Leite — a classic Brazilian flavour combination" }
+    ],
+    occasions: ["Brazilian breakfast (café da manhã)", "Children's lunchbox", "Hotel breakfast buffet", "Padaria weekend indulgence"]
+  },
+
+  experimentSuggestions: [
+    {
+      title: "Coconut Milk Pão de Leite",
+      description: "Replace 50% of whole milk with coconut milk and 50% of milk powder with coconut powder. Reduce sugar by 2% to balance sweetness.",
+      difficulty: "Easy",
+      expectedOutcome: "A subtly tropical version with a lighter, less rich flavor. The coconut fragrance is delicate and elegant — not sweet but present."
+    },
+    {
+      title: "Cream Cheese-Stuffed Pull-Apart",
+      description: "Ball the individual portions around a tablespoon of requeijão cremoso. Arrange touching in the pan. The cheese melts inside during baking.",
+      difficulty: "Medium",
+      expectedOutcome: "Each roll reveals a molten cream cheese center when torn apart. Spectacular for Sunday brunch presentation."
+    },
+    {
+      title: "São Paulo-Style Pão de Leite com Creme de Avelã",
+      description: "Add 1% Nutella or hazelnut paste to the dough and swirl more on top of each roll before baking. Inspired by padaria 'especial' menus.",
+      difficulty: "Easy",
+      expectedOutcome: "A richer, slightly chocolate-hazelnut indulgent version. The filling caramelises slightly on the exposed roll tops."
+    }
+  ],
+
+  learnLinkTags: ["brazilian-bread", "enriched-bread", "milk-bread", "soft-bread", "padaria", "pull-apart", "breakfast-bread", "brazil", "leite-em-pó", "bisnaguinha"]
 };

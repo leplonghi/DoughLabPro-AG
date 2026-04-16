@@ -241,9 +241,72 @@ export const naan_flatbread: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/naan-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/naan_flatbread_hero.png",
+    dough: "/images/styles/naan_flatbread_dough.png",
+    crumb: "/images/styles/naan_flatbread_crumb.png"
   },
-  recommendedFlavorComponents: ["yogurt_plain", "ghee_clarified_butter", "nigella_seeds", "garlic_fresh"]
+  recommendedFlavorComponents: ["yogurt_plain", "ghee_clarified_butter", "nigella_seeds", "garlic_fresh"],
+
+  flavorProfile: {
+    primaryFlavors: ["tangy yogurt fermentation", "rich ghee butter", "smoky char from high heat", "milky sweetness", "clean wheat dough"],
+    aromaProfile: ["smoky tandoor char", "warm ghee", "yogurt tang", "fresh-baked wheat", "faintly spiced from nigella"],
+    textureDescriptors: ["soft and billowy crumb", "charred bubbles on surface", "slightly chewy with a gentle pull", "tears cleanly into long strips"],
+    tasteJourney: "The first bite delivers char and smoke from the grill or tandoor. Then the dough opens up — soft, tangy, and buttery from the ghee finish. The yogurt adds a subtle sourness that makes each bite feel complete.",
+    mouthfeel: "Uniquely textural: the charred bubbles give pockets of smokiness while the dough around them is pillowy and hydrated. The ghee brush creates a slick, rich mouthfeel on the lips.",
+    bakersNotes: "Without a tandoor, a cast iron skillet or pizza steel under the broiler at maximum temperature is the closest approximation. The dough must be hot-loaded — contact with intense heat is what creates the bubbles. Do not let it cook slowly."
+  },
+
+  culturalContext: {
+    significance: "Naan is the bread of the Mughal courts, brought to Indian cuisine as a symbol of Persian refinement. It remains the most recognized Indian bread worldwide and is served at virtually every Indian restaurant globally. In South Asia, it represents celebration food — eaten at weddings and festivals.",
+    rituals: ["Served alongside dal makhani and butter chicken at North Indian restaurants", "Garlic Naan (brushed with ghee and garlic) is the non-negotiable companion to any tandoor meal", "Keema Naan (stuffed with spiced minced meat) is a street food staple in Lahore and Delhi", "In Afghanistan, Naan (often just 'bread') is the dietary staple baked in communal stone ovens"],
+    symbolism: "The teardrop shape is not intentional — it is physics. The dough stretches under gravity as it hangs on the vertical walls of the clay tandoor. This 'natural' shape has become the internationally recognized forma for the bread.",
+    modernRole: "Omnipresent in Indian restaurants worldwide. As the global Indian diaspora expanded, Naan became one of the most consumed non-European flatbreads in the West. Premium versions with truffles, cheese, or sundried tomato have entered fine dining menus."
+  },
+
+  globalPresence: {
+    primaryMarkets: ["India", "Pakistan", "Bangladesh", "UK", "Canada", "USA"],
+    growingMarkets: ["Australia", "Germany", "France", "Japan", "Brazil"],
+    penetrationLevel: "global",
+    trend: "Extremely stable global demand. Supermarket versions are ubiquitous. Artisan bakeries now offer sourdough naan and specialty filled versions. Growing demand for restaurant-quality home versions.",
+    diasporaImpact: "The British South Asian diaspora made Naan the UK's most popular flatbread. It is now the UK's #1 selling flatbread in supermarkets. The pattern has repeated across all major diaspora cities globally."
+  },
+
+  pairings: {
+    beverages: [
+      { name: "Mango Lassi", type: "traditional", notes: "The cool, sweet lassi is the antidote to the heat of the curry and the smoky char of the naan" },
+      { name: "Kingfisher Beer (Indian Lager)", type: "traditional", notes: "The go-to beer at Indian restaurants globally — light and refreshing against bold spices" },
+      { name: "Masala Chai", type: "traditional", notes: "Morning naan with chai is a common breakfast in North India and Pakistan" },
+      { name: "Gewürztraminer (Alsatian White Wine)", type: "elevated", notes: "The aromatic, slightly sweet wine handles curry spice brilliantly" }
+    ],
+    foods: [
+      { name: "Butter Chicken (Murgh Makhani)", pairing: "perfect", notes: "The definitive pairing — rich, creamy curry with soft naan for scooping" },
+      { name: "Dal Makhani", pairing: "perfect", notes: "Black lentils slow-cooked in butter — naan is the required vessel" },
+      { name: "Saag Paneer", pairing: "classic", notes: "Spinach and fresh cheese curry — naan scoops up every drop" },
+      { name: "Seekh Kebab", pairing: "elevated", notes: "Wrap minced meat kebabs in naan with raita and onion — the ultimate street food" }
+    ],
+    occasions: ["Indian restaurant meal", "Diwali celebration dinner", "Wedding banquet", "Home takeaway Friday night"]
+  },
+
+  experimentSuggestions: [
+    {
+      title: "Sourdough Naan",
+      description: "Replace instant yeast with 15% liquid sourdough starter. Add the extra tang to the existing yogurt base. Proof overnight in the refrigerator.",
+      difficulty: "Medium",
+      expectedOutcome: "Deeper tanginess from double fermentation. Slightly chewier texture with more complex flavor. Exceptional with ghee butter."
+    },
+    {
+      title: "Black Garlic Naan",
+      description: "Mash 4-5 black garlic cloves into the dough. Brush finished naan with regular garlic butter. The black garlic adds umami depth without the sharpness.",
+      difficulty: "Easy",
+      expectedOutcome: "A subtly sweet, molasses-like garlic note throughout the dough. A premium upgrade to garlic naan."
+    },
+    {
+      title: "Peshwari Naan (Almond & Coconut Fill)",
+      description: "Fill the naan with a paste of desiccated coconut, ground almonds, and brown sugar before grilling. Originally from Peshawar, Pakistan.",
+      difficulty: "Medium",
+      expectedOutcome: "A slightly sweet, fragrant filled naan. The coconut toasts against the hot grill, creating a caramelized filling contrast."
+    }
+  ],
+
+  learnLinkTags: ["indian-bread", "flatbread", "tandoor", "yogurt-bread", "mughal", "north-india", "ghee", "garlic-naan", "south-asian", "restaurant-staple"]
 };

@@ -255,15 +255,42 @@ export const st_louis_thin: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["creamy-tangy Provel trio", "sweet herb-forward tomato sauce", "cracker wheat snap", "mild shortening richness"],
+    aromaProfile: ["processed cheese melt", "dried oregano intensity", "cracker-toasted wheat", "sweet tomato sauce warmth"],
+    textureNotes: ["rigid cracker-like disc", "audible snap when bitten", "no crumb (purely monolithic)", "clean square cut with no flopiness"],
+    pairingRecommendations: ["Provel cheese (cheddar + swiss + provolone blend)", "Schlafly Pale Ale or Budweiser (St. Louis originals)", "Sweet oregano-heavy sauce", "Italian sausage squares"]
+  },
+
+  culturalContext: "St. Louis pizza is an act of fierce regional identity: Provel cheese, tavern cut, and cracker crust are local non-negotiables. Imo's Pizza, which opened in 1964, built St. Louis's pizza identity with the slogan 'The Square Beyond Compare.' For locals, it isn't pizza — it's a birthright, debated with the same intensity New Yorkers argue about their slices.",
+
+  globalPresence: "St. Louis style is among the most polarizing pizzas in the US nationally, adored locally but often criticized by outsiders for its processed cheese and cracker texture. It remains largely regional, though food documentaries and 'quirky pizza' listicles have given it national curiosity beyond Missouri.",
+
+  pairings: {
+    canonical: ["Provel + sweet tomato + Italian sausage (the classic)", "Provel + green pepper + onion + mushroom (deluxe)", "Provel + peeled shrimp + garlic (coastal variant)"],
+    modern: ["Provel + hot honey + basil", "Provel + pepperoni cup + banana pepper", "Provel + bacon + caramelized onion + arugula (post-bake)"],
+    regional: ["Schlafly Pale Ale (local St. Louis craft)", "Toasted Ravioli as starter (St. Louis Italian-American tradition)", "Frozen Concrete Mixer (Frozen Custard dessert) from Ted Drewes"]
+  },
+
+  experimentSuggestions: [
+    "Make a Provel substitute: 2:1:1 white cheddar + swiss + provolone with 0.2% sodium citrate and compare melt vs authentic Provel.",
+    "Add 0.1% yeast to the no-yeast recipe and compare the subtle rise and cracker texture change.",
+    "Try vegetable shortening vs olive oil in the dough and compare the 'snap' and mouthfeel.",
+    "Bake pre-docked vs undocked crust and compare bubble formation and uniformity.",
+    "Pre-bake the plain crust for 3 minutes then add toppings and compare bottom snap to single-bake."
+  ],
+
+  learnLinkTags: ["gluten-network", "maillard-reaction", "salt-function", "hydration-101", "flour-rheology"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/st-louis-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/st_louis_thin_hero.png",
+    dough: "/images/styles/st_louis_thin_dough.png",
+    crumb: "/images/styles/st_louis_thin_crumb.png"
   },
   recommendedFlavorComponents: ["provel_cheese", "oregano_dried", "garlic_fresh", "mozzarella_low_moisture", "italian_sausage"]
 };

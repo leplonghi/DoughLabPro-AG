@@ -245,9 +245,9 @@ export const cookie_shortbread_classic: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/classic-shortbread-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/cookie_shortbread_classic_hero.png",
+        dough: "/images/styles/cookie_shortbread_classic_dough.png",
+        crumb: "/images/styles/cookie_shortbread_classic_crumb.png"
     },
     recommendedFlavorComponents: ["salted_butter_normandy", "vanilla_madagascar"]
 };

@@ -224,9 +224,71 @@ export const vollkornbrot_100_rye: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/vollkornbrot-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/vollkornbrot_100_rye_hero.png",
+    dough: "/images/styles/vollkornbrot_100_rye_dough.png",
+    crumb: "/images/styles/vollkornbrot_100_rye_crumb.png"
   },
-  recommendedFlavorComponents: ["caraway_seeds", "sunflower_seeds", "molasses"]
+  recommendedFlavorComponents: ["caraway_seeds", "sunflower_seeds", "molasses"],
+
+  flavorProfile: {
+    primaryFlavors: ["intense sour rye", "earthy malty", "mineral depth", "faint molasses sweetness", "robust whole grain"],
+    aromaProfile: ["sour sourdough rye", "damp earth", "toasted grain berries", "caraway (if added)", "dark malt"],
+    textureNotes: ["dense brick-like crumb", "moist but not gummy", "zero visible alveoli", "sliced thin — almost translucent", "protective dark outer crust shell"],
+    pairingRecommendations: ["Aged Gouda or Tilsit cheese", "Smoked salmon and butter", "Cold cuts and pickles", "Herring with dill", "Smørrebrød toppings"],
+    flavorEvolution: ["Day 1 (24h rest required): acidity and moisture fully set — do not slice before 24h", "Day 2-5: peak flavour window — deep, complex, balanced sour", "Week 2: mild drying — excellent for thin croutons", "Keeps up to 2 weeks wrapped in linen"]
+  },
+
+  culturalContext: {
+    significance: [
+      "The bread of Northern European peasants — rye survived harsh winters when wheat could not",
+      "German school children's daily lunch bread — associated with strength and endurance",
+      "The '24-hour slice rule' is taken seriously — slicing early is considered a mistake",
+      "The 'Vollkorn' (whole grain) label carries legal Lebensmittelrecht status in Germany",
+      "Symbol of German Gesundheitsbewusstsein (health consciousness) culture"
+    ],
+    consumptionContext: [
+      "Sliced paper-thin for open-faced sandwiches (Smørrebrød style)",
+      "Daily breakfast and lunch bread across Northern Germany",
+      "Served at German delis and health food stores worldwide",
+      "Eaten with strong cheeses, cured meats, or just butter and salt",
+      "A component of the traditional 'Abendbrot' (cold evening bread meal)"
+    ],
+    evolution: [
+      "Rye was the dominant grain of Northern Europe since the Middle Ages",
+      "Sourdough acidification was discovered empirically — bakers noticed acid prevented the gumminess",
+      "20th century industrial baking introduced commercial rye soaks (Quellstücke) for more consistent production",
+      "Artisan revival of the 2010s brought Vollkornbrot to international attention via chefs and food writers",
+      "Now the subject of scientific interest for gut microbiome benefits of fermented whole grain"
+    ],
+    rituals: [
+      "Docking (poking holes in the top) before baking is mandatory to prevent 'flying crust'",
+      "The bread must rest 24-48h before slicing — a discipline that separates patient from impatient bakers",
+      "Sliced with a sharp carving knife into very thin slices — thick slices are considered crude",
+      "The 'Brotmesser' (bread knife) with its serrated blade is a kitchen essential in German homes"
+    ]
+  },
+
+  globalPresence: {
+    regions: ["Germany (North and Central)", "Scandinavia (similar rye tradition)", "Austria", "German diaspora worldwide", "Health food stores globally"],
+    popularity: "staple in Northern Europe; niche but growing global interest",
+    exportStatus: "Packaged Vollkornbrot is widely exported; artisan fresh product is local",
+    internationalRecognition: "Recognised by health-conscious communities globally for gut health benefits"
+  },
+
+  pairings: {
+    beverages: ["Dark lager (Schwarzbier)", "Rye Kvass", "Strong black tea", "Cold buttermilk"],
+    foods: ["Aged Gouda", "Tilsit or Raclette cheese", "Smoked herring", "Cold cuts (Aufschnitt)", "Butter and pickles", "Cream cheese and cucumber"],
+    occasions: ["German Abendbrot (cold evening meal)", "Smørrebrød lunch", "Health-focused breakfast", "Hiking and outdoor provisions (excellent keeping quality)"],
+    seasons: ["Year-round; classic autumn and winter bread"]
+  },
+
+  experimentSuggestions: [
+    { title: "Pumpkin Seed Vollkornbrot", description: "Add 12% pumpkin seeds to the soaker for a richer, nuttier crumb with Austrian influence — pairs wonderfully with pumpkin seed oil." },
+    { title: "Caraway and Fennel Vollkornbrot", description: "Add 1% caraway and 0.5% fennel seeds to the dough for a classic 'Landbrot' spiced rye. These are traditional Northern German flavourings." },
+    { title: "Extended Soaker Test", description: "Soak the rye chops for 24h instead of 12h — the extra hydration time softens the coarse grain further, creating a moister, denser crumb with deeper fermented notes." },
+    { title: "Pumpernickel Comparison", description: "Bake the same dough twice: once normally (Vollkornbrot method) and once in a water bath at 120°C for 16h (Pumpernickel method) to experience the Maillard-driven flavour transformation." },
+    { title: "Acid Level Test", description: "Vary the sourdough inoculation (30% vs 50% of rye flour) to see how acidity affects starch stability — the undershoot will show 'Starch Attack' gumminess." }
+  ],
+
+  learnLinkTags: ["rye-bread", "vollkornbrot", "sourdough", "pentosan-structure", "northern-european", "whole-grain", "starch-attack", "german-bakery"]
 };

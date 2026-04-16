@@ -250,15 +250,42 @@ export const brazilian_pizzeria_gas_deck: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["abundant melted mozzarella", "sweet tomato-oregano sauce", "spiced calabresa sausage", "creamy Catupiry richness"],
+    aromaProfile: ["warm melted cheese", "sweet caramelized dough edge", "calabrese spice", "post-bake oregano drizzle"],
+    textureNotes: ["soft bread-like base", "molten abundant cheese layer", "crunchy-sealed stuffed crust edge", "dense but tender crumb"],
+    pairingRecommendations: ["Catupiry cream cheese (iconic)", "Chilled Antarcitânica lager", "Cream cheese stuffed crust edge", "Good-quality Guaraviton soda"]
+  },
+
+  culturalContext: "Brazilian pizza is a maximalist art form rooted in Italian-immigrant São Paulo, where quantity and generosity are virtues. With over 1 million pizzas produced daily in São Paulo alone, pizza here isn't a thin Italian slice — it's a social ritual, always shared, always substantial, and a canvas for beloved local ingredients like Catupiry, calabresa, and hearts of palm.",
+
+  globalPresence: "While São Paulo's claim as the 'pizza capital of the world' is contested, it is undeniably one of the highest per-capita consumption cities globally. Brazilian pizza culture remains largely local, though diaspora communities in the US, Portugal, and Japan have exported the style, particularly the stuffed crust and Catupiry innovations.",
+
+  pairings: {
+    canonical: ["Calabresa sousage + onion + mozzarella (classic)", "Frango com Catupiry (chicken + Catupiry cream cheese)", "Portuguesa: ham + hard-boiled egg + olives + onion"],
+    modern: ["Trufa e Gorgonzola (truffle + gorgonzola, upscale trend)", "Camarao com Catupiry (shrimp + Catupiry, coastal style)", "Nutella Borda (sweet stuffed crust with Nutella)"],
+    regional: ["Antarcitânica lager (São Paulo institution)", "Açaí borda (sweet Amazon-inspired stuffed crust)", "Borda de chocolate brigadeiro (dessert crust)"]
+  },
+
+  experimentSuggestions: [
+    "Replace water with 30% whole milk and compare the crumb softness and dough sweetness at 300°C.",
+    "Stuff the borda with Catupiry vs cream cheese and compare melt, flavor, and seal retention during baking.",
+    "Increase sugar from 2% to 3% and compare Maillard browning at the same gas-deck temperature.",
+    "Try a 24h cold retard vs same-day dough and compare the digestibility and flavor depth.",
+    "Sauté calabresa + onion before putting on pie, compare with raw and assess caramelization and moisture release."
+  ],
+
+  learnLinkTags: ["enriched-dough", "maillard-reaction", "yeast-biology", "hydration-101", "fermentation-chemistry"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/brazilian-pizzeria-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/brazilian_pizzeria_gas_deck_hero.png",
+    dough: "/images/styles/brazilian_pizzeria_gas_deck_dough.png",
+    crumb: "/images/styles/brazilian_pizzeria_gas_deck_crumb.png"
   },
   recommendedFlavorComponents: ["mozzarella_low_moisture", "tomato_sauce_cooked", "calabresa", "catupiry", "onions_fresh", "boiled_eggs", "oregano_dried"]
 };

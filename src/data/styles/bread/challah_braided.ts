@@ -206,14 +206,41 @@ export const challah_braided: DoughStyleDefinition = {
         }
     ],
 
+    flavorProfile: {
+        primaryFlavors: ["rich egg and oil sweetness", "honey or sugar depth", "gently caramelized crust", "soft wheat backbone"],
+        aromaProfile: ["egg-wash lacquered golden sheen", "honey-tinged warmth", "toasted sesame or poppy if topped", "enriched bread pillowy warmth"],
+        textureNotes: ["cotton-like shreddable interior strands", "thin glossy lacquered crust", "pillowy pull-apart structure", "springy yet tender bite"],
+        pairingRecommendations: ["Schmaltz (rendered chicken fat) for a traditional Ashkenazi experience", "Wildflower honey + salted butter", "Cinnamon sugar French toast (the best use of day-old challah)", "Strawberry jam + cream cheese"]
+    },
+
+    culturalContext: "Challah transcends being bread — it is a ritual object. Two loaves are placed on the Shabbat table to commemorate the double portion of manna given to the Israelites in the desert. The braid itself carries symbolism: six-strand braids represent the 12 loaves of Temple offering, while round Rosh Hashanah challahs symbolize the unbroken cycle of the New Year. Making challah (and taking the priestly dough portion — the 'hafrashat challah') remains a deeply observed mitzvah.",
+
+    globalPresence: "Challah is known globally through Jewish diaspora communities across the US, Israel, France, Argentina, South Africa, and Australia. American grocery chains popularized a softer, sweeter version. Israeli challah often uses whole eggs and more sugar for a particularly golden crumb. The bread has influenced Zopf (Swiss braided bread) and pan de leche styles across Latin America.",
+
+    pairings: {
+        canonical: ["Schmaltz + chopped liver (Ashkenazi Shabbat classic)", "Honey + fresh figs (Rosh Hashanah)", "Salted butter + cinnamon sugar (everyday treat)"],
+        modern: ["Nutella + banana French toast", "Burrata + roasted tomato + basil on toasted challah slice", "Smoked salmon + cream cheese + dill on challah round"],
+        regional: ["Manischewitz Concord Grape Wine (Shabbat Kiddush tradition)", "Kugel (challah bread pudding dessert)", "Cholent (slow-cooked stew) served alongside warm challah"]
+    },
+
+    experimentSuggestions: [
+        "Replace oil with equal weight melted coconut oil and compare flavor neutrality and softness.",
+        "Add saffron (1g in warm water) to the dough and compare the aroma and crumb color.",
+        "Try a 6-strand braid vs 3-strand braid and compare the final volume, visual definition, and interior texture.",
+        "Use honey vs granulated sugar and compare caramelization speed, crust color, and sweetness profile.",
+        "Apply double egg-wash (pre-proof + pre-bake) vs single wash and compare the lacquer depth."
+    ],
+
+    learnLinkTags: ["enriched-dough", "maillard-reaction", "yeast-biology", "hydration-101", "fermentation-chemistry"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/challah-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/challah_braided_hero.png",
+        dough: "/images/styles/challah_braided_dough.png",
+        crumb: "/images/styles/challah_braided_crumb.png"
     }
 };

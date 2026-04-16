@@ -247,9 +247,9 @@ export const pate_sucree_classic: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/pate-sucree-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/pate_sucree_classic_hero.png",
+        dough: "/images/styles/pate_sucree_classic_dough.png",
+        crumb: "/images/styles/pate_sucree_classic_crumb.png"
     },
     recommendedFlavorComponents: ["salted_butter_normandy", "vanilla_madagascar", "lemon_peel"]
 };

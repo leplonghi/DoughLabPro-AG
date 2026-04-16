@@ -133,9 +133,12 @@ export interface StyleImages {
 }
 
 export interface StylePairings {
-    canonical: string[];
-    modern: string[];
-    regional: string[];
+    canonical?: string[];
+    modern?: string[];
+    regional?: string[];
+    beverages?: { name: string; type?: string; notes: string }[];
+    foods?: { name: string; pairing?: string; notes: string }[];
+    occasions?: string[];
 }
 
 // ========================================================
@@ -273,9 +276,15 @@ export interface EducationalContent {
 export interface FlavorProfile {
     primaryFlavors: string[];
     aromaProfile: string[];
-    textureNotes: string[];
-    pairingRecommendations: string[];
+    // Legacy fields
+    textureNotes?: string[];
+    pairingRecommendations?: string[];
     flavorEvolution?: string[];
+    // New rich fields
+    textureDescriptors?: string[];
+    tasteJourney?: string;
+    mouthfeel?: string;
+    bakersNotes?: string;
 }
 
 export interface DeepDive {
@@ -305,6 +314,28 @@ export interface BaseFormulaIngredient {
     role?: string;
 }
 
+export interface CulturalContextObj {
+    significance: string;
+    rituals: string[];
+    symbolism: string;
+    modernRole: string;
+}
+
+export interface GlobalPresenceObj {
+    primaryMarkets: string[];
+    growingMarkets: string[];
+    penetrationLevel: string;
+    trend: string;
+    diasporaImpact: string;
+}
+
+export interface ExperimentSuggestion {
+    title: string;
+    description: string;
+    difficulty: string;
+    expectedOutcome: string;
+}
+
 export interface DoughStyleDefinition {
     id: string;
     name: string;
@@ -318,10 +349,10 @@ export interface DoughStyleDefinition {
 
     description: string;
     history?: string;
-    culturalContext?: string;
+    culturalContext?: string | CulturalContextObj;
 
     regulatoryNotes?: string;
-    globalPresence?: string;
+    globalPresence?: string | GlobalPresenceObj;
 
     pairings?: StylePairings;
 
@@ -355,7 +386,7 @@ export interface DoughStyleDefinition {
     flavorProfile?: FlavorProfile;
 
     // App Mapping (MyLab)
-    experimentSuggestions?: string[]; // e.g. "Try pushing hydration to 75%..."
+    experimentSuggestions?: string[] | ExperimentSuggestion[];
 
     // Educational Links
     learnLinkTags?: string[]; // e.g. ["rheology-101", "maillard-reaction"]

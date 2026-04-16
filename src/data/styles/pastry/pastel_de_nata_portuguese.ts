@@ -94,9 +94,9 @@ export const pastelDeNataPortuguese: DoughStyleDefinition = {
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
     images: {
-        hero: "/images/styles/placeholder-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png",
+        hero: "/images/styles/pastel_de_nata_portuguese_hero.png",
+        dough: "/images/styles/pastel_de_nata_portuguese_dough.png",
+        crumb: "/images/styles/pastel_de_nata_portuguese_crumb.png",
     },
     recommendedFlavorComponents: ["egg_custard", "cinnamon", "lemon_zest"],
 };

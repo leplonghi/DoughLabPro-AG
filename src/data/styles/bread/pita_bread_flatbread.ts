@@ -223,9 +223,71 @@ export const pita_bread_flatbread: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/pita-bread-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/pita_bread_flatbread_hero.png",
+    dough: "/images/styles/pita_bread_flatbread_dough.png",
+    crumb: "/images/styles/pita_bread_flatbread_crumb.png"
   },
-  recommendedFlavorComponents: ["olive_oil_extra_virgin", "yogurt_plain", "honey_raw"]
+  recommendedFlavorComponents: ["olive_oil_extra_virgin", "yogurt_plain", "honey_raw"],
+
+  flavorProfile: {
+    primaryFlavors: ["neutral wheat", "lightly yeasty", "clean grain", "subtle olive oil", "mild saltiness"],
+    aromaProfile: ["warm fresh bread", "faint yeast", "toasted flour", "clean sesame (if topped)", "neutral wheat"],
+    textureNotes: ["soft and pliable when fresh", "two distinct thin dough layers", "hollow interior pocket", "chewy when warm", "papery-crisp if over-baked"],
+    pairingRecommendations: ["Hummus", "Falafel", "Shawarma", "Baba Ganoush", "Labneh with olive oil"],
+    flavorEvolution: ["Fresh from oven: best — soft, pliant, steamy pocket", "1 hour later: pliable but softening pocket", "Day-old: best toasted or microwaved briefly", "Freezes perfectly — reheat in toaster"]
+  },
+
+  culturalContext: {
+    significance: [
+      "One of the oldest leavened breads in human history — over 4,000 years of continuous baking",
+      "The daily bread of millions across the Levant, Arab world, and Mediterranean",
+      "Functions simultaneously as food and eating utensil (scooping vehicle)",
+      "The 'pocket' was likely a happy accident of ancient bakers on hot stone hearths",
+      "Symbolic of hospitality across Middle Eastern cultures"
+    ],
+    consumptionContext: [
+      "Stuffed with Falafel or Shawarma for street food",
+      "Torn and used to scoop hummus and dips",
+      "Served alongside grilled meats at family meals",
+      "Cut into wedges and toasted as pita chips",
+      "Eaten plain as a bread course with olive oil and za'atar"
+    ],
+    evolution: [
+      "Origins in ancient Mesopotamia and the Levant — baked on clay tablets and hot stones",
+      "The shape and technique crossed into Greece (pita) and became a Mediterranean staple",
+      "Industrial pita production began in the US in the 1970s — popularising it globally",
+      "Modern artisan revival focuses on whole-wheat, sourdough, and wood-fired versions",
+      "The 'pocket' vs 'no-pocket' distinction now defines Greek gyro pita vs Middle Eastern pita"
+    ],
+    rituals: [
+      "Covering pitas with a cloth immediately out of the oven is essential — steam softens the crust",
+      "In Lebanon and Syria, pita bread accompanies every meal as the default table bread",
+      "The act of tearing and sharing pita is a gesture of communal hospitality",
+      "Leftover pita is almost always repurposed: toasted, fried (Fattoush salad croutons), or used for Fatteh"
+    ]
+  },
+
+  globalPresence: {
+    regions: ["Entire Middle East and Levant", "Greece and Cyprus", "North Africa", "Turkey (as a variant)", "USA, UK, Australia (supermarket staple)"],
+    popularity: "globally ubiquitous",
+    exportStatus: "One of the most exported flatbreads in the world",
+    internationalRecognition: "Universally recognised — supermarket staple in Western countries"
+  },
+
+  pairings: {
+    beverages: ["Ayran (yogurt drink)", "Mint lemonade", "Pomegranate juice", "Black tea"],
+    foods: ["Hummus", "Falafel", "Shawarma", "Baba Ganoush", "Labneh", "Grilled lamb kebabs", "Fattoush salad"],
+    occasions: ["Everyday meal bread", "Street food wrap", "Mezze spread", "Picnic snack"],
+    seasons: ["Year-round"]
+  },
+
+  experimentSuggestions: [
+    { title: "Sourdough Pita", description: "Replace instant yeast with 15% active sourdough levain for a more complex, slightly tangy pita with superior shelf life." },
+    { title: "Whole Wheat 50/50", description: "Use 50% whole wheat + 50% white flour for a nuttier, earthier pita. Note: 100% whole wheat struggles to form the pocket reliably." },
+    { title: "Wood-fired Pita", description: "Bake on a wood-fired pizza oven floor at 400°C+ — the dramatic heat creates a puffed, slightly charred, incredibly aromatic pita in under 90 seconds." },
+    { title: "Za'atar Pita", description: "Brush the rolled disk with olive oil and sprinkle za'atar before baking. The herb-oil topping bakes into the crust for a flavour-packed flatbread." },
+    { title: "No-Pocket Greek Style", description: "Roll 1cm thick and cook on a very hot griddle with olive oil — this creates the thicker, pocketless Greek gyro pita." }
+  ],
+
+  learnLinkTags: ["pocket-bread", "middle-eastern", "flatbread", "steam-puff", "levantine", "ancient-bread", "flash-bake", "falafel"]
 };

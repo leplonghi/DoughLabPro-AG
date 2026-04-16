@@ -55,44 +55,35 @@ const CommonDomainProviders: React.FC<{ children: ReactNode }> = ({ children }) 
 const DomainProviders: React.FC<ProvidersProps> = ({ children }) => {
     const { route } = useRouter();
 
-    if (route === 'calculator') {
-        return (
-            <CommonDomainProviders>
-                <CalculatorProvider>
-                    <DoughSessionProvider>
-                        {children}
-                    </DoughSessionProvider>
-                </CalculatorProvider>
-            </CommonDomainProviders>
-        );
-    }
-
-    // Default / MyLab (Full Domain)
     return (
         <CommonDomainProviders>
-            <BatchesProviderComponent>
-                <LevainProvider>
-                    <GoalsProvider>
-                        <ConsistencyProvider>
-                            <InsightsProvider>
-                                <RecipesProvider>
-                                    <DoughsProvider>
-                                        <SensoryProvider>
-                                            <TimelineProvider>
-                                                <DoughSessionProvider>
-                                                    <CalculatorProvider>
-                                                        {children}
-                                                    </CalculatorProvider>
-                                                </DoughSessionProvider>
-                                            </TimelineProvider>
-                                        </SensoryProvider>
-                                    </DoughsProvider>
-                                </RecipesProvider>
-                            </InsightsProvider>
-                        </ConsistencyProvider>
-                    </GoalsProvider>
-                </LevainProvider>
-            </BatchesProviderComponent>
+            <DoughSessionProvider>
+                <CalculatorProvider>
+                    {route === 'calculator' ? (
+                        children
+                    ) : (
+                        <BatchesProviderComponent>
+                            <LevainProvider>
+                                <GoalsProvider>
+                                    <ConsistencyProvider>
+                                        <InsightsProvider>
+                                            <RecipesProvider>
+                                                <DoughsProvider>
+                                                    <SensoryProvider>
+                                                        <TimelineProvider>
+                                                            {children}
+                                                        </TimelineProvider>
+                                                    </SensoryProvider>
+                                                </DoughsProvider>
+                                            </RecipesProvider>
+                                        </InsightsProvider>
+                                    </ConsistencyProvider>
+                                </GoalsProvider>
+                            </LevainProvider>
+                        </BatchesProviderComponent>
+                    )}
+                </CalculatorProvider>
+            </DoughSessionProvider>
         </CommonDomainProviders>
     );
 };

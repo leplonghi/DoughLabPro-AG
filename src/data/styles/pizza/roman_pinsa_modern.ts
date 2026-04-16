@@ -254,15 +254,43 @@ export const roman_pinsa_modern: DoughStyleDefinition = {
         }
     ],
 
+    flavorProfile: {
+        primaryFlavors: ["light wheat-soy complexity", "crisp mineral rice-flour note", "grassy olive oil finish", "fresh moist crumb"],
+        aromaProfile: ["long-ferment lactic depth", "rice-crust crispness", "toasted olive oil", "clean yeasty sweetness"],
+        textureNotes: ["eggshell-thin shattering crust", "cloud-light moist interior", "airy alveolatura throughout", "remarkable lightness-to-volume ratio"],
+        pairingRecommendations: ["Stracciatella + mortadella (post-bake)", "Prosciutto di Parma + fresh fig", "Light Frascati white wine (Roman DOC)", "CT water or sparkling mineral water"],
+        flavorEvolution: ["Fresh: steam-crisp crust shatters audibly", "5 minutes: interior softens slightly, all complexity blooms", "Best in first 10 minutes"]
+    },
+
+    culturalContext: "The Pinsa Romana, despite its ancient branding, represents the innovative spirit of 21st-century Rome. Invented by Corrado Di Marco in 2001, it has quickly become a symbol of Roman gastronomy — a technically sophisticated answer to the question: 'Can we make pizza lighter and more digestible without sacrificing crunch or flavor?'",
+
+    globalPresence: "Pinsa spread internationally through licensing of Di Marco's branded flour blend, with certified pinserie appearing in New York, Paris, Tokyo, and Dubai. In 2025, Italy officially recognized Pinsa Romana as a Traditional Agri-food Product (PAT) of Lazio, cementing its modern iconic status.",
+
+    pairings: {
+        canonical: ["White Pinsa: stracciatella + mortadella + pistachio", "Red Pinsa: San Marzano tomato + bufala mozzarella", "Potato + rosemary + EVOO (Bianca Romana style)"],
+        modern: ["Truffle cream + sauteed mushroom + taleggio", "Sea bass carpaccio + lemon zest + capers (post-bake)", "Burrata + anchovy + crispy capers"],
+        regional: ["Carciofi alla Romana (Roman artichoke) + pecorino", "Amatriciana sauce (guanciale + pecorino + tomato)", "Porchetta di Ariccia slice + salsa verde (post-bake)"]
+    },
+
+    experimentSuggestions: [
+        "Replace 10% of wheat with stone-ground whole wheat and compare the nutty aroma and crust color.",
+        "Use the twice-bake technique (par-bake 3 min, rest, top, finish bake) and compare crust shatter vs single-bake.",
+        "Test 48h vs 72h cold retard at the same hydration and compare the difference in lightness and digestibility.",
+        "Try 15% rice flour vs 10% and compare the acoustic crunch and moisture retention of the crust.",
+        "Use a sourdough 'pasta madre' essence instead of commercial yeast and compare the Roman aroma profile."
+    ],
+
+    learnLinkTags: ["hydration-101", "gluten-network", "fermentation-chemistry", "cold-retard", "oven-spring", "flour-rheology"],
+
     isPro: false,
     source: "official",
     createdAt: new Date().toISOString(),
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/roman-pinsa-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/roman_pinsa_modern_hero.png",
+        dough: "/images/styles/roman_pinsa_modern_dough.png",
+        crumb: "/images/styles/roman_pinsa_modern_crumb.png"
     },
     recommendedFlavorComponents: ["stracciatella", "mortadella", "pistachio", "olive_oil_extra_virgin", "cherry_tomatoes_confit"]
 };

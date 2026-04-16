@@ -267,9 +267,9 @@ export const croissant_classic: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/croissant-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/croissant_classic_hero.png",
+    dough: "/images/styles/croissant_classic_dough.png",
+    crumb: "/images/styles/croissant_classic_crumb.png"
   },
   recommendedFlavorComponents: ["salted_butter_normandy", "honey_raw", "dark_chocolate_70", "vanilla_madagascar"]
 };

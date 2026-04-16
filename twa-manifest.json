@@ -1,0 +1,54 @@
+{
+  "packageId": "com.doughlabpro.app",
+  "host": "doughlabpro-fire.web.app",
+  "name": "DoughLabPro",
+  "launcherName": "DoughLabPro",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#65a765",
+  "navigationColor": "#65a765",
+  "navigationColorDark": "#4a7c4a",
+  "navigationDividerColor": "#65a765",
+  "navigationDividerColorDark": "#4a7c4a",
+  "backgroundColor": "#ffffff",
+  "enableNotifications": false,
+  "startUrl": "/?utm_source=pwa",
+  "iconUrl": "https://doughlabpro-fire.web.app/pwa-512x512.png",
+  "maskableIconUrl": "https://doughlabpro-fire.web.app/pwa-512x512.png",
+  "monochromeIconUrl": "https://doughlabpro-fire.web.app/pwa-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "shortcuts": [
+    {
+      "name": "Calculadora",
+      "short_name": "Calc",
+      "url": "/calculator?utm_source=pwa_shortcut",
+      "icons": [{ "src": "https://doughlabpro-fire.web.app/pwa-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Estilos de Massa",
+      "short_name": "Estilos",
+      "url": "/styles?utm_source=pwa_shortcut",
+      "icons": [{ "src": "https://doughlabpro-fire.web.app/pwa-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "webManifestUrl": "https://doughlabpro-fire.web.app/manifest.webmanifest",
+  "generatorApp": "bubblewrap-cli",
+  "sdkVersion": "34.0.0",
+  "minSdkVersion": "24",
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "doughlabpro"
+  },
+  "signingKeyFullName": "DoughLabPro",
+  "signingKeyOrganization": "DoughLabPro",
+  "signingKeyOrganizationalUnit": "Mobile",
+  "signingKeyCountry": "BR",
+  "enableSiteSettingsShortcut": true,
+  "useBrowserOnChromeOS": false,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://doughlabpro-fire.web.app/",
+  "fingerprints": []
+}

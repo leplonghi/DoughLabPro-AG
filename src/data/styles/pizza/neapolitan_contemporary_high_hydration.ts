@@ -249,15 +249,43 @@ export const neapolitan_contemporary_high_hydration: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["light wheaten sweetness", "complex lactic depth from biga", "bright raw tomato freshness", "premium post-bake toppings"],
+    aromaProfile: ["honey-cookie biga perfume", "charred wheat crust", "light cream from stracciatella", "aromatic post-bake cold cuts"],
+    textureNotes: ["explosively airy cornicione (balloon-like)", "paper-thin base barely 2mm", "dry honeycomb crumb when cut", "extreme digestibility"],
+    pairingRecommendations: ["Stracciatella + pistachio cream (post-bake)", "Prosciutto di Parma + burrata", "Mortadella + fior di latte + pistachio", "Light Campanian white wine (Greco di Tufo)"],
+    flavorEvolution: ["Seconds from oven: explosive steam release, clean char aroma", "2 minutes: biga complexity blooms, slight acidity", "Best consumed within 5 minutes for intact alveolatura"]
+  },
+
+  culturalContext: "The Neapolitan Contemporary (Canotto) style emerged as a creative rebellion against AVPN's rigid standards, pioneered by figures like Franco Pepe in Caiazzo and Francesco Martucci. By 2015, the Instagram-driven 'dinghy edge' became a global obsession, redefining what Neapolitan pizza could be for a new generation of pizzaioli.",
+
+  globalPresence: "The Canotto aesthetic became a viral social media phenomenon, inspiring high-end pizzerias from Tokyo to Copenhagen to adopt high-hydration biga-based doughs. Masters like Matteo Aloe and Simone Padoan have spread this technical philosophy internationally through workshops and consulting.",
+
+  pairings: {
+    canonical: ["Stracciatella + confit cherry tomatoes", "N'duja + fior di latte + wild honey", "Prosciutto crudo + burrata + basil oil"],
+    modern: ["Wagyu beef tartare + truffle (rare post-bake)", "Sea urchin + whipped ricotta + zest (coastal style)", "Pistachio cream + mortadella + stracciatella"],
+    regional: ["Broccoli rabe + Fior di latte + sausage (Campania rustic)", "Escarole + olives + capers + anchovies (Pizza di Scarola)", "Fried zucchini blossoms + anchovy + ricotta (Roman crossover)"]
+  },
+
+  experimentSuggestions: [
+    "Make a 100% Biga (all flour in the preferment) vs 60% Biga and compare the aromatic perfume and edge rise.",
+    "Use ice water (2°C) vs room temperature water during the second mix stage and measure final dough temp difference.",
+    "Stretch one ball touching the cornicione and one without, bake side by side and compare the Canotto effect.",
+    "Compare 48h cold retard vs 72h on the same recipe and assess digestibility and flavor depth.",
+    "Add 0.5% malt to the dough and compare Maillard browning on the cornicione during the 60-second bake."
+  ],
+
+  learnLinkTags: ["poolish-biga", "gluten-network", "fermentation-chemistry", "oven-spring", "hydration-101", "cold-retard", "ph-acidity"],
+
   isPro: true,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/neapolitan-contemporary-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/neapolitan_contemporary_high_hydration_hero.png",
+    dough: "/images/styles/neapolitan_contemporary_high_hydration_dough.png",
+    crumb: "/images/styles/neapolitan_contemporary_high_hydration_crumb.png"
   },
   recommendedFlavorComponents: ["stracciatella", "mortadella", "pistachio", "cherry_tomatoes_confit", "basil_fresh"]
 };

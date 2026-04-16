@@ -208,14 +208,42 @@ export const california_style: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["mild wheat", "honey sweetness", "savory umami from toppings", "light olive oil richness"],
+    aromaProfile: ["fresh basil", "wood smoke", "toasted wheat", "caramelized honey"],
+    textureNotes: ["crispy-tender bite", "thin yet pliable base", "slight chew without resistance"],
+    pairingRecommendations: ["Goat cheese + fig + honey", "Arugula + prosciutto + shaved parmesan", "Smoked salmon + crème fraîche + capers", "Roasted beet + walnut + gorgonzola"],
+    flavorEvolution: ["Fresh from oven: honey sweetness dominant", "30 min later: crust softens slightly, wheat notes emerge"]
+  },
+
+  culturalContext: "California-style pizza emerged from the California Cuisine movement of the 1980s, championed by Wolfgang Puck at Spago and Alice Waters at Chez Panisse. It represents the Californian ethos of farm-to-table cooking: prioritizing fresh, seasonal, and locally sourced ingredients over tradition.",
+
+  globalPresence: "California Pizza Kitchen (CPK) spread this style worldwide with over 200 locations globally. The genre now influences gourmet pizza menus from Tokyo to London, particularly the 'white pizza' and 'salad pizza' concepts.",
+
+  pairings: {
+    canonical: ["Smoked salmon + dill cream", "BBQ chicken + cilantro + red onion", "Fig + gorgonzola + arugula"],
+    modern: ["Duck confit + cherry gastrique", "Burrata + heirloom tomato + basil oil", "Truffle cream + mushroom + fontina"],
+    regional: ["Crab + avocado + lemon aioli (Bay Area)", "Fish taco pizza (San Diego)", "Dungeness crab + Meyer lemon cream (San Francisco)"]
+  },
+
+  experimentSuggestions: [
+    "Replace 50% of the sugar with wildflower honey and compare the aroma and crust color at the same oven temperature.",
+    "Try a San Francisco sourdough culture as the leavener instead of commercial yeast for authentic local terroir.",
+    "Make a 'salad pizza': bake the crust plain with olive oil, then top with dressed arugula and shaved parmesan after baking.",
+    "Test a 24h vs 72h cold retard and taste the difference in sweetness and flavor complexity.",
+    "Substitute 20% of bread flour with whole wheat for a nuttier base that echoes the farm-to-table philosophy."
+  ],
+
+  learnLinkTags: ["hydration-101", "cold-retard", "maillard-reaction", "fermentation-chemistry", "scoring-technique", "yeast-biology"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/california_style_pizza_hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/california_style_hero.png",
+    dough: "/images/styles/california_style_dough.png",
+    crumb: "/images/styles/california_style_crumb.png"
   }
 };

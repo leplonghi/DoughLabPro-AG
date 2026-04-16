@@ -253,9 +253,72 @@ export const pao_sovado_brazil: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/pao-sovado-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/pao_sovado_brazil_hero.png",
+    dough: "/images/styles/pao_sovado_brazil_dough.png",
+    crumb: "/images/styles/pao_sovado_brazil_crumb.png"
   },
-  recommendedFlavorComponents: ["salted_butter_normandy", "requeijao_cremoso", "minas_cheese"]
+  recommendedFlavorComponents: ["salted_butter_normandy", "requeijao_cremoso", "minas_cheese"],
+
+  flavorProfile: {
+    primaryFlavors: ["sweet milky", "buttery", "toasted wheat", "eggy richness", "caramelised crust"],
+    aromaProfile: ["cooked milk", "warm bakery butter", "subtle vanilla", "toasted sugar", "fresh bread"],
+    textureNotes: ["impossibly dense and velvety", "shreddy pull-apart layers", "zero visible air pockets", "moist without being gummy", "silky thin crust"],
+    pairingRecommendations: ["Requeijão cremoso na chapa", "salted Normandy butter", "fresh Minas Frescal cheese", "guava paste (goiabada)", "Brazilian filter coffee"],
+    flavorEvolution: ["Day 1: peak milky sweetness and soft crust", "Day 2: crumb firms slightly, flavors concentrate", "Day 3: ideal for thick-sliced toast with butter", "Best consumed within 3 days"]
+  },
+
+  culturalContext: {
+    significance: [
+      "Soul bread of the Brazilian 'Padaria' (neighbourhood bakery) culture",
+      "The Cilindro machine is a uniquely Brazilian bakery icon",
+      "Symbol of 'Café da Tarde' — the Brazilian mid-afternoon tea break ritual",
+      "Reflects Portuguese immigrant heritage adapted through Brazilian industrial ingenuity",
+      "Judged by its weight: a heavy loaf signals correct technique and zero air"
+    ],
+    consumptionContext: [
+      "Sliced thick and griddled with Requeijão",
+      "Served at 'Café da Tarde' with Brazilian filter coffee",
+      "Eaten at birthday parties as a savoury base for ham-and-cheese rolls",
+      "Found in every interior Brazilian town bakery",
+      "Often sold by the half-kilo loaf"
+    ],
+    evolution: [
+      "Evolved from Portuguese Pão de Leite brought by 19th-century immigrants",
+      "Brazilian bakers adopted the industrial Cilindro steel roller in the early 1900s",
+      "The 'Sovagem' degassing technique was perfected by 1920s São Paulo bakeries",
+      "Remains largely unchanged — a rare living fossil of early Brazilian bakery science",
+      "Now seeing artisan revival using butter instead of margarine"
+    ],
+    rituals: [
+      "The deep X-cut on top is a visual hallmark — a mark of the master baker",
+      "Proper Sovado must feel 'heavy for its size' — lightness signals failure",
+      "Always brushed with egg + milk wash before baking for the signature mahogany finish",
+      "The 'Cilindro' pass count (25-35 times) is a point of professional pride",
+      "Bakeries often display the Cilindro machine visibly as a badge of authenticity"
+    ]
+  },
+
+  globalPresence: {
+    regions: ["Brazil (São Paulo, Minas Gerais, Rio de Janeiro)", "Brazilian diaspora communities worldwide"],
+    popularity: "hyper-regional",
+    exportStatus: "Primarily a fresh product sold locally; Brazilian expat bakeries abroad",
+    internationalRecognition: "Little known outside Brazil, but deeply beloved within it"
+  },
+
+  pairings: {
+    beverages: ["Brazilian filter coffee (Café Passado)", "Hot chocolate (Achocolatado)", "Cold milk", "Orange juice"],
+    foods: ["Requeijão cremoso (Brazilian cream cheese) na chapa", "Salted butter", "Ham and cheese (misto quente)", "Guava paste", "Minas Frescal cheese"],
+    occasions: ["Café da Tarde (afternoon break)", "Sunday family breakfast", "Children's birthday parties", "Bakery café snack"],
+    seasons: ["Year-round — a daily staple"]
+  },
+
+  experimentSuggestions: [
+    { title: "Vanilla Sovado", description: "Add 0.3% vanilla extract to the dough for the interior-Brazil style — adds a subtle dessert note to the crumb." },
+    { title: "Turmeric Gold Crumb", description: "Add 0.1% turmeric for that premium 'egg-heavy' deep yellow crumb colour prized in bakeries." },
+    { title: "Butter vs Margarine Comparison", description: "Bake one loaf with butter and one with margarine side by side to taste the difference between 'authentic' and 'premium'." },
+    { title: "Double Hydration Test", description: "Try 58% vs 62% hydration in the same roller pass count to observe the difference in final crumb density." },
+    { title: "Pasta Roller Simulation", description: "If no Cilindro is available, use a pasta machine on its widest setting and progressively tighten for 20+ passes to simulate the effect." }
+  ],
+
+  learnLinkTags: ["cilindro-technique", "mechanical-degassing", "brazilian-bakery", "enriched-dough", "shreddy-crumb", "padaria", "cafe-da-tarde", "pao-sovado"]
 };

@@ -254,9 +254,9 @@ export const babka_sweet_bread: DoughStyleDefinition = {
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/babka-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/babka_sweet_bread_hero.png",
+    dough: "/images/styles/babka_sweet_bread_dough.png",
+    crumb: "/images/styles/babka_sweet_bread_crumb.png"
   },
   recommendedFlavorComponents: ["dark_chocolate_70", "salted_butter_normandy", "cinnamon_ceylon", "walnuts", "poppy_seeds", "vanilla_madagascar"]
 };

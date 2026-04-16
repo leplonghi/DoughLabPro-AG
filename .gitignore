@@ -26,3 +26,13 @@ dist-ssr
 # Environment Variables
 .env
 .env.*
+
+# Android signing keystore — NEVER commit
+*.keystore
+*.jks
+android.keystore
+
+# Bubblewrap build artifacts
+app-release-bundle.aab
+app-debug.apk
+app-release.apk

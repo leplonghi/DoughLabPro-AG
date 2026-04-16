@@ -261,9 +261,9 @@ export const cookie_ny_choc_chip: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/ny-cookie-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/cookie_ny_choc_chip_hero.png",
+        dough: "/images/styles/cookie_ny_choc_chip_dough.png",
+        crumb: "/images/styles/cookie_ny_choc_chip_crumb.png"
     },
     recommendedFlavorComponents: ["dark_chocolate_70", "walnuts", "salted_butter_normandy", "vanilla_madagascar", "pecan_nuts"]
 };

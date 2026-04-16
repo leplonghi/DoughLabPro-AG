@@ -113,7 +113,9 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
         tags: (def.tags || []).map(tag => smartTranslate(tag, t)),
         description: smartTranslate(def.description, t),
         history_context: smartTranslate(def.history, t),
-        culturalContext: def.culturalContext ? t(def.culturalContext) : undefined,
+        culturalContext: def.culturalContext
+            ? (typeof def.culturalContext === 'string' ? t(def.culturalContext) : def.culturalContext)
+            : undefined,
         base_formula: def.base_formula ? def.base_formula.map(ing => ({ ...ing, name: t(ing.name) })) : [
             { name: t('results.flour'), percentage: 100 },
             { name: t('results.water'), percentage: (def.technicalProfile.hydration[0] + def.technicalProfile.hydration[1]) / 2 },
@@ -135,10 +137,17 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
             difficulty: def.technicalProfile.difficulty
         },
         scientificProfile: scientificProfile,
-        regulatory_info: def.regulatoryNotes ? t(def.regulatoryNotes) : undefined,
-        global_presence: def.globalPresence ? t(def.globalPresence) : undefined,
+        regulatory_info: def.regulatoryNotes
+            ? (typeof def.regulatoryNotes === 'string' ? t(def.regulatoryNotes) : def.regulatoryNotes)
+            : undefined,
+        global_presence: def.globalPresence
+            ? (typeof def.globalPresence === 'string' ? t(def.globalPresence) : def.globalPresence)
+            : undefined,
         watchouts: def.watchouts ? def.watchouts.map(w => t(w)) : undefined,
-        experimentSuggestions: def.experimentSuggestions ? def.experimentSuggestions.map(e => t(e)) : undefined,
+        pairings: def.pairings,
+        experimentSuggestions: def.experimentSuggestions
+            ? def.experimentSuggestions.map(e => (typeof e === 'string' ? t(e) : e))
+            : undefined,
         notes: def.notes ? def.notes.map(n => t(n)) : undefined,
         variations: (def.variations || []).map((v: any) => ({
             ...v,
@@ -163,6 +172,10 @@ function mapDefinitionToStyle(def: DoughStyleDefinition, t: (key: string, option
             aromaProfile: (def.flavorProfile.aromaProfile || []).map(a => smartTranslate(a, t)),
             textureNotes: (def.flavorProfile.textureNotes || []).map(tn => smartTranslate(tn, t)),
             pairingRecommendations: (def.flavorProfile.pairingRecommendations || []).map(pr => smartTranslate(pr, t)),
+            textureDescriptors: def.flavorProfile.textureDescriptors ? def.flavorProfile.textureDescriptors.map(tn => smartTranslate(tn, t)) : undefined,
+            tasteJourney: def.flavorProfile.tasteJourney ? smartTranslate(def.flavorProfile.tasteJourney, t) : undefined,
+            mouthfeel: def.flavorProfile.mouthfeel ? smartTranslate(def.flavorProfile.mouthfeel, t) : undefined,
+            bakersNotes: def.flavorProfile.bakersNotes ? smartTranslate(def.flavorProfile.bakersNotes, t) : undefined,
         } : undefined,
         references: (def.references || []).map((r: any) => {
             if (typeof r === 'string') return r;
@@ -255,7 +268,7 @@ const ScientificProcessTimeline: React.FC<{ steps: ProcessStep[] }> = ({ steps }
     );
 };
 
-const FlavorIntelligenceSection: React.FC<{ flavorProfile: FlavorProfile, recommendedComponents?: string[], onComponentClick: (component: FlavorComponent) => void }> = ({ flavorProfile, recommendedComponents, onComponentClick }) => {
+const FlavorIntelligenceSection: React.FC<{ flavorProfile: FlavorProfile, recommendedComponents?: string[], pairings?: any, onComponentClick: (component: FlavorComponent) => void }> = ({ flavorProfile, recommendedComponents, pairings, onComponentClick }) => {
     const { t } = useTranslation(['common', 'styles', 'general']);
     const components = useMemo(() => {
         if (!recommendedComponents || recommendedComponents.length === 0) return [];
@@ -274,6 +287,73 @@ const FlavorIntelligenceSection: React.FC<{ flavorProfile: FlavorProfile, recomm
                     <div className="flex flex-wrap gap-1">{flavorProfile.aromaProfile.map((a: string, i: number) => (<span key={i} className="px-1.5 py-0.5 bg-sky-50 text-sky-700 text-[9px] font-black rounded border border-sky-100">{a}</span>))}</div>
                 </div>
             </div>
+
+            {/* Rich Flavor Profile Fields */}
+            {(flavorProfile.textureDescriptors || flavorProfile.tasteJourney || flavorProfile.mouthfeel || flavorProfile.bakersNotes) && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                    {flavorProfile.textureDescriptors && flavorProfile.textureDescriptors.length > 0 && (
+                        <div className="bg-white rounded-xl p-3 border border-slate-100 shadow-sm">
+                            <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 pb-1 border-b border-slate-50">Texture</h4>
+                            <div className="flex flex-wrap gap-1 mt-2">
+                                {flavorProfile.textureDescriptors.map((tDes: string, i: number) => (
+                                    <span key={i} className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">{tDes}</span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {flavorProfile.mouthfeel && (
+                        <div className="bg-white rounded-xl p-3 border border-slate-100 shadow-sm flex flex-col justify-center">
+                            <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 pb-1 border-b border-slate-50">Mouthfeel</h4>
+                            <p className="text-[11px] text-slate-600 leading-snug mt-1">{flavorProfile.mouthfeel}</p>
+                        </div>
+                    )}
+                    {flavorProfile.tasteJourney && (
+                        <div className="bg-white rounded-xl p-3 md:col-span-2 border border-slate-100 shadow-sm">
+                            <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 pb-1 border-b border-slate-50">Taste Journey</h4>
+                            <p className="text-[11px] text-slate-600 leading-relaxed italic mt-1 border-l-2 border-indigo-200 pl-2">"{flavorProfile.tasteJourney}"</p>
+                        </div>
+                    )}
+                    {flavorProfile.bakersNotes && (
+                        <div className="bg-amber-50/30 rounded-xl p-3 md:col-span-2 border border-amber-100/50">
+                            <h4 className="text-[9px] font-black text-amber-600 uppercase tracking-widest mb-1 pb-1 border-b border-amber-100/50 flex items-center gap-1.5"><Lightbulb className="w-2.5 h-2.5" /> Baker's Notes</h4>
+                            <p className="text-[11px] text-amber-800/80 leading-relaxed mt-1">{flavorProfile.bakersNotes}</p>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* Rich Pairings */}
+            {pairings && typeof pairings === 'object' && !Array.isArray(pairings) && (
+                <div className="pt-2">
+                    <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3 border-b border-slate-100 pb-1">Pairing Profiles</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {pairings.beverages && pairings.beverages.length > 0 && (
+                            <div className="bg-slate-50/80 rounded-xl p-3 border border-slate-100">
+                                <span className="text-[10px] font-black text-slate-700 block mb-1">Beverages</span>
+                                <ul className="text-[10px] text-slate-500 space-y-1">
+                                    {pairings.beverages.map((p: string, i: number) => <li key={i}>• {p}</li>)}
+                                </ul>
+                            </div>
+                        )}
+                        {pairings.foods && pairings.foods.length > 0 && (
+                            <div className="bg-slate-50/80 rounded-xl p-3 border border-slate-100">
+                                <span className="text-[10px] font-black text-slate-700 block mb-1">Foods</span>
+                                <ul className="text-[10px] text-slate-500 space-y-1">
+                                    {pairings.foods.map((p: string, i: number) => <li key={i}>• {p}</li>)}
+                                </ul>
+                            </div>
+                        )}
+                        {pairings.occasions && pairings.occasions.length > 0 && (
+                            <div className="bg-slate-50/80 rounded-xl p-3 border border-slate-100">
+                                <span className="text-[10px] font-black text-slate-700 block mb-1">Occasions</span>
+                                <ul className="text-[10px] text-slate-500 space-y-1">
+                                    {pairings.occasions.map((p: string, i: number) => <li key={i}>• {p}</li>)}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
             {components.length > 0 && (
                 <div className="pt-2">
                     <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 px-1">{t('general.recommended_pairings')}</h4>
@@ -382,7 +462,24 @@ export const StyleDetailPage: React.FC<any> = ({ style: initialStyle, onLoadAndN
                                 {styleData.culturalContext && (
                                     <div className="pt-2 p-3 bg-slate-50/50 rounded-xl border border-slate-100">
                                         <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Cultural Significance</span>
-                                        <p className="text-[11px] text-slate-500 leading-normal">{styleData.culturalContext}</p>
+                                        {typeof styleData.culturalContext === 'string' ? (
+                                            <p className="text-[11px] text-slate-500 leading-normal">{styleData.culturalContext}</p>
+                                        ) : (
+                                            <div className="space-y-2 pb-1 text-[11px] text-slate-600">
+                                                <p className="leading-normal">{styleData.culturalContext.significance}</p>
+                                                {styleData.culturalContext.rituals && styleData.culturalContext.rituals.length > 0 && (
+                                                    <div className="mt-2">
+                                                        <span className="text-[9px] font-black uppercase text-slate-400">Rituals</span>
+                                                        <ul className="list-disc pl-4 mt-1 space-y-1 opacity-90">
+                                                            {styleData.culturalContext.rituals.map((r: string, idx: number) => <li key={idx}>{r}</li>)}
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                                {styleData.culturalContext.modernRole && (
+                                                    <p className="mt-2 border-l-2 border-indigo-200 pl-2 italic opacity-90"><span className="text-[9px] font-black uppercase text-slate-400 not-italic block mb-1">Modern Role</span>{styleData.culturalContext.modernRole}</p>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                             </div>
@@ -391,7 +488,7 @@ export const StyleDetailPage: React.FC<any> = ({ style: initialStyle, onLoadAndN
                         {/* Sensory Intelligence */}
                         <SectionCard title="Sensory Intelligence" icon={<ChefHat />} defaultExpanded={true} variant="accent">
                             {styleData.flavorProfile && (
-                                <FlavorIntelligenceSection flavorProfile={styleData.flavorProfile} recommendedComponents={styleData.recommendedFlavorComponents} onComponentClick={setSelectedFlavorComponent} />
+                                <FlavorIntelligenceSection flavorProfile={styleData.flavorProfile} recommendedComponents={styleData.recommendedFlavorComponents} pairings={styleData.pairings} onComponentClick={setSelectedFlavorComponent} />
                             )}
                         </SectionCard>
 
@@ -508,13 +605,25 @@ export const StyleDetailPage: React.FC<any> = ({ style: initialStyle, onLoadAndN
                                     {styleData.global_presence && (
                                         <div>
                                             <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 px-1">Geographic Footprint</h4>
-                                            <p className="text-[11px] text-slate-500 leading-relaxed p-3 bg-slate-50/50 rounded-xl border border-slate-100">{styleData.global_presence}</p>
+                                            {typeof styleData.global_presence === 'string' ? (
+                                                <p className="text-[11px] text-slate-500 leading-relaxed p-3 bg-slate-50/50 rounded-xl border border-slate-100">{styleData.global_presence}</p>
+                                            ) : (
+                                                <div className="space-y-1.5 p-3 bg-slate-50/50 rounded-xl border border-slate-100 text-[10px] text-slate-600">
+                                                    {styleData.global_presence.primaryMarkets && <p><span className="font-black text-slate-500">Primary Markets:</span> {styleData.global_presence.primaryMarkets.join(', ')}</p>}
+                                                    {styleData.global_presence.growingMarkets && <p><span className="font-black text-slate-500">Growing Markets:</span> {styleData.global_presence.growingMarkets.join(', ')}</p>}
+                                                    {styleData.global_presence.trend && <p className="pt-1 mt-1 border-t border-slate-100"><span className="font-black text-slate-500 block mb-0.5">Trend</span>{styleData.global_presence.trend}</p>}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                     {styleData.regulatory_info && (
                                         <div>
                                             <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 px-1">Regulatory & Standardizing Notes</h4>
-                                            <p className="text-[11px] text-slate-500 leading-relaxed p-3 bg-slate-50/50 rounded-xl border border-slate-100">{styleData.regulatory_info}</p>
+                                            {typeof styleData.regulatory_info === 'string' ? (
+                                                <p className="text-[11px] text-slate-500 leading-relaxed p-3 bg-slate-50/50 rounded-xl border border-slate-100">{styleData.regulatory_info}</p>
+                                            ) : (
+                                                <p className="text-[11px] text-slate-500 leading-relaxed p-3 bg-slate-50/50 rounded-xl border border-slate-100">{JSON.stringify(styleData.regulatory_info)}</p>
+                                            )}
                                         </div>
                                     )}
                                 </div>
@@ -568,12 +677,28 @@ export const StyleDetailPage: React.FC<any> = ({ style: initialStyle, onLoadAndN
                         </section>
 
                         {/* Knowledge Experiments */}
-                        {styleData.experimentSuggestions && (
+                        {styleData.experimentSuggestions && styleData.experimentSuggestions.length > 0 && (
                             <section className="bg-slate-50 border border-slate-200 p-5 rounded-[2rem] space-y-3">
                                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2"><Target className="w-3.5 h-3.5 text-indigo-500" />Lab Experiments</h3>
                                 <div className="space-y-2">
-                                    {styleData.experimentSuggestions.map((e, i) => (
-                                        <div key={i} className="p-2.5 bg-white rounded-xl border border-slate-100 text-[10px] font-bold text-slate-600 flex items-center gap-2 active:scale-95 transition-transform cursor-pointer group hover:border-indigo-200"><div className="w-1 h-1 rounded-full bg-indigo-400 group-hover:scale-150 transition-transform" />{e}</div>
+                                    {styleData.experimentSuggestions.map((e: any, i: number) => (
+                                        typeof e === 'string' ? (
+                                            <div key={i} className="p-2.5 bg-white rounded-xl border border-slate-100 text-[10px] font-bold text-slate-600 flex items-center gap-2 active:scale-95 transition-transform cursor-pointer group hover:border-indigo-200">
+                                                <div className="w-1 h-1 rounded-full bg-indigo-400 group-hover:scale-150 transition-transform" />{e}
+                                            </div>
+                                        ) : (
+                                            <div key={i} className="p-3 bg-white rounded-xl border border-slate-100 group hover:border-indigo-200 transition-colors">
+                                                <div className="flex items-start justify-between mb-1.5">
+                                                    <h4 className="text-[10px] font-black text-slate-700">{e.title}</h4>
+                                                    {e.difficulty && <span className="text-[8px] font-black uppercase text-indigo-500 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-100">{e.difficulty}</span>}
+                                                </div>
+                                                <p className="text-[10px] text-slate-500 leading-normal mb-2">{e.description}</p>
+                                                <div className="p-2 bg-slate-50 rounded-lg">
+                                                    <span className="text-[8px] font-black uppercase text-slate-400 block mb-0.5">Expected Outcome</span>
+                                                    <p className="text-[9px] text-slate-600 font-medium italic">{e.expectedOutcome}</p>
+                                                </div>
+                                            </div>
+                                        )
                                     ))}
                                 </div>
                             </section>

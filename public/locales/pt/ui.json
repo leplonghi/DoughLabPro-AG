@@ -1,4 +1,9 @@
 {
+  "welcome_title": "DoughLab Pro",
+  "app_tagline": "A Ciência por trás de cada Massa",
+  "sign_in_to_access_your_lab_recipes_and_tools": "Faça login para acessar o laboratório, suas receitas e ferramentas de precisão.",
+  "sign_in_button": "Entrar no Laboratório",
+  "terms_agreement": "Ao entrar, você concorda com nossos Termos de Serviço e Política de Privacidade.",
   "timeline": {
     "title": "Cronograma",
     "bake_start": "Assar",

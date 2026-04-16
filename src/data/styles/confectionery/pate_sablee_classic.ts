@@ -245,9 +245,9 @@ export const pate_sablee_classic: DoughStyleDefinition = {
     releaseDate: new Date().toISOString(),
 
     images: {
-        hero: "/images/styles/pate-sablee-hero.png",
-        dough: "/images/styles/placeholder-dough.png",
-        crumb: "/images/styles/placeholder-dough.png"
+        hero: "/images/styles/pate_sablee_classic_hero.png",
+        dough: "/images/styles/pate_sablee_classic_dough.png",
+        crumb: "/images/styles/pate_sablee_classic_crumb.png"
     },
     recommendedFlavorComponents: ["salted_butter_normandy", "vanilla_madagascar", "orange_peel", "hazelnuts"]
 };

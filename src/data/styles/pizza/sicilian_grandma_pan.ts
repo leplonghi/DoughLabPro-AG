@@ -271,14 +271,41 @@ export const sicilian_grandma_pan: DoughStyleDefinition = {
     }
   ],
 
+  flavorProfile: {
+    primaryFlavors: ["olive-oil fried crust richness", "sweet-acidic tomato sauce", "milky low-moisture mozzarella", "light yeasty focaccia sweetness"],
+    aromaProfile: ["fried olive oil bottom crust", "cooked tomato brightness", "warm yeasty bread aroma", "oregano and garlic"],
+    textureNotes: ["crispy-fried exterior bottom", "thick spongy focaccia-like interior", "soft yielding crumb with medium alveoli", "substantial satisfying bite"],
+    pairingRecommendations: ["Italian-American Sunday red wine (Chianti Classico)", "Garlic knots as companion bread", "Sparkling red Lambrusco", "Pepperoni + sweet bell pepper"]
+  },
+
+  culturalContext: "Grandma pizza is a monument to Italian-American heritage and the ingenuity of immigrant home cooks who recreated Sicily's sfincione using a humble sheet pan and a gas oven. For decades it was a family recipe, passed privately from grandmother to grandchild, before becoming a Long Island pizzeria staple in the 1990s.",
+
+  globalPresence: "Grandma pizza experienced a renaissance surge in the 2010s as food media elevated it from Long Island secret to national icon. Chains like Papa John's introduced 'Grandma Pie' nationally, while artisanal versions appeared in high-end New York pizzerias charging premium prices for what grandmothers made for free.",
+
+  pairings: {
+    canonical: ["Pepperoni + low-moisture mozzarella + whole milk", "Sausage + bell pepper + mushroom", "Plain 'cheese' with extra sauce drizzle"],
+    modern: ["Broccoli rabe + Italian sausage + provolone", "Vodka sauce + fresh basil + ricotta dollops", "Artichoke + spinach + ricotta (white grandma)"],
+    regional: ["Garlic knots as aperitivo (NY Italian-American tradition)", "Italian hoagie alongside (Long Island deli crossover)", "Struffoli or cannolì for dessert (Sicilian-American tradition)"]
+  },
+
+  experimentSuggestions: [
+    "Try the Grandma cheese-first technique (mozzarella then sauce) vs standard sauce-first and compare bottom moisture.",
+    "Use 100% olive oil pan coating vs 50% olive + 50% corn oil and compare the flavor and crispness of the bottom.",
+    "Proof the panned dough for 2h vs 4h and compare the alveolatura size and final sponge texture.",
+    "Add a sourdough starter (10% inoculation) to the dough and compare the crumb complexity and digestibility.",
+    "Test a 24h cold retard after balling (before panning) vs same-day panning and compare flavor development."
+  ],
+
+  learnLinkTags: ["enriched-dough", "hydration-101", "fermentation-chemistry", "gluten-network", "maillard-reaction", "oven-spring"],
+
   isPro: false,
   source: "official",
   createdAt: new Date().toISOString(),
   releaseDate: new Date().toISOString(),
 
   images: {
-    hero: "/images/styles/sicilian-grandma-pan-hero.png",
-    dough: "/images/styles/placeholder-dough.png",
-    crumb: "/images/styles/placeholder-dough.png"
+    hero: "/images/styles/sicilian_grandma_pan_hero.png",
+    dough: "/images/styles/sicilian_grandma_pan_dough.png",
+    crumb: "/images/styles/sicilian_grandma_pan_crumb.png"
   }
 };
